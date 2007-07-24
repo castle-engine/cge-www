@@ -1,133 +1,231 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
+<?php
+  require "index_funcs.php";
+  index_header("Kambi VRML game engine", LANG_EN,
+    'A game engine written using ObjectPascal. ' .
+    'Main features: processing and OpenGL rendering of 3D models in VRML ' .
+    '(and some other) formats, animation, collision detection, ' .
+    'shadows, 3d sound, ray-tracer.');
+?>
 
-<html lang="en">
+<?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta name="Author" content="Michalis Kamburelis">
-<meta name="Language" content="English">
+<p>Welcome ! This is my home page, basically just a collection of various things
+that I do.
 
-<style type="text/css"><!--
-  body { background: white
-    url(images/gcorner.jpg) no-repeat ; }
-  table.key_list { width: 90%; }
-  table.key_list th { background: #eeeee0; }
-  table.key_list td { background: #ddddd0; }
+<p>I'm a programmer, and some of the keywords that I enjoy are
+<i>free software</i>, <i>3D graphic</i> and <i>ObjectPascal</i>.
+All programs presented here are free sofware (<?php echo a_href_page(
+'sources are available', 'sources'); ?> on terms of GNU GPL license).
+Most of these programs were compiled with
+<a href="http://www.freepascal.org">FreePascal</a> for Linux, FreeBSD, Mac OS X
+and Windows.
 
-  dt { font-weight: bold; }
-  div.page_footer { }
-  span.page_copyright { font-size: smaller }
+<?php require 'last_update.php'; ?>
 
-  span.version_number { font-size: small }
+<?php echo main_list_begin(); ?>
+<?php echo main_list_item("Programs: Main games, VRML tools");
 
-  /* Adapted from my pasdoc.css */
-  table.thin_borders { border-collapse: collapse; }
-  table.thin_borders td { border: 1pt solid lightgray; padding: 0.3em; }
-  table.thin_borders th { border: 1pt solid lightgray; padding: 0.3em; }
+function program_image_link($title, $subtitle, $image_name, $page_name)
+{
+  echo '<td class="program_image_link"><p>' .
+    a_href_page("<img src=\"images/progs_demo/program_link_size/$image_name\"
+      alt=\"$title\" />", $page_name) .
+    '</p><p class="program_image_link_title">' .
+    a_href_page("<b>$title</b>", $page_name) .
+    '</p><p>' .
+    $subtitle . '</p></td>';
+}
 
-  dl.command_line_options_list > dt {
-    font-family: monospace;
-    font-weight: bold;
-  }
+function program_image_links_table_begin()
+{
+  /* No way to nicely express this cellspacing in CSS ? */
+  echo '<table class="program_image_links" cellspacing="20">';
+}
 
-  /* Leave default font-family for dt, and default font-weight.
-     Use span with command_line_option class inside dt. */
-  dl.command_line_options_list_custom > dt {
-    font-weight: normal;
-  }
-  span.command_line_option {
-    font-family: monospace;
-    font-weight: bold;
-  }
+?>
 
-  div.quick_links_bottom_line { text-align: center; }
+<?php program_image_links_table_begin(); ?>
+  <tr>
+    <?php program_image_link('&quot;The Castle&quot;',
+      'First-person perspective game, in a dark fantasy setting.',
+      "castle_screen_demo_1.png", 'castle'); ?>
 
-  div.latest_update_description {
-    margin-left: 3em;
-    border: 1px solid gray;
-    padding: 0.5em;
-  }
+    <?php program_image_link('view3dscene',
+      'Viewer for VRML 1.0, VRML 2.0 (aka VRML 97),
+      3DS, MD3, OBJ and GEO models. Move in the virtual scene,
+      with collision-checking and gravity,
+      use embedded ray-tracer, convert 3DS, MD3 etc. files to VRML 1.0.',
+      "view3dscene_2.0.0_screen_demo.png",
+      'view3dscene'); ?>
+  </tr>
 
-  pre.vrml_code {
-    border: 1px solid #aaaaaa;
-    background-color: #f9f9f9;
-    padding: 0.3em;
-  }
+  <tr>
+    <?php program_image_link("rayhunter",
+      'Command-line simple ray-tracer (classic deterministic ray-tracer and
+      basic Monte Carlo path tracer implemented)',
+      'rayhunter_graz_demo.png',
+      "rayhunter"); ?>
+  </tr>
+</table>
 
-  dl.vrml_ver_differences > dt {
-    font-weight: normal;
-    font-style: italic;
-  }
+<p>Also take a look at
+<ul>
+  <li><?php echo a_href_page('Kambi VRML game engine
+    &mdash; informations for developers', 'kambi_vrml_game_engine'); ?>
+    and it's <?php echo a_href_page('documentation', 'sources_docs') ?>
+  <li><?php echo a_href_page("My master's thesis about my VRML engine",
+    'vrml_engine_doc'); ?>
+  <li><?php echo a_href_page("Specification of my extensions to VRML",
+    "kambi_vrml_extensions"); ?>
+  <li><?php echo a_href_page("My VRML test suite",
+    "kambi_vrml_test_suite"); ?>
+  <li><?php echo a_href_page('VRML implementation status',
+    'vrml_implementation_status'); ?>
+  <li><?php echo a_href_page(
+    "The small gallery of images rendered using rayhunter","raytr_gallery"); ?>
+  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
+    modified version of the mgf2inv program by Greg Ward,
+    it outputs some additional info about physical material properties
+    (concerning Phong BRDF)
+  <li>Read my document describing
+    <a href="src/pascal/docs/html/introduction.html#OpenGLOptimization">
+    how current VRML rendering optimization works,
+    what are the possible drawbacks and what are the possible
+    alternatives (and what drawbacks are hidden in those alternatives :)</a>.
+</ul>
 
-  table.program_image_links {
-    width: 100%;
-  }
+<?php echo main_list_item("Programs: Older games"); ?>
 
-  td.program_image_link img { border: none; }
+<?php program_image_links_table_begin(); ?>
+  <tr>
+    <?php program_image_link('lets_take_a_walk',
+      "Small 3d game-like toy, demonstrating OpenGL integrated with OpenALs
+      spatial sound.",
+      'lets_take_a_walk_screen_demo.png',
+      'lets_take_a_walk'); ?>
 
-  td.program_image_link {
-    background: #e8d59a;
-    width: 50%;
-    border: 1px solid black;
-    text-align: center;
-    padding: 0.5em;
-  }
+    <?php program_image_link('malfunction',
+      '3D space-shooter. This was the first game made by me that used VRML models.',
+      'malfunction_screen_demo.png',
+      'malfunction'); ?>
+   </tr>
 
-  .program_image_link_title { font-size: larger; }
+   <tr>
+     <?php program_image_link('kambi_lines',
+       'Arrange colored balls in lines. Quickly.',
+       'kambi_lines_screen_demo.png', 'kambi_lines'); ?>
+   </tr>
+</table>
 
-  /* Style for note and note_title shamelessly stolen from CSS
-     of the Subversion book. (from .sidebar and .sidebar .title) */
-  .note
-  {
-      border-top: dotted 1px black;
-      border-left: dotted 1px black;
-      border-right: solid 2px black;
-      border-bottom: solid 2px black;
-      background: rgb(240,220,170);
-      padding: 0 0.12in;
-      margin: 0.5in;
-  }
+<p>These games are not extended anymore. They are mainly small toys
+and demos of my VRML game engine. I like them very much,
+and I keep them in working and compilable state, but that's it.
 
-  .note .note_title {
-    text-align: center;
-    font-size: 125%;
-  }
---></style>
+<?php echo main_list_item("Programs: Computer graphics, others"); ?>
 
-<title>Kambi VRML game engine</title>
+<ul>
+  <li><?php echo a_href_page("glViewImage","glviewimage") ?> &mdash;
+    image viewer, it can fully handle PNG, JPEG, PPM, BMP and RGBE formats
+  <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
+    just a toy allowing you to plot Bezier curves in 3D -->
+  <li><?php echo a_href_page("glplotter", "glplotter"); ?> &mdash;
+    plotting graphs in OpenGL
+  <li><?php echo a_href_page("gen_funkcja", "gen_funkcja"); ?> &mdash;
+    generate function's graphs for glplotter
+  <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
+    plotting rational Bezier curves
+  <li>And something special &mdash; <?php echo a_href_page("glcaps", "glcaps") ?>,
+    program that outputs some useful information about OpenGL libraries
+    installed on your system.
+</ul>
 
-</head>
-<body>
+<?php echo main_list_item("Additional information"); ?>
 
-<h1>Kambi VRML game engine</h1>
+<p>Below you can find some additional things concerning many of
+the programs above.
 
-<p>Right now the WWW pages with all the information, documentation,
-download links are on
-<a href="http://www.camelot.homedns.org/~michalis/">http://www.camelot.homedns.org/~michalis/</a>.
-We'll move to SourceForge WWW soon (I'm writing this on 2007-07-19,
-and hope to finish move by the end of this month).</p>
+<ul>
+  <li><?php echo a_href_page(
+    "Standard command-line options understood by all my OpenGL programs",
+    "opengl_options"); ?>
+  <li><?php echo a_href_page(
+    'Notes related to all my programs using OpenAL', 'openal_notes'); ?>
+  <li><?php echo a_href_page(
+    "Some notes about command-line options understood by my programs", "common_options"); ?>
 
-<p>In the meantime, you're already welcome to use
-<a href="http://sourceforge.net/projects/vrmlengine">all SourceForge
-features for this project</a>,
-like <a href="http://sourceforge.net/tracker/?group_id=200653">bug trackers</a>
-and download latest code from our
-<a href="http://sourceforge.net/svn/?group_id=200653">Subversion repository</a>.
-</p>
+  <li><?php echo a_href_page(
+    'Sources of Kambi VRML game engine and related programs', 'sources'); ?>
 
+  <li><?php echo a_href_page('Versioning scheme of my things', 'versioning'); ?>
 
-<hr>
+  <li><?php echo general_a_href_size('All Windows DLLs used by my programs',
+    'miscella/win32_dlls.zip', false); ?>
 
-<div class="page_footer">
+  <li><?php echo a_href_page('Dependencies of my programs on Mac OS X',
+    'macosx_requirements'); ?>
+</ul>
 
-<p>Services for the vrmlengine project provided by<br />
-<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&amp;type=3" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a><br />
-See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-project page on SourceForge</a>.</p>
+<?php echo main_list_item("A few general words about programs listed above"); ?>
 
-</div>
+<p>There is absolutely no warranty for any of these programs.
+The only thing I can promise is that I'm really trying.
+I don't think your computer will blow up or something because of
+my programs but everything is possible.
 
-</body>
-</html>
+<p><?php echo michalis_mailto(
+  'Any suggestions about this page and my programs are welcome.'); ?>
+ Including bug-reports, of course (remember to describe in detail
+your system and situation that led into a trouble &mdash;
+when, where, after what).
+<?php /*
+<i>And one more thing : if the bug concerns one of my OpenGL programs,
+remember to attach to your bug report output of the
+< ?php echo a_href_page("glcaps","glcaps") ? > program.</i> */ ?>
+
+<?php
+/* No suitable place for this text:
+
+<p>Notes about FreeBSD versions of programs:
+<ul>
+  <li><p>As of 2006-10, I use FreeBSD 6.1 so this is the system
+    where my programs get compiled and tested.</p>
+
+    <p>My programs should also work on any earlier 4.x or 5.x FreeBSD kernel,
+    but you will have to upgrade many packages (in particular
+    GTK 2 and GtkGLExt libraries as distributed with FreeBSD 5.2.1
+    are too old; the ones from FreeBSD 5.3 are good).
+    Alternatively you can grab the sources of my programs
+    and compile them against GTK 1 (simply pass <tt>-dGLWINDOW_GTK_1</tt>
+    option to fpc), such binaries can run on system with packages
+    distributed with FreeBSD 5.2.1 version
+    (<tt>gtk12</tt> and <tt>gtkglarea</tt>).
+</ul>
+*/
+?>
+
+<?php echo main_list_end(); ?>
+
+<hr>  <!-- ===================================================== -->
+
+<address>
+<p>This is the
+<?php echo michalis_mailto("Michalis Kamburelis' (aka Kambi)"); ?> page.
+
+<p>You can fetch my <a href="michalis-gpg-public-key.asc">public GPG key</a>
+and use it to encrypt messages to me or verify my signed emails.
+(You can also fetch it from any popular keyserver by
+command like <tt>gpg --recv-key 0xB240711F</tt>). I use
+<a href="http://www.mozilla.com/thunderbird/">Thunderbird</a> with
+<a href="http://enigmail.mozdev.org/">Enigmail</a> extension.
+</address>
+
+<?php
+  if (!IS_GEN_LOCAL) {
+    $counter = php_counter("index", TRUE);
+    /* echo "<p>Stronê odwiedzono " . $counter . " razy.";
+       // chwilowo licznik dziala ukryty
+    */
+  };
+
+  camelot_footer();
+?>
