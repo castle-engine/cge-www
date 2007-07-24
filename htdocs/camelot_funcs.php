@@ -10,13 +10,22 @@
   define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/');
   require "kambi-php-lib/counter.php";
 
-  /* Zasady pisania stron na camelot:
+  /* Some rules to follow when editing these pages:
+
+     - The basic idea is that these pages may be processed in two
+       various modes:
+       - When IS_GEN_LOCAL = false, we make normal online version
+         on the page, visible online on URL defined by CURRENT_URL.
+       - When IS_GEN_LOCAL = true, we make special version of the page
+         suitable for offline viewing. It differs from the online
+         version in many details.
+
      - Nigdy nie rób bezpo¶rednich linków do stron za pomoc± <a href ...>,
        zawsze u¿ywaj funkcji a_href_page[_hashlink]. Ona zajmuje siê
        kilkoma rzeczami, np. dba o to aby wszystko dzia³a³o dobrze
        dla ka¿dej warto¶ci IS_GEN_LOCAL (i dla dowolnej kombinacji plików
        dostêpnych lokalnie w/g funkcji is_page_available_locally),
-       IS_GEN_PAGE_HREFS_TO_HTML, CAMELOT_URL, ona te¿ zajmuje siê
+       IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona te¿ zajmuje siê
        automatycznie doklejeniem odpowiedniego sufixu jêzyka do nazwy strony.
 
        Wyj±tkiem s± hash-linki w obrêbie tej samej strony, tzn. linki
@@ -25,7 +34,7 @@
 
      - Podobnie, nie rób bezpo¶rednich linków do innych plików.
        Co wiêcej, nie u¿ywaj a_href_size z funcs.php.
-       Zamiast tego u¿ywaj camelot_a_href_size, z tych samych powodów
+       Zamiast tego u¿ywaj current_www_a_href_size, z tych samych powodów
        co wy¿ej a_href_page[_hashlink].
 
      - Na pocz±tku ka¿dej strony rób
@@ -55,8 +64,9 @@
        including this script) :
 
      IS_GEN_LOCAL : bool = true means we're generating local version of the
-       page to be stored as usual HTML, not as part of the camelot.homedns.org/
-       pages. It is set here to true if you give --gen-local param to php,
+       page to be stored as usual HTML, not as part of the online
+       pages on CURRENT_URL.
+       It is set here to true if you give --gen-local param to php,
        else it's false.
 
        What is "local" page ? A better name would be a "separate" page;
@@ -79,18 +89,16 @@
          may not contain any url to image
        - every local page will have in it's footer a text stating that
            o. I'm the author of this page,
-           o. link to http://...camelot.../
-           o. my mail
+           o. link to CURRENT_URL
          (I want to display this information to everyone that sees my
          pages/programs; when not generating local pages, this info
-         is listed on index[.pl].php)
+         is listed on index.php)
 
-       - links to archives on camelot should be always written
-         using camelot_a_href_size. This way when we generate local page
-         those links will always point explicitly to
-           http://www.camelot.homedns.org/~michalis/archive_file_name
-         ... since we don't provide anything besides HTML pages in locally
-         generated versions.
+       - links to files on WWW should be always written
+         using current_www_a_href_size. This way when we generate local page
+         those links will always have absolute URL starting with CURRENT_URL.
+         That's needed since we don't provide anything besides HTML pages
+         in locally generated versions.
 
      IS_GEN_PAGE_HREFS_TO_HTML : bool = true means we're generating
        a_href_page with extension HTML instead of default PHP extension
@@ -151,12 +159,12 @@
 
   if (IS_GEN_LOCAL)
   {
-    $dir = $_ENV['CAMELOT_LOCAL_PATH'];
+    $dir = $_ENV['VRMLENGINE_LOCAL_PATH'];
     chdir($dir) or exit("Cannot change directory to \"$dir\"");
   }
 
 /* ============================================================
-   some camelot functions related to IS_GEN_LOCAL */
+   some functions related to IS_GEN_LOCAL */
 
 /* Jako $file_name podaj nazwê pliku. Np. "view3dscene.php",
    "view3dscene.pl.php". Dozwolone jest poprzedzenie tego wzglêdnym katalogiem,
@@ -172,7 +180,7 @@
    tzn. dla tych warto¶ci $file_name ta funkcja zwróci true;
    dla pozosta³ych stron, np. "view3dscene.html", ta funkcja
    zwróci false. Gdy generujemy strony nie-lokalnie (czyli IS_GEN_LOCAL=false)
-   to zawsze zwraca true, bo wtedy zak³ada ¿e przecie¿ na serwerze camelot
+   to zawsze zwraca true, bo wtedy zak³ada ¿e przecie¿ na serwerze CURRENT_URL
    s± dostêpne wszystkie pliki. */
 function is_file_available_locally($file_name)
 {
@@ -197,10 +205,13 @@ function is_page_available_locally($page_name)
   define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
     'is required, just unpack these archives and run the program.');
 
-  /* :string = URL do katalogu g³ownego moich stron w sieci (zakonczony '/') */
-  define('CAMELOT_URL', 'http://www.camelot.homedns.org/~michalis/');
-
-  define('STOMA_URL', 'http://stoma.name/michalis/');
+  /* :string = URL do katalogu g³ownego tych wlasnie stron w sieci
+     (zakonczony '/') */
+  define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
+  /* Short server name, corresponding to CURRENT_URL,
+     used only to show to humans (when making links
+     from offline to online page). */
+  define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 
   /* sta³e do specyfikowania jêzyka, w zmiennej $page_lang i w parametrach
      wielu funkcji. Kiedy¶ u¿ywa³em tutaj stringów "en", "pl" - u¿ywanie
@@ -216,7 +227,7 @@ function is_page_available_locally($page_name)
      simply 'view3dscene.php' (NOT 'view3dscene.en.php').
 
      This is particularly important because 'index.php' is the default
-     page loaded for URL 'http://www.camelot..../~michalis/',
+     page loaded for CURRENT_URL,
      so LANG_WITHOUT_FILENAME_SUFFIX is the default language seen
      by everyone who visits my pages.
 
@@ -279,7 +290,7 @@ function is_page_available_locally($page_name)
      innej funkcji z tego pliku (tak¿e camelot_header). */
   $main_page = false;
 
-/* camelot functions ======================================================= */
+/* functions ======================================================= */
 
 /* Zwraca string = tagi htmla (block-level) ktore generuja ladny heading.
    Na pewno zdefiniuje min jeden element w stylu h1
@@ -304,9 +315,8 @@ function pretty_heading($heading_text, $version_number = NULL)
 }
 
 /* jesli nie IS_GEN_LOCAL to nie rozni sie niczym od a_href_size
-   z funcs.php. Wpp. poprzedza $f_name pelnym adresem naszej
-   strony, tzn. http://www.camelot.homedns.org/~michalis/$f_name,
-   i nie podaje size.
+   z funcs.php. Wpp. poprzedza $f_name pelnym URL naszej
+   strony (CURRENT_URL) i nie podaje size.
 
    (Kiedys przy IS_GEN_LOCAL podawalo size brany z lokalnej kopii tego pliku,
    $f_name; ale zmienilem to, teraz w ogole nie podaje size. To dlatego ze tego
@@ -315,7 +325,7 @@ function pretty_heading($heading_text, $version_number = NULL)
    do ktorego jest odnosnik z tej samej strony (np. glviewimage.php
    zawiera odnosnik na glviewimage_linux.tar.gz a w srodku
    glviewimage_linux.tar.gz jest strona glviewimage.html ktora zawiera odnosnik
-   do archiwum glviewimage_linux.tar.gz na camelot.).
+   do archiwum glviewimage_linux.tar.gz na WWW.).
    To powoduje ze w momencie generowania strony czesto nie jest jeszcze znany
    faktyczny rozmiar $f_name bo w momencie generowania strony z IS_GEN_LOCAL
    plik $f_name jest wlasnie w trakcie uaktualniania. Tego rodzaju rekurecyjna
@@ -325,57 +335,18 @@ function pretty_heading($heading_text, $version_number = NULL)
    istnieje spora szansa ze rozmiary archiwow na moich stronach beda sie
    czesto zmieniac, wiec po co je umieszczac na stronie ?)
 
-   Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku w srodku
-   stron camelot. Wtedy ta funkcja wygeneruje a_href_size lub,
+   Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku na
+   CURRENT_URL. Wtedy ta funkcja wygeneruje a_href_size lub,
    w przypadku IS_GEN_LOCAL, sensowny odpowiednik z linkiem http://...
 */
-function camelot_a_href_size($link_title, $f_name)
+function current_www_a_href_size($link_title, $f_name)
 {
   if (IS_GEN_LOCAL)
-    $final_f_name = CAMELOT_URL . $f_name; else
+    $final_f_name = CURRENT_URL . $f_name; else
     $final_f_name = $f_name;
 
   return "<a href=\"$final_f_name\">$link_title"
     . (IS_GEN_LOCAL ? '': " (" . readable_file_size($f_name) . ")") . "</a>";
-}
-
-/* This requires that file $f_name exists both in current dir and
-   $base_url (where $base_url is something like http://stoma.name/michalis/).
-   $base_url = '' means that it's on camelot.
-   It presents a link to $base_url . $f_name,
-   adding a readable size indication based on $f_name in current dir. */
-function external_a_href_size($base_url, $link_title, $f_name)
-{
-  if ($base_url == '')
-  {
-    return camelot_a_href_size($link_title, $f_name);
-  } else
-  {
-    $final_f_name = $base_url . $f_name;
-
-    return "<a href=\"$final_f_name\">$link_title"
-      . (IS_GEN_LOCAL ? '': " (" . readable_file_size($f_name) . ")") . "</a>";
-  }
-}
-
-/* This requires that file $f_name exists both in current dir and
-   http://stoma.name/michalis/.
-   It presents a link to http://stoma.name/michalis/$f_name,
-   adding a readable size indication based on $f_name in current dir. */
-function stoma_a_href_size($link_title, $f_name)
-{
-  return external_a_href_size(STOMA_URL, $link_title, $f_name)
-    . (IS_GEN_LOCAL ? '' :
-        " <small>(<a href=\"$f_name\">alternative download server</a>)</small>");
-}
-
-/* If $stoma_mirror then returns stoma_a_href_size,
-   otherwise camelot_a_href_size. */
-function general_a_href_size($link_title, $f_name, $stoma_mirror)
-{
-  return ($stoma_mirror ?
-    stoma_a_href_size($link_title, $f_name) :
-    camelot_a_href_size($link_title, $f_name) );
 }
 
 /* $image_name = nazwa obrazka istniej±ca w progs_demo/original_size/ i
@@ -518,7 +489,7 @@ function camelot_header($a_page_title, $a_page_lang,
      zmieni± siê na linki do strony po angielsku.
 
      Ta funkcja zwraca url zadanej strony, czyli page_name z doklejonym suffixem
-     jezyka i rozszerzeniem i ew. poprzedzone CAMELOT_URL (je¶li strona
+     jezyka i rozszerzeniem i ew. poprzedzone CURRENT_URL (je¶li strona
      generowana z IS_GEN_LOCAL odwo³uje siê do czego¶ niedostêpnego lokalnie).
 
      Pod $url_comment zwraca komentarz do URLa w postaci "" (pusty string) lub
@@ -560,13 +531,13 @@ function camelot_header($a_page_title, $a_page_lang,
 
     if (!is_page_available_locally($result))
     {
-      $result = CAMELOT_URL . $result . '.php';
+      $result = CURRENT_URL . $result . '.php';
       switch ($page_lang)
       {
         case LANG_PL: str_append_part_to1st($url_comment, ', ',
-          'odsy³acz do camelot.homedns.org'); break;
+          'odsy³acz do ' . CURRENT_URL_SHORT); break;
         case LANG_EN: str_append_part_to1st($url_comment, ', ',
-          'link to camelot.homedns.org'); break;
+          'link to ' . CURRENT_URL_SHORT); break;
       }
     } else
     {
@@ -884,9 +855,8 @@ and you are free to modify and further distribute it on terms of
 
   if (IS_GEN_LOCAL) { ?>
     <address>
-    By Michalis Kamburelis :
-    <?php echo michalis_mailto('mail'); ?>,
-    <?php echo "<a href=\"" .CAMELOT_URL. "\">WWW page</a>"; ?>.
+    By Michalis Kamburelis, as part of
+    <?php echo "<a href=\"" . CURRENT_URL . "\">Kambi VRML game engine</a>"; ?>.
     </address>
 
     <p>

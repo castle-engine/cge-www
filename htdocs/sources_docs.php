@@ -11,10 +11,10 @@
 <p>Read documentation in various formats:
 <ul>
   <li><a href="apidoc/html/index.html">Online HTML documentation</a>
-  <li><?php echo camelot_a_href_size(
+  <li><?php echo current_www_a_href_size(
     'PDF documentation',
     'apidoc/latex/docs.pdf'); ?>
-  <li><?php echo camelot_a_href_size(
+  <li><?php echo current_www_a_href_size(
     'LaTeX version of documentation (was used to make PDF output)',
     'apidoc/latex/docs.tex'); ?>
 <!--

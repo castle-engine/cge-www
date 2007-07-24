@@ -102,7 +102,7 @@ you can see some rays are transmitted completely inside underwater.
 using also <tt>tree.3ds</tt> from
 <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 Lights and fog added by hand.
-You can <?php echo camelot_a_href_size("download this model",
+You can <?php echo current_www_a_href_size("download this model",
   "miscella/forest.tar.gz"); ?>.
 
 Main feature of this rendering is to demonstrate that

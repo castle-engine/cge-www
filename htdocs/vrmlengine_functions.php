@@ -68,7 +68,7 @@ function echo_standard_program_download(
        (camelot ? stoma ? sf ?)), it's safer to not put this information
        in the locally generated page (since it changes to often).
        Instead, we can place a link to the WWW page. */
-    echo '<p><a href="' . CAMELOT_URL . $this_page_name .
+    echo '<p><a href="' . CURRENT_URL . $this_page_name .
       '">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
   } else
   {

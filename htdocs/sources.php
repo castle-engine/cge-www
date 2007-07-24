@@ -153,8 +153,8 @@ version of program you will also have documentation there).
 <p>Note: under Windows you will need some DLLs
 to successfully run some of these programs.
 I collected all DLLs needed by my programs
-<?php echo general_a_href_size('in this archive',
-  'miscella/win32_dlls.zip', false); ?>, so just download
+<?php echo current_www_a_href_size('in this archive',
+  'miscella/win32_dlls.zip'); ?>, so just download
 this and put in program's exe directory.
 These DLLs are already included in binary archives of my programs,
 but are not included in source archives (since they are only usable

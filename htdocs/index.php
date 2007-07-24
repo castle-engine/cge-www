@@ -164,8 +164,8 @@ the programs developed with it:</p>
 
   <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
 
-  <li><?php echo general_a_href_size('All Windows DLLs used by programs here',
-    'miscella/win32_dlls.zip', false); ?>
+  <li><?php echo current_www_a_href_size('All Windows DLLs used by programs here',
+    'miscella/win32_dlls.zip'); ?>
 
   <li><?php echo a_href_page('Dependencies on Mac OS X',
     'macosx_requirements'); ?>

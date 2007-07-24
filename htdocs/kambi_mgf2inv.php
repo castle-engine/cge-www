@@ -38,14 +38,14 @@ mgf2inv version too)
 
 <p>Program:
 <ul>
-  <li><?php echo camelot_a_href_size("Sorce code in ANSI C", "kambi_mgf2inv.c.gz"); ?>.
+  <li><?php echo current_www_a_href_size("Sorce code in ANSI C", "kambi_mgf2inv.c.gz"); ?>.
     If you want to compile this you need the rest of mgflib's sources :
     <a href="http://floyd.lbl.gov/mgf/">here is a page with MGF documentation
     and sources and documentation for MGF parser and a few MGF converters,
     in particular mgf2inv</a>
-  <li><?php echo camelot_a_href_size("kambi_mgf2inv compiled for Linux",
+  <li><?php echo current_www_a_href_size("kambi_mgf2inv compiled for Linux",
     "kambi_mgf2inv.gz"); ?>
-  <!--li> < ?php echo camelot_a_href_size("kambi_mgf2inv skompilowany pod Windowsa",
+  <!--li> < ?php echo current_www_a_href_size("kambi_mgf2inv skompilowany pod Windowsa",
     "kambi_mgf2inv.zip"); ?-->
 </ul>
 

@@ -13,11 +13,11 @@
 <p>Output in various formats:</p>
 
 <ul>
-  <li><a href="http://stoma.name/michalis/vrml_engine_doc/output/xsl/html/">
+  <li><a href="vrml_engine_doc/output/xsl/html/">
     HTML (chunked)</a><li>
-  <li><a href="http://stoma.name/michalis/vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html">
+  <li><a href="vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html">
     HTML (one big file)</a><li>
-  <li><?php echo stoma_a_href_size(
+  <li><?php echo current_www_a_href_size(
     'PDF', 'vrml_engine_doc/output/xsl/vrml_engine.pdf'); ?></li>
 </ul>
 
@@ -29,7 +29,7 @@ and everything is written in English.</p>
 everything you need to remake the HTML / PDF outputs above; also
 includes VRML files sources, so you can view them comfortably in
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.) :<br>
-<?php echo stoma_a_href_size(
+<?php echo current_www_a_href_size(
   'vrml_engine_doc.tar.gz',
   'vrml_engine_doc/vrml_engine_doc.tar.gz'); ?></p>
 
