@@ -148,23 +148,25 @@ and I keep them in working and compilable state, but that's it.
     alternatives (and what drawbacks are hidden in those alternatives :)</a>.
 </ul>
 
-<p>And some more random related information:</p>
+<p>And some more information, randomly related to the engine and
+the programs developed with it:</p>
 
 <ul>
   <li><?php echo a_href_page(
-    "Standard command-line options understood by all my OpenGL programs",
+    "Standard command-line options understood by all OpenGL programs",
     "opengl_options"); ?>
   <li><?php echo a_href_page(
-    'Notes related to all my programs using OpenAL', 'openal_notes'); ?>
+    'Notes related to programs using OpenAL', 'openal_notes'); ?>
   <li><?php echo a_href_page(
-    "Some notes about command-line options understood by my programs", "common_options"); ?>
+    "Command-line options understood by all programs here",
+    "common_options"); ?>
 
-  <li><?php echo a_href_page('Versioning scheme of my things', 'versioning'); ?>
+  <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
 
-  <li><?php echo general_a_href_size('All Windows DLLs used by my programs',
+  <li><?php echo general_a_href_size('All Windows DLLs used by programs here',
     'miscella/win32_dlls.zip', false); ?>
 
-  <li><?php echo a_href_page('Dependencies of my programs on Mac OS X',
+  <li><?php echo a_href_page('Dependencies on Mac OS X',
     'macosx_requirements'); ?>
 
   <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
