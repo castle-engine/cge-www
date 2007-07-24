@@ -9,16 +9,18 @@
 
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<p>Welcome ! This is my home page, basically just a collection of various things
-that I do.
+<p><i>For developers</i>, this is an open-source engine
+that is especially oriented towards working with VRML models.
+For more information,
+documetation and downloads for developers see <a href="#developers">lower
+on this page</a>.</p>
 
-<p>I'm a programmer, and some of the keywords that I enjoy are
-<i>free software</i>, <i>3D graphic</i> and <i>ObjectPascal</i>.
-All programs presented here are free sofware (<?php echo a_href_page(
-'sources are available', 'sources'); ?> on terms of GNU GPL license).
-Most of these programs were compiled with
-<a href="http://www.freepascal.org">FreePascal</a> for Linux, FreeBSD, Mac OS X
-and Windows.
+<p><i>For normal human beings</i>, this page is a collection of various
+games and tools. They were developed using the VRML game engine,
+but you don't really need to understand what VRML is in order to use them.
+Two most important programs available here are
+<b><a href="castle.php">"The Castle"</a></b> game and
+<b><a href="view3dscene.php">view3dscene</a></b> model viewer.
 
 <?php require 'last_update.php'; ?>
 
@@ -61,40 +63,19 @@ function program_image_links_table_begin()
 
   <tr>
     <?php program_image_link("rayhunter",
-      'Command-line simple ray-tracer (classic deterministic ray-tracer and
-      basic Monte Carlo path tracer implemented)',
+      "Command-line simple ray-tracer (classic deterministic ray-tracer and
+      basic Monte Carlo path tracer implemented).<br/>" .
+      a_href_page("See also it's gallery.","raytr_gallery"),
       'rayhunter_graz_demo.png',
       "rayhunter"); ?>
   </tr>
 </table>
 
-<p>Also take a look at
-<ul>
-  <li><?php echo a_href_page('Kambi VRML game engine
-    &mdash; informations for developers', 'kambi_vrml_game_engine'); ?>
-    and it's <?php echo a_href_page('documentation', 'sources_docs') ?>
-  <li><?php echo a_href_page("My master's thesis about my VRML engine",
-    'vrml_engine_doc'); ?>
-  <li><?php echo a_href_page("Specification of my extensions to VRML",
-    "kambi_vrml_extensions"); ?>
-  <li><?php echo a_href_page("My VRML test suite",
-    "kambi_vrml_test_suite"); ?>
-  <li><?php echo a_href_page('VRML implementation status',
-    'vrml_implementation_status'); ?>
-  <li><?php echo a_href_page(
-    "The small gallery of images rendered using rayhunter","raytr_gallery"); ?>
-  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
-    modified version of the mgf2inv program by Greg Ward,
-    it outputs some additional info about physical material properties
-    (concerning Phong BRDF)
-  <li>Read my document describing
-    <a href="src/pascal/docs/html/introduction.html#OpenGLOptimization">
-    how current VRML rendering optimization works,
-    what are the possible drawbacks and what are the possible
-    alternatives (and what drawbacks are hidden in those alternatives :)</a>.
-</ul>
-
 <?php echo main_list_item("Programs: Older games"); ?>
+
+<p>Games below are not extended anymore. They are mainly small toys
+and demos of my VRML game engine. I like them very much,
+and I keep them in working and compilable state, but that's it.
 
 <?php program_image_links_table_begin(); ?>
   <tr>
@@ -117,10 +98,6 @@ function program_image_links_table_begin()
    </tr>
 </table>
 
-<p>These games are not extended anymore. They are mainly small toys
-and demos of my VRML game engine. I like them very much,
-and I keep them in working and compilable state, but that's it.
-
 <?php echo main_list_item("Programs: Computer graphics, others"); ?>
 
 <ul>
@@ -139,10 +116,39 @@ and I keep them in working and compilable state, but that's it.
     installed on your system.
 </ul>
 
-<?php echo main_list_item("Additional information"); ?>
+<?php echo main_list_item("For developers", 'developers'); ?>
 
-<p>Below you can find some additional things concerning many of
-the programs above.
+<p>So, you want to actually see how it all works inside, huh ?</p>
+
+<p>Documentation and sources:</p>
+
+<ul>
+  <li><?php echo a_href_page('Kambi VRML game engine
+    &mdash; informations for developers', 'kambi_vrml_game_engine'); ?>
+    and it's <?php echo a_href_page('documentation', 'sources_docs') ?>
+  <li><?php echo a_href_page(
+    'Sources of Kambi VRML game engine and related programs', 'sources'); ?>
+  <li><?php echo a_href_page("My master's thesis about this VRML engine",
+    'vrml_engine_doc'); ?>
+</ul>
+
+<p>More details about VRML format handling:</p>
+
+<ul>
+  <li><?php echo a_href_page("Specification of my extensions to VRML",
+    "kambi_vrml_extensions"); ?>
+  <li><?php echo a_href_page("My VRML test suite",
+    "kambi_vrml_test_suite"); ?>
+  <li><?php echo a_href_page('VRML implementation status',
+    'vrml_implementation_status'); ?>
+  <li>Read my document describing
+    <a href="apidoc/html/introduction.html#OpenGLOptimization">
+    how current VRML rendering optimization works,
+    what are the possible drawbacks and what are the possible
+    alternatives (and what drawbacks are hidden in those alternatives :)</a>.
+</ul>
+
+<p>And some more random related information:</p>
 
 <ul>
   <li><?php echo a_href_page(
@@ -153,9 +159,6 @@ the programs above.
   <li><?php echo a_href_page(
     "Some notes about command-line options understood by my programs", "common_options"); ?>
 
-  <li><?php echo a_href_page(
-    'Sources of Kambi VRML game engine and related programs', 'sources'); ?>
-
   <li><?php echo a_href_page('Versioning scheme of my things', 'versioning'); ?>
 
   <li><?php echo general_a_href_size('All Windows DLLs used by my programs',
@@ -163,9 +166,14 @@ the programs above.
 
   <li><?php echo a_href_page('Dependencies of my programs on Mac OS X',
     'macosx_requirements'); ?>
+
+  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
+    modified version of the mgf2inv program by Greg Ward,
+    it outputs some additional info about physical material properties
+    (concerning Phong BRDF)
 </ul>
 
-<?php echo main_list_item("A few general words about programs listed above"); ?>
+<?php echo main_list_item("A few general words about programs available here"); ?>
 
 <p>There is absolutely no warranty for any of these programs.
 The only thing I can promise is that I'm really trying.

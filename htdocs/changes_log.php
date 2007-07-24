@@ -711,7 +711,7 @@ then older logs are successively moved to this page.
         NVidia Linux OpenGL drivers).
       <li>Compilation of many examples fixed; sorry, I wasn't compiling examples
         too often and recently I broke many of them (bacause of changes to
-        <a href="src/pascal/docs/html/KambiUtils.html#Parameters">Paramaters</a>
+        <a href="apidoc/html/KambiUtils.html#Parameters">Parameters</a>
         stuff). It's fixed now. I also added the automatic test of compilation
         to the script I use to create <tt>units-src.tar.gz</tt> archive, so
         this Will Not Happen Again.
@@ -747,7 +747,7 @@ then older logs are successively moved to this page.
         Basic implementation committed, expect more work on this soon
         (including "jump" and "duck" keys and head "bobbing") &mdash; I'm porting
         stuff from some very old game of mine into
-        <a href="src/pascal/docs/html/MatrixNavigation.TMatrixWalker.html">TMatrixWalker</a>
+        <a href="apidoc/html/MatrixNavigation.TMatrixWalker.html">TMatrixWalker</a>
         class.
     </ul>
 
@@ -894,7 +894,7 @@ then older logs are successively moved to this page.
         updated (recently implemented
         <a href="http://pasdoc.sourceforge.net/">pasdoc</a> features used
         (e.g. @xxxList tags),
-        <a href="src/pascal/docs/html/introduction.html#OpenGLOptimization">
+        <a href="apidoc/html/introduction.html#OpenGLOptimization">
         OpenGL optimization notes</a> are now part of
         documentation parsed by pasdoc and are available for viewing in
         output HTML / pdf docs, some things translated to English,
@@ -1076,7 +1076,7 @@ then older logs are successively moved to this page.
         drawbacks are hidden in those alternatives :).
         In case you're interested how it works but you don't want to download
         my whole sources, you can read this document
-        <a href="src/pascal/docs/html/introduction.html#OpenGLOptimization">
+        <a href="apidoc/html/introduction.html#OpenGLOptimization">
         online</a>.
 
       <li><p>gprof rulez &mdash; small bug that was harmless but was

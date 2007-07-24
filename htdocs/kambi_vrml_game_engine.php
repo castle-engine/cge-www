@@ -40,10 +40,10 @@ Features include:</p>
 </ul>
 
 <p>The engine is portable, currently tested and used on Linux,
-FreeBSD, Mac OS X and Windows. It was used to develop most programs on these
-pages, in particular <?php echo a_href_page('view3dscene (VRML viewer)',
-'view3dscene'); ?> and <?php echo a_href_page('"The Castle" game',
-'castle'); ?>.</p>
+FreeBSD, Mac OS X and Windows. It was used to develop all programs on
+these pages. It should be compiled by
+<a href="http://www.freepascal.org">FreePascal</a>.
+</p>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>

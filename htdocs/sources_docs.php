@@ -10,18 +10,18 @@
 
 <p>Read documentation in various formats:
 <ul>
-  <li><a href="src/pascal/docs/html/index.html">Online HTML documentation</a>
+  <li><a href="apidoc/html/index.html">Online HTML documentation</a>
   <li><?php echo camelot_a_href_size(
     'PDF documentation',
-    'src/pascal/docs/latex/docs.pdf'); ?>
+    'apidoc/latex/docs.pdf'); ?>
   <li><?php echo camelot_a_href_size(
     'LaTeX version of documentation (was used to make PDF output)',
-    'src/pascal/docs/latex/docs.tex'); ?>
+    'apidoc/latex/docs.tex'); ?>
 <!--
-  <li><a href="src/pascal/docs/latex/docs.html">Online HTML documentation
+  <li><a href="apidoc/latex/docs.html">Online HTML documentation
     made by htlatex from LaTeX source</a>. Warning: this is one <em>huge</em>
     HTML file
-    (< ? php echo readable_file_size('src/pascal/docs/latex/docs.html'); ? >) !
+    (< ? php echo readable_file_size('apidoc/latex/docs.html'); ? >) !
     It's also admittedly much worse than HTML docs produced directly by pasdoc.
     Just treat this as a mere demo of htlatex...
 -->

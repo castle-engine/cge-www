@@ -485,7 +485,7 @@ They all are optional.
     </ul>
 
     <p>For more technical details see
-    <a href="src/pascal/docs/html/VRMLFlatSceneGL.html#TGLRendererOptimization">documentation
+    <a href="apidoc/html/VRMLFlatSceneGL.html#TGLRendererOptimization">documentation
     of TGLRendererOptimization type in VRMLFlatSceneGL unit</a>.
 
   <dt>--triangle-octree-max-depth &lt;integer&gt;<br>

@@ -15,23 +15,26 @@ function index_header($a_page_title, $a_page_lang, $meta_description)
          font-family: serif;
          font-weight: bolder;
          font-size: large;
-         
+
          background: #ddddd0;
-         
+
          padding: 0.1em;
        }
      --></style>');
 }
 
 $main_list_item_num = 0;
-function main_list_item($item_title)
+function main_list_item($item_title, $anchor_name = '')
 {
   global $main_list_item_num;
   $main_list_item_num++;
 
   /* The leading <p> is needed for IE to keep appropriate vertical
      distance. */
-  return "<p><div class=\"main_list_item\">$item_title</div>";
+  return "<p><div class=\"main_list_item\">" .
+    ($anchor_name != '' ? "<a name=\"$anchor_name\">": '') .
+    "$item_title</div>" .
+    ($anchor_name != '' ? "</a>": '');
 }
 
 function main_list_begin() {
