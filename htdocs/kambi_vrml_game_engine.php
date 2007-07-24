@@ -22,13 +22,20 @@ Features include:</p>
 <ul>
   <li>Optimized OpenGL rendering of models in
     VRML 1.0 and 2.0 (aka VRML 97) formats.</li>
-  <li>3DS file format is also supported.</li>
+  <li>3DS, MD3 file formats are also supported. They can be loaded,
+    and converted to VRML 1.0.</li>
   <li>Animations are supported, by interpolation.</li>
   <li>Octrees are used for various collision detection tasks.</li>
   <li>Shadows by shadow volumes.</li>
-  <li>GLWindow unit is available to easily create windows with OpenGL context.</li>
+  <li>GLWindow unit is available to easily create windows with OpenGL
+    context. The intention of this unit is to become something like glut,
+    but magnitudes better &mdash; using clean ObjectPascal, for start.
+    It also gives you easy to create menu bars, open/save file and similar
+    dialogs that are implemented using native controls (GTK or WinAPI).</li>
   <li>Reading and writing of images in various formats, processing them
-    and using as OpenGL textures.</li>
+    and using as OpenGL textures. Besides many common image formats
+    (png, jpg, ppm, bmp, just for starters), included is also support for
+    RGBE format (Radiance HDR format).</li>
   <li>Handling of fonts, including rendering them with OpenGL,
     as bitmap or outline (3D) fonts.</li>
   <li>Many OpenAL helpers, including intelligent OpenAL sound manager
@@ -36,6 +43,17 @@ Features include:</p>
   <li>Ray-tracer based on VRML models is implemented.</li>
   <!-- <li>Evaluating mathematical expressions -->
   <!-- li>Curves handling.</li -->
+  <!--
+      <li>ParsingPars, unit to parse command-line options
+
+      <li>VectorMath, unit with many vector-and-matrix operations,
+        mainly for 3d graphics
+
+      <li>MathExpr, parsing and evaluating mathematical expressions
+
+      <li>TDynXxxArray classes, something like richer dynamic arrays,
+        done like "simulated" C++ templates
+  -->
 </ul>
 
 <p>The engine is portable, currently tested and used on Linux,

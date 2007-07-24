@@ -9,19 +9,19 @@
 
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<p><i>For developers</i>, this is an open-source engine
+<p><b>For developers</b>, this is an open-source engine
 that is especially oriented towards working with VRML models (although
 other model formats are also supported).
 For more information,
-documetation and downloads for developers see <a href="#developers">lower
+documetation and downloads for developers see <a href="#development">lower
 on this page</a>.</p>
 
-<p><i>For normal human beings</i>, this page is a collection of various
+<p><b>For normal human beings</b>, this page is a collection of various
 games and tools. They were developed using the VRML game engine,
-but you don't really need to understand what VRML is in order to use them.
+but you don't really need to know what VRML is in order to use them.
 Two most important programs available here are
-<b><a href="castle.php">"The Castle"</a></b> game and
-<b><a href="view3dscene.php">view3dscene</a></b> model viewer.
+<a href="castle.php">"The Castle"</a> game and
+<a href="view3dscene.php">view3dscene</a> model viewer.
 
 <?php require 'last_update.php'; ?>
 
@@ -117,7 +117,7 @@ and I keep them in working and compilable state, but that's it.
     installed on your system.
 </ul>
 
-<?php echo main_list_item("For developers", 'developers'); ?>
+<?php echo main_list_item("Development", 'development'); ?>
 
 <p>So, you want to actually see how it all works inside, huh ?</p>
 
