@@ -216,15 +216,11 @@ remember to attach to your bug report output of the
 <hr>  <!-- ===================================================== -->
 
 <address>
-<p>This is the
-<?php echo michalis_mailto("Michalis Kamburelis' (aka Kambi)"); ?> page.
-
-<p>You can fetch my <a href="michalis-gpg-public-key.asc">public GPG key</a>
-and use it to encrypt messages to me or verify my signed emails.
-(You can also fetch it from any popular keyserver by
-command like <tt>gpg --recv-key 0xB240711F</tt>). I use
-<a href="http://www.mozilla.com/thunderbird/">Thunderbird</a> with
-<a href="http://enigmail.mozdev.org/">Enigmail</a> extension.
+<p>Author: Michalis Kamburelis (aka Kambi) (<a
+href="http://www.camelot.homedns.org/~michalis/">home page</a>,
+<?php echo michalis_mailto('email'); ?>).
+If you will use any part of this engine, then make me happy and
+drop me a note about this !
 </address>
 
 <?php

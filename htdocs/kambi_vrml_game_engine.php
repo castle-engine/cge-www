@@ -8,8 +8,7 @@
     array(
       new TocItem('Download sources', 'download_src'),
       new TocItem('Documentation', 'docs'),
-      new TocItem('Automatic tests', 'tests'),
-      new TocItem('Author', 'author')
+      new TocItem('Automatic tests', 'tests')
     )
   );
 ?>
@@ -84,13 +83,6 @@ program after successfully running all 33 tests:<br>
 <?php echo
   medium_image_progs_demo('test_kambi_units_screen_demo.png', 'test_kambi_units', false)
 ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Michalis Kamburelis (aka Kambi).
-
-<p>If you will use any part of this engine, then make me happy and
-<?php echo michalis_mailto('drop me a note about this'); ?>.
 
 <?php
   if (!IS_GEN_LOCAL) {
