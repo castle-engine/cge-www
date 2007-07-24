@@ -10,7 +10,8 @@
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
 <p><i>For developers</i>, this is an open-source engine
-that is especially oriented towards working with VRML models.
+that is especially oriented towards working with VRML models (although
+other model formats are also supported).
 For more information,
 documetation and downloads for developers see <a href="#developers">lower
 on this page</a>.</p>
