@@ -48,16 +48,39 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
        monthly statistics much), but still we would prefer UTC to be precise
        and elegant.
 
-       I tried using gmdate, but that's just stupid, it's really only
-       for formatting strings. So I just workaround this by setting default
-       timezone to UTC. None of my scripts should need server local time
-       anyway. */
-    //date_default_timezone_set('UTC');
+       <rant>
+       PHP datetime functions are really stupid when it comes to the timezone
+       stuff, especially if you're stuck with PHP 4 (on SourceForge...).
+       First of all, common sense is more important than misleading wording in
+       PHP docs and function design, so actually all three calls
+         gmmktime()
+         mktime()
+         time()
+       return the same thing if called without the arguments,
+       and this is the timestamp that is *totally independent
+       from any timezone settings*, as it should be.
 
-    $hit_date = getdate();
+       To extract this, I'd like to use getdate function, that elegantly
+       deconstructs timestamp into a structure... But I can't, because getdate
+       always makes local time (remember, I'm stuck with PHP 4 so
+       date_default_timezone_set is not available and calling setlocale
+       is just dirty).
+
+       So I have to deconstruct date with a function like gmdate.
+       I have to call this a couple of times, since it's formatting is stupid
+       and I can't just generate in one call something like "day %d.%d.%d hour %d".
+       </rant>
+    */
+
+    $hit_time = time();
+    $str_hit_time = 'day ' . gmdate('j', $hit_time) . '.' .
+                             gmdate('n', $hit_time) . '.' .
+                             gmdate('Y', $hit_time) . ' hour ' .
+                             gmdate('G', $hit_time);
+
     $bonus_str = sprintf(
-      "1day %d.%d.%d hour %d ip %s ipstr %s http-referer %s http-user-agent %s\n",
-      $hit_date["mday"], $hit_date["mon"], $hit_date["year"], $hit_date["hours"],
+      "1%s ip %s ipstr %s http-referer %s http-user-agent %s\n",
+      $str_hit_time,
       $_SERVER["REMOTE_ADDR"],
       @gethostbyaddr($_SERVER["REMOTE_ADDR"]),
       /* I'm using rawurlencode (both for HTTP_REFERER and even
