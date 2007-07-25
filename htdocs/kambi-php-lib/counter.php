@@ -40,6 +40,20 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
   if ($counter_write_bonus)
   {
     $f_bonus = fopen(COUNTER_DATA_PATH . $counter_name . ".counter.bonus", "ab");
+
+    /* getdate returns by default date/time in local server time,
+       which is not nice if you move *.counter.bonus file from server
+       to server (with different timezones). That's not a terrible problem
+       (it's an error by at most 1 day, nothing that can "skew" e.g. your
+       monthly statistics much), but still we would prefer UTC to be precise
+       and elegant.
+
+       I tried using gmdate, but that's just stupid, it's really only
+       for formatting strings. So I just workaround this by setting default
+       timezone to UTC. None of my scripts should need server local time
+       anyway. */
+    date_default_timezone_set('UTC');
+
     $hit_date = getdate();
     $bonus_str = sprintf(
       "1day %d.%d.%d hour %d ip %s ipstr %s http-referer %s http-user-agent %s\n",
