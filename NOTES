@@ -16,6 +16,8 @@ Procedure to update WWW content:
 ("locally" means that this is done on a local copy of the repository
 www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
+- if you modified kambi_vrml_game_engine, you may want to update apidoc/
+
 - good practice after large changes is to check for dead links
   by linkchecker.sh
 

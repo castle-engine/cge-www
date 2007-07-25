@@ -11,8 +11,7 @@ echo -n 'Calculating sums.md5 ... '
   find . \
     '(' -type d -and -name .svn -and -prune ')' -or \
     '(' -type f -and -not '(' \
-          -name '.htaccess' -or \
-          -name '*~' -or \
+          -name '*~' ')' \
         -exec md5sum '{}' ';' \
     ')' > "$SUMS"
 echo 'done.'
