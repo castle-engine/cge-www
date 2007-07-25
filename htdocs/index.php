@@ -1,5 +1,7 @@
 <?php
   require "index_funcs.php";
+  require_once 'vrmlengine_functions.php';
+
   index_header("Kambi VRML game engine", LANG_EN,
     'A game engine written using ObjectPascal. ' .
     'Main features: processing and OpenGL rendering of 3D models in VRML ' .
@@ -118,15 +120,20 @@ and I keep them in working and compilable state, but that's it.
 
 <?php echo main_list_item('Useful resources', 'useful_resources'); ?>
 
-<p>Subscribe to <a href="https://lists.sourceforge.net/lists/listinfo/vrmlengine-main">vrmlengine-main
-mailing list</a>. This list is for any discussion, questions,
-announcements related to our VRML engine and programs on this page.</p></li>
+<p>Subscribe to <?php echo MAILING_LIST_LINK; ?>.
+This list is for any discussion, questions,
+announcements related to our VRML engine and programs on this page.</p>
 
 <p>Submit
-<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974391">bugs</a>,
-<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974394">feature requests</a>,
-<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974393">patches</a>
+<a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
+<a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature requests</a>,
+<a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>
 to appropriate tracker.</p>
+
+<?php /*
+<i>And one more thing : if the bug concerns one of my OpenGL programs,
+remember to attach to your bug report output of the
+< ?php echo a_href_page("glcaps","glcaps") ? > program.</i> */ ?>
 
 <p>There's <a href="http://sourceforge.net/export/rss2_projfiles.php?group_id=200653">RSS
 feed to monitor new releases</a>.</p>
@@ -191,24 +198,7 @@ the programs developed with it:</p>
 </ul>
 
 See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-project page on SourceForge</a>.</li>
-
-<?php echo main_list_item("A few general words about programs available here"); ?>
-
-<p>There is absolutely no warranty for any of these programs.
-The only thing I can promise is that I'm really trying.
-I don't think your computer will blow up or something because of
-my programs but everything is possible.
-
-<p><?php echo michalis_mailto(
-  'Any suggestions about this page and my programs are welcome.'); ?>
- Including bug-reports, of course (remember to describe in detail
-your system and situation that led into a trouble &mdash;
-when, where, after what).
-<?php /*
-<i>And one more thing : if the bug concerns one of my OpenGL programs,
-remember to attach to your bug report output of the
-< ?php echo a_href_page("glcaps","glcaps") ? > program.</i> */ ?>
+project page on SourceForge</a>.
 
 <?php
 /* No suitable place for this text:

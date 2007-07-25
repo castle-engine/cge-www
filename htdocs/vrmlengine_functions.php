@@ -3,6 +3,16 @@
 
 define('SF_UNIX_NAME', 'vrmlengine');
 
+define('MAILING_LIST_URL',
+  'https://lists.sourceforge.net/lists/listinfo/vrmlengine-main');
+
+define('MAILING_LIST_LINK',
+  '<a href="' . MAILING_LIST_URL . '">vrmlengine-main mailing list</a>');
+
+define('BUGS_TRACKER_URL',             'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974391');
+define('FEATURE_REQUESTS_TRACKER_URL', 'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974394');
+define('PATCHES_TRACKER_URL',          'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974393');
+
 /* Return SVN URL to appropriate vrmlengine subproject repository place.
    If $prefix_command is true then also will add 'svn&nbsp;checkout&nbsp;' line
    at the beginning. */

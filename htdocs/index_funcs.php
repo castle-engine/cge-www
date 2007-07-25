@@ -33,8 +33,9 @@ function main_list_item($item_title, $anchor_name = '')
      distance. */
   return "<p><div class=\"main_list_item\">" .
     ($anchor_name != '' ? "<a name=\"$anchor_name\">": '') .
-    "$item_title</div>" .
-    ($anchor_name != '' ? "</a>": '');
+    "$item_title" .
+    ($anchor_name != '' ? "</a>": '') .
+    '</div>';
 }
 
 function main_list_begin() {

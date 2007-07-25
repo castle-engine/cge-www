@@ -30,10 +30,8 @@ sending simple feedback is definitely useful too.
 This page collects various developer information how you can
 help, and how you can compile and extend the game's code and data.
 
-<p>With everything <?php echo michalis_mailto("contact me via email"); ?>.
-Or you can bash me in public on
-<a href="http://pascalgamedevelopment.com/viewtopic.php?t=3270">PDG forum
-thread about this game</a> :)
+<p>All questions, feedback, etc. may be posted to
+<?php echo MAILING_LIST_LINK; ?>.
 
 <p>Of course, any help with designing levels, items, monsters, creating
 sounds and / or providing significant feedback will be mentioned in the
@@ -73,8 +71,7 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo michalis_mailto("Yeah, I really need your feedback."); ?>
- Any kind of feedback will be useful. This includes:
+<p>Any kind of feedback will be useful. This includes:
 
 <ul>
   <li><p>Bug reports. If anything goes wrong, I obviously
@@ -89,14 +86,22 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
     it's just the way it is, and I will not be able to help much.
     Make sure you have absolutely newest drivers (including OpenGL
     library) for your graphic card.
+
+    <p>Bugs should be submitted to
+    <a href="<?php echo BUGS_TRACKER_URL; ?>">bug tracker</a>,
+    if you're unsure is it a "real" bug you can also post to
+    <?php echo MAILING_LIST_LINK; ?>.
     </li>
 
   <li><p>Features. Do you think that anything should be added ?
     Maybe something should be changed ? Any ideas may be useful here
     &mdash; new key / mouse commands, changing the behavior of
     present commands, displaying some things in a different way, etc.
-    </li>
 
+    <p>Feature requests should be submitted to
+    <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature request
+    tracker</a> or to <?php echo MAILING_LIST_LINK; ?>.
+    </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -732,7 +737,7 @@ In particular
     means a sound that will be played when player's life points
     will significantly drop down (this will be played along with
     showing "red-out" effect). If you have doubts what given sound
-    is intended to be, just <?php echo michalis_mailto("ask me"); ?>.
+    is intended to be, just ask on <?php echo MAILING_LIST_LINK; ?>.
   </li>
 </ul>
 
