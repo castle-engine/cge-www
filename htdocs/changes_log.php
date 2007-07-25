@@ -365,8 +365,8 @@ then older logs are successively moved to this page.
   <li><b>July 12, 2006:</b>
     <ul>
       <li>New program is available:
-        <?php echo a_href_page("grammar_compression", "grammar_compression") ?> &mdash;
-        implementation of Sequitur and Sequential compression algorithms
+        <a href="http://www.camelot.homedns.org/~michalis/grammar_compression.php">grammar_compression</a>
+        &mdash; implementation of Sequitur and Sequential compression algorithms
         in ObjectPascal.
 
       <li><?php echo a_href_page('"The Castle"', "castle") ?> page
@@ -646,7 +646,7 @@ then older logs are successively moved to this page.
         small fixes.
 
       <li><p>Oh, and I put here my
-        <a href="michalis-gpg-public-key.asc">public GPG key</a>.
+        <a href="http://www.camelot.homedns.org/~michalis/michalis-gpg-public-key.asc">public GPG key</a>.
     </ul>
 
   <li><b>March 9, 2006</b><br>
@@ -980,7 +980,7 @@ then older logs are successively moved to this page.
 
       <li><?php echo a_href_page('glplotter', 'glplotter'); ?> updated to
         version 1.1.2: small bugfix: plots with "_" in names
-      <li><?php echo a_href_page('mandaty', 'mandaty') ?> page added.
+      <li><a href="http://www.camelot.homedns.org/~michalis/mandaty.php">mandaty</a> page added.
     </ul>
 
     <!-- glViewImage sources only updated to 1.1.2, small fixes to sources -->
@@ -1127,7 +1127,8 @@ then older logs are successively moved to this page.
 
       <li>All www pages marked in footer as licensed on GNU GPL,
         added page explaining
-        <?php echo a_href_page('why I do not use GNU FDL', 'why_not_gfdl'); ?>.
+        <a href="http://www.camelot.homedns.org/~michalis/why_not_gfdl.php">why
+        I do not use GNU FDL</a>.
 
       <li>F5 is now the standard key shortcut for save screen
         (F10 was conflicting with standard "drop menu" key on gnome and win32),
