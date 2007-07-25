@@ -7,7 +7,7 @@
   require "kambi-php-lib/kambi_toc.php";
   require "generated_versions.php";
 
-  define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/');
+  define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/counters/');
   require "kambi-php-lib/counter.php";
 
   /* Some rules to follow when editing these pages:

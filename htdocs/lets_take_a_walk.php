@@ -135,7 +135,7 @@ files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 
 <?php
   if (!IS_GEN_LOCAL) {
-    $counter = php_counter("lets_take_a_walk_en", TRUE);
+    $counter = php_counter("lets_take_a_walk", TRUE);
   };
 
   camelot_footer();

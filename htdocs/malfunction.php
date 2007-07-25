@@ -132,7 +132,7 @@ or using <a href="http://www.blender.org/">Blender</a>
 
 <?php
   if (!IS_GEN_LOCAL) {
-    $counter = php_counter("malfunction_en", TRUE);
+    $counter = php_counter("malfunction", TRUE);
   };
 
   camelot_footer();

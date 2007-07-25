@@ -228,7 +228,7 @@ See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
 
 <?php
   if (!IS_GEN_LOCAL) {
-    $counter = php_counter("raytr_gallery_en", TRUE);
+    $counter = php_counter("raytr_gallery", TRUE);
   };
 
   camelot_footer();

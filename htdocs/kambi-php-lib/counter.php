@@ -13,11 +13,10 @@
 function php_counter($counter_name, $counter_write_bonus = FALSE)
 {
   $f_name = COUNTER_DATA_PATH . $counter_name .".counter";
-  $f_in = fopen($f_name, "r");
 
-  /* kiedys za ponizszy test sluzylo mi is_readable(), ale potem
-     okazalo sie zwracac false nawet gdy bylo true; nie wiem dlaczego,
-     ale sprawdzanie czy fopen nie zwraca FALSE jest ok. */
+  /* Opening with @fopen, we'll check $f_in for error later. */
+  $f_in = @fopen($f_name, "r");
+
   if ($f_in === FALSE)
     $counter = 0; else
   {

@@ -606,7 +606,7 @@ releases of view3dscene.</p>
 
 <?php
   if (!IS_GEN_LOCAL) {
-    $counter = php_counter("view3dscene_en", TRUE);
+    $counter = php_counter("view3dscene", TRUE);
   };
 
   camelot_footer();

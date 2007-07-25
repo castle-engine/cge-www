@@ -12,9 +12,8 @@
 <p><b>For developers</b>, this is an open-source engine
 that is especially oriented towards working with VRML models (although
 other model formats are also supported).
-For more information,
-documetation and downloads for developers see <a href="#development">lower
-on this page</a>.</p>
+For more information, documentation and downloads for developers
+see <a href="#useful_resources">lower on this page</a>.</p>
 
 <p><b>For normal human beings</b>, this page is a collection of various
 games and tools. They were developed using the VRML game engine,
@@ -117,6 +116,21 @@ and I keep them in working and compilable state, but that's it.
     installed on your system.
 </ul>
 
+<?php echo main_list_item('Useful resources', 'useful_resources'); ?>
+
+<p>Subscribe to <a href="https://lists.sourceforge.net/lists/listinfo/vrmlengine-main">vrmlengine-main
+mailing list</a>. This list is for any discussion, questions,
+announcements related to our VRML engine and programs on this page.</p></li>
+
+<p>Submit
+<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974391">bugs</a>,
+<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974394">feature requests</a>,
+<a href="http://sourceforge.net/tracker/?group_id=200653&atid=974393">patches</a>
+to appropriate tracker.</p>
+
+<p>There's <a href="http://sourceforge.net/export/rss2_projfiles.php?group_id=200653">RSS
+feed to monitor new releases</a>.</p>
+
 <?php echo main_list_item("Development", 'development'); ?>
 
 <p>So, you want to actually see how it all works inside, huh ?</p>
@@ -175,6 +189,9 @@ the programs developed with it:</p>
     it outputs some additional info about physical material properties
     (concerning Phong BRDF)
 </ul>
+
+See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
+project page on SourceForge</a>.</li>
 
 <?php echo main_list_item("A few general words about programs available here"); ?>
 
