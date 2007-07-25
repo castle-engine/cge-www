@@ -183,7 +183,8 @@ and Monte Carlo path tracing.
     My test renderings with 3DS models look sensible, but I can't
     guarantee anything. If you can provide or point me to some exact
     spec about how the lights and materials in 3DS are supposed
-    to be interpreted <?php echo michalis_mailto('then email me'); ?>.
+    to be interpreted then post to
+    <?php echo MAILING_LIST_LINK; ?>.
 
   <li><p><tt>&lt;output-filename&gt;</tt>
 

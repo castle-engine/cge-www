@@ -99,7 +99,8 @@ taking 6 MB !).
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo michalis_mailto('Any comments are welcome.'); ?>
+<p>Any comments about these tests are welcome on
+<?php echo MAILING_LIST_LINK; ?>.
 
 <p>I am constantly adding more test files to this archive as I'm
 implementing more features in my VRML engine.

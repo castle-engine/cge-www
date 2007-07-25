@@ -76,7 +76,7 @@ function program_image_links_table_begin()
 <?php echo main_list_item("Programs: Older games"); ?>
 
 <p>Games below are not extended anymore. They are mainly small toys
-and demos of my VRML game engine. I like them very much,
+and demos of the VRML game engine. I like them very much,
 and I keep them in working and compilable state, but that's it.
 
 <?php program_image_links_table_begin(); ?>
@@ -159,7 +159,7 @@ feed to monitor new releases</a>.</p>
 <ul>
   <li><?php echo a_href_page("Specification of my extensions to VRML",
     "kambi_vrml_extensions"); ?>
-  <li><?php echo a_href_page("My VRML test suite",
+  <li><?php echo a_href_page("Kambi VRML test suite",
     "kambi_vrml_test_suite"); ?>
   <li><?php echo a_href_page('VRML implementation status',
     'vrml_implementation_status'); ?>

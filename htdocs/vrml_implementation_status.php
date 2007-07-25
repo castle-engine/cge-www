@@ -1,5 +1,7 @@
 <?php
   require "camelot_funcs.php";
+  require_once 'vrmlengine_functions.php';
+
   camelot_header("VRML implementation status", LANG_EN,
     NULL, NULL,
     '<style type="text/css"><!--
@@ -536,7 +538,8 @@ on numerous VRML models available on the WWW. -->
           I don't have time to check all the tests.
           If someone wants to do the work and do the remaining
           tests (and document results just like above),
-          please <?php echo michalis_mailto("contact me"); ?>.</i>
+          please contact us by
+          <?php echo MAILING_LIST_LINK; ?>.</i>
     </table>
 
     <p>Cases are marked above as "success" (+) only if they succeed
