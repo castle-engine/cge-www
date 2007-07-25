@@ -1,10 +1,9 @@
 <?php
   require "camelot_funcs.php";
   camelot_header("kambi_mgf2inv", LANG_EN,
-    "kambi_mgf2inv - Michalis Kamburelis' version of mgf2inv converter. " .
-    "It converts mgf files to VRML 1.0 (or Inventor 1.0 or 2.0) and adds " .
-    "my non-standard VRML Material fields describing Phong BRDF properties of "  .
-    "materials."
+    'Modified version of mgf2inv converter, this converts mgf files to ' .
+    'VRML / Inventor and adds non-standard ' .
+    'fields describing physical properties of materials.'
     );
 ?>
 

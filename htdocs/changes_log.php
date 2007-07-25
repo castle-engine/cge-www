@@ -1,16 +1,29 @@
 <?php
   require "camelot_funcs.php";
-  camelot_header('Changes log of Michalis\' pages', LANG_EN, NULL);
+  camelot_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
 ?>
 
-<h1>Changes log of Michalis' pages</h1>
+<h1>Changes log of Kambi VRML game engine</h1>
 
 This page tracks all changes to pages, programs and all other stuff here.
 Every "log" is visible for the first time on the main page (as "Latest update"),
 then older logs are successively moved to this page.
 
 <ul>
+  <li><p><b>July 23, 2007:</b>
+
+    <p>Download links for most VRML stuff on this page direct to SourceForge
+    file release system now. This is another step in moving to
+    <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
+    on SourceForge</a>.
+
+    <p>Also, some things now get version numbers:
+    <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?> (1.0.0),
+    <?php echo a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite"); ?> (1.0.0).
+    </p></li>
+
   <li><p><b>July 19, 2007:</b>
+
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
     See <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
