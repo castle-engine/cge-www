@@ -65,3 +65,12 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
   - on SF shell server, run check_sums_md5.sh. This will check md5 sums
     uploaded in previous step, thus checking that all files (even those
     ignored by SVN) were uploaded correctly.
+
+- make sure that "other" users don't have uncessesary permissions
+  (files created by svn inside .svn and files updated by SVN
+  should get OK permissions from start, but "content outside SVN"
+  may have too permissive permissions after uploading e.g. if I upload
+  by nautilus): run secure_permissions.sh on SF
+
+- if you want to create some new counters, make sure to update
+  script init_counters.sh and then run it on SF
