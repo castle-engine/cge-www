@@ -1,0 +1,38 @@
+htodcs/ is exactly what goes into http://vrmlengine.sourceforge.net/
+
+screenshots/ are only a copy (sometimes with better resolution)
+of the same screenshots that are available on SF screenshot
+page of our project.
+
+scripts/ various scripts, usually in Bash, helpful to manage the
+website. Scripts inside scripts/shell.sf.net are meant to be
+run when logged on shell.sourceforge.net server, i.e. these scripts
+are supposed to work on currently "online" version on the website on SF.
+Other scripts are meant to be run on your local version, checkout
+out somewhere on your local computer.
+
+----------------------------------------
+Procedure to update WWW content:
+("locally" means that this is done on a local copy of the repository
+www/ directory, preferably *not* on "online" copy on shell.sf.net):
+
+- good practice after large changes is to check for dead links
+  by linkchecker.sh
+
+- if it's important change, you may wish to update last_update.php
+  and changes_log.php pages.
+
+- if you change some content managed inside SVN:
+  - commit your changes, of course
+  - svn update on SF within htdocs/
+
+- if you change some content outside SVN:
+  (These are some things that are automatically generated and it would
+  be a waste to keep them inside SVN repository... so they have to
+  be copied in a normal way.) :
+  - upload on SF within htdocs/ all that's needed
+  - run mk_sums_md5.sh locally. This calculates md5 sums on your local
+    files.
+  - on SF shell server, run check_sums_md5.sh. This will check md5 sums
+    uploaded in previous step, thus checking that all files (even those
+    ignored by SVN) were uploaded correctly.
