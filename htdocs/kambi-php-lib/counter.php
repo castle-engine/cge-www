@@ -52,7 +52,7 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
        for formatting strings. So I just workaround this by setting default
        timezone to UTC. None of my scripts should need server local time
        anyway. */
-    date_default_timezone_set('UTC');
+    //date_default_timezone_set('UTC');
 
     $hit_date = getdate();
     $bonus_str = sprintf(
