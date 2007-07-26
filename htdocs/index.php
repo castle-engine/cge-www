@@ -197,8 +197,12 @@ the programs developed with it:</p>
     (concerning Phong BRDF)
 </ul>
 
-See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
+<p>See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
 project page on SourceForge</a>.
+
+<p>For amusement (mostly), you can watch commits to vrmlengine through
+<a href="http://cia.vc/stats/project/vrmlengine">Kambi VRML game engine on
+cia.vc</a>.
 
 <?php
 /* No suitable place for this text:
