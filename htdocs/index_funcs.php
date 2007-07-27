@@ -1,6 +1,6 @@
 <?php
 
-require "camelot_funcs.php";
+require_once 'vrmlengine_functions.php';
 $main_page = true;
 
 /* See private/old/index_main_list.php

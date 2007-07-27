@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header("Dependencies of my programs on Mac OS X", LANG_EN, '');
 ?>
 

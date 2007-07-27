@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
 ?>
 

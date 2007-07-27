@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header("Some notes about command-line options understood by my programs",
     LANG_EN);
 ?>

@@ -1,5 +1,4 @@
 <?php
-  require "camelot_funcs.php";
   require_once 'vrmlengine_functions.php';
 
   camelot_header("gen_funkcja", LANG_PL,

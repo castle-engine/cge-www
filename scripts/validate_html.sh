@@ -1,0 +1,29 @@
+#!/bin/bash
+set -eu
+
+# This scripts validates every WWW page: generate page by PHP
+# (will stop on any PHP error), then check by onsgmls.
+# It works offline, without the need for any WWW server,
+# command-line php is used.
+
+TMP_PATH=/tmp/vrmlengine/
+mkdir -p "$TMP_PATH"
+
+cd ../htdocs/
+
+for PHP_NAME in *.php; do
+  case "$PHP_NAME" in
+    # Ignore PHP files used only by including from other pages,
+    # not intended to be displayed directly
+    vrmlengine_functions.php | index_funcs.php | last_update.php \
+      | generated_versions.php | octree_consts.php | raytr_gallery_funcs.php )
+      ;;
+
+    *)
+      echo '---- Generating '"$PHP_NAME"
+      php "$PHP_NAME" > "$TMP_PATH""$PHP_NAME"
+      echo '---- Validating '"$PHP_NAME"
+      onsgmls -s -e -g "$TMP_PATH""$PHP_NAME"
+      ;;
+  esac
+done

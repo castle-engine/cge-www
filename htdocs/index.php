@@ -1,6 +1,5 @@
 <?php
   require "index_funcs.php";
-  require_once 'vrmlengine_functions.php';
 
   index_header("Kambi VRML game engine", LANG_EN,
     'A game engine written using ObjectPascal. ' .

@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header('Versioning scheme of Michalis\' things', LANG_EN, NULL);
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header("kambi_mgf2inv", LANG_EN,
     'Modified version of mgf2inv converter, this converts mgf files to ' .
     'VRML / Inventor and adds non-standard ' .

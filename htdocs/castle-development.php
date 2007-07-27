@@ -1,5 +1,4 @@
 <?php
-  require "camelot_funcs.php";
   require_once 'vrmlengine_functions.php';
 
   camelot_header("The Castle &mdash; development", LANG_EN, '');

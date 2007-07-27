@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header("Small gallery of images rendered using rayhunter", LANG_EN);
   require "raytr_gallery_funcs.php";
 

@@ -1,6 +1,33 @@
 <?php
 /* PHP functions common for vrmlengine WWW pages. */
 
+define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/counters/');
+define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_LOCAL_PATH');
+define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
+define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
+
+function echo_footer_local_address ()
+{
+?>
+  By Michalis Kamburelis, as part of
+    <?php echo "<a href=\"" . CURRENT_URL . "\">Kambi VRML game engine</a>"; ?>.
+<?php
+}
+
+function echo_footer_non_local_bonus ()
+{
+?>
+  <p>Services for the vrmlengine project provided by<br />
+  <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&amp;type=3" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a><br />
+  See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
+  project page on SourceForge</a>.</p>
+<?php
+}
+
+require_once 'kambi-php-lib/kambi_common.php';
+
+require_once 'generated_versions.php';
+
 define('SF_UNIX_NAME', 'vrmlengine');
 
 define('MAILING_LIST_URL',

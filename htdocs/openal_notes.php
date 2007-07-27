@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header('Notes related to all my programs using OpenAL', LANG_EN);
 
   $toc = new TableOfContents(

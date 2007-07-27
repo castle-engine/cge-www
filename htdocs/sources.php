@@ -1,7 +1,5 @@
 <?php
-  require "camelot_funcs.php";
   require_once 'vrmlengine_functions.php';
-  require_once 'generated_versions.php';
 
   camelot_header("Sources of Kambi VRML game engine and related programs",
     LANG_EN);

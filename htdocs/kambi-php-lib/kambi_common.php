@@ -1,64 +1,105 @@
 <?php /* -*- mode: php -*- (This page should be edited in php mode,
                             mmm mode is too slowish for this page). */
 
+/* Copyright 2001-2007 Michalis Kamburelis.
+
+   This file is part of "Kambi PHP library".
+
+   "Kambi PHP library" is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   "Kambi PHP library" is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with "Kambi PHP library"; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+   ============================================================
+
+   This is a common functions library, shared by both
+   http://vrmlengine.sourceforge.net/ and
+   http://www.camelot.homedns.org/~michalis/
+   websites.
+
+   Note that, contrary to other PHP files inside kambi-php-lib/
+   directory, this file *does* make some assumptions about how your
+   website looks and works like. In other words, this file is probably
+   not directly usable for other projects. (Still, feel free
+   to take parts of it or adjust it, if you want, of course).
+
+   ============================================================
+
+   Before including this file, you should define a couple of constants:
+   - COUNTER_DATA_PATH (see counter.php)
+   - ENV_VARIABLE_NAME_LOCAL_PATH (needed only if you intend to make
+     local HTML versions by command-line php)
+   - CURRENT_URL (URL to main directory of these very web pages,
+     must be finished by "/")
+   - CURRENT_URL_SHORT (Short server name, corresponding to CURRENT_URL,
+     used only to show to humans (when making links
+     from offline to online page).
+
+   ============================================================
+
+   Some rules to follow when editing these pages:
+
+   - The basic idea is that these pages may be processed in two
+     various modes:
+     - When IS_GEN_LOCAL = false, we make normal online version
+       on the page, visible online on URL defined by CURRENT_URL.
+     - When IS_GEN_LOCAL = true, we make special version of the page
+       suitable for offline viewing. It differs from the online
+       version in many details.
+
+   - Nigdy nie rób bezpo¶rednich linków do stron za pomoc± <a href ...>,
+     zawsze u¿ywaj funkcji a_href_page[_hashlink]. Ona zajmuje siê
+     kilkoma rzeczami, np. dba o to aby wszystko dzia³a³o dobrze
+     dla ka¿dej warto¶ci IS_GEN_LOCAL (i dla dowolnej kombinacji plików
+     dostêpnych lokalnie w/g funkcji is_page_available_locally),
+     IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona te¿ zajmuje siê
+     automatycznie doklejeniem odpowiedniego sufixu jêzyka do nazwy strony.
+
+     Wyj±tkiem s± hash-linki w obrêbie tej samej strony, tzn. linki
+     a postaci <a href="[tutaj hash]hash_link_na_tej_samej_stronie">...</a>,
+     to jest dozwolone.
+
+   - Podobnie, nie rób bezpo¶rednich linków do innych plików.
+     Co wiêcej, nie u¿ywaj a_href_size z funcs.php.
+     Zamiast tego u¿ywaj current_www_a_href_size, z tych samych powodów
+     co wy¿ej a_href_page[_hashlink].
+
+   - Use common_header(...odpowiednie parametry...) and
+     common_footer() for page header/footer.
+     Between them insert just the page's body.
+
+   Ponadto nastêpuj±ce rzeczy s± sugerowane aby uzyskaæ spójny styl:
+   - Tabelki dostêpnych klawiszy i operacji myszk± robiæ jako
+     <table border="1" class="key_list"> (jak zawrzeæ border="1"
+     w CSS ? Tak ¿eby do table nie by³o potrzebnych ¿adnych innych parametrów
+     poza class ?)
+
+   - Wa¿niejsze strony o stosunkowo krótkim tytule mog± siê zaczynaæ
+     u¿ywaj±c echo pretty_heading(... tytu³ strony ..., wersja programu),
+     w szczególno¶ci mo¿e byæ
+       echo pretty_heading($page_title);
+
+   - Przy opisie instalacji moich gier pod UNIXy home directory u¿ytkownika
+     bêdê oznacza³ jako "$HOME" (a nie np. "~"). Mimo ¿e algorytm wyznaczania
+     katalogu domowego jest nieco bardziej z³o¿ony (KambiUtils.HomeDir)
+     ni¿ tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
+     uwa¿am za lepszy od ~ bo jest d³u¿szy.
+  */
+
   /* assert_options(ASSERT_ACTIVE, 1); */
 
-  require "kambi-php-lib/funcs.php";
-  require "kambi-php-lib/kambi_toc.php";
-  require "generated_versions.php";
-
-  define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/counters/');
-  require "kambi-php-lib/counter.php";
-
-  /* Some rules to follow when editing these pages:
-
-     - The basic idea is that these pages may be processed in two
-       various modes:
-       - When IS_GEN_LOCAL = false, we make normal online version
-         on the page, visible online on URL defined by CURRENT_URL.
-       - When IS_GEN_LOCAL = true, we make special version of the page
-         suitable for offline viewing. It differs from the online
-         version in many details.
-
-     - Nigdy nie rób bezpo¶rednich linków do stron za pomoc± <a href ...>,
-       zawsze u¿ywaj funkcji a_href_page[_hashlink]. Ona zajmuje siê
-       kilkoma rzeczami, np. dba o to aby wszystko dzia³a³o dobrze
-       dla ka¿dej warto¶ci IS_GEN_LOCAL (i dla dowolnej kombinacji plików
-       dostêpnych lokalnie w/g funkcji is_page_available_locally),
-       IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona te¿ zajmuje siê
-       automatycznie doklejeniem odpowiedniego sufixu jêzyka do nazwy strony.
-
-       Wyj±tkiem s± hash-linki w obrêbie tej samej strony, tzn. linki
-       a postaci <a href="[tutaj hash]hash_link_na_tej_samej_stronie">...</a>,
-       to jest dozwolone.
-
-     - Podobnie, nie rób bezpo¶rednich linków do innych plików.
-       Co wiêcej, nie u¿ywaj a_href_size z funcs.php.
-       Zamiast tego u¿ywaj current_www_a_href_size, z tych samych powodów
-       co wy¿ej a_href_page[_hashlink].
-
-     - Na pocz±tku ka¿dej strony rób
-         require "camelot_funcs.php";
-         camelot_header(...odpowiednie parametry...);
-       a na koñcu camelot_footer()
-
-     Ponadto nastêpuj±ce rzeczy s± sugerowane aby uzyskaæ spójny styl:
-     - Tabelki dostêpnych klawiszy i operacji myszk± robiæ jako
-       <table border="1" class="key_list"> (jak zawrzeæ border="1"
-       w CSS ? Tak ¿eby do table nie by³o potrzebnych ¿adnych innych parametrów
-       poza class ?)
-
-     - Wa¿niejsze strony o stosunkowo krótkim tytule mog± siê zaczynaæ
-       u¿ywaj±c echo pretty_heading(... tytu³ strony ..., wersja programu),
-       w szczególno¶ci mo¿e byæ
-         echo pretty_heading($page_title);
-
-     - Przy opisie instalacji moich gier pod UNIXy home directory u¿ytkownika
-       bêdê oznacza³ jako "$HOME" (a nie np. "~"). Mimo ¿e algorytm wyznaczania
-       katalogu domowego jest nieco bardziej z³o¿ony (KambiUtils.HomeDir)
-       ni¿ tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
-       uwa¿am za lepszy od ~ bo jest d³u¿szy.
-  */
+  require_once 'funcs.php';
+  require_once 'kambi_toc.php';
+  require_once 'counter.php';
 
   /* Constants always defined by this script (so they are accessible after
        including this script) :
@@ -80,12 +121,12 @@
        common_options.php, opengl_options[.pl].php. It does not
        contain some pages that I do not consider "part of documentation for
        lets_take_a_walk usage" like index.php/html).
-       Some steps (in this file (camelot_funcs) and in all specific php
+       Some steps (in this file and in all specific php
        pages) must to be taken when generating "local" pages:
        - links to main page (index[.pl].(php|html)) (like those
          in $s_quick_links and <link rel=Start ...>) must not be
          generated
-       - default page background (specified by calling camelot_header())
+       - default page background (specified by calling common_header())
          may not contain any url to image
        - every local page will have in it's footer a text stating that
            o. I'm the author of this page,
@@ -159,7 +200,7 @@
 
   if (IS_GEN_LOCAL)
   {
-    $dir = $_ENV['VRMLENGINE_LOCAL_PATH'];
+    $dir = $_ENV[ENV_VARIABLE_NAME_LOCAL_PATH];
     chdir($dir) or exit("Cannot change directory to \"$dir\"");
   }
 
@@ -204,14 +245,6 @@ function is_page_available_locally($page_name)
   /* :string = I just wasn't sure how to say "here are binaries" in english */
   define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
     'is required, just unpack these archives and run the program.');
-
-  /* :string = URL do katalogu g³ownego tych wlasnie stron w sieci
-     (zakonczony '/') */
-  define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
-  /* Short server name, corresponding to CURRENT_URL,
-     used only to show to humans (when making links
-     from offline to online page). */
-  define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 
   /* sta³e do specyfikowania jêzyka, w zmiennej $page_lang i w parametrach
      wielu funkcji. Kiedy¶ u¿ywa³em tutaj stringów "en", "pl" - u¿ywanie
@@ -266,28 +299,28 @@ function is_page_available_locally($page_name)
 
   /* Global variables =======================================================
 
-     ¯adna funkcja z tego pliku (poza camelot_header)
+     ¯adna funkcja z tego pliku (poza common_header)
      nie mo¿e byæ wywo³ana przed zainicjowaniem
      wszystkich poni¿szych zmiennych (za wyj±tkiem kilku wyj±tków które bêd±
      mia³y to wyra¼nie stwierdzone w komentarzu; bêdzie wtedy wyra¼nie okre¶lone
      których zmiennych dana funkcja wymaga).
 
-     Jest gwarantowane ¿e wywo³anie camelot_header zapewnia ¿e wszystkie te
-     zmienne s± zainicjowane, wiêc po wywo³aniu camelot_header nie musisz siê
+     Jest gwarantowane ¿e wywo³anie common_header zapewnia ¿e wszystkie te
+     zmienne s± zainicjowane, wiêc po wywo³aniu common_header nie musisz siê
      ju¿ o nic martwiæ. */
 
-  /* Poni¿sze zmienne s± inicjowane w camelot_header, wcze¶niej nale¿y je
+  /* Poni¿sze zmienne s± inicjowane w common_header, wcze¶niej nale¿y je
      traktowaæ jako NIE zainicjowane (czyli nie nadaj±ce siê do u¿ycia). */
   $page_title = '';
   /* Jêzyk strony, po zainicjowaniu warto¶æ to jedna ze sta³ych LANG_. */
   $page_lang = -1;
-  /* internal, used only in camelot_header/footer() */
+  /* internal, used only in common_header/footer() */
   $s_quick_links = '';
 
   /* Poni¿sze zmienne s± zainicjowane na domy¶lne warto¶ci z chwil± w³±czenia
-     tego pliku (tzn. po require "camelot_funcs.php";). Je¶li chcesz zmieniæ
+     tego pliku. Je¶li chcesz zmieniæ
      ich warto¶ci to musisz to zrobiæ rêcznie przed wywo³aniem jakiejkolwiek
-     innej funkcji z tego pliku (tak¿e camelot_header). */
+     innej funkcji z tego pliku (tak¿e common_header). */
   $main_page = false;
 
 /* functions ======================================================= */
@@ -404,7 +437,7 @@ function supported_page_langs($page_basename)
     array(LANG_EN) );
 }
 
-/* camelot header ============================================================ */
+/* header ============================================================ */
 
 /* $meta_description :string/NULL = krótki opis strony,
    o ile nie bêdzie NULL bêdzie wypisany jako <meta name="Description" ...>
@@ -448,9 +481,9 @@ function camelot_header($a_page_title, $a_page_lang,
   $supported_langs = supported_page_langs($page_basename);
   assert('in_array($a_page_lang, $supported_langs)');
 
-  /* camelot specific functions =============================================
+  /* site specific functions =============================================
 
-     Zdefiniowane w ¶rodku camelot_header ¿eby mog³y skorzystaæ z istnienia
+     Zdefiniowane w ¶rodku common_header ¿eby mog³y skorzystaæ z istnienia
      sta³ej PAGE_LANG jako domy¶lnej warto¶ci dla swoich parametrów. */
 
   define('PAGE_LANG', $page_lang);
@@ -647,7 +680,7 @@ function camelot_header($a_page_title, $a_page_lang,
     return array_to_ul($depends_array);
   }
 
-  /* continuation of camelot_header ======================================== */
+  /* continuation of common_header ======================================== */
 
   /* evaluate $s_quick_links */
   $s_quick_links = '';
@@ -828,7 +861,7 @@ function camelot_header($a_page_title, $a_page_lang,
 <?php };
 }
 
-/* camelot footer ============================================================ */
+/* footer ============================================================ */
 
 function camelot_footer()
 {
@@ -855,8 +888,7 @@ and you are free to modify and further distribute it on terms of
 
   if (IS_GEN_LOCAL) { ?>
     <address>
-    By Michalis Kamburelis, as part of
-    <?php echo "<a href=\"" . CURRENT_URL . "\">Kambi VRML game engine</a>"; ?>.
+    <?php echo_footer_local_address(); ?>
     </address>
 
     <p>
@@ -876,10 +908,7 @@ and you are free to modify and further distribute it on terms of
       <?php echo PAGE_COPYRIGHT; ?>
     </table>
 
-  <p>Services for the vrmlengine project provided by<br />
-  <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&amp;type=3" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a><br />
-  See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-  project page on SourceForge</a>.</p>
+  <?php echo_footer_non_local_bonus(); ?>
 <?php }; ?>
 
 </div>

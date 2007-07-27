@@ -1,5 +1,5 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
   camelot_header("Michalis Kamburelis VRML extensions", LANG_EN,
     "Description of non-standard VRML 1.0 and 2.0 features " .
     "handled by Michalis Kamburelis' programs.");

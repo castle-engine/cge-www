@@ -1,10 +1,35 @@
 <?php
 
-/* You must define COUNTER_DATA_PATH before including this.
+/* Copyright 2001-2007 Michalis Kamburelis.
+
+   This file is part of "Kambi PHP library".
+
+   "Kambi PHP library" is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   "Kambi PHP library" is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with "Kambi PHP library"; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+   ============================================================
+
+   Simple hits counter in PHP, for every page, with info on which
+   day, from what IP, and (most usefull) from what http_referer visitors come
+   here.
+
+   You must define COUNTER_DATA_PATH before including this.
    COUNTER_DATA_PATH will be prefix for every counter file,
    it can be a relative or absolute path.
    It can be simply '' if you want counters present in current
-   directory. */
+   directory.
+*/
 
 /* reads integer value from file $counter_name . ".counter", increments
    it, writes back to the file and returns it (as a string).

@@ -1,5 +1,4 @@
 <?php
-  require "camelot_funcs.php";
   require_once 'vrmlengine_functions.php';
 
   camelot_header("Kambi VRML game engine", LANG_EN);

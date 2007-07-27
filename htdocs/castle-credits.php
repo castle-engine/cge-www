@@ -1,5 +1,6 @@
 <?php
-  require "camelot_funcs.php";
+  require "vrmlengine_functions.php";
+
   camelot_header("The Castle &mdash; credits", LANG_EN, '');
 
   $toc = new TableOfContents(
