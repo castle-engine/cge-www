@@ -76,3 +76,11 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
 - if you want to create some new counters, make sure to update
   script init_counters.sh and then run it on SF
+
+- after important release, I may wish to announce it:
+  - sf news for vrmlengine project
+  - new release of view3dscene and/or castle go to freshmeat:
+    http://freshmeat.net/projects/view3dscene/
+    http://freshmeat.net/projects/castlegame/
+  - pascalgamedevelopment may be informed about especially important
+    releases
