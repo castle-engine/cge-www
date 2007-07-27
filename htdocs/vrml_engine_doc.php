@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("VRML engine documentation", LANG_EN);
+  common_header("VRML engine documentation", LANG_EN);
 ?>
 
 <h1>VRML engine documentation</h1>
@@ -40,5 +40,5 @@ includes VRML files sources, so you can view them comfortably in
     $counter = php_counter("vrml_engine_doc", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

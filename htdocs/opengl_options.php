@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header("Standard command-line options understood by my OpenGL programs",
+  common_header("Standard command-line options understood by my OpenGL programs",
     LANG_EN);
 ?>
 
@@ -91,5 +91,5 @@ accept some set of standard command-line options:
     $counter = php_counter("opengl_options", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

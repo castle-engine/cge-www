@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("The Castle &mdash; development", LANG_EN, '');
+  common_header("The Castle &mdash; development", LANG_EN, '');
 
   $toc = new TableOfContents(
     array(
@@ -876,5 +876,5 @@ will move to <a href="http://sourceforge.net/">SourceForge</a>.
     $counter = php_counter("castle-development", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

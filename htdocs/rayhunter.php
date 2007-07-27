@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("rayhunter", LANG_EN,
+  common_header("rayhunter", LANG_EN,
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .
     "(for Linux, FreeBSD, Mac OS X and Windows).");
@@ -601,4 +601,4 @@ some advantages:
     to write partial result from time to time.
 </ul>
 
-<?php camelot_footer() ?>
+<?php common_footer() ?>

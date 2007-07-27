@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("VRML implementation status", LANG_EN,
+  common_header("VRML implementation status", LANG_EN,
     NULL, NULL,
     '<style type="text/css"><!--
     td.pass{background-color:rgb(50%,100%,50%)}
@@ -556,5 +556,5 @@ on numerous VRML models available on the WWW. -->
     php_counter("vrml_implementation_status", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

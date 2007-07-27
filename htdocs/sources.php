@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("Sources of Kambi VRML game engine and related programs",
+  common_header("Sources of Kambi VRML game engine and related programs",
     LANG_EN);
 
   $toc = new TableOfContents(
@@ -241,5 +241,5 @@ About support for various FPC versions:
     $counter = php_counter("sources", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
   require "vrmlengine_functions.php";
 
-  camelot_header("The Castle &mdash; additional notes", LANG_EN, '');
+  common_header("The Castle &mdash; additional notes", LANG_EN, '');
 
   $toc = new TableOfContents(
     array(
@@ -187,5 +187,5 @@ using <?php echo a_href_page('my normal versioning scheme', 'versioning') ?>.
     $counter = php_counter("castle-advanced", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("lets_take_a_walk", LANG_EN,
+  common_header("lets_take_a_walk", LANG_EN,
     "lets_take_a_walk - A small toy ".
     "demonstrating rendering 3d graphic and spatial sound.");
 
@@ -48,7 +48,7 @@ appropriate DLLs are already is the archive.
      lets_take_a_walk_win.zip zawiera wszystkie trzy pierwsze spakowane
      w jednym zipie - dla wygody wielu ludzi którzy bêd± chcieli uzywac
      mojej gry tylko pod Windowsem i nie zrozumieliby dlaczego musza
-     downloadowac az 3 pliki z serwera camelot.
+     downloadowac az 3 pliki.
 
      pod Unixami:
      OpenAL i libpng&zlib musza sobie sami zainstalowac. Binarke i data wrzucam
@@ -137,5 +137,5 @@ files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
     $counter = php_counter("lets_take_a_walk", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

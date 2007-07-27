@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("glcaps", LANG_EN,
+  common_header("glcaps", LANG_EN,
     "glcaps (acronym for OpenGL Capabilities) : " .
     "a tiny program that outputs several " .
     "useful information about OpenGL implementation on your system. " .
@@ -97,5 +97,5 @@ so it's able to write some info like all possible visual configurations).
     $counter = php_counter("glcaps", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header("Some notes about command-line options understood by my programs",
+  common_header("Some notes about command-line options understood by my programs",
     LANG_EN);
 ?>
 
@@ -110,5 +110,5 @@ known and used by most good programs in the world) :
     $counter = php_counter("common_options", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

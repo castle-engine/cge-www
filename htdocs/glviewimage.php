@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("glViewImage", LANG_EN,
+  common_header("glViewImage", LANG_EN,
     "glViewImage - a small image viewer using OpenGL. " .
     "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .
     "Has some nice features that allow you to scale images and test " .
@@ -175,5 +175,5 @@ zrobi³em te¿ PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
     $counter = php_counter("glviewimage", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

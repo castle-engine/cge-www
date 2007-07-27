@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header("Small gallery of images rendered using rayhunter", LANG_EN);
+  common_header("Small gallery of images rendered using rayhunter", LANG_EN);
   require "raytr_gallery_funcs.php";
 
   $toc = new TableOfContents(
@@ -231,5 +231,5 @@ See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
     $counter = php_counter("raytr_gallery", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

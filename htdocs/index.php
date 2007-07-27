@@ -244,5 +244,5 @@ drop me a note about this !
     */
   };
 
-  camelot_footer();
+  common_footer();
 ?>

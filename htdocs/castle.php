@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("The Castle", LANG_EN, '');
+  common_header("The Castle", LANG_EN, '');
 ?>
 
 <?php
@@ -178,5 +178,5 @@ See <?php echo a_href_page('credits page', 'castle-credits') ?>.
     $counter = php_counter("castle", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -8,7 +8,7 @@ $main_page = true;
 
 function index_header($a_page_title, $a_page_lang, $meta_description)
 {
-  camelot_header($a_page_title, $a_page_lang,
+  common_header($a_page_title, $a_page_lang,
     $meta_description, NULL,
     '<style type="text/css"><!--
        DIV.main_list_item {

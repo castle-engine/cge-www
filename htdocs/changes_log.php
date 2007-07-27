@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
+  common_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
 ?>
 
 <h1>Changes log of Kambi VRML game engine</h1>
@@ -1579,5 +1579,5 @@ I started to maintain this update log at 18th march, 2004.
     $counter = php_counter("changes_log", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

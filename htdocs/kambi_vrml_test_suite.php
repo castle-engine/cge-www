@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("Kambi VRML test suite", LANG_EN);
+  common_header("Kambi VRML test suite", LANG_EN);
 
   $toc = new TableOfContents(
     array(
@@ -112,5 +112,5 @@ implementing more features in my VRML engine.
     php_counter("kambi_vrml_test_suite", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

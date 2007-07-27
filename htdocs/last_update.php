@@ -9,8 +9,7 @@ language: update
 ----------------------------------------
 Text for next update:
 ----------------------------------------
-Blockers before next camelot update:
-
+Blockers before next WWW update:
 after update:
 */
 ?>

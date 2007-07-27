@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("gen_funkcja", LANG_PL,
+  common_header("gen_funkcja", LANG_PL,
     "gen_funkcja - generator wykresów funkcji dla glplottera.");
 ?>
 
@@ -197,5 +197,5 @@ do tutoriala  notki o sk³adni wyra¿en. Notka o u¿yteczno¶ci notacji
     $counter = php_counter("gen_funkcja", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header("kambi_mgf2inv", LANG_EN,
+  common_header("kambi_mgf2inv", LANG_EN,
     'Modified version of mgf2inv converter, this converts mgf files to ' .
     'VRML / Inventor and adds non-standard ' .
     'fields describing physical properties of materials.'
@@ -56,5 +56,5 @@ name... -->
     $counter = php_counter("kambi_mgf2inv", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

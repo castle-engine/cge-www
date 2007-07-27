@@ -452,7 +452,7 @@ function supported_page_langs($page_basename)
 
    $a_page_lang musi byc elementem supported_page_langs($page_basename)
 */
-function camelot_header($a_page_title, $a_page_lang,
+function common_header($a_page_title, $a_page_lang,
   $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
 {
   global $page_title, $page_lang, $s_quick_links, $main_page,
@@ -863,7 +863,7 @@ function camelot_header($a_page_title, $a_page_lang,
 
 /* footer ============================================================ */
 
-function camelot_footer()
+function common_footer()
 {
   global $s_quick_links, $main_page;
 

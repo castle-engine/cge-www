@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header('Notes related to all my programs using OpenAL', LANG_EN);
+  common_header('Notes related to all my programs using OpenAL', LANG_EN);
 
   $toc = new TableOfContents(
     array(
@@ -186,5 +186,5 @@ OpenAL sound under FreeBSD. Run my programs with <tt>--no-sound</tt> option.</p>
     $counter = php_counter("openal_notes", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
   require "vrmlengine_functions.php";
-  camelot_header("Dependencies of my programs on Mac OS X", LANG_EN, '');
+  common_header("Dependencies of my programs on Mac OS X", LANG_EN, '');
 ?>
 
 <h1>Dependencies of my programs on Mac OS X</h1>
@@ -50,5 +50,5 @@ file or whatever).
     $counter = php_counter("macosx_requirements", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

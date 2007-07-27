@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("view3dscene", LANG_EN,
+  common_header("view3dscene", LANG_EN,
     'view3dscene is a viewer for VRML 1.0, VRML 2.0 (aka VRML 97), ' .
     '3DS, OBJ (Wavefront) and MD3 scenes. ' .
     'Can do collision detection. ' .
@@ -608,5 +608,5 @@ releases of view3dscene.</p>
     $counter = php_counter("view3dscene", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

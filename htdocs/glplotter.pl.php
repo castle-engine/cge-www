@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  camelot_header("glplotter", LANG_PL,
+  common_header("glplotter", LANG_PL,
     "glplotter - program w OpenGLu do rysowania ró¿norakich figur, wykresów itp. " .
     "na dwuwymiarowej siatce.");
 ?>
@@ -164,5 +164,5 @@ Bia³e znaki na pocz±tku i na koñcu linii s± zawsze dozwolone i ignorowane.
     $counter = php_counter("glplotter", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>

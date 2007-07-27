@@ -1,7 +1,7 @@
 <?php
   require "vrmlengine_functions.php";
 
-  camelot_header("The Castle &mdash; credits", LANG_EN, '');
+  common_header("The Castle &mdash; credits", LANG_EN, '');
 
   $toc = new TableOfContents(
     array(
@@ -223,5 +223,5 @@ I and II Music" as compiled by Paul Burdette</a>.
     $counter = php_counter("castle-credits", TRUE);
   };
 
-  camelot_footer();
+  common_footer();
 ?>
