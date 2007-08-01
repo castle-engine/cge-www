@@ -818,6 +818,14 @@ the compilation, i.e. run the <tt>make build-xxx</tt> command once again.
 This will reuse *.o and *.ppu files generated successfully in previous
 compilation attempt, and things will go forward.
 
+<p>Before you run the compiled executable, make sure that it's properly
+installed: Unix users should make sure that symlink
+<tt>$HOME/.castle.data</tt> is appropriate (if you have sources from SVN,
+you can simply make this symlink by <tt>make install</tt>).
+And on all OSes make sure that you have the appropriate libraries
+installed (Windows developers may be comfortable with simply copying
+appropriate DLL files from precompiled version of the game).</p>
+
 <p>In the game sources archive I include all the sources needed to compile
 the game. Also everything needed to tweak with various parts of the game
 (e.g. GIMP *.xcf files, that are the "source" version of *.png images,
