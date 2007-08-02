@@ -876,9 +876,6 @@ used to make all the models (see
 <?php echo a_href_page('credits page', 'castle-credits'); ?> for
 full list of things and resources used).
 
-<p>Soon the development of everything
-will move to <a href="http://sourceforge.net/">SourceForge</a>.
-
 <?php
   if (!IS_GEN_LOCAL) {
     $counter = php_counter("castle-development", TRUE);
