@@ -4,12 +4,12 @@ screenshots/ are only a copy (sometimes with better resolution)
 of the same screenshots that are available on SF screenshot
 page of our project.
 
-scripts/ various scripts, usually in Bash, helpful to manage the
+scripts/ are various scripts, usually in bash, helpful to manage the
 website. Scripts inside scripts/shell.sf.net are meant to be
 run when logged on shell.sourceforge.net server, i.e. these scripts
 are supposed to work on currently "online" version on the website on SF.
-Other scripts are meant to be run on your local version, checkout
-out somewhere on your local computer.
+Other scripts are meant to be run on your local version, checkouted
+somewhere on your local computer.
 
 ----------------------------------------
 How counters dir was created:
@@ -36,10 +36,10 @@ I cannot get real security on /tmp/persistent/ on SF, so I take what I got.
 This also means that all counter files will have to be created first,
 from shell server. init_counters.sh may be used to create counters
 from scratch, counters for pages previously existing on
-http://camelot.homedns.org/~michalis/ will be moved to SF.
+http://camelot.homedns.org/~michalis/ were moved to SF.
 
 Counters should have permissions 666 (read-write by all).
-There's no escape to that, Apache must be able to read-write them.
+There's no escape from this, Apache must be able to read-write them.
 
 ----------------------------------------
 Procedure to update WWW content:
