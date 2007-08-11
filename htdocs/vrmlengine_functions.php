@@ -24,6 +24,11 @@ function echo_footer_non_local_bonus ()
 <?php
 }
 
+/* This set_include_path is needed on SourceForge, otherwise
+   includes from within kambi-php-lib sometimes fail.
+   See ../old_tests/sf_inclusion_test.php for details. */
+set_include_path('.:kambi-php-lib/');
+
 require_once 'kambi-php-lib/kambi_common.php';
 
 require_once 'generated_versions.php';
