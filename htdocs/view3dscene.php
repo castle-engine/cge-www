@@ -19,10 +19,11 @@
     ');
   require "octree_consts.php";
 
-  function section($section_title, $section_anchor)
+  function section($section_title, $section_anchor, $make_hr = true)
   {
-    echo "<hr class=\"ruler_between_sections\">
-      <h3 class=\"h_section\"><a name=\"section_$section_anchor\">$section_title</a></h3>";
+    if ($make_hr)
+      echo "<hr class=\"ruler_between_sections\">";
+    echo "<h3 class=\"h_section\"><a name=\"section_$section_anchor\">$section_title</a></h3>";
   }
 ?>
 
@@ -37,6 +38,29 @@
 ?>
 
 <p>view3dscene is a viewer for 3D scene files.
+
+<!-- Removed: too long useless text:
+
+<p>Below is full documentation of a program. Basic things that you
+want to read are in first two sections (<a href="#section_install">Downloading
+and installing</a> and <a href="#section_run">Running</a>)
+and it's good to take a look at the most important keys
+in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
+-->
+
+<ol>
+  <li><a href="#section_features">Features</a>
+  <li><a href="#section_install">Downloading and installing</a>
+  <li><a href="#section_run">Running</a>
+  <li><a href="#section_keys">Controlling program with keys &amp; mouse</a>
+  <li><a href="#section_command_line_options">Command-line options</a>
+  <li><a href="#section_sthg_about_shading">A few words about flat/smooth shading</a>
+  <li><a href="#section_raytracer">Notes about ray-tracer</a>
+  <li><a href="#section_depends">Requirements</a>
+  <li><a href="#section_freshmeat">Freshmeat entry</a>
+</ol>
+
+<?php section('Features', 'features', false); ?>
 
 <p>Supported file formats:
 <ul>
@@ -61,6 +85,10 @@
     and finally <a href="http://www.web3d.org/x3d/specifications/vrml/">
     the official VRML specifications</a>.
 
+  <li><p><b><?php echo a_href_page(
+    "Kanim (Kambi VRML engine animations)", 'kanim_format'); ?></b> format
+    is handled, animation is played.</p>
+
   <li><p>Also many
     <a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor's</b></a>
     1.0 ASCII files (extension <tt>IV</tt>) are handled.
@@ -74,14 +102,10 @@
 
   <li><p><b>MD3</b>. This is the format used for models
     in Quake 3 and derivatives (<a href="http://tremulous.net/">Tremulous</a>
-    etc.). Geometry and texture (coordinates, and texture filename from
-    associated <tt>xxx_default.skin</tt> file) is read.
-
-    <p>Animation is also read from MD3 format, but it cannot be played
-    by view3dscene for now. If you want to see the animation, get
-    <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>,
-    convert MD3 to animations by <tt>kambi_vrml_game_engine/3dmodels/tools/md3tovrmlsequence</tt>
-    and play it by <tt>kambi_vrml_game_engine/3dmodels.gl/examples/demo_animation</tt>.
+    etc.). Everything usefull (almost ?) is read from MD3 file:
+    geometry with texture (coordinates, and texture filename from
+    associated <tt>xxx_default.skin</tt> file), <i>animation is also read
+    and played</i>.</p>
 
   <li><p><b>Wavefront OBJ files</b>. Only very basic support :
     geometry and texture coords. Texture named <tt>default_obj_texture.png</tt>
@@ -120,6 +144,15 @@
     <p>There are also very limited editing capabilities. They are
     intended to be used only as a post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
+  <li>Animations may be played (currently, they may be loaded
+    from <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files;
+    animations recorded as VRML 2.0 interpolators are not played yet).
+
+    <p>There's one small caveat with animations right now:
+    some features (collision checking, mouse picking,
+    ray-tracer &mdash; everything that requires some octree) always use the
+    <i>first animation frame</i>, regardless of current animation frame
+    displayed.
 </ul>
 
 <!-- Removed becase usual user is not interested in this.
@@ -131,23 +164,6 @@ parametry programu <tt>- -triangle-octree-...</tt>) i potem ogl±daæ wygenerowane
 drzewo (patrz ni¿ej - klawisze <b>O</b>, <b>Ctrl+U</b>, <b>Ctrl+D</b>).
 
 -->
-
-<p>Below is full documentation of a program. Basic things that you
-want to read are in first two sections (<a href="#section_install">Downloading
-and installing</a> and <a href="#section_run">Running</a>)
-and it's good to take a look at the most important keys
-in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
-
-<ol>
-  <li><a href="#section_install">Downloading and installing</a>
-  <li><a href="#section_run">Running</a>
-  <li><a href="#section_keys">Controlling program with keys &amp; mouse</a>
-  <li><a href="#section_command_line_options">Command-line options</a>
-  <li><a href="#section_sthg_about_shading">A few words about flat/smooth shading</a>
-  <li><a href="#section_raytracer">Notes about ray-tracer</a>
-  <li><a href="#section_depends">Requirements</a>
-  <li><a href="#section_freshmeat">Freshmeat entry</a>
-</ol>
 
 <?php section('Downloading and installing', 'install'); ?>
 
