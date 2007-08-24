@@ -41,7 +41,12 @@ subdirectiories (<tt>vrml_1/kambi_extensions</tt> and
 <tt>vrml_2/kambi_extensions</tt>).
 They may not be readable by other VRML browsers,
 as they test and demonstate some of <?php echo a_href_page("my
-non-standard VRML extensions", "kambi_vrml_extensions"); ?>.
+non-standard VRML extensions", "kambi_vrml_extensions"); ?>.</p>
+
+<p>Also files inside <tt>kanim/</tt> subdirectory demonstrate usage
+of <?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
+"kanim_format") ?>.</p>
+
 
 <?php echo $toc->html_section(); ?>
 

@@ -1,8 +1,8 @@
 <?php
   require "vrmlengine_functions.php";
-  common_header("Michalis Kamburelis VRML extensions", LANG_EN,
+  common_header("Kambi VRML extensions", LANG_EN,
     "Description of non-standard VRML 1.0 and 2.0 features " .
-    "handled by Michalis Kamburelis' programs.");
+    "handled by Kambi VRML game engine.");
 
   $node_format_fd_type_pad = 0;
   $node_format_fd_name_pad = 0;
@@ -53,7 +53,7 @@ function ext_long_title($ext_name, $title)
 
 ?>
 
-<?php echo pretty_heading("Michalis' VRML extensions");  ?>
+<?php echo pretty_heading("Kambi VRML extensions");  ?>
 
 <h3>Contents:</h3>
 

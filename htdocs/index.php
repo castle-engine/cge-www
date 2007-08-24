@@ -158,6 +158,8 @@ feed to monitor new releases</a>.</p>
 <ul>
   <li><?php echo a_href_page("Specification of my extensions to VRML",
     "kambi_vrml_extensions"); ?>
+  <li><?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
+    'kanim_format'); ?>
   <li><?php echo a_href_page("Kambi VRML test suite",
     "kambi_vrml_test_suite"); ?>
   <li><?php echo a_href_page('VRML implementation status',

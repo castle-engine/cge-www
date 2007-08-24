@@ -1,0 +1,8 @@
+next update:
+- initialize counter for kanim_format
+- view3dscene (minor ver++), kambi_vrml_game_engine (minor ver++)
+next update log:
+- kanim file format page added
+- kanim examples added to kambi_vrml_test_suite
+- view3dscene can handle animations in kanim, just open it
+- more, look at svn logs
