@@ -17,23 +17,20 @@ after update:
 <p><b>Latest update:</b>
 
 <div class="latest_update_description">
-<p><b>July 25, 2007:</b>
-The move of <i>Kambi VRML game engine</i> project to SourceForge is finished !
-In fact, if you're reading this text, then you already view our page
-as hosted on SourceForge.</p>
-
-<p>Being on SourceForge gives us many new features, most important ones:
-<a href="http://sourceforge.net/project/showfiles.php?group_id=200653">file
-downloads</a> use all the power and speed of SF mirrors,
-development is done inside
-<a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">publicly
-visible SVN repository</a>, we have a public <?php echo MAILING_LIST_LINK; ?>,
-we have trackers for
-<a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
-<a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature requests</a>,
-<a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>,
-there's <a href="http://sourceforge.net/export/rss2_projfiles.php?group_id=200653">RSS
-feed to monitor new releases</a>.</p>
+<p><b>August 24, 2007:</b>
+<ul>
+  <li><?php echo a_href_page('view3dscene 2.2.0', 'view3dscene') ?> release:
+    view3dscene can display animations now (for now in <?php echo a_href_page(
+    "Kanim (Kambi VRML engine animations) format", 'kanim_format'); ?> and
+    MD3).</li>
+  <li><?php echo a_href_page('Kambi VRML test suite 1.1.0',
+    'kambi_vrml_test_suite'); ?> release: many kanim demos added.</li>
+  <li><?php echo a_href_page('Kambi VRML game engine 1.1.0',
+    'kambi_vrml_game_engine'); ?> release: many changes, for animations
+    in view3dscene, also GLMenu and GameSoundEngine units added
+    (some "The Castle" code improved and moved to a generally-usefull
+    units area), bugfixes to MD3 texture handling.</li>
+</ul>
 </div>
 
 <p>See <?php echo

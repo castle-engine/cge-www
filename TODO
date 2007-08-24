@@ -1,8 +1,8 @@
 next update:
 - initialize counter for kanim_format
-- view3dscene (minor ver++), kambi_vrml_game_engine (minor ver++)
-next update log:
-- kanim file format page added
-- kanim examples added to kambi_vrml_test_suite
-- view3dscene can handle animations in kanim, just open it
-- more, look at svn logs
+- view3dscene (minor ver++), kambi_vrml_game_engine (minor ver++), kambi_vrml_test_suite (minor ver++)
+
+next castle update:
+- arrows are affected by gravity
+- underwater "sick" projection effect, thanks to Grzegorz Hermanowicz (herrmannek) !
+- (add herrmannek to castle-credits)
