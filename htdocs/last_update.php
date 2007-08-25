@@ -17,7 +17,7 @@ after update:
 <p><b>Latest update:</b>
 
 <div class="latest_update_description">
-<p><b>August 24, 2007:</b>
+<p><b>August 25, 2007:</b>
 <ul>
   <li><?php echo a_href_page('view3dscene 2.2.0', 'view3dscene') ?> release:
     view3dscene can display animations now (for now in <?php echo a_href_page(
