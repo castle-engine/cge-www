@@ -11,6 +11,8 @@ reset_counter ()
   DIR=/tmp/persistent/vrmlengine/counters/
   echo -n '0' > "$DIR""$1".counter
   echo -n ''  > "$DIR""$1".counter.bonus
+  chgrp vrmlengine "$DIR""$1".counter "$DIR""$1".counter.bonus
+  chmod 666        "$DIR""$1".counter "$DIR""$1".counter.bonus
 }
 
 # reset_counter index
