@@ -8,7 +8,7 @@ set -eu
 reset_counter ()
 {
   echo 'Resetting '"$1"
-  DIR=/tmp/persustent/vrmlengine/counters/
+  DIR=/tmp/persistent/vrmlengine/counters/
   echo -n '0' > "$DIR""$1".counter
   echo -n ''  > "$DIR""$1".counter.bonus
 }
