@@ -149,7 +149,7 @@ in SVN is up-to-date).
   echo_src_archive('bezier_curves');
   echo_src_archive_2('glcaps and glcaps_glut', 'glcaps');
 
-  echo_src_archive('gen_funkcja');
+  echo_src_archive('gen_function');
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');
 ?>

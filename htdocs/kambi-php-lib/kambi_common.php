@@ -292,8 +292,6 @@ function is_page_available_locally($page_name)
      (I could make this var local to supported_page_langs,
      but it could cost some execution time). */
   $pages_langs = array(
-    'gen_funkcja' => array(LANG_PL),
-    'glplotter' => array(LANG_PL),
     'jamy_i_nory' => array(LANG_PL)
   );
 

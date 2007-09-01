@@ -65,7 +65,7 @@ version_call glcaps
 # to have the same version as glcaps.
 version_explicit glcaps_glut `glcaps --version`
 
-version_call gen_funkcja
+version_call gen_function
 
 version_explicit kambi_vrml_game_engine 1.1.0
 version_explicit kambi_vrml_test_suite 1.1.0

@@ -23,7 +23,7 @@ ALL_HTMLS:=view3dscene.html \
   kambi_lines.html \
   malfunction.html \
   bezier_curves.html \
-  glplotter.pl.html gen_funkcja.pl.html \
+  glplotter_and_gen_function.html \
   openal_notes.html \
   changes_log.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \

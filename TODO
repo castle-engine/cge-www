@@ -1,5 +1,7 @@
 next update:
-- glplotter (minor ver++) released: GUI improved: Open/Add/Close menu items. Now you don't have to specify graphs at command-line.
+- initialize counter for glplotter_and_gen_function
+- release new glplotter and gen_function
+- glplotter (minor ver++) released: GUI improved: Open/Add/Close menu items. Now you don't have to specify graphs at command-line. Also, Open/Add function graphs added (now you don't have to use gen_function).
 
 next castle update:
 - arrows are affected by gravity

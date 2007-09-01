@@ -106,14 +106,13 @@ and I keep them in working and compilable state, but that's it.
     image viewer, it can fully handle PNG, JPEG, PPM, BMP and RGBE formats
   <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
     just a toy allowing you to plot Bezier curves in 3D -->
-  <li><?php echo a_href_page("glplotter", "glplotter"); ?> &mdash;
-    plotting graphs in OpenGL
-  <li><?php echo a_href_page("gen_funkcja", "gen_funkcja"); ?> &mdash;
-    generate function's graphs for glplotter
+  <li><?php echo a_href_page("glplotter and gen_function",
+    "glplotter_and_gen_function"); ?> &mdash;
+    plotting graphs (e.g. of functions)
   <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
     plotting rational Bezier curves
-  <li>And something special &mdash; <?php echo a_href_page("glcaps", "glcaps") ?>,
-    program that outputs some useful information about OpenGL libraries
+  <li> <?php echo a_href_page("glcaps", "glcaps") ?> &mdash;
+    output some useful information about OpenGL libraries
     installed on your system.
 </ul>
 
