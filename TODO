@@ -1,5 +1,5 @@
 next update:
-- initialize counter for kanim_format
+- glplotter (minor ver++) released: GUI improved: Open/Add/Close menu items. Now you don't have to specify graphs at command-line.
 
 next castle update:
 - arrows are affected by gravity
