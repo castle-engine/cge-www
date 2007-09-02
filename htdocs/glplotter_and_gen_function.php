@@ -39,8 +39,7 @@ of keys).--></p>
   $toc = new TableOfContents(
     array(
       new TocItem('Download', 'download'),
-      new TocItem('Command-line parameters (graphs)', 'command_line_graphs'),
-      new TocItem('Command-line parameters (others)', 'command_line_others'),
+      new TocItem('Command-line parameters', 'command_line'),
       new TocItem('Graph file format', 'graph_file_format'),
       new TocItem('Requirements', 'depends'),
       new TocItem('gen_function', 'gen_function'),
@@ -62,13 +61,10 @@ is required, just unpack these archives and run the program.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Uruchamiaj±c program you can pass as parameters file names
-from which to load graphs, e.g.
-<pre>
-  glplotter file.plot
-</pre>
+<p>You can pass at command-line file names from which to load graphs.
+Dash (<tt>-</tt>) as filename means "standard input".
 
-<p>E.g. you can pipe the output of <tt>gen_function</tt> program
+<p>E.g. you could pipe the output of <tt>gen_function</tt> program
 to glplotter, like
 <pre>
   gen_function "sin(x)" -10 10 0.1 | glplotter -
@@ -83,17 +79,9 @@ will display graphs of sinus and x<sup>2</sup> at once.
 Of course, in case of function expressions, it's usually more comfortable
 to set them up inside glplotter using <i>"Functions"</i> menu.
 
-<?php echo $toc->html_section(); ?>
+<p>Other command-line options control the initial visibility of various UI
+elements:
 
-<p>Run as
-<pre>
-  glplotter [OPTION]... [FILE]...
-</pre>
-
-<p>Podaj dowolnie wiele nazw plików (nazwa pliku - (my¶lnik) oznacza standardowe
-wej¶cie).
-
-<p>Opcje kontroluj±ce jakie elementy wy¶wietlaæ:
 <pre>
   --crosshair           --no-crosshair
   --point-coords        --no-point-coords
@@ -111,43 +99,43 @@ wej¶cie).
   --only-points         --no-only-points
 </pre>
 
-<p>Opcje <tt>--light</tt> i <tt>--dark</tt> okre¶laj± jasny lub ciemny schemat
-kolorów.
+<p>Options <tt>--light</tt> and <tt>--dark</tt> allow you to choose
+appropriate color scheme.
 
-<p>Opcja <tt>--custom-size SIZE</tt> (lub <tt>-c SIZE</tt>) podaje rozmiar dla
+<p>Option <tt>--custom-size SIZE</tt> (or <tt>-c SIZE</tt>) specifies size for
 <ul>
-  <li>siatki wy¶wietlanej po podaniu <tt>--grid-custom</tt>
-    albo przyci¶niêciu Ctrl + G
-  <li>podzia³ki wy¶wietlanej po podaniu <tt>--podzialka-custom</tt>
-    albo przyci¶niêciu Ctrl + P
-  <li>podzia³ki liczbowej wy¶wietlanej po podaniu <tt>--liczby-custom</tt>
-    albo przyci¶niêciu Ctrl + L
+  <li>grid shown when <tt>--grid-custom</tt> was used (or Ctrl + G pressed)
+  <li>numbers scale shown when <tt>--podzialka-custom</tt> was used
+    (or Ctrl + P pressed)
+  <li>numbers shown when <tt>--liczby-custom</tt> was used (or
+    Ctrl + L pressed)
 </ul>
 
-<p>Patrz tak¿e <?php echo a_href_page(
-"standardowe parametry moich programów w OpenGL'u", "opengl_options") ?> i
+<p>See also <?php echo a_href_page(
+"standard parameters of OpenGL programs", "opengl_options") ?> and
 <?php echo a_href_page(
-"ogólne uwagi o parametrach dla moich programów", "common_options") ?>.
+"standard parameters of all programs", "common_options") ?>.
 
 <?php echo $toc->html_section(); ?>
 
-To co nazywam tu "wykresem" to po prostu zupe³nie swobodny zbiór odcinków.
-Odcinki te nie musz± prezentowaæ wykresu jakiej¶ funkcji - mog± byæ dowolnie
-po³o¿one wzglêdem siebie, dowolnie siê przecinaæ itp.
+<p>Graph for glplotter is actually just a set of line segments.
+They don't have to correspond to any function &mdash; they can show
+any shape, they can cross each other etc.
 
-<p>Format pliku wykresu: ka¿da linia to
+<p>File format:
 <ul>
-  <li>Komentarz, gdy linia zaczyna siê znakiem <tt>#</tt> (hash).
-  <li>Kolejny punkt na linii wykresu,
-    gdy linia to dwie liczby rzeczywiste oddzielone bia³ymi znakami.
-    Liczba rzeczywista mo¿e byæ zapisana w postaci dziesiêtnej lub wyk³adniczej,
-    np. <tt>3.14</tt> lub <tt>10e-3</tt>.
-  <li>Przerwa w linii wykresu,
-    gdy linia zawiera tylko s³owo <tt>break</tt>.
-  <li>Nazwa wykresu (u¿ywana do wy¶wietlania mapki w lewym-dolnym rogu okienka)
-    w postaci <tt>name=&lt;nazwa_wykresu&gt;</tt>.
+  <li>Lines starting with <tt>#</tt> (hash) are comments.
+  <li>Lines with two float numbers (separated by any whitespae)
+    represent another point of the graph. You can use decimal or scientific
+    float format (like <tt>3.14</tt> or <tt>10e-3</tt>).
+    A line segment will be drawn from this point to the next one
+    (unless a <tt>break</tt> will occur).
+  <li>Line with only <tt>break</tt> word means a break in a line segment
+    sequence.
+  <li>Line like <tt>name=&lt;graph_name&gt;</tt> specifies graph name
+    (will be used in glplotter legend).
 </ul>
-Bia³e znaki na pocz±tku i na koñcu linii s± zawsze dozwolone i ignorowane.
+Whitespace at the beginning and end of the line is always ignored.
 
 <?php echo $toc->html_section(); ?>
 
@@ -166,15 +154,20 @@ Bia³e znaki na pocz±tku i na koñcu linii s± zawsze dozwolone i ignorowane.
 It's seldom needed &mdash; glplotter can make a graph from function expression
 on it's own, see menu <i>"Functions"</i>.
 
+<p>Download gen_function:
+
+<?php echo_standard_program_download('gen_function', 'gen_function',
+  VERSION_GEN_FUNCTION, false); ?>
+
 <p>Call like:
 <pre>
-  gen_function &lt;funkcja&gt; &lt;x1&gt; &lt;x2&gt; &lt;xstep&gt;
+  gen_function &lt;function&gt; &lt;x1&gt; &lt;x2&gt; &lt;xstep&gt;
 </pre>
 
-<p>W odpowiedzi gen_function wypisze na standardowe wyj¶cie wykres
-funkcji <tt>&lt;funkcja&gt;</tt> na przedziale <tt>[&lt;x1&gt; ; &lt;x2&gt;]</tt>
-(ze wspó³rzêdn± x próbkowan± co <tt>&lt;xstep&gt;</tt>) w formacie zrozumia³ym dla
-<?php echo a_href_page("glplottera", "glplotter"); ?>.
+<p>This will write on standard output the graph of function
+<tt>&lt;function&gt;</tt> for x in range <tt>[&lt;x1&gt; ; &lt;x2&gt;]</tt>
+(with x sampled at each <tt>&lt;xstep&gt;</tt> distance).
+The graph will be in format understood by glplotter.
 
 <p>For example
 
@@ -232,18 +225,22 @@ albo, krócej,
 wy¶wietl± wiêc wykresik funkcji x<sup>2</sup> na przedziale <tt>[0;5]</tt>. */
 ?>
 
-<p>Download gen_function:
-
-<?php echo_standard_program_download('gen_function', 'gen_function',
-  VERSION_GEN_FUNCTION, false); ?>
-
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Skrót specyfikacji: to jest normalny zapis wyra¿enia matematycznego.
-Gdy mamy do czynienia z wyra¿eniem funkcji, zmienna <tt>x</tt> to argument
-funkcji. Np. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> itd.
+<p>Short overview of mathematical expressions syntax: this is really
+just normal syntax of mathematical expressions, as used in all software
+and resembling normal mathematical notation.
+When we deal with function expressions, then <tt>x</tt> represents the argument,
+e.g. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> etc.
+
+<hr />
+
+<p><i>TODO: I'm sorry, below is still in Polish. Please
+<?php echo michalis_mailto('bash me through email'); ?>
+ if you want me to move my lazy ass and translate the remainder of
+this page.</i></p>
 
 <p><b>Czynnik</b> to
 <ul>
