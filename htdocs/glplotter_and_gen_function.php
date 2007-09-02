@@ -85,17 +85,17 @@ elements:
 <pre>
   --crosshair           --no-crosshair
   --point-coords        --no-point-coords
-  --osie-xy             --no-osie-xy
+  --main-xy-lines       --no-main-xy-lines
   --map                 --no-map
   --grid-1              --no-grid-1
-  --podzialka-1         --no-podzialka-1
-  --liczby-1            --no-liczby-1
+  --num-scale-1         --no-num-scale-1
+  --numbers-1           --no-numbers-1
   --grid-pi             --no-grid-pi
-  --podzialka-pi        --no-podzialka-pi
-  --liczby-pi           --no-liczby-pi
+  --num-scale-pi        --no-num-scale-pi
+  --numbers-pi          --no-numbers-pi
   --grid-custom         --no-grid-custom
-  --podzialka-custom    --no-podzialka-custom
-  --liczby-custom       --no-liczby-custom
+  --num-scale-custom    --no-num-scale-custom
+  --numbers-custom      --no-numbers-custom
   --only-points         --no-only-points
 </pre>
 
@@ -105,10 +105,10 @@ appropriate color scheme.
 <p>Option <tt>--custom-size SIZE</tt> (or <tt>-c SIZE</tt>) specifies size for
 <ul>
   <li>grid shown when <tt>--grid-custom</tt> was used (or Ctrl + G pressed)
-  <li>numbers scale shown when <tt>--podzialka-custom</tt> was used
-    (or Ctrl + P pressed)
-  <li>numbers shown when <tt>--liczby-custom</tt> was used (or
-    Ctrl + L pressed)
+  <li>numbers scale shown when <tt>--num-scale-custom</tt> was used
+    (or Ctrl + S pressed)
+  <li>numbers shown when <tt>--numbers-custom</tt> was used (or
+    Ctrl + N pressed)
 </ul>
 
 <p>See also <?php echo a_href_page(
@@ -206,7 +206,7 @@ postaci jako:
   5 25
 </pre>
 
-Czyli lewa kolumna to po kolei liczby od 0 do 5 (co 1) a prawa kolumna
+Czyli lewa kolumna to po kolei numbers od 0 do 5 (co 1) a prawa kolumna
 to warto¶ci funkcji <tt>x^2</tt> (czyli x<sup>2</sup>) gdzie x to warto¶æ
 w lewej kolumnie.
 
@@ -268,7 +268,7 @@ this page.</i></p>
         (zwracaj± 0 (fa³sz) lub 1 (prawda))
       <li><tt>Or</tt>, <tt>And</tt>, <tt>Not</tt><br>
         (zwracaj± 0 (fa³sz) lub 1 (prawda), jako argumenty bior± dwie
-        (<tt>Or</tt>, <tt>And</tt>) lub jedn± (<tt>Not</tt>) liczby i
+        (<tt>Or</tt>, <tt>And</tt>) lub jedn± (<tt>Not</tt>) numbers i
         traktuj± 0 jako fa³sz i wszystko inne jako prawdê)
     </ul>
     <!--
@@ -327,11 +327,11 @@ rozró¿niane.
 <!--
 - wylaczyc wykres 2, i 3
 - podstawowe klawisze : +, - (skalowanie), strzalki (przesuwanie)
-- wylaczyc siatke co 1, wlaczyc siatke + liczby co Pi
+- wylaczyc siatke co 1, wlaczyc siatke + numbers co Pi
 - potem wlaczyc 2, albo 3 i zaobserwowac ze wszystko sie zgadza -
   uzyc klawisza q aby zobaczyc Prawde
 - reszta klawiszy : F10 (savescreen),
-  pomocne zabaweczki - celownik, pktcoords, grid/ podzialka/ liczby custom,
+  pomocne zabaweczki - celownik, pktcoords, grid/ num-scale/ numbers custom,
     obracanie
 - esc (wyjscie)
 
