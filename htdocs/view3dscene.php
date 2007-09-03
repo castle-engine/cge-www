@@ -119,7 +119,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <p>Among many features are:
 <ul>
-  <li>Two navigation methods are available: <tt>Walk</tt>
+  <li>Two navigation modes are available: <tt>Walk</tt>
     (walking like in FPS (Doom, Quake) games,
     with collision detection, gravity and related features available) and
     <tt>Examine</tt> (this allows you to easily rotate and scale the whole
@@ -189,22 +189,21 @@ in data files of my games
 
 <?php section('Running', 'run'); ?>
 
-<p>You can give as a command-line parameter name of the file to load.
-As usual, if you give "<tt>-</tt>" as file name then standard input will be read
-(in this case the input must be in VRML (or Inventor) format).
+<p>Simply run without any command-line parameters.
+<!-- In this case some default "welcome scene" will be loaded
+(for now it's just empty scene, but I'm working on something more impressive). -->
+Load your model file using "Open" menu item.</p>
 
-<p>Note that you don't <i>have</i> to give any filename to load on
-command-line. In fact, you can run view3dscene with no command-line parameters.
-In this case some default "welcome scene" will be loaded
-(for now it's just empty scene, but I'm working on something more impressive).
-You can always load any file using "Open" menu item (key shortcut is Ctrl+O).
+<p>You can provide on the command-line file name to load.
+As usual, dash (<tt>-</tt>) means that standard input will be read
+(in this case the input must be in VRML (or Inventor) format).</p>
 
 <p>Also read <a href="#section_command_line_options">about
-view3dscene additional command-line options</a>.
+view3dscene additional command-line options</a>.</p>
 
 <?php section('Controlling program with keys &amp; mouse', 'keys'); ?>
 
-<p><b>Keys in <tt>Examine</tt> navigation method :</b>
+<p><b>Keys in <tt>Examine</tt> navigation mode :</b>
 <table border="1" class="key_list">
   <tr><td>Arrows / PageUp / PageDown   <td>rotate scene
   <tr><td>Space                    <td>stop rotating scene
@@ -215,7 +214,7 @@ view3dscene additional command-line options</a>.
 
 <!--
 <p>What is the difference between <tt>Walk</tt> and <tt>FreeWalk</tt> navigation
-methods ? In <tt>Walk</tt> mode your moves and rotations are
+modes ? In <tt>Walk</tt> mode your moves and rotations are
 more closely related to your <i>initial</i> camera up vector.
 In <tt>FreeWalk</tt> mode your moves and rotations tend to be rather relative
 to the <i>current</i> camera up vector. <tt>Walk</tt> mode usually tends
@@ -224,7 +223,7 @@ useful value. You can set initial camera up vector using <tt>- -camera-up</tt>
 command-line option (look below) or using menu item "Change camera up vector".
 -->
 
-<p><b>Keys in <tt>Walk</tt> navigation method :</b><br>
+<p><b>Keys in <tt>Walk</tt> navigation mode :</b><br>
 <table border="1" class="key_list">
   <tr><th colspan="2">Basic:
   <tr><td>Up / Down            <td>move
@@ -255,9 +254,9 @@ command-line option (look below) or using menu item "Change camera up vector".
 </table>
 
 <p>Now, there's a lot of keys that work independent of current navigation
-method. But I will not list them all here. They all can be seen
+mode. But I will not list them all here. They all can be seen
 by looking at available menu items. Probably most useful keys
-(and menu items) are <tt>v</tt> (change navigation method),
+(and menu items) are <tt>v</tt> (switch to next navigation mode),
 <tt>F1</tt> (toggle status text visibility)
 and <tt>Escape</tt> (exit).
 
@@ -397,8 +396,8 @@ They all are optional.
       --write-to-vrml > helicopter-corrected.wrl</tt>.
 
   <dt>--navigation Examine|Walk
-  <dd><p>Set initial navigation method. Default is <tt>Examine</tt>.
-    You can change navigation method while the program is running
+  <dd><p>Set initial navigation mode. Default is <tt>Examine</tt>.
+    You can change navigation mode while the program is running
     using key <tt>v</tt> or appropriate menu item.
 
   <dt>--camera-radius &lt;float&gt;
