@@ -45,6 +45,12 @@ function program_image_links_table_begin()
   echo '<table class="program_image_links" cellspacing="20">';
 }
 
+function program_image_links_table_begin_half()
+{
+  /* No way to nicely express this cellspacing in CSS ? */
+  echo '<table class="program_image_links_half" cellspacing="20">';
+}
+
 ?>
 
 <?php program_image_links_table_begin(); ?>
@@ -101,14 +107,19 @@ and I keep them in working and compilable state, but that's it.
 
 <?php echo main_list_item("Programs: Computer graphics, others"); ?>
 
+<?php program_image_links_table_begin_half(); ?>
+  <tr>
+    <?php program_image_link('glplotter',
+      'Plotting graphs (e.g. of functions).',
+      "glplotter_screen_demo_1.png", 'glplotter_and_gen_function'); ?>
+  </tr>
+</table>
+
 <ul>
   <li><?php echo a_href_page("glViewImage","glviewimage") ?> &mdash;
     image viewer, it can fully handle PNG, JPEG, PPM, BMP and RGBE formats
   <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
     just a toy allowing you to plot Bezier curves in 3D -->
-  <li><?php echo a_href_page("glplotter and gen_function",
-    "glplotter_and_gen_function"); ?> &mdash;
-    plotting graphs (e.g. of functions)
   <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
     plotting rational Bezier curves
   <li> <?php echo a_href_page("glcaps", "glcaps") ?> &mdash;

@@ -818,6 +818,10 @@ function common_header($a_page_title, $a_page_lang,
     width: 100%;
   }
 
+  table.program_image_links_half {
+    width: 50%;
+  }
+
   td.program_image_link img { border: none; }
 
   td.program_image_link {
