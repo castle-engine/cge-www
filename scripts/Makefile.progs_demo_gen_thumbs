@@ -1,0 +1,45 @@
+# -*- mode: makefile; compile-command: "make -f Makefile.progs_demo_gen_thumbs" -*-
+# Makefile for making images in
+# ../htdocs/images/progs_demo/medium_size/
+# and
+# ../htdocs/images/progs_demo/program_link_size/
+# from images in
+# ../htdocs/images/progs_demo/original_size/
+# Official targets:
+#   all (default target)
+#   clean
+#   info (echoes some info, nothing is really done)
+
+PROGS_DEMO_PATH:=../htdocs/images/progs_demo/
+
+# ALL_ORIGINAL is a space-separated list of original images.
+# ALL_MEDIUM is a space-separated list of target medium-sized images.
+ALL_ORIGINAL:=$(wildcard $(PROGS_DEMO_PATH)original_size/*.png)
+ALL_MEDIUM:=$(subst original_size,medium_size,$(ALL_ORIGINAL))
+
+ALL_PROGRAM_LINK:=$(subst original_size,program_link_size,$(ALL_ORIGINAL))
+
+.PHONY: all clean info
+
+all: $(ALL_MEDIUM) $(ALL_PROGRAM_LINK)
+
+$(PROGS_DEMO_PATH)medium_size/glplotter_screen_demo%: \
+  $(PROGS_DEMO_PATH)original_size/glplotter_screen_demo%
+	convert $< -emboss 5.0 -geometry 200x150 $@
+
+$(PROGS_DEMO_PATH)medium_size/%: $(PROGS_DEMO_PATH)original_size/%
+	convert $< -geometry 200x150 $@
+
+$(PROGS_DEMO_PATH)program_link_size/%: $(PROGS_DEMO_PATH)original_size/%
+	convert $< -geometry 300x300 $@
+
+clean:
+	rm -f $(ALL_MEDIUM) $(ALL_PROGRAM_LINK)
+
+info:
+	@echo 'All original images:'
+	@echo '  ' $(ALL_ORIGINAL)
+	@echo 'All medium size targets:'
+	@echo '  ' $(ALL_MEDIUM)
+	@echo 'All program_link size targets:'
+	@echo '  ' $(ALL_PROGRAM_LINK)
