@@ -2,7 +2,7 @@ next update:
 - initialize counter for glplotter_and_gen_function
 - release new glplotter and gen_function, view3dscene
 - glplotter (minor ver++) released: GUI greatly improved: Open/Add menu items to open graphs from files and to generate graphs from function expressions. This means that now you don't have to specify graphs at command-line, and now you don't have to write pipes with gen_function. Also documentation and some options translated finally to English.
-- view3dscene (release ver++) released: fixed crash when removing geometry node from VRML 2.0 hierarchy
+- view3dscene (release ver++) released: fixed crash when removing geometry node from VRML 2.0 hierarchy. Fixed jagged animation when world time was really large (usually occurs when "on display" time pass was really large for some time).
 
 next castle update:
 - arrows are affected by gravity
