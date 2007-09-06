@@ -51,6 +51,39 @@ function this_a_href_page($title, $page_name)
 
   $changes_log = array(
 
+    array('title' => 'glplotter 1.2.0 and view3dscene 2.2.1 released',
+          'year' => 2007,
+          'month' => 9,
+          'day' => 6,
+          'pubDate' => /* date_to_timestamp.sh '2007-09-06' */ 1189080000,
+          'guid' => '2007-09-06',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'description' =>
+
+"<ul>
+  <li>" . this_a_href_page('glplotter 1.2.0 and gen_function 1.0.2',
+    'glplotter_and_gen_function') . " released: glplotter GUI greatly improved:
+    Open/Add menu items to open graphs from files
+    and to generate graphs from function expressions.
+    This means that now you don't have to specify graphs at command-line,
+    and now you don't have to write pipes with gen_function.
+    Also documentation and some options translated finally to English.</li>
+  <li>" . this_a_href_page('view3dscene 2.2.1', 'view3dscene') . " released:
+    bug fix release. Fixed crash when removing geometry node from
+    VRML 2.0 hierarchy. Fixed jagged animation when world time was
+    really large (usually occurs when \"on display\" time pass was
+    really large for some time). Fixed messing the gravity
+    \"up\" vector when reopening the scene.</li>
+  <li>" . this_a_href_page('Kambi VRML game engine 1.1.1',
+    'kambi_vrml_game_engine') . " released: changes needed by
+    view3dscene and glplotter above.</li>
+  <li><a href=\"http://vrmlengine.sourceforge.net/changes_log_feed.php\">RSS
+    feed</a> listing all changes is available now.
+    <small>SouceForge already made RSS feeds for our project,
+    but they didn't allow me HTML code there, and HTML links
+    are simply useful for my changes_log messages.</small></li>
+</ul>"),
+
     array('title' => 'view3dscene 2.2.0 and related releases',
           'year' => 2007,
           'month' => 8,
