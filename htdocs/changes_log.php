@@ -5,10 +5,6 @@
 
 <h1>Changes log of Kambi VRML game engine</h1>
 
-This page tracks all changes to pages, programs and all other stuff here.
-Every "log" is visible for the first time on the main page (as "Latest update"),
-then older logs are successively moved to this page.
-
 <ul>
 <?php
   require 'changes_log_common.php';
