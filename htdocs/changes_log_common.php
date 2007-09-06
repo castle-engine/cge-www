@@ -28,6 +28,16 @@
      1185926400 // ok, larger than previous one, different than PHP gmmktime
 */
 
+function this_a_href_page($title, $page_name)
+{
+  /* For RSS feed, URLs must be absolute (some RSS readers,
+     like Google RSS on main page, don't handle relative URLs as they
+     should. And indeed, no standard guarantees that relative URLs
+     in RSS would be handled OK). */
+  return '<a href="http://vrmlengine.sourceforge.net/' . $page_name .
+    '.php">' . $title . '</a>';
+}
+
   /* This an array of changes_log entries.
      It is in format accepted by rss_generator class, but also has some
      extras for changes_log_to_html:
@@ -51,13 +61,14 @@
           'description' =>
 
 "<ul>
-  <li>" . a_href_page('view3dscene 2.2.0', 'view3dscene') . " release:
-    view3dscene can display animations now (for now in " . a_href_page(
+  <li>" . this_a_href_page('view3dscene 2.2.0', 'view3dscene') . " release:
+    view3dscene can display animations now (for now in " .
+     this_a_href_page(
     "Kanim (Kambi VRML engine animations) format", 'kanim_format') . " and
     MD3).</li>
-  <li>" . a_href_page('Kambi VRML test suite 1.1.0',
+  <li>" . this_a_href_page('Kambi VRML test suite 1.1.0',
     'kambi_vrml_test_suite') . " release: many kanim demos added.</li>
-  <li>" . a_href_page('Kambi VRML game engine 1.1.0',
+  <li>" . this_a_href_page('Kambi VRML game engine 1.1.0',
     'kambi_vrml_game_engine') . " release: many changes, for animations
     in view3dscene, also GLMenu and GameSoundEngine units added
     (some \"The Castle\" code improved and moved to a generally-usefull
@@ -105,8 +116,8 @@ file release system now. This is another step in moving to
 on SourceForge</a>.
 
 <p>Also, some things now get version numbers:
-" . a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
-" . a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite") . " (1.0.0).
+" . this_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
+" . this_a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite") . " (1.0.0).
 </p>")
 
   );
