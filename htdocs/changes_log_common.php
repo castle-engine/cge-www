@@ -45,7 +45,7 @@
           'year' => 2007,
           'month' => 8,
           'day' => 25,
-          'pubDate' => /* date_to_timestamp.sh '2007-08-25' */ 1188000000,
+          'pubDate' => /* date_to_timestamp.sh '2007-08-25' */ 1188043200,
           'guid' => '2007-08-25',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'description' =>
@@ -68,7 +68,7 @@
           'year' => 2007,
           'month' => 7,
           'day' => 25,
-          'pubDate' => /* date_to_timestamp.sh '2007-07-25' */ 1185321600,
+          'pubDate' => /* date_to_timestamp.sh '2007-07-25' */ 1185364800,
           'guid' => '2007-07-25',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'description' =>
@@ -94,7 +94,7 @@ feed to monitor new releases</a>.</p>"),
           'year' => 2007,
           'month' => 7,
           'day' => 23,
-          'pubDate' => /* date_to_timestamp.sh '2007-07-23' */ 1185148800,
+          'pubDate' => /* date_to_timestamp.sh '2007-07-23' */ 1185192000,
           'guid' => '2007-07-23',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'description' =>
