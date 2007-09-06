@@ -10,36 +10,16 @@ Every "log" is visible for the first time on the main page (as "Latest update"),
 then older logs are successively moved to this page.
 
 <ul>
-  <li><p><b>July 25, 2007:</b>
+<?php
+  require 'changes_log_common.php';
+  foreach ($changes_log as $change_log_item)
+  {
+    echo '<li>' . change_log_to_html($change_log_item) . '</li>';
+  }
+?>
 
-    <p>The move of <i>Kambi VRML game engine</i> project to SourceForge is finished !
-    In fact, if you're reading this text, then you already view our page
-    as hosted on SourceForge.</p>
-
-    <p>Being on SourceForge gives us many new features, most important ones:
-    <a href="http://sourceforge.net/project/showfiles.php?group_id=200653">file
-    downloads</a> use all the power and speed of SF mirrors,
-    development is done inside
-    <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">publicly
-    visible SVN repository</a>, we have a public <?php echo MAILING_LIST_LINK; ?>,
-    we have trackers for
-    <a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
-    <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature requests</a>,
-    <a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>,
-    there's <a href="http://sourceforge.net/export/rss2_projfiles.php?group_id=200653">RSS
-    feed to monitor new releases</a>.</p></li>
-
-  <li><p><b>July 23, 2007:</b>
-
-    <p>Download links for most VRML stuff on this page direct to SourceForge
-    file release system now. This is another step in moving to
-    <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-    on SourceForge</a>.
-
-    <p>Also, some things now get version numbers:
-    <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?> (1.0.0),
-    <?php echo a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite"); ?> (1.0.0).
-    </p></li>
+  <!-- Older logs are available only in HTML, they were not converted
+       to $changes_log format. -->
 
   <li><p><b>July 19, 2007:</b>
 

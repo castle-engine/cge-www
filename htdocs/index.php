@@ -23,7 +23,18 @@ Two most important programs available here are
 <a href="castle.php">"The Castle"</a> game and
 <a href="view3dscene.php">view3dscene</a> model viewer.
 
-<?php require 'last_update.php'; ?>
+<p><b>Latest update:</b>
+
+<div class="latest_update_description">
+<div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
+<?php
+  require 'changes_log_common.php';
+  echo last_change_log_to_html();
+?>
+</div>
+
+<p>See <?php echo
+a_href_page('the log of previous changes to these pages', 'changes_log') ?>.</p>
 
 <?php echo main_list_begin(); ?>
 <?php echo main_list_item("Programs: Main games, VRML tools");

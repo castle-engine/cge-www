@@ -435,56 +435,25 @@ function supported_page_langs($page_basename)
     array(LANG_EN) );
 }
 
-/* header ============================================================ */
+/* Call this only when global $page_lang variable is set.
 
-/* $meta_description :string/NULL = krótki opis strony,
-   o ile nie bêdzie NULL bêdzie wypisany jako <meta name="Description" ...>
+   For all "normal" pages, this should be automatically called by common_header.
+   You have to explicitly call this only in special circumstances, if you need
+   some functions defined by this but really don't want to include default HTML
+   header (e.g., this is used by our RSS feed generating code).
 
-   $meta_keywords :string/NULL = dodatkowe keywords strony rozdzielone ",",
-   o ile nie bêdzie NULL to bêdzie wypisany jako <meta name="Keywords" ...>.
-
-   $bonus_header_tags = beda wypisane tuz przed </head>.
-   Moga zawierac rozne rzeczy specyficzne dla strony,
-   np. jej deklaracje <style>, <script> i inne (bede rozszerzal ta liste
-   gdy znajde do tego powody).
-
-   $a_page_lang musi byc elementem supported_page_langs($page_basename)
-*/
-function common_header($a_page_title, $a_page_lang,
-  $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
+   This *defines* some new functions (and constants) that really require
+   $page_lang variable to set *before they are even defined*.
+   What's the reason ? PAGE_LANG constant is needed as a default parameter
+   for a_href_page (and it's a really neat and useful trick that a_href_page
+   has this default parameter, I don't want to resign from it). */
+function common_set_page_functions()
 {
-  global $page_title, $page_lang, $s_quick_links, $main_page,
-    $lang_to_html_lang, $this_page_name;
-
-  $page_title = $a_page_title;
-  $page_lang = $a_page_lang;
-
-  /* calculate $this_page_name */
-  /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
-     dostajê dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceñ (do --gen-local):
-     pod Linuxem dostajê $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
-     dostajê $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
-     Wiêc pod Windowsem biorê je z $_SERVER['argv'][0]. */
-  $this_page_name = $_SERVER['PHP_SELF'];
-  if ($this_page_name == '')
-    $this_page_name = $_SERVER['argv'][0];
-  $this_page_name = basename($this_page_name);
-
-  /* calculate $page_basename (requires $page_lang and $this_page_name) */
-  $page_basename = $this_page_name;
-  $page_basename = basename($page_basename, '.php');
-  $page_basename = basename($page_basename, '.' . $lang_to_html_lang[$page_lang]);
-
-  /* evaluate $supported_langs (requires $page_basename) */
-  $supported_langs = supported_page_langs($page_basename);
-  assert('in_array($a_page_lang, $supported_langs)');
-
-  /* site specific functions =============================================
-
-     Zdefiniowane w ¶rodku common_header ¿eby mog³y skorzystaæ z istnienia
-     sta³ej PAGE_LANG jako domy¶lnej warto¶ci dla swoich parametrów. */
-
+  global $page_lang;
   define('PAGE_LANG', $page_lang);
+
+  /* ============================================================
+     Define page_url and a_href_page* family of functions */
 
   function page_url($page_name, $hash_link, $target_page_lang, &$url_comment)
   /* $page_name: string, nie zawiera extension, nie zawiera takze sufixu
@@ -609,6 +578,9 @@ function common_header($a_page_title, $a_page_lang,
     return a_href_page_core($link_title, $page_name, $hash_link, $target_page_lang);
   }
 
+  /* ============================================================
+     Define other constants and things that need a_href_page* */
+
   switch ($page_lang)
   {
     case LANG_PL:
@@ -677,8 +649,53 @@ function common_header($a_page_title, $a_page_lang,
   {
     return array_to_ul($depends_array);
   }
+}
 
-  /* continuation of common_header ======================================== */
+/* header ============================================================ */
+
+/* $meta_description :string/NULL = krótki opis strony,
+   o ile nie bêdzie NULL bêdzie wypisany jako <meta name="Description" ...>
+
+   $meta_keywords :string/NULL = dodatkowe keywords strony rozdzielone ",",
+   o ile nie bêdzie NULL to bêdzie wypisany jako <meta name="Keywords" ...>.
+
+   $bonus_header_tags = beda wypisane tuz przed </head>.
+   Moga zawierac rozne rzeczy specyficzne dla strony,
+   np. jej deklaracje <style>, <script> i inne (bede rozszerzal ta liste
+   gdy znajde do tego powody).
+
+   $a_page_lang musi byc elementem supported_page_langs($page_basename)
+*/
+function common_header($a_page_title, $a_page_lang,
+  $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
+{
+  global $page_title, $page_lang, $s_quick_links, $main_page,
+    $lang_to_html_lang, $this_page_name;
+
+  $page_title = $a_page_title;
+  $page_lang = $a_page_lang;
+
+  /* calculate $this_page_name */
+  /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
+     dostajê dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceñ (do --gen-local):
+     pod Linuxem dostajê $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
+     dostajê $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
+     Wiêc pod Windowsem biorê je z $_SERVER['argv'][0]. */
+  $this_page_name = $_SERVER['PHP_SELF'];
+  if ($this_page_name == '')
+    $this_page_name = $_SERVER['argv'][0];
+  $this_page_name = basename($this_page_name);
+
+  /* calculate $page_basename (requires $page_lang and $this_page_name) */
+  $page_basename = $this_page_name;
+  $page_basename = basename($page_basename, '.php');
+  $page_basename = basename($page_basename, '.' . $lang_to_html_lang[$page_lang]);
+
+  /* evaluate $supported_langs (requires $page_basename) */
+  $supported_langs = supported_page_langs($page_basename);
+  assert('in_array($a_page_lang, $supported_langs)');
+
+  common_set_page_functions();
 
   /* evaluate $s_quick_links */
   $s_quick_links = '';
@@ -851,9 +868,24 @@ function common_header($a_page_title, $a_page_lang,
     text-align: center;
     font-size: 125%;
   }
+
+  .rss_link {
+    float: right;
+    background: red;
+    padding: 0.3em;
+    border: thin outset black;
+  }
+
+  .rss_link a {
+    color: white;
+    font-weight: bold
+  }
 --></style>
 
-<?php echo $bonus_header_tags; ?>
+<?php
+  echo_header_bonus();
+  echo $bonus_header_tags;
+?>
 </head>
 <body>
 

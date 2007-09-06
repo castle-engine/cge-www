@@ -6,6 +6,15 @@ define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 
+function echo_header_bonus ()
+{
+?>
+  <link rel="alternate" type="application/rss+xml"
+    title="Kambi VRML game engine - changes log RSS feed"
+    href="changes_log_feed.php">
+<?php
+}
+
 function echo_footer_local_address ()
 {
 ?>
