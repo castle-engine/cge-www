@@ -1,5 +1,12 @@
 <?
 
+/* Kambi: I remade this using PHP 4 constructs
+   (I need to use this on SourceForge server, so I have essentially
+   no choice, I have to be PHP 4 compatible still).
+
+   Original comments below:
+*/
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CLASS NAME      : RSS_GENERATOR                                                                        //
 // LANGUAGE        : PHP                                                                                  //
@@ -29,44 +36,17 @@
 // * Generate RSS feed from array of items                                                                //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Declaration                                                                                            //
-// -----------                                                                                            //
-// rss_generator($title)                                                                                  //
-//   magic function __get                                                                                 //
-//   magic function __set                                                                                 //
-//   get($items)                                                                                          //
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class rss_generator {
 
-	private $_encoding="UTF-8";
-	private $_title="";
-	private $_language="en-us";
-	private $_description="";
-	private $_link="";
-	private $_generator="rss_generator";
-	private $_version="2.0";
+	var $encoding="UTF-8";
+	var $title="";
+	var $language="en-us";
+	var $description="";
+	var $link="";
+	var $generator="rss_generator";
 
-	public function __construct($title) {
-		$this->_title=$title;
-	}
-	public function __get($name) {
-		if ($name=='encoding')		return $this->_encoding;
-		if ($name=='title')		return $this->_title;
-		if ($name=='language')		return $this->_language;
-		if ($name=='description')	return $this->_description;
-		if ($name=='generator')		return $this->_generator;
-		if ($name=='link')		return $this->_link;
-	}
-	public function __set($name,$value) {
-		if ($name=='encoding')		$this->_encoding=stripslashes($value);
-		if ($name=='title')		$this->_title=stripslashes($value);
-		if ($name=='language')		$this->_language=stripslashes($value);
-		if ($name=='description')	$this->_description=stripslashes($value);
-		if ($name=='generator')		$this->_generator=stripslashes($value);
-		if ($name=='link')		$this->_link=stripslashes($value);
-
+	function rss_generator($title) {
+		$this->title=$title;
 	}
 
 	/**
@@ -83,14 +63,14 @@ class rss_generator {
 	public function get($items) {
 		$res="";
 		// header
-		$res.="<?xml version=\"1.0\" encoding=\"".$this->_encoding."\"?>\n";
+		$res.="<?xml version=\"1.0\" encoding=\"".stripslashes($this->encoding)."\"?>\n";
 		$res.="<rss version=\"2.0\">\n";
 		$res.="\t<channel>\n";
-		$res.="\t\t<title><![CDATA[".$this->_title."]]></title>\n";
-		$res.="\t\t<description><![CDATA[".$this->_description."]]></description>\n";
-		$res.="\t\t<link>".$this->_link."</link>\n";
-		$res.="\t\t<language>".$this->_language."</language>\n";
-		$res.="\t\t<generator>".$this->_generator."</generator>\n";
+		$res.="\t\t<title><![CDATA[".stripslashes($this->title)."]]></title>\n";
+		$res.="\t\t<description><![CDATA[".stripslashes($this->description)."]]></description>\n";
+		$res.="\t\t<link>".stripslashes($this->link)."</link>\n";
+		$res.="\t\t<language>".stripslashes($this->language)."</language>\n";
+		$res.="\t\t<generator>".stripslashes($this->generator)."</generator>\n";
 		//items
 		foreach($items as $item) {
 	        	//$date = date("r", stripslashes($item["pubDate"]));
