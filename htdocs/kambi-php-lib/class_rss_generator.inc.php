@@ -60,7 +60,7 @@ class rss_generator {
                         'guid': guid (any string to uniquely identify this item)
 	@result: xml document of rss stream
 	**/
-	public function get($items) {
+	function get($items) {
 		$res="";
 		// header
 		$res.="<?xml version=\"1.0\" encoding=\"".stripslashes($this->encoding)."\"?>\n";
