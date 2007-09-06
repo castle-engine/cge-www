@@ -1,20 +1,13 @@
 <?
 
-/* Kambi: I remade this using PHP 4 constructs
-   (I need to use this on SourceForge server, so I have essentially
-   no choice, I have to be PHP 4 compatible still).
-
-   Original comments below:
-*/
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CLASS NAME      : RSS_GENERATOR                                                                        //
 // LANGUAGE        : PHP                                                                                  //
-// LANGUAGE VERSION: 5.0                                                                                  //
+// LANGUAGE VERSION: 5.0 (Kambi versions: PHP 4 compatible)
 // AUTHOR          : Julien PACHET                                                                        //
+//                   Michalis Kamburelis
 // EMAIL           : j|u|l|i|e|n| [@] |p|a|c|h|e|t|.|c|o|m                                                //
-// VERSION         : 1.0                                                                                  //
-// DATE            : 10/09/2005                                                                           //
+// VERSION         : 1.0-kambi1
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +19,11 @@
 // ------------------------------------------------------------------------------------------------------ //
 //  10/09/2005  0.9       Tested version                                                                  //
 //  10/09/2005  1.0       Prod version                                                                    //
+//  Kambi:
+//              1.0-kambi1  PHP 4 compatible, guid added
+//                          (I need to use this on SourceForge server,
+//                          so I have essentially no choice, I have to be
+//                          PHP 4 compatible still).
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +41,7 @@ class rss_generator {
 	var $language="en-us";
 	var $description="";
 	var $link="";
-	var $generator="rss_generator";
+	var $generator="rss_generator (version 1.0-kambi1)";
 
 	function rss_generator($title) {
 		$this->title=$title;
