@@ -14,7 +14,7 @@
 that is especially oriented towards working with VRML models (although
 other model formats are also supported).
 For more information, documentation and downloads for developers
-see <a href="#useful_resources">lower on this page</a>.</p>
+see <a href="#support">lower on this page</a>.</p>
 
 <p><b>For normal human beings:</b> this page is a collection of various
 games and tools. They were developed using the VRML game engine,
@@ -138,7 +138,7 @@ and I keep them in working and compilable state, but that's it.
     installed on your system.
 </ul>
 
-<?php echo main_list_item('Useful resources', 'useful_resources'); ?>
+<?php echo main_list_item('Support', 'support'); ?>
 
 <p>Subscribe to <?php echo MAILING_LIST_LINK; ?>.
 This list is for any discussion, questions,
@@ -154,9 +154,6 @@ to appropriate tracker.</p>
 <i>And one more thing : if the bug concerns one of my OpenGL programs,
 remember to attach to your bug report output of the
 < ?php echo a_href_page("glcaps","glcaps") ? > program.</i> */ ?>
-
-<p>There's <a href="http://sourceforge.net/export/rss2_projfiles.php?group_id=200653">RSS
-feed to monitor new releases</a>.</p>
 
 <?php echo main_list_item("Development", 'development'); ?>
 
