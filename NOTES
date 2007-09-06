@@ -51,8 +51,7 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
 - good practice after large changes is to check
   linkchecker.sh and validate_html.sh
 
-- if it's important change, you may wish to update last_update.php
-  and changes_log.php pages.
+- if it's important change, you may wish to add entry to changes_log_common.php
 
 - if you change some content managed inside SVN:
   - commit your changes, of course
