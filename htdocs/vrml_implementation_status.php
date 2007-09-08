@@ -64,19 +64,9 @@ used.
 <ul>
   <li><tt>DirectionalLight</tt>, <tt>PointLight</tt>, <tt>SpotLight</tt>
 
-    <p><i>TODO</i>: VRML 2.0 spec says
-
-    <blockquote>
-    PointLight and SpotLight illuminate all objects in the world that fall within their volume of lighting influence regardless of location within the transformation hierarchy. PointLight defines this volume of influence as a sphere centred at the light (defined by a radius). SpotLight defines the volume of influence as a solid angle defined by a radius and a cutoff angle. DirectionalLight nodes illuminate only the objects descended from the light's parent grouping node, including any descendent children of the parent grouping nodes.
-    </blockquote>
-
-    <p>This is not supported. For now in VRML 2.0 lights behave like
-    in VRML 1.0, which means that they illuminate all shapes
-    within their group and defined <i>after</i> the light node.
-
     <p><i>Note</i>: VRML 2.0 <tt>SpotLight.beamWidth</tt>
     idea cannot be translated to a standard
-    OpenGL spotlight, so if you set beamWidth < cutOffAngle then the light
+    OpenGL spotlight, so if you set beamWidth &lt; cutOffAngle then the light
     will not look exactly VRML 2.0-spec compliant.
     Honestly I don't see any sensible way to fix this
     (as long as we talk about real-time rendering using OpenGL).
@@ -143,7 +133,7 @@ used.
   <li><p><tt>Viewpoint</tt>
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
-    to any efined viewpoint, displaying viewpoints descriptions.
+    to any defined viewpoint, displaying viewpoints descriptions.
     Extensive tests of various viewpoint properties, includind fieldOfView,
     are inside <?php
       echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
