@@ -180,7 +180,8 @@ used.
 
 <p><i>TODO</i>: Some general features not implemented yet are:
 <ul>
-  <li><tt>PROTO</tt>, <tt>EXTERNPROTO</tt>, <tt>ROUTE</tt>
+  <li><tt>ROUTE</tt> are parsed correctly, but don't have any effect
+  <li><tt>PROTO</tt>, <tt>EXTERNPROTO</tt>,
     stuff is not even parsed correctly yet.
   <li>No kind of scriping is implemented yet.
   <li>Sensors, interpolators, geospatial things, NURBS
