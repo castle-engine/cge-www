@@ -168,16 +168,14 @@ used.
     are generated).
 </ul>
 
-<p><i>TODO</i>: Some general features not implemented yet are:
+<p><i>TODO</i>: Some general features not implemented yet are listed below.
+They all are parsed correctly (actually, <tt>PROTO</tt> is still parsed
+in a little sloppy way, but you shouldn't be able to notice this...).
+But don't have any effect on the scene. These are:
 <ul>
-  <li><tt>ROUTE</tt>, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> constructs
-    are parsed correctly, but don't have any effect
-    (actually, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> are parsed in a little
-    sloppy way, but you shouldn't be able to notice this...)
-  <li>No kind of scriping is implemented yet.
-  <li>Sensors, interpolators, geospatial things, NURBS
-    (although all nodes are parsed correctly, but nothing
-    is rendered or working in any way).
+  <li><tt>ROUTE</tt>, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> constructs.
+  <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
+  <li>Sensors, interpolators, geospatial things, NURBS.
 </ul>
 
 <?php echo $toc->html_section(); ?>
