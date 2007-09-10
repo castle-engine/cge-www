@@ -169,9 +169,9 @@ used.
 </ul>
 
 <p><i>TODO</i>: Some general features not implemented yet are listed below.
-They all are parsed correctly (actually, <tt>PROTO</tt> is still parsed
-in a little sloppy way, but you shouldn't be able to notice this...).
-But don't have any effect on the scene. These are:
+They all are parsed correctly and consciously (which means that the parser
+doesn't simply "omit them to matching parenthesis" or some other dirty
+trick like that). But they don't have any effect on the scene. These are:
 <ul>
   <li><tt>ROUTE</tt>, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> constructs.
   <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
