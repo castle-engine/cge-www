@@ -522,6 +522,156 @@ on numerous VRML models available on the WWW. -->
         <td>Visible shapes are rendered OK,
           but Extrusion is not rendered (not implemented yet).
       </tr>
+
+      <tr>
+        <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+      </tr>
+
+      <tr>
+        <td rowspan="30">Misc</td>
+        <td rowspan="30">PROTO</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="fail">-</td>
+        <td>Static renders OK, but sensors, events and routes don't do anything (yet),
+          so touch sensor doesn't turn the light on.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="fail">-</td>
+        <td>Like case 4.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7A</td>
+        <td class="fail">-</td>
+        <td>Static renders OK, but sensors, events, routes, interpolators
+          don't do anything (yet).</td>
+      </tr>
+      <tr>
+        <td>7B</td>
+        <td class="fail">-</td>
+        <td>Static renders OK, but sensors, events, routes, interpolators
+          don't do anything (yet).</td>
+      </tr>
+      <tr>
+        <td>7C</td>
+        <td class="fail">-</td>
+        <td>Static renders OK, but Collision and interpolators
+          don't do anything (yet).</td>
+      </tr>
+      <tr>
+        <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+      <tr>
+      <!--
+      <tr>
+        <td>7D</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7E</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7F</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7G</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7H</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7I</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7J</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7K</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td class="pass">+</td>
+      </tr>
+      -->
+      <tr>
+        <td>10</td>
+        <td class="fail">-</td>
+        <td>Rendering Extrusion is not supported.
+          <b>However,</b> I replaced extrusions by Boxes in the test,
+          and the nesting prototypes works 100% OK.</td>
+      </tr>
+      <!--
+      <tr>
+        <td>11</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td class="pass">+</td>
+      </tr>
+      -->
+      <tr>
+        <td>13</td>
+        <td class="fail">-</td>
+        <td>Like case 10.</td>
+      </tr>
+      <!--
+      <tr>
+        <td>14</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td class="pass">+</td>
+      </tr>
+      -->
+
       <tr>
         <td colspan="5"><i>That's enough for now...
           I don't have time to check all the tests.
