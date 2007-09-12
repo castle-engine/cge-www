@@ -36,9 +36,9 @@ used in interactive browser <?php echo a_href_page(
 However, they should be handled by any VRML 1.0 or 2.0
 viewer closely following appropriate VRML specifications.
 
-<p>The exception to the above are files inside <tt>kambi_extensions</tt>
-subdirectiories (<tt>vrml_1/kambi_extensions</tt> and
-<tt>vrml_2/kambi_extensions</tt>).
+<p>The exception to the above are files inside <tt>kambi_extensions/</tt>
+subdirectiories (<tt>vrml_1/kambi_extensions/</tt> and
+<tt>vrml_2/kambi_extensions/</tt>).
 They may not be readable by other VRML browsers,
 as they test and demonstate some of <?php echo a_href_page("my
 non-standard VRML extensions", "kambi_vrml_extensions"); ?>.</p>
@@ -47,6 +47,10 @@ non-standard VRML extensions", "kambi_vrml_extensions"); ?>.</p>
 of <?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
 "kanim_format") ?>.</p>
 
+<p>Files inside <tt>warnings/</tt> subdirectory are deliberately invalid
+in some ways. Good VRML browser should report the brokenness by a nice
+error message, or even (in cases when possible) report it only as a warning
+and continue working (omitting problematic part).</p>
 
 <?php echo $toc->html_section(); ?>
 
