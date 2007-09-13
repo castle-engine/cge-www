@@ -430,16 +430,38 @@ in <?php echo a_href_page("my VRML test suite",
       WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     </pre>
 
-    <p>Currently the fact that file is compressed by gzip is guessed
-    based on given file name &mdash; extension must be <tt>.gz</tt>
-    or <tt>wrz</tt>.
-    So, sadly, you can't just compress file
-    with gzip, then rename it to remove extension <tt>.gz</tt> and then
-    try to open it with view3dscene by file name or from <tt>WWWInline</tt>
-    node. Also when you give view3dscene VRML file on stdin, this file
-    must be already uncompressed (so you may need to filter your files
-    with <tt>gunzip -c</tt>). TODO: this is intended to be fixed,
-    although honestly it has rather low priority now.
+    <p>Files with extensions <tt>.gz</tt> or <tt>.wrz</tt> are assumed to be always
+    compressed by gzip.</p>
+
+    <p>Files with normal extension <tt>.wrl</tt> but actually compressed by gzip
+    are also handled OK.
+    Currently, there's a small exception to this: when you give view3dscene
+    VRML file on stdin, this file must be already uncompressed
+    (so you may need to pipe your files through <tt>gunzip -c</tt>).
+    TODO: this is intended to be fixed, although honestly it has rather low
+    priority now.</p>
+
+    <p><i>A personal feeling about this feature from the author (Kambi):</i>
+    I honestly dislike the tendency to compress the files with gzip
+    and then change the extension  back to normal <tt>.wrl</tt>.
+    It's handled by our engine, but only because so many people do it.
+    I agree that it's often sensible to compress VRML files
+    by gzip (especially since before X3D, there was no binary encoding for VRML files).
+    But when you do it, it's also sensible to leave the extension as <tt>.wrl.gz</tt>,
+    instead of forcing it back into <tt>.wrl</tt>, hiding the fact that contents
+    are compressed by gzip. Reason: while many VRML browsers detect the fact that
+    file is compressed by gzip, many other programs, that look only at file
+    extension, like text editors, do not recognize that it's gzip data.
+    So they treat <tt>.wrl</tt> file as a stream of unknown binary data.
+    Programs that analyze only file contents, like Unix <tt>file</tt>, see that it's
+    a gzip data, but then they don't report that it's VRML file (since this would
+    require decompressing).</p>
+
+    <p>Also note that WWW servers, like Apache, when queried by modern WWW browser,
+    can compress your VRML files on the fly. So, assuming that VRML browsers
+    that automatically fetch URLs, will be also intelligent, the compression
+    is done magically over HTTP protocol, and you don't have to actually compress
+    VRML files to save bandwidth.</p>
 
   <?php echo ext_long_title(
     'ext_navigationinfo', 'Node <tt>NavigationInfo</tt> handling details'); ?>

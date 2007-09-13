@@ -3,10 +3,11 @@ Text for next update:
 After next update:
 
 next view3dscene update:
-- PROTO work now !
+- Prototypes (<tt>PROTO</tt>) VRML 2.0 feature is fully implemented now !
 - For view3dscene, default blending dest factor is GL_ONE_MINUS_SRC_ALPHA, since this is expected by most VRML authors
 - VRML 2.0 lights are correctly handled (DirectionalLight affects every sibling, positional lights affect whole scene taking radius into account)
-- <tt>ROUTE</tt>, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> constructs of VRML 2.0 are parsed now. Although they still don't actually <b>do</b> anything. So scenes using them produce warnings and are partially handled (features not related to prototypes/routes are handled), instead of just producing error.
+- <tt>ROUTE</tt> constructs of VRML 2.0 are parsed now. Although they still don't actually <b>do</b> anything. So at least scenes using routes are partially handled (routes are simply ignored), instead of just producing an error.
+<li>VRML files compressed by gzip are handled OK even if they have normal <tt>.wrl</tt> extension.</li>
 
 next castle update:
 - arrows are affected by gravity
