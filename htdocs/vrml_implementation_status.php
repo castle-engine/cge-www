@@ -168,12 +168,15 @@ used.
     are generated).
 </ul>
 
+<p>Prototypes (non-external) are 100% done and working :)
+Also external prototypes should be finished very very soon.
+
 <p><i>TODO</i>: Some general features not implemented yet are listed below.
 They all are parsed correctly and consciously (which means that the parser
 doesn't simply "omit them to matching parenthesis" or some other dirty
 trick like that). But they don't have any effect on the scene. These are:
 <ul>
-  <li><tt>ROUTE</tt>, <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> constructs.
+  <li><tt>ROUTE</tt>.
   <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
   <li>Sensors, interpolators, geospatial things, NURBS.
 </ul>
