@@ -178,7 +178,9 @@ trick like that). But they don't have any effect on the scene. These are:
 <ul>
   <li><tt>ROUTE</tt>.
   <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
-  <li>Sensors, interpolators, geospatial things, NURBS.
+  <li>Nodes: sensors, interpolators, geospatial things, NURBS,
+    sounds (<tt>AudioClip</tt> and <tt>Sound</tt>),
+    <tt>MovieTexture</tt>, <tt>Extrusion</tt>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
