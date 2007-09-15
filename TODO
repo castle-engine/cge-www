@@ -3,12 +3,17 @@ Text for next update:
 After next update:
 
 next view3dscene update:
-- Prototypes (<tt>PROTO</tt>) VRML 2.0 feature is fully implemented now !
+- Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>) VRML 2.0 feature is fully implemented now !
 - For view3dscene, default blending dest factor is GL_ONE_MINUS_SRC_ALPHA, since this is expected by most VRML authors
 - VRML 2.0 lights are correctly handled (DirectionalLight affects every sibling, positional lights affect whole scene taking radius into account)
 - <tt>ROUTE</tt> constructs of VRML 2.0 are parsed now. Although they still don't actually <b>do</b> anything. So at least scenes using routes are partially handled (routes are simply ignored), instead of just producing an error.
 <li>VRML files compressed by gzip are handled OK even if they have normal <tt>.wrl</tt> extension.</li>
 <li>--write-to-vrml fixed</li>
+
+- kambi_vrml_extensions: note our externproto URLs and file in test_suite
+- kambi_vrml_test_suite also adjust by using EXTERNPROTO/PROTOs (to be readable by others), adjust www
+- vrml_engine_doc update: short notice about protos
+- implements VRML 1.0 isA and fields
 
 next castle update:
 - arrows are affected by gravity

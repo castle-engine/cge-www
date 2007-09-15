@@ -168,8 +168,10 @@ used.
     are generated).
 </ul>
 
-<p>Prototypes (non-external) are 100% done and working :)
-Also external prototypes should be finished very very soon.
+<p>Prototypes (both external and not) are 100% done and working :)
+External prototypes recognize URN of standard VRML 97 nodes, i.e.
+<tt>urn:web3d:vrml97:node:Xxx</tt> (see also our extensions URN
+on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>).
 
 <p><i>TODO</i>: Some general features not implemented yet are listed below.
 They all are parsed correctly and consciously (which means that the parser
