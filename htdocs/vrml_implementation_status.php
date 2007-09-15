@@ -536,6 +536,28 @@ on numerous VRML models available on the WWW. -->
 
       <tr>
         <td rowspan="30">Misc</td>
+        <td rowspan="5">EXTERNPROTO</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="pass">+</td>
+      </tr>
+
+      <tr>
         <td rowspan="30">PROTO</td>
         <td>1</td>
         <td class="pass">+</td>
