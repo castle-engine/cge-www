@@ -7,6 +7,7 @@
   $node_format_fd_type_pad = 0;
   $node_format_fd_name_pad = 0;
   $node_format_fd_def_pad = 0;
+  $node_format_fd_kind_pad = 0;
 
 function node_begin($node_name)
 /* inicjuje $node_format_* na wartosci domyslne zebys mogl po wywolaniu
@@ -15,11 +16,12 @@ function node_begin($node_name)
    a pozostale zostawic na domyslnych wartosciach) */
 {
   global $node_format_fd_type_pad, $node_format_fd_name_pad,
-    $node_format_fd_def_pad;
+    $node_format_fd_def_pad, $node_format_fd_kind_pad;
 
   $node_format_fd_type_pad = 10;
   $node_format_fd_name_pad = 10;
   $node_format_fd_def_pad = 10;
+  $node_format_fd_kind_pad = 12;
 
   return "<pre><b>$node_name {</b>\n";
 }
@@ -31,16 +33,19 @@ function node_dots()
 {
   return "  <b>...</b>\n";
 }
-function node_field($node_type, $node_name, $node_def, $node_comment = "")
+
+function node_field($field_kind,
+  $field_type, $field_name, $field_default, $field_comment = "")
 {
   global $node_format_fd_type_pad, $node_format_fd_name_pad,
-    $node_format_fd_def_pad;
+    $node_format_fd_def_pad, $node_format_fd_kind_pad;
 
-  $r = sprintf("  %-" .int_to_str($node_format_fd_type_pad). "s  <b>%-"
+  $r = sprintf("  %-" .int_to_str($node_format_fd_kind_pad). "s %-"
+                      .int_to_str($node_format_fd_type_pad). "s  <b>%-"
 		      .int_to_str($node_format_fd_name_pad). "s  %-"
 		      .int_to_str($node_format_fd_def_pad). "s</b>",
-		      $node_type, $node_name, $node_def);
-  if ($node_comment != "") $r .= "  # $node_comment";
+		      $field_kind, $field_type, $field_name, $field_default);
+  if ($field_comment != "") $r .= "  # $field_comment";
   $r .= "\n";
   return $r;
 }
@@ -58,8 +63,7 @@ function ext_long_title($ext_name, $title)
 <h3>Contents:</h3>
 
 <ol>
-  <li><a href="#section_intro">Introduction: what's this page about ?</a>
-  <li><a href="#section_add_notes">Reading this page</a>
+  <li><a href="#section_intro">Introduction</a>
   <li><a href="#section_exts">Extensions</a>
     <ol>
       <li><a href="#section_exts_vrmlall">Extensions for all VRML versions</a>
@@ -115,9 +119,14 @@ function ext_long_title($ext_name, $title)
     </ol>
 </ol>
 
-<h3><a name="section_intro">Introduction: what's this page about ?</a></h3>
+<h3><a name="section_intro">Introduction</a></h3>
 
-<p>Many of my programs play with 3d models in VRML format.
+<p>This is a VRML engine, so many programs here do something non-trivial
+with VRML files.
+<?php
+/* Old and useless notes:
+
+Many of my programs play with 3d models in VRML format.
 Most importantly, there is
 <?php echo a_href_page("view3dscene", "view3dscene"); ?> &mdash;
 VRML (and some other formats) viewer, there is also
@@ -131,51 +140,57 @@ for <i>path tracer</i> in <?php echo a_href_page('rayhunter', 'rayhunter'); ?>.
  also have levels, monsters etc. stored as VRML models.
 Most of the work has been done with VRML 1.0,
 but VRML 97 support is also done since August 2006, and
-X3D will also be supported one day.
+X3D will also be supported one day. */ ?>
+ Not surprisingly, I needed at some point to extend what is allowed by
+VRML specifications, for various reasons. This page documents these
+extensions, so everyone can use them.</p>
 
-<p>For various reasons, my programs handle some <i>VRML extensions</i>
-&mdash; things that allow me to express in VRML some more things than
-strict VRML specifications allow. This page documents these extensions,
-so that everyone can consciously use them.
+<p>Note that some of these extensions may not be tolerated by other
+VRML viewers. However:
+<ul>
+  <li><p>Many VRML 2.0 extensions may be preceeded by appropriate
+    <tt>EXTERNPROTO</tt> statements,
+    this will allow other VRML 2.0 implementations to at least gracefully
+    omit them. <?php echo a_href_page("Kambi VRML test suite",
+    "kambi_vrml_test_suite"); ?> uses this mechanism whenever possible,
+    so that even things inside <tt>kambi_extensions/</tt> should be partially
+    handled by other VRML browsers.</p>
 
-<p>Note that most of these extensions may not be tolerated by other
-VRML viewers. Well, actually some of VRML 1.0 extensions are borrowed
-from VRML 97 specification (e.g.
-<a href="#ext_light_attenuation">attenuation field for lights</a>),
-I just allow them also in VRML 1.0. Some other extensions (e.g.
-<a href="#ext_multi_root_node">multi root node</a> and
-<a href="#ext_gzip">compressing VRML files by gzip</a>)
-are often implemented in other VRML viewers.
+    <p>I designate my extensions by URN like
+    "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".
 
-<h3><a name="section_add_notes">Reading this page</a></h3>
+    <p>TODO: eventual goal is to make all extensions this way, so that they
+    can be nicely omitted.
+    Also, it would be nice to use VRML 1.0 similar feature,
+    <tt>isA</tt> and <tt>fields</tt>, for the same purpose,
+    but it's not implemented yet.</p></li>
+
+  <li><p>Some of VRML 1.0 extensions are borrowed from VRML 97 specification
+    (e.g. <a href="#ext_light_attenuation">attenuation field for lights</a>),
+    I just allow them also in VRML 1.0.</p></li>
+
+  <li><p>Some other extensions like
+    <a href="#ext_gzip">compressing VRML files by gzip</a>
+    or <a href="#ext_multi_root_node">multiple root nodes in VRML 1.0</a>
+    are often implemented in other VRML viewers.</p></li>
+</ul>
 
 <p>To understand specifications of these extensions you will
 need some basic knowledge of VRML. Here you can find
 <a href="http://www.web3d.org/x3d/specifications/vrml/">official
-VRML 1.0 and 97 specifications</a> if you want to educate yourself.
+VRML 1.0 and 97 specifications</a> if you want to educate yourself.</p>
 
 <p>VRML fields and nodes are specified on this page in the
 convention somewhat similar to VRML 97 specification:
 <?php echo
-  node_begin("Node name") .
-  node_field("Fiel1_Type", "field1_name", "default_value_of_field1", "short comment for field1") .
+  node_begin("NodeName") .
+  node_field('fieldKind', "FieldType", "fieldName", "default_value", "short comment") .
   node_dots() .
   node_end();
 ?>
- "<tt>#Short comment for field1</tt>" will usually specify the
-allowed range of values in this field.
-
-<p>Note: if you're thinking about using VRML 1.0 fields
-<tt>isA</tt> and <tt>fields</tt> to designate my extensions, then please
-note that
-<ol>
-  <li>It's a good idea.
-  <li>But my programs can't handle these fields yet.
-</ol>
-Same thing for <tt>EXTERNPROTO</tt> VRML 97 mechanism.
 
 <p>Example VRML models that use these extensions may be found
-in <?php echo a_href_page("my VRML test suite",
+in <?php echo a_href_page("Kambi VRML test suite",
 "kambi_vrml_test_suite"); ?> &mdash; look inside
 <tt>vrml_1/kambi_extensions/</tt> and
 <tt>vrml_2/kambi_extensions/</tt> subdirectories.
@@ -222,10 +237,10 @@ in <?php echo a_href_page("my VRML test suite",
       $node_format_fd_def_pad=8;
       echo
       node_dots() .
-      node_field("SFBool", "volumetric", "FALSE") .
-      node_field("SFVec3f", "volumetricDirection",  "0 -1 0", "any non-zero vector") .
-      node_field("SFFloat", "volumetricVisibilityStart",  "0") .
-      node_field("SFNode", "alternative", "# NULL or another Fog node") .
+      node_field('exposedField', "SFBool", "volumetric", "FALSE") .
+      node_field('exposedField', "SFVec3f", "volumetricDirection",  "0 -1 0", "any non-zero vector") .
+      node_field('exposedField', "SFFloat", "volumetricVisibilityStart",  "0") .
+      node_field('exposedField', "SFNode", "alternative", "# NULL or another Fog node") .
       node_end();
     ?>
 
@@ -321,7 +336,7 @@ in <?php echo a_href_page("my VRML test suite",
 
       echo
       node_dots() .
-      node_field("SFBool", "fogImmune", "FALSE") .
+      node_field('exposedField', "SFBool", "fogImmune", "FALSE") .
       node_end();
     ?>
 
@@ -362,9 +377,9 @@ in <?php echo a_href_page("my VRML test suite",
       $node_format_fd_name_pad=15;
       $node_format_fd_def_pad=5;
       echo
-      node_field("SFLong", "quadricSlices", "-1", "{-1} + [3, infinity)") .
-      node_field("SFLong", "quadricStacks", "-1", "{-1} + [2, infinity)") .
-      node_field("SFLong", "rectDivisions", "-1", "[-1, infinity)") .
+      node_field('exposedField', "SFLong", "quadricSlices", "-1", "{-1} + [3, infinity)") .
+      node_field('exposedField', "SFLong", "quadricStacks", "-1", "{-1} + [2, infinity)") .
+      node_field('exposedField', "SFLong", "rectDivisions", "-1", "[-1, infinity)") .
       node_end();
     ?>
 
@@ -577,9 +592,9 @@ in <?php echo a_href_page("my VRML test suite",
     <?php echo node_begin("PerspectiveCamera / OrthographicCamera / Viewpoint");
       echo
       node_dots() .
-      node_field("MFVec3f", "direction",  "[]") .
-      node_field("MFVec3f", "up", "[]") .
-      node_field("SFVec3f", "gravityUp", "0 1 0") .
+      node_field('exposedField', "MFVec3f", "direction",  "[]") .
+      node_field('exposedField', "MFVec3f", "up", "[]") .
+      node_field('exposedField', "SFVec3f", "gravityUp", "0 1 0") .
       node_end();
     ?>
 
@@ -634,7 +649,7 @@ in <?php echo a_href_page("my VRML test suite",
     <?php echo
       node_begin("Material") .
       node_dots() .
-      node_field("MFFloat / SFFloat", "mirror", "0.0", "[0.0; 1.0]") .
+      node_field('exposedField', "MFFloat / SFFloat", "mirror", "0.0", "[0.0; 1.0]") .
       node_end();
     ?>
 
@@ -697,13 +712,13 @@ in <?php echo a_href_page("my VRML test suite",
       echo node_begin('KambiHeadLight');
       $node_format_fd_name_pad = 20;
       echo
-      node_field('SFFloat', 'ambientIntensity', '0', '[0.0, 1.0]') .
-      node_field('SFVec3d', 'attenuation'     , '1 0 0', '[0, infinity)') .
-      node_field('SFColor', 'color'           , '1 1 1', '[0, 1]') .
-      node_field('SFFloat', 'intensity'       , '1', '[0, 1]') .
-      node_field('SFBool' , 'spot'            , 'FALSE') .
-      node_field('SFFloat', 'spotDropOffRate' , 0) .
-      node_field('SFFloat', 'spotCutOffAngle' , 0.785398) .
+      node_field('exposedField', 'SFFloat', 'ambientIntensity', '0', '[0.0, 1.0]') .
+      node_field('exposedField', 'SFVec3f', 'attenuation'     , '1 0 0', '[0, infinity)') .
+      node_field('exposedField', 'SFColor', 'color'           , '1 1 1', '[0, 1]') .
+      node_field('exposedField', 'SFFloat', 'intensity'       , '1', '[0, 1]') .
+      node_field('exposedField', 'SFBool' , 'spot'            , 'FALSE') .
+      node_field('exposedField', 'SFFloat', 'spotDropOffRate' , 0) .
+      node_field('exposedField', 'SFFloat', 'spotCutOffAngle' , 0.785398) .
       node_end();
     ?>
 
@@ -726,8 +741,8 @@ in <?php echo a_href_page("my VRML test suite",
       $node_format_fd_name_pad = 20;
       echo
       node_dots() .
-      node_field('SFBool', 'kambiShadows' , 'FALSE') .
-      node_field('SFBool', 'kambiShadowsMain' , 'FALSE',
+      node_field('exposedField', 'SFBool', 'kambiShadows' , 'FALSE') .
+      node_field('exposedField', 'SFBool', 'kambiShadowsMain' , 'FALSE',
         'meaningfull only when kambiShadows = TRUE') .
       node_end();
     ?>
@@ -893,12 +908,12 @@ in <?php echo a_href_page("my VRML test suite",
 
       echo
       node_dots() .
-      node_field("MFColor", "reflSpecular", "[]", "specular reflectance") .
-      node_field("MFColor", "reflDiffuse", "[]", "diffuse reflectance") .
-      node_field("MFColor", "transSpecular", "[]", "specular transmittance") .
-      node_field("MFColor", "transDiffuse", "[]", "diffuse transmittance") .
-      node_field("MFFloat", "reflSpecularExp", "1000000", "specular reflectance exponent") .
-      node_field("MFFloat", "transSpecularExp", "1000000", "specular transmittance exponent") .
+      node_field('exposedField', "MFColor", "reflSpecular", "[]", "specular reflectance") .
+      node_field('exposedField', "MFColor", "reflDiffuse", "[]", "diffuse reflectance") .
+      node_field('exposedField', "MFColor", "transSpecular", "[]", "specular transmittance") .
+      node_field('exposedField', "MFColor", "transDiffuse", "[]", "diffuse transmittance") .
+      node_field('exposedField', "MFFloat", "reflSpecularExp", "1000000", "specular reflectance exponent") .
+      node_field('exposedField', "MFFloat", "transSpecularExp", "1000000", "specular transmittance exponent") .
       node_end();
     ?>
 
@@ -973,7 +988,7 @@ in <?php echo a_href_page("my VRML test suite",
     <?php echo node_begin("WWWInline");
       echo
       node_dots() .
-      node_field("SFBool", "separate",  "TRUE") .
+      node_field('exposedField', "SFBool", "separate",  "TRUE") .
       node_end();
     ?>
 

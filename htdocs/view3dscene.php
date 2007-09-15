@@ -64,12 +64,14 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <p>Supported file formats:
 <ul>
-  <li><p><b>VRML 1.0 and 2.0</b>.
-    Almost complete VRML 1.0 support is ready.
-    VRML 2.0 (aka VRML 97)
-    support is also done, although some advanced features
-    are missing right now (like prototypes, scripting, interpolators, sensors).
-    VRML files usually have <tt>WRL</tt> extension.
+  <li><p><b>VRML 1.0 and 2.0</b>. Usual extensions for VRML files are
+    <tt>.wrl</tt> and <tt>.wrz</tt>.</p>
+
+    <p>Almost complete VRML&nbsp;1.0 support is done.
+    VRML&nbsp;2.0 (aka VRML&nbsp;97) support is also quite advanced, many nodes
+    and features are implemented (including full <tt>PROTO</tt> and
+    <tt>EXTERNPROTO</tt> support), although some large features
+    are still missing (like scripting, interpolators, sensors).
 
     <!-- Among things that work are embedded textures,
     semi-transparent materials and semi-transparent textures,
@@ -77,11 +79,11 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     triangulating non-convex faces, understanding camera nodes,
     WWWInline handling, text rendering and more. -->
 
-    <p>See <?php echo a_href_page('VRML implementation status',
+    See <?php echo a_href_page('VRML implementation status',
       'vrml_implementation_status'); ?> for detailed list of supported
-    features. See also <?php echo a_href_page('my extensions to VRML',
+    features. See also <?php echo a_href_page('Kambi extensions to VRML',
     'kambi_vrml_extensions'); ?>, <?php
-      echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>,
+      echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>,
     and finally <a href="http://www.web3d.org/x3d/specifications/vrml/">
     the official VRML specifications</a>.
 
@@ -102,7 +104,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
   <li><p><b>MD3</b>. This is the format used for models
     in Quake 3 and derivatives (<a href="http://tremulous.net/">Tremulous</a>
-    etc.). Everything usefull (almost ?) is read from MD3 file:
+    etc.). Almost everything useful is read from MD3 file:
     geometry with texture (coordinates, and texture filename from
     associated <tt>xxx_default.skin</tt> file), <i>animation is also read
     and played</i>.</p>

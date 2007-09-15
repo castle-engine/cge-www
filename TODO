@@ -10,11 +10,6 @@ next view3dscene update:
 <li>VRML files compressed by gzip are handled OK even if they have normal <tt>.wrl</tt> extension.</li>
 <li>--write-to-vrml fixed</li>
 
-- kambi_vrml_extensions: note our externproto URLs and file in test_suite
-- kambi_vrml_test_suite also adjust by using EXTERNPROTO/PROTOs (to be readable by others), adjust www
-- vrml_engine_doc update: short notice about protos
-- implements VRML 1.0 isA and fields
-
 next castle update:
 - arrows are affected by gravity
 - underwater "sick" projection effect, thanks to Grzegorz Hermanowicz (herrmannek) !

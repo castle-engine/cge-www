@@ -39,9 +39,12 @@ viewer closely following appropriate VRML specifications.
 <p>The exception to the above are files inside <tt>kambi_extensions/</tt>
 subdirectiories (<tt>vrml_1/kambi_extensions/</tt> and
 <tt>vrml_2/kambi_extensions/</tt>).
-They may not be readable by other VRML browsers,
-as they test and demonstate some of <?php echo a_href_page("my
-non-standard VRML extensions", "kambi_vrml_extensions"); ?>.</p>
+Some files there may not be readable by other VRML browsers,
+as they test and demonstrate some of <?php echo a_href_page("Kambi
+VRML extensions", "kambi_vrml_extensions"); ?>.
+Although some of VRML 2.0 extensions used are preceeded by appropriate
+<tt>EXTERNPROTO</tt> statements, so every conforming VRML 2.0 browser
+should be able to at least gracefully omit them.</p>
 
 <p>Also files inside <tt>kanim/</tt> subdirectory demonstrate usage
 of <?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
@@ -71,7 +74,7 @@ Subversion by:<br><tt><?php
     <a href="http://www.3dcafe.com/">www.3dcafe.com</a>
     (from free models section), see the file <tt>3ds/p47d.txt</tt>.</li>
 
-  <li><p>Everything else was created by me (Michalis, aka Kambi).
+  <li><p>Everything else was created by Michalis Kamburelis, aka Kambi.
 
     <p>Some models (castle, house_behind_the_glass, break_no_transform,
     transparent_materials, alien_mirror) were created using
