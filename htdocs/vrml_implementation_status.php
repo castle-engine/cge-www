@@ -143,10 +143,7 @@ used.
     <tt>Coordinate</tt>, <tt>Color</tt>,
     <tt>Normal</tt>, <tt>TextureCoordinate</tt>
 
-    <p><i>TODO</i>:
-    For IndexedLineSet: color and colorPerVertex fields are ignored.
-
-    <p>For IndexedFaceSet:
+    <p><i>TODO</i>: for IndexedFaceSet:
     <ul>
       <li>color and colorPerVertex fields are ignored.
       <li>the case when normalPerVertex = FALSE and normal field is not NULL
@@ -540,6 +537,59 @@ on numerous VRML models available on the WWW. -->
         <td class="fail">-</td>
         <td>Visible shapes are rendered OK,
           but Extrusion is not rendered (not implemented yet).
+      </tr>
+
+      <tr>
+        <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+      </tr>
+
+      <tr>
+        <td rowspan="10">Geometry</td>
+        <td rowspan="10">IndexedLineSet</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="fail">-</td>
+        <td rowspan="2">color, colorPerVertex on IndexedFaceSet are not used yet.
+          (These tests  have nothing to do with IndexedLineSet... I don't know
+          why they are here...)
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="fail">-</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="fail">-</td>
+        <td rowspan="2">color, colorPerVertex on IndexedFaceSet are not used yet.
+          (These tests  have nothing to do with IndexedLineSet... I don't know
+          why they are here...)
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="fail">-</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td class="pass">+</td>
       </tr>
 
       <tr>

@@ -9,6 +9,7 @@ next view3dscene update:
 - <tt>ROUTE</tt> constructs of VRML 2.0 are parsed now. Although they still don't actually <b>do</b> anything. So at least scenes using routes are partially handled (routes are simply ignored), instead of just producing an error.
 <li>VRML files compressed by gzip are handled OK even if they have normal <tt>.wrl</tt> extension.</li>
 <li>--write-to-vrml fixed</li>
+<li>Handling of colors (<tt>color</tt>, <tt>colorPerVertex</tt>, <tt>colorIndex</tt>) for <tt>IndexedLineSet</tt> done.
 
 next castle update:
 - arrows are affected by gravity
