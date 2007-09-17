@@ -143,13 +143,11 @@ used.
     <tt>Coordinate</tt>, <tt>Color</tt>,
     <tt>Normal</tt>, <tt>TextureCoordinate</tt>
 
-    <p><i>TODO</i>: for IndexedFaceSet:
-    <ul>
-      <li>color and colorPerVertex fields are ignored.
-      <li>the case when normalPerVertex = FALSE and normal field is not NULL
-        (i.e. we have specified normals per face)
-        is ignored (we just calculate our own normals in this case).
-    </ul>
+    <p><i>TODO</i>: only one tiny (practically never used ?) case is not
+    implemented: for <tt>IndexedFaceSet</tt>,
+    the case when <tt>normalPerVertex</tt> = FALSE and <tt>normal</tt> = NULL
+    (i.e. we have specified normals per face)
+    is ignored (we just calculate our own normals in this case).
 
   <li><p><tt>Billboard</tt>, <tt>Collision</tt>
 
@@ -286,9 +284,10 @@ on numerous VRML models available on the WWW. -->
       <tr>
         <td>6</td>
         <td class="fail">-</td>
-        <td>Handling of <tt>color</tt> for <tt>IndexedFaceSet</tt>,
-          <tt>IndexedLineSet</tt>, <tt>ElevationGrid</tt>
-          not implemented. <tt>PointSet</tt> is OK.
+        <td><tt>IndexedFaceSet</tt>, <tt>IndexedLineSet</tt>,
+          <tt>PointSet</tt> are OK.
+          Handling of <tt>color</tt> for <tt>ElevationGrid</tt>
+          not implemented. </td>
       </tr>
       <tr>
         <td>7</td>
@@ -297,9 +296,9 @@ on numerous VRML models available on the WWW. -->
       <tr>
         <td>8</td>
         <td class="fail">-</td>
-        <td>Handling of <tt>color</tt> for <tt>IndexedFaceSet</tt>,
-          <tt>ElevationGrid</tt> not implemented. Texture is rendered OK,
-          it's just not blue.
+        <td><tt>IndexedFaceSet</tt> is OK.
+          Handling of <tt>color</tt> for <tt>ElevationGrid</tt> not implemented,
+          so texture is white instead of blue.</td>
       </tr>
       <tr>
         <td>9</td>
@@ -307,9 +306,10 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>10</td>
-        <td class="pass">+</td>
-        <td>... pass, but only because we just always ignore <tt>color</tt>,
-          see 6 and 8 cases above.
+        <td class="fail">-</td>
+        <td><tt>IndexedFaceSet</tt> errorneously modulates texture color
+          by specified color. On <tt>ElevationGrid</tt> it "passes", but only
+          because we just ignore <tt>color</tt> there, see 6 and 8 cases above.
       </tr>
       <tr>
         <td>11</td>
@@ -468,9 +468,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>26</td>
-        <td class="fail">-</td>
-        <td>Handling <tt>color</tt> of <tt>IndexedFaceSet</tt> not
-          implemented.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>27</td>
@@ -478,10 +476,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>28</td>
-        <td class="fail">-</td>
-        <td>Like case 26:
-          Handling <tt>color</tt> of <tt>IndexedFaceSet</tt> not
-          implemented.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>29</td>
@@ -559,14 +554,13 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>4</td>
-        <td class="fail">-</td>
-        <td rowspan="2">color, colorPerVertex on IndexedFaceSet are not used yet.
-          (These tests  have nothing to do with IndexedLineSet... I don't know
-          why they are here...)
+        <td class="pass">+</td>
+        <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
+          they are for IndexedFaceSet.)</td>
       </tr>
       <tr>
         <td>5</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>6</td>
@@ -574,14 +568,13 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>7</td>
-        <td class="fail">-</td>
-        <td rowspan="2">color, colorPerVertex on IndexedFaceSet are not used yet.
-          (These tests  have nothing to do with IndexedLineSet... I don't know
-          why they are here...)
+        <td class="pass">+</td>
+        <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
+          they are for IndexedFaceSet.)</td>
       </tr>
       <tr>
         <td>8</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>9</td>
