@@ -46,4 +46,5 @@ reset_counter ()
 # reset_counter kambi_vrml_game_engine
 # reset_counter macosx_requirements
 # reset_counter kanim_format
-reset_counter glplotter_and_gen_function
+# reset_counter glplotter_and_gen_function
+reset_counter blender_stuff

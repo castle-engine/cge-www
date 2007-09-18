@@ -14,6 +14,9 @@ These are XML files that describe animation as a sequence of files,
 all with the same structure. The animation is created by interpolating
 among the files in specified order and with specified speed.</p>
 
+<p><?php echo a_href_page(
+  "Blender exporter for this format is available", "blender_stuff"); ?>.</p>
+
 <hr />
 
 <p>Before you say that this is a lousy way of storing animations,

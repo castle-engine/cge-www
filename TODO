@@ -1,16 +1,34 @@
 Next WWW update:
+- view3dscene ver minor ++, release
+- kambi_vrml_test_suite (major ver++), release
+- kambi_vrml_game_engine (minor ver++), release
 Text for next update:
 After next update:
+- run init_counters to init blender_stuff counter
 
 next view3dscene update:
-- Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>) VRML 2.0 feature is fully implemented now !
-- For view3dscene, default blending dest factor is GL_ONE_MINUS_SRC_ALPHA, since this is expected by most VRML authors
-- VRML 2.0 lights are correctly handled (DirectionalLight affects every sibling, positional lights affect whole scene taking radius into account)
-- <tt>ROUTE</tt> constructs of VRML 2.0 are parsed now. Although they still don't actually <b>do</b> anything. So at least scenes using routes are partially handled (routes are simply ignored), instead of just producing an error.
-<li>VRML files compressed by gzip are handled OK even if they have normal <tt>.wrl</tt> extension.</li>
+<li>Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>)
+  VRML 2.0 feature is fully implemented now !</li>
+<li>For view3dscene, default blending dest factor is
+  <tt>GL_ONE_MINUS_SRC_ALPHA</tt>, since this is expected by most VRML authors.</li>
+<li>VRML 2.0 lights are correctly handled (DirectionalLight affects
+  every sibling, positional lights affect whole scene taking <tt>radius</tt> into account).<li>
+<li><tt>ROUTE</tt> constructs of VRML 2.0 are parsed now.
+  Although they still don't actually <b>do</b> anything.
+  So at least scenes using routes are partially handled (routes are simply
+  ignored), instead of just producing an error.</li>
+<li>VRML files compressed by gzip are handled OK even if they have
+  normal <tt>.wrl</tt> extension.</li>
 <li>--write-to-vrml fixed</li>
-<li>Handling of colors (<tt>color</tt>, <tt>colorPerVertex</tt>, <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt> done.</li>
-<li>kambi_vrml_test_suite (major ver++): many new tests to test new features (protos, external protos, colors, light scope), some important VRML 1.0 tests ported to VRML 2.0 too (castle, relative_names, texture_test, house behind the glass).</li>
+<li>Handling of colors (<tt>color</tt>, <tt>colorPerVertex</tt>,
+  <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>
+  done.</li>
+<li>kambi_vrml_test_suite (major ver++): many new tests to test new
+  features (protos, external protos, colors, light scope),
+  some important VRML 1.0 tests ported to VRML 2.0 too (castle,
+  relative_names, texture_test, house behind the glass).</li>
+<li><?php echo a_href_page('Blender VRML stuff page added,
+  with improved VRML 2.0 exporter and kanim exporter', 'blender_stuff'); ?>.</li>
 
 next castle update:
 - arrows are affected by gravity

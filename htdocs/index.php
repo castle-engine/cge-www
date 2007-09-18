@@ -194,6 +194,8 @@ the programs developed with it:</p>
 
 <ul>
   <li><?php echo a_href_page(
+    "Blender VRML stuff", "blender_stuff"); ?></li>
+  <li><?php echo a_href_page(
     "Standard command-line options understood by all OpenGL programs",
     "opengl_options"); ?>
   <li><?php echo a_href_page(
