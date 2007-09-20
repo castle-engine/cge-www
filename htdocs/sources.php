@@ -223,18 +223,18 @@ to compile most things by using ready provided compilation scripts.</p>
 About support for various FPC versions:
 
 <ul>
-  <li><p><em>FPC 2.0.4</em> : This is the simplest and best option
-    &mdash; FPC 2.0.4 works perfectly, and you can download already
+  <li><p><em>FPC 2.2.0</em> : This is the simplest and best option
+    &mdash; FPC 2.2.0 works perfectly, and you can download already
     compiled packages of it from
     <a href="http://www.freepascal.org/">www.freepascal.org</a>.
 
-  <li><p><em>FPC 2.0.2</em> : will work OK for some time from now
-    (2006-09-12).
+  <li><p><em>FPC 2.0.4</em> : will work OK for some time from now
+    (2007-09-20).
 
   <li><p><em>Latest FPC development version,
-    downloadable from FPC CVS (or new svn) repository</em>, usually works.
-    However, you must remember that CVS version changes rapidly
-    and no-one can give any guarantee about current stability of FPC from CVS
+    downloadable from FPC SVN repository</em>, usually works.
+    However, you must remember that SVN version changes rapidly
+    and no-one can give any guarantee about current stability of FPC from SVN
     (or stability of my programs compiled with this FPC).
 
   <li><p><em>Older FPC versions</em>: while they may work,

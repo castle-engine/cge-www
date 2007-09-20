@@ -803,20 +803,28 @@ under Unixes (Linux, FreeBSD, Mac OS X) or
 under Windows. Note that you must use GNU make.
 Required compiler is
 <a href="http://www.freepascal.org/">FreePascal</a>
-(see <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
- page for FPC versions required &mdash; usually this is "latest stable FPC
-version"). There is no Delphi support &mdash; I live in the open source world.
+(you can look at <?php echo a_href_page_hashlink(
+  'notes about FPC version required', 'sources', 'section_fpc_ver'); ?>
+ &mdash; usually this is "latest stable FPC version").
+ There is no Delphi support &mdash; I live in the open source world.
 
-<p>Sometimes when trying to compile FPC 2.0.4 fails with
-<tt>Fatal: Internal error 200310221</tt>. This is a bug in FPC 2.0.4, already
-fixed in trunk 2.1.1. I don't know the exact cause of it, but it has
+<div style="border: thin solid gray; margin-left: 3em; padding: 0.5em;">
+<p><i>Old notes for compiling with FPC &lt;= 2.0.4 :</i>
+
+<p>Sometimes FPC 2.0.4 fails with <tt>Fatal: Internal error 200310221</tt>.
+This is a bug in FPC 2.0.4, fixed since a long time in trunk 2.1.1 and later.
+I don't know the exact cause of it, but it has
 something to do with FPC 2.0.4 inability to handle unit dependencies in
 "The Castle" (no, there are no circular interface dependencies, but still there is
-something that confuses FPC 2.0.4). Current workaround (assuming that
-you want to keep using stable FPC 2.0.4 version) is just to repeat
-the compilation, i.e. run the <tt>make build-xxx</tt> command once again.
-This will reuse *.o and *.ppu files generated successfully in previous
-compilation attempt, and things will go forward.
+something that confuses FPC 2.0.4). The workaround was usually to do
+<tt>make clean</tt> before each compilation (so that each FPC run starts
+from a "clean" state and has to recompile all castle units), fortunately
+FPC is so fast that this wasn't a big problem. Sometimes also retrying the
+compilation (i.e. without <tt>make clean</tt>) pushed it to "move forward".</p>
+
+<p>Best workaround is of course to upgrade to FPC 2.2.0.
+I don't plan to keep FPC 2.0.4 compilation supported much longer,
+now that stable FPC 2.2.0 is released.</p></div>
 
 <p>Before you run the compiled executable, make sure that it's properly
 installed: Unix users should make sure that symlink

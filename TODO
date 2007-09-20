@@ -29,6 +29,7 @@ next view3dscene update:
   relative_names, texture_test, house behind the glass).</li>
 <li><?php echo a_href_page('Blender VRML stuff page added,
   with improved VRML 2.0 exporter and kanim exporter', 'blender_stuff'); ?>.</li>
+<li>Everything is compiled using new FPC 2.2.0.</li>
 
 next castle update:
 - arrows are affected by gravity
