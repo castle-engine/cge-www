@@ -301,7 +301,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     Also my games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
 
-    <p>One additiona field not explained yet: <tt>alternative</tt>.
+    <p>One additional field not explained yet: <tt>alternative</tt>.
     This will be used if current graphic output (e.g. OpenGL implementation)
     for any reason doesn't allow volumetric fog (or at least doesn't
     allow it to be implemented efficiently). Currently, this means
@@ -703,7 +703,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     then this configures the headlight properties.
 
     <p>The default values
-    of this ndoe are compatible with VRML specification, that explicitly
+    of this node are compatible with VRML specification, that explicitly
     states that <tt>NavigationInfo.headlight</tt> should have
     <i>intensity = 1, color = (1 1 1),
     ambientIntensity = 0.0, and direction = (0 0 -1)</i>.
