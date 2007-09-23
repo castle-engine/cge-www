@@ -210,6 +210,25 @@ All nodes and features are handled, with the exception of:
   <li>Partial transparency on textures with full alpha channel (like PNG images).
     For now textures with alpha channel have always simple, all-or-nothing
     transparency. (but partial transparency of Materials is fully supported).
+
+  <li><p>Extensibility features (<tt>isA</tt> and <tt>fields</tt>) are not handled
+    fully, although you probably will not notice. For built-in nodes,
+    <tt>isA</tt> and <tt>fields</tt> are correctly parsed but ignored.
+    For unknown nodes, they are simply omitted up to the matching
+    closing parenthesis.
+
+    <p>This means that the only case when you will notice something doesn't
+    work is when you use non-standard VRML node but point to a standard
+    node with <tt>isA</tt> declaration. Then my engine will ignore
+    <tt>isA</tt> declaration, while it should use it to interpret your node
+    and (at least partially, when possible) handle it.</p>
+
+    <p>Finishing of handling this VRML 1.0 feature has rather low priority,
+    since this mechanism was completely dropped in later VRML versions.
+    VRML 2.0 and X3D replaced this by fantastic prototypes mechanism,
+    which is basically an extra-powerful and elegant way of doing what
+    VRML 1.0 tried to do with <tt>isA</tt> and <tt>fields</tt> feature
+    (and VRML prototypes are already handled 100% by our engine).
 </ul>
 
 <?php echo $toc->html_section(); ?>
