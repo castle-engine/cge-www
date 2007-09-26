@@ -41,20 +41,24 @@ from "New Game" menu once you finish the main game
 (you can also switch to this level from the debug menu, if you're impatient).
 
 <p><i>Requirement to run</i>: fast and stable OpenGL.
+
 <ul>
-  <li>Preferably <a href="http://www.nvidia.com/">NVidia</a> graphic card
-    with latest drivers. And around 300 MB of free memory will be needed.
+  <li><p>Preferably <a href="http://www.nvidia.com/">NVidia</a> graphic card
+    with latest drivers. Around 220 MB of free memory will be needed
+    (although this depends greatly on a graphic card model, see below).
 
     <p>Radeon open-source drivers under Linux are reported to
     work OK too. Radeon cards inside MacBookPro (with closed ATI drivers,
     tested both under Linux and Mac OS X) also work perfectly fine.
+    Probably all better Radeon models are OK, on any OS... but see below
+    for notes about older Radeon models.
 
     <p><a href="http://www.mesa3d.org/">Mesa</a> OpenGL
     also works (although usually will be too slow).
   </li>
 
-  <li><p>As for Radeon with drivers from <a href="http://www.ati.com/">ATI</a>
-    on Windows:
+  <li><p>As for many Radeon models with drivers from
+    <a href="http://www.ati.com/">ATI</a> on Windows:
 
     <p>Around 500 MB free memory is required. Which means that practically
     a PC with 512 MB is usually not enough (OS, not to mention any
