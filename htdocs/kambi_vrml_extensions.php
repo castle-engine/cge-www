@@ -489,10 +489,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
       <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
         is ignored.
 
-      <li><tt>speed</tt> doesn't set the speed in meters/second.
-        It just scales the speed that is determined by camera radius
-        (<tt>avatarSize[0]</tt>). TODO: This should be fixed at some point
-        to follow VRML spec.
+      <li><tt>speed</tt> is honoured as appropriate, it sets
+        the speed in meters/second.
 
       <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>
         and <tt>FLY</tt> are fully supported. They map to appropriate
@@ -530,6 +528,9 @@ in <?php echo a_href_page("Kambi VRML test suite",
         lights defined in the scene.
 
       <li><tt>type</tt> remains as it was before loading new scene.
+
+      <li><tt>speed</tt> is calculated to something that should "feel sensible"
+        based on scene's bounding box sizes.
     </ul>
 
   <li><p><a name="ext_cameras_alt_orient"><b>Fields <tt>direction</tt>

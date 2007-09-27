@@ -200,8 +200,20 @@ All nodes and features are handled, with the exception of:
     nodes (this should be easy to do now, when I implemented
     "Open" menu item).
 
-  <li>Values of <tt>focalDistance</tt> and <tt>height</tt> fields of camera
+  <li>Value of <tt>height</tt> / <tt>heightAngle</tt> fields of camera
     nodes are ignored.
+
+    <p><tt>focalDistance</tt> is also ignored, but this
+    is allowed by specification. And honestly VRML 1.0 specification
+    is so ambiguous about this feature (<i>browser should adjust
+    flying speed to reach that point in a reasonable amount of time</i>,
+    <i>perhaps the browser can use this as a hint</i>...) that
+    I see no reliable way to handle <tt>focalDistance</tt>.
+
+    <p>Fortunately, VRML 2.0 replaced this with <tt>NavigationInfo.speed</tt>
+    feature, with clear meaning (basically, it's just a distance per second),
+    so please use this instead. (For my engine, you can use
+    <tt>NavigationInfo</tt> node even in VRML 1.0 models.)
 
   <li>I'm always rendering the nearest (first) child of <tt>LOD</tt> node.
     Therefore I'm potentially losing some optimization if the scene
