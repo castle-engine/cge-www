@@ -340,12 +340,13 @@ when you're not interested in testing creatures
     <pre>
       NavigationInfo {
         avatarSize [ 0.5, 2 ]
-        speed 1.0
+        speed 20
         ...
       }
     </pre>
     in your level. And force yourself to design a level that "fits"
-    such avatarSize and speed.
+    such avatarSize and speed. Note: uhm, I know that the speed is set
+    like "always running" now. I'm planning to fix it soon.
 
   <li><p>Sectors and waypoints (aka portals) for the level:
 
