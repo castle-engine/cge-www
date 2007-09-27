@@ -137,12 +137,12 @@ with useful programs and collections of textures etc. see
 
 <?php echo $toc->html_section(); ?>
 
-<p>The short 1-sentence instruction is:
-Use any 3d modelling program able to create VRML 1.0 or 2.0 files.
+<p>The short 1-sentence introduction is: you can use any 3D modelling program
+able to create VRML 1.0 or 2.0 files.
 
 <p>VRML 1.0 and 2.0 formats have official specifications
 and my engine is capable
-of handling any VRML 1.0 valid files and many VRML 2.0 files (actually,
+of handling any VRML 1.0 valid files and most VRML 2.0 files (actually,
 <?php echo a_href_page('even more than that', 'kambi_vrml_extensions') ?>).
 So my engine is not tied to any particular modelling program.
 Use <?php echo a_href_page('view3dscene', 'view3dscene') ?>
@@ -156,13 +156,15 @@ rules for designing in Blender models for my engine &mdash;
 just do whatever you like (and whatever can be exported to VRML 1.0 or 2.0).
 Below I offer some hints.
 
-<p>I often "wrap" (using <tt>WWWInline</tt> VRML construction) models produced by
+<p>I often "wrap" (using <tt>WWWInline</tt> VRML 1.0 or
+<tt>Inline</tt> VRML 2.0 node) models produced by
 Blender inside some small VRML files written by hand.
 For example, <tt>data/levels/castle_hall_final.wrl</tt> is a small VRML file that is
 maintained by hand. It sets up some things that were uncomfortable
 (or impossible, due to lacks of VRML 1.0 exporter) to set up from Blender,
 and includes (using <tt>WWWInline</tt> node) other VRML file
-(<tt>data/levels/castle_hall_processed.wrl</tt> in this case) that defines geometry,
+(<tt>data/levels/castle_hall_processed.wrl</tt> in this case)
+that defines geometry,
 materials and textures of the level.
 
 <p>Moreover, I sometimes want to post-process VRML files generated from
@@ -173,21 +175,21 @@ exported from Blender (from <tt>data/levels/castle_hall.blend</tt>),
 and it's processed to <tt>data/levels/castle_hall_processed.wrl</tt>.
 
 <p>3DS notes: Actually, you can also use models in 3DS format instead
-of VRML 1.0. So if your favourite 3d modelling program is not able to export
-to VRML 1.0 but it's able to export to 3DS &mdash; you can use it too.
+of VRML. So if your favourite 3d modelling program is not able to export
+to VRML but it's able to export to 3DS &mdash; you can use it too.
 But, since 3DS is a closed format, it will never be supported
 completely by my engine (just like by any other program, since everyone
 has to decode 3DS). In particular, <em>everything</em> that can be expressed
 in 3DS format and that is understood by me engine can also be expressed
-in VRML 1.0. But not vice-versa, i.e. there are some features that
-are available with my engine when using VRML 1.0 but are not available
+in VRML 1.0 and 2.0. But not vice-versa, i.e. there are some features that
+are available with my engine when using VRML but are not available
 when using 3DS. So the bottom line is: well, you can use 3DS format
-with my engine, it works OK, but VRML 1.0 format is just better :)
+with my engine, it works OK, but VRML format is just way better :)
 
 <p>If you want to see other models demonstrating my engine, see
 <?php echo a_href_page("my VRML test suite",
   "kambi_vrml_test_suite"); ?> &mdash;
-there are many testcases and demos of what can be expressed in VRML 1.0
+there are many testcases and demos of what can be expressed in VRML 1.0 and 2.0
 and what my engine can understand and render.
 
 <?php echo $toc->html_section(); ?>
@@ -281,14 +283,16 @@ when you're not interested in testing creatures
     <ul>
       <li><tt>Background</tt>, <tt>NavigationInfo</tt> nodes
 
-        <p>These nodes were introduced in VRML 2 (although I implemented them
-        for VRML 1 also). So Blender exporter to VRML 1 does not write
-        these nodes. So I just write them by hand.
+        <p>These nodes were introduced in VRML 2.0 (although I implemented them
+        for VRML 1.0 also). But Blender exporter to VRML 1.0 does not write
+        these nodes. So I just write them by hand. Blender exporter for VRML 2.0
+        does write them, but still it's usually easier to set them up by hand.
       </li>
 
-      <li><tt>PerspectiveCamera</tt> node
+      <li><tt>PerspectiveCamera</tt> / <tt>Viewpoint</tt> node
 
-        <p>Blender exports camera settings, but in an uncomfortable
+        <p>VRML 1.0 Blender exporter: exports camera settings,
+        but in an uncomfortable
         format (as a transformation, instead of as VRML camera node).
         This is OK for simple viewing of VRML models, but it's not OK
         if you want to "tweak" VRML models. In particular, it's bad
@@ -299,6 +303,12 @@ when you're not interested in testing creatures
         So I usually generate camera node by opening model in my view3dscene
         (see <?php echo a_href_page('view3dscene', 'view3dscene') ?>)
         and using "Print current camera node (Ctrl+C)" feature.
+
+        <p>VRML 2.0 Blender exporter generates better <tt>Viewpoint</tt>
+        from camera, but still it doesn't have gravityUp like we want,
+        so it's much better to use
+        <?php echo a_href_page('view3dscene', 'view3dscene') ?>
+        "Print current camera node (Ctrl+C)" feature.
       </li>
 
       <li><tt>Light</tt> nodes
@@ -309,7 +319,7 @@ when you're not interested in testing creatures
         also on other objects (like enemies) that are not part of the level
         object.
 
-        <p>(Also, while Blender exporter can export Blender lights to VRML,
+        <p>(Also, while Blender exporters can export Blender lights to VRML,
         it doesn't allow me to use all features of VRML lights.)
 
         <p>Since version 0.5.7 you can also edit the lights from the game
