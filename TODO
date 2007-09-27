@@ -30,6 +30,9 @@ next view3dscene update:
 <li><?php echo a_href_page('Blender VRML stuff page added,
   with improved VRML 2.0 exporter and kanim exporter', 'blender_stuff'); ?>.</li>
 <li>Everything is compiled using new FPC 2.2.0.</li>
+<li>Numerous memory and speed optimizations to load VRML models and animations
+  faster and better, also "The Castle" "loading creatures" is less resource
+  consuming now.</li>
 
 next castle update:
 - arrows are affected by gravity
