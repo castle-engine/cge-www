@@ -44,8 +44,8 @@ from "New Game" menu once you finish the main game
 
 <ul>
   <li><p>Preferably <a href="http://www.nvidia.com/">NVidia</a> graphic card
-    with latest drivers. Around 220 MB of free memory will be needed
-    (although this depends greatly on a graphic card model, see below).
+    with latest drivers. Around 240 MB of free memory will be needed
+    (although this depends greatly on a graphic card model).
 
     <p>Radeon open-source drivers under Linux are reported to
     work OK too. Radeon cards inside MacBookPro (with closed ATI drivers,
