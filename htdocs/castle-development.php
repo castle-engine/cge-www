@@ -345,8 +345,14 @@ when you're not interested in testing creatures
       }
     </pre>
     in your level. And force yourself to design a level that "fits"
-    such avatarSize and speed. Note: uhm, I know that the speed is set
-    like "always running" now. I'm planning to fix it soon.
+    such avatarSize.
+
+    <p>As for <i>speed</i>: I know that the speed 20 is quite fast,
+    like "always running". On some levels it feels good (e.g. large, outdoor
+    "The Gate" level), on some levels ("Fountain") it would be awkward to
+    always run. So you can set the speed to <tt>10</tt> if your level
+    should feel more like walking (this usually means smaller, "indoor feeling"
+    level).
 
   <li><p>Sectors and waypoints (aka portals) for the level:
 
