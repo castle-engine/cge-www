@@ -35,6 +35,12 @@ next view3dscene update:
   faster and better, also "The Castle" "loading creatures" is less resource
   consuming now.</li>
 <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
+<li>Engine is ported and works flawlessly on x86-64 on Linux.
+  No more only 32-bit :)</li> (TODO: update sources.php and kambi_vrml_game_engine.php
+  pages about this. Write in "features" section something like
+  "Engine is portable, runs flawlessly on ... (brag about OSes and processors).
+  Should be able to compile and run on virtually any modern OS that is
+  supported by FPC and has normal OpenGL etc. libraries available."
 
 next castle update:
 - arrows are affected by gravity
