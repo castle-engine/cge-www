@@ -41,6 +41,8 @@ next view3dscene update:
   "Engine is portable, runs flawlessly on ... (brag about OSes and processors).
   Should be able to compile and run on virtually any modern OS that is
   supported by FPC and has normal OpenGL etc. libraries available."
+<li>Fixed hang (actually, a really really long delay) when closing sound device
+  in "The Castle" on Linuxs (actually, with OpenAL sample implementation).</li>
 
 next castle update:
 - arrows are affected by gravity
