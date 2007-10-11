@@ -910,8 +910,8 @@ like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>).
 Everything should run on any modern OS/processor supported by
 <a href="http://www.freepascal.org/">FreePascal</a> compiler,
-right now this means Linux, FreeBSD, Mac OS X and Windows on
-i386 (if you want to port
+see <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
+ for exact listing (if you want to port
 it to other system, you're welcome to provide the patches and compiled binaries).
 And I'm trying to do all game data using open-source things,
 most important here is <a href="http://www.blender3d.org/">Blender</a>

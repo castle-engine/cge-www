@@ -6,7 +6,9 @@ Text for next update:
 After next update:
 - run init_counters to init blender_stuff counter
 
-next view3dscene update:
+next update:
+<li>New demo level for <link "The Castle">: the fountain, done in pure VRML 2.0
+  format (no more VRML 1.0).</li>
 <li>Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>)
   VRML 2.0 feature is fully implemented now !</li>
 <li>For view3dscene, default blending dest factor is
@@ -36,11 +38,9 @@ next view3dscene update:
   consuming now.</li>
 <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
 <li>Engine is ported and works flawlessly on x86-64 on Linux.
-  No more only 32-bit :)</li> (TODO: update sources.php and kambi_vrml_game_engine.php
-  pages about this. Write in "features" section something like
-  "Engine is portable, runs flawlessly on ... (brag about OSes and processors).
-  Should be able to compile and run on virtually any modern OS that is
-  supported by FPC and has normal OpenGL etc. libraries available."
+  No more only 32-bit :) This also results in the change of archive binary names:
+  they all get <tt>i386</tt> after their name, eventually I may release
+  precompiled versions for <tt>x86-64</tt> too.</li>
 <li>Fixed hang (actually, a really really long delay) when closing sound device
   in "The Castle" on Linuxs (actually, with OpenAL sample implementation).</li>
 

@@ -40,6 +40,11 @@ Features include:</p>
   <li>Many OpenAL helpers, including intelligent OpenAL sound manager
     and OggVorbis format handling.</li>
   <li>Ray-tracer based on VRML models is implemented.</li>
+  <li>The engine is portable. Currently tested and used on Linux,
+    FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
+    Porters/testers for other OS/processors are welcome,
+    the engine should be able to run on all modern OSes supported by FPC.</li>
+
   <!-- <li>Evaluating mathematical expressions -->
   <!-- li>Curves handling.</li -->
   <!--
@@ -55,10 +60,8 @@ Features include:</p>
   -->
 </ul>
 
-<p>The engine is portable, currently tested and used on Linux,
-FreeBSD, Mac OS X and Windows. It was used to develop all programs on
-these pages. It should be compiled by
-<a href="http://www.freepascal.org">FreePascal</a>.
+<p>The engine was used to develop all programs on these pages.
+It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.
 </p>
 
 <p>Contents:
