@@ -27,9 +27,9 @@ Features include:</p>
   <li>Octrees are used for various collision detection tasks.</li>
   <li>Shadows by shadow volumes.</li>
   <li>GLWindow unit is available to easily create windows with OpenGL
-    context. The intention of this unit is to become something like glut,
+    context. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
-    It also gives you easy to create menu bars, open/save file and similar
+    Also it allows you to easily create menu bars, open/save file and similar
     dialogs that are implemented using native controls (GTK or WinAPI).</li>
   <li>Reading and writing of images in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
@@ -44,6 +44,13 @@ Features include:</p>
     FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
     Porters/testers for other OS/processors are welcome,
     the engine should be able to run on all modern OSes supported by FPC.</li>
+  <li>Engine components are independent when possible.
+    For example, you can only take VRML / 3DS / MD3 loading and processing
+    code, and write the rendering yourself. Or you can use our OpenGL rendering,
+    but still initialize OpenGL context yourself (no requirement to do it
+    by our <tt>GLWindow</tt> unit). And so on.
+    Of course, ultimately you can just use everything from our engine,
+    nicely integrated &mdash; but the point is that you don't have to.</li>
 
   <!-- <li>Evaluating mathematical expressions -->
   <!-- li>Curves handling.</li -->
@@ -61,8 +68,7 @@ Features include:</p>
 </ul>
 
 <p>The engine was used to develop all programs on these pages.
-It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.
-</p>
+It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
