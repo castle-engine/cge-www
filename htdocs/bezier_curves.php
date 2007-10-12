@@ -44,7 +44,7 @@ point on that curve.
 
 <p>On start background is inited from
 UserOptionsPath + <tt>default_bezier_curves_image.jpg</tt>, if it exists.
-UserOptionsPath = (linux, freebsd, macosx) home dir, (win32) exe dir.
+UserOptionsPath = (linux, freebsd, macosx) home dir, (windows) exe dir.
 
 <p>Save/Open work using non-standard nodes RationalBezierCurve
 and SmoothInterpolatedCurve (defined in unit VRMLBezierCurve).

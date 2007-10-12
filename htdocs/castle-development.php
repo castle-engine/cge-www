@@ -831,7 +831,7 @@ and <tt>castle/</tt> directories are together within the same directory.
 </pre>
 under Unixes (Linux, FreeBSD, Mac OS X) or
 <pre>
-  make build-win32
+  make build-windows
 </pre>
 under Windows. Note that you must use GNU make.
 Required compiler is
