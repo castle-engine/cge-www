@@ -255,7 +255,7 @@ cia.vc</a>.
 href="http://www.camelot.homedns.org/~michalis/">home page</a>,
 <?php echo michalis_mailto('email'); ?>).
 If you will use any part of this engine, then make me happy and
-drop me a note about this !
+drop me a note about this&nbsp;!
 </address>
 
 <?php
