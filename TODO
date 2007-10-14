@@ -43,6 +43,11 @@ next update:
   precompiled versions for <tt>x86-64</tt> too.</li>
 <li>Fixed hang (actually, a really really long delay) when closing sound device
   in "The Castle" on Linuxs (actually, with OpenAL sample implementation).</li>
+<li>Shadow volumes silhouette optimization improved: now models don't have
+  to be perfect manifold to use this. See
+  <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/</tt>
+  demo, in praticular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
+  example.</li>
 
 next castle update:
 - arrows are affected by gravity
