@@ -649,40 +649,40 @@ when you're not interested in testing creatures
   <li><p>For testing various animations of creatures (and adjusting their time
     parameters) you can use <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 
-  <li><p>For shadows to work properly, whole creature scene (all animation
-    frames etc.) should be composed from a number of closed manifold parts.
-    In other words, each edge must have exactly two neighboring faces,
-    so that the creature shape is a correct closed volume.
-    Also, faces must be oriented CCW (counter-clockwise direction) to the
-    outside.
+  <li><p>For shadows to work fast, creature model (all animation
+    frames etc.) should be composed from a number of 2-manifold parts.
+    It's allowed to not make them perfectly manifold, but then
+    1. in some cases, <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/ghost_lack_of_shadow.png">some
+    artifacts are unavoidable</a>.
+    To be manifold, edge must have exactly two neighboring faces,
+    so that ideally the creature shape is a correct closed volume.
+    Also, faces must be oriented consistently (e.g. CCW outside).
+    This requirement is usually quite naturally satisfiable for creature
+    models, and consistent ordering allows you to use backface culling which
+    is a good thing on it's own.</p>
 
-    <p>This is very important condition for shadows.
-    If it's not satisfied, it will be detected, and then a much slower
-    approach will be used to render creature shadows. For non-trivial
-    creature models this approach will be <b>really much slower</b>.
-    So, really, you must try very hard to make your model a closed
-    manifold, if you hope to see it's shadow fast enough.
-
-    <p>To check whether your model is detected as a closed manifold,
+    <p>You can inspect whether your model is detected as a 2-manifold,
     run the game with <tt>--debug-log</tt> parameter (possibly redirecting
     stdout to a file then). Look there for lines that indicate loading
-    of your creature, e.g. for <tt>Alien</tt> creature:
+    of your creature, e.g. for <tt>Alien</tt> creature:</p>
 
 <pre>
 Animation info:                  Alien.Stand animation:    1 scenes *     4276 triangles
-Animation info: Alien.Stand animation: correct manifold ? TRUE
+Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
 </pre>
 
-    ... the 2nd line above tells you exactly what you want.
-    <tt>TRUE</tt> means that it's composed from a number of closed
-    manifolds and shadows will be fast. You really want to see <tt>TRUE</tt>
-    there.
+    <p>... the 2nd line above tells you that Alien is a perfect manifold
+    (0 border edges). So shadows will be fast.</p>
 
     <p>You can also run
     <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/shadow_volume_test</tt>
     test program from my engine, setting your creature model as a shadow
-    caster. This will tell you whether model is detected as composed
-    from a closed manifolds.
+    caster. This will tell you manifold / border edges count. Also you
+    can display there your border edges (use the "View" menu), manifold silhouette
+    edges are displayed yellow and border edges are blue.
+    Like <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/fountain_screen_2_edges.png">this</a>
+    or <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/fountain_screen_3_only_edges.png">this</a>.
+    Useful if you want to see where the border edges are located, to fix them.
 
     <p>In Blender, you can easily detect why the mesh is not
     manifold by <i>Select non-manifold</i> command (in edit mode).
