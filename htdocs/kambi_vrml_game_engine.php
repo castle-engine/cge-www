@@ -30,7 +30,8 @@ Features include:</p>
     context. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
     Also it allows you to easily create menu bars, open/save file and similar
-    dialogs that are implemented using native controls (GTK or WinAPI).</li>
+    dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes,
+    GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
   <li>Reading and writing of images in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
     (png, jpg, ppm, bmp, just for starters), included is also support for
