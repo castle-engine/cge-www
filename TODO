@@ -48,6 +48,7 @@ next update:
   <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/</tt>
   demo, in praticular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
   example.</li>
+<li>GLWindow allows to change cursor shape.</li>
 
 next castle update:
 - arrows are affected by gravity
