@@ -651,9 +651,10 @@ when you're not interested in testing creatures
 
   <li><p>For shadows to work fast, creature model (all animation
     frames etc.) should be composed from a number of 2-manifold parts.
-    It's allowed to not make them perfectly manifold, but then
-    1. in some cases, <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/ghost_lack_of_shadow.png">some
-    artifacts are unavoidable</a>.
+    It's allowed to not make them perfectly 2-manifold, but then
+    in some cases, some artifacts are unavoidable &mdash; see
+    <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+    chapter "Shadows" for description.
     To be manifold, edge must have exactly two neighboring faces,
     so that ideally the creature shape is a correct closed volume.
     Also, faces must be oriented consistently (e.g. CCW outside).
@@ -680,9 +681,9 @@ Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
     caster. This will tell you manifold / border edges count. Also you
     can display there your border edges (use the "View" menu), manifold silhouette
     edges are displayed yellow and border edges are blue.
-    Like <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/fountain_screen_2_edges.png">this</a>
-    or <a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/vrml_engine_doc/images_shadow_volumes/fountain_screen_3_only_edges.png">this</a>.
-    Useful if you want to see where the border edges are located, to fix them.
+    See <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+    chapter "Shadows" for example screenshots how this looks like.
+    Useful if you want to see where the border edges are located, to fix them.</p>
 
     <p>In Blender, you can easily detect why the mesh is not
     manifold by <i>Select non-manifold</i> command (in edit mode).
