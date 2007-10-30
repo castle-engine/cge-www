@@ -153,6 +153,16 @@ Basically there are no special
 rules for designing in Blender models for our engine &mdash;
 just do whatever you like (and whatever can be exported to VRML 1.0 or 2.0).</p>
 
+<p>The engine also handles perfectly VRML files exported from <i>3ds Max</i>.
+So you can use <i>3ds Max</i> to make models too. Also VRMLs produced
+by open-source modeller <a href="http://www.artofillusion.org/">Art of Illusion</a>
+are perfect. I suspect that all significant 3D modelling tools are able
+to export decently to VRML, so you can probably use any modeller you like.
+(This was one of the reasons that I chose VRML format as my basic format
+&mdash; it's nice to see that it pays off :) ).
+Note that I'd like to make the game using as much open-source tools as possible,
+so using open-source modeller is strongly favored over proprietary modellers.
+
 <p>Some detailed hints / tricks:</p>
 
 <ul>
@@ -175,7 +185,7 @@ just do whatever you like (and whatever can be exported to VRML 1.0 or 2.0).</p>
     and it's processed to <tt>data/levels/castle_hall_processed.wrl</tt>.</p></li>
 
   <li><p><i>VRML 2.0 (aka 97) notes:</i><br />
-    It's adviced to use our customized VRML 97 exporter,
+    For Blender, it's adviced to use our customized VRML 97 exporter,
     see <?php echo a_href_page("Blender VRML stuff", "blender_stuff"); ?>.</li>
 
   <li><p><i>3DS / MD3 / other formats notes:</i><br/>
@@ -434,7 +444,7 @@ when you're not interested in testing creatures
           <li>To speed up rendering: When player's CameraPos is within
             a given sector (not nil), we have to render only the sectors
             for which VisibleSectors is true.
-            TODO: right now it's not used for to speed up rendering,
+            TODO: right now it's not used to speed up rendering,
             and VisibleSectors is ignored.
 
           <li>To make creature moving AI more intelligent:
@@ -481,6 +491,17 @@ when you're not interested in testing creatures
     You may even want to move your new level class
     to a completely separate unit file if you want.
   </li>
+
+  <li><p>With a little programming, you can add various dynamic parts
+    to your level. I call these things "level objects".
+    For example, this is used to make the moving cart (gate level), button
+    (castle hall level), exit gate (cages level), elevator (tower level),
+    doors (doom level)... and many more. Level objects can also cast shadows,
+    see notes about shadows for creatures.</p>
+
+    <p>It's expected that at some point it will be possible to add such
+    level objects only by editing <tt>levels/index.xml</tt> file, with no need
+    to modify game sources.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
