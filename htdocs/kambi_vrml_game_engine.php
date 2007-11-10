@@ -25,7 +25,8 @@ Features include:</p>
     and converted to VRML 1.0.</li>
   <li>Animations are supported, by interpolation.</li>
   <li>Octrees are used for various collision detection tasks.</li>
-  <li>Shadows by shadow volumes.</li>
+  <li>Shadows by shadow volumes (full implementation, with z-fail / z-pass
+    switching, silhouette detection etc.).</li>
   <li>GLWindow unit is available to easily create windows with OpenGL
     context. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.

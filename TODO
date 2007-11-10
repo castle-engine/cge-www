@@ -46,15 +46,23 @@ next update:
   precompiled versions for <tt>x86-64</tt> too.</li>
 <li>Fixed hang (actually, a really really long delay) when closing sound device
   in "The Castle" on Linux (actually, with OpenAL sample implementation).</li>
-<li>Shadow volumes silhouette optimization improved: now models don't have
-  to be perfect manifold to use this. See
-  <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/</tt>
-  demo, in praticular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
-  example.</li>
+<li>Shadows improvements:
+  <ul>
+    <li>First of all, z-fail implemented and proper detection when z-fail
+      is needed implemented, so faster z-pass is used when possible.
+      "The Castle" shows (toggle with Tab, just like for FPS) number
+      of shadows qualified as z-pass, z-fail, z-fail with light cap needed etc.
+    <li>Shadow volumes silhouette optimization improved: now models don't have
+      to be perfect manifold to use this. See
+      <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/</tt>
+      demo, in particular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
+      example.</li>
+    <li>Updated version of <a href="vrml_engine_doc">VRML engine documentation
+      (started as my master's thesis)</a> is available, with a chapter
+     about shadows implementation.</li>
+  </ul>
+</li>
 <li>GLWindow allows to change cursor shape.</li>
-<li>Updated version of <a href="vrml_engine_doc">VRML engine documentation
-  (started as my master's thesis)</a> is available, with a chapter shortly
-  summarizing shadows implementation.</li>
 <li>arrows are affected by gravity in "the castle",
   underwater "sick" projection effect,
   thanks to Grzegorz Hermanowicz (herrmannek).</li>
