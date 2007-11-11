@@ -59,7 +59,8 @@ next update:
       example.</li>
     <li>Updated version of <a href="vrml_engine_doc">VRML engine documentation
       (started as my master's thesis)</a> is available, with a chapter
-     about shadows implementation.</li>
+      about shadows implementation.</li>
+    <li>Much better frustum culling for shadows.</li>
   </ul>
 </li>
 <li>GLWindow allows to change cursor shape.</li>
