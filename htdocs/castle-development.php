@@ -667,6 +667,14 @@ when you're not interested in testing creatures
     </ul>
   </li>
 
+  <li><p>When you want to use this creature on particular level(s),
+    you should add it to <tt>required_resources</tt> in <tt>levels/index.xml</tt>
+    file. Alternatively, if the creature should be always loaded
+    when the player is present (for example, special creature <tt>Arrow</tt>
+    should be always loaded, as the player may come to any level with a bow
+    and shoot some arrows), then it can be added to <tt>required_resources</tt> in
+    <tt>player.xml</tt>.</p></li>
+
   <li><p>For testing various animations of creatures (and adjusting their time
     parameters) you can use <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 
