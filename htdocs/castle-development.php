@@ -45,9 +45,6 @@ sounds and / or providing significant feedback will be mentioned in the
 
 <p>Most important TODOs for now are:
 <ul>
-  <li><p>Finish fixing Radeon issues. Possibly, this is fixed now, in 0.8.0,
-    since memory use was greatly optimized. Test!
-
   <li><p>Make bow much more interesting. (I had a nice idea how to make
     aiming from the bow difficult, but it was not implemented for PGD compo,
     not enough time. But it will be done.)

@@ -40,44 +40,24 @@ packed with creatures, items and sounds.
 from "New Game" menu once you finish the main game
 (you can also switch to this level from the debug menu, if you're impatient).
 
-<p><i>Requirement to run</i>: fast and stable OpenGL.
+<p><i>Requirements to run</i>: fast and stable OpenGL
+(read: good graphic card with up-to-date drivers). At least 512 MB
+RAM is recommended, although on some graphic cards even 256 MB may be enough.
+The game was tested with various graphic cards and OpenGL implementations:
+<a href="http://www.nvidia.com/">NVidia</a>, Radeon with closed drivers
+from ATI and open-source ones,
+<a href="http://www.mesa3d.org/">Mesa</a> OpenGL
+also works (although Mesa will usually be too slow).
 
-<ul>
-  <li><p>Preferably <a href="http://www.nvidia.com/">NVidia</a> graphic card
-    with latest drivers. Around 240 MB of free memory will be needed
-    (although this depends greatly on a graphic card model).
-    Actually, even less memory will be needed since
-    <i>Conserve memory</i> is <i>Yes</i> by default.</p>
+<?php
+/* Not so useful, on good graphic cards loading goes fast anyway.
 
-    <p>Radeon open-source drivers under Linux are reported to
-    work OK too. Radeon cards inside MacBookPro (with closed ATI drivers,
-    tested both under Linux and Mac OS X) also work perfectly fine.
-    Probably all better Radeon models are OK, on any OS... but see below
-    for notes about older Radeon models.
-
-    <p><a href="http://www.mesa3d.org/">Mesa</a> OpenGL
-    also works (although usually will be too slow).
-  </li>
-
-  <li><p>As for many Radeon models with drivers from
-    <a href="http://www.ati.com/">ATI</a> on Windows:
-
-    <p>Around 500 MB free memory is required. Which means that practically
-    a PC with 512 MB is usually not enough (OS, not to mention any
-    other programs like WWW browser, will usually eat much more than 12 MB),
-    so you usually need &gt; 512 MB memory (like 1 GB or more).
-    On some Radeon models this may be different &mdash; your mileage may vary,
-    as they say.
-
-    <p>Also note that "Loading creatures" may take really long
-    time &mdash; a couple of minutes. I know that this sucks, but that's it
-    (for now, of course),
-    If you'll have enough free memory, the game should be playable after
-    a couple of minutes. Fortunately, "Loading creatures" takes a long time
-    only when you enter new game for the first time (so when you change levels,
-    or if you die and will retry the level, you will not have to wait again).
-  </li>
-</ul>
+<p>For a good graphic cards, you may decide to turn
+<i>Conserve memory</i> to <i>No</i>. The game will eat much more
+memory then (both in RAM and on graphic card), but you will have to
+wait only once for "Loading creatures").
+*/
+?>
 
 <p>For ambitious future plans about this game, see
 <?php echo a_href_page_hashlink('my goals for this game',

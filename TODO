@@ -67,4 +67,8 @@ next update:
 <li>arrows are affected by gravity in "the castle",
   underwater "sick" projection effect,
   thanks to Grzegorz Hermanowicz (herrmannek).</li>
-
+<li>Finally pretty much all Radeon issues are fixed now,
+  memory use is much smaller now and loading goes faster.
+  Done by many optimizations with valgrind (callgrind, massif)
+  and by <i>Conserve memory</i> feature (this basically means that
+  only creature animations needed for current level are kept in memory).</li>
