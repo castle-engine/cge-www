@@ -60,7 +60,7 @@ function this_a_href_page($title, $page_name)
           'link' => 'http://vrmlengine.sourceforge.net/',
           'description' =>
 
-"<p>" . this_a_href_page('"The Castle" 0.8.0', 'castle') . " release:
+"<p>" . this_a_href_page('"The Castle" 0.8.0', 'castle') . " released:
 
 <ul>
   <li><p>New demo level: <i>the fountain</i>, done in pure VRML 2.0
@@ -83,6 +83,30 @@ function this_a_href_page($title, $page_name)
       <li>Much better frustum culling for shadows.</li>
     </ul>
   </li>
+</ul>
+
+<p>" . this_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
+
+<ul>
+  <li>Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>)
+    VRML 2.0 feature is fully implemented now !</li>
+  <li>VRML 2.0 lights are correctly handled (<tt>DirectionalLight</tt>
+    affects every sibling, positional lights affect whole scene taking
+    <tt>radius</tt> into account).<li>
+  <li><tt>ROUTE</tt> constructs of VRML 2.0 are parsed now.
+    Although they still don't actually <b>do</b> anything.
+    So at least scenes using routes are partially handled (routes are simply
+    ignored), instead of just producing an error.</li>
+  <li>Default blending dest factor for view3dscene is
+    <tt>GL_ONE_MINUS_SRC_ALPHA</tt>, since this is expected by most VRML
+    authors.</li>  
+  <li>VRML files compressed by gzip are handled OK even if they have
+    normal <tt>.wrl</tt> extension.</li>
+  <li>--write-to-vrml fixed</li>
+  <li>Handling of colors (<tt>color</tt>, <tt>colorPerVertex</tt>,
+    <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>
+    done.</li>
+  <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
 </ul>
 
 <p>Updated version of " . this_a_href_page('VRML engine documentation',
