@@ -51,6 +51,45 @@ function this_a_href_page($title, $page_name)
 
   $changes_log = array(
 
+    array('title' => 'castle 0.8.0, view3dscene 2.3.0 released',
+          'year' => 2007,
+          'month' => 11,
+          'day' => 15,
+          'pubDate' => /* date_to_timestamp.sh '2007-11-15' */ 1195128000,
+          'guid' => '2007-11-15',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'description' =>
+
+"<p>" . this_a_href_page('"The Castle" 0.8.0', 'castle') . " release:
+
+<ul>
+  <li><p>New demo level: <i>the fountain</i>, done in pure VRML 2.0
+    format (no more VRML 1.0). Shadows for whole level are generated dynamically.
+    In the next release, this level is supposed to be augmented with some
+    eye candy graphical effects, for now enjoy VRML 2.0 and shadows :)</p></li>
+
+  <li><p>Shadows improvements:</p>
+
+    <ul>
+      <li>First of all, z-fail implemented and proper detection when z-fail
+        is needed implemented, so faster z-pass is used when possible.
+        \"The Castle\" shows (toggle with Tab, just like for FPS) number
+        of shadows qualified as z-pass, z-fail, z-fail with light cap needed etc.
+      <li>Shadow volumes silhouette optimization improved: now models don't have
+        to be perfect manifold to use this. See
+        <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/</tt>
+        demo, in particular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
+        example.</li>
+      <li>Much better frustum culling for shadows.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Updated version of " . this_a_href_page('VRML engine documentation',
+'vrml_engine_doc') . " is available, with a chapter about shadows
+implementation.</p>
+"),
+
     array('title' => 'glplotter 1.2.0 and view3dscene 2.2.1 released',
           'year' => 2007,
           'month' => 9,
