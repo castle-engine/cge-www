@@ -83,6 +83,21 @@ function this_a_href_page($title, $page_name)
       <li>Much better frustum culling for shadows.</li>
     </ul>
   </li>
+
+  <li><p>Arrows are affected by gravity, and underwater \"sick\" projection
+    effect, thanks to Grzegorz Hermanowicz (herrmannek).</li>
+
+  <li><p>Numerous memory and speed optimizations to load VRML models and
+    animations faster and better (thanks to valgrind (callgrind, massif)).
+    Also in \"The Castle\" there's new <i>Conserve memory</i> feature
+    (this basically means that only creature animations needed for current
+    level are kept in memory), turned on by default.</p>
+
+    <p>So \"Loading creatures\" is much less resource consuming.
+    And finally pretty much all Radeon issues are fixed now.</li>
+
+  <li>Fixed hang (actually, a really really long delay) when closing sound device
+    on Linux (actually, with OpenAL sample implementation).</li>
 </ul>
 
 <p>" . this_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
@@ -99,7 +114,7 @@ function this_a_href_page($title, $page_name)
     ignored), instead of just producing an error.</li>
   <li>Default blending dest factor for view3dscene is
     <tt>GL_ONE_MINUS_SRC_ALPHA</tt>, since this is expected by most VRML
-    authors.</li>  
+    authors.</li>
   <li>VRML files compressed by gzip are handled OK even if they have
     normal <tt>.wrl</tt> extension.</li>
   <li>--write-to-vrml fixed</li>

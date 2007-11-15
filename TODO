@@ -21,23 +21,10 @@ next update:
 <li><?php echo a_href_page('Blender VRML stuff page added,
   with improved VRML 2.0 exporter and kanim exporter', 'blender_stuff'); ?>.</li>
 <li>Everything is compiled using new FPC 2.2.0.</li>
-<li>Numerous memory and speed optimizations to load VRML models and animations
-  faster and better, also "The Castle" "loading creatures" is less resource
-  consuming now.</li>
 <li>Engine is ported and works flawlessly on x86-64 on Linux.
   No more only 32-bit :) Also, it's partially ported to Windows x84-64
   (tested compilation with cross compiler, no actual run tests).
   <p>This also results in the change of archive binary names:
   they all get <tt>i386</tt> after their name, eventually I may release
   precompiled versions for <tt>x86-64</tt> too.</li>
-<li>Fixed hang (actually, a really really long delay) when closing sound device
-  in "The Castle" on Linux (actually, with OpenAL sample implementation).</li>
 <li>GLWindow allows to change cursor shape.</li>
-<li>arrows are affected by gravity in "the castle",
-  underwater "sick" projection effect,
-  thanks to Grzegorz Hermanowicz (herrmannek).</li>
-<li>Finally pretty much all Radeon issues are fixed now,
-  memory use is much smaller now and loading goes faster.
-  Done by many optimizations with valgrind (callgrind, massif)
-  and by <i>Conserve memory</i> feature (this basically means that
-  only creature animations needed for current level are kept in memory).</li>
