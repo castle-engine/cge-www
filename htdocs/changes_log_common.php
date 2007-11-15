@@ -107,7 +107,7 @@ function this_a_href_page($title, $page_name)
     VRML 2.0 feature is fully implemented now !</li>
   <li>VRML 2.0 lights are correctly handled (<tt>DirectionalLight</tt>
     affects every sibling, positional lights affect whole scene taking
-    <tt>radius</tt> into account).<li>
+    <tt>radius</tt> into account).</li>
   <li><tt>ROUTE</tt> constructs of VRML 2.0 are parsed now.
     Although they still don't actually <b>do</b> anything.
     So at least scenes using routes are partially handled (routes are simply
@@ -123,6 +123,35 @@ function this_a_href_page($title, $page_name)
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
 </ul>
+
+<p>" . this_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
+released. Most features mentioned above for view3dscene and castle
+(shadows, optimizations, all VRML 2.0 features) are actually implemented
+in the engine, and other programs only use them. Additionally, some
+more internal features not mentioned above:</p>
+
+<ul>
+  <li><p>Engine is ported and works flawlessly on x86-64 on Linux.
+    No more only 32-bit :) Also, it's partially ported to Windows x84-64
+    (tested compilation with cross compiler, no actual run tests).</p>
+
+    <p>This also results in the change of archive binary names:
+    they all get <tt>i386</tt> after their name, eventually I may release
+    precompiled versions for <tt>x86-64</tt> too.</p></li>
+
+  <li><p>GLWindow allows to change cursor shape.</p></li>
+
+  <li><p>Everything is compiled using new FPC 2.2.0.</p></li>
+</ul>
+
+<p>" . this_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
+released: many new tests to test new features (protos, external protos,
+colors, light scope, running path to test NavigationInfo.speed),
+some important VRML 1.0 tests ported to VRML 2.0 too (castle,
+relative_names, texture_test, house behind the glass).</p>
+
+<p>" . this_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
+exporter and kanim exporter', 'blender_stuff') . ".</p>
 
 <p>Updated version of " . this_a_href_page('VRML engine documentation',
 'vrml_engine_doc') . " is available, with a chapter about shadows

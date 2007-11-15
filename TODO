@@ -13,19 +13,3 @@ Text for next update:
 After next update:
 - run init_counters to init blender_stuff counter
 
-next update:
-<li>kambi_vrml_test_suite (major ver++): many new tests to test new
-  features (protos, external protos, colors, light scope, running path to test
-  NavigationInfo.speed),
-  some important VRML 1.0 tests ported to VRML 2.0 too (castle,
-  relative_names, texture_test, house behind the glass).</li>
-<li><?php echo a_href_page('Blender VRML stuff page added,
-  with improved VRML 2.0 exporter and kanim exporter', 'blender_stuff'); ?>.</li>
-<li>Everything is compiled using new FPC 2.2.0.</li>
-<li>Engine is ported and works flawlessly on x86-64 on Linux.
-  No more only 32-bit :) Also, it's partially ported to Windows x84-64
-  (tested compilation with cross compiler, no actual run tests).
-  <p>This also results in the change of archive binary names:
-  they all get <tt>i386</tt> after their name, eventually I may release
-  precompiled versions for <tt>x86-64</tt> too.</li>
-<li>GLWindow allows to change cursor shape.</li>
