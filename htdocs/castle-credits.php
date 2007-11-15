@@ -23,7 +23,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>Programming and modelling (of everything not covered below) :
-Michalis Kamburelis.
+<a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
 
 <p><a href="http://stoma.bestweb.pl/">Szymon Stoma and Ka¶ka Zaremba</a>
 designed and modelled the scenario
@@ -33,7 +33,13 @@ provided some sounds and a large amount of feedback. Thanks!
 <!-- All their work is on GNU GPL,
 contact Szymon &amp; Ka¶ka</a>
 for other licensing.
--->
+--></p>
+
+<p><a href="http://sourceforge.net/users/herrmannek/">Grzegorz Hermanowicz
+(herrmannek)</a> implemented underwater "sick"
+projection effect and started gravity for arrows implementation,
+thanks ! Finally we have a 2nd guy with SVN write access,
+so if something gets broken &mdash; that's totally not me :)</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -83,7 +89,7 @@ for other licensing.
   <li>Many textures from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public
     domain Golgotha textures</a></li>
 
-  <li>Many textures from <a href="http://lemog.free.fr/">lemog.free.fr</a>
+  <li>Many textures from <a href="http://lemog.fr/">lemog.fr</a>
 
   <li>Some post-processing of VRML models is done using EmacsLisp,
     see <tt>data/kambi-castle-utils.el</tt> and various Makefiles,
@@ -104,8 +110,9 @@ for other licensing.
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>The sound editing program that I use is
-    <a href="http://www.metadecks.org/software/sweep/">sweep</a>.
+  <li>I use <a href="http://www.metadecks.org/software/sweep/">Sweep</a>
+    and <a href="http://audacity.sourceforge.net/">Audacity</a> to edit
+    sounds.</li>
   <li><a href="http://sox.sourceforge.net/">Sox</a> is also a great program,
     suitable for batch processing of sounds.
 
@@ -169,11 +176,13 @@ for other licensing.
 <?php echo $toc->html_section(); ?>
 
 <p>Inside the game I added, as a joke/experiment/tribute,
-a level directly taken from well-known
+a level based on well-known
 <a href="http://www.idsoftware.com/">id Software</a> game "Doom".
 It's available to you from "New Game" menu
 once you completed the main game (you can also enter it using debug menu,
-if you're impatient).
+if you're impatient). Level geometry and textures come from original DOOM E1M1
+level, the level is just converted to VRML (and changed in many places
+for my engine).</p>
 
 <p>Thanks go to whole Id staff that produced DOOM. For a lot of technical details
 how DOOM E1M1 level was done in my game, see the file
