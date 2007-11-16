@@ -122,6 +122,9 @@ function this_a_href_page($title, $page_name)
     <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
+  <li>3D text possible, thanks to <a
+    href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text_depth\">kambiDepth</a>
+    field for Text nodes.</li>
 </ul>
 
 <p>" . this_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
@@ -146,7 +149,7 @@ more internal features not mentioned above:</p>
 
 <p>" . this_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
 released: many new tests to test new features (protos, external protos,
-colors, light scope, running path to test NavigationInfo.speed),
+colors, light scope, running path to test NavigationInfo.speed, 3d text),
 some important VRML 1.0 tests ported to VRML 2.0 too (castle,
 relative_names, texture_test, house behind the glass).</p>
 

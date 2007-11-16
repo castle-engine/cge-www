@@ -90,6 +90,8 @@ function ext_long_title($ext_name, $title)
             ext_short_title('ext_headlight', 'Node <tt>KambiHeadLight</tt>') .
             ext_short_title('ext_shadows',
               'Fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes') .
+            ext_short_title('ext_text_depth',
+              'Field <tt>kambiDepth</tt> for text nodes') .
             '';
           ?>
         </ol>
@@ -820,6 +822,20 @@ in <?php echo a_href_page("Kambi VRML test suite",
     This is a useful trick when there is no comfortable main light on the scene,
     so you want to add it, but you don't want to make the scene
     actually brighter.
+  </li>
+
+  <?php
+    echo ext_long_title('ext_text_depth',
+      'Field <tt>kambiDepth</tt> for text nodes'); ?>
+    To <tt>Text</tt> node (in VRML 2.0) and <tt>AsciiText</tt> (in VRML 1.0)
+    we add a field named <tt>kambiDepth</tt>, <tt>SFSingle</tt>, by default 0,
+    must always be &gt; 0.
+
+    <p>If this is specified as &lt;&gt; 0, then the text is 3D.
+    The text is pushed into negative Z by amount Depth.
+
+    <p>In the future we may add here a field <tt>kambiSolid</tt> that
+    would be <tt>TRUE</tt> by default to add backface culling to such text.
   </li>
 </ul>
 
