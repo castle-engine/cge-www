@@ -68,7 +68,9 @@ function this_a_href_page($title, $page_name)
     In the next release, this level is supposed to be augmented with some
     eye candy graphical effects, for now enjoy VRML 2.0 and shadows :)</p></li>
 
-  <li><p>Shadows improvements:</p>
+  <li><p>Shadows improvements (see also
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">new chapter
+    in documentation about shadows</a>) :</p>
 
     <ul>
       <li>First of all, z-fail implemented and proper detection when z-fail
@@ -98,7 +100,7 @@ function this_a_href_page($title, $page_name)
 
   <li>Fixed hang (actually, a really really long delay) when closing sound device
     on Linux (actually, with OpenAL sample implementation).</li>
-    
+
   <li>Demo levels are available directly from \"New game\" menu now.</li>
   <li>Nicer credits screen.</li>
 </ul>
