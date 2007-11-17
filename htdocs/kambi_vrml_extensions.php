@@ -158,7 +158,15 @@ VRML viewers. However:
     handled by other VRML browsers.</p>
 
     <p>I designate my extensions by URN like
-    "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".
+    "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
+
+    <p>Some extensions may use fallback implementation on URL
+    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a>.
+    Such fallback URL will allow other VRML browsers to partially handle
+    our extensions. For example, see <tt>EXTERNPROTO</tt> example
+    for <a href="#ext_text3d">Text3D</a> &mdash; browsers that don't handle
+    Text3D node directly should use our fallback URL and render Text3D
+    like normal 2D text node.</p>
 
     <p>TODO: eventual goal is to make all extensions this way, so that they
     can be nicely omitted.
@@ -857,13 +865,28 @@ in <?php echo a_href_page("Kambi VRML test suite",
     &mdash; so this node also allows you to make 2D text that's supposed to be
     visible from only front side.</p>
 
+    <p>See <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, file
+    <tt>vrml_2/kambi_extensions/text_depth.wrl</tt> for example use of this.</p>
+
     <p>Compatibility:
     <ul>
-      <li>You can specify external prototype before using
-        this node, see <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?>, file
-        <tt>vrml_2/kambi_extensions/text_depth.wrl</tt>. This way
-        other VRML browsers should be able to at least gracefully omit this.</li>
+      <li>You should specify external prototype before using this node:
+
+        <pre>
+EXTERNPROTO Text3D [
+  exposedField MFString string
+  exposedField SFNode fontStyle
+  exposedField MFFloat length
+  exposedField SFFloat maxExtent
+  exposedField SFFloat depth
+  exposedField SFBool solid
+] [ "urn:vrmlengine.sourceforge.net:node:Text3D",
+    "http://vrmlengine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
+</pre>
+
+        <p>This way other VRML browsers should be able to
+        render Text3D node like normal 2D Text.</p></li>
 
       <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
         node from Parallel Graphics</a>. At the beginning I implemented this

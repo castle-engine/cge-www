@@ -1,0 +1,28 @@
+#VRML V2.0 utf8
+
+# This VRML file specifies "fallback" prototypes for extensions
+# of Kambi VRML game engine,
+# [http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php].
+#
+# This file will *not* be used by Kambi VRML game engine programs
+# (like view3dscene), as they have appropriate nodes simply built-in.
+#
+# This file may be used by other VRML browsers so that they are able
+# to partially understand these extension nodes, or at least omit them
+# gracefullly.
+
+PROTO Text3D [
+  exposedField MFString string []
+  exposedField SFNode fontStyle NULL
+  exposedField MFFloat length []
+  exposedField SFFloat maxExtent 0
+  exposedField SFFloat depth 0.1
+  exposedField SFBool solid TRUE
+] {
+  Text {
+    string IS string
+    fontStyle IS fontStyle
+    length IS length
+    maxExtent IS maxExtent
+  }
+}
