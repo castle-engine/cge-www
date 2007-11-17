@@ -50,12 +50,38 @@ function node_field($field_kind,
   return $r;
 }
 
-function ext_short_title($ext_name, $title)
-{ return "<li><a href=\"#$ext_name\">$title</a>\n"; }
+$extensions['ext_mix_vrml_1_2'] = 'Mixing VRML 1.0 and 2.0 nodes and features';
+$extensions['ext_fog_volumetric'] = 'Volumetric fog (additional fields for <tt>Fog</tt> node)';
+$extensions['ext_fog_immune'] = 'Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)';
+$extensions['ext_inline_for_all'] = 'Inline nodes allow to include models in 3DS, MD3, OBJ and GEO formats and any VRML format';
+$extensions['ext_kambi_triangulation'] = 'Specify triangulation (node <tt>KambiTriangulation</tt>)';
+$extensions['ext_gzip'] = 'VRML files may be compressed by gzip';
+$extensions['ext_navigationinfo'] = 'Node <tt>NavigationInfo</tt> handling details';
+$extensions['ext_cameras_alt_orient'] = 'Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes';
+$extensions['ext_material_mirror'] = 'Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)';
+$extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</tt>)';
+$extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
+$extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
 
-function ext_long_title($ext_name, $title)
-{ return "<li><p><a name=\"$ext_name\"><b>$title</b></a><br>\n"; }
+$extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
+$extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
+$extensions['ext_iv_in_vrml'] = 'Parts of Inventor in VRML';
+$extensions['ext_multi_root_node'] = 'Multi root node';
+$extensions['ext_material_phong_brdf_fields'] = "Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node";
+$extensions['ext_wwwinline_separate'] = 'Field <tt>separate</tt> for <tt>WWWInline</tt> node';
 
+function ext_short_title($ext_name)
+{
+  global $extensions;
+  return "<li><a href=\"#$ext_name\">" . $extensions[$ext_name] . "</a>\n";
+}
+
+function ext_long_title($ext_name)
+{
+  global $extensions;
+  return "<li><p><a name=\"$ext_name\"><b>" .
+    $extensions[$ext_name] . "</b></a><br>\n";
+}
 ?>
 
 <?php echo pretty_heading("Kambi VRML extensions");  ?>
@@ -69,28 +95,18 @@ function ext_long_title($ext_name, $title)
       <li><a href="#section_exts_vrmlall">Extensions for all VRML versions</a>
         <ol>
           <?php echo
-            ext_short_title('ext_mix_vrml_1_2',
-              'Mixing VRML 1.0 and 2.0 nodes and features') .
-            ext_short_title('ext_fog_volumetric',
-              '<tt>Fog</tt> node additional fields to define volumetric fog') .
-            ext_short_title('ext_fog_immune',
-              '<tt>fogImmune</tt> field for <tt>Material</tt> node') .
-            ext_short_title("ext_inline_for_all", "Inline nodes
-              allow to include models in 3DS, MD3, OBJ and GEO formats and any VRML format") .
-            ext_short_title('ext_kambi_triangulation',
-              'Node <tt>KambiTriangulation</tt>') .
-            ext_short_title('ext_gzip', 'VRML files may be compressed by gzip') .
-            ext_short_title('ext_navigationinfo',
-              'Node <tt>NavigationInfo</tt> handling details') .
-            ext_short_title('ext_cameras_alt_orient', 'Fields <tt>direction</tt>
-              and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>,
-              <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes') .
-            ext_short_title('ext_material_mirror',
-              'Field <tt>mirror</tt> for <tt>Material</tt> node') .
-            ext_short_title('ext_headlight', 'Node <tt>KambiHeadLight</tt>') .
-            ext_short_title('ext_shadows',
-              'Fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes') .
-            ext_short_title('ext_text3d', '<tt>Text3D</tt> node') .
+            ext_short_title('ext_mix_vrml_1_2') .
+            ext_short_title('ext_fog_volumetric') .
+            ext_short_title('ext_fog_immune') .
+            ext_short_title("ext_inline_for_all") .
+            ext_short_title('ext_kambi_triangulation') .
+            ext_short_title('ext_gzip') .
+            ext_short_title('ext_navigationinfo') .
+            ext_short_title('ext_cameras_alt_orient') .
+            ext_short_title('ext_material_mirror') .
+            ext_short_title('ext_headlight') .
+            ext_short_title('ext_shadows') .
+            ext_short_title('ext_text3d') .
             '';
           ?>
         </ol>
@@ -99,20 +115,12 @@ function ext_long_title($ext_name, $title)
       <li><a href="#section_exts_vrml1">VRML 1.0 only extensions</a>
         <ol>
           <?php echo
-            ext_short_title('ext_cone_cyl_parts_none',
-              'Field <tt>parts</tt>
-              in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have
-              value <tt>NONE</tt>') .
-            ext_short_title('ext_light_attenuation',
-              'Fields <tt>attenuation</tt>
-              and <tt>ambientIntensity</tt> for light nodes') .
-            ext_short_title('ext_iv_in_vrml', 'Parts of Inventor in VRML') .
-            ext_short_title('ext_multi_root_node', 'Multi root node') .
-            ext_short_title('ext_material_phong_brdf_fields',
-               "Fields describing physical properties (Phong's BRDF) " .
-               'for <tt>Material</tt> node') .
-            ext_short_title('ext_wwwinline_separate',
-              'Field <tt>separate</tt> for <tt>WWWInline</tt> node') .
+            ext_short_title('ext_cone_cyl_parts_none') .
+            ext_short_title('ext_light_attenuation') .
+            ext_short_title('ext_iv_in_vrml') .
+            ext_short_title('ext_multi_root_node') .
+            ext_short_title('ext_material_phong_brdf_fields') .
+            ext_short_title('ext_wwwinline_separate') .
             '';
           ?>
         </ol>
@@ -127,7 +135,7 @@ with VRML files.
 <?php
 /* Old and useless notes:
 
-Many of my programs play with 3d models in VRML format.
+Many of our programs play with 3d models in VRML format.
 Most importantly, there is
 <?php echo a_href_page("view3dscene", "view3dscene"); ?> &mdash;
 VRML (and some other formats) viewer, there is also
@@ -157,7 +165,7 @@ VRML viewers. However:
     so that even things inside <tt>kambi_extensions/</tt> should be partially
     handled by other VRML browsers.</p>
 
-    <p>I designate my extensions by URN like
+    <p>Our extensions I identified by URN like
     "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
 
     <p>Some extensions may use fallback implementation on URL
@@ -209,8 +217,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
 <h4><a name="section_exts_vrmlall">Extensions for all VRML versions</a></h4>
 
 <ul>
-  <?php echo ext_long_title('ext_mix_vrml_1_2',
-    'Mixing VRML 1.0 and 2.0 nodes and features'); ?>
+  <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
+
     Because of the way how I implemented VRML 1.0 and 2.0 handling,
     you have effectively the <i>sum of VRML 1.0 and 2.0 features</i>
     available. Which means that actually you can mix VRML 1.0 and 2.0
@@ -235,8 +243,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     <p>You can also <a href="#ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or the other way around</a>.
 
-  <?php echo ext_long_title('ext_fog_volumetric',
-    '<tt>Fog</tt> node additional fields to define volumetric fog'); ?>
+  <?php echo ext_long_title('ext_fog_volumetric'); ?>
+
     I add to <tt>Fog</tt> node some additional fields to allow
     definition of volumetric fog:
 
@@ -296,7 +304,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     flipping <tt>volumetricDirection</tt> flips also the meaning of
     <tt>volumetricVisibilityStart</tt>).
 
-    <p>Oh, and note that in my programs for now <tt>EXPONENTIAL</tt> fog
+    <p>Oh, and note that in our programs for now <tt>EXPONENTIAL</tt> fog
     (both volumetric and not) is actually approximated by OpenGL
     exponential fog. Equations for OpenGL exponential fog and VRML
     exponential fog are actually different and incompatible,
@@ -307,7 +315,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     has test VRMLs for this
     (see <tt>vrml_1/kambi_extensions/fog_volumetric/</tt> and
     <tt>vrml_2/kambi_extensions/fog_volumetric/</tt> subdirectories).
-    Also my games <?php echo a_href_page('malfunction', 'malfunction'); ?>
+    Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
 
     <p>One additional field not explained yet: <tt>alternative</tt>.
@@ -335,8 +343,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     <tt>fogType</tt> field of <tt>Fog</tt> node is not recognized.</p>
   </li>
 
-<?php echo ext_long_title('ext_fog_immune',
-    '<tt>fogImmune</tt> field for <tt>Material</tt> node'); ?>
+  <?php echo ext_long_title('ext_fog_immune'); ?>
+
     New field for <tt>Material</tt> node:
 
     <?php echo node_begin("Material");
@@ -362,8 +370,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     is not affected by the fog color.
   </li>
 
-  <?php echo ext_long_title("ext_inline_for_all", "Inline nodes
-    allow to include models in 3DS, MD3, OBJ and GEO formats and any VRML format"); ?>
+  <?php echo ext_long_title("ext_inline_for_all"); ?>
+
     Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControls</tt> in VRML 2.0
     and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
     other VRML files, but also other 3DS, MD3, OBJ (Wavefront) and GEO models.
@@ -377,8 +385,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     You're free to include VRML 1.0 file inside VRML 2.0 file,
     or the other way around. Everything works.
 
-  <?php echo ext_long_title('ext_kambi_triangulation',
-    'Node <tt>KambiTriangulation</tt>'); ?>
+  <?php echo ext_long_title('ext_kambi_triangulation'); ?>
+
     New node:
 
     <?php echo node_begin("KambiTriangulation");
@@ -439,9 +447,9 @@ in <?php echo a_href_page("Kambi VRML test suite",
     If the object is small you can triangulate less, to get
     better rendering time.
 
-  <?php echo ext_long_title(
-    'ext_gzip', 'VRML files may be compressed by gzip'); ?>
-    All my VRML programs can handle VRML files compressed with gzip.
+  <?php echo ext_long_title('ext_gzip'); ?>
+
+    All our programs can handle VRML files compressed with gzip.
 
     <p>E.g. you can call <?php echo a_href_page('view3dscene',
     'view3dscene'); ?> like
@@ -487,8 +495,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     is done magically over HTTP protocol, and you don't have to actually compress
     VRML files to save bandwidth.</p>
 
-  <?php echo ext_long_title(
-    'ext_navigationinfo', 'Node <tt>NavigationInfo</tt> handling details'); ?>
+  <?php echo ext_long_title('ext_navigationinfo'); ?>
+
     Various details about how we handle NavigationInfo node in
     <?php echo a_href_page('view3dscene','view3dscene'); ?>:
     <ul>
@@ -514,7 +522,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
         navigation is not properly defined :)
         -->
 
-      <li>Since my programs don't support any scripting, forcing camera
+      <li>Since our engine doesn't support any scripting, forcing camera
         to be stationary or hiding some user controls doesn't make much sense.
         That's why <tt>speed</tt> = 0.0 is ignored (i.e.
         equivalent to <tt>speed</tt> = 1.0), navigation type
@@ -542,9 +550,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
         based on scene's bounding box sizes.
     </ul>
 
-  <li><p><a name="ext_cameras_alt_orient"><b>Fields <tt>direction</tt>
-    and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>,
-    <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes</b></a><br>
+  <?php echo ext_long_title('ext_cameras_alt_orient'); ?>
+
     Standard VRML way of specifying camera orientation
     (look direction and up vector) is to use <tt>orientation</tt> field
     that says how to rotate standard look direction vector (&lt;0,0,-1&gt;)
@@ -570,7 +577,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
         camera node and I see your <tt>orientation</tt> field
         &mdash; well, I still have no idea how your camera is oriented.
         I have to fire up some calculating program, or one
-        of programs that view VRML (like my own view3dscene).
+        of programs that view VRML (like view3dscene).
         This is not some terrible disadvantage, but still it matters
         for me.
 
@@ -651,8 +658,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
 
      <!-- funkcje VRMLFields.CamDirUp2Orient i VectorMath.RotatePointAroundAxis -->
 
-  <li><p><a name="ext_material_mirror"><b>Field <tt>mirror</tt> for
-    <tt>Material</tt> node</b></a><br>
+  <?php echo ext_long_title('ext_material_mirror'); ?>
 
     You can mark surfaces as being mirrors by using this field.
 
@@ -706,8 +712,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     by <tt>shininess</tt> and <tt>specularColor</tt> fields as well as
     by <tt>mirror</tt> field.
 
-  <?php
-    echo ext_long_title('ext_headlight', 'Node <tt>KambiHeadLight</tt>'); ?>
+  <?php echo ext_long_title('ext_headlight'); ?>
+
     If this node is present and headlight is turned on (e.g. because
     <tt>headlight</tt> field of <tt>NavigationInfo</tt> is <tt>TRUE</tt>)
     then this configures the headlight properties.
@@ -741,9 +747,8 @@ in <?php echo a_href_page("Kambi VRML test suite",
     (I didn't use <tt>beamWidth</tt> from VRML 2.0 spec because it
     translates badly to OpenGL).
 
-  <?php
-    echo ext_long_title('ext_shadows',
-      'Fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes') ?>
+  <?php echo ext_long_title('ext_shadows'); ?>
+
     To all VRML light nodes, we add two fields:
 
     <?php
@@ -758,7 +763,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     ?>
 
     These extensions specify the shadows behavior.
-    They are parsed and handled generally in my
+    They are parsed and handled generally in our
     <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>.
     But they actually <b>do something</b> only when we render with shadows &mdash;
     which means, for now, that these extensions are usefull for you
@@ -831,8 +836,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
     actually brighter.
   </li>
 
-  <?php
-    echo ext_long_title('ext_text3d', '<tt>Text3D</tt> node'); ?>
+  <?php echo ext_long_title('ext_text3d'); ?>
 
     <p>We add new node:
 
@@ -901,15 +905,13 @@ EXTERNPROTO Text3D [
 <h4><a name="section_exts_vrml1">VRML 1.0 only extensions</a></h4>
 
 <ul>
-  <li><p><a name="ext_cone_cyl_parts_none"><b>Field <tt>parts</tt>
-    in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have
-    value <tt>NONE</tt></b></a><br>
+  <?php echo ext_long_title('ext_cone_cyl_parts_none'); ?>
+
     This way every possible value is allowed for <tt>parts</tt>
     field. This is comfortable for operating on these nodes,
     especially from programs &mdash; there is no special "forbidden" value.
 
-  <li><p><a name="ext_light_attenuation"><b>Fields <tt>attenuation</tt>
-    and <tt>ambientIntensity</tt> for light nodes</b></a><br>
+  <?php echo ext_long_title('ext_light_attenuation'); ?>
 
     Lights that have a position, i.e. <tt>PointLight</tt> and <tt>SpotLight</tt>
     nodes, have the field <tt>attenuation</tt>. The meaning of this
@@ -938,7 +940,8 @@ EXTERNPROTO Text3D [
         <tt>color</tt> * <tt>intensity</tt>.
     </ol>
 
-  <li><p><a name="ext_iv_in_vrml"><b>Parts of Inventor in VRML</b></a><br>
+  <?php echo ext_long_title('ext_iv_in_vrml'); ?>
+
     Some Inventor-specific things are allowed:
     <ul>
       <li><tt>ShapeHints</tt> node has <tt>hints</tt> field of type
@@ -956,7 +959,8 @@ EXTERNPROTO Text3D [
     files that sometimes falsely claim that they are VRML 1.0 while in
     fact they use some Inventor-specific features.
 
-  <li><p><a name="ext_multi_root_node"><b>Multi root node</b></a><br>
+  <?php echo ext_long_title('ext_multi_root_node'); ?>
+
     VRML 1.0 file may have any number of root nodes
     (VRML 1.0 spec requires that there is exactly one root node).
     I implemented this because
@@ -968,9 +972,7 @@ EXTERNPROTO Text3D [
       <li>This was very easy to implement :)
     </ol>
 
-  <li><p><a name="ext_material_phong_brdf_fields"><b>Fields
-    describing physical properties (Phong's BRDF) for <tt>Material</tt>
-    node</b></a><br>
+  <?php echo ext_long_title('ext_material_phong_brdf_fields'); ?>
 
     In <?php echo a_href_page("rayhunter's","rayhunter") ?>
     <i>path-tracer</i> I implemented Phong's BRDF.
@@ -1057,9 +1059,8 @@ EXTERNPROTO Text3D [
     <?php echo a_href_page("rayhunter", "rayhunter") ?> and
     <?php echo a_href_page("view3dscene", "view3dscene") ?>.
 
-  <?php echo ext_long_title(
-     'ext_wwwinline_separate',
-     'Field <tt>separate</tt> for <tt>WWWInline</tt> node'); ?>
+  <?php echo ext_long_title('ext_wwwinline_separate'); ?>
+
     I'm adding new field:
     <?php echo node_begin("WWWInline");
       echo
@@ -1091,7 +1092,7 @@ Group {
     In other words, do the state changes inside <tt>1.wrl</tt>
     "leak outside" of WWWInline node ?
 
-    <p>The answer (stated by VRML specification, and followed by my
+    <p>The answer (stated by VRML specification, and followed by our
     programs when <tt>separate</tt> is TRUE (the default)) is that
     the cube uses the default material. <i>Not</i> the red material.
     In other words, state changes do not "leak" outside.
