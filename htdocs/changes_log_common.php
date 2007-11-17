@@ -296,11 +296,23 @@ function change_log_to_html($change_log_item)
     $change_log_item['description'];
 }
 
-function last_change_log_to_html()
+function last_change_log_to_html($full_description = true)
 {
-  global $changes_log;
+  global $changes_log, $month_names;
 
-  return change_log_to_html($changes_log[0]);
+  if ($full_description)
+  {
+    return change_log_to_html($changes_log[0]);
+  } else
+  {
+    return '<p><b>' .
+      $changes_log[0]['title'] . '</b> (' .
+      $month_names[$changes_log[0]['month']] . ' ' .
+      $changes_log[0]['day'] . ', ' .
+      $changes_log[0]['year'] . ') :</p><p>See ' .
+        a_href_page('changes_log', 'changes_log') . ' for a full list of changes
+        in this release, it was too long to fit on the main page.';
+  }
 }
 
 ?>

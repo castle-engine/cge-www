@@ -1,8 +1,6 @@
 Next WWW update:
-- main page should contain only a title of last update, not full long text...
-
-- reference update
-- vrml_engine_doc release (tar.gz, html, pdf)
+- reference update (locally done)
+- vrml_engine_doc release (tar.gz, html, pdf) (locally done)
 
 - view3dscene release
 - kambi_vrml_test_suite release

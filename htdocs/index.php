@@ -29,7 +29,7 @@ Two most important programs available here are
 <div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
 <?php
   require 'changes_log_common.php';
-  echo last_change_log_to_html();
+  echo last_change_log_to_html(false);
 ?>
 </div>
 
