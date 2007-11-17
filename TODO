@@ -1,10 +1,12 @@
 Next WWW update:
 - main page should contain only a title of last update, not full long text...
 
+- reference update
+- vrml_engine_doc release (tar.gz, html, pdf)
+
 - view3dscene release
 - kambi_vrml_test_suite release
-- kambi_vrml_game_engin  release
-- vrml_engine_doc release (tar.gz, html, pdf)
+- kambi_vrml_game_engine release
 - castle release
 Text for next update:
 
