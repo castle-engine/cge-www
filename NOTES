@@ -46,6 +46,12 @@ Procedure to update WWW content:
 ("locally" means that this is done on a local copy of the repository
 www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
+- Release on SourceForge (hint: use releaseforge for comfort).
+  releasename is just a version number.
+  As changelog, paste
+    See http://vrmlengine.sourceforge.net/changes_log.php
+  After release, download and compare are the files the same.
+
 - if you modified kambi_vrml_game_engine, you may want to update apidoc/
 
 - good practice after large changes is to check
