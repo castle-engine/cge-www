@@ -1,12 +1,3 @@
 Next WWW update:
-- reference update (locally done)
-- vrml_engine_doc release (tar.gz, html, pdf) (locally done)
-- view3dscene release (m, w, l, src done)
-- kambi_vrml_test_suite release (done)
-- kambi_vrml_game_engine release (done)
-- castle release (m, w, l, src done)
 Text for next update:
-
 After next update:
-- run init_counters to init blender_stuff counter
-- sources_docs counter rename to reference

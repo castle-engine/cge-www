@@ -309,9 +309,33 @@ function last_change_log_to_html($full_description = true)
       $changes_log[0]['title'] . '</b> (' .
       $month_names[$changes_log[0]['month']] . ' ' .
       $changes_log[0]['day'] . ', ' .
-      $changes_log[0]['year'] . ') :</p><p>See ' .
-        a_href_page('changes_log', 'changes_log') . ' for a full list of changes
-        in this release, it was too long to fit on the main page.';
+      $changes_log[0]['year'] . ") :</p>
+
+<p>A lot of updates today. Here's a shortcut of only the most important changes
+(see " . a_href_page('changes_log', 'changes_log') . " for a full list of changes) :
+<ul>
+  <li>" . a_href_page('"The Castle" 0.8.0', 'castle') . " released:
+    new demo level <i>the fountain</i> (VRML 2.0, dynamic shadows),
+    many shadows improvements (z-fail, proper detection z-pass/z-fail, shadow
+    culling etc.), conserve memory feature (all Radeon issues should be fixed
+    now).</li>
+  <li>" . a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
+    prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
+    VRML 2.0 lights are correctly handled,
+    handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
+    <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+  <li>" . a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
+    released: most things mentioned above were actually implemented in the base
+    engine units, also: x86-64 port.</li>
+  <li>" . a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
+    released: many new tests for new features.</li>
+  <li>" . a_href_page('Blender VRML stuff page added, with improved VRML 2.0
+    exporter and kanim exporter', 'blender_stuff') . ".</li>
+  <li>Updated version of " . a_href_page('VRML engine documentation',
+    'vrml_engine_doc') . " is available, with a
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
+    about shadows implementation.</p></li>
+</ul>";
   }
 }
 
