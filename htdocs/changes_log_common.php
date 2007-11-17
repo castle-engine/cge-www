@@ -98,6 +98,9 @@ function this_a_href_page($title, $page_name)
 
   <li>Fixed hang (actually, a really really long delay) when closing sound device
     on Linux (actually, with OpenAL sample implementation).</li>
+    
+  <li>Demo levels are available directly from \"New game\" menu now.</li>
+  <li>Nicer credits screen.</li>
 </ul>
 
 <p>" . this_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
