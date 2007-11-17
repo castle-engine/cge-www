@@ -14,9 +14,12 @@ cd ../htdocs/
 for PHP_NAME in *.php; do
   case "$PHP_NAME" in
     # Ignore PHP files used only by including from other pages,
-    # not intended to be displayed directly
+    # not intended to be displayed directly (or RSS page or php with
+    # only header(location:) redirection).
     vrmlengine_functions.php | index_funcs.php | last_update.php \
-      | generated_versions.php | octree_consts.php | raytr_gallery_funcs.php )
+      | generated_versions.php | octree_consts.php | raytr_gallery_funcs.php \
+      | changes_log_common.php | changes_log_feed.php | gen_funkcja.pl.php \
+      | glplotter.pl.php | sources_docs.php )
       ;;
 
     *)
