@@ -53,7 +53,7 @@ right after another.
 <h2><a name="section_download">Download</a></h2>
 
 <?php echo_standard_program_download(
-  'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES, true); ?>
+  'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES); ?>
 
 <p>Installing:</p>
 

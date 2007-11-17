@@ -174,7 +174,7 @@ is required, just unpack these archives and run the program.
 This documentation is also included in the archives
 (look in <tt>documentation</tt> subdirectory) for offline viewing.
 <?php echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE, true); ?>
+  VERSION_VIEW3DSCENE, true, false); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

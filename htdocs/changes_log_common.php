@@ -54,9 +54,9 @@ function this_a_href_page($title, $page_name)
     array('title' => 'castle 0.8.0, view3dscene 2.3.0 released',
           'year' => 2007,
           'month' => 11,
-          'day' => 15,
-          'pubDate' => /* date_to_timestamp.sh '2007-11-15' */ 1195128000,
-          'guid' => '2007-11-15',
+          'day' => 17,
+          'pubDate' => /* date_to_timestamp.sh '2007-11-17' */ 1195300800,
+          'guid' => '2007-11-17',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'description' =>
 

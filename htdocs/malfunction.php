@@ -33,7 +33,7 @@ or something like that. The truth is that
 <?php echo $toc->html_section(); ?>
 
 <?php echo_standard_program_download(
-  'malfunction', 'malfunction', VERSION_MALFUNCTION, true); ?>
+  'malfunction', 'malfunction', VERSION_MALFUNCTION); ?>
 
 <p>Installing:</p>
 
