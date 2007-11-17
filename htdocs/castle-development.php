@@ -15,7 +15,9 @@
       new TocItem('Creatures', 'creatures', 1),
       new TocItem('Creating sounds', 'creating_sounds'),
       new TocItem('Compiling', 'compiling'),
-      new TocItem('Game goals', 'goals')
+      new TocItem('Game goals', 'goals'),
+      new TocItem('Some implementation notes (interesting only' .
+        ' for programmers probably)', 'implementation'),
     )
   );
 ?>
@@ -945,6 +947,99 @@ most important here is <a href="http://www.blender3d.org/">Blender</a>
 used to make all the models (see
 <?php echo a_href_page('credits page', 'castle-credits'); ?> for
 full list of things and resources used).
+
+<?php echo $toc->html_section(); ?>
+
+<p>Collisions:
+
+<ul>
+  <li><p>Everywhere in the game GetCameraHeight returns normal HeightAboveTheGround.
+    Usually in my general units (kambi_vrml_game_engine units) I don't make
+    any assumptions about HomeCameraUp, it can be any vector &mdash; which means
+    that SqrHeightAboveTheGround is easier to calculate,
+    and calculating actual HeightAboveTheGround costs us Sqrt call.
+    But in this game, we know that HomeCameraUp is always (0, 0, 1),
+    and this means that actual HeightAboveTheGround can be calculated
+    easily (by TVRMLTriangleOctree.GetCameraHeightZ), without the cost
+    of Sqrt.</p></li>
+
+  <li><p>Creatures collisions are done sometimes by a Sphere and sometimes by
+    the bounding Box.</p>
+
+    <p>Sphere doesn't change. I.e. throughout entire creature life, it's
+    bounding sphere has the same radius.</p>
+
+    <p>Box does change. It always corresponds to the bounding box of the actual
+    animation frame, so it closely represents current creature state.
+    E.g. dead humanoid creature will have low and wide box, while alive
+    will have tall and thin box.</p>
+
+    <p>This means that sometimes Box is better, sometimes the Sphere.</p>
+
+    <p>Sphere advantages:</p>
+
+    <ol>
+      <li><p>You cannot guarantee that creature Box will never collide
+        with the level/player/other creatures etc. &mdash; because each
+        animation frame change changes also the Box, so the creature's Box
+        may suddenly enter collision with something just because the time
+        changed and next animation frame has larger BoundingBox.
+        I cannot just stop animation in the middle (preventing such collision),
+        because I don't know what to do with such animation then...
+        So I just allow such collisions. Code that uses creature collision
+        by bounding box has to be prepared for this possibility.</p>
+
+        <p>On the other hand, I can guarantee that creature's Sphere never
+        enters colliding state. That's easy, since creature's Sphere moves
+        only when creature Position changes.
+        So I can prevent creature move before it enters colliding state.
+        (well, actually bounding sphere center (MiddlePosition)
+        also changes with time, as usually it's calculated
+        looking at current bounding box... But this is not a problem as long
+        as sphere radius is chosen to be small enough.)</p>
+
+      <li><p>Also, for non-flying creatures, the Sphere is placed above the ground,
+        and this allows creature to climb the stairs &mdash; just like the player.
+        Creature just walks into the stairs, and then "growing up" mechanism
+        (using GetCameraHeight) pushes them up. This creates a short time
+        when creature's lower parts collide with the stairs, but this is
+        almost unnoticeable for the player, since "growing up" works fast.</p></li>
+    </ol>
+
+    <p>Sphere disadvantage:</p>
+
+    <ol>
+      <li><p>Well, Sphere is far from perfect as bounding volume &mdash; it's too small,
+        sometimes also too large, sometimes both at the same time...</p>
+
+        <p>Since the Sphere radius remains always the same, it must be good
+        for all creature animation frames. This problem is somewhat cured
+        by new (as of this writing, 2007-03) UseBoundingSphere feature,
+        that allows you to use bounding box when you know that you will
+        not need Sphere advantages anymore. E.g. when creature is dead,
+        we don't need the advantages 1. and 2. above --- dead creature
+        may be stuck in a wall, and it doesn't have to climb stairs.
+        This means that what happens during the creature's Dying animation
+        doesn't affect CameraRadius.</p>
+
+        <p>But still it may be a problem sometimes, if some creature states
+        have entirely different animations and bounding boxes. Then you
+        will be forced to choose one universal CameraRadius for all creature
+        states.</p>
+
+        <ul>
+          <li>Obviously you can't set radius too small, because if it's much smaller
+            than actual creature's geometry then the creature will noticeably collide
+            with level geometry and other creatures.</li>
+
+          <li>On the other hand, you can't set radius too large
+            (or move creature's MiddlePosition, that decides where's the Sphere center,
+            much lower). This would block stair climbing.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
 
 <?php
   if (!IS_GEN_LOCAL) {
