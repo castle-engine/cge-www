@@ -37,7 +37,7 @@ if you want the change to LGPL to happen <i>now</i>.
 'kambi_vrml_game_engine'); ?>:<br>
  <?php echo sf_download('Download engine sources',
   'kambi_vrml_game_engine-' . VERSION_KAMBI_VRML_GAME_ENGINE .
-  '-src.tar.gz', true) ?><br>
+  '-src.tar.gz') ?><br>
  Or download from Subversion by:<br><tt>
  <?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></tt>
 
@@ -95,17 +95,20 @@ the same directory where you unpacked
 <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>.
 Then execute <tt>compile.sh</tt> scripts to compile the programs you want.
 
-<?php define('OLDER_VERSION_KAMBI_VRML_GAME_ENGINE', '1.0.0'); ?>
+<?php
+function older_engine_version($older_version)
+{
+  echo sf_download($older_version . ' version',
+    'kambi_vrml_game_engine-' . $older_version . '-src.tar.gz');
+}
+?>
 
 <p>Note about compatibility: I broke slightly compatibility between 1.0.0
-and 1.1.0 engine release. If you download tar.gz sources,
-some program' sources below may still require
-<?php echo sf_download('older version of the engine, ' .
-  OLDER_VERSION_KAMBI_VRML_GAME_ENGINE,
-  'kambi_vrml_game_engine-' . OLDER_VERSION_KAMBI_VRML_GAME_ENGINE .
-  '-src.tar.gz', true) ?> to compile sucessfully.
-If you download from SVN trunk, you don't have this problem (everything
-in SVN is up-to-date).
+and 1.1.0 engine release, and again for 1.2.0. If you download tar.gz sources,
+some programs below may fail to compile with latest engine,
+in that case use older <?php older_engine_version('1.1.0'); ?>
+ or <?php older_engine_version('1.0.0'); ?> version. Or simply download code
+from SVN, everything in SVN should be always up-to-date.
 
 <ul>
 <?php
