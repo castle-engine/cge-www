@@ -34,11 +34,12 @@
 <p><i>"The Castle"</i> is a first-person shooter style game in a dark
 fantasy setting. Your main weapon is a sword, so the
 fight is mostly short-range. 3 main levels included,
-packed with creatures, items and sounds.
+packed with creatures, items and sounds.</p>
 
-<p>Also a bonus level, from a well-known 3D game, will be available to you
-from "New Game" menu once you finish the main game
-(you can also switch to this level from the debug menu, if you're impatient).
+<p>Also a couple of bonus levels are available, for fun and
+to show off some engine features. In particular, there's the classic DOOM E1M1
+level &mdash; I know you always wished to had a sword and a bow in DOOM :)
+Enjoy !</p>
 
 <p><i>Requirements to run</i>: fast and stable OpenGL
 (read: good graphic card with up-to-date drivers). At least 512 MB

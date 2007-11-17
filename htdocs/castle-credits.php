@@ -178,9 +178,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
 <p>Inside the game I added, as a joke/experiment/tribute,
 a level based on well-known
 <a href="http://www.idsoftware.com/">id Software</a> game "Doom".
-It's available to you from "New Game" menu
-once you completed the main game (you can also enter it using debug menu,
-if you're impatient). Level geometry and textures come from original DOOM E1M1
+Level geometry and textures come from original DOOM E1M1
 level, the level is just converted to VRML (and changed in many places
 for my engine).</p>
 
@@ -204,9 +202,8 @@ I and II Music" as compiled by Paul Burdette</a>.
 
   <p>If you want to redistribute my game as a pure open-source, you
   can simply remove these <tt>doom/</tt> subdirectories.
-  You can also remove
-  <pre>LevelsAvailable.FindName('doom_e1m1').AvailableForNewGame := true;</pre>
-  call and <tt>doom_e1m1</tt> entry inside <tt>data/levels/index.xml</tt>,
+  You can also remove <tt>doom_e1m1</tt> entry inside
+  <tt>data/levels/index.xml</tt>,
   so that the game doesn't crash when user tries to enter non-existing
   doom level.
 
