@@ -29,7 +29,7 @@ reset_counter ()
 # reset_counter bezier_curves
 # reset_counter sources
 # reset_counter versioning
-# reset_counter sources_docs
+# reset_counter reference
 # reset_counter opengl_options
 # reset_counter common_options
 # reset_counter openal_notes
