@@ -334,7 +334,7 @@ function last_change_log_to_html($full_description = true)
   <li>Updated version of " . a_href_page('VRML engine documentation',
     'vrml_engine_doc') . " is available, with a
     <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
-    about shadows implementation.</p></li>
+    about shadows implementation.</a></li>
 </ul>";
   }
 }
