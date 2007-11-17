@@ -90,8 +90,7 @@ function ext_long_title($ext_name, $title)
             ext_short_title('ext_headlight', 'Node <tt>KambiHeadLight</tt>') .
             ext_short_title('ext_shadows',
               'Fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes') .
-            ext_short_title('ext_text_depth',
-              'Field <tt>kambiDepth</tt> for text nodes') .
+            ext_short_title('ext_text3d', '<tt>Text3D</tt> node') .
             '';
           ?>
         </ol>
@@ -825,17 +824,54 @@ in <?php echo a_href_page("Kambi VRML test suite",
   </li>
 
   <?php
-    echo ext_long_title('ext_text_depth',
-      'Field <tt>kambiDepth</tt> for text nodes'); ?>
-    To <tt>Text</tt> node (in VRML 2.0) and <tt>AsciiText</tt> (in VRML 1.0)
-    we add a field named <tt>kambiDepth</tt>, <tt>SFSingle</tt>, by default 0,
-    must always be &gt; 0.
+    echo ext_long_title('ext_text3d', '<tt>Text3D</tt> node'); ?>
 
-    <p>If this is specified as &lt;&gt; 0, then the text is 3D.
-    The text is pushed into negative Z by amount Depth.
+    <p>We add new node:
 
-    <p>In the future we may add here a field <tt>kambiSolid</tt> that
-    would be <tt>TRUE</tt> by default to add backface culling to such text.
+    <?php
+      echo node_begin('Text3D');
+      echo
+      node_field('exposedField', 'MFString', 'string', '[]') .
+      node_field('exposedField', 'SFNode', 'fontStyle', 'NULL') .
+      node_field('exposedField', 'MFFloat', 'length', '[]') .
+      node_field('exposedField', 'SFFloat', 'maxExtent', '0') .
+      node_field('exposedField', 'SFFloat', 'depth', '0.1', 'must be &gt;= 0') .
+      node_field('exposedField', 'SFBool', 'solid', 'TRUE') .
+      node_end();
+    ?>
+
+    <p>This renders the text, pretty much like <tt>Text</tt> node from
+    VRML 97 (see VRML 97 specification about <tt>string</tt>, <tt>fontStyle</tt>,
+    <tt>length</tt>, <tt>maxExtent</tt> fields). But the text is 3D:
+    it's "pushed" by the amount <tt>depth</tt> into negative Z. The normal
+    text is on Z = 0, the 3D text had front cap on Z = 0, back cap on Z = -Depth,
+    and of course the extrusion (sides).</p>
+
+    <p>Also, it's natural to apply backface culling to such text, so we have
+    a <tt>solid</tt> field. When true (default), then backface culling is done.
+    This may provide much speedup, unless camera is able to enter
+    "inside" the text geometry (in which case solid should be set to <tt>FALSE</tt>).</p>
+
+    <p>If <tt>depth</tt> is zero, then normal 2D text is rendered.
+    However, backface culling may still be applied (if <tt>solid</tt> is true)
+    &mdash; so this node also allows you to make 2D text that's supposed to be
+    visible from only front side.</p>
+
+    <p>Compatibility:
+    <ul>
+      <li>You can specify external prototype before using
+        this node, see <?php echo a_href_page('Kambi VRML test suite',
+        'kambi_vrml_test_suite'); ?>, file
+        <tt>vrml_2/kambi_extensions/text_depth.wrl</tt>. This way
+        other VRML browsers should be able to at least gracefully omit this.</li>
+
+      <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
+        node from Parallel Graphics</a>. At the beginning I implemented this
+        externsion differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
+        for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
+        these Parallel Graphics <tt>Text3D</tt> definition, so I decided
+        to make my version compatible.</li>
+    </ul>
   </li>
 </ul>
 

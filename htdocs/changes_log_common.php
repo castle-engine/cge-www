@@ -122,9 +122,8 @@ function this_a_href_page($title, $page_name)
     <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
-  <li>3D text possible, thanks to <a
-    href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text_depth\">kambiDepth</a>
-    field for Text nodes.</li>
+  <li><a
+    href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
 </ul>
 
 <p>" . this_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
