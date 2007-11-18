@@ -68,7 +68,7 @@ wait only once for "Loading creatures").
 
 <?php echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
-  VERSION_CASTLE, true, false); ?>
+  VERSION_CASTLE, $std_releases_post_1_2_0); ?>
  See <?php echo a_href_page('changes_log', 'changes_log') ?>
  for the list of changes since last release.
 

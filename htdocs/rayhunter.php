@@ -37,7 +37,7 @@ and Monte Carlo path tracing.
 
 <p><?php echo S_HERE_ARE_BINARIES; ?>
 <?php echo_standard_program_download('rayhunter', 'rayhunter',
-  VERSION_RAYHUNTER); ?>
+  VERSION_RAYHUNTER, $std_releases_pre_1_2_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

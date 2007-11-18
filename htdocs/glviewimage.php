@@ -48,7 +48,7 @@ desktop wallpaper). It can handle various image formats:
 <p>These are binaries of the program. No special installation is required,
 just unpack the archive and run <tt>glViewImage</tt>.
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
-  VERSION_GLVIEWIMAGE); ?>
+  VERSION_GLVIEWIMAGE,  $std_releases_pre_1_2_0); ?>
 
 <?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

@@ -72,39 +72,52 @@ function sf_download($title, $file_name)
     '/' . $file_name . '">' . $title. '</a>';
 }
 
+$os_arch_caption = array(
+  'linux-i386'   => ' for Linux (i386)',
+  'win-i386'     => ' for Windows (i386)',
+  'freebsd-i386' => ' for FreeBSD (i386)',
+  'macosx-i386'  => ' for Mac OS X (i386)',
+  /* TODO: these are only temporary os_arch names, without i386 suffix.
+     That's because when my engine was i386 only, I didn't add i386 suffix.
+     Until every program is re-released with i386 suffix, old programs
+     will use this. */
+  'linux'        => ' for Linux (i386)',
+  'win'          => ' for Windows (i386)',
+  'freebsd'      => ' for FreeBSD (i386)',
+  'macosx'       => ' for Mac OS X (i386)',
+);
+
+$os_arch_extension = array(
+  'linux-i386'   => '.tar.gz',
+  'win-i386'     => '.zip',
+  'freebsd-i386' => '.tar.gz',
+  'macosx-i386'  => '.tar.gz',
+  'linux'        => '.tar.gz',
+  'win'          => '.zip',
+  'freebsd'      => '.tar.gz',
+  'macosx'       => '.tar.gz',
+);
+
+$std_releases_pre_1_2_0 = array('linux', 'win', 'freebsd', 'macosx');
+$std_releases_post_1_2_0 = array('linux-i386', 'win-i386', 'macosx-i386');
+
 /* This echoes an <ul> list with items for all platforms where I compile
    my programs. Each item looks like
-     <? php echo sf_download("Foo for Windows", "foo-version-win.zip"); ? >
+     <? php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
    where $prog_nice_name = Foo, $prog_archive_basename = foo.
 
    If $prog_version is '' then the whole -version part will be omitted
    (i.e. $prog_version = '' causes also the dash '-' before version
    to disappear, since this is what you usually want).
 
-   $arch_suffix = false, $freebsd_version = true by default because this
-   was the standard. In the future, $arch_suffix should become always true,
-   and instead of $freebsd_version maybe some list of os-arch will be made. */
+   $os_arch_list is a list of os_arch for which this program was released.
+   They have to be a suffix of the released filenames. They also have to
+   be an entries to $os_arch_caption and similar arrays. */
 function echo_standard_program_download(
   $prog_nice_name, $prog_archive_basename, $prog_version,
-  $arch_suffix = false, $freebsd_version = true)
+  $os_arch_list)
 {
-  global $page_lang, $this_page_name;
-
-  switch ($page_lang)
-  {
-    case LANG_PL:
-      $for_linux_str   = ' dla Linuxa (i386)';
-      $for_win_str     = ' dla Windowsa (i386)';
-      $for_freebsd_str = ' dla FreeBSD (i386)';
-      $for_macosx_str  = ' dla Mac OS X (i386)';
-      break;
-    case LANG_EN:
-      $for_linux_str   = ' for Linux (i386)';
-      $for_win_str     = ' for Windows (i386)';
-      $for_freebsd_str = ' for FreeBSD (i386)';
-      $for_macosx_str  = ' for Mac OS X (i386)';
-      break;
-  }
+  global $this_page_name, $os_arch_caption, $os_arch_extension;
 
   $arch_name_start = $prog_archive_basename;
   if ($prog_version != '')
@@ -128,17 +141,14 @@ function echo_standard_program_download(
       '">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
   } else
   {
-    if ($arch_suffix)
-      $s_arch_suffix = '-i386'; else
-      $s_arch_suffix = '';
-
-    echo '<ul>
-      <li>' . sf_download($nice_name_start . $for_linux_str  , $arch_name_start . "linux${s_arch_suffix}.tar.gz"  ) .
-      ($freebsd_version ?
-     '<li>' . sf_download($nice_name_start . $for_freebsd_str, $arch_name_start . "freebsd${s_arch_suffix}.tar.gz") : '') . '
-      <li>' . sf_download($nice_name_start . $for_macosx_str , $arch_name_start . "macosx${s_arch_suffix}.tar.gz" ) . '
-      <li>' . sf_download($nice_name_start . $for_win_str    , $arch_name_start . "win${s_arch_suffix}.zip"       ) . '
-    </ul>';
+    echo "<ul>\n";
+    foreach ($os_arch_list as $os_arch)
+    {
+      echo '<li>' . sf_download(
+        $nice_name_start . $os_arch_caption[$os_arch],
+        $arch_name_start . $os_arch . $os_arch_extension[$os_arch]) . "</li>\n";
+    }
+    echo "</ul>\n";
   }
 }
 ?>

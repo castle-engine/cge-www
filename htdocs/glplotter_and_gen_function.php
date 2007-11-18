@@ -55,7 +55,7 @@ of keys).--></p>
 <p>Here are the binaries of the program. No special installation
 is required, just unpack these archives and run the program.
 <?php echo_standard_program_download('glplotter', 'glplotter',
-  VERSION_GLPLOTTER); ?>
+  VERSION_GLPLOTTER, $std_releases_pre_1_2_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
@@ -157,7 +157,7 @@ on it's own, see menu <i>"Functions"</i>.
 <p>Download gen_function:
 
 <?php echo_standard_program_download('gen_function', 'gen_function',
-  VERSION_GEN_FUNCTION); ?>
+  VERSION_GEN_FUNCTION, $std_releases_pre_1_2_0); ?>
 
 <p>Call like:
 <pre>
