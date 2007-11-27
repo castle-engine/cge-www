@@ -30,7 +30,7 @@
     May be installed by <a href="http://www.finkproject.org/">fink</a>
     (look for packages <tt>gtk+2</tt>, <tt>gtkglext1</tt>).
 
-    <p><i>Note:</i> Binary gtk+2 packages in fink may be quite old.
+    <p><i>Note:</i> Binary <tt>gtk+2</tt> packages in fink may be too old.
     If you get errors on the console like
 
     <pre>
@@ -41,8 +41,8 @@
 
     then try installing gtk from source packages, they have newer version
     (or bug fink to update binary packages more often :) ).
-    It is <i>not</i> necessary to use any fink packages from unstable branch !
-    </p></li>
+    It is <i>not</i> necessary to use any fink packages from unstable
+    branch !</p></li>
 
   <li><p><b>OpenAL</b> for game sound (may be downloaded from Creative,
     see download links from
