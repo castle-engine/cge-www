@@ -26,8 +26,23 @@
 
   <li><p>When GLWindow uses GTK backend (view3dscene compiled by default script
     does use GTK, "The Castle" compiled by default script doesn't use GTK):
-    <b>GTK and GtkGLExt</b> are required (may be installed by
-    <a href="http://www.finkproject.org/">fink</a>).</p></li>
+    <b>GTK and GtkGLExt</b> are required.
+    May be installed by <a href="http://www.finkproject.org/">fink</a>
+    (look for packages <tt>gtk+2</tt>, <tt>gtkglext1</tt>).
+
+    <p><i>Note:</i> Binary gtk+2 packages in fink may be quite old.
+    If you get errors on the console like
+
+    <pre>
+  dyld: Library not loaded: /sw/lib/libgtk-x11-2.0.0.dylib
+  Referenced from: /xxx/view3dscene
+  Reason: Incompatible library version: view3dscene requires version 601.0.0 or later, but libgtk-x11-2.0.0.dylib provides version 401.0.0
+</pre>
+
+    then try installing gtk from source packages, they have newer version
+    (or bug fink to update binary packages more often :) ).
+    It is <i>not</i> necessary to use any fink packages from unstable branch !
+    </p></li>
 
   <li><p><b>OpenAL</b> for game sound (may be downloaded from Creative,
     see download links from
