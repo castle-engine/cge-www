@@ -85,50 +85,51 @@ You will also need
 
 <h3><a name="subsection_install">Installing</a></h3>
 
-<p>First install OpenAL:
-
 <ul>
-  <li><b>Unix (Linux, FreeBSD, Mac OS X) users :</b>
-    To hear game sounds you should first
+  <li>
+    <p><b>Unix (Linux, FreeBSD, Mac OS X):</b></p>
+
+    <p>To hear game sounds you should first
     <?php echo a_href_page_hashlink('install OpenAL', 'openal_notes',
     'section_install'); ?> and vorbisfile library.
     Be sure to install <tt>libvorbis-dev</tt> package
     (i.e. with developers symlinks) too &mdash; that's because of
     OpenAL's dumb behavior (without <tt>libvorbis-dev</tt> package
     OpenAL reports that vorbis extension is present, but it will actually fail
-    to use it).</li>
-  <li><b>Windows users</b>: OpenAL and vorbis libraries are already
-    included in the archive. So you don't have to do anything.</li>
-</ul>
+    to use it). <i>If you don't want to hear sounds, you don't have to install
+    OpenAL.</i></p>
 
-<p>Then install the game:
-
-<dl>
-  <dt>Linux, FreeBSD, Mac OS X:</dt>
-
-  <dd>Extract downloaded archive to
+    <p>Installing actual game: extract downloaded archive to
     <tt>/usr/local/share/castle/</tt> or <tt>$HOME/.castle.data/</tt>.
     You can move or symlink the executable <tt>castle</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).
-    Run the game by running <tt>castle</tt>.</dd>
+    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
-  <dt>Windows:</dt>
+    <p>Run the game by running <tt>castle</tt>.</li></p>
 
-  <dd>Extract downloaded archive to any directory.
-    Run the game by running <tt>castle.exe</tt>.
+  <li>
+    <p><b>Windows:</b></p>
+
+    <p>OpenAL and vorbis libraries are already
+    included in the archive. So you don't have to install OpenAL yourself.</p>
+
+    <p>Installing actual game: extract downloaded archive to any directory.
+    Run the game by running <tt>castle.exe</tt>.</p>
 
     <p>Note that from the game you will be able to choose various
-    audio devices (see menu <i>Sound options</i>)
-    &mdash; I advice to check both devices.
+    audio devices (see menu <i>Sound options</i>).
+    I advice to check both devices.
     Under Windows <i>Generic Software</i> device often sounds better
-    than the default one.
-  </dd>
-</dl>
+    than the default one. On the other hand, as far as I know, only
+    <i>Generic Hardware</i> can produce sound better than stereo, if you
+    have more than 2 speakers.</p>
+    </li>
+</ul>
 
 <h3><a name="subsection_uninstall">Uninstalling</a></h3>
 
-Just delete the directory where you unpacked the game.
-You may also want to delete configuration file:
+<p>Just delete the directory where you unpacked the game.
+You may also want to delete configuration file:</p>
+
 <table class="thin_borders">
   <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><tt>$HOME/.castle.conf</tt>
   <tr><td>Windows >= NT / 2000 / XP <td><tt>Documents and
