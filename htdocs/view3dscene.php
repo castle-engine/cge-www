@@ -109,10 +109,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     associated <tt>xxx_default.skin</tt> file), <i>animation is also read
     and played</i>.</p>
 
-  <li><p><b>Wavefront OBJ files</b>. Only very basic support :
-    geometry and texture coords. Texture named <tt>default_obj_texture.png</tt>
-    in the current directory will be used if texture coords are specified
-    in the file.
+  <li><p><b>Wavefront OBJ files</b>. Most useful things are supported:
+    geometry (with texture coords, normal vectors), materials
+    (colors, opacity, texture filenames).</p>
 
   <li><p><b>GEO</b>. Some simple format; I don't even know what program
     writes files in this format, it just happened that I had a few files

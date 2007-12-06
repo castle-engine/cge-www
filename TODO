@@ -1,5 +1,7 @@
 Next WWW update:
 Text for next update:
+- bump mapping
+- Wavefront OBJ improved (we handle normal vectors, materials, textures)
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
   Fix HTML links to vrml_engine_doc to use it.
