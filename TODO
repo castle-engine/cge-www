@@ -2,6 +2,7 @@ Next WWW update:
 Text for next update:
 - bump mapping
 - Wavefront OBJ improved (we handle normal vectors, materials, textures)
+- Our blender VRML 97 exporter script improved: set solid/set smooth/autosmooth/autosmooth degrees settings from Blender are correctly exported to VRML file (as creasteAngle field)
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
   Fix HTML links to vrml_engine_doc to use it.
