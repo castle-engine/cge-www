@@ -338,7 +338,7 @@ function pretty_heading($heading_text, $version_number = NULL)
   $result = "<h1>$heading_text";
 
   if (!is_null($version_number))
-    $result .= " <span class=\"version_number\">(version $version_number)</span>";
+    $result .= " <span class=\"version_number\">(version&nbsp;$version_number)</span>";
 
   $result .= "</h1>";
 
