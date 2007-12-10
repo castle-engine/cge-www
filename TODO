@@ -1,4 +1,5 @@
 Next WWW update:
+- add bump mapping to "the castle", or update kambi_vrml_extensions file
 Text for next update:
 - bump mapping
 - Wavefront OBJ improved (we handle normal vectors, materials, textures)

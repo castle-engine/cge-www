@@ -62,6 +62,7 @@ $extensions['ext_material_mirror'] = 'Mirror material (field <tt>mirror</tt> for
 $extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</tt>)';
 $extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
 $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
+$extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt> field of <tt>KambiAppearance</tt>)';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -107,6 +108,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_headlight') .
             ext_short_title('ext_shadows') .
             ext_short_title('ext_text3d') .
+            ext_short_title('ext_bump_mapping') .
             '';
           ?>
         </ol>
@@ -899,6 +901,34 @@ EXTERNPROTO Text3D [
         these Parallel Graphics <tt>Text3D</tt> definition, so I decided
         to make my version compatible.</li>
     </ul>
+  </li>
+
+  <?php echo ext_long_title('ext_bump_mapping'); ?>
+
+    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
+    node that adds new field: <tt>normalMap</tt>.
+    This is an <tt>SFNode</tt> type field.
+    You can put in <tt>normalMap</tt> the same nodes as in <tt>texture</tt>
+    node, so you can use there <tt>ImageTexture</tt>, <tt>PixelTexture</tt>,
+    <tt>MovieTexture</tt>.</p>
+
+    <p>Texture specified as <tt>normalMap</tt> describes normal vector
+    values on each texel. Normal vector values are actually encoded as colors:
+    normal vector (x, y, z) should be encoded as RGB((x+1)/2, (y+1)/2, (z+1)/2).
+    You can use e.g.
+    <a href="http://nifelheim.dyndns.org/~cocidius/normalmap/">GIMP
+    normalmap plugin</a> to generate such normal maps.</p>
+
+    <p>This allows bump mapping to be used. If you turn BumpMapping attribute on
+    (and pass light position for bump mapping), our VRML engine will
+    automatically do appropriate bump mapping. Currently you cannot see
+    this in <?php echo a_href_page("view3dscene", "view3dscene") ?> but
+    you should be able to see this used is new version of
+    <?php echo a_href_page("The Castle", "castle") ?>.</p>
+
+    <p>Note that currently bump mapping is used only when normal texture
+    ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
+    field of Appearance") is also specified.</p>
   </li>
 </ul>
 

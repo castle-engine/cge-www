@@ -26,3 +26,16 @@ PROTO Text3D [
     maxExtent IS maxExtent
   }
 }
+
+PROTO KambiAppearance [
+  exposedField SFNode material          NULL
+  exposedField SFNode texture           NULL
+  exposedField SFNode textureTransform  NULL
+  exposedField SFNode normalMap         NULL
+] {
+  Appearance {
+    material IS material
+    texture IS texture
+    textureTransform IS textureTransform
+  }
+}
