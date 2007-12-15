@@ -928,7 +928,9 @@ EXTERNPROTO Text3D [
 
     <p>Note that currently bump mapping is used only when normal texture
     ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
-    field of Appearance") is also specified.</p>
+    field of Appearance") is also specified. Also, it's used only with
+    IndexedFaceSet nodes, and only when texture coordinates were specified
+    explicitly.</p>
   </li>
 </ul>
 
