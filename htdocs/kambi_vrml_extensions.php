@@ -167,7 +167,7 @@ VRML viewers. However:
     so that even things inside <tt>kambi_extensions/</tt> should be partially
     handled by other VRML browsers.</p>
 
-    <p>Our extensions I identified by URN like
+    <p>Our extensions are identified by URN like
     "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
 
     <p>Some extensions may use fallback implementation on URL
