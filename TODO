@@ -4,6 +4,14 @@ Text for next update:
 - bump mapping
 - Wavefront OBJ improved (we handle normal vectors, materials, textures)
 - Our blender VRML 97 exporter script improved: set solid/set smooth/autosmooth/autosmooth degrees settings from Blender are correctly exported to VRML file (as creasteAngle field)
+- I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units.
+  OpenGLh was developed when FPC had no usable OpenGL binding unit (neither had Delphi)...
+  Times have changed, and current GL, GLU, GLExt units are usable, and (thanks to my patches, like
+  http://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg02328.html and
+  http://www.freepascal.org/mantis/view.php?id=7570 and, most of all,
+  http://www.freepascal.org/mantis/view.php?id=7600)
+  it works good and supports OpenGL 2.0 functions. (while OpenGLh was on GL 1.2 + many extensions level).
+
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
   Fix HTML links to vrml_engine_doc to use it.
