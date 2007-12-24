@@ -11,6 +11,9 @@ Text for next update:
   http://www.freepascal.org/mantis/view.php?id=7570 and, most of all,
   http://www.freepascal.org/mantis/view.php?id=7600)
   it works good and supports OpenGL 2.0 functions. (while OpenGLh was on GL 1.2 + many extensions level).
+- OpenGL shaders support.
+  Engine supports easily using ARB vertex / fragment programs (assembly shaders) and GLSL.
+  You can also directly specify GLSL shaders inside VRML file, which is a great feature for VRML authors. Syntax of shaders in VRML follows X3D specification.
 
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.

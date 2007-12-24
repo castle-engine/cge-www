@@ -63,6 +63,7 @@ $extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</t
 $extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
 $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
 $extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt> field of <tt>KambiAppearance</tt>)';
+$extensions['ext_x3d'] = 'Some X3D features backported to VRML: programmable shaders';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -109,6 +110,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_shadows') .
             ext_short_title('ext_text3d') .
             ext_short_title('ext_bump_mapping') .
+            ext_short_title('ext_x3d') .
             '';
           ?>
         </ol>
@@ -932,6 +934,31 @@ EXTERNPROTO Text3D [
     IndexedFaceSet nodes, and only when texture coordinates were specified
     explicitly.</p>
   </li>
+
+  <?php echo ext_long_title('ext_x3d'); ?>
+
+    <p>Although X3D is not supoorted yet by our engine, I already implemented some
+    X3D features and they are available for VRML 2.0 authors.
+    See <?php echo a_href_page_hashlink('VRML implementation status about X3D',
+      'vrml_implementation_status', 'section_x3d'); ?>.</p>
+
+    <p>For now, these features are
+    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders</b></a>.
+    A simple example how to use them: add VRML code like</p>
+
+<pre>
+  shaders ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
+      ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+    ]
+  }
+</pre>
+
+    <p>inside <tt>Appearance</tt> node. See <?php echo a_href_page("Kambi VRML test suite",
+    "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
+    for working demos of this.</p>
 </ul>
 
 <h4><a name="section_exts_vrml1">VRML 1.0 only extensions</a></h4>

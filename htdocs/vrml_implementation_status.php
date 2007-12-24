@@ -13,6 +13,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('VRML 2.0 nodes implemented', 'vrml_2_nodes'),
+      new TocItem('X3D features in VRML 2.0', 'x3d', 1),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
     ));
@@ -178,6 +179,28 @@ trick like that). But they don't have any effect on the scene. These are:
   <li>Nodes: sensors, interpolators, geospatial things, NURBS,
     sounds (<tt>AudioClip</tt> and <tt>Sound</tt>),
     <tt>MovieTexture</tt>, <tt>Extrusion</tt>.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Although X3D support is not implemented at all (we even deliberately
+don't support X3D files in classic encoding, I want to improve VRML 97
+support first), we already have some X3D-specific features implemented.
+For now they are available for VRML 97 authors, that is: we support
+VRML 97 with some X3D features "backported".
+As a reference, I used X3D specification with amendment 1 and revision 1,
+that is: the newest X3D specification as of this writing (2007-12).</p>
+
+<p>X3D bits implemented are:</p>
+
+<ul>
+  <li><p><tt>Appearance</tt> node has all fields from X3D specification
+    allowed (but actually only <tt>shaders</tt> field is handled
+    from these X3D-specific Appearance fields).</li>
+
+  <li><p>Parts of
+    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders component</b></a>
+    are implemented.
 </ul>
 
 <?php echo $toc->html_section(); ?>
