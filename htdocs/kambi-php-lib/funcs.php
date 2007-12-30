@@ -127,4 +127,91 @@ function michalis_mailto($anchor_title)
     $anchor_title . '</a>';
 }
 
+function rand_color()
+{
+  $result[0] = rand(0, 255);
+  $result[1] = rand(0, 255);
+  $result[2] = rand(0, 255);
+  return $result;
+}
+
+function color_intensity($color)
+{
+  return ($color[0] * 0.212671) +
+         ($color[1] * 0.715160) +
+         ($color[2] * 0.072169);
+}
+
+function color_to_html($color)
+{
+  return sprintf('#%02X%02X%02X', $color[0], $color[1], $color[2]);
+}
+
+/* This is just like color_to_html(rand_color()), but somewhat faster. */
+function rand_html_color()
+{
+  return sprintf('#%02X%02X%02X', rand(0, 255), rand(0, 255), rand(0, 255));
+}
+
+function rand_font_family()
+{
+  switch (rand(0, 4)) {
+    case 0: return 'serif';
+    case 1: return 'sans-serif';
+    case 2: return 'cursive';
+    case 3: return 'fantasy';
+    case 4: return 'monospace';
+  }
+}
+
+/* Random float between 0 and $max */
+function rand_float($max = 1.0)
+{
+  return ((float) rand()) / ((float) getrandmax()) * ((float) $max);
+}
+
+/* Just like the name says... yes, this is a joke. */
+function echo_rand_css()
+{
+  /* Generated random background and foreground and links color,
+    still making sure that these colors match somewhat. */
+  do {
+    $c = rand_color();
+    $bg_c = rand_color();
+  } while (
+    ( abs(color_intensity($c) - color_intensity($bg_c)) < 0.8 )
+    );
+
+  do {
+    $link_c = rand_color();
+    $link_visited_c = rand_color();
+    $link_hover_c = rand_color();
+  } while (
+    ( abs(color_intensity($c) - color_intensity($link_c)) > 0.2 ) &&
+    ( abs(color_intensity($c) - color_intensity($link_visited_c)) > 0.2 ) &&
+    ( abs(color_intensity($c) - color_intensity($link_hover_c)) > 0.2 )
+    );
+
+  $color = color_to_html($c);
+  $bg_color = color_to_html($bg_c);
+  $link_color = color_to_html($link_c);
+  $link_visited_color = color_to_html($link_visited_c);
+  $link_hover_color = color_to_html($link_hover_c);
+
+?>
+  body {
+    background: <?php echo $bg_color; ?>;
+    color: <?php echo $color; ?>;
+    margin: <?php echo rand_float(2.0); ?>em
+            <?php echo rand_float(2.0); ?>em
+            <?php echo rand_float(2.0); ?>em
+            <?php echo rand_float(2.0); ?>em;
+    font-family: <?php echo rand_font_family(); ?>;
+  }
+
+  a:normal { color: <?php echo $link_color; ?>; }
+  a:visited { color: <?php echo $link_visited_color; ?>; }
+  a:hover { color: <?php echo $link_hover_color; ?>; }
+<?
+}
 ?>
