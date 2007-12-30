@@ -780,7 +780,7 @@ function common_header($a_page_title, $a_page_lang,
 <title><?php echo $page_title ?></title>
 
 <style type="text/css"><!--
-  body { background: white; }
+  body { background: white; font-family: sans; }
 
   table.key_list { width: 90%; }
   table.key_list th { background: #eeeee0; }
