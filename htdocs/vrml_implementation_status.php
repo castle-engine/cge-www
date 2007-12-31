@@ -200,7 +200,30 @@ that is: the newest X3D specification as of this writing (2007-12).</p>
 
   <li><p>Parts of
     <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders component</b></a>
-    are implemented.
+    are implemented: <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
+    allow you to write shaders in GLSL language. For example</p>
+
+<pre>
+  shaders ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
+      ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+    ]
+  }
+</pre>
+
+    <p>Oh, and some other programmable shader features are quite trivial
+    to implement (attributes and uniforms for shaders in VRML).
+    Also <tt>Cg</tt> handling is quite possible in the future.
+    If you have some interesting VRML / X3D models that use these programmable
+    shaders features, feel free to contact me and I'll implement them
+    in our engine.
+
+    <p>(I mean, I will implement them anyway some day, but it's always
+    much more interesting to implement features when you actually have
+    a real use for them... In other words, I'm just dying to see some
+    beautiful VRML/X3D models that heavily use programmable shaders :).
 </ul>
 
 <?php echo $toc->html_section(); ?>
