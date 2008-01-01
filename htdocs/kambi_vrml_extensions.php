@@ -964,7 +964,9 @@ EXTERNPROTO Text3D [
 
     <p>Oh, and some other programmable shader features are quite trivial
     to implement (attributes and uniforms for shaders in VRML).
-    Also <tt>Cg</tt> handling is quite possible in the future.
+    They are implemented in the engine classes anyway, it's only a matter
+    of implementing link between VRML and them.
+    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
     If you have some interesting VRML / X3D models that use these programmable
     shaders features, feel free to contact me and I'll implement them
     in our engine.</p>
