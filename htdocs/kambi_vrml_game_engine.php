@@ -21,12 +21,20 @@ Features include:</p>
 <ul>
   <li>Optimized OpenGL rendering of models in
     VRML 1.0 and 2.0 (aka VRML 97) formats.</li>
-  <li>3DS, MD3 file formats are also supported. They can be loaded,
+  <li>3DS, MD3, OBJ file formats are also supported. They can be loaded,
     and converted to VRML 1.0.</li>
   <li>Animations are supported, by interpolation.</li>
   <li>Octrees are used for various collision detection tasks.</li>
   <li>Shadows by shadow volumes (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.).</li>
+  <li><?php echo a_href_page_hashlink('Bump mapping',
+    'kambi_vrml_extensions', 'ext_bump_mapping'); ?>.
+  <li>Using shaders. There are classes to easily use ARB fragment / vertex programs
+    and GLSL shaders. Most important, you can
+    <?php echo a_href_page_hashlink('add and control GLSL shaders from VRML',
+    'kambi_vrml_extensions', 'ext_shaders'); ?>.
+    So GLSL shaders are fully available
+    for model designers, programmer doesn't have to do anything.
   <li>GLWindow unit is available to easily create windows with OpenGL
     context. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.

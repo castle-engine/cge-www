@@ -13,6 +13,7 @@
       new TocItem('Levels', 'levels', 1),
       new TocItem('Items', 'items', 1),
       new TocItem('Creatures', 'creatures', 1),
+      new TocItem('Advanced effects', 'effects', 1),
       new TocItem('Creating sounds', 'creating_sounds'),
       new TocItem('Compiling', 'compiling'),
       new TocItem('Game goals', 'goals'),
@@ -741,6 +742,29 @@ Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
       </li>
     </ul>
   </li>
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>As a final note, our engine supports some nice graphic features, and you
+may want to use them to make your models nicer. Some of the more important
+eye-candy features are:</p>
+
+<ul>
+  <li><p><?php echo a_href_page_hashlink(
+    'Write shaders in GLSL, and connect them to objects in your VRML models',
+    'kambi_vrml_extensions', 'ext_shaders'); ?>.</p></li>
+
+  <li><p><?php echo a_href_page_hashlink('Bump mapping',
+    'kambi_vrml_extensions', 'ext_bump_mapping'); ?>.
+    See "The Fountain" level for example.</p></li>
+
+  <li><p>You can make your level geometry cast dynamic shadows (on everything,
+    including itself) by setting
+    <pre>  scene_dynamic_shadows="True"</pre>
+    in <tt>levels.xml</tt> file. Note that this usually requires the level scene
+    to be 2-manifold, just like creatures for shadows.
+    See "The Fountain" level for example.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>

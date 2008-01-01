@@ -63,7 +63,7 @@ $extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</t
 $extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
 $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
 $extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt> field of <tt>KambiAppearance</tt>)';
-$extensions['ext_x3d'] = 'Some X3D features backported to VRML: programmable shaders';
+$extensions['ext_shaders'] = 'Programmable shaders (X3D feature "backported" to VRML)';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -110,7 +110,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_shadows') .
             ext_short_title('ext_text3d') .
             ext_short_title('ext_bump_mapping') .
-            ext_short_title('ext_x3d') .
+            ext_short_title('ext_shaders') .
             '';
           ?>
         </ol>
@@ -935,7 +935,7 @@ EXTERNPROTO Text3D [
     explicitly.</p>
   </li>
 
-  <?php echo ext_long_title('ext_x3d'); ?>
+  <?php echo ext_long_title('ext_shaders'); ?>
 
     <p>Although X3D is not supoorted yet by our engine, I already implemented some
     X3D features and they are available for VRML 2.0 authors.
@@ -944,7 +944,9 @@ EXTERNPROTO Text3D [
 
     <p>For now, these features are
     <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders</b></a>.
-    A simple example how to use them: add VRML code like</p>
+    <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
+    allow you to write shaders in GLSL language. For example add
+    inside <tt>Appearance</tt> node VRML code like</p>
 
 <pre>
   shaders ComposedShader {
@@ -956,9 +958,21 @@ EXTERNPROTO Text3D [
   }
 </pre>
 
-    <p>inside <tt>Appearance</tt> node. See <?php echo a_href_page("Kambi VRML test suite",
+    <p>See <?php echo a_href_page("Kambi VRML test suite",
     "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
     for working demos of this.</p>
+
+    <p>Oh, and some other programmable shader features are quite trivial
+    to implement (attributes and uniforms for shaders in VRML).
+    Also <tt>Cg</tt> handling is quite possible in the future.
+    If you have some interesting VRML / X3D models that use these programmable
+    shaders features, feel free to contact me and I'll implement them
+    in our engine.</p>
+
+    <p>(I mean, I will implement them anyway some day, but it's always
+    much more interesting to implement features when you actually have
+    a real use for them... In other words, I'm just dying to see some
+    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
 </ul>
 
 <h4><a name="section_exts_vrml1">VRML 1.0 only extensions</a></h4>
