@@ -919,7 +919,10 @@ EXTERNPROTO Text3D [
     normal vector (x, y, z) should be encoded as RGB((x+1)/2, (y+1)/2, (z+1)/2).
     You can use e.g.
     <a href="http://nifelheim.dyndns.org/~cocidius/normalmap/">GIMP
-    normalmap plugin</a> to generate such normal maps.</p>
+    normalmap plugin</a> to generate such normal maps.
+    (<i>Hint:</i> Remember to check "invert y" when generating normal maps,
+    in image editing programs image Y grows down but we want Y
+    (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
 
     <p>This allows bump mapping to be used. If you turn BumpMapping attribute on
     (and pass light position for bump mapping), our VRML engine will
