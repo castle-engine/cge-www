@@ -1,7 +1,11 @@
 Next WWW update:
 - add bump mapping to "the castle", or update kambi_vrml_extensions file
 Text for next update:
-- bump mapping
+- bump mapping.
+  VRML renderer allows bump mapping, see kambi_vrml_extensions#ext_bump.
+  You easily turn this on by Attributes.BumpMapping := true and set Scene.BumpMappingLightPosition however you want, everything else is taken care of automaically.
+  Three ways to do bump mapping in VRML are implemented (auto-detected used best method): dot3 not normalized, dot 3 normalized by cube map and glsl.
+  Programmers: see also bump_mapping demo, with emboss, dot3 (not normalized and normalized) demo and notes how this is done in bump_mapping/README
 - Wavefront OBJ improved (we handle normal vectors, materials, textures)
 - Our blender VRML 97 exporter script improved: set solid/set smooth/autosmooth/autosmooth degrees settings from Blender are correctly exported to VRML file (as creasteAngle field)
 - I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units.
@@ -14,6 +18,10 @@ Text for next update:
 - OpenGL shaders support.
   Engine supports easily using ARB vertex / fragment programs (assembly shaders) and GLSL.
   You can also directly specify GLSL shaders inside VRML file, which is a great feature for VRML authors. Syntax of shaders in VRML follows X3D specification.
+  link to kambi_vrml_extensions, kambi_vrml_test_suite includes demos of this,
+  view3dscene allows to control GLSL shaders and even simply assign GLSL shaders to any file (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i> menu item)
+
+  Programmers: see also shading_langs_demo/README
 
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
