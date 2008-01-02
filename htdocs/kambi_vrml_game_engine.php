@@ -28,7 +28,10 @@ Features include:</p>
   <li>Shadows by shadow volumes (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.).</li>
   <li><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'ext_bump_mapping'); ?>.
+    'kambi_vrml_extensions', 'ext_bump_mapping'); ?> (internally using various
+    implementations, depending on whether hardware supports GLSL or not;
+    for most primitive method, basic multitexturing with 2 texture units is enough
+    &mdash; so will run on pretty much any existing hardware).</li>
   <li>Using shaders. There are classes to easily use ARB fragment / vertex programs
     and GLSL shaders. Most important, you can
     <?php echo a_href_page_hashlink('add and control GLSL shaders from VRML',
