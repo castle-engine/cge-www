@@ -394,12 +394,6 @@ function current_www_a_href_size($link_title, $f_name)
    ona sobie poradzi tak czy tak. */
 function medium_image_progs_demo($image_name, $prog_name, $aligned = true)
 {
-  $image_name_original_size = "images/progs_demo/original_size/$image_name";
-  $image_name_medium_size   = "images/progs_demo/medium_size/$image_name";
-
-  if (!is_file_available_locally($image_name_original_size) ||
-      !is_file_available_locally($image_name_medium_size)) return '';
-
   global $page_lang;
   switch ($page_lang)
   {
@@ -407,11 +401,27 @@ function medium_image_progs_demo($image_name, $prog_name, $aligned = true)
     case LANG_EN: $alt = "Image from &quot;$prog_name&quot;"; break;
   }
 
+  return medium_image_progs_demo_core($image_name, $alt, '', ($aligned ? 'right' : ''));
+}
+
+function medium_image_progs_demo_core($image_name, $alt, $title = '$alt', $align = '')
+{
+  $image_name_original_size = "images/progs_demo/original_size/$image_name";
+  $image_name_medium_size   = "images/progs_demo/medium_size/$image_name";
+
+  if (!is_file_available_locally($image_name_original_size) ||
+      !is_file_available_locally($image_name_medium_size)) return '';
+
+  if ($title === '$alt')
+    $title = $alt;
+
   return
    "<a href=\"$image_name_original_size\">
       <img "
-       . ($aligned ? "align=\"right\" " : "") .
-       "src=\"$image_name_medium_size\" alt=\"$alt\">
+       . ($align != '' ? "align=\"$align\"" : '') .
+       " src=\"$image_name_medium_size\" alt=\"$alt\" "
+       . ($title != '' ? "title=\"$title\"" : '') .
+       "/>
     </a>";
 }
 

@@ -15,6 +15,16 @@
 <?php echo pretty_heading('Kambi VRML game engine (overview for developers)',
   VERSION_KAMBI_VRML_GAME_ENGINE); ?>
 
+<?php
+  echo '<table align="right">' .
+    '<tr><td>' . medium_image_progs_demo_core("fountain_only_materials.png", '&quot;The Fountain&quot; level with only materials') .
+    '<tr><td>' . medium_image_progs_demo_core("fountain_shadows.png", '&quot;The Fountain&quot; level textured with shadows') .
+    '<tr><td>' . medium_image_progs_demo_core("fountain_toon_shading.png", '&quot;The Fountain&quot; level with toon shading GLSL program') .
+    '<tr><td>' . medium_image_progs_demo_core("fountain_bump_mapping.png", '&quot;The Fountain&quot; level with bump mapping used') .
+    '</table>';
+?>
+
+
 <p>An open-source game engine written in ObjectPascal.
 Features include:</p>
 

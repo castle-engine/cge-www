@@ -104,7 +104,7 @@ You will also need
     You can move or symlink the executable <tt>castle</tt> to any place
     you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
-    <p>Run the game by running <tt>castle</tt>.</li></p>
+    <p>Run the game by running <tt>castle</tt>.</p></li>
 
   <li>
     <p><b>Windows:</b></p>
