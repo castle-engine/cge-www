@@ -926,10 +926,23 @@ EXTERNPROTO Text3D [
 
     <p>This allows bump mapping to be used. If you turn BumpMapping attribute on
     (and pass light position for bump mapping), our VRML engine will
-    automatically do appropriate bump mapping. Currently you cannot see
-    this in <?php echo a_href_page("view3dscene", "view3dscene") ?> but
-    you should be able to see this used is new version of
-    <?php echo a_href_page("The Castle", "castle") ?>.</p>
+    automatically do appropriate bump mapping. You can test it in</p>
+
+    <ul>
+      <li><p>You can turn it on and see the effects in
+        <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+        In view3dscene, for simplicity, bump mapping light position is always
+        set to current camera position.</p></li>
+
+      <li><p>You can see this used in
+        <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
+        Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
+
+      <li><p>Programmers may also compile and run example program
+        <tt>3dmodels.gl/examples/bump_mapping/</tt> in engine sources, this allows
+        to really play with bump mapping settings and see how to use this in
+        your own programs.</p></li>
+    </ul>
 
     <p>Note that currently bump mapping is used only when normal texture
     ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
