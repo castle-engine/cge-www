@@ -94,11 +94,14 @@ Subversion by:<br><tt><?php
 
 <ul>
   <li><tt>textures/castle/</tt> are from <a href="http://www.jonathanclark.com/">
-    public domain textures from unfinished game "Golgotha"</a>
+    public domain textures from unfinished game "Golgotha"</a></li>
   <li><tt>brick031.jpg</tt> from
-    <a href="http://www.grsites.com/">grsites.com</a>
-  <li><tt>renifery.jpg</tt> &mdash; author unknown
-  <li>rest created by Kambi using <a href="http://www.gimp.org/">GIMP</a>
+    <a href="http://www.grsites.com/">grsites.com</a></li>
+  <li><tt>renifery.jpg</tt> &mdash; author unknown</li>
+  <li>leaf textures based on
+    <a href="http://flickr.com/photos/martinlabar/2072745893/">"Maple
+    leaf on concrete" photo by Martin LaBar</a></li>
+  <li>rest created by Kambi using <a href="http://www.gimp.org/">GIMP</a></li>
 </ul>
 
 <p>Skies in <tt>skies</tt> subdirectory done with
