@@ -85,6 +85,18 @@ The main way for
 intiializing OpenGL for games is by GLWindow unit that doesn't depend on
 any Lazarus units. -->
 
+<p>Note: under Windows you will need some DLLs
+to successfully run some of the programs.
+I collected all DLLs needed by my programs
+<?php echo current_www_a_href_size('in this archive',
+  'miscella/win32_dlls.zip'); ?>, so just download
+this and put in program's exe directory.
+These DLLs are already included in binary archives of my programs,
+but are not included in source archives (since they are only usable
+for Windows users). In general, for all OSes, see section
+"Requirements" in the documentation of programs and make sure that
+you have appropriate libraries installed on your system.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p>Below are sources for specific programs.
@@ -162,18 +174,6 @@ from SVN, everything in SVN should be always up-to-date.
 these programs. For now you can just go to the page of appropriate
 program and read documentation there (if you downloaded binary
 version of program you will also have documentation there).
-
-<p>Note: under Windows you will need some DLLs
-to successfully run some of these programs.
-I collected all DLLs needed by my programs
-<?php echo current_www_a_href_size('in this archive',
-  'miscella/win32_dlls.zip'); ?>, so just download
-this and put in program's exe directory.
-These DLLs are already included in binary archives of my programs,
-but are not included in source archives (since they are only usable
-for Windows users). In general, see section
-"Requirements" in the documentation of each program and make sure that
-you have appropriate libraries installed on your system.
 
 <?php echo $toc->html_section(); ?>
 

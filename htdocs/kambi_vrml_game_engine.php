@@ -5,6 +5,7 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Features', 'features'),
       new TocItem('Download sources', 'download_src'),
       new TocItem('Documentation', 'docs'),
       new TocItem('Automatic tests', 'tests')
@@ -24,49 +25,66 @@
     '</table>';
 ?>
 
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
 
-<p>An open-source game engine written in ObjectPascal.
+<?php echo $toc->html_section(); ?>
+
+<p>This is an open-source game engine written in ObjectPascal.
 Features include:</p>
 
 <ul>
-  <li>Optimized OpenGL rendering of models in
-    VRML 1.0 and 2.0 (aka VRML 97) formats.</li>
-  <li>3DS, MD3, OBJ file formats are also supported. They can be loaded,
+  <li><b>Optimized OpenGL rendering</b> of models in
+    <b>VRML 1.0 and 2.0 (aka VRML 97)</b> formats.</li>
+
+  <li><b>3DS, MD3, OBJ</b> file formats are also supported. They can be loaded,
     and converted to VRML 1.0.</li>
-  <li>Animations are supported, by interpolation.</li>
-  <li>Octrees are used for various collision detection tasks.</li>
-  <li>Shadows by shadow volumes (full implementation, with z-fail / z-pass
+
+  <li><b>Animations</b> are supported, by interpolation.</li>
+
+  <li>Octrees are used for various <b>collision detection</b> tasks.</li>
+
+  <li><b>Shadows</b> by shadow volumes (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.).</li>
-  <li><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'ext_bump_mapping'); ?> (internally using various
+
+  <li><b><?php echo a_href_page_hashlink('Bump mapping',
+    'kambi_vrml_extensions', 'ext_bump_mapping'); ?></b> (internally using various
     implementations, depending on whether hardware supports GLSL or not;
     for most primitive method, basic multitexturing with 2 texture units is enough
     &mdash; so will run on pretty much any existing hardware).</li>
-  <li>Using shaders. There are classes to easily use ARB fragment / vertex programs
+
+  <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
     and GLSL shaders. Most important, you can
     <?php echo a_href_page_hashlink('add and control GLSL shaders from VRML',
     'kambi_vrml_extensions', 'ext_shaders'); ?>.
     So GLSL shaders are fully available
     for model designers, programmer doesn't have to do anything.
-  <li>GLWindow unit is available to easily create windows with OpenGL
-    context. The intention of this unit is to be something like glut,
+
+  <li>GLWindow unit is available to easily <b>create windows with OpenGL
+    context</b>. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
     Also it allows you to easily create menu bars, open/save file and similar
     dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes,
     GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
-  <li>Reading and writing of images in various formats, processing them
+
+  <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
     (png, jpg, ppm, bmp, just for starters), included is also support for
     RGBE format (Radiance HDR format).</li>
-  <li>Handling of fonts, including rendering them with OpenGL,
+
+  <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
     as bitmap or outline (3D) fonts.</li>
-  <li>Many OpenAL helpers, including intelligent OpenAL sound manager
+
+  <li><b>3D sound</b> by OpenAL helpers, including intelligent OpenAL sound manager
     and OggVorbis format handling.</li>
-  <li>Ray-tracer based on VRML models is implemented.</li>
-  <li>The engine is portable. Currently tested and used on Linux,
+
+  <li><b>Ray-tracer</b> based on VRML models is implemented.</li>
+
+  <li>The engine is <b>portable</b>. Currently tested and used on Linux,
     FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
     Porters/testers for other OS/processors are welcome,
     the engine should be able to run on all modern OSes supported by FPC.</li>
+
   <li>Engine components are independent when possible.
     For example, you can only take VRML / 3DS / MD3 loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
@@ -93,8 +111,6 @@ Features include:</p>
 <p>The engine was used to develop all programs on these pages.
 It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
-<p>Contents:
-<?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
