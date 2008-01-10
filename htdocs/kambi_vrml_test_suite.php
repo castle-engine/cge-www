@@ -101,6 +101,10 @@ Subversion by:<br><tt><?php
   <li>leaf textures based on
     <a href="http://flickr.com/photos/martinlabar/2072745893/">"Maple
     leaf on concrete" photo by Martin LaBar</a></li>
+  <li>lion bump mapping textures from
+    <a href="http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/">Philippe
+    David steep parallax mapping code</a>, based on <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">paper
+    about steep mapping</a>.
   <li>rest created by Kambi using <a href="http://www.gimp.org/">GIMP</a></li>
 </ul>
 
