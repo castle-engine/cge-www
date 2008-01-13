@@ -4,10 +4,10 @@ Text for next update:
 - bump mapping.
   VRML renderer allows bump mapping, see kambi_vrml_extensions#ext_bump.
   You easily turn this on by Attributes.BumpMapping := true and set Scene.BumpMappingLightPosition however you want, everything else is taken care of automaically.
-  Three ways to do bump mapping in VRML are implemented (auto-detected used best method): dot3 not normalized, dot 3 normalized by cube map and glsl.
+  Various bump mapping methods are implemented in VRML (auto-detected used best method): dot by multitexturing (not normalized and normalized by cube map), dot by GLSL (optionally with parallax mapping, optionally with steep parallax mapping and self-shadowing).
   view3dscene allows to easily turn on bump mapping, assuming model specifies normal maps.
   castle uses bump mapping, for now only on "fountain" level.
-  Programmers: see also bump_mapping demo, with emboss, dot3 (not normalized and normalized) demo and notes how this is done in bump_mapping/README
+  Programmers: see also bump_mapping demo, with emboss, dot (multitex not normalized and normalized) and all methods built in VRML demos and notes how this is done in bump_mapping/README
 - Wavefront OBJ improved (we handle normal vectors, materials, textures)
 - Our blender VRML 97 exporter script improved: set solid/set smooth/autosmooth/autosmooth degrees settings from Blender are correctly exported to VRML file (as creasteAngle field)
 - I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units.
