@@ -48,10 +48,10 @@ Features include:</p>
     switching, silhouette detection etc.).</li>
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'ext_bump_mapping'); ?></b> (internally using various
-    implementations, depending on whether hardware supports GLSL or not;
-    for most primitive method, basic multitexturing with 2 texture units is enough
-    &mdash; so will run on pretty much any existing hardware).</li>
+    'kambi_vrml_extensions', 'ext_bump_mapping'); ?></b> (using various
+    implementations: basic multitexturing with dot3 (normalized by cube map or not),
+    GLSL normal, GLSL with classic parallax mapping, GLSL with steep parallax
+    mapping and self-shadowing).</li>
 
   <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
     and GLSL shaders. Most important, you can

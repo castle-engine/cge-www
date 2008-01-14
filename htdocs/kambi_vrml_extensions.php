@@ -29,9 +29,12 @@ function node_end()
 {
   return "<b>}</b>\n</pre>";
 }
-function node_dots()
+
+function node_dots($comment = '')
 {
-  return "  <b>...</b>\n";
+  if ($comment == '')
+    return "  <b>...</b>\n"; else
+    return "  <b>... $comment ...</b>\n";
 }
 
 function node_field($field_kind,
@@ -62,7 +65,7 @@ $extensions['ext_material_mirror'] = 'Mirror material (field <tt>mirror</tt> for
 $extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</tt>)';
 $extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
 $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
-$extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt> field of <tt>KambiAppearance</tt>)';
+$extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)';
 $extensions['ext_shaders'] = 'Programmable shaders (X3D feature "backported" to VRML)';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
@@ -908,11 +911,25 @@ EXTERNPROTO Text3D [
   <?php echo ext_long_title('ext_bump_mapping'); ?>
 
     <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
-    node that adds new field: <tt>normalMap</tt>.
-    This is an <tt>SFNode</tt> type field.
-    You can put in <tt>normalMap</tt> the same nodes as in <tt>texture</tt>
-    node, so you can use there <tt>ImageTexture</tt>, <tt>PixelTexture</tt>,
-    <tt>MovieTexture</tt>.</p>
+    node that adds some new fields useful for bump mapping:
+
+    <?php
+      echo node_begin('KambiAppearance');
+      $node_format_fd_name_pad = 15;
+      echo
+      node_dots('all normal Appearance fields') .
+      node_field('exposedField', 'SFNode', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('exposedField', 'SFNode', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('exposedField', 'SFFloat', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
+      node_end();
+    ?>
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf without bump mapping') .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf with bump mapping') .
+        '</table>';
+    ?>
 
     <p>Texture specified as <tt>normalMap</tt> describes normal vector
     values on each texel. Normal vector values are actually encoded as colors:
@@ -924,22 +941,37 @@ EXTERNPROTO Text3D [
     in image editing programs image Y grows down but we want Y
     (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
 
-    <p>This allows bump mapping to be used. If you turn BumpMapping attribute on
+    <p>This allows bump mapping to be used. If you set BumpMappingMaximum attribute
     (and pass light position for bump mapping), our VRML engine will
-    automatically do appropriate bump mapping. You can test it in</p>
+    automatically do appropriate bump mapping.</p>
+
+    <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
+    method, done by pure multitexturing or GLSL programs, depending on
+    OpenGL capabilities). If you additionally specify some texture as
+    <tt>heightMap</tt> then parallax mapping
+    (<a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
+    self-shadowing</a>, if used OpenGL will support it) will be additionally used.
+    <tt>heightMapScale</tt> allows you to tweak the perceived height of bumps
+    for parallax mapping.</p>
+
+    <p>You can test it in</p>
 
     <ul>
       <li><p>You can turn it on and see the effects in
         <?php echo a_href_page("view3dscene", "view3dscene") ?>.
         In view3dscene, for simplicity, bump mapping light position is always
-        set to current camera position.</p></li>
+        set to current camera position. Sample models with normal maps
+        and height maps are inside <?php echo a_href_page('Kambi VRML test suite',
+        'kambi_vrml_test_suite'); ?>, in directory
+        <tt>vrml_2/kambi_extensions/bump_mapping/</tt>.</p></li>
 
       <li><p>You can see this used in
         <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
         Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
 
       <li><p>Programmers may also compile and run example program
-        <tt>3dmodels.gl/examples/bump_mapping/</tt> in engine sources, this allows
+        <tt>3dmodels.gl/examples/bump_mapping/</tt> in
+        <?php echo a_href_page('engine sources', 'sources'); ?>, this allows
         to really play with bump mapping settings and see how to use this in
         your own programs.</p></li>
     </ul>
@@ -952,6 +984,12 @@ EXTERNPROTO Text3D [
   </li>
 
   <?php echo ext_long_title('ext_shaders'); ?>
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL') .
+        '</table>';
+    ?>
 
     <p>Although X3D is not supoorted yet by our engine, I already implemented some
     X3D features and they are available for VRML 2.0 authors.

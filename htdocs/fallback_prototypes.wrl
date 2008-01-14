@@ -32,6 +32,8 @@ PROTO KambiAppearance [
   exposedField SFNode texture           NULL
   exposedField SFNode textureTransform  NULL
   exposedField SFNode normalMap         NULL
+  exposedField SFNode heightMap         NULL
+  exposedField SFFloat heightMapScale   0.01
 ] {
   Appearance {
     material IS material
