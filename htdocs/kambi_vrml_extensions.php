@@ -100,6 +100,9 @@ function ext_long_title($ext_name)
       <li><a href="#section_exts_vrmlall">Extensions for all VRML versions</a>
         <ol>
           <?php echo
+            ext_short_title('ext_shaders') .
+            ext_short_title('ext_bump_mapping') .
+            ext_short_title('ext_text3d') .
             ext_short_title('ext_mix_vrml_1_2') .
             ext_short_title('ext_fog_volumetric') .
             ext_short_title('ext_fog_immune') .
@@ -111,9 +114,6 @@ function ext_long_title($ext_name)
             ext_short_title('ext_material_mirror') .
             ext_short_title('ext_headlight') .
             ext_short_title('ext_shadows') .
-            ext_short_title('ext_text3d') .
-            ext_short_title('ext_bump_mapping') .
-            ext_short_title('ext_shaders') .
             '';
           ?>
         </ol>
@@ -224,6 +224,194 @@ in <?php echo a_href_page("Kambi VRML test suite",
 <h4><a name="section_exts_vrmlall">Extensions for all VRML versions</a></h4>
 
 <ul>
+  <?php echo ext_long_title('ext_shaders'); ?>
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL') .
+        '</table>';
+    ?>
+
+    <p>Although X3D is not supoorted yet by our engine, I already implemented some
+    X3D features and they are available for VRML 2.0 authors.
+    See <?php echo a_href_page_hashlink('VRML implementation status about X3D',
+      'vrml_implementation_status', 'section_x3d'); ?>.</p>
+
+    <p>For now, these features are
+    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders</b></a>.
+    <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
+    allow you to write shaders in GLSL language. For example add
+    inside <tt>Appearance</tt> node VRML code like</p>
+
+<pre>
+  shaders ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
+      ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+    ]
+  }
+</pre>
+
+    <p>See <?php echo a_href_page("Kambi VRML test suite",
+    "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
+    for working demos of this.</p>
+
+    <p>Oh, and some other programmable shader features are quite trivial
+    to implement (attributes and uniforms for shaders in VRML).
+    They are implemented in the engine classes anyway, it's only a matter
+    of implementing link between VRML and them.
+    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
+    If you have some interesting VRML / X3D models that use these programmable
+    shaders features, feel free to contact me and I'll implement them
+    in our engine.</p>
+
+    <p>(I mean, I will implement them anyway some day, but it's always
+    much more interesting to implement features when you actually have
+    a real use for them... In other words, I'm just dying to see some
+    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+  </li>
+
+  <?php echo ext_long_title('ext_bump_mapping'); ?>
+
+    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
+    node that adds some new fields useful for bump mapping:
+
+    <?php
+      echo node_begin('KambiAppearance');
+      $node_format_fd_name_pad = 15;
+      echo
+      node_dots('all normal Appearance fields') .
+      node_field('exposedField', 'SFNode', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('exposedField', 'SFNode', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('exposedField', 'SFFloat', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
+      node_end();
+    ?>
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf without bump mapping') .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf with bump mapping') .
+        '</table>';
+    ?>
+
+    <p>Texture specified as <tt>normalMap</tt> describes normal vector
+    values on each texel. Normal vector values are actually encoded as colors:
+    normal vector (x, y, z) should be encoded as RGB((x+1)/2, (y+1)/2, (z+1)/2).
+    You can use e.g.
+    <a href="http://nifelheim.dyndns.org/~cocidius/normalmap/">GIMP
+    normalmap plugin</a> to generate such normal maps.
+    (<i>Hint:</i> Remember to check "invert y" when generating normal maps,
+    in image editing programs image Y grows down but we want Y
+    (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
+
+    <p>This allows bump mapping to be used. If you set BumpMappingMaximum attribute
+    (and pass light position for bump mapping), our VRML engine will
+    automatically do appropriate bump mapping.</p>
+
+    <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
+    method, done by pure multitexturing or GLSL programs, depending on
+    OpenGL capabilities). If you additionally specify some texture as
+    <tt>heightMap</tt> then parallax mapping
+    (<a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
+    self-shadowing</a>, if used OpenGL will support it) will be additionally used.
+    <tt>heightMapScale</tt> allows you to tweak the perceived height of bumps
+    for parallax mapping.</p>
+
+    <p>You can test it in</p>
+
+    <ul>
+      <li><p>You can turn it on and see the effects in
+        <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+        In view3dscene, for simplicity, bump mapping light position is always
+        set to current camera position. Sample models with normal maps
+        and height maps are inside <?php echo a_href_page('Kambi VRML test suite',
+        'kambi_vrml_test_suite'); ?>, in directory
+        <tt>vrml_2/kambi_extensions/bump_mapping/</tt>.</p></li>
+
+      <li><p>You can see this used in
+        <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
+        Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
+
+      <li><p>Programmers may also compile and run example program
+        <tt>3dmodels.gl/examples/bump_mapping/</tt> in
+        <?php echo a_href_page('engine sources', 'sources'); ?>, this allows
+        to really play with bump mapping settings and see how to use this in
+        your own programs.</p></li>
+    </ul>
+
+    <p>Note that currently bump mapping is used only when normal texture
+    ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
+    field of Appearance") is also specified. Also, it's used only with
+    IndexedFaceSet nodes, and only when texture coordinates were specified
+    explicitly.</p>
+  </li>
+
+  <?php echo ext_long_title('ext_text3d'); ?>
+
+    <p>We add new node:
+
+    <?php
+      echo node_begin('Text3D');
+      echo
+      node_field('exposedField', 'MFString', 'string', '[]') .
+      node_field('exposedField', 'SFNode', 'fontStyle', 'NULL') .
+      node_field('exposedField', 'MFFloat', 'length', '[]') .
+      node_field('exposedField', 'SFFloat', 'maxExtent', '0') .
+      node_field('exposedField', 'SFFloat', 'depth', '0.1', 'must be &gt;= 0') .
+      node_field('exposedField', 'SFBool', 'solid', 'TRUE') .
+      node_end();
+    ?>
+
+    <p>This renders the text, pretty much like <tt>Text</tt> node from
+    VRML 97 (see VRML 97 specification about <tt>string</tt>, <tt>fontStyle</tt>,
+    <tt>length</tt>, <tt>maxExtent</tt> fields). But the text is 3D:
+    it's "pushed" by the amount <tt>depth</tt> into negative Z. The normal
+    text is on Z = 0, the 3D text had front cap on Z = 0, back cap on Z = -Depth,
+    and of course the extrusion (sides).</p>
+
+    <p>Also, it's natural to apply backface culling to such text, so we have
+    a <tt>solid</tt> field. When true (default), then backface culling is done.
+    This may provide much speedup, unless camera is able to enter
+    "inside" the text geometry (in which case solid should be set to <tt>FALSE</tt>).</p>
+
+    <p>If <tt>depth</tt> is zero, then normal 2D text is rendered.
+    However, backface culling may still be applied (if <tt>solid</tt> is true)
+    &mdash; so this node also allows you to make 2D text that's supposed to be
+    visible from only front side.</p>
+
+    <p>See <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, file
+    <tt>vrml_2/kambi_extensions/text_depth.wrl</tt> for example use of this.</p>
+
+    <p>Compatibility:
+    <ul>
+      <li>You should specify external prototype before using this node:
+
+        <pre>
+EXTERNPROTO Text3D [
+  exposedField MFString string
+  exposedField SFNode fontStyle
+  exposedField MFFloat length
+  exposedField SFFloat maxExtent
+  exposedField SFFloat depth
+  exposedField SFBool solid
+] [ "urn:vrmlengine.sourceforge.net:node:Text3D",
+    "http://vrmlengine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
+</pre>
+
+        <p>This way other VRML browsers should be able to
+        render Text3D node like normal 2D Text.</p></li>
+
+      <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
+        node from Parallel Graphics</a>. At the beginning I implemented this
+        externsion differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
+        for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
+        these Parallel Graphics <tt>Text3D</tt> definition, so I decided
+        to make my version compatible.</li>
+    </ul>
+  </li>
+
   <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
 
     Because of the way how I implemented VRML 1.0 and 2.0 handling,
@@ -842,193 +1030,6 @@ in <?php echo a_href_page("Kambi VRML test suite",
     so you want to add it, but you don't want to make the scene
     actually brighter.
   </li>
-
-  <?php echo ext_long_title('ext_text3d'); ?>
-
-    <p>We add new node:
-
-    <?php
-      echo node_begin('Text3D');
-      echo
-      node_field('exposedField', 'MFString', 'string', '[]') .
-      node_field('exposedField', 'SFNode', 'fontStyle', 'NULL') .
-      node_field('exposedField', 'MFFloat', 'length', '[]') .
-      node_field('exposedField', 'SFFloat', 'maxExtent', '0') .
-      node_field('exposedField', 'SFFloat', 'depth', '0.1', 'must be &gt;= 0') .
-      node_field('exposedField', 'SFBool', 'solid', 'TRUE') .
-      node_end();
-    ?>
-
-    <p>This renders the text, pretty much like <tt>Text</tt> node from
-    VRML 97 (see VRML 97 specification about <tt>string</tt>, <tt>fontStyle</tt>,
-    <tt>length</tt>, <tt>maxExtent</tt> fields). But the text is 3D:
-    it's "pushed" by the amount <tt>depth</tt> into negative Z. The normal
-    text is on Z = 0, the 3D text had front cap on Z = 0, back cap on Z = -Depth,
-    and of course the extrusion (sides).</p>
-
-    <p>Also, it's natural to apply backface culling to such text, so we have
-    a <tt>solid</tt> field. When true (default), then backface culling is done.
-    This may provide much speedup, unless camera is able to enter
-    "inside" the text geometry (in which case solid should be set to <tt>FALSE</tt>).</p>
-
-    <p>If <tt>depth</tt> is zero, then normal 2D text is rendered.
-    However, backface culling may still be applied (if <tt>solid</tt> is true)
-    &mdash; so this node also allows you to make 2D text that's supposed to be
-    visible from only front side.</p>
-
-    <p>See <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, file
-    <tt>vrml_2/kambi_extensions/text_depth.wrl</tt> for example use of this.</p>
-
-    <p>Compatibility:
-    <ul>
-      <li>You should specify external prototype before using this node:
-
-        <pre>
-EXTERNPROTO Text3D [
-  exposedField MFString string
-  exposedField SFNode fontStyle
-  exposedField MFFloat length
-  exposedField SFFloat maxExtent
-  exposedField SFFloat depth
-  exposedField SFBool solid
-] [ "urn:vrmlengine.sourceforge.net:node:Text3D",
-    "http://vrmlengine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
-</pre>
-
-        <p>This way other VRML browsers should be able to
-        render Text3D node like normal 2D Text.</p></li>
-
-      <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
-        node from Parallel Graphics</a>. At the beginning I implemented this
-        externsion differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
-        for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
-        these Parallel Graphics <tt>Text3D</tt> definition, so I decided
-        to make my version compatible.</li>
-    </ul>
-  </li>
-
-  <?php echo ext_long_title('ext_bump_mapping'); ?>
-
-    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
-    node that adds some new fields useful for bump mapping:
-
-    <?php
-      echo node_begin('KambiAppearance');
-      $node_format_fd_name_pad = 15;
-      echo
-      node_dots('all normal Appearance fields') .
-      node_field('exposedField', 'SFNode', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('exposedField', 'SFNode', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('exposedField', 'SFFloat', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
-      node_end();
-    ?>
-
-    <?php
-      echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf without bump mapping') .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf with bump mapping') .
-        '</table>';
-    ?>
-
-    <p>Texture specified as <tt>normalMap</tt> describes normal vector
-    values on each texel. Normal vector values are actually encoded as colors:
-    normal vector (x, y, z) should be encoded as RGB((x+1)/2, (y+1)/2, (z+1)/2).
-    You can use e.g.
-    <a href="http://nifelheim.dyndns.org/~cocidius/normalmap/">GIMP
-    normalmap plugin</a> to generate such normal maps.
-    (<i>Hint:</i> Remember to check "invert y" when generating normal maps,
-    in image editing programs image Y grows down but we want Y
-    (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
-
-    <p>This allows bump mapping to be used. If you set BumpMappingMaximum attribute
-    (and pass light position for bump mapping), our VRML engine will
-    automatically do appropriate bump mapping.</p>
-
-    <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
-    method, done by pure multitexturing or GLSL programs, depending on
-    OpenGL capabilities). If you additionally specify some texture as
-    <tt>heightMap</tt> then parallax mapping
-    (<a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
-    self-shadowing</a>, if used OpenGL will support it) will be additionally used.
-    <tt>heightMapScale</tt> allows you to tweak the perceived height of bumps
-    for parallax mapping.</p>
-
-    <p>You can test it in</p>
-
-    <ul>
-      <li><p>You can turn it on and see the effects in
-        <?php echo a_href_page("view3dscene", "view3dscene") ?>.
-        In view3dscene, for simplicity, bump mapping light position is always
-        set to current camera position. Sample models with normal maps
-        and height maps are inside <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?>, in directory
-        <tt>vrml_2/kambi_extensions/bump_mapping/</tt>.</p></li>
-
-      <li><p>You can see this used in
-        <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
-        Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
-
-      <li><p>Programmers may also compile and run example program
-        <tt>3dmodels.gl/examples/bump_mapping/</tt> in
-        <?php echo a_href_page('engine sources', 'sources'); ?>, this allows
-        to really play with bump mapping settings and see how to use this in
-        your own programs.</p></li>
-    </ul>
-
-    <p>Note that currently bump mapping is used only when normal texture
-    ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
-    field of Appearance") is also specified. Also, it's used only with
-    IndexedFaceSet nodes, and only when texture coordinates were specified
-    explicitly.</p>
-  </li>
-
-  <?php echo ext_long_title('ext_shaders'); ?>
-
-    <?php
-      echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL') .
-        '</table>';
-    ?>
-
-    <p>Although X3D is not supoorted yet by our engine, I already implemented some
-    X3D features and they are available for VRML 2.0 authors.
-    See <?php echo a_href_page_hashlink('VRML implementation status about X3D',
-      'vrml_implementation_status', 'section_x3d'); ?>.</p>
-
-    <p>For now, these features are
-    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders</b></a>.
-    <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
-    allow you to write shaders in GLSL language. For example add
-    inside <tt>Appearance</tt> node VRML code like</p>
-
-<pre>
-  shaders ComposedShader {
-    language "GLSL"
-    parts [
-      ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
-      ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
-    ]
-  }
-</pre>
-
-    <p>See <?php echo a_href_page("Kambi VRML test suite",
-    "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
-    for working demos of this.</p>
-
-    <p>Oh, and some other programmable shader features are quite trivial
-    to implement (attributes and uniforms for shaders in VRML).
-    They are implemented in the engine classes anyway, it's only a matter
-    of implementing link between VRML and them.
-    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
-    If you have some interesting VRML / X3D models that use these programmable
-    shaders features, feel free to contact me and I'll implement them
-    in our engine.</p>
-
-    <p>(I mean, I will implement them anyway some day, but it's always
-    much more interesting to implement features when you actually have
-    a real use for them... In other words, I'm just dying to see some
-    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
 </ul>
 
 <h4><a name="section_exts_vrml1">VRML 1.0 only extensions</a></h4>
