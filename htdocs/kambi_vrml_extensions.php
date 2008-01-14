@@ -290,8 +290,10 @@ in <?php echo a_href_page("Kambi VRML test suite",
 
     <?php
       echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf without bump mapping') .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf with bump mapping') .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf (without bump mapping)') .
+        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf (with bump mapping)') .
+        '<tr><td>' . medium_image_progs_demo_core("parallax_demo_lion_noparallax.png", 'Lion texture (without parallax mapping)') .
+        '<tr><td>' . medium_image_progs_demo_core("parallax_demo_lion.png", 'Lion texture (with parallax mapping)') .
         '</table>';
     ?>
 
