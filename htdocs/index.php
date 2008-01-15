@@ -216,6 +216,21 @@ the programs developed with it:</p>
     modified version of the mgf2inv program by Greg Ward,
     it outputs some additional info about physical material properties
     (concerning Phong BRDF)
+
+  <li>Programmers may be interested in:
+    <ul>
+      <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping/README">Bump
+        mapping techniques quick overview</a></li>
+      <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README">Shading
+        languages (in particular ARB vertex/fragment assembly programs,
+        Cg and mostly GLSL) quick overview</a></li>
+    </ul>
+    I wrote these documents when I was learning these techniques myself,
+    they contain some summary and my findings, and links to other useful resources.
+    You can take a look into our engine sources (in <tt>kambi_vrml_game_engine/.../examples/...</tt>
+    directories, just look at the URLs of these documents) to see practical
+    implementation of all these things.
+  </li>
 </ul>
 
 <p>See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
