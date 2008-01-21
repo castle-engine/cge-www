@@ -24,6 +24,12 @@ Text for next update:
   view3dscene allows to control GLSL shaders and even simply assign GLSL shaders to any file (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i> menu item)
 
   Programmers: see also shading_langs_demo/README
+- Among many new demo programs, there's also
+  kambi_vrml_game_engine/3dmodels.gl/examples/plane_mirror_and_shadow.pasprogram
+  to test plane-projected shadows and plane mirrors. Plane-projected shadows
+  is only for simple demo (we have shadow volumes, thousand times better
+  alhorithm, implemented after all), but plane mirrors will be implemented
+  in the future in the VRML engine (using "mirror" Material field automatically).
 
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
