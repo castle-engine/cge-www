@@ -6,7 +6,7 @@
     '3DS, OBJ (Wavefront) and MD3 scenes. ' .
     'Can do collision detection. ' .
     'Can be used as command-line converter from 3DS, OBJ, MD3 to VRML 1.0. ' .
-    'Has built-in raytracer. Uses OpenGL. ' .
+    'Has built-in ray-tracer. Uses OpenGL. ' .
     'Free software. For Linux, FreeBSD, Mac OS X and Windows.',
     NULL,
     '<style type="text/css"><!--
@@ -126,7 +126,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <tt>Examine</tt> (this allows you to easily rotate and scale the whole
     model). <!-- trochê tak jakbysmy trzymali w rêkach
     pude³eczko ze scen± w ¶rodku -->
-  <li>Convertion of 3DS, OBJ, MD3 and GEO files to VRML 1.0
+  <li>Conversion of 3DS, OBJ, MD3 and GEO files to VRML 1.0
   <li>You can also simply open and save any VRML 1.0 or 2.0 file
     and in effect view3dscene will work as a "pretty-printer" for VRML files.
   <li>Built-in ray-tracer
@@ -156,7 +156,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     displayed.
 </ul>
 
-<!-- Removed becase usual user is not interested in this.
+<!-- Removed because usual user is not interested in this.
 
 <p>Badanie kolizji i raytracing s± przyspieszane przy pomocy drzewa ósemkowego -
 je¶li wiesz co to jest to mo¿e Ciê zainteresowaæ ¿e program
@@ -204,13 +204,24 @@ view3dscene additional command-line options</a>.</p>
 
 <?php section('Controlling program with keys &amp; mouse', 'keys'); ?>
 
-<p><b>Keys in <tt>Examine</tt> navigation mode :</b>
+<p><b>Controls in <tt>Examine</tt> navigation mode :</b>
 <table border="1" class="key_list">
-  <tr><td>Arrows / PageUp / PageDown   <td>rotate scene
-  <tr><td>Space                    <td>stop rotating scene
-  <tr><td>Ctrl + Arrows / PageUp / PageDown <td>move scene
-  <tr><td>+ / -                      <td>scale scene
-  <tr><td>Home  <td>restore default rotation, translation and scale
+  <tr><th colspan="2">Mouse:</th></tr>
+
+  <tr><td>Left mouse dragging</td>               <td>rotate scene</td></tr>
+  <tr><td>Middle mouse dragging (or Left mouse + Shift)</td>
+      <td>move scene horizontally/vertically</td></tr>
+  <tr><td>Right mouse dragging (or Left mouse + Ctrl)</td>
+      <td>move scene closer/further</td></tr>
+
+  <tr><th colspan="2">Keys:</th></tr>
+
+  <tr><td>Arrows / PageUp / PageDown</td>        <td>rotate scene</td></tr>
+  <tr><td>Space</td>                             <td>stop rotating scene</td></tr>
+  <tr><td>Ctrl + Arrows / PageUp / PageDown</td> <td>move scene</td></tr>
+  <tr><td>+ / -</td>                             <td>scale scene</td></tr>
+  <tr><td>Home</td>
+      <td>restore default rotation, translation and scale</td></tr>
 </table>
 
 <!--
@@ -224,34 +235,40 @@ useful value. You can set initial camera up vector using <tt>- -camera-up</tt>
 command-line option (look below) or using menu item "Change camera up vector".
 -->
 
-<p><b>Keys in <tt>Walk</tt> navigation mode :</b><br>
+<p><b>Controls in <tt>Walk</tt> navigation mode :</b><br>
 <table border="1" class="key_list">
-  <tr><th colspan="2">Basic:
-  <tr><td>Up / Down            <td>move
-  <tr><td>Left / Right         <td>rotate
-  <tr><td>PageUp / PageDown    <td>raise/bow your head
-  <tr><td>Home
+
+  <tr><th colspan="2">Basic:</th></tr>
+
+  <tr><td>Up / Down</td>            <td>move</td></tr>
+  <tr><td>Left / Right</td>         <td>rotate</td></tr>
+  <tr><td>PageUp / PageDown</td>    <td>raise/bow your head</td></tr>
+  <tr><td>Home</td>
       <td>restore head raise to initial position (neutralize any effect of
-          PageUp / PageDown)
-  <tr><td>Insert / Delete     <td>fly up / down
-  <tr><td>Comma / Period      <td>strafe moving
-  <tr><td>A / Z
-    <td>jump / crouch (only when <i>Gravity</i> works in <tt>Walk</tt> mode)
-  <tr><td colspan="2">Note: when <i>mouse look</i> in turned <i>on</i> then
+          PageUp / PageDown)</td></tr>
+  <tr><td>Insert / Delete</td>     <td>fly up / down</td></tr>
+  <tr><td>Comma / Period</td>      <td>strafe moving</td></tr>
+  <tr><td>A / Z</td>
+    <td>jump / crouch (only when <i>Gravity</i> works in <tt>Walk</tt> mode)</td></tr>
+  <tr><td colspan="2">Note: when <i>mouse look</i> is turned <i>on</i> then
     <ul style="margin: 0;">
       <li>Left / Right keys are responsible for strafe moving</li>
       <li>Comma / Period keys are for rotations</li>
     </ul></td></tr>
-  <tr><th colspan="2">Additional keys:
-  <tr><td>+ / -
-      <td>Increase / Decrease moving speed (has effect on keys
-        Up / Down, Insert / Delete, Comma / Period)
-  <tr><td>Ctrl + Left / Right
-       <td>rotate <i>slower</i> (useful when you want to set up camera
+
+  <tr><th colspan="2">Additional controls:</th></tr>
+
+  <tr><td>+ / -</td>
+      <td>increase / decrease moving speed (has effect on keys
+        Up / Down, Insert / Delete, Comma / Period)</td></tr>
+  <tr><td>Ctrl + Left / Right</td>
+      <td>rotate <i>slower</i> (useful when you want to set up camera
          very precisely, e.g. to use this camera setting to render a scene
-         image using ray-tracer)
-  <tr><td>Ctrl + PageUp / PageDown
-      <td>raise / bow your head <i>slower</i>
+         image using ray-tracer)</td></tr>
+  <tr><td>Ctrl + PageUp / PageDown</td>
+      <td>raise / bow your head <i>slower</i></td></tr>
+  <tr><td>Left mouse click</td>
+      <td>pick point, selecting triangle and object</td></tr>
 </table>
 
 <p>Now, there's a lot of keys that work independent of current navigation
@@ -522,7 +539,7 @@ They all are optional.
     to say that whole triangle octree must always contain only one node
     (so this only node must be a leaf). This way you de facto
     turn off using octree. This way you can see that using octree
-    can really speed up collision detection, not to mention raytracing.
+    can really speed up collision detection, not to mention ray-tracing.
 
     <p>Default parameters are <?php echo VIEW3DSCENE_DEF_OCTREE_MAX_DEPTH; ?>
     for <tt>triangle-octree-max-depth</tt> and
