@@ -30,6 +30,7 @@ Text for next update:
   is only for simple demo (we have shadow volumes, thousand times better
   alhorithm, implemented after all), but plane mirrors will be implemented
   in the future in the VRML engine (using "mirror" Material field automatically).
+- view3dscene: you can rotate and move by mouse in Examine mode
 
 After next update:
 - regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
