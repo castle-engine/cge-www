@@ -123,13 +123,13 @@ Textures done with <a href="http://www.gimp.org">GIMP</a>.
 <a href="http://www.imagemagick.org/">ImageMagick</a>.
 <tt>base_shadowed.png</tt> generated using my program <tt>gen_light_map</tt>
 (available as part of <?php echo a_href_page('my units sources', 'sources'); ?>,
-see <tt>3dmodels/tools/gen_light_map.dpr</tt> file).
+see <tt>3dmodels/tools/gen_light_map.pasprogram</tt> file).
 Sky in <tt>skies/</tt> done using <a href="http://www.planetside.co.uk/">
 Terragen</a>.
 <tt>base_b_proc.wrl</tt> done in <a href="http://www.blender3d.org">Blender</a>
-and processed using my small <tt>processBaseB</tt> program
+and processed using my small <tt>process_base_b</tt> program
 (available in <?php echo a_href_page('lets_take_a_walk sources', 'sources'); ?>,
-see <tt>devel/vrml/processBaseB.dpr</tt> file).
+see <tt>lets_take_a_walk/devel/vrml/process_base_b.pasprogram</tt> file).
 <tt>rat.wrl</tt> and <tt>tree.wrl</tt> are modified (using Blender)
 files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 
