@@ -1,5 +1,15 @@
 Next WWW update:
-- add bump mapping to "the castle", or update kambi_vrml_extensions file
+- add light moving, to really demo bump mapping on "the castle"
+- update castle, view3dscene, kambi_vrml_game_engine, kambi_vrml_test_suite,
+  API doc, vmrl_engine_doc.
+
+- regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
+  Fix HTML links to vrml_engine_doc to use it.
+
+- update kambi_lines for Windows (where was the problem ? fpc ver ?
+  check... check does new version works on ii 107).
+  Actually, probably the best is to update all programs.
+
 Text for next update:
 - bump mapping.
   VRML renderer allows bump mapping, see kambi_vrml_extensions#ext_bump.
@@ -33,5 +43,3 @@ Text for next update:
 - view3dscene: you can rotate and move by mouse in Examine mode
 
 After next update:
-- regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
-  Fix HTML links to vrml_engine_doc to use it.

@@ -229,26 +229,38 @@ About support for various FPC versions:
   <li><p><em>FPC 2.2.0</em> : This is the simplest and best option
     &mdash; FPC 2.2.0 works perfectly, and you can download already
     compiled packages of it from
-    <a href="http://www.freepascal.org/">www.freepascal.org</a>.
+    <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
+
+    <p><i>Note only for for x86_64</i>:
+    to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
+    you have to use fixed glext.pas unit from engine sources
+    (<tt>trunk/kambi_vrml_game_engine/opengl/x86_64/</tt>) or
+    use newer FPC (currently, this means: from SVN).</p></li>
 
   <li><p><em>FPC 2.0.4</em> : will work OK for some time from now
-    (2007-09-20).
+    (2007-09-20). But you have to use GL units from FPC &gt;= 2.2.0,
+    for example grab them from FPC SVN:</p>
+
+<pre>
+  svn checkout http://svn.freepascal.org/svn/fpc/tags/release_2_2_0/packages/extra/opengl/
+</pre>
+  </li>
 
   <li><p><em>Latest FPC development version,
     downloadable from FPC SVN repository</em>, usually works.
     However, you must remember that SVN version changes rapidly
     and no-one can give any guarantee about current stability of FPC from SVN
-    (or stability of my programs compiled with this FPC).
+    (or stability of my programs compiled with this FPC).</p></li>
 
   <li><p><em>Older FPC versions</em>: while they may work,
-    they are not really supported.
+    they are not really supported.</p>
 
     <p>There was a time when various versions of FPC 1.0.x
     were allowed (including my own patched versions of FPC 1.0.6
     and later 1.0.10), there was a time when various FPC 1.9.x
     were allowed and so on. But it's all gone now. I even deleted
     various notes about support for older FPC versions from this
-    page. Just upgrade to latest stable FPC release.
+    page. Just upgrade to latest stable FPC release.</p></li>
 </ul>
 
 <?php
