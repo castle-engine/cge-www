@@ -22,6 +22,9 @@
     '<tr><td>' . medium_image_progs_demo_core("fountain_shadows.png", '&quot;The Fountain&quot; level textured with shadows') .
     '<tr><td>' . medium_image_progs_demo_core("fountain_toon_shading.png", '&quot;The Fountain&quot; level with toon shading GLSL program') .
     '<tr><td>' . medium_image_progs_demo_core("fountain_bump_mapping_good_materials.png", '&quot;The Fountain&quot; level with bump mapping used') .
+    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_normal.png", '&quot;The Gate&quot; level with normal fill mode') .
+    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_solid_wireframe.png", '&quot;The Gate&quot; level with solid wireframe fill mode') .
+    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_silhouette.png", '&quot;The Gate&quot; level with silhouette fill mode') .
     '</table>';
 ?>
 
