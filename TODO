@@ -41,5 +41,6 @@ Text for next update:
   alhorithm, implemented after all), but plane mirrors will be implemented
   in the future in the VRML engine (using "mirror" Material field automatically).
 - view3dscene: you can rotate and move by mouse in Examine mode
+- view3dscene allows various "fill modes". Normal and wireframe are standard, now we also have a couple more, like solid wireframe and silhouette. Keys changed ("w" key no longer works, "f" key changes fill mode instead of fog state).
 
 After next update:
