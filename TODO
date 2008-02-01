@@ -42,6 +42,6 @@ Text for next update:
   in the future in the VRML engine (using "mirror" Material field automatically).
 - view3dscene: you can rotate and move by mouse in Examine mode
 - view3dscene allows various "fill modes". Normal and wireframe are standard, now we also have a couple more, like solid wireframe and silhouette. Keys changed ("w" key no longer works, "f" key changes fill mode instead of fog state).
-- finish Collada, add everywhere notes about it
+- Collada support (1.3.x and 1.4.x, but only geometry and materials for now) added to the engine (view3dscene and everywhere else)
 
 After next update:
