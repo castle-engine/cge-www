@@ -3,7 +3,7 @@
 
   common_header("view3dscene", LANG_EN,
     'view3dscene is a viewer for VRML 1.0, VRML 2.0 (aka VRML 97), ' .
-    '3DS, OBJ (Wavefront) and MD3 scenes. ' .
+    '3DS, MD3, Wavefront OBJ and Collada scenes. ' .
     'Can do collision detection. ' .
     'Can be used as command-line converter from 3DS, OBJ, MD3 to VRML 1.0. ' .
     'Has built-in ray-tracer. Uses OpenGL. ' .
@@ -139,7 +139,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <tt>Examine</tt> (this allows you to easily rotate and scale the whole
     model). <!-- trochê tak jakbysmy trzymali w rêkach
     pude³eczko ze scen± w ¶rodku -->
-  <li>Conversion of 3DS, OBJ, MD3 and GEO files to VRML 1.0
+  <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML.
+    (Collada to VRML 2.0, rest to VRML 1.0 currently.)
   <li>You can also simply open and save any VRML 1.0 or 2.0 file
     and in effect view3dscene will work as a "pretty-printer" for VRML files.
   <li>Built-in ray-tracer
@@ -160,7 +161,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     We intentionally do not try to implement a full 3D authoring program here.
   <li>Animations may be played (currently, they may be loaded
     from <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files;
-    animations recorded as VRML 2.0 interpolators are not played yet).
+    animations recorded as VRML 2.0 interpolators and inside Collada files
+    are not played yet).
 
     <p>There's one small caveat with animations right now:
     some features (collision checking, mouse picking,
@@ -386,10 +388,10 @@ They all are optional.
 
   <dt>--write-to-vrml
   <dd><p>Option <tt>--write-to-vrml</tt> means "don't open any window,
-    just convert the input model to VRML 1.0,
+    just convert the input model to VRML,
     write the result to the standard output and exit".
     This way you can use view3dscene to convert
-    3DS, OBJ, MD3 and GEO files to VRML 1.0, like<br>
+    3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML, like<br>
     <tt>&nbsp;&nbsp;view3dscene scene.3ds --write-to-vrml > scene.wrl</tt> , <br>
     you can also use this to do some VRML file processing using
     options <tt>--scene-change-*</tt> described below.
@@ -630,15 +632,16 @@ you can see example of this in
  in file <tt>vrml_1/materials.wrl</tt>.
 
 <p>Group of planes are <i>similar</i> if angle between each pair
-of planes is smaller than <b>creaseAngle</b> value of last seen
-<b>ShapeHints</b> VRML node. For 3DS, OBJ, MD3 and GEO models we use
-default creaseAngle = 0.5 radians (a little less than 30 degrees).
+of planes is smaller than <b>creaseAngle</b> value (of last seen
+<b>ShapeHints</b> in VRML 1.0, or of the given geometry node in VRML 2.0).
+For other 3D model formats we use
+default <tt>creaseAngle</tt> = 0.5 radians (a little less than 30 degrees).
 
 <p>Note: if VRML file already had some normal vectors recorded
 (in <tt>Normal</tt> nodes) then program will use them, in both flat
 and smooth shading.
 Usually it's not important but to be sure that proper normals are
-used you can use menu item "Edit->Remove normals info from scene".
+used you can use menu item <i>"Edit -> Remove normals info from scene"</i>.
 <!-- or command-line parameter <tt>- -scene-change-no-normals</tt>. -->
 
 <!-- Final finding: usually you will

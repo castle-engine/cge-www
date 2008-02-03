@@ -40,8 +40,8 @@ Features include:</p>
   <li><b>Optimized OpenGL rendering</b> of models in
     <b>VRML 1.0 and 2.0 (aka VRML 97)</b> formats.</li>
 
-  <li><b>3DS, MD3, OBJ</b> file formats are also supported. They can be loaded,
-    and converted to VRML 1.0.</li>
+  <li><b>3DS, MD3, Wavefront OBJ, Collada</b> file formats are also supported.
+    They can be loaded, and converted to VRML.</li>
 
   <li><b>Animations</b> are supported, by interpolation.</li>
 
@@ -89,7 +89,7 @@ Features include:</p>
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
   <li>Engine components are independent when possible.
-    For example, you can only take VRML / 3DS / MD3 loading and processing
+    For example, you can only take model loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
     but still initialize OpenGL context yourself (no requirement to do it
     by our <tt>GLWindow</tt> unit). And so on.

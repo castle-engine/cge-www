@@ -56,7 +56,7 @@ function node_field($field_kind,
 $extensions['ext_mix_vrml_1_2'] = 'Mixing VRML 1.0 and 2.0 nodes and features';
 $extensions['ext_fog_volumetric'] = 'Volumetric fog (additional fields for <tt>Fog</tt> node)';
 $extensions['ext_fog_immune'] = 'Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)';
-$extensions['ext_inline_for_all'] = 'Inline nodes allow to include models in 3DS, MD3, OBJ and GEO formats and any VRML format';
+$extensions['ext_inline_for_all'] = 'Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML version';
 $extensions['ext_kambi_triangulation'] = 'Specify triangulation (node <tt>KambiTriangulation</tt>)';
 $extensions['ext_gzip'] = 'VRML files may be compressed by gzip';
 $extensions['ext_navigationinfo'] = 'Node <tt>NavigationInfo</tt> handling details';
@@ -571,7 +571,7 @@ EXTERNPROTO Text3D [
 
     Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControls</tt> in VRML 2.0
     and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
-    other VRML files, but also other 3DS, MD3, OBJ (Wavefront) and GEO models.
+    other VRML files, but also other 3DS, MD3, Wavefront OBJ, Collada models.
     Internally, all those formats are converted to VRML before
     displaying anyway. If you want to precisely know how the conversion
     to VRML goes, you can always do the explicit conversion to VRML

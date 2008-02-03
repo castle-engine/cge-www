@@ -188,7 +188,7 @@ so using open-source modeller is strongly favored over proprietary modellers.
     For Blender, it's adviced to use our customized VRML 97 exporter,
     see <?php echo a_href_page("Blender VRML stuff", "blender_stuff"); ?>.</li>
 
-  <li><p><i>3DS / MD3 / other formats notes:</i><br/>
+  <li><p><i>3DS / MD3 / Collada / other formats notes:</i><br/>
     Actually, you can also use models in other formats instead
     of VRML. Our engine can handle other formats, see
     <?php echo a_href_page('view3dscene', 'view3dscene') ?>
@@ -200,9 +200,16 @@ so using open-source modeller is strongly favored over proprietary modellers.
     completely by our engine (just like by any other program, since everyone
     has to "reverse engineer" 3DS).</p>
 
-    <p>In particular, <em>everything</em> that can be expressed
-    in other 3D formats handled (3DS, MD3 etc.) and that is understood
-    by our engine can also be expressed in VRML 1.0 and 2.0.
+    <p><i>Collada</i> format is a positive exception to this. It's an XML format with
+    an open specification, pretty much like X3D / VRML.
+    So using 3D models is Collada format is actually not a bad idea &mdash;
+    except that we do not handle all features from Collada files currently.
+    But Collada support can (and will be, if needed) easily improved &mdash;
+    don't hesitate to report if some Collada feature is not handled, we'll fix it.</p>
+
+    <p>Still, note that <em>everything</em> that can be expressed
+    in other 3D formats handled and that is understood
+    by our engine can also be expressed in VRML.
     But not vice-versa, i.e. there are some features that
     are available with my engine when using VRML but are not available
     when using e.g. 3DS.

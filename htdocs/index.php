@@ -72,7 +72,7 @@ function program_image_links_table_begin_half()
 
     <?php program_image_link('view3dscene',
       'Viewer for VRML 1.0, VRML 2.0 (aka VRML 97),
-      3DS, MD3, OBJ and GEO models. Move in the virtual scene,
+      3DS, MD3, Wavefront OBJ and Collada models. Move in the virtual scene,
       with collision-checking and gravity,
       use embedded ray-tracer, convert 3DS, MD3 etc. files to VRML 1.0.',
       "view3dscene_2.0.0_screen_demo.png",
