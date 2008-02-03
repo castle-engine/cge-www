@@ -339,6 +339,51 @@ They all are optional.
 
 <dl class="params_list">
 
+  <dt>--screenshot  TIME  FILE-NAME</dt>
+  <dd><p>Take a screenshot of the loaded scene, save it to FILE-NAME,
+    and exit. In other words, this is used to take screenshots in "batch mode".
+    (In interactive mode, you can use comfortable
+    menu item <i>Other -> Screenshot...</i>).</p>
+
+    <p>You most definitely want to pass 3D model file to load
+    at command-line too, otherwise we'll just make a screenshot
+    of the default empty (black) scene. <tt>TIME</tt> is useful if you
+    load an animation, if you have a static model you can specify
+    anything (e.g. "0"). So to take a simple screenshot of a scene,
+    at it's default camera, just call</p>
+
+<pre>
+  view3dscene my_model.wrl --screenshot 0 output.png
+</pre>
+
+    <p>Hints:</p>
+
+    <ul>
+      <li><p>To control the look of your screenshot, you often want to
+        use VRML nodes like <tt>Viewpoint</tt>, <tt>NavigationInfo</tt>,
+        <tt>Background</tt>. For example, take a look at
+        <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/screenshot_header.wrl">screenshot_header.wrl</a>
+        VRML file.</p></li>
+
+      <li><p>You can generate wanted <tt>Viewpoint</tt> node
+        also by using view3dscene, just set your camera (in interactive mode)
+        the way you like and use menu item
+        <i>Console -> Print Current Camera Node</i>.</p>
+
+      <li><p>To control the size of resulting screenshot, just use
+        <tt>--geometry</tt> command-line parameter
+        (documented at <?php echo a_href_page("standard options
+        understood by our OpenGL programs", "opengl_options") ?>).
+        For example, take a look at
+        <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
+        script.</p></li>
+    </ul>
+
+    <p>Generally, you can take a look at (complex) example how to make
+    a screenshot from animation in
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
+    drectory.</p></dd>
+
   <dt>--write-to-vrml
   <dd><p>Option <tt>--write-to-vrml</tt> means "don't open any window,
     just convert the input model to VRML 1.0,
