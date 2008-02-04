@@ -349,7 +349,7 @@ They all are optional.
 
     <p>You most definitely want to pass 3D model file to load
     at command-line too, otherwise we'll just make a screenshot
-    of the default empty (black) scene. <tt>TIME</tt> is useful if you
+    of the default empty (black) scene. <tt>TIME</tt> (float value) is useful if you
     load an animation, if you have a static model you can specify
     anything (e.g. "0"). So to take a simple screenshot of a scene,
     at it's default camera, just call</p>
@@ -379,6 +379,9 @@ They all are optional.
         For example, take a look at
         <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
         script.</p></li>
+
+      <li><p>To make your screenshot look best, you may want to use anti-aliasing,
+        see <tt>--anti-alias</tt> option below.</p></li>
     </ul>
 
     <p>Generally, you can take a look at (complex) example how to make
@@ -395,6 +398,25 @@ They all are optional.
     <tt>&nbsp;&nbsp;view3dscene scene.3ds --write-to-vrml > scene.wrl</tt> , <br>
     you can also use this to do some VRML file processing using
     options <tt>--scene-change-*</tt> described below.
+
+  <dt>--anti-alias AMOUNT</dt>
+  <dd><p>Use full-screen anti-aliasing. Argument <tt>AMOUNT</tt>
+    is an integer &gt;= 0. Exact 0 means "no anti-aliasing", this is the default.
+    Each successive integer generally makes method one step better.
+    But also more demanding &mdash; program may run slower, or even fail to run
+    (if your graphic card cannot provide context with sufficient number of samples
+    needed for multisampling).
+    Currently, highest value is 4. So <tt>AMOUNT</tt> numbers above 4 are
+    exactly the same as 4.</p>
+
+    <p>There is no guarantee what specific values of <tt>AMOUNT</tt> exactly
+    mean, as this depends on your graphic card capabilities. The graphic cards
+    themselves don't provide methods to reliably set some specific FSAA method
+    (only hints, like <tt>glHint(GL_MULTISAMPLE_FILTER_HINT_NV, ...)</tt>)
+    since the general idea is that better GPU models may provide the same or even
+    better results using different methods. From your (user) point of view,
+    you can test each method and just decide which looks best and isn't too slow
+    on your 3D model and graphic card.</p></dd>
 
   <dt>--scene-change-no-normals<br>
       --scene-change-no-solid-objects<br>

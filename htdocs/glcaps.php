@@ -53,6 +53,8 @@ e.g. is your graphic card able to provide 16-bit stencil buffer.
   --accum-blue-bits ACCUM-BLUE
   --accum-alpha-bits ACCUM-ALPHA
   --accum-bits ACCUM-RED ACCUM-GREEN ACCUM-BLUE ACCUM-ALPHA
+  --multi-sampling SAMPLES
+    (1 means "no multisampling")
   --single
   --double
 </pre>
