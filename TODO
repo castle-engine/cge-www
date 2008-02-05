@@ -45,7 +45,7 @@ Text for next update:
 - Collada support (1.3.x and 1.4.x, but only geometry and materials for now) added to the engine (view3dscene and everywhere else)
 - view3dscene has --screenshot command-line option, requested a few times, to take
   screenshots in batch mode.
-
+- castle and view3dcsene have anti-aliasing available (by command-line option in view3dcsene, and comfortable menu setting in castle)
 - update view3dscene description of freshmeat, to include Collada.
 
 After next update:

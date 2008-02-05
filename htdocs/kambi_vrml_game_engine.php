@@ -66,8 +66,8 @@ Features include:</p>
   <li>GLWindow unit is available to easily <b>create windows with OpenGL
     context</b>. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
-    Also it allows you to easily create menu bars, open/save file and similar
-    dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes,
+    Also it allows you to easily create <b>menu bars, open/save file and similar
+    dialogs</b> that are implemented using native controls (GTK (1.0 or 2.0, and yes,
     GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
 
   <li>Reading and writing of <b>images</b> in various formats, processing them
@@ -80,6 +80,8 @@ Features include:</p>
 
   <li><b>3D sound</b> by OpenAL helpers, including intelligent OpenAL sound manager
     and OggVorbis format handling.</li>
+
+  <li><b>Ant-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
 
   <li><b>Ray-tracer</b> based on VRML models is implemented.</li>
 
