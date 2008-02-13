@@ -1,50 +1,28 @@
 Next WWW update:
-- update castle, view3dscene, kambi_vrml_game_engine, kambi_vrml_test_suite,
-  API doc, vmrl_engine_doc.
+- update bin and srcs:
+    castle
+    view3dscene
+    kambi_vrml_game_engine
+    kambi_vrml_test_suite
+    rayhunter
+    lets_take_a_walk
+    malfunction
+    kambi_lines
+    glplotter
+    glViewImage
+    bezier_curves
+    glcaps
 
-- regen vrml_engine_doc for html chunked, use.id.as.filename is very important.
+  update
+    vmrl_engine_doc.
+
+  using.id.as.filename is very important.
   Fix HTML links to vrml_engine_doc to use it.
 
-- update kambi_lines for Windows (where was the problem ? fpc ver ?
-  check... check does new version works on ii 107).
-  Actually, probably the best is to update all programs.
+- write also shorted change log entry
 
 Text for next update:
-- bump mapping.
-  VRML renderer allows bump mapping, see kambi_vrml_extensions#ext_bump.
-  You easily turn this on by Attributes.BumpMapping := true and set Scene.BumpMappingLightPosition however you want, everything else is taken care of automaically.
-  Various bump mapping methods are implemented in VRML (auto-detected used best method): dot by multitexturing (not normalized and normalized by cube map), dot by GLSL (optionally with parallax mapping, optionally with steep parallax mapping and self-shadowing).
-  view3dscene allows to easily turn on bump mapping, assuming model specifies normal maps.
-  castle uses bump mapping, for now only on "fountain" level.
-  Programmers: see also bump_mapping demo, with emboss, dot (multitex not normalized and normalized) and all methods built in VRML demos and notes how this is done in bump_mapping/README
-- Wavefront OBJ improved (we handle normal vectors, materials, textures)
-- Our blender VRML 97 exporter script improved: set solid/set smooth/autosmooth/autosmooth degrees settings from Blender are correctly exported to VRML file (as creasteAngle field)
-- I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units.
-  OpenGLh was developed when FPC had no usable OpenGL binding unit (neither had Delphi)...
-  Times have changed, and current GL, GLU, GLExt units are usable, and (thanks to my patches, like
-  http://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg02328.html and
-  http://www.freepascal.org/mantis/view.php?id=7570 and, most of all,
-  http://www.freepascal.org/mantis/view.php?id=7600)
-  it works good and supports OpenGL 2.0 functions. (while OpenGLh was on GL 1.2 + many extensions level).
-- OpenGL shaders support.
-  Engine supports easily using ARB vertex / fragment programs (assembly shaders) and GLSL.
-  You can also directly specify GLSL shaders inside VRML file, which is a great feature for VRML authors. Syntax of shaders in VRML follows X3D specification.
-  link to kambi_vrml_extensions, kambi_vrml_test_suite includes demos of this,
-  view3dscene allows to control GLSL shaders and even simply assign GLSL shaders to any file (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i> menu item)
-
-  Programmers: see also shading_langs_demo/README
-- Among many new demo programs, there's also
-  kambi_vrml_game_engine/3dmodels.gl/examples/plane_mirror_and_shadow.pasprogram
-  to test plane-projected shadows and plane mirrors. Plane-projected shadows
-  is only for simple demo (we have shadow volumes, thousand times better
-  alhorithm, implemented after all), but plane mirrors will be implemented
-  in the future in the VRML engine (using "mirror" Material field automatically).
-- view3dscene: you can rotate and move by mouse in Examine mode
-- view3dscene allows various "fill modes". Normal and wireframe are standard, now we also have a couple more, like solid wireframe and silhouette. Keys changed ("w" key no longer works, "f" key changes fill mode instead of fog state).
-- Collada support (1.3.x and 1.4.x, but only geometry and materials for now) added to the engine (view3dscene and everywhere else)
-- view3dscene has --screenshot command-line option, requested a few times, to take
-  screenshots in batch mode.
-- castle and view3dcsene have anti-aliasing available (by command-line option in view3dcsene, and comfortable menu setting in castle)
-- update view3dscene description of freshmeat, to include Collada.
 
 After next update:
+- update view3dscene description of freshmeat, to include Collada.
+- check does kambi_lines work on Windows in ii 107 now.

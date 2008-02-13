@@ -67,8 +67,8 @@ version_explicit glcaps_glut `glcaps --version`
 
 version_call gen_function
 
-version_explicit kambi_vrml_game_engine 1.2.0
-version_explicit kambi_vrml_test_suite 2.0.0
+version_explicit kambi_vrml_game_engine 1.3.0
+version_explicit kambi_vrml_test_suite 2.1.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 

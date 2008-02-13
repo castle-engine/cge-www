@@ -50,6 +50,130 @@ function this_a_href_page($title, $page_name)
   */
 
   $changes_log = array(
+    array('title' => 'Engine 1.3.0 release, view3dscene 2.4.0, castle 0.8.1, many other releases',
+          'year' => 2008,
+          'month' => 02,
+          'day' => 14,
+          'pubDate' => /* date_to_timestamp.sh '2008-02-14' */ 1202990400,
+          'guid' => '2008-02-14',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'description' =>
+
+"<p>Many long-awaited graphic features implemented in our engine:</p>
+
+<ul>
+  <li><p><b>Bump mapping</b>: <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
+    renderer allows bump mapping</a>. Various bump mapping methods
+    are implemented (auto-detected used best method):
+    dot by multitexturing (not normalized and normalized by cube map),
+    dot by GLSL (optionally with parallax mapping, optionally with
+    steep parallax mapping and self-shadowing).</p>
+
+    <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to easily
+    turn on bump mapping, assuming model specifies normal maps.<br/>
+    " . this_a_href_page('castle', 'castle') . " uses bump mapping, for now only
+    on \"fountain\" level.</p>
+
+    <p>Programmers: see also <tt>bump_mapping</tt> demo in engine sources,
+    with emboss, dot (multitex not normalized and normalized) and
+    all methods built in VRML demos and notes how this is done in
+    <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping/README\">bump_mapping/README</a>.</p>
+  </li>
+
+  <li><p><b>GLSL shaders support:</b> engine supports easily using
+    ARB vertex / fragment programs (assembly shaders) and&nbsp;GLSL.</p>
+
+    <p>You can also <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">directly
+    specify GLSL shaders inside VRML file</a>, which is a great feature
+    for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
+
+    <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to control
+    GLSL shaders and even simply assign GLSL shaders to any file
+    (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i>
+    menu item).</p>
+
+    <p>Programmers: see also <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README\">shading_langs_demo/README</a>.</p>
+
+  <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
+    graphic card). " . this_a_href_page('view3dscene', 'view3dscene') . "
+    gives command-line option <tt>--anti-alias</tt> to control this,
+    " . this_a_href_page('castle', 'castle') . " has comfortable menu item
+    in <i>Video options</i>.</p>
+
+  <li><p><b>Collada model format</b> basic support (1.3.x and 1.4.x)
+    added to the engine (" . this_a_href_page('view3dscene', 'view3dscene') . "
+    and everything else open it, just like any other model format;
+    you can also convert Collada files to VRML 2.0).</p>
+  </li>
+
+  <li><p>Wavefront OBJ format handling improved (we handle normal vectors,
+    materials, textures).</p>
+  </li>
+
+  <li><p><tt>Examine</tt> mode allows to rotate and move the scene by mouse
+    dragging. This is more intuitive and sometimes comfortable.
+    This feature is mostly noticeable in
+    " . this_a_href_page('view3dscene', 'view3dscene') . ", although
+    some example programs in engine demos also use such examine mode
+    and also benefit from this.</p>
+  </li>
+</ul>
+
+<p>Besides improvements above, some improvements specific to
+" . this_a_href_page('view3dscene', 'view3dscene') . ":</p>
+
+<ul>
+  <li><tt>--screenshot</tt> command-line option, requested a few times,
+    to take screenshots of the scene in batch mode.</li>
+  <li>Various <i>fill modes</i>. Previously only <i>normal</i> and
+    <i>wireframe</i> were available, now we have a couple more,
+    like solid wireframe and silhouette. Keys changed (\"w\" key no longer works,
+    \"f\" key changes fill mode instead of fog state).</li>
+</ul>
+
+<p>Also " . this_a_href_page('our Blender VRML 97 exporter script', 'blender_stuff') . "
+improved: <i>set solid/set smooth/autosmooth/autosmooth degrees</i>
+settings from Blender are correctly exported to VRML file (as creasteAngle field).</p>
+
+<p>Other most notable internal engine changes:</p>
+
+<ul>
+  <li>I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units
+    from FPC. OpenGLh was developed when FPC had no usable OpenGL binding unit
+    (neither had Delphi)... Times have changed, and current GL, GLU, GLExt
+    units are usable, and (partially thanks
+    <a href=\"http://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg02328.html\">to</a>
+    <a href=\"http://www.freepascal.org/mantis/view.php?id=7570\">my</a>
+    <a href=\"http://www.freepascal.org/mantis/view.php?id=7600\">patches</a>,
+    <a href=\"http://bugs.freepascal.org/view.php?id=10460\">quite</a>
+    <a href=\"http://bugs.freepascal.org/view.php?id=10507\">a</a>
+    <a href=\"http://bugs.freepascal.org/view.php?id=10508\">few</a> :) )
+    they work good and support OpenGL 2.0 functions.
+    (While OpenGLh was on GL 1.2 + many extensions level).</li>
+
+  <li>Among many new demo programs, there's also
+    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/plane_mirror_and_shadow.pasprogram</tt>
+    to test plane-projected shadows and plane mirrors. Plane-projected shadows
+    is only for simple demo (we have implemented shadow volumes, thousand times better
+    algorithm, after all), but plane mirrors will be implemented
+    in the future in the VRML engine (using \"mirror\" <tt>Material</tt>
+    field automatically).</li>
+</ul>
+
+<p>Other releases:
+" . this_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
+has many new tests/demos for new features (bump mapping, GLSL,
+Collada format). Also released:
+" . this_a_href_page('rayhunter 1.2.2', 'rayhunter') . ",
+" . this_a_href_page('lets_take_a_walk 1.2.1', 'lets_take_a_walk') . ",
+" . this_a_href_page('malfunction 1.2.4', 'malfunction') . ",
+" . this_a_href_page('kambi_lines 1.1.4', 'kambi_lines') . ",
+" . this_a_href_page('glplotter 1.2.1', 'glplotter_and_gen_function') . ",
+" . this_a_href_page('glViewImage 1.2.2', 'glviewimage') . ",
+" . this_a_href_page('bezier_curves 1.1.6', 'bezier_curves') . ",
+" . this_a_href_page('glcaps 1.1.2', 'glcaps') . ",
+mainly to bring them up-to-date with current engine state.</p>
+"),
 
     array('title' => 'castle 0.8.0, view3dscene 2.3.0 released',
           'year' => 2007,
@@ -300,6 +424,9 @@ function last_change_log_to_html($full_description = true)
 {
   global $changes_log, $month_names;
 
+  return change_log_to_html($changes_log[0]);
+
+/*
   if ($full_description)
   {
     return change_log_to_html($changes_log[0]);
@@ -336,7 +463,7 @@ function last_change_log_to_html($full_description = true)
     <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
     about shadows implementation.</a></li>
 </ul>";
-  }
+  }*/
 }
 
 ?>
