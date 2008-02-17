@@ -400,12 +400,18 @@ They all are optional.
     options <tt>--scene-change-*</tt> described below.
 
   <dt>--anti-alias AMOUNT</dt>
-  <dd><p>Use full-screen anti-aliasing. Argument <tt>AMOUNT</tt>
+  <dd><p>Use full-screen anti-aliasing. You can also configure it from
+    the menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>.
+    Using this command-line option is mainly useful together with
+    <tt>--screenshot</tt> option.</p>
+
+    <p>Argument <tt>AMOUNT</tt>
     is an integer &gt;= 0. Exact 0 means "no anti-aliasing", this is the default.
     Each successive integer generally makes method one step better.
     But also more demanding &mdash; program may run slower, or even fail to run
     (if your graphic card cannot provide context with sufficient number of samples
-    needed for multisampling).
+    needed for multisampling). See <i>Anti aliasing</i> in interactive mode
+    for the meaning of <tt>AMOUNT</tt> values.
     Currently, highest value is 4. So <tt>AMOUNT</tt> numbers above 4 are
     exactly the same as 4.</p>
 

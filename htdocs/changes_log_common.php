@@ -96,7 +96,8 @@ function this_a_href_page($title, $page_name)
 
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
     graphic card). " . this_a_href_page('view3dscene', 'view3dscene') . "
-    gives command-line option <tt>--anti-alias</tt> to control this,
+    has comfortable menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>
+    and gives command-line option <tt>--anti-alias</tt> to control this,
     " . this_a_href_page('castle', 'castle') . " has comfortable menu item
     in <i>Video options</i>.</p>
 
