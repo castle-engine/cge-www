@@ -73,8 +73,9 @@ Below is only a shortcut of the most important changes
     mapping</a>. Various bump mapping methods are implemented,
     the most advanced being steep parallax mapping with self-shadowing.</li>
 
-  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">GLSL
-    shaders support</a>, in VRML and in the engine.</li>
+  <li>Shaders support, including <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">specifying GLSL
+    shaders in VRML</a>. Programmers may easily initialize
+    GLSL and ARB assembly shaders.</li>
 
   <li>Anti-aliasing available in both "
     . this_a_href_page('view3dscene', 'view3dscene') . "
@@ -92,7 +93,7 @@ Below is only a shortcut of the most important changes
     to take screenshots of the scene in batch mode.</li>
 
   <li>" . this_a_href_page('Our Blender VRML 97 exporter script', 'blender_stuff') . "
-    improved: <i>set solid/set smooth/autosmooth/autosmooth degrees</i>
+    improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
     settings from Blender are correctly exported to VRML.</li>
 </ul>
 
@@ -107,12 +108,12 @@ to bring them up-to-date with current engine state.</p>
 "<p>Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
 " . this_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
 " . this_a_href_page('castle 0.8.1', 'castle') . ".
-Many long-awaited graphic features implemented in our engine:</p>
+Many long-awaited graphic features implemented:</p>
 
 <ul>
   <li><p><b>Bump mapping</b>: <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
     renderer allows bump mapping</a>. Various bump mapping methods
-    are implemented (auto-detected used best method):
+    are implemented (best method is auto-detected and used at runtime):
     dot by multitexturing (not normalized and normalized by cube map),
     dot by GLSL (optionally with parallax mapping, optionally with
     steep parallax mapping and self-shadowing).</p>
@@ -120,12 +121,13 @@ Many long-awaited graphic features implemented in our engine:</p>
     <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to easily
     turn on bump mapping, assuming model specifies normal maps.<br/>
     " . this_a_href_page('castle', 'castle') . " uses bump mapping, for now only
-    on \"fountain\" level.</p>
+    on the \"fountain\" level.</p>
 
-    <p>Programmers: see also <tt>bump_mapping</tt> demo in engine sources,
-    with emboss, dot (multitex not normalized and normalized) and
-    all methods built in VRML demos and notes how this is done in
-    <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping/README\">bump_mapping/README</a>.</p>
+    <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping</tt> demo in engine sources,
+    it demonstrates emboss, dot and all other bump mapping
+    methods built in VRML engine. Also my notes about emboss and dot
+    (by multitexturing) bump mapping methods may be interesting:
+    see <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping/README\">bump_mapping/README</a>.</p>
   </li>
 
   <li><p><b>GLSL shaders support:</b> engine supports easily using
@@ -136,22 +138,23 @@ Many long-awaited graphic features implemented in our engine:</p>
     for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
 
     <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to control
-    GLSL shaders and even simply assign GLSL shaders to any file
+    GLSL shaders and even simply assign GLSL shaders
     (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i>
-    menu item).</p>
+    menu item), so you can test your shaders with any 3D model.</p>
 
-    <p>Programmers: see also <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README\">shading_langs_demo/README</a>.</p>
+    <p><i>For programmers</i>: you may find useful my notes about shading languages in
+    <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README\">shading_langs_demo/README</a>.</p>
 
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
     graphic card). " . this_a_href_page('view3dscene', 'view3dscene') . "
     has comfortable menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>
-    and gives command-line option <tt>--anti-alias</tt> to control this,
+    and also a command-line option <tt>--anti-alias</tt> to control this,
     " . this_a_href_page('castle', 'castle') . " has comfortable menu item
     in <i>Video options</i>.</p>
 
   <li><p><b>Collada model format</b> basic support (1.3.x and 1.4.x)
     added to the engine (" . this_a_href_page('view3dscene', 'view3dscene') . "
-    and everything else open it, just like any other model format;
+    and everything else open Collada files, just like any other model format;
     you can also convert Collada files to VRML 2.0).</p>
   </li>
 
@@ -181,14 +184,14 @@ Many long-awaited graphic features implemented in our engine:</p>
 </ul>
 
 <p>Also " . this_a_href_page('our Blender VRML 97 exporter script', 'blender_stuff') . "
-improved: <i>set solid/set smooth/autosmooth/autosmooth degrees</i>
+improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
 settings from Blender are correctly exported to VRML file (as creasteAngle field).</p>
 
 <p>Other most notable internal engine changes:</p>
 
 <ul>
   <li>I dropped my custom OpenGLh binding in favor of using GL, GLU, GLExt units
-    from FPC. OpenGLh was developed when FPC had no usable OpenGL binding unit
+    from FPC. <i>Full story:</i> OpenGLh was developed when FPC had no usable OpenGL binding unit
     (neither had Delphi)... Times have changed, and current GL, GLU, GLExt
     units are usable, and (partially thanks
     <a href=\"http://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg02328.html\">to</a>
@@ -198,7 +201,7 @@ settings from Blender are correctly exported to VRML file (as creasteAngle field
     <a href=\"http://bugs.freepascal.org/view.php?id=10507\">a</a>
     <a href=\"http://bugs.freepascal.org/view.php?id=10508\">few</a> :) )
     they work good and support OpenGL 2.0 functions.
-    (While OpenGLh was on GL 1.2 + many extensions level).</li>
+    (While OpenGLh was on the level of GL 1.2 + many extensions).</li>
 
   <li>Among many new demo programs, there's also
     <tt>kambi_vrml_game_engine/3dmodels.gl/examples/plane_mirror_and_shadow.pasprogram</tt>
