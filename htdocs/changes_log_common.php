@@ -50,16 +50,64 @@ function this_a_href_page($title, $page_name)
   */
 
   $changes_log = array(
+
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'Engine 1.3.0 release, view3dscene 2.4.0, castle 0.8.1, many other releases',
           'year' => 2008,
           'month' => 02,
-          'day' => 14,
-          'pubDate' => /* date_to_timestamp.sh '2008-02-14' */ 1202990400,
-          'guid' => '2008-02-14',
+          'day' => 19,
+          'pubDate' => /* date_to_timestamp.sh '2008-02-19' */ 1203422400,
+          'guid' => '2008-02-19',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' =>
+"<p>Many long-awaited graphic features implemented in our engine.
+Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
+" . this_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
+" . this_a_href_page('castle 0.8.1', 'castle') . ".
+Below is only a shortcut of the most important changes
+(see " . a_href_page('changes_log', 'changes_log') . " for a full list of changes) :</p>
+
+<ul>
+  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">Bump
+    mapping</a>. Various bump mapping methods are implemented,
+    the most advanced being steep parallax mapping with self-shadowing.</li>
+
+  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">GLSL
+    shaders support</a>, in VRML and in the engine.</li>
+
+  <li>Anti-aliasing available in both "
+    . this_a_href_page('view3dscene', 'view3dscene') . "
+    and " . this_a_href_page('castle', 'castle') . ".</li>
+
+  <li>Collada model format basic support (1.3.x and 1.4.x)
+    added to the engine, you can also convert Collada files to VRML 2.0.</p>
+  </li>
+
+  <li><i>Examine</i> mode allows to rotate and move the scene by mouse
+    dragging.</li>
+
+  <li><tt>--screenshot</tt> command-line option for
+    " . this_a_href_page('view3dscene', 'view3dscene') . ",
+    to take screenshots of the scene in batch mode.</li>
+
+  <li>" . this_a_href_page('Our Blender VRML 97 exporter script', 'blender_stuff') . "
+    improved: <i>set solid/set smooth/autosmooth/autosmooth degrees</i>
+    settings from Blender are correctly exported to VRML.</li>
+</ul>
+
+<p>Other releases:
+" . this_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
+has many new tests/demos for new features (bump mapping, GLSL,
+Collada format). Also released most other programs,
+to bring them up-to-date with current engine state.</p>
+",
           'description' =>
 
-"<p>Many long-awaited graphic features implemented in our engine:</p>
+"<p>Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
+" . this_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
+" . this_a_href_page('castle 0.8.1', 'castle') . ".
+Many long-awaited graphic features implemented in our engine:</p>
 
 <ul>
   <li><p><b>Bump mapping</b>: <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
@@ -176,6 +224,8 @@ Collada format). Also released:
 mainly to bring them up-to-date with current engine state.</p>
 "),
 
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'castle 0.8.0, view3dscene 2.3.0 released',
           'year' => 2007,
           'month' => 11,
@@ -183,6 +233,32 @@ mainly to bring them up-to-date with current engine state.</p>
           'pubDate' => /* date_to_timestamp.sh '2007-11-17' */ 1195300800,
           'guid' => '2007-11-17',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' =>
+"<p>A lot of updates today. Here's a shortcut of only the most important changes
+(see " . a_href_page('changes_log', 'changes_log') . " for a full list of changes) :
+<ul>
+  <li>" . a_href_page('"The Castle" 0.8.0', 'castle') . " released:
+    new demo level <i>the fountain</i> (VRML 2.0, dynamic shadows),
+    many shadows improvements (z-fail, proper detection z-pass/z-fail, shadow
+    culling etc.), conserve memory feature (all Radeon issues should be fixed
+    now).</li>
+  <li>" . a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
+    prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
+    VRML 2.0 lights are correctly handled,
+    handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
+    <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+  <li>" . a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
+    released: most things mentioned above were actually implemented in the base
+    engine units, also: x86-64 port.</li>
+  <li>" . a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
+    released: many new tests for new features.</li>
+  <li>" . a_href_page('Blender VRML stuff page added, with improved VRML 2.0
+    exporter and kanim exporter', 'blender_stuff') . ".</li>
+  <li>Updated version of " . a_href_page('VRML engine documentation',
+    'vrml_engine_doc') . " is available, with a
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
+    about shadows implementation.</a></li>
+</ul>",
           'description' =>
 
 "<p>" . this_a_href_page('"The Castle" 0.8.0', 'castle') . " released:
@@ -290,6 +366,8 @@ exporter and kanim exporter', 'blender_stuff') . ".</p>
 implementation.</p>
 "),
 
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'glplotter 1.2.0 and view3dscene 2.2.1 released',
           'year' => 2007,
           'month' => 9,
@@ -297,6 +375,7 @@ implementation.</p>
           'pubDate' => /* date_to_timestamp.sh '2007-09-06' */ 1189080000,
           'guid' => '2007-09-06',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
           'description' =>
 
 "<ul>
@@ -323,6 +402,8 @@ implementation.</p>
     are simply useful for my changes_log messages.</small></li>
 </ul>"),
 
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'view3dscene 2.2.0 and related releases',
           'year' => 2007,
           'month' => 8,
@@ -330,6 +411,7 @@ implementation.</p>
           'pubDate' => /* date_to_timestamp.sh '2007-08-25' */ 1188043200,
           'guid' => '2007-08-25',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
           'description' =>
 
 "<ul>
@@ -347,6 +429,8 @@ implementation.</p>
     units area), bugfixes to MD3 texture handling.</li>
 </ul>"),
 
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'Move to SourceForge finished',
           'year' => 2007,
           'month' => 7,
@@ -354,6 +438,7 @@ implementation.</p>
           'pubDate' => /* date_to_timestamp.sh '2007-07-25' */ 1185364800,
           'guid' => '2007-07-25',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
           'description' =>
 
 "<p>The move of <i>Kambi VRML game engine</i> project to SourceForge is finished !
@@ -373,6 +458,8 @@ we have trackers for
 there's <a href=\"http://sourceforge.net/export/rss2_projfiles.php?group_id=200653\">RSS
 feed to monitor new releases</a>.</p>"),
 
+/* --------------------------------------------------------------------------- */
+
     array('title' => 'Moving to SourceForge: using SF download system',
           'year' => 2007,
           'month' => 7,
@@ -380,6 +467,7 @@ feed to monitor new releases</a>.</p>"),
           'pubDate' => /* date_to_timestamp.sh '2007-07-23' */ 1185192000,
           'guid' => '2007-07-23',
           'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
           'description' =>
 
 "<p>Download links for most VRML stuff on this page direct to SourceForge
@@ -393,6 +481,8 @@ on SourceForge</a>.
 </p>")
 
   );
+
+/* --------------------------------------------------------------------------- */
 
 $month_names = array(
   1 => 'January',
@@ -409,62 +499,27 @@ $month_names = array(
   12 => 'December'
 );
 
-function change_log_to_html($change_log_item)
+function change_log_to_html($change_log_item, $full_description = true)
 {
   global $month_names;
+
+  $description = ($full_description || $change_log_item['short_description'] == '' ?
+    $change_log_item['description'] :
+    $change_log_item['short_description']);
 
   return '<p><b>' .
     $change_log_item['title'] . '</b> (' .
     $month_names[$change_log_item['month']] . ' ' .
     $change_log_item['day'] . ', ' .
     $change_log_item['year'] . ') :</p>' .
-    $change_log_item['description'];
+    $description;
 }
 
 function last_change_log_to_html($full_description = true)
 {
-  global $changes_log, $month_names;
+  global $changes_log;
 
-  return change_log_to_html($changes_log[0]);
-
-/*
-  if ($full_description)
-  {
-    return change_log_to_html($changes_log[0]);
-  } else
-  {
-    return '<p><b>' .
-      $changes_log[0]['title'] . '</b> (' .
-      $month_names[$changes_log[0]['month']] . ' ' .
-      $changes_log[0]['day'] . ', ' .
-      $changes_log[0]['year'] . ") :</p>
-
-<p>A lot of updates today. Here's a shortcut of only the most important changes
-(see " . a_href_page('changes_log', 'changes_log') . " for a full list of changes) :
-<ul>
-  <li>" . a_href_page('"The Castle" 0.8.0', 'castle') . " released:
-    new demo level <i>the fountain</i> (VRML 2.0, dynamic shadows),
-    many shadows improvements (z-fail, proper detection z-pass/z-fail, shadow
-    culling etc.), conserve memory feature (all Radeon issues should be fixed
-    now).</li>
-  <li>" . a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
-    prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
-    VRML 2.0 lights are correctly handled,
-    handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
-    <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
-  <li>" . a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
-    released: most things mentioned above were actually implemented in the base
-    engine units, also: x86-64 port.</li>
-  <li>" . a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
-    released: many new tests for new features.</li>
-  <li>" . a_href_page('Blender VRML stuff page added, with improved VRML 2.0
-    exporter and kanim exporter', 'blender_stuff') . ".</li>
-  <li>Updated version of " . a_href_page('VRML engine documentation',
-    'vrml_engine_doc') . " is available, with a
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
-    about shadows implementation.</a></li>
-</ul>";
-  }*/
+  return change_log_to_html($changes_log[0], $full_description);
 }
 
 ?>
