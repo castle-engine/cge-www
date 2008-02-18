@@ -408,7 +408,7 @@ They all are optional.
     <p>Argument <tt>AMOUNT</tt>
     is an integer &gt;= 0. Exact 0 means "no anti-aliasing", this is the default.
     Each successive integer generally makes method one step better.
-    But also more demanding &mdash; program may run slower, or even fail to run
+    But also more demanding &mdash; program may run slower
     (if your graphic card cannot provide context with sufficient number of samples
     needed for multisampling). See <i>Anti aliasing</i> in interactive mode
     for the meaning of <tt>AMOUNT</tt> values.
