@@ -202,7 +202,7 @@ so using open-source modeller is strongly favored over proprietary modellers.
 
     <p><i>Collada</i> format is a positive exception to this. It's an XML format with
     an open specification, pretty much like X3D / VRML.
-    So using 3D models is Collada format is actually not a bad idea &mdash;
+    So using 3D models in Collada format is actually not a bad idea &mdash;
     except that we do not handle all features from Collada files currently.
     But Collada support can (and will be, if needed) easily improved &mdash;
     don't hesitate to report if some Collada feature is not handled, we'll fix it.</p>
