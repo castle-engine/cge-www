@@ -28,7 +28,7 @@ I know that too. But there is no existing open-source professional
 (By which I mean: Blender can't export animations to VRML 2 files yet,
 and Blender is *the best*.) AFAIK, of course.</p>
 
-<p>For more: see <a href="vrml_engine_doc/output/xsl/html/ch06.html">description
+<p>For more: see <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
 of animation handling in Kambi VRML engine</a>.</p>
 
 <p>So for now, this is a practical and working way of creating animations:

@@ -259,7 +259,7 @@ mainly to bring them up-to-date with current engine state.</p>
     exporter and kanim exporter', 'blender_stuff') . ".</li>
   <li>Updated version of " . a_href_page('VRML engine documentation',
     'vrml_engine_doc') . " is available, with a
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">chapter
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
     about shadows implementation.</a></li>
 </ul>",
           'description' =>
@@ -273,7 +273,7 @@ mainly to bring them up-to-date with current engine state.</p>
     eye candy graphical effects, for now enjoy VRML 2.0 and shadows :)</p></li>
 
   <li><p>Shadows improvements (see also
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch07.html\">new chapter
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">new chapter
     in documentation about shadows</a>) :</p>
 
     <ul>

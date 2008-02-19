@@ -1,26 +1,25 @@
 Next WWW update:
 - update bin and srcs:
-    castle
-    view3dscene
+    castle           (linux)
+    view3dscene      (linux)
     kambi_vrml_game_engine
     kambi_vrml_test_suite
-    rayhunter
-    lets_take_a_walk
-    malfunction
-    kambi_lines
-    glplotter
-    glViewImage
-    bezier_curves
-    glcaps
+    rayhunter       (linux)
+    lets_take_a_walk (linux)
+    malfunction      (linux)
+    kambi_lines      (linux)
+    glplotter     (linux)
+    glViewImage   (linux)
+    bezier_curves (linux)
+    glcaps        (linux)
+    glcaps_glut  (linux)
 
   update
-    vmrl_engine_doc.
-
-  using.id.as.filename is very important.
-  Fix HTML links to vrml_engine_doc to use it.
+    pasdoc docs.
 
 Text for next update:
 
 After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
+- check does links to vrml_engine_doc/output/xsl/ on WWW are all Ok now.
