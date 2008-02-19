@@ -8,11 +8,14 @@ define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 
 function echo_header_bonus ()
 {
-?>
-  <link rel="alternate" type="application/rss+xml"
-    title="Kambi VRML game engine - changes log RSS feed"
-    href="changes_log_feed.php">
-<?php
+  if (!IS_GEN_LOCAL)
+  {
+    ?>
+      <link rel="alternate" type="application/rss+xml"
+        title="Kambi VRML game engine - changes log RSS feed"
+        href="changes_log_feed.php">
+    <?php
+  }
 }
 
 function echo_footer_local_address ()
