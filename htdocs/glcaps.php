@@ -31,7 +31,7 @@ OpenGL context.
 
 <p>Download glcaps:
 <?php echo_standard_program_download('glcaps', 'glcaps', VERSION_GLCAPS,
-  $std_releases_pre_1_2_0); ?>
+  $std_releases_post_1_2_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
@@ -75,7 +75,7 @@ OpenGL context using GLUT, then writes the same info as normal
 version.
 
 <?php echo_standard_program_download('glcaps_glut', 'glcaps_glut',
-  VERSION_GLCAPS_GLUT, $std_releases_pre_1_2_0); ?>
+  VERSION_GLCAPS_GLUT, $std_releases_post_1_2_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

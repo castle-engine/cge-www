@@ -62,7 +62,7 @@ appropriate DLLs are already is the archive.
 
 <?php echo_standard_program_download(
   'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK,
-  $std_releases_pre_1_2_0); ?>
+  $std_releases_post_1_2_0); ?>
 
 <p>Installing:</p>
 

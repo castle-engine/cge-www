@@ -34,7 +34,7 @@ or something like that. The truth is that
 
 <?php echo_standard_program_download(
   'malfunction', 'malfunction', VERSION_MALFUNCTION,
-  $std_releases_pre_1_2_0); ?>
+  $std_releases_post_1_2_0); ?>
 
 <p>Installing:</p>
 

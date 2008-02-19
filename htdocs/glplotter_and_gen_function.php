@@ -55,7 +55,7 @@ of keys).--></p>
 <p>Here are the binaries of the program. No special installation
 is required, just unpack these archives and run the program.
 <?php echo_standard_program_download('glplotter', 'glplotter',
-  VERSION_GLPLOTTER, $std_releases_pre_1_2_0); ?>
+  VERSION_GLPLOTTER, $std_releases_post_1_2_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

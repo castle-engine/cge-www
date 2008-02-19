@@ -54,7 +54,7 @@ right after another.
 
 <?php echo_standard_program_download(
   'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES,
-  $std_releases_pre_1_2_0); ?>
+  $std_releases_post_1_2_0); ?>
 
 <p>Installing:</p>
 
