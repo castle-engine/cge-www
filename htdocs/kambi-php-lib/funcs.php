@@ -212,6 +212,6 @@ function echo_rand_css()
   a:normal { color: <?php echo $link_color; ?>; }
   a:visited { color: <?php echo $link_visited_color; ?>; }
   a:hover { color: <?php echo $link_hover_color; ?>; }
-<?
+<?php
 }
 ?>

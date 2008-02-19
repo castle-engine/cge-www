@@ -997,15 +997,15 @@
     <?php
     /*
     A lot of important things were implemented. Below is only a summary,
-    to read full log of changes see <? php echo
+    to read full log of changes see < ? php echo
     a_href_page('log of changes to these pages', 'changes_log') ? >.
     New versions of
-     <? php echo a_href_page('view3dscene', 'view3dscene'); ? >  (1.1.1),
-     <? php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ? >  (1.0.2),
-     <? php echo a_href_page('malfunction', 'malfunction'); ? >  (1.0.2),
-     <? php echo a_href_page('glViewImage', 'glviewimage'); ? >  (1.1.1),
-     <? php echo a_href_page('glplotter', 'glplotter'); ? >  (1.1.1),
-     <? php echo a_href_page('bezier_curves', 'bezier_curves'); ? >  (1.1.1) uploaded.
+     < ?php echo a_href_page('view3dscene', 'view3dscene'); ? >  (1.1.1),
+     < ?php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ? >  (1.0.2),
+     < ?php echo a_href_page('malfunction', 'malfunction'); ? >  (1.0.2),
+     < ?php echo a_href_page('glViewImage', 'glviewimage'); ? >  (1.1.1),
+     < ?php echo a_href_page('glplotter', 'glplotter'); ? >  (1.1.1),
+     < ?php echo a_href_page('bezier_curves', 'bezier_curves'); ? >  (1.1.1) uploaded.
     <ul>
       <li><p>Many optimizations of OpenGL display (frustum culling,
         with and without the help of octree,
@@ -1020,8 +1020,8 @@
         my whole sources, you can read this document
         <a href='src/pascal/README.optimization_notes'>online</a>.
       <li>Smoother reaction to collision in
-        <? php echo a_href_page('view3dscene', 'view3dscene'); ? >  and
-        <? php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ? >.
+        < ?php echo a_href_page('view3dscene', 'view3dscene'); ? >  and
+        < ?php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ? >.
       <li>Mnemonics for GLWindow menus implemented.
     </ul>
     */

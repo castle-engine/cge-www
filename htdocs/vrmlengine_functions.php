@@ -106,7 +106,7 @@ $std_releases_post_1_2_0 = array('linux-i386', 'win-i386', 'macosx-i386');
 
 /* This echoes an <ul> list with items for all platforms where I compile
    my programs. Each item looks like
-     <? php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
+     < ?php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
    where $prog_nice_name = Foo, $prog_archive_basename = foo.
 
    If $prog_version is '' then the whole -version part will be omitted
