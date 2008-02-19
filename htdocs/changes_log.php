@@ -183,9 +183,9 @@
     <?php echo a_href_page('rayhunter 1.2.1', 'rayhunter'); ?>,
     <?php echo a_href_page('lets_take_a_walk 1.2.0', 'lets_take_a_walk'); ?>,
     <?php echo a_href_page('glViewImage 1.2.1', 'glviewimage'); ?>,
-    <?php echo a_href_page('glplotter 1.1.6', 'glplotter'); ?>,
+    <?php echo a_href_page('glplotter 1.1.6', 'glplotter_and_gen_function'); ?>,
     <?php echo a_href_page('glcaps 1.1.1', 'glcaps'); ?>,
-    <?php echo a_href_page('gen_funkcja 1.0.1', 'gen_funkcja'); ?>,
+    <?php echo a_href_page('gen_funkcja 1.0.1', 'glplotter_and_gen_function'); ?>,
     <?php echo a_href_page('bezier_curves 1.1.5', 'bezier_curves'); ?>,
     <?php echo a_href_page('malfunction 1.2.3', 'malfunction'); ?>,
     <?php echo a_href_page('kambi_lines 1.1.2', 'kambi_lines'); ?>.
@@ -316,7 +316,7 @@
         'castle-development') ?> page.
       <li><?php echo a_href_page('glViewImage 1.2.0', 'glviewimage') ?>
         released,
-        <?php echo a_href_page('glplotter 1.1.5', 'glplotter') ?> released,
+        <?php echo a_href_page('glplotter 1.1.5', 'glplotter_and_gen_function') ?> released,
         <?php echo a_href_page('bezier_curves 1.1.4', 'bezier_curves') ?> released
          &mdash; updated to inherit many improvements in
         OpenGL and images units: menu disabling,
@@ -399,7 +399,7 @@
         TOpenGLControl. test_kambi_units updated.
         Many "var" parameters changed to "out" to get more sensible FPC hints.</li>
 
-      <li><?php echo a_href_page('glplotter 1.1.4', 'glplotter') ?>
+      <li><?php echo a_href_page('glplotter 1.1.4', 'glplotter_and_gen_function') ?>
         released &mdash; separate X and Y scaling available.</li>
     </ul>
 
@@ -764,7 +764,7 @@
 
     <p>Other OpenGL programs updated:
     <?php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ?> (ver 1.1.3),
-    <?php echo a_href_page('glplotter', 'glplotter'); ?> (ver 1.1.3),
+    <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> (ver 1.1.3),
     <?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> (ver 1.1.3),
     <?php echo a_href_page('kambi_lines', 'kambi_lines'); ?> (ver 1.1.1).
     Also <?php echo a_href_page('sources docs page', 'reference'); ?>
@@ -986,7 +986,7 @@
         In the future my OpenGLh unit may be removed, and I'll switch to
         always using FPC OpenGL bindings.
 
-      <li><?php echo a_href_page('glplotter', 'glplotter'); ?> updated to
+      <li><?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> updated to
         version 1.1.2: small bugfix: plots with "_" in names
       <li><a href="http://www.camelot.homedns.org/~michalis/mandaty.php">mandaty</a> page added.
     </ul>
@@ -1103,7 +1103,7 @@
       <li><p>Mnemonics for GLWindow menus implemented.
         <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (1.1.1),
         <?php echo a_href_page('glViewImage', 'glviewimage'); ?> (1.1.1),
-        <?php echo a_href_page('glplotter', 'glplotter'); ?> (1.1.1),
+        <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> (1.1.1),
         <?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> (1.1.1)
         all updated with mnemonics.
     </ul>
@@ -1117,7 +1117,7 @@
 
         <p><?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
         <?php echo a_href_page('glViewImage', 'glviewimage'); ?>,
-        <?php echo a_href_page('glplotter', 'glplotter'); ?>,
+        <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?>,
         <?php echo a_href_page('bezier_curves', 'bezier_curves'); ?>
         are updated (minor version number++, to 1.1.0,
         Linux/FreeBSD users are encouraged to upgrade).
@@ -1143,10 +1143,10 @@
         changed <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
         <?php echo a_href_page('malfunction', 'malfunction'); ?>,
         <?php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ?>,
-        <?php echo a_href_page('glplotter', 'glplotter'); ?>,
+        <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?>,
         <?php echo a_href_page('bezier_curves', 'bezier_curves'); ?>.
         <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and
-        <?php echo a_href_page('glplotter', 'glplotter'); ?>
+        <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?>
         display FileDialog before saving screen.
 
         <!-- malfunction, lets_take_a_walk: version release++ to 1.0.1 -->
@@ -1498,7 +1498,7 @@
         now use GTK / Windows Open/Save file dialogs.
         "Checked" menu items made possible,
         <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-        and <?php echo a_href_page('glplotter', 'glplotter'); ?>
+        and <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?>
         improved.
         <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
         uses special menus while raytracing.
@@ -1523,7 +1523,7 @@ remade.
     <ul>
       <li>On 10.04 my small page joined strike against software patents in Europe.
       <li><?php echo a_href_page('glViewImage', 'glviewimage') ?>,
-          <?php echo a_href_page('glplotter', 'glplotter') ?>
+          <?php echo a_href_page('glplotter', 'glplotter_and_gen_function') ?>
            updated: Linux (GTK) versions stabilized.
       <li><?php echo a_href_page('view3dscene', 'view3dscene') ?>
         updated:

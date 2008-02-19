@@ -89,7 +89,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
   <li>Many textures from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public
     domain Golgotha textures</a></li>
 
-  <li>Many textures from <a href="http://lemog.fr/">lemog.fr</a>
+  <li>Many textures from <a href="http://lemog.free.fr/">http://lemog.free.fr/</a>
 
   <li>Some post-processing of VRML models is done using EmacsLisp,
     see <tt>data/kambi-castle-utils.el</tt> and various Makefiles,
