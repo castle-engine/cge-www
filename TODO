@@ -1,20 +1,18 @@
 Next WWW update:
 - update bin and srcs:
-    castle           (linux, m)
-    view3dscene      (linux, m)
+    castle
+    view3dscene
     kambi_vrml_game_engine
     kambi_vrml_test_suite
-    rayhunter       (linux, m)
-    lets_take_a_walk (linux, m)
-    malfunction      (linux, m)
-    kambi_lines      (linux, m)
-    glplotter     (linux, m)
-    glViewImage   (linux, m)
-    bezier_curves (linux, m)
-    glcaps        (linux, m)
-    glcaps_glut  (linux, m)
-
-test linux packages (m packages already tested)
+    rayhunter
+    lets_take_a_walk
+    malfunction
+    kambi_lines
+    glplotter
+    glViewImage
+    bezier_curves
+    glcaps
+    glcaps_glut
 
 Text for next update:
 
