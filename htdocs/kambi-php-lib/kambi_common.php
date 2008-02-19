@@ -200,7 +200,7 @@
 
   if (IS_GEN_LOCAL)
   {
-    $dir = $_ENV[ENV_VARIABLE_NAME_LOCAL_PATH];
+    $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
     chdir($dir) or exit("Cannot change directory to \"$dir\"");
   }
 
