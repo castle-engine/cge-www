@@ -767,9 +767,11 @@ eye-candy features are:</p>
     See "The Fountain" level for example.</p></li>
 
   <li><p>You can make your level geometry cast dynamic shadows (on everything,
-    including itself) by setting
+    including itself) by setting</p>
+
     <pre>  scene_dynamic_shadows="True"</pre>
-    in <tt>levels.xml</tt> file. Note that this usually requires the level scene
+
+    <p>in <tt>levels.xml</tt> file. Note that this usually requires the level scene
     to be 2-manifold, just like creatures for shadows.
     See "The Fountain" level for example.</p></li>
 </ul>

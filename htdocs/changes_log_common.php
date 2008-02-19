@@ -82,8 +82,7 @@ Below is only a shortcut of the most important changes
     and " . this_a_href_page('castle', 'castle') . ".</li>
 
   <li>Collada model format basic support (1.3.x and 1.4.x)
-    added to the engine, you can also convert Collada files to VRML 2.0.</p>
-  </li>
+    added to the engine, you can also convert Collada files to VRML 2.0.</li>
 
   <li><i>Examine</i> mode allows to rotate and move the scene by mouse
     dragging.</li>
