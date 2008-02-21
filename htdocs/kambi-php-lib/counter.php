@@ -104,15 +104,18 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
                              gmdate('G', $hit_time);
 
     $bonus_str = sprintf(
-      "1%s ip %s ipstr %s http-referer %s http-user-agent %s\n",
+      "2%s ip %s ipstr %s http-referer %s\n",
       $str_hit_time,
       $_SERVER["REMOTE_ADDR"],
       @gethostbyaddr($_SERVER["REMOTE_ADDR"]),
       /* I'm using rawurlencode (both for HTTP_REFERER and even
          HTTP_USER_AGENT, even though HTTP_USER_AGENT is not an URL),
          to avoid problems when later parsing the counter.bonus lines. */
-      @rawurlencode($_SERVER["HTTP_REFERER"]),
-      @rawurlencode($_SERVER["HTTP_USER_AGENT"])
+      @rawurlencode($_SERVER["HTTP_REFERER"])
+      /* I commented out getting "http-user-agent %s" --- it's a long
+         information (so possibly storing it in counter file is slow),
+         and it's not critically useful for me.
+      @rawurlencode($_SERVER["HTTP_USER_AGENT"]) */
     );
     fwrite($f_bonus, $bonus_str);
     fclose($f_bonus);
