@@ -53,6 +53,19 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Engine 1.3.1 release (Lazarus packages fixed)',
+          'year' => 2008,
+          'month' => 02,
+          'day' => 25,
+          'pubDate' => /* date_to_timestamp.sh '2008-02-25' */ 1203940800,
+          'guid' => '2008-02-25',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+"Released " . a_href_page('engine version 1.3.1', 'kambi_vrml_game_engine') . ":
+fixed Lazarus packages compilation, for developers that want to use our
+engine with Lazarus."),
+
     array('title' => 'Engine 1.3.0 release, view3dscene 2.4.0, castle 0.8.1, many other releases',
           'year' => 2008,
           'month' => 02,
