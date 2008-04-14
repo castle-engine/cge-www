@@ -106,7 +106,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
   <li><p>Also many
     <a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor's</b></a>
-    1.0 ASCII files (extension <tt>IV</tt>) are handled.
+    1.0 ASCII files (<tt>.iv</tt> extension) are handled.
     Mainly it's because Inventor 1.0 and VRML 1.0 are very similar
     formats, but view3dscene handles also some additional
     Inventor-specific nodes.
@@ -126,9 +126,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     geometry (with texture coords, normal vectors), materials
     (colors, opacity, texture filenames).</p>
 
-  <li><p><b>GEO</b>. Some simple format; I don't even know what program
-    writes files in this format, it just happened that I had a few files
-    in this format. No, it's not Videoscape GEO and it's not Houdini GEO.
+  <li><p><b><a href="http://local.wasp.uwa.edu.au/~pbourke/dataformats/geo/">Videoscape
+    GEO</a></b> (<tt>.geo</tt> extension).
+    Very basic support for this very old 3D format.
 </ul>
 
 <p>Among many features are:
