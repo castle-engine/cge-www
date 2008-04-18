@@ -27,8 +27,12 @@ function echo_svn_blender_file($filename)
     (distributed with newer Blender versions, originally from
     <a href="http://kimballsoftware.com/blender/">here</a>).
     Various customizations to improve exporting VRML 2.0 (aka 97) models:
-    some fixes, also some ugly hacks when unfortunately needed,
-    search for "Kambi" string inside files to know more.</p>
+    creaseAngle exporting (from Blender's set smooth/set solid/auto smooth/degr
+    controls), full texture filename (including possibly relative path prefix)
+    is written, corrected twoside detection,
+    Background is proper VRML, also the model is <i>not</i>
+    rotated to change +Z axis to +Y.
+    Search for "Kambi" string inside files to know more.</p>
 
     <p>The essential exporter class is inside
     <tt>kambi_vrml97_export_base.py</tt>, to be shared by <tt>kanim_export.py</tt>.</p>
