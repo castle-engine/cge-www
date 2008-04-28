@@ -257,8 +257,19 @@ in <?php echo a_href_page("Kambi VRML test suite",
     "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
     for working demos of this.</p>
 
+    <p>You can also set uniform variables for your shaders from VRML,
+    just add lines like
+
+<pre>
+  exposedField SFVec3f UniformVariableName 1 0 0
+</pre>
+
+    to your ComposedShader node. (If anyone has any reliable examples
+    of X3D files with GLSL shaders using this feature I'd like to test
+    whether I parse this right.)
+
     <p>Oh, and some other programmable shader features are quite trivial
-    to implement (attributes and uniforms for shaders in VRML).
+    to implement (attributes for shaders in VRML).
     They are implemented in the engine classes anyway, it's only a matter
     of implementing link between VRML and them.
     <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
