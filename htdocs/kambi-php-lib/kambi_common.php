@@ -636,7 +636,7 @@ function common_set_page_functions()
     <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
   define('DEPENDS_UNIX_GLWINDOW_GTK_2',
     'Under Unix (Linux, FreeBSD, Mac OS X):
-    <a href="http://www.gtk.org/">GTK+</a> >= 2.2 and
+    <a href="http://www.gtk.org/">GTK+</a> >= 2.8 and
     <a href="http://gtkglext.sourceforge.net/">GtkGLExt</a> >= 1.0.6');
   define('DEPENDS_MACOSX',
     'Mac OS X users should look at the ' .
