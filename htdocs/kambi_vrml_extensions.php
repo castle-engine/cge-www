@@ -670,8 +670,8 @@ EXTERNPROTO Text3D [
       WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     </pre>
 
-    <p>Files with extensions <tt>.gz</tt> or <tt>.wrz</tt> are assumed to be always
-    compressed by gzip.</p>
+    <p>Filenames ending with <tt>.wrl.gz</tt> or <tt>.wrz</tt> are
+    assumed to be always compressed by gzip.</p>
 
     <p>Files with normal extension <tt>.wrl</tt> but actually compressed by gzip
     are also handled OK.
@@ -699,7 +699,7 @@ EXTERNPROTO Text3D [
 
     <p>Also note that WWW servers, like Apache, when queried by modern WWW browser,
     can compress your VRML files on the fly. So, assuming that VRML browsers
-    that automatically fetch URLs, will be also intelligent, the compression
+    (that automatically fetch URLs) will be also intelligent, the compression
     is done magically over HTTP protocol, and you don't have to actually compress
     VRML files to save bandwidth.</p>
 

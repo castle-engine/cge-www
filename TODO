@@ -1,8 +1,10 @@
 Next WWW update:
+- finish X3D XML support (reread spec, finish all details),
+- also do X3D classic encoding (this should be trivial since I have VRML 97..)
+- update all WWW pages, view3dscene.php features, vrml_implementation_status
 
 Text for next update:
 
 After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
-
