@@ -53,9 +53,33 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Demo movies',
+          'year' => 2008,
+          'month' => 5,
+          'day' => 9,
+          'pubDate' => /* date_to_timestamp.sh '2008-05-09' */ 1210334400,
+          'guid' => '2008-05-09',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+"I present " . a_href_page('three demo movies', 'movies') . "
+showing off my engine. Feast your eyes on!
+
+<p>In related news, development of the engine goes on.
+Some of the latest improvements include
+<ul>
+  <li><i>X3D XML handling</i>. Next release
+    will include support for X3D (both XML and classic encoding) for all
+    programs.
+  <li><i>File filters in open/save dialogs</i>.
+    In GTK 2 (by GtkFileChooserDialog) and Windows (WinAPI) backends.
+  <li>Passing kambi_time to GLSL shaders, allowing <i>shaders to perform
+    various beautiful animations</i>.
+</ul>"),
+
     array('title' => 'Engine 1.3.1 release (Lazarus packages fixed)',
           'year' => 2008,
-          'month' => 02,
+          'month' => 2,
           'day' => 25,
           'pubDate' => /* date_to_timestamp.sh '2008-02-25' */ 1203940800,
           'guid' => '2008-02-25',
@@ -68,7 +92,7 @@ engine with Lazarus."),
 
     array('title' => 'Engine 1.3.0 release, view3dscene 2.4.0, castle 0.8.1, many other releases',
           'year' => 2008,
-          'month' => 02,
+          'month' => 2,
           'day' => 19,
           'pubDate' => /* date_to_timestamp.sh '2008-02-19' */ 1203422400,
           'guid' => '2008-02-19',
