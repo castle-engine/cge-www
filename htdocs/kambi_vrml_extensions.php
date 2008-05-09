@@ -67,6 +67,7 @@ $extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiS
 $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
 $extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)';
 $extensions['ext_shaders'] = 'Programmable shaders (X3D feature "backported" to VRML)';
+$extensions['ext_blending'] = 'Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -103,6 +104,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_shaders') .
             ext_short_title('ext_bump_mapping') .
             ext_short_title('ext_text3d') .
+            ext_short_title('ext_blending') .
             ext_short_title('ext_mix_vrml_1_2') .
             ext_short_title('ext_fog_volumetric') .
             ext_short_title('ext_fog_immune') .
@@ -424,6 +426,45 @@ EXTERNPROTO Text3D [
         to make my version compatible.</li>
     </ul>
   </li>
+
+  <?php echo ext_long_title('ext_blending');
+
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
+        '</table>';
+    ?>
+
+    <p>We add new field to <tt>KambiAppearance</tt> node: <tt>blendMode</tt> (SFNode,
+    NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
+    node to specify blending mode done for partially-transparent objects.
+    BlendMode node is not X3D standard, but it's specified by Avalon:
+    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
+    BlendNode specification</a>.
+
+    <p>From Avalon spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
+    <tt>destFactor</tt>, <tt>color</tt>, <tt>colorTransparency</tt>.
+    Note that some values require newer
+    OpenGL versions, we will eventually fallback on browser-specific blending
+    modes (you can set them explicitly in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
+
+    <p>For example:
+
+<pre>
+  appearance KambiAppearance {
+    material Material {
+      transparency 0.5
+    }
+    blendMode BlendMode {
+      srcFactor "src_alpha" # actually this srcFactor is the default
+      destFactor "one"
+    }
+  }
+</pre>
+
+    <p>Example above sets blending to an often-desired equation where the order of rendering
+    doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
+    otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
+    artifacts.
 
   <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
 

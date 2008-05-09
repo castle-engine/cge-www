@@ -31,13 +31,32 @@ PROTO KambiAppearance [
   exposedField SFNode material          NULL
   exposedField SFNode texture           NULL
   exposedField SFNode textureTransform  NULL
+
+  # This is from X3D.
+  # Kambi VRML game engine treats it as part of normal Appearance
+  # node, but actually this is an extension for pure VRML 2.0.
+  exposedField SFNode fillProperties    NULL
+  exposedField SFNode lineProperties    NULL
+  exposedField SFNode metadata          NULL
+  exposedField MFNode shaders           []
+
   exposedField SFNode normalMap         NULL
   exposedField SFNode heightMap         NULL
   exposedField SFFloat heightMapScale   0.01
+  exposedField SFNode blendMode         NULL
 ] {
   Appearance {
     material IS material
     texture IS texture
     textureTransform IS textureTransform
   }
+}
+
+PROTO BlendMode [
+  exposedField SFString srcFactor "src_alpha"
+  exposedField SFString destFactor "one_minus_src_alpha"
+  exposedField SFColor color 1 1 1
+  exposedField SFFloat colorTransparency 0
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
