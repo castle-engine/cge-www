@@ -1,13 +1,34 @@
 Next WWW update:
 - finish X3D XML support (reread spec, finish all details),
-  in particular: prototypes, and special parsing of Script nodes
-  (and shaders --- should I make this somewhat wider feature,
-  like
-    HasInterfaceDeclarations: idNone, idRestricted, idAll
-  public read, protected SetInterfaceDeclarations to use in constructors.
-  setting this to idNone frees InterfaceDeclarations, setting to <> idNone
-  creates if needed InterfaceDeclarations object.
-  This should take care of Script and some shader nodes in one go.
+  in particular:
+  - add all nodes with fields, with whole X3D abstract hierarchy.
+    Fix TNodeX3DGroupingNode to inherit from some TNodeX3D... other node.
+    Fix all geometry nodes to inherit from X3DGeometryNode.
+    Fix Text node to have solid field (and others? check spec)
+
+    Before this: redo the field declarations. Get rid of current "index ?"
+    specifications (also expose events?) to be able to easily rearrange
+    fields?
+    Also set all fields by default as Exposed, this should easy the work.
+
+    Using TNodeCone_2 mockup? Just process with regexp everything to fit it.
+
+    Add to tests auto creation of all registered nodes,
+    and check do they have all fields with different names.
+
+  - prototypes,
+  - special parsing of Script nodes
+    (and shaders --- should I make this somewhat wider feature,
+    like
+      HasInterfaceDeclarations: idNone, idRestricted, idAll
+    public read, protected SetInterfaceDeclarations to use in constructors.
+    setting this to idNone frees InterfaceDeclarations, setting to <> idNone
+    creates if needed InterfaceDeclarations object.
+    This should take care of Script and some shader nodes in one go.
+
+  - implement basic Extrusion rendering? This would allow many geometry
+    to be visible...
+
 - update all WWW pages, view3dscene.php features, vrml_implementation_status
   about X3D.
 
