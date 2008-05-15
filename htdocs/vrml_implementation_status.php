@@ -162,6 +162,12 @@ used.
     (always shape material is used or white unlit),
     normal, normalPerVertex, creaseAngle (always flat normals
     are generated).
+
+  <li><p><tt>Extrusion</tt>
+
+    <p>Working crossSection, spine, scale, orientation (the last one
+    is untested for now). <i>TODO</i>: ignored begin/EndCap, ccw,
+    convex, creaseAngle, solid.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
@@ -178,7 +184,7 @@ trick like that). But they don't have any effect on the scene. These are:
   <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
   <li>Nodes: sensors, interpolators, geospatial things, NURBS,
     sounds (<tt>AudioClip</tt> and <tt>Sound</tt>),
-    <tt>MovieTexture</tt>, <tt>Extrusion</tt>.
+    <tt>MovieTexture</tt>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
