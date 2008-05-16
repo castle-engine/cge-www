@@ -165,9 +165,9 @@ used.
 
   <li><p><tt>Extrusion</tt>
 
-    <p>Working fields: crossSection, spine, scale, orientation.
-    <i>TODO</i>: ignored beginCap/EndCap, ccw,
-    convex, creaseAngle, solid.
+    <p>Working fields: crossSection, spine, scale, orientation, beginCap/EndCap,
+    convex.
+    <i>TODO</i>: ignored ccw, creaseAngle, solid.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
