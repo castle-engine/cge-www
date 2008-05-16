@@ -165,8 +165,8 @@ used.
 
   <li><p><tt>Extrusion</tt>
 
-    <p>Working crossSection, spine, scale, orientation (the last one
-    is untested for now). <i>TODO</i>: ignored begin/EndCap, ccw,
+    <p>Working fields: crossSection, spine, scale, orientation.
+    <i>TODO</i>: ignored beginCap/EndCap, ccw,
     convex, creaseAngle, solid.
 </ul>
 
