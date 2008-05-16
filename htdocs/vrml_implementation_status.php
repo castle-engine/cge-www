@@ -166,8 +166,8 @@ used.
   <li><p><tt>Extrusion</tt>
 
     <p>Working fields: crossSection, spine, scale, orientation, beginCap/EndCap,
-    convex, ccw, solid.
-    <i>TODO</i>: creaseAngle.
+    convex, ccw, solid.<br/>
+    <i>TODO</i>: creaseAngle (always flat normals are generated).
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
