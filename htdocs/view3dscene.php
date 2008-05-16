@@ -484,12 +484,13 @@ They all are optional.
           will add at the beginning node
           <pre>ShapeHints { faceType UNKNOWN_FACE_TYPE }</pre>
           For VRML 2.0, all <tt>convex</tt> fields are set to <tt>FALSE</tt>.
-        <p><b>Effect:</b> All <tt>IndexedFaceSet</tt> faces will be treated
+        <p><b>Effect:</b> All <tt>IndexedFaceSet</tt>
+          and <tt>Extrusion</tt> faces will be treated
           as potentially non-convex. This means that we will load the scene
           a little longer but all faces will be correctly interpreted
           and displayed. It's useful when you suspect that some scene faces
-          are non-convex and it's not marked in the scene (by setting
-          <tt>faceType</tt> to <tt>UNKNOWN_FACE_TYPE</tt>).
+          are non-convex but it's not correctly marked in the scene
+          by VRML author.
     </ul>
 
     <p>Example: I have here some model <tt>helicopter.wrl</tt> that looks
