@@ -339,9 +339,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>4</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are rendered OK, but Extrusion is
-          not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>5</td>
@@ -379,15 +377,11 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>11</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are rendered OK (including the texture
-          transparency), but Extrusion is not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>12</td>
-        <td class="fail">-</td>
-        <td>Like above: Visible shapes are rendered OK (including the texture
-          transparency), but Extrusion is not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td rowspan="7">FontStyle</td>
@@ -470,8 +464,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>12</td>
-        <td class="fail">-</td>
-        <td>Rendering Extrusion is not implemented yet.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>13</td>
@@ -500,8 +493,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>19</td>
-        <td class="fail">-</td>
-        <td>Like case 12: Rendering Extrusion is not implemented yet.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>20</td>
@@ -514,9 +506,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>22</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are OK, but rendering Extrusion
-          is not implemented yet.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>23</td>
@@ -524,9 +514,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>24</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are OK, but rendering Extrusion
-          is not implemented yet.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>25</td>
@@ -575,9 +563,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>2</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are rendered OK,
-          but Extrusion is not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>3</td>
@@ -589,15 +575,11 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>5</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are rendered OK,
-          but Extrusion is not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>6</td>
-        <td class="fail">-</td>
-        <td>Visible shapes are rendered OK,
-          but Extrusion is not rendered (not implemented yet).
+        <td class="pass">+</td>
       </tr>
 
       <tr>
@@ -953,7 +935,7 @@ on numerous VRML models available on the WWW. -->
       <tr>
         <td>7H</td>
         <td class="fail">-</td>
-        <td><tt>Extrusion</tt> is not implemented yet.</td>
+        <td><tt>TouchSensor</tt> and <tt>Script</tt> not implemented yet.</td>
       </tr>
       <tr>
         <td>7I</td>
@@ -984,10 +966,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>10</td>
-        <td class="fail">-</td>
-        <td>Rendering Extrusion is not supported.
-          <b>However,</b> I replaced extrusions by Boxes in the test,
-          and the nesting prototypes works 100% OK.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>11</td>
@@ -1000,8 +979,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>13</td>
-        <td class="fail">-</td>
-        <td>Like case 10.</td>
+        <td class="pass">+</td>
       </tr>
       <!--
       <tr>
