@@ -166,15 +166,17 @@ used.
 
   <li><p><tt>Extrusion</tt>
 
-    <p>Working fields: crossSection, spine, scale, orientation, beginCap/EndCap,
-    convex, ccw, solid.<br/>
+    <p>All works (fields: <tt>crossSection, spine, scale, orientation,
+    beginCap/EndCap, convex, ccw, solid</tt>, texture coordinates are
+    also generated) except<br/>
     <i>TODO</i>: creaseAngle (always flat normals are generated).
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
 External prototypes recognize URN of standard VRML 97 nodes, i.e.
-<tt>urn:web3d:vrml97:node:Xxx</tt> (see also our extensions URN
-on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>).
+<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
+(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
+on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
 
 <p><i>TODO</i>: Some general features not implemented yet are listed below.
 They all are parsed correctly and consciously (which means that the parser
@@ -603,17 +605,152 @@ on numerous VRML models available on the WWW. -->
       </tr>
 
       <tr>
-        <td rowspan="12">Geometry</td>
-        <td rowspan="2">ElevationGrid</td>
+        <td rowspan="41">Geometry</td>
+        <td rowspan="14">ElevationGrid</td>
+        <td>1</td>
+        <td class="pass">+</td>
+        <td>Note that by default ElevationGrid is not smoothed (creaseAngle = 0),
+          this is following the spec.
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="fail">-</td>
+        <td rowspan="2">color, colorPerVertex on ElevationGrid are ignored for now.
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="fail">-</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="fail">-</td>
+        <td rowspan="2">Tested feature (x/zSpacing) works Ok.
+          But color, colorPerVertex on ElevationGrid are ignored for now.
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="fail">-</td>
+      </tr>
+      <tr>
         <td>9</td>
         <td class="pass">+</td>
         <td>The reference image of the test is bad. The result should
-          be more obvious, and it is &mdash; with our engine.
+          be more obvious (whole rows of quads have the same normal),
+          and it is &mdash; with our engine.
       </tr>
       <tr>
         <td>10</td>
         <td class="pass">+</td>
       </tr>
+      <tr>
+        <td>11</td>
+        <td class="pass">+</td>
+        <td>Although we use two-sided lighting.
+      </tr>
+      <tr>
+        <td>12</td>
+        <td class="fail">-</td>
+        <td>Tested feature (generation of smooth normals) works Ok.
+          But color, colorPerVertex on ElevationGrid are ignored for now.
+      </tr>
+      <tr>
+        <td>13</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td class="pass">+</td>
+      </tr>
+
+      <tr>
+        <td rowspan="17">Extrusion</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="pass">+</td>
+        <td>Reference images show the incorrect non-uniform scaling
+          of the caps. We handle it right.
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td class="fail">-</td>
+        <td>While generally looks Ok, it seems that our triangulating
+          algorithm can't handle this particular shape perfectly.
+      </tr>
+      <tr>
+        <td>15</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td class="pass">+</td>
+        <td>This links to ElevationGrid creaseAngle test, that passes...
+          Has nothing to do with Extrusion actually. (And we do not
+          handle creaseAngle on Extrusion yet!)
+      </tr>
+      <tr>
+        <td>17</td>
+        <td class="pass">+</td>
+      </tr>
+
       <tr>
         <td rowspan="10">IndexedLineSet</td>
         <td>1</td>
