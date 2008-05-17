@@ -26,9 +26,6 @@ Next WWW update:
     creates if needed InterfaceDeclarations object.
     This should take care of Script and some shader nodes in one go.
 
-  - implement basic Extrusion rendering? This would allow many geometry
-    to be visible...
-
 - update all WWW pages, view3dscene.php features, vrml_implementation_status
   about X3D.
 

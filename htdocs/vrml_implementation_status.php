@@ -159,9 +159,10 @@ used.
   <li><p><tt>ElevationGrid</tt>
 
     <p><i>TODO</i>: Fields ignored: color, colorPerVertex
-    (always shape material is used or white unlit),
-    normal, normalPerVertex, creaseAngle (always flat normals
-    are generated).
+    (always shape material is used or white unlit).
+    creaseAngle is not ignored, but is not fully handled:
+    we always generate all flat normals (if creaseAngle = 0) or
+    all smooth normals (if creaseAngle &lt;&gt; 0).
 
   <li><p><tt>Extrusion</tt>
 
@@ -602,7 +603,18 @@ on numerous VRML models available on the WWW. -->
       </tr>
 
       <tr>
-        <td rowspan="10">Geometry</td>
+        <td rowspan="12">Geometry</td>
+        <td rowspan="2">ElevationGrid</td>
+        <td>9</td>
+        <td class="pass">+</td>
+        <td>The reference image of the test is bad. The result should
+          be more obvious, and it is &mdash; with our engine.
+      </tr>
+      <tr>
+        <td>10</td>
+        <td class="pass">+</td>
+      </tr>
+      <tr>
         <td rowspan="10">IndexedLineSet</td>
         <td>1</td>
         <td class="pass">+</td>
