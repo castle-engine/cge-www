@@ -1143,6 +1143,11 @@ EXTERNPROTO Text3D [
     files that sometimes falsely claim that they are VRML 1.0 while in
     fact they use some Inventor-specific features.
 
+    <p>For completely unrecognized nodes, our engine can always omit them
+    (even without any VRML &gt;= 2.0 (protos) or VRML 1.0 ("fields", "isA")
+    extensibility features), so most Inventor files can be at least
+    partially handled and displayed.
+
   <?php echo ext_long_title('ext_multi_root_node'); ?>
 
     VRML 1.0 file may have any number of root nodes

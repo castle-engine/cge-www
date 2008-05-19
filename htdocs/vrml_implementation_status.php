@@ -276,7 +276,24 @@ All nodes and features are handled, with the exception of:
     which is basically an extra-powerful and elegant way of doing what
     VRML 1.0 tried to do with <tt>isA</tt> and <tt>fields</tt> feature
     (and VRML prototypes are already handled 100% by our engine).
+
+  <li><p>MFString field with strings not enclosed in double quotes will
+    not be parsed corectly. Moreover, parsing SFStrings not enclosed
+    in double quotes is implemented rather as a "quick &amp; dirty hack"
+    than as a nice solution. Really, it's a weird "feature" of
+    VRML 1.0 (fortunately eliminated in VRML 97) to allow strings not enclosed
+    in double quotes.
+    And I know about only <b>one</b> program that utilizes it (Blender)
+    and this program uses it only in SFString field (Texture2.filename).
+    So I doubt I will ever fix this to MFString &mdash;
+    I would consider it a waste of time, since it's really
+    a VRML-1.0-specific totally useless and uncommon syntax feature.
 </ul>
+
+<p>Note that some unclear parts of VRML 1.0 specification are handled according
+to VRML 97 specification. Also, our ray-tracer uses lighting model
+defined for VRML 97 (since VRML 1.0 didn't define any lighting model
+precisely).
 
 <?php echo $toc->html_section(); ?>
 
