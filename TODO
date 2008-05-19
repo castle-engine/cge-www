@@ -9,7 +9,6 @@ Next WWW update:
     Before this: redo the field declarations. Get rid of current "index ?"
     specifications (also expose events?) to be able to easily rearrange
     fields?
-    Also set all fields by default as Exposed, this should easy the work.
 
     Using TNodeCone_2 mockup? Just process with regexp everything to fit it.
 
