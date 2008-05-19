@@ -6,8 +6,6 @@ Next WWW update:
     Fix all geometry nodes to inherit from X3DGeometryNode.
     Fix Text node to have solid field (and others? check spec)
 
-    Expose events just like fields in the class node interface.
-
     Add to tests auto creation of all registered nodes,
     and check do they have all fields with different names.
 
