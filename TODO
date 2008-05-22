@@ -9,7 +9,6 @@ Next WWW update:
     Add to tests auto creation of all registered nodes,
     and check do they have all fields with different names.
 
-  - prototypes,
   - special parsing of Script nodes
     (and shaders --- should I make this somewhat wider feature,
     like
