@@ -9,15 +9,8 @@ Next WWW update:
     Add to tests auto creation of all registered nodes,
     and check do they have all fields with different names.
 
-  - special parsing of Script nodes
-    (and shaders --- should I make this somewhat wider feature,
-    like
-      HasInterfaceDeclarations: idNone, idRestricted, idAll
-    public read, protected SetInterfaceDeclarations to use in constructors.
-    setting this to idNone frees InterfaceDeclarations, setting to <> idNone
-    creates if needed InterfaceDeclarations object.
-    This should take care of Script and some shader nodes in one go.
-
+  - special parsing of Script nodes and shaders for X3D XML
+    
 - update all WWW pages, view3dscene.php features, vrml_implementation_status
   about X3D.
 
