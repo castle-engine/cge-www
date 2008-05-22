@@ -1,6 +1,5 @@
 Next WWW update:
-- finish X3D XML support (reread spec, finish all details),
-  in particular:
+- finish X3D:
   - add all nodes with fields, with whole X3D abstract hierarchy.
     Fix TNodeX3DGroupingNode to inherit from some TNodeX3D... other node.
     Fix all geometry nodes to inherit from X3DGeometryNode.
