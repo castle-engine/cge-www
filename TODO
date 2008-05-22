@@ -9,7 +9,9 @@ Next WWW update:
     Add to tests auto creation of all registered nodes,
     and check do they have all fields with different names.
 
-  - special parsing of Script nodes and shaders for X3D XML
+  - fix TODO in parse interface decl for X3D XML (allow "IS" clauses)
+  - test ComposedShader with X3D XML on some external example,
+    to be sure I handle it right.
 
 - update all WWW pages, view3dscene.php features, vrml_implementation_status
   about X3D.
