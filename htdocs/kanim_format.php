@@ -27,7 +27,7 @@ I know that too. But for now many 3D authoring tools (notably
 <a href="http://www.blender.org/">Blender</a>) cannot export
 animations to such VRML 2 interpolators. (On the positive side,
 there is at least one open-source
-program that <b>can</b> create animations with interpolators:
+program that <i>can</i> create animations with interpolators:
 <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>.)</p>
 
 <p>For more: see <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
