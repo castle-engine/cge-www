@@ -21,12 +21,14 @@ among the files in specified order and with specified speed.</p>
 
 <p>Before you say that this is a lousy way of storing animations,
 and storing everything inside one file is obviously more flexible
-for complicated animations: I know. And VRML >= 2 even has nodes
+for complicated animations: I know. And VRML &gt;= 2 even has nodes
 (called interpolators) to express this animation inside a file:
-I know that too. But there is no existing open-source professional
-3D authoring tool that can generate such VRML 2 files.
-(By which I mean: Blender can't export animations to VRML 2 files yet,
-and Blender is *the best*.) AFAIK, of course.</p>
+I know that too. But for now many 3D authoring tools (notably
+<a href="http://www.blender.org/">Blender</a>) cannot export
+animations to such VRML 2 interpolators. (On the positive side,
+there is at least one open-source
+program that <b>can</b> create animations with interpolators:
+<a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>.)</p>
 
 <p>For more: see <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
 of animation handling in Kambi VRML engine</a>.</p>
