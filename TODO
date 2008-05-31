@@ -22,3 +22,20 @@ Text for next update:
 After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
+
+change naming: TNodeXxx, INodeXxx is only for Xxx from the spec, with optional
+suffix like _1, _2 or _3 indicating VRML version for which this node
+is specific (also many _2 nodes are also for X3D).
+There are also TVRMLNode / IVRMLNode descendants named
+TVRMLXxx, TVRMLXxx, these are various helper nodes defined only in our engine.
+
+after all done, remember to fix containerField to all nodes.
+
+make sure the partial X3D components are finished now:
+- grouping
+  navigation
+  pointing_device_sensor
+  shaders
+
+test: pure VRML 2.0 should still be output as VRML 2.0, not X3D
+(add optional output 1st header line to run_tests.sh for view3dscene)
