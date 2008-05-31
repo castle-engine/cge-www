@@ -30,6 +30,7 @@ There are also TVRMLNode / IVRMLNode descendants named
 TVRMLXxx, TVRMLXxx, these are various helper nodes defined only in our engine.
 
 also TNodeGroupHidden rename to TVRMLGroupHidden (or TVRMLRootGroup)
+TNodeGeneralShape, TNodeGeneralTexture also change to TVRMLXxx
 
 after all done, remember to fix containerField to all nodes.
 
@@ -40,3 +41,6 @@ make sure the partial X3D components are finished now:
 
 test: pure VRML 2.0 should still be output as VRML 2.0, not X3D
 (add optional output 1st header line to run_tests.sh for view3dscene)
+
+drop AllowedChildrenNodes for group, add to test that they all descend
+from X3DChildNode.
