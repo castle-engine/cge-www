@@ -12,6 +12,9 @@ Next WWW update:
     to be sure I handle it right.
 
 - update all WWW pages, view3dscene.php features, vrml_implementation_status
+  (note that it's X3D edition 2, i.e. current spec at 2008-05,
+  note that all fields besides MFImage are supported,
+  note that all components are known and parsed).
   about X3D.
 
 Text for next update:
