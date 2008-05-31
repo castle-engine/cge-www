@@ -29,11 +29,12 @@ is specific (also many _2 nodes are also for X3D).
 There are also TVRMLNode / IVRMLNode descendants named
 TVRMLXxx, TVRMLXxx, these are various helper nodes defined only in our engine.
 
+also TNodeGroupHidden rename to TVRMLGroupHidden (or TVRMLRootGroup)
+
 after all done, remember to fix containerField to all nodes.
 
 make sure the partial X3D components are finished now:
-- grouping
-  navigation
+- navigation
   pointing_device_sensor
   shaders
 
