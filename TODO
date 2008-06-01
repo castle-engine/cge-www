@@ -23,14 +23,9 @@ After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
 
-change naming: TNodeXxx, INodeXxx is only for Xxx from the spec, with optional
-suffix like _1, _2 or _3 indicating VRML version for which this node
-is specific (also many _2 nodes are also for X3D).
-There are also TVRMLNode / IVRMLNode descendants named
-TVRMLXxx, TVRMLXxx, these are various helper nodes defined only in our engine.
-
 also TNodeGroupHidden rename to TVRMLGroupHidden (or TVRMLRootGroup)
-TNodeGeneralShape, TNodeGeneralTexture also change to TVRMLXxx
+TNodeGeneralTexture also change to TVRMLXxx
+TVRMLLightNode
 
 after all done, remember to fix containerField to all nodes.
 
