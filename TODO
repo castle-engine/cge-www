@@ -23,8 +23,6 @@ After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
 
-TVRMLLightNode
-
 after all done, remember to fix containerField to all nodes.
 
 make sure the partial X3D components are finished now:
