@@ -23,7 +23,6 @@ After next update:
 - update view3dscene description of freshmeat, to include Collada.
 - check does kambi_lines work on Windows in ii 107 now.
 
-also TNodeGroupHidden rename to TVRMLGroupHidden (or TVRMLRootGroup)
 TNodeGeneralTexture also change to TVRMLXxx
 TVRMLLightNode
 
