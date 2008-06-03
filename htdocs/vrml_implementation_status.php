@@ -185,7 +185,10 @@ trick like that). But they don't have any effect on the scene. These are:
 <ul>
   <li><tt>ROUTE</tt>.
   <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
-  <li>Nodes: sensors, interpolators, geospatial things, NURBS,
+  <li>Nodes: sensors, interpolators, geospatial things (if ever,
+    geo things will be implemented probably only for X3D;
+    they are even parsed now only according to X3D, not VRML 97),
+    NURBS,
     sounds (<tt>AudioClip</tt> and <tt>Sound</tt>),
     <tt>MovieTexture</tt>.
 </ul>

@@ -26,12 +26,13 @@ After next update:
 after all done, remember to fix containerField to all nodes.
 
 make sure the partial X3D components are finished now:
-- navigation
-  pointing_device_sensor
-  shaders
+- shaders
 
 test: pure VRML 2.0 should still be output as VRML 2.0, not X3D
 (add optional output 1st header line to run_tests.sh for view3dscene)
 
 drop AllowedChildrenNodes for group, add to test that they all descend
 from X3DChildNode.
+
+at the end, finish all _Descendants macros.
+Make AllowedChildren work with interfaces?
