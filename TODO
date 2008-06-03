@@ -1,13 +1,5 @@
 Next WWW update:
 - finish X3D:
-  - add all nodes with fields, with whole X3D abstract hierarchy.
-    Fix TNodeX3DGroupingNode to inherit from some TNodeX3D... other node.
-    Fix all geometry nodes to inherit from X3DGeometryNode.
-    Fix Text node to have solid field (and others? check spec)
-
-    Add to tests auto creation of all registered nodes,
-    and check do they have all fields with different names.
-
   - test ComposedShader with X3D XML on some external example,
     to be sure I handle it right.
 
@@ -24,9 +16,6 @@ After next update:
 - check does kambi_lines work on Windows in ii 107 now.
 
 after all done, remember to fix containerField to all nodes.
-
-make sure the partial X3D components are finished now:
-- shaders
 
 test: pure VRML 2.0 should still be output as VRML 2.0, not X3D
 (add optional output 1st header line to run_tests.sh for view3dscene)
