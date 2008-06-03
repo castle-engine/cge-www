@@ -9,10 +9,12 @@ Next WWW update:
   note that all components are known and parsed).
   about X3D.
 
+- vrml_engine_doc is somewhat updated, update more, and regerenate output
+
 Text for next update:
 
 After next update:
-- update view3dscene description of freshmeat, to include Collada.
+- update view3dscene description of freshmeat, to include Collada and X3D.
 - check does kambi_lines work on Windows in ii 107 now.
 
 after all done, remember to fix containerField to all nodes.
