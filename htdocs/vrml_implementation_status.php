@@ -183,14 +183,23 @@ They all are parsed correctly and consciously (which means that the parser
 doesn't simply "omit them to matching parenthesis" or some other dirty
 trick like that). But they don't have any effect on the scene. These are:
 <ul>
-  <li><tt>ROUTE</tt>.
-  <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.
-  <li>Nodes: sensors, interpolators, geospatial things (if ever,
-    geo things will be implemented probably only for X3D;
-    they are even parsed now only according to X3D, not VRML 97),
-    NURBS,
-    sounds (<tt>AudioClip</tt> and <tt>Sound</tt>),
-    <tt>MovieTexture</tt>.
+  <li>Whole VRML event mechanism:
+    <ul>
+      <li><tt>ROUTE</tt>.</li>
+      <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.</li>
+      <li>Sensors, interpolators.</li>
+    </ul>
+  </li>
+  <li>NURBS</li>
+  <li>Sounds (<tt>AudioClip</tt> and <tt>Sound</tt>). Although our engine
+    supports 3D sounds and music (using OpenAL, sound formats
+    allowed now are WAV and OggVorbis), this is currently not integrated
+    with VRML in any way &mdash; it's only available if you use our engine
+    to write your own programs.
+  <li><tt>MovieTexture</tt>
+  <li>Geospatial component. As an exception, geospatial VRML 97 nodes
+    may not even be correctly parsed by our engine. They are parsed
+    according to X3D (there were some incompatible changes in X3D).</li>
 </ul>
 
 <?php echo $toc->html_section(); ?>

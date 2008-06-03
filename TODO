@@ -36,3 +36,9 @@ from X3DChildNode.
 
 at the end, finish all _Descendants macros.
 Make AllowedChildren work with interfaces?
+
+test kambi_vrml_test_suite
+vrml_engine_doc tests
+x3d tests
+test on white_dune VRMl 97 and X3d output (nurbs incompatible)
+parse nist tests
