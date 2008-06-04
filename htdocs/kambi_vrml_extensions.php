@@ -218,8 +218,9 @@ convention somewhat similar to VRML 97 specification:
 <p>Example VRML models that use these extensions may be found
 in <?php echo a_href_page("Kambi VRML test suite",
 "kambi_vrml_test_suite"); ?> &mdash; look inside
-<tt>vrml_1/kambi_extensions/</tt> and
-<tt>vrml_2/kambi_extensions/</tt> subdirectories.
+<tt>vrml_1/kambi_extensions/</tt>, <tt>vrml_2/kambi_extensions/</tt>,
+<tt>x3d/kambi_extensions/</tt>, <tt>x3d/shaders/kambi_extensions/</tt>
+subdirectories.
 
 <h3><a name="section_exts">Extensions</a></h3>
 
@@ -256,7 +257,7 @@ in <?php echo a_href_page("Kambi VRML test suite",
 </pre>
 
     <p>See <?php echo a_href_page("Kambi VRML test suite",
-    "kambi_vrml_test_suite"); ?>, directory <tt>vrml_2/kambi_extensions/shaders/</tt>
+    "kambi_vrml_test_suite"); ?>, directory <tt>x3d/shaders/</tt>
     for working demos of this.</p>
 
     <p>You can also set uniform variables for your shaders from VRML,
