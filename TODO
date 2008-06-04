@@ -17,9 +17,6 @@ After next update:
 - update view3dscene description of freshmeat, to include Collada and X3D.
 - check does kambi_lines work on Windows in ii 107 now.
 
-test: pure VRML 2.0 should still be output as VRML 2.0, not X3D
-(add optional output 1st header line to run_tests.sh for view3dscene)
-
 test kambi_vrml_test_suite
 vrml_engine_doc tests
 x3d tests
