@@ -101,6 +101,22 @@ used.
     See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
     documentation for more detailed list.
 
+    <p><i>Note about alpha channel</i>: alpha channel of the textures
+    is fully supported, both a simple yes-no transparency (done
+    by alpha_test in OpenGL) and full range transparency
+    (done by blending in OpenGL, just like partially transparent materials).
+    Internally, we have a simple and very nice algorithm that detects whether texture's
+    alpha channel qualifies as simple yes-no or full range, see
+    <a href="TODO-reference">TImage.AlphaChannelType reference</a>
+    (default tolerance values used by VRML renderer are 5 and 0.1).
+    There is also a special program in <?php echo a_href_page('engine sources',
+    'sources'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
+    file) if you want to use this algorithm yourself.
+    You can also see the results for your textures if you run view3dscene
+    with <tt>--debug-log</tt> option.
+
+    <p>The bottom line is: everything will magically work fast and look perfect.
+
   <li><p><tt>Inline</tt>, <tt>InlineLoadControl</tt>
 
   <li><p><tt>LOD</tt>
@@ -265,10 +281,6 @@ All nodes and features are handled, with the exception of:
   <li>I'm always rendering the nearest (first) child of <tt>LOD</tt> node.
     Therefore I'm potentially losing some optimization if the scene
     has reasonably designed <tt>LOD</tt> nodes.
-
-  <li>Partial transparency on textures with full alpha channel (like PNG images).
-    For now textures with alpha channel have always simple, all-or-nothing
-    transparency. (but partial transparency of Materials is fully supported).
 
   <li><p>Extensibility features (<tt>isA</tt> and <tt>fields</tt>) are not handled
     fully, although you probably will not notice. For built-in nodes,
