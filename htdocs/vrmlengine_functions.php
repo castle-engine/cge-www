@@ -12,6 +12,22 @@ function echo_header_bonus ()
     <link rel="alternate" type="application/rss+xml"
       title="Kambi VRML game engine - changes log RSS feed"
       href="<?php echo CURRENT_URL; ?>changes_log_feed.php">
+
+<style type="text/css"><!--
+  object.movie_thumbnail {
+    width: 200px;
+    height: 167px;
+  }
+
+  table.table_with_movie_thumbnail {
+    background: #DDD;
+    width: 210px;
+    margin: 0.2em;
+    padding: 0.2em;
+    font-size: small;
+  }
+--></style>
+
   <?php
 }
 

@@ -64,11 +64,17 @@ specification nodes actually use this.
 
 <ul>
   <li>
-    <?php
-      echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL') .
-        '</table>';
-    ?>
+    <table align="right" class="table_with_movie_thumbnail">
+      <tr><td>
+        <?php echo medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL'); ?>
+      </td></tr>
+      <tr><td>
+        This movie shows GLSL shaders by our engine. You can also
+        <?php echo current_www_a_href_size('get AVI version with much better quality',
+          'movies/2.avi'); ?>.
+        <object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="200" height="167"></embed></object>
+      </td></tr>
+    </table>
 
     <p><a name="shaders"></a><a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>Programmable
     shaders component</b></a>
@@ -114,6 +120,13 @@ specification nodes actually use this.
     a real use for them... In other words, I'm just dying to see some
     beautiful VRML/X3D models that heavily use programmable shaders :).</p>
   </li>
+
+  <li><p><tt>StaticGroup</tt>
+
+  <li><p><tt>OrthoViewpoint</tt>
+
+    <p>TODO: Although it's handled, some fields are ignored for now:
+    jump, retainUserOffsets, centerOfRotation, fieldOfView.
 </ul>
 
 
