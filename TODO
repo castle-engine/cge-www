@@ -14,6 +14,4 @@ After next update:
 - update view3dscene description of freshmeat, to include Collada and X3D.
 - check does kambi_lines work on Windows in ii 107 now.
 
-x3d tests
-test on white_dune VRMl 97 and X3d output (nurbs incompatible)
 parse nist tests
