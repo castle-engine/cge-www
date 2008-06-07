@@ -3,13 +3,10 @@ Next WWW update:
   - test ComposedShader with X3D XML on some external example,
     to be sure I handle it right.
 
-- update all WWW pages, view3dscene.php features, vrml_implementation_status
-  (note that it's X3D edition 2, i.e. current spec at 2008-05,
-  note that all fields besides MFImage are supported,
-  note that all components are known and parsed).
-  about X3D.
+  - update all WWW pages, view3dscene.php features.
+    vrml_implementation_status updated.
 
-- vrml_engine_doc is somewhat updated, update more, and regerenate output
+  - vrml_engine_doc is somewhat updated, update more, and regerenate output
 
 Text for next update:
 
