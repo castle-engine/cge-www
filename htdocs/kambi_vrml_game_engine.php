@@ -59,7 +59,7 @@ Features include:</p>
   <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
     and GLSL shaders. Most important, you can
     <?php echo a_href_page_hashlink('add and control GLSL shaders from VRML',
-    'kambi_vrml_extensions', 'ext_shaders'); ?>.
+    'vrml_implementation_status', 'shaders'); ?>.
     So GLSL shaders are fully available
     for model designers, programmer doesn't have to do anything.
 

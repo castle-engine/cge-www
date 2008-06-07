@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("VRML implementation status", LANG_EN,
+  common_header("VRML / X3D implementation status", LANG_EN,
     NULL, NULL,
     '<style type="text/css"><!--
     td.pass{background-color:rgb(50%,100%,50%)}
@@ -12,8 +12,8 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('VRML 2.0 nodes implemented', 'vrml_2_nodes'),
-      new TocItem('X3D features in VRML 2.0', 'x3d', 1),
+      new TocItem('X3D status', 'x3d'),
+      new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
     ));
@@ -22,7 +22,8 @@
 <?php echo pretty_heading($page_title); ?>
 
 <p>This page collects information about implementation status of
-VRML constructs, with respect to VRML 1.0 and 2.0 specifications.
+VRML constructs, with respect to VRML 1.0, 2.0 (aka VRML 97) and 3.0 (aka X3D)
+specifications.
 It also collects some details about handling of some nodes.
 If you want to know what is supported <i>besides
 the things required by VRML specifications</i>,
@@ -32,7 +33,7 @@ you should read the other page about
 
 <p><i>No limits</i>:
 <a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
-VRML 97 specification defines various limits</a>
+VRML 97 and X3D specifications define various limits</a>
 that must be satisfied by VRML browsers to call themselves "conforming"
 to VRML specification. For example, only 500 children per Group
 have to be supported, only SFString with 30,000 characters have to be
@@ -44,6 +45,72 @@ on user system, performance of OpenGL implementation etc.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p><i>All nodes from all components</i> of X3D edition 2 specification are
+included in the engine. This doesn't mean that they are meaningfully
+handled, but they <i>are at least parsed correctly</i> (and converting from
+X3D XML to classic VRML preserves them correctly).
+
+<p>We support fully both XML and classic encodings.
+
+<p>Besides all VRML 97 features, X3D bits implemented now are:</p>
+
+<ul>
+  <li>
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL') .
+        '</table>';
+    ?>
+
+    <p><a name="shaders"></a><a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>Programmable
+    shaders component</b></a>
+    is basically implemented: <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
+    allow you to write shaders in GLSL language.
+
+    <p>For example add inside <tt>Appearance</tt> node VRML code like</p>
+
+<pre>
+  shaders ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
+      ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+    ]
+  }
+</pre>
+
+    <p>See <?php echo a_href_page("Kambi VRML test suite",
+    "kambi_vrml_test_suite"); ?>, directory <tt>x3d/shaders/</tt>
+    for working demos of this.</p>
+
+    <p>You can also set uniform variables for your shaders from VRML,
+    just add lines like
+
+<pre>
+  inputOutput SFVec3f UniformVariableName 1 0 0
+</pre>
+
+    to your ComposedShader node.
+
+    <p>Oh, and some other programmable shader features are quite trivial
+    to implement (attributes for shaders in VRML).
+    They are implemented in the engine classes anyway, it's only a matter
+    of implementing link between VRML and them.
+    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
+    If you have some interesting VRML / X3D models that use these programmable
+    shaders features, feel free to contact me and I'll implement them
+    in our engine.</p>
+
+    <p>(I mean, I will implement them anyway some day, but it's always
+    much more interesting to implement features when you actually have
+    a real use for them... In other words, I'm just dying to see some
+    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+  </li>
+</ul>
+
 
 <?php echo $toc->html_section(); ?>
 
@@ -216,31 +283,6 @@ trick like that). But they don't have any effect on the scene. These are:
   <li>Geospatial component. As an exception, geospatial VRML 97 nodes
     may not even be correctly parsed by our engine. They are parsed
     according to X3D (there were some incompatible changes in X3D).</li>
-</ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Although X3D support is not implemented at all (we even deliberately
-don't support X3D files in classic encoding, I want to improve VRML 97
-support first), we already have some X3D-specific features implemented.
-For now they are available for VRML 97 authors, that is: we support
-VRML 97 with some X3D features "backported".
-As a reference, I used X3D specification with amendment 1 and revision 1,
-that is: the newest X3D specification as of this writing (2007-12).</p>
-
-<p>X3D bits implemented are:</p>
-
-<ul>
-  <li><p><tt>Appearance</tt> node has all fields from X3D specification
-    allowed (but actually only <tt>shaders</tt> field is handled
-    from these X3D-specific Appearance fields).</p></li>
-
-  <li><p>Parts of
-    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>programmable shaders component</b></a>
-    are implemented: <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
-    allow you to write shaders in GLSL language.
-    See <?php echo a_href_page_hashlink('VRML extensions about using shaders',
-    'kambi_vrml_extensions', 'ext_shaders'); ?> for examples of use.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
