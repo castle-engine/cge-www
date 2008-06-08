@@ -3,6 +3,48 @@ Next WWW update:
   - test ComposedShader with X3D XML on some external example,
     to be sure I handle it right.
 
+    test on
+    /home/michalis/3dmodels/openlibraries/trunk/media/models/
+
+Implement PrimitiveSets:
+    [Indexed] Triangle/Quad Set/Strip/Fan for X3D.
+    6 triangle, 2 quad primitives.
+
+Some general notes (maybe copy to implementation comments):
+
+- The value of the colorPerVertex field is ignored and always
+  treated as TRUE for all 8 of these. Normals, if specified by user,
+  are always per-vertex.
+  So always SMOOTH shading model is safe.
+
+  For our own generated normals, we may be forced to generate
+  flat ones (for non-indexed ones, or for indexed with normalPerVertex=FALSE).
+  PROBLEM when there are colors (always per vertex) and normals must be flat,
+  we HAVE to decompose into triangles?
+  
+- Good implementation, and ours should be like that, should keep
+  whole strip/fan as one OpenGL strip/fan. In other words, we're going
+  to utilize the optimal representation of these primitives, and we'll not
+  deconstruct strips/fans to simple sets of triangles.
+
+- As for smoothing: for indexed primitives:
+
+    * If normalPerVertex is TRUE, the normal shall be the average of all triangles sharing that vertex.
+    * If normalPerVertex is FALSE, the normal shall be generated for the triangle based on the ccw field.
+
+  For non-indexed, for some primitives normals should be generated flat,
+  and for some normalPerVertex is taken into account just like above.
+
+  Anyway, there's no creaseAngle. So some simple normals calculator
+  is in order.
+
+- Looks like generation of tex Coords is not needed: if not supplied,
+  do not use texture? Let's make it possible to easily plug generation,
+  like the one for IndexedFaceSet.
+
+    http://www.instantreality.org/tutorial/shader-programs/
+    some instantreality.org example models?
+
   - update all WWW pages, view3dscene.php features.
     vrml_implementation_status updated.
 
