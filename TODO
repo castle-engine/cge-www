@@ -5,6 +5,7 @@ Next WWW update:
 
     test on
     /home/michalis/3dmodels/openlibraries/trunk/media/models/
+    hm, require setting uniform from SFNode first...
 
 Implement PrimitiveSets:
     [Indexed] Triangle/Quad Set/Strip/Fan for X3D.
@@ -21,7 +22,7 @@ Some general notes (maybe copy to implementation comments):
   flat ones (for non-indexed ones, or for indexed with normalPerVertex=FALSE).
   PROBLEM when there are colors (always per vertex) and normals must be flat,
   we HAVE to decompose into triangles?
-  
+
 - Good implementation, and ours should be like that, should keep
   whole strip/fan as one OpenGL strip/fan. In other words, we're going
   to utilize the optimal representation of these primitives, and we'll not
