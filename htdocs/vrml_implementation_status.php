@@ -127,6 +127,10 @@ specification nodes actually use this.
 
     <p>TODO: Although it's handled, some fields are ignored for now:
     jump, retainUserOffsets, centerOfRotation, fieldOfView.
+
+  <li><p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>
+
+    <p>(TODO:very basic implementation, only coord and index supported).
 </ul>
 
 
