@@ -104,11 +104,13 @@ specification nodes actually use this.
   inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
-    to your ComposedShader node.
+    to your ComposedShader node. (TODO: unfortunately it doesn't
+    work yet with all required VRML field types. In particular,
+    passing textures to shader this way (by SFNode fields) is not
+    supported <i>yet</i>.)
 
-    <p>Oh, and some other programmable shader features are quite trivial
-    to implement (attributes for shaders in VRML).
-    They are implemented in the engine classes anyway, it's only a matter
+    <p>TODO: attributes for shaders in VRML are not yet passed.
+    They are implemented in the engine classes of course, it's only a matter
     of implementing link between VRML and them.
     <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
     If you have some interesting VRML / X3D models that use these programmable
