@@ -43,6 +43,8 @@ Some general notes (maybe copy to implementation comments):
   do not use texture? Let's make it possible to easily plug generation,
   like the one for IndexedFaceSet.
 
+Also impl LineSet (non-indexed) from X3D.
+
     http://www.instantreality.org/tutorial/shader-programs/
     some instantreality.org example models?
 

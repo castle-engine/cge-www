@@ -131,6 +131,11 @@ specification nodes actually use this.
   <li><p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>
 
     <p>(TODO:very basic implementation, only coord and index supported).
+
+  <li><p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
+    <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
+
+    <p>(TODO:very basic implementation, only coord, index, fanCount, stripCount supported).
 </ul>
 
 
