@@ -7,6 +7,10 @@ Next WWW update:
     /home/michalis/3dmodels/openlibraries/trunk/media/models/
     hm, require setting uniform from SFNode first...
 
+bbox calculation can be merged into one if
+TNodeX3DComposedGeometryNode has virtual
+Index: method (returning nil for non-indexed).
+
 Implement PrimitiveSets:
     [Indexed] Triangle/Quad Set/Strip/Fan for X3D.
     6 triangle, 2 quad primitives.
