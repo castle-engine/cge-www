@@ -588,16 +588,22 @@ EXTERNPROTO Text3D [
 
   <?php echo ext_long_title('ext_kambi_triangulation'); ?>
 
-    New node:
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("kambi_triangulation_demo.png", 'KambiTriangulation demo screenshot') .
+        '</table>';
+    ?>
+
+    <p>New node:
 
     <?php echo node_begin("KambiTriangulation");
       $node_format_fd_type_pad=8;
       $node_format_fd_name_pad=15;
       $node_format_fd_def_pad=5;
       echo
-      node_field('exposedField', "SFLong", "quadricSlices", "-1", "{-1} + [3, infinity)") .
-      node_field('exposedField', "SFLong", "quadricStacks", "-1", "{-1} + [2, infinity)") .
-      node_field('exposedField', "SFLong", "rectDivisions", "-1", "[-1, infinity)") .
+      node_field('exposedField', "SFInt32", "quadricSlices", "-1", "{-1} + [3, infinity)") .
+      node_field('exposedField', "SFInt32", "quadricStacks", "-1", "{-1} + [2, infinity)") .
+      node_field('exposedField', "SFInt32", "rectDivisions", "-1", "[-1, infinity)") .
       node_end();
     ?>
 
@@ -647,6 +653,11 @@ EXTERNPROTO Text3D [
     want to see light effects (like light spot) looking good.
     If the object is small you can triangulate less, to get
     better rendering time.
+
+    <p>Test VRML file:
+    see <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, file
+    <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/kambi_triangulation.wrl</tt>.
 
   <?php echo ext_long_title('ext_gzip'); ?>
 
