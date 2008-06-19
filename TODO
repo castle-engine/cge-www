@@ -100,6 +100,8 @@ Also impl LineSet (non-indexed) from X3D.
   - vrml_engine_doc is somewhat updated, update more, and regerenate output
 
 - how (if in any way) should I package view3dscene's desktop data?
+- hm, although by mime types work and desktop file works too, seems that
+  view3dscene is not automatically run on X3D files? Why?
 
 Text for next update:
 
