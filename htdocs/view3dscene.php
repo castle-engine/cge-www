@@ -362,9 +362,7 @@ They know about animations stored in 3D files, that's
 why they take parameters describing the animation time to capture.
 They are used to take screenshots in "batch mode".
 (In interactive mode, you can use comfortable
-menu item <i>Other -> Screenshot...</i>).
-Also, these options allow to capture
-an entire movie of the animation (this is not available from the GUI now.)</p>
+menu items <i>Display -> Screenshot...</i>.)</p>
 
 <p><i>For a still 3D scene</i>, you usually just want to use the simpler
 <tt>--screenshot</tt> option with <tt>TIME</tt>
