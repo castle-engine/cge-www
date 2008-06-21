@@ -58,6 +58,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
+      new TocItem('Installing as Nautilus (GNOME file manager) thumbnailer', 'nautilus_thumbnailer', 2),
       new TocItem('Other options', 'other_options', 1),
       new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
       new TocItem('Notes about ray-tracer', 'raytracer'),
@@ -178,9 +179,13 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     ray-tracer &mdash; everything that requires some octree) always use the
     <i>first animation frame</i>, regardless of current animation frame
     displayed.
-  <li>There are <a href="#section_screenshot">command-line
+
+  <li><p>There are <a href="#section_screenshot">command-line
     options to catch screenshots and movies
-    of 3D scenes and animations</a>.
+    of 3D scenes and animations</a>. GNOME users will be happy to hear
+    that it can also be used as <a href="#section_nautilus_thumbnailer">Nautilus
+    thumbnailer</a>, providing thumbnails when you view directory with
+    VRML / X3D and other 3D models.
 </ul>
 
 <!-- Removed because usual user is not interested in this.
@@ -524,6 +529,74 @@ of a scene, at it's default camera, just call</p>
 a screenshot from animation in
 <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
 drectory.</p>
+
+<?php section(false); ?>
+
+<p>If you use GNOME file manager Nautilus there's
+one cool thing you can do with <tt>--screenshot</tt> option: use
+it to generate on-the-fly thumbnails of 3D models in the viewed directory.
+
+<p>More general instructions and links are provided in
+<a href="http://library.gnome.org/devel/integration-guide/stable/thumbnailer.html.en">"Installing
+a Thumbnailer Program" from GNOME integration guide</a>. But it's really
+simple, here are short instructions (I may automate them one day
+by providing some "make install" script in view3dscene release):
+
+<ol>
+  <li><p>Download the trivial
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/view3dscene/desktop/view3dscene-thumbnailer">view3dscene-thumbnailer</a>
+    script. Place it anywhere, make sure that it's executable
+    (<tt>chmod +x view3dscene-thumbnailer</tt>) and it works Ok.
+    You can test by running e.g. <tt>view3dscene-thumbnailer
+    test_model.wrl /tmp/output.png 20</tt>, this should produce
+    <tt>/tmp/output.png</tt> image file on output. Note that the script
+    assumes that view3dscene is available on $PATH.
+
+  <li><p>Make sure that your 3D models MIME types are known.
+    Generally <tt>*.wrl</tt> files are probably already recognized
+    (you can check this: nautilus probably shows "VRML document" file type
+    for *.wrl files).
+
+    <p>To recognize more types, you have to add them
+    to your MIME database. Simple instructions: get
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/view3dscene/desktop/view3dscene.xml">XML file describing MIME types of 3D models
+    understood by view3dscene</a>, place it under your
+    <tt>$HOME/.local/share/mime/packages/</tt> directory and run
+
+<pre>
+  update-mime-database ~/.local/share/mime/packages/
+</pre>
+
+  <li><p>The final step: you need to create in gconf database (you
+    can use e.g. <tt>gconf-editor</tt> for this) two keys:
+
+    <ol>
+      <li><tt>/desktop/gnome/thumbnailers/model@vrml/enable</tt><br/>
+        (type boolean, value "true").
+      <li><p><tt>/desktop/gnome/thumbnailers/model@vrml/command</tt><br/>
+        (type string, value "<tt>view3dscene-thumbnailer %i %o %s</tt>").
+    </ol>
+
+    <p>...and you're done. Enter some directory with VRML files,
+    and enjoy your thumbnails.
+
+    <p>For MIME types other than <tt>model/vrml</tt>, add analogous keys
+    to gconf (just replace <tt>model@vrml</tt> with your MIME type,
+    with @ instead of / inside).
+</ol>
+
+<p><i>Beware that loading arbitrary 3D scene may take a lot of time</i>,
+consume a lot of memory and CPU power. Although we try
+to be fast, and some things are specially optimized for screenshot,
+there are no guarantees. No engine can load arbitrary large
+3D data without any noticeable resource use. 
+Nautilus should automatically terminate thumbnailer that
+runs too long, so this is not critical problem. After all, reading large
+movies or images has similar problems, but it works quite Ok, right?
+(Actually, 3D data is much more difficult than reading just a few starting
+seconds of a movie or a simple 2D image...) That said, the author of this
+text is using view3dscene thumbnailer all the time, and it works
+flawlessly :) so give it a try!
 
 <?php section(false); ?>
 
