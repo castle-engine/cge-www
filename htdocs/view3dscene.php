@@ -19,11 +19,12 @@
     ');
   require "octree_consts.php";
 
-  function section($section_title, $section_anchor, $make_hr = true)
+  function section($make_hr = true)
   {
     if ($make_hr)
       echo "<hr class=\"ruler_between_sections\">";
-    echo "<h3 class=\"h_section\"><a name=\"section_$section_anchor\">$section_title</a></h3>";
+    global $toc;
+    echo $toc->html_section();
   }
 ?>
 
@@ -48,19 +49,27 @@ and it's good to take a look at the most important keys
 in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 -->
 
-<ol>
-  <li><a href="#section_features">Features</a>
-  <li><a href="#section_install">Downloading and installing</a>
-  <li><a href="#section_run">Running</a>
-  <li><a href="#section_keys">Controlling program with keys &amp; mouse</a>
-  <li><a href="#section_command_line_options">Command-line options</a>
-  <li><a href="#section_sthg_about_shading">A few words about flat/smooth shading</a>
-  <li><a href="#section_raytracer">Notes about ray-tracer</a>
-  <li><a href="#section_depends">Requirements</a>
-  <li><a href="#section_freshmeat">Freshmeat entry</a>
-</ol>
+<?php
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Features', 'features'),
+      new TocItem('Downloading and installing', 'install'),
+      new TocItem('Running', 'run'),
+      new TocItem('Controlling program with keys &amp; mouse', 'keys'),
+      new TocItem('Command-line options', 'command_line_options'),
+      new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
+      new TocItem('Other options', 'other_options', 1),
+      new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
+      new TocItem('Notes about ray-tracer', 'raytracer'),
+      new TocItem(DEPENDS, 'depends'),
+      new TocItem('Freshmeat entry', 'freshmeat'),
+    )
+  );
+  $toc->echo_numbers = true;
+  echo $toc->html_toc();
+?>
 
-<?php section('Features', 'features', false); ?>
+<?php section(false); ?>
 
 <p>Supported file formats:
 <ul>
@@ -169,6 +178,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     ray-tracer &mdash; everything that requires some octree) always use the
     <i>first animation frame</i>, regardless of current animation frame
     displayed.
+  <li>There are <a href="#section_screenshot">command-line
+    options to catch screenshots and movies
+    of 3D scenes and animations</a>.
 </ul>
 
 <!-- Removed because usual user is not interested in this.
@@ -181,7 +193,7 @@ drzewo (patrz ni¿ej - klawisze <b>O</b>, <b>Ctrl+U</b>, <b>Ctrl+D</b>).
 
 -->
 
-<?php section('Downloading and installing', 'install'); ?>
+<?php section(); ?>
 
 <p>Here are archived binaries of the program. No special installation
 is required, just unpack these archives and run the program.
@@ -203,7 +215,7 @@ in data files of my games
  <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
  <?php echo a_href_page("malfunction", "malfunction"); ?>.
 
-<?php section('Running', 'run'); ?>
+<?php section(); ?>
 
 <p>Simply run without any command-line parameters.
 <!-- In this case some default "welcome scene" will be loaded
@@ -217,7 +229,7 @@ As usual, dash (<tt>-</tt>) means that standard input will be read
 <p>Also read <a href="#section_command_line_options">about
 view3dscene additional command-line options</a>.</p>
 
-<?php section('Controlling program with keys &amp; mouse', 'keys'); ?>
+<?php section(); ?>
 
 <p><b>Controls in <tt>Examine</tt> navigation mode :</b>
 <table border="1" class="key_list">
@@ -331,64 +343,193 @@ and <tt>Escape</tt> (exit).
 </table>
 -->
 
-<?php section('Command-line options', 'command_line_options'); ?>
-
-<!-- Since we have menu item "Save as VRML ..." I moved description of
-- -write-to-vrml parameter to "additional params" section -->
+<?php section(); ?>
 
 <p>All options described below may be given in any order.
 They all are optional.
 
-<dl class="params_list">
+<?php section(false); ?>
 
-  <dt>--screenshot  TIME  FILE-NAME</dt>
-  <dd><p>Take a screenshot of the loaded scene, save it to FILE-NAME,
-    and exit. In other words, this is used to take screenshots in "batch mode".
-    (In interactive mode, you can use comfortable
-    menu item <i>Other -> Screenshot...</i>).</p>
+<p>Command-line options:
 
-    <p>You most definitely want to pass 3D model file to load
-    at command-line too, otherwise we'll just make a screenshot
-    of the default empty (black) scene. <tt>TIME</tt> (float value) is useful if you
-    load an animation, if you have a static model you can specify
-    anything (e.g. "0"). So to take a simple screenshot of a scene,
-    at it's default camera, just call</p>
+<pre>
+  --screenshot  TIME  FILE-NAME
+  --screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME
+</pre>
+
+<p>These options allow you to capture a screenshot of the loaded scene.
+They know about animations stored in 3D files, that's
+why they take parameters describing the animation time to capture.
+They are used to take screenshots in "batch mode".
+(In interactive mode, you can use comfortable
+menu item <i>Other -> Screenshot...</i>).
+Also, these options allow to capture
+an entire movie of the animation (this is not available from the GUI now.)</p>
+
+<p><i>For a still 3D scene</i>, you usually just want to use the simpler
+<tt>--screenshot</tt> option with <tt>TIME</tt>
+set to anything (like zero) and not worry about anything else.
+
+<p><i>For animations</i>, more possibilities are available. You can capture
+any frames of the animation by using many <tt>--screenshot</tt> options.
+You can also capture a movie by <tt>--screenshot-range</tt>
+(as a series of images or, if
+<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> is installed and
+available on $PATH, even directly to a single movie file).
+
+<p>You most definitely want to pass 3D model file to load
+at command-line too, otherwise we'll just make a screenshot
+of the default empty (black) scene. So to take a simple screenshot
+of a scene, at it's default camera, just call</p>
 
 <pre>
   view3dscene my_model.wrl --screenshot 0 output.png
 </pre>
 
-    <p>Hints:</p>
+<p><b>The detailed specification how screenshot options work</b>:
 
-    <ul>
-      <li><p>To control the look of your screenshot, you often want to
-        use VRML nodes like <tt>Viewpoint</tt>, <tt>NavigationInfo</tt>,
-        <tt>Background</tt>. For example, take a look at
-        <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/screenshot_header.wrl">screenshot_header.wrl</a>
-        VRML file.</p></li>
+<ul>
+  <li><p>First of all, after all the <tt>--screenshot</tt>
+    and <tt>--screenshot-range</tt> options are processed,
+    view3dscene exits. So they work in "batch mode".
 
-      <li><p>You can generate wanted <tt>Viewpoint</tt> node
-        also by using view3dscene, just set your camera (in interactive mode)
-        the way you like and use menu item
-        <i>Console -> Print Current Camera Node</i>.</p>
+  <li><p>The <tt>--screenshot  TIME  FILE-NAME</tt> simply saves
+    the screenshot at time <tt>TIME</tt> to an image file <tt>FILE-NAME</tt>.
 
-      <li><p>To control the size of resulting screenshot, just use
-        <tt>--geometry</tt> command-line parameter
-        (documented at <?php echo a_href_page("standard options
-        understood by our OpenGL programs", "opengl_options") ?>).
-        For example, take a look at
-        <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
-        script.</p></li>
+    <p>Image format is guessed from <tt>FILE-NAME</tt> extension,
+    see <?php echo a_href_page("glViewImage", "glviewimage") ?>
+    for detailed list of image formats that we can handle.
+    In short, we handle many popular image formats, like PNG and JPG,
+    and these are what usually you want to use.
 
-      <li><p>To make your screenshot look best, you may want to use anti-aliasing,
-        see <tt>--anti-alias</tt> option below.</p></li>
-    </ul>
+  <li><p>The <tt>--screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME</tt>
+    option takes <tt>FRAMES-COUNT</tt> screenshots. The first screenshot
+    is at time <tt>TIME-BEGIN</tt>, second screenshot is at
+    <tt>TIME-BEGIN + TIME-STEP</tt>, next one is at
+    <tt>TIME-BEGIN + 2 * TIME-STEP</tt>... you get the idea.
 
-    <p>Generally, you can take a look at (complex) example how to make
-    a screenshot from animation in
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
-    drectory.</p></dd>
+    <p>The <tt>FILE-NAME</tt> is either
+    <ol>
+      <li><p>A movie filename. This must have
+        a recognized movie extension, currently this means
 
+<pre>
+  .avi
+  .mpg
+  .dvd
+  .ogg
+  .mov
+  .swf
+</pre>
+
+        <p>Availability of all these video formats may depend on installed ffmpeg
+        codeds. If in doubt, avi seems to be most reliable and plays everywhere.
+        If I missed some possible movie file extension, please report.
+        <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+        must be installed and available on $PATH for this to work.
+
+      <li><p><tt>FILE-NAME</tt> may also be a pattern to generate
+        names of images to save, like <tt>image%d.png</tt>.
+        Details about using filename patterns are below (although you
+        can probably already guess how it works :) ).
+    </ol>
+
+  <li><p>All filenames for both screenshot options may specify a pattern
+    instead of an actual filename. A pattern is simply a filename
+    with sequence <tt>%d</tt> inside, when capturing <tt>%d</tt>
+    will be replaced by current screenshot number.
+    For captuting a series of images
+    by <tt>--screenshot-range</tt> it's even required to specify
+    a pattern (since capturing
+    a number of images to a single image file has no point...). But
+    it's also allowed in all other cases, even a movie filename
+    may also be a pattern with <tt>%d</tt> sequence,
+    in case you want to use multiple <tt>--screenshot-range</tt>
+    options to get multiple auto-named movies.
+
+    <p>The precise description how <tt>%d</tt> works:
+    All <tt>--screenshot</tt>
+    and <tt>--screenshot-range</tt> options are processed in order.
+    When a filename with pattern <tt>%d</tt> is found, we replace all
+    <tt>%d</tt> occurences in this filename with current counter value
+    and increment the counter. For <tt>--screenshot-range</tt> with
+    an image pattern, we do this for every single frame.
+    The counter starts at 1.
+
+    <p>To allow you do specify literal <tt>%</tt> character in filename
+    reliably, you can write it twice: <tt>%%</tt>.
+</ul>
+
+<p><b>Examples</b>:
+
+<ul>
+  <li><p>Simply get a single screenshot at given time:
+
+<pre>
+  view3dscene my_model.wrl --screenshot 0 output.png
+</pre>
+  </li>
+
+  <li><p>Simply get a movie of 2 seconds of animation.
+    To calculate the numbers, note that we generate a movie with
+    25 frames per second:
+
+<pre>
+  view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
+</pre>
+
+    <p>To get this as a sequence of images, just use <tt>output%d.png</tt>
+    instead of <tt>output.avi</tt>.
+  </li>
+
+  <li><p>Example of more complicated use:
+
+<pre>
+  view3dscene my_model.kanim \
+    --screenshot-range 0 0.04 50 output%d.avi \
+    --screenshot-range 10 0.04 50 output%d.avi
+</pre>
+
+    <p>This generates two files: <tt>output1.avi</tt> with 2 second animation
+    from 0.0 to 2.0 time, and <tt>output2.avi</tt> with 2 second animation
+    from 10.0 to 12.0 time.
+  </li>
+</ul>
+
+<p><b>Hints:</b></p>
+
+<ul>
+  <li><p>To control the look of your screenshot, you often want to
+    use VRML nodes like <tt>Viewpoint</tt>, <tt>NavigationInfo</tt>,
+    <tt>Background</tt>. For example, take a look at
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/screenshot_header.wrl">screenshot_header.wrl</a>
+    VRML file.</p></li>
+
+  <li><p>You can generate wanted <tt>Viewpoint</tt> node
+    also by using view3dscene, just set your camera (in interactive mode)
+    the way you like and use menu item
+    <i>Console -> Print Current Camera Node</i>.</p>
+
+  <li><p>To control the size of resulting screenshot, just use
+    <tt>--geometry</tt> command-line parameter
+    (documented at <?php echo a_href_page("standard options
+    understood by our OpenGL programs", "opengl_options") ?>).
+    For example, take a look at
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
+    script.</p></li>
+
+  <li><p>To make your screenshot look best, you may want to use anti-aliasing,
+    see <tt>--anti-alias</tt> option below.</p></li>
+</ul>
+
+<p>Generally, you can take a look at (complex) example how to make
+a screenshot from animation in
+<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
+drectory.</p>
+
+<?php section(false); ?>
+
+<dl class="params_list">
   <dt>--write-to-vrml
   <dd><p>Option <tt>--write-to-vrml</tt> means "don't open any window,
     just convert the input model to VRML,
@@ -642,7 +783,7 @@ They all are optional.
 See also <?php echo a_href_page(
 "notes about command-line options understood by my programs", "common_options") ?>.
 
-<?php section('A few words about flat/smooth shading', 'sthg_about_shading'); ?>
+<?php section(); ?>
 
 <p>Using key <tt>s</tt> and menu item "Switch flat/smooth shading" you
 can switch between using flat and smooth shading. Default is to use
@@ -678,7 +819,7 @@ Podsumowuj±c bêdziesz zapewne zawsze chcia³ u¿ywaæ cieniowania smooth
 a na cieniowanie flat czasem zerkn±æ jako na ciekawostkê.
 -->
 
-<?php section('Notes about ray-tracer', 'raytracer'); ?>
+<?php section(); ?>
 
 <p>After pressing key <tt>r</tt> (or choosing "Raytrace !" menu item)
 and answering some questions program will render image using
@@ -710,7 +851,7 @@ and use it to run view3dscene in "ray-tracer-optimal" mode.
 <p>More detailed description of how ray-tracer works is given in
 <?php echo a_href_page('documentation of rayhunter', 'rayhunter'); ?>.
 
-<?php section(DEPENDS, 'depends'); ?>
+<?php section(); ?>
 
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
@@ -718,7 +859,15 @@ and use it to run view3dscene in "ray-tracer-optimal" mode.
   DEPENDS_UNIX_GLWINDOW_GTK_2,
   DEPENDS_MACOSX)); ?>
 
-<?php section('Freshmeat entry', 'freshmeat'); ?>
+<p>Also to capture movies by <tt>--screenshot-range</tt> option
+<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> has to be
+installed and available on $PATH.
+
+<p>Also <tt>convert</tt> program from
+<a href="http://www.imagemagick.org/">ImageMagick</a>
+package must be available on $PATH for some image formats to work.
+
+<?php section(); ?>
 
 <p>Here's a link to
 <a href="http://freshmeat.net/projects/view3dscene/">view3dscene

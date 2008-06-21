@@ -23,6 +23,8 @@
 
   Textures with full alpha channel are now nicely rendered with blending (and textures will simple alpha channel are still detected and rendered faster by alpha_test).
   <a href="screenshot from white dune demo">
+  
+  Our screenshot options are much extended, in particular it's now trivial to record a simple movie file with your animation.
 
 <!--  File filters on file open/save dialogs. -->
 
