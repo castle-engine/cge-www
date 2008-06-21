@@ -8,6 +8,10 @@
     'shadows, 3d sound, ray-tracer.');
 ?>
 
+<img src="images/kambi_vrml_game_engine_icon.png"
+  alt="Kambi VRML game engine icon"
+  align="right"/>
+
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
 <p><b>For developers:</b> this is an open-source engine
