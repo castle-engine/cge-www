@@ -57,8 +57,8 @@ path by command like
 <pre>
   export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 </pre>
-before executing programs. (of course you can add this to your <tt>.bashrc</tt>
-file or whatever).
+before executing programs. (you can add this to your <tt>.bashrc</tt>
+or similar file for comfort).
 
 <?php
   if (!IS_GEN_LOCAL) {

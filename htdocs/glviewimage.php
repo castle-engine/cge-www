@@ -154,6 +154,10 @@ systems etc.).
   DEPENDS_UNIX_GLWINDOW_GTK_2,
   DEPENDS_MACOSX)); ?>
 
+<p><tt>convert</tt> program from
+<a href="http://www.imagemagick.org/">ImageMagick</a>
+package must be available on $PATH for some image formats to work.
+
 <hr> <!-- =================================================== -->
 
 <h2>For curious, a few words about implementation</h2>
