@@ -72,7 +72,9 @@ specification nodes actually use this.
         This movie shows GLSL shaders by our engine. You can also
         <?php echo current_www_a_href_size('get AVI version with much better quality',
           'movies/2.avi'); ?>.
+        <?php if (!HTML_VALIDATION) { ?>
         <object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="200" height="167"></embed></object>
+        <?php } ?>
       </td></tr>
     </table>
 

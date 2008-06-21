@@ -24,7 +24,7 @@ for PHP_NAME in *.php; do
 
     *)
       echo '---- Generating '"$PHP_NAME"
-      php "$PHP_NAME" > "$TMP_PATH""$PHP_NAME"
+      php "$PHP_NAME" --html-validation > "$TMP_PATH""$PHP_NAME"
       echo '---- Validating '"$PHP_NAME"
       onsgmls -s -e -g "$TMP_PATH""$PHP_NAME"
       ;;

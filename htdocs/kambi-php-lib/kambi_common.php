@@ -183,6 +183,8 @@
       define_if_needed('IS_GEN_LOCAL', true); else
     if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
       define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
+    if ($_SERVER['argv'][$i] == '--html-validation')
+      define_if_needed('HTML_VALIDATION', true); else
     if ($_SERVER['argv'][$i] == '--locally-avail')
     {
       $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
@@ -197,6 +199,7 @@
      to ustaw je teraz. */
   define_if_needed('IS_GEN_LOCAL', false);
   define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
+  define_if_needed('HTML_VALIDATION', false);
 
   if (IS_GEN_LOCAL)
   {
