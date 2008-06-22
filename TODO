@@ -108,9 +108,6 @@ Also impl LineSet (non-indexed) from X3D.
   - also, view3dscene icon is not visible in workspace view of gnome-panel
     (aoi is visible).
 
-- windows: implement WindowVisible property, check screenshots there
-  (does ffmpeg exists for Windows? within cygwin maybe? check).
-
 Text for next update:
 
 After next update:
