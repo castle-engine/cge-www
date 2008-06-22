@@ -107,7 +107,6 @@ Also impl LineSet (non-indexed) from X3D.
   view3dscene is not automatically run on X3D files? Why?
   - also, view3dscene icon is not visible in workspace view of gnome-panel
     (aoi is visible).
-- add much more MIME types for view3dscene.xml
 
 - windows: implement WindowVisible property, check screenshots there
   (does ffmpeg exists for Windows? within cygwin maybe? check).
