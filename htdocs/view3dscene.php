@@ -589,7 +589,7 @@ by providing some "make install" script in view3dscene release):
 consume a lot of memory and CPU power. Although we try
 to be fast, and some things are specially optimized for screenshot,
 there are no guarantees. No engine can load arbitrary large
-3D data without any noticeable resource use. 
+3D data without any noticeable resource use.
 Nautilus should automatically terminate thumbnailer that
 runs too long, so this is not critical problem. After all, reading large
 movies or images has similar problems, but it works quite Ok, right?
@@ -933,6 +933,17 @@ and use it to run view3dscene in "ray-tracer-optimal" mode.
 <p>Also to capture movies by <tt>--screenshot-range</tt> option
 <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> has to be
 installed and available on $PATH.
+<ul>
+  <li><i>Linux and FreeBSD</i> users should find <tt>ffmpeg</tt> package
+    suitable for their distribution,
+  <li><i>Mac OS X</i> users can install <tt>ffmpeg</tt> using
+    <a href="http://www.finkproject.org/">fink</a> (unfortunately,
+    <a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">only in unstable currently</a>),
+  <li>finally <i>Windows</i> users may try these
+    <a href="http://arrozcru.no-ip.org/ffmpeg_builds/">unofficial FFmpeg Win32 Builds</a>
+    (<a href="http://arrozcru.no-ip.org/ffmpeg/index.html">see here for more information about
+    ffmpeg on Windows</a>). Remember to add bin/ directory to your $PATH after unpacking.
+</ul>
 
 <p>Also <tt>convert</tt> program from
 <a href="http://www.imagemagick.org/">ImageMagick</a>
