@@ -177,20 +177,23 @@
      w kodzie poni¿ej. */
   $locally_available_files = array();
 
-  for ($i=1; $i<$_SERVER['argc']; $i++)
+  if (array_key_exists('argc', $_SERVER))
   {
-    if ($_SERVER['argv'][$i] == '--gen-local')
-      define_if_needed('IS_GEN_LOCAL', true); else
-    if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
-      define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
-    if ($_SERVER['argv'][$i] == '--html-validation')
-      define_if_needed('HTML_VALIDATION', true); else
-    if ($_SERVER['argv'][$i] == '--locally-avail')
+    for ($i = 1; $i < $_SERVER['argc']; $i++)
     {
-      $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
-      break;
-    } else
-      exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
+      if ($_SERVER['argv'][$i] == '--gen-local')
+        define_if_needed('IS_GEN_LOCAL', true); else
+      if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
+        define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
+      if ($_SERVER['argv'][$i] == '--html-validation')
+        define_if_needed('HTML_VALIDATION', true); else
+      if ($_SERVER['argv'][$i] == '--locally-avail')
+      {
+        $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
+        break;
+      } else
+        exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
+    }
   }
 
   // testy: echo "Locally available are "; print_r($locally_available_files);
