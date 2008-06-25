@@ -103,10 +103,8 @@ Also impl LineSet (non-indexed) from X3D.
 - how (if in any way) should I package view3dscene's desktop data?
   Also, add installing thumbnailer (maybe optional?) to such "make install".
   
-- hm, although by mime types work and desktop file works too, seems that
-  view3dscene is not automatically run on X3D files? Why?
-  - also, view3dscene icon is not visible in workspace view of gnome-panel
-    (aoi is visible).
+- view3dscene icon is not visible in workspace view of gnome-panel
+  (aoi is visible). Some other size is needed for this?
 
 Text for next update:
 
