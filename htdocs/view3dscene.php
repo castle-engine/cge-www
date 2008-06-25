@@ -54,11 +54,11 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     array(
       new TocItem('Features', 'features'),
       new TocItem('Downloading and installing', 'install'),
+      new TocItem('Installing GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
       new TocItem('Running', 'run'),
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
-      new TocItem('Installing as Nautilus (GNOME file manager) thumbnailer', 'nautilus_thumbnailer', 2),
       new TocItem('Other options', 'other_options', 1),
       new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
       new TocItem('Notes about ray-tracer', 'raytracer'),
@@ -219,6 +219,69 @@ in data files of my games
  <?php echo a_href_page("The Castle", "castle"); ?>,
  <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
  <?php echo a_href_page("malfunction", "malfunction"); ?>.
+
+<?php section(false); ?>
+
+<p>To get simple integration with GNOME and other desktops following
+<a href="http://freedesktop.org/">freedesktop.org</a> specifications,
+you can optionally do somewhat more involved installation.
+
+<ol>
+  <li><p>First of all, you will need some scripts and data that
+    currently is only in Subversion repository. Just run<br/><tt>
+  <?php echo sf_checkout_link(true, 'view3dscene/desktop'); ?></tt>
+
+  <li><p>Make sure <tt>view3dscene</tt> binary is somewhere on the $PATH.
+    You can symlink or just move the binary there.
+
+  <li><p>Then run <tt>make install</tt> inside downloaded <tt>desktop</tt>
+    directory. You may need to logout and login again to your GNOME/etc.
+    session for all programs to catch up (alternatively, you can do</br><tt>
+  killall gnome-panel && killall nautilus</tt><br/>
+    although this is obviously somewhat brutal method).
+</ol>
+
+<p>That's it! You should now see view3dscene entry in your desktop menu
+(it's in the <i>Graphics</i> category), with a nice icon,
+and all known 3D model files will be recognized and
+double-clicking on them will launch view3dscene.
+
+<p>If you use GNOME file manager Nautilus there's
+one more cool thing you can do: use
+view3dscene to generate on-the-fly thumbnails of 3D models in the viewed directory.
+
+<ol>
+  <li><p>Assuming you already downloaded and installed the base integration above,
+    you have a script called <tt>view3dscene-thumbnailer</tt>
+    in downloaded <tt>desktop</tt> directory.
+    Place this script somewhere on your $PATH. Make sure that it's executable
+    (<tt>chmod +x view3dscene-thumbnailer</tt> if needed) and it works Ok.
+    You can test by running e.g. <tt>view3dscene-thumbnailer
+    test_model.wrl /tmp/output.png 20</tt>, this should produce
+    <tt>/tmp/output.png</tt> image file on output. Note that the script
+    assumes that view3dscene is also already available on $PATH.
+
+  <li><p>Now run <tt>make install_thumbnailer</tt> inside the
+    <tt>desktop</tt> directory. This will add the gconf keys to
+    run thumbnailers on your 3D models.
+</ol>
+
+<p>...and you're done. Enter some directory with VRML / X3D / other 3D files,
+and enjoy your thumbnails.
+
+<p><i>Beware that loading arbitrary 3D scene may take a lot of time,
+so using the thumbnailer may use some resources</i>,
+consume a lot of memory and CPU power. Although we try
+to be fast, and some things are specially optimized for screenshot,
+there are no guarantees. No engine can load arbitrary large
+3D data without any noticeable resource use.
+Nautilus should automatically terminate thumbnailer that
+runs too long, so this is not critical problem. After all, reading large
+movies or images has similar problems, but it works quite Ok, right?
+(Actually, 3D data is much more difficult than reading just a few starting
+seconds of a movie or a simple 2D image...) That said, the author of this
+text is using view3dscene thumbnailer all the time, and it works
+flawlessly :) so give it a try!
 
 <?php section(); ?>
 
@@ -535,74 +598,6 @@ of a scene, at it's default camera, just call</p>
 a screenshot from animation in
 <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
 drectory.</p>
-
-<?php section(false); ?>
-
-<p>If you use GNOME file manager Nautilus there's
-one cool thing you can do with <tt>--screenshot</tt> option: use
-it to generate on-the-fly thumbnails of 3D models in the viewed directory.
-
-<p>More general instructions and links are provided in
-<a href="http://library.gnome.org/devel/integration-guide/stable/thumbnailer.html.en">"Installing
-a Thumbnailer Program" from GNOME integration guide</a>. But it's really
-simple, here are short instructions (I may automate them one day
-by providing some "make install" script in view3dscene release):
-
-<ol>
-  <li><p>Download the trivial
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/view3dscene/desktop/view3dscene-thumbnailer">view3dscene-thumbnailer</a>
-    script. Place it anywhere, make sure that it's executable
-    (<tt>chmod +x view3dscene-thumbnailer</tt>) and it works Ok.
-    You can test by running e.g. <tt>view3dscene-thumbnailer
-    test_model.wrl /tmp/output.png 20</tt>, this should produce
-    <tt>/tmp/output.png</tt> image file on output. Note that the script
-    assumes that view3dscene is available on $PATH.
-
-  <li><p>Make sure that your 3D models MIME types are known.
-    Generally <tt>*.wrl</tt> files are probably already recognized
-    (you can check this: nautilus probably shows "VRML document" file type
-    for *.wrl files).
-
-    <p>To recognize more types, you have to add them
-    to your MIME database. Simple instructions: get
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/view3dscene/desktop/view3dscene.xml">XML file describing MIME types of 3D models
-    understood by view3dscene</a>, place it under your
-    <tt>$HOME/.local/share/mime/packages/</tt> directory and run
-
-<pre>
-  update-mime-database ~/.local/share/mime/packages/
-</pre>
-
-  <li><p>The final step: you need to create in gconf database (you
-    can use e.g. <tt>gconf-editor</tt> for this) two keys:
-
-    <ol>
-      <li><tt>/desktop/gnome/thumbnailers/model@vrml/enable</tt><br/>
-        (type boolean, value "true").
-      <li><p><tt>/desktop/gnome/thumbnailers/model@vrml/command</tt><br/>
-        (type string, value "<tt>view3dscene-thumbnailer %i %o %s</tt>").
-    </ol>
-
-    <p>...and you're done. Enter some directory with VRML files,
-    and enjoy your thumbnails.
-
-    <p>For MIME types other than <tt>model/vrml</tt>, add analogous keys
-    to gconf (just replace <tt>model@vrml</tt> with your MIME type,
-    with @ instead of / inside).
-</ol>
-
-<p><i>Beware that loading arbitrary 3D scene may take a lot of time</i>,
-consume a lot of memory and CPU power. Although we try
-to be fast, and some things are specially optimized for screenshot,
-there are no guarantees. No engine can load arbitrary large
-3D data without any noticeable resource use.
-Nautilus should automatically terminate thumbnailer that
-runs too long, so this is not critical problem. After all, reading large
-movies or images has similar problems, but it works quite Ok, right?
-(Actually, 3D data is much more difficult than reading just a few starting
-seconds of a movie or a simple 2D image...) That said, the author of this
-text is using view3dscene thumbnailer all the time, and it works
-flawlessly :) so give it a try!
 
 <?php section(false); ?>
 
