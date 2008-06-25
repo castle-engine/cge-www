@@ -183,7 +183,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
   <li><p>There are <a href="#section_screenshot">command-line
     options to catch screenshots and movies
     of 3D scenes and animations</a>. GNOME users will be happy to hear
-    that it can also be used as <a href="#section_nautilus_thumbnailer">Nautilus
+    that it can also be used as <a href="#section_install_free_desktop">Nautilus
     thumbnailer</a>, providing thumbnails when you view directory with
     VRML / X3D and other 3D models.
 </ul>
