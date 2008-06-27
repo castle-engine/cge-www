@@ -248,30 +248,23 @@ double-clicking on them will launch view3dscene.
 
 <p>If you use GNOME file manager Nautilus there's
 one more cool thing you can do: use
-view3dscene to generate on-the-fly thumbnails of 3D models in the viewed directory.
+view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
+in the viewed directory.
+This is simple, assuming you already did previous steps (as it's required
+that view3dscene is on the $PATH and mime types are recognized) run</p>
 
-<ol>
-  <li><p>Assuming you already downloaded and installed the base integration above,
-    you have a script called <tt>view3dscene-thumbnailer</tt>
-    in downloaded <tt>desktop</tt> directory.
-    Place this script somewhere on your $PATH. Make sure that it's executable
-    (<tt>chmod +x view3dscene-thumbnailer</tt> if needed) and it works Ok.
-    You can test by running e.g. <tt>view3dscene-thumbnailer
-    test_model.wrl /tmp/output.png 20</tt>, this should produce
-    <tt>/tmp/output.png</tt> image file on output. Note that the script
-    assumes that view3dscene is also already available on $PATH.
+<pre>
+  make install_thumbnailer
+</pre>
 
-  <li><p>Now run <tt>make install_thumbnailer</tt> inside the
-    <tt>desktop</tt> directory. This will add the gconf keys to
-    run thumbnailers on your 3D models.
-</ol>
-
-<p>...and you're done. Enter some directory with VRML / X3D / other 3D files,
-and enjoy your thumbnails.
+<p>inside the downloaded <tt>desktop</tt> directory.
+This will add the gconf keys to run thumbnailers on your 3D models.
+Enter some directory with VRML / X3D / other 3D files,
+and enjoy your thumbnails.</p>
 
 <p><i>Beware that loading arbitrary 3D scene may take a lot of time,
-so using the thumbnailer may use some resources</i>,
-consume a lot of memory and CPU power. Although we try
+so using the thumbnailer may consume a lot of memory and CPU power</i>.
+Although we try
 to be fast, and some things are specially optimized for screenshot,
 there are no guarantees. No engine can load arbitrary large
 3D data without any noticeable resource use.
