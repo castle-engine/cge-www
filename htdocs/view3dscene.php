@@ -234,11 +234,16 @@ you can optionally do somewhat more involved installation.
   <li><p>Make sure <tt>view3dscene</tt> binary is somewhere on the $PATH.
     You can symlink or just move the binary there.
 
-  <li><p>Then run <tt>make install</tt> inside downloaded <tt>desktop</tt>
-    directory. You may need to logout and login again to your GNOME/etc.
-    session for all programs to catch up (alternatively, you can do</br><tt>
-  killall gnome-panel && killall nautilus</tt><br/>
-    although this is obviously somewhat brutal method).
+  <li><p>Then run
+<pre>
+  make install
+</pre> inside downloaded <tt>desktop</tt>
+    directory.
+
+  <li><p>You may need to logout and login again to your GNOME/desktop
+    session for all programs to catch up (alternatively, you can do
+    <tt>killall gnome-panel && killall nautilus</tt>
+    but this is obviously somewhat brutal method).
 </ol>
 
 <p>That's it! You should now see view3dscene entry in your desktop menu
