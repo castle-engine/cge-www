@@ -520,6 +520,11 @@ of a scene, at it's default camera, just call</p>
     an image pattern, we do this for every single frame.
     The counter starts at 1.
 
+    <p>You can specify a number between <tt>%</tt> and <tt>d</tt>,
+    like <tt>%4d</tt>, to pad counter with zeros. For example, normal
+    <tt>%d</tt> results in names like 1, 2, ..., 9, 10... But <tt>%4d</tt>
+    results in names like 0001, 0002, ..., 0009, 0010, ...
+
     <p>To allow you do specify literal <tt>%</tt> character in filename
     reliably, you can write it twice: <tt>%%</tt>.
 </ul>
