@@ -40,6 +40,7 @@ PROTO KambiAppearance [
   exposedField SFNode metadata          NULL
   exposedField MFNode shaders           []
 
+  # Kambi extensions
   exposedField SFNode normalMap         NULL
   exposedField SFNode heightMap         NULL
   exposedField SFFloat heightMapScale   0.01
@@ -57,6 +58,26 @@ PROTO BlendMode [
   exposedField SFString destFactor "one_minus_src_alpha"
   exposedField SFColor color 1 1 1
   exposedField SFFloat colorTransparency 0
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
+}
+
+PROTO KambiTriangulation [
+  exposedField SFLong    quadricSlices    -1     # {-1} + [3, infinity)
+  exposedField SFLong    quadricStacks    -1     # {-1} + [2, infinity)
+  exposedField SFLong    rectDivisions    -1     # [-1, infinity)
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
+}
+
+PROTO KambiHeadLight [
+  exposedField SFFloat     ambientIntensity      0           # [0.0, 1.0]
+  exposedField SFVec3f     attenuation           1 0 0       # [0, infinity)
+  exposedField SFColor     color                 1 1 1       # [0, 1]
+  exposedField SFFloat     intensity             1           # [0, 1]
+  exposedField SFBool      spot                  FALSE
+  exposedField SFFloat     spotDropOffRate       0
+  exposedField SFFloat     spotCutOffAngle       0.785398
 ] {
   Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
