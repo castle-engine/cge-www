@@ -298,7 +298,8 @@ function is_page_available_locally($page_name)
      (I could make this var local to supported_page_langs,
      but it could cost some execution time). */
   $pages_langs = array(
-    'jamy_i_nory' => array(LANG_PL)
+    'jamy_i_nory' => array(LANG_PL),
+    'kno_status' => array(LANG_PL)
   );
 
   /* Global variables =======================================================
@@ -669,6 +670,115 @@ function common_set_page_functions()
   }
 }
 
+function echo_kambi_common_css()
+{
+?>
+<style type="text/css"><!--
+  body { background: white; font-family: sans-serif; }
+
+  table.key_list { width: 90%; }
+  table.key_list th { background: #eeeee0; }
+  table.key_list td { background: #ddddd0; }
+
+  dt { font-weight: bold; }
+  div.page_footer { }
+  span.page_copyright { font-size: smaller }
+
+  span.version_number { font-size: small }
+
+  /* Adapted from my pasdoc.css */
+  table.thin_borders { border-collapse: collapse; }
+  table.thin_borders td { border: 1pt solid lightgray; padding: 0.3em; }
+  table.thin_borders th { border: 1pt solid lightgray; padding: 0.3em; }
+
+  dl.command_line_options_list > dt {
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  /* Leave default font-family for dt, and default font-weight.
+     Use span with command_line_option class inside dt. */
+  dl.command_line_options_list_custom > dt {
+    font-weight: normal;
+  }
+  span.command_line_option {
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  div.quick_links_bottom_line { text-align: <?php
+    echo (IS_GEN_LOCAL ? 'left' : 'center' ) ?>; }
+
+  div.latest_update_description {
+    margin-left: 3em;
+    border: 1px solid gray;
+    padding: 0.5em;
+  }
+
+  pre.vrml_code {
+    border: 1px solid #aaaaaa;
+    background-color: #f9f9f9;
+    padding: 0.3em;
+  }
+
+  dl.vrml_ver_differences > dt {
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  table.program_image_links {
+    width: 100%;
+  }
+
+  table.program_image_links_half {
+    width: 50%;
+  }
+
+  td.program_image_link img { border: none; }
+
+  td.program_image_link {
+    background: #e8d59a;
+    width: 50%;
+    border: 1px solid black;
+    text-align: center;
+    padding: 0.5em;
+  }
+
+  .program_image_link_title { font-size: larger; }
+
+  /* Style for note and note_title shamelessly stolen from CSS
+     of the Subversion book. (from .sidebar and .sidebar .title) */
+  .note
+  {
+      border-top: dotted 1px black;
+      border-left: dotted 1px black;
+      border-right: solid 2px black;
+      border-bottom: solid 2px black;
+      background: rgb(240,220,170);
+      padding: 0 0.12in;
+      margin: 0.5in;
+  }
+
+  .note .note_title {
+    text-align: center;
+    font-size: 125%;
+  }
+
+  .rss_link {
+    float: right;
+    background: red;
+    padding: 0.3em;
+    border: thin outset black;
+  }
+
+  .rss_link a {
+    color: white;
+    font-weight: bold
+  }
+--></style>
+<?php
+}
+
 /* header ============================================================ */
 
 /* $meta_description :string/NULL = krótki opis strony,
@@ -797,109 +907,7 @@ function common_header($a_page_title, $a_page_lang,
 
 <title><?php echo $page_title ?></title>
 
-<style type="text/css"><!--
-  body { background: white; font-family: sans-serif; }
-
-  table.key_list { width: 90%; }
-  table.key_list th { background: #eeeee0; }
-  table.key_list td { background: #ddddd0; }
-
-  dt { font-weight: bold; }
-  div.page_footer { }
-  span.page_copyright { font-size: smaller }
-
-  span.version_number { font-size: small }
-
-  /* Adapted from my pasdoc.css */
-  table.thin_borders { border-collapse: collapse; }
-  table.thin_borders td { border: 1pt solid lightgray; padding: 0.3em; }
-  table.thin_borders th { border: 1pt solid lightgray; padding: 0.3em; }
-
-  dl.command_line_options_list > dt {
-    font-family: monospace;
-    font-weight: bold;
-  }
-
-  /* Leave default font-family for dt, and default font-weight.
-     Use span with command_line_option class inside dt. */
-  dl.command_line_options_list_custom > dt {
-    font-weight: normal;
-  }
-  span.command_line_option {
-    font-family: monospace;
-    font-weight: bold;
-  }
-
-  div.quick_links_bottom_line { text-align: <?php
-    echo (IS_GEN_LOCAL ? 'left' : 'center' ) ?>; }
-
-  div.latest_update_description {
-    margin-left: 3em;
-    border: 1px solid gray;
-    padding: 0.5em;
-  }
-
-  pre.vrml_code {
-    border: 1px solid #aaaaaa;
-    background-color: #f9f9f9;
-    padding: 0.3em;
-  }
-
-  dl.vrml_ver_differences > dt {
-    font-weight: normal;
-    font-style: italic;
-  }
-
-  table.program_image_links {
-    width: 100%;
-  }
-
-  table.program_image_links_half {
-    width: 50%;
-  }
-
-  td.program_image_link img { border: none; }
-
-  td.program_image_link {
-    background: #e8d59a;
-    width: 50%;
-    border: 1px solid black;
-    text-align: center;
-    padding: 0.5em;
-  }
-
-  .program_image_link_title { font-size: larger; }
-
-  /* Style for note and note_title shamelessly stolen from CSS
-     of the Subversion book. (from .sidebar and .sidebar .title) */
-  .note
-  {
-      border-top: dotted 1px black;
-      border-left: dotted 1px black;
-      border-right: solid 2px black;
-      border-bottom: solid 2px black;
-      background: rgb(240,220,170);
-      padding: 0 0.12in;
-      margin: 0.5in;
-  }
-
-  .note .note_title {
-    text-align: center;
-    font-size: 125%;
-  }
-
-  .rss_link {
-    float: right;
-    background: red;
-    padding: 0.3em;
-    border: thin outset black;
-  }
-
-  .rss_link a {
-    color: white;
-    font-weight: bold
-  }
---></style>
+<?php echo_kambi_common_css(); ?>
 
 <?php
   echo_header_bonus();
