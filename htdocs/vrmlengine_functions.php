@@ -19,12 +19,15 @@ function echo_header_bonus ()
     height: 167px;
   }
 
-  table.table_with_movie_thumbnail {
+  table.table_with_thumbs_and_text {
     background: #DDD;
-    width: 210px;
     margin: 0.2em;
     padding: 0.2em;
     font-size: small;
+  }
+
+  table.table_with_movie_thumbnail {
+    width: 210px;
   }
 --></style>
 

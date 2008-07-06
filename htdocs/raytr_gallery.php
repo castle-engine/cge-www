@@ -1,7 +1,7 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
   common_header("Small gallery of images rendered using rayhunter", LANG_EN);
-  require "raytr_gallery_funcs.php";
+  require_once "raytr_gallery_funcs.php";
 
   $toc = new TableOfContents(
     array(

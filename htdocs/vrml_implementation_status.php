@@ -64,7 +64,7 @@ specification nodes actually use this.
 
 <ul>
   <li>
-    <table align="right" class="table_with_movie_thumbnail">
+    <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
       <tr><td>
         <?php echo medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL'); ?>
       </td></tr>
