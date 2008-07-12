@@ -85,6 +85,13 @@ Features include:</p>
 
   <li><b>Ray-tracer</b> based on VRML models is implemented.</li>
 
+  <li>Playing <b>movie files</b>. This includes loading and saving
+    as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+    is needed to encode / decode movie files). While the implementation
+    is limited to a small movies for now (as memory consumption is large),
+    it's perfect for flame or smoke animation in games. We even have a simple
+    movie editor as an example program in engine sources.
+
   <li>The engine is <b>portable</b>. Currently tested and used on Linux,
     FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
     Porters/testers for other OS/processors are welcome,
