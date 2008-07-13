@@ -1,3 +1,20 @@
+- MovieTexture finish:
+
+  - Apply other MovieTexture
+    properties, there are some time-related properties. At least "loop"
+    or something like that, also is there some type of shift possible
+    (for making two flames anims not synched?)
+
+  - view3dscene should always update the scene, if MovieTexture frame index changed
+    (right now, postredisplay is not done if nothing changes --- but with
+    MovieTexture, there can be a change in displayed movie frame.)
+
+  - document (on extensions?) ability to load/save movie files like %4d.png.
+    Also mention ffmpeg needed and on path (reference view3dscene requirements
+    for ffmpeg install links) in vrml_implementation_status about MovieTexture.
+
+  - of course, the need for --renderer-optimization=none is not good.
+
 - Post news with partiall update:
 
 "Some exciting news:
