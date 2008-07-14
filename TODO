@@ -2,8 +2,7 @@
 
   - do TODO about loading tex in openglrenderer
   
-  - make a testcases of all fields
-    implement also speed
+  - implement also speed
 
   - Apply other MovieTexture
     properties, there are some time-related properties. At least "loop"
