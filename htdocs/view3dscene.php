@@ -934,9 +934,10 @@ and use it to run view3dscene in "ray-tracer-optimal" mode.
   DEPENDS_UNIX_GLWINDOW_GTK_2,
   DEPENDS_MACOSX)); ?>
 
-<p>Also to capture movies by <tt>--screenshot-range</tt> option
-<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> has to be
-installed and available on $PATH.
+<p>To play movies (in VRML <tt>MovieTexture</tt> nodes) and
+to record movies (by <tt>--screenshot-range</tt> option)
+you have to install <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+and make sure it's available on $PATH.
 <ul>
   <li><i>Linux and FreeBSD</i> users should find <tt>ffmpeg</tt> package
     suitable for their distribution,

@@ -29,7 +29,7 @@
   <tr><td><?php echo image_tag('zupa-wlight-path'); ?></td></tr>
   <tr><td><?php echo image_tag('box-path-samp10x5-depth2-rroul0.5'); ?></td></tr>
   <tr><td><?php echo image_tag('graz-wlight-1-path-filt'); ?></td></tr>
-  <tr><td><small>More sample images in
+  <tr><td>More sample images in
     <?php echo a_href_page("rayhunter gallery.","raytr_gallery"); ?></td></tr>
 </table>
 

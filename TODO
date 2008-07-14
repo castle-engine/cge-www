@@ -1,15 +1,4 @@
-- MovieTexture finish:
-
-  - document (on extensions?) ability to load/save movie files like %4d.png.
-    Also a single image is considered a trivial movie by our engine.
-
-    Also mention ffmpeg needed and on path (reference view3dscene requirements
-    for ffmpeg install links) in vrml_implementation_status about MovieTexture.
-
-    Also mention that sound in the movies is not supported yet,
-    and it's good only for quick movies (as no streaming loading is done,
-    the movie is completely loaded to memory before playing) &mdash; OTOH,
-    movie playing is instantly fast.
+- improve fireplace now, and place it's screenshot at extension list.
 
 - Post news with partiall update:
 
@@ -36,7 +25,7 @@
 
   Textures with full alpha channel are now nicely rendered with blending (and textures will simple alpha channel are still detected and rendered faster by alpha_test).
   <a href="screenshot from white dune demo">
-  
+
   MovieTexture support, from images sequence and (through ffmpeg) "real" movie files (so we handle any format recognized by ffmpeg, which is probably all one will ever need...). [Movie of fireplace, movie_texture_tests]
 
   Our screenshot options are much extended, in particular

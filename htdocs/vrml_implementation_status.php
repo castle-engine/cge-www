@@ -216,6 +216,42 @@ used.
 
     <p>The bottom line is: everything will magically work fast and look perfect.
 
+  <li><p><tt>MovieTexture</tt>
+
+    <p><i>TODO</i>: for now, the sound of the movie is not played.
+
+    <p><i>Notes</i>:
+
+    <ul>
+      <li><p>Current implementation keeps the whole encoded video in memory
+        (images may be discarded after loading (by TVRMLFlatScene.FlatResources
+        feature), but still the textures for all frames are kept in memory).
+        The <i>disadvantage</i> is that this makes it impractical to load "real"
+        movies, normal 2-hour movie will most usually eat all of your memory.
+        The <i>advantage</i> is that once the movie is loaded, the playback is
+        super-fast, just like you would display normal nodes with static
+        textures. Since there's no streaming, decoding etc. in the background
+        while you browse your models.
+
+        <p>In other words, this is quite perfect for movie textures
+        with game effects, like smoke or flame. But it's not a substitute
+        for your "real" multimedia movie player.
+
+      <li><p><a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> must be
+        installed and available on $PATH to actually open any movie format.
+        See <?php echo a_href_page_hashlink('instructions for
+        installing ffmpeg in view3dscene docs', 'view3dscene', 'section_depends'); ?>.
+        Thanks to ffmpeg, we can handle probably any movie format you will
+        ever need to open.
+
+      <li><p>We can also open movies from images sequence.
+        This doesn't require ffmpeg, and allows for some tricks
+        (movie texture with alpha channel).
+        See <?php echo a_href_page_hashlink('"Movies from images sequence"
+        extension description', 'kambi_vrml_extensions',
+        'ext_movie_from_image_sequence'); ?>.
+    </ul>
+
   <li><p><tt>Inline</tt>, <tt>InlineLoadControl</tt>
 
   <li><p><tt>LOD</tt>

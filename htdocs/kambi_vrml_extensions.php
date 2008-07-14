@@ -68,6 +68,7 @@ $extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
 $extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)';
 $extensions['ext_shaders'] = 'Programmable shaders (X3D feature available also in VRML 97)';
 $extensions['ext_blending'] = 'Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)';
+$extensions['ext_movie_from_image_sequence'] = 'Movies for <tt>MovieTexture</tt> can be loaded from images sequence';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -104,6 +105,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_bump_mapping') .
             ext_short_title('ext_text3d') .
             ext_short_title('ext_blending') .
+            ext_short_title('ext_movie_from_image_sequence') .
             ext_short_title('ext_shaders') .
             ext_short_title('ext_mix_vrml_1_2') .
             ext_short_title('ext_fog_volumetric') .
@@ -407,6 +409,44 @@ EXTERNPROTO Text3D [
     doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
     otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
     artifacts.
+
+  <?php echo ext_long_title('ext_movie_from_image_sequence'); ?>
+
+    <p>For <tt>MovieTexture</tt> nodes, you can use an URL like
+    <tt>image%d.png</tt> to load movie from a sequence of images.
+    This will load all successive images, substituting counter
+    in place of <tt>%d</tt>, starting from 1.
+
+    <p>You can specify a number between <tt>%</tt> and <tt>d</tt>,
+    like <tt>%4d</tt>, to pad counter with zeros. For example, normal
+    <tt>%d.png</tt> results in names like 1.png, 2.png, ..., 9.png, 10.png...
+    But <tt>%4d.png</tt> results in names like 0001.png,
+    0002.png, ..., 0009.png, 0010.png, ...
+
+    <p>Such movie will always be considered to run at the speed of 25 frames
+    per second.
+
+    <p>A simple image filename (without <tt>%d</tt> pattern) is also accepted
+    as a movie URL. This just loads a trivial movie, that consists of one
+    frame and is always still...
+
+    <p>Allowed image formats are just like everywhere in our engine &mdash;
+    PNG, JPEG and many others, see <?php echo a_href_page('glViewImage docs',
+    'glviewimage'); ?> for the list.
+
+    <p>Besides the fact that loading image sequence doesn't require
+    ffmpeg installed, using image sequence has also one very important
+    advantage over any other movie format: <i>you can use images
+    with alpha channel</i> (e.g. in PNG format), and MovieTexture
+    will be rendered with
+    alpha channel appropriately. This is crucial if you want to have
+    a video of smoke or flame in your game, since such textures usually
+    require an alpha channel.
+
+    <p>Samples of <tt>MovieTexture</tt> usage
+    are inside <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, in directory
+    <tt>vrml_2/movie_texture/</tt>.
 
   <?php echo ext_long_title('ext_shaders'); ?>
 
