@@ -414,6 +414,12 @@ EXTERNPROTO Text3D [
 
   <?php echo ext_long_title('ext_movie_from_image_sequence'); ?>
 
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot') .
+        '</table>';
+    ?>
+
     <p>For <tt>MovieTexture</tt> nodes, you can use an URL like
     <tt>image%d.png</tt> to load movie from a sequence of images.
     This will load all successive images, substituting counter
