@@ -5,13 +5,16 @@
     or something like that, also is there some type of shift possible
     (for making two flames anims not synched?)
 
-  - view3dscene should always update the scene, if MovieTexture frame index changed
-    (right now, postredisplay is not done if nothing changes --- but with
-    MovieTexture, there can be a change in displayed movie frame.)
-
   - document (on extensions?) ability to load/save movie files like %4d.png.
+    Also a single image is considered a trivial movie by our engine.
+
     Also mention ffmpeg needed and on path (reference view3dscene requirements
     for ffmpeg install links) in vrml_implementation_status about MovieTexture.
+
+    Also mention that sound in the movies is not supported yet,
+    and it's good only for quick movies (as no streaming loading is done,
+    the movie is completely loaded to memory before playing) &mdash; OTOH,
+    movie playing is instantly fast.
 
   - of course, the need for --renderer-optimization=none is not good.
 
