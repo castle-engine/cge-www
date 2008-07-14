@@ -1,9 +1,13 @@
 - MovieTexture finish:
 
+  - do TODO about loading tex in openglrenderer
+  
+  - make a testcases of all fields
+    implement also speed
+
   - Apply other MovieTexture
     properties, there are some time-related properties. At least "loop"
-    or something like that, also is there some type of shift possible
-    (for making two flames anims not synched?)
+    or something like that
 
   - document (on extensions?) ability to load/save movie files like %4d.png.
     Also a single image is considered a trivial movie by our engine.
