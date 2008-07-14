@@ -13,8 +13,6 @@
     the movie is completely loaded to memory before playing) &mdash; OTOH,
     movie playing is instantly fast.
 
-  - of course, the need for --renderer-optimization=none is not good.
-
 - Post news with partiall update:
 
 "Some exciting news:
@@ -40,6 +38,8 @@
 
   Textures with full alpha channel are now nicely rendered with blending (and textures will simple alpha channel are still detected and rendered faster by alpha_test).
   <a href="screenshot from white dune demo">
+  
+  MovieTexture support, from images sequence and (through ffmpeg) "real" movie files (so we handle any format recognized by ffmpeg, which is probably all one will ever need...). [Movie of fireplace, movie_texture_tests]
 
   Our screenshot options are much extended, in particular
   - you can now easily record a simple movie file with your animation
