@@ -1,7 +1,5 @@
 - MovieTexture finish:
 
-  - do TODO about loading tex in openglrenderer
-
   - document (on extensions?) ability to load/save movie files like %4d.png.
     Also a single image is considered a trivial movie by our engine.
 
