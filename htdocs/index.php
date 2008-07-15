@@ -29,6 +29,9 @@ Two most important programs available here are
 
 <p><b>Latest update:</b>
 
+<!-- To force engine icon separated from "latest update" frame on wide pages -->
+<br clear="all"/>
+
 <div class="latest_update_description">
 <div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
 <?php

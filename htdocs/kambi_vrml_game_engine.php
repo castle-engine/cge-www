@@ -123,6 +123,8 @@ Features include:</p>
 <p>The engine was used to develop all programs on these pages.
 It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
+<p>See also <?php echo a_href_page('demo movies of Kambi VRML game engine',
+'movies'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

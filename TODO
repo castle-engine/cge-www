@@ -1,44 +1,3 @@
-- Post news with partiall update:
-
-"Some exciting news:
-- <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>, VRML 97
-  modeller based on NURBS surfaces, supports export of normal VRML / X3D animations
-  (expressed in terms of VRML interpolators) to our <a href="">Kanim (Kambi
-  animations) file format</a>.
-- In another news, many new features are already implemented.
-
-  Reading X3D, with all 40 X3D components, in both XML and classic VRML encodings,
-  is implemented. With all X3D new field types (except totally
-  unsused MFImage, for now).
-
-  Many X3D-specific features nodes are already supported, like
-  geometric primitives [Indexed][Triangle/Quad][Fan/Strip]Set (8 nodes total).
-  Rendering internals were reorganized into much smarter hierarchy, to handle
-  these new X3D nodes as well as IndexedFaceSet and other VRML 97 and 1.0
-  nodes implemented since a long time.
-
-  Extrusion node handling<!--, ElevationGrid normals handling improved.-->.
-
-  BlendMode node extension (a subset of <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">Avalon BlendMode node</a>).
-
-  Textures with full alpha channel are now nicely rendered with blending (and textures will simple alpha channel are still detected and rendered faster by alpha_test).
-  <a href="screenshot from white dune demo">
-
-  MovieTexture support, from images sequence and (through ffmpeg) "real" movie files (so we handle any format recognized by ffmpeg, which is probably all one will ever need...). [Movie of fireplace, from youtube and movies.php]
-
-  Our screenshot options are much extended, in particular
-  - you can now easily record a simple movie file with your animation
-  - the temporary window is not visible, so the screenshot option works nicely in the background.
-  - GNOME integration with nautilus: view3dscene can be easily used as nautilus thumbnailer, so you can see thumbnails of your VRML / X3D and other 3D model files! While potentially this can use a lot of your CPU (loading arbitrary large 3D scene), in practice this works quite great and flawlessly :) Here's a screenshot of nautilus that automatically generated thumbnails for VRML files inside directory using registered view3dscene-thumbnailer script:
-
-  <a href="view3dscene-thumbnailer-demo.png">
-
-  Work on basic events and routes started. Hopefully next engine releasew will support events, with interpolators and at least most basic sensors (TimeSensor, TouchSensor, KeySensor).
-
-- Oh, and we finally got an icon for our engine and view3dscene. Next view3dscene release will be nicely integrated with GNOME (and other desktops that support relevant freedesktop specs), registering mime types for handled types, appearing in GNOME menu etc. (although all this stuff will not work instantly after simple unpack of view3dscene.tar.gz, you'll have to do <tt>make install</tt> to copy desktop files to correct locations). Here's the icon:
-
-(displayed here as PNG, but it's also <a href="">available (and was made) in SVG</a>).
-
 ------------------------------------------------------------------------------
 
 - fix extensions, post to Joerg
@@ -102,8 +61,7 @@ Also impl LineSet (non-indexed) from X3D.
 
   - vrml_engine_doc is somewhat updated, update more, and regerenate output
 
-- how (if in any way) should I package view3dscene's desktop data?
-  Also, add installing thumbnailer (maybe optional?) to such "make install".
+- Hopefully next engine releasew will support events, with interpolators and at least most basic sensors (TimeSensor, TouchSensor, KeySensor).
 
 Text for next update:
 

@@ -53,6 +53,92 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'News - white_dune, X3D, movie textures, engine icon',
+          'year' => 2008,
+          'month' => 7,
+          'day' => 15,
+          'pubDate' => /* date_to_timestamp.sh '2008-07-15' */ 1216123200,
+          'guid' => '2008-07-15',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+'Various exciting news about development of our engine:
+
+<ul>
+  <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a>,
+    free software VRML 97 modeller,
+    can export normal VRML animations
+    (expressed in terms of VRML interpolators) to our ' .
+    this_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .
+    ' and it supports our ' .
+    this_a_href_page('extension nodes and fields', 'kambi_vrml_extensions') .
+    ' (run with <tt>-kambi</tt> command-line option, or use <i>"Start next time
+    with kambi support"</i> menu item). Thousand thanks for
+    Joerg "MUFTI" Scheurich!</p>
+  </li>
+
+  <li><p>Among the many new features already implemented in SVN are:</p>
+
+    <ul>
+      <li><p>Reading X3D files, with all 40 X3D components,
+        in both XML and classic VRML encodings,
+        is implemented.</p>
+
+        <p>Besides all features from VRML 2.0, many X3D-specific
+        features are already supported, like
+        geometric primitives <tt>[Indexed][Triangle/Quad][Fan/Strip]Set</tt> (8 nodes total).
+        Rendering internals were reorganized into much smarter hierarchy, to handle
+        these new X3D nodes as well as <tt>IndexedFaceSet</tt> and other VRML 97 and 1.0
+        nodes implemented since a long time.</p>
+      </li>
+
+      <li><p><tt>Extrusion</tt> node handling.</p></li>
+
+      <li><p>New extensions, like <tt>BlendMode</tt> node (a subset of
+        <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">Avalon BlendMode node</a>)
+        and <tt>KambiInline</tt> (an Inline that can somewhat
+        process the inlined content).</p></li>
+
+      <li>
+        ' . (!HTML_VALIDATION ?
+        '<table align="right"><tr><td><object width="200" height="167"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object></p></td></tr></table>' : '')
+        . '
+        <p>Texture department:
+        Textures with full alpha channel are now nicely rendered with blending
+        (and textures will simple alpha channel are still detected and rendered
+        faster by alpha_test). Moreover, <tt>MovieTexture</tt> node is now
+        handled (movie can be read from image sequences, like <tt>image%d.png</tt>,
+        and from normal movie formats thanks to <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>).
+        As a demo, see the flames animation on the right.
+        (You can also <a href="http://vrmlengine.sourceforge.net/movies/fireplace_demo.avi">download
+        AVI version with perfect quality</a>.)</p>
+
+      <li><p>Flames movie was not only played in our ' .
+        this_a_href_page('view3dscene', 'view3dscene') . ', it was also
+        recorded directly by view3dscene. That\'s right: screenshot options
+        got a vast improvement, it\'s now possible to capture animation
+        as a movie file (with perfect quality, as opposed to using independent
+        programs that capture OpenGL output).</p>
+
+        <p><a href="images/progs_demo/original_size/view3dscene_thumbnailer_demo.png">
+        <img align="right" src="images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png"
+        alt="&quot;view3dscene&quot; as nautilus thumbnailer" /></a>
+        <a href="http://www.gnome.org/">GNOME</a> users will be happy to
+        hear that view3dscene can be easily used as nautilus thumbnailer,
+        so you can see thumbnails of your VRML / X3D and other 3D model files
+        (see the screenshot).
+        </p>
+      </li>
+    </ul>
+  </li>
+
+  <li><p>We have an icon for our engine and view3dscene.
+    Next view3dscene release will be nicely integrated with GNOME
+    (and other desktops that support relevant freedesktop specs).
+    You can already appreciate engine icon at the top corner of our main page.
+    Thanks to Kasia Obrycka for icon improvements!</p>
+</ul>'),
+
     array('title' => 'Demo movies',
           'year' => 2008,
           'month' => 5,
