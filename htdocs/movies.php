@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   common_header("Demo movies - Kambi VRML game engine", LANG_EN);
 
-  define(AVI_TITLE, 'Download AVI version');
+  define('AVI_TITLE', 'Download AVI version');
 
   echo pretty_heading("Demo movies - Kambi VRML game engine");
 ?>
