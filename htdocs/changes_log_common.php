@@ -101,8 +101,9 @@ function this_a_href_page($title, $page_name)
 
       <li>
         ' . (!HTML_VALIDATION ?
-        '<table align="right"><tr><td><object width="200" height="167"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object></p></td></tr></table>' : '')
+        '<object width="200" height="167" align="right"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>' : '')
         . '
+
         <p>Texture department:
         Textures with full alpha channel are now nicely rendered with blending
         (and textures will simple alpha channel are still detected and rendered
