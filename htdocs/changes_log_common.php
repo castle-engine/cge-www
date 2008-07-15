@@ -113,10 +113,10 @@ function this_a_href_page($title, $page_name)
         (You can also <a href="http://vrmlengine.sourceforge.net/movies/fireplace_demo.avi">download
         AVI version with perfect quality</a>.)</p>
 
-      <li><p>Flames movie was not only played in our ' .
+      <li><p>Flames movie above was not only played in our ' .
         this_a_href_page('view3dscene', 'view3dscene') . ', it was also
-        recorded directly by view3dscene. That\'s right: screenshot options
-        got a vast improvement, it\'s now possible to capture animation
+        recorded directly by view3dscene. That\'s right: Screenshot options
+        were much improved, it\'s now possible to capture animation
         as a movie file (with perfect quality, as opposed to using independent
         programs that capture OpenGL output).</p>
 
