@@ -414,11 +414,16 @@ EXTERNPROTO Text3D [
 
   <?php echo ext_long_title('ext_movie_from_image_sequence'); ?>
 
-    <?php
-      echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot') .
-        '</table>';
-    ?>
+    <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
+      <tr><td><?php echo medium_image_progs_demo_core("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot'); ?>
+      <tr><td>This movie shows how it looks animated. You can also
+        <?php echo current_www_a_href_size('get AVI version with much better quality',
+          'movies/fireplace_demo.avi'); ?>
+        <?php if (!HTML_VALIDATION) { ?>
+        <object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>
+        <?php } ?>
+      </td></tr>
+    </table>
 
     <p>For <tt>MovieTexture</tt> nodes, you can use an URL like
     <tt>image%d.png</tt> to load movie from a sequence of images.

@@ -180,7 +180,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <i>first animation frame</i>, regardless of current animation frame
     displayed.
 
-  <li><p>There are <a href="#section_screenshot">command-line
+  <li><p>There are menu items and <a href="#section_screenshot">command-line
     options to catch screenshots and movies
     of 3D scenes and animations</a>. GNOME users will be happy to hear
     that it can also be used as <a href="#section_install_free_desktop">Nautilus
@@ -440,6 +440,13 @@ You can also capture a movie by <tt>--screenshot-range</tt>
 (as a series of images or, if
 <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> is installed and
 available on $PATH, even directly to a single movie file).
+The biggest advantage of recording movie this way
+is that the movie is guaranteed to be captured with stable number
+of frames per second. This is different than using
+some independent programs to capture OpenGL output, like
+the fine <a href="http://dbservice.com/projects/yukon/wiki">Yukon</a>,
+as real-time capture usually means that the program
+runs slower, and often you loose movie quality.
 
 <p>You most definitely want to pass 3D model file to load
 at command-line too, otherwise we'll just make a screenshot

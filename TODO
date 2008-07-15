@@ -24,7 +24,7 @@
   Textures with full alpha channel are now nicely rendered with blending (and textures will simple alpha channel are still detected and rendered faster by alpha_test).
   <a href="screenshot from white dune demo">
 
-  MovieTexture support, from images sequence and (through ffmpeg) "real" movie files (so we handle any format recognized by ffmpeg, which is probably all one will ever need...). [Movie of fireplace, movie_texture_tests]
+  MovieTexture support, from images sequence and (through ffmpeg) "real" movie files (so we handle any format recognized by ffmpeg, which is probably all one will ever need...). [Movie of fireplace, from youtube and movies.php]
 
   Our screenshot options are much extended, in particular
   - you can now easily record a simple movie file with your animation

@@ -7,7 +7,7 @@
   echo pretty_heading("Demo movies - Kambi VRML game engine");
 ?>
 
-<p>Three demo videos showing our engine at work. YouTube videos have
+<p>Various demo videos showing our engine at work. YouTube videos have
 quite bad quality, so you can download AVI versions with (slightly)
 better quality.
 
@@ -45,13 +45,35 @@ better quality.
     <?php } ?>
 </ol>
 
-<p>Recorded on 2008-05-01. Production entirely on Linux by free software:
+<p>Three videos above recorded on 2008-05-01.
+Production entirely on Linux by free software:
 capture thanks to <a href="http://dbservice.com/projects/yukon/wiki">Yukon
 (OpenGL video capturing framework)</a>,
 converted to editable format by <a href="http://www.mplayerhq.hu/">mencoder</a>
 (lives can't directly open seom files),
 editing (glued, fading between parts) thanks to
 <a href="http://lives.sourceforge.net/">Lives (Linux Video Editing System)</a>.
+
+<ol>
+  <li value="4"><p>Rendering flames.
+    Video is referenced as
+    <?php echo a_href_page_hashlink('MovieTexture VRML 2.0 node,
+      loaded from images sequence', 'kambi_vrml_extensions',
+      'ext_movie_from_image_sequence'); ?>.
+    Movie is itself recorded by <?php echo a_href_page('view3dscene',
+    'view3dscene'); ?>, using it's
+    "Screenshot to video" option. You can view the complete source model
+    of this in <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, in directory
+    <tt>vrml_2/movie_texture/</tt>.
+    <br/>
+    <?php echo current_www_a_href_size(AVI_TITLE, 'movies/fireplace_demo.avi'); ?>
+
+    <?php if (!HTML_VALIDATION) { ?>
+    <p><object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="425" height="350"> </embed> </object>
+    <?php } ?>
+  </li>
+</ol>
 
 <?php
   if (!IS_GEN_LOCAL) {
