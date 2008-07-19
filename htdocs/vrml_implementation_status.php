@@ -141,6 +141,9 @@ specification nodes actually use this.
     <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
 
     <p>(TODO:very basic implementation, only coord, index, fanCount, stripCount supported).
+
+  <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
+    is handled, allows to you to turn on or off back-face culling for them.
 </ul>
 
 
