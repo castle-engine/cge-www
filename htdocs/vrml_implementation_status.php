@@ -135,12 +135,14 @@ specification nodes actually use this.
   <li><p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
     <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
 
-    <p>(TODO:very basic implementation, only coord and index supported).
+    <p>(TODO:very basic implementation, only coord, index,
+    solid, ccw supported).
 
   <li><p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
     <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
 
-    <p>(TODO:very basic implementation, only coord, index, fanCount, stripCount supported).
+    <p>(TODO:very basic implementation, only coord, index, fanCount, stripCount,
+    solid, ccw supported).
 
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
