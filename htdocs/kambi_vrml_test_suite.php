@@ -97,7 +97,6 @@ Subversion by:<br><tt><?php
     public domain textures from unfinished game "Golgotha"</a></li>
   <li><tt>brick031.jpg</tt> from
     <a href="http://www.grsites.com/">grsites.com</a></li>
-  <li><tt>renifery.jpg</tt> &mdash; author unknown</li>
   <li>leaf textures based on
     <a href="http://flickr.com/photos/martinlabar/2072745893/">"Maple
     leaf on concrete" photo by Martin LaBar</a></li>
