@@ -95,6 +95,9 @@ Subversion by:<br><tt><?php
 <ul>
   <li><tt>textures/castle/</tt> are from <a href="http://www.jonathanclark.com/">
     public domain textures from unfinished game "Golgotha"</a></li>
+  <li><tt>textures/test_texture.png</tt> based on <a href="http://gimp-savvy.com/cgi-bin/img.cgi?ufwsMV1VJR1LXOE702">this
+    photo</a> from <a href="http://gimp-savvy.com/PHOTO-ARCHIVE/">Copyright-Free
+    Photo Archive</a>, public domain.</li>
   <li><tt>brick031.jpg</tt> from
     <a href="http://www.grsites.com/">grsites.com</a></li>
   <li>leaf textures based on
