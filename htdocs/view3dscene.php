@@ -686,7 +686,9 @@ drectory.</p>
           <tt>UNKNOWN_SHAPE_TYPE</tt> is the default value of this field,
           so the purpose of this modification is to cancel <tt>SOLID</tt>
           values for this field.
-          For VRML 2.0, all <tt>solid</tt> fields are set to <tt>FALSE</tt>.
+          For VRML &gt;= 2.0, all <tt>solid</tt> fields are set to <tt>FALSE</tt>
+          (on all geometric nodes, like <tt>IndexedFaceSet</tt>,
+          actually all <tt>X3DComposedGeometryNode</tt>, <tt>Extrusion</tt>, etc.).
         <p><b>Effect:</b> program will not use <i>back-face culling</i>
           optimization. This optimization often saves us time because we don't
           have to render faces that would be seen from "inside" if these
