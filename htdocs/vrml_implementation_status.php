@@ -135,19 +135,21 @@ specification nodes actually use this.
   <li><p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
     <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
 
-    <p>(TODO:very basic implementation, only coord, index,
-    solid, ccw supported).
-
-  <li><p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
+    <p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
     <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
 
-    <p>(TODO:very basic implementation, only coord, index, fanCount, stripCount,
-    solid, ccw supported).
+    <p>(TODO: only coord, index, fanCount, stripCount,
+    solid, ccw,
+    texCoord supported).
+
+    <p>Note: X3D specification doesn't specify what to do for these nodes
+    when appearance specify a texture but no <tt>texCoord</tt> is given.
+    We currently take the <tt>IndexedFaceSet</tt> approach for automatic
+    generation of texture coords, let me know if this should be changed.
 
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
 </ul>
-
 
 <?php echo $toc->html_section(); ?>
 
