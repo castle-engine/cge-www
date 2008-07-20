@@ -2,6 +2,9 @@
 
 - fix extensions, post to Joerg
 
+- to actually test and see color on 8 geom prims, we have to use
+  smooth shading there.
+
 Next WWW update:
 - finish X3D:
   - test ComposedShader with X3D XML on some external example,
@@ -15,26 +18,15 @@ bbox calculation can be merged into one if
 TNodeX3DComposedGeometryNode has virtual
 Index: method (returning nil for non-indexed).
 
-Implement PrimitiveSets:
-    [Indexed] Triangle/Quad Set/Strip/Fan for X3D.
-    6 triangle, 2 quad primitives.
-
 Some general notes (maybe copy to implementation comments):
 
-- The value of the colorPerVertex field is ignored and always
-  treated as TRUE for all 8 of these. Normals, if specified by user,
-  are always per-vertex.
-  So always SMOOTH shading model is safe.
-
-  For our own generated normals, we may be forced to generate
+- For our own generated normals, we may be forced to generate
   flat ones (for non-indexed ones, or for indexed with normalPerVertex=FALSE).
   PROBLEM when there are colors (always per vertex) and normals must be flat,
   we HAVE to decompose into triangles?
 
-- Good implementation, and ours should be like that, should keep
-  whole strip/fan as one OpenGL strip/fan. In other words, we're going
-  to utilize the optimal representation of these primitives, and we'll not
-  deconstruct strips/fans to simple sets of triangles.
+  Or just say that normalPerVertex = FALSE connected with existing
+  colors (since colorPerVertex = TRUE always) don't work?
 
 - As for smoothing: for indexed primitives:
 
@@ -46,10 +38,6 @@ Some general notes (maybe copy to implementation comments):
 
   Anyway, there's no creaseAngle. So some simple normals calculator
   is in order.
-
-- Looks like generation of tex Coords is not needed: if not supplied,
-  do not use texture? Let's make it possible to easily plug generation,
-  like the one for IndexedFaceSet.
 
 Also impl LineSet (non-indexed) from X3D.
 
