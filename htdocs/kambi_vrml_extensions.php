@@ -303,9 +303,9 @@ subdirectories.
 
     <p>Note that currently bump mapping is used only when normal texture
     ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
-    field of Appearance") is also specified. Also, it's used only with
-    IndexedFaceSet nodes, and only when texture coordinates were specified
-    explicitly.</p>
+    field of Appearance") is also specified. And it's used only with
+    IndexedFaceSet nodes for now &mdash; implementation of this is
+    supposed to be extended, feature requests are welcome!</p>
   </li>
 
   <?php echo ext_long_title('ext_text3d'); ?>
