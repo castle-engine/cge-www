@@ -354,7 +354,6 @@ trick like that). But they don't have any effect on the scene. These are:
     allowed now are WAV and OggVorbis), this is currently not integrated
     with VRML in any way &mdash; it's only available if you use our engine
     to write your own programs.
-  <li><tt>MovieTexture</tt>
   <li>Geospatial component. As an exception, geospatial VRML 97 nodes
     may not even be correctly parsed by our engine. They are parsed
     according to X3D (there were some incompatible changes in X3D).</li>
