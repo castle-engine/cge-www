@@ -148,7 +148,7 @@ specification nodes actually use this.
 
     TODO: and normal and normalPerVertex for TriangleFanSet,
     TriangleStripSet, QuadSet.
-    TODO: color for quad/triangle sets is done, but untested yet.
+    TODO: color for TriangleFanSet, TriangleStripSet test when smooth shading.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
     for triangle/quad sets when appearance specify a texture but no
