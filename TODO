@@ -39,8 +39,6 @@ Some general notes (maybe copy to implementation comments):
   Anyway, there's no creaseAngle. So some simple normals calculator
   is in order.
 
-Also impl LineSet (non-indexed) from X3D.
-
     http://www.instantreality.org/tutorial/shader-programs/
     some instantreality.org example models?
 

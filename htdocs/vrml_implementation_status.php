@@ -132,20 +132,30 @@ specification nodes actually use this.
     <p>TODO: Although it's handled, some fields are ignored for now:
     jump, retainUserOffsets, centerOfRotation, fieldOfView.
 
-  <li><p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
+  <li><p>New X3D rendering primitives implemented:
+
+    <p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
     <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
 
     <p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
     <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
 
-    <p>(TODO: only coord, index, fanCount, stripCount,
-    solid, ccw,
-    texCoord supported).
+    <p><tt>LineSet</tt> (<tt>IndexedLineSet</tt> is also handled,
+    this is part of VRML 2.0)
 
-    <p>Note: X3D specification doesn't specify what to do for these nodes
-    when appearance specify a texture but no <tt>texCoord</tt> is given.
-    We currently take the <tt>IndexedFaceSet</tt> approach for automatic
-    generation of texture coords, let me know if this should be changed.
+    <p>(TODO: only coord, index,
+    TriangleFanSet.fanCount, TriangleStripSet.stripCount, LineSet.vertexCount,
+    solid, ccw,
+    texCoord,
+    color (TODO: test),
+    TODO: soon normals also supported).
+
+    <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
+    for triangle/quad sets when appearance specify a texture but no
+    <tt>texCoord</tt> is given.
+    Our engine currently takes the <tt>IndexedFaceSet</tt> approach for
+    automatic generation of texture coords in this case, let me know
+    if this is wrong for whatever reason.
 
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
