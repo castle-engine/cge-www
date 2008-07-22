@@ -148,7 +148,6 @@ specification nodes actually use this.
 
     TODO: and normal and normalPerVertex for TriangleFanSet,
     TriangleStripSet, QuadSet.
-    TODO: test specified normal and normal-per-face on [Indexed]TriangleSet
     TODO: color for quad/triangle sets is done, but untested yet.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
