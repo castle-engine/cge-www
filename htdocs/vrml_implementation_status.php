@@ -143,12 +143,13 @@ specification nodes actually use this.
     <p><tt>LineSet</tt> (<tt>IndexedLineSet</tt> is also handled,
     this is part of VRML 2.0)
 
-    <p>(TODO: only coord, index,
-    TriangleFanSet.fanCount, TriangleStripSet.stripCount, LineSet.vertexCount,
-    solid, ccw,
-    texCoord,
-    color (TODO: test),
-    TODO: soon normals also supported).
+    <p><i>TODO</i>: missing is only the implementation of new X3D fields
+    <tt>attrib</tt> and <tt>fogCoord</tt>.
+
+    TODO: and normal and normalPerVertex for TriangleFanSet,
+    TriangleStripSet, QuadSet.
+    TODO: test specified normal and normal-per-face on [Indexed]TriangleSet
+    TODO: color for quad/triangle sets is done, but untested yet.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
     for triangle/quad sets when appearance specify a texture but no
