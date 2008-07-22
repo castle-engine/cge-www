@@ -146,8 +146,7 @@ specification nodes actually use this.
     <p><i>TODO</i>: missing is only the implementation of new X3D fields
     <tt>attrib</tt> and <tt>fogCoord</tt>.
 
-    TODO: and normal and normalPerVertex for TriangleFanSet,
-    TriangleStripSet, QuadSet.
+    TODO: and normal and normalPerVertex for TriangleFanSet, TriangleStripSet.
     TODO: color for TriangleFanSet, TriangleStripSet test when smooth shading.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
