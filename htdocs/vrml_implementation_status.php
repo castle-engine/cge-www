@@ -302,12 +302,6 @@ used.
     <tt>Coordinate</tt>, <tt>Color</tt>,
     <tt>Normal</tt>, <tt>TextureCoordinate</tt>
 
-    <p><i>TODO</i>: only one tiny (practically never used ?) case is not
-    implemented: for <tt>IndexedFaceSet</tt>,
-    the case when <tt>normalPerVertex</tt> = FALSE and <tt>normal</tt> = NULL
-    (i.e. we have specified normals per face)
-    is ignored (we just calculate our own normals in this case).
-
   <li><p><tt>Billboard</tt>, <tt>Collision</tt>
 
     <p><i>TODO</i>: These two nodes are not really handled:
