@@ -146,8 +146,43 @@ specification nodes actually use this.
     <p><i>TODO</i>: missing is only the implementation of new X3D fields
     <tt>attrib</tt> and <tt>fogCoord</tt>.
 
-    TODO: and normal and normalPerVertex for TriangleFanSet, TriangleStripSet.
-    TODO: color for TriangleFanSet, TriangleStripSet test when smooth shading.
+    <p><i>TODO</i>: for <tt>TriangleFanSet</tt> and <tt>TriangleStripSet</tt>,
+    a special constraint is present: if you will use colors
+    (colors are always per-vertex on these primitives,
+    according to X3D spec) and request generation of per-face normals
+    at the same time, for the same node, then shading results will be incorrect.
+    Like this:
+
+<pre>
+#X3D V3.0 utf8
+PROFILE Interchange
+
+Shape {
+  appearance Appearance { material Material { } }
+  geometry TriangleFanSet {
+    coord Coordinate { point [ 0 0 0, 1 0 0, 1 1 0, 0.5 1.5 0.5 ] }
+    fanCount 4
+    color Color { color [ 1 0 0, 0 1 0, 0 0 1, 1 1 1 ] }
+    normalPerVertex FALSE
+  }
+}
+</pre>
+
+    <p>Unfortunately, this is quite unfixable without falling back to
+    worse rendering methods. Shading has to be smooth to interpolate
+    per-vertex colors, and at the same time the same vertex may require
+    different normals on a different faces. So to render this correctly one has
+    to decompose triangle fans and strips into separate triangles
+    (like to <tt>IndexedTriangleSet</tt>) which means that rendering is
+    non-optimal.
+
+    <p>Ideas how to implement this without sacrificing rendering time
+    are welcome. Eventually, a fallback to internally convert fans and strips
+    to <tt>IndexedTriangleSet</tt> in such special case will be
+    implemented some day.
+
+    <p>TODO: and normal and normalPerVertex for TriangleStripSet.
+    TODO: color for TriangleStripSet test when smooth shading.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
     for triangle/quad sets when appearance specify a texture but no
