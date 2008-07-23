@@ -181,9 +181,6 @@ Shape {
     to <tt>IndexedTriangleSet</tt> in such special case will be
     implemented some day.
 
-    <p>TODO: and normal and normalPerVertex for TriangleStripSet.
-    TODO: color for TriangleStripSet test when smooth shading.
-
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
     for triangle/quad sets when appearance specify a texture but no
     <tt>texCoord</tt> is given.

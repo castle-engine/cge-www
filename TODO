@@ -1,9 +1,4 @@
-------------------------------------------------------------------------------
-
 - fix extensions, post to Joerg
-
-- to actually test and see color on 8 geom prims, we have to use
-  smooth shading there.
 
 Next WWW update:
 - finish X3D:
@@ -18,26 +13,7 @@ bbox calculation can be merged into one if
 TNodeX3DComposedGeometryNode has virtual
 Index: method (returning nil for non-indexed).
 
-Some general notes (maybe copy to implementation comments):
-
-- For our own generated normals, we may be forced to generate
-  flat ones (for non-indexed ones, or for indexed with normalPerVertex=FALSE).
-  PROBLEM when there are colors (always per vertex) and normals must be flat,
-  we HAVE to decompose into triangles?
-
-  Or just say that normalPerVertex = FALSE connected with existing
-  colors (since colorPerVertex = TRUE always) don't work?
-
-- As for smoothing: for indexed primitives:
-
-    * If normalPerVertex is TRUE, the normal shall be the average of all triangles sharing that vertex.
-    * If normalPerVertex is FALSE, the normal shall be generated for the triangle based on the ccw field.
-
-  For non-indexed, for some primitives normals should be generated flat,
-  and for some normalPerVertex is taken into account just like above.
-
-  Anyway, there's no creaseAngle. So some simple normals calculator
-  is in order.
+- finish triangulating methods for primitives
 
     http://www.instantreality.org/tutorial/shader-programs/
     some instantreality.org example models?
