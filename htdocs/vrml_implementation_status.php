@@ -150,7 +150,8 @@ specification nodes actually use this.
     a special constraint is present: if you will use colors
     (colors are always per-vertex on these primitives,
     according to X3D spec) and request generation of per-face normals
-    at the same time, for the same node, then shading results will be incorrect.
+    at the same time, for the same lit (with material) node,
+    then shading results will be slightly incorrect.
     Like this:
 
 <pre>
