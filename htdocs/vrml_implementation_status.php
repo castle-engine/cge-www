@@ -352,9 +352,13 @@ used.
 
   <li><p><tt>ElevationGrid</tt>
 
-    <p><i>TODO</i>: Fields ignored: color, colorPerVertex
-    (always shape material is used or white unlit).
-    creaseAngle is not ignored, but is not fully handled:
+    <p><i>TODO</i>: when colors are present and <tt>colorPerVertex</tt>
+    is different than <tt>normalPerVertex</tt> (from field or calculated
+    based on creaseAngle) then shading results may be incorrect.
+    Reasons for this &mdash; see comments about X3D <tt>[Indexed]TriangleFan/StripSet</tt>
+    above on this page.
+
+    <p><i>TODO</i>: <tt>creaseAngle</tt> is not fully handled:
     we always generate all flat normals (if creaseAngle = 0) or
     all smooth normals (if creaseAngle &lt;&gt; 0).
 
@@ -540,11 +544,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>6</td>
-        <td class="fail">-</td>
-        <td><tt>IndexedFaceSet</tt>, <tt>IndexedLineSet</tt>,
-          <tt>PointSet</tt> are OK.
-          Handling of <tt>color</tt> for <tt>ElevationGrid</tt>
-          not implemented. </td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>7</td>
@@ -552,10 +552,7 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>8</td>
-        <td class="fail">-</td>
-        <td><tt>IndexedFaceSet</tt> is OK.
-          Handling of <tt>color</tt> for <tt>ElevationGrid</tt> not implemented,
-          so texture is white instead of blue.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>9</td>
@@ -564,9 +561,8 @@ on numerous VRML models available on the WWW. -->
       <tr>
         <td>10</td>
         <td class="fail">-</td>
-        <td><tt>IndexedFaceSet</tt> errorneously modulates texture color
-          by specified color. On <tt>ElevationGrid</tt> it "passes", but only
-          because we just ignore <tt>color</tt> there, see 6 and 8 cases above.
+        <td><tt>IndexedFaceSet</tt> and <tt>ElevationGrid</tt>
+          errorneously modulate texture color by specified color.
       </tr>
       <tr>
         <td>11</td>
@@ -801,22 +797,19 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>5</td>
-        <td class="fail">-</td>
-        <td rowspan="2">color, colorPerVertex on ElevationGrid are ignored for now.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>6</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>7</td>
-        <td class="fail">-</td>
-        <td rowspan="2">Tested feature (x/zSpacing) works Ok.
-          But color, colorPerVertex on ElevationGrid are ignored for now.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>8</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>9</td>
@@ -837,8 +830,8 @@ on numerous VRML models available on the WWW. -->
       <tr>
         <td>12</td>
         <td class="fail">-</td>
-        <td>Tested feature (generation of smooth normals) works Ok.
-          But color, colorPerVertex on ElevationGrid are ignored for now.
+        <td>Although we do generate smooth normals, they are
+          not used since colorPerVertex forces us to use smooth shading.
       </tr>
       <tr>
         <td>13</td>
@@ -916,8 +909,8 @@ on numerous VRML models available on the WWW. -->
       </tr>
       <tr>
         <td>16</td>
-        <td class="pass">+</td>
-        <td>This links to ElevationGrid creaseAngle test, that passes...
+        <td class="fail">-</td>
+        <td>This links to ElevationGrid creaseAngle test, that fails...
           Has nothing to do with Extrusion actually. (And we do not
           handle creaseAngle on Extrusion yet!)
       </tr>
