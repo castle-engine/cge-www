@@ -521,7 +521,7 @@ on numerous VRML models available on the WWW. -->
         <th>Notes</th>
       </tr>
       <tr>
-        <td rowspan="59">Appearance</td>
+        <td rowspan="101">Appearance</td>
         <td rowspan="12">Appearance</td>
         <td>1</td>
         <td class="pass">+</td>
@@ -746,7 +746,7 @@ on numerous VRML models available on the WWW. -->
         <td class="pass">+</td>
       </tr>
       <tr>
-        <td rowspan="6">Material</td>
+        <td rowspan="29">Material</td>
         <td>1</td>
         <td class="pass">+</td>
       </tr>
@@ -770,6 +770,79 @@ on numerous VRML models available on the WWW. -->
         <td>6</td>
         <td class="pass">+</td>
       </tr>
+      <tr>
+        <td>7</td>
+        <td class="fail">-</td>
+        <td rowspan="3">For now we errorneously modulate texture color by specified color.
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="fail">-</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td class="fail">-</td>
+      </tr>
+<?php
+
+$current_test_number = 10;
+
+function pass($count, $comment = '')
+{
+  global $current_test_number;
+  for ($i = 0; $i < $count; $i ++)
+  {
+    echo '
+    <tr>
+      <td>' . $current_test_number . '</td>
+      <td class="pass">+</td>';
+    if ($comment != '')
+    {
+      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
+      $comment = '';
+    }
+    echo '</tr>';
+    $current_test_number++;
+  }
+}
+
+function fail($count, $comment)
+{
+  global $current_test_number;
+  for ($i = 0; $i < $count; $i ++)
+  {
+    echo '
+    <tr>
+      <td>' . $current_test_number . '</td>
+      <td class="fail">-</td>';
+    if ($comment != '')
+    {
+      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
+      $comment = '';
+    }
+    echo '</tr>';
+    $current_test_number++;
+  }
+}
+
+pass(20);
+
+?>
+
+      <tr>
+        <td rowspan="19">MovieTexture</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+
+<?php
+$current_test_number = 2;
+fail(2, 'Audio from MovieTexture is not played yet');
+pass(12);
+pass(1, 'The movie text.mpg is still (5 identical frames, according to ffmpeg,
+  gstreamer and xine)');
+pass(3);
+?>
 
       <tr>
         <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
