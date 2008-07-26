@@ -740,12 +740,18 @@ Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
     "Loading creatures" time). Some features that should be avoided:
 
     <ul>
-      <li>Different material for each vertex. This is taken from vertex painting
-        in blender. I.e. you can leave vertex painting as generated (incorrectly)
+      <li><p>Different material for each vertex. This is taken from vertex painting
+        in blender when exporting to VRML 1.0.
+        I.e. you can leave vertex painting as generated (incorrectly)
         by blender, as PER_VERTEX_INDEXED. If you fix it to PER_VERTEX your
         models will take a lot of more memory space. E.g. for SpiderQueen
         this is 270 MB with vertex painting vs 80 MB without vertex painting
         (triangle count is 2715).
+
+        <p>This shoudn't matter in VRML &gt;= 2.0 so much, as
+        VRML &gt;= 2.0 has
+        only colors-per-vertex, that is implemented by GL_COLOR_MATERIAL,
+        and should be much faster and less memory-consuming.
       </li>
     </ul>
   </li>
