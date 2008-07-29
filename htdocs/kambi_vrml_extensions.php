@@ -70,6 +70,7 @@ $extensions['ext_shaders'] = 'Programmable shaders (X3D feature available also i
 $extensions['ext_blending'] = 'Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)';
 $extensions['ext_movie_from_image_sequence'] = 'Movies for <tt>MovieTexture</tt> can be loaded from images sequence';
 $extensions['ext_kambi_inline'] = 'Automatic processing of inlined content (node <tt>KambiInline</tt>)';
+$extensions['ext_avalon'] = 'Some other Avalon extensions, like <tt>MatrixTransform</tt>';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -109,6 +110,7 @@ function ext_long_title($ext_name)
             ext_short_title('ext_movie_from_image_sequence') .
             ext_short_title('ext_kambi_inline') .
             ext_short_title('ext_shaders') .
+            ext_short_title('ext_avalon') .
             ext_short_title('ext_mix_vrml_1_2') .
             ext_short_title('ext_fog_volumetric') .
             ext_short_title('ext_fog_immune') .
@@ -570,6 +572,42 @@ Shape {
     it's just normal X3D feature. You can use it in VRML 2.0 models too,
     as usual our engine allows you to mix VRML versions freely.
   </li>
+
+  <?php echo ext_long_title('ext_avalon'); ?>
+
+    <p>Besides <tt>BlendMode</tt>, we also read some other Avalon extensions.
+    See <a href="http://instant-reality.com/">instant-reality</a>
+    and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
+    specifications of Avalon extensions</a>.
+
+    <p>Some of the Avalon extensions that we actually <i>handle</i>
+    (that is, actually do what we are supposed to do, not only reading them):
+
+    <ul>
+      <li><p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a>
+
+        <p>This is analogous to <tt>Transform</tt> node, but specifies explicit
+        4x4 matrix. Note that VRML 1.0 also had <tt>MatrixTransform</tt> node
+        (we also handle it), although specified a little differently.
+        Later VRML 97 and X3D removed the <tt>MatrixTransform</tt> node
+        from official specification &mdash; this extension fills the gap.
+
+        <p>Note that this node was removed from specifications for a good
+        reason. It's difficult to invert arbitrary 4x4 matrix, and extract
+        particular features (like scaling factor) from it. Our engine
+        cannot invert matrices, and it extracts scaling factors by very naive
+        method. (Although this is planned to be fixed using
+        <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
+        So in some cases you may experience trouble when using this
+        node. The bottom line is: <i>You are well adviced to try
+        to express all transformations
+        using stardard <tt>Transform</tt> node</i>.
+
+        <p>This node may be useful
+        when you really have no choice (for example, when converting from
+        Collada files that have transformation written as explicit 4x4 matrix,
+        it's natural to convert it to VRML <tt>MatrixTransform</tt>).
+    </ul>
 
   <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
 
