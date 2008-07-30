@@ -1,5 +1,7 @@
 - fix extensions, post to Joerg
 
+read CDATA from X3D files in ShaderPart (also in Scripts, although this will not be used for now)
+
 Next WWW update:
 - finish X3D:
   - update all WWW pages, view3dscene.php features.
