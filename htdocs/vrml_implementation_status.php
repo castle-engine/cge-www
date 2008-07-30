@@ -191,6 +191,11 @@ Shape {
 
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
+
+  <li><p>TextureProperties</tt>
+
+    <p><i>TODO</i>: very basic support, only minificationFilter and
+    magnificationFilter fields actually handled.
 </ul>
 
 <?php echo $toc->html_section(); ?>
