@@ -2,16 +2,6 @@
 
 Next WWW update:
 - finish X3D:
-  - test ComposedShader with X3D XML on some external example,
-    to be sure I handle it right.
-
-    test on
-    /home/michalis/3dmodels/openlibraries/trunk/media/models/
-    hm, require setting uniform from SFNode first...
-
-    http://www.instantreality.org/tutorial/shader-programs/
-    some instantreality.org example models?
-
   - update all WWW pages, view3dscene.php features.
     vrml_implementation_status updated.
 

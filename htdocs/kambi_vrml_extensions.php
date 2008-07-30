@@ -70,7 +70,7 @@ $extensions['ext_shaders'] = 'Programmable shaders (X3D feature available also i
 $extensions['ext_blending'] = 'Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)';
 $extensions['ext_movie_from_image_sequence'] = 'Movies for <tt>MovieTexture</tt> can be loaded from images sequence';
 $extensions['ext_kambi_inline'] = 'Automatic processing of inlined content (node <tt>KambiInline</tt>)';
-$extensions['ext_avalon'] = 'Some other Avalon extensions, like <tt>MatrixTransform</tt>';
+$extensions['ext_avalon'] = 'Other Avalon extensions, like <tt>MatrixTransform</tt> and <tt>Teapot</tt>';
 
 $extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
 $extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
@@ -607,6 +607,19 @@ Shape {
         when you really have no choice (for example, when converting from
         Collada files that have transformation written as explicit 4x4 matrix,
         it's natural to convert it to VRML <tt>MatrixTransform</tt>).
+
+      <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a>
+
+        <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
+        the teapot, much like the standard <tt>Box</tt> node. The default
+        size (3, 3, 3) means that the longest size of teapot bounding box
+        is 3.0 (all other sizes are actually slightly smaller).
+        Changing size scales the teapot (assuming that size = 3 means "default size").
+
+        <p>For the sake of VRML / X3D standards, I do not really advice
+        using this node... VRML developers should spend their time better
+        than to implement such nodes of little practical use :)
+        But it's here for you for testing purposes.
     </ul>
 
   <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
