@@ -514,6 +514,46 @@ on numerous VRML models available on the WWW. -->
     But many other missing features (sensors, events, interpolators)
     prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
 
+<?php
+function pass($count, $comment = '')
+{
+  global $current_test_number;
+  for ($i = 0; $i < $count; $i ++)
+  {
+    echo '
+    <tr>
+      <td>' . $current_test_number . '</td>
+      <td class="pass">+</td>';
+    if ($comment != '')
+    {
+      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
+      $comment = '';
+    }
+    echo '</tr>';
+    $current_test_number++;
+  }
+}
+
+function fail($count, $comment)
+{
+  global $current_test_number;
+  for ($i = 0; $i < $count; $i ++)
+  {
+    echo '
+    <tr>
+      <td>' . $current_test_number . '</td>
+      <td class="fail">-</td>';
+    if ($comment != '')
+    {
+      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
+      $comment = '';
+    }
+    echo '</tr>';
+    $current_test_number++;
+  }
+}
+?>
+
     <table border="1">
       <tr>
         <th>Node Group</th>
@@ -788,45 +828,6 @@ on numerous VRML models available on the WWW. -->
 <?php
 
 $current_test_number = 10;
-
-function pass($count, $comment = '')
-{
-  global $current_test_number;
-  for ($i = 0; $i < $count; $i ++)
-  {
-    echo '
-    <tr>
-      <td>' . $current_test_number . '</td>
-      <td class="pass">+</td>';
-    if ($comment != '')
-    {
-      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
-      $comment = '';
-    }
-    echo '</tr>';
-    $current_test_number++;
-  }
-}
-
-function fail($count, $comment)
-{
-  global $current_test_number;
-  for ($i = 0; $i < $count; $i ++)
-  {
-    echo '
-    <tr>
-      <td>' . $current_test_number . '</td>
-      <td class="fail">-</td>';
-    if ($comment != '')
-    {
-      echo '<td rowspan="' . $count . '">' . $comment . '</td>';
-      $comment = '';
-    }
-    echo '</tr>';
-    $current_test_number++;
-  }
-}
-
 pass(20);
 
 ?>
@@ -851,7 +852,50 @@ pass(3);
       </tr>
 
       <tr>
-        <td rowspan="41">Geometry</td>
+        <td rowspan="113">Geometry</td>
+        <td rowspan="6">Box</td>
+        <td>1</td>
+        <td class="pass">+</td>
+        <td>This links to <tt>Text</tt> test, that passes (but has nothing
+          to do with <tt>Box</tt>)
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(5);
+?>
+
+      <tr>
+        <td rowspan="8">Cone</td>
+        <td>1</td>
+        <td class="pass">+</td>
+        <td>This links to <tt>Text</tt> test, that passes (but has nothing
+          to do with <tt>Cone</tt>)
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(4, 'Again, tests linking to unrelated testcases for <tt>Box</tt> node (that pass)');
+pass(2);
+pass(1, 'Unrelated <tt>Box</tt> test... (that passes)');
+?>
+
+      <tr>
+        <td rowspan="9">Cylinder</td>
+        <td>1</td>
+        <td class="pass">+</td>
+        <td>Unrelated <tt>Text</tt> test again...
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(4, 'Unrelated tests for <tt>Box</tt> again...');
+pass(2);
+pass(1, 'Unrelated <tt>Cone</tt> test...');
+pass(1, 'Unrelated <tt>Box</tt> test...');
+?>
+
+      <tr>
         <td rowspan="14">ElevationGrid</td>
         <td>1</td>
         <td class="pass">+</td>
@@ -995,6 +1039,19 @@ pass(3);
       </tr>
 
       <tr>
+        <td rowspan="21">IndexedFaceSet</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(10);
+fail(3, 'Texture is applied Ok, but tests fail because texture is currently always modulated by color (while VRML specifies default mode as decal for RGB textures)');
+pass(7);
+?>
+
+      <tr>
         <td rowspan="10">IndexedLineSet</td>
         <td>1</td>
         <td class="pass">+</td>
@@ -1039,6 +1096,55 @@ pass(3);
         <td>10</td>
         <td class="pass">+</td>
       </tr>
+
+      <tr>
+        <td rowspan="5">PointSet</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(4);
+?>
+
+      <tr>
+        <td rowspan="5">Shape</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(4);
+?>
+
+      <tr>
+        <td rowspan="6">Sphere</td>
+        <td>1</td>
+        <td class="pass">+</td>
+        <td>Unrelated <tt>Text</tt> tests...
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(5, 'Unrelated <tt>Box</tt> tests...');
+?>
+
+      <tr>
+        <td rowspan="12">Text</td>
+        <td>1</td>
+        <td class="pass">+</td>
+      </tr>
+
+<?php
+$current_test_number = 2;
+pass(3);
+fail(3, 'Text.length is not supported yet');
+fail(2, 'Text.maxExtent is not supported yet');
+pass(2);
+fail(1, 'Texture mapping is a little incorrect, text is too small');
+?>
 
       <tr>
         <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
