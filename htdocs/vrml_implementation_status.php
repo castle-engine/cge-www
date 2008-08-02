@@ -261,7 +261,7 @@ used.
     Internally, we have a simple and very nice algorithm that detects whether texture's
     alpha channel qualifies as simple yes-no or full range, see
     <a href="TODO-reference">TImage.AlphaChannelType reference</a>
-    (default tolerance values used by VRML renderer are 5 and 0.1).
+    (default tolerance values used by VRML renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
     'sources'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
     file) if you want to use this algorithm yourself.
