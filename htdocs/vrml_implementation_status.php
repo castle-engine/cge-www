@@ -369,10 +369,7 @@ used.
 
   <li><p><tt>Extrusion</tt>
 
-    <p>All works (fields: <tt>crossSection, spine, scale, orientation,
-    beginCap/EndCap, convex, ccw, solid</tt>, texture coordinates are
-    also generated) except<br/>
-    <i>TODO</i>: creaseAngle (always flat normals are generated).
+    <p>Works fully.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
@@ -989,8 +986,8 @@ pass(3);
         <td>16</td>
         <td class="fail">-</td>
         <td>This links to ElevationGrid creaseAngle test, that fails...
-          Has nothing to do with Extrusion actually. (And we do not
-          handle creaseAngle on Extrusion yet!)
+          Has nothing to do with Extrusion actually. (And we do
+          handle creaseAngle on Extrusion correctly!)
       </tr>
       <tr>
         <td>17</td>
