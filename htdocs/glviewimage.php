@@ -40,7 +40,8 @@ desktop wallpaper). It can handle various image formats:
     this is completely transparent for user.
     <!-- (usually PNG, because it's lossless and preserves alpha channel). -->
     For now, this is used to load
-    <b>GIF</b> and <b>TGA</b> files. <tt>convert</tt> program from
+    <b>GIF</b>, <b>TGA</b>, <b>SGI</b>, <b>TIFF</b>, <b>JP2</b> and <b>EXR</b> files.
+    <tt>convert</tt> program from
     <a href="http://www.imagemagick.org/">ImageMagick</a>
     package must be available on $PATH for this to work.
 </ul>
