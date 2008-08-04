@@ -81,3 +81,54 @@ PROTO KambiHeadLight [
 ] {
   Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
+
+PROTO KambiInline [
+  exposedField MFString url        []
+  field        SFVec3f  bboxCenter 0 0 0
+  field        SFVec3f  bboxSize   -1 -1 -1
+  exposedField MFString    replaceNames  []
+  exposedField MFNode      replaceNodes  []
+] {
+  Inline {
+    url IS url
+    bboxCenter IS bboxCenter
+    bboxSize IS bboxSize
+  }
+}
+
+# See http://instant-reality.com/documentation/nodetype/MatrixTransform/
+PROTO MatrixTransform [
+  exposedField     MFNode     children     []
+  field            SFVec3f    bboxCenter   0 0 0
+  field            SFVec3f    bboxSize     -1 -1 -1
+  exposedField     SFMatrix4f matrix       1 0 0 0
+                                           0 1 0 0
+                                           0 0 1 0
+                                           0 0 0 1
+] {
+  Group {
+    children IS children
+    bboxCenter IS bboxCenter
+    bboxSize IS bboxSize
+  }
+}
+
+# See http://instant-reality.com/documentation/nodetype/Teapot/
+PROTO Teapot [
+  exposedField SFVec3f size   3 3 3
+  exposedField SFBool  solid  TRUE
+] {
+  # This could be expanded to
+  #   Transform {
+  #     scale IS size
+  #     children IndexedFaceSet {
+  #       solid IS solid
+  #       .... teapot data in coord, coordIndex etc. ....
+  #     }
+  #   }
+  #
+  # For now expand to nothing, just ignore this node if you can't
+  # handle it natively.
+
+  Group { }
+}

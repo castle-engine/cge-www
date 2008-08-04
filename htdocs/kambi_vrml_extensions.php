@@ -183,8 +183,10 @@ VRML viewers. However:
     <p>Our extensions are identified by URN like
     "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
 
-    <p>Some extensions may use fallback implementation on URL
-    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a>.
+    <p>Our extensions' external prototypes may specify a fallback URL
+    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a>
+    for VRML 2.0. For X3D, analogous URL is
+    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv">http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv</a>.
     Such fallback URL will allow other VRML browsers to partially handle
     our extensions. For example, see <tt>EXTERNPROTO</tt> example
     for <a href="#ext_text3d">Text3D</a> &mdash; browsers that don't handle
@@ -195,7 +197,8 @@ VRML viewers. However:
     can be nicely omitted.
     Also, it would be nice to use VRML 1.0 similar feature,
     <tt>isA</tt> and <tt>fields</tt>, for the same purpose,
-    but it's not implemented yet.</p></li>
+    but it's not implemented (and probably never will be, since VRML 1.0
+    is basically dead and VRML 2.0 / X3D externproto is so much better).</p></li>
 
   <li><p>Some of VRML 1.0 extensions are borrowed from VRML 97 specification
     (e.g. <a href="#ext_light_attenuation">attenuation field for lights</a>),

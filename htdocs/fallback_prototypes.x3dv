@@ -1,0 +1,149 @@
+#X3D V3.0 utf8
+PROFILE Interchange
+
+# This X3D file specifies "fallback" prototypes for extensions
+# of Kambi X3D game engine,
+# [http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php].
+#
+# This file will *not* be used by Kambi VRML game engine programs
+# (like view3dscene), as they have appropriate nodes simply built-in.
+#
+# This file may be used by other VRML / X3D browsers so that they are able
+# to partially understand these extension nodes, or at least omit them
+# gracefullly.
+
+PROTO Text3D [
+  inputOutput MFString string []
+  inputOutput SFNode fontStyle NULL
+  inputOutput MFFloat length []
+  inputOutput SFFloat maxExtent 0
+  inputOutput SFFloat depth 0.1
+  inputOutput SFBool solid TRUE
+] {
+  Text {
+    string IS string
+    fontStyle IS fontStyle
+    length IS length
+    maxExtent IS maxExtent
+  }
+}
+
+PROTO KambiAppearance [
+  inputOutput SFNode material          NULL
+  inputOutput SFNode texture           NULL
+  inputOutput SFNode textureTransform  NULL
+
+  # This is from X3D.
+  # Kambi VRML game engine treats it as part of normal Appearance
+  # node, but actually this is an extension for pure VRML 2.0.
+  inputOutput SFNode fillProperties    NULL
+  inputOutput SFNode lineProperties    NULL
+  inputOutput SFNode metadata          NULL
+  inputOutput MFNode shaders           []
+
+  # Kambi extensions
+  inputOutput SFNode normalMap         NULL
+  inputOutput SFNode heightMap         NULL
+  inputOutput SFFloat heightMapScale   0.01
+  inputOutput SFNode blendMode         NULL
+] {
+  Appearance {
+    material IS material
+    texture IS texture
+    textureTransform IS textureTransform
+  }
+}
+
+PROTO BlendMode [
+  inputOutput SFString srcFactor "src_alpha"
+  inputOutput SFString destFactor "one_minus_src_alpha"
+  inputOutput SFColor color 1 1 1
+  inputOutput SFFloat colorTransparency 0
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
+}
+
+PROTO KambiTriangulation [
+  inputOutput SFLong    quadricSlices    -1     # {-1} + [3, infinity)
+  inputOutput SFLong    quadricStacks    -1     # {-1} + [2, infinity)
+  inputOutput SFLong    rectDivisions    -1     # [-1, infinity)
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
+}
+
+PROTO KambiHeadLight [
+  inputOutput SFFloat     ambientIntensity      0           # [0.0, 1.0]
+  inputOutput SFVec3f     attenuation           1 0 0       # [0, infinity)
+  inputOutput SFColor     color                 1 1 1       # [0, 1]
+  inputOutput SFFloat     intensity             1           # [0, 1]
+  inputOutput SFBool      spot                  FALSE
+  inputOutput SFFloat     spotDropOffRate       0
+  inputOutput SFFloat     spotCutOffAngle       0.785398
+] {
+  Group { } # expand to nothing, just ignore this node if you can't handle it natively
+}
+
+PROTO KambiInline [
+  # VRML 97 standard
+  inputOutput      MFString  url           []
+  initializeOnly   SFVec3f   bboxCenter    0 0 0
+  initializeOnly   SFVec3f   bboxSize      -1 -1 -1
+
+  # added in X3D standard
+  inputOutput      SFBool    load          TRUE
+  inputOutput      SFNode    metadata      NULL
+
+  # Kambi extensions
+  inputOutput      MFString  replaceNames  []
+  inputOutput      MFNode    replaceNodes  []
+] {
+  Inline {
+    load IS load
+    metadata IS metadata
+    url IS url
+    bboxCenter IS bboxCenter
+    bboxSize IS bboxSize
+  }
+}
+
+# See http://instant-reality.com/documentation/nodetype/MatrixTransform/
+PROTO MatrixTransform [
+  inputOutput     MFNode     children     []
+  inputOutput     SFNode     metadata     NULL
+  initializeOnly  SFVec3f    bboxCenter   0 0 0
+  initializeOnly  SFVec3f    bboxSize     -1 -1 -1
+  inputOutput     SFMatrix4f matrix        1 0 0 0
+                                           0 1 0 0
+                                           0 0 1 0
+                                           0 0 0 1
+] {
+  Group {
+    children IS children
+    metadata IS metadata
+    bboxCenter IS bboxCenter
+    bboxSize IS bboxSize
+  }
+}
+
+# See http://instant-reality.com/documentation/nodetype/Teapot/
+PROTO Teapot [
+  inputOutput SFNode  metadata  NULL
+  inputOutput SFVec3f size      3 3 3
+  inputOutput SFBool  solid     TRUE
+] {
+  # This could be expanded to
+  #   Transform {
+  #     scale IS size
+  #     children IndexedFaceSet {
+  #       solid IS solid
+  #       .... teapot data in coord, coordIndex etc. ....
+  #     }
+  #   }
+  #
+  # For now expand to nothing, just ignore this node if you can't
+  # handle it natively.
+
+  Group {
+    metadata IS metadata
+  }
+}
