@@ -400,6 +400,12 @@ used.
     <p>Interpolation of NormalInterpolator simply interpolates
     3D vectors (and normalizes afterwards), instead of
     a nice interpolation on the unit sphere.
+
+  <li><p><tt>TimeSensor</tt>
+
+    <p><i>TODO</i> for now, only X3DTimeDependentNode things are implemented.
+    fraction_changed simply generates elapsedTime / cycleInterval value.
+    This is Ok for simple usage.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
