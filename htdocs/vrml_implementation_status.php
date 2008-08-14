@@ -408,18 +408,14 @@ External prototypes recognize URN of standard VRML 97 nodes, i.e.
 (<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
 on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
 
+<p>Events, routes mechanism is implemented since 2008-08-11 :)
+
 <p><i>TODO</i>: Some general features not implemented yet are listed below.
 They all are parsed correctly and consciously (which means that the parser
 doesn't simply "omit them to matching parenthesis" or some other dirty
 trick like that). But they don't have any effect on the scene. These are:
 <ul>
-  <li>Whole VRML event mechanism:
-    <ul>
-      <li><tt>ROUTE</tt>.</li>
-      <li><tt>Script</tt> nodes: no kind of scriping is implemented yet.</li>
-      <li>Sensors, interpolators.</li>
-    </ul>
-  </li>
+  <li><tt>Script</tt> nodes: no kind of scripting is implemented now.</li>
   <li>NURBS</li>
   <li>Sounds (<tt>AudioClip</tt> and <tt>Sound</tt>). Although our engine
     supports 3D sounds and music (using OpenAL, sound formats
