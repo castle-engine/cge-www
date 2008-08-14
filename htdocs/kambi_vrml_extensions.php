@@ -64,7 +64,7 @@ $toc = new TableOfContents(array(
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
-  new TocItem('Other Avalon extensions, like <tt>MatrixTransform</tt> and <tt>Teapot</tt>', 'ext_avalon', 2),
+  new TocItem('Other Avalon extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0 and 2.0 nodes and features', 'ext_mix_vrml_1_2', 2),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 2),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 2),
@@ -535,8 +535,13 @@ Shape {
     and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
     specifications of Avalon extensions</a>.
 
-    <p>Some of the Avalon extensions that we actually <i>handle</i>
-    (that is, actually do what we are supposed to do, not only reading them):
+    <p>Some subset of the Avalon extensions that we actually <i>handle</i>
+    (that is, actually do what we are supposed to do, not only reading them)
+    is listed below. Please note that I implemented this all looking at Avalon
+    specifications, which are quite terse. (I didn't actually run
+    instant-reality program (closed-source,
+    not installable under current Debian testing).) Please report
+    any incompatibilities.
 
     <ul>
       <li><p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a><br/>
@@ -564,8 +569,52 @@ Shape {
         Collada files that have transformation written as explicit 4x4 matrix,
         it's natural to convert it to VRML <tt>MatrixTransform</tt>).
 
+      <li><p><a href="http://instant-reality.com/documentation/nodetype/Logger/"><tt>Logger</tt></a><br/>
+        (supported <tt>level</tt>, <tt>logFile</tt>,
+        <tt>enabled</tt> fields and <tt>write</tt> inputOnly event)
+
+        <?php
+          echo '<table align="right">' .
+            '<tr><td>' . medium_image_progs_demo_core("logger.png", 'Logger node demo') .
+            '</table>';
+        ?>
+
+        <p>An extremely useful debugger when playing with VRML / X3D routes
+        and events. The idea is simple: whatever is sent to <tt>write</tt>
+        input event is logged. <tt>write</tt> event has special type
+        (Avalon calls this <tt>XFAny</tt>) that allows to receive <i>any</i>
+        VRML field type.
+
+        <p>Other properties allow to control logging better.
+        When <tt>enabled</tt> is false, nothing is logged.
+        <tt>level</tt> controls the amount of logged info
+        (we support 0 = nothing, 1 = sender name, type, timestamp,
+        2 = additionally log received value).
+
+        <p><tt>logFile</tt>, when non-empty, specifies the filename to
+        write log information to. (When <tt>logFile</tt> is empty, it's
+        all simply dumped on standard output, i.e. usually console.)
+        As a security measure (you really do not want to allow an author
+        of X3D file to overwrite arbitrary files without asking user),
+        in my implementation only the basename of the <tt>logFile</tt> matters,
+        the file is always saved into current directory. Moreover, filename
+        is like <tt>view3dscene_logger_XXX_%d.log</tt>, where "view3dscene"
+        is the name of the program, "XXX" is the name specified in <tt>logFile</tt>,
+        and "%d" is just next free number. This way logger output file
+        is predictable, and should never overwrite your data.
+
+        <p>These security measures were added by my implementation &mdash;
+        Avalon spec simply says that <tt>logFile</tt> is the name of the file,
+        I don't know how they handled security problems with logFile.
+
       <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a><br/>
         (supported <tt>size</tt> and <tt>solid</tt> fields)
+
+        <?php
+          echo '<table align="right">' .
+            '<tr><td>' . medium_image_progs_demo_core("teapot_demo.png", 'Teapot node demo') .
+            '</table>';
+        ?>
 
         <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
         the teapot, much like the standard <tt>Box</tt> node. The default
