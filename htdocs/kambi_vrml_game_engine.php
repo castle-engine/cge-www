@@ -340,19 +340,23 @@ to compile most things by using ready provided compilation scripts.</p>
 
 <p>The engine is meant to be compiled with
 <a href="http://www.freepascal.org/">Free Pascal Compiler (FPC)</a>.
-About support for various FPC versions:
+The policy is to always support the latest stable release of FPC,
+and sometimes some older releases:
 
 <ul>
-  <li><p><em>FPC 2.2.0</em> : This is the simplest and best option
-    &mdash; FPC 2.2.0 works perfectly, and you can download already
+  <li><p><em>FPC 2.2.2</em> : This is the simplest and best option
+    &mdash; FPC 2.2.2 works perfectly, and you can download already
     compiled packages of it from
     <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
+
+  <li><p><em>FPC 2.2.0</em> : will work OK for some time, although you're
+    adviced to upgrade to FPC 2.2.2.
 
     <p><i>Note only for for x86_64</i>:
     to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
     you have to use fixed glext.pas unit from engine sources
     (<tt>trunk/kambi_vrml_game_engine/opengl/x86_64/</tt>) or
-    use newer FPC (currently, this means: from SVN).</p></li>
+    use newer FPC.</p></li>
 
   <li><p><em>FPC 2.0.4</em> : will work OK for some time from now
     (2007-09-20). But you have to use GL units from FPC &gt;= 2.2.0,
@@ -368,16 +372,6 @@ About support for various FPC versions:
     However, you must remember that SVN version changes rapidly
     and no-one can give any guarantee about current stability of FPC from SVN
     (or stability of my programs compiled with this FPC).</p></li>
-
-  <li><p><em>Older FPC versions</em>: while they may work,
-    they are not really supported.</p>
-
-    <p>There was a time when various versions of FPC 1.0.x
-    were allowed (including my own patched versions of FPC 1.0.6
-    and later 1.0.10), there was a time when various FPC 1.9.x
-    were allowed and so on. But it's all gone now. I even deleted
-    various notes about support for older FPC versions from this
-    page. Just upgrade to latest stable FPC release.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
