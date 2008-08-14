@@ -25,7 +25,7 @@ just a demo of what I can achieve with my VRML + OpenGL + OpenAL code
 (read: 3d graphic and spatial audio fun). Just download it, gasp in awe,
 and have fun for a couple of minutes. Programmers may have fun
 for a little longer investigating program's
-<?php echo a_href_page('sources', 'sources'); ?>.
+<?php echo a_href_page('sources', 'kambi_vrml_game_engine'); ?>.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
@@ -122,13 +122,13 @@ Textures done with <a href="http://www.gimp.org">GIMP</a>.
 <tt>user_help</tt> and <tt>mute_label_scroll</tt> used a little help from
 <a href="http://www.imagemagick.org/">ImageMagick</a>.
 <tt>base_shadowed.png</tt> generated using my program <tt>gen_light_map</tt>
-(available as part of <?php echo a_href_page('my units sources', 'sources'); ?>,
+(available as part of <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>,
 see <tt>3dmodels/tools/gen_light_map.pasprogram</tt> file).
 Sky in <tt>skies/</tt> done using <a href="http://www.planetside.co.uk/">
 Terragen</a>.
 <tt>base_b_proc.wrl</tt> done in <a href="http://www.blender3d.org">Blender</a>
 and processed using my small <tt>process_base_b</tt> program
-(available in <?php echo a_href_page('lets_take_a_walk sources', 'sources'); ?>,
+(available in <?php echo a_href_page('lets_take_a_walk sources', 'kambi_vrml_game_engine'); ?>,
 see <tt>lets_take_a_walk/devel/vrml/process_base_b.pasprogram</tt> file).
 <tt>rat.wrl</tt> and <tt>tree.wrl</tt> are modified (using Blender)
 files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.

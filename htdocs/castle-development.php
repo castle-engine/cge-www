@@ -905,7 +905,7 @@ under Windows. Note that you must use GNU make.
 Required compiler is
 <a href="http://www.freepascal.org/">FreePascal</a>
 (you can look at <?php echo a_href_page_hashlink(
-  'notes about FPC version required', 'sources', 'section_fpc_ver'); ?>
+  'notes about FPC version required', 'kambi_vrml_game_engine', 'section_fpc_ver'); ?>
  &mdash; usually this is "latest stable FPC version").
  There is no Delphi support &mdash; I live in the open source world.
 

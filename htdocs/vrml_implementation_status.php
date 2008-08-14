@@ -263,7 +263,7 @@ used.
     <a href="TODO-reference">TImage.AlphaChannelType reference</a>
     (default tolerance values used by VRML renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
-    'sources'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
+    'kambi_vrml_game_engine'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
     file) if you want to use this algorithm yourself.
     You can also see the results for your textures if you run view3dscene
     with <tt>--debug-log</tt> option.
