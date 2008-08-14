@@ -53,97 +53,49 @@ function node_field($field_kind,
   return $r;
 }
 
-$extensions['ext_mix_vrml_1_2'] = 'Mixing VRML 1.0 and 2.0 nodes and features';
-$extensions['ext_fog_volumetric'] = 'Volumetric fog (additional fields for <tt>Fog</tt> node)';
-$extensions['ext_fog_immune'] = 'Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)';
-$extensions['ext_inline_for_all'] = 'Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML version';
-$extensions['ext_kambi_triangulation'] = 'Specify triangulation (node <tt>KambiTriangulation</tt>)';
-$extensions['ext_gzip'] = 'VRML files may be compressed by gzip';
-$extensions['ext_navigationinfo'] = 'Node <tt>NavigationInfo</tt> handling details';
-$extensions['ext_cameras_alt_orient'] = 'Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes';
-$extensions['ext_material_mirror'] = 'Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)';
-$extensions['ext_headlight'] = 'Headlight properties (node <tt>KambiHeadLight</tt>)';
-$extensions['ext_shadows'] = 'Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)';
-$extensions['ext_text3d'] = '3D text (node <tt>Text3D</tt>)';
-$extensions['ext_bump_mapping'] = 'Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)';
-$extensions['ext_shaders'] = 'Programmable shaders (X3D feature available also in VRML 97)';
-$extensions['ext_blending'] = 'Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)';
-$extensions['ext_movie_from_image_sequence'] = 'Movies for <tt>MovieTexture</tt> can be loaded from images sequence';
-$extensions['ext_kambi_inline'] = 'Automatic processing of inlined content (node <tt>KambiInline</tt>)';
-$extensions['ext_avalon'] = 'Other Avalon extensions, like <tt>MatrixTransform</tt> and <tt>Teapot</tt>';
+$toc = new TableOfContents(array(
+  new TocItem('Introduction', 'introduction'),
+  new TocItem('Extensions', 'extensions'),
+  new TocItem('Extensions for all VRML versions', 'exts_vrmlall', 1),
 
-$extensions['ext_cone_cyl_parts_none'] = 'Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>';
-$extensions['ext_light_attenuation'] = 'Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes';
-$extensions['ext_iv_in_vrml'] = 'Parts of Inventor in VRML';
-$extensions['ext_multi_root_node'] = 'Multi root node';
-$extensions['ext_material_phong_brdf_fields'] = "Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node";
-$extensions['ext_wwwinline_separate'] = 'Field <tt>separate</tt> for <tt>WWWInline</tt> node';
+  new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 2),
+  new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 2),
+  new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
+  new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
+  new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
+  new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
+  new TocItem('Other Avalon extensions, like <tt>MatrixTransform</tt> and <tt>Teapot</tt>', 'ext_avalon', 2),
+  new TocItem('Mixing VRML 1.0 and 2.0 nodes and features', 'ext_mix_vrml_1_2', 2),
+  new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 2),
+  new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 2),
+  new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML version', 'ext_inline_for_all', 2),
+  new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 2),
+  new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 2),
+  new TocItem('Node <tt>NavigationInfo</tt> handling details', 'ext_navigationinfo', 2),
+  new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 2),
+  new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 2),
+  new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 2),
+  new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows', 2),
 
-function ext_short_title($ext_name)
-{
-  global $extensions;
-  return "<li><a href=\"#$ext_name\">" . $extensions[$ext_name] . "</a>\n";
-}
+  new TocItem('VRML 1.0 only extensions', 'exts_vrml1', 1),
 
-function ext_long_title($ext_name)
-{
-  global $extensions;
-  return "<li><p><a name=\"$ext_name\"><b>" .
-    $extensions[$ext_name] . "</b></a><br>\n";
-}
+  new TocItem('Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>', 'ext_cone_cyl_parts_none', 2),
+  new TocItem('Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes', 'ext_light_attenuation', 2),
+  new TocItem('Parts of Inventor in VRML', 'ext_iv_in_vrml', 2),
+  new TocItem('Multi root node', 'ext_multi_root_node', 2),
+  new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 2),
+  new TocItem('Field <tt>separate</tt> for <tt>WWWInline</tt> node', 'ext_wwwinline_separate', 2),
+));
+$toc->echo_numbers = true;
+
 ?>
 
 <?php echo pretty_heading("Kambi VRML extensions");  ?>
 
-<h3>Contents:</h3>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
 
-<ol>
-  <li><a href="#section_intro">Introduction</a>
-  <li><a href="#section_exts">Extensions</a>
-    <ol>
-      <li><a href="#section_exts_vrmlall">Extensions for all VRML versions</a>
-        <ol>
-          <?php echo
-            ext_short_title('ext_bump_mapping') .
-            ext_short_title('ext_text3d') .
-            ext_short_title('ext_blending') .
-            ext_short_title('ext_movie_from_image_sequence') .
-            ext_short_title('ext_kambi_inline') .
-            ext_short_title('ext_shaders') .
-            ext_short_title('ext_avalon') .
-            ext_short_title('ext_mix_vrml_1_2') .
-            ext_short_title('ext_fog_volumetric') .
-            ext_short_title('ext_fog_immune') .
-            ext_short_title("ext_inline_for_all") .
-            ext_short_title('ext_kambi_triangulation') .
-            ext_short_title('ext_gzip') .
-            ext_short_title('ext_navigationinfo') .
-            ext_short_title('ext_cameras_alt_orient') .
-            ext_short_title('ext_material_mirror') .
-            ext_short_title('ext_headlight') .
-            ext_short_title('ext_shadows') .
-            '';
-          ?>
-        </ol>
-      </li>
-
-      <li><a href="#section_exts_vrml1">VRML 1.0 only extensions</a>
-        <ol>
-          <?php echo
-            ext_short_title('ext_cone_cyl_parts_none') .
-            ext_short_title('ext_light_attenuation') .
-            ext_short_title('ext_iv_in_vrml') .
-            ext_short_title('ext_multi_root_node') .
-            ext_short_title('ext_material_phong_brdf_fields') .
-            ext_short_title('ext_wwwinline_separate') .
-            '';
-          ?>
-        </ol>
-      </li>
-    </ol>
-</ol>
-
-<h3><a name="section_intro">Introduction</a></h3>
+<?php echo $toc->html_section(); ?>
 
 <p>This is a VRML engine, so many programs here do something non-trivial
 with VRML files.
@@ -231,12 +183,11 @@ in <?php echo a_href_page("Kambi VRML test suite",
 <tt>x3d/kambi_extensions/</tt>, <tt>x3d/shaders/kambi_extensions/</tt>
 subdirectories.
 
-<h3><a name="section_exts">Extensions</a></h3>
+<?php echo $toc->html_section(); ?>
 
-<h4><a name="section_exts_vrmlall">Extensions for all VRML versions</a></h4>
+<?php echo $toc->html_section(); ?>
 
-<ul>
-  <?php echo ext_long_title('ext_bump_mapping'); ?>
+<?php echo $toc->html_section(); ?>
 
     <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
     node that adds some new fields useful for bump mapping:
@@ -313,7 +264,7 @@ subdirectories.
     supposed to be extended, feature requests are welcome!</p>
   </li>
 
-  <?php echo ext_long_title('ext_text3d'); ?>
+<?php echo $toc->html_section(); ?>
 
     <p>We add new node:
 
@@ -378,9 +329,10 @@ EXTERNPROTO Text3D [
     </ul>
   </li>
 
-  <?php echo ext_long_title('ext_blending');
+<?php echo $toc->html_section(); ?>
 
-      echo '<table align="right">' .
+  <?php
+    echo '<table align="right">' .
         '<tr><td>' . medium_image_progs_demo_core("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
         '</table>';
     ?>
@@ -417,7 +369,7 @@ EXTERNPROTO Text3D [
     otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
     artifacts.
 
-  <?php echo ext_long_title('ext_movie_from_image_sequence'); ?>
+<?php echo $toc->html_section(); ?>
 
     <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
       <tr><td><?php echo medium_image_progs_demo_core("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot'); ?>
@@ -466,7 +418,7 @@ EXTERNPROTO Text3D [
     'kambi_vrml_test_suite'); ?>, in directory
     <tt>vrml_2/movie_texture/</tt>.
 
-  <?php echo ext_long_title('ext_kambi_inline'); ?>
+<?php echo $toc->html_section(); ?>
 
     <p>New <tt>KambiInline</tt> node extends standard <tt>Inline</tt>
     node, allowing you to do something like search-and-replace automatically
@@ -566,7 +518,7 @@ Shape {
 }
 </pre>
 
-  <?php echo ext_long_title('ext_shaders'); ?>
+<?php echo $toc->html_section(); ?>
 
     <p>See <?php echo a_href_page_hashlink('X3D implementation status about programmable shaders',
       'vrml_implementation_status', 'shaders'); ?>.
@@ -576,7 +528,7 @@ Shape {
     as usual our engine allows you to mix VRML versions freely.
   </li>
 
-  <?php echo ext_long_title('ext_avalon'); ?>
+<?php echo $toc->html_section(); ?>
 
     <p>Besides <tt>BlendMode</tt>, we also read some other Avalon extensions.
     See <a href="http://instant-reality.com/">instant-reality</a>
@@ -587,7 +539,8 @@ Shape {
     (that is, actually do what we are supposed to do, not only reading them):
 
     <ul>
-      <li><p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a>
+      <li><p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a><br/>
+        (supported <tt>matrix</tt> field, and the standard <tt>X3DGroupingNode</tt> fields)
 
         <p>This is analogous to <tt>Transform</tt> node, but specifies explicit
         4x4 matrix. Note that VRML 1.0 also had <tt>MatrixTransform</tt> node
@@ -611,7 +564,8 @@ Shape {
         Collada files that have transformation written as explicit 4x4 matrix,
         it's natural to convert it to VRML <tt>MatrixTransform</tt>).
 
-      <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a>
+      <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a><br/>
+        (supported <tt>size</tt> and <tt>solid</tt> fields)
 
         <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
         the teapot, much like the standard <tt>Box</tt> node. The default
@@ -625,7 +579,7 @@ Shape {
         But it's here for you for testing purposes.
     </ul>
 
-  <?php echo ext_long_title('ext_mix_vrml_1_2'); ?>
+<?php echo $toc->html_section(); ?>
 
     Because of the way how I implemented VRML 1.0 and 2.0 handling,
     you have effectively the <i>sum of VRML 1.0 and 2.0 features</i>
@@ -651,7 +605,7 @@ Shape {
     <p>You can also <a href="#ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or the other way around</a>.
 
-  <?php echo ext_long_title('ext_fog_volumetric'); ?>
+<?php echo $toc->html_section(); ?>
 
     I add to <tt>Fog</tt> node some additional fields to allow
     definition of volumetric fog:
@@ -751,7 +705,7 @@ Shape {
     <tt>fogType</tt> field of <tt>Fog</tt> node is not recognized.</p>
   </li>
 
-  <?php echo ext_long_title('ext_fog_immune'); ?>
+<?php echo $toc->html_section(); ?>
 
     New field for <tt>Material</tt> node:
 
@@ -776,9 +730,8 @@ Shape {
     &mdash; it's a transparent material, and the whole level is covered
     with a volumetric fog. It just looks better when the river surface
     is not affected by the fog color.
-  </li>
 
-  <?php echo ext_long_title("ext_inline_for_all"); ?>
+<?php echo $toc->html_section(); ?>
 
     Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControls</tt> in VRML 2.0
     and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
@@ -793,7 +746,7 @@ Shape {
     You're free to include VRML 1.0 file inside VRML 2.0 file,
     or the other way around. Everything works.
 
-  <?php echo ext_long_title('ext_kambi_triangulation'); ?>
+<?php echo $toc->html_section(); ?>
 
     <?php
       echo '<table align="right">' .
@@ -866,7 +819,7 @@ Shape {
     'kambi_vrml_test_suite'); ?>, file
     <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/kambi_triangulation.wrl</tt>.
 
-  <?php echo ext_long_title('ext_gzip'); ?>
+<?php echo $toc->html_section(); ?>
 
     All our programs can handle VRML files compressed with gzip.
 
@@ -914,7 +867,7 @@ Shape {
     is done magically over HTTP protocol, and you don't have to actually compress
     VRML files to save bandwidth.</p>
 
-  <?php echo ext_long_title('ext_navigationinfo'); ?>
+<?php echo $toc->html_section(); ?>
 
     Various details about how we handle NavigationInfo node in
     <?php echo a_href_page('view3dscene','view3dscene'); ?>:
@@ -969,7 +922,7 @@ Shape {
         based on scene's bounding box sizes.
     </ul>
 
-  <?php echo ext_long_title('ext_cameras_alt_orient'); ?>
+<?php echo $toc->html_section(); ?>
 
     Standard VRML way of specifying camera orientation
     (look direction and up vector) is to use <tt>orientation</tt> field
@@ -1077,7 +1030,7 @@ Shape {
 
      <!-- funkcje VRMLFields.CamDirUp2Orient i VectorMath.RotatePointAroundAxis -->
 
-  <?php echo ext_long_title('ext_material_mirror'); ?>
+<?php echo $toc->html_section(); ?>
 
     You can mark surfaces as being mirrors by using this field.
 
@@ -1131,7 +1084,7 @@ Shape {
     by <tt>shininess</tt> and <tt>specularColor</tt> fields as well as
     by <tt>mirror</tt> field.
 
-  <?php echo ext_long_title('ext_headlight'); ?>
+<?php echo $toc->html_section(); ?>
 
     If this node is present and headlight is turned on (e.g. because
     <tt>headlight</tt> field of <tt>NavigationInfo</tt> is <tt>TRUE</tt>)
@@ -1166,7 +1119,7 @@ Shape {
     (I didn't use <tt>beamWidth</tt> from VRML 2.0 spec because it
     translates badly to OpenGL).
 
-  <?php echo ext_long_title('ext_shadows'); ?>
+<?php echo $toc->html_section(); ?>
 
     To all VRML light nodes, we add two fields:
 
@@ -1253,19 +1206,16 @@ Shape {
     This is a useful trick when there is no comfortable main light on the scene,
     so you want to add it, but you don't want to make the scene
     actually brighter.
-  </li>
-</ul>
 
-<h4><a name="section_exts_vrml1">VRML 1.0 only extensions</a></h4>
+<?php echo $toc->html_section(); ?>
 
-<ul>
-  <?php echo ext_long_title('ext_cone_cyl_parts_none'); ?>
+<?php echo $toc->html_section(); ?>
 
     This way every possible value is allowed for <tt>parts</tt>
     field. This is comfortable for operating on these nodes,
     especially from programs &mdash; there is no special "forbidden" value.
 
-  <?php echo ext_long_title('ext_light_attenuation'); ?>
+<?php echo $toc->html_section(); ?>
 
     Lights that have a position, i.e. <tt>PointLight</tt> and <tt>SpotLight</tt>
     nodes, have the field <tt>attenuation</tt>. The meaning of this
@@ -1294,7 +1244,7 @@ Shape {
         <tt>color</tt> * <tt>intensity</tt>.
     </ol>
 
-  <?php echo ext_long_title('ext_iv_in_vrml'); ?>
+<?php echo $toc->html_section(); ?>
 
     Some Inventor-specific things are allowed:
     <ul>
@@ -1318,7 +1268,7 @@ Shape {
     extensibility features), so most Inventor files can be at least
     partially handled and displayed.
 
-  <?php echo ext_long_title('ext_multi_root_node'); ?>
+<?php echo $toc->html_section(); ?>
 
     VRML 1.0 file may have any number of root nodes
     (VRML 1.0 spec requires that there is exactly one root node).
@@ -1331,7 +1281,7 @@ Shape {
       <li>This was very easy to implement :)
     </ol>
 
-  <?php echo ext_long_title('ext_material_phong_brdf_fields'); ?>
+<?php echo $toc->html_section(); ?>
 
     In <?php echo a_href_page("rayhunter's","rayhunter") ?>
     <i>path-tracer</i> I implemented Phong's BRDF.
@@ -1418,7 +1368,7 @@ Shape {
     <?php echo a_href_page("rayhunter", "rayhunter") ?> and
     <?php echo a_href_page("view3dscene", "view3dscene") ?>.
 
-  <?php echo ext_long_title('ext_wwwinline_separate'); ?>
+<?php echo $toc->html_section(); ?>
 
     I'm adding new field:
     <?php echo node_begin("WWWInline");
