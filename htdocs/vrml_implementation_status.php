@@ -196,6 +196,14 @@ Shape {
 
     <p><i>TODO</i>: very basic support, only minificationFilter and
     magnificationFilter fields actually handled.
+
+  <li><p><tt>KeySensor</tt>
+
+    <p>The first sensor node actually implemented :)
+
+    <p><i>TODO</i>: keyRelease is not generated (we do not have
+    character data about key up). Everything else is Ok, but keyPress
+    generates only 8-bit ASCII characters now.
 </ul>
 
 <?php echo $toc->html_section(); ?>
