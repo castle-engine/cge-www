@@ -382,6 +382,24 @@ used.
   <li><p><tt>Extrusion</tt>
 
     <p>Works fully.
+
+  <li><p><tt>ColorInterpolator</tt>, <tt>PositionInterpolator</tt>,
+    <tt>PositionInterpolator2D</tt> (X3D), <tt>ScalarInterpolator</tt>,
+    <tt>OrientationInterpolator</tt>
+
+    <p><tt>CoordinateInterpolator</tt>,
+    <tt>CoordinateInterpolator2D</tt> (X3D), <tt>NormalInterpolator</tt>
+
+    <p><i>TODO</i>: Interpolation of ColorInterpolator simply interpolates
+    3D vectors, so it interpolates in RGB space (while spec says to interpolate
+    in nice HSV space).
+
+    <p>Interpolation of OrientationInterpolator simply
+    interpolates 4D vectors, instead of a nice interpolation on the unit sphere.
+
+    <p>Interpolation of NormalInterpolator simply interpolates
+    3D vectors (and normalizes afterwards), instead of
+    a nice interpolation on the unit sphere.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
