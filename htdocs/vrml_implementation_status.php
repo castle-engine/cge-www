@@ -192,7 +192,7 @@ Shape {
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
 
-  <li><p>TextureProperties</tt>
+  <li><p><tt>TextureProperties</tt>
 
     <p><i>TODO</i>: very basic support, only minificationFilter and
     magnificationFilter fields actually handled.
@@ -204,6 +204,10 @@ Shape {
     <p><i>TODO</i>: keyRelease is not generated (we do not have
     character data about key up). Everything else is Ok, but keyPress
     generates only 8-bit ASCII characters now.
+
+  <li><p>Event utilities: <tt>BooleanFilter</tt>,
+    <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
+    <tt>IntegerTrigger</tt></p>
 </ul>
 
 <?php echo $toc->html_section(); ?>
