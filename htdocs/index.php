@@ -157,6 +157,9 @@ announcements related to our VRML engine and programs on this page.</p>
 <a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>
 to appropriate tracker.</p>
 
+<p>If you really want to contact the author directly,
+<?php echo michalis_mailto('send email to Michalis Kamburelis'); ?>.</p>
+
 <?php /*
 <i>And one more thing : if the bug concerns one of my OpenGL programs,
 remember to attach to your bug report output of the
@@ -272,7 +275,7 @@ cia.vc</a>.
 
 <address>
 <p>Author: Michalis Kamburelis (aka Kambi) (<a
-href="http://www.camelot.homedns.org/~michalis/">home page</a>,
+href="http://michalis.ii.uni.wroc.pl/~michalis/">home page</a>,
 <?php echo michalis_mailto('email'); ?>).
 If you will use any part of this engine, then make me happy and
 drop me a note about this&nbsp;!
