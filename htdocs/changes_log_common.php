@@ -53,6 +53,40 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'VRML / X3D events and routes implemented',
+          'year' => 2008,
+          'month' => 8,
+          'day' => 15,
+          'pubDate' => /* date_to_timestamp.sh '2008-08-15' */ 1218801600,
+          'guid' => '2008-08-15',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+"<p><a href=\"http://vrmlengine.sourceforge.net/movies/laetitia_sprints.avi\"><img
+  src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/laetitia_sprints_demo.png\"
+  alt=\"Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator\"
+  align=\"right\" /></a>
+
+An extremely important feature of VRML / X3D is finally implemented:
+routes and events mechanism works. This means that you can express animations and interactions
+within single VRML / X3D file, like envisioned in the specifications.</p>
+
+<p>We have 2 sensor nodes working already (<tt>TimeSensor</tt>
+and <tt>KeySensor</tt>), 7 linear interpolator nodes, and 5 event utilities
+nodes (including <a href=\"http://instant-reality.com/documentation/nodetype/Logger/\">Avalon
+<tt>Logger</tt> node</a>, a useful debugger for events).
+All exposed fields of other nodes also work, obviously.
+This is all available only in SVN for now. When I get back from vacation
+(at the end of August) this work will be continued (many other sensors
+are easy to implement now, and some existing code should be cleaned and
+optimized) and it will all be released as <i>view3dscene 3.0</i>.</p>
+
+<p>As a demo, see the 6-second movie on the right. It shows
+animation in X3D done by routing
+<tt>TimeSensor</tt> to <tt>CoordinateInterpolator</tt> to <tt>IndexedFaceSet</tt>.
+The model is <a href=\"http://www.web3d.org/x3d/content/examples/Basic/StudentProjects/\">\"Laetitia Sprints\" from
+web3d.org examples</a>.</p>"),
+
     array('title' => 'News - white_dune, X3D, movie textures, engine icon',
           'year' => 2008,
           'month' => 7,
