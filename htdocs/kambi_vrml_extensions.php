@@ -262,7 +262,6 @@ subdirectories.
     field of Appearance") is also specified. And it's used only with
     IndexedFaceSet nodes for now &mdash; implementation of this is
     supposed to be extended, feature requests are welcome!</p>
-  </li>
 
 <?php echo $toc->html_section(); ?>
 
@@ -327,7 +326,6 @@ EXTERNPROTO Text3D [
         these Parallel Graphics <tt>Text3D</tt> definition, so I decided
         to make my version compatible.</li>
     </ul>
-  </li>
 
 <?php echo $toc->html_section(); ?>
 
@@ -526,7 +524,6 @@ Shape {
     <p>Since we officially support X3D now, this is not really an extension,
     it's just normal X3D feature. You can use it in VRML 2.0 models too,
     as usual our engine allows you to mix VRML versions freely.
-  </li>
 
 <?php echo $toc->html_section(); ?>
 
@@ -752,7 +749,6 @@ Shape {
 
     <p><tt>alternative</tt> will also be tried if the value specified in
     <tt>fogType</tt> field of <tt>Fog</tt> node is not recognized.</p>
-  </li>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1504,7 +1500,6 @@ Group {
     see <?php echo a_href_page('VRML test suite',
     'kambi_vrml_test_suite'); ?>, file
     <tt>vrml_1/kambi_extensions/inline_not_separate.wrl</tt>.
-</ul>
 
 <?php
   if (!IS_GEN_LOCAL) {
