@@ -578,15 +578,19 @@ Shape {
 
         <p>An extremely useful debugger when playing with VRML / X3D routes
         and events. The idea is simple: whatever is sent to <tt>write</tt>
-        input event is logged. <tt>write</tt> event has special type
+        input event is logged on the console. <tt>write</tt> event has special type
         (Avalon calls this <tt>XFAny</tt>) that allows to receive <i>any</i>
         VRML field type.
 
         <p>Other properties allow to control logging better.
         When <tt>enabled</tt> is false, nothing is logged.
-        <tt>level</tt> controls the amount of logged info
-        (we support 0 = nothing, 1 = sender name, type, timestamp,
-        2 = additionally log received value).
+        <tt>level</tt> controls the amount of logged info:
+        <ol>
+          <li>nothing,
+          <li>log sending field name, type, timestamp,
+          <li>additionally log received value,
+          <li>additionally log sending node name, type.
+        </ol>
 
         <p><tt>logFile</tt>, when non-empty, specifies the filename to
         write log information to. (When <tt>logFile</tt> is empty, it's
