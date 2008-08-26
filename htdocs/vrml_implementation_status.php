@@ -207,7 +207,7 @@ Shape {
 
   <li><p>Event utilities: <tt>BooleanFilter</tt>,
     <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
-    <tt>IntegerTrigger</tt></p>
+    <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt></p>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -404,8 +404,9 @@ used.
   <li><p><tt>TimeSensor</tt>
 
     <p><i>TODO</i> for now, only X3DTimeDependentNode things are implemented.
-    fraction_changed simply generates elapsedTime / cycleInterval value.
-    This is Ok for simple usage.
+    Also <tt>time</tt> is generated, and
+    <tt>fraction_changed</tt> simply generates elapsedTime / cycleInterval value.
+    This is quite Ok for common simple uses.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
