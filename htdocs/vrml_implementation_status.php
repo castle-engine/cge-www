@@ -53,7 +53,7 @@ included in the engine. This doesn't mean that they are meaningfully
 handled, but they <i>are at least parsed correctly</i> (and converting from
 X3D XML to classic VRML preserves them correctly).
 
-<p><i>All fiels types</i>, including new X3D double-precision and
+<p><i>All field types</i>, including new X3D double-precision and
 matrixes, are supported, with the exception of MFImage. MFImage should
 be implemented as soon as I see some usage of this, for now no X3D
 specification nodes actually use this.
@@ -338,7 +338,7 @@ used.
         (movie texture with alpha channel).
         See <?php echo a_href_page_hashlink('"Movies from images sequence"
         extension description', 'kambi_vrml_extensions',
-        'ext_movie_from_image_sequence'); ?>.
+        'section_ext_movie_from_image_sequence'); ?>.
     </ul>
 
   <li><p><tt>Inline</tt>, <tt>InlineLoadControl</tt>
