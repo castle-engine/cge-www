@@ -85,7 +85,7 @@ specification nodes actually use this.
 
     <p>For example add inside <tt>Appearance</tt> node VRML code like</p>
 
-<pre>
+<pre class="vrml_code">
   shaders ComposedShader {
     language "GLSL"
     parts [
@@ -102,11 +102,34 @@ specification nodes actually use this.
     <p>You can also set uniform variables for your shaders from VRML,
     just add lines like
 
-<pre>
+<pre class="vrml_code">
   inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
-    to your ComposedShader node. (TODO: unfortunately it doesn't
+    to your ComposedShader node. These uniforms may also be modified by
+    VRML events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
+    for example here's a simple way to pass current VRML time (in seconds)
+    to your shader:
+
+<pre class="vrml_code">
+# ......
+# somewhere within Appearance:
+  shaders DEF MyShader ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "VERTEX" url "my_shader.vs" }
+      ShaderPart { type "FRAGMENT" url "my_shader.fs" }
+    ]
+    inputOnly SFTime time
+  }
+
+# ......
+# somewhere within grouping node (e.g. at top-level of VRML file)
+DEF MyTimer TimeSensor { loop TRUE }
+ROUTE MyTimer.time TO MyShader.time
+</pre>
+
+    <p>(TODO: unfortunately uniforms don't
     work yet with all required VRML field types. In particular,
     passing textures to shader this way (by SFNode fields) is not
     supported <i>yet</i>.)
