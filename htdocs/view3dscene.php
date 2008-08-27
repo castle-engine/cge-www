@@ -831,8 +831,8 @@ drectory.</p>
     </ul>
 
     <p>For more technical details see
-    <a href="apidoc/html/VRMLFlatSceneGL.html#TGLRendererOptimization">documentation
-    of TGLRendererOptimization type in VRMLFlatSceneGL unit</a>.
+    <a href="apidoc/html/VRMLGLScene.html#TGLRendererOptimization">documentation
+    of TGLRendererOptimization type in VRMLGLScene unit</a>.
 
   <dt>--triangle-octree-max-depth &lt;integer&gt;<br>
       --triangle-octree-max-leaf-items-count &lt;integer&gt;<br>

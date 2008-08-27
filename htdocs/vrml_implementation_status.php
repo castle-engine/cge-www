@@ -313,7 +313,7 @@ used.
 
     <ul>
       <li><p>Current implementation keeps the whole encoded video in memory
-        (images may be discarded after loading (by TVRMLFlatScene.FlatResources
+        (images may be discarded after loading (by TVRMLScene.FlatResources
         feature), but still the textures for all frames are kept in memory).
         The <i>disadvantage</i> is that this makes it impractical to load "real"
         movies, normal 2-hour movie will most usually eat all of your memory.
