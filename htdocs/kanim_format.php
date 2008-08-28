@@ -6,37 +6,40 @@
 ?>
 
 <?php
-  echo pretty_heading("kanim file format");
+  echo pretty_heading("Kanim file format");
 ?>
 
 <p>Files with extension *.kanim represent <i>"Kambi VRML engine's animations"</i>.
-These are XML files that describe animation as a sequence of files,
-all with the same structure. The animation is created by interpolating
-among the files in specified order and with specified speed.</p>
+These are XML files that describe precalculated animation as a sequence of files.
+Animation shows the transition from the first model to the last.
+Where models are structurally equal, intermediate frames are
+created by linear interpolation to show smooth changes.</p>
+
+<p><b>Since animation by VRML events and interpolators is implemented
+in our engine now, Kanim format becomes obsolete.</b>
+It's useful only if your favorite 3D modeler cannot export VRML
+animation with interpolators, but it can export static VRML files.</p>
 
 <p><?php echo a_href_page(
-  "Blender exporter for this format is available", "blender_stuff"); ?>.</p>
+  "Blender exporter for this format is available", "blender_stuff"); ?>,
+since Blender cannot export animations with interpolators to VRML.</p>
 
-<hr />
-
-<p>Before you say that this is a lousy way of storing animations,
-and storing everything inside one file is obviously more flexible
-for complicated animations: I know. And VRML &gt;= 2 even has nodes
-(called interpolators) to express this animation inside a file:
-I know that too. But for now many 3D authoring tools (notably
-<a href="http://www.blender.org/">Blender</a>) cannot export
-animations to such VRML 2 interpolators. (On the positive side,
-there is at least one open-source
+<p>On the positive side, there is at least one open-source
 program that <i>can</i> create animations with interpolators:
-<a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>.)</p>
+<a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>.
+<i>White dune</i> has even an exporter to Kanim format,
+given a VRML animation by interpolators it generates a Kanim file
+and corresponding VRML files for each frame.</p>
 
-<p>For more: see <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
-of animation handling in Kambi VRML engine</a>.</p>
+<p>If you work with 3D modeler that can export proper VRML animation
+with interpolators, then you don't need to use Kanim format.
+Our engine handles events and interpolators perfectly.
+Internally, they may even be converted (after loading) to precalculated
+animations.</p>
 
-<p>So for now, this is a practical and working way of creating animations:
-just export from Blender a couple of times, making a couple of VRMLs,
-and then create *.kanim file to glue them all together and load it into
-my engine.</p>
+<p>For more technical insight, see
+<a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
+of animation handling in our VRML engine documentation</a>.</p>
 
 <hr />
 
@@ -56,15 +59,19 @@ my engine.</p>
 
   scenes_per_time="30"  // Suggested number of scenes per time to be generated.
                         // This is a hint for the renderer --- by default it's
-                        // 30, but it may be ignored, and you don't have to really
-                        // understand what it means... If you want, see
-                        // TVRMLGLAnimation class documentation.
+                        // 30, but it may be ignored. Larger values make
+                        // animation smoother, but also much more memory consuming.
+                        // Special value 0 is allowed here, and means
+                        // that animation will simply show each &lt;frame&gt;,
+                        // suddenly changing into the next &lt;frame&gt;,
+                        // without any smoothing of transitions with
+                        // intermediate scenes.
 
   optimization="separate-shape-states-no-transform"
                         // Suggested optimization method.
                         // This is again only a hint for the renderer, and may
                         // be ignored, see `view3dscene --help' to see the
-                        // list of avail values.
+                        // list of available values.
                         // Ignore this if you don't know what it means.
 
   equality_epsilon="0.001"
@@ -99,7 +106,7 @@ my engine.</p>
                            // <?php echo a_href_page_hashlink(
                                 'other formats understood by my engine',
                                 'kambi_vrml_extensions',
-                                'ext_inline_for_all'); ?>.
+                                'section_ext_inline_for_all'); ?>.
 
     time="0.0"             // This is a required attribute specyfying a
                            // time of this frame. For now, all frames
@@ -109,7 +116,7 @@ my engine.</p>
   /&gt;
 
   // For example, assume that the second &lt;frame&gt; node follows.
-  // So this defines an animation that interpolates between
+  // So this defines an animation that changes from
   // file_1.wrl and file_2.wrl in exactly 1 second.
 
   &lt;frame file_name="file_2.wrl" time="1.0" /&gt;
