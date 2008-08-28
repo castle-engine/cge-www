@@ -14,9 +14,9 @@
 
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<p><b>For developers:</b> this is an open-source engine
-that is especially oriented towards working with VRML models (although
-other model formats are also supported).
+<p><b>For developers:</b> this is a free/open-source engine
+that is especially oriented towards working with VRML / X3D worlds
+(although other model formats are also supported).
 For more information, documentation and downloads for developers
 see <a href="#support">lower on this page</a>.</p>
 
@@ -25,7 +25,7 @@ games and tools. They were developed using the VRML game engine,
 but you don't really need to know what VRML is in order to use them.
 Two most important programs available here are
 <a href="castle.php">"The Castle"</a> game and
-<a href="view3dscene.php">view3dscene</a> model viewer.
+<a href="view3dscene.php">view3dscene</a> 3D model viewer.
 
 <p><b>Latest update:</b>
 
@@ -78,10 +78,10 @@ function program_image_links_table_begin_half()
       "castle_screen_demo_1.png", 'castle'); ?>
 
     <?php program_image_link('view3dscene',
-      'Viewer for VRML 1.0, VRML 2.0 (aka VRML 97),
-      3DS, MD3, Wavefront OBJ and Collada models. Move in the virtual scene,
+      'VRML / X3D browser, and viewer for other 3D model formats
+      (3DS, MD3, Wavefront OBJ and Collada). Move in the virtual scene,
       with collision-checking and gravity,
-      use embedded ray-tracer, convert 3DS, MD3 etc. files to VRML 1.0.',
+      use embedded ray-tracer, convert 3DS, MD3 etc. files to VRML.',
       "view3dscene_2.0.0_screen_demo.png",
       'view3dscene'); ?>
   </tr>

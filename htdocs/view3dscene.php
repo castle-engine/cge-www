@@ -2,11 +2,11 @@
   require_once 'vrmlengine_functions.php';
 
   common_header("view3dscene", LANG_EN,
-    'view3dscene is a viewer for VRML 1.0, VRML 2.0 (aka VRML 97), ' .
-    '3DS, MD3, Wavefront OBJ and Collada scenes. ' .
+    'view3dscene is a VRML / X3D browser, also a viewer for other 3D models. ' .
+    'Supported formats are X3D, VRML (1.0 and 2.0 (aka VRML 97)), 3DS, MD3, Wavefront OBJ and Collada scenes. ' .
     'Can do collision detection. ' .
-    'Can be used as command-line converter from 3DS, OBJ, MD3 to VRML 1.0. ' .
-    'Has built-in ray-tracer. Uses OpenGL. ' .
+    'Can be used as command-line converter from Collada, 3DS, OBJ, MD3 to VRML. ' .
+    'Has built-in ray-tracer. Rendering uses OpenGL. ' .
     'Free software. For Linux, FreeBSD, Mac OS X and Windows.',
     NULL,
     '<style type="text/css"><!--
@@ -38,7 +38,8 @@
     '</table>';
 ?>
 
-<p>view3dscene is a viewer for 3D scene files.
+<p>view3dscene is a VRML / X3D browser, and a viewer for other 3D model
+formats.</p>
 
 <!-- Removed: too long useless text:
 
@@ -74,14 +75,17 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <p>Supported file formats:
 <ul>
-  <li><p><b>VRML 1.0 and 2.0</b>. Usual extensions for VRML files are
-    <tt>.wrl</tt> and <tt>.wrz</tt>.</p>
+  <li><p><b>VRML 1.0, 2.0 and X3D</b>. Usual extensions for VRML files are
+    <tt>.wrl</tt>, <tt>.wrz</tt> and <tt>.wrl.gz</tt>.
+    For X3D (we support fully both
+    binary and classic encoding) extensions are <tt>.x3d</tt>,
+    <tt>.x3dz</tt>, <tt>.x3d.gz</tt>
+    and <tt>.x3dv</tt>, <tt>.x3dvz</tt>, <tt>.x3dv.gz</tt>.</p>
 
     <p>Almost complete VRML&nbsp;1.0 support is done.
-    VRML&nbsp;2.0 (aka VRML&nbsp;97) support is also quite advanced, many nodes
-    and features are implemented (including full <tt>PROTO</tt> and
-    <tt>EXTERNPROTO</tt> support), although some large features
-    are still missing (like scripting, interpolators, sensors).
+    VRML&nbsp;2.0 (aka VRML&nbsp;97) and X3D support is also quite advanced,
+    a lot of nodes and features are implemented (including full <tt>PROTO</tt> and
+    <tt>EXTERNPROTO</tt> support, events mechanism with routes, sensors and interpolators).
 
     <!-- Among things that work are embedded textures,
     semi-transparent materials and semi-transparent textures,
@@ -151,13 +155,14 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     pude³eczko ze scen± w ¶rodku -->
   <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML.
     (Collada to VRML 2.0, rest to VRML 1.0 currently.)
-  <li>You can also simply open and save any VRML 1.0 or 2.0 file
-    and in effect view3dscene will work as a "pretty-printer" for VRML files.
+  <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
+    and in effect view3dscene will work as a "pretty-printer"
+    for VRML / X3D files.
   <li>Built-in ray-tracer
     (that is also available as a separate command-line program,
     <?php echo a_href_page("rayhunter", "rayhunter"); ?>)
     to generate nice views of the scene (with shadows, mirrors,
-    and transmittance). Classic ray-tracer implements exactly VRML 97
+    and transmittance). Classic ray-tracer implements exactly VRML 97 / X3D
     lighting equations.
     <!-- promienie za³amane. a w przypadku
     path tracera Monte Carlo uwzglêdniamy fizyczne w³a¶ciwo¶ci materia³u
@@ -169,16 +174,18 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <p>There are also very limited editing capabilities. They are
     intended to be used only as a post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
-  <li>Animations may be played (currently, they may be loaded
-    from <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files;
-    animations recorded as VRML 2.0 interpolators and inside Collada files
-    are not played yet).
+  <li>Interactive animations may be played from VRML / X3D events and
+    interpolations. Precalculated animations are played from
+    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files.
+    (Animations recorded inside Collada files are not played yet).</p>
 
     <p>There's one small caveat with animations right now:
     some features (collision checking, mouse picking,
     ray-tracer &mdash; everything that requires some octree) always use the
-    <i>first animation frame</i>, regardless of current animation frame
-    displayed.
+    <i>first animation frame</i> for precalculated animations,
+    regardless of current animation frame displayed.
+    And for interactive animations, recalculation of octree may slow
+    them down a lot, so it may have to be turned off.</p>
 
   <li><p>There are menu items and <a href="#section_screenshot">command-line
     options to catch screenshots and movies
@@ -210,9 +217,9 @@ This documentation is also included in the archives
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
 <p><i>Demo scenes</i>:
-In <?php echo a_href_page("my VRML test suite",
+In <?php echo a_href_page("Kambi VRML test suite",
 "kambi_vrml_test_suite"); ?> you can find many simple VRML models
-that demonstrate what can be expressed in VRML 1.0 and 2.0
+that demonstrate what can be expressed in VRML 1.0, 2.0, X3D
 and what view3dscene can handle and display. These are not any big or
 beautiful scenes, you can find some (slightly) more impressive VRMLs
 in data files of my games
@@ -290,7 +297,7 @@ Load your model file using "Open" menu item.</p>
 
 <p>You can provide on the command-line file name to load.
 As usual, dash (<tt>-</tt>) means that standard input will be read
-(in this case the input must be in VRML (or Inventor) format).</p>
+(in this case the input must be in Inventor / VRML / X3D (classic) format).</p>
 
 <p>Also read <a href="#section_command_line_options">about
 view3dscene additional command-line options</a>.</p>
@@ -618,7 +625,7 @@ drectory.</p>
     write the result to the standard output and exit".
     This way you can use view3dscene to convert
     3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML, like<br>
-    <tt>&nbsp;&nbsp;view3dscene scene.3ds --write-to-vrml > scene.wrl</tt> , <br>
+    <tt>&nbsp;&nbsp;view3dscene scene.3ds --write-to-vrml &gt; scene.wrl</tt> , <br>
     you can also use this to do some VRML file processing using
     options <tt>--scene-change-*</tt> described below.
 
@@ -674,7 +681,7 @@ drectory.</p>
           nodes are deleted. Values of <tt>normalIndex</tt> field
           in <tt>IndexedFaceSet</tt> and <tt>IndexedTriangleMesh</tt> nodes
           are deleted.
-          For VRML 2.0, all <tt>normal</tt> fields are set to <tt>NULL</tt>.
+          For VRML &gt;= 2.0, all <tt>normal</tt> fields are set to <tt>NULL</tt>.
         <p><b>Effect:</b> view3dscene will always calculate by itself
           normal vectors. Useful when you suspect that normals recorded
           in scene file are incorrect (incorrectly oriented, incorrectly
@@ -708,7 +715,7 @@ drectory.</p>
           Moreover we will wrap whole scene in <tt>Group</tt> node and we
           will add at the beginning node
           <pre>ShapeHints { faceType UNKNOWN_FACE_TYPE }</pre>
-          For VRML 2.0, all <tt>convex</tt> fields are set to <tt>FALSE</tt>.
+          For VRML &gt;= 2.0, all <tt>convex</tt> fields are set to <tt>FALSE</tt>.
         <p><b>Effect:</b> All <tt>IndexedFaceSet</tt>
           and <tt>Extrusion</tt> faces will be treated
           as potentially non-convex. This means that we will load the scene
@@ -725,7 +732,7 @@ drectory.</p>
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl</tt><br>
     I can also correct this model once using command<br>
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl
-      --write-to-vrml > helicopter-corrected.wrl</tt>.
+      --write-to-vrml &gt; helicopter-corrected.wrl</tt>.
 
   <dt>--navigation Examine|Walk
   <dd><p>Set initial navigation mode. Default is <tt>Examine</tt>.
@@ -881,13 +888,13 @@ surfaces (e.g. spheres) may be rendered better with smooth shading.
 Moreover smooth shading allows triangle to have different material
 properties at each vertex (e.g. one vertex is yellow, the other one is blue),
 you can see example of this in
-<?php echo a_href_page('my VRML test suite',
+<?php echo a_href_page('Kambi VRML test suite',
 'kambi_vrml_test_suite'); ?>
  in file <tt>vrml_1/materials.wrl</tt>.
 
 <p>Group of planes are <i>similar</i> if angle between each pair
 of planes is smaller than <b>creaseAngle</b> value (of last seen
-<b>ShapeHints</b> in VRML 1.0, or of the given geometry node in VRML 2.0).
+<b>ShapeHints</b> in VRML 1.0, or of the given geometry node in VRML &gt;= 2.0).
 For other 3D model formats we use
 default <tt>creaseAngle</tt> = 0.5 radians (a little less than 30 degrees).
 
