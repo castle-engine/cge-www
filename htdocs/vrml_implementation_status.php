@@ -150,6 +150,12 @@ ROUTE MyTimer.time TO MyShader.time
 
   <li><p><tt>StaticGroup</tt>
 
+    <p>(Although it doesn't make any extra optimization.
+    This is not needed for our engine, as we <i>initially</i> treat pretty
+    much everything as if it would be inside <tt>StaticGroup</tt>,
+    that is we assume that model will be mostly static. Although it greatly
+    depends on <i>renderer optimization</i> chosen.)</p>
+
   <li><p><tt>OrthoViewpoint</tt>
 
     <p>TODO: Although it's handled, some fields are ignored for now:
