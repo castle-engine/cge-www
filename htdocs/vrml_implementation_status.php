@@ -356,6 +356,11 @@ used.
 
   <li><p><tt>Inline</tt>, <tt>InlineLoadControl</tt>
 
+    <p>Yes, this includes handling of <tt>InlineLoadControl</tt> features
+    to react to <tt>load</tt>, <tt>url</tt> and generate <tt>children</tt>
+    events. For X3D, basic <tt>Inline</tt> node already has
+    <tt>load</tt>, <tt>url</tt> features and they also work perfectly.
+
   <li><p><tt>LOD</tt>
 
     <p><i>TODO</i>: But we always render first (best looking) node, ignoring
