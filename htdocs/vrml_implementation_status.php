@@ -146,6 +146,11 @@ ROUTE MyTimer.time TO MyShader.time
     much more interesting to implement features when you actually have
     a real use for them... In other words, I'm just dying to see some
     beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+
+    <p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
+    program now.
+    (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
+    X3DShaderNode.)
   </li>
 
   <li><p><tt>StaticGroup</tt>
