@@ -237,6 +237,8 @@ Shape {
   <li><p>Event utilities: <tt>BooleanFilter</tt>,
     <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
     <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt></p>
+
+  <li><p><tt>Rectangle2D</tt>
 </ul>
 
 <?php echo $toc->html_section(); ?>
