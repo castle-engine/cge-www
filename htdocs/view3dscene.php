@@ -174,7 +174,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <p>There are also very limited editing capabilities. They are
     intended to be used only as a post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
-  <li>Interactive animations may be played from VRML / X3D events and
+
+  <li><p>Interactive animations may be played from VRML / X3D events and
     interpolations. Precalculated animations are played from
     <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files.
     (Animations recorded inside Collada files are not played yet).</p>
