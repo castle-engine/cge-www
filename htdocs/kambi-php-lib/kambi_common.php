@@ -23,7 +23,7 @@
 
    This is a common functions library, shared by both
    http://vrmlengine.sourceforge.net/ and
-   http://www.camelot.homedns.org/~michalis/
+   http://michalis.ii.uni.wroc.pl/~michalis/
    websites.
 
    Note that, contrary to other PHP files inside kambi-php-lib/
