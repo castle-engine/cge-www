@@ -26,23 +26,33 @@ Section below describes how to install OpenAL in the
 
 <dl>
   <dt>Linux users:</dt>
-  <dd>Just install appropriate package from your Linux distribution
-    (under Debian etch this is package <tt>libopenal0a</tt>).</dd>
+  <dd><p>Install appropriate package for your Linux distribution.
+    Under <i>Debian etch</i> this is package <tt>libopenal0a</tt>,
+    under <i>Debian lenny</i> <tt>libopenal1</tt>. For other distros,
+    look for something similar, with <tt>openal</tt> in their name.
+    </p>
+
+    <p>My games work with both common OpenAL implementations:
+    <i>OpenAL Sample Implementation</i> (the original implementation,
+    from Loki, unmaintained) and
+    <a href="http://kcat.strangesoft.net/openal.html">OpenAL Soft</a>
+    (the newer, maintained version).</p>
+    </dd>
 
   <dt>FreeBSD users:</dt>
-  <dd>Simple <tt>pkg_add -r openal</tt> command should do
-    the trick.</dd>
+  <dd><p>Simple <tt>pkg_add -r openal</tt> command should do
+    the trick.</p></dd>
 
   <dt>Mac OS X users:</dt>
-  <dd>Download and run
-    <a href="http://developer.creative.com/articles/article.asp?cat=1&amp;sbcat=31&amp;top=38&amp;aid=97">Creative
-    free OpenAL installer for Mac OS X</a>.</dd>
+  <dd><p>Newer Mac OS X seems to have this automatically installed.
+    If not, you can download and run
+    <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">Creative
+    free OpenAL installer for Mac OS X</a>. (Choose <i>OpenAL_Installer_OSX</i>,
+    that is <i>OpenAL Installer for MacOS X</i>.)
+    </p></dd>
 
   <dt>Windows users:</dt>
-  <!-- Old link is
-    http://developer.creative.com/articles/article.asp?cat=1&amp;sbcat=31&amp;top=38&amp;aid=46
-  -->
-  <dd>OpenAL libraries (DLL files) should already be included in all
+  <dd><p>OpenAL libraries (DLL files) should already be included in all
     binary packages of my games under Windows. So you don't have to do anything.
 
     <p>However, you're free to remove appropriate DLL files
@@ -50,15 +60,16 @@ Section below describes how to install OpenAL in the
     and install
     OpenAL yourself. This is especially handy if you
     want to use other OpenAL implementation than the one from Creative.
-
-    <p>OpenAL libraries that are provided by default come from
-    <a href="http://developer.creative.com/articles/article.asp?cat=1&amp;sbcat=31&amp;top=38&amp;aid=46&amp;file=oalinst.exe">Creative
-    free OpenAL installer</a>.</dd>
+    OpenAL libraries that are provided by default come from
+    <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">Creative
+    free OpenAL installer</a> (choose <i>oalinst</i>,
+    that is <i>OpenAL Installer for Windows</i>).</dd>
 </dl>
 
-<p>You can always compile from sources available from
-<a href="http://www.openal.org/">www.openal.org</a>,
-at least under Unixes this is rather straightforward.
+<p>You can always compile from sources. See
+<a href="http://kcat.strangesoft.net/openal.html">OpenAL Soft</a> or
+<a href="http://connect.creativelabs.com/openal/OpenAL%20Wiki/Source%20Code.aspx">Creative
+source code</a> instructions.
 
 <?php echo $toc->html_section(); ?>
 
@@ -85,7 +96,7 @@ at least under Unixes this is rather straightforward.
     that you get all you can from OpenAL.
 
     <dl>
-      <dt>Linux and FreeBSD users:</dt>
+      <dt>Linux and FreeBSD users with OpenAL SI implementation:</dt>
       <dd><p>Usual OpenAL implementation will have the following
         devices available:
 
@@ -179,8 +190,7 @@ at least under Unixes this is rather straightforward.
   <dd><p>Query OpenAL for a list of available devices. Prints
     all allowed arguments for <tt>--audio-device</tt>
     option given above. Note that not all OpenAL
-    implementations support it &mdash; at the time of writing,
-    only Creative's Windows OpenAL supports it.</dd>
+    implementations support it.</dd>
 </dl>
 
 <?php echo $toc->html_section(); ?>

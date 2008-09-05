@@ -113,7 +113,7 @@ appropriate DLLs are already is the archive.
 
 <p>Compiled by <a href="http://www.freepascal.org">FPC</a>.
 Important libraries used: <a href="http://www.opengl.org">OpenGL</a>,
-<a href="http://www.openal.org">OpenAL</a>,
+<a href="http://connect.creativelabs.com/openal">OpenAL</a>,
 <a href="http://www.libpng.org">libpng</a>.
 
 <p>Sounds from

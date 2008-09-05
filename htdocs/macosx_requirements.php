@@ -46,7 +46,7 @@
 
   <li><p><b>OpenAL</b> for game sound (may be downloaded from Creative,
     see download links from
-    <a href="http://www.openal.org/downloads.html">openal.org downloads</a>,
+    <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">openal.org downloads</a>,
     newer Mac OS X has this pre-installed ?)
     along with <b>vorbisfile</b> (may be installed by
     <a href="http://www.finkproject.org/">fink</a>).</p></li>

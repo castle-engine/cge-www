@@ -254,6 +254,10 @@ Shape {
     <tt>HAnimSegment</tt>, <tt>HAnimSite</tt>, <tt>HAnimDisplacer</tt>
     (X3D version)
 
+    <p>We have the basic HAnim support, which means that we can correctly
+    render your human designed with HAnim nodes and efficiently animate it
+    through VRML interpolators.
+
     <p>As you see, X3D version has exactly the same nodes, working the same way,
     but with <tt>HAnim</tt> prefix before node name. (I have no idea why
     this prefix was added in X3D specification, but it's supported.)
