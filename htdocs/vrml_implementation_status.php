@@ -403,8 +403,8 @@ used.
 
   <li><p><tt>Anchor</tt>
 
-    <p><i>TODO</i>: But clicking on anchor doesn't do anything for now.
-    In other words, for now <tt>Anchor</tt> works just like <tt>Group</tt>.
+    <p><i>TODO</i>: <tt>parameter</tt> field is ignored, everything else
+    is handled (according to X3D spec).
 
   <li><p><tt>Text</tt>, <tt>FontStyle</tt>
 
