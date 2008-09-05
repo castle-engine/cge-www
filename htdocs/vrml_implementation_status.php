@@ -479,10 +479,11 @@ used.
 
   <li><p><tt>TimeSensor</tt>
 
-    <p><i>TODO</i> for now, only X3DTimeDependentNode things are implemented.
-    Also <tt>time</tt> is generated, and
-    <tt>fraction_changed</tt> simply generates elapsedTime / cycleInterval value.
-    This is quite Ok for common simple uses.
+    <p>All common <tt>X3DTimeDependentNode</tt> things
+    are implemented. <tt>enabled</tt> is honoured. <tt>time</tt> is generated.
+
+    <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
+    elapsedTime / cycleInterval value. This is quite Ok for most uses.
 
   <li><p><tt>TouchSensor</tt>
 
