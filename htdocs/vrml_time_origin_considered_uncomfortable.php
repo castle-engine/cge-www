@@ -120,7 +120,9 @@ when <?php echo a_href_page_hashlink(
   'section_ext_time_origin_at_load'); ?>.
  This also means that time-dependent node with all fields set as default
 plays exactly once when the model is loaded &mdash; which is actually quite
-sensible default behavior for me. <!-- Alternative solution would be
+sensible default behavior for me. (You can always set for example
+<tt>startTime = -1</tt> and <tt>stopTime = -0.5</tt> to prevent node from playing.)
+<!-- Alternative solution would be
 to push default <tt>startTime</tt> and such fields into the past. -->
 
 <?php
