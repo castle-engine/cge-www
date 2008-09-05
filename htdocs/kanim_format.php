@@ -17,8 +17,8 @@ created by linear interpolation to show smooth changes.</p>
 
 <p><b>Since animation by VRML events and interpolators is implemented
 in our engine now, Kanim format becomes obsolete.</b>
-It's useful only if your favorite 3D modeler cannot export VRML
-animation with interpolators, but it can export static VRML files.</p>
+It's useful only if your favorite 3D modeler cannot export VRML/X3D
+animation with interpolators, but it can export static VRML/X3D files.</p>
 
 <p><?php echo a_href_page(
   "Blender exporter for this format is available", "blender_stuff"); ?>,
@@ -102,7 +102,7 @@ of animation handling in our VRML engine documentation</a>.</p>
     file_name="file_1.wrl" // This is a required attribute, and specifies
                            // the filename from which to load this
                            // animation frame. Any 3D file format is allowed here:
-                           // most of all, VRML, but also
+                           // most of all, VRML/X3D, but also
                            // <?php echo a_href_page_hashlink(
                                 'other formats understood by my engine',
                                 'kambi_vrml_extensions',

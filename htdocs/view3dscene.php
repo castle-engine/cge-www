@@ -75,7 +75,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <p>Supported file formats:
 <ul>
-  <li><p><b>VRML 1.0, 2.0 and X3D</b>. Usual extensions for VRML files are
+  <li><p><b><a href="http://web3d.org/">VRML 1.0, 2.0 and X3D</a></b>. Usual extensions for VRML files are
     <tt>.wrl</tt>, <tt>.wrz</tt> and <tt>.wrl.gz</tt>.
     For X3D (we support fully both
     binary and classic encoding) extensions are <tt>.x3d</tt>,
@@ -98,8 +98,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     features. See also <?php echo a_href_page('Kambi extensions to VRML',
     'kambi_vrml_extensions'); ?>, <?php
       echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>,
-    and finally <a href="http://www.web3d.org/x3d/specifications/vrml/">
-    the official VRML specifications</a>.
+    and finally <a href="http://web3d.org/x3d/specifications/">
+    the official X3D specifications</a>.
 
   <li><p><b><?php echo a_href_page(
     "Kanim (Kambi VRML engine animations)", 'kanim_format'); ?></b> format

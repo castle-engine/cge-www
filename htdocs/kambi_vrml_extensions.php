@@ -798,6 +798,10 @@ Shape {
     You're free to include VRML 1.0 file inside VRML 2.0 file, or X3D,
     or the other way around. Everything works.
 
+    <p>This also works for jumping to scenes by clicking on an
+    <tt>Anchor</tt> node &mdash; you can make an <tt>Anchor</tt> to any
+    VRML version, or a 3DS, Collada etc. file.
+
 <?php echo $toc->html_section(); ?>
 
     <?php

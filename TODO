@@ -1,25 +1,12 @@
-- fix extensions, post to Joerg
-
 Next WWW update:
-- finish X3D:
-  - update all WWW pages, view3dscene.php features.
-    vrml_implementation_status updated.
+- vrml_engine_doc is somewhat updated about X3D, update more, and regerenate output
 
-  - vrml_engine_doc is somewhat updated, update more, and regerenate output
-
-- Hopefully next engine releasew will support events, with interpolators and at least most basic sensors (TimeSensor, TouchSensor, KeySensor).
-
-  after events done:
-  - time-dependent nodes shouldn't be active at start, it seems, following
-    "Time (0.0) is equivalent to 00:00:00 GMT January 1, 1970"
-    and
-    "When a time-dependent node is read from a X3D file and the ROUTEs specified within the X3D file have been established, the node should determine if it is active and, if so, generate an isActive TRUE event and begin generating any other necessary events. However, if a node would have become inactive at any time before the reading of the X3D file, no events are generated upon the completion of the read."
-
-    It seems that this means that time = today is above any movie length,
-    so non-looping movie should not play at start with default MovieTexture values?
-
+- generate and upload new vrml_engine_doc
+- generate and upload new apidoc
+- check html validity and links, since a lot changed
 Text for next update:
 
 After next update:
 - update view3dscene description of freshmeat, to include Collada and X3D.
+  Also, specify more open that it's "VRML / X3D browser, and viewer for other 3D formats"
 - check does kambi_lines work on Windows in ii 107 now.

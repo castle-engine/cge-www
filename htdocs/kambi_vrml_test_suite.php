@@ -23,18 +23,16 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is a collection of VRML 1.0 and 2.0 (aka VRML 97) demo and test files.
+<p>This is a collection of VRML 1.0, 2.0 (aka VRML 97), X3D and some
+other demo and test files.
 They are (mostly) not pretty models of some "real-world" things.
-Instead they try to test and demonstrate various features of VRML.
+Instead they try to test and demonstrate various features of VRML/X3D.
 At the beginning of each file you can read some
 comments explaining what this file demonstrates.
 
-<p>I created those files to test my VRML (and 3DS, OBJ and GEO) engine,
-used in interactive browser <?php echo a_href_page(
-"view3dscene", "view3dscene") ?>, ray-tracer <?php echo a_href_page(
-"rayhunter", "rayhunter") ?> and a couple of my games.
-However, they should be handled by any VRML 1.0 or 2.0
-viewer closely following appropriate VRML specifications.
+<p>I created those files to test my VRML/X3D engine.
+However, they should be handled by any VRML 1.0, 2.0 or X3D
+browser closely following appropriate VRML specifications.
 
 <p>The exception to the above are files inside <tt>kambi_extensions/</tt>
 subdirectiories (<tt>vrml_1/kambi_extensions/</tt> and
@@ -42,8 +40,8 @@ subdirectiories (<tt>vrml_1/kambi_extensions/</tt> and
 Some files there may not be readable by other VRML browsers,
 as they test and demonstrate some of <?php echo a_href_page("Kambi
 VRML extensions", "kambi_vrml_extensions"); ?>.
-Although some of VRML 2.0 extensions used are preceeded by appropriate
-<tt>EXTERNPROTO</tt> statements, so every conforming VRML 2.0 browser
+Although some of VRML &gt;= 2.0 extensions used are preceeded by appropriate
+<tt>EXTERNPROTO</tt> statements, so every conforming VRML &gt;= 2.0 browser
 should be able to at least gracefully omit them.</p>
 
 <p>Also files inside <tt>kanim/</tt> subdirectory demonstrate usage

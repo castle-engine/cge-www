@@ -44,12 +44,17 @@ Features include:</p>
 
 <ul>
   <li><b>Optimized OpenGL rendering</b> of models in
-    <b>VRML 1.0 and 2.0 (aka VRML 97)</b> formats.</li>
+    <b>VRML 1.0, 2.0 (aka VRML 97) and X3D</b> formats.
+    Including support for advanced VRML/X3D features like prototypes and
+    events (user can interact with the 3D world).</li>
 
   <li><b>3DS, MD3, Wavefront OBJ, Collada</b> file formats are also supported.
     They can be loaded, and converted to VRML.</li>
 
-  <li><b>Animations</b> are supported, by interpolation.</li>
+  <li><b>Animations</b> are supported,
+    <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
+    interactive animation interpolated at runtime,
+    or precalculated animation for fast playback.</li>
 
   <li>Octrees are used for various <b>collision detection</b> tasks.</li>
 

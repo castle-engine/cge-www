@@ -15,17 +15,18 @@
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
 <p><b>For developers:</b> this is a free/open-source engine
-that is especially oriented towards working with VRML / X3D worlds
-(although other model formats are also supported).
+that is especially oriented towards working with
+<a href="http://web3d.org/">VRML / X3D</a> worlds
+(although other 3D model formats are also supported).
 For more information, documentation and downloads for developers
 see <a href="#support">lower on this page</a>.</p>
 
 <p><b>For normal human beings:</b> this page is a collection of various
-games and tools. They were developed using the VRML game engine,
-but you don't really need to know what VRML is in order to use them.
+games and tools developed using our engine. <!--Most of them
+are somewhat related to 3D graphics.-->
 Two most important programs available here are
 <a href="castle.php">"The Castle"</a> game and
-<a href="view3dscene.php">view3dscene</a> 3D model viewer.
+<a href="view3dscene.php">view3dscene</a> 3D model viewer.</p>
 
 <p><b>Latest update:</b>
 
