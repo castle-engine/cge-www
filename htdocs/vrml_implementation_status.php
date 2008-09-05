@@ -528,18 +528,32 @@ All nodes and features are handled, with the exception of:
     <!-- Relative paths are resolved with respect to the path of originating
          VRML file. -->
 
-  <li><tt>AsciiText</tt> node's triangles and vertices are not counted
-    when writing triangles and vertices counts of the scene.
-    <tt>width</tt> field is ignored.
-
-  <li>We can't change current scene clicking on <tt>WWWAnchor</tt>
-    nodes (this should be easy to do now, when I implemented
-    "Open" menu item).
+  <li><tt>AsciiText.width</tt> is ignored.
 
   <li>Value of <tt>height</tt> / <tt>heightAngle</tt> fields of camera
     nodes are ignored.
 
-    <p><tt>focalDistance</tt> is also ignored, but this
+  <li>I'm always rendering the nearest (first) child of <tt>LOD</tt> node.
+    Therefore I'm potentially losing some optimization if the scene
+    has reasonably designed <tt>LOD</tt> nodes.
+</ul>
+
+<p><b>VRML 1.0 features that will probably never be implemented,
+as they are replaced with much better mechanisms in newer VRML versions:</b>
+
+<ul>
+  <li><p><tt>AsciiText</tt> node's triangles and vertices are not counted
+    when writing triangles and vertices counts of the scene.
+    This is actually somewhat Ok, as later VRML specs say explicitly that
+    Text nodes do not participate in collision detection
+    (so they do not have triangles/vertices for collision detection,
+    only for rendering).
+
+  <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
+    <tt>Anchor</tt> instead, implementing old VRML 1.0 anchor is not worth
+    the trouble and would unnecessarily obfuscate the code).
+
+  <li><p>Camera <tt>focalDistance</tt> is also ignored, but this
     is allowed by specification. And honestly VRML 1.0 specification
     is so ambiguous about this feature (<i>browser should adjust
     flying speed to reach that point in a reasonable amount of time</i>,
@@ -550,10 +564,6 @@ All nodes and features are handled, with the exception of:
     feature, with clear meaning (basically, it's just a distance per second),
     so please use this instead. (For my engine, you can use
     <tt>NavigationInfo</tt> node even in VRML 1.0 models.)
-
-  <li>I'm always rendering the nearest (first) child of <tt>LOD</tt> node.
-    Therefore I'm potentially losing some optimization if the scene
-    has reasonably designed <tt>LOD</tt> nodes.
 
   <li><p>Extensibility features (<tt>isA</tt> and <tt>fields</tt>) are not handled
     fully, although you probably will not notice. For built-in nodes,
