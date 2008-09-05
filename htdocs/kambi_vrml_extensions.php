@@ -65,10 +65,10 @@ $toc = new TableOfContents(array(
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
   new TocItem('Other Avalon extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
-  new TocItem('Mixing VRML 1.0 and 2.0 nodes and features', 'ext_mix_vrml_1_2', 2),
+  new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 2),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 2),
-  new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML version', 'ext_inline_for_all', 2),
+  new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML/X3D version', 'ext_inline_for_all', 2),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 2),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 2),
   new TocItem('Node <tt>NavigationInfo</tt> handling details', 'ext_navigationinfo', 2),
@@ -631,14 +631,14 @@ Shape {
 
 <?php echo $toc->html_section(); ?>
 
-    Because of the way how I implemented VRML 1.0 and 2.0 handling,
-    you have effectively the <i>sum of VRML 1.0 and 2.0 features</i>
-    available. Which means that actually you can mix VRML 1.0 and 2.0
-    nodes to some extent. If given node name exists in both VRML versions,
-    then VRML file header defines how the node behaves. Otherwise,
-    node behaves according to it's VRML specification.
+    Because of the way how I implemented VRML 1.0, 2.0 and X3D handling,
+    you have effectively the <i>sum of all VRML features</i>
+    available. Which means that actually you can mix VRML 1.0 and 2.0 and X3D
+    nodes to some extent. If given node name exists in two VRML/X3D versions,
+    then VRML/X3D file header defines how the node behaves. Otherwise,
+    node behaves according to it's VRML/X3D specification.
 
-    <p>For example, this means that a couple of VRML 2.0 nodes
+    <p>For example, this means that a couple of VRML 2.0/X3D nodes
     are available (and behave exactly like they should) also for VRML 1.0
     authors:
     <ul>
@@ -650,10 +650,13 @@ Shape {
 
     <p>Also VRML 1.0 things are available in VRML 2.0, e.g.
     <tt>OrthographicCamera</tt> (this is one thing not available
-    to say to in VRML 2.0 specification).
+    in VRML 2.0 specification; although for X3D
+    you should rather use standard <tt>OrthoViewpoint</tt>).</p>
+
+    <p>Also things like GLSL shaders (from X3D) are available in VRML 97.
 
     <p>You can also <a href="#ext_inline_for_all">freely include
-    VRML 1.0 files inside VRML 2.0, or the other way around</a>.
+    VRML 1.0 files inside VRML 2.0, or X3D, or the other way around</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -782,17 +785,17 @@ Shape {
 
 <?php echo $toc->html_section(); ?>
 
-    Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControls</tt> in VRML 2.0
+    Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControl</tt> in VRML &gt;= 2.0
     and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
     other VRML files, but also other 3DS, MD3, Wavefront OBJ, Collada models.
-    Internally, all those formats are converted to VRML before
+    Internally, all those formats are converted to VRML/X3D before
     displaying anyway. If you want to precisely know how the conversion
-    to VRML goes, you can always do the explicit conversion to VRML
+    to VRML/X3D goes, you can always do the explicit conversion to VRML/X3D
     by using "<i>Save as VRML</i>"
     <?php echo a_href_page("view3dscene", "view3dscene") ?> command.
 
     <p>Also, you can freely mix VRML versions when including.
-    You're free to include VRML 1.0 file inside VRML 2.0 file,
+    You're free to include VRML 1.0 file inside VRML 2.0 file, or X3D,
     or the other way around. Everything works.
 
 <?php echo $toc->html_section(); ?>
