@@ -87,19 +87,38 @@ You will also need
 
 <ul>
   <li>
-    <p><b>Unix (Linux, FreeBSD, Mac OS X):</b></p>
+    <p><b>Linux, FreeBSD:</b></p>
 
     <p>To hear game sounds you should first
     <?php echo a_href_page_hashlink('install OpenAL', 'openal_notes',
     'section_install'); ?> and vorbisfile library.
-    Be sure to install <tt>libvorbis-dev</tt> package
-    (i.e. with developers symlinks) too &mdash; that's because of
-    OpenAL's dumb behavior (without <tt>libvorbis-dev</tt> package
-    OpenAL reports that vorbis extension is present, but it will actually fail
-    to use it). <i>If you don't want to hear sounds, you don't have to install
+    If installing the older OpenAL <i>Sample Implementation from Loki</i>
+    be sure to install also <tt>libvorbis-dev</tt> package
+    (i.e. with developers symlinks) too (otherwise SI reports that
+    vorbis extension is present, but will fail to use it).
+    This problem is not present with newer OpenAL-Soft,
+    as it doesn't have vorbis extension and we will use our own
+    handling then.
+    <i>If you don't want to hear sounds, you don't have to install
     OpenAL.</i></p>
 
     <p>Installing actual game: extract downloaded archive to
+    <tt>/usr/local/share/castle/</tt> or <tt>$HOME/.castle.data/</tt>.
+    You can move or symlink the executable <tt>castle</tt> to any place
+    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
+
+    <p>Run the game by running <tt>castle</tt>.</p></li>
+
+  <li>
+    <p><b>Mac OS X:</b></p>
+
+    <p>The game requires X11 server, libpng and (if you want to hear
+    sound) OpenAL with vorbisfile. See <?php echo a_href_page(
+    'Mac OS X dependencies', 'macosx_requirements'); ?> for simple
+    instructions how to get them.</p>
+
+    <p>Install actual game like
+    on any other Unix: extract downloaded archive to
     <tt>/usr/local/share/castle/</tt> or <tt>$HOME/.castle.data/</tt>.
     You can move or symlink the executable <tt>castle</tt> to any place
     you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
