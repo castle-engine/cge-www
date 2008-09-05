@@ -1,6 +1,4 @@
 Next WWW update:
-- vrml_engine_doc is somewhat updated about X3D, update more, and regerenate output
-
 - generate and upload new vrml_engine_doc
 - generate and upload new apidoc
 - check html validity and links, since a lot changed
