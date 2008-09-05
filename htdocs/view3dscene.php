@@ -168,7 +168,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     path tracera Monte Carlo uwzglêdniamy fizyczne w³a¶ciwo¶ci materia³u
     i powierzchniowe ¼ród³a ¶wiat³a których wynikiem s± dodatkowe efekty
     w rodzaju pó³cieni i krwawienia kolorów). -->
-  <li>You can inspect your model (select triangles with left mouse click
+
+  <li><p>You can inspect your model (select triangles by clicking
+    <i>right mouse button</i> in <i>Walk</i> mode,
     and use menu item <i>Help</i> -> <i>Selected object information</i>).
 
     <p>There are also very limited editing capabilities. They are
@@ -177,16 +179,27 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
   <li><p>Interactive animations may be played from VRML / X3D events and
     interpolations. Precalculated animations are played from
-    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files.
-    (Animations recorded inside Collada files are not played yet).</p>
+    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
+    (and you can convert any interactive VRML/X3D animation to precalculated one).
+    <!-- Mentioned in futures above about Collada, keep this text short.
+    Animations recorded inside Collada files are not played yet. --></p>
 
-    <p>There's one small caveat with animations right now:
+    <p>You can activate VRML pointing-device sensors by clicking with
+    <i>left mouse button</i> (the cursor will change shape and you will
+    get status information when your cursor is over some clickable sensor).
+    Note that this works only in <i>Walk</i> mode and only when <i>Collision
+    detection</i> is on (as it requires octree).
+
+    <p>Note that for now collision checking is somewhat problematic during
+    animations, since our octree is static and rebuilding it is costly.
+    As a temporary solution, for precalculated animations
     some features (collision checking, mouse picking,
     ray-tracer &mdash; everything that requires some octree) always use the
-    <i>first animation frame</i> for precalculated animations,
+    <i>first animation frame</i>,
     regardless of current animation frame displayed.
     And for interactive animations, recalculation of octree may slow
-    them down a lot, so it may have to be turned off.</p>
+    them down a lot, so it may have to be temporarily turned off during
+    intensive animations.</p>
 
   <li><p>There are menu items and <a href="#section_screenshot">command-line
     options to catch screenshots and movies
@@ -369,7 +382,9 @@ command-line option (look below) or using menu item "Change camera up vector".
   <tr><td>Ctrl + PageUp / PageDown</td>
       <td>raise / bow your head <i>slower</i></td></tr>
   <tr><td>Left mouse click</td>
-      <td>pick point, selecting triangle and object</td></tr>
+      <td>activate VRML/X3D sensor, to interact with VRML world</td></tr>
+  <tr><td>Right mouse click</td>
+      <td>pick a point, selecting triangle and object</td></tr>
 </table>
 
 <p>Now, there's a lot of keys that work independent of current navigation
