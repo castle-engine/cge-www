@@ -96,7 +96,20 @@ source code</a> instructions.
     that you get all you can from OpenAL.
 
     <dl>
-      <dt>Linux and FreeBSD users with OpenAL SI implementation:</dt>
+      <dt>Linux and FreeBSD users with OpenAL-Soft (newer) implementation:</dt>
+
+      <dd><p>The default device selected on Linux should usually be ALSA,
+        and should work just perfect on modern systems.</p>
+
+        <p>That said, you can check various available devices and
+        try them out. Enumerating available devices (for example by
+        <tt> --print-audio-devices</tt> command-line option
+        or <i>Sound output device</i> menu item in
+        <?php echo a_href_page('The Castle', 'castle'); ?>) should work.
+        You can select and try other devices.</p>
+      </dd>
+
+      <dt>Linux and FreeBSD users with OpenAL Sample (older) implementation:</dt>
       <dd><p>Usual OpenAL implementation will have the following
         devices available:
 
