@@ -483,6 +483,12 @@ used.
     Also <tt>time</tt> is generated, and
     <tt>fraction_changed</tt> simply generates elapsedTime / cycleInterval value.
     This is quite Ok for common simple uses.
+
+  <li><p><tt>TouchSensor</tt>
+
+    <p><i>TODO</i>: <tt>hitTexCoord_changed</tt> is not working,
+    and <tt>hitNormal_changed</tt> generates only the flat (per-face) normal.
+    Everything else works perfectly, which should be Ok for typical uses.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
