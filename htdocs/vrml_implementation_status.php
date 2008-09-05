@@ -485,6 +485,13 @@ used.
     <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
     elapsedTime / cycleInterval value. This is quite Ok for most uses.
 
+    <p>As for "time origin" in our engine, this follows VRML standard
+    (time origin is "January 1, 1970"), but it can be changed
+    by <?php echo a_href_page_hashlink(
+    'our extension <tt>KambiNavigationInfo.timeOriginAtLoad</tt>',
+    'kambi_vrml_extensions',
+    'section_ext_time_origin_at_load'); ?>.
+
   <li><p><tt>TouchSensor</tt>
 
     <p><i>TODO</i>: <tt>hitTexCoord_changed</tt> is not working,

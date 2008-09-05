@@ -63,6 +63,7 @@ $toc = new TableOfContents(array(
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
+  new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
   new TocItem('Other Avalon extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
@@ -515,6 +516,32 @@ Shape {
   }
 }
 </pre>
+
+<?php echo $toc->html_section(); ?>
+
+    <p>By default, VRML/X3D time origin is at <i>00:00:00 GMT January 1, 1970</i>
+    and <tt>SFTime</tt> reflects real-world time (taken from your OS).
+    <?php echo a_href_page('This is somewhat broken idea in my opinion',
+    'vrml_time_origin_considered_uncomfortable'); ?>, unsuitable
+    for normal single-user games. So you can change this by using
+    <tt>KambiNavigationInfo</tt> node:
+
+    <?php
+      echo node_begin('KambiNavigationInfo');
+      $node_format_fd_name_pad = 18;
+      echo
+      node_dots('all normal NavigationInfo fields') .
+      node_field('field', 'SFBool', 'timeOriginAtLoad', 'FALSE') .
+      node_end();
+    ?>
+
+    <p>The default value, <tt>FALSE</tt>, means the standard VRML behavior.
+    When <tt>TRUE</tt> the time origin for this VRML scene is considered
+    to be 0.0 when browser loads the file. For example this means that you can
+    easily specify desired <tt>startTime</tt> values for time-dependent nodes
+    (like <tt>MovieTexture</tt> or <tt>TimeSensor</tt>)
+    to start playing at load time, or a determined number of seconds
+    after loading of the scene.
 
 <?php echo $toc->html_section(); ?>
 

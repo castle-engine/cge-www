@@ -147,3 +147,39 @@ PROTO Teapot [
     metadata IS metadata
   }
 }
+
+# See http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load
+PROTO KambiNavigationInfo [
+
+  # Standard X3D NavigationInfo fields/events
+  input       SFBool   set_bind
+  inputOutput MFFloat  avatarSize      [0.25 1.6 0.75]
+  inputOutput SFBool   headlight       TRUE
+  inputOutput SFNode   metadata        NULL
+  inputOutput SFFloat  speed           1.0
+  inputOutput SFTime   transitionTime  1.0
+  inputOutput MFString transitionType  ["LINEAR"]
+  inputOutput MFString type            ["EXAMINE" "ANY"]
+  inputOutput SFFloat  visibilityLimit 0.0
+  output      SFTime   bindTime
+  output      SFBool   isBound
+  output      SFBool   transitionComplete
+
+  # Kambi extension, will be ignored
+  initializeOnly  SFBool   timeOriginAtLoad  FALSE
+] {
+  NavigationInfo {
+    set_bind              IS  set_bind
+    avatarSize            IS  avatarSize
+    headlight             IS  headlight
+    metadata              IS  metadata
+    speed                 IS  speed
+    transitionTime        IS  transitionTime
+    transitionType        IS  transitionType
+    type                  IS  type
+    visibilityLimit       IS  visibilityLimit
+    bindTime              IS  bindTime
+    isBound               IS  isBound
+    transitionComplete    IS  transitionComplete
+  }
+}

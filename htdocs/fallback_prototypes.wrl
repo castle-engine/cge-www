@@ -132,3 +132,28 @@ PROTO Teapot [
 
   Group { }
 }
+
+PROTO KambiNavigationInfo [
+
+  # Standard VRML 97 NavigationInfo fields/events
+  eventIn      SFBool   set_bind
+  exposedField MFFloat  avatarSize      [0.25 1.6 0.75]
+  exposedField SFBool   headlight       TRUE
+  exposedField SFFloat  speed           1.0
+  exposedField MFString type            ["WALK" "ANY"]
+  exposedField SFFloat  visibilityLimit 0.0
+  eventOut     SFBool   isBound
+
+  # Kambi extension, will be ignored
+  field SFBool   timeOriginAtLoad       FALSE
+] {
+  NavigationInfo {
+    set_bind              IS  set_bind
+    avatarSize            IS  avatarSize
+    headlight             IS  headlight
+    speed                 IS  speed
+    type                  IS  type
+    visibilityLimit       IS  visibilityLimit
+    isBound               IS  isBound
+  }
+}

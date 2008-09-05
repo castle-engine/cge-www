@@ -196,6 +196,10 @@ remember to attach to your bug report output of the
     how current VRML rendering optimization works,
     what are the possible drawbacks and what are the possible
     alternatives (and what drawbacks are hidden in those alternatives :)</a>.
+  <li><?php echo a_href_page('VRML / X3D time origin considered uncomfortable',
+    'vrml_time_origin_considered_uncomfortable'); ?>
+    &mdash; a small Michalis' rant about one detail of VRML/X3D specifications,
+    and how we deal with this in our engine.
 </ul>
 
 <p>And some more information, randomly related to the engine and
