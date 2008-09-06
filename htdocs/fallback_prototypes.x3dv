@@ -152,7 +152,7 @@ PROTO Teapot [
 PROTO KambiNavigationInfo [
 
   # Standard X3D NavigationInfo fields/events
-  input       SFBool   set_bind
+  inputOnly   SFBool   set_bind
   inputOutput MFFloat  avatarSize      [0.25 1.6 0.75]
   inputOutput SFBool   headlight       TRUE
   inputOutput SFNode   metadata        NULL
@@ -161,9 +161,9 @@ PROTO KambiNavigationInfo [
   inputOutput MFString transitionType  ["LINEAR"]
   inputOutput MFString type            ["EXAMINE" "ANY"]
   inputOutput SFFloat  visibilityLimit 0.0
-  output      SFTime   bindTime
-  output      SFBool   isBound
-  output      SFBool   transitionComplete
+  outputOnly  SFTime   bindTime
+  outputOnly  SFBool   isBound
+  outputOnly  SFBool   transitionComplete
 
   # Kambi extension, will be ignored
   initializeOnly  SFBool   timeOriginAtLoad  FALSE
