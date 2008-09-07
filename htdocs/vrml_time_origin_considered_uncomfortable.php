@@ -84,7 +84,7 @@ is loaded".
     or to any other value you want. For example, setting it to some
     large but determined value, like exactly a million, allows
     you to work correctly with standard animations and at the same
-    time be able to express <tt>startTime</tt> relative to loading time.
+    time you're able to express <tt>startTime</tt> relative to loading time.
 
   <li><p>Large time values are not nice to show to the user.
     It's strange to average user to see time value like
@@ -99,7 +99,7 @@ is loaded".
 
     <p>To remedy this at least a little, view3dscene displays time
     as <i>World time: load time + %f = %f</i> for standard VRML files
-    (that do not use <tt>timeOriginAtLoad</tt>).
+    (that do not use <tt>timeOriginAtLoad = TRUE</tt>).
     This way user sees also the simpler time (since load).
 
   <li><p>A minor problem is also that user doesn't expect
