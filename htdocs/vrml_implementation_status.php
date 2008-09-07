@@ -424,6 +424,17 @@ used.
         default values, which means that the text is not stretched).
     </ul>
 
+    <p><tt>Text</tt> is "clickable" within
+    <tt>Anchor</tt> and <tt>TouchSensor</tt> nodes.
+    Although I didn't find any mention in the specifications that I should
+    do this, many VRML models seem to assume this.
+    We make an ultra-simple triangulation of the text
+    (just taking 2 triangles to cover whole text, you don't want
+    to produce real triangles for text node, as text node would have
+    a lot of triangles!).<br/>
+    <i>TODO</i>: unfortunately, for now these triangles also participate
+    in collision detection, while spec says that text shouldn't collide.
+
   <li><p><tt>Viewpoint</tt>
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
