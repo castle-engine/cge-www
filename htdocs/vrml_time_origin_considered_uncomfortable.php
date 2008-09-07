@@ -97,6 +97,11 @@ is loaded".
     or as a precalculated animation), and for things
     like <tt>Logger</tt> node output timestamps.
 
+    <p>To remedy this at least a little, view3dscene displays time
+    as <i>World time: load time + %f = %f</i> for standard VRML files
+    (that do not use <tt>timeOriginAtLoad</tt>).
+    This way user sees also the simpler time (since load).
+
   <li><p>A minor problem is also that user doesn't expect
     different behavior of VRML/X3D world depending on the real-world
     time at which it is loaded. True, it opens some interesting
