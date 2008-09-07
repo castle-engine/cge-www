@@ -435,79 +435,90 @@ used.
     <i>TODO</i>: unfortunately, for now these triangles also participate
     in collision detection, while spec says that text shouldn't collide.
 
-  <li><p><tt>Viewpoint</tt>
+  <li><p><tt>Viewpoint</tt></p>
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
     to any defined viewpoint, displaying viewpoints descriptions.
     Extensive tests of various viewpoint properties, includind fieldOfView,
     are inside <?php
       echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
-    in <tt>vrml_2/viewpoint_*.wrl</tt> files.
+    in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
 
   <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>IndexedFaceSet</tt>,
     <tt>Coordinate</tt>, <tt>Color</tt>,
-    <tt>Normal</tt>, <tt>TextureCoordinate</tt>
+    <tt>Normal</tt>, <tt>TextureCoordinate</tt></p>
 
-  <li><p><tt>Billboard</tt>, <tt>Collision</tt>
+  <li><p><tt>Billboard</tt>, <tt>Collision</tt></p>
 
     <p><i>TODO</i>: These two nodes are not really handled:
     they just work like a <tt>Group</tt>. Sometimes that's enough
-    for them to look sensible, but it's hardly a real support...
+    for them to look sensible, but it's hardly a real support...</p>
 
-  <li><p><tt>ElevationGrid</tt>
+    <p>Actually, the simplest case of <tt>Collision.collide = FALSE</tt>
+    (called <tt>enabled</tt> in X3D) is supported Ok.</p>
+
+  <li><p><tt>ElevationGrid</tt></p>
 
     <p><i>TODO</i>: when colors are present and <tt>colorPerVertex</tt>
     is different than <tt>normalPerVertex</tt> (from field or calculated
     based on creaseAngle) then shading results may be incorrect.
     Reasons for this &mdash; see comments about X3D <tt>[Indexed]TriangleFan/StripSet</tt>
-    above on this page.
+    above on this page.</p>
 
     <p><i>TODO</i>: <tt>creaseAngle</tt> is not fully handled:
     we always generate all flat normals (if creaseAngle = 0) or
-    all smooth normals (if creaseAngle &lt;&gt; 0).
+    all smooth normals (if creaseAngle &lt;&gt; 0).</p>
 
   <li><p><tt>Extrusion</tt>
 
-    <p>Works fully.
+    <p>Works fully.</p>
 
   <li><p><tt>ColorInterpolator</tt>, <tt>PositionInterpolator</tt>,
     <tt>PositionInterpolator2D</tt> (X3D), <tt>ScalarInterpolator</tt>,
-    <tt>OrientationInterpolator</tt>
+    <tt>OrientationInterpolator</tt></p>
 
     <p><tt>CoordinateInterpolator</tt>,
-    <tt>CoordinateInterpolator2D</tt> (X3D), <tt>NormalInterpolator</tt>
+    <tt>CoordinateInterpolator2D</tt> (X3D), <tt>NormalInterpolator</tt></p>
 
     <p><i>TODO</i>: Interpolation of ColorInterpolator simply interpolates
     3D vectors, so it interpolates in RGB space (while spec says to interpolate
-    in nice HSV space).
+    in nice HSV space).</p>
 
     <p>Interpolation of OrientationInterpolator simply
-    interpolates 4D vectors, instead of a nice interpolation on the unit sphere.
+    interpolates 4D vectors, instead of a nice interpolation on the unit sphere.</p>
 
     <p>Interpolation of NormalInterpolator simply interpolates
     3D vectors (and normalizes afterwards), instead of
-    a nice interpolation on the unit sphere.
+    a nice interpolation on the unit sphere.</p>
 
-  <li><p><tt>TimeSensor</tt>
+  <li><p><tt>TimeSensor</tt></p>
 
     <p>All common <tt>X3DTimeDependentNode</tt> things
-    are implemented. <tt>enabled</tt> is honoured. <tt>time</tt> is generated.
+    are implemented. <tt>enabled</tt> is honoured. <tt>time</tt> is generated.</p>
 
     <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
-    elapsedTime / cycleInterval value. This is quite Ok for most uses.
+    elapsedTime / cycleInterval value. This is quite Ok for most uses.</p>
 
     <p>As for "time origin" in our engine, this follows VRML standard
     (time origin is "January 1, 1970"), but it can be changed
     by <?php echo a_href_page_hashlink(
     'our extension <tt>KambiNavigationInfo.timeOriginAtLoad</tt>',
     'kambi_vrml_extensions',
-    'section_ext_time_origin_at_load'); ?>.
+    'section_ext_time_origin_at_load'); ?>.</p>
 
   <li><p><tt>TouchSensor</tt>
 
     <p><i>TODO</i>: <tt>hitTexCoord_changed</tt> is not working,
     and <tt>hitNormal_changed</tt> generates only the flat (per-face) normal.
-    Everything else works perfectly, which should be Ok for typical uses.
+    Everything else works perfectly, which should be Ok for typical uses.</p>
+
+  <li><p><tt>ProximitySensor</tt></p>
+
+    <p><i>TODO</i>: <tt>orientation_changed</tt> and <tt>centerOfRotation_changed</tt>
+    are not generated. Rest works Ok, according to spec. Timestamps
+    for isActive, enter/exitTime are not interpolated (they are simply
+    timestamps when this was detected), this shouldn't be a problem in
+    typical uses.</p>
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
