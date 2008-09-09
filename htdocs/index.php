@@ -206,6 +206,8 @@ remember to attach to your bug report output of the
 the programs developed with it:</p>
 
 <ul>
+  <li><a href="http://apps.sourceforge.net/mediawiki/vrmlengine/">Wiki
+    of Kambi VRML game engine</a>
   <li><?php echo a_href_page(
     "Blender VRML stuff", "blender_stuff"); ?></li>
   <li><?php echo a_href_page(
