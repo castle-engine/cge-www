@@ -666,7 +666,7 @@ on numerous VRML models available on the WWW. -->
     don't be discouraged by many failures in <tt>PROTO</tt> category.
     Prototypes were 100% working in all tests, and I consider their
     implementation as practically finished.
-    But many other missing features (sensors, events, interpolators)
+    But unrelated things like missing <tt>Script</tt> support
     prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
 
 <?php
@@ -1306,7 +1306,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
       </tr>
 
       <tr>
-        <td rowspan="41">Misc</td>
+        <td rowspan="48">Misc</td>
         <td rowspan="18">EXTERNPROTO</td>
         <td>1</td>
         <td class="pass">+</td>
@@ -1375,22 +1375,19 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
       </tr>
       <tr>
         <td>16</td>
-        <td class="fail">-</td>
-        <td rowspan="3">
-          Static result is OK, but sensors, interpolators and events do not
-          work yet.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>17</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>18</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
 
       <tr>
-        <td rowspan="23">PROTO</td>
+        <td rowspan="30">PROTO</td>
         <td>1</td>
         <td class="pass">+</td>
       </tr>
@@ -1404,51 +1401,48 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
       </tr>
       <tr>
         <td>4</td>
-        <td class="fail">-</td>
-        <td>Static renders OK, but sensors, events and routes don't do anything (yet),
-          so touch sensor doesn't turn the light on.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>5</td>
-        <td class="fail">-</td>
-        <td>Like case 4.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>6</td>
         <td class="pass">+</td>
+        <td>(It links to unrelated Text test that works?)</td>
       </tr>
       <tr>
         <td>7A</td>
-        <td class="fail">-</td>
-        <td>Static renders OK, but sensors, events, routes, interpolators
-          don't do anything (yet).</td>
+        <td class="pass">+</td>
+        <td>Result is Ok, but we do not handle SphereSensor,
+          Sound, AudioClip nodes (yet).</td>
       </tr>
       <tr>
         <td>7B</td>
         <td class="fail">-</td>
-        <td>Static renders OK, but sensors, events, routes, interpolators
-          don't do anything (yet).</td>
+        <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).
+          Also Billboard is crude, although this is not noticeable here.
+        </td>
       </tr>
       <tr>
         <td>7C</td>
         <td class="fail">-</td>
-        <td>Static renders OK, but Collision and interpolators
-          don't do anything (yet).</td>
+        <td>Static result seems Ok, but we do not handle VisibilitySensor
+          and Collision.collideTime is not generated (yet).</td>
       </tr>
       <tr>
         <td>7D</td>
-        <td class="fail">-</td>
-        <td rowspan="3">I didn't even bother testing, like above:
-          they use sensors, interpolators and MovieTexture that are not
-          implemented yet.
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>7E</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>7F</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
+        <td>Result is Ok, although actually we do not handle PlaneSensor (yet).</td>
       </tr>
       <tr>
         <td>7G</td>
@@ -1456,35 +1450,41 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
       </tr>
       <tr>
         <td>7H</td>
-        <td class="fail">-</td>
-        <td><tt>TouchSensor</tt> and <tt>Script</tt> not implemented yet.</td>
+        <td class="pass">+</td>
+        <td>Result is Ok, although actually we do not handle Script (yet).</td>
       </tr>
       <tr>
         <td>7I</td>
-        <td class="invalid">?</td>
-        <td>The test file causes recursive inline, so the file cannot be loaded.
-          Our engine loads files "eagerly", so it simply hangs.
-          It should exit with nice error message, this should be fixed.</td>
+        <td class="pass">-</td>
+        <td>But we do not handle LOD (yet), rendering always the first child.
+          This is valid (although non-optimal) with respect to spec, AFAIK?
+          (But will be improved anyway in the future.)
       </tr>
       <tr>
         <td>7J</td>
-        <td class="fail">-</td>
-        <td rowspan="2">Like case 7A.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>7K</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
 
       <tr>
         <td>8</td>
         <td class="fail">-</td>
-        <td rowspan="2">Static renders OK, but sensors, events, routes, interpolators
-          don't do anything (yet).</td>
+        <td>Although the tested features work Ok, there is a problem
+          (unrelated to protos) with
+          activating TouchSensor when SphereSensor is also enabled.
+          We should activate them both simultaneously, currently
+          only one (SphereSensor in this case, since it's first)
+          is activated.</td>
       </tr>
       <tr>
         <td>9</td>
         <td class="fail">-</td>
+        <td>Tested features work perfectly. But VisibilitySensor
+        is not handled (yet), so animation doesn't start (you can replace
+        it by e.g. ProximitySensor with large sizes, and animation will work).
       </tr>
       <tr>
         <td>10</td>
@@ -1492,18 +1492,16 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
       </tr>
       <tr>
         <td>11</td>
-        <td class="fail">-</td>
-        <td rowspan="2">Events etc. do not work yet.</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>12</td>
-        <td class="fail">-</td>
+        <td class="pass">+</td>
       </tr>
       <tr>
         <td>13</td>
         <td class="pass">+</td>
       </tr>
-      <!--
       <tr>
         <td>14</td>
         <td class="pass">+</td>
@@ -1532,7 +1530,6 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
         <td>20</td>
         <td class="pass">+</td>
       </tr>
-      -->
 
       <tr>
         <td colspan="5"><i>That's enough for now...
