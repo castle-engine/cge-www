@@ -62,10 +62,11 @@ function this_a_href_page($title, $page_name)
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
-"<p>I'm pleased to present the achievement of my last 6 months of work:
-" . this_a_href_page('view3dscene 3.0', 'view3dscene') . " is released,
-along with " . this_a_href_page('underlying Kambi VRML engine 1.4.0', 'kambi_vrml_game_engine') . "
-release and minor releases of other programs.</p>
+"<p>I'm pleased to present the new, shiny
+" . this_a_href_page('view3dscene 3.0', 'view3dscene') . " release,
+with a lot of new <a href=\"http://www.web3d.org/\">VRML/X3D</a> features
+implemented. Also " . this_a_href_page('underlying Kambi VRML game engine 1.4.0', 'kambi_vrml_game_engine') . "
+is released and some other programs here get minor updates.</p>
 
 <p>New features of the engine and view3dscene:</p>
 
@@ -91,9 +92,9 @@ release and minor releases of other programs.</p>
     Our " . this_a_href_page('VRML implementation status', 'vrml_implementation_status') . "
     page has detailed information about supported features.</p></li>
 
-  <li><p><b>Events mechanism</b> (routes, sensors, interpolators etc.)
-    is implemented. This allows you to define animations and interactions
-    of 3D world within single VRML/X3D file, as envisioned in
+  <li><p><b>Events mechanism</b> (routes, exposed events, sensors, interpolators etc.)
+    is implemented. This allows you to define interactions and animations
+    of 3D world within a single VRML/X3D file, as envisioned in
     the specifications.</p>
 
     <p>Four basic sensors are implemented now: <tt>TimeSensor</tt>,
@@ -107,12 +108,14 @@ release and minor releases of other programs.</p>
     (including useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\">Passing
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
     for VRML 97) work too.
     Prototypes and external prototypes also work 100% with events according
-    to specification, so you can pass events to/from prototypes.</p></li>
+    to specification, so you can pass events to/from prototypes.
+    New " . this_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
+    has some simple demos of our events implementation.</p></li>
 
   <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
     to load movie from a sequence of images (with possible alpha
@@ -123,17 +126,16 @@ release and minor releases of other programs.</p>
   <li><p><b>Recording movies</b> from view3dscene is possible.
     This allows recording 3D animations to a movie file
     (with perfect quality, as opposed to using independent
-    programs that capture OpenGL output).</p>
+    programs that capture OpenGL output).</p></li>
 
-    <p><a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/view3dscene_thumbnailer_demo.png\">
+  <li><p><a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/view3dscene_thumbnailer_demo.png\">
     <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png\"
     alt=\"&quot;view3dscene&quot; as nautilus thumbnailer\" /></a>
     <a href=\"http://www.gnome.org/\">GNOME</a> users will be happy to
     hear that view3dscene can be easily used as nautilus thumbnailer,
-    so you can see thumbnails of your VRML / X3D and other 3D model files.
-    This is another advantage of how new screenshot options work.</p></li>
+    so you can see thumbnails of your VRML / X3D and other 3D model files.</p></li>
 
-  <li><p>And many other features, like
+  <li><p>Many other features, including
     <ul>
       <li><tt>Extrusion</tt> node handling,</li>
       <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
@@ -156,7 +158,10 @@ release and minor releases of other programs.</p>
     animating with standard VRML/X3D interpolators,
     defining level interactions by VRML events etc.</li>
 </ul>
-"),
+
+<p>Have fun! You may also enjoy reading <a href=\"http://news.hiperia3d.com/2008/09/interview-michalis-kamburelis-developer.html\">an
+interview with me about our VRML engine on Hiperia3D News (regards go to
+Jordi R. Cardona!)</a>.</p>"),
 
     array('title' => 'VRML / X3D events and routes implemented',
           'year' => 2008,
