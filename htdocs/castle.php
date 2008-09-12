@@ -66,9 +66,20 @@ wait only once for "Loading creatures").
 
 <h2><a name="section_download">Download</a></h2>
 
-<?php echo_standard_program_download(
+<p><i>"The Castle" 0.8.2, released 2008-09-12, is not yet uploaded
+(it takes a while...). For now, you can download 0.8.1 version.
+0.8.2 should be uploaded tomorrow, then download links below will be updated.</i>
+
+<?php 
+  echo_standard_program_download(
+  '"The Castle", version 0.8.1', 'castle',
+  '0.8.1', $std_releases_post_1_2_0); 
+/*
+  echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
-  VERSION_CASTLE, $std_releases_post_1_2_0); ?>
+  VERSION_CASTLE, $std_releases_post_1_2_0); 
+*/
+?>
  See <?php echo a_href_page('changes_log', 'changes_log') ?>
  for the list of changes since last release.
 
