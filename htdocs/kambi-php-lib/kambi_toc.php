@@ -92,7 +92,7 @@ class TableOfContents {
        first <ol> and will initialize $current_number to '1'. */
     $current_number = '';
 
-    foreach($this->items as $toc_item)
+    foreach($this->items as $toc_item_key => $toc_item)
     {
       $now_nesting = $toc_item->nesting;
 
@@ -123,7 +123,19 @@ class TableOfContents {
           'nesting of successfull items must differ at most by 1');
       }
 
-      $toc_item->number = $current_number;
+      /* This doesn't work on SourceForge (does nothing), possibly related
+         to PHP 4:
+
+            $toc_item->number = $current_number;
+
+         Foreach operates on copy of the array, although I would think that
+         only $toc_item reference is copied. Anyway, PHP 5 has syntax
+
+           foreach($this->items as &$toc_item)
+
+         (ampersand before $toc_item) but this is not for PHP 4.
+         Hack below works always, as we explicitly index original array: */
+      $this->items[$toc_item_key]->number = $current_number;
 
       $old_nesting = $now_nesting;
     }
