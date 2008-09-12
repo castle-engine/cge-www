@@ -1,4 +1,16 @@
 Next WWW update:
+- on each platform:
+  compile and test and package new:
+    castle 0.8.2
+    lets_take_a_walk 1.2.2
+    view3dscene 3.0.0
+    rayhunter 1.2.3
+    glViewImage 1.2.3
+    glcaps + glcaps_glut 1.1.3
+  package new:
+    kambi_vrml_game_engine 1.4.0
+    kambi_vrml_test_suite 2.2.0
+
 - generate and upload new vrml_engine_doc
 - generate and upload new apidoc
 - check html validity and links, since a lot changed
