@@ -107,14 +107,14 @@ release and minor releases of other programs.</p>
     (including useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\"</a>Passing
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\">Passing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
     for VRML 97) work too.
     Prototypes and external prototypes also work 100% with events according
     to specification, so you can pass events to/from prototypes.</p></li>
 
-  <li><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
+  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
     to load movie from a sequence of images (with possible alpha
     channel)</a>, this is great for pre-rendered animations of flames, smoke etc.
     Normal movie formats are also handled if <a href=\"http://ffmpeg.mplayerhq.hu/\">ffmpeg</a>
