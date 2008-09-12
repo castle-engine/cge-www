@@ -1,10 +1,17 @@
 Next WWW update:
-- check html links, since a lot changed
 - upload castle 0.8.2, release on SF, fix castle.php to link to 0.8.2
-- post notif for eng and view3dscene when finally released
 Text for next update:
 
 After next update:
 - update view3dscene description of freshmeat, to include Collada and X3D.
   Also, specify more open that it's "VRML / X3D browser, and viewer for other 3D formats"
 - check does kambi_lines work on Windows in ii 107 now.
+
+....
+- after important release, I may wish to announce it:
+  - sf news for vrmlengine project
+  - new release of view3dscene and/or castle go to freshmeat:
+    http://freshmeat.net/projects/view3dscene/
+    http://freshmeat.net/projects/castlegame/
+  - pascalgamedevelopment may be informed about especially important
+    releases

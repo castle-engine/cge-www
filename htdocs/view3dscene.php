@@ -601,8 +601,7 @@ of a scene, at it's default camera, just call</p>
   <li><p>To control the look of your screenshot, you often want to
     use VRML nodes like <tt>Viewpoint</tt>, <tt>NavigationInfo</tt>,
     <tt>Background</tt>. For example, take a look at
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/screenshot_header.wrl">screenshot_header.wrl</a>
-    VRML file.</p></li>
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p></li>
 
   <li><p>You can generate wanted <tt>Viewpoint</tt> node
     also by using view3dscene, just set your camera (in interactive mode)
