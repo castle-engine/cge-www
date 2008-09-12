@@ -16,6 +16,7 @@
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
+      new TocItem('NIST VRML test suite results', 'nist_tests', 1),
     ));
 ?>
 
@@ -655,19 +656,30 @@ on numerous VRML models available on the WWW. -->
     (that exists on server &mdash; some are missing, although I fixed missing
     texture for tests) besides <tt>recurse.wrl</tt> &mdash; it's
     an incorrect file, we should produce better error message for it.
+</ul>
 
-  <li><p><a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">
-    NIST VRML Test Suite</a> results are below.</p>
+<?php echo $toc->html_section(); ?>
 
-    <p>Each test was classified as "pass" only if it passed fully.
-    Which is a good objective measure,
-    but also means that many tests failed
-    because unrelated features are not implemented. For example,
-    don't be discouraged by many failures in <tt>PROTO</tt> category.
-    Prototypes were 100% working in all tests, and I consider their
-    implementation as practically finished.
-    But unrelated things like missing <tt>Script</tt> support
-    prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
+<p><a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">
+NIST VRML Test Suite</a> results are below.</p>
+
+<p>Each test was classified as "pass" only if it passed fully.
+Which is a good objective measure,
+but also means that many tests failed
+because unrelated features are not implemented. For example,
+don't be discouraged by many failures in <tt>PROTO</tt> category.
+Prototypes were 100% working in all tests, and I consider their
+implementation as practically finished.
+But unrelated things like missing <tt>Script</tt> support
+prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
+
+<p>Cases are marked above as "success" (+) only if they succeed
+completely.
+The style of table below was modelled after similar page
+<a href="http://www.openvrml.org/doc/conformance.html">
+OpenVRML Conformance Test Results</a>. <!-- See there also
+for some  remarks about invalid tests included in
+NIST test suite. -->
 
 <?php
 function pass($count, $comment = '')
@@ -709,277 +721,277 @@ function fail($count, $comment)
 }
 ?>
 
-    <table border="1">
-      <tr>
-        <th>Node Group</th>
-        <th>Node</th>
-        <th>Test Number</th>
-        <th>Result</th>
-        <th>Notes</th>
-      </tr>
-      <tr>
-        <td rowspan="101">Appearance</td>
-        <td rowspan="12">Appearance</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="fail">-</td>
-        <td><tt>IndexedFaceSet</tt> and <tt>ElevationGrid</tt>
-          errorneously modulate texture color by specified color.
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td rowspan="7">FontStyle</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-        <td>Note that the test looks strange because the X axis line
-          starts at X = -200. This is an error in the test file.
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="fail">-</td>
-        <td>For horizonal text test passes, but vertical text
-          is not implemented yet.
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="fail">-</td>
-        <td>Handling Script not implemented yet.
-      </tr>
-      <tr>
-        <td rowspan="34">ImageTexture</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td class="fail">-</td>
-        <td>The texture top is not aligned precisely with text top.
-      </tr>
-      <tr>
-        <td>14</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>15</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>16</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>18</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>19</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>20</td>
-        <td class="fail">-</td>
-        <td>Like case 13: The texture top is not aligned precisely with text top.
-      </tr>
-      <tr>
-        <td>21</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>22</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>23</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>24</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>25</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>26</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>27</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>28</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>29</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>30</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>31</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>32</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>33</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>34</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td rowspan="29">Material</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="fail">-</td>
-        <td rowspan="3">For now we errorneously modulate texture color by specified color.
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="fail">-</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="fail">-</td>
-      </tr>
+<table border="1">
+  <tr>
+    <th>Node Group</th>
+    <th>Node</th>
+    <th>Test Number</th>
+    <th>Result</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td rowspan="101">Appearance</td>
+    <td rowspan="12">Appearance</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="fail">-</td>
+    <td><tt>IndexedFaceSet</tt> and <tt>ElevationGrid</tt>
+      errorneously modulate texture color by specified color.
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td rowspan="7">FontStyle</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+    <td>Note that the test looks strange because the X axis line
+      starts at X = -200. This is an error in the test file.
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="fail">-</td>
+    <td>For horizonal text test passes, but vertical text
+      is not implemented yet.
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="fail">-</td>
+    <td>Handling Script not implemented yet.
+  </tr>
+  <tr>
+    <td rowspan="34">ImageTexture</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td class="fail">-</td>
+    <td>The texture top is not aligned precisely with text top.
+  </tr>
+  <tr>
+    <td>14</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td class="fail">-</td>
+    <td>Like case 13: The texture top is not aligned precisely with text top.
+  </tr>
+  <tr>
+    <td>21</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>29</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>31</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>32</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>33</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>34</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td rowspan="29">Material</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="fail">-</td>
+    <td rowspan="3">For now we errorneously modulate texture color by specified color.
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="fail">-</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="fail">-</td>
+  </tr>
 <?php
 
 $current_test_number = 10;
@@ -987,46 +999,46 @@ pass(20);
 
 ?>
 
-      <tr>
-        <td rowspan="19">MovieTexture</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="19">MovieTexture</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
 
 <?php
 $current_test_number = 2;
 fail(2, 'Audio from MovieTexture is not played yet');
 pass(12);
 pass(1, 'The movie text.mpg is still (5 identical frames, according to ffmpeg,
-  gstreamer and xine)');
+gstreamer and xine)');
 pass(3);
 ?>
 
-      <tr>
-        <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
-      </tr>
+  <tr>
+    <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+  </tr>
 
-      <tr>
-        <td rowspan="113">Geometry</td>
-        <td rowspan="6">Box</td>
-        <td>1</td>
-        <td class="pass">+</td>
-        <td>This links to <tt>Text</tt> test, that passes (but has nothing
-          to do with <tt>Box</tt>)
-      </tr>
+  <tr>
+    <td rowspan="113">Geometry</td>
+    <td rowspan="6">Box</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>This links to <tt>Text</tt> test, that passes (but has nothing
+      to do with <tt>Box</tt>)
+  </tr>
 
 <?php
 $current_test_number = 2;
 pass(5);
 ?>
 
-      <tr>
-        <td rowspan="8">Cone</td>
-        <td>1</td>
-        <td class="pass">+</td>
-        <td>This links to <tt>Text</tt> test, that passes (but has nothing
-          to do with <tt>Cone</tt>)
-      </tr>
+  <tr>
+    <td rowspan="8">Cone</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>This links to <tt>Text</tt> test, that passes (but has nothing
+      to do with <tt>Cone</tt>)
+  </tr>
 
 <?php
 $current_test_number = 2;
@@ -1035,12 +1047,12 @@ pass(2);
 pass(1, 'Unrelated <tt>Box</tt> test... (that passes)');
 ?>
 
-      <tr>
-        <td rowspan="9">Cylinder</td>
-        <td>1</td>
-        <td class="pass">+</td>
-        <td>Unrelated <tt>Text</tt> test again...
-      </tr>
+  <tr>
+    <td rowspan="9">Cylinder</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>Unrelated <tt>Text</tt> test again...
+  </tr>
 
 <?php
 $current_test_number = 2;
@@ -1050,154 +1062,154 @@ pass(1, 'Unrelated <tt>Cone</tt> test...');
 pass(1, 'Unrelated <tt>Box</tt> test...');
 ?>
 
-      <tr>
-        <td rowspan="14">ElevationGrid</td>
-        <td>1</td>
-        <td class="pass">+</td>
-        <td>Note that by default ElevationGrid is not smoothed (creaseAngle = 0),
-          this is following the spec.
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="pass">+</td>
-        <td>The reference image of the test is bad. The result should
-          be more obvious (whole rows of quads have the same normal),
-          and it is &mdash; with our engine.
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="pass">+</td>
-        <td>Although we use two-sided lighting.
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="fail">-</td>
-        <td>Although we do generate smooth normals, they are
-          not used since colorPerVertex forces us to use smooth shading.
-      </tr>
-      <tr>
-        <td>13</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="14">ElevationGrid</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>Note that by default ElevationGrid is not smoothed (creaseAngle = 0),
+      this is following the spec.
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="pass">+</td>
+    <td>The reference image of the test is bad. The result should
+      be more obvious (whole rows of quads have the same normal),
+      and it is &mdash; with our engine.
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="pass">+</td>
+    <td>Although we use two-sided lighting.
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="fail">-</td>
+    <td>Although we do generate smooth normals, they are
+      not used since colorPerVertex forces us to use smooth shading.
+  </tr>
+  <tr>
+    <td>13</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td rowspan="17">Extrusion</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-        <td>Reference images show the incorrect non-uniform scaling
-          of the caps. We handle it right.
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td class="fail">-</td>
-        <td>While generally looks Ok, it seems that our triangulating
-          algorithm can't handle this particular shape perfectly.
-      </tr>
-      <tr>
-        <td>15</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>16</td>
-        <td class="fail">-</td>
-        <td>This links to ElevationGrid creaseAngle test, that fails...
-          Has nothing to do with Extrusion actually. (And we do
-          handle creaseAngle on Extrusion correctly!)
-      </tr>
-      <tr>
-        <td>17</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="17">Extrusion</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+    <td>Reference images show the incorrect non-uniform scaling
+      of the caps. We handle it right.
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td class="fail">-</td>
+    <td>While generally looks Ok, it seems that our triangulating
+      algorithm can't handle this particular shape perfectly.
+  </tr>
+  <tr>
+    <td>15</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td class="fail">-</td>
+    <td>This links to ElevationGrid creaseAngle test, that fails...
+      Has nothing to do with Extrusion actually. (And we do
+      handle creaseAngle on Extrusion correctly!)
+  </tr>
+  <tr>
+    <td>17</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td rowspan="21">IndexedFaceSet</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="21">IndexedFaceSet</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
 
 <?php
 $current_test_number = 2;
@@ -1206,91 +1218,91 @@ fail(3, 'Texture is applied Ok, but tests fail because texture is currently alwa
 pass(7);
 ?>
 
-      <tr>
-        <td rowspan="10">IndexedLineSet</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-        <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
-          they are for IndexedFaceSet.)</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-        <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
-          they are for IndexedFaceSet.)</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="10">IndexedLineSet</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+    <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
+      they are for IndexedFaceSet.)</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+    <td rowspan="2">(These tests have nothing to do with IndexedLineSet,
+      they are for IndexedFaceSet.)</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td rowspan="5">PointSet</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-
-<?php
-$current_test_number = 2;
-pass(4);
-?>
-
-      <tr>
-        <td rowspan="5">Shape</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="5">PointSet</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
 
 <?php
 $current_test_number = 2;
 pass(4);
 ?>
 
-      <tr>
-        <td rowspan="6">Sphere</td>
-        <td>1</td>
-        <td class="pass">+</td>
-        <td>Unrelated <tt>Text</tt> tests...
-      </tr>
+  <tr>
+    <td rowspan="5">Shape</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(4);
+?>
+
+  <tr>
+    <td rowspan="6">Sphere</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>Unrelated <tt>Text</tt> tests...
+  </tr>
 
 <?php
 $current_test_number = 2;
 pass(5, 'Unrelated <tt>Box</tt> tests...');
 ?>
 
-      <tr>
-        <td rowspan="12">Text</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="12">Text</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
 
 <?php
 $current_test_number = 2;
@@ -1301,254 +1313,244 @@ pass(2);
 fail(1, 'Texture mapping is a little incorrect, text is too small');
 ?>
 
-      <tr>
-        <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
-      </tr>
+  <tr>
+    <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+  </tr>
 
-      <tr>
-        <td rowspan="48">Misc</td>
-        <td rowspan="18">EXTERNPROTO</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td class="fail">-</td>
-        <td>Currently, base URL for EXTERNPROTO is from the file where EXTERNPROTO
-          is written, not from the file where it's instantiated.
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="fail">-</td>
-        <td rowspan="2">
-          Scipts are not supported yet. Also, the DEF declaration inside
-          a script causes known problem with cycles in VRML graph.</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="fail">-</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="fail">-</td>
-        <td rowspan="2">Scipts are not supported yet.</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="fail">-</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>15</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>16</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>18</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="48">Misc</td>
+    <td rowspan="18">EXTERNPROTO</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td class="fail">-</td>
+    <td>Currently, base URL for EXTERNPROTO is from the file where EXTERNPROTO
+      is written, not from the file where it's instantiated.
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="fail">-</td>
+    <td rowspan="2">
+      Scipts are not supported yet. Also, the DEF declaration inside
+      a script causes known problem with cycles in VRML graph.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="fail">-</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="fail">-</td>
+    <td rowspan="2">Scipts are not supported yet.</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="fail">-</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td rowspan="30">PROTO</td>
-        <td>1</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="pass">+</td>
-        <td>(It links to unrelated Text test that works?)</td>
-      </tr>
-      <tr>
-        <td>7A</td>
-        <td class="pass">+</td>
-        <td>Result is Ok, but we do not handle SphereSensor,
-          Sound, AudioClip nodes (yet).</td>
-      </tr>
-      <tr>
-        <td>7B</td>
-        <td class="fail">-</td>
-        <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).
-          Also Billboard is crude, although this is not noticeable here.
-        </td>
-      </tr>
-      <tr>
-        <td>7C</td>
-        <td class="fail">-</td>
-        <td>Static result seems Ok, but we do not handle VisibilitySensor
-          and Collision.collideTime is not generated (yet).</td>
-      </tr>
-      <tr>
-        <td>7D</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7E</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7F</td>
-        <td class="pass">+</td>
-        <td>Result is Ok, although actually we do not handle PlaneSensor (yet).</td>
-      </tr>
-      <tr>
-        <td>7G</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7H</td>
-        <td class="pass">+</td>
-        <td>Result is Ok, although actually we do not handle Script (yet).</td>
-      </tr>
-      <tr>
-        <td>7I</td>
-        <td class="pass">-</td>
-        <td>But we do not handle LOD (yet), rendering always the first child.
-          This is valid (although non-optimal) with respect to spec, AFAIK?
-          (But will be improved anyway in the future.)
-      </tr>
-      <tr>
-        <td>7J</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>7K</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td rowspan="30">PROTO</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="pass">+</td>
+    <td>(It links to unrelated Text test that works?)</td>
+  </tr>
+  <tr>
+    <td>7A</td>
+    <td class="pass">+</td>
+    <td>Result is Ok, but we do not handle SphereSensor,
+      Sound, AudioClip nodes (yet).</td>
+  </tr>
+  <tr>
+    <td>7B</td>
+    <td class="fail">-</td>
+    <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).
+      Also Billboard is crude, although this is not noticeable here.
+    </td>
+  </tr>
+  <tr>
+    <td>7C</td>
+    <td class="fail">-</td>
+    <td>Static result seems Ok, but we do not handle VisibilitySensor
+      and Collision.collideTime is not generated (yet).</td>
+  </tr>
+  <tr>
+    <td>7D</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7E</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7F</td>
+    <td class="pass">+</td>
+    <td>Result is Ok, although actually we do not handle PlaneSensor (yet).</td>
+  </tr>
+  <tr>
+    <td>7G</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7H</td>
+    <td class="pass">+</td>
+    <td>Result is Ok, although actually we do not handle Script (yet).</td>
+  </tr>
+  <tr>
+    <td>7I</td>
+    <td class="pass">-</td>
+    <td>But we do not handle LOD (yet), rendering always the first child.
+      This is valid (although non-optimal) with respect to spec, AFAIK?
+      (But will be improved anyway in the future.)
+  </tr>
+  <tr>
+    <td>7J</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>7K</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td>8</td>
-        <td class="fail">-</td>
-        <td>Although the tested features work Ok, there is a problem
-          (unrelated to protos) with
-          activating TouchSensor when SphereSensor is also enabled.
-          We should activate them both simultaneously, currently
-          only one (SphereSensor in this case, since it's first)
-          is activated.</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td class="fail">-</td>
-        <td>Tested features work perfectly. But VisibilitySensor
-        is not handled (yet), so animation doesn't start (you can replace
-        it by e.g. ProximitySensor with large sizes, and animation will work).
-      </tr>
-      <tr>
-        <td>10</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>14</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>15</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>16</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>17</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>18</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>19</td>
-        <td class="pass">+</td>
-      </tr>
-      <tr>
-        <td>20</td>
-        <td class="pass">+</td>
-      </tr>
+  <tr>
+    <td>8</td>
+    <td class="fail">-</td>
+    <td>Although the tested features work Ok, there is a problem
+      (unrelated to protos) with
+      activating TouchSensor when SphereSensor is also enabled.
+      We should activate them both simultaneously, currently
+      only one (SphereSensor in this case, since it's first)
+      is activated.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td class="fail">-</td>
+    <td>Tested features work perfectly. But VisibilitySensor
+    is not handled (yet), so animation doesn't start (you can replace
+    it by e.g. ProximitySensor with large sizes, and animation will work).
+  </tr>
+  <tr>
+    <td>10</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td class="pass">+</td>
+  </tr>
 
-      <tr>
-        <td colspan="5"><i>That's enough for now...
-          I don't have time to check all the tests.
-          If someone wants to do the work and do the remaining
-          tests (and document results just like above),
-          please contact us by
-          <?php echo MAILING_LIST_LINK; ?>.</i>
-    </table>
-
-    <p>Cases are marked above as "success" (+) only if they succeed
-    completely.
-    The table above was modelled after similar page
-    <a href="http://www.openvrml.org/doc/conformance.html">
-    OpenVRML Conformance Test Results</a>. <!-- See there also
-    for some  remarks about invalid tests included in
-    NIST test suite. -->
-
-</ul>
+  <tr>
+    <td colspan="5"><i>That's enough for now...
+      I don't have time to check all the tests.
+      If someone wants to do the work and do the remaining
+      tests (and document results just like above),
+      please contact us by
+      <?php echo MAILING_LIST_LINK; ?>.</i>
+</table>
 
 <?php
   if (!IS_GEN_LOCAL) {
