@@ -188,7 +188,7 @@ subdirectories.
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo $toc->html_section(); ?>
+<a name="ext_bump_mapping"></a><?php echo $toc->html_section(); ?>
 
     <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
     node that adds some new fields useful for bump mapping:
