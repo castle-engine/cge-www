@@ -53,6 +53,111 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.0 release: X3D, events, MovieTexture, and more',
+          'year' => 2008,
+          'month' => 9,
+          'day' => 12,
+          'pubDate' => /* date_to_timestamp.sh '2008-09-12' */ 1221220800,
+          'guid' => '2008-09-12',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+"<p>I'm pleased to present the achievement of my last 6 months of work:
+" . this_a_href_page('view3dscene 3.0', 'view3dscene') . " is released,
+along with " . this_a_href_page('underlying Kambi VRML engine 1.4.0', 'kambi_vrml_game_engine') . "
+release and minor releases of other programs.</p>
+
+<p>New features of the engine and view3dscene:</p>
+
+<table align=\"right\">
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/deranged_house_final_0.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/deranged_house_final_0.png\"
+      alt=\"ProximitySensor in action\"
+      title=\"ProximitySensor in action\"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/ikea_bead_toy.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/ikea_bead_toy.png\"
+      alt=\"Animation (IkeaBeadToy model from www.web3d examples)\"
+      title=\"Animation (IkeaBeadToy model from www.web3d examples)\"
+    /></a>
+  </td></tr>
+</table>
+
+<ul>
+  <li><p><b>X3D support</b> (both XML and classic encoding).
+    Our " . this_a_href_page('VRML implementation status', 'vrml_implementation_status') . "
+    page has detailed information about supported features.</p></li>
+
+  <li><p><b>Events mechanism</b> (routes, sensors, interpolators etc.)
+    is implemented. This allows you to define animations and interactions
+    of 3D world within single VRML/X3D file, as envisioned in
+    the specifications.</p>
+
+    <p>Four basic sensors are implemented now: <tt>TimeSensor</tt>,
+    <tt>TouchSensor</tt>, <tt>KeySensor</tt> and <tt>ProximitySensor</tt>.
+    Also <tt>Anchor</tt> is \"clickable\" now. For now you have to be in
+    <tt>Walk</tt> mode with <i>Collision Checking</i>
+    enabled to have picking (<tt>TouchSensor</tt>, <tt>Anchor</tt>) working.</p>
+
+    <p>Linear interpolators are also implemented.
+    Some \"event utilities\" nodes are implemented
+    (including useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
+    node from Avalon extensions</a>).
+    Events to work with bindable nodes (Background, Fog and such) work.
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\"</a>Passing
+    events to GLSL shaders uniform variables works perfectly.</a>.
+    Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
+    for VRML 97) work too.
+    Prototypes and external prototypes also work 100% with events according
+    to specification, so you can pass events to/from prototypes.</p></li>
+
+  <li><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
+    to load movie from a sequence of images (with possible alpha
+    channel)</a>, this is great for pre-rendered animations of flames, smoke etc.
+    Normal movie formats are also handled if <a href=\"http://ffmpeg.mplayerhq.hu/\">ffmpeg</a>
+    is installed and available on \$PATH.</p></li>
+
+  <li><p><b>Recording movies</b> from view3dscene is possible.
+    This allows recording 3D animations to a movie file
+    (with perfect quality, as opposed to using independent
+    programs that capture OpenGL output).</p>
+
+    <p><a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/view3dscene_thumbnailer_demo.png\">
+    <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png\"
+    alt=\"&quot;view3dscene&quot; as nautilus thumbnailer\" /></a>
+    <a href=\"http://www.gnome.org/\">GNOME</a> users will be happy to
+    hear that view3dscene can be easily used as nautilus thumbnailer,
+    so you can see thumbnails of your VRML / X3D and other 3D model files.
+    This is another advantage of how new screenshot options work.</p></li>
+
+  <li><p>And many other features, like
+    <ul>
+      <li><tt>Extrusion</tt> node handling,</li>
+      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
+      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
+        to automatically replace nodes within inlined content</a>,</li>
+      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load\">extension
+        to force VRML time-origin to start at loading time</a>, because
+        <a href=\"http://vrmlengine.sourceforge.net/vrml_time_origin_considered_uncomfortable.php\">standard
+        VRML time origin is uncomfortable in my opinion,</a></li>
+      <li>new X3D Indexed Triangles/Quads primitives (thanks to completely
+        reorganized mesh renderer code),</li>
+      <li>HAnim nodes support.</li>
+    </ul>
+  </li>
+
+  <li><p>" . this_a_href_page('"The Castle" 0.8.2', 'castle') . " release also deserves
+    mention, as it fixes <b>support for OpenAL Soft</b> implementation
+    (available on newer Linux distros).
+    It also allows creators of future levels and creatures to use X3D,
+    animating with standard VRML/X3D interpolators,
+    defining level interactions by VRML events etc.</li>
+</ul>
+"),
+
     array('title' => 'VRML / X3D events and routes implemented',
           'year' => 2008,
           'month' => 8,
