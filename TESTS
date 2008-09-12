@@ -1,0 +1,25 @@
+There are many automated tests of our engine, useful to run
+this (on each platform) before release:
+
+# Basic compilation tests
+
+./test_program_compilation.sh unix|windows
+cd kambi_vrml_game_engine/
+make clean_container_units container_units # not a test, but useful to run
+                                           # and eventually commit
+make
+make examples
+
+# FPCUnit tests
+
+cd tests/
+./compile_console.sh # also "make clean -C .." and then recompile all
+                     # in debug mode for compile_console.sh
+./test_kambi_units -a
+
+# Test view3dscene VRML/X3D loading/saving/rendering
+
+cd view3dscene/
+./run_tests.sh
+# (You may also uncomment longer mk_screnshot tests in run_test_once.sh
+# and rerun run_tests.sh)
