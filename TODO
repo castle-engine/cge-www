@@ -1,7 +1,3 @@
-- fix EXTERNPROTO to also honour events: don't create dummy TVRMLPrototypeNode copy, this is useless and moreover will destroy events "IS" references. Just expand existing TVRMLPrototypeNode with loaded prototype (instead of current extern prototype)
-
-- mention of vrml_status: event work, but not in a PROTO inside a PROTO (VRMLNodeDeepCopy looses PrototypeSourceNode info, this should be fixed by making better VRMLNodeDeepCopy implementation (as make it as TVRMLNode.DeepCopy method)
-
 Next WWW update:
 - generate and upload new vrml_engine_doc
 - generate and upload new apidoc
