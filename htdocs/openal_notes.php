@@ -107,6 +107,20 @@ source code</a> instructions.
         or <i>Sound output device</i> menu item in
         <?php echo a_href_page('The Castle', 'castle'); ?>) should work.
         You can select and try other devices.</p>
+
+        <p>A useful device is <i>"Wave File Writer"</i>, to record
+        3D sound to file. Note that you have to specify output filename
+        in config file, otherwise it will not work. For example,
+        make a file <tt>$HOME/.alsoftrc</tt> with two lines:</p>
+
+<pre>
+[wave]
+file = /tmp/output.wav
+</pre>
+
+        <p>For more configuration options, look into <tt>/etc/openal/alsoft.conf</tt>
+        that should be installed with openal-soft package. It contains
+        many comments about the possible options.</p>
       </dd>
 
       <dt>Linux and FreeBSD users with OpenAL Sample (older) implementation:</dt>
