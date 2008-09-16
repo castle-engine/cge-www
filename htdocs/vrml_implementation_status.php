@@ -445,6 +445,11 @@ used.
       echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
     in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
 
+    <p>Animating viewpoint's position (directly or by it's transformations)
+    works perfectly.<br/>
+    <i>TODO</i>: animating viewpoint's orientation (directly
+    or by it's transformations) doesn't work yet.
+
   <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>IndexedFaceSet</tt>,
     <tt>Coordinate</tt>, <tt>Color</tt>,
     <tt>Normal</tt>, <tt>TextureCoordinate</tt></p>
