@@ -1,7 +1,7 @@
 <?php
 /* PHP functions common for vrmlengine WWW pages. */
 
-define('COUNTER_DATA_PATH', '/tmp/persistent/vrmlengine/counters/');
+define('COUNTER_DATA_PATH', '/home/groups/v/vr/vrmlengine/persistent/');
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
