@@ -59,12 +59,13 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
 
   $f_out = fopen($f_name, "wb"); /* fwrite/fputs requires "b"inary mode */
   fwrite($f_out, $counter);
-  fclose($f_out) or exit('cannot close out file');
+  fclose($f_out) or exit('Cannot close counter file "' . $f_name . '"');
 
   /* write bonus info ***********************************/
   if ($counter_write_bonus)
   {
-    $f_bonus = fopen(COUNTER_DATA_PATH . $counter_name . ".counter.bonus", "ab");
+    $f_name_bonus = COUNTER_DATA_PATH . $counter_name . ".counter.bonus";
+    $f_bonus = fopen($f_name_bonus, "ab");
 
     /* getdate returns by default date/time in local server time,
        which is not nice if you move *.counter.bonus file from server
@@ -118,7 +119,7 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
       @rawurlencode($_SERVER["HTTP_USER_AGENT"]) */
     );
     fwrite($f_bonus, $bonus_str);
-    fclose($f_bonus);
+    fclose($f_bonus) or exit('Cannot close counter.bonus file "' . $f_name_bonus . '"');
   }
 
   /* return *********************************************/
