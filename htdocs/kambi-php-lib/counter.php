@@ -104,11 +104,19 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
                              gmdate('Y', $hit_time) . ' hour ' .
                              gmdate('G', $hit_time);
 
+    /* On SourceForge I have to use HTTP_X_REMOTE_ADDR,
+       according to
+       http://sourceforge.net/community/forum/topic.php?id=3471&page#post-8013 */
+    $remote_addr = @$_SERVER['HTTP_X_REMOTE_ADDR'];
+    if ($remote_addr === NULL)
+      /* Fallback on REMOTE_ADDR for other servers. */
+      $remote_addr = $_SERVER['REMOTE_ADDR'];
+
     $bonus_str = sprintf(
       "2%s ip %s ipstr %s http-referer %s\n",
       $str_hit_time,
-      $_SERVER["REMOTE_ADDR"],
-      @gethostbyaddr($_SERVER["REMOTE_ADDR"]),
+      $remote_addr,
+      @gethostbyaddr($remote_addr),
       /* I'm using rawurlencode (both for HTTP_REFERER and even
          HTTP_USER_AGENT, even though HTTP_USER_AGENT is not an URL),
          to avoid problems when later parsing the counter.bonus lines. */
