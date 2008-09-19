@@ -65,7 +65,7 @@ $toc = new TableOfContents(array(
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
-  new TocItem('Other Avalon extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
+  new TocItem('Other Avalon / instant-reality extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 2),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 2),
@@ -554,7 +554,7 @@ Shape {
 
 <?php echo $toc->html_section(); ?>
 
-    <p>Besides <tt>BlendMode</tt>, we also read some other Avalon extensions.
+    <p>Besides <tt>BlendMode</tt>, we also read some other Avalon / instant-reality extensions.
     See <a href="http://instant-reality.com/">instant-reality</a>
     and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
     specifications of Avalon extensions</a>.
