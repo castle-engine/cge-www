@@ -163,8 +163,8 @@ an array index, like <tt>field_name[integer index]</tt>.
 <pre class="light_bg">
   sin(x) ^ 10
   2 * (cos(ln(x)) - 1)
-  [sin(x) > cos(x)]
-  or( [sin(x) > cos(x)], [sin(x) > 0] )
+  sin(x) > cos(x)
+  or( sin(x) > cos(x), sin(x) > 0 )
 </pre>
 
 <p>Some example of simple program for VRML script node:
