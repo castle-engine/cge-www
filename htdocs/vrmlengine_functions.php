@@ -29,6 +29,12 @@ function echo_header_bonus ()
   table.table_with_movie_thumbnail {
     width: 210px;
   }
+
+  pre.light_bg {
+    border: 1px solid #aaaaaa;
+    background-color: #f9f9f9;
+    padding: 0.3em;
+  }
 --></style>
 
   <?php

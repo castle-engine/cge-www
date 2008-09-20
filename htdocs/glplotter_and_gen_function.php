@@ -235,94 +235,10 @@ and resembling normal mathematical notation.
 When we deal with function expressions, then <tt>x</tt> represents the argument,
 e.g. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> etc.
 
-<hr />
-
-<p><i>TODO: I'm sorry, below is still in Polish. Please
-<?php echo michalis_mailto('bash me through email'); ?>
- if you want me to move my lazy ass and translate the remainder of
-this page.</i></p>
-
-<p><b>Czynnik</b> to
-<ul>
-  <li>Nazwa zmiennej (ci±g liter, podkre¶leñ i cyfr zaczynaj±cy siê liter±
-    lub podkre¶leniem). W przypadku <tt>glplotter</tt> i <tt>gen_function</tt>
-    dozwolona w tym momencie jest tylko zmienna <tt>x</tt>.
-  <li>Sta³a: <tt>pi</tt>, <tt>enat</tt> lub liczba rzeczywista
-    (np. <tt>3.14</tt>)
-  <li>-czynnik (np. <tt>-x</tt>)
-  <li>Wyra¿enie w nawiasach (np. <tt>(12+34)</tt>).
-  <li>Wywo³anie funkcji, np. <tt>sin(x)</tt> lub <tt>power(3.0, x)</tt>.
-    Znane funkcje to
-    <ul>
-      <li><tt>Sin</tt>, <tt>Cos</tt>, <tt>Tan</tt>, <tt>CoTan</tt>
-      <li><tt>ArcSin</tt>, <tt>ArcCos</tt>, <tt>ArcTan</tt>, <tt>ArcCoTan</tt>
-      <li><tt>SinH</tt>, <tt>CosH</tt>, <tt>TanH</tt>, <tt>CoTanH</tt>
-      <li><tt>Log2</tt>, <tt>Ln</tt>, <tt>Log</tt>, <tt>Power2</tt>,
-        <tt>Exp</tt>, <tt>Power</tt>, <tt>Sqr</tt>, <tt>Sqrt</tt><br>
-        (<tt>Log2(x) = Log(2, x)</tt>,
-         <tt>Power2(x) = Power(2, x) = 2^x</tt>,
-         <tt>Exp(x) = Power(enat, x) = enat^x</tt>)
-      <li><tt>Sgn</tt>, <tt>Abs</tt>, <tt>Ceil</tt>, <tt>Floor</tt>
-      <li><tt>Greater</tt>, <tt>Lesser</tt>, <tt>GreaterEq</tt>,
-        <tt>LesserEq</tt>, <tt>Equal</tt>, <tt>NotEqual</tt><br>
-        (zwracaj± 0 (fa³sz) lub 1 (prawda))
-      <li><tt>Or</tt>, <tt>And</tt>, <tt>Not</tt><br>
-        (zwracaj± 0 (fa³sz) lub 1 (prawda), jako argumenty bior± dwie
-        (<tt>Or</tt>, <tt>And</tt>) lub jedn± (<tt>Not</tt>) numbers i
-        traktuj± 0 jako fa³sz i wszystko inne jako prawdê)
-    </ul>
-    <!--
-    (sa to wszystkie nazwy funkcji poza tymi realizowanymi
-    przez operatory 2-argumentowe +-*/ i 1-argumentowy -.
-    Wszystkie one maja okreslona liczbe parametrow
-    w odpowiednim FunctionKind[].argsCount.)
-    -->
-  <li>Porównanie w nawiasach klamrowych, tzn.
-    <tt>[ wyra¿enie_1 operator wyra¿enie_2 ]</tt>,
-    gdzie operator to <tt>&lt;, &gt;, &lt;=, &gt;=, = lub &lt;&gt;</tt>.
-    Przyk³ad: <tt>[ x &gt; 3 ]</tt>. Warto¶ci± takiego czynnika jest 1
-    gdy zale¿no¶c jest spe³niona lub 0 je¶li nie.
-    To jest uproszczona postaæ konwencji Iversona.
-    <!--
-    Jest to uproszczona
-    postac konwencji zapisu Kennetha E. Iversona (ktora zobaczylem
-    w "Matematyce konkretnej" Grahama, Knutha i Patashnika).
-    Notka - aby robic operacje w rodzaju not, or czy and uzywaj
-    odpowiednich funkcji operujacych na liczbach.
-    Powyzsza notacja tez jest zreszta tylko bardzo wygodnym skrotem
-    dla odpowiednich funkcji Greater, Lesser, GreaterEq itd. )
-    -->
-</ul>
-
-<p><b>Dwuargumentowe operatory <tt>/, *, ^, %</tt></b> wykonuj± odpowiednio
-dzielenie, mno¿enie, potêgowanie i zwracaj± resztê z dzielenia (modulo).
-Wszystkie maj± ten sam priorytet i ³±cz± w lewo.
-Modulo jest liczone jako <tt>x % y = x - Floor(x/y) * y</tt>.
-W wyra¿eniu <tt>x^y</tt> je¿eli y nie jest liczb± ca³kowit± to x musi byæ
-&gt;=0.
-
-<!--
-(wszystko jest na wartosciach rzeczywistych;
-pamietaj tez ze operator potegowania ma taki sam priorytet jak
-np. mnozenie a operatory o rownym priorytecie sa obliczane od
-lewej do prawej wiec np. 2*4^2 = 8^2, nie 2*16))
--->
-
-<p><b>Dwuargumentowe operatory <tt>+ i -</tt></b> wykonuj± dodawanie i
-odejmowanie. One te¿ ³±cz± w lewo. Maj± s³abszy priorytet od
-operatorów multiplikatywnych powy¿ej, wiêc np.
-<tt>12 + 3 * 4</tt> daje 24.
-
-<p>Du¿e / ma³e litery w nazwach funkcji, sta³ych i zmiennych nie s±
-rozró¿niane.
-
-<p>Przyk³ady:
-<pre>
-  sin(x) ^ 10
-  2 * (cos(ln(x)) - 1)
-  [sin(x) > cos(x)]
-  or( [sin(x) > cos(x)], [sin(x) > 0] )
-</pre>
+<p>For detailed information about syntax and built-in functions,
+see <?php echo a_href_page('KambiScript language reference', 'kambi_script'); ?>.
+We use a subset of KambiScript syntax, allowing only a simple expression
+as a function expression, operating on argument "X".
 
 <!--
 - wylaczyc wykres 2, i 3
