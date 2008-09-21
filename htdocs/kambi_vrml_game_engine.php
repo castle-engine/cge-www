@@ -124,7 +124,8 @@ Features include:</p>
       <li>VectorMath, unit with many vector-and-matrix operations,
         mainly for 3d graphics
 
-      <li>MathExpr, parsing and evaluating mathematical expressions
+      <li>KambiScript, parsing and executing KambiScript programs
+        and mathematical expressions
 
       <li>TDynXxxArray classes, something like richer dynamic arrays,
         done like "simulated" C++ templates
