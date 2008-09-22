@@ -24,6 +24,7 @@ cd view3dscene/
 # (You may also uncomment longer mk_screnshot tests in run_test_once.sh
 # and rerun run_tests.sh)
 
-# Recompile kambi_vrml_game_engine and view3dscene and castle Lazarus
-# packages, to make sure Lazarus packages work Ok (all required units
-# are added etc.).
+# Test Lazarus compilation:
+# - Recompile kambi_vrml_game_engine packages
+# - Compile and run view3dscene and castle from Lazarus lpi files
+# - Compile and run view3dscene_mini_by_lazarus
