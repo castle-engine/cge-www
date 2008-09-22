@@ -606,12 +606,24 @@ type
 
 procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TKamTime);
 begin
-  { ... do here whatever you want ... }
+  { ... do here whatever you want ...
+
+    Value parameter is nil for script initialize/shutdown handler.
+  }
 end;
 
 procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TKamTime);
 begin
-  { ... do here whatever you want ... }
+  { ... do here whatever you want ...
+
+    Value parameter here contains a value passed to Script.touch_event.
+    You can cast it to appropriate field type and get it's value,
+    like "(Value as TSFTime).Value".
+
+    (Although in case of this example, Value here will always come from
+    TouchSensor.touchTime, so it will contain the same thing
+    as our Time parameter. But in general case, Value can be very useful to you.)
+  }
 end;
 
   { ... and somewhere after creating TVRMLScene (or TVRMLGLScene) do this: }
