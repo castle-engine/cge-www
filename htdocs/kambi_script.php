@@ -158,16 +158,16 @@ an array index, like <tt>field_name[integer index]</tt>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Some examples of simple mathematical expressions for glplotter:
+<p>Some examples of simple mathematical expressions for glplotter:</p>
 
 <pre class="light_bg">
   sin(x) ^ 10
   2 * (cos(ln(x)) - 1)
-  sin(x) > cos(x)
-  or( sin(x) > cos(x), sin(x) > 0 )
+  sin(x) &gt; cos(x)
+  or( sin(x) &gt; cos(x), sin(x) &gt; 0 )
 </pre>
 
-<p>Some example of simple program for VRML script node:
+<p>Some example of simple program for VRML script node:</p>
 
 <pre class="light_bg">
 Script {
@@ -261,7 +261,7 @@ output := array(value)
   TermOperator = "+" | "-"
 
   SimpleExpression = Term [{TermOperator Term}]
-  RelationalOperator = "<" | ">" | "<=" | ">=" | "=" | "<>"
+  RelationalOperator = "&lt;" | "&gt;" | "&lt;=" | "&gt;=" | "=" | "&lt;&gt;"
 
   Expression = SimpleExpression [{RelationalOperator SimpleExpression}] |
                Expression ; Expression |
