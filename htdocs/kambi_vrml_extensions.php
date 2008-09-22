@@ -64,6 +64,7 @@ $toc = new TableOfContents(array(
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
+  new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
   new TocItem('Other Avalon / instant-reality extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
@@ -542,6 +543,88 @@ Shape {
     (like <tt>MovieTexture</tt> or <tt>TimeSensor</tt>)
     to start playing at load time, or a determined number of seconds
     after loading of the scene.
+
+<?php echo $toc->html_section(); ?>
+
+    <p>A special Script protocol "<tt>compiled:</tt>" allows programmers to
+    execute compiled-in code on normal Script events.
+    "Compiled-in code" means simply that you write a piece of code
+    in ObjectPascal and register it after creating the scene.
+    This piece of code will be executed whenever appropriate script
+    will receive an event (when eventIn of the Script is received,
+    or when exposedField is changed by event, or when the script
+    receives <tt>initialize</tt> or <tt>shutdown</tt> notifications).</p>
+
+    <p>This should be very handy for programmers that integrate our VRML engine
+    in their own programs, and would like to have some programmed response
+    to some VRML events. Using Script node allows you to easily connect
+    programmed code to the VRML graph: you write the code in Pascal, and
+    in VRML you route anything you want to your script.</p>
+
+    <p>For example consider this Script:
+
+<pre class="vrml_code">
+  DEF S Script {
+    inputOnly SFTime touch_event
+    inputOnly SFBool some_other_event
+    inputOnly SFInt32 yet_another_event
+    url "compiled:
+initialize=script_initialization
+touch_event=touch_handler
+some_other_event=some_other_handler
+" }
+
+  DEF T TouchSensor { }
+  ROUTE T.touchTime TO S.touch_event
+</pre>
+
+    <p>This means that handler named <tt>touch_handler</tt> will
+    be executed when user will activate TouchSensor.
+    As additional examples, I added handler named
+    <tt>script_initialization</tt> to be executed
+    on script initialization, and <tt>some_other_handler</tt> to execute when
+    <tt>some_other_event</tt> is received. Note that nothing will happen
+    when <tt>yet_another_event</tt> is received.</p>
+
+    <p>As you see, <tt>compiled:</tt> Script content simply maps
+    VRML event names to Pascal compiled handler names.
+    Each line maps <tt>event_name=handler_name</tt>. Lines without
+    <tt>=</tt> character are understood to map handler of the same
+    name, that is simple line <tt>event_name</tt> is equivalent to
+    <tt>event_name=event_name</tt>.</p>
+
+    <p>To make this actually work, you have to define and register
+    appropriate handlers
+    in your Pascal code. Like this:</p>
+
+<pre class="light_bg">
+type
+  TMyObject = class
+    procedure ScriptInitialization(Value: TVRMLField; const Time: TKamTime);
+    procedure TouchHandler(Value: TVRMLField; const Time: TKamTime);
+  end;
+
+procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TKamTime);
+begin
+  { ... do here whatever you want ... }
+end;
+
+procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TKamTime);
+begin
+  { ... do here whatever you want ... }
+end;
+
+  { ... and somewhere after creating TVRMLScene (or TVRMLGLScene) do this: }
+
+  Scene.RegisterCompiledScript('script_initialization', @MyObject.ScriptInitialization);
+  Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
+</pre>
+
+    <p>For full, working example code in Pascal and VRML see
+    example program
+    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/view_model_with_events.pasprogram</tt>,
+    use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
+    and note that Pascal code reacts to clicks on TouchSensor.
 
 <?php echo $toc->html_section(); ?>
 
