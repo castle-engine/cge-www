@@ -632,9 +632,8 @@ end;
   Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
 </pre>
 
-    <p>For full, working example code in Pascal and VRML see
-    example program
-    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/view_model_with_events.pasprogram</tt>,
+    <p>For working example code in Pascal and VRML see example program
+    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/vrml_browser_script_compiled.pasprogram</tt>,
     use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
     and note that Pascal code reacts to clicks on TouchSensor.
 
