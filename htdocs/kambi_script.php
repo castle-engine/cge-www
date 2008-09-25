@@ -146,7 +146,7 @@ and assign. In short, a normal mathematical expression is allowed there,
 just like you seen in all programming languages. We have multiplicative
 operators (<tt>/, *, ^, %</tt>),
 we have additive operators (<tt>+, -</tt>) with lower
-priority, we have relational operators
+priority, we have comparison operators
 (<tt>&lt;, &gt;, &lt;=, &gt;=, = or &lt;&gt;</tt>) with even lower
 priority (for float expressions, like the one for glplotter, relative
 operators result in 0 (false) or 1 (true)). We have all standard math
@@ -260,17 +260,19 @@ output := array(value)
   Term = Factor [{FactorOperator Factor}]
   TermOperator = "+" | "-"
 
-  SimpleExpression = Term [{TermOperator Term}]
-  RelationalOperator = "&lt;" | "&gt;" | "&lt;=" | "&gt;=" | "=" | "&lt;&gt;"
+  ComparisonArgument = Term [{TermOperator Term}]
+  ComparisonOperator = "&lt;" | "&gt;" | "&lt;=" | "&gt;=" | "=" | "&lt;&gt;"
 
-  Expression = SimpleExpression [{RelationalOperator SimpleExpression}] |
-               Expression ; Expression |
-               Operand := Expression
+  NonAssignmentExpression = ComparisonArgument [{ComparisonOperator ComparisonArgument}] |
 
   # Programmers using our engine: note that KambiScriptParser.ParseFloatExpression
-  # parses exactly "Expression" token, as defined above, allowing only
-  # the 1st production (that is, expression may use relational operators,
-  # but assignment and compound instruction are not allowed in this case).
+  # parses exactly "NonAssignmentExpression" token, as defined above,
+  # with the Factor definition hacked to also allow only NonAssignmentExpression
+  # inside parenthesis. In other words, ParseFloatExpression takes care to only
+  # parse a calculated expression, without any assignments or sequence.
+
+  Expression = NonAssignmentExpression [{";" NonAssignmentExpression}] |
+               Operand ":=" Expression
 
   Function = "function" "(" [Identifier [{"," Identifier}] ")" Expression
   Program = [{Function}]
