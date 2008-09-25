@@ -108,6 +108,13 @@ Features include:</p>
     Porters/testers for other OS/processors are welcome,
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
+  <li>The engine source code contains <b>many example programs</b>,
+    look into <tt>examples/</tt> subdirectories, like <tt>kambi_vrml_game_engine/3dmodels.gl/examples/</tt>.
+    There are ready TGLWindow descendants and Lazarus components
+    to make simple VRML browser. Oh, yes, the engine may be integrated
+    with Lazarus &mdash; we have some <b>Lazarus components</b>,
+    including ultra-simple VRML browser component (<tt>TKamVRMLBrowser</tt>).
+
   <li>Engine components are independent when possible.
     For example, you can only take model loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
