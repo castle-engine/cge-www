@@ -236,9 +236,7 @@ Shape {
 
     <p>The first sensor node actually implemented :)
 
-    <p><i>TODO</i>: keyRelease is not generated (we do not have
-    character data about key up). Everything else is Ok, but keyPress
-    generates only 8-bit ASCII characters now.
+    <p><i>TODO</i>: keyPress/Release generate only 8-bit ASCII characters now.
 
   <li><p>Event utilities: <tt>BooleanFilter</tt>,
     <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
