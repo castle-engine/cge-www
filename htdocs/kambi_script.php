@@ -79,7 +79,7 @@ at runtime. Internally, all types available in VRML scripts are
 the VRML field's types (integers, floats, vec2f, vec3f, vec4f, strings,
 images (SFImage) and such, and arrays of them). For uses of KambiScript
 for mathematical expressions (like in <tt>glplotter</tt>), all calculations
-use internally a floating-point type with best precision on this platform.
+use internally a floating-point type with best precision on given platform.
 </p>
 
 <p><i>Expressions and instructions</i> are the same thing within
@@ -97,24 +97,13 @@ then function name (identifier),
 then list of 0 or more parameters (identifiers separated by commas),
 always within parenthesis.</p>
 
-<p>Function body is formally just a single instruction (whose
-returned value is ignored). I know, this sounds pretty useless,
-but realize that:</p>
-
-<ul>
-  <li><p>An assignment is itself a simple expression (that causes
-    the obvious side-effect of assigning, and returns the new value too).
-    </p></li>
-
-  <li><p>We have a semicolon operator, an operator with least precedence,
-    which can be used to treat two instructions like one, so <tt>A;B</tt>
-    is an expression, that causes first calculating and ignoring result
-    of <tt>A</tt> and then calculating and returning <tt>B</tt>.</p></li>
-</ul>
-
-<p>So you can think that function body is actually a
-sequence of instructions, separated by semicolons,
-and semicolon works like a delimiter (not a terminator,
+<p>Function body is just a sequence of expressions separated by
+semicolon. Formally, function body is actually a single expression,
+but we have a semicolon operator: <tt>A;B</tt> means "calculate A,
+ignore result, then calculate and return result of B".
+For now, result of functions body is ignored (so all our functions
+are in fact <i>procedures</i>).
+Semicolon works like a delimiter (not a terminator,
 so it's required only between instructions).</p>
 
 <p>An <i>assignment instruction</i>:
@@ -271,8 +260,10 @@ output := array(value)
   # inside parenthesis. In other words, ParseFloatExpression takes care to only
   # parse a calculated expression, without any assignments or sequence.
 
-  Expression = NonAssignmentExpression [{";" NonAssignmentExpression}] |
-               Operand ":=" Expression
+  PossiblyAssignmentExpression = NonAssignmentExpression |
+                                 Operand ":=" PossiblyAssignmentExpression
+
+  Expression = PossiblyAssignmentExpression [{";" PossiblyAssignmentExpression}] |
 
   Function = "function" "(" [Identifier [{"," Identifier}] ")" Expression
   Program = [{Function}]
