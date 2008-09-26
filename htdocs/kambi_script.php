@@ -95,7 +95,11 @@ mean exactly the same thing.</p>
 <p><i>Function</i> starts from the <tt>function</tt> keyword,
 then function name (identifier),
 then list of 0 or more parameters (identifiers separated by commas),
-always within parenthesis.</p>
+always within parenthesis. For functions within VRML Script nodes:
+<tt>initialize</tt> and <tt>shutdown</tt> must take exactly
+one parameter (timestamp of the event: SFTime), functions called
+by incoming events must take exactly two parameters (value send to the event,
+and timestamp: SFTime).</p>
 
 <p>Function body is just a sequence of expressions separated by
 semicolon. Formally, function body is actually a single expression,
@@ -122,11 +126,25 @@ And the right operand, which is an expression that calculates value to assign.
 
   <li><p>Assigning value to output event results in sending this event,
     assigning to exposed field results in sending this to input event of this field.
-    For now, <i>events are send immediately at each assignment</i>, not after
-    the script execution ended. This is not conforming to VRML spec,
-    and is a little dangerous.
-    It means that you can easily make event loops if you assign an exposed
-    field from a function that receives changes to the same exposed field.
+
+    <p>Following ECMAScript standard, events are not send immediately
+    (right at the assignment), instead they are stacked and send
+    when script function finished execution. When you assigned
+    multiple values for the same field, only the last one is send.
+    In case of multiple-value fields, the combined end value is send.
+    For example, assuming <tt>output</tt> is an <tt>outputOnly</tt>
+    event of MFFloat type:
+
+<pre class="light_bg">
+  function foo(value, timestamp)
+  output := array(0, 1, 2, 3);
+  output[1] := 666;
+  output[2] := 44
+</pre>
+
+    The example above will send one <tt>output</tt> event with value
+    <tt>(0, 666, 44, 3)</tt>. In other words, this works according to
+    X3D specification for ECMAScript bindings.
     </p></li>
 </ul>
 
