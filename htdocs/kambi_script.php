@@ -314,12 +314,11 @@ identifiers and parenthesis.
 In case of uncertainty lexer is greedy, that is lexer tries to eat as much
 characters as it can for a single token.</p>
 
-<p>Case sensitivity: built-in constants and function names
-are not case-sensitive. Also <tt>glplotter</tt> and everything
-else that uses only a subset of KambiScript to get function expressions
-is not case-sensitive. However, <i>whole VRML/X3D is generally
-case-sensitive</i>, so the names of fields/events for VRML/X3D is
-case-sensitive.
+<p>Case sensitivity: language is not case-sensitive.
+That said, in the future in may be partially case-sensitive,
+in places where you specify field/event names of VRML/X3D,
+since <i>whole VRML/X3D is case-sensitive</i>. So please specify
+VRML/X3D with matching case.
 
 <!--
 (wszystko jest na wartosciach rzeczywistych;
