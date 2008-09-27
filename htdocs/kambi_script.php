@@ -1,6 +1,11 @@
 <?php
   require 'vrmlengine_functions.php';
   common_header('KambiScript', LANG_EN, 'KambiScript language.');
+
+  function script_func($name, $title)
+  {
+    echo '<a href="#function_' . $name . '"><tt>' . $title . '</tt></a>';
+  }
 ?>
 
 <?php echo pretty_heading('KambiScript language');  ?>
@@ -29,26 +34,28 @@ receives an event); also you cannot declare your own local variables
 (but you can use VRML Script initializeOnly fields for this purpose)-->
 Also it's specific to our engine, and probably always will be.</p>
 
-<p>Still, it has some advantages. It's not a toy language,
-as you can process all VRML field types with it, including strings,
-vectors, matrices and even images.
+<p>That said, the language is powerful enough for many uses.
+You can process all VRML field types with it, including strings,
+vectors, matrices and even images. Also arrays (VRML MFXxx fields) are covered.
 There are many built-in functions and operators, heavily overloaded
 for all types where they apply (for example, you can add numbers,
-vectors, matrices, strings).
+vectors, matrices or strings).
 It's an integral part of our engine, without the need for any external libraries.
-And please note that our engine doesn't support (yet) ECMAScript for VRML script
+And do note that our engine doesn't support (yet) ECMAScript for VRML script
 at all, so this is the only way to do scripting for now (without
-compiling some ObjectPascal code).
+writing and compiling any ObjectPascal code).
 Programmers may also be interested that language implementation is flexible,
-you can extend it easily from ObjectPascal (adding new datatypes and
-built-in functions).</p>
+you can extend it easily from ObjectPascal (adding new data-types and
+built-in functions), for many uses (not necessarily related with VRML).</p>
 
 <?php
   $toc = new TableOfContents(
     array(
-      new TocItem('Placing scripts inside VRML Script URLs', 'script_urls'),
+      new TocItem('Writing scripts inside VRML Script URLs', 'script_urls'),
       new TocItem('Examples', 'examples'),
       new TocItem('Syntax', 'syntax'),
+      new TocItem('Types and constants', 'types_constants', 1),
+      new TocItem('Programs and expressions', 'programs_expressions', 1),
       new TocItem('Built-in functions', 'built_in_functions'),
       new TocItem('Precise grammar', 'precise_grammar')
     )
@@ -116,7 +123,7 @@ function touch_time(value, timestamp)
 if (open,
     close_time := timestamp,
     open_time := timestamp);
-open := Not(open)
+open := not(open)
 "
 }
 </pre>
@@ -128,33 +135,83 @@ But script is already simpler and shorter, and allows you to trivially
 add other interesting things.</p>
 
 <pre class="light_bg">
-# Simple converter from SFString to MFString using built-in array() function.
+# Simple converter from SFString to MFString using built-in <?php script_func('array', 'array'); ?> function.
 Script {
   inputOnly SFString input
   outputOnly MFString output
     url "kambiscript:
 function input(value, timestamp)
-output := array(value)
+  output := array(value)
 "
 }
 </pre>
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>Program</i> is just a set of functions. VRML engine will take care
-to call function <tt>xxx</tt> when input event of the same name will arrive.</p>
-
 <p><i>Syntax is free-form</i>, the only use of whitespace (including newlines,
 or any indentation) is to separate tokens when needed (for example, between
 two identifiers).</p>
 
+<?php echo $toc->html_section(); ?>
+
 <p><i>Types</i> are never explicitly declared, and are checked
-at runtime. Internally, all types available in VRML scripts are
-the VRML field's types (integers, floats, vec2f, vec3f, vec4f, strings,
-images (SFImage) and such, and arrays of them). For uses of KambiScript
-for mathematical expressions (like in <tt>glplotter</tt>), all calculations
-use internally a floating-point type with best precision on given platform.
-</p>
+at runtime. Four core types are available:</p>
+
+<ol>
+  <li><p>Integers. (32-bit for now, maybe will be extended to 64-bit
+    if the need will arise.) Syntax of integer constants is obvious,
+    like <tt>123</tt>. Built-in function
+    <?php script_func('int', 'int(...)'); ?> allows
+    you to convert other core types into integer.</p></li>
+
+  <li><p>Floats. (Uses the best floating-point type precision on given
+    platform, which means at least Double, but on many platforms Extended.)
+    Syntax of float constants
+    is also obvious, like <tt>3.1415</tt>. You have also
+    constants <tt>pi</tt> and <tt>enat</tt> (Euler's number).
+    Built-in function
+    <?php script_func('float', 'float(...)'); ?> allows
+    you to convert other core types into float.</p></li>
+
+  <li><p>Booleans. Two obvious constants are available, <tt>false</tt>
+    and <tt>true</tt> (case is ignored, as usual in KambiScript,
+    so you can also write uppercase
+    <tt>FALSE</tt> or <tt>TRUE</tt> like in classic VRML).
+    Built-in function
+    <?php script_func('bool', 'bool(...)'); ?> allows
+    you to convert other core types into boolean.</p></li>
+
+  <li><p>Strings. Syntax of constants is Pascalish (in apostrophes, and two
+    consecutive apostrophes inside mean that you want a single literal
+    apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
+    Built-in function
+    <?php script_func('string', 'string(...)'); ?> allows
+    you to convert other core types into string.</p></li>
+</ol>
+
+<p>When using KambiScript inside VRML scripts, internally you have
+all the VRML field types available (which means that
+vec2f, vec3f, vec4f, matrix, image and others are included).
+There is no special syntax for reading/writing other types, instead
+you have many functions to construct and set them.
+For example for vec3f type you have "constructor"
+<?php script_func('vector', 'vector(x, y, z)'); ?> ,
+reader for particular component <?php script_func('vector_get', 'vector_get(vector, index)'); ?>,
+and setter for particular component <?php script_func('vector_set', 'vector_set(vector, index, component_value)'); ?>.
+Even images have functions to create and modify them, which means
+that you can use KambiScript to perform basic image creation and processing.</p>
+
+<p>Also array types are internally available, for VRML multiple-value
+(MFXxx) types. Again no special syntax is available (sorry, no bracket parenthesis),
+but there are functions to construct array
+<?php script_func('array', 'array(item1, item2, ...)'); ?>,
+read component <?php script_func('array_get', 'array_get(array, index)'); ?> and
+set component <?php script_func('array_set', 'array_set(array, index, component_value)'); ?>.
+
+<?php echo $toc->html_section(); ?>
+
+<p><i>Program</i> is just a set of functions. VRML engine will take care
+to call function <tt>xxx</tt> when input event of the same name will arrive.</p>
 
 <p><i>Expressions and instructions</i> are the same thing within
 the language. For example, "assignment" is an instruction, since
@@ -182,14 +239,15 @@ ignore result, then calculate and return result of B".
 For now, result of functions body is ignored (so all our functions
 are in fact <i>procedures</i>).
 Semicolon works like a delimiter (not a terminator,
-so it's required only between instructions).</p>
+so it's used only between instructions).</p>
 
-<p>An <i>assignment instruction</i>:
-Left operand is the name of output
-event or a field (exposed or not) to assign/send a value.
-Then we have the assignment operator <tt>:=</tt> (Pascal-like).
-And the right operand, which is an expression that calculates value to assign.
-</p>
+<p>An <i>assignment instruction</i>: operand, followed by
+the assignment operator <tt>:=</tt> (Pascal-like),
+followed by an expression to calculate value to assign.
+
+<p>For VRML scripts, you are allowed to assign to output events
+and to fields (exposed or not). Events sending behavior follows ECMAScript
+standard:</p>
 
 <ul>
   <li><p>Assigning value to initializeOnly (not exposed) field is simple, it just
@@ -204,22 +262,20 @@ And the right operand, which is an expression that calculates value to assign.
     <p>Following ECMAScript standard, events are not send immediately
     (right at the assignment), instead they are stacked and send
     when script function finished execution. When you assigned
-    multiple values for the same field, only the last one is send.
+    multiple values for the same field/event, only the last one is send.
     In case of multiple-value fields, the combined end value is send.
     For example, assuming <tt>output</tt> is an <tt>outputOnly</tt>
     event of MFFloat type:
 
 <pre class="light_bg">
-  function foo(value, timestamp)
-  output := array(0, 1, 2, 3);
-  output[1] := 666;
-  output[2] := 44
+function foo(value, timestamp)
+  output := array(0.0, 1.0, 2.0, 3.0);
+  array_set(output, 1, 666.0);
+  array_set(output, 2, 44.0)
 </pre>
 
-    The example above will send one <tt>output</tt> event with value
-    <tt>(0, 666, 44, 3)</tt>. In other words, this works according to
-    X3D specification for ECMAScript bindings.
-    </p></li>
+    <p>The example above will send one <tt>output</tt> event with value
+    <tt>(0.0, 666.0, 44.0, 3.0)</tt>.</p></li>
 </ul>
 
 <p>Right side of the assignment instruction is the value to calculate
@@ -229,15 +285,143 @@ operators (<tt>/, *, ^, %</tt>),
 we have additive operators (<tt>+, -</tt>) with lower
 priority, we have comparison operators
 (<tt>&lt;, &gt;, &lt;=, &gt;=, = or &lt;&gt;</tt>) with even lower
-priority (for float expressions, like the one for glplotter, relative
-operators result in 0 (false) or 1 (true)). We have all standard math
-functions built-in. See detailed grammar below for a full list.
-
-<p>For VRML scripts, you can reference field's within nodes by qualifying
-<tt>node_name.field_name</tt>. For multiple-value fields, you can use
-an array index, like <tt>field_name[integer index]</tt>.
+priority. We have all standard math
+functions. Built-in functions and operators are overloaded
+for all suitable types. Section below gives a full list of operators
+and functions.</p>
 
 <?php echo $toc->html_section(); ?>
+
+<p>Type conversion:
+
+<ul>
+  <li><p><a name="#function_int"><tt>int(...)</tt></a> converts a "core" type
+    to an integer.</p>
+
+    <p>Float is converted to int by discarding it's fractional
+    part (like in C; for positive numbers, this is like <tt>floor</tt>, for negative
+    this is like <tt>ceil</tt>).
+    There are also functions <tt>floor</tt>, <tt>ceil</tt> and
+    <tt>round</tt> that convert float to an integer with other rounding
+    modes.</p>
+
+    <p>Bool converted to 0 (false) or 1 (true).
+    Yes, unlike most languages that usually
+    don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
+    KambiScript actually guarantees that "true" will result in 1.
+    This is sometimes useful is smart mathematical expressions
+    (<tt>my_int := 0.5 - (1 - my_bool(value))/2</tt>.</p>
+
+    <p>String is converted to int by, well,
+    converting string to integer using standard integer notation
+    (<tt>int('123') = 123</tt>).</p></li>
+
+  <li><p><a name="#function_float"><tt>float(...)</tt></a> converts a "core" type
+    to a float.</p>
+
+    <p>Integer is converted obviously. Actually it's never needed to
+    explicitly cast integer to float, this conversion happens automatically,
+    like in most programming languages.</p>
+
+    <p>Bool is converted to
+    obviously. Actually it's never needed to
+    explicitly cast integer to float, this conversion happens automatically,
+    like in most programming languages.</p>
+
+    <p>String is converted to float by parsing number from string,
+    like <tt>float('3.14') = 3.14</tt>.</p></li>
+
+  <li><p><a name="#function_bool"><tt>bool(...)</tt></a> converts a "core" type
+    to a boolean.</p>
+
+    <p>Integers and floats are converted to "false" if equal zero, "true"
+    otherwise.</p>
+
+    <p>Strings cannot be converted to booleans, as I couldn't imagine
+    any definition that would be universally useful here.</p></li>
+
+  <li><p><a name="#function_string"><tt>string(...)</tt></a> converts a "core" type
+    to a string.</p>
+
+    <p>Not much to write here, numbers (integers and floats) are converted
+    to normal notation and boolean is converted to 'false' or 'true'.</p></li>
+</ul>
+
+<p>All four basic conversion functions accept also variables that already
+have the necessary type. For example, converting float to float is a valid
+(and harmless) operation.</p>
+
+<p>Compound types operations:</p>
+
+<ul>
+  <li><p><i>Arrays</i>:</p>
+
+    <p><a name="#function_array"><tt>array(item1, item2, ...)</tt></a>
+    constructs an array. At least one argument is required.
+    All arguments must have the same type (VRML multiple-value fields
+    can't have mixed types).</p>
+
+    <p>Note that parameter-less <tt>array()</tt> call is not allowed,
+    because we wouldn't know then the resulting type (is it an
+    empty array of floats? empty array of integers? etc.)
+    Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for this.</p>
+
+    <p>Note that floating-point values in arrays are stored only with single-
+    or double- precision. This contrasts with singleton values, which are always stored
+    in the best precision possible. Having explicit single-
+    or double- precision arrays is better for storage and allows faster
+    copying between VRML fields. Normal <tt>array</tt> with float parameters will create
+    an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
+    You have to call <tt>array_d</tt> to request double-precision storage
+    (suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
+
+    <p><tt>array_count(my_array)</tt> and
+    <tt>array_set_count(my_array, new_count)</tt> get and set array count.
+    When you grow array, newly added items have undefined values.
+    When you shrink array, excessive values are discarded.</p>
+
+    <p><a name="#array_get"><tt>array_get(my_array, index)</tt></a>
+    gets an item from array on given index. In "normal" programming languages,
+    implemented by less lazy programmers, this is written as <tt>my_array[index]</tt> :)
+    Analogous
+    <a name="#array_set"><tt>array_set(my_array, index, component_value)</tt></a>
+    sets a value of item in an array.
+    In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
+
+  <li><p><i>Vectors</i>:</p>
+
+    <p><a name="#function_vector"><tt>vector(x, y)</tt>, <tt>vector(x, y, z)</tt>, <tt>vector(x, y, z, w)</tt></a>
+    create a single-precision vectors (called <tt>SFVec2f</tt>,
+    <tt>SFVec3f</tt>, <tt>SFVec4f</tt> in VRML).
+    Suffix <tt>_d</tt> means that you want double-precision vectors:
+    <tt>vector_d(x, y)</tt>, <tt>vector_d(x, y, z)</tt>, <tt>vector_d(x, y, z, w)</tt>.</p>
+
+    <p><a name="#vector_get"><tt>vector_get(my_vec, index)</tt></a>
+    gets vector component. Allowed index values obviously depend on vector size,
+    for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
+    <a name="#vector_set"><tt>vector_set(my_vec, index, component_value)</tt></a>
+    sets given vector component.</p>
+
+    <p><tt>vector_get_count</tt> is available, for analogy with
+    <tt>array_get_count</tt>.</p>
+
+    <p>Standard vector math utilities are available:
+    <tt>vector_length(v)</tt>, <tt>vector_sqr_length(v)</tt>,
+    <tt>vector_dot(v1, v2)</tt>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
+    <tt>vector_cross(v1, v2)</tt> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
+    </li>
+
+  <li>TODO: string.
+  <li>TODO: matrix.
+  <li>TODO: image.
+  <li>TODO: node.
+</ul>
+
+<p>Boolean operators:
+<tt>Or</tt>, <tt>And</tt>, <tt>Not</tt> &mdash; self-explanatory
+operations on booleans.</p>
+
+<p>Mathematical functions (work on float type):</p>
 
 <ul>
   <li><tt>Sin</tt>, <tt>Cos</tt>, <tt>Tan</tt>, <tt>CoTan</tt>
@@ -248,22 +432,13 @@ an array index, like <tt>field_name[integer index]</tt>.
     (<tt>Log2(x) = Log(2, x)</tt>,
      <tt>Power2(x) = Power(2, x) = 2^x</tt>,
      <tt>Exp(x) = Power(enat, x) = enat^x</tt>)
-  <li><tt>Sgn</tt>, <tt>Abs</tt>, <tt>Ceil</tt>, <tt>Floor</tt>
-  <li><tt>Greater</tt>, <tt>Lesser</tt>, <tt>GreaterEq</tt>,
-    <tt>LesserEq</tt>, <tt>Equal</tt>, <tt>NotEqual</tt><br>
-    (when these are forced to return numbers, they return 0 (false) or 1 (truth))
-  <li><tt>Or</tt>, <tt>And</tt>, <tt>Not</tt><br>
-    (when these are forced to return numbers, they return 0 (false) or 1 (truth).
-    Also, when numbers are arguments, 0 is interpreted as false,
-    and anything else is true.)
-  <li><tt>Array</tt> &mdash; constructs an array for multiple-value VRML field.
+  <li><tt>Sgn</tt> (returns integer), <tt>Abs</tt>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <pre class="light_bg">
-  Operand (aka "something that can be assigned") =
-    Identifier [{"." Identifier}] ["[" Expression "]"]
+  Operand (aka "something that can be assigned") = Identifier
 
   Factor = Operand |
            Constant |
@@ -318,7 +493,10 @@ an array index, like <tt>field_name[integer index]</tt>.
   Letter = 'a' .. 'z' | 'A' .. 'Z' | "_"
   Digit = '0' .. '9'
 
-  Constant = "pi" | "enat" | Digit [{Digit}] ["." Digit [{Digit}] ]
+  Constant = "pi" | "enat" |
+             Digit [{Digit}] ["." Digit [{Digit}] ] |
+             "true" | "false" |
+             string constant in apostrophes
 
   FunctionName = (see list of built-in functions above)
 </pre>
@@ -332,9 +510,9 @@ characters as it can for a single token.</p>
 
 <p>Case sensitivity: language is not case-sensitive.
 That said, in the future in may be partially case-sensitive,
-in places where you specify field/event names of VRML/X3D,
-since <i>whole VRML/X3D is case-sensitive</i>. So please specify
-VRML/X3D with matching case.
+in places where you specify field/event names of VRML
+since <i>whole VRML is case-sensitive</i>. So always specify
+VRML field/event names with matching case.
 
 <!--
 (wszystko jest na wartosciach rzeczywistych;
