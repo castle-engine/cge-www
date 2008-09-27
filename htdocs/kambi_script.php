@@ -64,6 +64,15 @@ simply because the language is a closed data-processing language
       new TocItem('Types and constants', 'types_constants', 1),
       new TocItem('Programs and expressions', 'programs_expressions', 1),
       new TocItem('Built-in functions', 'built_in_functions'),
+      new TocItem('Type conversion', 'functions_conversion', 1),
+      new TocItem('Numeric (int or float) functions', 'functions_numeric', 1),
+      new TocItem('Boolean functions', 'functions_boolean', 1),
+      new TocItem('String functions', 'functions_string', 1),
+      new TocItem('Array functions', 'functions_array', 1),
+      new TocItem('Vectors functions', 'functions_vectors', 1),
+      new TocItem('Matrix functions', 'functions_matrix', 1),
+      new TocItem('Image functions', 'functions_image', 1),
+      new TocItem('VRML node functions', 'functions_node', 1),
       new TocItem('Precise grammar', 'precise_grammar')
     )
   );
@@ -319,7 +328,7 @@ and functions.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Type conversion:
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><a name="#function_int"><tt>int(...)</tt></a> converts a "core" type
@@ -378,77 +387,10 @@ and functions.</p>
 have the necessary type. For example, converting float to float is a valid
 (and harmless) operation.</p>
 
-<p>Compound types operations:</p>
+<?php echo $toc->html_section(); ?>
 
-<ul>
-  <li><p><i>Arrays</i>:</p>
-
-    <p><a name="#function_array"><tt>array(item1, item2, ...)</tt></a>
-    constructs an array. At least one argument is required.
-    All arguments must have the same type (VRML multiple-value fields
-    can't have mixed types).</p>
-
-    <p>Note that parameter-less <tt>array()</tt> call is not allowed,
-    because we wouldn't know then the resulting type (is it an
-    empty array of floats? empty array of integers? etc.)
-    Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for this.</p>
-
-    <p>Note that floating-point values in arrays are stored only with single-
-    or double- precision. This contrasts with singleton values, which are always stored
-    in the best precision possible. Having explicit single-
-    or double- precision arrays is better for storage and allows faster
-    copying between VRML fields. Normal <tt>array</tt> with float parameters will create
-    an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
-    You have to call <tt>array_d</tt> to request double-precision storage
-    (suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
-
-    <p><tt>array_count(my_array)</tt> and
-    <tt>array_set_count(my_array, new_count)</tt> get and set array count.
-    When you grow array, newly added items have undefined values.
-    When you shrink array, excessive values are discarded.</p>
-
-    <p><a name="#array_get"><tt>array_get(my_array, index)</tt></a>
-    gets an item from array on given index. In "normal" programming languages,
-    implemented by less lazy programmers, this is written as <tt>my_array[index]</tt> :)
-    Analogous
-    <a name="#array_set"><tt>array_set(my_array, index, component_value)</tt></a>
-    sets a value of item in an array.
-    In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
-
-  <li><p><i>Vectors</i>:</p>
-
-    <p><a name="#function_vector"><tt>vector(x, y)</tt>, <tt>vector(x, y, z)</tt>, <tt>vector(x, y, z, w)</tt></a>
-    create a single-precision vectors (called <tt>SFVec2f</tt>,
-    <tt>SFVec3f</tt>, <tt>SFVec4f</tt> in VRML).
-    Suffix <tt>_d</tt> means that you want double-precision vectors:
-    <tt>vector_d(x, y)</tt>, <tt>vector_d(x, y, z)</tt>, <tt>vector_d(x, y, z, w)</tt>.</p>
-
-    <p><a name="#vector_get"><tt>vector_get(my_vec, index)</tt></a>
-    gets vector component. Allowed index values obviously depend on vector size,
-    for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
-    <a name="#vector_set"><tt>vector_set(my_vec, index, component_value)</tt></a>
-    sets given vector component.</p>
-
-    <p><tt>vector_get_count</tt> is available, for analogy with
-    <tt>array_get_count</tt>.</p>
-
-    <p>Standard vector math utilities are available:
-    <tt>vector_length(v)</tt>, <tt>vector_sqr_length(v)</tt>,
-    <tt>vector_dot(v1, v2)</tt>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
-    <tt>vector_cross(v1, v2)</tt> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
-    </li>
-
-  <li>TODO: string.
-  <li>TODO: matrix.
-  <li>TODO: image.
-  <li>TODO: node.
-</ul>
-
-<p>Boolean operators:
-<tt>Or</tt>, <tt>And</tt>, <tt>Not</tt> &mdash; self-explanatory
-operations on booleans.</p>
-
-<p>Mathematical functions (work on float type):</p>
+<p>Mathematical functions (take a float type, return a float type unless
+otherwise noted):</p>
 
 <ul>
   <li><tt>Sin</tt>, <tt>Cos</tt>, <tt>Tan</tt>, <tt>CoTan</tt>
@@ -461,6 +403,83 @@ operations on booleans.</p>
      <tt>Exp(x) = Power(enat, x) = enat^x</tt>)
   <li><tt>Sgn</tt> (returns integer), <tt>Abs</tt>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Basic boolean operations:
+<tt>or(a, b)</tt>, <tt>and(a, b)</tt>, <tt>not(a)</tt>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+TODO
+
+<?php echo $toc->html_section(); ?>
+
+<p><a name="#function_array"><tt>array(item1, item2, ...)</tt></a>
+constructs an array. At least one argument is required.
+All arguments must have the same type (VRML multiple-value fields
+can't have mixed types).</p>
+
+<p>Note that parameter-less <tt>array()</tt> call is not allowed,
+because we wouldn't know then the resulting type (is it an
+empty array of floats? empty array of integers? etc.)
+Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for this.</p>
+
+<p>Note that floating-point values in arrays are stored only with single-
+or double- precision. This contrasts with singleton values, which are always stored
+in the best precision possible. Having explicit single-
+or double- precision arrays is better for storage and allows faster
+copying between VRML fields. Normal <tt>array</tt> with float parameters will create
+an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
+You have to call <tt>array_d</tt> to request double-precision storage
+(suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
+
+<p><tt>array_count(my_array)</tt> and
+<tt>array_set_count(my_array, new_count)</tt> get and set array count.
+When you grow array, newly added items have undefined values.
+When you shrink array, excessive values are discarded.</p>
+
+<p><a name="#array_get"><tt>array_get(my_array, index)</tt></a>
+gets an item from array on given index. In "normal" programming languages,
+implemented by less lazy programmers, this is written as <tt>my_array[index]</tt> :)
+Analogous
+<a name="#array_set"><tt>array_set(my_array, index, component_value)</tt></a>
+sets a value of item in an array.
+In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
+
+<?php echo $toc->html_section(); ?>
+
+<p><a name="#function_vector"><tt>vector(x, y)</tt>, <tt>vector(x, y, z)</tt>, <tt>vector(x, y, z, w)</tt></a>
+create a single-precision vectors (called <tt>SFVec2f</tt>,
+<tt>SFVec3f</tt>, <tt>SFVec4f</tt> in VRML).
+Suffix <tt>_d</tt> means that you want double-precision vectors:
+<tt>vector_d(x, y)</tt>, <tt>vector_d(x, y, z)</tt>, <tt>vector_d(x, y, z, w)</tt>.</p>
+
+<p><a name="#vector_get"><tt>vector_get(my_vec, index)</tt></a>
+gets vector component. Allowed index values obviously depend on vector size,
+for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
+<a name="#vector_set"><tt>vector_set(my_vec, index, component_value)</tt></a>
+sets given vector component.</p>
+
+<p><tt>vector_get_count</tt> is available, for analogy with
+<tt>array_get_count</tt>.</p>
+
+<p>Standard vector math utilities are available:
+<tt>vector_length(v)</tt>, <tt>vector_sqr_length(v)</tt>,
+<tt>vector_dot(v1, v2)</tt>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
+<tt>vector_cross(v1, v2)</tt> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
+
+<?php echo $toc->html_section(); ?>
+
+TODO
+
+<?php echo $toc->html_section(); ?>
+
+TODO
+
+<?php echo $toc->html_section(); ?>
+
+TODO
 
 <?php echo $toc->html_section(); ?>
 
