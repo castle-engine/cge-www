@@ -6,7 +6,7 @@
 <?php echo pretty_heading('KambiScript language');  ?>
 
 <p><tt>KambiScript</tt> is a simple scripting language used in
-our Kambi VRML game engine. You can use it in VRML/X3D <tt>Script</tt>
+our <i>Kambi VRML game engine</i>. You can use it in VRML/X3D <tt>Script</tt>
 nodes. Also it's syntax of mathematical expressions is usable
 throughout our engine, for example <?php echo a_href_page(
 'glplotter and gen_function',
@@ -14,30 +14,46 @@ throughout our engine, for example <?php echo a_href_page(
 not related to VRML) use this syntax to define function expressions.</p>
 
 <p>The language is deliberately very simple. It's a scripting language,
-with features inspired by many other languages (and by programmer's laziness,
-for example I was too lazy to construct grammar with things like "if",
-so instead <tt>if</tt> and similar constructs is just written like
-a normal function).</p>
+with features inspired by many other languages, and by author's laziness.
+For example I was too lazy to add <tt>if</tt>, <tt>while</tt> and such
+constructs to the grammar,
+instead you have built-in functions like
+<tt>if(condition, then_code, else_code)</tt>.
+<b>This language doesn't try to compete with other scripting languages</b>
+(like <i>ECMAScript</i>, commonly used in VRML scripting).
+It's not suitable for larger programs
+(for starters, you cannot even define your own types).<!-- ; you also cannot
+currently call user-defined functions (you can only call built-in functions;
+user-defined functions are only automatically called when VRML Script
+receives an event); also you cannot declare your own local variables
+(but you can use VRML Script initializeOnly fields for this purpose)-->
+Also it's specific to our engine, and probably always will be.</p>
 
-<p>Please note that
-<b>I do not advice VRML authors to use this language</b>,
-as it's specific to our engine, and probably always will be.
-You should rather use ECMAScript
-for compatibility &mdash; but for now ECMAScript is not implemented yet...
-The advantage of KambiScript is that it's built-in and integrated
-into our engine, without requiring any external libraries. It may also
-serve as a testbed for some of my ideas.</p>
+<p>Still, it has some advantages. It's not a toy language,
+as you can process all VRML field types with it, including strings,
+vectors, matrices and even images.
+There are many built-in functions and operators, heavily overloaded
+for all types where they apply (for example, you can add numbers,
+vectors, matrices, strings).
+It's an integral part of our engine, without the need for any external libraries.
+And please note that our engine doesn't support (yet) ECMAScript for VRML script
+at all, so this is the only way to do scripting for now (without
+compiling some ObjectPascal code).
+Programmers may also be interested that language implementation is flexible,
+you can extend it easily from ObjectPascal (adding new datatypes and
+built-in functions).</p>
 
 <?php
   $toc = new TableOfContents(
     array(
       new TocItem('Placing scripts inside VRML Script URLs', 'script_urls'),
-      new TocItem('Syntax', 'syntax'),
       new TocItem('Examples', 'examples'),
+      new TocItem('Syntax', 'syntax'),
       new TocItem('Built-in functions', 'built_in_functions'),
       new TocItem('Precise grammar', 'precise_grammar')
     )
   );
+  $toc->echo_numbers = true;
 ?>
 
 <?php echo $toc->html_toc(); ?>
@@ -62,6 +78,64 @@ foo_plus_one := value + 1
 
 Script {
   url "my_script.kscript"
+}
+</pre>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Some examples of simple mathematical expressions for glplotter:</p>
+
+<pre class="light_bg">
+  sin(x) ^ 10
+  2 * (cos(ln(x)) - 1)
+  sin(x) &gt; cos(x)
+  or( sin(x) &gt; cos(x), sin(x) &gt; 0 )
+</pre>
+
+<p>Some example of simple program for VRML script node:</p>
+
+<pre class="light_bg">
+Script {
+  # Let's assume some TouchSensor.touchTime is routed here.
+  # When user clicks on this touch sensor, you want to close the door
+  # if they are open, or open them if they are closed.
+  inputOnly SFTime touch_time
+
+  initializeOnly SFBool open FALSE
+
+  # Let's assume this is routed to some TimeSensor.set_startTime
+  # that starts closing animation.
+  outputOnly SFTime close_time
+
+  # Let's assume this is routed to some TimeSensor.set_startTime
+  # that starts opening animation.
+  outputOnly SFTime open_time
+
+  url "kambiscript:
+function touch_time(value, timestamp)
+if (open,
+    close_time := timestamp,
+    open_time := timestamp);
+open := Not(open)
+"
+}
+</pre>
+
+<p>Example script behavior above could also be done by combining
+<tt>BooleanToggle</tt>, <tt>BooleanFilter</tt>, <tt>TimeTrigger</tt>
+X3D nodes.
+But script is already simpler and shorter, and allows you to trivially
+add other interesting things.</p>
+
+<pre class="light_bg">
+# Simple converter from SFString to MFString using built-in array() function.
+Script {
+  inputOnly SFString input
+  outputOnly MFString output
+    url "kambiscript:
+function input(value, timestamp)
+output := array(value)
+"
 }
 </pre>
 
@@ -162,64 +236,6 @@ functions built-in. See detailed grammar below for a full list.
 <p>For VRML scripts, you can reference field's within nodes by qualifying
 <tt>node_name.field_name</tt>. For multiple-value fields, you can use
 an array index, like <tt>field_name[integer index]</tt>.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Some examples of simple mathematical expressions for glplotter:</p>
-
-<pre class="light_bg">
-  sin(x) ^ 10
-  2 * (cos(ln(x)) - 1)
-  sin(x) &gt; cos(x)
-  or( sin(x) &gt; cos(x), sin(x) &gt; 0 )
-</pre>
-
-<p>Some example of simple program for VRML script node:</p>
-
-<pre class="light_bg">
-Script {
-  # Let's assume some TouchSensor.touchTime is routed here.
-  # When user clicks on this touch sensor, you want to close the door
-  # if they are open, or open them if they are closed.
-  inputOnly SFTime touch_time
-
-  initializeOnly SFBool open FALSE
-
-  # Let's assume this is routed to some TimeSensor.set_startTime
-  # that starts closing animation.
-  outputOnly SFTime close_time
-
-  # Let's assume this is routed to some TimeSensor.set_startTime
-  # that starts opening animation.
-  outputOnly SFTime open_time
-
-  url "kambiscript:
-function touch_time(value, timestamp)
-if (open,
-    close_time := timestamp,
-    open_time := timestamp);
-open := Not(open)
-"
-}
-</pre>
-
-<p>Example script behavior above could also be done by combining
-<tt>BooleanToggle</tt>, <tt>BooleanFilter</tt>, <tt>TimeTrigger</tt>
-X3D nodes.
-But script is already simpler and shorter, and allows you to trivially
-add other interesting things.</p>
-
-<pre class="light_bg">
-# Simple converter from SFString to MFString using built-in array() function.
-Script {
-  inputOnly SFString input
-  outputOnly MFString output
-    url "kambiscript:
-function input(value, timestamp)
-output := array(value)
-"
-}
-</pre>
 
 <?php echo $toc->html_section(); ?>
 
