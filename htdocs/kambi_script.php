@@ -1,6 +1,6 @@
 <?php
   require 'vrmlengine_functions.php';
-  common_header('KambiScript', LANG_EN, 'KambiScript language.');
+  common_header('KambiScript language', LANG_EN);
 
   function script_func($name, $title)
   {
@@ -8,7 +8,8 @@
   }
 ?>
 
-<?php echo pretty_heading('KambiScript language');  ?>
+<?php echo pretty_heading('KambiScript language<br/>
+<span style="font-size: medium">Simple scripting language for Kambi VRML game engine</span>'); ?>
 
 <p><tt>KambiScript</tt> is a simple scripting language used in
 our <i>Kambi VRML game engine</i>. You can use it in VRML/X3D <tt>Script</tt>
@@ -43,10 +44,16 @@ vectors, matrices or strings).
 It's an integral part of our engine, without the need for any external libraries.
 And do note that our engine doesn't support (yet) ECMAScript for VRML script
 at all, so this is the only way to do scripting for now (without
-writing and compiling any ObjectPascal code).
-Programmers may also be interested that language implementation is flexible,
+writing and compiling any ObjectPascal code).</p>
+
+<p>Programmers may also be interested that language implementation is flexible,
 you can extend it easily from ObjectPascal (adding new data-types and
-built-in functions), for many uses (not necessarily related with VRML).</p>
+built-in functions), for many uses (not necessarily related with VRML).
+The language is completely safe (that is, there's no possibility for
+malicious script author to do something harmful)
+simply because the language is a closed data-processing language
+(there are absolutely no I/O routines or anything like this).
+</p>
 
 <?php
   $toc = new TableOfContents(
@@ -189,6 +196,20 @@ at runtime. Four core types are available:</p>
     you to convert other core types into string.</p></li>
 </ol>
 
+<p>The one and only implicit type conversion (promotion) of types is from
+integer to float (for example, <tt>my_float := 44</tt> works,
+you don't have to write <tt>my_float := 44.0</tt>).
+In particular, note that <i>boolean type is not interchangeable
+with integer</i> like in C. If you want to convert between boolean and integer,
+you have to convert explicitly by <tt>bool(my_int)</tt> or <tt>int(my_bool)</tt>,
+like in Pascal. The only exception is when using KambiScript solely for
+mathematical expressions (like in <?php echo a_href_page(
+'glplotter and gen_function',
+'glplotter_and_gen_function'); ?>, internally using <tt>ParseFloatExpression</tt>
+function): in this case, result is always implicitly converted to float,
+like it would be embedded within <tt>float(...)</tt> call.
+</p>
+
 <p>When using KambiScript inside VRML scripts, internally you have
 all the VRML field types available (which means that
 vec2f, vec3f, vec4f, matrix, image and others are included).
@@ -241,7 +262,13 @@ are in fact <i>procedures</i>).
 Semicolon works like a delimiter (not a terminator,
 so it's used only between instructions).</p>
 
-<p>An <i>assignment instruction</i>: operand, followed by
+<p>Note that the way semicolon and expressions are defined means
+that we don't need any special syntax for compound instruction
+(like <tt>begin end</tt> in Pascal or
+<tt>{ }</tt> in C). Instead, normal parenthesis may be
+used if necessary to group instructions.</p>
+
+<p>An <i>assignment instruction</i> is an operand, followed by
 the assignment operator <tt>:=</tt> (Pascal-like),
 followed by an expression to calculate value to assign.
 
