@@ -35,6 +35,8 @@ function echo_header_bonus ()
     background-color: #f9f9f9;
     padding: 0.3em;
   }
+
+  a.kscript_func_docs { text-decoration: underline; }
 --></style>
 
   <?php

@@ -2,9 +2,14 @@
   require 'vrmlengine_functions.php';
   common_header('KambiScript language', LANG_EN);
 
-  function script_func($name, $title)
+  function func_ref($name, $title)
   {
     echo '<a href="#function_' . $name . '"><tt>' . $title . '</tt></a>';
+  }
+
+  function func($name, $title)
+  {
+    echo '<a name="function_' . $name . '" class="kscript_func_docs"><tt>' . $title . '</tt></a>';
   }
 ?>
 
@@ -65,11 +70,11 @@ simply because the language is a closed data-processing language
       new TocItem('Programs and expressions', 'programs_expressions', 1),
       new TocItem('Built-in functions', 'built_in_functions'),
       new TocItem('Type conversion', 'functions_conversion', 1),
-      new TocItem('Numeric (int or float) functions', 'functions_numeric', 1),
+      new TocItem('Number (integer and float) functions', 'functions_number', 1),
       new TocItem('Boolean functions', 'functions_boolean', 1),
       new TocItem('String functions', 'functions_string', 1),
       new TocItem('Array functions', 'functions_array', 1),
-      new TocItem('Vectors functions', 'functions_vectors', 1),
+      new TocItem('Vector functions', 'functions_vector', 1),
       new TocItem('Matrix functions', 'functions_matrix', 1),
       new TocItem('Image functions', 'functions_image', 1),
       new TocItem('VRML node functions', 'functions_node', 1),
@@ -151,7 +156,7 @@ But script is already simpler and shorter, and allows you to trivially
 add other interesting things.</p>
 
 <pre class="light_bg">
-# Simple converter from SFString to MFString using built-in <?php script_func('array', 'array'); ?> function.
+# Simple converter from SFString to MFString using built-in <?php func_ref('array', 'array'); ?> function.
 Script {
   inputOnly SFString input
   outputOnly MFString output
@@ -177,7 +182,7 @@ at runtime. Four core types are available:</p>
   <li><p>Integers. (32-bit for now, maybe will be extended to 64-bit
     if the need will arise.) Syntax of integer constants is obvious,
     like <tt>123</tt>. Built-in function
-    <?php script_func('int', 'int(...)'); ?> allows
+    <?php func_ref('int', 'int(...)'); ?> allows
     you to convert other core types into integer.</p></li>
 
   <li><p>Floats. (Uses the best floating-point type precision on given
@@ -186,7 +191,7 @@ at runtime. Four core types are available:</p>
     is also obvious, like <tt>3.1415</tt>. You have also
     constants <tt>pi</tt> and <tt>enat</tt> (Euler's number).
     Built-in function
-    <?php script_func('float', 'float(...)'); ?> allows
+    <?php func_ref('float', 'float(...)'); ?> allows
     you to convert other core types into float.</p></li>
 
   <li><p>Booleans. Two obvious constants are available, <tt>false</tt>
@@ -194,14 +199,37 @@ at runtime. Four core types are available:</p>
     so you can also write uppercase
     <tt>FALSE</tt> or <tt>TRUE</tt> like in classic VRML).
     Built-in function
-    <?php script_func('bool', 'bool(...)'); ?> allows
+    <?php func_ref('bool', 'bool(...)'); ?> allows
     you to convert other core types into boolean.</p></li>
 
   <li><p>Strings. Syntax of constants is Pascalish (in apostrophes, and two
     consecutive apostrophes inside mean that you want a single literal
     apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
-    Built-in function
-    <?php script_func('string', 'string(...)'); ?> allows
+    Apostrophe was chosen not only because, y'know, it's Pascalish :),
+    but also because it makes embedding KambiScript code within
+    VRML string easier (no need to escape quotes by backslashes).
+    You can make actual newlines within the string, like in VRML.
+    For example:
+<pre class="light_bg">
+Script {
+  # Let's assume some TouchSensor.touchTime is routed here.
+  inputOnly SFTime touch_time
+  outputOnly MFString text
+
+  url "kambiscript:
+function touch_time(value, timestamp)
+  text := array(
+    'First string of text clicked on ' + string(value),
+    'Second string of text.
+Still second string of text.
+As you see, you can simply make a newline in the string literal to get a newline inside the string.'
+  )
+"
+}
+</pre>
+
+    <p>Built-in function
+    <?php func_ref('string', 'string(...)'); ?> allows
     you to convert other core types into string.</p></li>
 </ol>
 
@@ -225,18 +253,18 @@ vec2f, vec3f, vec4f, matrix, image and others are included).
 There is no special syntax for reading/writing other types, instead
 you have many functions to construct and set them.
 For example for vec3f type you have "constructor"
-<?php script_func('vector', 'vector(x, y, z)'); ?> ,
-reader for particular component <?php script_func('vector_get', 'vector_get(vector, index)'); ?>,
-and setter for particular component <?php script_func('vector_set', 'vector_set(vector, index, component_value)'); ?>.
+<?php func_ref('vector', 'vector(x, y, z)'); ?> ,
+reader for particular component <?php func_ref('vector_get', 'vector_get(vector, index)'); ?>,
+and setter for particular component <?php func_ref('vector_set', 'vector_set(vector, index, component_value)'); ?>.
 Even images have functions to create and modify them, which means
 that you can use KambiScript to perform basic image creation and processing.</p>
 
 <p>Also array types are internally available, for VRML multiple-value
 (MFXxx) types. Again no special syntax is available (sorry, no bracket parenthesis),
 but there are functions to construct array
-<?php script_func('array', 'array(item1, item2, ...)'); ?>,
-read component <?php script_func('array_get', 'array_get(array, index)'); ?> and
-set component <?php script_func('array_set', 'array_set(array, index, component_value)'); ?>.
+<?php func_ref('array', 'array(item1, item2, ...)'); ?>,
+read component <?php func_ref('array_get', 'array_get(array, index)'); ?> and
+set component <?php func_ref('array_set', 'array_set(array, index, component_value)'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -331,14 +359,14 @@ and functions.</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><a name="#function_int"><tt>int(...)</tt></a> converts a "core" type
+  <li><p><?php func('int', 'int(...)'); ?> converts a "core" type
     to an integer.</p>
 
     <p>Float is converted to int by discarding it's fractional
     part (like in C; for positive numbers, this is like <tt>floor</tt>, for negative
     this is like <tt>ceil</tt>).
-    There are also functions <tt>floor</tt>, <tt>ceil</tt> and
-    <tt>round</tt> that convert float to an integer with other rounding
+    There are also functions <?php func('floor', 'floor'); ?>, <?php func('ceil', 'ceil'); ?> and
+    <?php func('round', 'round'); ?> that convert float to an integer with other rounding
     modes.</p>
 
     <p>Bool converted to 0 (false) or 1 (true).
@@ -352,7 +380,7 @@ and functions.</p>
     converting string to integer using standard integer notation
     (<tt>int('123') = 123</tt>).</p></li>
 
-  <li><p><a name="#function_float"><tt>float(...)</tt></a> converts a "core" type
+  <li><p><?php func('float', 'float(...)'); ?> converts a "core" type
     to a float.</p>
 
     <p>Integer is converted obviously. Actually it's never needed to
@@ -367,7 +395,7 @@ and functions.</p>
     <p>String is converted to float by parsing number from string,
     like <tt>float('3.14') = 3.14</tt>.</p></li>
 
-  <li><p><a name="#function_bool"><tt>bool(...)</tt></a> converts a "core" type
+  <li><p><?php func('bool', 'bool(...)'); ?> converts a "core" type
     to a boolean.</p>
 
     <p>Integers and floats are converted to "false" if equal zero, "true"
@@ -376,7 +404,7 @@ and functions.</p>
     <p>Strings cannot be converted to booleans, as I couldn't imagine
     any definition that would be universally useful here.</p></li>
 
-  <li><p><a name="#function_string"><tt>string(...)</tt></a> converts a "core" type
+  <li><p><?php func('string', 'string(...)'); ?> converts a "core" type
     to a string.</p>
 
     <p>Not much to write here, numbers (integers and floats) are converted
@@ -389,25 +417,37 @@ have the necessary type. For example, converting float to float is a valid
 
 <?php echo $toc->html_section(); ?>
 
-<p>Mathematical functions (take a float type, return a float type unless
-otherwise noted):</p>
+<p>Self-explanatory math functions are listed below.
+They all take a float type, and return a float type unless otherwise noted:</p>
 
 <ul>
-  <li><tt>Sin</tt>, <tt>Cos</tt>, <tt>Tan</tt>, <tt>CoTan</tt>
-  <li><tt>ArcSin</tt>, <tt>ArcCos</tt>, <tt>ArcTan</tt>, <tt>ArcCoTan</tt>
-  <li><tt>SinH</tt>, <tt>CosH</tt>, <tt>TanH</tt>, <tt>CoTanH</tt>
-  <li><tt>Log2</tt>, <tt>Ln</tt>, <tt>Log</tt>, <tt>Power2</tt>,
-    <tt>Exp</tt>, <tt>Power</tt>, <tt>Sqr</tt>, <tt>Sqrt</tt><br>
-    (<tt>Log2(x) = Log(2, x)</tt>,
-     <tt>Power2(x) = Power(2, x) = 2^x</tt>,
-     <tt>Exp(x) = Power(enat, x) = enat^x</tt>)
-  <li><tt>Sgn</tt> (returns integer), <tt>Abs</tt>
+  <li><?php func('Sin', 'Sin'); ?>,
+      <?php func('Cos', 'Cos'); ?>,
+      <?php func('Tan', 'Tan'); ?>,
+      <?php func('CoTan', 'CoTan'); ?>
+  <li><?php func('ArcSin', 'ArcSin'); ?>,
+      <?php func('ArcCos', 'ArcCos'); ?>,
+      <?php func('ArcTan', 'ArcTan'); ?>,
+      <?php func('ArcCoTan', 'ArcCoTan'); ?>
+  <li><?php func('SinH', 'SinH'); ?>,
+      <?php func('CosH', 'CosH'); ?>,
+      <?php func('TanH', 'TanH'); ?>,
+      <?php func('CoTanH', 'CoTanH'); ?>
+  <li><?php func('Log2', 'Log2'); ?> (same as <tt>Log(2, x)</tt>),
+      <?php func('Ln', 'Ln'); ?>,
+      <?php func('Log', 'Log'); ?>,
+      <?php func('Power2', 'Power2'); ?> (same as <tt>Power(2, x) = 2^x</tt>),
+      <?php func('Exp', 'Exp'); ?> (same as <tt>Power(enat, x) = enat^x</tt>),
+      <?php func('Power', 'Power'); ?>,
+      <?php func('Sqr', 'Sqr'); ?>,
+      <?php func('Sqrt', 'Sqrt'); ?><br>
+  <li><?php func('Sgn', 'Sgn'); ?> (returns integer), <?php func('Abs', 'Abs'); ?>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Basic boolean operations:
-<tt>or(a, b)</tt>, <tt>and(a, b)</tt>, <tt>not(a)</tt>.</p>
+<?php func('or(a, b)', 'or(a, b)'); ?>, <?php func('and(a, b)', 'and(a, b)'); ?>, <?php func('not(a)', 'not(a)'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -415,8 +455,8 @@ TODO
 
 <?php echo $toc->html_section(); ?>
 
-<p><a name="#function_array"><tt>array(item1, item2, ...)</tt></a>
-constructs an array. At least one argument is required.
+<p><?php func('array', 'array(item1, item2, ...)'); ?>
+ constructs an array. At least one argument is required.
 All arguments must have the same type (VRML multiple-value fields
 can't have mixed types).</p>
 
@@ -431,43 +471,45 @@ in the best precision possible. Having explicit single-
 or double- precision arrays is better for storage and allows faster
 copying between VRML fields. Normal <tt>array</tt> with float parameters will create
 an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
-You have to call <tt>array_d</tt> to request double-precision storage
+You have to call <?php func('array_d', 'array_d'); ?> to request double-precision storage
 (suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
 
-<p><tt>array_count(my_array)</tt> and
-<tt>array_set_count(my_array, new_count)</tt> get and set array count.
+<p><?php func('array_count(my_array)', 'array_count(my_array)'); ?> and
+<?php func('array_set_count(my_array, new_count)', 'array_set_count(my_array, new_count)'); ?> get and set array count.
 When you grow array, newly added items have undefined values.
 When you shrink array, excessive values are discarded.</p>
 
-<p><a name="#array_get"><tt>array_get(my_array, index)</tt></a>
-gets an item from array on given index. In "normal" programming languages,
+<p><?php echo func('array_get', 'array_get(my_array, index)'); ?>
+ gets an item from array on given index. In "normal" programming languages,
 implemented by less lazy programmers, this is written as <tt>my_array[index]</tt> :)
 Analogous
-<a name="#array_set"><tt>array_set(my_array, index, component_value)</tt></a>
-sets a value of item in an array.
+<?php echo func('array_set', 'array_set(my_array, index, component_value)'); ?>
+ sets a value of item in an array.
 In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
 
 <?php echo $toc->html_section(); ?>
 
-<p><a name="#function_vector"><tt>vector(x, y)</tt>, <tt>vector(x, y, z)</tt>, <tt>vector(x, y, z, w)</tt></a>
-create a single-precision vectors (called <tt>SFVec2f</tt>,
+<p><?php func('vector', 'vector(x, y), vector(x, y, z), vector(x, y, z, w)'); ?>
+ create a single-precision vectors (called <tt>SFVec2f</tt>,
 <tt>SFVec3f</tt>, <tt>SFVec4f</tt> in VRML).
 Suffix <tt>_d</tt> means that you want double-precision vectors:
-<tt>vector_d(x, y)</tt>, <tt>vector_d(x, y, z)</tt>, <tt>vector_d(x, y, z, w)</tt>.</p>
+<?php func('vector_d', 'vector_d(x, y), vector_d(x, y, z), vector_d(x, y, z, w)'); ?>.</p>
 
-<p><a name="#vector_get"><tt>vector_get(my_vec, index)</tt></a>
-gets vector component. Allowed index values obviously depend on vector size,
+<p><?php echo func('vector_get', 'vector_get(my_vec, index)'); ?>
+ gets vector component. Allowed index values obviously depend on vector size,
 for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
-<a name="#vector_set"><tt>vector_set(my_vec, index, component_value)</tt></a>
-sets given vector component.</p>
+<?php echo func('vector_set', 'vector_set(my_vec, index, component_value)'); ?>
+ sets given vector component.</p>
 
-<p><tt>vector_get_count</tt> is available, for analogy with
-<tt>array_get_count</tt>.</p>
+<p><?php func('vector_get_count', 'vector_get_count(my_vec)'); ?> is available,
+for analogy with <tt>array_get_count</tt>. Vector has a fixed number
+of components, so there is no <tt>vector_set_count</tt>.
+</p>
 
 <p>Standard vector math utilities are available:
-<tt>vector_length(v)</tt>, <tt>vector_sqr_length(v)</tt>,
-<tt>vector_dot(v1, v2)</tt>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
-<tt>vector_cross(v1, v2)</tt> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
+<?php func('vector_length(v)', 'vector_length(v)'); ?>, <?php func('vector_sqr_length(v)', 'vector_sqr_length(v)'); ?>,
+<?php func('vector_dot(v1, v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
+<?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
 
 <?php echo $toc->html_section(); ?>
 
