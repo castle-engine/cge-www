@@ -179,8 +179,9 @@ two identifiers).</p>
 at runtime. Four core types are available:</p>
 
 <ol>
-  <li><p>Integers. (32-bit for now, maybe will be extended to 64-bit
-    if the need will arise.) Syntax of integer constants is obvious,
+  <li><p>Integers. (64-bit integer; although note that for VRML long/int32
+    fields, this will have to fit within 32-bit anyway.)
+    Syntax of integer constants is obvious,
     like <tt>123</tt>. Built-in function
     <?php func_ref('int', 'int(...)'); ?> allows
     you to convert other core types into integer.</p></li>
@@ -542,6 +543,12 @@ TODO
   #     This works for non-integer Y, but in this case Y has to be &gt;= 0.
   # "%" operator is for modulo (remainder of division).
   #     X % Y = X - Floor(X/Y) * Y
+  # "/" does division. Like in C, when both operands are integers,
+  #     this performs an integer division (that is, it's the floor of
+  #     actual division result, corresponding to Pascal's "div" operator).
+  #     When either operand is float then this is normal float division
+  #     (more precisely, if only one operand is float, the other will be
+  #     promoted to float then; and then float division will be done.)
 
   Term = Factor [{FactorOperator Factor}]
   TermOperator = "+" | "-"
