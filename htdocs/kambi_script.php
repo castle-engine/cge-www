@@ -370,7 +370,7 @@ and functions.</p>
     <?php func('round', 'round'); ?> that convert float to an integer with other rounding
     modes.</p>
 
-    <p>Bool converted to 0 (false) or 1 (true).
+    <p>Bool is converted to 0 (false) or 1 (true).
     Yes, unlike most languages that usually
     don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
     KambiScript actually guarantees that "true" will result in 1.
@@ -388,10 +388,7 @@ and functions.</p>
     explicitly cast integer to float, this conversion happens automatically,
     like in most programming languages.</p>
 
-    <p>Bool is converted to
-    obviously. Actually it's never needed to
-    explicitly cast integer to float, this conversion happens automatically,
-    like in most programming languages.</p>
+    <p>Bool is converted to 0.0 (false) or 1.0 (true).</p>
 
     <p>String is converted to float by parsing number from string,
     like <tt>float('3.14') = 3.14</tt>.</p></li>
@@ -402,8 +399,8 @@ and functions.</p>
     <p>Integers and floats are converted to "false" if equal zero, "true"
     otherwise.</p>
 
-    <p>Strings cannot be converted to booleans, as I couldn't imagine
-    any definition that would be universally useful here.</p></li>
+    <p>Strings are converted to booleans recognizing 'false' and 'true'
+    strings (and making errors in other cases).</p></li>
 
   <li><p><?php func('string', 'string(...)'); ?> converts a "core" type
     to a string.</p>
