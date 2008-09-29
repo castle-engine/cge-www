@@ -174,6 +174,9 @@ function input(value, timestamp)
 or any indentation) is to separate tokens when needed (for example, between
 two identifiers).</p>
 
+<p><i>Comments</i> are within curly braces: <tt>{ this is a comment }</tt>
+(Pascal-like).</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p><i>Types</i> are never explicitly declared, and are checked
