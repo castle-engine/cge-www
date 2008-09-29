@@ -29,7 +29,7 @@ with features inspired by many other languages, and by author's laziness.
 For example I was too lazy to add <tt>if</tt>, <tt>while</tt> and such
 constructs to the grammar,
 instead you have built-in functions like
-<tt>if(condition, then_code, else_code)</tt>.
+<?php func_ref('if', 'if(condition, then_code, else_code)'); ?>.
 <b>This language doesn't try to compete with other scripting languages</b>
 (like <i>ECMAScript</i>, commonly used in VRML scripting).
 It's not suitable for larger programs
@@ -70,6 +70,7 @@ simply because the language is a closed data-processing language
       new TocItem('Programs and expressions', 'programs_expressions', 1),
       new TocItem('Built-in functions', 'built_in_functions'),
       new TocItem('Type conversion', 'functions_conversion', 1),
+      new TocItem('Control flow', 'functions_control_flow', 1),
       new TocItem('Number (integer and float) functions', 'functions_number', 1),
       new TocItem('Boolean functions', 'functions_boolean', 1),
       new TocItem('String functions', 'functions_string', 1),
@@ -412,6 +413,48 @@ and functions.</p>
 <p>All four basic conversion functions accept also variables that already
 have the necessary type. For example, converting float to float is a valid
 (and harmless) operation.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p><?php func('if', 'if(condition, then_code, else_code)'); ?> is our
+conditional instruction. <tt>condition</tt> is first calculated, must be a boolean
+value. If it's true, then <tt>then_code</tt> is executed and returned as
+"if" value. Otherwise, <tt>else_code</tt> is executed and returned as
+"if" value. You may note that (because of KambiScript unification of
+"instruction" and "expression" terms) this can be used in both
+functional and imperative form. That is, all below are valid:</p>
+
+<pre class="light_bg">
+  { imperative form }
+  if(x &gt; 3, y := 'yes', y := 'no');
+
+  { functional form, equivalent to above, looks little more elegant in this case }
+  y := if(x &gt; 3, 'yes', 'no');
+
+  { actually, even this is possible if you need it: }
+  y_copy := if(x &gt; 3, y := 'yes', y:= 'no');
+</pre>
+
+<p><?php func('while', 'while(condition, loop_code)'); ?> performs
+a while loop. Calculate <tt>condition</tt> (must yield a boolean value),
+if true then execute <tt>loop_code</tt> and again calculate <tt>condition</tt>,
+if it's still true then execute <tt>loop_code</tt> again, ... you get the idea.</p>
+
+<p><?php func('for', 'for(counter, begin_value, end_value, loop_code)'); ?> performs
+a for loop. <tt>counter</tt> must be an assignable integer variable
+(note that for now you cannot declare new variables for KambiScript;
+you usually need to overuse <tt>initializeOnly</tt> field or VRML script
+node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
+be integer values, will be calculated at the beginning.
+We will to assign <tt>counter</tt> variable integer values
+from <tt>begin_value</tt> to <tt>end_value</tt>, and for each
+occurence counter value we will execute <tt>loop_code</tt>.
+It's undefined what happens when <tt>loop_code</tt> changes directly the
+<tt>counter</tt>value.</p>
+
+<p><tt>for</tt> and <tt>while</tt> loops return
+the value of last executed <tt>loop_code</tt>,
+or <tt>false</tt> if <tt>loop_code</tt> did not get executed even once.</p>
 
 <?php echo $toc->html_section(); ?>
 
