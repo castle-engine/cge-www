@@ -451,7 +451,7 @@ node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
 be integer values, will be calculated at the beginning.
 We will to assign <tt>counter</tt> variable integer values
 from <tt>begin_value</tt> to <tt>end_value</tt>, and for each
-occurence counter value we will execute <tt>loop_code</tt>.
+occurrence counter value we will execute <tt>loop_code</tt>.
 It's undefined what happens when <tt>loop_code</tt> changes directly the
 <tt>counter</tt>value.</p>
 
@@ -598,6 +598,13 @@ TODO
 
   ComparisonArgument = Term [{TermOperator Term}]
   ComparisonOperator = "&lt;" | "&gt;" | "&lt;=" | "&gt;=" | "=" | "&lt;&gt;"
+
+  # Note that comparisons on float types (this also includes vectors, matrices
+  # and arrays based on float types) perform <i>exact</i> comparison
+  # (like in all programming languages).
+  # This means that adding 1.0 one hundred times will not necessarily yield result
+  # equal to literal 100.0. You can compare with some epsilon, like
+  # "abs(a-b) < 0.001", if needed.
 
   NonAssignmentExpression = ComparisonArgument [{ComparisonOperator ComparisonArgument}] |
 
