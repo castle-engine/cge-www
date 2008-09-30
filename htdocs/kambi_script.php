@@ -543,7 +543,7 @@ Suffix <tt>_d</tt> means that you want double-precision vectors:
  gets vector component. Allowed index values obviously depend on vector size,
 for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
 <?php echo func('vector_set', 'vector_set(my_vec, index, component_value)'); ?>
- sets given vector component.</p>
+ sets given vector component (and returns new vector, for comfort).</p>
 
 <p><?php func('vector_get_count', 'vector_get_count(my_vec)'); ?> is available,
 for analogy with <tt>array_get_count</tt>. Vector has a fixed number
@@ -553,7 +553,8 @@ of components, so there is no <tt>vector_set_count</tt>.
 <p>Standard vector math utilities are available:
 <?php func('vector_length(v)', 'vector_length(v)'); ?>, <?php func('vector_sqr_length(v)', 'vector_sqr_length(v)'); ?>,
 <?php func('vector_dot(v1, v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
-<?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>).
+<?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
+only on 3d vectors).
 
 <?php echo $toc->html_section(); ?>
 
