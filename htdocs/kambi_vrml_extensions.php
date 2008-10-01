@@ -1056,7 +1056,9 @@ end;
         is ignored.
 
       <li><tt>speed</tt> is honoured as appropriate, it sets
-        the speed in meters/second.
+        the speed in meters/second. Speed = 0.0 is also correctly
+        honoured (user will not be able to move in Walk/Fly modes,
+        only to rotate).
 
       <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>
         and <tt>FLY</tt> are fully supported. They map to appropriate
@@ -1071,14 +1073,10 @@ end;
         navigation is not properly defined :)
         -->
 
-      <li>Since our engine doesn't support any scripting, forcing camera
-        to be stationary or hiding some user controls doesn't make much sense.
-        That's why <tt>speed</tt> = 0.0 is ignored (i.e.
-        equivalent to <tt>speed</tt> = 1.0), navigation type
-        <tt>NONE</tt> is ignored, and the presense of navigation type
+      <li>Navigation type <tt>NONE</tt> is ignored for now, TODO.
+        The presense of navigation type
         <tt>ANY</tt> is not important (view3dscene always
-        shows controls to change navigation settings). In the future this
-        may change, if some serious scripting will be implemented.
+        shows controls to change navigation settings).
     </ul>
 
     <p>When no <tt>NavigationInfo</tt> node is present in the scene,
