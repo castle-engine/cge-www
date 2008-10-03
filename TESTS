@@ -26,5 +26,9 @@ cd view3dscene/
 
 # Test Lazarus compilation:
 # - Recompile kambi_vrml_game_engine packages
-# - Compile and run view3dscene and castle from Lazarus lpi files
+# - Compile and run
+#     view3dscene,
+#     castle,
+#     3dmodels.gl/examples/simplest_vrml_browser
+#   from Lazarus lpi files
 # - Compile and run lazarus_vrml_browser
