@@ -73,7 +73,6 @@ $toc = new TableOfContents(array(
   new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML/X3D version', 'ext_inline_for_all', 2),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 2),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 2),
-  new TocItem('Node <tt>NavigationInfo</tt> handling details', 'ext_navigationinfo', 2),
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 2),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 2),
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 2),
@@ -1043,59 +1042,6 @@ end;
     (that automatically fetch URLs) will be also intelligent, the compression
     is done magically over HTTP protocol, and you don't have to actually compress
     VRML files to save bandwidth.</p>
-
-<?php echo $toc->html_section(); ?>
-
-    Various details about how we handle NavigationInfo node in
-    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
-    <ul>
-      <li>Note that <tt>--camera-radius</tt> command-line option overrides
-        whatever was specified by <tt>avatarSize[0]</tt>.
-
-      <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
-        is ignored.
-
-      <li><tt>speed</tt> is honoured as appropriate, it sets
-        the speed in meters/second. Speed = 0.0 is also correctly
-        honoured (user will not be able to move in Walk/Fly modes,
-        only to rotate).
-
-      <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>
-        and <tt>FLY</tt> are fully supported. They map to appropriate
-        view3dscene navigation styles and settings
-        (accordingly: <tt>Examine</tt> style,
-        <tt>Walk</tt> style with gravity and moving versus <i>gravity</i> up vector,
-        <tt>Walk</tt> style without gravity and moving versus <i>current</i> up vector).
-        <!--
-        Nothing maps to view3dscene
-        <tt>FreeWalk</tt> and that's OK, because <tt>FreeWalk</tt>
-        is actually a hack that is comfortable only if the scene
-        navigation is not properly defined :)
-        -->
-
-      <li>Navigation type <tt>NONE</tt> is ignored for now, TODO.
-        The presense of navigation type
-        <tt>ANY</tt> is not important (view3dscene always
-        shows controls to change navigation settings).
-    </ul>
-
-    <p>When no <tt>NavigationInfo</tt> node is present in the scene,
-    we try to intelligently guess related properties.
-    (We try to guess "intelligently" because simply assuming that
-    "no NavigationInfo node" is equivalent to "presence of
-    default NavigationInfo" is <i>not good</i> for most scenes).
-    <ul>
-      <li><tt>avatarSize[0]</tt> and <tt>avatarSize[1]</tt>
-        are guessed based on scene's bounding box sizes.
-
-      <li><tt>headlight</tt> is set to true if and only if there are no
-        lights defined in the scene.
-
-      <li><tt>type</tt> remains as it was before loading new scene.
-
-      <li><tt>speed</tt> is calculated to something that should "feel sensible"
-        based on scene's bounding box sizes.
-    </ul>
 
 <?php echo $toc->html_section(); ?>
 

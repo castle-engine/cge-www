@@ -310,8 +310,61 @@ used.
     are supported. My units can support as many lights as are
     allowed by your OpenGL implementation, which is <i>at least</i> 8.
 
-  <li><p><tt>Background</tt>, <tt>Fog</tt>, <tt>NavigationInfo</tt>,
-    <tt>WorldInfo</tt>
+  <li><p><tt>Background</tt>, <tt>Fog</tt></p></li>
+
+  <li><p><tt>NavigationInfo</tt></p>
+
+    <p>Various details about how we handle NavigationInfo node in
+    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
+    <ul>
+      <li>Note that <tt>--camera-radius</tt> command-line option overrides
+        whatever was specified by <tt>avatarSize[0]</tt>.
+
+      <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
+        is ignored for now. Camera radius decides what you can climb.
+
+      <li><tt>speed</tt> is honoured as appropriate, it sets
+        the speed in meters/second. Speed = 0.0 is also correctly
+        honoured (user will not be able to move in Walk/Fly modes,
+        only to rotate).
+
+      <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>,
+        <tt>FLY</tt>, <tt>NONE</tt> are fully supported. They map to appropriate
+        view3dscene internal navigation settings:
+        <ul>
+          <li><tt>EXAMINE</tt> in VRML &mdash; internal <tt>Examine</tt> style,
+          <li><tt>WALK</tt> in VRML &mdash; internal <tt>Walk</tt> style
+            with gravity and moving versus <i>gravity</i> up vector,
+          <li><tt>FLY</tt> in VRML &mdash; internal <tt>Walk</tt> style
+            without gravity, and moving versus <i>current</i> up vector,
+          <li><tt>NONE</tt> in VRML &mdash; internal <tt>Walk</tt> style
+            without gravity, and with "disable normal navigation".
+        </ul>
+
+      <li>The presense of navigation type
+        <tt>ANY</tt> is not important (view3dscene always
+        shows controls to change navigation settings).
+    </ul>
+
+    <p>When no <tt>NavigationInfo</tt> node is present in the scene,
+    we try to intelligently guess related properties.
+    (We try to guess "intelligently" because simply assuming that
+    "no NavigationInfo node" is equivalent to "presence of
+    default NavigationInfo" is <i>not good</i> for most scenes).
+    <ul>
+      <li><tt>avatarSize[0]</tt> and <tt>avatarSize[1]</tt>
+        are guessed based on scene's bounding box sizes.
+
+      <li><tt>headlight</tt> is set to true if and only if there are no
+        lights defined in the scene.
+
+      <li><tt>type</tt> remains as it was before loading new scene.
+
+      <li><tt>speed</tt> is calculated to something that should "feel sensible"
+        based on scene's bounding box sizes.
+    </ul>
+
+  <li><p><tt>WorldInfo</tt></p>
 
     <p><i>Note</i>: <tt>WorldInfo.title</tt>, if set, is displayed by
     view3dscene on window's caption.
