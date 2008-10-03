@@ -371,13 +371,15 @@ when you're not interested in testing creatures
     So size of all these various models must match.
 
     <p>In other words: just make sure you use
-    <pre>
-      NavigationInfo {
-        avatarSize [ 0.5, 2 ]
-        speed 20
-        ...
-      }
-    </pre>
+<pre class="vrml_code">
+  NavigationInfo {
+    avatarSize [ 0.5, 2 ]
+    speed 20
+    ...
+    type "WALK" # "WALK" is not really needed for castle,
+                # but useful for testing with general VRML browsers like view3dscene
+  }
+</pre>
     in your level. And force yourself to design a level that "fits"
     such avatarSize.
 
