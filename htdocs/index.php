@@ -14,9 +14,9 @@
 
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<p><b>For developers:</b> this is a free/open-source engine
-that is especially oriented towards working with
-<a href="http://web3d.org/">VRML / X3D</a> worlds
+<p><b>For developers:</b> this is a free/open-source engine.
+It's main focus is on 3D games using
+<a href="http://web3d.org/">VRML / X3D</a> format
 (although other 3D model formats are also supported).
 For more information, documentation and downloads for developers
 see <a href="#support">lower on this page</a>.</p>
