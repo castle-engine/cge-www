@@ -358,7 +358,8 @@ used.
       <li><tt>headlight</tt> is set to true if and only if there are no
         lights defined in the scene.
 
-      <li><tt>type</tt> remains as it was before loading new scene.
+      <li><tt>type</tt> is set to <tt>"EXAMINE"</tt> (this follows the spec,
+        as <tt>[EXAMINE, ANY]</tt> is the default <tt>NavigationInfo.type</tt> value).
 
       <li><tt>speed</tt> is calculated to something that should "feel sensible"
         based on scene's bounding box sizes.
