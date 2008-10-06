@@ -188,7 +188,14 @@ at runtime. Four core types are available:</p>
     Syntax of integer constants is obvious,
     like <tt>123</tt>. Built-in function
     <?php func_ref('int', 'int(...)'); ?> allows
-    you to convert other core types into integer.</p></li>
+    you to convert other core types into integer.</p>
+
+    <p>Specifically for comfortable processing of
+    <a href="http://web3d.org/x3d/specifications/ISO-IEC-FDIS-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#KeySensor">X3D
+    KeySensor node</a> events <tt>actionKeyPress/Release</tt>
+    you have 20 key constants available: <tt>ACTION_KEY_F1</tt>,
+    ... <tt>ACTION_KEY_F12</tt>, <tt>ACTION_KEY_HOME</tt>, etc.
+    (see KeySensor specification for full list).</p></li>
 
   <li><p>Floats. (Uses the best floating-point type precision on given
     platform, which means at least Double, but on many platforms Extended.)
