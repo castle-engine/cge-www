@@ -168,6 +168,15 @@ function input(value, timestamp)
 }
 </pre>
 
+<p>Some larger examples:
+<ul>
+  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv">kambi_script_ball_game.x3dv</a>
+    &mdash; a small X3D game, with whole game logic implemented in KambiScript
+    (key handling by KeySensor node). Can be played in any VRML browser
+    supporting KambiScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
+    or any of the example VRML browser components in engine sources.
+</ul>
+
 <?php echo $toc->html_section(); ?>
 
 <p><i>Syntax is free-form</i>, the only use of whitespace (including newlines,
