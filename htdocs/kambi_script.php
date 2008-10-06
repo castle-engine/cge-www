@@ -563,6 +563,9 @@ of components, so there is no <tt>vector_set_count</tt>.
 <?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
 only on 3d vectors).
 
+<p>You can also add, subtract, multiply by scalar, compare vectors
+by normal operators.
+
 <?php echo $toc->html_section(); ?>
 
 TODO
