@@ -618,7 +618,7 @@ TODO
   PossiblyAssignmentExpression = NonAssignmentExpression |
                                  Operand ":=" PossiblyAssignmentExpression
 
-  Expression = PossiblyAssignmentExpression [{";" PossiblyAssignmentExpression}] |
+  Expression = PossiblyAssignmentExpression [{";" PossiblyAssignmentExpression}]
 
   Function = "function" "(" [Identifier [{"," Identifier}] ")" Expression
   Program = [{Function}]
