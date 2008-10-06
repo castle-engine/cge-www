@@ -493,6 +493,8 @@ They all take a float type, and return a float type unless otherwise noted:</p>
       <?php func('Sqr', 'Sqr'); ?>,
       <?php func('Sqrt', 'Sqrt'); ?><br>
   <li><?php func('Sgn', 'Sgn'); ?> (returns integer), <?php func('Abs', 'Abs'); ?>
+  <li><?php func('Max', 'Max'); ?>, <?php func('Min', 'Min'); ?>
+    (any number of arguments &gt;= 1 allowed)
 </ul>
 
 <?php echo $toc->html_section(); ?>
