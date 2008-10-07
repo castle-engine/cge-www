@@ -622,7 +622,62 @@ or by vector on the right side), compare matrix using normal operators.</p>
 
 <?php echo $toc->html_section(); ?>
 
-TODO
+<p><?php func('image', 'image(width, height, components)'); ?> creates
+a new image. <tt>components</tt> is the number of image components,
+like in VRML <tt>SFImage</tt> field:
+
+<ul>
+  <li>1 component is grayscale image,
+  <li>2 components is grayscale image with alpha channel,
+  <li>3 components is RGB image,
+  <li>3 components is RGB image with alpha channel.
+</ul>
+
+<p>Note that image contents are <i>not initialized</i> (meaning:
+filled with random garbage in memory) after image is created.
+This is for the sake of speed.</p>
+
+<p>For functions that get/set image contents, there are 3 variants of each
+of them:
+
+<ul>
+  <li><p>Functions with <tt>_color</tt> suffix operate only on non-alpha channels
+    of the image. For 1 and 2 component images, they take/return
+    a single floating point value describing color intensity
+    (in 0..1 range). For 3 and 4 component images, they take/return
+    a 3-element vector with single precision, describing RGB color value.</p></li>
+
+  <li><p>Functions with <tt>_alpha</tt> operate only on alpha channel
+    of the image. They take/return a single floating point value
+    describing alpha (opacity), in 0..1 range.</p></li>
+
+  <li><p>Finally functions without alpha/color suffix operate on all image
+    channels at once. For 1 component images, they take/return
+    a single floating point value. For 2,3,4 component images,
+    they take/return a vector (with single precision) describing
+    color with alpha value. For images without alpha value (1 or 3
+    components), these functions are exactly equivalent to <tt>_color</tt>
+    functions.</p></li>
+</ul>
+
+<p>Available functions to get/set image contents:
+
+<ul>
+  <li><p><?php func('image_set',  'image_set&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x, y, color_with_alpha)'); ?>,<br/>
+    <?php func('image_set_color', 'image_set_color(x, y, color)'); ?>,<br/>
+    <?php func('image_set_alpha', 'image_set_alpha(x, y, alpha)'); ?><br/>
+    Set single pixel to given color/alpha.</p></li>
+
+  <li><p><?php func('image_get',  'image_get&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x, y, color_with_alpha)'); ?>,<br/>
+    <?php func('image_get_color', 'image_get_color(x, y, color)'); ?>,<br/>
+    <?php func('image_get_alpha', 'image_get_alpha(x, y, alpha)'); ?><br/>
+    Get single pixel's color/alpha.</p></li>
+
+  <li><p><?php func('image_fill',  'image_fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(color_with_alpha)'); ?>,<br/>
+    <?php func('image_fill_color', 'image_fill_color(color)'); ?>,<br/>
+    <?php func('image_fill_alpha', 'image_fill_alpha(alpha)'); ?><br/>
+    Fill whole image with given color/alpha.</p></li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
