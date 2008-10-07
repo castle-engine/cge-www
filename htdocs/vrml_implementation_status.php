@@ -242,7 +242,7 @@ Shape {
     <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
     <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt></p>
 
-  <li><p><tt>Rectangle2D</tt>
+  <li><p><tt>Rectangle2D</tt>, <tt>Circle2D</tt>
 
   <li><p>HAnim nodes:
 
