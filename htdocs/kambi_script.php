@@ -577,6 +577,15 @@ only on 3d vectors).
 <p>You can also add, subtract, multiply by scalar, compare vectors
 by normal operators.
 
+<p>Note that VRML rotations (<tt>SFRotation</tt>, or an element of
+<tt>MFRotation</tt> array) are, in KambiScript, just 4-value single-precision
+vectors. First three items are rotation axis (should be always normalized,
+VRML requires this), 4th item is the rotation angle (in radians).
+So you can operate on rotations from KambiScript using all normal functions
+on vectors. For now, there are no functions specialized in rotation
+processing, but they may be added (we have quaternions covered in our engine)
+&mdash; report if needed.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p>3x3 and 4x4 matrices are supported. Single- and double- precision.
@@ -598,7 +607,7 @@ for example on <tt>SFMatrix4f</tt> you can use index 0, 1, 2, 3.
 
 <p><?php func('matrix_get_count', 'matrix_get_count(my_vec)'); ?> is available,
 for analogy with <tt>array_get_count</tt> and <tt>vector_get_count</tt>.
-Returns number of columns, 3 or 4. For now, non-uniform matrixes are not
+Returns number of columns, 3 or 4. For now, non-uniform matrices are not
 supported, so this is also the number of rows.</p>
 
 <p>You add, subtract, negate, multiply (by another matrix, or by scalar,
