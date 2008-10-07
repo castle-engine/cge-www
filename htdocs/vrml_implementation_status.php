@@ -275,6 +275,14 @@ Shape {
     <p>Animating transformations of <tt>Joint</tt> nodes and such
     is optimized, just like for <tt>Transform</tt> node,
     be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.
+
+  <li><tt>TextureTransformMatrix3D</tt>,
+      <tt>TextureTransform3D</tt>,
+      <tt>MultiTextureTransform</tt>
+
+    <p>Although we don't support 3D texturing and multi-texturing yet,
+    above texture transform nodes are already supported (and may be used
+    to transform 2D textures).
 </ul>
 
 <?php echo $toc->html_section(); ?>
