@@ -513,7 +513,14 @@ They all take a float type, and return a float type unless otherwise noted:</p>
 
 <?php echo $toc->html_section(); ?>
 
-TODO
+<p>No special functions available now. A lot of string functions are
+trivial to add
+&mdash; report if you need some particular function.
+
+<p>You can add (concatenate) and compare (case-sensitive) strings
+by normal operators. Converting other
+core types (numbers, booleans) to string may be done by the
+<?php func_ref('string', 'string(...)'); ?> function.
 
 <?php echo $toc->html_section(); ?>
 
@@ -619,7 +626,11 @@ TODO
 
 <?php echo $toc->html_section(); ?>
 
-TODO
+<p>None for now. Currently, you cannot process VRML nodes directly by
+KambiScript. Whether it will ever be allowed in KambiScript, depends
+on the "success" of KambiScript &mdash; if you write your own scripts
+in KambiScript and feel that you need this, please report. Michalis
+will be more than happy to add them :)
 
 <?php echo $toc->html_section(); ?>
 
