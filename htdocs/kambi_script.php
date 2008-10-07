@@ -454,6 +454,17 @@ functional and imperative form. That is, all below are valid:</p>
   y_copy := if(x &gt; 3, y := 'yes', y:= 'no');
 </pre>
 
+<p><?php func('when', 'when(condition, then_code)'); ?> is
+conditional instruction useful when you don't want to do anything on
+"else" condition.
+It's equivalent to <tt>if(condition, then_code, false)</tt>, so it simply
+returns <tt>false</tt> when condition is not satisfied.
+(This is considered a good thing that the normal <tt>if</tt>
+<i>requires</i> the else clause; this way we avoid trivial errors
+when programmer forgets to write <tt>else</tt> clause; similar
+<tt>when</tt> expression may be found e.g. in Lisp and <a href="http://nemerle.org/">Nemerle</a>.)
+</p>
+
 <p><?php func('while', 'while(condition, loop_code)'); ?> performs
 a while loop. Calculate <tt>condition</tt> (must yield a boolean value),
 if true then execute <tt>loop_code</tt> and again calculate <tt>condition</tt>,
