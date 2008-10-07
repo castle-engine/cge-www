@@ -579,7 +579,30 @@ by normal operators.
 
 <?php echo $toc->html_section(); ?>
 
-TODO
+<p>3x3 and 4x4 matrices are supported. Single- and double- precision.
+VRML calls matrix types <tt>SFMatrix3f</tt>,<tt>SFMatrix4f</tt>,
+<tt>SFMatrix3d</tt>,<tt>SFMatrix4d</tt>.
+Matrix is treated similar to an array of vectors (columns).</p>
+
+<p><?php func('matrix', 'matrix(column1, column2, column3), matrix(column1, column2, column3, column4)'); ?>
+ create a matrix. Each <tt>column</tt> argument is a vector.
+Number or arguments determines if it's 3x3 or 4x4 matrix.
+Type of arguments (single- or double- precision vectors) determines
+if matrix is single or double precision.
+
+<p><?php echo func('matrix_get', 'matrix_get(my_matrix, column_index)'); ?>
+ gets matrix column. Allowed index values obviously depend on matrix size,
+for example on <tt>SFMatrix4f</tt> you can use index 0, 1, 2, 3.
+<?php echo func('matrix_set', 'matrix_set(my_matrix, column_index, column_value)'); ?>
+ sets given matrix column (and returns new matrix, for comfort).</p>
+
+<p><?php func('matrix_get_count', 'matrix_get_count(my_vec)'); ?> is available,
+for analogy with <tt>array_get_count</tt> and <tt>vector_get_count</tt>.
+Returns number of columns, 3 or 4. For now, non-uniform matrixes are not
+supported, so this is also the number of rows.</p>
+
+<p>You add, subtract, negate, multiply (by another matrix, or by scalar,
+or by vector on the right side), compare matrix using normal operators.</p>
 
 <?php echo $toc->html_section(); ?>
 
