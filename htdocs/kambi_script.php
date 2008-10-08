@@ -605,8 +605,8 @@ of components, so there is no <tt>vector_set_count</tt>.
 <?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
 only on 3d vectors).
 
-<p>You can also add, subtract, multiply by scalar, compare vectors
-by normal operators.
+<p>You can also add, subtract, multiply by scalar, divide by scalar,
+compare vectors by normal operators.
 
 <p>Note that VRML rotations (<tt>SFRotation</tt>, or an element of
 <tt>MFRotation</tt> array) are, in KambiScript, just 4-value single-precision
@@ -642,7 +642,8 @@ Returns number of columns, 3 or 4. For now, non-uniform matrices are not
 supported, so this is also the number of rows.</p>
 
 <p>You add, subtract, negate, multiply (by another matrix, or by scalar,
-or by vector on the right side), compare matrix using normal operators.</p>
+or by vector on the right side), divide (by scalar),
+compare matrix using normal operators.</p>
 
 <?php echo $toc->html_section(); ?>
 
