@@ -57,7 +57,10 @@ built-in functions), for many uses (not necessarily related with VRML).
 The language is completely safe (that is, there's no possibility for
 malicious script author to do something harmful)
 simply because the language is a closed data-processing language
-(there are absolutely no I/O routines or anything like this).
+(there are absolutely no I/O routines or anything like this,
+aside from <?php func_ref('image_load', 'image_load(url)'); ?>
+ &mdash; but this is available also from normal non-scripted VRML;
+ saving files is not possible).
 </p>
 
 <?php
@@ -473,7 +476,7 @@ if it's still true then execute <tt>loop_code</tt> again, ... you get the idea.<
 <p><?php func('for', 'for(counter, begin_value, end_value, loop_code)'); ?> performs
 a for loop. <tt>counter</tt> must be an assignable integer variable
 (note that for now you cannot declare new variables for KambiScript;
-you usually need to overuse <tt>initializeOnly</tt> field or VRML script
+you usually need to overuse <tt>initializeOnly</tt> field of VRML script
 node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
 be integer values, will be calculated at the beginning.
 We will to assign <tt>counter</tt> variable integer values
@@ -514,13 +517,15 @@ They all take a float type, and return a float type unless otherwise noted:</p>
       <?php func('Sqrt', 'Sqrt'); ?><br>
   <li><?php func('Sgn', 'Sgn'); ?> (returns integer), <?php func('Abs', 'Abs'); ?>
   <li><?php func('Max', 'Max'); ?>, <?php func('Min', 'Min'); ?>
-    (any number of arguments &gt;= 1 allowed)
+    (any number of arguments &gt;= 1 allowed; works on either floats or ints)
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Basic boolean operations:
-<?php func('or(a, b)', 'or(a, b)'); ?>, <?php func('and(a, b)', 'and(a, b)'); ?>, <?php func('not(a)', 'not(a)'); ?>.</p>
+<?php func('or', 'or(bool1, bool2...)'); ?>,
+<?php func('and', 'and(bool1, bool2...)'); ?> (any number of arguments
+&gt;= 1), <?php func('not', 'not(bool1)'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -645,8 +650,19 @@ like in VRML <tt>SFImage</tt> field:
 </ul>
 
 <p>Note that image contents are <i>not initialized</i> (meaning:
-filled with random garbage in memory) after image is created.
+they are filled with random garbage in memory) by <tt>image</tt> function.
 This is for the sake of speed.</p>
+
+<p><?php func('image_load', 'image_load(url)'); ?> loads
+an image from file. This is quite powerful utility, allowing you
+to load textures at any time from a script. (It's not a security
+problem, since you can do the same from normal VRML nodes like <ttImageTexture</tt>.)
+URL may be relative to VRML file containing the Script node.</p>
+
+<p><?php func('image_width', 'image_width(my_image)'); ?>,
+<?php func('image_height', 'image_height(my_image)'); ?>,
+<?php func('image_components', 'image_components(my_image)'); ?> return
+width, height and number of image components.</p>
 
 <p>For functions that get/set image contents, there are 3 variants of each
 of them:
@@ -671,24 +687,26 @@ of them:
     functions.</p></li>
 </ul>
 
-<p>Available functions to get/set image contents:
+<p>Functions to get/set image contents:
 
 <ul>
-  <li><p><?php func('image_set',  'image_set&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x, y, color_with_alpha)'); ?>,<br/>
-    <?php func('image_set_color', 'image_set_color(x, y, color)'); ?>,<br/>
-    <?php func('image_set_alpha', 'image_set_alpha(x, y, alpha)'); ?><br/>
-    Set single pixel to given color/alpha.</p></li>
-
-  <li><p><?php func('image_get',  'image_get&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x, y, color_with_alpha)'); ?>,<br/>
-    <?php func('image_get_color', 'image_get_color(x, y, color)'); ?>,<br/>
-    <?php func('image_get_alpha', 'image_get_alpha(x, y, alpha)'); ?><br/>
+  <li><p><?php func('image_get',  'image_get&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(my_image, x, y)'); ?>,<br/>
+    <?php func('image_get_color', 'image_get_color(my_image, x, y)'); ?>,<br/>
+    <?php func('image_get_alpha', 'image_get_alpha(my_image, x, y)'); ?><br/>
     Get single pixel's color/alpha.</p></li>
 
-  <li><p><?php func('image_fill',  'image_fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(color_with_alpha)'); ?>,<br/>
-    <?php func('image_fill_color', 'image_fill_color(color)'); ?>,<br/>
-    <?php func('image_fill_alpha', 'image_fill_alpha(alpha)'); ?><br/>
+  <li><p><?php func('image_set',  'image_set&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(my_image, x, y, color_with_alpha)'); ?>,<br/>
+    <?php func('image_set_color', 'image_set_color(my_image, x, y, color)'); ?>,<br/>
+    <?php func('image_set_alpha', 'image_set_alpha(my_image, x, y, alpha)'); ?><br/>
+    Set single pixel to given color/alpha.</p></li>
+
+  <li><p><?php func('image_fill',  'image_fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(my_image, color_with_alpha)'); ?>,<br/>
+    <?php func('image_fill_color', 'image_fill_color(my_image, color)'); ?>,<br/>
+    <?php func('image_fill_alpha', 'image_fill_alpha(my_image, alpha)'); ?><br/>
     Fill whole image with given color/alpha.</p></li>
 </ul>
+
+<p>For comfort, <tt>set</tt> functions return back the image.
 
 <?php echo $toc->html_section(); ?>
 
