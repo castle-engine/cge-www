@@ -178,6 +178,14 @@ function input(value, timestamp)
     (key handling by KeySensor node). Can be played in any VRML browser
     supporting KambiScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
     or any of the example VRML browser components in engine sources.
+  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
+    &mdash; a toy image editor. Again, it's a pure X3D file (you can
+    open it and use with any VRML browser supporting KambiScript).
+    Uses KambiScript to implement various simple image editing
+    functions. It's a toy, not to be treated as a serious image editor
+    of course (there is no possibility to save created image for starter,
+    since KambiScript doesn't allow to save files from VRML for safety reasons.)
+    But it shows that even image processing is quite easy with KambiScript.
 </ul>
 
 <?php echo $toc->html_section(); ?>
