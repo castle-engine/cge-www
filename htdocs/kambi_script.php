@@ -614,7 +614,13 @@ of components, so there is no <tt>vector_set_count</tt>.
 only on 3d vectors).
 
 <p>You can also add, subtract, multiply by scalar, divide by scalar,
-compare vectors by normal operators.
+compare vectors by normal operators.</p>
+
+<p>Color functions: <?php func('grayscale', 'grayscale(v)'); ?>
+ takes a vec3f, treats it
+as RGB color, and converts it to a single float &mdash; color intensity
+(calculated much like an average of vector components, but taking into
+account human eye sensitivity).
 
 <p>Note that VRML rotations (<tt>SFRotation</tt>, or an element of
 <tt>MFRotation</tt> array) are, in KambiScript, just 4-value single-precision
