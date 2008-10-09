@@ -724,13 +724,13 @@ of them:
     <?php func('image_set_alpha', 'image_set_alpha(my_image, x, y, alpha)'); ?><br/>
     Set single pixel to given color/alpha.</p></li>
 
-  <li><p><?php func('image_fill',  'image_fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(my_image, color_with_alpha)'); ?>,<br/>
-    <?php func('image_fill_color', 'image_fill_color(my_image, color)'); ?>,<br/>
-    <?php func('image_fill_alpha', 'image_fill_alpha(my_image, alpha)'); ?><br/>
-    Fill whole image with given color/alpha.</p></li>
+  <li><p>More "set" functions were planned, like <tt>image_set_rectangle</tt>,
+    <tt>image_apply_decal</tt>, but finally I didn't have the nerve
+    to implement everything possible :) Report if you would like any function to be added
+    to KambiScript for images.</p></li>
 </ul>
 
-<p>For comfort, <tt>set</tt> functions return back the image.
+<p>For comfort, <tt>set</tt> functions return back the image.</p>
 
 <p>For example KambiScript programs that generate and process images,
 see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/kambiscript/examples/mkimage_gradient.kscript">mkimage_gradient.kscript
