@@ -57,11 +57,11 @@ built-in functions), for many uses (not necessarily related with VRML).
 The language is completely safe (that is, there's no possibility for
 malicious script author to do something harmful)
 simply because the language is a closed data-processing language
-(there are absolutely no I/O routines or anything like this,
-aside from <?php func_ref('image_load', 'image_load(url)'); ?>
- &mdash; but this is available also from normal non-scripted VRML;
- saving files is not possible).
-</p>
+(the only I/O routines,
+<?php func_ref('image_load', 'image_load(url)'); ?> and
+<?php func_ref('writeln', 'writeln(string)'); ?>,
+expose functionalty that is possible anyway with
+pure non-scripted VRML).</p>
 
 <?php
   $toc = new TableOfContents(
@@ -537,14 +537,22 @@ They all take a float type, and return a float type unless otherwise noted:</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>No special functions available now. A lot of string functions are
-trivial to add
-&mdash; report if you need some particular function.
-
 <p>You can add (concatenate) and compare (case-sensitive) strings
 by normal operators. Converting other
 core types (numbers, booleans) to string may be done by the
 <?php func_ref('string', 'string(...)'); ?> function.
+
+<p><?php func('writeln', 'writeln(my_string)'); ?> outputs a string.
+This is printed on the program's standard error output, or some other
+kind of console. (From code, it's configurable where this is printed,
+see <tt>Program.Environment.OutputProc</tt>. By default, it results
+in <tt>DataNonFatalError</tt>, that by default is simply ignored.
+Although my programs usually take care to do something more useful with it.)
+This should be used purely for debugging purposes.</p>
+
+<p>A lot of string functions are trivial to add
+&mdash; report if you need some particular function.
+
 
 <?php echo $toc->html_section(); ?>
 
@@ -665,7 +673,7 @@ This is for the sake of speed.</p>
 <p><?php func('image_load', 'image_load(url)'); ?> loads
 an image from file. This is quite powerful utility, allowing you
 to load textures at any time from a script. (It's not a security
-problem, since you can do the same from normal VRML nodes like <ttImageTexture</tt>.)
+problem, since you can do the same from normal VRML nodes like <tt>ImageTexture</tt>.)
 URL may be relative to VRML file containing the Script node.</p>
 
 <p><?php func('image_width', 'image_width(my_image)'); ?>,
