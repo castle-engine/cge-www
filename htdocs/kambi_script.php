@@ -173,12 +173,13 @@ function input(value, timestamp)
 
 <p>Some larger examples:
 <ul>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv">kambi_script_ball_game.x3dv</a>
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv">kambi_script_ball_game.x3dv</a>
     &mdash; a small X3D game, with whole game logic implemented in KambiScript
     (key handling by KeySensor node). Can be played in any VRML browser
     supporting KambiScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
     or any of the example VRML browser components in engine sources.
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
+
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
     &mdash; a toy image editor. Again, it's a pure X3D file (you can
     open it and use with any VRML browser supporting KambiScript).
     Uses KambiScript to implement various simple image editing
@@ -730,6 +731,12 @@ of them:
 </ul>
 
 <p>For comfort, <tt>set</tt> functions return back the image.
+
+<p>For example KambiScript programs that generate and process images,
+see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/kambiscript/examples/mkimage_gradient.kscript">mkimage_gradient.kscript
+(generate simple gradient image)</a> and
+<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/kambiscript/examples/mkimage_sobel_edge.kscript">mkimage_sobel_edge.kscript
+(process any image with Sobel operator (edge detection))</a>.
 
 <?php echo $toc->html_section(); ?>
 
