@@ -406,11 +406,11 @@ and functions.</p>
     Yes, unlike most languages that usually
     don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
     KambiScript actually guarantees that "true" will result in 1.
-    This is sometimes useful is smart mathematical expressions
+    This is sometimes useful in smart mathematical expressions
     (<tt>my_int := 0.5 - (1 - my_bool(value))/2</tt>.</p>
 
     <p>String is converted to int by, well,
-    converting string to integer using standard integer notation
+    converting string to integer using standard decimal notation
     (<tt>int('123') = 123</tt>).</p></li>
 
   <li><p><?php func('float', 'float(...)'); ?> converts a "core" type
