@@ -589,6 +589,10 @@ Analogous
  sets a value of item in an array.
 In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
 
+<p><tt>array_set</tt> and <tt>array_set_count</tt> also return the new array
+(that is, they return the new value of their 1st argument),
+this may be comfortable sometimes.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('vector', 'vector(x, y), vector(x, y, z), vector(x, y, z, w)'); ?>
