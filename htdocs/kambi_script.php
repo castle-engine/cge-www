@@ -188,6 +188,11 @@ function input(value, timestamp)
     of course (there is no possibility to save created image for starter,
     since KambiScript doesn't allow to save files from VRML for safety reasons.)
     But it shows that even image processing is quite easy with KambiScript.
+
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_particles.x3dv</a>
+    &mdash; a simple particle engine. Whole particles animation,
+    logic (randomization, speed, gravity) is implemented in KambiScript.
+    "Particles" are rendered as normal points (<tt>PointSet</tt>).
 </ul>
 
 <?php echo $toc->html_section(); ?>
