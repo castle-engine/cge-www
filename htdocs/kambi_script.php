@@ -75,6 +75,7 @@ pure non-scripted VRML).</p>
       new TocItem('Type conversion', 'functions_conversion', 1),
       new TocItem('Control flow', 'functions_control_flow', 1),
       new TocItem('Number (integer and float) functions', 'functions_number', 1),
+      new TocItem('Random numbers functions', 'functions_random', 2),
       new TocItem('Boolean functions', 'functions_boolean', 1),
       new TocItem('String functions', 'functions_string', 1),
       new TocItem('Array functions', 'functions_array', 1),
@@ -528,6 +529,15 @@ They all take a float type, and return a float type unless otherwise noted:</p>
   <li><?php func('Max', 'Max'); ?>, <?php func('Min', 'Min'); ?>
     (any number of arguments &gt;= 1 allowed; works on either floats or ints)
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p><?php func('random', 'random()'); ?> returns a random float number
+within 0...1 range (0 included, 1 excluded).</p>
+
+<p><?php func('random', 'random(int)'); ?> returns a random integer number
+strictly less than <tt>int</tt> and &gt;= 0.
+(<tt>int</tt> argument must be &gt; 0).</p>
 
 <?php echo $toc->html_section(); ?>
 
