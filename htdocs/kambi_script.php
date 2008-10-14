@@ -33,7 +33,7 @@ instead you have built-in functions like
 <b>This language doesn't try to compete with other scripting languages</b>
 (like <i>ECMAScript</i>, commonly used in VRML scripting).
 It's not suitable for larger programs
-(for starters, you cannot even define your own types).<!-- ; you also cannot
+(for starters, you cannot define your own types).<!-- ; you also cannot
 currently call user-defined functions (you can only call built-in functions;
 user-defined functions are only automatically called when VRML Script
 receives an event); also you cannot declare your own local variables
@@ -60,7 +60,7 @@ simply because the language is a closed data-processing language
 (the only I/O routines,
 <?php func_ref('image_load', 'image_load(url)'); ?> and
 <?php func_ref('writeln', 'writeln(string)'); ?>,
-expose functionalty that is possible anyway with
+expose functionality that is possible anyway with
 pure non-scripted VRML).</p>
 
 <?php
@@ -189,7 +189,7 @@ function input(value, timestamp)
     since KambiScript doesn't allow to save files from VRML for safety reasons.)
     But it shows that even image processing is quite easy with KambiScript.
 
-  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_particles.x3dv</a>
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_particles.x3dv">kambi_script_particles.x3dv</a>
     &mdash; a simple particle engine. Whole particles animation,
     logic (randomization, speed, gravity) is implemented in KambiScript.
     "Particles" are rendered as points and lines (<tt>PointSet</tt>,
@@ -211,12 +211,14 @@ two identifiers).</p>
 at runtime. Four core types are available:</p>
 
 <ol>
-  <li><p>Integers. (64-bit integer; although note that for VRML long/int32
-    fields, this will have to fit within 32-bit anyway.)
+  <li><p><i>Integers.</i>
     Syntax of integer constants is obvious,
     like <tt>123</tt>. Built-in function
     <?php func_ref('int', 'int(...)'); ?> allows
     you to convert other core types into integer.</p>
+
+    <p>We use 64-bit signed integers (although for VRML long/int32
+    fields, they will have to fit within 32-bit.)</p>
 
     <p>Specifically for comfortable processing of
     <a href="http://web3d.org/x3d/specifications/ISO-IEC-FDIS-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#KeySensor">X3D
@@ -225,16 +227,18 @@ at runtime. Four core types are available:</p>
     ... <tt>ACTION_KEY_F12</tt>, <tt>ACTION_KEY_HOME</tt>, etc.
     (see KeySensor specification for full list).</p></li>
 
-  <li><p>Floats. (Uses the best floating-point type precision on given
-    platform, which means at least Double, but on many platforms Extended.)
-    Syntax of float constants
-    is also obvious, like <tt>3.1415</tt>. You have also
+  <li><p><i>Floats.</i> Syntax of float constants
+    is also obvious, like <tt>3.1415</tt>. You have
     constants <tt>pi</tt> and <tt>enat</tt> (Euler's number).
     Built-in function
     <?php func_ref('float', 'float(...)'); ?> allows
-    you to convert other core types into float.</p></li>
+    you to convert other core types into float.</p>
 
-  <li><p>Booleans. Two obvious constants are available, <tt>false</tt>
+    <p>Precision: uses the best floating-point type precision on given
+    platform, which means at least Double, and on many platforms
+    Extended.</p></li>
+
+  <li><p><i>Booleans.</i> Two obvious constants are available, <tt>false</tt>
     and <tt>true</tt> (case is ignored, as usual in KambiScript,
     so you can also write uppercase
     <tt>FALSE</tt> or <tt>TRUE</tt> like in classic VRML).
@@ -242,7 +246,7 @@ at runtime. Four core types are available:</p>
     <?php func_ref('bool', 'bool(...)'); ?> allows
     you to convert other core types into boolean.</p></li>
 
-  <li><p>Strings. Syntax of constants is Pascalish (in apostrophes, and two
+  <li><p><i>Strings.</i> Syntax of constants is Pascalish (in apostrophes, and two
     consecutive apostrophes inside mean that you want a single literal
     apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
     Apostrophe was chosen not only because, y'know, it's Pascalish :),
@@ -414,7 +418,7 @@ and functions.</p>
     don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
     KambiScript actually guarantees that "true" will result in 1.
     This is sometimes useful in smart mathematical expressions
-    (<tt>my_int := 0.5 - (1 - my_bool(value))/2</tt>.</p>
+    (like <tt>my_int := 1 - int(my_bool)</tt>).</p>
 
     <p>String is converted to int by, well,
     converting string to integer using standard decimal notation
@@ -466,7 +470,7 @@ functional and imperative form. That is, all below are valid:</p>
   { imperative form }
   if(x &gt; 3, y := 'yes', y := 'no');
 
-  { functional form, equivalent to above, looks little more elegant in this case }
+  { functional form, equivalent to above, looks more elegant in this case }
   y := if(x &gt; 3, 'yes', 'no');
 
   { actually, even this is possible if you need it: }
@@ -474,8 +478,7 @@ functional and imperative form. That is, all below are valid:</p>
 </pre>
 
 <p><?php func('when', 'when(condition, then_code)'); ?> is
-conditional instruction useful when you don't want to do anything on
-"else" condition.
+a conditional instruction without the "else" clause.
 It's equivalent to <tt>if(condition, then_code, false)</tt>, so it simply
 returns <tt>false</tt> when condition is not satisfied.
 (This is considered a good thing that the normal <tt>if</tt>
@@ -494,12 +497,12 @@ a for loop. <tt>counter</tt> must be an assignable integer variable
 (note that for now you cannot declare new variables for KambiScript;
 you usually need to overuse <tt>initializeOnly</tt> field of VRML script
 node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
-be integer values, will be calculated at the beginning.
-We will to assign <tt>counter</tt> variable integer values
+be integer values, will be calculated once at the beginning of the loop.
+We will assign to <tt>counter</tt> variable integer values
 from <tt>begin_value</tt> to <tt>end_value</tt>, and for each
-occurrence counter value we will execute <tt>loop_code</tt>.
+counter value we will execute <tt>loop_code</tt>.
 It's undefined what happens when <tt>loop_code</tt> changes directly the
-<tt>counter</tt>value.</p>
+<tt>counter</tt> value.</p>
 
 <p><tt>for</tt> and <tt>while</tt> loops return
 the value of last executed <tt>loop_code</tt>,
@@ -570,7 +573,6 @@ This should be used purely for debugging purposes.</p>
 <p>A lot of string functions are trivial to add
 &mdash; report if you need some particular function.
 
-
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('array', 'array(item1, item2, ...)'); ?>
@@ -581,7 +583,8 @@ can't have mixed types).</p>
 <p>Note that parameter-less <tt>array()</tt> call is not allowed,
 because we wouldn't know then the resulting type (is it an
 empty array of floats? empty array of integers? etc.)
-Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for this.</p>
+Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for making
+array empty.</p>
 
 <p>Note that floating-point values in arrays are stored only with single-
 or double- precision. This contrasts with singleton values, which are always stored
@@ -632,7 +635,7 @@ of components, so there is no <tt>vector_set_count</tt>.
 <?php func('vector_length(v)', 'vector_length(v)'); ?>, <?php func('vector_sqr_length(v)', 'vector_sqr_length(v)'); ?>,
 <?php func('vector_dot(v1, v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
 <?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
-only on 3d vectors).
+only on 3-component vectors).
 
 <p>You can also add, subtract, multiply by scalar, divide by scalar,
 compare vectors by normal operators.</p>
@@ -655,9 +658,9 @@ processing, but they may be added (we have quaternions covered in our engine)
 <?php echo $toc->html_section(); ?>
 
 <p>3x3 and 4x4 matrices are supported. Single- and double- precision.
-VRML calls matrix types <tt>SFMatrix3f</tt>,<tt>SFMatrix4f</tt>,
-<tt>SFMatrix3d</tt>,<tt>SFMatrix4d</tt>.
-Matrix is treated similar to an array of vectors (columns).</p>
+VRML calls these matrix types <tt>SFMatrix3f</tt>, <tt>SFMatrix4f</tt>,
+<tt>SFMatrix3d</tt>, <tt>SFMatrix4d</tt>.
+Matrix is treated similar to an array of vectors (array of columns).</p>
 
 <p><?php func('matrix', 'matrix(column1, column2, column3), matrix(column1, column2, column3, column4)'); ?>
  create a matrix. Each <tt>column</tt> argument is a vector.
@@ -676,7 +679,7 @@ for analogy with <tt>array_get_count</tt> and <tt>vector_get_count</tt>.
 Returns number of columns, 3 or 4. For now, non-uniform matrices are not
 supported, so this is also the number of rows.</p>
 
-<p>You add, subtract, negate, multiply (by another matrix, or by scalar,
+<p>You can add, subtract, negate, multiply (by another matrix, or by scalar,
 or by vector on the right side), divide (by scalar),
 compare matrix using normal operators.</p>
 
@@ -750,7 +753,8 @@ of them:
     to KambiScript for images.</p></li>
 </ul>
 
-<p>For comfort, <tt>set</tt> functions return back the image.</p>
+<p>For comfort, <tt>set</tt> functions return back the image (that is,
+the new value of 1st argument).</p>
 
 <p>For example KambiScript programs that generate and process images,
 see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/kambiscript/examples/mkimage_gradient.kscript">mkimage_gradient.kscript
