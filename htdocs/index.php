@@ -185,12 +185,14 @@ remember to attach to your bug report output of the
 <ul>
   <li><?php echo a_href_page("Kambi VRML extensions, handled by our engine",
     "kambi_vrml_extensions"); ?>
-  <li><?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
-    'kanim_format'); ?>
   <li><?php echo a_href_page("Kambi VRML test suite",
     "kambi_vrml_test_suite"); ?>
   <li><?php echo a_href_page('VRML implementation status',
     'vrml_implementation_status'); ?>
+  <li><?php echo a_href_page('KambiScript, simple scripting language of our engine, usable e.g. in VRML Script nodes',
+    'kambi_script'); ?>
+  <li><?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
+    'kanim_format'); ?>
   <li>Read my document describing
     <a href="apidoc/html/introduction.html#OpenGLOptimization">
     how current VRML rendering optimization works,

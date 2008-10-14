@@ -65,6 +65,7 @@ $toc = new TableOfContents(array(
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 2),
+  new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
   new TocItem('Other Avalon / instant-reality extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
@@ -635,6 +636,12 @@ end;
     <tt>kambi_vrml_game_engine/3dmodels.gl/examples/vrml_browser_script_compiled.pasprogram</tt>,
     use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
     and note that Pascal code reacts to clicks on TouchSensor.
+
+<?php echo $toc->html_section(); ?>
+
+    <p>We have a simple scripting language that can be used inside <tt>Script</tt>
+    nodes. See <?php echo a_href_page('KambiScript documentation (with examples)',
+    'kambi_script'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

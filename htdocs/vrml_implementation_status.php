@@ -585,6 +585,27 @@ used.
     for isActive, enter/exitTime are not interpolated (they are simply
     timestamps when this was detected), this shouldn't be a problem in
     typical uses.</p>
+
+  <li><p><tt>Script</tt>
+
+    <p>We handle special script protocols <?php echo a_href_page_hashlink('compiled:
+    (to link scripts with handlers written in compiled language (ObjectPascal))',
+    'kambi_vrml_extensions',
+    'section_script_compiled'); ?> and
+    <?php echo a_href_page('kambiscript:
+    (simple scripting language specific to our engine)',
+    'kambi_vrml_extensions'); ?>.
+
+    <p><i>TODO</i>: no standard scripting language, like ECMAScript,
+    is implemented now. <tt>directOutput</tt> field of script node
+    is ignored (<tt>compiled:</tt> scripts have always direct access
+    to whole VRML scene, <tt>kambiscript:</tt> has never access to VRML nodes).
+
+    <p><tt>mustEvaluate</tt> is also ignored for now. This is non-optimal but
+    valid behavior. Our current scripting protocols have no "loading"
+    overhead (we don't initialize any scripting engine, kambiscript: and
+    compiled: scripts are just tightly built-in the engine) so this doesn't
+    hurt us in practice.
 </ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
@@ -600,7 +621,6 @@ They all are parsed correctly and consciously (which means that the parser
 doesn't simply "omit them to matching parenthesis" or some other dirty
 trick like that). But they don't have any effect on the scene. These are:
 <ul>
-  <li><tt>Script</tt> nodes: no kind of scripting is implemented now.</li>
   <li>NURBS</li>
   <li>Sounds (<tt>AudioClip</tt> and <tt>Sound</tt>). Although our engine
     supports 3D sounds and music (using OpenAL, sound formats
@@ -735,7 +755,7 @@ because unrelated features are not implemented. For example,
 don't be discouraged by many failures in <tt>PROTO</tt> category.
 Prototypes were 100% working in all tests, and I consider their
 implementation as practically finished.
-But unrelated things like missing <tt>Script</tt> support
+But unrelated things like missing <tt>Script</tt> support for ECMAScript
 prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
 
 <p>Cases are marked above as "success" (+) only if they succeed
@@ -878,7 +898,7 @@ function fail($count, $comment)
   <tr>
     <td>7</td>
     <td class="fail">-</td>
-    <td>Handling Script not implemented yet.
+    <td>Handling ECMAScript not implemented yet.
   </tr>
   <tr>
     <td rowspan="34">ImageTexture</td>
@@ -1422,7 +1442,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
     <td>9</td>
     <td class="fail">-</td>
     <td rowspan="2">
-      Scipts are not supported yet. Also, the DEF declaration inside
+      ECMAScript is not supported yet. Also, the DEF declaration inside
       a script causes known problem with cycles in VRML graph.</td>
   </tr>
   <tr>
@@ -1528,7 +1548,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>7H</td>
     <td class="pass">+</td>
-    <td>Result is Ok, although actually we do not handle Script (yet).</td>
+    <td>Result is Ok, although actually we do not handle ECMAScript (yet).</td>
   </tr>
   <tr>
     <td>7I</td>
