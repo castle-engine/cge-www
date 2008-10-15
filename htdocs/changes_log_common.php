@@ -1,4 +1,4 @@
-<?php
+<?php /* -*- mode: php -*- */
   /* This is common content for both making RSS feed of changes_log,
      and HTML version. You must have already common_set_page_functions
      done before requiring this !
@@ -52,6 +52,120 @@ function this_a_href_page($title, $page_name)
   $changes_log = array(
 
 /* --------------------------------------------------------------------------- */
+
+    array('title' => 'view3dscene 3.1, engine 1.5 release: Scripting, VRML browser components, and more',
+          'year' => 2008,
+          'month' => 10,
+          'day' => 15,
+          'pubDate' => /* date_to_timestamp.sh '2008-10-15' */ 1224072000,
+          'guid' => '2008-10-15',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+this_a_href_page('view3dscene 3.1.0', 'view3dscene') . " release,
+along with " . this_a_href_page('underlying
+Kambi VRML game engine 1.5.0', 'kambi_vrml_game_engine') . " release.
+Most notable improvements are:
+
+<!--
+http://vrmlengine.sourceforge.net/
+http://127.0.0.1/~michalis/vrmlengine/
+-->
+<table align=\"right\">
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_ball_game.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_ball_game.png\"
+      alt=\"Simple game implemented in pure X3D with KambiScript\"
+      title=\"Simple game implemented in pure X3D with KambiScript\"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_particles.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_particles.png\"
+      alt=\"Particle engine programmed in pure X3D with KambiScript\"
+      title=\"Particle engine programmed in pure X3D with KambiScript\"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_edit_texture.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_edit_texture.png\"
+      alt=\"Texture editor (pure X3D with KambiScript)\"
+      title=\"Texture editor (pure X3D with KambiScript)\"
+    /></a>
+  </td></tr>
+</table>
+
+<ul>
+  <li><p><b>Scripting in " . this_a_href_page('KambiScript language',
+    'kambi_script') . "</b>. KambiScript is a simple scripting language,
+    invented specially for our engine. It's simple, but powerful
+    enough for many tasks (you can process various VRML data types
+    with it, including vectors, matrices, arrays, even images).</p>
+
+    <p>Screenshots on the right show example uses of KambiScript.
+    Endless possibilities are available now for VRML authors, you can
+    write complex interactive 3D games and run them with view3dscene
+    (or any other VRML browser using our engine).
+    " . this_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
+    " contains source VRML files with KambiScript tests (see <tt>x3d/kambi_extensions/kambi_script_*</tt>
+    in there, like
+    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
+    or
+    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_particles.x3dv\">kambi_script_particles.x3dv</a>),
+    you can simply open them in view3dscene.</p></li>
+
+  <li><p>Other VRML improvements include <b>animating
+    camera by animating Viewpoint position</b> (or it's transformation),
+    <tt>NavigationInfo.type = \"NONE\"</tt> and
+    <tt>NavigationInfo.speed = 0</tt> support (useful e.g. when you
+    implement whole navigation yourself, by <tt>KeySensor</tt> and scripting),
+    simple nodes <tt>Circle2D</tt>,
+    <tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,
+    <tt>MultiTextureTransform</tt>.</p>
+
+    <p>view3dscene key shortcuts changed: all menu shortcuts are now with Ctrl+
+    (for example, previously you switched collision detection with \"C\",
+    now you have to press \"Ctrl+C\"). Reason: now menu shortcuts
+    have less chance to collide with your custom keys that you handle through
+    KeySensor and scripts. Some minor improvements were made to <tt>KeySensor</tt>
+    to generate correct events on both key down and key up, with both TGLWindow
+    and Lazarus component.
+    </li>
+
+    <!--
+    Changing LineSet and PointSet_2 through VRML events fixed.
+    KeySensor fixes:
+    - send lowercase letters (for Lazarus component) when shift not pressed
+    -->
+
+  <li><p>For programmers using our engine, we have <b>VRML browser
+    components</b> (in two flavors: <tt>TGLWindowVRMLBrowser</tt> (a descendant
+    of our <tt>TGLWindow</tt>) and, for Lazarus LCL, <tt>TKamVRMLBrowser</tt>
+    (a descendant of <tt>TOpenGLControl</tt>)). Using them is trivial,
+    just drop <tt>TKamVRMLBrowser</tt> on the form
+    and call it's <tt>Load</tt> method &mdash; whole rendering and navigation
+    will automatically work. Other Lazarus packages
+    fixes were made, to make them more easily usable. Thanks to De-Panther for
+    pushing me to implement this :)</p></li>
+
+  <li><p><b><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_script_compiled\">Script
+    protocol \"<tt>compiled:</tt>\"</a></b> is implemented, to easily link
+    VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
+
+  <!-- li><p><b>Quaternions</b> stuff moved to a separate unit, and used for
+    <tt>EXAMINE</tt> navigation, this makes rotating the scene more sane.
+  -->
+</ul>
+
+<p><i>Plans for the next release</i>: first of all octree updating problems
+will be solved.
+Right now they are a weak point of our engine &mdash; animating geometry
+by VRML events is unnecessarily time-consuming when collision detection has to be up-to-date.
+Also more rendering optimizations for animating by VRML events
+will be done (optimize case when you often change <tt>Switch</tt>
+choice, automatically detect when roSeparateShapeStates /
+...NoTransform / roNone is suitable).</p>
+"),
 
     array('title' => 'view3dscene 3.0 release: X3D, events, MovieTexture, and more',
           'year' => 2008,
@@ -210,7 +324,7 @@ web3d.org examples</a>.</p>"),
 
 <ul>
   <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a>,
-    free software VRML 97 modeller,
+    free software VRML 97 modeler,
     can export normal VRML animations
     (expressed in terms of VRML interpolators) to our ' .
     this_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .

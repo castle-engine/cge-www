@@ -1,4 +1,11 @@
+do all TESTS
+
 Next WWW update:
+- view3dscene 3.1
+- kambi_vrml_game_engine 1.5.0
+- kambi_vrml_test_suite 2.3.0
+- leave on sources link to kambi_vrml_game_engine 1.4.0, for compat
+- glplotter, gen_function new releases
 Text for next update:
 After next update:
 - init kambi_script counter
