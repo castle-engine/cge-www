@@ -98,13 +98,13 @@ http://127.0.0.1/~michalis/vrmlengine/
 <ul>
   <li><p><b>Scripting in " . this_a_href_page('KambiScript language',
     'kambi_script') . "</b>. KambiScript is a simple scripting language,
-    invented specially for our engine. It's simple, but powerful
-    enough for many tasks (you can process various VRML data types
-    with it, including vectors, matrices, arrays, even images).</p>
+    invented specially for our engine. It's powerful
+    enough for many tasks, you can process all VRML data types
+    with it (including vectors, matrices, arrays, images).</p>
 
     <p>Screenshots on the right show example uses of KambiScript.
     Endless possibilities are available now for VRML authors, you can
-    write complex interactive 3D games and run them with view3dscene
+    write complete interactive 3D games and run them with view3dscene
     (or any other VRML browser using our engine).
     " . this_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
     " contains source VRML files with KambiScript tests (see <tt>x3d/kambi_extensions/kambi_script_*</tt>
@@ -114,23 +114,31 @@ http://127.0.0.1/~michalis/vrmlengine/
     <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_particles.x3dv\">kambi_script_particles.x3dv</a>),
     you can simply open them in view3dscene.</p></li>
 
-  <li><p>Other VRML improvements include <b>animating
-    camera by animating Viewpoint position</b> (or it's transformation),
+  <li><p><b>Animating camera by animating Viewpoint position</b> (or it's transformation)
+    works.</p></li>
+
+  <li><p>Various <b>navigation improvements for scripted worlds</b>:
     <tt>NavigationInfo.type = \"NONE\"</tt> and
-    <tt>NavigationInfo.speed = 0</tt> support (useful e.g. when you
-    implement whole navigation yourself, by <tt>KeySensor</tt> and scripting),
+    <tt>NavigationInfo.speed = 0</tt> cases are supported.
+    They are useful when you implement whole navigation yourself, by <tt>KeySensor</tt>
+    and scripting.</p>
+
+    <p>Also view3dscene key shortcuts changed, to allow easily avoiding
+    collisions with keys that you handle through <tt>KeySensor</tt> and scripting.
+    All menu shortcuts are now with <i>Ctrl</i> modifier
+    (for example, previously you switched collision detection with <i>C</i>,
+    now you have to press <i>Ctrl+C</i>).</li>
+
+<!--
+   Some minor improvements were made to
+    to generate correct events on both key down and key up, with both TGLWindow
+    and Lazarus component.
+
     simple nodes <tt>Circle2D</tt>,
     <tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,
     <tt>MultiTextureTransform</tt>.</p>
+-->
 
-    <p>view3dscene key shortcuts changed: all menu shortcuts are now with Ctrl+
-    (for example, previously you switched collision detection with \"C\",
-    now you have to press \"Ctrl+C\"). Reason: now menu shortcuts
-    have less chance to collide with your custom keys that you handle through
-    KeySensor and scripts. Some minor improvements were made to <tt>KeySensor</tt>
-    to generate correct events on both key down and key up, with both TGLWindow
-    and Lazarus component.
-    </li>
 
     <!--
     Changing LineSet and PointSet_2 through VRML events fixed.
@@ -139,9 +147,9 @@ http://127.0.0.1/~michalis/vrmlengine/
     -->
 
   <li><p>For programmers using our engine, we have <b>VRML browser
-    components</b> (in two flavors: <tt>TGLWindowVRMLBrowser</tt> (a descendant
+    components</b>. Two flavors: <tt>TGLWindowVRMLBrowser</tt> (a descendant
     of our <tt>TGLWindow</tt>) and, for Lazarus LCL, <tt>TKamVRMLBrowser</tt>
-    (a descendant of <tt>TOpenGLControl</tt>)). Using them is trivial,
+    (a descendant of <tt>TOpenGLControl</tt>). Using them is trivial,
     just drop <tt>TKamVRMLBrowser</tt> on the form
     and call it's <tt>Load</tt> method &mdash; whole rendering and navigation
     will automatically work. Other Lazarus packages
@@ -152,8 +160,11 @@ http://127.0.0.1/~michalis/vrmlengine/
     protocol \"<tt>compiled:</tt>\"</a></b> is implemented, to easily link
     VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
 
-  <!-- li><p><b>Quaternions</b> stuff moved to a separate unit, and used for
-    <tt>EXAMINE</tt> navigation, this makes rotating the scene more sane.
+  <li><p>Other improvements: using quaternions for <tt>EXAMINE</tt> navigation,
+    simple nodes <tt>Circle2D</tt>, <tt>TextureTransformMatrix3D</tt>,
+    <tt>TextureTransform3D</tt>, <tt>MultiTextureTransform</tt>.
+
+  <!--
 
     glplotter 1.2.2 and gen_function 1.0.3 released, to update
     kambiscript expressions handling inside.
