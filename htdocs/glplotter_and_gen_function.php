@@ -157,7 +157,7 @@ on it's own, see menu <i>"Functions"</i>.
 <p>Download gen_function:
 
 <?php echo_standard_program_download('gen_function', 'gen_function',
-  VERSION_GEN_FUNCTION, $std_releases_pre_1_2_0); ?>
+  VERSION_GEN_FUNCTION, $std_releases_post_1_2_0); ?>
 
 <p>Call like:
 <pre>
