@@ -636,6 +636,9 @@ of components, so there is no <tt>vector_set_count</tt>.
 <?php func('vector_dot(v1, v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
 <?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
 only on 3-component vectors).
+<?php func('max', 'max(vector1, vector2)'); ?>,
+<?php func('min', 'min(vector1, vector2)'); ?>
+ also work (make max/min on corresponding vector components).
 
 <p>You can also add, subtract, multiply by scalar, divide by scalar,
 compare vectors by normal operators.</p>
