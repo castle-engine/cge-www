@@ -29,7 +29,8 @@ ALL_HTMLS:=view3dscene.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \
   kambi_vrml_test_suite.html \
   vrml_implementation_status.html \
-  kanim_format.html
+  kanim_format.html \
+  kambi_script.html
 
 LOCALLY_AVAIL:=$(ALL_HTMLS)
 
