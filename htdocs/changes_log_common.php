@@ -154,6 +154,9 @@ http://127.0.0.1/~michalis/vrmlengine/
 
   <!-- li><p><b>Quaternions</b> stuff moved to a separate unit, and used for
     <tt>EXAMINE</tt> navigation, this makes rotating the scene more sane.
+
+    glplotter 1.2.2 and gen_function 1.0.3 released, to update
+    kambiscript expressions handling inside.
   -->
 </ul>
 

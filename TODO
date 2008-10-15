@@ -5,9 +5,11 @@ Next WWW update:
 - kambi_vrml_game_engine 1.5.0
 - kambi_vrml_test_suite 2.3.0
 - leave on sources link to kambi_vrml_game_engine 1.4.0, for compat
-- glplotter, gen_function new releases
+- glplotter (1.2.2), gen_function (1.0.3) new releases
 Text for next update:
 After next update:
 - init kambi_script counter
 - upload vrml_engine_doc and api reference on new release
+  upload *.php
+  download counters, check do they work Ok
 - submit to Lazarus wiki, as we have now nice Laz component TKamVRMLBrowser
