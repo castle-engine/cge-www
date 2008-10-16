@@ -49,4 +49,5 @@ reset_counter ()
 # reset_counter glplotter_and_gen_function
 # reset_counter blender_stuff
 # reset_counter movies
-reset_counter vrml_time_origin_considered_uncomfortable
+# reset_counter vrml_time_origin_considered_uncomfortable
+# reset_counter kambi_script

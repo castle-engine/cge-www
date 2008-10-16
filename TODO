@@ -1,7 +1,6 @@
 Next WWW update:
 Text for next update:
 After next update:
-- init kambi_script counter
 - download counters, check do they work Ok
 - submit to Lazarus wiki, as we have now nice Laz component TKamVRMLBrowser
 - send release emails for view3dscene and kambi_vrml_game_engine
