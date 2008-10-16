@@ -4,3 +4,13 @@ After next update:
 - download counters, check do they work Ok
 - submit to Lazarus wiki, as we have now nice Laz component TKamVRMLBrowser
 - send release emails for view3dscene and kambi_vrml_game_engine
+
+- after important release, I may wish to announce it:
+  - sf news for vrmlengine project
+  - new release of view3dscene and/or castle go to freshmeat:
+    http://freshmeat.net/projects/view3dscene/
+    http://freshmeat.net/projects/castlegame/
+  - pascalgamedevelopment may be informed about especially important
+    releases
+  - really large new features may cause updates of project
+    description on SF and cia.vc
