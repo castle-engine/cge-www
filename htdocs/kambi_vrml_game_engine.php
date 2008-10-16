@@ -159,9 +159,9 @@ if you want the change to LGPL to happen <i>now</i>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Sources of <?php echo a_href_page('Kambi VRML game engine',
-'kambi_vrml_game_engine'); ?>:<br>
- <?php echo sf_download('Download engine sources',
+<p>Sources of <i>Kambi VRML game engine</i>:<br>
+ <?php echo sf_download('Download engine sources (version ' .
+  VERSION_KAMBI_VRML_GAME_ENGINE . ')',
   'kambi_vrml_game_engine-' . VERSION_KAMBI_VRML_GAME_ENGINE .
   '-src.tar.gz') ?><br>
  Or download from Subversion by:<br><tt>
@@ -229,8 +229,7 @@ you have appropriate libraries installed on your system.</p>
 Each of them contains program-specific modules, main program file
 and script <tt>compile.sh</tt> to simply compile whole program using FPC.
 Download those that you are interested in and unpack them into
-the same directory where you unpacked
-<?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>.
+the same directory where you unpacked the base engine sources.
 Then execute <tt>compile.sh</tt> scripts to compile the programs you want.
 
 <?php
