@@ -239,18 +239,14 @@ function older_engine_version($older_version)
   echo sf_download($older_version . ' version',
     'kambi_vrml_game_engine-' . $older_version . '-src.tar.gz');
 }
-
-/*
-<p>Note about compatibility: I broke slightly compatibility between 1.0.0
-and 1.1.0 engine release, and again for 1.2.0. If you download tar.gz sources,
-some programs below may fail to compile with latest engine,
-in that case use older < ?php older_engine_version('1.1.0'); ? >
- or < ?php older_engine_version('1.0.0'); ? > version. Or simply download code
-from SVN, everything in SVN should be always up-to-date.
-
-(everything should be updated now to work with engine 1.3.0 release).
-*/
 ?>
+
+<p>Note about compatibility: I broke slightly compatibility between 1.5.0
+and 1.4.0 engine release. If you download tar.gz sources,
+some programs below may fail to compile with latest engine,
+in that case use older <?php older_engine_version('1.4.0'); ?>.
+Or simply download code
+from SVN, everything in SVN should be always compatible.
 
 <ul>
 <?php
