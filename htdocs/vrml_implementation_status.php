@@ -13,11 +13,14 @@
   $toc = new TableOfContents(
     array(
       new TocItem('X3D status', 'x3d'),
+      new TocItem('Summary - components supported', 'x3d_components', 1),
+      new TocItem('Details about supported nodes', 'x3d_details', 1),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
       new TocItem('NIST VRML test suite results', 'nist_tests', 1),
     ));
+  $toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title); ?>
@@ -61,7 +64,79 @@ specification nodes actually use this.
 
 <p>We support fully both <i>XML and classic encodings</i>.
 
-<p>Besides all VRML 97 features, X3D bits implemented now are:</p>
+<?php echo $toc->html_section(); ?>
+
+<p>The table below sums up our X3D component support.
+This is practically a summary of our whole "VRML / X3D status",
+as the whole X3D standard is divided into components, and it includes all
+VRML 2.0 features.
+A word "practically" below means that the component is not 100% supported
+on given level, but it's practically supported (meaning: most important
+parts of given level are supported, and it should be enough
+for 99% of expected cases).</p>
+
+<table class="thin_borders">
+  <tr><th>Component</th>           <th>Supported level</th></tr>
+  <tr><td>Core                     </td><td><b>2</b></td></tr>
+  <tr><td>Time                     </td><td><b>2</b> (practically)</td></tr>
+  <tr><td>Networking               </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
+  <tr><td>Grouping                 </td><td><b>3</b></td></tr>
+  <tr><td>Rendering                </td><td><b>3</b> (practically)</td></tr>
+  <tr><td>Shape                    </td><td><b>1</b></td></tr>
+  <tr><td>Geometry3D               </td><td><b>4</b></td></tr>
+  <tr><td>Geometry2D               </td><td><b></b></td></tr>
+  <tr><td>Text                     </td><td><b>1</b> (practically)</td></tr>
+  <tr><td>Sound                    </td><td><b></b></td></tr>
+  <tr><td>Lighting                 </td><td><b>3</b> (practically)</td></tr>
+  <tr><td>Texturing                </td><td><b>1</b> (+ level 3 features (MovieTexture), but missing some level 2 features)</td></tr>
+  <tr><td>Interpolation            </td><td><b>3</b> (practically)</td></tr>
+  <tr><td>Pointing device sensor   </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
+  <tr><td>Key device sensor        </td><td><b>1</b></td></tr>
+  <tr><td>Environmental sensor     </td><td><b>1</b></td></tr>
+  <tr><td>Navigation               </td><td><b>1</b> (+ many, but not all, features up to level 3)</td></tr>
+  <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
+  <tr><td>Geospatial               </td><td><b></b></td></tr>
+  <tr><td>H-Anim                   </td><td><b>1</b> (practically)</td></tr>
+  <tr><td>NURBS                    </td><td><b></b></td></tr>
+  <tr><td>DIS                      </td><td><b></b></td></tr>
+  <tr><td>Scripting                </td><td><b>1</b> (practically; although no ECMAScript / Java, only KambiScipt / compiled protocols)</td></tr>
+  <tr><td>Event utilities          </td><td><b></b> (some nodes supported, but not all)</td></tr>
+  <tr><td>Shader                   </td><td><b>1</b> (basically; GLSL language)</td></tr>
+  <tr><td>CAD geometry             </td><td><b>1</b></td></tr>
+  <tr><td>Texturing3D              </td><td><b></b></td></tr>
+  <tr><td>Environmental texturing  </td><td><b></b></td></tr>
+  <tr><td>Layering                 </td><td><b></b></td></tr>
+  <tr><td>Layout                   </td><td><b></b></td></tr>
+  <tr><td>Rigid body physics       </td><td><b></b></td></tr>
+  <tr><td>Picking sensor           </td><td><b></b></td></tr>
+  <tr><td>Followers                </td><td><b></b></td></tr>
+  <tr><td>Particle systems         </td><td><b></b></td></tr>
+</table>
+
+<?php /*
+Profiles:
+- to interchange, missing
+texturing level 2
+- to interactive, missing
+networking level 2
+Pointing device sensor level 1
+Event utilities level 1
+- to immersive, missing
+networking level 3
+Shape level 2
+Geometry2D 1
+Sound 1
+Texturing 3
+Key device sensor 2
+Environmental sensor 2
+Navigation 2
+*/
+?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Besides all VRML 97 features (see lower on this page for VRML 2.0 status),
+X3D things implemented now are:</p>
 
 <ul>
   <li>
