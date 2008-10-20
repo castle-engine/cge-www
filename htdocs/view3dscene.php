@@ -390,7 +390,7 @@ command-line option (look below) or using menu item "Change camera up vector".
 <p>Now, there's a lot of keys that work independent of current navigation
 mode. But I will not list them all here. They all can be seen
 by looking at available menu items. Probably most useful keys
-(and menu items) are <tt>v</tt> (switch to next navigation mode),
+(and menu items) are <tt>Ctrl+N</tt> (switch to next navigation mode),
 <tt>F1</tt> (toggle status text visibility)
 and <tt>Escape</tt> (exit).
 
@@ -752,7 +752,7 @@ drectory.</p>
   <dt>--navigation Examine|Walk
   <dd><p>Set initial navigation mode. Default is <tt>Examine</tt>.
     You can change navigation mode while the program is running
-    using key <tt>v</tt> or appropriate menu item.
+    using key <i>Ctrl+N</i> or appropriate menu item.
 
   <dt>--camera-radius &lt;float&gt;
   <dd><p>When you are walking in the scene with
@@ -891,7 +891,7 @@ See also <?php echo a_href_page(
 
 <?php section(); ?>
 
-<p>Using key <tt>s</tt> and menu item "Switch flat/smooth shading" you
+<p>Using menu item <i>View -&gt; Smooth shading</i> you
 can switch between using flat and smooth shading. Default is to use
 smooth shading.
 
@@ -927,8 +927,7 @@ a na cieniowanie flat czasem zerkn±æ jako na ciekawostkê.
 
 <?php section(); ?>
 
-<p>After pressing key <tt>r</tt> (or choosing "Raytrace !" menu item)
-and answering some questions program will render image using
+<p>Use menu item <i>Display -&gt; Raytrace!</i> to render image using
 ray-tracing. I implemented two ray-tracing versions: classic
 (Whitted-style) and path tracing. view3dscene will ask you which
 algorithm to use, and with what parameters.
