@@ -517,7 +517,7 @@ of a scene, at it's default camera, just call</p>
 </pre>
 
         <p>Availability of all these video formats may depend on installed ffmpeg
-        codeds. If in doubt, avi seems to be most reliable and plays everywhere.
+        codecs. If in doubt, avi seems to be most reliable and plays everywhere.
         If I missed some possible movie file extension, please report.
         <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
         must be installed and available on $PATH for this to work.
@@ -532,7 +532,7 @@ of a scene, at it's default camera, just call</p>
     instead of an actual filename. A pattern is simply a filename
     with sequence <tt>%d</tt> inside, when capturing <tt>%d</tt>
     will be replaced by current screenshot number.
-    For captuting a series of images
+    For capturing a series of images
     by <tt>--screenshot-range</tt> it's even required to specify
     a pattern (since capturing
     a number of images to a single image file has no point...). But
@@ -545,7 +545,7 @@ of a scene, at it's default camera, just call</p>
     All <tt>--screenshot</tt>
     and <tt>--screenshot-range</tt> options are processed in order.
     When a filename with pattern <tt>%d</tt> is found, we replace all
-    <tt>%d</tt> occurences in this filename with current counter value
+    <tt>%d</tt> occurrences in this filename with current counter value
     and increment the counter. For <tt>--screenshot-range</tt> with
     an image pattern, we do this for every single frame.
     The counter starts at 1.
@@ -629,7 +629,7 @@ of a scene, at it's default camera, just call</p>
 <p>Generally, you can take a look at (complex) example how to make
 a screenshot from animation in
 <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
-drectory.</p>
+directory.</p>
 
 <?php section(false); ?>
 
@@ -655,7 +655,7 @@ drectory.</p>
     Each successive integer generally makes method one step better.
     But also more demanding &mdash; program may run slower
     (if your graphic card cannot provide context with sufficient number of samples
-    needed for multisampling). See <i>Anti aliasing</i> in interactive mode
+    needed for multi-sampling). See <i>Anti aliasing</i> in interactive mode
     for the meaning of <tt>AMOUNT</tt> values.
     Currently, highest value is 4. So <tt>AMOUNT</tt> numbers above 4 are
     exactly the same as 4.</p>
