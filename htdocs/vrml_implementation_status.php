@@ -13,7 +13,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('X3D status', 'x3d'),
-      new TocItem('Summary - components supported', 'x3d_components', 1),
+      new TocItem('Components supported (summary)', 'x3d_components', 1),
       new TocItem('Details about supported nodes', 'x3d_details', 1),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
@@ -58,7 +58,7 @@ handled, but they <i>are at least parsed correctly</i> (and converting from
 X3D XML to classic VRML preserves them correctly).
 
 <p><i>All field types</i>, including new X3D double-precision and
-matrixes, are supported, with the exception of MFImage. MFImage should
+matrices, are supported, with the exception of MFImage. MFImage should
 be implemented as soon as I see some usage of this, for now no X3D
 specification nodes actually use this.
 
@@ -67,27 +67,27 @@ specification nodes actually use this.
 <?php echo $toc->html_section(); ?>
 
 <p>The table below sums up our X3D component support.
-This is practically a summary of our whole "VRML / X3D status",
-as the whole X3D standard is divided into components, and it includes all
-VRML 2.0 features.
-A word "practically" below means that the component is not 100% supported
-on given level, but it's practically supported (meaning: most important
-parts of given level are supported, and it should be enough
-for 99% of expected cases).</p>
+Since the whole X3D standard is divided into components (and it includes
+also all VRML 2.0 features), this table may actually be considered a
+concise summary of our <i>"VRML / X3D implementation status"</i>.</p>
+
+<p>A word "practically" below means that the component is not absolutely
+100% supported on given level, but most important
+parts (99% of usage) of given level are supported.</p>
 
 <table class="thin_borders">
   <tr><th>Component</th>           <th>Supported level</th></tr>
-  <tr><td>Core                     </td><td><b>2</b></td></tr>
-  <tr><td>Time                     </td><td><b>2</b> (practically)</td></tr>
+  <tr><td>Core                     </td><td><b>2 (all)</b></td></tr>
+  <tr><td>Time                     </td><td><b>2 (all)</b> (practically)</td></tr>
   <tr><td>Networking               </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
-  <tr><td>Grouping                 </td><td><b>3</b></td></tr>
+  <tr><td>Grouping                 </td><td><b>3 (all)</b></td></tr>
   <tr><td>Rendering                </td><td><b>3</b> (practically)</td></tr>
   <tr><td>Shape                    </td><td><b>1</b></td></tr>
-  <tr><td>Geometry3D               </td><td><b>4</b></td></tr>
+  <tr><td>Geometry3D               </td><td><b>4 (all)</b></td></tr>
   <tr><td>Geometry2D               </td><td><b></b></td></tr>
-  <tr><td>Text                     </td><td><b>1</b> (practically)</td></tr>
+  <tr><td>Text                     </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td>Sound                    </td><td><b></b></td></tr>
-  <tr><td>Lighting                 </td><td><b>3</b> (practically)</td></tr>
+  <tr><td>Lighting                 </td><td><b>3 (all)</b> (practically)</td></tr>
   <tr><td>Texturing                </td><td><b>1</b> (+ level 3 features (MovieTexture), but missing some level 2 features)</td></tr>
   <tr><td>Interpolation            </td><td><b>3</b> (practically)</td></tr>
   <tr><td>Pointing device sensor   </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
@@ -96,12 +96,12 @@ for 99% of expected cases).</p>
   <tr><td>Navigation               </td><td><b>1</b> (+ many, but not all, features up to level 3)</td></tr>
   <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
   <tr><td>Geospatial               </td><td><b></b></td></tr>
-  <tr><td>H-Anim                   </td><td><b>1</b> (practically)</td></tr>
+  <tr><td>H-Anim                   </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td>NURBS                    </td><td><b></b></td></tr>
   <tr><td>DIS                      </td><td><b></b></td></tr>
-  <tr><td>Scripting                </td><td><b>1</b> (practically; although no ECMAScript / Java, only KambiScipt / compiled protocols)</td></tr>
+  <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td>Event utilities          </td><td><b></b> (some nodes supported, but not all)</td></tr>
-  <tr><td>Shader                   </td><td><b>1</b> (basically; GLSL language)</td></tr>
+  <tr><td>Shader                   </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
   <tr><td>CAD geometry             </td><td><b>1</b></td></tr>
   <tr><td>Texturing3D              </td><td><b></b></td></tr>
   <tr><td>Environmental texturing  </td><td><b></b></td></tr>
@@ -370,7 +370,7 @@ chapter of VRML spec.
 <p><i>TODO</i> for all nodes with url fields: for now all URLs
 are interpreted as local file names (absolute or relative).
 So if a VRML file is available on WWW, you should first download it
-(any WWW browser can of couse download it and automatically open view3dscene
+(any WWW browser can of course download it and automatically open view3dscene
 for you), remembering to download also any texture/background files
 used.
 
@@ -406,9 +406,9 @@ used.
       <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
         is ignored for now. Camera radius decides what you can climb.
 
-      <li><tt>speed</tt> is honoured as appropriate, it sets
+      <li><tt>speed</tt> is honored as appropriate, it sets
         the speed in meters/second. Speed = 0.0 is also correctly
-        honoured (user will not be able to move in Walk/Fly modes,
+        honored (user will not be able to move in Walk/Fly modes,
         only to rotate).
 
       <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>,
@@ -424,7 +424,7 @@ used.
             without gravity, and with "disable normal navigation".
         </ul>
 
-      <li>The presense of navigation type
+      <li>The presence of navigation type
         <tt>ANY</tt> is not important (view3dscene always
         shows controls to change navigation settings).
     </ul>
@@ -497,7 +497,7 @@ used.
 
     <ul>
       <li><p>Current implementation keeps the whole encoded video in memory
-        (images may be discarded after loading (by TVRMLScene.FlatResources
+        (images may be discarded after loading (by TVRMLScene.FreeResources
         feature), but still the textures for all frames are kept in memory).
         The <i>disadvantage</i> is that this makes it impractical to load "real"
         movies, normal 2-hour movie will most usually eat all of your memory.
@@ -555,7 +555,7 @@ used.
         (and things are always handled like they had default values
         TRUE, TRUE, TRUE). From section <i>6.22.4 Language</i>
         language field is ignored.
-      <li><tt>Text</tt>: length, maxEntent are
+      <li><tt>Text</tt>: length, maxExtent are
         ignored (and handled like they had
         default values, which means that the text is not stretched).
     </ul>
@@ -575,7 +575,7 @@ used.
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
     to any defined viewpoint, displaying viewpoints descriptions.
-    Extensive tests of various viewpoint properties, includind fieldOfView,
+    Extensive tests of various viewpoint properties, including fieldOfView,
     are inside <?php
       echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
     in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
@@ -635,7 +635,7 @@ used.
   <li><p><tt>TimeSensor</tt></p>
 
     <p>All common <tt>X3DTimeDependentNode</tt> things
-    are implemented. <tt>enabled</tt> is honoured. <tt>time</tt> is generated.</p>
+    are implemented. <tt>enabled</tt> is honored. <tt>time</tt> is generated.</p>
 
     <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
     elapsedTime / cycleInterval value. This is quite Ok for most uses.</p>
@@ -733,11 +733,11 @@ All nodes and features are handled, with the exception of:
 as they are replaced with much better mechanisms in newer VRML versions:</b>
 
 <ul>
-  <li><p><tt>AsciiText</tt> node's triangles and vertices are not counted
-    when writing triangles and vertices counts of the scene.
+  <li><p><tt>AsciiText</tt> node's triangles and vertexes are not counted
+    when writing triangles and vertexes counts of the scene.
     This is actually somewhat Ok, as later VRML specs say explicitly that
     Text nodes do not participate in collision detection
-    (so they do not have triangles/vertices for collision detection,
+    (so they do not have triangles/vertexes for collision detection,
     only for rendering).
 
   <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
@@ -776,7 +776,7 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
     (and VRML prototypes are already handled 100% by our engine).
 
   <li><p>MFString field with strings not enclosed in double quotes will
-    not be parsed corectly. Moreover, parsing SFStrings not enclosed
+    not be parsed correctly. Moreover, parsing SFStrings not enclosed
     in double quotes is implemented rather as a "quick &amp; dirty hack"
     than as a nice solution. Really, it's a weird "feature" of
     VRML 1.0 (fortunately eliminated in VRML 97) to allow strings not enclosed
@@ -835,7 +835,7 @@ prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
 
 <p>Cases are marked above as "success" (+) only if they succeed
 completely.
-The style of table below was modelled after similar page
+The style of table below was modeled after similar page
 <a href="http://www.openvrml.org/doc/conformance.html">
 OpenVRML Conformance Test Results</a>. <!-- See there also
 for some  remarks about invalid tests included in
@@ -931,7 +931,7 @@ function fail($count, $comment)
     <td>10</td>
     <td class="fail">-</td>
     <td><tt>IndexedFaceSet</tt> and <tt>ElevationGrid</tt>
-      errorneously modulate texture color by specified color.
+      erroneously modulate texture color by specified color.
   </tr>
   <tr>
     <td>11</td>
@@ -967,7 +967,7 @@ function fail($count, $comment)
   <tr>
     <td>6</td>
     <td class="fail">-</td>
-    <td>For horizonal text test passes, but vertical text
+    <td>For horizontal text test passes, but vertical text
       is not implemented yet.
   </tr>
   <tr>
@@ -1142,7 +1142,7 @@ function fail($count, $comment)
   <tr>
     <td>7</td>
     <td class="fail">-</td>
-    <td rowspan="3">For now we errorneously modulate texture color by specified color.
+    <td rowspan="3">For now we erroneously modulate texture color by specified color.
   </tr>
   <tr>
     <td>8</td>
@@ -1527,7 +1527,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>11</td>
     <td class="fail">-</td>
-    <td rowspan="2">Scipts are not supported yet.</td>
+    <td rowspan="2">Scripts are not supported yet.</td>
   </tr>
   <tr>
     <td>12</td>
