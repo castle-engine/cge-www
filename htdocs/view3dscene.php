@@ -857,9 +857,9 @@ directory.</p>
     of TGLRendererOptimization type in VRMLGLScene unit</a>.
 
   <dt>--triangle-octree-max-depth &lt;integer&gt;<br>
-      --triangle-octree-max-leaf-items-count &lt;integer&gt;<br>
+      --triangle-octree-leaf-capacity &lt;integer&gt;<br>
       --ss-octree-max-depth &lt;integer&gt;<br>
-      --ss-octree-max-leaf-items-count &lt;integer&gt;
+      --ss-octree-leaf-capacity &lt;integer&gt;
   <dd><p>These options specify parameters for constructing octrees.
     These will be used when loading every 3d file
     (given on command-line or loaded using "Open ..." menu item).
@@ -879,8 +879,8 @@ directory.</p>
 
     <p>Default parameters are <?php echo VIEW3DSCENE_DEF_OCTREE_MAX_DEPTH; ?>
     for <tt>triangle-octree-max-depth</tt> and
-    <?php echo VIEW3DSCENE_DEF_OCTREE_MAX_LEAF_ITEMS_COUNT; ?> for
-    <tt>triangle-octree-max-leaf-items-count</tt>.
+    <?php echo VIEW3DSCENE_DEF_OCTREE_LEAF_CAPACITY; ?> for
+    <tt>triangle-octree-leaf-capacity</tt>.
 </dl>
 
 <p>As usual all
@@ -944,12 +944,12 @@ First of all, the simplest thing to do is to shrink the window.
 Second, the quality of octree has great influence on rendering time
 (and you should note that by default view3dscene uses rather poor-quality
 octree, <tt>max-depth =<?php echo VIEW3DSCENE_DEF_OCTREE_MAX_DEPTH; ?></tt>,
-<tt>max-leaf-items-count =<?php echo VIEW3DSCENE_DEF_OCTREE_MAX_LEAF_ITEMS_COUNT; ?></tt>).
+<tt>leaf-capacity =<?php echo VIEW3DSCENE_DEF_OCTREE_LEAF_CAPACITY; ?></tt>).
 If you want to play with ray-tracer from within view3dscene I suggest
 you prepare a script like<br>
 <tt>&nbsp;&nbsp;view3dscene
   --triangle-octree-max-depth <?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?>
-  --triangle-octree-max-leaf-items-count <?php echo RAYHUNTER_DEF_OCTREE_MAX_LEAF_ITEMS_COUNT; ?>
+  --triangle-octree-leaf-capacity <?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>
   --geometry 300x300 "$@"</tt><br>
 and use it to run view3dscene in "ray-tracer-optimal" mode.
 

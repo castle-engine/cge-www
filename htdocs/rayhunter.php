@@ -482,13 +482,13 @@ and Monte Carlo path tracing.
   </dd>
 
   <dt><span class="command_line_option">--octree-max-depth &lt;integer&gt;</span><br>
-      <span class="command_line_option">--octree-max-leaf-items-count &lt;integer&gt;</span></dt>
+      <span class="command_line_option">--octree-leaf-capacity &lt;integer&gt;</span></dt>
 
   <dd><p>These parameters control octree generation, just like in
     <?php echo a_href_page("view3dscene", "view3dscene"); ?>.
     By default
     <tt>--octree-max-depth</tt>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?> and
-    <tt>--octree-max-leaf-items-count</tt>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_LEAF_ITEMS_COUNT; ?>.
+    <tt>--octree-leaf-capacity</tt>=<?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>.
     <?php /* Niniejsze drzewo ósemkowe nie zawsze bêdzie absolutnie optymalne,
     ale zazwyczaj bêdzie naprawdê dobre i nie bêdzie zajmowa³o zbyt du¿o
     miejsca w pamiêci (oko³o 10 MB na scenach do 100 000 trójk±tów -
