@@ -678,15 +678,15 @@ end;
         from official specification &mdash; this extension fills the gap.
 
         <p>Note that this node was removed from specifications for a good
-        reason. It's difficult to invert arbitrary 4x4 matrix, and extract
-        particular features (like scaling factor) from it. Our engine
-        cannot invert matrices, and it extracts scaling factors by very naive
+        reason. Our engine can invert your matrix internally (this is needed for some
+        things, like bump mapping), but still it's
+        difficult to extract particular features (like scaling factor)
+        from such matrix. Currently our engine
+        extracts scaling factors by very naive
         method. (Although this is planned to be fixed using
         <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
-        So in some cases you may experience trouble when using this
-        node. The bottom line is: <i>You are well adviced to try
-        to express all transformations
-        using stardard <tt>Transform</tt> node</i>.
+        The bottom line is: <i>You are well adviced to try
+        to express all transformations using stardard <tt>Transform</tt> node</i>.
 
         <p>This node may be useful
         when you really have no choice (for example, when converting from
