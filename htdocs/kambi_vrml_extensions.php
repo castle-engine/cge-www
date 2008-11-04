@@ -66,6 +66,7 @@ $toc = new TableOfContents(array(
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 2),
   new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 2),
+  new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 2),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 2),
   new TocItem('Other Avalon / instant-reality extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 2),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 2),
@@ -642,6 +643,41 @@ end;
     <p>We have a simple scripting language that can be used inside <tt>Script</tt>
     nodes. See <?php echo a_href_page('KambiScript documentation (with examples)',
     'kambi_script'); ?>.
+
+<?php echo $toc->html_section(); ?>
+
+    <?php
+      echo node_begin('X3DComposedGeometryNode');
+      $node_format_fd_name_pad = 10;
+      echo
+      node_dots('all normal X3DComposedGeometryNode fields') .
+      node_field('exposedField', 'MFFloat', 'radianceTransfer', '[]') .
+      node_end();
+    ?>
+
+    <p>The field <tt>radianceTransfer</tt> specifies per-vertex values for
+    <a href="http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer">Precomputed
+    Radiance Transfer</a>. For each vertex, a vector of N floats is specified
+    (this describes the radiance transfer of this vertex).
+    The number of items in <tt>radianceTransfer</tt> must be a multiple
+    of the number of <tt>coord</tt> points.</p>
+
+    <p>Since this field is available in <tt>X3DComposedGeometryNode</tt>,
+    PRT can be used with most of the VRML/X3D geometry,
+    like <tt>IndexedFaceSet</tt>. Note that when using PRT, the color
+    values (<tt>color</tt>, <tt>colorPerVertex</tt> fields) are ignored
+    (TODO: in the future I may implement mixing).</p>
+
+    <p>For PRT to work, the object with <tt>radianceTransfer</tt> computed
+    must keep this <tt>radianceTransfer</tt> always corresponding to
+    current coords. This means that you either don't animate coordinates,
+    or you animate coords together with <tt>radianceTransfer</tt> fields.
+    TODO: make precompute_xxx work with animations, and make an example
+    of this.
+
+    <p>For more information, see <tt>kambi_vrml_game_engine/3dmodels.gl/examples/radiance_transfer/</tt>
+    demo in engine sources. TODO: screenshots, and info how to use this
+    simply from VRML browser.
 
 <?php echo $toc->html_section(); ?>
 
