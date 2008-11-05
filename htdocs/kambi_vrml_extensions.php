@@ -666,7 +666,9 @@ end;
     PRT can be used with most of the VRML/X3D geometry,
     like <tt>IndexedFaceSet</tt>. Note that when using PRT, the color
     values (<tt>color</tt>, <tt>colorPerVertex</tt> fields) are ignored
-    (TODO: in the future I may implement mixing).</p>
+    (TODO: in the future I may implement mixing).
+    We also add this field to VRML 1.0 <tt>IndexedFaceSet</tt>, so with
+    VRML 1.0 this works too.</p>
 
     <p>For PRT to work, the object with <tt>radianceTransfer</tt> computed
     must keep this <tt>radianceTransfer</tt> always corresponding to
