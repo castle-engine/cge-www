@@ -651,14 +651,16 @@ end;
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal X3DComposedGeometryNode fields') .
-      node_field('exposedField', 'MFFloat', 'radianceTransfer', '[]') .
+      node_field('exposedField', 'MFVec3f', 'radianceTransfer', '[]') .
       node_end();
     ?>
 
     <p>The field <tt>radianceTransfer</tt> specifies per-vertex values for
     <a href="http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer">Precomputed
-    Radiance Transfer</a>. For each vertex, a vector of N floats is specified
+    Radiance Transfer</a>. For each vertex, a vector of N triples is specified
     (this describes the radiance transfer of this vertex).
+    We use Vec3f, since our transfer is for RGB (so we need 3 values
+    instead of one).
     The number of items in <tt>radianceTransfer</tt> must be a multiple
     of the number of <tt>coord</tt> points.</p>
 
