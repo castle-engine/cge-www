@@ -601,11 +601,11 @@ some_other_event=some_other_handler
 <pre class="light_bg">
 type
   TMyObject = class
-    procedure ScriptInitialization(Value: TVRMLField; const Time: TKamTime);
-    procedure TouchHandler(Value: TVRMLField; const Time: TKamTime);
+    procedure ScriptInitialization(Value: TVRMLField; const Time: TVRMLTime);
+    procedure TouchHandler(Value: TVRMLField; const Time: TVRMLTime);
   end;
 
-procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TKamTime);
+procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TVRMLTime);
 begin
   { ... do here whatever you want ...
 
@@ -613,7 +613,7 @@ begin
   }
 end;
 
-procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TKamTime);
+procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TVRMLTime);
 begin
   { ... do here whatever you want ...
 
@@ -623,7 +623,7 @@ begin
 
     (Although in case of this example, Value here will always come from
     TouchSensor.touchTime, so it will contain the same thing
-    as our Time parameter. But in general case, Value can be very useful to you.)
+    as our Time.Seconds parameter. But in general case, Value can be very useful to you.)
   }
 end;
 
