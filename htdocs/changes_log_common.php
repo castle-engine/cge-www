@@ -53,6 +53,60 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Precomputed Radiance Transfer using our engine',
+          'year' => 2008,
+          'month' => 11,
+          'day' => 9,
+          'pubDate' => /* date_to_timestamp.sh '2008-11-09' */ 1226232000,
+          'guid' => '2008-11-09',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+          "
+<table align=\"right\">
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_normal.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_normal.png\"
+      alt=\"Normal OpenGL lighting\"
+      title=\"Normal OpenGL lighting\"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_simple_occlusion.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_simple_occlusion.png\"
+      alt=\"Rendering with simple ambient occlusion\"
+      title=\"Rendering with simple ambient occlusion\"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_diffuse_prt.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_diffuse_prt.png\"
+      alt=\"Precomputed Radiance Transfer\"
+      title=\"Precomputed Radiance Transfer\"
+    /></a>
+  </td></tr>
+</table>
+
+<p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
+
+<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
+
+<p>The full source code is available, naturally. Simple instructions:</p>
+
+<pre>
+$ svn checkout https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/
+$ cd kambi_vrml_game_engine/3dmodels.gl/examples/radiance_transfer
+$ ./radiance_transfer_compile.sh
+$ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
+</pre>
+
+<p>Inside that directory there are also other models ready to test with
+PRT. There's also <tt>precompute_radiance_transfer</tt> to process
+any 3D model (readable by my engine &mdash; VRML, X3D, 3DS, Wavefront,
+Collada...) into a VRML model that can be displayed using
+<tt>radiance_transfer</tt> with PRT effects. There's also <tt>show_sh</tt>
+program to view 25 first <a href=\"http://en.wikipedia.org/wiki/Spherical_harmonics\">spherical harmonics</a> (this will be useful if you'll want to understand how PRT works :) )."),
+
     array('title' => 'view3dscene 3.1, engine 1.5 release: Scripting, VRML browser components, and more',
           'year' => 2008,
           'month' => 10,
