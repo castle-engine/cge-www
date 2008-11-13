@@ -1332,12 +1332,10 @@ end;
     ?>
 
     These extensions specify the shadows behavior.
-    They are parsed and handled generally in our
-    <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>.
-    But they actually <b>do something</b> only when we render with shadows &mdash;
-    which means, for now, that these extensions are usefull for you
-    only if you design levels for
-    <?php echo a_href_page('"The Castle"', 'castle'); ?>.
+    They are interpreted by all programs from my engine
+    (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
+    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
+    and VRML browser components) when rendering shadows using shadow volumes.</p>
 
     <p>The idea is that shadows are actually projected from only one light source
     (with shadow volumes, number of light sources is limited,
@@ -1388,11 +1386,15 @@ end;
 
     <p>In <?php echo a_href_page('"The Castle"', 'castle'); ?>
     you can experiment with this using <i>Edit lights</i> inside
-    debug menu.
+    debug menu.</p>
 
     <p>If no "main" light is found
     (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>)
-    then shadows are turned off on this level.
+    then shadows are turned off on this model.</p>
+
+    <p>Test X3D model that uses dynamic shadows is available
+    in <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>, see file <tt>kambi_vrml_test_suite/x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
 
     <p><i>Trick:</i> note that you can set the main light
     to have <tt>on</tt> = <tt>FALSE</tt>. This is the way to make "fake light"
@@ -1402,7 +1404,46 @@ end;
     for some other lights <tt>kambiShadows</tt> = <tt>TRUE</tt> then).
     This is a useful trick when there is no comfortable main light on the scene,
     so you want to add it, but you don't want to make the scene
-    actually brighter.
+    actually brighter.</p>
+
+    <p><i>Other notes about shadows in our engine:</i> (This paragraph
+    doesn't really belong here, but it's probably useful for all people
+    that play with shadows in our engine, so here goes...)
+
+    <ul>
+      <li>
+        <!-- this is somewhat copied and modified text from
+             castle-development.php about creatures. -->
+
+        <p>For shadow volumes to work fast, the model should be composed
+        from a number of 2-manifold parts.
+        It's allowed to not make them perfectly 2-manifold, but then
+        in some cases, some artifacts are unavoidable &mdash; see
+        <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+        chapter "Shadows" for description.
+        To be manifold, edge must have exactly two neighboring faces,
+        so that ideally the whole shape is a correct closed volume.
+        Also, faces must be oriented consistently (e.g. CCW outside).
+        This requirement is often quite naturally satisfiable for natural
+        objects, people etc., and consistent ordering allows you to use backface culling which
+        is a good thing on it's own.</p>
+
+        <p>You can inspect whether your model is detected as a 2-manifold
+        by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
+        see menu item <i>Help -&gt; Manifold Edges Information</i>.
+        To check which edges are actually detected as border you can use
+        <i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,
+        manifold silhouette edges are displayed yellow and border edges
+        (you want to get rid of them) are blue.</p>
+
+        <p>You can also check manifold edges in <a href="http://www.blender.org/">Blender</a>:
+        you can easily detect why the mesh is not
+        manifold by <i>Select non-manifold</i> command (in edit mode).
+        Also, remember that faces must be ordered consistently CCW
+        &mdash; I think that in some cases <i>Recalculate normals outside</i>
+        may be needed to reorded it properly.
+      </li>
+    </ul>
 
 <?php echo $toc->html_section(); ?>
 

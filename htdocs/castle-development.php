@@ -700,8 +700,16 @@ when you're not interested in testing creatures
     models, and consistent ordering allows you to use backface culling which
     is a good thing on it's own.</p>
 
-    <p>You can inspect whether your model is detected as a 2-manifold,
-    run the game with <tt>--debug-log</tt> parameter (possibly redirecting
+    <p>You can inspect whether your model is detected as a 2-manifold
+    by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
+    see menu item <i>Help -&gt; Manifold Edges Information</i>.
+    To check which edges are actually detected as border you can use
+    <i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,
+    manifold silhouette edges are displayed yellow and border edges
+    (you want to get rid of them) are blue.</p>
+
+    <p>You can also check it when running "the castle" itself:
+    run with <tt>--debug-log</tt> parameter (possibly redirecting
     stdout to a file then). Look there for lines that indicate loading
     of your creature, e.g. for <tt>Alien</tt> creature:</p>
 
@@ -712,16 +720,6 @@ Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
 
     <p>... the 2nd line above tells you that Alien is a perfect manifold
     (0 border edges). So shadows will be fast.</p>
-
-    <p>You can also run
-    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/shadow_volume_test/shadow_volume_test</tt>
-    test program from my engine, setting your creature model as a shadow
-    caster. This will tell you manifold / border edges count. Also you
-    can display there your border edges (use the "View" menu), manifold silhouette
-    edges are displayed yellow and border edges are blue.
-    See <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
-    chapter "Shadows" for example screenshots how this looks like.
-    Useful if you want to see where the border edges are located, to fix them.</p>
 
     <p>In Blender, you can easily detect why the mesh is not
     manifold by <i>Select non-manifold</i> command (in edit mode).
