@@ -725,13 +725,13 @@ Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
     manifold by <i>Select non-manifold</i> command (in edit mode).
     Also, remember that faces must be ordered consistently CCW
     &mdash; I think that in some cases <i>Recalculate normals outside</i>
-    may be needed to reorded it properly.
+    may be needed to reorder them properly.
 
     <p>This whole issue doesn't concern creatures with
     <tt>casts_shadow="False"</tt> in <tt>creatures/kinds.xml</tt> file.
     But remember that the default value of <tt>casts_shadow</tt> is
     <tt>"True"</tt> &mdash; to encourage you to make all creatures cast a shadow.
-    Let's show people these beatiful shadows !
+    Let's show these beatiful shadows to players!
 
   <li><p>Notes for animations: beware. Animations are done with a method
     that essentially makes their rendering very fast (rendering each

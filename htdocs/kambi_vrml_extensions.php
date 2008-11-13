@@ -1441,8 +1441,16 @@ end;
         manifold by <i>Select non-manifold</i> command (in edit mode).
         Also, remember that faces must be ordered consistently CCW
         &mdash; I think that in some cases <i>Recalculate normals outside</i>
-        may be needed to reorded it properly.
+        may be needed to reorder them properly.
       </li>
+
+      <li><p>Remember to choose rendering optimization <i>other than
+        "scene as a whole"</i> ("scene as a whole" bakes whole rendering
+        call into a single display list, which means that even lights
+        cannot be dynamically turned on/off). None of my programs uses
+        "scene as a whole" by default (as you can guess, "scene as a whole"
+        is only for special purposes when the scene is really absolutely
+        static), so you should be safe here by default.</p></li>
     </ul>
 
 <?php echo $toc->html_section(); ?>

@@ -158,6 +158,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
   <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
     and in effect view3dscene will work as a "pretty-printer"
     for VRML / X3D files.
+  <li>A wealth of Kambi engine's rendering features are available,
+    like GLSL shaders, bump mapping and shadows.
   <li>Built-in ray-tracer
     (that is also available as a separate command-line program,
     <?php echo a_href_page("rayhunter", "rayhunter"); ?>)
