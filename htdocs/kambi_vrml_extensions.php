@@ -646,6 +646,30 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_normal.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_normal.png"
+      alt="Normal OpenGL lighting"
+      title="Normal OpenGL lighting"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_simple_occlusion.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_simple_occlusion.png"
+      alt="Rendering with simple ambient occlusion"
+      title="Rendering with simple ambient occlusion"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_diffuse_prt.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_diffuse_prt.png"
+      alt="Precomputed Radiance Transfer"
+      title="Precomputed Radiance Transfer"
+    /></a>
+  </td></tr>
+</table>
+
     <?php
       echo node_begin('X3DComposedGeometryNode');
       $node_format_fd_name_pad = 10;
@@ -680,8 +704,13 @@ end;
     of this.
 
     <p>For more information, see <tt>kambi_vrml_game_engine/3dmodels.gl/examples/radiance_transfer/</tt>
-    demo in engine sources. TODO: screenshots, and info how to use this
-    simply from VRML browser.
+    demo in engine sources.</p>
+
+    <p>TODO: currently <tt>radianceTransfer</tt> is read but ignored
+    by <i>view3dscene</i> and simple VRML browser components.
+    This means that you have to write and compile some ObjectPascal code
+    (see above <tt>radiance_transfer/</tt> example) to actually use this
+    in your games.</p>
 
 <?php echo $toc->html_section(); ?>
 
