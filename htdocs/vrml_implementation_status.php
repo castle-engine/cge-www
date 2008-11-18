@@ -100,7 +100,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>NURBS                    </td><td><b></b></td></tr>
   <tr><td>DIS                      </td><td><b></b></td></tr>
   <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
-  <tr><td>Event utilities          </td><td><b></b> (some nodes supported, but not all)</td></tr>
+  <tr><td>Event utilities          </td><td><b>1 (all)</b></td></tr>
   <tr><td>Shader                   </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
   <tr><td>CAD geometry             </td><td><b>1</b></td></tr>
   <tr><td>Texturing3D              </td><td><b></b></td></tr>
@@ -120,7 +120,6 @@ texturing level 2
 - to interactive, missing
 networking level 2
 Pointing device sensor level 1
-Event utilities level 1
 - to immersive, missing
 networking level 3
 Shape level 2
@@ -313,9 +312,10 @@ Shape {
 
     <p><i>TODO</i>: keyPress/Release generate only 8-bit ASCII characters now.
 
-  <li><p>Event utilities: <tt>BooleanFilter</tt>,
+  <li><p>All event utilities: <tt>BooleanFilter</tt>,
     <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
-    <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt></p>
+    <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt>,
+    <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt></p>
 
   <li><p><tt>Rectangle2D</tt>, <tt>Circle2D</tt>
 
