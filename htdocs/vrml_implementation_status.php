@@ -655,7 +655,7 @@ used.
 
   <li><p><tt>ProximitySensor</tt></p>
 
-    <p><i>TODO</i>: <tt>orientation_changed</tt> and <tt>centerOfRotation_changed</tt>
+    <p><i>TODO</i>: <tt>centerOfRotation_changed</tt>
     are not generated. Rest works Ok, according to spec. Timestamps
     for isActive, enter/exitTime are not interpolated (they are simply
     timestamps when this was detected), this shouldn't be a problem in
