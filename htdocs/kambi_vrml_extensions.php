@@ -272,6 +272,14 @@ subdirectories.
 
 <?php echo $toc->html_section(); ?>
 
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("shadows_dynamic_2.png", 'Dynamic shadows demo') .
+        '<tr><td>' . medium_image_progs_demo_core("castle_screen_3.png", 'Werewolves with shadows') .
+        '<tr><td>' . medium_image_progs_demo_core("castle_shadows_fountain.png", 'Castle "fountain" level with shadows') .
+        '</table>';
+    ?>
+
     <p>The extensions below specify the shadows behavior.
     They are interpreted by all programs from my engine
     (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
