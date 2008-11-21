@@ -294,9 +294,8 @@ subdirectories.
         <!-- this is somewhat copied and modified text from
              castle-development.php about creatures. -->
 
-        <p>For shadow volumes to work perfectly, the model
-        (actually, only it's shadow casters) should be composed
-        from a number of 2-manifold parts.
+        <p>For shadow volumes to work perfectly, all parts of the model
+        that are shadow casters should sum to a number of 2-manifold parts.
         It's allowed to not make them perfectly 2-manifold, but then
         in some cases, some artifacts are unavoidable &mdash; see
         <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
@@ -323,6 +322,22 @@ subdirectories.
         &mdash; I think that in some cases <i>Recalculate normals outside</i>
         may be needed to reorder them properly.
       </li>
+
+      <li><p>Shadow casters may be transparent (have material with
+        <tt>transparency</tt> &gt; 0), this is handled perfectly.
+
+        <p>However, note that <i>all opqaue shapes must
+        be 2-manifold</i> and separately <i>all transparent shapes must
+        be 2-manifold</i>. For example, it's Ok to have some transparent
+        box cast shadows over the model. But it's not Ok to have a shadow casting
+        box composed for two separate VRML shapes: one shape defines
+        one box face as transparent, the other shape defines
+        the rest of box faces as opque.
+
+        <p>(For programmers: reasoning may be found in
+        <tt>TVRMLGLScene.RenderSilhouetteShadowVolume</tt> comments,
+        see <tt>glDepthFunc(GL_NEVER)</tt> notes. For transparent triangles,
+        light/dark caps must always be drawn, even in Z-pass approach.)
 
       <li><p>Remember to choose rendering optimization <i>other than
         "scene as a whole"</i> ("scene as a whole" bakes whole rendering
