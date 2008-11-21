@@ -59,6 +59,11 @@ $toc = new TableOfContents(array(
   new TocItem('Extensions for all VRML versions', 'exts_vrmlall', 1),
 
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 2),
+
+  new TocItem('Shadows extensions', 'ext_shadows', 2),
+  new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 3),
+  new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 3),
+
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 2),
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
@@ -78,7 +83,6 @@ $toc = new TableOfContents(array(
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 2),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 2),
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 2),
-  new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows', 2),
 
   new TocItem('VRML 1.0 only extensions', 'exts_vrml1', 1),
 
@@ -265,6 +269,166 @@ subdirectories.
     field of Appearance") is also specified. And it's used only with
     IndexedFaceSet nodes for now &mdash; implementation of this is
     supposed to be extended, feature requests are welcome!</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p>The extensions below specify the shadows behavior.
+    They are interpreted by all programs from my engine
+    (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
+    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
+    and VRML browser components) when rendering shadows using shadow volumes.</p>
+
+    <p>General notes about using shadows:
+
+    <ul>
+      <li><p>Shadows are produced if and only if you have some light node
+        in the scene with <tt>kambiShadows = kambiShadowsMain = TRUE</tt>.
+        That's all that is required to turn shadows on.
+        By default everything is considered a "shadow caster".</p></li>
+
+      <li><p>Test X3D model that uses dynamic shadows is available
+        in <?php echo a_href_page('Kambi VRML test suite',
+        'kambi_vrml_test_suite'); ?>, see file <tt>kambi_vrml_test_suite/x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
+
+      <li>
+        <!-- this is somewhat copied and modified text from
+             castle-development.php about creatures. -->
+
+        <p>For shadow volumes to work perfectly, the model
+        (actually, only it's shadow casters) should be composed
+        from a number of 2-manifold parts.
+        It's allowed to not make them perfectly 2-manifold, but then
+        in some cases, some artifacts are unavoidable &mdash; see
+        <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+        chapter "Shadows" for description.
+        To be manifold, edge must have exactly two neighboring faces,
+        so that ideally the whole shape is a correct closed volume.
+        Also, faces must be oriented consistently (e.g. CCW outside).
+        This requirement is often quite naturally satisfiable for natural
+        objects, people etc., and consistent ordering allows you to use backface culling which
+        is a good thing on it's own.</p>
+
+        <p>You can inspect whether your model is detected as a 2-manifold
+        by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
+        see menu item <i>Help -&gt; Manifold Edges Information</i>.
+        To check which edges are actually detected as border you can use
+        <i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,
+        manifold silhouette edges are displayed yellow and border edges
+        (you want to get rid of them) are blue.</p>
+
+        <p>You can also check manifold edges in <a href="http://www.blender.org/">Blender</a>:
+        you can easily detect why the mesh is not
+        manifold by <i>Select non-manifold</i> command (in edit mode).
+        Also, remember that faces must be ordered consistently CCW
+        &mdash; I think that in some cases <i>Recalculate normals outside</i>
+        may be needed to reorder them properly.
+      </li>
+
+      <li><p>Remember to choose rendering optimization <i>other than
+        "scene as a whole"</i> ("scene as a whole" bakes whole rendering
+        call into a single display list, which means that even lights
+        cannot be dynamically turned on/off). None of my programs uses
+        "scene as a whole" by default (as you can guess, "scene as a whole"
+        is only for special purposes when the scene is really absolutely
+        static), so you should be safe here by default.</p></li>
+    </ul>
+
+<?php echo $toc->html_section(); ?>
+
+    To all VRML light nodes, we add two fields:
+
+    <?php
+      echo node_begin('XxxLight');
+      $node_format_fd_name_pad = 20;
+      echo
+      node_dots() .
+      node_field('exposedField', 'SFBool', 'kambiShadows' , 'FALSE') .
+      node_field('exposedField', 'SFBool', 'kambiShadowsMain' , 'FALSE',
+        'meaningfull only when kambiShadows = TRUE') .
+      node_end();
+    ?>
+
+    <p>The idea is that shadows are actually projected from only one light source
+    (with shadow volumes, number of light sources is limited,
+    since more light sources mean more rendering passes; for now, I decided
+    to use only one light). The scene lights are divided into three groups:
+    <ol>
+      <li><p>First of all, there's one and exactly one light
+        that makes shadows. Which means that shadows are made
+        where this light doesn't reach. This should usually be the
+        dominant, most intensive light on the scene.
+
+        <p>This is taken as the first light node with
+        <tt>kambiShadowsMain</tt> and <tt>kambiShadows</tt> = <tt>TRUE</tt>.
+        Usually you will set <tt>kambiShadowsMain</tt> to <tt>TRUE</tt>
+        on only one light node.</li>
+
+      <li><p>There are other lights that don't determine <b>where</b>
+        shadows are, but they are turned off where shadows are.
+        This seems like a nonsense from "realistic" point of view
+        &mdash; we turn off the lights,
+        even though they may reach given scene point ?
+        But, in practice, it's often needed to put many lights
+        in this group. Otherwise, the scene could be so light,
+        that shadows do not look "dark enough".
+
+        <p>All lights with <tt>kambiShadows</tt> = <tt>TRUE</tt> are
+        in this group. (As you see, the main light has to have
+        <tt>kambiShadows</tt> = <tt>TRUE</tt> also, so the main light
+        is always turned off where the shadow is).</li>
+
+      <li>Other lights that light everything. These just
+        work like usual VRML lights, they shine everywhere
+        (actually, according to VRML light scope rules).
+        Usually only the dark lights should be in this group.
+
+        <p>These are lights with <tt>kambiShadows</tt> = <tt>FALSE</tt>
+        (default).</li>
+    </ol>
+
+    <p>Usually you have to experiment a little to make the shadows look
+    good. This involves determining which light should be the main light
+    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>),
+    and which lights should be just turned off inside the shadow
+    (only <tt>kambiShadows</tt> = <tt>TRUE</tt>).
+    This system tries to be flexible, to allow you to make
+    shadows look good &mdash; which usually means "dark, but
+    not absolutely unrealistically black".
+
+    <p>In <?php echo a_href_page('"The Castle"', 'castle'); ?>
+    you can experiment with this using <i>Edit lights</i> inside
+    debug menu.</p>
+
+    <p>If no "main" light is found
+    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>)
+    then shadows are turned off on this model.</p>
+
+    <p><i>Trick:</i> note that you can set the main light
+    to have <tt>on</tt> = <tt>FALSE</tt>. This is the way to make "fake light"
+    &mdash; this light will determine the shadows position (it will
+    be treated as light source when calculating shadow placement),
+    but will actually not make the scene lighter (be sure to set
+    for some other lights <tt>kambiShadows</tt> = <tt>TRUE</tt> then).
+    This is a useful trick when there is no comfortable main light on the scene,
+    so you want to add it, but you don't want to make the scene
+    actually brighter.</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
+    node. Additional field <tt>shadowCaster</tt> says whether a shape does
+    cast a shadow. <i>By default all shapes cast a shadow</i>,
+    so typically you need to use this field only to explicitly
+    disable shadows casting from given shape.
+
+    <?php
+      echo node_begin('KambiAppearance');
+      $node_format_fd_name_pad = 15;
+      echo
+      node_dots('all normal Appearance fields, and KambiAppearance fields documented previously') .
+      node_field('exposedField', 'SFBool', 'shadowCaster' , 'TRUE') .
+      node_end();
+    ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1315,143 +1479,6 @@ end;
     <tt>spotCutOffAngle</tt> is the same as in VRML 1.0
     (I didn't use <tt>beamWidth</tt> from VRML 2.0 spec because it
     translates badly to OpenGL).
-
-<?php echo $toc->html_section(); ?>
-
-    To all VRML light nodes, we add two fields:
-
-    <?php
-      echo node_begin('XxxLight');
-      $node_format_fd_name_pad = 20;
-      echo
-      node_dots() .
-      node_field('exposedField', 'SFBool', 'kambiShadows' , 'FALSE') .
-      node_field('exposedField', 'SFBool', 'kambiShadowsMain' , 'FALSE',
-        'meaningfull only when kambiShadows = TRUE') .
-      node_end();
-    ?>
-
-    These extensions specify the shadows behavior.
-    They are interpreted by all programs from my engine
-    (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
-    and VRML browser components) when rendering shadows using shadow volumes.</p>
-
-    <p>The idea is that shadows are actually projected from only one light source
-    (with shadow volumes, number of light sources is limited,
-    since more light sources mean more rendering passes; for now, I decided
-    to use only one light). The scene lights are divided into three groups:
-    <ol>
-      <li><p>First of all, there's one and exactly one light
-        that makes shadows. Which means that shadows are made
-        where this light doesn't reach. This should usually be the
-        dominant, most intensive light on the scene.
-
-        <p>This is taken as the first light node with
-        <tt>kambiShadowsMain</tt> and <tt>kambiShadows</tt> = <tt>TRUE</tt>.
-        Usually you will set <tt>kambiShadowsMain</tt> to <tt>TRUE</tt>
-        on only one light node.</li>
-
-      <li><p>There are other lights that don't determine <b>where</b>
-        shadows are, but they are turned off where shadows are.
-        This seems like a nonsense from "realistic" point of view
-        &mdash; we turn off the lights,
-        even though they may reach given scene point ?
-        But, in practice, it's often needed to put many lights
-        in this group. Otherwise, the scene could be so light,
-        that shadows do not look "dark enough".
-
-        <p>All lights with <tt>kambiShadows</tt> = <tt>TRUE</tt> are
-        in this group. (As you see, the main light has to have
-        <tt>kambiShadows</tt> = <tt>TRUE</tt> also, so the main light
-        is always turned off where the shadow is).</li>
-
-      <li>Other lights that light everything. These just
-        work like usual VRML lights, they shine everywhere
-        (actually, according to VRML light scope rules).
-        Usually only the dark lights should be in this group.
-
-        <p>These are lights with <tt>kambiShadows</tt> = <tt>FALSE</tt>
-        (default).</li>
-    </ol>
-
-    <p>Usually you have to experiment a little to make the shadows look
-    good. This involves determining which light should be the main light
-    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>),
-    and which lights should be just turned off inside the shadow
-    (only <tt>kambiShadows</tt> = <tt>TRUE</tt>).
-    This system tries to be flexible, to allow you to make
-    shadows look good &mdash; which usually means "dark, but
-    not absolutely unrealistically black".
-
-    <p>In <?php echo a_href_page('"The Castle"', 'castle'); ?>
-    you can experiment with this using <i>Edit lights</i> inside
-    debug menu.</p>
-
-    <p>If no "main" light is found
-    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>)
-    then shadows are turned off on this model.</p>
-
-    <p>Test X3D model that uses dynamic shadows is available
-    in <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, see file <tt>kambi_vrml_test_suite/x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
-
-    <p><i>Trick:</i> note that you can set the main light
-    to have <tt>on</tt> = <tt>FALSE</tt>. This is the way to make "fake light"
-    &mdash; this light will determine the shadows position (it will
-    be treated as light source when calculating shadow placement),
-    but will actually not make the scene lighter (be sure to set
-    for some other lights <tt>kambiShadows</tt> = <tt>TRUE</tt> then).
-    This is a useful trick when there is no comfortable main light on the scene,
-    so you want to add it, but you don't want to make the scene
-    actually brighter.</p>
-
-    <p><i>Other notes about shadows in our engine:</i> (This paragraph
-    doesn't really belong here, but it's probably useful for all people
-    that play with shadows in our engine, so here goes...)
-
-    <ul>
-      <li>
-        <!-- this is somewhat copied and modified text from
-             castle-development.php about creatures. -->
-
-        <p>For shadow volumes to work fast, the model should be composed
-        from a number of 2-manifold parts.
-        It's allowed to not make them perfectly 2-manifold, but then
-        in some cases, some artifacts are unavoidable &mdash; see
-        <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
-        chapter "Shadows" for description.
-        To be manifold, edge must have exactly two neighboring faces,
-        so that ideally the whole shape is a correct closed volume.
-        Also, faces must be oriented consistently (e.g. CCW outside).
-        This requirement is often quite naturally satisfiable for natural
-        objects, people etc., and consistent ordering allows you to use backface culling which
-        is a good thing on it's own.</p>
-
-        <p>You can inspect whether your model is detected as a 2-manifold
-        by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
-        see menu item <i>Help -&gt; Manifold Edges Information</i>.
-        To check which edges are actually detected as border you can use
-        <i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,
-        manifold silhouette edges are displayed yellow and border edges
-        (you want to get rid of them) are blue.</p>
-
-        <p>You can also check manifold edges in <a href="http://www.blender.org/">Blender</a>:
-        you can easily detect why the mesh is not
-        manifold by <i>Select non-manifold</i> command (in edit mode).
-        Also, remember that faces must be ordered consistently CCW
-        &mdash; I think that in some cases <i>Recalculate normals outside</i>
-        may be needed to reorder them properly.
-      </li>
-
-      <li><p>Remember to choose rendering optimization <i>other than
-        "scene as a whole"</i> ("scene as a whole" bakes whole rendering
-        call into a single display list, which means that even lights
-        cannot be dynamically turned on/off). None of my programs uses
-        "scene as a whole" by default (as you can guess, "scene as a whole"
-        is only for special purposes when the scene is really absolutely
-        static), so you should be safe here by default.</p></li>
-    </ul>
 
 <?php echo $toc->html_section(); ?>
 
