@@ -860,8 +860,8 @@ directory.</p>
 
   <dt>--triangle-octree-max-depth &lt;integer&gt;<br>
       --triangle-octree-leaf-capacity &lt;integer&gt;<br>
-      --ss-octree-max-depth &lt;integer&gt;<br>
-      --ss-octree-leaf-capacity &lt;integer&gt;
+      --shape-octree-max-depth &lt;integer&gt;<br>
+      --shape-octree-leaf-capacity &lt;integer&gt;
   <dd><p>These options specify parameters for constructing octrees.
     These will be used when loading every 3d file
     (given on command-line or loaded using "Open ..." menu item).
