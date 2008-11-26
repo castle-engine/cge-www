@@ -58,6 +58,27 @@ function echo_footer_non_local_bonus ()
   See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
   project page on SourceForge</a>.</p>
 <?php
+
+  /* Insert piwik code */
+  if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
+  {
+?>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://apps.sourceforge.net/piwik/vrmlengine/" : "http://apps.sourceforge.net/piwik/vrmlengine/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+piwik_action_name = '';
+piwik_idsite = 1;
+piwik_url = pkBaseURL + "piwik.php";
+piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+</script>
+<object><noscript><p><img src="http://apps.sourceforge.net/piwik/vrmlengine/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
+<!-- End Piwik Tag -->
+
+<?php
+  }
 }
 
 /* This set_include_path is needed on SourceForge, otherwise
