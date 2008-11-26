@@ -715,10 +715,12 @@ when you're not interested in testing creatures
 
 <pre>
 Animation info:                  Alien.Stand animation:    1 scenes *     4276 triangles
-Animation info: Alien.Stand animation: 6414 manifold edges, 0 border edges
+Bump mapping: ...
+Shadows: Shadows casters triangles ...
+Shadows: Edges: 6414 manifold, 0 border
 </pre>
 
-    <p>... the 2nd line above tells you that Alien is a perfect manifold
+    <p>... the "<tt>Edges:</tt>" line tells you that Alien is a perfect manifold
     (0 border edges). So shadows will be fast.</p>
 
     <p>In Blender, you can easily detect why the mesh is not
