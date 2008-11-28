@@ -832,7 +832,7 @@ directory.</p>
         it improves how objects look with OpenGL shading.
     </ol>
 
-  <dt>--renderer-optimization none|scene-as-a-whole|separate-shape-states|separate-shape-states-no-transform
+  <dt>--renderer-optimization none|scene-as-a-whole|separate-shapes|separate-shapes-no-transform
   <dd><p>Set rendering optimization.
     It's difficult to describe in short what each value means,
     you can just try them all. They all produce identical results, but some
@@ -843,13 +843,13 @@ directory.</p>
       <li><tt>"scene-as-a-whole"</tt> is the best when you're always
         looking at the scene as a whole object (e.g. usually in
         Examine navigation mode)
-      <li><tt>"separate-shape-states"</tt> may have great efficiency
+      <li><tt>"separate-shapes"</tt> may have great efficiency
         in Walk navigation mode, when you often can't see whole scene at once.
         This is the default optimization kind, because it can be superior
         over all others, and, in some worst cases, is not much slower
         than <tt>"scene-as-a-whole"</tt>.
-      <li><tt>"separate-shape-states-no-transform"</tt> is like
-        <tt>"separate-shape-states"</tt> but may additionally conserve
+      <li><tt>"separate-shapes-no-transform"</tt> is like
+        <tt>"separate-shapes"</tt> but may additionally conserve
         memory used for OpenGL display lists. Don't use this when
         you use volumetric fog on the scene.
     </ul>
