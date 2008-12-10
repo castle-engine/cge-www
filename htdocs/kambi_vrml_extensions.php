@@ -66,6 +66,7 @@ $toc = new TableOfContents(array(
 
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 2),
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
+  new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 2),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 2),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 2),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 2),
@@ -556,6 +557,52 @@ EXTERNPROTO Text3D [
     doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
     otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
     artifacts.
+
+<?php echo $toc->html_section(); ?>
+
+    <?php
+    echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("alpha_channel_override_demo", 'Demo of alphaChannel override') .
+        '</table>';
+    ?>
+
+    <p>Alpha channel of your textures
+    is fully supported, both a simple yes-no transparency (done
+    by alpha_test in OpenGL) and full range transparency
+    (done by blending in OpenGL, just like partially transparent materials).
+    Internally, we have a simple and very nice algorithm that detects whether texture's
+    alpha channel qualifies as simple yes-no or full range, see
+    <a href="apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
+    (default tolerance values used by VRML renderer are 5 and 0.01).
+    There is also a special program in <?php echo a_href_page('engine sources',
+    'kambi_vrml_game_engine'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
+    file) if you want to use this algorithm yourself.
+    You can also see the results for your textures if you run view3dscene
+    with <tt>--debug-log</tt> option.
+
+    <p>Sometimes you want to override results of this automatic detection.
+    For example, maybe your texture has some pixels using full range alpha
+    but you stil want to use simpler rendering by alpha_test.
+
+    <p>So we add new field to all texture nodes
+    (<tt>ImageTexture</tt>, <tt>MovieTexture</tt>, also <tt>Texture2</tt>
+    in VRML 1.0 and all future 3D texture nodes in X3D):
+
+    <?php
+      echo node_begin('TextureNode');
+      $node_format_fd_name_pad = 10;
+      echo
+      node_dots('all normal TextureNode fields') .
+      node_field('field', 'SFString', 'alphaChannel', '"AUTO"', '"AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"') .
+      node_end();
+    ?>
+
+    <p>Value <tt>AUTO</tt> means that automatic detection is used, this
+    is the default. Value <tt>SIMPLE_YES_NO</tt> means that alpha channel,
+    if present, will always be treated like a simple yes/no channel (only fully
+    opaque or fully transparent pixels). <tt>FULL_RANGE</tt> means that
+    we will always consider alpha channel as full range, and always render
+    it using blending.
 
 <?php echo $toc->html_section(); ?>
 

@@ -477,17 +477,10 @@ used.
     is fully supported, both a simple yes-no transparency (done
     by alpha_test in OpenGL) and full range transparency
     (done by blending in OpenGL, just like partially transparent materials).
-    Internally, we have a simple and very nice algorithm that detects whether texture's
-    alpha channel qualifies as simple yes-no or full range, see
-    <a href="apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
-    (default tolerance values used by VRML renderer are 5 and 0.01).
-    There is also a special program in <?php echo a_href_page('engine sources',
-    'kambi_vrml_game_engine'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
-    file) if you want to use this algorithm yourself.
-    You can also see the results for your textures if you run view3dscene
-    with <tt>--debug-log</tt> option.
-
-    <p>The bottom line is: everything will magically work fast and look perfect.
+    See <?php echo a_href_page_hashlink('"override alpha channel detection"
+    extension description', 'kambi_vrml_extensions',
+    'section_ext_alpha_channel_detection'); ?> for details.
+    The bottom line is: everything will magically work fast and look perfect.
 
   <li><p><tt>MovieTexture</tt>
 
