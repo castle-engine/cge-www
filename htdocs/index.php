@@ -193,11 +193,6 @@ remember to attach to your bug report output of the
     'kambi_script'); ?>
   <li><?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
     'kanim_format'); ?>
-  <li>Read my document describing
-    <a href="apidoc/html/introduction.html#OpenGLOptimization">
-    how current VRML rendering optimization works,
-    what are the possible drawbacks and what are the possible
-    alternatives (and what drawbacks are hidden in those alternatives :)</a>.
   <li><?php echo a_href_page('VRML / X3D time origin considered uncomfortable',
     'vrml_time_origin_considered_uncomfortable'); ?>
     &mdash; a small Michalis' rant about one detail of VRML/X3D specifications,
