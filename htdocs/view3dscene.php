@@ -179,12 +179,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     intended to be used only as a post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
 
-  <li><p>Interactive animations may be played from VRML / X3D events and
-    interpolations. Precalculated animations are played from
-    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
-    (and you can convert any interactive VRML/X3D animation to precalculated one).
-    <!-- Mentioned in futures above about Collada, keep this text short.
-    Animations recorded inside Collada files are not played yet. --></p>
+  <li><p><i>Interactive animations</i> may be played from VRML / X3D files,
+    using sensors, scripts, interpolators and all other VRML events features.
 
     <p>You can activate VRML pointing-device sensors by clicking with
     <i>left mouse button</i> (the cursor will change shape and you will
@@ -192,16 +188,17 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     Note that this works only in <i>Walk</i> mode and only when <i>Collision
     detection</i> is on (as it requires octree).
 
-    <p>Note that for now collision checking is somewhat problematic during
-    animations, since our octree is static and rebuilding it is costly.
-    As a temporary solution, for precalculated animations
+  <li><p><i>Precalculated animations</i> are played from
+    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
+    (and you can convert any interactive VRML/X3D animation to precalculated one).
+    <!-- Mentioned in futures above about Collada, keep this text short.
+    Animations recorded inside Collada files are not played yet. --></p>
+
+    <p>Note that for now, for precalculated animations
     some features (collision checking, mouse picking,
     ray-tracer &mdash; everything that requires some octree) always use the
     <i>first animation frame</i>,
-    regardless of current animation frame displayed.
-    And for interactive animations, recalculation of octree may slow
-    them down a lot, so it may have to be temporarily turned off during
-    intensive animations.</p>
+    regardless of current animation frame displayed.</p>
 
   <li><p>There are menu items and <a href="#section_screenshot">command-line
     options to catch screenshots and movies
