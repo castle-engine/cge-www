@@ -454,6 +454,9 @@ subdirectories.
       node_end();
     ?>
 
+    <p>This is honoured by our shadow volumes implementation
+    (that is, dynamic shadows in OpenGL) and also by our ray-tracers.
+
 <?php echo $toc->html_section(); ?>
 
     <p>We add new node:
