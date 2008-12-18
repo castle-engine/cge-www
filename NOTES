@@ -1,16 +1,3 @@
-****
-These notes are written assuming that interactive shell is available.
-I used interactive shell for updating content from SVN, for comparing
-MD5 sums of uploaded files, for setting right permissions and initializing
-counters. Currently, this is not possible.
-So instead of svn update, just upload normally.
-Instead of comparing MD5 sums... nothing, just make sure you don't forget
-to upload anything. Permissions may be adjusted through SFTP.
-
-Hopefully interactive shell will be restored (I filled the SF survey),
-and then these notes will be up-to-date again.
-****
-
 htodcs/ is exactly what goes into http://vrmlengine.sourceforge.net/
 
 screenshots/ are only a copy (sometimes with better resolution)
