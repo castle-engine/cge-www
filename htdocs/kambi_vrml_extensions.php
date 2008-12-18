@@ -565,7 +565,7 @@ EXTERNPROTO Text3D [
 
     <?php
     echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("alpha_channel_override_demo", 'Demo of alphaChannel override') .
+        '<tr><td>' . medium_image_progs_demo_core("alpha_channel_override_demo.png", 'Demo of alphaChannel override') .
         '</table>';
     ?>
 
