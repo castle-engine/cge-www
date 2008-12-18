@@ -127,8 +127,8 @@ Major changes:
     whether your models are correctly manifold (this is important for
     shadow volumes).
 
-  <li><p><tt>ProximitySensor.orientation_changed</tt> implemented,
-    some ProximitySensor fixes. <tt>X3DSequencerNode</tt>,
+  <li><p><tt>ProximitySensor.orientation_changed</tt>,
+    <tt>X3DSequencerNode</tt>,
     <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt> implemented.
 
     <p><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
