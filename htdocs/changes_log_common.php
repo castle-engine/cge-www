@@ -65,16 +65,17 @@ function this_a_href_page($title, $page_name)
 
 <p>" . this_a_href_page('view3dscene 3.2', 'view3dscene') . " is released,
 with a lot of improvements and optimizations for dynamic VRML/X3D worlds.
-As usual, this is accompanied with " . this_a_href_page('underlying
+As usual, this is accompanied by " . this_a_href_page('underlying
 Kambi VRML game engine 1.6.0', 'kambi_vrml_game_engine') . " release.
+Major changes:
 
 <ul>
   <li><p>Our spatial data structure has undergone serious
     rework, which in English means that <b>your whole scene
-    can be now much more dynamic</b>, everything can move and such,
-    and still things will work smoothly
+    can be now much more dynamic</b>. Everything can move and transform,
+    and things will work smoothly
     and fast. All collision detection routines will \"see\"
-    the current (constantly changing) scene, which means that you
+    the most current scene state, which means that you
     can e.g. click on moving targets, and you will fall down if a hole
     opens under your feet, and generally you can interact with every
     dynamic part of your scene without problems.</p>
@@ -87,7 +88,7 @@ Kambi VRML game engine 1.6.0', 'kambi_vrml_game_engine') . " release.
 
 
     <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . this_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
-    ") and open it. It shows how you can edit the world by VRML script, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
+    ") and open it. It shows how you can edit the world by KambiScript, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
 
   <li><p>Changing <b><tt>Switch.whichChoice</tt> is greatly optimized</b>.
     Previously this was very costly operation, now it's instantaneous
@@ -111,10 +112,10 @@ Kambi VRML game engine 1.6.0', 'kambi_vrml_game_engine') . " release.
 </table>
 
 
-    <p><b>Dynamic shadows support is greatly improved</b>, now
-    " . this_a_href_page('view3dscene', 'view3dscene') . " renders
-    with shadows, honoring  our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>, we also
-    have new <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
+    <p><b>Dynamic shadows support is greatly improved</b>, finally
+    " . this_a_href_page('view3dscene', 'view3dscene') . " can render
+    with shadows, honoring our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
+    We also have new <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
     <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
