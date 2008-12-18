@@ -53,6 +53,90 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.2, engine 1.6 release: collisions in dynamic worlds',
+          'year' => 2008,
+          'month' => 12,
+          'day' => 18,
+          'pubDate' => /* date_to_timestamp.sh '2008-12-18' */ 1229601600,
+          'guid' => '2008-12-18',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => "
+
+<p>" . this_a_href_page('view3dscene 3.2', 'view3dscene') . " is released,
+with a lot of improvements and optimizations for dynamic VRML/X3D worlds.
+As usual, this is accompanied with " . this_a_href_page('underlying
+Kambi VRML game engine 1.6.0', 'kambi_vrml_game_engine') . " release.
+
+<ul>
+  <li><p>Our spatial data structure has undergone serious
+    rework, which in English means that <b>your whole scene
+    can be now much more dynamic</b>, everything can move and such,
+    and still things will work smoothly
+    and fast. All collision detection routines will \"see\"
+    the current (constantly changing) scene, which means that you
+    can e.g. click on moving targets, and you will fall down if a hole
+    opens under your feet, and generally you can interact with every
+    dynamic part of your scene without problems.</p>
+
+    " . (!HTML_VALIDATION ?
+    '<table align="right"><tr><td>
+       <object width="300" height="243"><param name="movie" value="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="243"></embed></object>
+     </td></tr></table>' : '')
+    . "
+
+
+    <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . this_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
+    ") and open it. It shows how you can edit the world by VRML script, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
+
+  <li><p>Changing <b><tt>Switch.whichChoice</tt> is greatly optimized</b>.
+    Previously this was very costly operation, now it's instantaneous
+    (almost no work is required).
+    Many other optimizations were done for dynamic worlds, including
+    <b>faster <tt>Transform</tt> traversing</b>, faster sensor's enabled switching,
+    more reliable starting of time-dependent nodes and many more.
+
+    <p>Thanks to <a href=\"http://www.de-panther.com/\">De-Panther</a> for
+    pushing me to implement a lot of these features!
+
+  <li>
+<table align=\"right\">
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/shadows_dynamic_2.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/shadows_dynamic_2.png\"
+      alt=\"Dynamic shadows screenshot\"
+      title=\"Dynamic shadows screenshot\"
+    /></a>
+  </td></tr>
+</table>
+
+
+    <p><b>Dynamic shadows support is greatly improved</b>, now
+    " . this_a_href_page('view3dscene', 'view3dscene') . " renders
+    with shadows, honoring  our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>, we also
+    have new <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
+    Oh, and shadows rendering with
+    transparent objects is fixed. Just try the file
+    <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
+    " . this_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') . "
+    in new view3dscene.
+
+    <p>view3dscene has now view mode <i>Fill Mode -&gt;
+    Silhouette and Border Edges</i>, this is very handy for checking
+    whether your models are correctly manifold (this is important for
+    shadow volumes).
+
+  <li><p><tt>ProximitySensor.orientation_changed</tt> implemented,
+    some ProximitySensor fixes. <tt>X3DSequencerNode</tt>,
+    <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt> implemented.
+
+    <p><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
+
+  <li><p>Bugfix for open file dialog under GTK 2.14 (like Ubuntu 8.10).
+    Thanks to Graham Seed for reporting.
+</ul>
+"),
+
     array('title' => 'Precomputed Radiance Transfer using our engine',
           'year' => 2008,
           'month' => 11,
