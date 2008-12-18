@@ -277,7 +277,7 @@ subdirectories.
       echo '<table align="right">' .
         '<tr><td>' . medium_image_progs_demo_core("shadows_dynamic_2.png", 'Dynamic shadows demo') .
         '<tr><td>' . medium_image_progs_demo_core("castle_screen_3.png", 'Werewolves with shadows') .
-        '<tr><td>' . medium_image_progs_demo_core("castle_shadows_fountain.png", 'Castle "fountain" level with shadows') .
+        '<tr><td>' . medium_image_progs_demo_core("castle_shadows_fountain.png", 'Castle &quot;fountain&quot; level with shadows') .
         '</table>';
     ?>
 
