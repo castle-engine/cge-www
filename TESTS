@@ -32,3 +32,14 @@ cd view3dscene/
 #     3dmodels.gl/examples/simplest_vrml_browser
 #   from Lazarus lpi files
 # - Compile and run lazarus_vrml_browser
+
+# Make sure Lazarus packages have all units included
+cd kambi_vrml_game_engine/
+find . -iname '*.ppu'
+# Should find only files
+# - inside packages/../lib/
+# - allkambi*.pas units (that's ok, they are not part of any package
+#   and are not used by any program)
+# - units inside examples/, tools/ dir
+# - units inside dir of other OS (for example, leftovers in unix/
+#   dir were not cleaned by windows package, that's ok)
