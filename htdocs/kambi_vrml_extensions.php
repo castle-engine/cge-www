@@ -84,6 +84,7 @@ $toc = new TableOfContents(array(
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 2),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 2),
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 2),
+  new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 2),
 
   new TocItem('VRML 1.0 only extensions', 'exts_vrml1', 1),
 
@@ -91,7 +92,6 @@ $toc = new TableOfContents(array(
   new TocItem('Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes', 'ext_light_attenuation', 2),
   new TocItem('Parts of Inventor in VRML', 'ext_iv_in_vrml', 2),
   new TocItem('Multi root node', 'ext_multi_root_node', 2),
-  new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 2),
   new TocItem('Field <tt>separate</tt> for <tt>WWWInline</tt> node', 'ext_wwwinline_separate', 2),
 ));
 $toc->echo_numbers = true;
@@ -1479,7 +1479,7 @@ end;
     in <?php echo a_href_page("view3dscene", "view3dscene"); ?>
     and <?php echo a_href_page("rayhunter", "rayhunter"); ?>.
     Well, it's also respected by path-tracer, although
-    it's much better to use <a href="#ext_material_phong_brdf_fields">
+    it's much better to use <a href="#section_ext_material_phong_brdf_fields">
     fields describing physical properties (Phong's BRDF) for <tt>Material</tt>
     node</a> when using path-tracer. In the future <tt>mirror</tt> field
     may be somehow respected with normal OpenGL rendering in
@@ -1555,6 +1555,101 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
+    In <?php echo a_href_page("rayhunter's","rayhunter") ?>
+    <i>path-tracer</i> I implemented Phong's BRDF.
+    To flexibly operate on material's properties understood
+    by Phong's BRDF you can use the following <tt>Material</tt> node's
+    fields:
+
+    <?php echo node_begin("Material");
+      $node_format_fd_type_pad = 32;
+      $node_format_fd_name_pad = 20;
+      $node_format_fd_def_pad = 10;
+
+      echo
+      node_dots() .
+      node_field('exposedField', "MFColor", "reflSpecular", "[]", "specular reflectance") .
+      node_field('exposedField', "MFColor", "reflDiffuse", "[]", "diffuse reflectance") .
+      node_field('exposedField', "MFColor", "transSpecular", "[]", "specular transmittance") .
+      node_field('exposedField', "MFColor", "transDiffuse", "[]", "diffuse transmittance") .
+      node_field('exposedField', "MFFloat (SFFloat in VRML 1.0)", "reflSpecularExp", "1000000", "specular reflectance exponent") .
+      node_field('exposedField', "MFFloat (SFFloat in VRML 1.0)", "transSpecularExp", "1000000", "specular transmittance exponent") .
+      node_end();
+    ?>
+
+    <p>Short informal description how these properties work
+    (for precise description see Phong's BRDF equations or source
+    code of my programs):
+    <dl>
+      <dt>reflectance</dt>
+      <dd>tells how the light rays reflect from the surface.</dd>
+
+      <dt>transmittance</dt>
+      <dd>tells how the light rays transmit into the surface
+        (e.g. inside the water or thick glass).</dd>
+
+      <dt>diffuse</dt>
+      <dd>describe the property independent of light rays
+        incoming direction.</dd>
+
+      <dt>specular</dt>
+      <dd>describe the property with respect to the
+        light rays incoming direction (actually, it's the angle
+        between incoming direction and the vector of
+        perfectly reflected/transmitted ray that matters).</dd>
+
+      <dt>specular exponent</dt>
+      <dd>describe the exponent
+        for cosinus function used in equation, they say how much
+        the specular color should be focused around
+        perfectly reflected/transmitted ray.</dd>
+    </dl>
+
+    <p>For VRML 1.0, all these fields have <tt>multi-</tt> type (like other
+    fields of <tt>Material</tt> node) to allow you to specify
+    many material kinds at once. For VRML &gt;= 2.0 (includes X3D)
+    only the four non-exponent fields are of <tt>multi-</tt> type,
+    this is only to allow you to specify zero values there
+    and trigger auto-calculation (see below). Otherwise, you shouldn't
+    place more than one value there for VRML &gt;= 2.0.
+
+    <p>Two <tt>*SpecularExp</tt> fields have default values
+    equal to 1 000 000 = 1 million = practically infinity
+    (bear in mind that they are exponents for cosinus).
+    Other four fields have very special default values.
+    Formally, they are equal to zero-length arrays.
+    If they are left as being zero-length arrays,
+    they will be calculated as follows :
+
+    <ul>
+      <li><b>reflSpecular</b> := vector &lt;mirror, mirror, mirror&gt;
+      <li><b>reflDiffuse</b> := diffuseColor
+      <li><b>transSpecular</b> := vector &lt;transparency, transparency, transparency&gt;
+      <li><b>transDiffuse</b> := diffuseColor * transparency
+    </ul>
+
+    <p>This way you don't have to use any of described here 6 fields.
+    You can use only standard VRML fields (and maybe <tt>mirror</tt> field)
+    and <i>path tracer</i> will use sensible values derived from
+    other <tt>Material</tt> fields.
+    If you will specify all 6 fields described here,
+    then <i>path tracer</i> will completely ignore most other
+    <tt>Material</tt> colors (normal <tt>diffuseColor</tt>,
+    <tt>specularColor</tt> etc. fields
+    will be ignored by path tracer then; only <tt>emissiveColor</tt>
+    will be used, to indicate light sources).
+
+    <p>You can use <?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>
+    program to convert MGF files to VRML 1.0 with these six additional
+    <tt>Material</tt> fields. So you can easily test my ray-tracer
+    using your MGF files.
+
+    <p>These fields are used only by <i>path tracer</i> in
+    <?php echo a_href_page("rayhunter", "rayhunter") ?> and
+    <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+
+<?php echo $toc->html_section(); ?>
+
 <?php echo $toc->html_section(); ?>
 
     This way every possible value is allowed for <tt>parts</tt>
@@ -1626,93 +1721,6 @@ end;
       <li>This is allowed in VRML 97.
       <li>This was very easy to implement :)
     </ol>
-
-<?php echo $toc->html_section(); ?>
-
-    In <?php echo a_href_page("rayhunter's","rayhunter") ?>
-    <i>path-tracer</i> I implemented Phong's BRDF.
-    To flexibly operate on material's properties understood
-    by Phong's BRDF you can use the following <tt>Material</tt> node's
-    fields:
-
-    <?php echo node_begin("Material");
-      $node_format_fd_name_pad = 20;
-      $node_format_fd_def_pad = 10;
-
-      echo
-      node_dots() .
-      node_field('exposedField', "MFColor", "reflSpecular", "[]", "specular reflectance") .
-      node_field('exposedField', "MFColor", "reflDiffuse", "[]", "diffuse reflectance") .
-      node_field('exposedField', "MFColor", "transSpecular", "[]", "specular transmittance") .
-      node_field('exposedField', "MFColor", "transDiffuse", "[]", "diffuse transmittance") .
-      node_field('exposedField', "MFFloat", "reflSpecularExp", "1000000", "specular reflectance exponent") .
-      node_field('exposedField', "MFFloat", "transSpecularExp", "1000000", "specular transmittance exponent") .
-      node_end();
-    ?>
-
-    <p>Short informal description how these properties work
-    (for precise description see Phong's BRDF equations or source
-    code of my programs):
-    <dl>
-      <dt>reflectance</dt>
-      <dd>tells how the light rays reflect from the surface.</dd>
-
-      <dt>transmittance</dt>
-      <dd>tells how the light rays transmit into the surface
-        (e.g. inside the water or thick glass).</dd>
-
-      <dt>diffuse</dt>
-      <dd>describe the property independent of light rays
-        incoming direction.</dd>
-
-      <dt>specular</dt>
-      <dd>describe the property with respect to the
-        light rays incoming direction (actually, it's the angle
-        between incoming direction and the vector of
-        perfectly reflected/transmitted ray that matters).</dd>
-
-      <dt>specular exponent</dt>
-      <dd>describe the exponent
-        for cosinus function used in equation, they say how much
-        the specular color should be focused around
-        perfectly reflected/transmitted ray.</dd>
-    </dl>
-
-    <p>All these fields have <tt>multi-</tt> type (like other
-    fields of <tt>Material</tt> node) to allow you to specify
-    many material kinds at once.
-
-    <p>Two <tt>*SpecularExp</tt> fields have default values
-    equal to 1 000 000 = 1 million = practically infinity
-    (bear in mind that they are exponents for cosinus).
-    Other four fields have very special default values.
-    Formally, they are equal to zero-length arrays.
-    If they are left as being zero-length arrays,
-    they will be calculated as follows :
-
-    <ul>
-      <li><b>reflSpecular<sub>i</sub></b> := vector &lt;mirror<sub>i</sub>, mirror<sub>i</sub>, mirror<sub>i</sub>&gt;
-      <li><b>reflDiffuse<sub>i</sub></b> := diffuseColor<sub>i</sub>
-      <li><b>transSpecular<sub>i</sub></b> := vector &lt;transparency<sub>i</sub>, transparency<sub>i</sub>, transparency<sub>i</sub>&gt;
-      <li><b>transDiffuse<sub>i</sub></b> := diffuseColor<sub>i</sub> * transparency<sub>i</sub>
-    </ul>
-
-    <p>This way you don't have to use any of described here 6 fields.
-    You can use only standard VRML fields (and maybe <tt>mirror</tt> field)
-    and <i>path tracer</i> will use sensible values derived from
-    other <tt>Material</tt> fields.
-    If you will specify all 6 fields described here,
-    then <i>path tracer</i> will completely ignore other
-    <tt>Material</tt> fields.
-
-    <p>You can use <?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>
-    program to convert MGF files to VRML 1.0 with these six additional
-    <tt>Material</tt> fields. So you can easily test my ray-tracer
-    using your MGF files.
-
-    <p>These fields are used only by <i>path tracer</i> in
-    <?php echo a_href_page("rayhunter", "rayhunter") ?> and
-    <?php echo a_href_page("view3dscene", "view3dscene") ?>.
 
 <?php echo $toc->html_section(); ?>
 
