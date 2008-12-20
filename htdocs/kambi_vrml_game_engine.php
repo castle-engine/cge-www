@@ -56,7 +56,9 @@ Features include:</p>
     interactive animation interpolated at runtime,
     or precalculated animation for fast playback.</li>
 
-  <li>Octrees are used for various <b>collision detection</b> tasks.</li>
+  <li>Octrees are used for various <b>collision detection</b> tasks.
+    For dynamic scenes, a hierarchy of octrees is used, allowing accurate
+    and fast collision detection even when the scene constantly changes.</li>
 
   <li><b>Shadows</b> by shadow volumes (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.).</li>
