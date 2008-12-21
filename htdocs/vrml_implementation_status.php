@@ -582,14 +582,23 @@ used.
     <tt>Coordinate</tt>, <tt>Color</tt>,
     <tt>Normal</tt>, <tt>TextureCoordinate</tt></p>
 
-  <li><p><tt>Billboard</tt>, <tt>Collision</tt></p>
+  <li><p><tt>Billboard</tt></p>
 
-    <p><i>TODO</i>: These two nodes are not really handled:
-    they just work like a <tt>Group</tt>. Sometimes that's enough
-    for them to look sensible, but it's hardly a real support...</p>
+    <p><i>TODO</i>: Not really handled:
+    it just works like a <tt>Group</tt>. Often that's enough
+    for it to look sensible, but it's hardly a real support...</p>
 
-    <p>Actually, the simplest case of <tt>Collision.collide = FALSE</tt>
-    (called <tt>enabled</tt> in X3D) is supported Ok.</p>
+  <li><p><tt>Collision</tt></p>
+
+    <p>Most things work: grouping (<tt>children</tt> property, in particular),
+    allows to control collision detection by honoring
+    <tt>enabled</tt> (named <tt>collide</tt> in VRML 97) and <tt>proxy</tt>
+    fields.
+
+    <p><tt>bboxCenter/Size</tt> is currently simply ignored, our engine
+    always calculates and updates the bounding boxes where needed.
+
+    <p>TODO: collideTime and isActive out events are not implemented yet.
 
   <li><p><tt>ElevationGrid</tt></p>
 
