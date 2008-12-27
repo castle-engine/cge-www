@@ -527,8 +527,14 @@ used.
 
   <li><p><tt>LOD</tt>
 
-    <p><i>TODO</i>: But we always render first (best looking) node, ignoring
-    distance of node to the viewer.
+    <p>We do not have any automatic LOD calculation implemented now,
+    which means that your supplied <tt>range</tt>, and only
+    your supplied <tt>range</tt>, controls which LOD is chosen.
+    This means that <tt>forceTransitions</tt> value is simply ignored,
+    and when <tt>range</tt> is empty, we simply always use the first
+    (highest-detail) version. This is Ok, spec allows this.
+
+    <p><i>TODO</i>: level_changed is not generated yet.
 
   <li><p><tt>Anchor</tt>
 
@@ -725,10 +731,6 @@ All nodes and features are handled, with the exception of:
 
   <li>Value of <tt>height</tt> / <tt>heightAngle</tt> fields of camera
     nodes are ignored.
-
-  <li>I'm always rendering the nearest (first) child of <tt>LOD</tt> node.
-    Therefore I'm potentially losing some optimization if the scene
-    has reasonably designed <tt>LOD</tt> nodes.
 </ul>
 
 <p><b>VRML 1.0 features that will probably never be implemented,
@@ -745,6 +747,27 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
   <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
     <tt>Anchor</tt> instead, implementing old VRML 1.0 anchor is not worth
     the trouble and would unnecessarily obfuscate the code).
+
+  <li><p>I'm always rendering the nearest (first) child of VRML 1.0 <tt>LOD</tt>
+    node. Therefore I'm potentially losing some optimization if the scene
+    has reasonably designed <tt>LOD</tt> nodes.</p>
+
+    <p>Reason: this is caused by possible "leaking" of properties
+    in VRML 1.0. Change of LODs choice could potentially change
+    the look of the whole scene (that is, different LOD children may
+    cause the other nodes, following LOD node, to have different meaning).
+    That's why implementing LOD node correctly and fast is very very hard
+    in VRML 1.0.
+    So much that it's not worth the trouble.</p>
+
+    <p>For the same reason, changing VRML 1.0 Switch.whichChoice is not
+    optimized and works slow. Although you will probably not notice this,
+    since there's no event mechanism in pure VRML 1.0.</p>
+
+    <p>Note that VRML &gt;= 2.0 LOD node is working fast and switches
+    between children, according to spec. Also <tt>Switch.whichChoice</tt>
+    changing is optimized and instantly fast in VRML &gt;= 2.0. So just
+    upgrade to VRML 2.0 (aka 97) or X3D if you need these features.
 
   <li><p>Camera <tt>focalDistance</tt> is also ignored, but this
     is allowed by specification. And honestly VRML 1.0 specification
@@ -1629,10 +1652,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
   <tr>
     <td>7I</td>
-    <td class="pass">-</td>
-    <td>But we do not handle LOD (yet), rendering always the first child.
-      This is valid (although non-optimal) with respect to spec, AFAIK?
-      (But will be improved anyway in the future.)
+    <td class="pass">+</td>
   </tr>
   <tr>
     <td>7J</td>
@@ -1704,6 +1724,22 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
     <td>20</td>
     <td class="pass">+</td>
   </tr>
+
+  <tr>
+    <td colspan="5"><i>... here I again skipped some tests ...</i></td>
+  </tr>
+
+  <tr>
+    <td rowspan="6">Special_Groups</td>
+    <td rowspan="6">LOD</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(5);
+?>
 
   <tr>
     <td colspan="5"><i>That's enough for now...
