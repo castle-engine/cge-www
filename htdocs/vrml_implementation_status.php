@@ -1728,7 +1728,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="6">Special_Groups</td>
+    <td rowspan="12">Special_Groups</td>
     <td rowspan="6">LOD</td>
     <td>1</td>
     <td class="pass">+</td>
@@ -1737,6 +1737,20 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
 <?php
 $current_test_number = 2;
 pass(5, "Note that switching between Viewpoints in these tests has very strange VRML code. Namely there are interpolators with two <i>equal</i> keys (so they don't actually make any change, and this is correctly optimized in the engine). Moreover, they are connected to time sensors with 2 seconds cycle. This causes strange effects when clicking fast on various touch sensors, as many interpolators conquer to change the same Transform.position values. I'll emphasise: we handle it correctly, and optimize correctly, we have to evaluate simultaneous changes to the same field from various routes... The test is just strange, without any purpose.");
+?>
+
+  <tr>
+    <td rowspan="6">Switch</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>This is actually an <tt>Anchor</tt> bound-500 test, that passes.
+      (Possibly, wget messed up my local copy of NIST tests...
+      Online server with NIST tests is broken, so I can't check).
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(5);
 ?>
 
   <tr>
