@@ -73,6 +73,16 @@ editing (glued, fading between parts) thanks to
     <p><object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="425" height="350"> </embed> </object>
     <?php } ?>
   </li>
+
+  <li><p>Dynamic world with dynamic collisions.
+    This shows <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    with <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv">demo dynamic_world.x3dv</a>
+    loaded (you can grab it along with the rest of
+    <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>).
+
+    <?php if (!HTML_VALIDATION) { ?>
+    <p><object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+    <?php } ?>
 </ol>
 
 <?php
