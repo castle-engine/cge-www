@@ -527,14 +527,12 @@ used.
 
   <li><p><tt>LOD</tt>
 
-    <p>We do not have any automatic LOD calculation implemented now,
+    <p><i>Note:</i> We do not have any automatic LOD calculation implemented now,
     which means that your supplied <tt>range</tt>, and only
     your supplied <tt>range</tt>, controls which LOD is chosen.
     This means that <tt>forceTransitions</tt> value is simply ignored,
     and when <tt>range</tt> is empty, we simply always use the first
     (highest-detail) version. This is Ok, spec allows this.
-
-    <p><i>TODO</i>: level_changed is not generated yet.
 
   <li><p><tt>Anchor</tt>
 
