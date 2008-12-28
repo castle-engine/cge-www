@@ -1736,7 +1736,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
 
 <?php
 $current_test_number = 2;
-pass(5);
+pass(5, "Note that switching between Viewpoints in these tests has very strange VRML code. Namely there are interpolators with two <i>equal</i> keys (so they don't actually make any change, and this is correctly optimized in the engine). Moreover, they are connected to time sensors with 2 seconds cycle. This causes strange effects when clicking fast on various touch sensors, as many interpolators conquer to change the same Transform.position values. I'll emphasise: we handle it correctly, and optimize correctly, we have to evaluate simultaneous changes to the same field from various routes... The test is just strange, without any purpose.");
 ?>
 
   <tr>
