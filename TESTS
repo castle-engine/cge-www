@@ -33,13 +33,28 @@ cd view3dscene/
 #   from Lazarus lpi files
 # - Compile and run lazarus_vrml_browser
 
-# Make sure Lazarus packages have all units included
-cd kambi_vrml_game_engine/
-find . -iname '*.ppu'
-# Should find only files
-# - inside packages/../lib/
-# - allkambi*.pas units (that's ok, they are not part of any package
-#   and are not used by any program)
-# - units inside examples/, tools/ dir
-# - units inside dir of other OS (for example, leftovers in unix/
-#   dir were not cleaned by windows package, that's ok)
+# Make sure Lazarus packages have all units included.
+
+  # This can be tested by
+  cd kambi_vrml_game_engine/
+  make clean
+  make
+  # Now compile our packages from Lazarus,
+  # letting Lazarus remove ppu files of units that belong to package.
+  # This will leave only ppu files of units that don't belong to packages,
+  # but were compiled during "make", thus providing us with a simple
+  # way to check what is possibly missing from package:
+  find . -iname '*.ppu'
+
+  # Should find only files
+  # - inside packages/../lib/
+  # - allkambi*.pas units (that's ok, they are not part of any package
+  #   and are not used by any program)
+  # - units inside examples/, tools/ dir
+  # - units inside dir of other OS (for example, leftovers in unix/
+  #   dir were not cleaned by windows package, that's ok)
+  # - units that I deliberatly do not want to put in a package for now:
+  #   ./opengl/glw_win.ppu (would require separate package, like kambi_glwindow_navigated)
+  #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
+  #   ./opengl/glw_demo.ppu (would require separate package, like kambi_glwindow_navigated)
+  #   ./opengl/unix/kambiglx.ppu (required only for GLWindow Xlib backend --- hm, maybe add?)
