@@ -1697,8 +1697,8 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
-      node_field('field', "SFInt32", "maxDepth", "-1", "&gt;= -1") .
-      node_field('field', "SFInt32", "leafCapacity", "-1", "&gt;= -1") .
+      node_field('field', "SFInt32", "maxDepth", "-1", "must be &gt;= -1") .
+      node_field('field', "SFInt32", "leafCapacity", "-1", "must be &gt;= -1") .
       node_end();
     ?>
 
@@ -1719,6 +1719,7 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
+      node_dots() .
       node_field('field', "SFNode", "octreeRendering", "NULL", "only KambiOctreeProperties node") .
       node_field('field', "SFNode", "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
       node_field('field', "SFNode", "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
@@ -1726,12 +1727,13 @@ end;
       node_end();
     ?>
 
-    <?php echo node_begin("Shape");
+    <?php echo node_begin("X3DShapeNode (e.g. Shape)");
       $node_format_fd_type_pad = 5;
       $node_format_fd_name_pad = 25;
       $node_format_fd_def_pad = 6;
 
       echo
+      node_dots() .
       node_field('field', "SFNode", "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
       node_end();
     ?>
@@ -1741,7 +1743,23 @@ end;
     In normal simulation of dynamic 3D scenes,
     we use only <tt>octreeRendering</tt>, <tt>octreeDynamicCollisions</tt> and
     <tt>Shape.octreeTriangles</tt> octrees. Ray-tracers usually use
-    <tt>octreeVisibleTriangles</tt>.
+    <tt>octreeVisibleTriangles</tt>.</p>
+
+    <p>We will use global octree properties from the first bound
+    <tt>NavigationInfo</tt> node (see VRML/X3D specifications
+    about the rules for bindable nodes). If this node is not
+    <tt>KambiNavigationInfo</tt>, or appropriate <tt>octreeXxx</tt> field
+    is <tt>NULL</tt>, or appropriate field within <tt>KambiOctreeProperties</tt>
+    is <tt>-1</tt>, then the default hard-coded limit will be used.
+
+    <p>Currently, it's not perfectly specified what happens to octree limits
+    when you bind other <tt>[Kambi]NavigationInfo</tt> nodes during the game.
+    With current implementation, this <i>will</i> cause the limits to change,
+    but they will be actually applied only when the octree will be rebuild
+    &mdash; which may happen never, or only at some radical rebuild of
+    VRML graph by other events. So if you have multiple
+    <tt>[Kambi]NavigationInfo</tt> nodes in your world, I advice to
+    specify in all of them exactly the same <tt>octreeXxx</tt> fields values.
 
 <?php echo $toc->html_section(); ?>
 
