@@ -85,6 +85,7 @@ $toc = new TableOfContents(array(
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 2),
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 2),
   new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 2),
+  new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 2),
 
   new TocItem('VRML 1.0 only extensions', 'exts_vrml1', 1),
 
@@ -1647,6 +1648,100 @@ end;
     <p>These fields are used only by <i>path tracer</i> in
     <?php echo a_href_page("rayhunter", "rayhunter") ?> and
     <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+
+<?php echo $toc->html_section(); ?>
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . medium_image_progs_demo_core("octree_hello_world_shadow.png", 'Octree visualization') .
+        '</table>';
+    ?>
+
+    <p>Like most 3D engines, <i>Kambi VRML game engine</i> uses a smart
+    tree structure to handle collision detection in arbitrary 3D worlds.
+    The structure used in our engine is the <i>octree</i>, with a couple
+    of special twists to handle dynamic scenes. See
+    <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
+    chapter "octrees" for more explanation</a>.</p>
+
+    <p>There are some limits that determine how fast the octree is constructed,
+    how much memory does it use,
+    and how fast can it answer collision queries. While our programs have
+    sensible and tested defaults hard-coded, it may be useful (or just
+    interesting for programmers) to test other limits &mdash; this is
+    what this extension is for.</p>
+
+    <p><i>In all honesty, I (Michalis) do not
+    expect this extension to be commonly used... It allows you to
+    tweak an important, but internal, part of the engine. For most normal people,
+    this extension will probably look like an uncomprehensible black magic.
+    And that's Ok, as the internal defaults used in our engine really
+    suit (almost?) all practical uses.</i></p>
+
+    <p>If the above paragraph didn't scare you, and you want to know more
+    about octrees in our engine: besides
+    <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
+    chapter "octrees"</a> you can
+    also take a look at the (source code and docs) of the
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLScene.TVRMLScene.html#Spatial">TVRMLScene.Spatial</a> property
+    and units
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangle.html">VRMLTriangle</a>,
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangleOctree.html">VRMLTriangleOctree</a> and
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLShapeOctree.html">VRMLShapeOctree</a>.<p>
+
+    <p>A new node:
+
+    <?php echo node_begin("KambiOctreeProperties");
+      $node_format_fd_type_pad = 5;
+      $node_format_fd_name_pad = 20;
+      $node_format_fd_def_pad = 6;
+
+      echo
+      node_field('field', "SFInt32", "maxDepth", "-1", "&gt;= -1") .
+      node_field('field', "SFInt32", "leafCapacity", "-1", "&gt;= -1") .
+      node_end();
+    ?>
+
+    <p>Limit <tt>-1</tt> means to use the default value hard-coded in the program.
+    Other values force the generation of octree with given limit.
+    For educational purposes, you can make an experiment and try
+    maxDepth = 0: this forces a one-leaf tree, effectively
+    making octree searching work like a normal linear searching.
+    You should see a dramatic loss of game speed on non-trivial models then.</p>
+
+    <p>To affect the global octrees you can place <tt>KambiOctreeProperties</tt>
+    node inside <tt>KambiNavigationInfo</tt> node. For per-shape
+    octrees, we add new fields to <tt>Shape</tt> node:</p>
+
+    <?php echo node_begin("KambiNavigationInfo");
+      $node_format_fd_type_pad = 5;
+      $node_format_fd_name_pad = 25;
+      $node_format_fd_def_pad = 6;
+
+      echo
+      node_field('field', "SFNode", "octreeRendering", "NULL", "only KambiOctreeProperties node") .
+      node_field('field', "SFNode", "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
+      node_field('field', "SFNode", "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_field('field', "SFNode", "octreeCollidableTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_end();
+    ?>
+
+    <?php echo node_begin("Shape");
+      $node_format_fd_type_pad = 5;
+      $node_format_fd_name_pad = 25;
+      $node_format_fd_def_pad = 6;
+
+      echo
+      node_field('field', "SFNode", "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_end();
+    ?>
+
+    <p>See the API documentation for classes <tt>TVRMLScene</tt> and <tt>TVRMLShape</tt>
+    for precise description about what each octree is.
+    In normal simulation of dynamic 3D scenes,
+    we use only <tt>octreeRendering</tt>, <tt>octreeDynamicCollisions</tt> and
+    <tt>Shape.octreeTriangles</tt> octrees. Ray-tracers usually use
+    <tt>octreeVisibleTriangles</tt>.
 
 <?php echo $toc->html_section(); ?>
 
