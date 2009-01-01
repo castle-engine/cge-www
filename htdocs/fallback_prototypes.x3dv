@@ -167,6 +167,10 @@ PROTO KambiNavigationInfo [
 
   # Kambi extension, will be ignored
   initializeOnly  SFBool   timeOriginAtLoad  FALSE
+  initializeOnly SFNode  octreeRendering            NULL
+  initializeOnly SFNode  octreeDynamicCollisions    NULL
+  initializeOnly SFNode  octreeVisibleTriangles     NULL
+  initializeOnly SFNode  octreeCollidableTriangles  NULL
 ] {
   NavigationInfo {
     set_bind              IS  set_bind
@@ -181,5 +185,19 @@ PROTO KambiNavigationInfo [
     bindTime              IS  bindTime
     isBound               IS  isBound
     transitionComplete    IS  transitionComplete
+  }
+}
+
+PROTO KambiOctreeProperties [
+  # Standard X3D for all X3DNode
+  inputOutput SFNode metadata NULL
+
+  # Actual extension fields added by Kambi
+  initializeOnly  SFInt32  maxDepth       -1
+  initializeOnly  SFInt32  leafCapacity   -1
+] {
+  # expand to nothing, just ignore this node if you can't handle it natively
+  Group {
+    metadata IS metadata
   }
 }

@@ -144,8 +144,12 @@ PROTO KambiNavigationInfo [
   exposedField SFFloat  visibilityLimit 0.0
   eventOut     SFBool   isBound
 
-  # Kambi extension, will be ignored
-  field SFBool   timeOriginAtLoad       FALSE
+  # Kambi extensions, will be ignored
+  field SFBool  timeOriginAtLoad       FALSE
+  field SFNode  octreeRendering            NULL
+  field SFNode  octreeDynamicCollisions    NULL
+  field SFNode  octreeVisibleTriangles     NULL
+  field SFNode  octreeCollidableTriangles  NULL
 ] {
   NavigationInfo {
     set_bind              IS  set_bind
@@ -156,4 +160,16 @@ PROTO KambiNavigationInfo [
     visibilityLimit       IS  visibilityLimit
     isBound               IS  isBound
   }
+}
+
+PROTO KambiOctreeProperties [
+  # Standard X3D for all X3DNode
+  exposedField SFNode metadata NULL
+
+  # Actual extension fields added by Kambi
+  field SFInt32  maxDepth       -1
+  field SFInt32  leafCapacity   -1
+] {
+  # expand to nothing, just ignore this node if you can't handle it natively
+  Group { }
 }
