@@ -484,11 +484,15 @@ and Monte Carlo path tracing.
   <dt><span class="command_line_option">--octree-max-depth &lt;integer&gt;</span><br>
       <span class="command_line_option">--octree-leaf-capacity &lt;integer&gt;</span></dt>
 
-  <dd><p>These parameters control octree generation, just like in
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>.
+  <dd><p>These parameters control octree generation.
     By default
     <tt>--octree-max-depth</tt>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?> and
     <tt>--octree-leaf-capacity</tt>=<?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>.
+    You can also specify octree propeties inside VRML/X3D file:
+    use <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
+    (see <?php echo a_href_page_hashlink('octree properties extension',
+    'kambi_vrml_extensions', 'section_ext_octree_properties'); ?>).
+
     <?php /* Niniejsze drzewo ósemkowe nie zawsze bêdzie absolutnie optymalne,
     ale zazwyczaj bêdzie naprawdê dobre i nie bêdzie zajmowa³o zbyt du¿o
     miejsca w pamiêci (oko³o 10 MB na scenach do 100 000 trójk±tów -

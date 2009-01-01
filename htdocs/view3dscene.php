@@ -17,7 +17,6 @@
       }
     --></style>
     ');
-  require "octree_consts.php";
 
   function section($make_hr = true)
   {
@@ -207,16 +206,6 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     thumbnailer</a>, providing thumbnails when you view directory with
     VRML / X3D and other 3D models.
 </ul>
-
-<!-- Removed because usual user is not interested in this.
-
-<p>Badanie kolizji i raytracing s± przyspieszane przy pomocy drzewa ósemkowego -
-je¶li wiesz co to jest to mo¿e Ciê zainteresowaæ ¿e program
-pozwala odrobinkê kontrolowaæ generowanie drzewa (patrz ni¿ej -
-parametry programu <tt>- -triangle-octree-...</tt>) i potem ogl±daæ wygenerowane
-drzewo (patrz ni¿ej - klawisze <b>O</b>, <b>Ctrl+U</b>, <b>Ctrl+D</b>).
-
--->
 
 <?php section(); ?>
 
@@ -854,32 +843,6 @@ directory.</p>
     <p>For more technical details see
     <a href="apidoc/html/VRMLGLScene.html#TGLRendererOptimization">documentation
     of TGLRendererOptimization type in VRMLGLScene unit</a>.
-
-  <dt>--triangle-octree-max-depth &lt;integer&gt;<br>
-      --triangle-octree-leaf-capacity &lt;integer&gt;<br>
-      --shape-octree-max-depth &lt;integer&gt;<br>
-      --shape-octree-leaf-capacity &lt;integer&gt;
-  <dd><p>These options specify parameters for constructing octrees.
-    These will be used when loading every 3d file
-    (given on command-line or loaded using "Open ..." menu item).
-
-    <!--
-    Nie bêdê tu
-    wyja¶nia³ dok³adnego znaczenia tych parametrów; mam nadziejê ¿e je¶li
-    kto¶ wie co to jest drzewo o¶emkowe to szybko zorientuje siê jak
-    te parametry kontroluj± konstrukcjê drzewa.
-    -->
-
-    <p>E.g. you can pass <tt>--triangle-octree-max-depth 0</tt> parameter
-    to say that whole triangle octree must always contain only one node
-    (so this only node must be a leaf). This way you de facto
-    turn off using octree. This way you can see that using octree
-    can really speed up collision detection, not to mention ray-tracing.
-
-    <p>Default parameters are <?php echo VIEW3DSCENE_DEF_OCTREE_MAX_DEPTH; ?>
-    for <tt>triangle-octree-max-depth</tt> and
-    <?php echo VIEW3DSCENE_DEF_OCTREE_LEAF_CAPACITY; ?> for
-    <tt>triangle-octree-leaf-capacity</tt>.
 </dl>
 
 <p>As usual all
@@ -938,19 +901,13 @@ stopniowo zakrywa³ oryginalny obraz wyrenderowany przy pomocy OpenGLa. -->
 After generating image program will wait for pressing <tt>Escape</tt>,
 you can also save generated image to file.
 
-<p>What to do to make this process less time-consuming ?
+<p>What to do to make this process less time-consuming?
 First of all, the simplest thing to do is to shrink the window.
 Second, the quality of octree has great influence on rendering time
-(and you should note that by default view3dscene uses rather poor-quality
-octree, <tt>max-depth =<?php echo VIEW3DSCENE_DEF_OCTREE_MAX_DEPTH; ?></tt>,
-<tt>leaf-capacity =<?php echo VIEW3DSCENE_DEF_OCTREE_LEAF_CAPACITY; ?></tt>).
-If you want to play with ray-tracer from within view3dscene I suggest
-you prepare a script like<br>
-<tt>&nbsp;&nbsp;view3dscene
-  --triangle-octree-max-depth <?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?>
-  --triangle-octree-leaf-capacity <?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>
-  --geometry 300x300 "$@"</tt><br>
-and use it to run view3dscene in "ray-tracer-optimal" mode.
+&mdash; you can try tightening it by <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
+inside VRML/X3D file
+(see <?php echo a_href_page_hashlink('octree properties extension',
+'kambi_vrml_extensions', 'section_ext_octree_properties'); ?>).</p>
 
 <p>More detailed description of how ray-tracer works is given in
 <?php echo a_href_page('documentation of rayhunter', 'rayhunter'); ?>.
