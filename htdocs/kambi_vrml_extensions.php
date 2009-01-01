@@ -1709,7 +1709,7 @@ end;
     making octree searching work like a normal linear searching.
     You should see a dramatic loss of game speed on non-trivial models then.</p>
 
-    <p>To affect the global octrees you can place <tt>KambiOctreeProperties</tt>
+    <p>To affect the scene octrees you can place <tt>KambiOctreeProperties</tt>
     node inside <tt>KambiNavigationInfo</tt> node. For per-shape
     octrees, we add new fields to <tt>Shape</tt> node:</p>
 
@@ -1745,7 +1745,7 @@ end;
     <tt>Shape.octreeTriangles</tt> octrees. Ray-tracers usually use
     <tt>octreeVisibleTriangles</tt>.</p>
 
-    <p>We will use global octree properties from the first bound
+    <p>We will use scene octree properties from the first bound
     <tt>NavigationInfo</tt> node (see VRML/X3D specifications
     about the rules for bindable nodes). If this node is not
     <tt>KambiNavigationInfo</tt>, or appropriate <tt>octreeXxx</tt> field
