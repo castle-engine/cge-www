@@ -93,7 +93,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Pointing device sensor   </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
   <tr><td>Key device sensor        </td><td><b>1</b></td></tr>
   <tr><td>Environmental sensor     </td><td><b>1</b></td></tr>
-  <tr><td>Navigation               </td><td><b>1</b> (+ many, but not all, features up to level 3)</td></tr>
+  <tr><td>Navigation               </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
   <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
   <tr><td>Geospatial               </td><td><b></b></td></tr>
   <tr><td>H-Anim                   </td><td><b>1 (all)</b> (practically)</td></tr>
