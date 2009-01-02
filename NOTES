@@ -54,6 +54,9 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
 - if you modified kambi_vrml_game_engine, you may want to update apidoc/
 
+  Also update $engine_ver in htdocs/kambi_vrml_game_engine.php, to reflect
+  with what engine ver each sources were tested.
+
 - good practice after large changes is to check
   linkchecker.sh and validate_html.sh
 

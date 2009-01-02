@@ -242,56 +242,70 @@ function older_engine_version($older_version)
 }
 ?>
 
-<p>Note about compatibility: I broke slightly compatibility between 1.5.0
-and 1.4.0 engine release. If you download tar.gz sources,
-some programs below may fail to compile with latest engine,
-in that case use older <?php older_engine_version('1.4.0'); ?>.
-Or simply download code
-from SVN, everything in SVN should be always compatible.
+<!--
+<p>Note about compatibility: Sometimes I happen to break backwards
+compatibility in the engine API. The sources in SVN are always
+updated, and should be totally compatible.
+But if you download tar.gz sources below, you may find that they
+are not compatible with current engine version... that's why
+they are notes like <i>compatible with engine XXX version</i>
+notes near some programs below.
+-->
 
 <ul>
 <?php
   function echo_src_svnonly($name)
   {
-    echo '<li>' . $name . ': only from Subversion by:<br><tt>' .
+    echo '<li><p>' . $name . ': only from Subversion by:<br><tt>' .
         sf_checkout_link(true, $name) . '</tt></li>
       ';
   }
 
   /* Internal name is both the basename of the archive and
      the subdirectory name within SVN repository. */
-  function echo_src_archive_2($title, $internal_name)
+  function echo_src_archive_2($title, $internal_name, $engine_ver)
   {
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
     $version = constant($version_const_name);
 
-    echo '<li>' .
+    echo '<li><p>' .
       sf_download('sources of '.$title,
-        $internal_name . '-' . $version . '-src.tar.gz') . '<br>
-      Or download from Subversion by:<br><tt>' .
+        $internal_name . '-' . $version . '-src.tar.gz');
+
+    if ($engine_ver != VERSION_KAMBI_VRML_GAME_ENGINE)
+    {
+      echo '<br/>These tar.gz sources were tested with engine ';
+      older_engine_version($engine_ver);
+      echo ', use SVN to get sources compatible with latest engine version.';
+    }
+
+    echo
+      '<p>Download from Subversion by:<br><tt>' .
         sf_checkout_link(true, $internal_name) . '</tt></li>
       ';
   }
 
-  function echo_src_archive($title_and_internal_name)
+  function echo_src_archive($title_and_internal_name, $engine_ver)
   {
-    echo_src_archive_2($title_and_internal_name, $title_and_internal_name);
+    echo_src_archive_2($title_and_internal_name, $title_and_internal_name,
+      $engine_ver);
   }
 
-  echo_src_archive('castle');
-  echo_src_archive('lets_take_a_walk');
-  echo_src_archive('malfunction');
-  echo_src_archive('kambi_lines');
+  echo_src_archive('view3dscene', '1.6.0');
+  echo_src_archive('castle', '1.4.0');
+  echo_src_archive('rayhunter', '1.4.0');
 
-  echo_src_archive('view3dscene');
-  echo_src_archive('rayhunter');
+  echo_src_archive('lets_take_a_walk', '1.4.0');
+  echo_src_archive('malfunction', '1.3.1');
+  echo_src_archive('kambi_lines', '1.3.1');
 
-  echo_src_archive_2('glViewImage', 'glviewimage');
-  echo_src_archive('glplotter');
-  echo_src_archive('bezier_curves');
-  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps');
+  echo_src_archive('glplotter', '1.5.0');
+  echo_src_archive('gen_function', '1.5.0');
 
-  echo_src_archive('gen_function');
+  echo_src_archive_2('glViewImage', 'glviewimage', '1.4.0');
+  echo_src_archive('bezier_curves', '1.3.1');
+  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.4.0');
+
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');
 ?>
