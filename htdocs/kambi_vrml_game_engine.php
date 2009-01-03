@@ -426,7 +426,7 @@ script inside.
 (after all, it would have little sense, because all tests would succeed,
 unless there's some problem specific to your OS configuration),
 but I am generous enough to show you a snapshot of a happy test_kambi_units
-program after successfully running all 33 tests:<br>
+program after successfully running all 86 tests:<br>
 <?php echo
   medium_image_progs_demo('test_kambi_units_screen_demo.png', 'test_kambi_units', false)
 ?>
