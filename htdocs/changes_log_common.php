@@ -67,14 +67,24 @@ function this_a_href_page($title, $page_name)
 just a mixture of various new features, optimizations and fixes.
 Traditionally, " . this_a_href_page('underlying
 Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
-Changes:
+Changes:</p>
+
+<table align=\"right\">
+  <tr><td>
+    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/apple_lods.png\">
+      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/apple_lods.png\"
+      alt=\"Apple model with various levels of detail\"
+      title=\"Apple model with various levels of detail\"
+    /></a>
+  </td></tr>
+</table>
 
 <ul>
   <li><b>LOD (level-of-detail)</b> node proper handling.</li>
 
   <li><b>Collision.proxy</b> handling (very handy, allows you to make non-collidable but visible geometry, or approximate complex geometry with simpler for collision detection).</li>
 
-  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_octree_properties\">KambiOctreeProperties, an extensions to specify octree limits for your scene</a>. Also, <a href=\"" . CURRENT_URL . "vrml_engine_doc/output/xsl/html//section.octrees_dynamic.html\">section \"Octrees for dynamic worlds\" added to the documentation</a>, to explain how octree works since 1.6.0 version. Shape octree speed up by mailboxes now.</li>
+  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_octree_properties\">KambiOctreeProperties, an extensions to specify octree limits for your scene</a>. <a href=\"" . CURRENT_URL . "vrml_engine_doc/output/xsl/html//section.octrees_dynamic.html\">Section \"Octrees for dynamic worlds\" added to the documentation</a>, to explain how octree works since 1.6.0 version. Shape octree speed up by mailboxes now.</li>
 
   <li>Various workarounds for <a href=\"http://mesa3d.org/\">Mesa</a> bugs (in particular on Intel GPUs) and Mesa detection improved. This should significantly improve stability for Unix users with cheaper graphic cards. Because of this, also " . this_a_href_page('castle 0.8.3', 'castle') . " and " . this_a_href_page('glcaps 1.1.4', 'glcaps') . " are released, to get these fixes too.</li>
 
