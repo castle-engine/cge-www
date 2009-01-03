@@ -53,6 +53,41 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.3, engine 1.7 release: LOD, Collision.proxy, and more',
+          'year' => 2009,
+          'month' => 1,
+          'day' => 3,
+          'pubDate' => /* date_to_timestamp.sh '2009-01-03' */ 1230984000,
+          'guid' => '2009-01-03',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => "
+
+<p>" . this_a_href_page('view3dscene 3.3', 'view3dscene') . " is released,
+just a mixture of various new features, optimizations and fixes.
+Traditionally, " . this_a_href_page('underlying
+Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
+Changes:
+
+<ul>
+  <li><b>LOD (level-of-detail)</b> node proper handling.</li>
+
+  <li><b>Collision.proxy</b> handling (very handy, allows you to make non-collidable but visible geometry, or approximate complex geometry with simpler for collision detection).</li>
+
+  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_octree_properties\">KambiOctreeProperties, an extensions to specify octree limits for your scene</a>. Also, <a href=\"" . CURRENT_URL . "vrml_engine_doc/output/xsl/html//section.octrees_dynamic.html\">section \"Octrees for dynamic worlds\" added to the documentation</a>, to explain how octree works since 1.6.0 version. Shape octree speed up by mailboxes now.</li>
+
+  <li>Various workarounds for <a href=\"http://mesa3d.org/\">Mesa</a> bugs (in particular on Intel GPUs) and Mesa detection improved. This should significantly improve stability for Unix users with cheaper graphic cards. Because of this, also " . this_a_href_page('castle 0.8.3', 'castle') . " and " . this_a_href_page('glcaps 1.1.4', 'glcaps') . " are released, to get these fixes too.</li>
+
+  <li>Various frustum culling optimizations.</li>
+
+  <li>Small improvements for view3dscene interface: blend status text, fixed shapes count, keep selected triangle when transforming shape.</li>
+
+  <li>Path tracer honors VRML &gt;= 2.0 materials, and <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_material_phong_brdf_fields\">VRML &gt;= 2.0 materials have the physical fields</a>. Because of this, also " . this_a_href_page('rayhunter 1.3.0', 'rayhunter') . " is released.</li>
+</ul>
+
+<p><a href=\"http://www.archlinux.org/\">Arch Linux</a> users may now install view3dscene from SVN easily by <a href=\"http://aur.archlinux.org/packages.php?ID=22782\">view3dscene Arch Linux package</a>. Thanks to Antonio Bonifati!
+"),
+
     array('title' => 'view3dscene 3.2, engine 1.6 release: collisions in dynamic worlds',
           'year' => 2008,
           'month' => 12,
