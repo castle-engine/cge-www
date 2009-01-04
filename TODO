@@ -2,9 +2,9 @@ Next WWW update:
 Text for next update:
 After next update:
 
-view3dscene minor++
-castle release++
-rayhunter minor++
-glcaps release++
-kambi_vrml_game_engine minor++
-kambi_vrml_test_suite minor++
+  - engine source code release means updating FPC contrib units info
+    (see fpc_contrib_units_data.txt,
+    http://www.freepascal.org/contrib/db.php3?category=Graphics).
+  - new release of view3dscene and/or castle go to freshmeat:
+    http://freshmeat.net/projects/view3dscene/
+    http://freshmeat.net/projects/castlegame/
