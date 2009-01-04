@@ -1106,7 +1106,7 @@ end;
       node_field('exposedField', "SFBool", "volumetric", "FALSE") .
       node_field('exposedField', "SFVec3f", "volumetricDirection",  "0 -1 0", "any non-zero vector") .
       node_field('exposedField', "SFFloat", "volumetricVisibilityStart",  "0") .
-      node_field('exposedField', "SFNode", "alternative", "# NULL or another Fog node") .
+      node_field('exposedField', "SFNode", "alternative", 'NULL', "NULL or another Fog node") .
       node_end();
     ?>
 
