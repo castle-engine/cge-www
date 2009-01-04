@@ -291,9 +291,9 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '1.6.0');
-  echo_src_archive('castle', '1.4.0');
-  echo_src_archive('rayhunter', '1.4.0');
+  echo_src_archive('view3dscene', '1.7.0');
+  echo_src_archive('castle', '1.7.0');
+  echo_src_archive('rayhunter', '1.7.0');
 
   echo_src_archive('lets_take_a_walk', '1.4.0');
   echo_src_archive('malfunction', '1.3.1');
@@ -304,7 +304,7 @@ notes near some programs below.
 
   echo_src_archive_2('glViewImage', 'glviewimage', '1.4.0');
   echo_src_archive('bezier_curves', '1.3.1');
-  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.4.0');
+  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.7.0');
 
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');
