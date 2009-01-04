@@ -90,9 +90,9 @@ Changes:</p>
 
   <li>Various frustum culling optimizations.</li>
 
-  <li>Small improvements for view3dscene interface: blend status text, fixed shapes count, keep selected triangle when transforming shape.</li>
+  <li>Small improvements in the view3dscene interface: blend status text, a shapes count fix, and keeping the selected triangle when transforming shape.</li>
 
-  <li>Path tracer honors VRML &gt;= 2.0 materials, and <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_material_phong_brdf_fields\">VRML &gt;= 2.0 materials have the physical fields</a>. Because of this, also " . this_a_href_page('rayhunter 1.3.0', 'rayhunter') . " is released.</li>
+  <li>The path tracer honors VRML &gt;= 2.0 materials, and <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_material_phong_brdf_fields\">VRML &gt;= 2.0 materials have the physical fields</a>. Because of this, also " . this_a_href_page('rayhunter 1.3.0', 'rayhunter') . " is released.</li>
 </ul>
 
 <p><a href=\"http://www.archlinux.org/\">Arch Linux</a> users may now install view3dscene from SVN easily by <a href=\"http://aur.archlinux.org/packages.php?ID=22782\">view3dscene Arch Linux package</a>. Thanks to Antonio Bonifati!
