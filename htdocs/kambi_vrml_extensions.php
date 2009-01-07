@@ -587,7 +587,7 @@ EXTERNPROTO Text3D [
     (done by blending in OpenGL, just like partially transparent materials).
     Internally, we have a simple and very nice algorithm that detects whether texture's
     alpha channel qualifies as simple yes-no or full range, see
-    <a href="apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
     (default tolerance values used by VRML renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
     'kambi_vrml_game_engine'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
