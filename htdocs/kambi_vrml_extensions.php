@@ -1141,7 +1141,7 @@ end;
     by the <tt>Fog</tt> node transformation scaling,
     just like <tt>visibilityRange</tt> in VRML spec.
 
-    <p>Note that <tt>visibilityRange</tt> must stay >= 0, as required
+    <p>Note that <tt>visibilityRange</tt> must stay &gt;= 0, as required
     by VRML specification. This means that <tt>volumetricDirection</tt>
     always specifies the direction of the fog: the more into
     <tt>volumetricDirection</tt>, the more fog appears. For example,
