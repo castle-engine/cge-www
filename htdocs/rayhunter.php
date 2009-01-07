@@ -84,8 +84,9 @@ and Monte Carlo path tracing.
       <dt><tt>classic</tt></dt>
 
       <dd><p>This is normal Whitted-style deterministic ray-tracer.
-        Lights are points (i.e. point, spot and directional light
-        nodes are taken into account). So no soft shadows.
+        All normal VRML lights are handled (point, spot, directional,
+        including the headlight).
+        No area lights, so no soft shadows.
         Algorithm sends one primary ray for each pixel.
         Ray-tracing is recursive, where the ray casts on some
         surface we check rays to light sources and eventually
@@ -516,13 +517,10 @@ and Monte Carlo path tracing.
     way and <tt>ambientIntensity</tt> is not available in standard VRML 1.0).
 
     <p>We handle all VRML light nodes &mdash; <tt>DirectionalLight</tt>,
-    <tt>SpotLight</tt> and <tt>PointLight</tt>. Remember that only the lights
-    defined in VRML model are used. If your scene doesn't have any lights defined
-    then whole image will be probably just black. As a test, you can
-    take a look at your model with
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
-    with <i>Use scene lights</i> set to <i>on</i> and
-    <i>Head light</i> set to <i>off</i>.
+    <tt>SpotLight</tt> and <tt>PointLight</tt>. Also the headlight
+    is used, configurable by <tt>NavigationInfo.headlight</tt>
+    and <?php echo a_href_page_hashlink('KambiHeadLight node',
+    'kambi_vrml_extensions', 'section_ext_headlight'); ?>.
 
     <p>For <tt>&lt;recursion-depth&gt;</tt> equal zero we use only
     <tt>diffuse</tt> material color. According to VRML 97 light model,
