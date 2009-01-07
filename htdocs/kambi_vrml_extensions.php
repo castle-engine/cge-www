@@ -53,6 +53,17 @@ function node_field($field_kind,
   return $r;
 }
 
+function ext_screenshot($image_name, $alt_and_title)
+{
+  return medium_image_progs_demo_core($image_name, $alt_and_title, '$alt', '',
+    /* $online_if_not_available: to see images in offline version.
+       They are aligned to the right, so even if working offline
+       (and images not available), empty image boxes will not look so bad.
+       And they are useful, they provide useful info for extensions.
+    */
+    true);
+}
+
 $toc = new TableOfContents(array(
   new TocItem('Introduction', 'introduction'),
   new TocItem('Extensions', 'extensions'),
@@ -214,10 +225,10 @@ subdirectories.
 
     <?php
       echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf_nobump.png", 'Leaf (without bump mapping)') .
-        '<tr><td>' . medium_image_progs_demo_core("bump_demo_leaf.png", 'Leaf (with bump mapping)') .
-        '<tr><td>' . medium_image_progs_demo_core("parallax_demo_lion_noparallax.png", 'Lion texture (without parallax mapping)') .
-        '<tr><td>' . medium_image_progs_demo_core("parallax_demo_lion.png", 'Lion texture (with parallax mapping)') .
+        '<tr><td>' . ext_screenshot("bump_demo_leaf_nobump.png", 'Leaf (without bump mapping)') .
+        '<tr><td>' . ext_screenshot("bump_demo_leaf.png", 'Leaf (with bump mapping)') .
+        '<tr><td>' . ext_screenshot("parallax_demo_lion_noparallax.png", 'Lion texture (without parallax mapping)') .
+        '<tr><td>' . ext_screenshot("parallax_demo_lion.png", 'Lion texture (with parallax mapping)') .
         '</table>';
     ?>
 
@@ -276,9 +287,9 @@ subdirectories.
 
     <?php
       echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("shadows_dynamic_2.png", 'Dynamic shadows demo') .
-        '<tr><td>' . medium_image_progs_demo_core("castle_screen_3.png", 'Werewolves with shadows') .
-        '<tr><td>' . medium_image_progs_demo_core("castle_shadows_fountain.png", 'Castle &quot;fountain&quot; level with shadows') .
+        '<tr><td>' . ext_screenshot("shadows_dynamic_2.png", 'Dynamic shadows demo') .
+        '<tr><td>' . ext_screenshot("castle_screen_3.png", 'Werewolves with shadows') .
+        '<tr><td>' . ext_screenshot("castle_shadows_fountain.png", 'Castle &quot;fountain&quot; level with shadows') .
         '</table>';
     ?>
 
@@ -526,7 +537,7 @@ EXTERNPROTO Text3D [
 
   <?php
     echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
+        '<tr><td>' . ext_screenshot("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
         '</table>';
     ?>
 
@@ -566,7 +577,7 @@ EXTERNPROTO Text3D [
 
     <?php
     echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("alpha_channel_override_demo.png", 'Demo of alphaChannel override') .
+        '<tr><td>' . ext_screenshot("alpha_channel_override_demo.png", 'Demo of alphaChannel override') .
         '</table>';
     ?>
 
@@ -611,7 +622,7 @@ EXTERNPROTO Text3D [
 <?php echo $toc->html_section(); ?>
 
     <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
-      <tr><td><?php echo medium_image_progs_demo_core("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot'); ?>
+      <tr><td><?php echo ext_screenshot("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot'); ?>
       <tr><td>This movie shows how it looks animated. You can also
         <?php echo current_www_a_href_size('get AVI version with much better quality',
           'movies/fireplace_demo.avi'); ?>
@@ -886,25 +897,16 @@ end;
 
 <table align="right">
   <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_normal.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_normal.png"
-      alt="Normal OpenGL lighting"
-      title="Normal OpenGL lighting"
-    /></a>
+    <?php echo ext_screenshot('chinchilla_normal.png',
+      'Normal OpenGL lighting'); ?>
   </td></tr>
   <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_simple_occlusion.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_simple_occlusion.png"
-      alt="Rendering with simple ambient occlusion"
-      title="Rendering with simple ambient occlusion"
-    /></a>
+    <?php echo ext_screenshot('chinchilla_simple_occlusion.png',
+      'Rendering with simple ambient occlusion'); ?>
   </td></tr>
   <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_diffuse_prt.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_diffuse_prt.png"
-      alt="Precomputed Radiance Transfer"
-      title="Precomputed Radiance Transfer"
-    /></a>
+    <?php echo ext_screenshot('chinchilla_diffuse_prt.png',
+      'Precomputed Radiance Transfer'); ?>
   </td></tr>
 </table>
 
@@ -1006,7 +1008,7 @@ end;
 
         <?php
           echo '<table align="right">' .
-            '<tr><td>' . medium_image_progs_demo_core("logger.png", 'Logger node demo') .
+            '<tr><td>' . ext_screenshot("logger.png", 'Logger node demo') .
             '</table>';
         ?>
 
@@ -1047,7 +1049,7 @@ end;
 
         <?php
           echo '<table align="right">' .
-            '<tr><td>' . medium_image_progs_demo_core("teapot_demo.png", 'Teapot node demo') .
+            '<tr><td>' . ext_screenshot("teapot_demo.png", 'Teapot node demo') .
             '</table>';
         ?>
 
@@ -1240,7 +1242,7 @@ end;
 
     <?php
       echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("kambi_triangulation_demo.png", 'KambiTriangulation demo screenshot') .
+        '<tr><td>' . ext_screenshot("kambi_triangulation_demo.png", 'KambiTriangulation demo screenshot') .
         '</table>';
     ?>
 
@@ -1653,7 +1655,7 @@ end;
 
     <?php
       echo '<table align="right">' .
-        '<tr><td>' . medium_image_progs_demo_core("octree_hello_world_shadow.png", 'Octree visualization') .
+        '<tr><td>' . ext_screenshot("octree_hello_world_shadow.png", 'Octree visualization') .
         '</table>';
     ?>
 

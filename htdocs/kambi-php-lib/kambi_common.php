@@ -411,13 +411,25 @@ function medium_image_progs_demo($image_name, $prog_name, $aligned = true)
   return medium_image_progs_demo_core($image_name, $alt, '', ($aligned ? 'right' : ''));
 }
 
-function medium_image_progs_demo_core($image_name, $alt, $title = '$alt', $align = '')
+function medium_image_progs_demo_core($image_name, $alt, $title = '$alt',
+  $align = '', $online_if_not_available = false)
 {
   $image_name_original_size = "images/progs_demo/original_size/$image_name";
   $image_name_medium_size   = "images/progs_demo/medium_size/$image_name";
 
   if (!is_file_available_locally($image_name_original_size) ||
-      !is_file_available_locally($image_name_medium_size)) return '';
+      !is_file_available_locally($image_name_medium_size))
+  {
+    if ($online_if_not_available) {
+      /* Then image links will be done as normal, except will use full URL
+         always pointing to online version. */
+      $image_name_original_size = CURRENT_URL . $image_name_original_size;
+      $image_name_medium_size   = CURRENT_URL . $image_name_medium_size  ;
+    } else
+    {
+      return '';
+    }
+  }
 
   if ($title === '$alt')
     $title = $alt;

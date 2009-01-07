@@ -2,8 +2,9 @@
 
 function image_tag($image_name)
 {
-  return " <a href=\"images/raytr_gallery/" . $image_name . ".png\"> " .
-    "<img src=\"images/raytr_gallery/" . $image_name . "-mini.png\" " .
+  $url_prefix = (IS_GEN_LOCAL ? CURRENT_URL : '');
+  return " <a href=\"${url_prefix}images/raytr_gallery/" . $image_name . ".png\"> " .
+    "<img src=\"${url_prefix}images/raytr_gallery/" . $image_name . "-mini.png\" " .
     "     alt=\"" . $image_name . "-mini.png\" " .
     "     width=100 height=75></a> "; //  border=\"0\"
 }
@@ -30,7 +31,7 @@ function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
       $result = "Rayhunter parameters: minimal depth $min_depth,
         non primary samples count : $non_prim_samples,"; break;
   }
-  
+
   $result .= "<tt>--r-roul-continue $r_roul</tt>,
              <tt>--primary-samples-count $prim_samples</tt>";
   if ($direct_samples != 1) $result .=
