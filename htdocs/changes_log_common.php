@@ -127,7 +127,7 @@ Major changes:
 
     " . (!HTML_VALIDATION ?
     '<table align="right"><tr><td>
-       <object width="300" height="243"><param name="movie" value="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="243"></embed></object>
+       <object width="300" height="243"><param name="movie" value="http://www.youtube.com/v/qtrSIisc6do"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/qtrSIisc6do" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="243"></embed></object>
      </td></tr></table>' : '')
     . "
 
@@ -580,8 +580,8 @@ web3d.org examples</a>.</p>"),
         as a movie file (with perfect quality, as opposed to using independent
         programs that capture OpenGL output).</p>
 
-        <p><a href="images/progs_demo/original_size/view3dscene_thumbnailer_demo.png">
-        <img align="right" src="images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png"
+        <p><a href="' . CURRENT_URL . 'images/progs_demo/original_size/view3dscene_thumbnailer_demo.png">
+        <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png"
         alt="&quot;view3dscene&quot; as nautilus thumbnailer" /></a>
         <a href="http://www.gnome.org/">GNOME</a> users will be happy to
         hear that view3dscene can be easily used as nautilus thumbnailer,

@@ -373,7 +373,7 @@
   <li><b>July 12, 2006:</b>
     <ul>
       <li>New program is available:
-        <a href="http://www.camelot.homedns.org/~michalis/grammar_compression.php">grammar_compression</a>
+        <a href="http://michalis.ii.uni.wroc.pl/~michalis/grammar_compression.php">grammar_compression</a>
         &mdash; implementation of Sequitur and Sequential compression algorithms
         in ObjectPascal.
 
@@ -654,7 +654,7 @@
         small fixes.
 
       <li><p>Oh, and I put here my
-        <a href="http://www.camelot.homedns.org/~michalis/michalis-gpg-public-key.asc">public GPG key</a>.
+        <a href="http://michalis.ii.uni.wroc.pl/~michalis/michalis-gpg-public-key.asc">public GPG key</a>.
     </ul>
 
   <li><b>March 9, 2006</b><br>
@@ -719,7 +719,7 @@
         NVidia Linux OpenGL drivers).
       <li>Compilation of many examples fixed; sorry, I wasn't compiling examples
         too often and recently I broke many of them (bacause of changes to
-        <a href="apidoc/html/KambiUtils.html#Parameters">Parameters</a>
+        <a href="<?php echo CURRENT_URL; ?>apidoc/html/KambiUtils.html#Parameters">Parameters</a>
         stuff). It's fixed now. I also added the automatic test of compilation
         to the script I use to create <tt>units-src.tar.gz</tt> archive, so
         this Will Not Happen Again.
@@ -755,7 +755,7 @@
         Basic implementation committed, expect more work on this soon
         (including "jump" and "duck" keys and head "bobbing") &mdash; I'm porting
         stuff from some very old game of mine into
-        <a href="apidoc/html/MatrixNavigation.TMatrixWalker.html">TMatrixWalker</a>
+        <a href="<?php echo CURRENT_URL; ?>apidoc/html/MatrixNavigation.TMatrixWalker.html">TMatrixWalker</a>
         class.
     </ul>
 
@@ -902,7 +902,7 @@
         updated (recently implemented
         <a href="http://pasdoc.sourceforge.net/">pasdoc</a> features used
         (e.g. @xxxList tags),
-        <a href="apidoc/html/introduction.html#OpenGLOptimization">
+        <a href="<?php echo CURRENT_URL; ?>apidoc/html/introduction.html#OpenGLOptimization">
         OpenGL optimization notes</a> are now part of
         documentation parsed by pasdoc and are available for viewing in
         output HTML / pdf docs, some things translated to English,
@@ -988,7 +988,7 @@
 
       <li><?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> updated to
         version 1.1.2: small bugfix: plots with "_" in names
-      <li><a href="http://www.camelot.homedns.org/~michalis/mandaty.php">mandaty</a> page added.
+      <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/mandaty.php">mandaty</a> page added.
     </ul>
 
     <!-- glViewImage sources only updated to 1.1.2, small fixes to sources -->
@@ -1084,7 +1084,7 @@
         drawbacks are hidden in those alternatives :).
         In case you're interested how it works but you don't want to download
         my whole sources, you can read this document
-        <a href="apidoc/html/introduction.html#OpenGLOptimization">
+        <a href="<?php echo CURRENT_URL; ?>apidoc/html/introduction.html#OpenGLOptimization">
         online</a>.
 
       <li><p>gprof rulez &mdash; small bug that was harmless but was
@@ -1135,7 +1135,7 @@
 
       <li>All www pages marked in footer as licensed on GNU GPL,
         added page explaining
-        <a href="http://www.camelot.homedns.org/~michalis/why_not_gfdl.php">why
+        <a href="http://michalis.ii.uni.wroc.pl/~michalis/why_not_gfdl.php">why
         I do not use GNU FDL</a>.
 
       <li>F5 is now the standard key shortcut for save screen
@@ -1540,7 +1540,8 @@ remade.
         <p>Linux (GTK) version stabilized.
       <li>Last but not least: first, unofficial release of sources of
         <?php echo a_href_page('rayhunter', 'rayhunter') ?>
-        <a href="unofficial/">is available here</a>. Currently everything
+        is available here (<i>link not available anymore</i>).
+        Currently everything
         is just packaged in one tar.gz file,
         rayhunter-src.tar.gz (<i>link not available anymore</i>). Of course it's GNU GPL-licensed.
 

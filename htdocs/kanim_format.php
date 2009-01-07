@@ -38,7 +38,7 @@ Internally, they may even be converted (after loading) to precalculated
 animations.</p>
 
 <p>For more technical insight, see
-<a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">description
+<a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.animation.html">description
 of animation handling in our VRML engine documentation</a>.</p>
 
 <hr />

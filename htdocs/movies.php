@@ -47,7 +47,7 @@ better quality.
 
 <p>Three videos above recorded on 2008-05-01.
 Production entirely on Linux by free software:
-capture thanks to <a href="http://dbservice.com/projects/yukon/wiki">Yukon
+capture thanks to <a href="https://devel.neopsis.com/projects/yukon/">Yukon
 (OpenGL video capturing framework)</a>,
 converted to editable format by <a href="http://www.mplayerhq.hu/">mencoder</a>
 (lives can't directly open seom files),

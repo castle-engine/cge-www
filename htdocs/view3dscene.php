@@ -455,7 +455,7 @@ The biggest advantage of recording movie this way
 is that the movie is guaranteed to be captured with stable number
 of frames per second. This is different than using
 some independent programs to capture OpenGL output, like
-the fine <a href="http://dbservice.com/projects/yukon/wiki">Yukon</a>,
+the fine <a href="https://devel.neopsis.com/projects/yukon/">Yukon</a>,
 as real-time capture usually means that the program
 runs slower, and often you loose movie quality.
 
@@ -841,7 +841,7 @@ directory.</p>
     </ul>
 
     <p>For more technical details see
-    <a href="apidoc/html/VRMLGLScene.html#TGLRendererOptimization">documentation
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLGLScene.html#TGLRendererOptimization">documentation
     of TGLRendererOptimization type in VRMLGLScene unit</a>.
 </dl>
 
