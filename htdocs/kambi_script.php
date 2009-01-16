@@ -595,7 +595,7 @@ an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
 You have to call <?php func('array_d', 'array_d'); ?> to request double-precision storage
 (suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
 
-<p><?php func('array_count(my_array)', 'array_count(my_array)'); ?> and
+<p><?php func('array_get_count(my_array)', 'array_get_count(my_array)'); ?> and
 <?php func('array_set_count(my_array, new_count)', 'array_set_count(my_array, new_count)'); ?> get and set array count.
 When you grow array, newly added items have undefined values.
 When you shrink array, excessive values are discarded.</p>
