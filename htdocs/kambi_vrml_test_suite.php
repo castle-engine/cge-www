@@ -64,6 +64,8 @@ Subversion by:<br><tt><?php
 <p>Models :
 
 <ul>
+  <li><tt>vrml_2/camera_{orient,rot}.wrl</tt> tests by Victor Amat. Thanks!</li>
+
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
     were extracted from VRML 1.0 specification.</li>
