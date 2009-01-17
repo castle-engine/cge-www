@@ -696,7 +696,7 @@ like in VRML <tt>SFImage</tt> field:
   <li>1 component is grayscale image,
   <li>2 components is grayscale image with alpha channel,
   <li>3 components is RGB image,
-  <li>3 components is RGB image with alpha channel.
+  <li>4 components is RGB image with alpha channel.
 </ul>
 
 <p>Note that image contents are <i>not initialized</i> (meaning:
