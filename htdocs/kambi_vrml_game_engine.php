@@ -373,6 +373,18 @@ and sometimes some older releases:
     compiled packages of it from
     <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
 
+    <p>Note: under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
+    linker errors like
+
+    <p><tt>/usr/local/lib/fpc/2.2.2/units/x86_64-linux/gtk2/gtk2.o: In function `GTK2_GTK_TYPE_FILE_FOLDER$$QWORD': gtk2.pas:(.text+0x105b5): undefined reference to `gtk_file_folder_get_type'</tt></p>
+
+    <p>These are results of GTK 2.14 removing these functions (thus breaking
+    compatibility). It's <a href="http://mantis.freepascal.org/view.php?id=11837">fixed in FPC &gt; 2.2.2</a>,
+    temporary workaround (if you need to stick to FPC &lt;= 2.2.2) is to add
+    <tt>-k--noinhibit-exec</tt> to the fpc command-line when compiling programs.
+    These errors will be then treated as mere warnings, and you should
+    get a working executable.</p>
+
   <li><p><em>FPC 2.2.0</em> : will work OK for some time, although you're
     adviced to upgrade to FPC 2.2.2.
 
