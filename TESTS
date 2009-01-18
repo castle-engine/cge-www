@@ -58,3 +58,8 @@ cd view3dscene/
   #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
   #   ./opengl/glw_demo.ppu (would require separate package, like kambi_glwindow_navigated)
   #   ./opengl/unix/kambiglx.ppu (required only for GLWindow Xlib backend --- hm, maybe add?)
+
+# Test are there no files with accidental svn:executable attrib
+# (may happen if commiting from FAT filesystems on Unix):
+
+  find . -executable -type f | grep -v ".sh$" | grep -v "~$"
