@@ -363,6 +363,8 @@ command-line option (look below) or using menu item "Change camera up vector".
   <tr><td>+ / -</td>
       <td>increase / decrease moving speed (has effect on keys
         Up / Down, Insert / Delete, Comma / Period)</td></tr>
+  <tr><td>Ctrl + Insert/Delete</td>
+      <td>increase / decrease avatar height (preferred camera height above the ground)</td></tr>
   <tr><td>Ctrl + Left / Right</td>
       <td>rotate <i>slower</i> (useful when you want to set up camera
          very precisely, e.g. to use this camera setting to render a scene
