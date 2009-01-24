@@ -53,6 +53,96 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Dynamic Ambient Occlusion, Shadow Fields demos in the engine sources',
+          'year' => 2009,
+          'month' => 1,
+          'day' => 24,
+          'pubDate' => /* date_to_timestamp.sh '2009-01-24' */ 1232798400,
+          'guid' => '2009-01-24',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => '
+
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_chinchilla.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_chinchilla.png"
+      alt="Chinchilla with Dynamic Ambient Occlusion"
+      title="Chinchilla with Dynamic Ambient Occlusion"
+    /></a>
+  </td>
+
+  <td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_chinchilla_elements.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_chinchilla_elements.png"
+      alt="Chinchilla elements used for Dynamic Ambient Occlusion"
+      title="Chinchilla elements used for Dynamic Ambient Occlusion"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_peach.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_peach.png"
+      alt="Peach with Dynamic Ambient Occlusion"
+      title="Peach with Dynamic Ambient Occlusion"
+    /></a>
+  </td>
+
+  <td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_1.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_1.png"
+      alt="Shadow Fields screenshot 1"
+      title="Shadow Fields screenshot 1"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_2.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_2.png"
+      alt="Shadow Fields screenshot 2"
+      title="Shadow Fields screenshot 2"
+    /></a>
+  </td>
+
+  <td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_3.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_3.png"
+      alt="Shadow Fields screenshot 3"
+      title="Shadow Fields screenshot 3"
+    /></a>
+  </td></tr>
+</table>
+
+<p>This week I implemented a demo of <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter14.html">Dynamic Ambient Occlusion</a> using our engine.</p>
+
+<p>In related news, last month I also implemented a demo of <a href="http://www.kunzhou.net/#shadow-field">Shadow Fields</a>. (I forgot to brag about it earlier, so I\'m doing it now :) ).</p>
+
+<p>An extremely short summary: both techniques strive to make low-frequency soft shadows (in other words, the kind of shadows you usually see in the Real World) in dynamic 3D environment.</p>
+
+<p>For now, they are just implemented as demos, and are not easily available for non-programmers. You have to actually get the source and compile some example programs to try out this stuff. (Although I think I\'ll make at least dynamic ambient occlusion available as an easy option inside view3dscene in the future.) The full source code, and example models, are available in SVN, naturally. Simple instructions:</p>
+
+<pre>
+$ svn checkout https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/
+
+$ cd kambi_vrml_game_engine/3dmodels.gl/examples/shadow_fields
+$ ./shadow_fields_compile.sh
+$ ./shadow_fields
+
+$ cd ../dynamic_ambient_occlusion
+$ ./dynamic_ambient_occlusion_compile.sh
+$ ./dynamic_ambient_occlusion models/peach.wrl.gz
+</pre>
+
+<p>There are more sample models in the <tt>models</tt> subdirectories,
+and you can test both demos with your own models.
+Both techniques require highly-tesselated
+models to make shadows look nice. Shadow fields require preprocessing
+by included <tt>precompute_shadow_field</tt> program. Dynamic ambient
+occlusion doesn\'t require any preprocessing, but it requires really good
+GPU (it does ~thousands of texture fetches per pixel in GLSL fragment shader).</p>
+
+<p>Have fun!</p>'),
+
     array('title' => 'view3dscene 3.3, engine 1.7 release: LOD, Collision.proxy, and more',
           'year' => 2009,
           'month' => 1,
