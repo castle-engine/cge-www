@@ -139,7 +139,9 @@ Both techniques require highly-tesselated
 models to make shadows look nice. Shadow fields require preprocessing
 by included <tt>precompute_shadow_field</tt> program. Dynamic ambient
 occlusion doesn\'t require any preprocessing, but it requires really good
-GPU (it does ~thousands of texture fetches per pixel in GLSL fragment shader).</p>
+GPU (it does ~thousands of texture fetches per pixel in GLSL fragment shader).
+You can find a lot of notes and links in the README files inside the
+source directories.</p>
 
 <p>Have fun!</p>'),
 
