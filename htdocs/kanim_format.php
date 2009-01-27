@@ -67,7 +67,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // without any smoothing of transitions with
                         // intermediate scenes.
 
-  optimization="separate-shape-states-no-transform"
+  optimization="separate-shapes-no-transform"
                         // Suggested optimization method.
                         // This is again only a hint for the renderer, and may
                         // be ignored, see `view3dscene --help' to see the
