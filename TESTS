@@ -3,7 +3,7 @@ this (on each platform) before release:
 
 # Basic compilation tests
 
-./test_program_compilation.sh unix|windows
+./compile_all_programs.sh unix|windows
 cd kambi_vrml_game_engine/
 make clean_container_units container_units # not a test, but useful to run
                                            # and eventually commit
