@@ -63,3 +63,10 @@ cd view3dscene/
 # (may happen if commiting from FAT filesystems on Unix):
 
   find . -executable -type f | grep -v ".sh$" | grep -v "~$"
+
+# Test fpmake compilation system:
+  export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.2.4/
+  fpc fpmake.pp
+  ./fpmake build
+  ./fpmake clean
+  ./fpmake build --nofpccfg
