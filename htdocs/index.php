@@ -248,9 +248,14 @@ the programs developed with it:</p>
 <p>See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
 project page on SourceForge</a>.
 
+<p><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">Nightly
+builds of vrmlengine binaries are available.</a>
+These are build automatically every night
+using current SVN code. Use at your own risk.</p>
+
 <p>For amusement (mostly), you can watch commits to vrmlengine through
 <a href="http://cia.vc/stats/project/vrmlengine">Kambi VRML game engine on
-cia.vc</a>.
+cia.vc</a>.</p>
 
 <?php
 /* No suitable place for this text:
