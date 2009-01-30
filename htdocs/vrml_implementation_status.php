@@ -385,6 +385,8 @@ Shape {
     To implement it generally, I'd have to use 1 more texture unit than
     requested (if the last texture unit will use any non-default function).</p>
 
+    <a name="multitex_spec_ambigous"></a>
+
     <p><i>Clarifications to specification:</i>
     Unfortunately, X3D specification is awfully ambigous
     when talking about multitexturing modes.
@@ -395,13 +397,13 @@ Shape {
     Please report if any other VRML/X3D browser treats it differently,
     although it doesn't necessarily mean that I will fix to be compatible
     (I know that Octaga seems to revert order of textures, for starters...).
-    (And if you have any power over the spec, please fix it for chrissakes,
-    <a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&t=775">it
+    (And if you have any power over the spec, please fix it in next version,
+    <a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">it
     seems I'm not the only one confused by specs</a>.)</p>
 
     <ul>
       <li><p><i>The mode field may contain an additional blending mode
-        for the alpha channel.</i> &mdash; this is the really horrible
+        for the alpha channel.</i> &mdash; this is the most troublesome
         part of specification. It contradicts most of the remaining
         specification for MultiTexture &mdash; other parts clearly
         suggest that exactly one mode string corresponds to one texture unit,
@@ -411,7 +413,7 @@ Shape {
         specify results for both RGB and Alpha channels.</p>
 
         <p>This means that the meaning of <tt>mode=["MODULATE","REPLACE"]</tt>
-        is not specified. What did the authors meant by the word <b>may</b>
+        is not clear. What did the authors meant by the word <b>may</b>
         in the spec? Expecting 2 mode values for each texture unit
         clearly contradicts the spec, expecting only 1 mode means that
         no mode specific for alpha channel is available.
@@ -463,8 +465,14 @@ Shape {
 
         <p>My interpretation: I interpret this all as operating on all
         RGBA channels the same way. Comparing with Octaga, results
-        for "subtract" are equal this way: with default alphas = 1,
+        for "subtract" seem equal this way: with default alphas = 1,
         result gets alpha = 0.</p>
+
+      <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
+        (<i>texture coordinates for channel 0 are replicated...</i>)
+        and <tt>MultiTextureCoordinate</tt>
+        (<i>identity matrices are assumed...</i>) should be swapped in
+        the spec :)
     </ul>
 </ul>
 
