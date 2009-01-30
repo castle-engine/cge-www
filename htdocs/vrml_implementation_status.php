@@ -378,15 +378,23 @@ Shape {
     otherwise there's no way this can be fixed (note that engine's
     multitexturing must work without shaders too).</p>
 
-    <tt><i>TODO</i>: function is not supported for now.</p>
+    <p><i>TODO</i>: <tt>function</tt> field is not supported for now.
+    It's somewhat uncomfortable, corresponding OpenGL settings
+    (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
+    are done, while X3D spec requires <tt>function</tt> to act afterwards.
+    To implement it generally, I'd have to use 1 more texture unit than
+    requested (if the last texture unit will use any non-default function).</p>
 
     <p><i>Clarifications to specification:</i>
-    Unfortunately, X3D specification has some awful blunders
-    when talking about these nodes. Below is some clarification how we handle it.
+    Unfortunately, X3D specification is awfully ambigous
+    when talking about multitexturing modes.
+    Below is some clarification how we handle it.
     I tried to make my implementation following common-sense,
-    so hopefully it will be both compatible to other implementation
-    and at the samne time comfortable to users.
-    Please report if any other VRML/X3D browser treats it differently.
+    so hopefully it will be both compatible to other implementations
+    and at the same time comfortable to users.
+    Please report if any other VRML/X3D browser treats it differently,
+    although it doesn't necessarily mean that I will fix to be compatible
+    (I know that Octaga seems to revert order of textures, for starters...).
     (And if you have any power over the spec, please fix it for chrissakes,
     <a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&t=775">it
     seems I'm not the only one confused by specs</a>.)</p>
@@ -402,7 +410,7 @@ Shape {
         are clearly used over both RGB and Alpha channels, and they
         specify results for both RGB and Alpha channels.</p>
 
-        <p>This means that the meaning of <tt>"MODULATE","REPLACE"</tt>
+        <p>This means that the meaning of <tt>mode=["MODULATE","REPLACE"]</tt>
         is not specified. What did the authors meant by the word <b>may</b>
         in the spec? Expecting 2 mode values for each texture unit
         clearly contradicts the spec, expecting only 1 mode means that
@@ -424,20 +432,21 @@ Shape {
 
       <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
         is specified as "Arg2", which makes no sense. Arg2 comes
-        by default from previous unit (or mat color), so
+        by default from previous unit (or material color), so
         <tt>mode "REPLACE"</tt> would then 1. completely ignore current
         texture unit 2. contradict the normal meaning of "REPLACE",
         which is explicitly mentioned in specification at paragraph
-        before this table. An example with alpha (although faulty on it's own,
-        more about this below) clearly shows that "REPLACE" takes from 1st argument.</p>
+        before this table. An example with alpha (although ambigous on it's own,
+        more about this in previous point) clearly shows that
+        "REPLACE" takes from 1st argument.</p>
 
         <p>Correct version: "REPLACE" copies the 1st argument (that is,
         current texture unit values). IOW, it's equivalent to "SELECTARG1".
         It would also help if the spec would clearly say something along
         the lines "Arg1 is the current texture unit, Arg2 is what is determined
-        by source field (default: previous tex unit)", as it seems every
-        X3D browser interprets this the other way (no wonder, since the
-        spec is so ambigous).</p>
+        by source field (default: previous tex unit)".<!--, as it seems every
+        X3D browser interprets this randomly (no wonder, since the
+        spec is so ambigous).--></p>
 
       <li><p>The meaning of "ADDSIGNED" and "ADDSIGNED2X" is unsure.
         Spec doesn't give the exact equation, and from the wording description
