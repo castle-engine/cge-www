@@ -396,9 +396,17 @@ Shape {
 
   <li><tt>TextureCoordinateGenerator</tt>
 
-    <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE"
-    (and "CAMERASPACEPOSITION" &mdash; as far as I understand, this is the
-    same thing, right?). TODO: rest.
+    <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE",
+    and "CAMERASPACEPOSITION".</p>
+
+    <p>Note that "CAMERASPACEPOSITION" and
+    "COORD-EYE" are exactly the same thing. Google confirms it
+    (<a href="https://www.h3dapi.org:8090/H3DAPI/trunk/H3DAPI/src/TextureCoordinateGenerator.cpp">e.g.
+    this source code also treats them as equal</a> and
+    <a href="http://www.bitmanagement.com/developer/contact/labs/chrome.html">in this old
+    bitmanagement spec they mention they are equal</a>).
+
+    <p>TODO: rest of modes.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
