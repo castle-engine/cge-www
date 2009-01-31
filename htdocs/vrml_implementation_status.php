@@ -393,6 +393,10 @@ Shape {
     X3D multi-texturing specification</a> below for more details about
     multi-texture handling.
   </li>
+
+  <li><tt>TextureCoordinateGenerator</tt>
+
+    <p>TODO: For now, only "SPHERE" and "COORD" modes are supported.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
