@@ -89,7 +89,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Text                     </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td>Sound                    </td><td><b></b></td></tr>
   <tr><td>Lighting                 </td><td><b>3 (all)</b> (practically)</td></tr>
-  <tr><td>Texturing                </td><td><b>1</b> (+ level 3 features (MovieTexture), but missing some level 2 features)</td></tr>
+  <tr><td>Texturing                </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
   <tr><td>Interpolation            </td><td><b>3</b> (practically)</td></tr>
   <tr><td>Pointing device sensor   </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
   <tr><td>Key device sensor        </td><td><b>1</b></td></tr>
@@ -116,8 +116,7 @@ parts (99% of usage) of given level are supported.</p>
 
 <?php /*
 Profiles:
-- to interchange, missing
-texturing level 2
+- interchange: according to table, done!
 - to interactive, missing
 networking level 2
 Pointing device sensor level 1
