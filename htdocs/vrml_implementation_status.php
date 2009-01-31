@@ -205,10 +205,13 @@ DEF MyTimer TimeSensor { loop TRUE }
 ROUTE MyTimer.time TO MyShader.time
 </pre>
 
-    <p>(TODO: unfortunately uniforms don't
-    work yet with all required VRML field types. In particular,
-    passing textures to shader this way (by SFNode fields) is not
-    supported <i>yet</i>.)
+    <p>Setting uniform values this way, from VRML fields/events,
+    is supported for all required by spec types, except TODO: SF/MFImage
+    and SF/MFNode (so passing textures to shader this way
+    (by SFNode fields) is not supported <i>yet</i>.). Other uniform variable
+    types are fully supported, e.g. you can use VRML/X3D vector/matrix types to
+    set GLSL vectors/matrices, you can use VRML/X3D
+    multiple-value fields to set GLSL array types and such.
 
     <p>TODO: attributes for shaders in VRML are not yet passed.
     They are implemented in the engine classes of course, it's only a matter
