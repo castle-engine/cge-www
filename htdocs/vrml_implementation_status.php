@@ -397,7 +397,7 @@ Shape {
   <li><tt>TextureCoordinateGenerator</tt>
 
     <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE",
-    and "CAMERASPACEPOSITION".</p>
+    "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".</p>
 
     <p>Note that "CAMERASPACEPOSITION" and
     "COORD-EYE" are exactly the same thing. Google confirms it
