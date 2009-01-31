@@ -376,7 +376,7 @@ Shape {
     I don't know of any way to efficiently implement separate
     diffuse / specular sources &mdash; please report if you do,
     otherwise there's no way this can be fixed (note that engine's
-    multitexturing must work without shaders too).</p>
+    multi-texturing must work without shaders too).</p>
 
     <p><i>TODO</i>: <tt>function</tt> field is not supported for now.
     It's somewhat uncomfortable, corresponding OpenGL settings
@@ -387,73 +387,92 @@ Shape {
 
     <a name="multitex_spec_ambigous"></a>
 
-    <p><i>Clarifications to specification:</i>
-    Unfortunately, X3D specification is awfully ambigous
-    when talking about multitexturing modes.
+    <p><b>Clarifications to X3D multi-texturing specification:</b>
+    Unfortunately, X3D specification is awfully ambiguous
+    when talking about multi-texturing modes.
     Below is some clarification how we handle it.
     I tried to make my implementation following common-sense,
-    so hopefully it will be both compatible to other implementations
+    hopefully it will be somewhat compatible to other implementations
     and at the same time comfortable to users.
-    Please report if any other VRML/X3D browser treats it differently,
+
+    <p>Please report if any other VRML/X3D browser treats it differently,
     although it doesn't necessarily mean that I will fix to be compatible
-    (I know that Octaga seems to revert order of textures, for starters...).
-    (And if you have any power over the spec, please fix it in next version,
+    (I know that Octaga seems to revert the order of textures, for starters,
+    which seems to contradict the spec... No wonder people get this messed
+    up, since specification is so poor at this point.)</p>
+
+    <p>(And if you have any power over the spec, please fix it in the next version,
     <a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">it
     seems I'm not the only one confused by specs</a>.)</p>
 
-    <ul>
+    <ol>
       <li><p><i>The mode field may contain an additional blending mode
         for the alpha channel.</i> &mdash; this is the most troublesome
-        part of specification. It contradicts most of the remaining
-        specification for MultiTexture &mdash; other parts clearly
+        part of the specification. It contradicts most of the remaining
+        specification for MultiTexture node &mdash; other parts clearly
         suggest that exactly one mode string corresponds to one texture unit,
-        for example 1. if the mode.length is less than texture.length,
+        for example 1. it's mentioned explicitly that
+        if the mode.length is less than texture.length,
         remaining modes should be assumed as "modulate" 2. many modes
         are clearly used over both RGB and Alpha channels, and they
         specify results for both RGB and Alpha channels.</p>
 
         <p>This means that the meaning of <tt>mode=["MODULATE","REPLACE"]</tt>
-        is not clear. What did the authors meant by the word <b>may</b>
-        in the spec? Expecting 2 mode values for each texture unit
+        is not clear.</p>
+
+        <p>What did the authors meant by the word <b>may</b>
+        in the sentence "may contain an additional blending mode"?
+        Expecting two mode strings for one texture unit
         clearly contradicts the spec, expecting only 1 mode means that
         no mode specific for alpha channel is available.
         Doing some smart detection when to expect the next mode to be
         for alpha channel seems very risky &mdash; since the specification
-        says absolutely nothing about it. Should I expect seperate
+        says absolutely nothing about it. Should I expect separate
         mode for alpha channel only when
         the texture in current unit has some alpha channel?
         This isn't as sensible on the 2nd look, since operating on alpha channel
-        in multitexturing makes sense even if current texture unit
+        in multi-texturing makes sense even if current texture unit
         doesn't provide any (after all, alpha may come from previous unit,
         or constant).</p>
 
-        <p>The bottom line: I do the only thing that seems reasonable:
+        <p>Not to mention that some modes are clearly not possible for
+        alpha channel.</p>
+
+        <p><i>Our interpretation:</i>
+        We do the only thing that seems reasonable:
         simply ignore this ridiculous sentence. There is no "additional
         blending mode for alpha channel". If you have an idea of a better
         interpretation, please report.</p>
 
       <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
         is specified as "Arg2", which makes no sense. Arg2 comes
-        by default from previous unit (or material color), so
-        <tt>mode "REPLACE"</tt> would then 1. completely ignore current
+        by default from previous unit (or material color),
+        this is implicated by the sentence "The source field
+        determines the colour source for the second argument".
+        So <tt>mode "REPLACE"</tt> interpreted as "Arg2"
+        would then 1. completely ignore current
         texture unit 2. contradict the normal meaning of "REPLACE",
         which is explicitly mentioned in specification at paragraph
-        before this table. An example with alpha (although ambigous on it's own,
+        before this table ("REPLACE for unlit appearance").
+        An example with alpha (although ambiguous on it's own,
         more about this in previous point) clearly shows that
         "REPLACE" takes from 1st argument.</p>
 
-        <p>Correct version: "REPLACE" copies the 1st argument (that is,
+        <p><i>Our interpretation:</i> "REPLACE" copies the "Arg1" (that is,
         current texture unit values). IOW, it's equivalent to "SELECTARG1".
-        It would also help if the spec would clearly say something along
+        To make it absolutely clear, it would also help if the spec
+        would clearly say something along
         the lines "Arg1 is the current texture unit, Arg2 is what is determined
-        by source field (default: previous tex unit)".<!--, as it seems every
-        X3D browser interprets this randomly (no wonder, since the
-        spec is so ambigous).--></p>
+        by the source field (by default, it's previous tex unit (or mat color
+        for 1st unit))".</p>
 
       <li><p>The meaning of "ADDSIGNED" and "ADDSIGNED2X" is unsure.
         Spec doesn't give the exact equation, and from the wording description
         it's not clear whether the -0.5 bias is applied to the sum,
-        or each component. I interpret it as "-0.5 bias is added to the sum",
+        or each component.</p>
+
+        <p><i>Our interpretation:</i> I interpret it
+        as "-0.5 bias is added to the sum",
         this follows OpenGL GL_ADD_SIGNED constant, so I guess this
         was the intention of the spec.</p>
 
@@ -463,17 +482,25 @@ Shape {
         alpha = 0 for the most common situation when both textures
         have alpha = 1.</p>
 
-        <p>My interpretation: I interpret this all as operating on all
+        <p><i>Our interpretation:</i>  I interpret this all as operating on all
         RGBA channels the same way. Comparing with Octaga, results
         for "subtract" seem equal this way: with default alphas = 1,
         result gets alpha = 0.</p>
+
+      <li><p>It's not specifies what channels are inverted by source="COMPLEMENT"
+        value. Only RGB seems most sensible (that's what would seem
+        usually useful), but it's not written explicitly.
+
+        <p><i>Our interpretation:</i> I plan to treat it as "only RGB",
+        that is not invert alpha channel. Although for now "source" field
+        is not handled.
 
       <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
         (<i>texture coordinates for channel 0 are replicated...</i>)
         and <tt>MultiTextureCoordinate</tt>
         (<i>identity matrices are assumed...</i>) should be swapped in
         the spec :)
-    </ul>
+    </ol>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -1850,7 +1877,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
 
 <?php
 $current_test_number = 2;
-pass(5, "Note that switching between Viewpoints in these tests has very strange VRML code. Namely there are interpolators with two <i>equal</i> keys (so they don't actually make any change, and this is correctly optimized in the engine). Moreover, they are connected to time sensors with 2 seconds cycle. This causes strange effects when clicking fast on various touch sensors, as many interpolators conquer to change the same Transform.position values. I'll emphasise: we handle it correctly, and optimize correctly, we have to evaluate simultaneous changes to the same field from various routes... The test is just strange, without any purpose.");
+pass(5, "Note that switching between Viewpoints in these tests has very strange VRML code. Namely there are interpolators with two <i>equal</i> keys (so they don't actually make any change, and this is correctly optimized in the engine). Moreover, they are connected to time sensors with 2 seconds cycle. This causes strange effects when clicking fast on various touch sensors, as many interpolators conquer to change the same Transform.position values. I'll emphasize: we handle it correctly, and optimize correctly, we have to evaluate simultaneous changes to the same field from various routes... The test is just strange, without any purpose.");
 ?>
 
   <tr>
