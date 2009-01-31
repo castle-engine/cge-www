@@ -15,6 +15,7 @@
       new TocItem('X3D status', 'x3d'),
       new TocItem('Components supported (summary)', 'x3d_components', 1),
       new TocItem('Details about supported nodes', 'x3d_details', 1),
+      new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 2),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
@@ -385,123 +386,130 @@ Shape {
     To implement it generally, I'd have to use 1 more texture unit than
     requested (if the last texture unit will use any non-default function).</p>
 
-    <a name="multitex_spec_ambigous"></a>
-
-    <p><b>Clarifications to X3D multi-texturing specification:</b>
-    Unfortunately, X3D specification is awfully ambiguous
-    when talking about multi-texturing modes.
-    Below is some clarification how we handle it.
-    I tried to make my implementation following common-sense,
-    hopefully it will be somewhat compatible to other implementations
-    and at the same time comfortable to users.
-
-    <p>Please report if any other VRML/X3D browser treats it differently,
-    although it doesn't necessarily mean that I will fix to be compatible
-    (I know that Octaga seems to revert the order of textures, for starters,
-    which seems to contradict the spec... No wonder people get this messed
-    up, since specification is so poor at this point.)</p>
-
-    <p>(And if you have any power over the spec, please fix it in the next version,
-    <a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">it
-    seems I'm not the only one confused by specs</a>.)</p>
-
-    <ol>
-      <li><p><i>The mode field may contain an additional blending mode
-        for the alpha channel.</i> &mdash; this is the most troublesome
-        part of the specification. It contradicts most of the remaining
-        specification for MultiTexture node &mdash; other parts clearly
-        suggest that exactly one mode string corresponds to one texture unit,
-        for example 1. it's mentioned explicitly that
-        if the mode.length is less than texture.length,
-        remaining modes should be assumed as "modulate" 2. many modes
-        are clearly used over both RGB and Alpha channels, and they
-        specify results for both RGB and Alpha channels.</p>
-
-        <p>This means that the meaning of <tt>mode=["MODULATE","REPLACE"]</tt>
-        is not clear.</p>
-
-        <p>What did the authors meant by the word <b>may</b>
-        in the sentence "may contain an additional blending mode"?
-        Expecting two mode strings for one texture unit
-        clearly contradicts the spec, expecting only 1 mode means that
-        no mode specific for alpha channel is available.
-        Doing some smart detection when to expect the next mode to be
-        for alpha channel seems very risky &mdash; since the specification
-        says absolutely nothing about it. Should I expect separate
-        mode for alpha channel only when
-        the texture in current unit has some alpha channel?
-        This isn't as sensible on the 2nd look, since operating on alpha channel
-        in multi-texturing makes sense even if current texture unit
-        doesn't provide any (after all, alpha may come from previous unit,
-        or constant).</p>
-
-        <p>Not to mention that some modes are clearly not possible for
-        alpha channel.</p>
-
-        <p><i>Our interpretation:</i>
-        We do the only thing that seems reasonable:
-        simply ignore this ridiculous sentence. There is no "additional
-        blending mode for alpha channel". If you have an idea of a better
-        interpretation, please report.</p>
-
-      <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
-        is specified as "Arg2", which makes no sense. Arg2 comes
-        by default from previous unit (or material color),
-        this is implicated by the sentence "The source field
-        determines the colour source for the second argument".
-        So <tt>mode "REPLACE"</tt> interpreted as "Arg2"
-        would then 1. completely ignore current
-        texture unit 2. contradict the normal meaning of "REPLACE",
-        which is explicitly mentioned in specification at paragraph
-        before this table ("REPLACE for unlit appearance").
-        An example with alpha (although ambiguous on it's own,
-        more about this in previous point) clearly shows that
-        "REPLACE" takes from 1st argument.</p>
-
-        <p><i>Our interpretation:</i> "REPLACE" copies the "Arg1" (that is,
-        current texture unit values). IOW, it's equivalent to "SELECTARG1".
-        To make it absolutely clear, it would also help if the spec
-        would clearly say something along
-        the lines "Arg1 is the current texture unit, Arg2 is what is determined
-        by the source field (by default, it's previous tex unit (or mat color
-        for 1st unit))".</p>
-
-      <li><p>The meaning of "ADDSIGNED" and "ADDSIGNED2X" is unsure.
-        Spec doesn't give the exact equation, and from the wording description
-        it's not clear whether the -0.5 bias is applied to the sum,
-        or each component.</p>
-
-        <p><i>Our interpretation:</i> I interpret it
-        as "-0.5 bias is added to the sum",
-        this follows OpenGL GL_ADD_SIGNED constant, so I guess this
-        was the intention of the spec.</p>
-
-      <li><p>Although some modes say explicitly what happens with
-        alpha channel, some do not. This is especially visible with
-        "subtract" mode, that will subtract alphas making resulting
-        alpha = 0 for the most common situation when both textures
-        have alpha = 1.</p>
-
-        <p><i>Our interpretation:</i>  I interpret this all as operating on all
-        RGBA channels the same way. Comparing with Octaga, results
-        for "subtract" seem equal this way: with default alphas = 1,
-        result gets alpha = 0.</p>
-
-      <li><p>It's not specifies what channels are inverted by source="COMPLEMENT"
-        value. Only RGB seems most sensible (that's what would seem
-        usually useful), but it's not written explicitly.
-
-        <p><i>Our interpretation:</i> I plan to treat it as "only RGB",
-        that is not invert alpha channel. Although for now "source" field
-        is not handled.
-
-      <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
-        (<i>texture coordinates for channel 0 are replicated...</i>)
-        and <tt>MultiTextureCoordinate</tt>
-        (<i>identity matrices are assumed...</i>) should be swapped in
-        the spec :)
-    </ol>
+    <p>See <a href="#section_x3d_multitex_clarifications">clarifications to
+    X3D multi-texturing specification</a> below for more details about
+    multi-texture handling.
+  </li>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
+
+<p>Unfortunately, X3D specification is awfully ambiguous
+when talking about multi-texturing modes.
+Below is some clarification how we handle it.
+I tried to make my implementation following common-sense,
+hopefully it will be somewhat compatible to other implementations
+and at the same time comfortable to users.
+
+<p>Please report if any other VRML/X3D browser treats it differently,
+although it doesn't necessarily mean that I will fix to be compatible
+(I know that Octaga seems to revert the order of textures, for starters,
+which seems to contradict the spec... No wonder people get this messed
+up, since specification is so poor at this point.)</p>
+
+<p>(And if you have any power over the spec, please fix it in the next version,
+<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">it
+seems I'm not the only one confused by specs</a>.)</p>
+
+<ol>
+  <li><p><i>The mode field may contain an additional blending mode
+    for the alpha channel.</i> &mdash; this is the most troublesome
+    part of the specification. It contradicts most of the remaining
+    specification for MultiTexture node &mdash; other parts clearly
+    suggest that exactly one mode string corresponds to one texture unit,
+    for example 1. it's mentioned explicitly that
+    if the mode.length is less than texture.length,
+    remaining modes should be assumed as "modulate" 2. many modes
+    are clearly used over both RGB and Alpha channels, and they
+    specify results for both RGB and Alpha channels.</p>
+
+    <p>This means that the meaning of <tt>mode=["MODULATE","REPLACE"]</tt>
+    is not clear.</p>
+
+    <p>What did the authors meant by the word <b>may</b>
+    in the sentence "may contain an additional blending mode"?
+    Expecting two mode strings for one texture unit
+    clearly contradicts the spec, expecting only 1 mode means that
+    no mode specific for alpha channel is available.
+    Doing some smart detection when to expect the next mode to be
+    for alpha channel seems very risky &mdash; since the specification
+    says absolutely nothing about it. Should I expect separate
+    mode for alpha channel only when
+    the texture in current unit has some alpha channel?
+    This isn't as sensible on the 2nd look, since operating on alpha channel
+    in multi-texturing makes sense even if current texture unit
+    doesn't provide any (after all, alpha may come from previous unit,
+    or constant).</p>
+
+    <p>Not to mention that some modes are clearly not possible for
+    alpha channel.</p>
+
+    <p><i>Our interpretation:</i>
+    We do the only thing that seems reasonable:
+    simply ignore this ridiculous sentence. There is no "additional
+    blending mode for alpha channel". If you have an idea of a better
+    interpretation, please report.</p>
+
+  <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
+    is specified as "Arg2", which makes no sense. Arg2 comes
+    by default from previous unit (or material color),
+    this is implicated by the sentence "The source field
+    determines the colour source for the second argument".
+    So <tt>mode "REPLACE"</tt> interpreted as "Arg2"
+    would then 1. completely ignore current
+    texture unit 2. contradict the normal meaning of "REPLACE",
+    which is explicitly mentioned in specification at paragraph
+    before this table ("REPLACE for unlit appearance").
+    An example with alpha (although ambiguous on it's own,
+    more about this in previous point) clearly shows that
+    "REPLACE" takes from 1st argument.</p>
+
+    <p><i>Our interpretation:</i> "REPLACE" copies the "Arg1" (that is,
+    current texture unit values). IOW, it's equivalent to "SELECTARG1".
+    To make it absolutely clear, it would also help if the spec
+    would clearly say something along
+    the lines "Arg1 is the current texture unit, Arg2 is what is determined
+    by the source field (by default, it's previous tex unit (or mat color
+    for 1st unit))".</p>
+
+  <li><p>The meaning of "ADDSIGNED" and "ADDSIGNED2X" is unsure.
+    Spec doesn't give the exact equation, and from the wording description
+    it's not clear whether the -0.5 bias is applied to the sum,
+    or each component.</p>
+
+    <p><i>Our interpretation:</i> I interpret it
+    as "-0.5 bias is added to the sum",
+    this follows OpenGL GL_ADD_SIGNED constant, so I guess this
+    was the intention of the spec.</p>
+
+  <li><p>Although some modes say explicitly what happens with
+    alpha channel, some do not. This is especially visible with
+    "subtract" mode, that will subtract alphas making resulting
+    alpha = 0 for the most common situation when both textures
+    have alpha = 1.</p>
+
+    <p><i>Our interpretation:</i>  I interpret this all as operating on all
+    RGBA channels the same way. Comparing with Octaga, results
+    for "subtract" seem equal this way: with default alphas = 1,
+    result gets alpha = 0.</p>
+
+  <li><p>It's not specifies what channels are inverted by source="COMPLEMENT"
+    value. Only RGB seems most sensible (that's what would seem
+    usually useful), but it's not written explicitly.
+
+    <p><i>Our interpretation:</i> I plan to treat it as "only RGB",
+    that is not invert alpha channel. Although for now "source" field
+    is not handled.
+
+  <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
+    (<i>texture coordinates for channel 0 are replicated...</i>)
+    and <tt>MultiTextureCoordinate</tt>
+    (<i>identity matrices are assumed...</i>) should be swapped in
+    the spec :)
+</ol>
+
 
 <?php echo $toc->html_section(); ?>
 

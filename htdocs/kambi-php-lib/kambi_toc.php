@@ -111,10 +111,14 @@ class TableOfContents {
         $num = $this->pop_last_number($current_number);
         $this->push_last_number($current_number, $num + 1);
       } else
-      if ($now_nesting == $old_nesting - 1)
+      if ($now_nesting < $old_nesting)
       {
-        $result .= "</li>\n</ol>\n</li>\n" . $list_item;
-        $this->pop_last_number($current_number);
+        for ($temp_for = 0; $temp_for < $old_nesting - $now_nesting; $temp_for++)
+        {
+          $result .= "</li>\n</ol>\n</li>\n";
+          $this->pop_last_number($current_number);
+        }
+        $result .= $list_item;
         $num = $this->pop_last_number($current_number);
         $this->push_last_number($current_number, $num + 1);
       } else
