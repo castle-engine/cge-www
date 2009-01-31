@@ -392,9 +392,8 @@ Shape {
   </li>
 </ul>
 
-<?php echo $toc->html_section(); ?>
-
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
+<?php echo $toc->html_section(); ?>
 
 <p>Unfortunately, X3D specification is awfully ambiguous
 when talking about multi-texturing modes.
