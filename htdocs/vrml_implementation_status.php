@@ -406,7 +406,8 @@ Shape {
     <a href="http://www.bitmanagement.com/developer/contact/labs/chrome.html">in this old
     bitmanagement spec they mention they are equal</a>).
 
-    <p>TODO: rest of modes.
+    <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
+    "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
