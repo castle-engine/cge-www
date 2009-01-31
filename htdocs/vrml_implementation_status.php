@@ -396,7 +396,9 @@ Shape {
 
   <li><tt>TextureCoordinateGenerator</tt>
 
-    <p>TODO: For now, only "SPHERE" and "COORD" modes are supported.
+    <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE"
+    (and "CAMERASPACEPOSITION" &mdash; as far as I understand, this is the
+    same thing, right?). TODO: rest.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
