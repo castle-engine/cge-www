@@ -1,4 +1,15 @@
 Next WWW update:
 Text for next update:
-- mention that nighly builds are available on http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/, currently for Linux and Windows (32-bit).
+
+<p>Some website improvements:</p>
+
+<ul>
+
+  <li><p>Since this message, the "latest news" of our engine are hosted using a WordPress blog on <a href="http://michalis.ii.uni.wroc.pl/blog/">http://michalis.ii.uni.wroc.pl/blog/</a>. All previous URLs will continue to work, and the latest news will always be visible on the main page. You just have more options now, most of all you can comment about the engine updates.</p>
+
+  <li><p><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">Nightly builds of vrmlengine binaries are available.</a> These are build automatically every night using current SVN code. Use at your own risk. For now, they are built for Linux and Windows (32-bit).</p>
+
+</ul>
+
+- add "comment" links leading to WP comments on blog from the "latest news" item
 After next update:
