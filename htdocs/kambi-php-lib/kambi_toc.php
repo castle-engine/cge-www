@@ -113,9 +113,10 @@ class TableOfContents {
       } else
       if ($now_nesting < $old_nesting)
       {
+        $result .= "</li>\n";
         for ($temp_for = 0; $temp_for < $old_nesting - $now_nesting; $temp_for++)
         {
-          $result .= "</li>\n</ol>\n</li>\n";
+          $result .= "</ol>\n</li>\n";
           $this->pop_last_number($current_number);
         }
         $result .= $list_item;
