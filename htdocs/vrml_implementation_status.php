@@ -417,13 +417,16 @@ Shape {
     see Background node spec, paragraph with words
     "... when viewed from the origin looking down the negative Z-axis ...").</p>
 
+    <p>Texture size for cube maps is automatically adjusted to be power of two,
+    and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).
+    So your textures do not necessarily have to be provided
+    with power-of-two sizes (if you don't mind a little quality loss because
+    of scaling). TODO: also square.
+
     <p>The <tt>textureProperties</tt> of cube map are taken from the
-    <tt>back</tt> field. Currently, <tt>textureProperties</tt> have very limited
-    result on cube map: only their <tt>minificationFilter</tt>
-    and <tt>magnificationFilter</tt> matter, and we don't use mipmaps
-    for cube maps for now. IOW, the only effect you can achieve with
-    <tt>textureProperties</tt> for cube maps is to the change filtering to
-    worse (and faster) "nearest", default filtering is "linear".</p>
+    <tt>back</tt> field. Only their <tt>minificationFilter</tt>
+    and <tt>magnificationFilter</tt> are used for cube map (we support
+    for cube maps all normal texture mappings, including with mipmaps).</p>
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
