@@ -365,7 +365,7 @@ Shape {
       <tt>MultiTextureCoordinate</tt>,
       <tt>MultiTextureTransform</tt>
 
-    <p><i>TODO</i>: modes <tt>BLEND*</tt> and
+    <p><i>TODO</i>: modes
     <tt>MODULATEALPHA_ADDCOLOR</tt>,
     <tt>MODULATEINVALPHA_ADDCOLOR</tt>,
     <tt>MODULATEINVCOLOR_ADDALPHA</tt>
@@ -425,9 +425,12 @@ although it doesn't necessarily mean that I will fix to be compatible
 which seems to contradict the spec... No wonder people get this messed
 up, since specification is so poor at this point.)</p>
 
-<p>(And if you have any power over the spec, please fix it in the next version,
-<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">it
-seems I'm not the only one confused by specs</a>.)</p>
+<p>(And if you have any power over the spec, please fix issues mentioned
+below in the next version.
+<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">It
+seems I'm not the only one confused by specs</a>.
+<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=1387">I
+posted on forum asking for input about this</a>, without any answer so far.)</p>
 
 <ol>
   <li><p><i>The mode field may contain an additional blending mode
@@ -524,6 +527,10 @@ seems I'm not the only one confused by specs</a>.)</p>
     and <tt>MultiTextureCoordinate</tt>
     (<i>identity matrices are assumed...</i>) should be swapped in
     the spec :)
+
+  <li><p>Another note: <tt>MODULATEINVCOLOR_ADDALPHA</tt> mentions
+    that another mode, somehow forgotten, should exist:
+    <tt>MODULATECOLOR_ADDALPHA</tt> (that doesn't invert the color).
 </ol>
 
 
