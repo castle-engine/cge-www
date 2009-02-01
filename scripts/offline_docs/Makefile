@@ -4,10 +4,7 @@
 #
 # U¿yteczn± opcj± podczas generowania takich plików jest LOCALLY_AVAIL -
 # - to bêd± parametry przekazane do skryptu za --locally-avail, patrz
-# komentarze w kambi_common.php. Domy¶lnie LOCALLY_AVAIL jest
-# ustawiane w tym Makefile'u na _wszystkie_ generowane tu HTMLe,
-# czyli wszystkie strony które w ogóle generujemy (np. index czy
-# raytr_gallery.php nie s± generowane) bêd± dostêpne lokalnie.
+# komentarze w kambi_common.php. Domy¶lnie LOCALLY_AVAIL jest puste.
 
 PHP_DIR:=../../htdocs/
 
@@ -32,7 +29,8 @@ ALL_HTMLS:=view3dscene.html \
   kanim_format.html \
   kambi_script.html
 
-LOCALLY_AVAIL:=$(ALL_HTMLS)
+#LOCALLY_AVAIL:=$(ALL_HTMLS)
+LOCALLY_AVAIL:=
 
 PHP_GEN_LOCAL=php -q $< --gen-local --locally-avail $(LOCALLY_AVAIL) > $@
 
