@@ -13,4 +13,5 @@ Text for next update:
 
 - copy the news both to WP and changes_log_common, add this to www/NOTES
 - add "comment" links leading to WP comments on blog from the "latest news" item
+- add link to "Kambi VRML game engine blog" to michalis.ii main index.php
 After next update:
