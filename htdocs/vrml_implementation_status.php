@@ -407,6 +407,23 @@ Shape {
 
     <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
     "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
+
+  <li><tt>ComposedCubeMapTexture</tt>
+
+    <p>Note that the images are supposed to be oriented just like for
+    the VRML/X3D Background node (this is suggested by the drawing in the spec,
+    although the spec doesn't specify exact orientation of the images;
+    we use Background node orientation, as this is definitely sensible;
+    see Background node spec, paragraph with words
+    "... when viewed from the origin looking down the negative Z-axis ...").</p>
+
+    <p>The <tt>textureProperties</tt> of cube map are taken from the
+    <tt>back</tt> field. Currently, <tt>textureProperties</tt> have very limited
+    result on cube map: only their <tt>minificationFilter</tt>
+    and <tt>magnificationFilter</tt> matter, and we don't use mipmaps
+    for cube maps for now. IOW, the only effect you can achieve with
+    <tt>textureProperties</tt> for cube maps is to the change filtering to
+    worse (and faster) "nearest", default filtering is "linear".</p>
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
@@ -514,7 +531,7 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     for "subtract" seem equal this way: with default alphas = 1,
     result gets alpha = 0.</p>
 
-  <li><p>It's not specifies what channels are inverted by source="COMPLEMENT"
+  <li><p>It's not specified what channels are inverted by source="COMPLEMENT"
     value. Only RGB seems most sensible (that's what would seem
     usually useful), but it's not written explicitly.
 
