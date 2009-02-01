@@ -410,23 +410,34 @@ Shape {
 
   <li><tt>ComposedCubeMapTexture</tt>
 
-    <p>Note that the images are supposed to be oriented just like for
-    the VRML/X3D Background node (this is suggested by the drawing in the spec,
-    although the spec doesn't specify exact orientation of the images;
-    we use Background node orientation, as this is definitely sensible;
-    see Background node spec, paragraph with words
-    "... when viewed from the origin looking down the negative Z-axis ...").</p>
+    <p><i>Orientation notes:</i>
+    The images are expected to be oriented just like for
+    the VRML/X3D Background node. This is suggested by the drawing in the spec,
+    although the spec doesn't specify exact orientation of the images.
+    We use Background node orientation, as this is definitely sensible.
+    See Background node spec, paragraph with words
+    "<i>... when viewed from the origin looking down the negative Z-axis ...</i>".</p>
 
-    <p>Texture size for cube maps is automatically adjusted to be power of two,
-    and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).
+    <p><i>Size notes:</i>
+    Texture size for cube maps is automatically adjusted to be power of two,
+    square, and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).
     So your textures do not necessarily have to be provided
-    with power-of-two sizes (if you don't mind a little quality loss because
-    of scaling). TODO: also square.
+    with required sizes (if you don't mind a little quality loss because
+    of scaling).</p>
 
-    <p>The <tt>textureProperties</tt> of cube map are taken from the
-    <tt>back</tt> field. Only their <tt>minificationFilter</tt>
+    <p>You still must provide equally sized images
+    for all six cube map sides. Our engine makes sure to scale them
+    to be square and power-of-two, but we currently do not attempt
+    to make all six textures equal &mdash; so you have to provide textures
+    already satisfying this.
+
+    <p>The <tt>textureProperties</tt> of <tt>ComposedCubeMapTexture</tt>
+    are inferred from it's <tt>back</tt> child (since
+    <tt>ComposedCubeMapTexture</tt> doesn't have it's own
+    <tt>textureProperties</tt>).
+    Only their <tt>minificationFilter</tt>
     and <tt>magnificationFilter</tt> are used for cube map (we support
-    for cube maps all normal texture mappings, including with mipmaps).</p>
+    for cube maps all normal texture filterings, including mipmaps).</p>
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
