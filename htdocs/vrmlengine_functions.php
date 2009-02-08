@@ -53,10 +53,7 @@ function echo_footer_local_address ()
 function echo_footer_non_local_bonus ()
 {
 ?>
-  <p>Services for the vrmlengine project provided by<br />
-  <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&amp;type=3" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a><br />
-  See also <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-  project page on SourceForge</a>.</p>
+  <p><a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=11" width="120" height="30" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></p>
 <?php
 
   /* Insert piwik code */
