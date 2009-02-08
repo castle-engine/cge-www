@@ -1,0 +1,44 @@
+version 1.1.1 (released 30/01/2009)
+
+    * Added Lithuanian language.
+
+
+version 1.1 (released 28/01/2009)
+
+    * Made theme ready for localization. Please contact me, if you like to contribute your own language, thanks.
+
+
+version 1.0.8 (released 26/01/2009)
+
+    * Added a link on the comments.
+
+
+version 1.0.7 (released 23/01/2009)
+
+    * Added new theme option which enables you to hide the mail icon with your email.
+    * Changed "pre" tag's behavior. All syntax highlighters should work well (Thanks Wolfgang).
+    * Fixed some image alignment issues.
+    * Updated the screenshot of the theme.
+
+
+version 1.0.5 (released 21/01/2009)
+
+    * Fixed search box bug when it was placed as a widget.
+    * Added 5 more backgrounds (2 with solid colors + 3 with gradients) which are accessible through an options page.
+    * Changed the colors of tr, td tags & .wp-caption class to match the theme.
+
+
+version 1.0.4 (released 20/01/2009)
+
+    * Fixed header bug. When blog title or tagline consisted more than one line of text, the header would broke up. In addition search box had some space from the right corner in IE5.5, IE6.
+
+
+version 1.0.3 (released 19/01/2009)
+
+    * Fixed some bugs which occurred using IE5.5, IE6 (sidebar & footer).
+    * Added changelog file.
+
+
+version 1.0.0 (released 09/01/2009)
+
+    * Initial version.

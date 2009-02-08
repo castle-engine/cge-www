@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Default\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-30 17:35+0200\n"
+"PO-Revision-Date: 2009-01-30 17:49+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__;ngettext\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Lithuanian\n"
+"X-Poedit-Country: Lithuania\n"
+"X-Poedit-SearchPath-0: \\wordpress\\wp-content\\themes\\gear\n"
+
+#: \wordpress\wp-content\themes\gear/comments.php:11
+msgid "This post is password protected. Enter the password to view comments"
+msgstr "Šitas straipsnis yra apsaugotas slaptažodžiu. Norėdami peržiūrėti komentarus, prašome įvesti slaptažodį"
+
+#: \wordpress\wp-content\themes\gear/comments.php:25
+msgid "No responses to"
+msgstr "Jokių atsakymų į"
+
+#: \wordpress\wp-content\themes\gear/comments.php:25
+msgid "One response to"
+msgstr "Vienas atsakymas į"
+
+#: \wordpress\wp-content\themes\gear/comments.php:25
+#, fuzzy
+msgid "% responses to"
+msgstr "% atsakymai į"
+
+#: \wordpress\wp-content\themes\gear/comments.php:38
+msgid "Your comment is awaiting moderation"
+msgstr "Jūsų komentaras laukia administratoriaus peržiūros"
+
+#: \wordpress\wp-content\themes\gear/comments.php:42
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+#: \wordpress\wp-content\themes\gear/comments.php:42
+msgid "F jS, Y"
+msgstr ""
+
+#: \wordpress\wp-content\themes\gear/comments.php:42
+msgid "H:i"
+msgstr ""
+
+#: \wordpress\wp-content\themes\gear/comments.php:43
+#: \wordpress\wp-content\themes\gear/item.php:29
+msgid "Edit"
+msgstr "Redaguoti"
+
+#: \wordpress\wp-content\themes\gear/comments.php:68
+msgid "Comments are closed"
+msgstr "Komentavimas uždraustas"
+
+#: \wordpress\wp-content\themes\gear/comments.php:78
+msgid "Leave a reply"
+msgstr "Komentuoti"
+
+#: \wordpress\wp-content\themes\gear/comments.php:83
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "Norėdami komentuoti1, turite <a href=\"%s\">prisijungti</a>."
+
+#: \wordpress\wp-content\themes\gear/comments.php:92
+msgid "Logged in as"
+msgstr "Prisijungęs kaip"
+
+#: \wordpress\wp-content\themes\gear/comments.php:92
+msgid "Log out of this account"
+msgstr "Atsijungti nuo sąskaitos"
+
+#: \wordpress\wp-content\themes\gear/comments.php:92
+msgid "Log out"
+msgstr "Atsijungti"
+
+#: \wordpress\wp-content\themes\gear/comments.php:98
+msgid "Name"
+msgstr "Vardas"
+
+#: \wordpress\wp-content\themes\gear/comments.php:98
+#: \wordpress\wp-content\themes\gear/comments.php:101
+msgid "(required)"
+msgstr "(privalomas)"
+
+#: \wordpress\wp-content\themes\gear/comments.php:101
+msgid "Mail (will not be published)"
+msgstr "Paštas (nebus publikuojamas)"
+
+#: \wordpress\wp-content\themes\gear/comments.php:104
+msgid "Website"
+msgstr "Svetainė"
+
+#: \wordpress\wp-content\themes\gear/comments.php:112
+msgid "Submit Comment"
+msgstr "Siųsti komentarą"
+
+#: \wordpress\wp-content\themes\gear/footer.php:3
+msgid "Powered by"
+msgstr "Paremta"
+
+#: \wordpress\wp-content\themes\gear/footer.php:4
+msgid "Designed by"
+msgstr "Sukurta"
+
+#: \wordpress\wp-content\themes\gear/functions.php:22
+msgid "Search"
+msgstr "Paieška"
+
+#: \wordpress\wp-content\themes\gear/functions.php:147
+msgid "settings"
+msgstr "nustatymai"
+
+#: \wordpress\wp-content\themes\gear/head.php:16
+msgid "RSS icon"
+msgstr "RSS ikonėlė"
+
+#: \wordpress\wp-content\themes\gear/head.php:18
+msgid "Email icon"
+msgstr "Pašto ikonėlė"
+
+#: \wordpress\wp-content\themes\gear/head.php:20
+msgid "Home icon"
+msgstr "Pagrindinio puslapio ikonėlė"
+
+#: \wordpress\wp-content\themes\gear/head.php:32
+msgid "A link to home page"
+msgstr "Nuoroda į pagrindinį puslapį"
+
+#: \wordpress\wp-content\themes\gear/head.php:32
+msgid "Home"
+msgstr "Pagrindinis puslapis"
+
+#: \wordpress\wp-content\themes\gear/header.php:15
+msgid "Category &raquo; "
+msgstr "Kategorija"
+
+#: \wordpress\wp-content\themes\gear/header.php:18
+msgid "Tag &raquo; "
+msgstr "Žymės"
+
+#: \wordpress\wp-content\themes\gear/header.php:21
+msgid "Search results &raquo; "
+msgstr "Paieškos rezultatai"
+
+#: \wordpress\wp-content\themes\gear/index.php:30
+#: \wordpress\wp-content\themes\gear/single.php:31
+msgid "&laquo; Older Entries"
+msgstr "&laquo; Senesni įrašai"
+
+#: \wordpress\wp-content\themes\gear/index.php:31
+#: \wordpress\wp-content\themes\gear/single.php:32
+msgid "Newer Entries &raquo;"
+msgstr "Naujesni įrašai &laquo;"
+
+#: \wordpress\wp-content\themes\gear/item.php:3
+msgid "Permanent Link to"
+msgstr "Nuolatinė nuruoda į"
+
+#: \wordpress\wp-content\themes\gear/item.php:10
+msgid "Posted on"
+msgstr "Paskelbta"
+
+#: \wordpress\wp-content\themes\gear/item.php:13
+msgid "No comments"
+msgstr "Be komentarų"
+
+#: \wordpress\wp-content\themes\gear/item.php:13
+msgid "1 comment"
+msgstr "1 komentaras"
+
+#: \wordpress\wp-content\themes\gear/item.php:13
+#, fuzzy, php-format
+msgid "% comments"
+msgstr "% komentarai"
+
+#: \wordpress\wp-content\themes\gear/item.php:13
+msgid "comments"
+msgstr "komentarai"
+
+#: \wordpress\wp-content\themes\gear/item.php:19
+msgid "Read the rest of this entry &raquo;"
+msgstr "Skaityti likusią straipsnio dalį &raquo;"
+
+#: \wordpress\wp-content\themes\gear/missing.php:1
+msgid "Not Found"
+msgstr "Nerasta"
+
+#: \wordpress\wp-content\themes\gear/missing.php:4
+msgid "Sorry, but you are looking for something that is not here"
+msgstr "Atsiprašome, bet jūs ieškote to ko čia nėra"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:8
+msgid "Calendar"
+msgstr "Kalendorius"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:15
+msgid "Archives"
+msgstr "Archyvai"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:24
+msgid "Recent Articles"
+msgstr "Naujausi straipsniai"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:35
+msgid "Links"
+msgstr "Nuorodos"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:44
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:53
+msgid "Meta"
+msgstr "Meta"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:55
+msgid "Entries (RSS)"
+msgstr "Straipsniai (RSS)"
+
+#: \wordpress\wp-content\themes\gear/sidebar.php:56
+msgid "Comments (RSS)"
+msgstr "Komentarai (RSS)"
+
+#~ msgid "Comments (%)"
+#~ msgstr "Komentarai (%)"
+
+#, fuzzy
+#~ msgid "Comments closed"
+#~ msgstr "Komentavimas uždraustas"
+
