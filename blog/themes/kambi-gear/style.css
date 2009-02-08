@@ -570,11 +570,16 @@ code {
 	color: #666666;
 	background-color: black;
 }
+
+.kambi-footer-text {
+/*	width: 50%;
+	float: right;*/
+}
 	.footer .paddings div {
 		padding-bottom: 18px;
 	}
 	.footer a {
-		text-decoration: none;
+		text-decoration: underline; /*Kambi*: added underline, I want to see it. */
 		color: #666666;
 	}
 	
