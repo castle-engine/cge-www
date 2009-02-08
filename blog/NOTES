@@ -1,0 +1,3 @@
+Notes for writing news entries:
+- all URLs must be absolute (HTML content may be served through RSS feed to various WWW sites)
+- no CSS classes, ids should be used --- all style must be contained within the HTML (HTML content may be served through RSS feed to sites that don't have our CSS files loaded)
