@@ -5,15 +5,23 @@ Copyright Michalis Kamburelis.<!-- Too long: This page is considered part of doc
 
 <?php _e('Powered by', 'default'); ?> WordPress. Theme "Gear" <?php _e('designed by', 'default'); ?> <a href="http://www.mymobiles.com">My Mobiles</a>, somewhat modified.<!-- Too long: by Kambi for vrmlengine.--><br/>
 
-Hosted by
-<a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=9" width="80" height="15" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+<?php
+  /* Kambi: insert SF logo */
+  if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
+  {
+  ?>
+    Hosted by
+    <a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=9" width="80" height="15" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+  <?php
+  }
+?>
 
 				</div>
 				<div class="clear"></div>
 			</div>
 			<?php
 
-  /* Kambi: insert piwik code */
+  /* Kambi: insert piwik code on SourceForge */
   if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
   {
 ?>
@@ -32,6 +40,13 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 <!-- End Piwik Tag -->
 
 <?php
+  }
+
+  /* Kambi: insert stats (piwik, maybe google analytics) code on michalis.ii */
+  if ($_SERVER["HTTP_HOST"] == 'michalis.ii.uni.wroc.pl')
+  {
+    require_once '/home/michalis/public_html/stats.php';
+    echo_michalis_ii_stats();
   }
 
   wp_footer(); ?>
