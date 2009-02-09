@@ -1,7 +1,8 @@
 			<div class="footer">
 				<div class="kambi-footer-text paddings">
 
-Copyright Michalis Kamburelis.<!-- Too long: This page is considered part of documentation of my programs, and you are free to modify and further distribute it on terms of <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.--><br/>
+Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</a>.
+<!-- Too long: This page is considered part of documentation of my programs, and you are free to modify and further distribute it on terms of <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.--><br/>
 
 <?php _e('Powered by', 'default'); ?> WordPress. Theme "Gear" <?php _e('designed by', 'default'); ?> <a href="http://www.mymobiles.com">My Mobiles</a>, somewhat modified.<!-- Too long: by Kambi for vrmlengine.--><br/>
 
