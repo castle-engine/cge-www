@@ -545,12 +545,12 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     for "subtract" seem equal this way: with default alphas = 1,
     result gets alpha = 0.</p>
 
-  <li><p>It's not specified what channels are inverted by source="COMPLEMENT"
+  <li><p>It's not specified what channels are inverted by function="COMPLEMENT"
     value. Only RGB seems most sensible (that's what would seem
     usually useful), but it's not written explicitly.
 
     <p><i>Our interpretation:</i> I plan to treat it as "only RGB",
-    that is not invert alpha channel. Although for now "source" field
+    that is not invert alpha channel. Although for now "function" field
     is not handled.
 
   <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
