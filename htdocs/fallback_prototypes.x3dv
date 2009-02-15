@@ -34,8 +34,6 @@ PROTO KambiAppearance [
   inputOutput SFNode textureTransform  NULL
 
   # This is from X3D.
-  # Kambi VRML game engine treats it as part of normal Appearance
-  # node, but actually this is an extension for pure VRML 2.0.
   inputOutput SFNode fillProperties    NULL
   inputOutput SFNode lineProperties    NULL
   inputOutput SFNode metadata          NULL
@@ -46,11 +44,16 @@ PROTO KambiAppearance [
   inputOutput SFNode heightMap         NULL
   inputOutput SFFloat heightMapScale   0.01
   inputOutput SFNode blendMode         NULL
+  inputOutput SFBool shadowCaster      TRUE
 ] {
   Appearance {
     material IS material
     texture IS texture
     textureTransform IS textureTransform
+    fillProperties IS fillProperties
+    lineProperties IS lineProperties
+    metadata IS metadata
+    shaders IS shaders
   }
 }
 

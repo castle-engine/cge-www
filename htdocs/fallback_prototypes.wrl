@@ -45,6 +45,7 @@ PROTO KambiAppearance [
   exposedField SFNode heightMap         NULL
   exposedField SFFloat heightMapScale   0.01
   exposedField SFNode blendMode         NULL
+  exposedField SFBool shadowCaster      TRUE
 ] {
   Appearance {
     material IS material
