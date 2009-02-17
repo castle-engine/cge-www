@@ -19,9 +19,11 @@
 a very limited editor. It was originally developed to test and demonstrate
 the power of image handling inside our VRML engine, but it became quite usable
 utility on it's own. Viewed image can be quickly scaled and moved,
-you can browse images list, you can also
-test is image "tileable" (e.g. to test is it good for a texture or
-desktop wallpaper). Various image formats are supported:
+you can browse images list, you can test how image looks when tiled
+(to test is it good for a texture or desktop wallpaper),
+you can see how alpha channel of the image looks on various background colors.
+
+<p>Various image formats are supported:
 
 <ul>
   <li><b>PNG</b> - Portable Network Graphic,
