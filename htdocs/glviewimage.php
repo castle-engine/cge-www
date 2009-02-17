@@ -133,22 +133,10 @@ rest is obvious.
 extension will result in BMP format.
 
 <p>Image loaded and displayed by glViewImage is internally always stored
-in 24-bit RGB format. Any other information (like other pixel format,
-alpha channel of PNG images, high precision of RGBE images -
-really <b>any</b> other information) is not saved by glViewImage.
-It means that if you will load an image to glViewImage and then
-you will save it (even to the same image format, e.g. load PNG
-and save as PNG) then you can loose some important information contained
-in original image.
-
-<p>This is a serious disadvantage of saving images from glViewImage,
-but I am not planning to improve this - glViewImage was written as a
-simple image viewer, not as a professional image converter.
-If you need professional image converter, take a look at
-<a href="http://www.gimp.org/">GIMP</a> or
-<a href="http://www.imagemagick.org/">ImageMagick</a>
-(both of them free (<i>free</i> in both senses), for various operating
-systems etc.).
+in format comfortable for OpenGL. This includes many formats, but not RGBE.
+It means that if you will load RGBE image to glViewImage and then
+you will save it (even to the RGBE format again)
+then you RGBE precision and above-1 values.
 
 <h2><a name="section_depends">Requirements</a></h2>
 
