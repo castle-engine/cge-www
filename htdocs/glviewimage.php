@@ -15,10 +15,13 @@
    we wszystkich moich wiêkszych programach, m.in.
    do odczytu tekstur i zapisu save screenów. -->
 
-<p>This is a simple image viewer. It allows you to scale and move
-displayed image, you can browse image list, you can also
+<p><tt>glViewImage</tt> is a simple image viewer, converter and even
+a very limited editor. It was originally developed to test and demonstrate
+the power of image handling inside our VRML engine, but it became quite usable
+utility on it's own. Viewed image can be quickly scaled and moved,
+you can browse images list, you can also
 test is image "tileable" (e.g. to test is it good for a texture or
-desktop wallpaper). It can handle various image formats:
+desktop wallpaper). Various image formats are supported:
 
 <ul>
   <li><b>PNG</b> - Portable Network Graphic,
@@ -34,7 +37,7 @@ desktop wallpaper). It can handle various image formats:
     and I do not plan to make it better.
     Those are: <b>PCX</b> (only 256-colored PCX are supported)
     and <b>IPL</b> (IPLab, only 16 bits per pixel are supported (gray-scale)).
-  <li>Other image formats may be loaded by using external programs.
+  <li>Many other image formats may be loaded by using external programs.
     This means that some other program is run "under the hood"
     to convert to some format supported natively. If all goes well,
     this is completely transparent for user.
@@ -46,7 +49,7 @@ desktop wallpaper). It can handle various image formats:
     package must be available on $PATH for this to work.
 </ul>
 
-<p>These are binaries of the program. No special installation is required,
+<p>These are the binaries of the program. No special installation is required,
 just unpack the archive and run <tt>glViewImage</tt>.
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
   VERSION_GLVIEWIMAGE,  $std_releases_post_1_2_0); ?>
