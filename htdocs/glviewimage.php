@@ -30,6 +30,13 @@ you can see how alpha channel of the image looks on various background colors.
   <li><b>JPEG</b> - actually JFIF, JPEG File Interchange Format,
   <li><b>BMP</b> - Windows Bitmap,
   <li><b>PPM</b> - Portable Pixel Map,
+  <li><b>DDS</b> - <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
+    Draw Surface</a>. This image format is commonly used for advanced
+    texturing, as it can store compressed
+    textures, possibly with mipmaps, cube maps, volume textures.
+    Although our VRML engine can load and handle these extras,
+    the <tt>glViewImage</tt> can display only the main simple uncompressed
+    image for now.
   <li><b>RGBE</b> - Red + Green + Blue + Exponent,
     format made by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">
