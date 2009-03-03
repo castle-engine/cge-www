@@ -133,6 +133,7 @@ PROTO Teapot [
   inputOutput SFNode  metadata  NULL
   inputOutput SFVec3f size      3 3 3
   inputOutput SFBool  solid     TRUE
+  inputOutput SFNode  texCoord  NULL # only TextureCoordinateGenerator
 ] {
   # This could be expanded to
   #   Transform {

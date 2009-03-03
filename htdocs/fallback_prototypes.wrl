@@ -118,6 +118,7 @@ PROTO MatrixTransform [
 PROTO Teapot [
   exposedField SFVec3f size   3 3 3
   exposedField SFBool  solid  TRUE
+  exposedField SFNode  texCoord NULL # only TextureCoordinateGenerator
 ] {
   # This could be expanded to
   #   Transform {

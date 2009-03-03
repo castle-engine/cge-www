@@ -1045,7 +1045,8 @@ end;
         I don't know how they handled security problems with logFile.
 
       <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a><br/>
-        (supported <tt>size</tt> and <tt>solid</tt> fields)
+        (supported <tt>size</tt> and <tt>solid</tt> fields, also our
+        own <tt>texCoord</tt>)
 
         <?php
           echo '<table align="right">' .
@@ -1058,6 +1059,16 @@ end;
         size (3, 3, 3) means that the longest size of teapot bounding box
         is 3.0 (all other sizes are actually slightly smaller).
         Changing size scales the teapot (assuming that size = 3 means "default size").
+
+        <p>We also add <tt>texCoord</tt> field (not present in Avalon version):
+        this may contain a <tt>TextureCoordinateGenerator</tt>
+        node specifying how texture coordinates are generated.
+        Very useful to quickly test various texture coordinate generators
+        (e.g. for cube env mapping) on teapot.
+        When <tt>texCoord</tt> is not present but texture coordinates
+        are required (because appearance specifies a texture),
+        we will generate default texture coords (using the same
+        alrgoithm as for <tt>IndexedFaceSet</tt>).
 
         <p>For the sake of VRML / X3D standards, I do not really advice
         using this node... VRML developers should spend their time better
