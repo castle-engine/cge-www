@@ -10,11 +10,6 @@
 
 <?php echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE); ?>
 
-   <!-- Technologicznie ten program
-   to nic wielkiego, ale zasadnicza cze¶æ jego kodu jest u¿ywana
-   we wszystkich moich wiêkszych programach, m.in.
-   do odczytu tekstur i zapisu save screenów. -->
-
 <p><tt>glViewImage</tt> is a simple image viewer, converter and even
 a very limited editor. It was originally developed to test and demonstrate
 the power of image handling inside our VRML engine, but it became quite usable
@@ -34,9 +29,8 @@ you can see how alpha channel of the image looks on various background colors.
     Draw Surface</a>. This image format is commonly used for advanced
     texturing, as it can store compressed
     textures, possibly with mipmaps, cube maps, volume textures.
-    Although our VRML engine can load and handle these extras,
-    the <tt>glViewImage</tt> can display only the main simple uncompressed
-    image for now.
+    You can view all subimages within one DDS file, see menu items
+    <i>Images-&gt;Next/Previous subimage in DDS</i>.
   <li><b>RGBE</b> - Red + Green + Blue + Exponent,
     format made by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">
