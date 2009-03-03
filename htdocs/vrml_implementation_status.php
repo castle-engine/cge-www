@@ -105,7 +105,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Shader                   </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
   <tr><td>CAD geometry             </td><td><b>1</b></td></tr>
   <tr><td>Texturing3D              </td><td><b></b></td></tr>
-  <tr><td>Cube map environmental texturing  </td><td><b></b></td></tr>
+  <tr><td>Cube map environmental texturing  </td><td><b>2</b></td></tr>
   <tr><td>Layering                 </td><td><b></b></td></tr>
   <tr><td>Layout                   </td><td><b></b></td></tr>
   <tr><td>Rigid body physics       </td><td><b></b></td></tr>
