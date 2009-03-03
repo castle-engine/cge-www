@@ -438,6 +438,10 @@ Shape {
     Only their <tt>minificationFilter</tt>
     and <tt>magnificationFilter</tt> are used for cube map (we support
     for cube maps all normal texture filterings, including mipmaps).</p>
+
+  <li><tt>ImageCubeMapTexture</tt>
+
+    <p>DDS file format to specify cube maps is supported.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
