@@ -16,6 +16,7 @@
       new TocItem('Components supported (summary)', 'x3d_components', 1),
       new TocItem('Details about supported nodes', 'x3d_details', 1),
       new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 2),
+      new TocItem('DDS (DirectDraw Surface) support details', 'dds', 2),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
@@ -441,7 +442,7 @@ Shape {
 
   <li><tt>ImageCubeMapTexture</tt>
 
-    <p>DDS file format to specify cube maps is supported.
+    <p><a href="#section_dds">DDS file format</a> to specify cube maps is supported.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
@@ -568,6 +569,45 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     <tt>MODULATECOLOR_ADDALPHA</tt> (that doesn't invert the color).
 </ol>
 
+<?php echo $toc->html_section(); ?>
+
+<a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">DirectDraw Surface (DDS) image format</a> is supported. A number of technical details about DDS implementation are below, but in short: we try to support all formats and all options of DDS in a standard way.
+
+<p>Implementation history:
+
+<ul>
+  <li>DDS support is natively built into the engine. Since I knew that I want to use many of DDS features, like cube maps, 3D textures, mipmaps, compression, I decided the best way to go will be to create my own reader, instead of relying on external tools.
+
+  <li>Other notable open-source implementations of DDS are by <a href="http://nifelheim.dyndns.org/~cocidius/dds/">GIMP-DDS plugin</a> and new <a href="http://www.imagemagick.org/">ImageMagick</a> (<a href="http://www.imagemagick.org/discourse-server/viewtopic.php?f=2&t=10729">since 6.3.9</a>).
+
+  <li>While implementing, I was looking at GIMP DDS source code (it's on GNU GPL >= 2 :) ) and <a href="http://msdn.microsoft.com/en-us/library/bb943990(VS.85).aspx">MS documentation for DDS</a>.
+</ul>
+
+<p>Cube maps in DDS are supposed to be oriented as usual for DDS:
+
+<ol>
+  <li><p>Which means that they match Direct X "positive/negative x/y/z". For OpenGL rendering we swap positive/negative Y faces (because Direct X has left-handed coordinate system, <a href="http://doc.51windows.net/directx9_sdk/graphics/programmingguide/advancedtopics/PixelPipe/envmap/cubicenvironmentmapping.htm">see here for drawing of DirectX cube map images orientation</a> and compare with <a href="http://www.opengl.org/registry/specs/ARB/texture_cube_map.txt">OpenGL cube map orientation</a>).
+
+  <li><p>It's also a different orientation then the one of X3D ComposedCubeMap specification (left/right, bottom/top, front/back, with bottom/top on Y axis; X3D orientation needs rotating left,right,front,back images by 180 degrees for OpenGL orientation).
+</ol>
+
+<p>Images in DDS are supposed to be written from top to bottom row, as is the standard in DDS. (One particular tool, AMD CubeMapGen, allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering; don't use this &mdash; we expect rows ordered as is standard in DDS, top-to-bottom; internally, our engine just inverts the rows for OpenGL.)
+
+<p>Pixel formats supported:
+
+<ol>
+  <li><p>Absolutely <i>all uncompressed pixel formats are supported</i>.
+
+  <p>Details:
+
+  <p>The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.
+
+  <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
+
+  <p>Also only-alpha images also allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
+
+  <li><p>Compressed texture formats handled: TODO.
+</ol>
 
 <?php echo $toc->html_section(); ?>
 
