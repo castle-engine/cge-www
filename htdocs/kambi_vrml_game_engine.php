@@ -76,6 +76,10 @@ Features include:</p>
     So GLSL shaders are fully available
     for model designers, programmer doesn't have to do anything.
 
+  <li>Advanced texturing, following X3D standard: <b>multi-texturing</b>,
+    <b>cube map texturing</b> (can be loaded from separate files,
+    DDS files, or captured during runtime), <b>3d textures</b>.
+
   <li>GLWindow unit is available to easily <b>create windows with OpenGL
     context</b>. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
@@ -86,6 +90,7 @@ Features include:</p>
   <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
     (png, jpg, ppm, bmp, just for starters), included is also support for
+    <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
     RGBE format (Radiance HDR format).</li>
 
   <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
