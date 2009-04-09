@@ -77,7 +77,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
   <li><p><b><a href="http://web3d.org/">VRML 1.0, 2.0 and X3D</a></b>. Usual extensions for VRML files are
     <tt>.wrl</tt>, <tt>.wrz</tt> and <tt>.wrl.gz</tt>.
     For X3D (we support fully both
-    binary and classic encoding) extensions are <tt>.x3d</tt>,
+    XML and classic encoding) extensions are <tt>.x3d</tt>,
     <tt>.x3dz</tt>, <tt>.x3d.gz</tt>
     and <tt>.x3dv</tt>, <tt>.x3dvz</tt>, <tt>.x3dv.gz</tt>.</p>
 
