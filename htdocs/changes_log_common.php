@@ -53,6 +53,49 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'News from SVN &mdash; X3D multi-texturing, cube maps and more',
+          'year' => 2009,
+          'month' => 4,
+          'day' => 10,
+          'pubDate' => /* date_to_timestamp.sh '2009-04-10' */ 1239364800,
+          'guid' => '2009-04-10',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => '
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/cubemap_teapot.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/cubemap_teapot.png"
+      alt="Teapot with cube map reflections"
+      title="Teapot with cube map reflections"
+    /></a>
+  </td></tr>
+</table>
+
+<p>Hi! I didn\'t post a message here since some time, but rest assured that the development of next engine version continues :) Things already implemented in the SVN include:
+
+<ul>
+  <li>X3D multi-texturing.</li>
+  <li>X3D cube map nodes.</li>
+  <li>This also means that DDS file format (for <tt>ImageCubeMapTexture</tt>) is implemented (both reading and writing, you can even use glViewImage as a simple DDS editor).</li>
+  <li>This includes generating textures on the fly (for <tt>GeneratedCubeMapTexture</tt>).</li>
+  <li>As extensions, I added texture generation modes "<tt>WORLDSPACEREFLECTIONVECTOR</tt>" and "<tt>WORLDSPACENORMAL</tt>" (analogous to X3D standard modes in CAMERA space) to make simulating real reflections trivial.</li>
+  <li>There is also quite cool new feature in view3dscene to catch a "screenshot" of 3D world around you as a cube map (DDS, or six separate normal images).</li>
+  <li>Passing almost all possible VRML types to GLSL shaders is implemented.</li>
+  <li>..and a lot of other cool features are already implemented :)</li>
+</ul>
+
+<p>The plan for the next release (view3dscene 3.4, engine 1.8) is to polish implementation of all above (yes, there are some known problems, also <tt>GeneratedCubeMapTexture</tt> implementation is severely unoptimal now), and add related texturing and GLSL features:</p>
+
+<ul>
+  <li>3D texturing (that\'s easy since we already have DDS).</li>
+  <li>Basic implementation of <a href="http://www.instantreality.org/documentation/nodetype/RenderedTexture/"><tt>RenderedTexture</tt></a> from InstantReality (that\'s easy since it\'s internally simpler than <tt>GeneratedCubeMapTexture</tt>).</li>
+  <li>Finish GLSL stuff by supporting X3D attributes nodes.</li>
+</ul>
+
+<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds of vrmlengine binaries (including viewscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
+'),
+
     array('title' => 'Dynamic Ambient Occlusion, Shadow Fields demos in the engine sources',
           'year' => 2009,
           'month' => 1,
