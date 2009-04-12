@@ -93,7 +93,7 @@ function this_a_href_page($title, $page_name)
   <li>Finish GLSL stuff by supporting X3D attributes nodes.</li>
 </ul>
 
-<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds of vrmlengine binaries (including viewscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
+<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds of vrmlengine binaries (including view3dscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
 '),
 
     array('title' => 'Dynamic Ambient Occlusion, Shadow Fields demos in the engine sources',
