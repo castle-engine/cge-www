@@ -204,7 +204,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     of 3D scenes and animations</a>. GNOME users will be happy to hear
     that it can also be used as <a href="#section_install_free_desktop">Nautilus
     thumbnailer</a>, providing thumbnails when you view directory with
-    VRML / X3D and other 3D models.
+    VRML / X3D and other 3D models. We can also make a special
+    "screenshot" of 3D environment as a cube map (to DDS, or six
+    separate images).
 </ul>
 
 <?php section(); ?>
