@@ -6,17 +6,39 @@
     "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .
     "Has some nice features that allow you to scale images and test " .
     "are they &quot;tileable&quot;.");
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Features', 'features'),
+      new TocItem('Downloading and installing', 'install'),
+      new TocItem('Running', 'run'),
+      new TocItem('Special keys', 'keys'),
+      new TocItem('Command-line options', 'command_line_options'),
+      new TocItem('Image saving notes', 'saving'),
+      new TocItem(DEPENDS, 'depends'),
+    )
+  );
+  $toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE); ?>
 
-<p><tt>glViewImage</tt> is a simple image viewer, converter and even
-a very limited editor. It was originally developed to test and demonstrate
+<p><tt>glViewImage</tt> is an image viewer, converter and even
+a very limited editor.</p>
+
+<?php
+  echo $toc->html_toc();
+  echo $toc->html_section();
+?>
+
+<p><tt>glViewImage</tt> was originally developed to test and demonstrate
 the power of image handling inside our VRML engine, but it became quite usable
 utility on it's own. Viewed image can be quickly scaled and moved,
 you can browse images list, you can test how image looks when tiled
 (to test is it good for a texture or desktop wallpaper),
 you can see how alpha channel of the image looks on various background colors.
+The ability to load and save even some uncommon image formats (DDS, RGBE)
+is also very useful.</p>
 
 <p>Various image formats are supported:
 
@@ -30,7 +52,8 @@ you can see how alpha channel of the image looks on various background colors.
     texturing, as it can store compressed
     textures, possibly with mipmaps, cube maps, volume textures.
     You can view all subimages within one DDS file, see menu items
-    <i>Images-&gt;Next/Previous subimage in DDS</i>.
+    <i>Images-&gt;Next/Previous subimage in DDS</i>. Saving to DDS images
+    is also supported.
   <li><b>RGBE</b> - Red + Green + Blue + Exponent,
     format made by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">
@@ -52,6 +75,8 @@ you can see how alpha channel of the image looks on various background colors.
     package must be available on $PATH for this to work.
 </ul>
 
+<?php echo $toc->html_section(); ?>
+
 <p>These are the binaries of the program. No special installation is required,
 just unpack the archive and run <tt>glViewImage</tt>.
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
@@ -59,12 +84,39 @@ just unpack the archive and run <tt>glViewImage</tt>.
 
 <?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
-<h2>Using</h2>
+<?php echo $toc->html_section(); ?>
 
-<p>glViewImage remembers image list (i.e., it's actually a filename list)
+<p>You can simply run the <tt>glViewImage</tt> without parameters,
+and open / save images using the menu commands.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<table border="1" class="key_list">
+  <tr><th colspan="2">
+    Keys not available as menu items:
+  <tr><td>Arrows            <td>move image
+  <tr><td>Arrows + Ctrl     <td>move image 10 x faster
+  <tr><td>- / +             <td>scale image (smaller / larger)
+  <tr><td>x / X             <td>scale only horizontally (smaller / larger)
+  <tr><td>y / Y             <td>scale only vertically (smaller / larger)
+</table>
+
+<p>Notes about opening image:
+glViewImage guesses image format using file extension (yes, yes,
+I will change it at some time to recognize image format based on
+file content), so it's important for files to have good
+filename extension. JPEG images may have extension <tt>jpg</tt>
+or <tt>jpeg</tt>, RGBE images - <tt>rgbe</tt> or <tt>pic</tt>,
+rest is obvious.
+
+<p>Opened image is also added to the image list.
+
+<?php echo $toc->html_section(); ?>
+
+<p>glViewImage remembers image list <!-- (i.e., it's actually a filename list) -->
 that you can browse using <b>N</b> (next image on the list) and
 <b>P</b> (previous image on the list) keys. When you run
-glViewImage you give it as parameters list of images to browse.
+glViewImage you can give it as parameters a list of images to browse.
 
 <p>Every parameter must be one of:
 <ul>
@@ -98,6 +150,7 @@ glViewImage you give it as parameters list of images to browse.
 to running<br>
 <tt>&nbsp;&nbsp;glViewImage .</tt><br>
 so you will view all images (that glViewImage can handle) in current directory.
+If none found, the default welcome image will be displayed.
 
 <p>Oh, and (as usual) all parameters described in those pages:
 <?php echo a_href_page("standard options understood by my OpenGL programs",
@@ -108,29 +161,8 @@ so you will view all images (that glViewImage can handle) in current directory.
 window size (like <tt>--geometry</tt>) then program will open a window
 with the same size as the first displayed image.
 
-<h2>Controls</h2>
-
-<table border="1" class="key_list">
-  <tr><th colspan="2">
-    Keys not available as menu items:
-  <tr><td>Arrows            <td>move image
-  <tr><td>Arrows + Ctrl     <td>move image 10 x faster
-  <tr><td>- / +             <td>scale image (smaller / larger)
-  <tr><td>x / X             <td>scale only horizontally (smaller / larger)
-  <tr><td>y / Y             <td>scale only vertically (smaller / larger)
-</table>
-
-<p>Notes about opening image:
-glViewImage guesses image format using file extension (yes, yes,
-I will change it at some time to recognize image format based on
-file content), so it's important for files to have good
-filename extension. JPEG images may have extension <tt>jpg</tt>
-or <tt>jpeg</tt>, RGBE images - <tt>rgbe</tt> or <tt>pic</tt>,
-rest is obvious.
-
-<p>Opened image is also added to image list.
-
-<h2><a name="about_saving">Some notes about saving image</a></h2>
+<a name="about_saving"></a>
+<?php echo $toc->html_section(); ?>
 
 <p>Resulting image format is determined by filename extension, unknown
 extension will result in BMP format.
@@ -139,9 +171,10 @@ extension will result in BMP format.
 in format comfortable for OpenGL. This includes many formats, but not RGBE.
 It means that if you will load RGBE image to glViewImage and then
 you will save it (even to the RGBE format again)
-then you RGBE precision and above-1 values.
+then you loose RGBE precision (and clamp color values above 1.0).
 
-<h2><a name="section_depends">Requirements</a></h2>
+<a name="section_depends"></a>
+<?php echo $toc->html_section(); ?>
 
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
@@ -153,7 +186,9 @@ then you RGBE precision and above-1 values.
 <a href="http://www.imagemagick.org/">ImageMagick</a>
 package must be available on $PATH for some image formats to work.
 
-<hr> <!-- =================================================== -->
+<!--
+<hr>  ===================================================
+Commented out, below is development info.
 
 <h2>For curious, a few words about implementation</h2>
 
@@ -164,6 +199,7 @@ JPEG handled using
 (this is code originally written by
 <a href="http://www.ijg.org/">Independent JPEG Group</a> in ANSI C
 and translated to Delphi by Nomssi Nzali Jacques H. C).
+-->
 
 <!-- li> Mój w³asny kod obs³uguje BMP, PPM, RGBE, czystym przypadkiem
 zrobi³em te¿ PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
