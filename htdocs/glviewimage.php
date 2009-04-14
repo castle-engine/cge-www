@@ -10,7 +10,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Features', 'features'),
-      new TocItem('Downloading and installing', 'install'),
+      new TocItem('Downloading', 'download'),
       new TocItem('Running', 'run'),
       new TocItem('Special keys', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
