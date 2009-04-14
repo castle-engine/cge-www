@@ -432,17 +432,33 @@ Shape {
     to make all six textures equal &mdash; so you have to provide textures
     already satisfying this.
 
-    <p>The <tt>textureProperties</tt> of <tt>ComposedCubeMapTexture</tt>
-    are inferred from it's <tt>back</tt> child (since
-    <tt>ComposedCubeMapTexture</tt> doesn't have it's own
-    <tt>textureProperties</tt>).
-    Only their <tt>minificationFilter</tt>
-    and <tt>magnificationFilter</tt> are used for cube map (we support
-    for cube maps all normal texture filterings, including mipmaps).</p>
+    <p>We add <tt>textureProperties</tt> field to the <tt>ComposedCubeMapTexture</tt>
+    node, intended for <tt>TextureProperties</tt> child, working just like
+    in other texture nodes (you can use it to set minification / magnification
+    filter and such). Although X3D 3.2 specification doesn't mention this,
+    it seems natural, and <a href="http://www.instantreality.org/documentation/nodetype/ComposedCubeMapTexture/">instantreality
+    also uses this</a>.
+    We support for cube maps all normal texture filterings, including mipmaps.</p>
 
   <li><tt>ImageCubeMapTexture</tt>
 
     <p><a href="#section_dds">DDS file format</a> to specify cube maps is supported.
+
+  <li><tt>GeneratedCubeMapTexture</tt>
+
+    <p>Texture is rendered from the middle 3D point of bounding box
+    of the shape using this texture. You cannot reUSE the same <tt>GeneratedCubeMapTexture</tt>
+    node for various shapes (as then we would not know from which shape
+    to generate).</p>
+
+    <p>All the generated textures are rendered in a separate
+    pass before actual rendering, and during this generation other shapes
+    use existing values of their textures. This means that recursive mirrors,
+    i.e. mirror that can be seen in another mirror, works to any level
+    (each frame rendered uses textures generated in the previous frame).</p>
+
+    <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
+    and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
