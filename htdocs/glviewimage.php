@@ -21,7 +21,13 @@
   $toc->echo_numbers = true;
 ?>
 
-<?php echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE); ?>
+<?php
+  echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE);
+  echo '<table align="right">' .
+    '<tr><td>' . medium_image_progs_demo("glviewimage_welcome.png", "glviewimage", false) .
+    '<tr><td>' . medium_image_progs_demo("glviewimage_dds.png", "glviewimage", false) .
+    '</table>';
+ ?>
 
 <p><tt>glViewImage</tt> is an image viewer, converter and even
 a very limited editor.</p>
