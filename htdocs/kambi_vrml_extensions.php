@@ -75,6 +75,7 @@ $toc = new TableOfContents(array(
   new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 3),
   new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 3),
 
+  new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 2),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 2),
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
   new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 2),
@@ -468,6 +469,31 @@ subdirectories.
 
     <p>This is honoured by our shadow volumes implementation
     (that is, dynamic shadows in OpenGL) and also by our ray-tracers.
+
+<?php echo $toc->html_section(); ?>
+
+  <?php
+    echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("cubemap_teapot.png", 'Teapot with cube map reflections') .
+        '</table>';
+    ?>
+
+    <p><tt>TextureCoordinateGenerator.mode</tt> allows two additional
+    generation modes:
+
+    <ol>
+      <li><tt>WORLDSPACEREFLECTIONVECTOR</tt>:
+        Generates reflection coordinates mapping to 3D direction in <i>world space</i>.
+        This will make the cube map reflection
+        simulating real mirror. It's analogous to standard
+        "CAMERASPACEREFLECTIONVECTOR", that does the same but in camera space,
+        making the mirror reflecting mostly the "back" side of the cube,
+        regardless of how the scene is rotated.</li>
+
+      <li><tt>WORLDSPACENORMAL</tt>: Use the vertex normal, transformed
+        to <i>world space</i>, as texture coordinates. Analogous to
+        standard "CAMERASPACENORMAL", that does the same but in camera space.</li>
+    </ol>
 
 <?php echo $toc->html_section(); ?>
 

@@ -404,7 +404,11 @@ Shape {
     (<a href="https://www.h3dapi.org:8090/H3DAPI/trunk/H3DAPI/src/TextureCoordinateGenerator.cpp">e.g.
     this source code also treats them as equal</a> and
     <a href="http://www.bitmanagement.com/developer/contact/labs/chrome.html">in this old
-    bitmanagement spec they mention they are equal</a>).
+    bitmanagement spec they mention they are equal</a>).</p>
+
+    <p>As an extension, we also allow <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
+    and "WORLDSPACENORMAL" texture generation modes', 'kambi_vrml_extensions',
+    'section_ext_tex_coord_worldspace'); ?>.</p>
 
     <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
     "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
