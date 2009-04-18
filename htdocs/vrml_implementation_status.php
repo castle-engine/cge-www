@@ -463,7 +463,11 @@ Shape {
     pass before actual rendering, and during this generation other shapes
     use existing values of their textures. This means that recursive mirrors,
     i.e. mirror that can be seen in another mirror, works to any level
-    (each frame rendered uses textures generated in the previous frame).</p>
+    (each frame rendered uses textures generated in the previous frame).
+    You can see recursive mirrors in some examples in <?php
+    echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
+    (see <tt>x3d/cubemap_generated_recursive.x3dv</tt>
+    <tt>x3d/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
 
     <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
     and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
