@@ -451,6 +451,10 @@ Shape {
     node for various shapes (as then we would not know from which shape
     to generate).</p>
 
+    <p>The texture before generation (e.g. if you have update = 'NONE'
+    at the start) has pink color (RGB(255, 0, 255)), so you can easily
+    recognize it.</p>
+
     <p>All the generated textures are rendered in a separate
     pass before actual rendering, and during this generation other shapes
     use existing values of their textures. This means that recursive mirrors,
@@ -620,7 +624,7 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 
   <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
 
-  <p>Also only-alpha images also allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
+  <p>Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
 
   <li><p>Compressed texture formats handled: TODO.
 </ol>
