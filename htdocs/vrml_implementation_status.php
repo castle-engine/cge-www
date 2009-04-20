@@ -349,18 +349,25 @@ Shape {
     <p>The implementation takes some care to handle all existing VRML versions:
     <a href="http://h-anim.org/Specifications/H-Anim1.0/">HAnim 1.0</a>,
     <a href="http://h-anim.org/Specifications/H-Anim1.1/">HAnim 1.1</a>,
-    <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.
+    <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
 
     <p>Animating transformations of <tt>Joint</tt> nodes and such
     is optimized, just like for <tt>Transform</tt> node,
     be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.
 
-  <li><tt>TextureTransformMatrix3D</tt>,
-      <tt>TextureTransform3D</tt>
+  <li><p><tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,<br/>
+      <tt>TextureCoordinate3D</tt>, <tt>TextureCoordinate4D</tt>,<br/>
+      <tt>ImageTexture3D</tt></p>
 
-    <p>Although we don't support 3D texturing yet,
-    above texture transform nodes are already supported (and may be used
-    to transform 2D textures).
+    <p>3D textures, coordinates for 3D textures, transforming
+    coordinates for 3D textures &mdash; all done.</p>
+
+    <p>TODO: ComposedTexture3D and PixelTexture3D not yet done.
+
+    <p>Note that 3D and 4D (homogeneous) coordinates, and transformations
+    in 3D space / by 4x4 matrix, may be used to transform 2D textures as well.
+    In case of 2D textures, the 3rd component is just ignored
+    and the 4th is normal divisor (as usual for homogeneous coordinates).</p>
 
   <li><tt>MultiTexture</tt>,
       <tt>MultiTextureCoordinate</tt>,
