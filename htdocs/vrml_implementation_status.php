@@ -634,7 +634,7 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 <p>Pixel formats supported:
 
 <ol>
-  <li><p>Absolutely <i>all uncompressed pixel formats are supported</i>.
+  <li><p>Absolutely <i>all uncompressed non-float pixel formats are supported</i>.
 
     <p>Details:
 
@@ -651,6 +651,9 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     alpha channel (so they will be rendered with blending).
 
     <p>TODO: temporarily, compressed DDS textures are loaded inverted.
+
+  <li><p>Float textures are for now not supported, so our DDS reader also
+    doesn't support them.
 </ol>
 
 <?php echo $toc->html_section(); ?>
