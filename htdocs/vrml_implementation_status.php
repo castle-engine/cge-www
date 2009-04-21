@@ -307,8 +307,8 @@ Shape {
 
   <li><p><tt>TextureProperties</tt>
 
-    <p><i>TODO</i>: very basic support, only minificationFilter and
-    magnificationFilter fields actually handled.
+    <p><tt>minificationFilter</tt>, <tt>magnificationFilter</tt>,
+    <tt>anisotropicDegree</tt> are supported. <i>TODO</i>: rest is not.
 
   <li><p><tt>KeySensor</tt>
 
@@ -361,6 +361,9 @@ Shape {
 
     <p>3D textures, coordinates for 3D textures, transforming
     coordinates for 3D textures &mdash; all done.</p>
+
+    <p><a href="#section_dds">DDS file format</a> to specify 3d (volume)
+    textures is supported by <tt>ImageTexture3D</tt>.
 
     <p>TODO: ComposedTexture3D and PixelTexture3D not yet done.
 
@@ -446,7 +449,7 @@ Shape {
     <p>We add <tt>textureProperties</tt> field to the <tt>ComposedCubeMapTexture</tt>
     node, intended for <tt>TextureProperties</tt> child, working just like
     in other texture nodes (you can use it to set minification / magnification
-    filter and such). Although X3D 3.2 specification doesn't mention this,
+    filter, anisotropy and such). Although X3D 3.2 specification doesn't mention this,
     it seems natural, and <a href="http://www.instantreality.org/documentation/nodetype/ComposedCubeMapTexture/">instantreality
     also uses this</a>.
     We support for cube maps all normal texture filterings, including mipmaps.</p>
@@ -633,15 +636,21 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 <ol>
   <li><p>Absolutely <i>all uncompressed pixel formats are supported</i>.
 
-  <p>Details:
+    <p>Details:
 
-  <p>The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.
+    <p>The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.
 
-  <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
+    <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
 
-  <p>Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
+    <p>Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
 
-  <li><p>Compressed texture formats handled: TODO.
+  <li><p>Compressed texture formats handled: DXT1, DXT3, DXT5 are supported.
+    Texture with DXT1 is always treated like a texture with simple (yes/no)
+    alpha channel (so it will be rendered with alpha testing) and
+    DXT3 / DXT5 are always treated like a texture with full range
+    alpha channel (so they will be rendered with blending).
+
+    <p>TODO: temporarily, compressed DDS textures are loaded inverted.
 </ol>
 
 <?php echo $toc->html_section(); ?>
