@@ -629,7 +629,7 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
   <li><p>It's also a different orientation then the one of X3D ComposedCubeMap specification (left/right, bottom/top, front/back, with bottom/top on Y axis; X3D orientation needs rotating left,right,front,back images by 180 degrees for OpenGL orientation).
 </ol>
 
-<p>Images in DDS are supposed to be written from top to bottom row, as is the standard in DDS. (One particular tool, AMD CubeMapGen, allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering; don't use this &mdash; we expect rows ordered as is standard in DDS, top-to-bottom; internally, our engine just inverts the rows for OpenGL.)
+<p>Images in DDS are supposed to be written from top to bottom row, as is the standard in DDS. (One particular tool, AMD CubeMapGen, allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering; don't use this &mdash; we expect rows ordered as is standard in DDS, top-to-bottom.) Internally, our engine just inverts the rows for OpenGL (yes, <a href="http://users.telenet.be/tfautre/softdev/ddsload/explanation.htm">this is doable also for S3TC compressed images</a>.)
 
 <p>Pixel formats supported:
 
@@ -649,8 +649,6 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     alpha channel (so it will be rendered with alpha testing) and
     DXT3 / DXT5 are always treated like a texture with full range
     alpha channel (so they will be rendered with blending).
-
-    <p>TODO: temporarily, compressed DDS textures are loaded inverted.
 
   <li><p>Float textures are for now not supported, so our DDS reader also
     doesn't support them.
