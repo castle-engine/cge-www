@@ -70,9 +70,14 @@ $toc = new TableOfContents(array(
 
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 1),
 
-  new TocItem('Shadows extensions', 'ext_shadows', 1),
+  new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
   new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 2),
   new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 2),
+
+  new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
+  new TocItem('Light parameters for projective texturing and shadow maps', 'ext_light_projective', 2),
+  new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
+  new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
 
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
@@ -291,13 +296,14 @@ subdirectories.
         '</table>';
     ?>
 
-    <p>The extensions below specify the shadows behavior.
+    <p>These extensions describe the shadows behavior when using
+    the <i>shadow volumes</i> algorithm.
     They are interpreted by all programs from my engine
     (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
     <?php echo a_href_page("view3dscene", "view3dscene"); ?>
     and VRML browser components) when rendering shadows using shadow volumes.</p>
 
-    <p>General notes about using shadows:
+    <p>General notes about using shadows by shadow volumes:
 
     <ul>
       <li><p>Shadows are produced if and only if you have some light node
@@ -369,7 +375,7 @@ subdirectories.
 
 <?php echo $toc->html_section(); ?>
 
-    To all VRML light nodes, we add two fields:
+    <p>To all VRML light nodes, we add two fields:
 
     <?php
       echo node_begin('XxxLight');
@@ -466,6 +472,190 @@ subdirectories.
 
     <p>This is honoured by our shadow volumes implementation
     (that is, dynamic shadows in OpenGL) and also by our ray-tracers.
+
+<?php echo $toc->html_section(); ?>
+
+  <p>Our engine implements also another algorithm for shadows:
+  the <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
+  volumes, which means that you can freely mix both shadow approaches
+  (volumes and maps) approaches within a single scene.</p>
+
+  <p>The engine allows you to trivially generate
+  (by <tt>GeneratedShadowMap</tt> node) and apply
+  (by <tt>TextureCoordinateGenerator.mode = "PROJECTED"</tt>) the shadow map.</p>
+
+  <p>An example VRML/X3D code for a light and a shadow receiver
+  (everything in the scene will be considered a "shadow caster" for shadow maps):
+
+<pre class="vrml_code">
+  DEF MySpot SpotLight {
+    location 0 0 10
+    direction 0 0 -1
+    # Additional fields for projective texturing (part of shadow mapping)
+    projectionNear 1
+    projectionFar 20
+  }
+
+  Shape {
+    appearance Appearance {
+      material Material { }
+      texture GeneratedShadowMap { light USE MySpot update "ALWAYS" }
+    }
+    geometry IndexedFaceSet {
+      texCoord TextureCoordinateGenerator {
+        mode "PROJECTION"
+        projectedLight USE MySpot
+      }
+      ....
+    }
+  }
+</pre>
+
+
+  <p>Note that the shadow texture will be applied in a very trivial way,
+  just to generate intensity values (0 - in shadow, 1 - not in shadow).
+  If you want to have some nice shading, you should use GLSL shader
+  to sample the depth texture (like <tt>shadow2DProj(shadowMap, gl_TexCoord[0]).r</tt>)
+  and do there any shading you want. Using shaders is generally
+  the way to make shadow mapping both beautiful and in one pass (read: fast),
+  and it's the way of the future anyway. You can start from a trivial
+  fragment shader in our examples:
+  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_map.fs">shadow_map.fs</a>.
+
+<?php echo $toc->html_section(); ?>
+
+  <p>Every light node gets new fields:
+
+  <?php
+    echo node_begin('*Light');
+    $node_format_fd_name_pad = 20;
+    echo
+    node_dots() .
+    node_field('[in,out]', 'SFFloat', 'projectionNear' , '0.01', '&gt; 0') .
+    node_field('[in,out]', 'SFFloat', 'projectionFar' , '100', 'anything &gt; projectionNear') .
+    node_field('[in,out]', 'SFVec3f', 'up' , '0 1 0') .
+    node_end();
+  ?>
+
+  <p><tt>"projectionNear"</tt>, <tt>"projectionFar"</tt> specify the near,
+  far values for projection used when generating the shadow map texture.
+  The default values are a little extreme, for usual scenes you should
+  set larger near and smaller far, which will make depth precision much better.</p>
+
+  <p><tt>"up"</tt> is the up vector of the light node when capturing
+  the shadow map. We know the direction for <tt>DirectionalLight</tt> and <tt>SpotLight</tt>,
+  but for shadow mapping we also need to know the up vector.
+  Internally, it will be adjusted to be orthogonal to the directional,
+  so you actually don't have to specify it in many cases &mdash;
+  only make sure that it's something non-parallel to the direction.
+
+  <p>These properties are specified at the light node, because both
+  texture generation and texture coord generation must know them,
+  and use the same values (otherwise results will not be of much use).</p>
+
+  <p>DirectionalLight gets additional fields to specify orthogonal
+  projection rectangle (projection XY sizes) and location for
+  projection (although directional light is conceptually at infinity
+  and doesn't have a location, but for making a texture projection
+  we actually need to know the light's location):</p>
+
+  <?php
+    echo node_begin('DirectionalLight');
+    $node_format_fd_name_pad = 20;
+    echo
+    node_dots() .
+    node_field('[in,out]', 'SFVec4f', 'projectionRectangle', '-10 10 -10 10', '# left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
+    node_field('[in,out]', 'SFVec3f', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
+    node_end();
+  ?>
+
+  <p>SpotLight gets additional field to specify perspective projection angle.
+
+  <?php
+    echo node_begin('SpotLight');
+    $node_format_fd_name_pad = 20;
+    echo
+    node_dots() .
+    node_field('[in,out]', 'SFFloat', 'projectionAngle', '0') .
+    node_end();
+  ?>
+
+  <p>When <tt>projectionAngle</tt> is zero, it means to take
+  projection angle from <tt>2 * cutOffAngle</tt>. Whether this is Ok,
+  depends on your needs. Note that projectionAngle is the vertical/horizontal
+  field of view for rectangular texture, while cutOffAngle is the cone angle.
+  This means that using cutOffAngle as projection angle would generally
+  make the projected image smaller then perceived light cone.
+  There's no way to choose projectionAngle and cutOffAngle to fit perfectly,
+  since you can't perfectly fit a rectangular texture into a circle shape.
+
+<?php echo $toc->html_section(); ?>
+
+  <p>New <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>,
+  and new <tt>TextureCoordinateGenerator</tt> field <tt>"projectedLight"</tt>
+  (SFNode, inputOutput, default NULL, allowed any light node).
+  This will generate texture coordinates for projective texturing:
+  a texture coordinate (s, t, r, q) will be generated for a fragment
+  that is seen by the light on (s/q, t/q) position, with r/q being the depth.
+  In other words, texture coordinates generated will contain the actual
+  3D geometry positions, but expressed in light's frustum coordinate system.</p>
+
+  <p>This can be used for any kind of projective texturing (not only
+  for shadow maps, but for any situation when light acts like
+  a projector for some texture).</p>
+
+<?php echo $toc->html_section(); ?>
+
+  <p>New node:
+
+  <?php
+    echo node_begin('GeneratedShadowMap');
+    //$node_format_fd_name_pad = 20;
+    echo
+    node_field('[in,out]', 'SFNode',    'metadata',          'NULL', '[X3DMetadataObject]') .
+    node_field('[in,out]', 'SFString',  'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
+    node_field('[]',       'SFInt32',   'size',              '128') .
+    node_field('[]',       'SFNode',    'light',             'NULL', 'any light node') .
+    node_field('[in,out]', 'SFFloat',   'scale',             '1.1') .
+    node_field('[in,out]', 'SFFloat',   'bias',              '4.0') .
+    node_end();
+  ?>
+
+
+  <p>The meaning of <tt>"update"</tt> is like for the standard
+  <tt>GeneratedCubeMapTexture</tt>: "NONE" is self-explanatory,
+  "ALWAYS" means every frame (for the full dynamic scenes),
+  "NEXT_FRAME_ONLY" says to update at the next frame (and
+  afterwards change back to "NONE").</p>
+
+  <p><tt>"size"</tt> is the size of the texture.
+  This texture will be created with OpenGL internal format
+  <tt>GL_DEPTH_COMPONENT</tt> (see
+  <a href="http://www.opengl.org/registry/specs/ARB/depth_texture.txt">ARB_depth_texture</a>),
+  so it's ideal for typical shadow map operations.
+  For GLSL shader, you're best using it with sampler2DShadow.</p>
+
+  <p><tt>"light"</tt> specifies the light node from which to generate the map.
+  For now, only <tt>DirectionalLight</tt> and <tt>SpotLight</tt> are supported.
+  Other nodes types, or NULL, will prevent the texture from generating.
+  It's usually comfortable to "USE" here some existing light node,
+  instead of defining new one.</p>
+
+  <p><tt>"scale"</tt> and <tt>"bias"</tt> are used with <tt>glPolygonOffset</tt>
+  to offset the scene rendered to the shadow map.
+  This avoids ugly precision problems (related to float precision,
+  but also to projecting shadow map texture on the screen with
+  different resolution). In short, increase "bias" if you see
+  strange noise instead of shadows (but don't increase too much,
+  or you will see that shadows visibly move back).</p>
+
+  <p>Note that light node instanced inside <tt>GeneratedShadowMap.light</tt>
+  or <tt>TextureCoordinateGenerator.projectedLight</tt> isn't
+  considered a normal light, that is it doesn't shine anywhere.
+  It should be defined anywhere in normal scene part to actually
+  act like a normal light. Moreover, it should not be
+  instanced many times in normal scene part, as then it's unspecified
+  from which view we will generate shadow map.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -579,7 +769,7 @@ EXTERNPROTO Text3D [
 
     <p>For example:
 
-<pre>
+<pre class="vrml_code">
   appearance KambiAppearance {
     material Material {
       transparency 0.5
