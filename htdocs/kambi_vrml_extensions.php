@@ -610,7 +610,8 @@ subdirectories.
 
   <?php
     echo node_begin('GeneratedShadowMap');
-    //$node_format_fd_name_pad = 20;
+    $node_format_fd_name_pad = 15;
+    $node_format_fd_def_pad = 20;
     echo
     node_field('[in,out]', 'SFNode',    'metadata',          'NULL', '[X3DMetadataObject]') .
     node_field('[in,out]', 'SFString',  'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
@@ -618,6 +619,7 @@ subdirectories.
     node_field('[]',       'SFNode',    'light',             'NULL', 'any light node') .
     node_field('[in,out]', 'SFFloat',   'scale',             '1.1') .
     node_field('[in,out]', 'SFFloat',   'bias',              '4.0') .
+    node_field('[]'      , 'SFString',  'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
     node_end();
   ?>
 
@@ -656,6 +658,18 @@ subdirectories.
   act like a normal light. Moreover, it should not be
   instanced many times in normal scene part, as then it's unspecified
   from which view we will generate shadow map.</p>
+
+  <p><tt>"compareMode"</tt> allows to additionally do depth comparison
+  on the texture. For texture coordinate <tt>(s, t, r, q)</tt>,
+  compare mode allows to compare <tt>r/q</tt> with <tt>texture2D(s/q, t/q)</tt>.
+  Combined with typical "PROJECTION" texture mapping, this is the moment when we
+  actually decide which screen pixel is in shadow and which is not.
+  Default value <tt>"COMPARE_R_LEQUAL"</tt> is the most useful
+  value for standard shadow mapping, it generates 1 (true) when
+  <tt>r/q &lt;= texture2D(s/q, t/q)</tt>, and 0 (false) otherwise. <tt>"NONE"</tt>
+  means that comparison is not done, depth texture values are returned directly,
+  this is useful for example for debug / demo purposes &mdash; you can
+  view the texture as a normal grayscale (luminance) texture.</p>
 
 <?php echo $toc->html_section(); ?>
 
