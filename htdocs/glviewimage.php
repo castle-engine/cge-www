@@ -179,6 +179,9 @@ It means that if you will load RGBE image to glViewImage and then
 you will save it (even to the RGBE format again)
 then you loose RGBE precision (and clamp color values above 1.0).
 
+<p>Also, S3TC compressed images (from DDS files) will be always decompressed,
+and saving them back will always make uncompressed files.
+
 <a name="section_depends"></a>
 <?php echo $toc->html_section(); ?>
 
