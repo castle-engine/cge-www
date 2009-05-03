@@ -531,7 +531,7 @@ subdirectories.
     $node_format_fd_name_pad = 20;
     echo
     node_dots() .
-    node_field('[in,out]', 'SFFloat', 'projectionNear' , '0.01', '&gt; 0') .
+    node_field('[in,out]', 'SFFloat', 'projectionNear' , '1', '&gt; 0') .
     node_field('[in,out]', 'SFFloat', 'projectionFar' , '100', 'anything &gt; projectionNear') .
     node_field('[in,out]', 'SFVec3f', 'up' , '0 1 0') .
     node_end();
@@ -539,8 +539,10 @@ subdirectories.
 
   <p><tt>"projectionNear"</tt>, <tt>"projectionFar"</tt> specify the near,
   far values for projection used when generating the shadow map texture.
-  The default values are a little extreme, for usual scenes you should
-  set larger near and smaller far, which will make depth precision much better.</p>
+  You should always try to make <tt>projectionNear</tt> as large as possible
+  and <tt>projectionFar</tt> as small as possible,
+  this will make depth precision better (keeping <tt>projectionNear</tt> large
+  is more important for this).</p>
 
   <p><tt>"up"</tt> is the up vector of the light node when capturing
   the shadow map. We know the direction for <tt>DirectionalLight</tt> and <tt>SpotLight</tt>,
