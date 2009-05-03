@@ -475,6 +475,12 @@ subdirectories.
 
 <?php echo $toc->html_section(); ?>
 
+  <?php
+    echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("trees_river_shadow_maps.png", 'Scenery with shadow maps') .
+        '</table>';
+    ?>
+
   <p>Our engine implements also another algorithm for shadows:
   the <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
   volumes, which means that you can freely mix both shadow approaches
