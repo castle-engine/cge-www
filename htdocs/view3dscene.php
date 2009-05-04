@@ -935,8 +935,8 @@ and make sure it's available on $PATH.
     <a href="http://www.finkproject.org/">fink</a> (unfortunately,
     <a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">only in unstable currently</a>),
   <li>finally <i>Windows</i> users may try these
-    <a href="http://arrozcru.no-ip.org/ffmpeg_builds/">unofficial FFmpeg Win32 Builds</a>
-    (<a href="http://arrozcru.no-ip.org/ffmpeg/index.html">see here for more information about
+    <a href="http://ffmpeg.arrozcru.org/builds/">unofficial FFmpeg Win32 Builds</a>
+    (<a href="http://ffmpeg.arrozcru.org/">see here for more information about
     ffmpeg on Windows</a>). Remember to add bin/ directory to your $PATH after unpacking.
 </ul>
 
