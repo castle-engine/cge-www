@@ -155,7 +155,7 @@ glViewImage you can give it as parameters a list of images to browse.
 <p>Running <tt>glViewImage</tt> with no parameters is equivalent
 to running<br>
 <tt>&nbsp;&nbsp;glViewImage .</tt><br>
-so you will view all images (that glViewImage can handle) in current directory.
+so you will view all images (that glViewImage can handle) in the current directory.
 If none found, the default welcome image will be displayed.
 
 <p>Oh, and (as usual) all parameters described in those pages:
