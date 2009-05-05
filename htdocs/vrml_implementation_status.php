@@ -357,20 +357,29 @@ Shape {
 
   <li><p><tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,<br/>
       <tt>TextureCoordinate3D</tt>, <tt>TextureCoordinate4D</tt>,<br/>
-      <tt>ImageTexture3D</tt></p>
+      <tt>ImageTexture3D</tt>, <tt>ComposedTexture3D</tt>, <tt>PixelTexture3D</tt></p>
 
     <p>3D textures, coordinates for 3D textures, transforming
     coordinates for 3D textures &mdash; all done.</p>
-
-    <p><a href="#section_dds">DDS file format</a> to specify 3d (volume)
-    textures is supported by <tt>ImageTexture3D</tt>.
-
-    <p>TODO: ComposedTexture3D and PixelTexture3D not yet done.
 
     <p>Note that 3D and 4D (homogeneous) coordinates, and transformations
     in 3D space / by 4x4 matrix, may be used to transform 2D textures as well.
     In case of 2D textures, the 3rd component is just ignored
     and the 4th is normal divisor (as usual for homogeneous coordinates).</p>
+
+    <p><a href="#section_dds">DDS file format</a> to specify 3d (volume)
+    textures is supported by <tt>ImageTexture3D</tt>.</p>
+
+    <p>Note that <tt>PixelTexture3D</tt> with RGBA values has a
+    problematic behavior because it uses <tt>MFInt32</tt> field for colors.
+    When you encode RGBA colors (following <tt>SFImage</tt> specification),
+    the most significant byte of Int32 may have to be non-zero,
+    which means that you will have to write negative values
+    inside <tt>PixelTexture3D.image</tt>. (Of course we handle it correctly,
+    I'm just signalling there's a strangeness here. For normal
+    <tt>SFImage</tt> fields this problem doesn't exist because our lexer
+    can actually understand integer values outside of int32 range, so when parsing
+    SFImage this is handled Ok, without going through int32.)</p>
 
   <li><tt>MultiTexture</tt>,
       <tt>MultiTextureCoordinate</tt>,
