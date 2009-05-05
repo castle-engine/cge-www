@@ -94,8 +94,8 @@ function this_a_href_page($title, $page_name)
   <tr><td>
     <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/water_reflections.png">
       <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/water_reflections.png"
-      alt="Water reflections by optimizeed GeneratedCubeMapTexture"
-      title="Water reflections by optimizeed GeneratedCubeMapTexture"
+      alt="Water reflections by optimized GeneratedCubeMapTexture"
+      title="Water reflections by optimized GeneratedCubeMapTexture"
     /></a>
   </td></tr>
 </table>
