@@ -53,6 +53,81 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'News from SVN - 3D textures, shadow maps, hardware occlusion query and more',
+          'year' => 2009,
+          'month' => 5,
+          'day' => 5,
+          'pubDate' => /* date_to_timestamp.sh '2009-05-05' */ 1241524800,
+          'guid' => '2009-05-05',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => '
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/trees_river_shadow_maps.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/trees_river_shadow_maps.png"
+      alt="Shadow maps"
+      title="Shadow maps"
+    /></a>
+  </td>
+  <td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/tex3d_smoke.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/tex3d_smoke.png"
+      alt="Fog from 3D noise"
+      title="Fog from 3D noise"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/anisotropic_demo.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/anisotropic_demo.png"
+      alt="Demo how anisotropic filtering helps"
+      title="Demo how anisotropic filtering helps"
+    /></a>
+  </td>
+  <td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/oq_demo.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/oq_demo.png"
+      alt="Occlusion query optimizing city view"
+      title="Occlusion query optimizing city view"
+    /></a>
+  </td></tr>
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/water_reflections.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/water_reflections.png"
+      alt="Water reflections by optimizeed GeneratedCubeMapTexture"
+      title="Water reflections by optimizeed GeneratedCubeMapTexture"
+    /></a>
+  </td></tr>
+</table>
+
+<p>New features implemented last month in our engine:</p>
+
+<ul>
+  <li>3D textures (full support for X3D <tt>Texturing3D</tt> component).
+    In particular, <tt>ImageTexture3D</tt> supports 3D textures in DDS format.</li>
+  <li>New extensions to easily make
+    <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">projective
+    texturing and shadow maps</a> within your VRML/X3D worlds.</li>
+  <li>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>
+    field).</li>
+  <li><i>Hardware occlusion query</i> may be activated for rendering,
+    this can speed browsing large
+    scenes enormously. Implemented both the <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">basic method (see GPU Gems 1, Chapter 29)</a>
+    and more involved algorithm <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling (see GPU Gems 2, Chapter 6)</a>.
+    view3dscene has menu options (<i>View -&gt; ... Occlusion Query</i>) to try it all.
+    </li>
+  <li>And many other things: fixes and optimizations for <tt>GeneratedCubeMapTexture</tt>,
+    glViewImage improvements (you no longer have to open files from command-line),
+    S3TC compressed textures (from DDS; usable as textures, also viewable in glViewImage),
+    sorting transparent shapes (for better blending),
+    exit shortcut for view3dscene is Ctrl+W (escape was too error-prone).
+</ul>
+
+<p>For the brave: you can test these features already by trying the
+<a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>
+(or grabbing source code from SVN and compiling yourself, of course).</p>
+'),
+
     array('title' => 'News from SVN &mdash; X3D multi-texturing, cube maps and more',
           'year' => 2009,
           'month' => 4,
