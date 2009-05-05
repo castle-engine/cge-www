@@ -484,11 +484,11 @@ subdirectories.
   <p>Our engine implements also another algorithm for shadows:
   the <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
   volumes, which means that you can freely mix both shadow approaches
-  (volumes and maps) approaches within a single scene.</p>
+  (volumes and maps) within a single scene.</p>
 
   <p>The engine allows you to trivially generate
   (by <tt>GeneratedShadowMap</tt> node) and apply
-  (by <tt>TextureCoordinateGenerator.mode = "PROJECTED"</tt>) the shadow map.</p>
+  (by <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>) the shadow map.</p>
 
   <p>An example VRML/X3D code for a light and a shadow receiver
   (everything in the scene will be considered a "shadow caster" for shadow maps):
