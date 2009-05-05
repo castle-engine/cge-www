@@ -60,8 +60,8 @@ Features include:</p>
     For dynamic scenes, a hierarchy of octrees is used, allowing accurate
     and fast collision detection even when the scene constantly changes.</li>
 
-  <li><b>Shadows</b> by shadow volumes (full implementation, with z-fail / z-pass
-    switching, silhouette detection etc.).</li>
+  <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
+    switching, silhouette detection etc.) and <b>shadow maps</b>.</li>
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
     'kambi_vrml_extensions', 'ext_bump_mapping'); ?></b> (using various
@@ -78,7 +78,12 @@ Features include:</p>
 
   <li>Advanced texturing, following X3D standard: <b>multi-texturing</b>,
     <b>cube map texturing</b> (can be loaded from separate files,
-    DDS files, or captured during runtime), <b>3d textures</b>.
+    DDS files, or captured during runtime), <b>3D textures</b>,
+    <b>S3TC compressed textures</b>, <b>anisotropic filtering</b>.
+
+  <li>Speeding up rendering by <b>hardware occlusion query</b>,
+    a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
+    more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
 
   <li>GLWindow unit is available to easily <b>create windows with OpenGL
     context</b>. The intention of this unit is to be something like glut,
