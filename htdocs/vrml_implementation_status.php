@@ -381,6 +381,12 @@ Shape {
     can actually understand integer values outside of int32 range, so when parsing
     SFImage this is handled Ok, without going through int32.)</p>
 
+    <p>Automatic 3D texture coord generation for primitives (<tt>Box</tt>,
+    <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>) is done
+    (according to X3D spec, <i>33.2.4 Texture coordinate generation for primitive objects</i>).
+    TODO: Although it's reversed on the bottom disk of
+    <tt>Cone</tt> and <tt>Cylinder</tt> for now.
+
   <li><tt>MultiTexture</tt>,
       <tt>MultiTextureCoordinate</tt>,
       <tt>MultiTextureTransform</tt>
