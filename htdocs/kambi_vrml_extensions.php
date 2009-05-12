@@ -79,6 +79,7 @@ $toc = new TableOfContents(array(
   new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
   new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
 
+  new TocItem('Output events to generate camera matrix <tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 1),
@@ -678,6 +679,46 @@ subdirectories.
   means that comparison is not done, depth texture values are returned directly,
   this is useful for example for debug / demo purposes &mdash; you can
   view the texture as a normal grayscale (luminance) texture.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  <p>To every viewpoint node (this applies to all viewpoints usable
+  in our engine, including all <tt>X3DBindableNode</tt> descendants,
+  like <tt>Viewpoint</tt> and <tt>OrthoViewpoint</tt>, and even to
+  VRML 1.0 <tt>PerspectiveCamera</tt> and <tt>OrthographicCamera</tt>)
+  we add output events that provide you with current camera matrix.
+  One use for such matrices is to route them to your GLSL shaders (as
+  uniform variables), and use inside the shaders to transform between
+  world and camera space.</p>
+
+  <p><tt>"cameraMatrix"</tt> transforms from world-space (global 3D space
+  that we most often think within) to camera-space (aka eye-space;
+  when thinking within this space, you know then that the camera
+  position is at (0, 0, 0), looking along -Z, with up in +Y).
+  It takes care of both the camera position and orientation,
+  so it's 4x4 matrix.
+  <tt>"cameraInverseMatrix"</tt> is simply the inverse of this matrix,
+  so it transforms from camera-space back to world-space.</p>
+
+  <p><tt>"cameraRotationMatrix"</tt> again
+  transforms from world-space to camera-space, but now it only takes
+  care of camera rotations, disregarding camera position. As such,
+  it fits within a 3x3 matrix (9 floats), so it's also smaller than full
+  <tt>cameraMatrix</tt> (4x4, 16 floats).
+  <tt>"cameraRotationInverseMatrix"</tt> is simply it's inverse.
+  Ideal to transform directions
+  between world- and camera-space in shaders.</p>
+
+  <?php
+    echo node_begin('XxxViewpoint');
+    echo
+    node_dots() .
+    node_field('[out]', 'SFMatrix4f', 'cameraMatrix', '') .
+    node_field('[out]', 'SFMatrix4f', 'cameraInverseMatrix', '') .
+    node_field('[out]', 'SFMatrix3f', 'cameraRotationMatrix', '') .
+    node_field('[out]', 'SFMatrix3f', 'cameraRotationInverseMatrix', '') .
+    node_end();
+  ?>
 
 <?php echo $toc->html_section(); ?>
 
