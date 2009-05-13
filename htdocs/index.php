@@ -33,7 +33,8 @@ Two most important programs available here are
 <!-- To force engine icon separated from "latest update" frame on wide pages -->
 <br clear="all"/>
 
-<div class="latest_update_description">
+<div class="latest_update_description" style="padding: 0px;">
+<div style="padding: 0.5em">
 <div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
 <?php
   require 'changes_log_common.php';
@@ -41,8 +42,15 @@ Two most important programs available here are
 ?>
 </div>
 
-<p>See <?php echo
-a_href_page('the log of previous changes to these pages', 'changes_log') ?>.</p>
+<p style="background: #DDD; padding: 0.2em; margin: 0px">
+Comments?
+Go to <?php echo MAILING_LIST_LINK; ?> or
+<a href="https://apps.sourceforge.net/phpbb/vrmlengine/">forum</a>.<br/>
+See also <?php echo
+a_href_page('the news archive', 'changes_log') ?>.
+</p>
+
+</div>
 
 <?php echo main_list_begin(); ?>
 <?php echo main_list_item("Programs: Main games, VRML tools");
@@ -136,7 +144,8 @@ and I keep them in working and compilable state, but that's it.
 
 <ul>
   <li><?php echo a_href_page("glViewImage","glviewimage") ?> &mdash;
-    image viewer, it can fully handle PNG, JPEG, PPM, BMP and RGBE formats
+    image viewer, handles many image formats (including
+    some exotic ones: DDS, RGBE)
   <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
     just a toy allowing you to plot Bezier curves in 3D -->
   <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
@@ -149,8 +158,12 @@ and I keep them in working and compilable state, but that's it.
 <?php echo main_list_item('Support', 'support'); ?>
 
 <p>Subscribe to <?php echo MAILING_LIST_LINK; ?>.
-This list is for any discussion, questions,
-announcements related to our VRML engine and programs on this page.</p>
+Or go to
+<a href="https://apps.sourceforge.net/phpbb/vrmlengine/">our forum</a>
+(you should be able to register with your
+<a href="https://sourceforge.net/">SourceForge</a> account).
+Any questions, discussion, announcements related to our
+VRML engine (and related programs like view3dscene) are welcome there.</p>
 
 <p>Submit
 <a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
