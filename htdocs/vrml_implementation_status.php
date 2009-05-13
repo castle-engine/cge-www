@@ -496,6 +496,23 @@ Shape {
 
     <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
     and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
+
+    <p>Current player camera doesn't affect how cube map is generated.
+    This is good, it means that generated texture is usable for as long
+    as the scene remains unchanged, and doesn't have to be regenerated
+    each time when the player moves.
+    (When <tt>update="ALWAYS"</tt>, this optimization is automatically
+    used under the hood.) This also means that generated cube map texture
+    is similar to static (from <tt>ImageCubeMapTexture</tt>
+    and <tt>ComposedCubeMapTexture</tt>), and you usually want to
+    use <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
+    texture generation', 'kambi_vrml_extensions',
+    'section_ext_tex_coord_worldspace'); ?> to simulate mirror.
+    When using cube maps with GLSL shaders, this often forces the need to
+    transform directions from eye-space to world-space,
+    you can obtain appropriate matrix easily by
+    <?php echo a_href_page_hashlink('Viewpoint.cameraRotationInverseMatrix output event', 'kambi_vrml_extensions',
+    'section_ext_viewpoint_camera_matrix'); ?>.
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
