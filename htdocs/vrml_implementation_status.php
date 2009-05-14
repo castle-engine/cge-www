@@ -213,6 +213,10 @@ ROUTE MyTimer.time TO MyShader.time
     set GLSL vectors/matrices, you can use VRML/X3D
     multiple-value fields to set GLSL array types and such.
 
+    <p>You can directly place shader source code inside of an URL.
+    We recognize URL as containing direct shader source if it has any newlines
+    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+
     <p>TODO: attributes for shaders in VRML are not yet passed.
     They are implemented in the engine classes of course, it's only a matter
     of implementing link between VRML and them.
