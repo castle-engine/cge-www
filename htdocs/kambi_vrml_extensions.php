@@ -82,7 +82,6 @@ $toc = new TableOfContents(array(
   new TocItem('Output events to generate camera matrix <tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
-  new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 1),
   new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 1),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 1),
@@ -91,7 +90,6 @@ $toc = new TableOfContents(array(
   new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 1),
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 1),
-  new TocItem('Other Avalon / instant-reality extensions: <tt>MatrixTransform</tt>, <tt>Logger</tt>, <tt>Teapot</tt>', 'ext_avalon', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 1),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 1),
@@ -103,6 +101,14 @@ $toc = new TableOfContents(array(
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 1),
   new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 1),
   new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 1),
+
+  new TocItem('Extensions compatible with Avalon / instant-reality', 'ext_avalon', 1),
+
+  new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
+  new TocItem('Transform by explicit 4x4 matrix (<tt>MatrixTransform</tt> node)', 'ext_matrix_transform', 2),
+  new TocItem('Events logger (<tt>Logger</tt> node)', 'ext_logger', 2),
+  new TocItem('Teapot primitive (<tt>Teapot</tt> node)', 'ext_teapot', 2),
+  new TocItem('Texture automatically rendered from viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
 
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 
@@ -811,46 +817,6 @@ EXTERNPROTO Text3D [
 
 <?php echo $toc->html_section(); ?>
 
-  <?php
-    echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
-        '</table>';
-    ?>
-
-    <p>We add new field to <tt>KambiAppearance</tt> node: <tt>blendMode</tt> (SFNode,
-    NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
-    node to specify blending mode done for partially-transparent objects.
-    BlendMode node is not X3D standard, but it's specified by Avalon:
-    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
-    BlendNode specification</a>.
-
-    <p>From Avalon spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
-    <tt>destFactor</tt>, <tt>color</tt>, <tt>colorTransparency</tt>.
-    Note that some values require newer
-    OpenGL versions, we will eventually fallback on browser-specific blending
-    modes (you can set them explicitly in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
-
-    <p>For example:
-
-<pre class="vrml_code">
-  appearance KambiAppearance {
-    material Material {
-      transparency 0.5
-    }
-    blendMode BlendMode {
-      srcFactor "src_alpha" # actually this srcFactor is the default
-      destFactor "one"
-    }
-  }
-</pre>
-
-    <p>Example above sets blending to an often-desired equation where the order of rendering
-    doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
-    otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
-    artifacts.
-
-<?php echo $toc->html_section(); ?>
-
     <?php
     echo '<table align="right">' .
         '<tr><td>' . ext_screenshot("alpha_channel_override_demo.png", 'Demo of alphaChannel override') .
@@ -1236,121 +1202,6 @@ end;
     <p>Since we officially support X3D now, this is not really an extension,
     it's just normal X3D feature. You can use it in VRML 2.0 models too,
     as usual our engine allows you to mix VRML versions freely.
-
-<?php echo $toc->html_section(); ?>
-
-    <p>Besides <tt>BlendMode</tt>, we also read some other Avalon / instant-reality extensions.
-    See <a href="http://instant-reality.com/">instant-reality</a>
-    and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
-    specifications of Avalon extensions</a>.
-
-    <p>Some subset of the Avalon extensions that we actually <i>handle</i>
-    (that is, actually do what we are supposed to do, not only reading them)
-    is listed below. Please note that I implemented this all looking at Avalon
-    specifications, which are quite terse. (I didn't actually run
-    instant-reality program (closed-source,
-    not installable under current Debian testing).) Please report
-    any incompatibilities.
-
-    <ul>
-      <li><p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a><br/>
-        (supported <tt>matrix</tt> field, and the standard <tt>X3DGroupingNode</tt> fields)
-
-        <p>This is analogous to <tt>Transform</tt> node, but specifies explicit
-        4x4 matrix. Note that VRML 1.0 also had <tt>MatrixTransform</tt> node
-        (we also handle it), although specified a little differently.
-        Later VRML 97 and X3D removed the <tt>MatrixTransform</tt> node
-        from official specification &mdash; this extension fills the gap.
-
-        <p>Note that this node was removed from specifications for a good
-        reason. Our engine can invert your matrix internally (this is needed for some
-        things, like bump mapping), but still it's
-        difficult to extract particular features (like scaling factor)
-        from such matrix. Currently our engine
-        extracts scaling factors by very naive
-        method. (Although this is planned to be fixed using
-        <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
-        The bottom line is: <i>You are well adviced to try
-        to express all transformations using stardard <tt>Transform</tt> node</i>.
-
-        <p>This node may be useful
-        when you really have no choice (for example, when converting from
-        Collada files that have transformation written as explicit 4x4 matrix,
-        it's natural to convert it to VRML <tt>MatrixTransform</tt>).
-
-      <li><p><a href="http://instant-reality.com/documentation/nodetype/Logger/"><tt>Logger</tt></a><br/>
-        (supported <tt>level</tt>, <tt>logFile</tt>,
-        <tt>enabled</tt> fields and <tt>write</tt> inputOnly event)
-
-        <?php
-          echo '<table align="right">' .
-            '<tr><td>' . ext_screenshot("logger.png", 'Logger node demo') .
-            '</table>';
-        ?>
-
-        <p>An extremely useful debugger when playing with VRML / X3D routes
-        and events. The idea is simple: whatever is sent to <tt>write</tt>
-        input event is logged on the console. <tt>write</tt> event has special type
-        (Avalon calls this <tt>XFAny</tt>) that allows to receive <i>any</i>
-        VRML field type.
-
-        <p>Other properties allow to control logging better.
-        When <tt>enabled</tt> is false, nothing is logged.
-        <tt>level</tt> controls the amount of logged info:
-        <ol>
-          <li>nothing,
-          <li>log sending field name, type, timestamp,
-          <li>additionally log received value,
-          <li>additionally log sending node name, type.
-        </ol>
-
-        <p><tt>logFile</tt>, when non-empty, specifies the filename to
-        write log information to. (When <tt>logFile</tt> is empty, it's
-        all simply dumped on standard output, i.e. usually console.)
-        As a security measure (you really do not want to allow an author
-        of X3D file to overwrite arbitrary files without asking user),
-        in my implementation only the basename of the <tt>logFile</tt> matters,
-        the file is always saved into current directory. Moreover, filename
-        is like <tt>view3dscene_logger_XXX_%d.log</tt>, where "view3dscene"
-        is the name of the program, "XXX" is the name specified in <tt>logFile</tt>,
-        and "%d" is just next free number. This way logger output file
-        is predictable, and should never overwrite your data.
-
-        <p>These security measures were added by my implementation &mdash;
-        Avalon spec simply says that <tt>logFile</tt> is the name of the file,
-        I don't know how they handled security problems with logFile.
-
-      <li><p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a><br/>
-        (supported <tt>size</tt> and <tt>solid</tt> fields, also our
-        own <tt>texCoord</tt>)
-
-        <?php
-          echo '<table align="right">' .
-            '<tr><td>' . ext_screenshot("teapot_demo.png", 'Teapot node demo') .
-            '</table>';
-        ?>
-
-        <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
-        the teapot, much like the standard <tt>Box</tt> node. The default
-        size (3, 3, 3) means that the longest size of teapot bounding box
-        is 3.0 (all other sizes are actually slightly smaller).
-        Changing size scales the teapot (assuming that size = 3 means "default size").
-
-        <p>We also add <tt>texCoord</tt> field (not present in Avalon version):
-        this may contain a <tt>TextureCoordinateGenerator</tt>
-        node specifying how texture coordinates are generated.
-        Very useful to quickly test various texture coordinate generators
-        (e.g. for cube env mapping) on teapot.
-        When <tt>texCoord</tt> is not present but texture coordinates
-        are required (because appearance specifies a texture),
-        we will generate default texture coords (using the same
-        alrgoithm as for <tt>IndexedFaceSet</tt>).
-
-        <p>For the sake of VRML / X3D standards, I do not really advice
-        using this node... VRML developers should spend their time better
-        than to implement such nodes of little practical use :)
-        But it's here for you for testing purposes.
-    </ul>
 
 <?php echo $toc->html_section(); ?>
 
@@ -2049,6 +1900,168 @@ end;
     VRML graph by other events. So if you have multiple
     <tt>[Kambi]NavigationInfo</tt> nodes in your world, I advice to
     specify in all of them exactly the same <tt>octreeXxx</tt> fields values.
+
+<?php echo $toc->html_section(); ?>
+
+    <p>We handle some Avalon / instant-reality extensions.
+    See <a href="http://instant-reality.com/">instant-reality</a>
+    and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
+    specifications of Avalon extensions</a>.
+
+    <p>Please note that I implemented this all looking at Avalon
+    specifications, which are quite terse. (I didn't actually run
+    instant-reality program (closed-source,
+    not installable under current Debian testing).) Please report
+    any incompatibilities.
+
+<?php echo $toc->html_section(); ?>
+
+  <?php
+    echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
+        '</table>';
+    ?>
+
+    <p>We add new field to <tt>KambiAppearance</tt> node: <tt>blendMode</tt> (SFNode,
+    NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
+    node to specify blending mode done for partially-transparent objects.
+    BlendMode node is not X3D standard, but it's specified by Avalon:
+    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
+    BlendNode specification</a>.
+
+    <p>From Avalon spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
+    <tt>destFactor</tt>, <tt>color</tt>, <tt>colorTransparency</tt>.
+    Note that some values require newer
+    OpenGL versions, we will eventually fallback on browser-specific blending
+    modes (you can set them explicitly in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
+
+    <p>For example:
+
+<pre class="vrml_code">
+  appearance KambiAppearance {
+    material Material {
+      transparency 0.5
+    }
+    blendMode BlendMode {
+      srcFactor "src_alpha" # actually this srcFactor is the default
+      destFactor "one"
+    }
+  }
+</pre>
+
+    <p>Example above sets blending to an often-desired equation where the order of rendering
+    doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
+    otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
+    artifacts.
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><tt>MatrixTransform</tt></a>:
+    supported <tt>matrix</tt> field, and the standard <tt>X3DGroupingNode</tt> fields.
+
+    <p>This is analogous to <tt>Transform</tt> node, but specifies explicit
+    4x4 matrix. Note that VRML 1.0 also had <tt>MatrixTransform</tt> node
+    (we also handle it), although specified a little differently.
+    Later VRML 97 and X3D removed the <tt>MatrixTransform</tt> node
+    from official specification &mdash; this extension fills the gap.
+
+    <p>Note that this node was removed from specifications for a good
+    reason. Our engine can invert your matrix internally (this is needed for some
+    things, like bump mapping), but still it's
+    difficult to extract particular features (like scaling factor)
+    from such matrix. Currently our engine
+    extracts scaling factors by very naive
+    method. (Although this is planned to be fixed using
+    <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
+    The bottom line is: <i>You are well adviced to try
+    to express all transformations using stardard <tt>Transform</tt> node</i>.
+
+    <p>This node may be useful
+    when you really have no choice (for example, when converting from
+    Collada files that have transformation written as explicit 4x4 matrix,
+    it's natural to convert it to VRML <tt>MatrixTransform</tt>).
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://instant-reality.com/documentation/nodetype/Logger/"><tt>Logger</tt></a>:
+    supported <tt>level</tt>, <tt>logFile</tt>,
+    <tt>enabled</tt> fields and <tt>write</tt> inputOnly event.
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("logger.png", 'Logger node demo') .
+        '</table>';
+    ?>
+
+    <p>An extremely useful debugger when playing with VRML / X3D routes
+    and events. The idea is simple: whatever is sent to <tt>write</tt>
+    input event is logged on the console. <tt>write</tt> event has special type
+    (Avalon calls this <tt>XFAny</tt>) that allows to receive <i>any</i>
+    VRML field type.
+
+    <p>Other properties allow to control logging better.
+    When <tt>enabled</tt> is false, nothing is logged.
+    <tt>level</tt> controls the amount of logged info:
+    <ol>
+      <li>nothing,
+      <li>log sending field name, type, timestamp,
+      <li>additionally log received value,
+      <li>additionally log sending node name, type.
+    </ol>
+
+    <p><tt>logFile</tt>, when non-empty, specifies the filename to
+    write log information to. (When <tt>logFile</tt> is empty, it's
+    all simply dumped on standard output, i.e. usually console.)
+    As a security measure (you really do not want to allow an author
+    of X3D file to overwrite arbitrary files without asking user),
+    in my implementation only the basename of the <tt>logFile</tt> matters,
+    the file is always saved into current directory. Moreover, filename
+    is like <tt>view3dscene_logger_XXX_%d.log</tt>, where "view3dscene"
+    is the name of the program, "XXX" is the name specified in <tt>logFile</tt>,
+    and "%d" is just next free number. This way logger output file
+    is predictable, and should never overwrite your data.
+
+    <p>These security measures were added by my implementation &mdash;
+    Avalon spec simply says that <tt>logFile</tt> is the name of the file,
+    I don't know how they handled security problems with logFile.
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a>:
+    supported <tt>size</tt> and <tt>solid</tt> fields, also our
+    own <tt>texCoord</tt>.
+
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("teapot_demo.png", 'Teapot node demo') .
+        '</table>';
+    ?>
+
+    <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
+    the teapot, much like the standard <tt>Box</tt> node. The default
+    size (3, 3, 3) means that the longest size of teapot bounding box
+    is 3.0 (all other sizes are actually slightly smaller).
+    Changing size scales the teapot (assuming that size = 3 means "default size").
+
+    <p>We also add <tt>texCoord</tt> field (not present in Avalon version):
+    this may contain a <tt>TextureCoordinateGenerator</tt>
+    node specifying how texture coordinates are generated.
+    Very useful to quickly test various texture coordinate generators
+    (e.g. for cube env mapping) on teapot.
+    When <tt>texCoord</tt> is not present but texture coordinates
+    are required (because appearance specifies a texture),
+    we will generate default texture coords (using the same
+    alrgoithm as for <tt>IndexedFaceSet</tt>).
+
+    <p>For the sake of VRML / X3D standards, I do not really advice
+    using this node... VRML developers should spend their time better
+    than to implement such nodes of little practical use :)
+    But it's here for you for testing purposes.
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/"><tt>RenderedTexture</tt></a>:
+    TODO.
 
 <?php echo $toc->html_section(); ?>
 
