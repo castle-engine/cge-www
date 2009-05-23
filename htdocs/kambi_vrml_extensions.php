@@ -2027,36 +2027,63 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://instant-reality.com/documentation/nodetype/Teapot/"><tt>Teapot</tt></a>:
-    supported <tt>size</tt> and <tt>solid</tt> fields, also our
-    own <tt>texCoord</tt>.
-
     <?php
       echo '<table align="right">' .
         '<tr><td>' . ext_screenshot("teapot_demo.png", 'Teapot node demo') .
         '</table>';
     ?>
 
-    <p>Simply renders a teapot. <tt>size</tt> field allows you to scale
+    <p>A teapot. Useful non-trivial shape for testing various display modes,
+    shaders and such.
+
+    <p><i>Compatibility with
+    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">Avalon Teapot</a></i>:
+    we support <tt>size</tt> and <tt>solid</tt> fields from Avalon.
+    Fields <tt>texCoord</tt> and <tt>manifold</tt> are our own (Kambi engine)
+    extensions.</p>
+
+    <?php echo node_begin("Teapot : X3DGeometryNode");
+      echo
+      node_field('[in,out]', 'SFNode', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('[]', 'SFVec3f', 'size', '3 3 3') .
+      node_field('[]', 'SFBool', 'solid', 'TRUE') .
+      node_field('[]', 'SFBool', 'manifold', 'FALSE') .
+      node_field('[in,out]', 'SFNode', 'texCoord', 'NULL', '[TextureCoordinateGenerator]') .
+      node_end();
+    ?>
+
+    <p>
+
+    <p>The <tt>"size"</tt> field allows you to scale
     the teapot, much like the standard <tt>Box</tt> node. The default
     size (3, 3, 3) means that the longest size of teapot bounding box
     is 3.0 (all other sizes are actually slightly smaller).
-    Changing size scales the teapot (assuming that size = 3 means "default size").
+    Changing size scales the teapot (assuming that size = 3 means "default size").</p>
 
-    <p>We also add <tt>texCoord</tt> field (not present in Avalon version):
-    this may contain a <tt>TextureCoordinateGenerator</tt>
+    <p>The <tt>"texCoord"</tt> field may contain a <tt>TextureCoordinateGenerator</tt>
     node specifying how texture coordinates are generated.
     Very useful to quickly test various texture coordinate generators
     (e.g. for cube env mapping) on teapot.
     When <tt>texCoord</tt> is not present but texture coordinates
     are required (because appearance specifies a texture),
     we will generate default texture coords (using the same
-    alrgoithm as for <tt>IndexedFaceSet</tt>).
+    alrgoithm as for <tt>IndexedFaceSet</tt>).</p>
+
+    <p>The <tt>"solid"</tt> field has standard meaning: if true (default),
+    it's assumed
+    that teapot will never be seen from the inside (and backface culling
+    is used to speed up rendering).</p>
+
+    <p>The <tt>"manifold"</tt> field allows you to force teapot geometry
+    to be correctly closed (2-manifold, where each edge has exactly
+    2 neighboring faces). This is useful if you want to use shadow volumes
+    to cast shadow of this teapot.</p>
 
     <p>For the sake of VRML / X3D standards, I do not really advice
     using this node... VRML developers should spend their time better
-    than to implement such nodes of little practical use :)
-    But it's here for you for testing purposes.
+    than to implement such nodes of little practical use :),
+    and it's possible to make the same thing with a PROTO.
+    But it's useful for testing purposes.</p>
 
 <?php echo $toc->html_section(); ?>
 
