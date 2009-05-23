@@ -200,6 +200,13 @@ function echo_standard_program_download(
       '">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
   } else
   {
+  /*
+    Still unsure if this looks good:
+
+    echo '<table align="right"><tr><td>
+        <a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a>
+      </td></tr></table>';
+  */
     echo "<ul>\n";
     foreach ($os_arch_list as $os_arch)
     {
