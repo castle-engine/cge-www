@@ -42,22 +42,36 @@ function echo_header_bonus ()
   <?php
 }
 
-function echo_footer_local_address ()
+function echo_footer ()
 {
-?>
-  By Michalis Kamburelis, as part of
+  if (IS_GEN_LOCAL) { ?>
+    <address>
+    By Michalis Kamburelis, as part of
     <?php echo "<a href=\"" . CURRENT_URL . "\">Kambi VRML game engine</a>"; ?>.
-<?php
-}
+    </address>
+    <?php
+  }
 
-function echo_footer_non_local_bonus ()
-{
-?>
-  <p><a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=11" width="120" height="30" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></p>
-<?php
+  ?>
+
+  <table><tr>
+
+    <td><a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=11" width="120" height="30" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td>
+
+    <td><a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></td>
+
+    <td><?php echo PAGE_COPYRIGHT; ?></td>
+
+    <?php if (!IS_GEN_LOCAL) { ?>
+      <td> <a href="http://validator.w3.org/check/referer"> <img border="0" src="images/valid-html401.png" alt="Valid HTML 4.01!" height="31" width="88"></a> <?php // style="padding-bottom: 3%" ?> </td>
+    <?php } ?>
+
+  </tr></table>
+
+  <?php
 
   /* Insert piwik code */
-  if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
+  if ((!IS_GEN_LOCAL) && ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net'))
   {
 ?>
 

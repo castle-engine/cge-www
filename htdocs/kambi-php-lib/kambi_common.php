@@ -959,30 +959,8 @@ and you are free to modify and further distribute it on terms of
     <div class="quick_links_bottom_line"> <?php echo $s_quick_links; ?> </div>
 <?php };
 
-  if (IS_GEN_LOCAL) { ?>
-    <address>
-    <?php echo_footer_local_address(); ?>
-    </address>
-
-    <p>
-<?php
-    echo PAGE_COPYRIGHT;
-};
-
-  if (! IS_GEN_LOCAL) { ?>
-    <table>
-      <tr><td>
-      <a href="http://validator.w3.org/check/referer">
-      <img border="0"
-         src="images/valid-html401.png"
-         alt="Valid HTML 4.01!" height="31" width="88"></a>
-         <?php // style="padding-bottom: 3%" ?>
-      <td>
-      <?php echo PAGE_COPYRIGHT; ?>
-    </table>
-
-  <?php echo_footer_non_local_bonus(); ?>
-<?php }; ?>
+  echo_footer();
+?>
 
 </div>
 
