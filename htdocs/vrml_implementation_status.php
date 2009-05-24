@@ -7,6 +7,22 @@
     td.pass{background-color:rgb(50%,100%,50%)}
     td.fail{background-color:rgb(100%,50%,50%)}
     td.invalid{background-color:rgb(75%,75%,75%)}
+
+    table.specification { border-collapse:collapse; }
+    table.specification th {
+      border-style:groove;
+      font-weight:bold;
+      border-width:medium;
+      padding:8px;
+      white-space:nowrap;
+    }
+    table.specification td {
+      border-style:groove;
+      font-weight:normal;
+      border-width:medium;
+      padding:8px;
+      white-space:nowrap;
+    }
     --></style>
     ');
 
@@ -15,8 +31,10 @@
       new TocItem('X3D status', 'x3d'),
       new TocItem('Components supported (summary)', 'x3d_components', 1),
       new TocItem('Details about supported nodes', 'x3d_details', 1),
-      new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 2),
-      new TocItem('DDS (DirectDraw Surface) support details', 'dds', 2),
+      new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 1),
+      new TocItem('Precise and corrected MultiTexture specification for mode, source fields (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
+      new TocItem('Problems with existing X3D MultiTexture specification', 'x3d_multitex_problems', 2),
+      new TocItem('DDS (DirectDraw Surface) support details', 'dds', 1),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
@@ -522,9 +540,167 @@ Shape {
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
 <?php echo $toc->html_section(); ?>
 
+<?php echo $toc->html_section(); ?>
+
+<p>To allow different texture modes for RGB and for alpha channel,
+you should just write two mode names inside one string, and separate
+them by a comma or slash (additional whitespace around is allowed).
+For example, <tt>mode [ "MODULATE / REPLACE" ]</tt>
+means that on the 1st texture unit, RGB is modulated and alpha is replaced.
+Contrast this with <tt>mode [ "MODULATE" "REPLACE" ]</tt>, that means
+to modulate (both RGB and alpha) on the 1st texture unit,
+and then to replace (both RGB and alpha) on the 2nd texture unit.</p>
+
+<p>This way we keep the interpretation that "one string on the mode field
+always describes full behavior of exactly one texture unit".
+Of course, some modes are not available for alpha channel (these are
+the OpenGL constraints).</p>
+
+<p>Table below describes precise behavior and disallowed
+situations for all mode names. Treat this as a corrected and precise version
+of the similar table in X3D spec of <tt>MultiTexture</tt>
+(see text down for details where and why it's corrected,
+short version: specification is simply poor and inconsistent).
+In table below,</p>
+
+<ol>
+  <li><b>Arg1 is the current texture unit,</b></li>
+  <li><b>Arg2 is determined by the source field</b>. By default,
+    it's the result of previous texture stage, or (for the 1st stage)
+    it's interpolated material*lighting.</li>
+</ol>
+
+<table class="specification">
+  <tr>
+    <th>Mode name</th>
+    <th>Behavior when used alone<br/>
+      (like "REPLACE")</th>
+    <th>Behavior when used for only RGB channel<br/>
+      (like "REPLACE / ...")</th>
+    <th>Behavior when used for only alpha channel<br/>
+      (like "... / REPLACE")</th>
+  </tr>
+
+  <tr>
+    <td>MODULATE</td>
+    <td>Output.RGBA := Arg1.RGBA * Arg2.RGBA</td>
+    <td>Output.RGB  := Arg1.RGB  * Arg2.RGB </td>
+    <td>Output.A    := Arg1.A    * Arg2.A   </td>
+  </tr>
+
+  <tr>
+    <td>MODULATE2X</td>
+    <td>Output.RGBA := Arg1.RGBA * Arg2.RGBA * 2</td>
+    <td>Output.RGB  := Arg1.RGB  * Arg2.RGB  * 2</td>
+    <td>Output.A    := Arg1.A    * Arg2.A    * 2</td>
+  </tr>
+
+  <tr>
+    <td>MODULATE4X</td>
+    <td>Output.RGBA := Arg1.RGBA * Arg2.RGBA * 4</td>
+    <td>Output.RGB  := Arg1.RGB  * Arg2.RGB  * 4</td>
+    <td>Output.A    := Arg1.A    * Arg2.A    * 4</td>
+  </tr>
+
+  <tr>
+    <td>REPLACE or SELECTARG1</td>
+    <td>Output.RGBA := Arg1.RGBA</td>
+    <td>Output.RGB  := Arg1.RGB </td>
+    <td>Output.A    := Arg1.A   </td>
+  </tr>
+
+  <tr>
+    <td>SELECTARG2</td>
+    <td>Output.RGBA := Arg2.RGBA</td>
+    <td>Output.RGB  := Arg2.RGB </td>
+    <td>Output.A    := Arg2.A   </td>
+  </tr>
+
+  <tr>
+    <td>ADD</td>
+    <td>Output.RGBA := Arg1.RGBA + Arg2.RGBA</td>
+    <td>Output.RGB  := Arg1.RGB  + Arg2.RGB </td>
+    <td>Output.A    := Arg1.A    + Arg2.A   </td>
+  </tr>
+
+  <tr>
+    <td>ADDSIGNED</td>
+    <td>Output.RGBA := Arg1.RGBA + Arg2.RGBA - 0.5</td>
+    <td>Output.RGB  := Arg1.RGB  + Arg2.RGB  - 0.5</td>
+    <td>Output.A    := Arg1.A    + Arg2.A    - 0.5</td>
+  </tr>
+
+  <tr>
+    <td>ADDSIGNED2X</td>
+    <td>Output.RGBA := (Arg1.RGBA + Arg2.RGBA - 0.5) * 2</td>
+    <td>Output.RGB  := (Arg1.RGB  + Arg2.RGB  - 0.5) * 2</td>
+    <td>Output.A    := (Arg1.A    + Arg2.A    - 0.5) * 2</td>
+  </tr>
+
+  <tr>
+    <td>SUBTRACT</td>
+    <td>Output.RGBA := Arg1.RGBA - Arg2.RGBA</td>
+    <td>Output.RGB  := Arg1.RGB  - Arg2.RGB </td>
+    <td>Output.A    := Arg1.A    - Arg2.A   </td>
+  </tr>
+
+  <tr>
+    <td>OFF</td>
+    <td>Texture stage is simply turned off.</td>
+    <!-- What actually happens there? Previous takes value from previous tex unit? -->
+    <td colspan="2">Not allowed.</td>
+  </tr>
+
+  <tr>
+    <td>DOTPRODUCT3</td>
+    <td>NewArg1.RGB := (Arg1.RGB - 0.5) * 2;<br/>
+        NewArg2.RGB := (Arg2.RGB - 0.5) * 2;<br/>
+        Output.RGBA := dot(NewArg1.RGB, NewArg2.RGB)</td>
+    <td>... (calculate NewArg* same as on the left)...<br/>
+        Output.RGB := dot(NewArg1.RGB, NewArg2.RGB)</td>
+    <td>Not allowed.</td>
+  </tr>
+
+  <tr>
+    <td>BLENDDIFFUSEALPHA</td>
+    <td>Output.RGBA :=<br/>
+        &nbsp;&nbsp;Arg1 * PRIMARY_COLOR.Alpha +<br/>
+        &nbsp;&nbsp;Arg2 * (1 - PRIMARY_COLOR.Alpha)</td>
+    <td colspan="2">Not allowed.</td>
+  </tr>
+
+  <tr>
+    <td>BLENDTEXTUREALPHA</td>
+    <td>Output.RGBA :=<br/>
+        &nbsp;&nbsp;Arg1 * Arg1.A +<br/>
+        &nbsp;&nbsp;Arg2 * (1 - Arg1.A)</td>
+    <td colspan="2">Not allowed.</td>
+  </tr>
+
+  <tr>
+    <td>BLENDFACTORALPHA</td>
+    <td>Output.RGBA :=<br/>
+        &nbsp;&nbsp;Arg1 * MULTI_TEXTURE_CONSTANT.Alpha +<br/>
+        &nbsp;&nbsp;Arg2 * (1 - MULTI_TEXTURE_CONSTANT.Alpha)</td>
+    <td colspan="2">Not allowed.</td>
+  </tr>
+
+  <tr>
+    <td>BLENDCURRENTALPHA</td>
+    <td>Output.RGBA :=<br/>
+        &nbsp;&nbsp;Arg1 * PREVIOUS_STAGE.Alpha +<br/>
+        &nbsp;&nbsp;Arg2 * (1 - PREVIOUS_STAGE.Alpha)</td>
+    <td colspan="2">Not allowed.</td>
+  </tr>
+</table>
+
+<?php echo $toc->html_section(); ?>
+
 <p>Unfortunately, X3D specification is awfully ambiguous
 when talking about multi-texturing modes.
-Below is some clarification how we handle it.
+Below is my list of spotted problems, and an explanation how we handle it in our
+engine (for a short summary, modes table in section above should also
+be informative).
 I tried to make my implementation following common-sense,
 hopefully it will be somewhat compatible to other implementations
 and at the same time comfortable to users.
@@ -575,11 +751,15 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     <p>Not to mention that some modes are clearly not possible for
     alpha channel.</p>
 
-    <p><i>Our interpretation:</i>
-    We do the only thing that seems reasonable:
-    simply ignore this ridiculous sentence. There is no "additional
-    blending mode for alpha channel". If you have an idea of a better
-    interpretation, please report.</p>
+    <p><i>Our interpretation:</i> One string inside the mode field
+    always describes behavior for both RGB and alpha channel.
+    So <i>one string inside mode field always corresponds to one
+    texture unit, Ok?</i>.
+
+    <p>To allow different modes for RGB and alpha channel,
+    you should just write two mode names inside one string, and separate
+    them by a comma or slash. Like <tt>"MODULATE / REPLACE"</tt>.
+    See the modes table in previous section for a list of all possible values.</p>
 
   <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
     is specified as "Arg2", which makes no sense. Arg2 comes
@@ -608,6 +788,10 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     it's not clear whether the -0.5 bias is applied to the sum,
     or each component.</p>
 
+    <p>Note that no interpretation results in the output
+    range of values in -0.5 ... 0.5, so it's not clear what is the "effective"
+    range they talk about in "ADDSIGNED" spec.</p>
+
     <p><i>Our interpretation:</i> I interpret it
     as "-0.5 bias is added to the sum",
     this follows OpenGL GL_ADD_SIGNED constant, so I guess this
@@ -623,6 +807,10 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     RGBA channels the same way. Comparing with Octaga, results
     for "subtract" seem equal this way: with default alphas = 1,
     result gets alpha = 0.</p>
+
+    <p>If you don't like this behavior, you can specify
+    separate mode names for RGB and alpha channel, separating them by a slash.
+    For example, <tt>"SUBTRACT / MODULATE"</tt> will subtract RGB but modulate alpha.</p>
 
   <li><p>It's not specified what channels are inverted by function="COMPLEMENT"
     value. Only RGB seems most sensible (that's what would seem
