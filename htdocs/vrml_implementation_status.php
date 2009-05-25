@@ -32,8 +32,9 @@
       new TocItem('Components supported (summary)', 'x3d_components', 1),
       new TocItem('Details about supported nodes', 'x3d_details', 1),
       new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 1),
-      new TocItem('Precise and corrected MultiTexture specification for mode, source fields (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
-      new TocItem('Problems with existing X3D MultiTexture specification', 'x3d_multitex_problems', 2),
+      new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
+      new TocItem('MultiTexture.source extensions', 'x3d_multitex_corrected', 2),
+      new TocItem('Problems with existing X3D MultiTexture.mode specification', 'x3d_multitex_problems', 2),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds', 1),
       new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
@@ -289,7 +290,7 @@ ROUTE MyTimer.time TO MyShader.time
     then shading results will be slightly incorrect.
     Like this:
 
-<pre>
+<pre class="vrml_code">
 #X3D V3.0 utf8
 PROFILE Interchange
 
@@ -693,6 +694,43 @@ In table below,</p>
     <td colspan="2">Not allowed.</td>
   </tr>
 </table>
+
+<?php echo $toc->html_section(); ?>
+
+<p>In the same spirit, you can specify separate sources for RGB and alpha
+channels, just separate them by comma or slash within a single string.
+For example, source string <tt>"DIFFUSE / FACTOR"</tt> says to take diffuse
+color as a source for Arg2.RGB and constant factor (<tt>MultiTexture.alpha</tt> field)
+for Arg2.Alpha.
+
+<p>Note that the empty string is also a source name (it means to take
+color from previous texture stage). So source string like <tt>"/ FACTOR"</tt>
+is also Ok (takes RGB from previous stage, and alpha from constant factor),
+and <tt>"FACTOR /"</tt> is Ok (takes RGB from constant factor
+<tt>MultiTexture.color</tt>, and alpha from previous stage).
+
+<p>An example: suppose you have two textures that you want to subtract
+on RGB (tex2 - tex1) channel, and you want to set resulting alpha channel
+to 1.0 (regardless of any texture value). This will work:
+
+<pre class="vrml_code">
+MultiTexture {
+  texture [
+    ImageTexture { url "tex1.png" }
+    ImageTexture { url "tex2.png" }
+  ]
+  mode [ "REPLACE" "SUBTRACT / SELECTARG2" ]
+  source [ "" " / FACTOR" ]
+  alpha 1.0
+}
+
+# Calculations on texture unit 1:
+#   Stage1Output.RGBA := Tex1.RGBA;
+# Calculations on texture unit 2:
+#   Output.RGB := Tex2.RGB - Stage1Output.RGB;
+#   Output.A := Arg2.A := 1.0;
+</pre>
+
 
 <?php echo $toc->html_section(); ?>
 
