@@ -253,7 +253,7 @@ you can optionally do somewhat more involved installation.
 
   <li><p>You may need to logout and login again to your GNOME/desktop
     session for all programs to catch up (alternatively, you can do
-    <tt>killall gnome-panel && killall nautilus</tt>
+    <tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
     but this is obviously somewhat brutal method).
 </ol>
 
