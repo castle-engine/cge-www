@@ -2088,7 +2088,9 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <p><a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/"><tt>RenderedTexture</tt></a>:
-    TODO.
+    supported field <tt>dimensions</tt> for width and height,
+    <tt>update</tt> instructing when to update (just like for <tt>GeneratedCubeMap</tt>
+    and <tt>GeneratedShadowMap</tt>).</p>
 
 <?php echo $toc->html_section(); ?>
 
