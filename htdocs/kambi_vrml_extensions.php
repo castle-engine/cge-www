@@ -108,7 +108,7 @@ $toc = new TableOfContents(array(
   new TocItem('Transform by explicit 4x4 matrix (<tt>MatrixTransform</tt> node)', 'ext_matrix_transform', 2),
   new TocItem('Events logger (<tt>Logger</tt> node)', 'ext_logger', 2),
   new TocItem('Teapot primitive (<tt>Teapot</tt> node)', 'ext_teapot', 2),
-  new TocItem('Texture automatically rendered from viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
+  new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
 
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 
@@ -2087,10 +2087,51 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/"><tt>RenderedTexture</tt></a>:
-    supported field <tt>dimensions</tt> for width and height,
-    <tt>update</tt> instructing when to update (just like for <tt>GeneratedCubeMap</tt>
-    and <tt>GeneratedShadowMap</tt>).</p>
+    <?php
+      echo '<table align="right">' .
+        '<tr><td>' . ext_screenshot("rendered_texture.png", 'RenderedTexture demo') .
+        '</table>';
+    ?>
+
+    <p>Texture rendered from a specified viewpoint in the 3D scene.
+    This can be used for a wide range of graphic effects,
+    the most straighforward use is to make something like a "security camera"
+    or a "portal", through which a player can peek what happens at the other
+    place in 3D world.</p>
+
+    <p>We support a subset of <a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">Avalon RenderedTexture</a>
+    specification.</p>
+
+    <?php echo node_begin("RenderedTexture : X3DTextureNode");
+      $node_format_fd_name_pad = 20;
+      $node_format_fd_def_pad = 15;
+      echo
+      node_field('[in,out]', 'SFNode', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('[in,out]', 'MFInt32', 'dimensions', '128 128 4 1 1') .
+      node_field('[in,out]', 'SFString', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
+      node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
+      node_end();
+    ?>
+
+    <p>First two numbers in <tt>"dimensions"</tt> field specify
+    the width and the height of the texture. (Our
+    current implementations ignores the rest of <tt>dimensions</tt> field.
+    Also, in current implementation, you should treat <tt>dimensions</tt> field
+    as initializeOnly, i.e. do not change it's value after world is loaded.)</p>
+
+    <p><tt>"update"</tt> is the standard field for automatically generated
+    textures (works the same as for <tt>GeneratedCubeMapTexture</tt> or <tt>GeneratedShadowMap</tt>).
+    It says when to actally generate the texture:
+    "NONE" means never,
+    "ALWAYS" means every frame (for fully dynamic scenes),
+    "NEXT_FRAME_ONLY" says to update at the next frame (and
+    afterwards change back to "NONE").</p>
+
+    <p><tt>"textureProperties"</tt> is the standard field of all texture nodes.
+    You can place there a <tt>TextureProperties</tt> node
+    to specify magnification, minification filters
+    (note that mipmaps, if required, will always be correctly automatically
+    updated for <tt>RenderedTexture</tt>), anisotropy and such.</p>
 
 <?php echo $toc->html_section(); ?>
 
