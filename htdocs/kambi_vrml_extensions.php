@@ -2099,8 +2099,10 @@ end;
     or a "portal", through which a player can peek what happens at the other
     place in 3D world.</p>
 
-    <p>We support a subset of <a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">Avalon RenderedTexture</a>
-    specification.</p>
+    <p>This is mostly compatible with
+    <a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">Avalon RenderedTexture</a>
+    specification. We do not support all Avalon fields,
+    and we add some of our own, but the basic fields and usage remain the same.</p>
 
     <?php echo node_begin("RenderedTexture : X3DTextureNode");
       $node_format_fd_name_pad = 20;
@@ -2110,6 +2112,8 @@ end;
       node_field('[in,out]', 'MFInt32', 'dimensions', '128 128 4 1 1') .
       node_field('[in,out]', 'SFString', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
       node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
+      node_field('[]', 'SFBool', 'repeatS', 'FALSE') .
+      node_field('[]', 'SFBool', 'repeatT', 'FALSE') .
       node_end();
     ?>
 
@@ -2132,6 +2136,12 @@ end;
     to specify magnification, minification filters
     (note that mipmaps, if required, will always be correctly automatically
     updated for <tt>RenderedTexture</tt>), anisotropy and such.</p>
+
+    <p><tt>"repeatS"</tt>, <tt>"repeatT"</tt> are also standard for
+    texture nodes, specify whether texture clamps or repeats.
+    <i>Note that the default repeat values are FALSE, contrary to normal
+    texture nodes</i> &mdash; this is usually more suitable for <tt>RenderedTexture</tt>
+    nodes. These fields are not present in Avalon specification.</p>
 
 <?php echo $toc->html_section(); ?>
 
