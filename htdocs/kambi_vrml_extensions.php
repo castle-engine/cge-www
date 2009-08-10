@@ -2111,6 +2111,7 @@ end;
       node_field('[in,out]', 'SFNode', 'metadata', 'NULL', '[X3DMetadataObject]') .
       node_field('[in,out]', 'MFInt32', 'dimensions', '128 128 4 1 1') .
       node_field('[in,out]', 'SFString', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
+      node_field('[in,out]', 'SFNode', 'viewpoint', 'NULL', '[X3DViewpointNode] (VRML 1.0 camera nodes also allowed)') .
       node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
       node_field('[]', 'SFBool', 'repeatS', 'FALSE') .
       node_field('[]', 'SFBool', 'repeatT', 'FALSE') .
@@ -2120,7 +2121,7 @@ end;
 
     <p>First two numbers in <tt>"dimensions"</tt> field specify
     the width and the height of the texture. (Our
-    current implementations ignores the rest of <tt>dimensions</tt> field.
+    current implementation ignores the rest of <tt>dimensions</tt> field.
     Also, in current implementation, you should treat <tt>dimensions</tt> field
     as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
 
@@ -2131,6 +2132,16 @@ end;
     "ALWAYS" means every frame (for fully dynamic scenes),
     "NEXT_FRAME_ONLY" says to update at the next frame (and
     afterwards change back to "NONE").</p>
+
+    <p><tt>"viewpoint"</tt> allows you to explicitly specify viewpoint
+    node from which to render to texture. Default <tt>NULL</tt> value
+    means to render from the current camera (this is equivalent to
+    specifying viewpoint node that is currently bound). Yes, you can easily
+    see recursive texture using this, just look at
+    the textured object. It's quite fun :) (It's not a problem for rendering
+    speed &mdash; we always render texture only once in a frame.)
+    You can of course specify other viewpoint
+    node, to make rendering from there.</p>
 
     <p><tt>"textureProperties"</tt> is the standard field of all texture nodes.
     You can place there a <tt>TextureProperties</tt> node
