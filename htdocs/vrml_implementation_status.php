@@ -523,19 +523,30 @@ Shape {
     <p>Current player camera doesn't affect how cube map is generated.
     This is good, it means that generated texture is usable for as long
     as the scene remains unchanged, and doesn't have to be regenerated
-    each time when the player moves.
-    (When <tt>update="ALWAYS"</tt>, this optimization is automatically
-    used under the hood.) This also means that generated cube map texture
-    is similar to static (from <tt>ImageCubeMapTexture</tt>
-    and <tt>ComposedCubeMapTexture</tt>), and you usually want to
-    use <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
-    texture generation', 'kambi_vrml_extensions',
-    'section_ext_tex_coord_worldspace'); ?> to simulate mirror.
-    When using cube maps with GLSL shaders, this often forces the need to
-    transform directions from eye-space to world-space,
-    you can obtain appropriate matrix easily by
-    <?php echo a_href_page_hashlink('Viewpoint.cameraRotationInverseMatrix output event', 'kambi_vrml_extensions',
-    'section_ext_viewpoint_camera_matrix'); ?>.
+    each time when the player moves.</p>
+
+    <ul>
+      <li><p>When <tt>update = "ALWAYS"</tt>, this optimization is automatically
+        used under the hood. Texture is internally not updated every frame
+        &mdash; when we know nothing visible changed on the scene, we do
+        not regenerate the texture (since it would be generated the same).
+        Note that using the headlight, or any other geometry/light following
+        the player, makes this optimization less effective (as then every
+        camera move changes the look of the scene, so rendered textures
+        have to be regenerated on every camera move).</p></li>
+
+      <li><p>This also means that generated cube map texture
+        is similar to static (from <tt>ImageCubeMapTexture</tt>
+        and <tt>ComposedCubeMapTexture</tt>), and you usually want to
+        use <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
+        texture generation', 'kambi_vrml_extensions',
+        'section_ext_tex_coord_worldspace'); ?> to simulate mirror.
+        When using cube maps with GLSL shaders, this often forces the need to
+        transform directions from eye-space to world-space,
+        you can obtain appropriate matrix easily by
+        <?php echo a_href_page_hashlink('Viewpoint.cameraRotationInverseMatrix output event', 'kambi_vrml_extensions',
+        'section_ext_viewpoint_camera_matrix'); ?>.</p></li>
+    </ul>
 </ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->

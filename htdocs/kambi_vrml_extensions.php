@@ -2129,7 +2129,7 @@ end;
 
     <p><tt>"update"</tt> is the standard field for automatically generated
     textures (works the same as for <tt>GeneratedCubeMapTexture</tt> or <tt>GeneratedShadowMap</tt>).
-    It says when to actally generate the texture:
+    It says when to actually generate the texture:
     "NONE" means never,
     "ALWAYS" means every frame (for fully dynamic scenes),
     "NEXT_FRAME_ONLY" says to update at the next frame (and
