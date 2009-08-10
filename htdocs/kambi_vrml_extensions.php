@@ -2173,7 +2173,7 @@ end;
     <tt>size</tt> and <tt>solid</tt> fields. So it's really equivalent
     to <tt>Rectangle2D</tt> inside our engine, the only difference
     being that <tt>Plane.solid</tt> is <tt>TRUE</tt> by default
-    (for <tt>Rectangle2D</tt> spec says it's <tt>FALSE</tt> by default).</tt>
+    (for <tt>Rectangle2D</tt> spec says it's <tt>FALSE</tt> by default).</p>
 
 <?php echo $toc->html_section(); ?>
 
