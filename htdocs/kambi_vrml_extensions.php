@@ -2103,7 +2103,7 @@ end;
     <p>This is mostly compatible with
     <a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">Avalon RenderedTexture</a>
     specification. We do not support all Avalon fields,
-    and we add some of our own, but the basic fields and usage remain the same.</p>
+    but the basic fields and usage remain the same.</p>
 
     <?php echo node_begin("RenderedTexture : X3DTextureNode");
       $node_format_fd_name_pad = 20;
@@ -2114,9 +2114,10 @@ end;
       node_field('[in,out]', 'SFString', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
       node_field('[in,out]', 'SFNode', 'viewpoint', 'NULL', '[X3DViewpointNode] (VRML 1.0 camera nodes also allowed)') .
       node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
-      node_field('[]', 'SFBool', 'repeatS', 'FALSE') .
-      node_field('[]', 'SFBool', 'repeatT', 'FALSE') .
-      node_field('[]', 'MFBool', 'depthMap', '[]') .
+      node_field('[]', 'SFBool', 'repeatS', 'TRUE') .
+      node_field('[]', 'SFBool', 'repeatT', 'TRUE') .
+      node_field('[]', 'SFBool', 'repeatR', 'TRUE') .
+      node_field('[in,out]', 'MFBool', 'depthMap', '[]') .
       node_end();
     ?>
 
@@ -2150,11 +2151,11 @@ end;
     (note that mipmaps, if required, will always be correctly automatically
     updated for <tt>RenderedTexture</tt>), anisotropy and such.</p>
 
-    <p><tt>"repeatS"</tt>, <tt>"repeatT"</tt> are also standard for
-    texture nodes, specify whether texture clamps or repeats.
-    <i>Note that the default repeat values are FALSE, contrary to normal
-    texture nodes</i> &mdash; this is usually more suitable for <tt>RenderedTexture</tt>
-    nodes. These fields are not present in Avalon specification.</p>
+    <p><tt>"repeatS"</tt>, <tt>"repeatT"</tt>, <tt>"repeatR"</tt>
+    are also standard for texture nodes,
+    specify whether texture repeats or clamps. For <tt>RenderedTexture</tt>,
+    you may often want to set them to <tt>FALSE</tt>. <tt>"repeatR"</tt>
+    is for 3D textures, useless for now.</p>
 
     <p><tt>"depthMap"</tt>, if it is <tt>TRUE</tt>, then the generated texture
     will contain the depth buffer of the image (instead of the color buffer
