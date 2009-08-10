@@ -25,13 +25,42 @@
 
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash; development</h1>
 
+<div style="
+  background: #E8D59A;
+  margin-left: 4em;
+  margin-right: 4em;
+  border: thin dashed black;
+/*  font-weight: bold; */
+  font-style: italic;
+  padding: 1em;
+  ">
+  <p style="margin-top: 0px">Please note that I consider "The Castle", as a game, finished now.
+  Hey, it was fun, it was great, and thank you for everyone that helped!
+  Now let's make something even better :)</p>
+
+  <p>New game, using much improved "The Castle" engine, is&nbsp;planned &mdash;
+  this new game will be technically "The Castle 2.0" (although actual name planned
+  now is "Human Programming").
+  I&nbsp;don't plan to further extend "The Castle" data (no new levels,
+  no new creatures etc.). It makes more sense for me to focus on new game data,
+  that will use many engine features added after "The Castle" release.</p>
+
+  <p style="margin-bottom: 0px">This isn't supposed to discourage you from dabbling in "The Castle"
+  data :). On the contrary, feel free to experiment even more, create
+  levels / creatures not necessarily tied to the current "The Castle" mood.
+  Hey, you're welcome to start a new game on your own, using "The Castle" engine.
+  (Almost) everything documented
+  here will also apply to the new game, so information on this page
+  will certainly remain relevant.</p>
+</div>
+
 <p><?php echo a_href_page('"The Castle"', 'castle') ?> is developed in
 an open-source manner, which means that if anyone wants to help &mdash;
 you're more than welcome. You don't even have to be a programmer &mdash;
 3D level/creature designers are wanted (alive!),
 and sending simple feedback is definitely useful too.
 This page collects various developer information how you can
-help, and how you can compile and extend the game's code and data.
+help, and how you can compile and extend the game's code and data.</p>
 
 <p>All questions, feedback, etc. may be posted to
 <?php echo MAILING_LIST_LINK; ?>.
@@ -948,6 +977,12 @@ and Blender's *.blend files that are the "source" version of some *.wrl files).
 <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a>.
 
 <?php echo $toc->html_section(); ?>
+
+<p><i>Below are some long-term plans. The game I'm dreaming about here
+is something like "The Castle 2.0", or even "The Castle 3.0",
+and probably will not be actually named "The Castle" anymore.
+Still, technically it will be "The Castle" continuation, based
+on next-generation of our VRML engine.</i></p>
 
 <p>I feel obligated here to say what exactly this game is going to be.
 So beware, I'm going to be dreaming in the next paragraph.
