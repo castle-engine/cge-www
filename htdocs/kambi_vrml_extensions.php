@@ -2114,6 +2114,7 @@ end;
       node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
       node_field('[]', 'SFBool', 'repeatS', 'FALSE') .
       node_field('[]', 'SFBool', 'repeatT', 'FALSE') .
+      node_field('[]', 'MFBool', 'depthMap', '[]') .
       node_end();
     ?>
 
@@ -2121,7 +2122,7 @@ end;
     the width and the height of the texture. (Our
     current implementations ignores the rest of <tt>dimensions</tt> field.
     Also, in current implementation, you should treat <tt>dimensions</tt> field
-    as initializeOnly, i.e. do not change it's value after world is loaded.)</p>
+    as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
 
     <p><tt>"update"</tt> is the standard field for automatically generated
     textures (works the same as for <tt>GeneratedCubeMapTexture</tt> or <tt>GeneratedShadowMap</tt>).
@@ -2142,6 +2143,13 @@ end;
     <i>Note that the default repeat values are FALSE, contrary to normal
     texture nodes</i> &mdash; this is usually more suitable for <tt>RenderedTexture</tt>
     nodes. These fields are not present in Avalon specification.</p>
+
+    <p><tt>"depthMap"</tt>, if it is <tt>TRUE</tt>, then the generated texture
+    will contain the depth buffer of the image (instead of the color buffer
+    as usual). (Our current implementation only looks at the first item of
+    <tt>MFBool</tt> field <tt>depthMap</tt>.
+    Also, in current implementation, you should treat <tt>depthMap</tt>
+    as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
 
 <?php echo $toc->html_section(); ?>
 
