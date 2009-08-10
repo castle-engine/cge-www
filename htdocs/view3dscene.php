@@ -184,8 +184,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     <p>You can activate VRML pointing-device sensors by clicking with
     <i>left mouse button</i> (the cursor will change shape and you will
     get status information when your cursor is over some clickable sensor).
-    Note that this works only in <i>Walk</i> mode and only when <i>Collision
-    detection</i> is on (as it requires octree).
+    Note that this works only when <i>Collision
+    detection</i> is on (as it requires octree).</p></li>
 
   <li><p><i>Precalculated animations</i> are played from
     <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
