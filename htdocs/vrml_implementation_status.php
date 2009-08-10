@@ -266,7 +266,7 @@ ROUTE MyTimer.time TO MyShader.time
   <li><p><tt>OrthoViewpoint</tt>
 
     <p>TODO: Although it's handled, some fields are ignored for now:
-    jump, retainUserOffsets, centerOfRotation, fieldOfView.
+    jump, retainUserOffsets, centerOfRotation.
 
   <li><p>New X3D rendering primitives implemented:
 
@@ -1135,6 +1135,9 @@ used.
 
     <p>Animating viewpoint's position and orientation
     (directly or by it's transformations) works perfectly.
+
+    <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
+    volumes are allowed (We use frustum with z-far in infinity then.)</p>
 
   <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>IndexedFaceSet</tt>,
     <tt>Coordinate</tt>, <tt>Color</tt>,
