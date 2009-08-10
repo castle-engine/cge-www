@@ -109,6 +109,7 @@ $toc = new TableOfContents(array(
   new TocItem('Events logger (<tt>Logger</tt> node)', 'ext_logger', 2),
   new TocItem('Teapot primitive (<tt>Teapot</tt> node)', 'ext_teapot', 2),
   new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
+  new TocItem('Plane (<tt>Plane</tt> node)', 'ext_plane', 2),
 
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 
@@ -2161,6 +2162,18 @@ end;
     <tt>MFBool</tt> field <tt>depthMap</tt>.
     Also, in current implementation, you should treat <tt>depthMap</tt>
     as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">Avalon Plane node</a>.
+    You should instead use <tt>Rectangle2D</tt> node from X3D 3.2 when possible,
+    this is implemented only for compatibility.</p>
+
+    <p>Our current implementation doesn't support anything more than
+    <tt>size</tt> and <tt>solid</tt> fields. So it's really equivalent
+    to <tt>Rectangle2D</tt> inside our engine, the only difference
+    being that <tt>Plane.solid</tt> is <tt>TRUE</tt> by default
+    (for <tt>Rectangle2D</tt> spec says it's <tt>FALSE</tt> by default).</tt>
 
 <?php echo $toc->html_section(); ?>
 
