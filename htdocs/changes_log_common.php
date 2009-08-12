@@ -53,7 +53,7 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-    array('title' => 'News from SVN - Viewpoint.camera*Matrix events, RenderedTexture node, and more',
+    array('title' => 'News from SVN - RenderedTexture node, Viewpoint.camera*Matrix events, and more',
           'year' => 2009,
           'month' => 8,
           'day' => 2,
@@ -73,16 +73,19 @@ function this_a_href_page($title, $page_name)
   </td>
 </table>
 
-<p>We have some new features to announce. They are still not released officially (but view3dscene 3.4 is almost complete now), but you can try them out using our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>. New features are:</p>
+<p>New features in SVN:</p>
 
 <ul>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> (available since some time, documented now)</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, they have proved to be very useful for shaders</li>
-  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html#section_x3d_multitex_clarifications">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture">RenderedTexture</a> node is implemented, it allows you to generate a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. TODO: link to SVN examples.</li>
-  <li>Texture handling code was refectored heavily last week, resulting in clean <tt>vrmltexturerenderer.inc</tt> implementation. And TODO all texture generating nodes use now OpenGL framebuffer, which means faster implementation and more flexible texture dimensions (not limited by window size).</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, they have proved to be very useful for shaders</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> (available since some time, documented now)</li>
+  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html#section_x3d_multitex_clarifications">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
+  <li>Texture handling code was refectored heavily last week, resulting in clean <tt>vrmltexturerenderer.inc</tt> implementation. And all texture generating nodes use now OpenGL framebuffer, which means faster implementation and more flexible texture dimensions (not limited by window size).</li>
   <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
 </ul>
+
+<p>Still, no official release, but view3dscene 3.4 should be released Really Soon. You can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
+
 '),
 
 
