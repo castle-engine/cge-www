@@ -56,9 +56,9 @@ function this_a_href_page($title, $page_name)
     array('title' => 'News from SVN - RenderedTexture node, Viewpoint.camera*Matrix events, and more',
           'year' => 2009,
           'month' => 8,
-          'day' => 2,
-          'pubDate' => /* date_to_timestamp.sh '2009-08-02' */ 1249214400,
-          'guid' => '2009-08-02',
+          'day' => 13,
+          'pubDate' => /* date_to_timestamp.sh '2009-08-13' */ 1250164800,
+          'guid' => '2009-08-13',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => '
@@ -76,16 +76,15 @@ function this_a_href_page($title, $page_name)
 <p>New features in SVN:</p>
 
 <ul>
-  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture">RenderedTexture</a> node is implemented, it allows you to generate a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. TODO: link to SVN examples.</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, they have proved to be very useful for shaders</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> (available since some time, documented now)</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. (<a href="http://vrmlengine.sourceforge.net/miscella/rendered_texture_one_file.x3dv">Simple example</a>).</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
   <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html#section_x3d_multitex_clarifications">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
-  <li>Texture handling code was refectored heavily last week, resulting in clean <tt>vrmltexturerenderer.inc</tt> implementation. And all texture generating nodes use now OpenGL framebuffer, which means faster implementation and more flexible texture dimensions (not limited by window size).</li>
+  <li>Texture handling code was refectored heavily last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
   <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
 </ul>
 
-<p>Still, no official release, but view3dscene 3.4 should be released Really Soon. You can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
-
+<p>Still no official release, but view3dscene 3.4 should be released Really Soon :) For now you can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
 '),
 
 
