@@ -932,8 +932,7 @@ and make sure it's available on $PATH.
   <li><i>Linux and FreeBSD</i> users should find <tt>ffmpeg</tt> package
     suitable for their distribution,
   <li><i>Mac OS X</i> users can install <tt>ffmpeg</tt> using
-    <a href="http://www.finkproject.org/">fink</a> (unfortunately,
-    <a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">only in unstable currently</a>),
+    <a href="http://www.finkproject.org/">fink</a> (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),
   <li>finally <i>Windows</i> users may try these
     <a href="http://ffmpeg.arrozcru.org/builds/">unofficial FFmpeg Win32 Builds</a>
     (<a href="http://ffmpeg.arrozcru.org/">see here for more information about
