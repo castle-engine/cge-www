@@ -1049,6 +1049,30 @@ used.
     'section_ext_alpha_channel_detection'); ?> for details.
     The bottom line is: everything will magically work fast and look perfect.
 
+    <p><a name="default_texture_mode_modulate"></a><b>Note
+    about REPLACE vs MODULATE modes</b>: VRML 2 / X3D specifications
+    say that RGB textures should <tt>REPLACE</tt> the color (as opposed
+    to <tt>MODULATE</tt> the color from lighting calculations, material etc.).
+    The problem with that is that this makes RGB textures nearly useless
+    in typical 3D world (when you usually expect textured surfaces to be
+    properly lit, regardless of RGB or grayscale format).
+    That's why the default engine behavior contradicts the specification:
+    it's <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
+    like a grayscale texture.</p>
+
+    <p>I didn't decide it lightly (noone likes
+    to deliberately contradict the specification...), but I think this case
+    is justified --- <tt>MODULATE</tt> behavior is much more useful and usually
+    desired, IMO. Feel welcome to send me emails and argument against this.
+    After all, I'm trying to fit the needs of most people with default
+    behavior. If many people think that specification is right and I'm dumb,
+    and the default behavior should follow the spec and be <tt>REPLACE</tt>,
+    I'll obey :)</p>
+
+    <p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
+    GL_REPLACE</i> to change this (from code, use
+    <tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).</p>
+
   <li><p><tt>MovieTexture</tt>
 
     <p><i>TODO</i>: for now, the sound of the movie is not played.
@@ -1520,9 +1544,8 @@ function fail($count, $comment)
   </tr>
   <tr>
     <td>10</td>
-    <td class="fail">-</td>
-    <td><tt>IndexedFaceSet</tt> and <tt>ElevationGrid</tt>
-      erroneously modulate texture color by specified color.
+    <td class="pass">+</td>
+    <td><a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>
   </tr>
   <tr>
     <td>11</td>
@@ -1732,16 +1755,16 @@ function fail($count, $comment)
   </tr>
   <tr>
     <td>7</td>
-    <td class="fail">-</td>
-    <td rowspan="3">For now we erroneously modulate texture color by specified color.
+    <td class="pass">+</td>
+    <td rowspan="3"><a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>
   </tr>
   <tr>
     <td>8</td>
-    <td class="fail">-</td>
+    <td class="pass">+</td>
   </tr>
   <tr>
     <td>9</td>
-    <td class="fail">-</td>
+    <td class="pass">+</td>
   </tr>
 <?php
 
@@ -1965,7 +1988,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
 <?php
 $current_test_number = 2;
 pass(10);
-fail(3, 'Texture is applied Ok, but tests fail because texture is currently always modulated by color (while VRML specifies default mode as decal for RGB textures)');
+pass(3, '<a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>');
 pass(7);
 ?>
 
