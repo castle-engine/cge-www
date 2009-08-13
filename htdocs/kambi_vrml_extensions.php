@@ -288,11 +288,21 @@ subdirectories.
         your own programs.</p></li>
     </ul>
 
-    <p>Note that currently bump mapping is used only when normal texture
-    ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
-    field of Appearance") is also specified. And it's used only with
-    IndexedFaceSet nodes for now &mdash; implementation of this is
-    supposed to be extended, feature requests are welcome!</p>
+    <p>Note some limitations of bump mapping:</p>
+    <ul>
+      <li>Currently bump mapping is used only when normal texture
+        ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
+        field of Appearance") is also specified.</li>
+      <li>This must be a simple 2D texture
+        node (like <tt>ImageTexture</tt>). For example multitexture is not
+        allowed (bump mapping has
+        to configure it's own multitexturing setup to work).</li>
+      <li>Using bump mapping overrides your GLSL shaders on the same shape.
+        Generally, bump mapping has to configure it's own shaders to work.</li>
+      <li>Currently bump mapping can be used only with
+        IndexedFaceSet nodes for now &mdash; implementation of this is
+        supposed to be extended, feature requests are welcome!</li>
+    </ul>
 
 <?php echo $toc->html_section(); ?>
 
