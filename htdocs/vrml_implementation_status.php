@@ -1505,7 +1505,7 @@ function fail($count, $comment)
     <th>Notes</th>
   </tr>
   <tr>
-    <td rowspan="101">Appearance</td>
+    <td rowspan="166">Appearance</td>
     <td rowspan="12">Appearance</td>
     <td>1</td>
     <td class="pass">+</td>
@@ -1786,6 +1786,33 @@ pass(12);
 pass(1, 'The movie text.mpg is still (5 identical frames, according to ffmpeg,
 gstreamer and xine)');
 pass(3);
+?>
+
+  <tr>
+    <td rowspan="17">PixelTexture</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(10);
+fail(1, 'Texture top is not aligned precisely with Text top');
+pass(5);
+?>
+
+  <tr>
+    <td rowspan="48">TextureTransform</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(11);
+pass(2, 'Results look a little different, but matching precisely Xj3D and OpenVRML results.');
+pass(32);
+pass(2, 'Results look slightly incorrect, but matching precisely Xj3D and OpenVRML results. I think this is a shortcoming of my GPU (<i>ATI Mobility Radeon X1600</i>), precisely transforming small textures may make small errors?');
 ?>
 
   <tr>
