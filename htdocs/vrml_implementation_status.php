@@ -494,7 +494,8 @@ Shape {
 
   <li><tt>ImageCubeMapTexture</tt>
 
-    <p><a href="#section_dds">DDS file format</a> to specify cube maps is supported.
+    <p><a href="#section_dds">DDS file format</a> to specify cube maps
+    (including S3TC compressed cube maps) is supported.
 
   <li><tt>GeneratedCubeMapTexture</tt>
 
@@ -902,29 +903,31 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
   <li><p>It's also a different orientation then the one of X3D ComposedCubeMap specification (left/right, bottom/top, front/back, with bottom/top on Y axis; X3D orientation needs rotating left,right,front,back images by 180 degrees for OpenGL orientation).
 </ol>
 
-<p>Images in DDS are supposed to be written from top to bottom row, as is the standard in DDS. (One particular tool, AMD CubeMapGen, allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering; don't use this &mdash; we expect rows ordered as is standard in DDS, top-to-bottom.) Internally, our engine just inverts the rows for OpenGL (yes, <a href="http://users.telenet.be/tfautre/softdev/ddsload/explanation.htm">this is doable also for S3TC compressed images</a>.)
+<p>Images in DDS are supposed to be written from top to bottom row, as is the standard in DDS. (One particular tool, AMD CubeMapGen, allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering; don't use this &mdash; we expect rows ordered as is standard in DDS, top-to-bottom.) Internally, our engine just inverts the rows for OpenGL (yes, <a href="http://users.telenet.be/tfautre/softdev/ddsload/explanation.htm">this is doable also for S3TC compressed images</a>.)</p>
 
-<p>Pixel formats supported:
+<p>Pixel formats supported:</p>
 
 <ol>
-  <li><p>Absolutely <i>all uncompressed non-float pixel formats are supported</i>.
+  <li><p>Absolutely <i>all uncompressed non-float pixel formats are supported</i>.</p>
 
-    <p>Details:
+    <p>Details:</p>
 
-    <p>The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.
+    <p>The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.</p>
 
-    <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
+    <p>Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).</p>
 
-    <p>Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
+    <p>Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).</p></li>
 
   <li><p>Compressed texture formats handled: DXT1, DXT3, DXT5 are supported.
     Texture with DXT1 is always treated like a texture with simple (yes/no)
     alpha channel (so it will be rendered with alpha testing) and
     DXT3 / DXT5 are always treated like a texture with full range
-    alpha channel (so they will be rendered with blending).
+    alpha channel (so they will be rendered with blending).</p>
+
+    <p>Both normal (2D) textures and cube maps be compressed. (There is no compression possible for 3D textures &mdash; neighter DDS format allows it, nor does OpenGL.)</p></li>
 
   <li><p>Float textures are for now not supported, so our DDS reader also
-    doesn't support them.
+    doesn't support them.</p></li>
 </ol>
 
 <?php echo $toc->html_section(); ?>
