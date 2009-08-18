@@ -287,6 +287,20 @@ ROUTE MyTimer.time TO MyShader.time
         <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
         </p>
 
+        <p>When using GLSL shaders in X3D you should pass all
+        needed textures to them this way. Normal <tt>appearance.texture</tt>
+        is ignored when using shaders. However, in our engine,
+        we have a special case to allow you to specify textures also
+        in traditional <tt>appearance.texture</tt> field: namely,
+        when <tt>ComposedShader</tt> doesn't contain any texture nodes,
+        we will still bind <tt>appearance.texture</tt>. This e.g. allows
+        you to omit declaring texture nodes in <tt>ComposedShader</tt>
+        field if you only have one texture, it also allows renderer to
+        reuse OpenGL shader objects more (as you will be able to DEF/USE
+        in X3D <tt>ComposedShader</tt> nodes even when they use different
+        textures). But this feature should
+        not be used or depended upon in the long run.</p>
+
         <p>Note that for now you have to pass textures in VRML/X3D events.
         Using <tt>inputOnly</tt> event to pass texture node to GLSL shader
         will not work.</p>
