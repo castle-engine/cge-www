@@ -179,7 +179,7 @@ X3D things implemented now are:</p>
     allow you to write shaders in GLSL language.
 
     <ul>
-      <li><p><b>Basic example:</b></p>
+      <li><p><b>Basic example.</b></p>
 
         <p>Add inside <tt>Appearance</tt> node VRML code like</p>
 
@@ -198,7 +198,17 @@ X3D things implemented now are:</p>
         for working demos of this.</p>
       </li>
 
-      <li><p><b>Example of passing value to to GLSL shader uniform:</b></p>
+      <li><p><b>Inline shader source code.</b></p>
+
+        <p>You can directly place shader source code inside of an URL.
+        We recognize URL as containing direct shader source if it has any newlines
+        and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+
+        <p>This is a non-standard extension (although compatible at least with
+        <a href="http://instant-reality.com/">InstantPlayer</a>).</p>
+      </li>
+
+      <li><p><b>Passing values to to GLSL shader uniform variables.</b></p>
 
         <p>You can also set uniform variables for your shaders from VRML,
         just add lines like</p>
@@ -235,9 +245,12 @@ ROUTE MyTimer.time TO MyShader.time
         So you can use VRML/X3D vector/matrix types to
         set GLSL vectors/matrices, you can use VRML/X3D
         multiple-value fields to set GLSL array types and such.</p>
+
+        <p>TODO: <tt>SFImage</tt>, <tt>MFImage</tt> field types are
+        not supported yet.</p>
       </li>
 
-      <li><p><b>Example of passing texture to to GLSL shader uniform:</b></p>
+      <li><p><b>Passing textures to to GLSL shader uniform variables.</b></p>
 
         <p>You can also specify texture node (as <tt>SFNode</tt> field, or an array
         of textures in <tt>MFNode</tt> field) as a uniform field value.
@@ -246,14 +259,37 @@ ROUTE MyTimer.time TO MyShader.time
         VRML texture node to a GLSL <tt>sampler2D</tt>, <tt>sampler3D</tt>,
         <tt>samplerCube</tt>, <tt>sampler2DShadow</tt> and such.</p>
 
-        <p>TODO: demo</p>
-      </li>
+<pre class="vrml_code">
+  shaders ComposedShader {
+    language "GLSL"
+    parts [
+      ShaderPart { type "FRAGMENT" url
+      "  uniform sampler2D texture_one;
+         uniform sampler2D texture_two;
 
-      <li><p><b>Inline shader code</b></p>
+         void main()
+         {
+           gl_FragColor = gl_Color *
+             max(
+               texture2D(texture_one, gl_TexCoord[0].st),
+               texture2D(texture_two, gl_TexCoord[1].st));
+         }
+      " }
+    ]
+    initializeOnly SFNode texture_one ImageTexture { url "one.png" }
+    initializeOnly SFNode texture_two ImageTexture { url "two.png" }
+  }
+</pre>
 
-        <p>You can directly place shader source code inside of an URL.
-        We recognize URL as containing direct shader source if it has any newlines
-        and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+        <p>A full working version of this example can be found
+        in <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
+        (look for file <tt>x3d/shaders/simple_multitex_shaders.x3dv</tt>),
+        <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
+        </p>
+
+        <p>Note that for now you have to pass textures in VRML/X3D events.
+        Using <tt>inputOnly</tt> event to pass texture node to GLSL shader
+        will not work.</p>
       </li>
 
       <li><p><b>TODO</b></p>
