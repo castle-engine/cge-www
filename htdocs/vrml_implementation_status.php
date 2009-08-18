@@ -175,10 +175,13 @@ X3D things implemented now are:</p>
 
     <p><a name="shaders"></a><a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-X3DAbstractSpecification_Revision1_to_Part1/Part01/components/shaders.html"><b>Programmable
     shaders component</b></a>
-    is basically implemented: <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
+    is implemented: <tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
     allow you to write shaders in GLSL language.
 
-    <p>For example add inside <tt>Appearance</tt> node VRML code like</p>
+    <ul>
+      <li><p><b>Basic example:</b></p>
+
+        <p>Add inside <tt>Appearance</tt> node VRML code like</p>
 
 <pre class="vrml_code">
   shaders ComposedShader {
@@ -190,21 +193,24 @@ X3D things implemented now are:</p>
   }
 </pre>
 
-    <p>See <?php echo a_href_page("Kambi VRML test suite",
-    "kambi_vrml_test_suite"); ?>, directory <tt>x3d/shaders/</tt>
-    for working demos of this.</p>
+        <p>See <?php echo a_href_page("Kambi VRML test suite",
+        "kambi_vrml_test_suite"); ?>, directory <tt>x3d/shaders/</tt>
+        for working demos of this.</p>
+      </li>
 
-    <p>You can also set uniform variables for your shaders from VRML,
-    just add lines like
+      <li><p><b>Example of passing value to to GLSL shader uniform:</b></p>
+
+        <p>You can also set uniform variables for your shaders from VRML,
+        just add lines like</p>
 
 <pre class="vrml_code">
   inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
-    to your ComposedShader node. These uniforms may also be modified by
-    VRML events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
-    for example here's a simple way to pass current VRML time (in seconds)
-    to your shader:
+        to your ComposedShader node. These uniforms may also be modified by
+        VRML events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
+        for example here's a simple way to pass current VRML time (in seconds)
+        to your shader:
 
 <pre class="vrml_code">
 # ......
@@ -224,35 +230,53 @@ DEF MyTimer TimeSensor { loop TRUE }
 ROUTE MyTimer.time TO MyShader.time
 </pre>
 
-    <p>Setting uniform values this way, from VRML fields/events,
-    is supported for all required by spec types, except TODO: SF/MFImage
-    and SF/MFNode (so passing textures to shader this way
-    (by SFNode fields) is not supported <i>yet</i>.). Other uniform variable
-    types are fully supported, e.g. you can use VRML/X3D vector/matrix types to
-    set GLSL vectors/matrices, you can use VRML/X3D
-    multiple-value fields to set GLSL array types and such.
+        <p>Setting uniform values this way, from VRML fields/events,
+        is supported for all required by spec types.
+        So you can use VRML/X3D vector/matrix types to
+        set GLSL vectors/matrices, you can use VRML/X3D
+        multiple-value fields to set GLSL array types and such.</p>
+      </li>
 
-    <p>You can directly place shader source code inside of an URL.
-    We recognize URL as containing direct shader source if it has any newlines
-    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+      <li><p><b>Example of passing texture to to GLSL shader uniform:</b></p>
 
-    <p>TODO: attributes for shaders in VRML are not yet passed.
-    They are implemented in the engine classes of course, it's only a matter
-    of implementing link between VRML and them.
-    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
-    If you have some interesting VRML / X3D models that use these programmable
-    shaders features, feel free to contact me and I'll implement them
-    in our engine.</p>
+        <p>You can also specify texture node (as <tt>SFNode</tt> field, or an array
+        of textures in <tt>MFNode</tt> field) as a uniform field value.
+        Engine will load and bind the texture and pass to GLSL uniform variable
+        bound texture unit. This means that you can pass in a natural way
+        VRML texture node to a GLSL <tt>sampler2D</tt>, <tt>sampler3D</tt>,
+        <tt>samplerCube</tt>, <tt>sampler2DShadow</tt> and such.</p>
 
-    <p>(I mean, I will implement them anyway some day, but it's always
-    much more interesting to implement features when you actually have
-    a real use for them... In other words, I'm just dying to see some
-    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+        <p>TODO: demo</p>
+      </li>
 
-    <p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
-    program now.
-    (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
-    X3DShaderNode.)
+      <li><p><b>Inline shader code</b></p>
+
+        <p>You can directly place shader source code inside of an URL.
+        We recognize URL as containing direct shader source if it has any newlines
+        and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+      </li>
+
+      <li><p><b>TODO</b></p>
+
+        <p>TODO: attributes for shaders in VRML are not yet passed.
+        They are implemented in the engine classes of course, it's only a matter
+        of implementing link between VRML and them.
+        <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
+        If you have some interesting VRML / X3D models that use these programmable
+        shaders features, feel free to contact me and I'll implement them
+        in our engine.</p>
+
+        <p>(I mean, I will implement them anyway some day, but it's always
+        much more interesting to implement features when you actually have
+        a real use for them... In other words, I'm just dying to see some
+        beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+
+        <p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
+        program now.
+        (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
+        X3DShaderNode.)
+      </li>
+    </ul>
   </li>
 
   <li><p><tt>StaticGroup</tt>
