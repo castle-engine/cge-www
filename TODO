@@ -34,23 +34,6 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
     Not reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so it must be some 64-bit problem.
     Profile.
 
-  also on cubemap_gen_recursive teapots are not perfectly pink at the beginning.
-    Reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so specific to nvidia (or fpc 2.2.4?), not 64bit!
-    Using
-      textureProperties TextureProperties {
-        minificationFilter "FASTEST"
-        magnificationFilter "FASTEST"
-      }
-    prevents. So they are really pink --- but their mipmaps are invalid.
-    Dumbly trying
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB);
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB);
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB);
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB);
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB);
-      glGenerateMipmapEXT(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB);
-    does not help (although does not make gl error also?)
-
   test the rest on 64bit.
 ------------------------------------------------------------------------------
 Next WWW update:
