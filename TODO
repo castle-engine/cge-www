@@ -9,7 +9,31 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
   No problem on nvidia. Hm, although - FPC 2.2.2. Better check with 2.2.4 too.
   What on Mac OS X?
 
-- x86_64 problems with fpc 2.2.4 (copy here reports)
+- x86_64 problems with fpc 2.2.4:
+
+linux/x86_64 problems:
+
+opening cubemap_gen_recursive, right after cubemap_gen_in_dynamic_world, once did:
+
+Runtime error 210 at $00000000004754AD
+  $00000000004754AD
+  $00000000006EC7E2 line 3488 of ../kambi_vrml_game_engine/3dmodels.gl/vrmlopenglrenderer.pas
+  $000000000069059E line 1948 of ../kambi_vrml_game_engine/3dmodels.gl/vrmlglscene.pas
+  $00000000006906C5 line 1973 of ../kambi_vrml_game_engine/3dmodels.gl/vrmlglscene.pas
+  $000000000069962A line 5266 of ../kambi_vrml_game_engine/3dmodels.gl/vrmlglscene.pas
+  $00000000006BF3EF line 1379 of ../kambi_vrml_game_engine/3dmodels.gl/vrmlglanimation.pas
+  $00000000004623A8 line 361 of view3dscene.pasprogram
+  $0000000000591742 line 3574 of ../kambi_vrml_game_engine/opengl/glwindow.pas
+  $000000000059040B line 3231 of ../kambi_vrml_game_engine/opengl/glwindow.pas
+  $000000000058F6B8 line 3048 of ../kambi_vrml_game_engine/opengl/glwindow.pas
+
+it's also ultra-slow, just like cubemap_gen_in_dynamic_world.
+  It's in Cache.Fonts_IncReference!
+  profile.
+
+also on cubemap_gen_recursive teapots are not perfectly pink at the beginning.
+
+test the rest on 64bit.
 ------------------------------------------------------------------------------
 Next WWW update:
 Text for next update:
