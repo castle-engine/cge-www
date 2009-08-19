@@ -1,3 +1,16 @@
+------------------------------------------------------------------------------
+Remaining view3dscene 3.4 blockers (bugfix only now):
+
+- loading custom mipmaps on nvidia turns off using mipmaps, for 2D textures (not observed for cube map and 3D, and not observed on 2D with S3TC).
+  looks like GL_NEAREST filtering...
+  with tex_visualize_mipmaps, both normal from DDS and colored.
+
+- check does "Image.Width < 4) or (Image.Height < 4" in DecompressDDS occurs also on nvidia. If yes, maybe it's my error?
+  No problem on nvidia. Hm, although - FPC 2.2.2. Better check with 2.2.4 too.
+  What on Mac OS X?
+
+- x86_64 problems with fpc 2.2.4 (copy here reports)
+------------------------------------------------------------------------------
 Next WWW update:
 Text for next update:
 
