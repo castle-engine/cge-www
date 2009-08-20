@@ -6,14 +6,6 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
   with tex_visualize_mipmaps, both normal from DDS and colored.
   Observed with fpc 2.2.2 and 2.2.4, both on kocury/linux/32.
 
-- check does "Image.Width < 4) or (Image.Height < 4" in DecompressDDS occurs also on nvidia. If yes, maybe it's my error?
-  No problem on nvidia
-  (fpc 2.2.2 kocury/linux/32,
-   fpc 2.2.4 kocury/linux/32),
-  so possibly only fglrx (or only radeon) problems?
-  Check on chantal Mac OS X?
-  Check on kocury win?
-
 - fpc 2.2.4 kocury/linux/x86_64 problems:
 
   opening cubemap_gen_recursive, right after cubemap_gen_in_dynamic_world, once did:
