@@ -1,11 +1,6 @@
 ------------------------------------------------------------------------------
 Remaining view3dscene 3.4 blockers (bugfix only now):
 
-- loading custom mipmaps on nvidia turns off using mipmaps, for 2D textures (not observed for cube map and 3D, and not observed on 2D with S3TC).
-  looks like GL_NEAREST filtering...
-  with tex_visualize_mipmaps, both normal from DDS and colored.
-  Observed with fpc 2.2.2 and 2.2.4, both on kocury/linux/32.
-
 - fpc 2.2.4 kocury/linux/x86_64 problems:
 
   opening cubemap_gen_recursive, right after cubemap_gen_in_dynamic_world, once did:
