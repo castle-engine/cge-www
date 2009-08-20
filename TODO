@@ -15,13 +15,31 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
     $0000000000591742 line 3574 of ../kambi_vrml_game_engine/opengl/glwindow.pas
     $000000000059040B line 3231 of ../kambi_vrml_game_engine/opengl/glwindow.pas
     $000000000058F6B8 line 3048 of ../kambi_vrml_game_engine/opengl/glwindow.pas
+  repro:
+    open simple_multitex_shaders,
+    then open shaders_inline!
+  Also repro:
+    open multitex,
+    then open multitex_blend_modes!
+  also from multitex_blend_modes to trees_river_final.
+  also open trees_river_final and then exit (Ctrl+W).
+  WTF???
 
   it's also ultra-slow at loading, just like cubemap_gen_in_dynamic_world.
     It's in Cache.Fonts_IncReference!
     Not reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so it must be some 64-bit problem.
     Profile.
 
-  test the rest on 64bit.
+  $ ./test_kambi_units -a
+  Generated using FPCUnit on 2009-08-20 07:45
+  Error:
+    Message: TTestBoxes3d.TestIsBox3dTriangleCollisionEpsilons: Assertion failed (testboxes3d.pas, line 490)
+    ExceptionClass: EAssertionFailed
+    ExceptionMessage: Assertion failed (testboxes3d.pas, line 490)
+    SourceUnitName:
+    LineNumber: 0
+    FailedMethodName:
+  Result: 95 runned, 1 errors, 0 failures
 ------------------------------------------------------------------------------
 Next WWW update:
 Text for next update:
