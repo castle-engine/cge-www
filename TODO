@@ -6,17 +6,6 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
     Not reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so it must be some 64-bit problem.
     Profile.
 
-  $ ./test_kambi_units -a
-  Generated using FPCUnit on 2009-08-20 07:45
-  Error:
-    Message: TTestBoxes3d.TestIsBox3dTriangleCollisionEpsilons: Assertion failed (testboxes3d.pas, line 490)
-    ExceptionClass: EAssertionFailed
-    ExceptionMessage: Assertion failed (testboxes3d.pas, line 490)
-    SourceUnitName:
-    LineNumber: 0
-    FailedMethodName:
-  Result: 95 runned, 1 errors, 0 failures
-
   under FPC trunk even 2 more range check errors in test_kambi_units.
 
   investigate range check error in vrmlshape under x86_64, submit.
