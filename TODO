@@ -6,9 +6,15 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
     Not reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so it must be some 64-bit problem.
     Profile.
 
-  under FPC trunk even 2 more range check errors in test_kambi_units.
-
   investigate range check error in vrmlshape under x86_64, submit.
+
+------------------------------------------------------------------------------
+- under FPC trunk even 2 more range check errors in test_kambi_units.
+  submitted as http://bugs.freepascal.org/view.php?id=14401
+
+  not a blocker for view3dscene 3.4 --- this is only FPC trunk bug,
+  doesn't occur with stable FPC, so doesn't really affect stable vrmlengine
+  relase.
 
 ------------------------------------------------------------------------------
 Next WWW update:
