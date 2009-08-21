@@ -16,6 +16,11 @@ Remaining view3dscene 3.4 blockers (bugfix only now):
     LineNumber: 0
     FailedMethodName:
   Result: 95 runned, 1 errors, 0 failures
+
+  under FPC trunk even 2 more range check errors in test_kambi_units.
+
+  investigate range check error in vrmlshape under x86_64, submit.
+
 ------------------------------------------------------------------------------
 Next WWW update:
 Text for next update:
