@@ -9,6 +9,11 @@ make clean_container_units container_units # not a test, but useful to run
                                            # and eventually commit
 make
 make examples
+  # Or "make examples-ignore-errors", this compiles everything,
+  # instead of stopping on 1st error. Useful to see all errors
+  # (instead of potentially retrying "make examples" many times),
+  # but you have to watch output (exit status = 0 is meaningless for
+  # "make examples-ignore-errors").
 
 # FPCUnit tests
 
