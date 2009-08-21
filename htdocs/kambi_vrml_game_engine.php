@@ -378,13 +378,17 @@ The policy is to always support the latest stable release of FPC,
 and sometimes some older releases:
 
 <ul>
-  <li><p><em>FPC 2.2.2</em> : This is the simplest and best option
-    &mdash; FPC 2.2.2 works perfectly, and you can download already
+  <li><p><em>FPC 2.2.4</em> : This is the simplest and best option
+    &mdash; works perfectly, and you can download already
     compiled packages of it from
     <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
+  </li>
+
+  <li><p><em>FPC 2.2.2</em> : will work OK for some time, although you're
+    adviced to upgrade to latest FPC.
 
     <p>Note: under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
-    linker errors like
+    linker errors like</p>
 
     <p><tt>/usr/local/lib/fpc/2.2.2/units/x86_64-linux/gtk2/gtk2.o: In function `GTK2_GTK_TYPE_FILE_FOLDER$$QWORD': gtk2.pas:(.text+0x105b5): undefined reference to `gtk_file_folder_get_type'</tt></p>
 
@@ -394,15 +398,17 @@ and sometimes some older releases:
     <tt>-k--noinhibit-exec</tt> to the fpc command-line when compiling programs.
     These errors will be then treated as mere warnings, and you should
     get a working executable.</p>
+  </li>
 
   <li><p><em>FPC 2.2.0</em> : will work OK for some time, although you're
-    adviced to upgrade to FPC 2.2.2.
+    adviced to upgrade to latest FPC.
 
     <p><i>Note only for for x86_64</i>:
     to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
     you have to use fixed glext.pas unit from engine sources
     (<tt>trunk/kambi_vrml_game_engine/opengl/x86_64/</tt>) or
-    use newer FPC.</p></li>
+    use newer FPC.</p>
+  </li>
 
   <li><p><em>FPC 2.0.4</em> : will work OK for some time from now
     (2007-09-20). But you have to use GL units from FPC &gt;= 2.2.0,
@@ -417,7 +423,8 @@ and sometimes some older releases:
     downloadable from FPC SVN repository</em>, usually works.
     However, you must remember that SVN version changes rapidly
     and no-one can give any guarantee about current stability of FPC from SVN
-    (or stability of my programs compiled with this FPC).</p></li>
+    (or stability of my programs compiled with this FPC).</p>
+  </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
