@@ -570,6 +570,24 @@ in <tt>DataNonFatalError</tt>, that by default is simply ignored.
 Although my programs usually take care to do something more useful with it.)
 This should be used purely for debugging purposes.</p>
 
+<p>Most array functions can also treat the string as an array of characters.
+We do not have a special type for a "character" &mdash; we just use a string with length 1.
+You can get / set the length of the string with
+<?php func_ref('array_get_count', 'array_get_count(string)'); ?> /
+<?php func_ref('array_set_count', 'array_set_count(string, count)'); ?>.
+And you can get / set a specific character of the string with
+<?php func_ref('array_get_count', 'array_get(string, index)'); ?> /
+<?php func_ref('array_set_count', 'array_set(string, index, character)'); ?>.
+Indexes for characters inside string are zero-based, like for all arrays
+in KambiScript.</p>
+
+<p><?php func('character_from_code', 'character_from_code(int)'); ?> converts integer
+character code to a 1-letter string with this character.
+<i>Only the ASCII character codes are
+guaranteed to work in the long run.</i> In the future, all Unicode character codes
+will be accepted here, and rendered if present in the font.
+Currently, our font rendering is limited to 256-character encodings.</p>
+
 <p>A lot of string functions are trivial to add
 &mdash; report if you need some particular function.
 
