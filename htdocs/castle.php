@@ -41,14 +41,15 @@ to show off some engine features. In particular, there's the classic DOOM E1M1
 level &mdash; I know you always wished to had a sword and a bow in DOOM :)
 Enjoy !</p>
 
-<p><i>Requirements to run</i>: fast and stable OpenGL
-(read: good graphic card with up-to-date drivers). At least 512 MB
-RAM is recommended, although on some graphic cards even 256 MB may be enough.
+<p><i>Requirements to run</i>: At least <i>512 MB
+RAM</i> is recommended.<!--, although on some graphic cards even 256 MB may be enough (commented out: not on much, and sometimes 1GB is better....) -->
+Fast and stable OpenGL is also needed
+(read: <i>good graphic card with up-to-date drivers</i>).
 The game was tested with various graphic cards and OpenGL implementations:
 <a href="http://www.nvidia.com/">NVidia</a>, Radeon with closed drivers
 from ATI and open-source ones,
 <a href="http://www.mesa3d.org/">Mesa</a> OpenGL
-also works (although Mesa will usually be too slow).
+also works (although pure software Mesa will usually be too slow).
 
 <?php
 /* Not so useful, on good graphic cards loading goes fast anyway.
@@ -66,10 +67,10 @@ wait only once for "Loading creatures").
 
 <h2><a name="section_download">Download</a></h2>
 
-<p><?php 
+<p><?php
   echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
-  VERSION_CASTLE, $std_releases_post_1_2_0); 
+  VERSION_CASTLE, $std_releases_post_1_2_0);
 ?>
  See <?php echo a_href_page('changes_log', 'changes_log') ?>
  for the list of changes since last release.
