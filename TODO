@@ -1,22 +1,4 @@
 ------------------------------------------------------------------------------
-Remaining view3dscene 3.4 blockers (bugfix only now):
-
-  it's ultra-slow at loading, just like cubemap_gen_in_dynamic_world.
-    It's in Cache.Fonts_IncReference!
-    Not reproducible on 32 bit (fpc 2.2.4 kocury/linux/32), so it must be some 64-bit problem.
-    Profile.
-
-    The slowness is inside gluTessVertex in TGLOutlineFont.Create. Which means I cannot do anything about it? It's the GLU tesselators that are much slower on x86_64, it seems.
-
-    One solution could be to cache the tesselated result. I could even compile the cached result into the program, this way user doesn't have to do it at all.
-    Trouble: is it really helpful in the long run? I would like some time to load fonts from TTF files and then runtime tesselation is a must. And then caching helps, but not for the 1st tesselation run...
-
-    Maybe just not tesselating all letters would be useful?
-    This would be a valid optimization (needed in the long run anyway, for Unicode fonts I wouldn't want to tesselate all characters at loading anyway).
-    For now, possibly I would just need basic ASCII support, so not all 256 characters need to be defined?
-  
-
-------------------------------------------------------------------------------
 Next WWW update:
 Text for next update:
 
