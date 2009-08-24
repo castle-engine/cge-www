@@ -60,8 +60,6 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
       new TocItem('Other options', 'other_options', 1),
-      new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
-      new TocItem('Notes about ray-tracer', 'raytracer'),
       new TocItem(DEPENDS, 'depends'),
       new TocItem('Freshmeat entry', 'freshmeat'),
     )
@@ -83,8 +81,10 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
     <p>Almost complete VRML&nbsp;1.0 support is done.
     VRML&nbsp;2.0 (aka VRML&nbsp;97) and X3D support is also quite advanced,
-    a lot of nodes and features are implemented (including full <tt>PROTO</tt> and
-    <tt>EXTERNPROTO</tt> support, events mechanism with routes, sensors and interpolators).
+    a lot of nodes and features are implemented (including
+    advanced texturing and GLSL shaders,
+    <tt>PROTO</tt> and <tt>EXTERNPROTO</tt> support,
+    events mechanism with routes, sensors and interpolators).
 
     <!-- Among things that work are embedded textures,
     semi-transparent materials and semi-transparent textures,
@@ -189,9 +189,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
   <li><p><i>Precalculated animations</i> are played from
     <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
-    (and you can convert any interactive VRML/X3D animation to precalculated one).
-    <!-- Mentioned in futures above about Collada, keep this text short.
-    Animations recorded inside Collada files are not played yet. --></p>
+    (and you can convert any interactive VRML/X3D animation to precalculated one).</p>
 
     <p>Note that for now, for precalculated animations
     some features (collision checking, mouse picking,
@@ -295,8 +293,6 @@ flawlessly :) so give it a try!
 <?php section(); ?>
 
 <p>Simply run without any command-line parameters.
-<!-- In this case some default "welcome scene" will be loaded
-(for now it's just empty scene, but I'm working on something more impressive). -->
 Load your model file using "Open" menu item.</p>
 
 <p>You can provide on the command-line file name to load.
@@ -327,17 +323,6 @@ view3dscene additional command-line options</a>.</p>
   <tr><td>Home</td>
       <td>restore default rotation, translation and scale</td></tr>
 </table>
-
-<!--
-<p>What is the difference between <tt>Walk</tt> and <tt>FreeWalk</tt> navigation
-modes ? In <tt>Walk</tt> mode your moves and rotations are
-more closely related to your <i>initial</i> camera up vector.
-In <tt>FreeWalk</tt> mode your moves and rotations tend to be rather relative
-to the <i>current</i> camera up vector. <tt>Walk</tt> mode usually tends
-to "feel better", but only when your camera's up vector was initialized to a
-useful value. You can set initial camera up vector using <tt>- -camera-up</tt>
-command-line option (look below) or using menu item "Change camera up vector".
--->
 
 <p><b>Controls in <tt>Walk</tt> navigation mode :</b><br>
 <table border="1" class="key_list">
@@ -385,44 +370,6 @@ by looking at available menu items. Probably most useful keys
 (and menu items) are <tt>Ctrl+N</tt> (switch to next navigation mode),
 <tt>F1</tt> (toggle status text visibility)
 and <tt>Escape</tt> (exit).
-
-<!--
-  Some Polish docs that is not translated and probably will not be ever
-  translated, it's not needed. Keys listed below are already visible
-  as menu item shortcuts, what they do should be either obvious
-  or not important for a user.
-
-<p><b>Klawisze które dzia³aj± niezale¿nie od stylu nawigacji :</b><br>
-<table border="1" class="key_list">
-  <tr><th colspan="2">Dodatkowe klawisze:
-  <tr><td>f
-      <td>prze³±cz renderowanie mg³y zapisanej w modelu VRMLa
-	(mg³a jest odczytywana z wêz³a <tt>Fog</tt> VRMLa,
-	<?php echo a_href_page_hashlink('patrz tutaj po wiêcej informacji',
-        'kambi_vrml_extensions', 'ext_fog'); ?>)
-  <tr><td>Ctrl+B
-      <td>prze³±cza u¿ywanie blending (domy¶lnie jest w³±czone).
-	Przy wy³±czonym blending warto¶æ <tt>transparency</tt> materia³ów bêdzie
-	bez znaczenia dla OpenGLa - wszystkie obiekty bed± renderowane jakby
-	by³y zupe³nie nieprzezroczyste.
-  <tr><td>Ctrl+U, Ctrl+D
-      <td>zmieñ poziom drzewa ósemkowego który ma byæ
-	wy¶wietlany; poziom -1 oznacza ¿e ¿aden poziom nie jest wy¶wietlany.
-	Wy¶wietlanie poziomu polega na rysowaniu prostopad³o¶cianów otaczaj±cych
-	dla wszystkich niepustych elementów drzewa (czyli wez³ów wewnêtrznych lub
-	niepustych li¶ci) na danej g³êboko¶ci drzewa. ("u"/"d" jak "up"/"down")
-  <tr><td>Ctrl+R
-      <td>wypisz na konsoli stosown± komendê do uruchomienia
-      <?php echo a_href_page('rayhuntera', 'rayhunter'); ?>
-      z aktualnym u³o¿eniem kamery itp.
-  <tr><td>Ctrl+C
-      <td>wypisz na konsoli odpowiedni node <tt>PerspectiveCamera { ... }</tt>
-	lub <tt>OrthographicCamera { ... }</tt> z aktualnymi ustawieniami kamery.
-	Mo¿esz np. wstawiæ taki node na pocz±tek ogl±danego w³a¶nie pliku
-	VRMLa aby nastêpnym razem gdy za³adujesz tego VRMLa uaktywniæ
-	takie w³a¶nie po³o¿enie kamery.
-</table>
--->
 
 <?php section(); ?>
 
@@ -760,12 +707,6 @@ directory.</p>
     Too little radius may produce precision-errors in depth-buffer
     (this can lead to some strange display artifacts).
 
-    <!--
-    Badanie kolizji jest robione na zasadzie : ¿eby móc przej¶æ z POZYCJA1 do POZYCJA2
-    nie mo¿e byæ ¿adnych kolizji sceny z odcinkiem POZYCJA1-POZYCJA2 i
-    ze sfer± o promieniu d³ugo¶ci camera-radius i ¶rodku w punkcie POZYCJA2.
-    -->
-
   <dt>--light-calculate on|off
   <dd><p>Sets initial state of "Lighting calculate" option.
     If this is "on", lighting calculations are performed.
@@ -855,7 +796,24 @@ directory.</p>
 See also <?php echo a_href_page(
 "notes about command-line options understood by my programs", "common_options") ?>.
 
-<?php section(); ?>
+<?php
+
+/*
+------------------------------------------------------------------------------
+These two sections:
+  new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
+  new TocItem('Notes about ray-tracer', 'raytracer'),
+were quite old, and they didn't make much point anymore.
+- Smooth shading is obvious to anyone knowing 3D graphics (and normal people
+  just don't care, default = smooth shading is good for them),
+  and creaseAngle is part of VRML/X3D specification. So no point explaining it.
+- Raytracer UI is hopefully intuitive now, and does't need explaining.
+  They it's affected by window size and KambiNavigationInfo.octreeVisibleTriangles
+  is obvious.
+  That it's the same as rayhunter, is mentioned prominently in "features" list.t
+So I remove them (leaving in comments for now). Let's not clutter the documentation.
+
+section(); ? >
 
 <p>Using menu item <i>View -&gt; Smooth shading</i> you
 can switch between using flat and smooth shading. Default is to use
@@ -869,8 +827,8 @@ surfaces (e.g. spheres) may be rendered better with smooth shading.
 Moreover smooth shading allows triangle to have different material
 properties at each vertex (e.g. one vertex is yellow, the other one is blue),
 you can see example of this in
-<?php echo a_href_page('Kambi VRML test suite',
-'kambi_vrml_test_suite'); ?>
+< ?php echo a_href_page('Kambi VRML test suite',
+'kambi_vrml_test_suite'); ? >
  in file <tt>vrml_1/materials.wrl</tt>.
 
 <p>Group of planes are <i>similar</i> if angle between each pair
@@ -884,14 +842,8 @@ default <tt>creaseAngle</tt> = 0.5 radians (a little less than 30 degrees).
 and smooth shading.
 Usually it's not important but to be sure that proper normals are
 used you can use menu item <i>"Edit -> Remove normals info from scene"</i>.
-<!-- or command-line parameter <tt>- -scene-change-no-normals</tt>. -->
 
-<!-- Final finding: usually you will
-Podsumowuj±c bêdziesz zapewne zawsze chcia³ u¿ywaæ cieniowania smooth
-a na cieniowanie flat czasem zerkn±æ jako na ciekawostkê.
--->
-
-<?php section(); ?>
+< ?php section(); ? >
 
 <p>Use menu item <i>Display -&gt; Raytrace!</i> to render image using
 ray-tracing. I implemented two ray-tracing versions: classic
@@ -900,8 +852,6 @@ algorithm to use, and with what parameters.
 
 <p>Rendered image will be successively displayed.
 You can press <tt>Escape</tt> to stop the process if it takes too long.
-<!-- i bêdzie
-stopniowo zakrywa³ oryginalny obraz wyrenderowany przy pomocy OpenGLa. -->
 After generating image program will wait for pressing <tt>Escape</tt>,
 you can also save generated image to file.
 
@@ -910,11 +860,14 @@ First of all, the simplest thing to do is to shrink the window.
 Second, the quality of octree has great influence on rendering time
 &mdash; you can try tightening it by <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
 inside VRML/X3D file
-(see <?php echo a_href_page_hashlink('octree properties extension',
-'kambi_vrml_extensions', 'section_ext_octree_properties'); ?>).</p>
+(see < ?php echo a_href_page_hashlink('octree properties extension',
+'kambi_vrml_extensions', 'section_ext_octree_properties'); ? >).</p>
 
 <p>More detailed description of how ray-tracer works is given in
-<?php echo a_href_page('documentation of rayhunter', 'rayhunter'); ?>.
+< ?php echo a_href_page('documentation of rayhunter', 'rayhunter'); ? >.
+
+*/
+?>
 
 <?php section(); ?>
 
