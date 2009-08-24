@@ -53,6 +53,88 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.4 release - advanced texturing',
+          'year' => 2009,
+          'month' => 8,
+          'day' => 24,
+          'pubDate' => /* date_to_timestamp.sh '2009-08-24' */ 1251115200,
+          'guid' => '2009-08-24',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => '
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/trees_river_shadow_maps.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/trees_river_shadow_maps.png"
+      alt="Shadow maps"
+      title="Shadow maps"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/tex3d_smoke.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/tex3d_smoke.png"
+      alt="Fog from 3D noise"
+      title="Fog from 3D noise"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/oq_demo.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/oq_demo.png"
+      alt="Occlusion query optimizing city view"
+      title="Occlusion query optimizing city view"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/water_reflections.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/water_reflections.png"
+      alt="Water reflections by optimized GeneratedCubeMapTexture"
+      title="Water reflections by optimized GeneratedCubeMapTexture"
+    /></a>
+  </td></tr>
+
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/cubemap_teapot.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/cubemap_teapot.png"
+      alt="Teapot with cube map reflections"
+      title="Teapot with cube map reflections"
+    /></a>
+  </td></tr>
+</table>
+
+<p>' . this_a_href_page('view3dscene 3.4', 'view3dscene') . ' is released! The codename of this release should be <i>"Everything you wanted to know about textures"</i>, as most of the new features deal with X3D advanced texturing nodes.
+<!-- ' . this_a_href_page('See recent news archive', 'changes_log') . '  -->
+</p>
+
+<ul>
+  <li><p>All X3D multi-texturing nodes implemented. See also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#section_x3d_multitex_clarifications">clarifications how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</p></li>
+
+  <li><p>All X3D cube map nodes implemented. This includes <tt>GeneratedCubeMapTexture</tt>, very useful to make mirrors, especially with the help of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR extensions</a>.</p></li>
+
+  <li><p>All X3D 3D texture nodes implemented.</p></li>
+
+  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#section_dds">more details here</a>. New ' . this_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
+
+  <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
+
+  <li><p>Passing to GLSL shaders various uniform value types is implemented. This includes vectors, matrices and many more. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> may be very useful to feed to shaders. You can also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#glsl_passing_uniform_textures">pass texture nodes to GLSL shader uniforms, following X3D specification</a>.</p></li>
+
+  <li><p>New extensions to easily make <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">projective texturing and shadow maps</a> within your VRML/X3D worlds.</p></li>
+
+  <li><p>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>).</p></li>
+
+  <li><p><i>Hardware occlusion query</i> may be activated for rendering, this can speed browsing large scenes enormously. Try it by menu options <i>View -&gt; ... Occlusion Query</i>.</p></li>
+
+  <li><p>When using single texturing, you can set environment mode to replace <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#default_texture_mode_modulate">(default is modulate)</a>.</p></li>
+
+  <li><p><a href="http://vrmlengine.sourceforge.net/kambi_script.php">KambiScript</a> functions to operate on string characters: <tt>"character_from_code"</tt>, overloaded <tt>"array_set", "array_get", "array_get_count", "array_set_count"</tt> for strings.</li>
+
+  <li><p>As usual, along with view3dscene release, we also release <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">accompanying engine (version 1.8.0)</a> for developers. Current releases are compiled with FPC 2.2.4, sources can also be compiled with FPC from trunk (at least on 2009-08-21). I provided releases also for Linux/x86_64, as I got some reports from people using view3dscene of this platform.</li>
+</ul>'
+    ),
+
     array('title' => 'News from SVN - RenderedTexture node, Viewpoint.camera*Matrix events, and more',
           'year' => 2009,
           'month' => 8,
