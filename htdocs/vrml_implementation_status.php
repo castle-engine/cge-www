@@ -1343,7 +1343,7 @@ used.
     <p>We handle special script protocols <?php echo a_href_page_hashlink('compiled:
     (to link scripts with handlers written in compiled language (ObjectPascal))',
     'kambi_vrml_extensions',
-    'section_script_compiled'); ?> and
+    'section_ext_script_compiled'); ?> and
     <?php echo a_href_page('kambiscript:
     (simple scripting language specific to our engine)',
     'kambi_vrml_extensions'); ?>.
