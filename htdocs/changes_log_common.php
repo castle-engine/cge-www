@@ -127,7 +127,7 @@ function this_a_href_page($title, $page_name)
 
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_script.php">KambiScript</a> functions to operate on string characters: <tt>"character_from_code"</tt>, overloaded <tt>"array_set", "array_get", "array_get_count", "array_set_count"</tt> for strings.</li>
 
-  <li><p>As usual, along with view3dscene release, we also release <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">accompanying engine (version 1.8.0)</a> for developers. Current releases are compiled with FPC 2.2.4, sources can also be compiled with FPC from trunk (at least on 2009-08-21). I provided releases also for Linux/x86_64, as I got some reports from people using view3dscene of this platform.</li>
+  <li><p>As usual, along with view3dscene release, we also release <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">accompanying Kambi VRML engine (version 1.8.0)</a> for developers. Released binaries are compiled with FPC 2.2.4, sources can also be compiled with FPC from trunk (tested on 2009-08-21). I also provide binaries for Linux/x86_64 (not only 32-bit Linux/i386), as I see a demand for it.</li>
 </ul>'
     ),
 
