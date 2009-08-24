@@ -250,7 +250,7 @@ ROUTE MyTimer.time TO MyShader.time
         not supported yet.</p>
       </li>
 
-      <li><p><b>Passing textures to to GLSL shader uniform variables.</b></p>
+      <li><p><b><a name="glsl_passing_uniform_textures">Passing textures to to GLSL shader uniform variables.</a></b></p>
 
         <p>You can also specify texture node (as <tt>SFNode</tt> field, or an array
         of textures in <tt>MFNode</tt> field) as a uniform field value.
@@ -998,11 +998,13 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     DXT3 / DXT5 are always treated like a texture with full range
     alpha channel (so they will be rendered with blending).</p>
 
-    <p>Both normal (2D) textures and cube maps be compressed. (There is no compression possible for 3D textures &mdash; neighter DDS format allows it, nor does OpenGL.)</p></li>
+    <p>Both normal (2D) textures and cube maps may be compressed. (There is no compression possible for 3D textures &mdash; neighter DDS format allows it, nor do common graphic cards.)</p></li>
 
   <li><p>Float textures are for now not supported, so our DDS reader also
     doesn't support them.</p></li>
 </ol>
+
+<p>If DDS file includes mipmaps, and mipmaps are required for texture minification filter, we will use DDS mipmaps (instead of generating mipmaps automatically). Works for all 2D, 3D, cubemap DDS files.</p>
 
 <?php echo $toc->html_section(); ?>
 
