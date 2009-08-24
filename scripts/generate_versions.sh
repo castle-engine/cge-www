@@ -68,9 +68,9 @@ version_explicit glcaps_glut `glcaps --version`
 version_call gen_function
 
 # Keep this synchronized with ../../kambi_vrml_game_engine/fpmake.pp
-version_explicit kambi_vrml_game_engine 1.7.0
+version_explicit kambi_vrml_game_engine 1.8.0
 
-version_explicit kambi_vrml_test_suite 2.5.0
+version_explicit kambi_vrml_test_suite 2.6.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 
