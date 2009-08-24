@@ -41,7 +41,15 @@ function this_a_href_page($title, $page_name)
   /* This an array of changes_log entries.
      It is in format accepted by rss_generator class, but also has some
      extras for changes_log_to_html:
+
      - year, month, day fields: this must always match pubDate timestamp
+
+     - short_description: teaser description on the main page.
+       If empty, we will take teaser from the normal 'description',
+       up to magic delimited <!-- *** teaser *** -->. If this delimiter
+       is not present, then teaser is just equal to full description.
+
+     - guid will be used also for HTML anchor inside changes_log.php page
 
      They must be ordered from the newest to the oldest.
      While it doesn't matter for RSS (feed will be sorted anyway by news
@@ -68,22 +76,6 @@ function this_a_href_page($title, $page_name)
       <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/trees_river_shadow_maps.png"
       alt="Shadow maps"
       title="Shadow maps"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/tex3d_smoke.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/tex3d_smoke.png"
-      alt="Fog from 3D noise"
-      title="Fog from 3D noise"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/oq_demo.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/oq_demo.png"
-      alt="Occlusion query optimizing city view"
-      title="Occlusion query optimizing city view"
     /></a>
   </td></tr>
 
@@ -126,7 +118,11 @@ function this_a_href_page($title, $page_name)
   <li><p>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>).</p></li>
 
   <li><p><i>Hardware occlusion query</i> may be activated for rendering, this can speed browsing large scenes enormously. Try it by menu options <i>View -&gt; ... Occlusion Query</i>.</p></li>
+</ul>
 
+<!-- *** teaser *** -->
+
+<ul>
   <li><p>When using single texturing, you can set environment mode to replace <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#default_texture_mode_modulate">(default is modulate)</a>.</p></li>
 
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_script.php">KambiScript</a> functions to operate on string characters: <tt>"character_from_code"</tt>, overloaded <tt>"array_set", "array_get", "array_get_count", "array_set_count"</tt> for strings.</li>
@@ -1411,16 +1407,33 @@ $month_names = array(
   12 => 'December'
 );
 
+define('TEASER_DELIMITER', '<!-- *** teaser *** -->');
+
 function change_log_to_html($change_log_item, $full_description = true)
 {
   global $month_names;
 
-  $description = ($full_description || $change_log_item['short_description'] == '' ?
-    $change_log_item['description'] :
-    $change_log_item['short_description']);
+  if ($full_description)
+  {
+    $description = $change_log_item['description'];
+  } else
+  if ($change_log_item['short_description'] != '')
+  {
+    $description = $change_log_item['short_description'];
+  } else
+  {
+    $description = $change_log_item['description'];
+    $teaser_delimiter = strpos($description, TEASER_DELIMITER);
+    if ($teaser_delimiter !== FALSE)
+    {
+      $description = substr($description, 0, $teaser_delimiter) .
+        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#' .
+        $change_log_item['guid'] . '">[more]</a></p>';
+    }
+  }
 
-  return '<p><b>' .
-    $change_log_item['title'] . '</b> (' .
+  return '<p><a name="' . $change_log_item['guid'] . '"><b>' .
+    $change_log_item['title'] . '<a/></b> (' .
     $month_names[$change_log_item['month']] . ' ' .
     $change_log_item['day'] . ', ' .
     $change_log_item['year'] . ') :</p>' .
