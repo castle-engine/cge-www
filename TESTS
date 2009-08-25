@@ -31,12 +31,13 @@ cd view3dscene/
 
 # Test Lazarus compilation:
 # - Recompile kambi_vrml_game_engine packages
-# - Compile and run
+# - Compile and run from Lazarus lpi files non-LCL examples:
 #     view3dscene,
 #     castle,
 #     3dmodels.gl/examples/simplest_vrml_browser
-#   from Lazarus lpi files
-# - Compile and run lazarus_vrml_browser
+# - Compile and run from Lazarus lpi files LCL examples:
+#     lazarus_vrml_browser
+#     lazarus_browser_with_gl_controls
 
 # Make sure Lazarus packages have all units included.
 
@@ -55,14 +56,15 @@ cd view3dscene/
   # - inside packages/../lib/
   # - allkambi*.pas units (that's ok, they are not part of any package
   #   and are not used by any program)
-  # - units inside examples/, tools/ dir
+  # - units inside examples/, tools/, tests/ dir
   # - units inside dir of other OS (for example, leftovers in unix/
   #   dir were not cleaned by windows package, that's ok)
   # - units that I deliberatly do not want to put in a package for now:
-  #   ./opengl/glw_win.ppu (would require separate package, like kambi_glwindow_navigated)
-  #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
+  #   ./opengl/glw_win.ppu,
   #   ./opengl/glw_demo.ppu (would require separate package, like kambi_glwindow_navigated)
+  #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
   #   ./opengl/unix/kambiglx.ppu (required only for GLWindow Xlib backend --- hm, maybe add?)
+  #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to kambi_units package later.)
 
 # Test are there no files with accidental svn:executable attrib
 # (may happen if commiting from FAT filesystems on Unix):
