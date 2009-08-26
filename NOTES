@@ -46,10 +46,24 @@ Procedure to update WWW content:
 ("locally" means that this is done on a local copy of the repository
 www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
-- Release on SourceForge (hint: use releaseforge for comfort).
-  releasename is just a version number.
-  As changelog, paste
-    See http://vrmlengine.sourceforge.net/changes_log.php
+- Release on SourceForge.
+
+  Old FRS notes:
+  - use releaseforge for comfort,
+  - releasename is just a version number,
+  - As changelog, paste
+      See http://vrmlengine.sourceforge.net/changes_log.php
+
+  New FRS:
+  - Upload to
+    ssh://kambi,vrmlengine@frs.sourceforge.net/home/frs/project/v/vr/vrmlengine/
+    Follow dirnames as default: program_name/version_number/.
+  - Only for view3dscene: In file explorer
+    https://sourceforge.net/project/admin/explorer.php?group_id=200653
+    mark platforms for new files. This is only for platform (default guessed
+    looking at OS) links, so it's done only for view3dscene as our "default"
+    package".
+
   After release, download and compare are the files the same.
 
 - if you modified kambi_vrml_game_engine, you may want to update apidoc/
@@ -97,3 +111,4 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
     releases
   - really large new features may cause updates of project
     description on SF and cia.vc
+  - x3d-public mailing list
