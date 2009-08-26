@@ -158,7 +158,7 @@ function this_a_href_page($title, $page_name)
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
   <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html#section_x3d_multitex_clarifications">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
-  <li>Texture handling code was refectored heavily last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
+  <li>Texture handling code was refactored last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
   <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
 </ul>
 
