@@ -37,6 +37,9 @@ function echo_header_bonus ()
   }
 
   a.kscript_func_docs { text-decoration: underline; }
+
+  pre.terminal { background-color: #EEE;  padding: 0.3em; }
+  tt.terminal { background-color: #EEE; }
 --></style>
 
   <?php

@@ -266,7 +266,7 @@ notes near some programs below.
 <?php
   function echo_src_svnonly($name)
   {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><tt>' .
+    echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal">' .
         sf_checkout_link(true, $name) . '</tt></li>
       ';
   }
@@ -295,7 +295,7 @@ notes near some programs below.
     }
 
     echo
-      '<p>Download from Subversion by:<br><tt>' .
+      '<p>Download from Subversion by:<br><tt class="terminal">' .
         sf_checkout_link(true, $internal_name) . '</tt></li>
       ';
   }
@@ -333,14 +333,26 @@ version of program you will also have documentation there).
 
 <?php echo $toc->html_section(); ?>
 
-<p>As you can clearly see above, all sources may be downloaded from
-Subversion repository. If you don't know about Subversion... well,
-then you should get to know it. See
+<p>You can get all the sources from our Subversion repository.
+If you don't know about Subversion, see
 <a href="http://subversion.tigris.org/">Subversion main site</a> and
 <a href="http://svnbook.red-bean.com/">the <i>excellent</i>
 book about the Subversion</a>.</p>
 
-<p>Code from SVN is always the bleeding-edge current
+<p>To download full sources for all projects, do</p>
+
+<pre class="terminal">  <?php echo sf_checkout_link(true, ''); ?></pre>
+
+<p>Please note that the full <tt>trunk</tt> is quite large.
+It contains everything: th base engine sources (<tt>kambi_vrml_game_engine</tt> subdirectory),
+webpages stuff (in <tt>www</tt> subdirectory),
+<tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
+Often you want to download only specific subdirectories of it.</p>
+
+<p>You can also <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">browse
+the SVN repository using ViewVC</a>.</p>
+
+Code from SVN is always the bleeding-edge current
 version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
@@ -350,17 +362,8 @@ https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/</tt>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 
-<p>You can also <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">browse
-the SVN repository using ViewVC</a>.</p>
-
-<p>The sources layout in SVN repository:
-at the top level, there's <tt>trunk/</tt>.
-Beneath <tt>trunk/</tt>, there are subdirectories for each project &mdash;
-like <tt>kambi_vrml_game_engine</tt>, <tt>castle</tt>, <tt>www</tt> and so on.
-At the top level, there's also subdirectory <tt>tags</tt>, and again, it has
-subdirectories for each project that I'm keeping tags on (e.g. <tt>castle/</tt>,
-and inside <tt>castle/</tt> there are subdirectories
-<tt>0.6.6</tt>, <tt>0.7.0</tt> etc.).</p>
+<!--
+Too much information:
 
 <div class="note">
 <p class="note_title">A note to developers familiar with SVN</p>
@@ -374,6 +377,7 @@ download both <tt>kambi_vrml_game_engine</tt> and one of the other directories
 (like <tt>castle</tt>) and have them as siblings, since this allows you
 to compile most things by using ready provided compilation scripts.</p>
 </div>
+-->
 
 <?php echo $toc->html_section(); ?>
 
