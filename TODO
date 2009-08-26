@@ -1,13 +1,9 @@
 ------------------------------------------------------------------------------
 Next WWW update:
-
-view3dscene
-glViewImage
-glcaps
-kambi_vrml_game_engine 1.8.0
-kambi_vrml_test_suite 2.6.0
-
 Text for next update:
+
+wait for freshmeat release accepted. My text:
+All X3D multi-texturing, cube map texturing, 3D texturing nodes are implemented. DDS (DirectDraw Surface) image format is fully supported, for all texture types (2D, 3D, cube map). S3TC compression, explicit mipmaps are all supported in DDS files. RenderedTexture node is implemented: a texture rendered from a specified viewpoint. Passing to GLSL shaders various uniform value types and texture nodes is implemented. New extensions to easily make projective texturing and shadow maps. Anisotropic texture filtering is available. Hardware occlusion query is implemented.
 
 ------------------------------------------------------------------------------
 *If* I'll ever make public vrml-engine blog on michalis.ii:

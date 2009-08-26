@@ -104,7 +104,7 @@ Features include:</p>
   <li><b>3D sound</b> by OpenAL helpers, including intelligent OpenAL sound manager
     and OggVorbis format handling.</li>
 
-  <li><b>Ant-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
+  <li><b>Anti-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
 
   <li><b>Ray-tracer</b> based on VRML models is implemented.</li>
 

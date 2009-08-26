@@ -109,6 +109,9 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
     http://freshmeat.net/projects/castlegame/
   - pascalgamedevelopment may be informed about especially important
     releases
-  - really large new features may cause updates of project
-    description on SF and cia.vc
+  - really large new features may cause updates of project description:
+    - on SourceForge
+    - cia.vc: http://cia.vc/stats/project/vrmlengine
+    - ohloh: https://www.ohloh.net/p/vrmlengine
+    - Lazarus wiki: http://wiki.freepascal.org/Kambi_VRML_game_engine
   - x3d-public mailing list
