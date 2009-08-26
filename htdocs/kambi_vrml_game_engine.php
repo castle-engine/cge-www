@@ -10,7 +10,7 @@
       new TocItem('License', 'license', 1),
       new TocItem('Base engine sources', 'engine_src', 1),
       new TocItem("Related programs' sources", 'program_sources', 1),
-      new TocItem("Subversion (SVN) notes", 'program_sources', 1),
+      new TocItem("Subversion (SVN) notes", 'svn', 1),
       new TocItem('FPC version required', 'fpc_ver', 1),
       new TocItem('Documentation', 'docs'),
       new TocItem('Automatic tests', 'tests')
@@ -352,13 +352,12 @@ Often you want to download only specific subdirectories of it.</p>
 <p>You can also <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">browse
 the SVN repository using ViewVC</a>.</p>
 
-Code from SVN is always the bleeding-edge current
+<p>Code from SVN is always the bleeding-edge current
 version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
 You can also download the code from one of
-<tt>
-https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/</tt>
+<tt class="terminal">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/</tt>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 

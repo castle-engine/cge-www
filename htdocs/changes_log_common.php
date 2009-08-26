@@ -1433,7 +1433,7 @@ function change_log_to_html($change_log_item, $full_description = true)
   }
 
   return '<p><a name="' . $change_log_item['guid'] . '"><b>' .
-    $change_log_item['title'] . '<a/></b> (' .
+    $change_log_item['title'] . '</b></a> (' .
     $month_names[$change_log_item['month']] . ' ' .
     $change_log_item['day'] . ', ' .
     $change_log_item['year'] . ') :</p>' .
