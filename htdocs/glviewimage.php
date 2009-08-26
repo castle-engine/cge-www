@@ -86,7 +86,7 @@ is also very useful.</p>
 <p>These are the binaries of the program. No special installation is required,
 just unpack the archive and run <tt>glViewImage</tt>.
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
-  VERSION_GLVIEWIMAGE,  $std_releases_post_1_2_0); ?>
+  VERSION_GLVIEWIMAGE,  $std_releases_post_1_8_0); ?>
 
 <?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

@@ -282,7 +282,12 @@ notes near some programs below.
       sf_download('sources of '.$title,
         $internal_name . '-' . $version . '-src.tar.gz');
 
-    if ($engine_ver != VERSION_KAMBI_VRML_GAME_ENGINE)
+    if ($engine_ver == VERSION_KAMBI_VRML_GAME_ENGINE)
+    {
+      echo '<br/>These tar.gz sources are compatible with latest engine ';
+      older_engine_version($engine_ver);
+      echo '.';
+    } else
     {
       echo '<br/>These tar.gz sources were tested with engine ';
       older_engine_version($engine_ver);
@@ -301,7 +306,7 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '1.7.0');
+  echo_src_archive('view3dscene', '1.8.0');
   echo_src_archive('castle', '1.7.0');
   echo_src_archive('rayhunter', '1.7.0');
 
@@ -312,9 +317,9 @@ notes near some programs below.
   echo_src_archive('glplotter', '1.5.0');
   echo_src_archive('gen_function', '1.5.0');
 
-  echo_src_archive_2('glViewImage', 'glviewimage', '1.4.0');
+  echo_src_archive_2('glViewImage', 'glviewimage', '1.8.0');
   echo_src_archive('bezier_curves', '1.3.1');
-  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.7.0');
+  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.8.0');
 
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');

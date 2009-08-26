@@ -64,9 +64,9 @@ function this_a_href_page($title, $page_name)
     array('title' => 'view3dscene 3.4 release - advanced texturing',
           'year' => 2009,
           'month' => 8,
-          'day' => 24,
-          'pubDate' => /* date_to_timestamp.sh '2009-08-24' */ 1251115200,
-          'guid' => '2009-08-24',
+          'day' => 26,
+          'pubDate' => /* date_to_timestamp.sh '2009-08-26' */ 1251288000,
+          'guid' => '2009-08-26',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => '

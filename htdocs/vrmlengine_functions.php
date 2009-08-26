@@ -133,6 +133,7 @@ function sf_download($title, $file_name)
 
 $os_arch_caption = array(
   'linux-i386'   => ' for Linux (i386)',
+  'linux-x86_64' => ' for Linux (x86_64)',
   'win-i386'     => ' for Windows (i386)',
   'freebsd-i386' => ' for FreeBSD (i386)',
   'macosx-i386'  => ' for Mac OS X (i386)',
@@ -148,6 +149,7 @@ $os_arch_caption = array(
 
 $os_arch_extension = array(
   'linux-i386'   => '.tar.gz',
+  'linux-x86_64' => '.tar.gz',
   'win-i386'     => '.zip',
   'freebsd-i386' => '.tar.gz',
   'macosx-i386'  => '.tar.gz',
@@ -159,6 +161,7 @@ $os_arch_extension = array(
 
 $std_releases_pre_1_2_0 = array('linux', 'win', 'freebsd', 'macosx');
 $std_releases_post_1_2_0 = array('linux-i386', 'win-i386', 'macosx-i386');
+$std_releases_post_1_8_0 = array('linux-i386', 'linux-x86_64', 'win-i386', 'macosx-i386');
 
 /* This echoes an <ul> list with items for all platforms where I compile
    my programs. Each item looks like
