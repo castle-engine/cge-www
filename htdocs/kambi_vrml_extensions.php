@@ -79,7 +79,7 @@ $toc = new TableOfContents(array(
   new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
   new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
 
-  new TocItem('Output events to generate camera matrix <tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
+  new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
   new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 1),
@@ -700,7 +700,7 @@ subdirectories.
 <?php echo $toc->html_section(); ?>
 
   <p>To every viewpoint node (this applies to all viewpoints usable
-  in our engine, including all <tt>X3DBindableNode</tt> descendants,
+  in our engine, including all <tt>X3DViewpointNode</tt> descendants,
   like <tt>Viewpoint</tt> and <tt>OrthoViewpoint</tt>, and even to
   VRML 1.0 <tt>PerspectiveCamera</tt> and <tt>OrthographicCamera</tt>)
   we add output events that provide you with current camera matrix.
@@ -720,7 +720,7 @@ subdirectories.
   <p><tt>"cameraRotationMatrix"</tt> again
   transforms from world-space to camera-space, but now it only takes
   care of camera rotations, disregarding camera position. As such,
-  it fits within a 3x3 matrix (9 floats), so it's also smaller than full
+  it fits within a 3x3 matrix (9 floats), so it's smaller than full
   <tt>cameraMatrix</tt> (4x4, 16 floats).
   <tt>"cameraRotationInverseMatrix"</tt> is simply it's inverse.
   Ideal to transform directions
