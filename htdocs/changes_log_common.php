@@ -61,6 +61,34 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Development news - NURBS basics',
+          'year' => 2009,
+          'month' => 9,
+          'day' => 5,
+          'pubDate' => /* date_to_timestamp.sh '2009-09-05' */ 1252152000,
+          'guid' => '2009-09-05',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' => '
+<table align="right">
+  <tr><td>
+    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/nurbs_lantern.png">
+      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/nurbs_lantern.png"
+      alt="Lantern composed from NURBS patches (from web3d.org examples)"
+      title="Lantern composed from NURBS patches (from web3d.org examples)"
+    /></a>
+  </td></tr>
+</table>
+
+<p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
+
+<p>As a background info: the core of our NURBS implementation (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
+
+<p>For the next engine release, this NURBS support will be extended. I would like to cover X3D NURBS component up to level 2 and also implement most important VRML 97 NURBS nodes for compatibility (they are similar but a little incompatible to X3D ones).</p>
+
+<p>For now, you can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>.</p>
+'),
+
     array('title' => 'view3dscene 3.4 release - advanced texturing',
           'year' => 2009,
           'month' => 8,
