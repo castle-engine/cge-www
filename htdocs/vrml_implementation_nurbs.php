@@ -11,7 +11,9 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p></li>
+  <li><p>Full support for <tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>.</p>
+
+    <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</li>
 
   <li><p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i>
     specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>,
