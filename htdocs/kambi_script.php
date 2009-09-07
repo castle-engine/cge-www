@@ -13,8 +13,8 @@
   }
 ?>
 
-<?php echo pretty_heading('KambiScript language<br/>
-<span style="font-size: medium">Simple scripting language for Kambi VRML game engine</span>'); ?>
+<?php echo pretty_heading('KambiScript language', NULL,
+'Simple scripting language for Kambi VRML game engine'); ?>
 
 <p><tt>KambiScript</tt> is a simple scripting language used in
 our <i>Kambi VRML game engine</i>. You can use it in VRML/X3D <tt>Script</tt>

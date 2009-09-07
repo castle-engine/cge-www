@@ -339,10 +339,16 @@ function is_page_available_locally($page_name)
    dobrze we wszystkich przegl±darkach przy dowolnych ustawieniach.
 
    You may supply $version_number, this is intended for pages
-   that document functionality of some program. */
-function pretty_heading($heading_text, $version_number = NULL)
+   that document functionality of some program.
+
+   You may supply $subheading_text, this will be printed in newline
+   and with smaller font below heading text. */
+function pretty_heading($heading_text, $version_number = NULL, $subheading_text = '')
 {
   $result = "<h1>$heading_text";
+
+  if ($subheading_text != '')
+    $result .= '<br/><span style="font-size: medium">' . $subheading_text . '</span>';
 
   if (!is_null($version_number))
     $result .= " <span class=\"version_number\">(version&nbsp;$version_number)</span>";
