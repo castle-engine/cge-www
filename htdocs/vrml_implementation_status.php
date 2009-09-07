@@ -1202,7 +1202,6 @@ They all are parsed correctly and consciously (which means that the parser
 doesn't simply "omit them to matching parenthesis" or some other dirty
 trick like that). But they don't have any effect on the scene. These are:
 <ul>
-  <li>NURBS</li>
   <li>Sounds (<tt>AudioClip</tt> and <tt>Sound</tt>). Although our engine
     supports 3D sounds and music (using OpenAL, sound formats
     allowed now are WAV and OggVorbis), this is currently not integrated
