@@ -223,4 +223,49 @@ function echo_standard_program_download(
     echo "</ul>\n";
   }
 }
+
+/* Return <table> with image links.
+
+   Each $images array item is another associative array:
+   - filename (name of the file, with extension, without path).
+     Assumed to exist within original_size and medium_size subdirs.
+   - titlealt - text used for both title and alt.
+
+   If $align non-empty, the table is floating left / right.
+
+   $columns specifies number of columns of the table.
+   We will automatically divide $images into rows with $columns images
+   (the last row may be left shorter).
+
+   Table uses absolute links (starting with CURRENT_URL),
+   so it's suitable for inclusion also in HTML RSS feeds.
+*/
+function table_demo_images($images, $columns=1, $align='right')
+{
+  $result = '<table' . ($align != '' ? ' align="'.$align.'"' : '') . '>';
+
+  $column_now = 0;
+
+  foreach ($images as $image)
+  {
+    if ($column_now == 0) $result .= '<tr>';
+
+    $result .= '
+      <td>
+        <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '">
+          <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
+          alt="' . $image['titlealt'] . '"
+          title="' . $image['titlealt'] . '"
+        /></a>
+      </td>';
+
+    $column_now++;
+
+    if ($column_now >= $columns) { $result .= '</tr>'; $column_now = 0; }
+  }
+
+  $result .= '</table>';
+
+  return $result;
+}
 ?>

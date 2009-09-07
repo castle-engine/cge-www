@@ -1,5 +1,5 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
   common_header("Some notes about command-line options understood by my programs",
     LANG_EN);
 ?>

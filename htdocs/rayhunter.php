@@ -6,7 +6,7 @@
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .
     "(for Linux, FreeBSD, Mac OS X and Windows).");
-  require "octree_consts.php";
+  require_once "octree_consts.php";
 
   $toc = new TableOfContents(
     array(

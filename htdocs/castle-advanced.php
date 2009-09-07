@@ -1,5 +1,5 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
 
   common_header("The Castle &mdash; additional notes", LANG_EN, '');
 

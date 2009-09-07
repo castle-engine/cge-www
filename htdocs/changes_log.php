@@ -1,5 +1,5 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
   common_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
 ?>
 
@@ -7,7 +7,7 @@
 
 <ul>
 <?php
-  require 'changes_log_common.php';
+  require_once 'changes_log_common.php';
   foreach ($changes_log as $change_log_item)
   {
     echo '<li>' . change_log_to_html($change_log_item) . '</li>';

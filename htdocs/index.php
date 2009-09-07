@@ -1,5 +1,5 @@
 <?php
-  require "index_funcs.php";
+  require_once "index_funcs.php";
 
   index_header("Kambi VRML game engine", LANG_EN,
     'A game engine written using ObjectPascal. ' .
@@ -37,7 +37,7 @@ Two most important programs available here are
 <div style="padding: 0.5em">
 <div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
 <?php
-  require 'changes_log_common.php';
+  require_once 'changes_log_common.php';
   echo last_change_log_to_html(false);
 ?>
 </div>

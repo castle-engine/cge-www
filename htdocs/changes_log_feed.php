@@ -1,11 +1,11 @@
 <?php
-  require 'vrmlengine_functions.php';
+  require_once 'vrmlengine_functions.php';
 
   $page_lang = LANG_EN;
   common_set_page_functions();
 
-  require 'kambi-php-lib/class_rss_generator.inc.php';
-  require 'changes_log_common.php';
+  require_once 'kambi-php-lib/class_rss_generator.inc.php';
+  require_once 'changes_log_common.php';
 
   $rss = new rss_generator('Kambi VRML game engine - changes log');
   $rss->link = 'http://vrmlengine.sourceforge.net/';

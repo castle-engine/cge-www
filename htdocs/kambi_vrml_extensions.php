@@ -1,5 +1,5 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
   common_header("Kambi VRML extensions", LANG_EN,
     "Description of non-standard VRML / X3D features " .
     "handled by Kambi VRML game engine.");

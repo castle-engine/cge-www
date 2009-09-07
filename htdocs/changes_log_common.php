@@ -69,17 +69,10 @@ function this_a_href_page($title, $page_name)
           'guid' => '2009-09-05',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
-          'description' => '
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/nurbs_lantern.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/nurbs_lantern.png"
-      alt="Lantern composed from NURBS patches (from web3d.org examples)"
-      title="Lantern composed from NURBS patches (from web3d.org examples)"
-    /></a>
-  </td></tr>
-</table>
-
+          'description' =>
+table_demo_images(array(
+  array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
+)) . '
 <p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
 
 <p>As a background info: the core of our NURBS implementation (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
@@ -97,32 +90,12 @@ function this_a_href_page($title, $page_name)
           'guid' => '2009-08-26',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
-          'description' => '
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/trees_river_shadow_maps.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/trees_river_shadow_maps.png"
-      alt="Shadow maps"
-      title="Shadow maps"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/water_reflections.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/water_reflections.png"
-      alt="Water reflections by optimized GeneratedCubeMapTexture"
-      title="Water reflections by optimized GeneratedCubeMapTexture"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/cubemap_teapot.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/cubemap_teapot.png"
-      alt="Teapot with cube map reflections"
-      title="Teapot with cube map reflections"
-    /></a>
-  </td></tr>
-</table>
+          'description' =>
+table_demo_images(array(
+  array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
+  array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+  array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
+)) . '
 
 <p>' . this_a_href_page('view3dscene 3.4', 'view3dscene') . ' is released! The codename of this release should be <i>"Everything you wanted to know about textures"</i>, as most of the new features deal with X3D advanced texturing nodes.
 <!-- ' . this_a_href_page('See recent news archive', 'changes_log') . '  -->
@@ -167,18 +140,10 @@ function this_a_href_page($title, $page_name)
           'guid' => '2009-08-13',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
-          'description' => '
-
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/rendered_texture.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/rendered_texture.png"
-      alt="RenderedTexture demo"
-      title="RenderedTexture demo"
-    /></a>
-  </td>
-</table>
-
+          'description' =>
+table_demo_images(array(
+  array('filename' => 'rendered_texture.png', 'titlealt' => 'RenderedTexture demo'),
+)) . '
 <p>New features in SVN:</p>
 
 <ul>
@@ -202,44 +167,14 @@ function this_a_href_page($title, $page_name)
           'guid' => '2009-05-05',
           'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
-          'description' => '
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/trees_river_shadow_maps.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/trees_river_shadow_maps.png"
-      alt="Shadow maps"
-      title="Shadow maps"
-    /></a>
-  </td>
-  <td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/tex3d_smoke.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/tex3d_smoke.png"
-      alt="Fog from 3D noise"
-      title="Fog from 3D noise"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/anisotropic_demo.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/anisotropic_demo.png"
-      alt="Demo how anisotropic filtering helps"
-      title="Demo how anisotropic filtering helps"
-    /></a>
-  </td>
-  <td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/oq_demo.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/oq_demo.png"
-      alt="Occlusion query optimizing city view"
-      title="Occlusion query optimizing city view"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/water_reflections.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/water_reflections.png"
-      alt="Water reflections by optimized GeneratedCubeMapTexture"
-      title="Water reflections by optimized GeneratedCubeMapTexture"
-    /></a>
-  </td></tr>
-</table>
+          'description' =>
+table_demo_images(array(
+  array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
+  array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
+  array('filename' => 'anisotropic_demo.png', 'titlealt' => 'Demo how anisotropic filtering helps'),
+  array('filename' => 'oq_demo.png', 'titlealt' => 'Occlusion query optimizing city view'),
+  array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+), 2) . '
 
 <p>New features implemented last month in our engine:</p>
 

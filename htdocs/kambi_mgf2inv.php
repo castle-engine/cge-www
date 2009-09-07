@@ -1,5 +1,5 @@
 <?php
-  require "vrmlengine_functions.php";
+  require_once "vrmlengine_functions.php";
   common_header("kambi_mgf2inv", LANG_EN,
     'Modified version of mgf2inv converter, this converts mgf files to ' .
     'VRML / Inventor and adds non-standard ' .

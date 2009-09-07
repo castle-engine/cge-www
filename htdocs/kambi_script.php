@@ -1,5 +1,5 @@
 <?php
-  require 'vrmlengine_functions.php';
+  require_once 'vrmlengine_functions.php';
   common_header('KambiScript language', LANG_EN);
 
   function func_ref($name, $title)
