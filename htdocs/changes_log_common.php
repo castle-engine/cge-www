@@ -61,6 +61,28 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Development news - more NURBS: interpolators, VRML 97 compatibility',
+          'year' => 2009,
+          'month' => 9,
+          'day' => 7,
+          'pubDate' => /* date_to_timestamp.sh '2009-09-07' */ 1252324800,
+          'guid' => '2009-09-07',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+table_demo_images(array(
+  array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
+  array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
+)) . '
+<p>Implementation of NURBS is progressing very nicely. In addition to previously announced nodes (rendered curves and surfaces: <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt>), we now also handle X3D NURBS interpolators: <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>, <tt>NurbsOrientationInterpolator</tt>. Using them you can animate movement of objects and viewpoints along the NURBS curves and surfaces.</p>
+
+<p>Also basic VRML 97 NURBS nodes are implemented, for compatibility.</p>
+
+<p><a href="">Up-to-date documentation about supported NURBS nodes is here.</a> Some demo scenes are inside kambi_vrml_test_suite in SVN, see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_curve_interpolators.x3dv">nurbs_curve_interpolators.x3dv</a> and <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_surface_interpolator.x3dv">nurbs_surface_interpolator.x3dv</a>.</p>
+
+<p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
+'),
+
     array('title' => 'Development news - NURBS basics',
           'year' => 2009,
           'month' => 9,
