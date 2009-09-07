@@ -97,7 +97,7 @@ concise summary of our <i>"VRML / X3D implementation status"</i>.</p>
 parts (99% of usage) of given level are supported.</p>
 
 <table class="thin_borders">
-  <tr><th>Component</th>           <th>Supported level</th></tr>
+  <tr><th>Component<br/>(click for details)</th>           <th>Supported level</th></tr>
   <tr><td>Core                     </td><td><b>2 (all)</b></td></tr>
   <tr><td>Time                     </td><td><b>2 (all)</b> (practically)</td></tr>
   <tr><td>Networking               </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
@@ -118,7 +118,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
   <tr><td>Geospatial               </td><td><b></b></td></tr>
   <tr><td>H-Anim                   </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td>NURBS                    </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('NURBS', 'vrml_implementation_nurbs'); ?>               </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
   <tr><td>DIS                      </td><td><b></b></td></tr>
   <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td>Event utilities          </td><td><b>1 (all)</b></td></tr>
