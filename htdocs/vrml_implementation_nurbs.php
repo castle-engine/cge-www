@@ -7,10 +7,10 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt></p></li>
+  <li><p><tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p></li>
 
   <li><p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i>
-    specification) are implemented: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>,
+    specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>,
     <tt>NurbsPositionInterpolator</tt>.</p>
 
     <p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.
