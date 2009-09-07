@@ -139,7 +139,7 @@ function this_a_href_page($title, $page_name)
 
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
 
-  <li><p>Passing to GLSL shaders various uniform value types is implemented. This includes vectors, matrices and many more. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> may be very useful to feed to shaders. You can also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#glsl_passing_uniform_textures">pass texture nodes to GLSL shader uniforms, following X3D specification</a>.</p></li>
+  <li><p>Passing to GLSL shaders various uniform value types is implemented. This includes vectors, matrices and many more. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> may be very useful to feed to shaders. You can also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_shaders.php#glsl_passing_uniform_textures">pass texture nodes to GLSL shader uniforms, following X3D specification</a>.</p></li>
 
   <li><p>New extensions to easily make <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">projective texturing and shadow maps</a> within your VRML/X3D worlds.</p></li>
 
@@ -771,7 +771,7 @@ is released and some other programs here get minor updates.</p>
     (including useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_status.php#shaders\">Routing
+    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_shaders.php\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
     for VRML 97) work too.

@@ -1207,8 +1207,8 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p>See <?php echo a_href_page_hashlink('X3D implementation status about programmable shaders',
-      'vrml_implementation_status', 'shaders'); ?>.
+    <p>See <?php echo a_href_page('X3D implementation status about programmable shaders',
+      'vrml_implementation_shaders'); ?>.
 
     <p>Since we officially support X3D now, this is not really an extension,
     it's just normal X3D feature. You can use it in VRML 2.0 models too,
@@ -1238,7 +1238,7 @@ end;
     in VRML 2.0 specification; although for X3D
     you should rather use standard <tt>OrthoViewpoint</tt>).</p>
 
-    <p>Also things like GLSL shaders (from X3D) are available in VRML 97.
+    <p>Also things like GLSL shaders (from X3D) are available in VRML 97.</p>
 
     <p>You can also <a href="#ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or X3D, or the other way around</a>.

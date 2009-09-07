@@ -795,9 +795,9 @@ may want to use them to make your models nicer. Some of the more important
 eye-candy features are:</p>
 
 <ul>
-  <li><p><?php echo a_href_page_hashlink(
+  <li><p><?php echo a_href_page(
     'Write shaders in GLSL, and connect them to objects in your VRML models',
-    'vrml_implementation_status', 'shaders'); ?>.</p></li>
+    'vrml_implementation_shaders'); ?>.</p></li>
 
   <li><p><?php echo a_href_page_hashlink('Bump mapping',
     'kambi_vrml_extensions', 'ext_bump_mapping'); ?>.
