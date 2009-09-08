@@ -98,7 +98,7 @@ parts (99% of usage) of given level are supported.</p>
 
 <table class="thin_borders">
   <tr><th>Component<br/>(click for details)</th>           <th>Supported level</th></tr>
-  <tr><td>Core                     </td><td><b>2 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Core', 'vrml_implementation_core'); ?>              </td><td><b>2 (all)</b></td></tr>
   <tr><td>Time                     </td><td><b>2 (all)</b> (practically)</td></tr>
   <tr><td>Networking               </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
   <tr><td>Grouping                 </td><td><b>3 (all)</b></td></tr>
@@ -922,11 +922,6 @@ used.
       <li><tt>speed</tt> is calculated to something that should "feel sensible"
         based on scene's bounding box sizes.
     </ul>
-
-  <li><p><tt>WorldInfo</tt></p>
-
-    <p><i>Note</i>: <tt>WorldInfo.title</tt>, if set, is displayed by
-    view3dscene on window's caption.
 
   <li><p><tt>Switch</tt>, <tt>Group</tt>, <tt>Transform</tt>
 
