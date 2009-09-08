@@ -117,7 +117,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Navigation               </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
   <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
   <tr><td>Geospatial               </td><td><b></b></td></tr>
-  <tr><td>H-Anim                   </td><td><b>1 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('H-Anim', 'vrml_implementation_hanim'); ?>                   </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('NURBS', 'vrml_implementation_nurbs'); ?>               </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
   <tr><td>DIS                      </td><td><b></b></td></tr>
   <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
@@ -248,38 +248,6 @@ Shape {
     <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt></p>
 
   <li><p><tt>Rectangle2D</tt>, <tt>Circle2D</tt>
-
-  <li><p>HAnim nodes:
-
-    <p><tt>Humanoid</tt>, <tt>Joint</tt>, <tt>Segment</tt>,
-    <tt>Site</tt>, <tt>Displacer</tt>
-
-    <p><tt>HAnimHumanoid</tt>, <tt>HAnimJoint</tt>,
-    <tt>HAnimSegment</tt>, <tt>HAnimSite</tt>, <tt>HAnimDisplacer</tt>
-    (X3D version)
-
-    <p>We have the basic HAnim support, which means that we can correctly
-    render your human designed with HAnim nodes and efficiently animate it
-    through VRML interpolators.
-
-    <p>As you see, X3D version has exactly the same nodes, working the same way,
-    but with <tt>HAnim</tt> prefix before node name. (I have no idea why
-    this prefix was added in X3D specification, but it's supported.)
-    Actually we allow both versions (with <tt>HAnim</tt> prefix and without)
-    in all VRML and X3D versions (<?php echo a_href_page_hashlink("with our
-    enfgine you can generally mix VRML versions",
-    'kambi_vrml_extensions',
-    'section_ext_mix_vrml_1_2'); ?>). But VRML authors/generators should
-    not overuse this, and try to conform to appropriate spec where possible.
-
-    <p>The implementation takes some care to handle all existing VRML versions:
-    <a href="http://h-anim.org/Specifications/H-Anim1.0/">HAnim 1.0</a>,
-    <a href="http://h-anim.org/Specifications/H-Anim1.1/">HAnim 1.1</a>,
-    <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
-
-    <p>Animating transformations of <tt>Joint</tt> nodes and such
-    is optimized, just like for <tt>Transform</tt> node,
-    be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.
 
   <li><p><tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,<br/>
       <tt>TextureCoordinate3D</tt>, <tt>TextureCoordinate4D</tt>,<br/>
