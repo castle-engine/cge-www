@@ -710,6 +710,18 @@ subdirectories.
   uniform variables), and use inside the shaders to transform between
   world and camera space.</p>
 
+  <?php
+    echo node_begin('XxxViewpoint');
+    echo
+    node_dots() .
+    node_field('[out]', 'SFMatrix4f', 'cameraMatrix', '') .
+    node_field('[out]', 'SFMatrix4f', 'cameraInverseMatrix', '') .
+    node_field('[out]', 'SFMatrix3f', 'cameraRotationMatrix', '') .
+    node_field('[out]', 'SFMatrix3f', 'cameraRotationInverseMatrix', '') .
+    node_field('[in,out]', 'SFBool', 'cameraMatrixSendAlsoOnOffscreenRendering', 'FALSE') .
+    node_end();
+  ?>
+
   <p><tt>"cameraMatrix"</tt> transforms from world-space (global 3D space
   that we most often think within) to camera-space (aka eye-space;
   when thinking within this space, you know then that the camera
@@ -728,16 +740,21 @@ subdirectories.
   Ideal to transform directions
   between world- and camera-space in shaders.</p>
 
-  <?php
-    echo node_begin('XxxViewpoint');
-    echo
-    node_dots() .
-    node_field('[out]', 'SFMatrix4f', 'cameraMatrix', '') .
-    node_field('[out]', 'SFMatrix4f', 'cameraInverseMatrix', '') .
-    node_field('[out]', 'SFMatrix3f', 'cameraRotationMatrix', '') .
-    node_field('[out]', 'SFMatrix3f', 'cameraRotationInverseMatrix', '') .
-    node_end();
-  ?>
+  <p><tt>"cameraMatrixSendAlsoOnOffscreenRendering"</tt> controls
+  when the four output events above are generated.
+  The default (<tt>FALSE</tt>) behavior is that they are generated only
+  for camera that corresponds to the actual viewpoint, that is: for the
+  camera settings used when rendering scene to the screen.
+  The value <tt>TRUE</tt> causes the output matrix events to be generated
+  also for temporary camera settings used for off-screen rendering
+  (used when generating textures for <tt>GeneratedCubeMapTexture</tt>,
+  <tt>GeneratedShadowMap</tt>, <tt>RenderedTexture</tt>). This is a little
+  dirty, as cameras used for off-screen rendering do not (usually) have
+  any relation to actual viewpoint (for example, for
+  <tt>GeneratedCubeMapTexture</tt>, camera is positioned in the middle
+  of the shape using the cube map). But this can be useful: when you route
+  these events straight to the shaders, you usually need in shaders "actual
+  camera" (which is not necessarily current viewpoint camera) matrices.</p>
 
 <?php echo $toc->html_section(); ?>
 
