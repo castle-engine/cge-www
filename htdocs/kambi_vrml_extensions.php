@@ -2120,6 +2120,7 @@ end;
     <?php
       echo '<table align="right">' .
         '<tr><td>' . ext_screenshot("rendered_texture.png", 'RenderedTexture demo') .
+        '<tr><td>' . ext_screenshot("rendered_texture_with_background.png", 'RenderedTexture with background and mirrors thrown in') .
         '</table>';
     ?>
 
