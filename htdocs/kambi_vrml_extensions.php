@@ -72,12 +72,13 @@ $toc = new TableOfContents(array(
 
   new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
   new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 2),
-  new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 2),
 
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
   new TocItem('Light parameters for projective texturing and shadow maps', 'ext_light_projective', 2),
   new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
   new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
+
+  new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 1),
 
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
@@ -473,26 +474,6 @@ subdirectories.
 
 <?php echo $toc->html_section(); ?>
 
-    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
-    node. Additional field <tt>shadowCaster</tt> says whether a shape does
-    cast a shadow. <i>By default all shapes cast a shadow</i>,
-    so typically you need to use this field only to explicitly
-    disable shadows casting from given shape.
-
-    <?php
-      echo node_begin('KambiAppearance');
-      $node_format_fd_name_pad = 15;
-      echo
-      node_dots('all normal Appearance fields, and KambiAppearance fields documented previously') .
-      node_field('exposedField', 'SFBool', 'shadowCaster' , 'TRUE') .
-      node_end();
-    ?>
-
-    <p>This is honoured by our shadow volumes implementation
-    (that is, dynamic shadows in OpenGL) and also by our ray-tracers.
-
-<?php echo $toc->html_section(); ?>
-
   <?php
     echo '<table align="right">' .
         '<tr><td>' . ext_screenshot("trees_river_shadow_maps.png", 'Scenery with shadow maps') .
@@ -696,6 +677,27 @@ subdirectories.
   means that comparison is not done, depth texture values are returned directly,
   this is useful for example for debug / demo purposes &mdash; you can
   view the texture as a normal grayscale (luminance) texture.</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
+    node. Additional field <tt>shadowCaster</tt> says whether a shape does
+    cast a shadow. <i>By default all shapes cast a shadow</i>,
+    so typically you need to use this field only to explicitly
+    disable shadows casting from given shape.
+
+    <?php
+      echo node_begin('KambiAppearance');
+      $node_format_fd_name_pad = 15;
+      echo
+      node_dots('all normal Appearance fields, and KambiAppearance fields documented previously') .
+      node_field('exposedField', 'SFBool', 'shadowCaster' , 'TRUE') .
+      node_end();
+    ?>
+
+    <p>This is honoured by all our shadow implementations:
+    shadow volumes, shadow maps (that is, both methods for dynamic
+    shadows in OpenGL) and also by our ray-tracers.</p>
 
 <?php echo $toc->html_section(); ?>
 
