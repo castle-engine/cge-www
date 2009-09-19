@@ -630,6 +630,9 @@ In "normal" programming languages you would write <tt>my_array[index] := compone
 (that is, they return the new value of their 1st argument),
 this may be comfortable sometimes.</p>
 
+<p>You can glue (concatenate) two or more arrays by the "+" operator.</p>
+
+
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('vector', 'vector(x, y), vector(x, y, z), vector(x, y, z, w)'); ?>
