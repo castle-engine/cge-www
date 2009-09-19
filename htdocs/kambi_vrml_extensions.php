@@ -525,7 +525,7 @@ subdirectories.
   the way to make shadow mapping both beautiful and in one pass (read: fast),
   and it's the way of the future anyway. You can start from a trivial
   fragment shader in our examples:
-  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_map.fs">shadow_map.fs</a>.
+  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
 
 <?php echo $toc->html_section(); ?>
 
