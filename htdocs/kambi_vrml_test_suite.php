@@ -64,9 +64,13 @@ Subversion by:<br><tt><?php
 <p>Models :
 
 <ul>
-  <li><tt>vrml_2/camera_{orient,rot}.wrl</tt> and test textures
-    for spherical mapping testing (textures/spheremap-*.jpg)
-    by Victor Amat. Thanks!</li>
+  <li>Victor Amat provided many interesting demos:
+    Screen Space Ambient Occlusion (see <tt>x3d/shadow_maps/ssao*</tt>),
+    shadow maps tests (including demo to visualize bias/scale,
+    <tt>x3d/shadow_maps/shadow_bias.x3dv</tt>),
+    <tt>vrml_2/camera_{orient,rot}.wrl</tt>,
+    test textures for spherical mapping testing (<tt>textures/spheremap-*.jpg</tt>.
+    Thanks!</li>
 
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
