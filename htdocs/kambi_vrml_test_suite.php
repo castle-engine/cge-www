@@ -69,6 +69,7 @@ Subversion by:<br><tt><?php
     shadow maps tests (including demo to visualize bias/scale,
     <tt>x3d/shadow_maps/shadow_bias.x3dv</tt>),
     <tt>vrml_2/camera_{orient,rot}.wrl</tt>,
+    <tt>orientation_interpolator_alum_box.wrl</tt>,
     test textures for spherical mapping testing (<tt>textures/spheremap-*.jpg</tt>.
     Thanks!</li>
 
