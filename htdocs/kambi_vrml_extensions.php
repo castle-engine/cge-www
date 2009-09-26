@@ -599,7 +599,7 @@ subdirectories.</p>
   <p>New node:
 
   <?php
-    echo node_begin('GeneratedShadowMap');
+    echo node_begin('GeneratedShadowMap : X3DTextureNode');
     $node_format_fd_name_pad = 15;
     $node_format_fd_def_pad = 20;
     echo
@@ -670,7 +670,7 @@ subdirectories.</p>
     disable shadows casting from given shape.
 
     <?php
-      echo node_begin('KambiAppearance');
+      echo node_begin('KambiAppearance : Appearance');
       $node_format_fd_name_pad = 15;
       echo
       node_dots('all normal Appearance fields, and KambiAppearance fields documented previously') .
@@ -769,7 +769,7 @@ subdirectories.</p>
     <p>We add new node:
 
     <?php
-      echo node_begin('Text3D');
+      echo node_begin('Text3D : X3DGeometryNode');
       echo
       node_field('MFString', '[in,out]', 'string', '[]') .
       node_field('SFNode', '[in,out]', 'fontStyle', 'NULL') .
@@ -930,7 +930,7 @@ EXTERNPROTO Text3D [
     on inlined content.
 
     <?php
-      echo node_begin('KambiInline');
+      echo node_begin('KambiInline : Inline');
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal Inline fields') .
@@ -1033,7 +1033,7 @@ Shape {
     <tt>KambiNavigationInfo</tt> node:
 
     <?php
-      echo node_begin('KambiNavigationInfo');
+      echo node_begin('KambiNavigationInfo : NavigationInfo');
       $node_format_fd_name_pad = 18;
       echo
       node_dots('all normal NavigationInfo fields') .
@@ -1166,7 +1166,7 @@ end;
 </table>
 
     <?php
-      echo node_begin('X3DComposedGeometryNode');
+      echo node_begin('X3DComposedGeometryNode : X3DGeometryNode');
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal X3DComposedGeometryNode fields') .
@@ -1250,7 +1250,7 @@ end;
     I add to <tt>Fog</tt> node some additional fields to allow
     definition of volumetric fog:
 
-    <?php echo node_begin("Fog");
+    <?php echo node_begin("Fog : X3DBindableNode, X3DFogObject");
       $node_format_fd_type_pad=8;
       $node_format_fd_name_pad=28;
       $node_format_fd_def_pad=8;
@@ -1399,7 +1399,7 @@ end;
 
     <p>New node:
 
-    <?php echo node_begin("KambiTriangulation");
+    <?php echo node_begin("KambiTriangulation : X3DChildNode");
       $node_format_fd_type_pad=8;
       $node_format_fd_name_pad=15;
       $node_format_fd_def_pad=5;
@@ -1685,7 +1685,7 @@ end;
     ambientIntensity = 0.0, and direction = (0 0 -1)</i>.
 
     <?php
-      echo node_begin('KambiHeadLight');
+      echo node_begin('KambiHeadLight : X3DChildNode');
       $node_format_fd_name_pad = 20;
       echo
       node_field('SFFloat', '[in,out]', 'ambientIntensity', '0', '[0.0, 1.0]') .
@@ -1844,7 +1844,7 @@ end;
 
     <p>A new node:
 
-    <?php echo node_begin("KambiOctreeProperties");
+    <?php echo node_begin("KambiOctreeProperties : X3DNode");
       $node_format_fd_type_pad = 5;
       $node_format_fd_name_pad = 20;
       $node_format_fd_def_pad = 6;
@@ -1866,7 +1866,7 @@ end;
     node inside <tt>KambiNavigationInfo</tt> node. For per-shape
     octrees, we add new fields to <tt>Shape</tt> node:</p>
 
-    <?php echo node_begin("KambiNavigationInfo");
+    <?php echo node_begin("KambiNavigationInfo : NavigationInfo");
       $node_format_fd_type_pad = 5;
       $node_format_fd_name_pad = 25;
       $node_format_fd_def_pad = 6;
