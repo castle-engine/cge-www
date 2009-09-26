@@ -1,13 +1,12 @@
 <?php
-  require_once "vrmlengine_functions.php";
-  common_header("Kambi VRML extensions", LANG_EN,
-    "Description of non-standard VRML / X3D features " .
-    "handled by Kambi VRML game engine.");
+  require_once 'vrmlengine_functions.php';
+  common_header('Kambi VRML / X3D extensions', LANG_EN,
+    'Non-standard VRML / X3D features handled by the Kambi VRML game engine.');
 
   $node_format_fd_type_pad = 0;
   $node_format_fd_name_pad = 0;
   $node_format_fd_def_pad = 0;
-  $node_format_fd_kind_pad = 0;
+  $node_format_fd_inout_pad = 0;
 
 function node_begin($node_name)
 /* inicjuje $node_format_* na wartosci domyslne zebys mogl po wywolaniu
@@ -16,12 +15,12 @@ function node_begin($node_name)
    a pozostale zostawic na domyslnych wartosciach) */
 {
   global $node_format_fd_type_pad, $node_format_fd_name_pad,
-    $node_format_fd_def_pad, $node_format_fd_kind_pad;
+    $node_format_fd_def_pad, $node_format_fd_inout_pad;
 
   $node_format_fd_type_pad = 10;
   $node_format_fd_name_pad = 10;
   $node_format_fd_def_pad = 10;
-  $node_format_fd_kind_pad = 12;
+  $node_format_fd_inout_pad = 12;
 
   return "<pre><b>$node_name {</b>\n";
 }
@@ -33,21 +32,26 @@ function node_end()
 function node_dots($comment = '')
 {
   if ($comment == '')
-    return "  <b>...</b>\n"; else
-    return "  <b>... $comment ...</b>\n";
+    $result = "..."; else
+    $result = "... $comment ...";
+
+  //  $result = '<b>' . $result . '</b>';
+
+  $result = '  ' . $result . "\n";
+
+  return $result;
 }
 
-function node_field($field_kind,
-  $field_type, $field_name, $field_default, $field_comment = "")
+function node_field($field_type, $field_inout, $field_name, $field_default, $field_comment = "")
 {
   global $node_format_fd_type_pad, $node_format_fd_name_pad,
-    $node_format_fd_def_pad, $node_format_fd_kind_pad;
+    $node_format_fd_def_pad, $node_format_fd_inout_pad;
 
-  $r = sprintf("  %-" .int_to_str($node_format_fd_kind_pad). "s %-"
-                      .int_to_str($node_format_fd_type_pad). "s  <b>%-"
+  $r = sprintf("  %-" .int_to_str($node_format_fd_type_pad). "s %-"
+                      .int_to_str($node_format_fd_inout_pad). "s  <b>%-"
 		      .int_to_str($node_format_fd_name_pad). "s  %-"
 		      .int_to_str($node_format_fd_def_pad). "s</b>",
-		      $field_kind, $field_type, $field_name, $field_default);
+		      $field_type, $field_inout, $field_name, $field_default);
   if ($field_comment != "") $r .= "  # $field_comment";
   $r .= "\n";
   return $r;
@@ -100,7 +104,7 @@ $toc = new TableOfContents(array(
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 1),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 1),
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 1),
-  new TocItem("Fields describing physical properties (Phong's BRDF) for <tt>Material</tt> node", 'ext_material_phong_brdf_fields', 1),
+  new TocItem('Fields describing physical properties (Phong\'s BRDF) for <tt>Material</tt> node', 'ext_material_phong_brdf_fields', 1),
   new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 1),
 
   new TocItem('Extensions compatible with Avalon / instant-reality', 'ext_avalon', 1),
@@ -124,98 +128,77 @@ $toc->echo_numbers = true;
 
 ?>
 
-<?php echo pretty_heading("Kambi VRML extensions");  ?>
+<?php echo pretty_heading('Kambi VRML / X3D extensions');  ?>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is a VRML engine, so many programs here do something non-trivial
-with VRML files.
-<?php
-/* Old and useless notes:
+<p>This page documents our extensions to the VRML/X3D standard: new fields, new nodes, allowing you to do something not otherwise possible in VRML/X3D.</p>
 
-Many of our programs play with 3d models in VRML format.
-Most importantly, there is
-<?php echo a_href_page("view3dscene", "view3dscene"); ?> &mdash;
-VRML (and some other formats) viewer, there is also
-<?php echo a_href_page("rayhunter", "rayhunter"); ?> &mdash;
-ray-tracer that uses VRML files,
-<?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>
- that converts MGF to VRML with some extensions useful
-for <i>path tracer</i> in <?php echo a_href_page('rayhunter', 'rayhunter'); ?>.
-<?php echo a_href_page('Malfunction', 'malfunction'); ?> and
-<?php echo a_href_page('lets_take_a_walk', 'lets_take_a_walk'); ?>
- also have levels, monsters etc. stored as VRML models.
-Most of the work has been done with VRML 1.0,
-but VRML 97 support is also done since August 2006, and
-X3D will also be supported one day. */ ?>
- Not surprisingly, I needed at some point to extend what is allowed by
-VRML specifications, for various reasons. This page documents these
-extensions, so everyone can use them.</p>
+<p><b>Compatibility</b> notes:</p>
 
-<p>Note that some of these extensions may not be tolerated by other
-VRML viewers. However:
 <ul>
-  <li><p>Many VRML 2.0 extensions may be preceeded by appropriate
-    <tt>EXTERNPROTO</tt> statements,
-    this will allow other VRML 2.0 implementations to at least gracefully
-    omit them. <?php echo a_href_page("Kambi VRML test suite",
-    "kambi_vrml_test_suite"); ?> uses this mechanism whenever possible,
-    so that even things inside <tt>kambi_extensions/</tt> should be partially
-    handled by other VRML browsers.</p>
+  <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceeded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
 
-    <p>Our extensions are identified by URN like
-    "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
+    <p><?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
 
-    <p>Our extensions' external prototypes may specify a fallback URL
-    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a>
-    for VRML 2.0. For X3D, analogous URL is
-    <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv">http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv</a>.
-    Such fallback URL will allow other VRML browsers to partially handle
-    our extensions. For example, see <tt>EXTERNPROTO</tt> example
-    for <a href="#ext_text3d">Text3D</a> &mdash; browsers that don't handle
-    Text3D node directly should use our fallback URL and render Text3D
-    like normal 2D text node.</p>
+    <p>Our extensions are identified by URN like "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
 
-    <p>TODO: eventual goal is to make all extensions this way, so that they
-    can be nicely omitted.
-    Also, it would be nice to use VRML 1.0 similar feature,
-    <tt>isA</tt> and <tt>fields</tt>, for the same purpose,
-    but it's not implemented (and probably never will be, since VRML 1.0
-    is basically dead and VRML 2.0 / X3D externproto is so much better).</p></li>
+    <p>Our extensions' external prototypes may specify a fallback URL <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a> for VRML 2.0. For X3D, analogous URL is <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv">http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv</a>. Such fallback URL will allow other VRML browsers to partially handle our extensions. For example, see <tt>EXTERNPROTO</tt> example for <a href="#section_ext_text3d">Text3D</a> &mdash; browsers that don't handle Text3D node directly should use our fallback URL and render Text3D like normal 2D text node.</p>
 
-  <li><p>Some of VRML 1.0 extensions are borrowed from VRML 97 specification
+    <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <tt>isA</tt> and <tt>fields</tt>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
+  </li>
+
+  <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
+
+  <li><p>Some extensions are <a href="#section_ext_avalon">designed for compatibility with Avalon (instant-reality, InstantPlayer)</a>.</p></li>
+</ul>
+
+<!--
+Commented out, too much useless info:
+
+Some other extensions may be able supported for other reasons:
+
+- Some of VRML 1.0 extensions are borrowed from VRML 97 specification
     (e.g. <a href="#ext_light_attenuation">attenuation field for lights</a>),
     I just allow them also in VRML 1.0.</p></li>
 
-  <li><p>Some other extensions like
+- Some other extensions like
     <a href="#ext_gzip">compressing VRML files by gzip</a>
     or <a href="#ext_multi_root_node">multiple root nodes in VRML 1.0</a>
     are often implemented in other VRML viewers.</p></li>
-</ul>
 
-<p>To understand specifications of these extensions you will
-need some basic knowledge of VRML. Here you can find
-<a href="http://www.web3d.org/x3d/specifications/vrml/">official
-VRML 1.0 and 97 specifications</a> if you want to educate yourself.</p>
+-->
 
-<p>VRML fields and nodes are specified on this page in the
-convention somewhat similar to VRML 97 specification:
+<p><b>Conventions</b>: fields and nodes are specified on this page in the convention somewhat similar to X3D specification:</p>
+
 <?php echo
-  node_begin("NodeName") .
-  node_field('fieldKind', "FieldType", "fieldName", "default_value", "short comment") .
+  node_begin("NodeName : X3DDescendantNode");
+  $node_format_fd_type_pad = 20;
+  echo
+  node_field('SF/MF-FieldType', '[in,out]', "fieldName", "default_value", "short comment") .
   node_dots() .
   node_end();
 ?>
 
-<p>Example VRML models that use these extensions may be found
+<p>If you're thinking in VRML 97 terms:</p>
+<ul>
+  <li>Field <tt>initializeOnly</tt> in VRML 97 is <tt>[]</tt> in X3D,</li>
+  <li>Event <tt>inputOnly</tt> in VRML 97 is <tt>[in]</tt> in X3D,</li>
+  <li>Event <tt>outputOnly</tt> in VRML 97 is <tt>[out]</tt> in X3D,</li>
+  <li>Field (and 2 events) <tt>exposedField</tt> in VRML 97 is <tt>[in,out]</tt> in X3D,</li>
+</ul>
+
+<p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/x3d/specifications/vrml/">you can find the official VRML / X3D specifications here</a>.</p>
+
+<p><b>Examples</b>: VRML/X3D models that use these extensions may be found
 in <?php echo a_href_page("Kambi VRML test suite",
 "kambi_vrml_test_suite"); ?> &mdash; look inside
 <tt>vrml_1/kambi_extensions/</tt>, <tt>vrml_2/kambi_extensions/</tt>,
 <tt>x3d/kambi_extensions/</tt>, <tt>x3d/shaders/kambi_extensions/</tt>
-subdirectories.
+subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -225,13 +208,13 @@ subdirectories.
     node that adds some new fields useful for bump mapping:
 
     <?php
-      echo node_begin('KambiAppearance');
+      echo node_begin('KambiAppearance : Appearance');
       $node_format_fd_name_pad = 15;
       echo
       node_dots('all normal Appearance fields') .
-      node_field('exposedField', 'SFNode', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('exposedField', 'SFNode', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('exposedField', 'SFFloat', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
+      node_field('SFNode', '[in,out]', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('SFNode', '[in,out]', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('SFFloat', '[in,out]', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
       node_end();
     ?>
 
@@ -397,12 +380,12 @@ subdirectories.
     <p>To all VRML light nodes, we add two fields:
 
     <?php
-      echo node_begin('XxxLight');
+      echo node_begin('*Light');
       $node_format_fd_name_pad = 20;
       echo
       node_dots() .
-      node_field('exposedField', 'SFBool', 'kambiShadows' , 'FALSE') .
-      node_field('exposedField', 'SFBool', 'kambiShadowsMain' , 'FALSE',
+      node_field('SFBool', '[in,out]', 'kambiShadows' , 'FALSE') .
+      node_field('SFBool', '[in,out]', 'kambiShadowsMain' , 'FALSE',
         'meaningfull only when kambiShadows = TRUE') .
       node_end();
     ?>
@@ -536,9 +519,9 @@ subdirectories.
     $node_format_fd_name_pad = 20;
     echo
     node_dots() .
-    node_field('[in,out]', 'SFFloat', 'projectionNear' , '1', '&gt; 0') .
-    node_field('[in,out]', 'SFFloat', 'projectionFar' , '100', 'anything &gt; projectionNear') .
-    node_field('[in,out]', 'SFVec3f', 'up' , '0 1 0') .
+    node_field('SFFloat', '[in,out]', 'projectionNear' , '1', '&gt; 0') .
+    node_field('SFFloat', '[in,out]', 'projectionFar' , '100', 'anything &gt; projectionNear') .
+    node_field('SFVec3f', '[in,out]', 'up' , '0 1 0') .
     node_end();
   ?>
 
@@ -571,8 +554,8 @@ subdirectories.
     $node_format_fd_name_pad = 20;
     echo
     node_dots() .
-    node_field('[in,out]', 'SFVec4f', 'projectionRectangle', '-10 10 -10 10', '# left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
-    node_field('[in,out]', 'SFVec3f', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
+    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '-10 10 -10 10', '# left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
+    node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
   ?>
 
@@ -583,7 +566,7 @@ subdirectories.
     $node_format_fd_name_pad = 20;
     echo
     node_dots() .
-    node_field('[in,out]', 'SFFloat', 'projectionAngle', '0') .
+    node_field('SFFloat', '[in,out]', 'projectionAngle', '0') .
     node_end();
   ?>
 
@@ -620,13 +603,13 @@ subdirectories.
     $node_format_fd_name_pad = 15;
     $node_format_fd_def_pad = 20;
     echo
-    node_field('[in,out]', 'SFNode',    'metadata',          'NULL', '[X3DMetadataObject]') .
-    node_field('[in,out]', 'SFString',  'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
-    node_field('[]',       'SFInt32',   'size',              '128') .
-    node_field('[]',       'SFNode',    'light',             'NULL', 'any light node') .
-    node_field('[in,out]', 'SFFloat',   'scale',             '1.1') .
-    node_field('[in,out]', 'SFFloat',   'bias',              '4.0') .
-    node_field('[]'      , 'SFString',  'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
+    node_field('SFNode'  , '[in,out]', 'metadata',          'NULL', '[X3DMetadataObject]') .
+    node_field('SFString', '[in,out]', 'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
+    node_field('SFInt32' , '[]',       'size',              '128') .
+    node_field('SFNode'  , '[]',       'light',             'NULL', 'any light node') .
+    node_field('SFFloat' , '[in,out]', 'scale',             '1.1') .
+    node_field('SFFloat' , '[in,out]', 'bias',              '4.0') .
+    node_field('SFString', '[]',       'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
     node_end();
   ?>
 
@@ -691,7 +674,7 @@ subdirectories.
       $node_format_fd_name_pad = 15;
       echo
       node_dots('all normal Appearance fields, and KambiAppearance fields documented previously') .
-      node_field('exposedField', 'SFBool', 'shadowCaster' , 'TRUE') .
+      node_field('SFBool', '[in,out]', 'shadowCaster' , 'TRUE') .
       node_end();
     ?>
 
@@ -711,14 +694,14 @@ subdirectories.
   world and camera space.</p>
 
   <?php
-    echo node_begin('XxxViewpoint');
+    echo node_begin('*Viewpoint');
     echo
     node_dots() .
-    node_field('[out]', 'SFMatrix4f', 'cameraMatrix', '') .
-    node_field('[out]', 'SFMatrix4f', 'cameraInverseMatrix', '') .
-    node_field('[out]', 'SFMatrix3f', 'cameraRotationMatrix', '') .
-    node_field('[out]', 'SFMatrix3f', 'cameraRotationInverseMatrix', '') .
-    node_field('[in,out]', 'SFBool', 'cameraMatrixSendAlsoOnOffscreenRendering', 'FALSE') .
+    node_field('SFMatrix4f', '[out]', 'cameraMatrix', '') .
+    node_field('SFMatrix4f', '[out]', 'cameraInverseMatrix', '') .
+    node_field('SFMatrix3f', '[out]', 'cameraRotationMatrix', '') .
+    node_field('SFMatrix3f', '[out]', 'cameraRotationInverseMatrix', '') .
+    node_field('SFBool', '[in,out]', 'cameraMatrixSendAlsoOnOffscreenRendering', 'FALSE') .
     node_end();
   ?>
 
@@ -788,12 +771,12 @@ subdirectories.
     <?php
       echo node_begin('Text3D');
       echo
-      node_field('exposedField', 'MFString', 'string', '[]') .
-      node_field('exposedField', 'SFNode', 'fontStyle', 'NULL') .
-      node_field('exposedField', 'MFFloat', 'length', '[]') .
-      node_field('exposedField', 'SFFloat', 'maxExtent', '0') .
-      node_field('exposedField', 'SFFloat', 'depth', '0.1', 'must be &gt;= 0') .
-      node_field('exposedField', 'SFBool', 'solid', 'TRUE') .
+      node_field('MFString', '[in,out]', 'string', '[]') .
+      node_field('SFNode', '[in,out]', 'fontStyle', 'NULL') .
+      node_field('MFFloat', '[in,out]', 'length', '[]') .
+      node_field('SFFloat', '[in,out]', 'maxExtent', '0') .
+      node_field('SFFloat', '[in,out]', 'depth', '0.1', 'must be &gt;= 0') .
+      node_field('SFBool', '[in,out]', 'solid', 'TRUE') .
       node_end();
     ?>
 
@@ -880,7 +863,7 @@ EXTERNPROTO Text3D [
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal TextureNode fields') .
-      node_field('field', 'SFString', 'alphaChannel', '"AUTO"', '"AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"') .
+      node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"') .
       node_end();
     ?>
 
@@ -951,8 +934,8 @@ EXTERNPROTO Text3D [
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal Inline fields') .
-      node_field('exposedField', 'MFString', 'replaceNames', '[]') .
-      node_field('exposedField', 'MFNode', 'replaceNodes' , '[]', 'any VRML node is valid on this list') .
+      node_field('MFString', '[in,out]', 'replaceNames', '[]') .
+      node_field('MFNode', '[in,out]', 'replaceNodes' , '[]', 'any VRML node is valid on this list') .
       node_end();
     ?>
 
@@ -1054,7 +1037,7 @@ Shape {
       $node_format_fd_name_pad = 18;
       echo
       node_dots('all normal NavigationInfo fields') .
-      node_field('field', 'SFBool', 'timeOriginAtLoad', 'FALSE') .
+      node_field('SFBool', '[]', 'timeOriginAtLoad', 'FALSE') .
       node_end();
     ?>
 
@@ -1187,7 +1170,7 @@ end;
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal X3DComposedGeometryNode fields') .
-      node_field('exposedField', 'MFVec3f', 'radianceTransfer', '[]') .
+      node_field('MFVec3f', '[in,out]', 'radianceTransfer', '[]') .
       node_end();
     ?>
 
@@ -1273,10 +1256,10 @@ end;
       $node_format_fd_def_pad=8;
       echo
       node_dots() .
-      node_field('exposedField', "SFBool", "volumetric", "FALSE") .
-      node_field('exposedField', "SFVec3f", "volumetricDirection",  "0 -1 0", "any non-zero vector") .
-      node_field('exposedField', "SFFloat", "volumetricVisibilityStart",  "0") .
-      node_field('exposedField', "SFNode", "alternative", 'NULL', "NULL or another Fog node") .
+      node_field('SFBool', '[in,out]', 'volumetric', 'FALSE') .
+      node_field('SFVec3f', '[in,out]', 'volumetricDirection',  '0 -1 0', 'any non-zero vector') .
+      node_field('SFFloat', '[in,out]', 'volumetricVisibilityStart',  '0') .
+      node_field('SFNode', '[in,out]', 'alternative', 'NULL', 'NULL or another Fog node') .
       node_end();
     ?>
 
@@ -1371,7 +1354,7 @@ end;
 
       echo
       node_dots() .
-      node_field('exposedField', "SFBool", "fogImmune", "FALSE") .
+      node_field('SFBool', '[in,out]', "fogImmune", "FALSE") .
       node_end();
     ?>
 
@@ -1421,9 +1404,9 @@ end;
       $node_format_fd_name_pad=15;
       $node_format_fd_def_pad=5;
       echo
-      node_field('exposedField', "SFInt32", "quadricSlices", "-1", "{-1} + [3, infinity)") .
-      node_field('exposedField', "SFInt32", "quadricStacks", "-1", "{-1} + [2, infinity)") .
-      node_field('exposedField', "SFInt32", "rectDivisions", "-1", "[-1, infinity)") .
+      node_field('SFInt32', '[in,out]', "quadricSlices", "-1", "{-1} + [3, infinity)") .
+      node_field('SFInt32', '[in,out]', "quadricStacks", "-1", "{-1} + [2, infinity)") .
+      node_field('SFInt32', '[in,out]', "rectDivisions", "-1", "[-1, infinity)") .
       node_end();
     ?>
 
@@ -1586,9 +1569,9 @@ end;
     <?php echo node_begin("PerspectiveCamera / OrthographicCamera / Viewpoint");
       echo
       node_dots() .
-      node_field('exposedField', "MFVec3f", "direction",  "[]") .
-      node_field('exposedField', "MFVec3f", "up", "[]") .
-      node_field('exposedField', "SFVec3f", "gravityUp", "0 1 0") .
+      node_field('MFVec3f', '[in,out]', "direction",  "[]") .
+      node_field('MFVec3f', '[in,out]', "up", "[]") .
+      node_field('SFVec3f', '[in,out]', "gravityUp", "0 1 0") .
       node_end();
     ?>
 
@@ -1642,7 +1625,7 @@ end;
     <?php echo
       node_begin("Material") .
       node_dots() .
-      node_field('exposedField', "MFFloat / SFFloat", "mirror", "0.0", "[0.0; 1.0]") .
+      node_field('MFFloat/SFFloat', '[in,out]', "mirror", "0.0", "[0.0; 1.0]") .
       node_end();
     ?>
 
@@ -1705,13 +1688,13 @@ end;
       echo node_begin('KambiHeadLight');
       $node_format_fd_name_pad = 20;
       echo
-      node_field('exposedField', 'SFFloat', 'ambientIntensity', '0', '[0.0, 1.0]') .
-      node_field('exposedField', 'SFVec3f', 'attenuation'     , '1 0 0', '[0, infinity)') .
-      node_field('exposedField', 'SFColor', 'color'           , '1 1 1', '[0, 1]') .
-      node_field('exposedField', 'SFFloat', 'intensity'       , '1', '[0, 1]') .
-      node_field('exposedField', 'SFBool' , 'spot'            , 'FALSE') .
-      node_field('exposedField', 'SFFloat', 'spotDropOffRate' , 0) .
-      node_field('exposedField', 'SFFloat', 'spotCutOffAngle' , 0.785398) .
+      node_field('SFFloat', '[in,out]', 'ambientIntensity', '0', '[0.0, 1.0]') .
+      node_field('SFVec3f', '[in,out]', 'attenuation'     , '1 0 0', '[0, infinity)') .
+      node_field('SFColor', '[in,out]', 'color'           , '1 1 1', '[0, 1]') .
+      node_field('SFFloat', '[in,out]', 'intensity'       , '1', '[0, 1]') .
+      node_field('SFBool', '[in,out]', 'spot'            , 'FALSE') .
+      node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0) .
+      node_field('SFFloat', '[in,out]', 'spotCutOffAngle' , 0.785398) .
       node_end();
     ?>
 
@@ -1739,12 +1722,12 @@ end;
 
       echo
       node_dots() .
-      node_field('exposedField', "MFColor", "reflSpecular", "[]", "specular reflectance") .
-      node_field('exposedField', "MFColor", "reflDiffuse", "[]", "diffuse reflectance") .
-      node_field('exposedField', "MFColor", "transSpecular", "[]", "specular transmittance") .
-      node_field('exposedField', "MFColor", "transDiffuse", "[]", "diffuse transmittance") .
-      node_field('exposedField', "MFFloat (SFFloat in VRML 1.0)", "reflSpecularExp", "1000000", "specular reflectance exponent") .
-      node_field('exposedField', "MFFloat (SFFloat in VRML 1.0)", "transSpecularExp", "1000000", "specular transmittance exponent") .
+      node_field('MFColor', '[in,out]', "reflSpecular", "[]", "specular reflectance") .
+      node_field('MFColor', '[in,out]', "reflDiffuse", "[]", "diffuse reflectance") .
+      node_field('MFColor', '[in,out]', "transSpecular", "[]", "specular transmittance") .
+      node_field('MFColor', '[in,out]', "transDiffuse", "[]", "diffuse transmittance") .
+      node_field('MFFloat (SFFloat in VRML 1.0)', '[in,out]', "reflSpecularExp", "1000000", "specular reflectance exponent") .
+      node_field('MFFloat (SFFloat in VRML 1.0)', '[in,out]', "transSpecularExp", "1000000", "specular transmittance exponent") .
       node_end();
     ?>
 
@@ -1867,8 +1850,8 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
-      node_field('field', "SFInt32", "maxDepth", "-1", "must be &gt;= -1") .
-      node_field('field', "SFInt32", "leafCapacity", "-1", "must be &gt;= -1") .
+      node_field('SFInt32', '[]', "maxDepth", "-1", "must be &gt;= -1") .
+      node_field('SFInt32', '[]', "leafCapacity", "-1", "must be &gt;= -1") .
       node_end();
     ?>
 
@@ -1890,10 +1873,10 @@ end;
 
       echo
       node_dots() .
-      node_field('field', "SFNode", "octreeRendering", "NULL", "only KambiOctreeProperties node") .
-      node_field('field', "SFNode", "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
-      node_field('field', "SFNode", "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
-      node_field('field', "SFNode", "octreeCollidableTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_field('SFNode', '[]', "octreeRendering", "NULL", "only KambiOctreeProperties node") .
+      node_field('SFNode', '[]', "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
+      node_field('SFNode', '[]', "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_field('SFNode', '[]', "octreeCollidableTriangles", "NULL", "only KambiOctreeProperties node") .
       node_end();
     ?>
 
@@ -1904,7 +1887,7 @@ end;
 
       echo
       node_dots() .
-      node_field('field', "SFNode", "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
+      node_field('SFNode', '[]', "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
       node_end();
     ?>
 
@@ -2074,11 +2057,11 @@ end;
 
     <?php echo node_begin("Teapot : X3DGeometryNode");
       echo
-      node_field('[in,out]', 'SFNode', 'metadata', 'NULL', '[X3DMetadataObject]') .
-      node_field('[]', 'SFVec3f', 'size', '3 3 3') .
-      node_field('[]', 'SFBool', 'solid', 'TRUE') .
-      node_field('[]', 'SFBool', 'manifold', 'FALSE') .
-      node_field('[in,out]', 'SFNode', 'texCoord', 'NULL', '[TextureCoordinateGenerator]') .
+      node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('SFVec3f', '[]', 'size', '3 3 3') .
+      node_field('SFBool', '[]', 'solid', 'TRUE') .
+      node_field('SFBool', '[]', 'manifold', 'FALSE') .
+      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator]') .
       node_end();
     ?>
 
@@ -2139,15 +2122,15 @@ end;
       $node_format_fd_name_pad = 20;
       $node_format_fd_def_pad = 15;
       echo
-      node_field('[in,out]', 'SFNode', 'metadata', 'NULL', '[X3DMetadataObject]') .
-      node_field('[in,out]', 'MFInt32', 'dimensions', '128 128 4 1 1') .
-      node_field('[in,out]', 'SFString', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
-      node_field('[in,out]', 'SFNode', 'viewpoint', 'NULL', '[X3DViewpointNode] (VRML 1.0 camera nodes also allowed)') .
-      node_field('[]', 'SFNode', 'textureProperties', 'NULL', '[TextureProperties]') .
-      node_field('[]', 'SFBool', 'repeatS', 'TRUE') .
-      node_field('[]', 'SFBool', 'repeatT', 'TRUE') .
-      node_field('[]', 'SFBool', 'repeatR', 'TRUE') .
-      node_field('[in,out]', 'MFBool', 'depthMap', '[]') .
+      node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('MFInt32', '[in,out]', 'dimensions', '128 128 4 1 1') .
+      node_field('SFString', '[in,out]', 'update', '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
+      node_field('SFNode', '[in,out]', 'viewpoint', 'NULL', '[X3DViewpointNode] (VRML 1.0 camera nodes also allowed)') .
+      node_field('SFNode', '[]', 'textureProperties', 'NULL', '[TextureProperties]') .
+      node_field('SFBool', '[]', 'repeatS', 'TRUE') .
+      node_field('SFBool', '[]', 'repeatT', 'TRUE') .
+      node_field('SFBool', '[]', 'repeatR', 'TRUE') .
+      node_field('MFBool', '[in,out]', 'depthMap', '[]') .
       node_end();
     ?>
 
@@ -2286,7 +2269,7 @@ end;
     <?php echo node_begin("WWWInline");
       echo
       node_dots() .
-      node_field('exposedField', "SFBool", "separate",  "TRUE") .
+      node_field('SFBool', '[in,out]', "separate",  "TRUE") .
       node_end();
     ?>
 
