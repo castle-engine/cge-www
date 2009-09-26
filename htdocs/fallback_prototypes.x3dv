@@ -131,8 +131,9 @@ PROTO MatrixTransform [
 # See http://instant-reality.com/documentation/nodetype/Teapot/
 PROTO Teapot [
   inputOutput SFNode  metadata  NULL
-  inputOutput SFVec3f size      3 3 3
-  inputOutput SFBool  solid     TRUE
+  initializeOnly SFVec3f size      3 3 3
+  initializeOnly SFBool  solid     TRUE
+  initializeOnly SFBool  manifold  FALSE
   inputOutput SFNode  texCoord  NULL # only TextureCoordinateGenerator
 ] {
   # This could be expanded to
@@ -204,4 +205,30 @@ PROTO KambiOctreeProperties [
   Group {
     metadata IS metadata
   }
+}
+
+PROTO GeneratedShadowMap [
+  inputOutput           SFNode    metadata         NULL
+  inputOutput           SFString  update           "NONE"
+  initializeOnly        SFInt32   size             128
+  initializeOnly        SFNode    light            NULL
+  inputOutput           SFFloat   scale            1.1
+  inputOutput           SFFloat   bias             4.0
+  initializeOnly        SFString  compareMode      "COMPARE_R_LEQUAL"
+] {
+  ImageTexture { metadata IS metadata }
+}
+
+PROTO RenderedTexture [
+  inputOutput    SFNode    metadata              NULL
+  inputOutput    MFInt32   dimensions            [128 128 4 1 1]
+  inputOutput    SFString  update                "NONE"
+  inputOutput    SFNode    viewpoint             NULL
+  initializeOnly SFNode    textureProperties     NULL
+  initializeOnly SFBool    repeatS               TRUE
+  initializeOnly SFBool    repeatT               TRUE
+  initializeOnly SFBool    repeatR               TRUE
+  inputOutput    MFBool    depthMap              []
+] {
+  ImageTexture { metadata IS metadata }
 }
