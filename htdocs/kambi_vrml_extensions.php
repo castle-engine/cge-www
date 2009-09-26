@@ -183,13 +183,17 @@ Some other extensions may be able supported for other reasons:
   node_end();
 ?>
 
-<p>If you're thinking in VRML 97 terms:</p>
-<ul>
-  <li>Field <tt>initializeOnly</tt> in VRML 97 is <tt>[]</tt> in X3D,</li>
-  <li>Event <tt>inputOnly</tt> in VRML 97 is <tt>[in]</tt> in X3D,</li>
-  <li>Event <tt>outputOnly</tt> in VRML 97 is <tt>[out]</tt> in X3D,</li>
-  <li>Field (and 2 events) <tt>exposedField</tt> in VRML 97 is <tt>[in,out]</tt> in X3D,</li>
-</ul>
+<p><tt>[in,out]</tt> should be interpreted as:</p>
+
+<div style="margin-left: 1em">
+<table border="1" style="border-collapse: collapse; border: thin solid #777">
+  <tr> <th>[xxx]</th>    <th>X3D name (for prototypes etc.)</th> <th>VRML 2.0 name</th> </tr>
+  <tr> <td>[]</td>       <td>initializeOnly</td>                 <td>field</td> </tr>
+  <tr> <td>[in]</td>     <td>inputOnly</td>                      <td>eventIn</td> </tr>
+  <tr> <td>[out]</td>    <td>outputOnly</td>                     <td>eventOut</td> </tr>
+  <tr> <td>[in,out]</td> <td>inputOutput</td>                    <td>exposedField</td> </tr>
+</table>
+</div>
 
 <p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/x3d/specifications/vrml/">you can find the official VRML / X3D specifications here</a>.</p>
 
