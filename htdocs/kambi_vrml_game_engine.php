@@ -7,11 +7,11 @@
     array(
       new TocItem('Features', 'features'),
       new TocItem('Sources', 'download_src'),
-      new TocItem('License', 'license', 1),
       new TocItem('Core engine sources', 'engine_src', 1),
       new TocItem("Related programs' sources", 'program_sources', 1),
       new TocItem("Subversion (SVN) notes", 'svn', 1),
       new TocItem('FPC version required', 'fpc_ver', 1),
+      new TocItem('License', 'license'),
       new TocItem('Documentation', 'docs'),
       new TocItem('Automatic tests', 'tests')
     )
@@ -39,8 +39,8 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is an open-source game engine written in ObjectPascal.
-Features include:</p>
+<p>This is an open-source (<a href="#section_license">LGPL / GPL</a>)
+game engine written in ObjectPascal. Features include:</p>
 
 <ul>
   <li><b>Optimized OpenGL rendering</b> of models in
@@ -158,29 +158,6 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 'movies'); ?>.
 
 <?php echo $toc->html_section(); ?>
-<?php echo $toc->html_section(); ?>
-
-<p>The whole engine and all related programs' sources are licensed on terms of <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. See <a href="http://www.gnu.org/">www.gnu.org</a> for more information about this license (including translations of it to various languages) and philosophy of free software.</p>
-
-<p>Moreover, the core of the engine is also alternatively available under the more permissive <a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a> with the so-called "static linking exception". The idea of this exception is to allow statically linking with the engine on the same terms as dynamically linking. (<i>Static linking</i> is what normally happens when you compile a program using my units, without wrapping them in a DLL / Delphi runtime package.)</p>
-
-<p>All this basically means that you have to share your modifications <i>to the engine</i>, and you can use the engine in closed-source programs.</p>
-
-<p>The precise legal text of the "static linking exception" follows (it's the same as used by <a href="http://www.freepascal.org/faq.var#general-license">FreePascal Runtime Library</a> and many other projects):</p>
-
-<p style="margin-left: 2em; background: #EEE;">
-As a special exception, the copyright holders of this library give you permission to link this library with independent modules to produce an executable, regardless of the license terms of these independent modules, and to copy and distribute the resulting executable under terms of your choice, provided that you also meet, for each linked independent module, the terms and conditions of the license of that module. An independent module is a module which is not derived from or based on this library. If you modify this library, you may extend this exception to your version of the library, but you are not obligated to do so. If you do not wish to do so, delete this exception statement from your version.
-</p>
-
-<p>Important notes:</p>
-<ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>kambi_vrml_game_enggine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
-
-    <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
-
-  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>kambi_vrml_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
-</ul>
-
 <?php echo $toc->html_section(); ?>
 
 <p>Sources of <i>Kambi VRML game engine</i>:<br>
@@ -445,6 +422,29 @@ and sometimes some older releases:
     and no-one can give any guarantee about current stability of FPC from SVN
     (or stability of my programs compiled with this FPC).</p>
   </li>
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The whole engine and all related programs' sources are licensed on terms of <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>. See <a href="http://www.gnu.org/">www.gnu.org</a> for more information about this license (including translations of it to various languages) and philosophy of free software.</p>
+
+<p>Moreover, the core of the engine is also alternatively available under the more permissive <a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a> with the so-called "static linking exception". The idea of this exception is to allow statically linking with the engine on the same terms as dynamically linking. (<i>Static linking</i> is what normally happens when you compile a program using my units, without wrapping them in a DLL / Delphi runtime package.)</p>
+
+<p>All this basically means that you have to share your modifications <i>to the engine</i>, and you can use the engine in closed-source programs.</p>
+
+<p>The precise legal text of the "static linking exception" follows (it's the same as used by <a href="http://www.freepascal.org/faq.var#general-license">FreePascal Runtime Library</a> and many other projects):</p>
+
+<p style="margin-left: 2em; background: #EEE;">
+As a special exception, the copyright holders of this library give you permission to link this library with independent modules to produce an executable, regardless of the license terms of these independent modules, and to copy and distribute the resulting executable under terms of your choice, provided that you also meet, for each linked independent module, the terms and conditions of the license of that module. An independent module is a module which is not derived from or based on this library. If you modify this library, you may extend this exception to your version of the library, but you are not obligated to do so. If you do not wish to do so, delete this exception statement from your version.
+</p>
+
+<p>Important notes:</p>
+<ul>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>kambi_vrml_game_enggine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
+
+    <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
+
+  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>kambi_vrml_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
