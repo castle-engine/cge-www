@@ -19,7 +19,8 @@ for PHP_NAME in *.php; do
     vrmlengine_functions.php | index_funcs.php | last_update.php \
       | generated_versions.php | octree_consts.php | raytr_gallery_funcs.php \
       | changes_log_common.php | changes_log_feed.php | gen_funkcja.pl.php \
-      | glplotter.pl.php | sources_docs.php | sources.php )
+      | glplotter.pl.php | sources_docs.php | sources.php \
+      | vrml_implementation_common.php )
       ;;
 
     *)
