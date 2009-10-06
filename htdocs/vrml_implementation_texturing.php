@@ -113,8 +113,10 @@
     To implement it generally, I'd have to use 1 more texture unit than
     requested (if the last texture unit will use any non-default function).</p>
 
-    <p>See <a href="#section_x3d_multitex_clarifications">clarifications to
-    X3D multi-texturing specification</a> below for more details about
+    <p>See <?php echo a_href_page_hashlink(
+    'clarifications to X3D multi-texturing specification',
+    'vrml_implementation_status',
+    'section_x3d_multitex_clarifications'); ?> for more details about
     multi-texture handling.
   </li>
 
