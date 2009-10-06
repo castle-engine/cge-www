@@ -752,6 +752,10 @@ function fail($count, $comment)
     $current_test_number++;
   }
 }
+
+$default_texture_mode_modulate_disclaimer = a_href_page_hashlink(
+  'You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.',
+  'vrml_implementation_texturing', 'default_texture_mode_modulate');
 ?>
 
 <table border="1">
@@ -803,7 +807,7 @@ function fail($count, $comment)
   <tr>
     <td>10</td>
     <td class="pass">+</td>
-    <td><a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>
+    <td><?php echo $default_texture_mode_modulate_disclaimer; ?></td>
   </tr>
   <tr>
     <td>11</td>
@@ -1014,7 +1018,7 @@ function fail($count, $comment)
   <tr>
     <td>7</td>
     <td class="pass">+</td>
-    <td rowspan="3"><a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>
+    <td rowspan="3"><?php echo $default_texture_mode_modulate_disclaimer; ?></td>
   </tr>
   <tr>
     <td>8</td>
@@ -1273,7 +1277,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
 <?php
 $current_test_number = 2;
 pass(10);
-pass(3, '<a href="#default_texture_mode_modulate">You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.</a>');
+pass(3, $default_texture_mode_modulate_disclaimer);
 pass(7);
 ?>
 
