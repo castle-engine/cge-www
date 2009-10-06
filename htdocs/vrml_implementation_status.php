@@ -28,14 +28,13 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('X3D status', 'x3d'),
+      new TocItem('VRML 2.0 / X3D status', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 1),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
       new TocItem('MultiTexture.source extensions', 'x3d_multitex_corrected', 2),
       new TocItem('Problems with existing X3D MultiTexture.mode specification', 'x3d_multitex_problems', 2),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds', 1),
-      new TocItem('VRML 2.0 status', 'vrml_2'),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
       new TocItem('NIST VRML test suite results', 'nist_tests', 1),
@@ -73,16 +72,36 @@ on user system, performance of OpenGL implementation etc.
 <?php echo $toc->html_section(); ?>
 
 <p><i>All nodes from all components</i> of X3D edition 2 specification are
-included in the engine. This doesn't mean that they are meaningfully
-handled, but they <i>are at least parsed correctly</i> (and converting from
+included in the engine.
+The same goes for all the nodes from VRML 2.0 specification
+(it does have some nodes later removed in X3D).
+This doesn't mean that they are meaningfully handled,
+but they <i>are at least parsed correctly</i> (and converting from
 X3D XML to classic VRML preserves them correctly).
 
 <p><i>All field types</i>, including new X3D double-precision and
 matrices, are supported, with the exception of MFImage. MFImage should
 be implemented as soon as I see some usage of this, for now no X3D
-specification nodes actually use this.
+specification nodes actually use this.</p>
 
 <p>We support fully both <i>XML and classic encodings</i>.
+
+<p>Prototypes (both external and not) are 100% done and working :)
+External prototypes recognize URN of standard VRML 97 nodes, i.e.
+<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
+(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
+on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
+
+<p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
+
+<p><i>TODO</i> for all nodes with url fields: for now all URLs
+are interpreted as local file names (absolute or relative).
+So if a VRML file is available on WWW, you should first download it
+(any WWW browser can of course download it and automatically open view3dscene
+for you), remembering to download also any texture/background files
+used.
+(Conceptually, this lack should be mentioned in <tt>Networking</tt>
+component details, but it's so important that I mention it here.)</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -108,7 +127,13 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'vrml_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td><b></b></td></tr>
   <tr><td><?php echo a_href_page('Text'                            , 'vrml_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td>Sound        </td><td><b></b></td></tr>
+  <tr><td>Sound        </td><td>
+    Although our engine
+    supports 3D sounds and music (using OpenAL, sound formats
+    allowed now are WAV and OggVorbis), this is currently not integrated
+    with VRML in any way &mdash; it's only available if you use our engine
+    to write your own programs.
+    </td></tr>
   <tr><td><?php echo a_href_page('Lighting'                        , 'vrml_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Texturing'                       , 'vrml_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
   <tr><td><?php echo a_href_page('Interpolation'                   , 'vrml_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
@@ -117,7 +142,11 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
   <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b></td></tr>
-  <tr><td>Geospatial   </td><td><b></b></td></tr>
+  <tr><td>Geospatial   </td><td>
+    As an exception, geospatial VRML 97 nodes
+    may not even be correctly parsed by our engine. They are parsed
+    according to X3D (there were some incompatible changes in X3D).
+    </td></tr>
   <tr><td><?php echo a_href_page('H-Anim'                          , 'vrml_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('NURBS'                           , 'vrml_implementation_nurbs'               ); ?>  </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
   <tr><td>DIS          </td><td><b></b></td></tr>
@@ -533,40 +562,6 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 </ol>
 
 <p>If DDS file includes mipmaps, and mipmaps are required for texture minification filter, we will use DDS mipmaps (instead of generating mipmaps automatically). Works for all 2D, 3D, cubemap DDS files.</p>
-
-<?php echo $toc->html_section(); ?>
-
-<p><i>All nodes</i> from VRML 2.0 specification are correctly parsed.</p>
-
-<p><i>TODO</i> for all nodes with url fields: for now all URLs
-are interpreted as local file names (absolute or relative).
-So if a VRML file is available on WWW, you should first download it
-(any WWW browser can of course download it and automatically open view3dscene
-for you), remembering to download also any texture/background files
-used.
-
-<p>Prototypes (both external and not) are 100% done and working :)
-External prototypes recognize URN of standard VRML 97 nodes, i.e.
-<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
-(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
-on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
-
-<p>Events, routes mechanism is implemented since 2008-08-11 :)
-
-<p><i>TODO</i>: Some general features not implemented yet are listed below.
-They all are parsed correctly and consciously (which means that the parser
-doesn't simply "omit them to matching parenthesis" or some other dirty
-trick like that). But they don't have any effect on the scene. These are:
-<ul>
-  <li>Sounds (<tt>AudioClip</tt> and <tt>Sound</tt>). Although our engine
-    supports 3D sounds and music (using OpenAL, sound formats
-    allowed now are WAV and OggVorbis), this is currently not integrated
-    with VRML in any way &mdash; it's only available if you use our engine
-    to write your own programs.
-  <li>Geospatial component. As an exception, geospatial VRML 97 nodes
-    may not even be correctly parsed by our engine. They are parsed
-    according to X3D (there were some incompatible changes in X3D).</li>
-</ul>
 
 <?php echo $toc->html_section(); ?>
 
