@@ -9,7 +9,10 @@
 <ul>
   <li><p><tt>IndexedFaceSet</tt></p>
 
-  <li><p><tt>Sphere</tt>, <tt>Box</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>
+  <li><p><tt>Sphere</tt>, <tt>Box</tt>, <tt>Cone</tt>, <tt>Cylinder</tt></p>
+
+    <p>Including support for <tt>solid</tt> field added in X3D,
+    allows to you to turn on or off back-face culling for them.</p></li>
 
   <li><p><tt>ElevationGrid</tt></p>
 
@@ -21,11 +24,11 @@
 
     <p><i>TODO</i>: <tt>creaseAngle</tt> is not fully handled:
     we always generate all flat normals (if creaseAngle = 0) or
-    all smooth normals (if creaseAngle &lt;&gt; 0).</p>
+    all smooth normals (if creaseAngle &lt;&gt; 0).</p></li>
 
-  <li><p><tt>Extrusion</tt>
+  <li><p><tt>Extrusion</tt></p>
 
-    <p>Works fully.</p>
+    <p>Works fully.</p></li>
 
 </ul>
 

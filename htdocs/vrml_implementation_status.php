@@ -29,8 +29,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('X3D status', 'x3d'),
-      new TocItem('Components supported (summary)', 'x3d_components', 1),
-      new TocItem('Details about supported nodes', 'x3d_details', 1),
+      new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 1),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
       new TocItem('MultiTexture.source extensions', 'x3d_multitex_corrected', 2),
@@ -89,43 +88,45 @@ specification nodes actually use this.
 
 <p>The table below sums up our X3D component support.
 Since the whole X3D standard is divided into components (and it includes
-also all VRML 2.0 features), this table may actually be considered a
-concise summary of our <i>"VRML / X3D implementation status"</i>.</p>
+also all VRML 2.0 features), this is a concise summary of
+our <i>"VRML / X3D implementation status"</i>. Each component has also
+separate page with details about support (both VRML 97 and X3D features). </p>
 
 <p>A word "practically" below means that the component is not absolutely
 100% supported on given level, but most important
 parts (99% of usage) of given level are supported.</p>
 
 <table class="thin_borders">
-  <tr><th>Component<br/>(click for details)</th>           <th>Supported level</th></tr>
-  <tr><td><?php echo a_href_page('Core', 'vrml_implementation_core'); ?>              </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Time', 'vrml_implementation_time'); ?>              </td><td><b>2 (all)</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('Networking', 'vrml_implementation_networking'); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
-  <tr><td><?php echo a_href_page('Grouping', 'vrml_implementation_grouping'); ?>      </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Rendering', 'vrml_implementation_rendering'); ?>    </td><td><b>3</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('Shape', 'vrml_implementation_shape'); ?>            </td><td><b>1</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry3D', 'vrml_implementation_geometry3d'); ?>  </td><td><b>4 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry2D', 'vrml_implementation_geometry2d'); ?>  </td><td><b></b></td></tr>
-  <tr><td>Text                     </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td>Sound                    </td><td><b></b></td></tr>
-  <tr><td>Lighting                 </td><td><b>3 (all)</b> (practically)</td></tr>
-  <tr><td>Texturing                </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
-  <tr><td>Interpolation            </td><td><b>3</b> (practically)</td></tr>
-  <tr><td>Pointing device sensor   </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
-  <tr><td>Key device sensor        </td><td><b>1</b></td></tr>
-  <tr><td>Environmental sensor     </td><td><b>1</b></td></tr>
-  <tr><td>Navigation               </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
-  <tr><td>Environmental effects    </td><td><b>2</b></td></tr>
-  <tr><td>Geospatial               </td><td><b></b></td></tr>
-  <tr><td><?php echo a_href_page('H-Anim', 'vrml_implementation_hanim'); ?>                   </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('NURBS', 'vrml_implementation_nurbs'); ?>               </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
-  <tr><td>DIS                      </td><td><b></b></td></tr>
-  <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
-  <tr><td>Event utilities          </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Programmable shaders', 'vrml_implementation_shaders'); ?>            </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
-  <tr><td><?php echo a_href_page('CAD geometry', 'vrml_implementation_cadgeometry'); ?>             </td><td><b>1</b></td></tr>
-  <tr><td>Texturing3D              </td><td><b>2 (all)</b></td></tr>
-  <tr><td>Cube map environmental texturing  </td><td><b>3 (all)</b></td></tr>
+  <tr><th>Component<br/>(click for details)</th>
+      <th>Supported level</th></tr>
+  <tr><td><?php echo a_href_page('Core'                            , 'vrml_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Time'                            , 'vrml_implementation_time'                ); ?>  </td><td><b>2 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Networking'                      , 'vrml_implementation_networking'          ); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
+  <tr><td><?php echo a_href_page('Grouping'                        , 'vrml_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Rendering'                       , 'vrml_implementation_rendering'           ); ?>  </td><td><b>3</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Shape'                           , 'vrml_implementation_shape'               ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Geometry3D'                      , 'vrml_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('Text'                            , 'vrml_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
+  <tr><td>Sound        </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('Lighting'                        , 'vrml_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Texturing'                       , 'vrml_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
+  <tr><td><?php echo a_href_page('Interpolation'                   , 'vrml_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Pointing device sensor'          , 'vrml_implementation_pointingdevicesensor'); ?>  </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
+  <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
+  <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b></td></tr>
+  <tr><td>Geospatial   </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('H-Anim'                          , 'vrml_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('NURBS'                           , 'vrml_implementation_nurbs'               ); ?>  </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
+  <tr><td>DIS          </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('Scripting'                       , 'vrml_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
+  <tr><td><?php echo a_href_page('Event utilities'                 , 'vrml_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Programmable shaders'            , 'vrml_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
+  <tr><td><?php echo a_href_page('CAD geometry'                    , 'vrml_implementation_cadgeometry'         ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Texturing3D'                     , 'vrml_implementation_texturing3d'         ); ?>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Cube map environmental texturing', 'vrml_implementation_cubemaptexturing'    ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td>Layering                 </td><td><b></b></td></tr>
   <tr><td>Layout                   </td><td><b></b></td></tr>
   <tr><td>Rigid body physics       </td><td><b></b></td></tr>
@@ -150,210 +151,6 @@ Environmental sensor 2
 Navigation 2
 */
 ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Besides all VRML 97 features (see lower on this page for VRML 2.0 status),
-X3D things implemented now are:</p>
-
-<ul>
-  <li><p><tt>OrthoViewpoint</tt>
-
-    <p>TODO: Although it's handled, some fields are ignored for now:
-    jump, retainUserOffsets, centerOfRotation.
-
-  <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
-    is handled, allows to you to turn on or off back-face culling for them.
-
-  <li><p><tt>TextureProperties</tt>
-
-    <p><tt>minificationFilter</tt>, <tt>magnificationFilter</tt>,
-    <tt>anisotropicDegree</tt> are supported. <i>TODO</i>: rest is not.
-
-  <li><p><tt>KeySensor</tt>
-
-    <p>The first sensor node actually implemented :)
-
-    <p><i>TODO</i>: keyPress/Release generate only 8-bit ASCII characters now.
-
-  <li><p>All event utilities: <tt>BooleanFilter</tt>,
-    <tt>BooleanToggle</tt>, <tt>BooleanTrigger</tt>,
-    <tt>IntegerTrigger</tt>, <tt>TimeTrigger</tt>,
-    <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt></p>
-
-  <li><p><tt>Rectangle2D</tt>, <tt>Circle2D</tt>
-
-  <li><p><tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,<br/>
-      <tt>TextureCoordinate3D</tt>, <tt>TextureCoordinate4D</tt>,<br/>
-      <tt>ImageTexture3D</tt>, <tt>ComposedTexture3D</tt>, <tt>PixelTexture3D</tt></p>
-
-    <p>3D textures, coordinates for 3D textures, transforming
-    coordinates for 3D textures &mdash; all done.</p>
-
-    <p>Note that 3D and 4D (homogeneous) coordinates, and transformations
-    in 3D space / by 4x4 matrix, may be used to transform 2D textures as well.
-    In case of 2D textures, the 3rd component is just ignored
-    and the 4th is normal divisor (as usual for homogeneous coordinates).</p>
-
-    <p><a href="#section_dds">DDS file format</a> to specify 3d (volume)
-    textures is supported by <tt>ImageTexture3D</tt>.</p>
-
-    <p>Note that <tt>PixelTexture3D</tt> with RGBA values has a
-    problematic behavior because it uses <tt>MFInt32</tt> field for colors.
-    When you encode RGBA colors (following <tt>SFImage</tt> specification),
-    the most significant byte of Int32 may have to be non-zero,
-    which means that you will have to write negative values
-    inside <tt>PixelTexture3D.image</tt>. (Of course we handle it correctly,
-    I'm just signalling there's a strangeness here. For normal
-    <tt>SFImage</tt> fields this problem doesn't exist because our lexer
-    can actually understand integer values outside of int32 range, so when parsing
-    SFImage this is handled Ok, without going through int32.)</p>
-
-    <p>Automatic 3D texture coord generation for primitives (<tt>Box</tt>,
-    <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>) is done
-    (according to X3D spec, <i>33.2.4 Texture coordinate generation for primitive objects</i>).
-    TODO: Although it's reversed on the bottom disk of
-    <tt>Cone</tt> and <tt>Cylinder</tt> for now.
-
-  <li><tt>MultiTexture</tt>,
-      <tt>MultiTextureCoordinate</tt>,
-      <tt>MultiTextureTransform</tt>
-
-    <p><i>TODO</i>: modes
-    <tt>MODULATEALPHA_ADDCOLOR</tt>,
-    <tt>MODULATEINVALPHA_ADDCOLOR</tt>,
-    <tt>MODULATEINVCOLOR_ADDALPHA</tt>
-    are temporarily not supported.</p>
-
-    <p><i>TODO</i>: source values "DIFFUSE" and "SPECULAR" are treated
-    the same, as <tt>PRIMARY_COLOR</tt> (in the sense of OpenGL
-    ARB_texture_env_combine extension). Primary color contains
-    material ambient, diffuse and specular factors,
-    multiplied by lighting properties, summed over all lights.
-    I don't know of any way to efficiently implement separate
-    diffuse / specular sources &mdash; please report if you do,
-    otherwise there's no way this can be fixed (note that engine's
-    multi-texturing must work without shaders too).</p>
-
-    <p><i>TODO</i>: <tt>function</tt> field is not supported for now.
-    It's somewhat uncomfortable, corresponding OpenGL settings
-    (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
-    are done, while X3D spec requires <tt>function</tt> to act afterwards.
-    To implement it generally, I'd have to use 1 more texture unit than
-    requested (if the last texture unit will use any non-default function).</p>
-
-    <p>See <a href="#section_x3d_multitex_clarifications">clarifications to
-    X3D multi-texturing specification</a> below for more details about
-    multi-texture handling.
-  </li>
-
-  <li><tt>TextureCoordinateGenerator</tt>
-
-    <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE",
-    "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".</p>
-
-    <p>Note that "CAMERASPACEPOSITION" and
-    "COORD-EYE" are exactly the same thing. Google confirms it
-    (<a href="https://www.h3dapi.org:8090/H3DAPI/trunk/H3DAPI/src/TextureCoordinateGenerator.cpp">e.g.
-    this source code also treats them as equal</a> and
-    <a href="http://www.bitmanagement.com/developer/contact/labs/chrome.html">in this old
-    bitmanagement spec they mention they are equal</a>).</p>
-
-    <p>As an extension, we also allow <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
-    and "WORLDSPACENORMAL" texture generation modes', 'kambi_vrml_extensions',
-    'section_ext_tex_coord_worldspace'); ?>.</p>
-
-    <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
-    "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
-
-  <li><tt>ComposedCubeMapTexture</tt>
-
-    <p><i>Orientation notes:</i>
-    The images are expected to be oriented just like for
-    the VRML/X3D Background node. This is suggested by the drawing in the spec,
-    although the spec doesn't specify exact orientation of the images.
-    We use Background node orientation, as this is definitely sensible.
-    See Background node spec, paragraph with words
-    "<i>... when viewed from the origin looking down the negative Z-axis ...</i>".</p>
-
-    <p><i>Size notes:</i>
-    Texture size for cube maps is automatically adjusted to be power of two,
-    square, and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).
-    So your textures do not necessarily have to be provided
-    with required sizes (if you don't mind a little quality loss because
-    of scaling).</p>
-
-    <p>You still must provide equally sized images
-    for all six cube map sides. Our engine makes sure to scale them
-    to be square and power-of-two, but we currently do not attempt
-    to make all six textures equal &mdash; so you have to provide textures
-    already satisfying this.
-
-    <p>We add <tt>textureProperties</tt> field to the <tt>ComposedCubeMapTexture</tt>
-    node, intended for <tt>TextureProperties</tt> child, working just like
-    in other texture nodes (you can use it to set minification / magnification
-    filter, anisotropy and such). Although X3D 3.2 specification doesn't mention this,
-    it seems natural, and <a href="http://www.instantreality.org/documentation/nodetype/ComposedCubeMapTexture/">instantreality
-    also uses this</a>.
-    We support for cube maps all normal texture filterings, including mipmaps.</p>
-
-  <li><tt>ImageCubeMapTexture</tt>
-
-    <p><a href="#section_dds">DDS file format</a> to specify cube maps
-    (including S3TC compressed cube maps) is supported.
-
-  <li><tt>GeneratedCubeMapTexture</tt>
-
-    <p>Texture is rendered from the middle 3D point of bounding box
-    of the shape using this texture. You cannot reUSE the same <tt>GeneratedCubeMapTexture</tt>
-    node for various shapes (as then we would not know from which shape
-    to generate).</p>
-
-    <p>The texture before generation (e.g. if you have update = 'NONE'
-    at the start) has pink color (RGB(255, 0, 255)), so you can easily
-    recognize it.</p>
-
-    <p>All the generated textures are rendered in a separate
-    pass before actual rendering, and during this generation other shapes
-    use existing values of their textures. This means that recursive mirrors,
-    i.e. mirror that can be seen in another mirror, works to any level
-    (each frame rendered uses textures generated in the previous frame).
-    You can see recursive mirrors in some examples in <?php
-    echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
-    (see <tt>x3d/cubemap_generated_recursive.x3dv</tt>
-    <tt>x3d/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
-
-    <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
-    and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
-
-    <p>Current player camera doesn't affect how cube map is generated.
-    This is good, it means that generated texture is usable for as long
-    as the scene remains unchanged, and doesn't have to be regenerated
-    each time when the player moves.</p>
-
-    <ul>
-      <li><p>When <tt>update = "ALWAYS"</tt>, this optimization is automatically
-        used under the hood. Texture is internally not updated every frame
-        &mdash; when we know nothing visible changed on the scene, we do
-        not regenerate the texture (since it would be generated the same).
-        Note that using the headlight, or any other geometry/light following
-        the player, makes this optimization less effective (as then every
-        camera move changes the look of the scene, so rendered textures
-        have to be regenerated on every camera move).</p></li>
-
-      <li><p>This also means that generated cube map texture
-        is similar to static (from <tt>ImageCubeMapTexture</tt>
-        and <tt>ComposedCubeMapTexture</tt>), and you usually want to
-        use <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
-        texture generation', 'kambi_vrml_extensions',
-        'section_ext_tex_coord_worldspace'); ?> to simulate mirror.
-        When using cube maps with GLSL shaders, this often forces the need to
-        transform directions from eye-space to world-space,
-        you can obtain appropriate matrix easily by
-        <?php echo a_href_page_hashlink('Viewpoint.cameraRotationInverseMatrix output event', 'kambi_vrml_extensions',
-        'section_ext_viewpoint_camera_matrix'); ?>.</p></li>
-    </ul>
-</ul>
 
 <a name="multitex_spec_ambigous"></a><!-- Link from web3d.org forum thread -->
 <?php echo $toc->html_section(); ?>
@@ -739,10 +536,7 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>All nodes</i> from VRML 2.0 specification are correctly parsed.
-The list below lists nodes that are actually handled, i.e. they do
-things that they are supposed to do according to "Node reference"
-chapter of VRML spec.
+<p><i>All nodes</i> from VRML 2.0 specification are correctly parsed.</p>
 
 <p><i>TODO</i> for all nodes with url fields: for now all URLs
 are interpreted as local file names (absolute or relative).
@@ -750,287 +544,6 @@ So if a VRML file is available on WWW, you should first download it
 (any WWW browser can of course download it and automatically open view3dscene
 for you), remembering to download also any texture/background files
 used.
-
-<p>Nodes listed below are fully (except when noted with
-<i>TODO</i>) supported :
-
-<ul>
-  <li><tt>DirectionalLight</tt>, <tt>PointLight</tt>, <tt>SpotLight</tt>
-
-    <p><i>Note</i>: VRML 2.0 <tt>SpotLight.beamWidth</tt>
-    idea cannot be translated to a standard
-    OpenGL spotlight, so if you set beamWidth &lt; cutOffAngle then the light
-    will not look exactly VRML 2.0-spec compliant.
-    Honestly I don't see any sensible way to fix this
-    (as long as we talk about real-time rendering using OpenGL).
-    And other open-source VRML implementations rendering to OpenGL
-    also don't seem to do anything better.
-
-    <p>VRML 2.0 spec requires that at least 8 lights
-    are supported. My units can support as many lights as are
-    allowed by your OpenGL implementation, which is <i>at least</i> 8.
-
-  <li><p><tt>Background</tt>, <tt>Fog</tt></p></li>
-
-  <li><p><tt>NavigationInfo</tt></p>
-
-    <p>Various details about how we handle NavigationInfo node in
-    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
-    <ul>
-      <li>Note that <tt>--camera-radius</tt> command-line option overrides
-        whatever was specified by <tt>avatarSize[0]</tt>.
-
-      <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
-        is ignored for now. Camera radius decides what you can climb.
-
-      <li><tt>speed</tt> is honored as appropriate, it sets
-        the speed in meters/second. Speed = 0.0 is also correctly
-        honored (user will not be able to move in Walk/Fly modes,
-        only to rotate).
-
-      <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>,
-        <tt>FLY</tt>, <tt>NONE</tt> are fully supported. They map to appropriate
-        view3dscene internal navigation settings:
-        <ul>
-          <li><tt>EXAMINE</tt> in VRML &mdash; internal <tt>Examine</tt> style,
-          <li><tt>WALK</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            with gravity and moving versus <i>gravity</i> up vector,
-          <li><tt>FLY</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            without gravity, and moving versus <i>current</i> up vector,
-          <li><tt>NONE</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            without gravity, and with "disable normal navigation".
-        </ul>
-
-      <li>The presence of navigation type
-        <tt>ANY</tt> is not important (view3dscene always
-        shows controls to change navigation settings).
-    </ul>
-
-    <p>When no <tt>NavigationInfo</tt> node is present in the scene,
-    we try to intelligently guess related properties.
-    (We try to guess "intelligently" because simply assuming that
-    "no NavigationInfo node" is equivalent to "presence of
-    default NavigationInfo" is <i>not good</i> for most scenes).
-    <ul>
-      <li><tt>avatarSize[0]</tt> and <tt>avatarSize[1]</tt>
-        are guessed based on scene's bounding box sizes.
-
-      <li><tt>headlight</tt> is set to true if and only if there are no
-        lights defined in the scene.
-
-      <li><tt>type</tt> is set to <tt>"EXAMINE"</tt> (this follows the spec,
-        as <tt>[EXAMINE, ANY]</tt> is the default <tt>NavigationInfo.type</tt> value).
-
-      <li><tt>speed</tt> is calculated to something that should "feel sensible"
-        based on scene's bounding box sizes.
-    </ul>
-
-  <li><p><tt>TextureTransform</tt>, <tt>PixelTexture</tt>,
-    <tt>ImageTexture</tt>
-
-    <p><i>Note</i>: ImageTexture allows various texture formats,
-    including JPEG, PNG, BMP, PPM, RGBE. GIF format is supported
-    by running <tt>convert</tt> program from
-    <a href="http://www.imagemagick.org/">ImageMagick</a>
-    package "under the hood".
-    See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
-    documentation for more detailed list.
-
-    <p><i>Note about alpha channel</i>: alpha channel of the textures
-    is fully supported, both a simple yes-no transparency (done
-    by alpha_test in OpenGL) and full range transparency
-    (done by blending in OpenGL, just like partially transparent materials).
-    See <?php echo a_href_page_hashlink('"override alpha channel detection"
-    extension description', 'kambi_vrml_extensions',
-    'section_ext_alpha_channel_detection'); ?> for details.
-    The bottom line is: everything will magically work fast and look perfect.
-
-    <p><a name="default_texture_mode_modulate"></a><b>Note
-    about REPLACE vs MODULATE modes</b>: VRML 2 / X3D specifications
-    say that RGB textures should <tt>REPLACE</tt> the color (as opposed
-    to <tt>MODULATE</tt> the color from lighting calculations, material etc.).
-    The problem with that is that this makes RGB textures nearly useless
-    in typical 3D world (when you usually expect textured surfaces to be
-    properly lit, regardless of RGB or grayscale format).
-    That's why the default engine behavior contradicts the specification:
-    it's <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
-    like a grayscale texture.</p>
-
-    <p>I didn't decide it lightly (noone likes
-    to deliberately contradict the specification...), but I think this case
-    is justified --- <tt>MODULATE</tt> behavior is much more useful and usually
-    desired, IMO. Feel welcome to send me emails and argument against this.
-    After all, I'm trying to fit the needs of most people with default
-    behavior. If many people think that specification is right and I'm dumb,
-    and the default behavior should follow the spec and be <tt>REPLACE</tt>,
-    I'll obey :)</p>
-
-    <p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
-    GL_REPLACE</i> to change this (from code, use
-    <tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).</p>
-
-  <li><p><tt>MovieTexture</tt>
-
-    <p><i>TODO</i>: for now, the sound of the movie is not played.
-
-    <p><i>Notes</i>:
-
-    <ul>
-      <li><p>Current implementation keeps the whole encoded video in memory
-        (images may be discarded after loading (by TVRMLScene.FreeResources
-        feature), but still the textures for all frames are kept in memory).
-        The <i>disadvantage</i> is that this makes it impractical to load "real"
-        movies, normal 2-hour movie will most usually eat all of your memory.
-        The <i>advantage</i> is that once the movie is loaded, the playback is
-        super-fast, just like you would display normal nodes with static
-        textures. Since there's no streaming, decoding etc. in the background
-        while you browse your models.
-
-        <p>In other words, this is quite perfect for movie textures
-        with game effects, like smoke or flame. But it's not a substitute
-        for your "real" multimedia movie player.
-
-      <li><p><a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> must be
-        installed and available on $PATH to actually open any movie format.
-        See <?php echo a_href_page_hashlink('instructions for
-        installing ffmpeg in view3dscene docs', 'view3dscene', 'section_depends'); ?>.
-        Thanks to ffmpeg, we can handle probably any movie format you will
-        ever need to open.
-
-      <li><p>We can also open movies from images sequence.
-        This doesn't require ffmpeg, and allows for some tricks
-        (movie texture with alpha channel).
-        See <?php echo a_href_page_hashlink('"Movies from images sequence"
-        extension description', 'kambi_vrml_extensions',
-        'section_ext_movie_from_image_sequence'); ?>.
-    </ul>
-
-  <li><p><tt>LOD</tt>
-
-    <p><i>Note:</i> We do not have any automatic LOD calculation implemented now,
-    which means that your supplied <tt>range</tt>, and only
-    your supplied <tt>range</tt>, controls which LOD is chosen.
-    This means that <tt>forceTransitions</tt> value is simply ignored,
-    and when <tt>range</tt> is empty, we simply always use the first
-    (highest-detail) version. This is Ok, spec allows this.
-
-  <li><p><tt>Text</tt>, <tt>FontStyle</tt>
-
-    <p>Most important properties
-    (size, spacing, justify, family, style) are handled fully.
-
-    <p><i>TODO</i>: But some properties are ignored for now:
-    <ul>
-      <li>FontStyle properties: From section
-        <i>6.22.3 Direction and justification</i>
-        horizontal, leftToRight, topToBottom fields are ignored
-        (and things are always handled like they had default values
-        TRUE, TRUE, TRUE). From section <i>6.22.4 Language</i>
-        language field is ignored.
-      <li><tt>Text</tt>: length, maxExtent are
-        ignored (and handled like they had
-        default values, which means that the text is not stretched).
-    </ul>
-
-    <p><tt>Text</tt> is "clickable" within
-    <tt>Anchor</tt> and <tt>TouchSensor</tt> nodes.
-    Although I didn't find any mention in the specifications that I should
-    do this, many VRML models seem to assume this.
-    We make an ultra-simple triangulation of the text
-    (just taking 2 triangles to cover whole text, you don't want
-    to produce real triangles for text node, as text node would have
-    a lot of triangles!).<br/>
-    <i>TODO</i>: unfortunately, for now these triangles also participate
-    in collision detection, while spec says that text shouldn't collide.
-
-  <li><p><tt>Viewpoint</tt></p>
-
-    <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
-    to any defined viewpoint, displaying viewpoints descriptions.
-    Extensive tests of various viewpoint properties, including fieldOfView,
-    are inside <?php
-      echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
-    in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
-
-    <p>Animating viewpoint's position and orientation
-    (directly or by it's transformations) works perfectly.
-
-    <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
-    volumes are allowed (We use frustum with z-far in infinity then.)</p>
-
-  <li><p><tt>IndexedFaceSet</tt>, <tt>TextureCoordinate</tt></p>
-
-  <li><p><tt>Billboard</tt></p>
-
-    <p><i>TODO</i>: Not really handled:
-    it just works like a <tt>Group</tt>. Often that's enough
-    for it to look sensible, but it's hardly a real support...</p>
-
-  <li><p><tt>Collision</tt></p>
-
-    <p>Most things work: grouping (<tt>children</tt> property, in particular),
-    allows to control collision detection by honoring
-    <tt>enabled</tt> (named <tt>collide</tt> in VRML 97) and <tt>proxy</tt>
-    fields.
-
-    <p><tt>bboxCenter/Size</tt> is currently simply ignored, our engine
-    always calculates and updates the bounding boxes where needed.
-
-    <p>TODO: collideTime and isActive out events are not implemented yet.
-
-  <li><p><tt>ColorInterpolator</tt>, <tt>PositionInterpolator</tt>,
-    <tt>PositionInterpolator2D</tt> (X3D), <tt>ScalarInterpolator</tt>,
-    <tt>OrientationInterpolator</tt></p>
-
-    <p><tt>CoordinateInterpolator</tt>,
-    <tt>CoordinateInterpolator2D</tt> (X3D), <tt>NormalInterpolator</tt></p>
-
-    <p>Interpolation of OrientationInterpolator correctly goes through
-    the shortest path on the unit sphere, with constant velocity.</p>
-
-    <p><i>TODO</i>: Interpolation of ColorInterpolator simply interpolates
-    3D vectors, so it interpolates in RGB space (while spec says to interpolate
-    in nice HSV space).</p>
-
-    <p>Interpolation of NormalInterpolator simply interpolates
-    3D vectors (and normalizes afterwards), instead of
-    a nice interpolation on the unit sphere.</p>
-
-  <li><p><tt>TouchSensor</tt>
-
-    <p><i>TODO</i>: <tt>hitTexCoord_changed</tt> is not working,
-    and <tt>hitNormal_changed</tt> generates only the flat (per-face) normal.
-    Everything else works perfectly, which should be Ok for typical uses.</p>
-
-  <li><p><tt>ProximitySensor</tt></p>
-
-    <p><i>TODO</i>: <tt>centerOfRotation_changed</tt>
-    are not generated. Rest works Ok, according to spec. Timestamps
-    for isActive, enter/exitTime are not interpolated (they are simply
-    timestamps when this was detected), this shouldn't be a problem in
-    typical uses.</p>
-
-  <li><p><tt>Script</tt>
-
-    <p>We handle special script protocols <?php echo a_href_page_hashlink('compiled:
-    (to link scripts with handlers written in compiled language (ObjectPascal))',
-    'kambi_vrml_extensions',
-    'section_ext_script_compiled'); ?> and
-    <?php echo a_href_page('kambiscript:
-    (simple scripting language specific to our engine)',
-    'kambi_vrml_extensions'); ?>.
-
-    <p><i>TODO</i>: no standard scripting language, like ECMAScript,
-    is implemented now. <tt>directOutput</tt> field of script node
-    is ignored (<tt>compiled:</tt> scripts have always direct access
-    to whole VRML scene, <tt>kambiscript:</tt> has never access to VRML nodes).
-
-    <p><tt>mustEvaluate</tt> is also ignored for now. This is non-optimal but
-    valid behavior. Our current scripting protocols have no "loading"
-    overhead (we don't initialize any scripting engine, kambiscript: and
-    compiled: scripts are just tightly built-in the engine) so this doesn't
-    hurt us in practice.
-</ul>
 
 <p>Prototypes (both external and not) are 100% done and working :)
 External prototypes recognize URN of standard VRML 97 nodes, i.e.
