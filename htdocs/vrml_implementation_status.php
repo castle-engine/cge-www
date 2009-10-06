@@ -103,9 +103,9 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Networking', 'vrml_implementation_networking'); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
   <tr><td><?php echo a_href_page('Grouping', 'vrml_implementation_grouping'); ?>      </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Rendering', 'vrml_implementation_rendering'); ?>    </td><td><b>3</b> (practically)</td></tr>
-  <tr><td>Shape                    </td><td><b>1</b></td></tr>
-  <tr><td>Geometry3D               </td><td><b>4 (all)</b></td></tr>
-  <tr><td>Geometry2D               </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('Shape', 'vrml_implementation_shape'); ?>            </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Geometry3D', 'vrml_implementation_geometry3d'); ?>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Geometry2D', 'vrml_implementation_geometry2d'); ?>  </td><td><b></b></td></tr>
   <tr><td>Text                     </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td>Sound                    </td><td><b></b></td></tr>
   <tr><td>Lighting                 </td><td><b>3 (all)</b> (practically)</td></tr>
@@ -825,10 +825,6 @@ used.
         based on scene's bounding box sizes.
     </ul>
 
-  <li><p><tt>Sphere</tt>, <tt>Box</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>
-
-  <li><p><tt>Shape</tt>, <tt>Appearance</tt>, <tt>Material</tt>
-
   <li><p><tt>TextureTransform</tt>, <tt>PixelTexture</tt>,
     <tt>ImageTexture</tt>
 
@@ -981,22 +977,6 @@ used.
     always calculates and updates the bounding boxes where needed.
 
     <p>TODO: collideTime and isActive out events are not implemented yet.
-
-  <li><p><tt>ElevationGrid</tt></p>
-
-    <p><i>TODO</i>: when colors are present and <tt>colorPerVertex</tt>
-    is different than <tt>normalPerVertex</tt> (from field or calculated
-    based on creaseAngle) then shading results may be incorrect.
-    Reasons for this &mdash; see comments about X3D <tt>[Indexed]TriangleFan/StripSet</tt>
-    above on this page.</p>
-
-    <p><i>TODO</i>: <tt>creaseAngle</tt> is not fully handled:
-    we always generate all flat normals (if creaseAngle = 0) or
-    all smooth normals (if creaseAngle &lt;&gt; 0).</p>
-
-  <li><p><tt>Extrusion</tt>
-
-    <p>Works fully.</p>
 
   <li><p><tt>ColorInterpolator</tt>, <tt>PositionInterpolator</tt>,
     <tt>PositionInterpolator2D</tt> (X3D), <tt>ScalarInterpolator</tt>,
