@@ -99,10 +99,10 @@ parts (99% of usage) of given level are supported.</p>
 <table class="thin_borders">
   <tr><th>Component<br/>(click for details)</th>           <th>Supported level</th></tr>
   <tr><td><?php echo a_href_page('Core', 'vrml_implementation_core'); ?>              </td><td><b>2 (all)</b></td></tr>
-  <tr><td>Time                     </td><td><b>2 (all)</b> (practically)</td></tr>
-  <tr><td>Networking               </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
-  <tr><td>Grouping                 </td><td><b>3 (all)</b></td></tr>
-  <tr><td>Rendering                </td><td><b>3</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Time', 'vrml_implementation_time'); ?>              </td><td><b>2 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Networking', 'vrml_implementation_networking'); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
+  <tr><td><?php echo a_href_page('Grouping', 'vrml_implementation_grouping'); ?>      </td><td><b>3 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Rendering', 'vrml_implementation_rendering'); ?>    </td><td><b>3</b> (practically)</td></tr>
   <tr><td>Shape                    </td><td><b>1</b></td></tr>
   <tr><td>Geometry3D               </td><td><b>4 (all)</b></td></tr>
   <tr><td>Geometry2D               </td><td><b></b></td></tr>
@@ -123,7 +123,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>Scripting                </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td>Event utilities          </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Programmable shaders', 'vrml_implementation_shaders'); ?>            </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
-  <tr><td>CAD geometry             </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('CAD geometry', 'vrml_implementation_cadgeometry'); ?>             </td><td><b>1</b></td></tr>
   <tr><td>Texturing3D              </td><td><b>2 (all)</b></td></tr>
   <tr><td>Cube map environmental texturing  </td><td><b>3 (all)</b></td></tr>
   <tr><td>Layering                 </td><td><b></b></td></tr>
@@ -157,75 +157,10 @@ Navigation 2
 X3D things implemented now are:</p>
 
 <ul>
-  <li><p><tt>StaticGroup</tt>
-
-    <p>(Although it doesn't make any extra optimization.
-    This is not needed for our engine, as we <i>initially</i> treat pretty
-    much everything as if it would be inside <tt>StaticGroup</tt>,
-    that is we assume that model will be mostly static. Although it greatly
-    depends on <i>renderer optimization</i> chosen.)</p>
-
   <li><p><tt>OrthoViewpoint</tt>
 
     <p>TODO: Although it's handled, some fields are ignored for now:
     jump, retainUserOffsets, centerOfRotation.
-
-  <li><p>New X3D rendering primitives implemented:
-
-    <p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
-    <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
-
-    <p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
-    <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
-
-    <p><tt>LineSet</tt> (<tt>IndexedLineSet</tt> is also handled,
-    this is part of VRML 2.0)
-
-    <p><i>TODO</i>: missing is only the implementation of new X3D fields
-    <tt>attrib</tt> and <tt>fogCoord</tt>.
-
-    <p><i>TODO</i>: for <tt>TriangleFanSet</tt> and <tt>TriangleStripSet</tt>,
-    a special constraint is present: if you will use colors
-    (colors are always per-vertex on these primitives,
-    according to X3D spec) and request generation of per-face normals
-    at the same time, for the same lit (with material) node,
-    then shading results will be slightly incorrect.
-    Like this:
-
-<pre class="vrml_code">
-#X3D V3.0 utf8
-PROFILE Interchange
-
-Shape {
-  appearance Appearance { material Material { } }
-  geometry TriangleFanSet {
-    coord Coordinate { point [ 0 0 0, 1 0 0, 1 1 0, 0.5 1.5 0.5 ] }
-    fanCount 4
-    color Color { color [ 1 0 0, 0 1 0, 0 0 1, 1 1 1 ] }
-    normalPerVertex FALSE
-  }
-}
-</pre>
-
-    <p>Unfortunately, this is quite unfixable without falling back to
-    worse rendering methods. Shading has to be smooth to interpolate
-    per-vertex colors, and at the same time the same vertex may require
-    different normals on a different faces. So to render this correctly one has
-    to decompose triangle fans and strips into separate triangles
-    (like to <tt>IndexedTriangleSet</tt>) which means that rendering is
-    non-optimal.
-
-    <p>Ideas how to implement this without sacrificing rendering time
-    are welcome. Eventually, a fallback to internally convert fans and strips
-    to <tt>IndexedTriangleSet</tt> in such special case will be
-    implemented some day.
-
-    <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
-    for triangle/quad sets when appearance specify a texture but no
-    <tt>texCoord</tt> is given.
-    Our engine currently takes the <tt>IndexedFaceSet</tt> approach for
-    automatic generation of texture coords in this case, let me know
-    if this is wrong for whatever reason.
 
   <li><p><tt>solid</tt> field added to many simple nodes (like Box, Sphere)
     is handled, allows to you to turn on or off back-face culling for them.
@@ -890,11 +825,6 @@ used.
         based on scene's bounding box sizes.
     </ul>
 
-  <li><p><tt>Switch</tt>, <tt>Group</tt>, <tt>Transform</tt>
-
-    <p>Including special optimizations for animating transformations,
-    be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.
-
   <li><p><tt>Sphere</tt>, <tt>Box</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>
 
   <li><p><tt>Shape</tt>, <tt>Appearance</tt>, <tt>Material</tt>
@@ -979,13 +909,6 @@ used.
         'section_ext_movie_from_image_sequence'); ?>.
     </ul>
 
-  <li><p><tt>Inline</tt>, <tt>InlineLoadControl</tt>
-
-    <p>Yes, this includes handling of <tt>InlineLoadControl</tt> features
-    to react to <tt>load</tt>, <tt>url</tt> and generate <tt>children</tt>
-    events. For X3D, basic <tt>Inline</tt> node already has
-    <tt>load</tt>, <tt>url</tt> features and they also work perfectly.
-
   <li><p><tt>LOD</tt>
 
     <p><i>Note:</i> We do not have any automatic LOD calculation implemented now,
@@ -994,11 +917,6 @@ used.
     This means that <tt>forceTransitions</tt> value is simply ignored,
     and when <tt>range</tt> is empty, we simply always use the first
     (highest-detail) version. This is Ok, spec allows this.
-
-  <li><p><tt>Anchor</tt>
-
-    <p><i>TODO</i>: <tt>parameter</tt> field is ignored, everything else
-    is handled (according to X3D spec).
 
   <li><p><tt>Text</tt>, <tt>FontStyle</tt>
 
@@ -1044,9 +962,7 @@ used.
     <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
     volumes are allowed (We use frustum with z-far in infinity then.)</p>
 
-  <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>IndexedFaceSet</tt>,
-    <tt>Coordinate</tt>, <tt>Color</tt>,
-    <tt>Normal</tt>, <tt>TextureCoordinate</tt></p>
+  <li><p><tt>IndexedFaceSet</tt>, <tt>TextureCoordinate</tt></p>
 
   <li><p><tt>Billboard</tt></p>
 
@@ -1099,21 +1015,6 @@ used.
     <p>Interpolation of NormalInterpolator simply interpolates
     3D vectors (and normalizes afterwards), instead of
     a nice interpolation on the unit sphere.</p>
-
-  <li><p><tt>TimeSensor</tt></p>
-
-    <p>All common <tt>X3DTimeDependentNode</tt> things
-    are implemented. <tt>enabled</tt> is honored. <tt>time</tt> is generated.</p>
-
-    <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
-    elapsedTime / cycleInterval value. This is quite Ok for most uses.</p>
-
-    <p>As for "time origin" in our engine, this follows VRML standard
-    (time origin is "January 1, 1970"), but it can be changed
-    by <?php echo a_href_page_hashlink(
-    'our extension <tt>KambiNavigationInfo.timeOriginAtLoad</tt>',
-    'kambi_vrml_extensions',
-    'section_ext_time_origin_at_load'); ?>.</p>
 
   <li><p><tt>TouchSensor</tt>
 
