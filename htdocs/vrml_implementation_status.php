@@ -32,7 +32,7 @@
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('Clarifications to X3D multi-texturing specification', 'x3d_multitex_clarifications', 1),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'x3d_multitex_corrected', 2),
-      new TocItem('MultiTexture.source extensions', 'x3d_multitex_corrected', 2),
+      new TocItem('MultiTexture.source extensions', 'x3d_multitex_source_ext', 2),
       new TocItem('Problems with existing X3D MultiTexture.mode specification', 'x3d_multitex_problems', 2),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds', 1),
       new TocItem('VRML 1.0 status', 'vrml_1'),
@@ -125,7 +125,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Rendering'                       , 'vrml_implementation_rendering'           ); ?>  </td><td><b>3</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'vrml_implementation_shape'               ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'vrml_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td><b></b></td></tr>
+  <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td></td></tr>
   <tr><td><?php echo a_href_page('Text'                            , 'vrml_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td>Sound        </td><td>
     Although our engine
@@ -137,7 +137,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Lighting'                        , 'vrml_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Texturing'                       , 'vrml_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
   <tr><td><?php echo a_href_page('Interpolation'                   , 'vrml_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('Pointing device sensor'          , 'vrml_implementation_pointingdevicesensor'); ?>  </td><td><b></b> (TouchSensor supported, but that's it for now)</td></tr>
+  <tr><td><?php echo a_href_page('Pointing device sensor'          , 'vrml_implementation_pointingdevicesensor'); ?>  </td><td> (TouchSensor supported, but that's it for now)</td></tr>
   <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
@@ -149,19 +149,19 @@ parts (99% of usage) of given level are supported.</p>
     </td></tr>
   <tr><td><?php echo a_href_page('H-Anim'                          , 'vrml_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('NURBS'                           , 'vrml_implementation_nurbs'               ); ?>  </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
-  <tr><td>DIS          </td><td><b></b></td></tr>
+  <tr><td>DIS          </td><td></td></tr>
   <tr><td><?php echo a_href_page('Scripting'                       , 'vrml_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td><?php echo a_href_page('Event utilities'                 , 'vrml_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Programmable shaders'            , 'vrml_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
   <tr><td><?php echo a_href_page('CAD geometry'                    , 'vrml_implementation_cadgeometry'         ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Texturing3D'                     , 'vrml_implementation_texturing3d'         ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Cube map environmental texturing', 'vrml_implementation_cubemaptexturing'    ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td>Layering                 </td><td><b></b></td></tr>
-  <tr><td>Layout                   </td><td><b></b></td></tr>
-  <tr><td>Rigid body physics       </td><td><b></b></td></tr>
-  <tr><td>Picking sensor           </td><td><b></b></td></tr>
-  <tr><td>Followers                </td><td><b></b></td></tr>
-  <tr><td>Particle systems         </td><td><b></b></td></tr>
+  <tr><td>Layering                 </td><td></td></tr>
+  <tr><td>Layout                   </td><td></td></tr>
+  <tr><td>Rigid body physics       </td><td></td></tr>
+  <tr><td>Picking sensor           </td><td></td></tr>
+  <tr><td>Followers                </td><td></td></tr>
+  <tr><td>Particle systems         </td><td></td></tr>
 </table>
 
 <?php /*
