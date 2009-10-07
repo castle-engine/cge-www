@@ -387,7 +387,7 @@ subdirectories.</p>
       echo node_begin('*Light');
       $node_format_fd_name_pad = 20;
       echo
-      node_dots() .
+      node_dots('all normal *Light fields') .
       node_field('SFBool', '[in,out]', 'kambiShadows' , 'FALSE') .
       node_field('SFBool', '[in,out]', 'kambiShadowsMain' , 'FALSE',
         'meaningfull only when kambiShadows = TRUE') .
@@ -522,7 +522,7 @@ subdirectories.</p>
     echo node_begin('*Light');
     $node_format_fd_name_pad = 20;
     echo
-    node_dots() .
+    node_dots('all normal *Light fields') .
     node_field('SFFloat', '[in,out]', 'projectionNear' , '1', '&gt; 0') .
     node_field('SFFloat', '[in,out]', 'projectionFar' , '100', 'anything &gt; projectionNear') .
     node_field('SFVec3f', '[in,out]', 'up' , '0 1 0') .
@@ -557,7 +557,7 @@ subdirectories.</p>
     echo node_begin('DirectionalLight');
     $node_format_fd_name_pad = 20;
     echo
-    node_dots() .
+    node_dots('all normal *Light fields') .
     node_field('SFVec4f', '[in,out]', 'projectionRectangle', '-10 10 -10 10', '# left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
     node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
@@ -569,7 +569,7 @@ subdirectories.</p>
     echo node_begin('SpotLight');
     $node_format_fd_name_pad = 20;
     echo
-    node_dots() .
+    node_dots('all normal *Light fields') .
     node_field('SFFloat', '[in,out]', 'projectionAngle', '0') .
     node_end();
   ?>
@@ -700,7 +700,7 @@ subdirectories.</p>
   <?php
     echo node_begin('*Viewpoint');
     echo
-    node_dots() .
+    node_dots('all normal *Viewpoint fields') .
     node_field('SFMatrix4f', '[out]', 'cameraMatrix', '') .
     node_field('SFMatrix4f', '[out]', 'cameraInverseMatrix', '') .
     node_field('SFMatrix3f', '[out]', 'cameraRotationMatrix', '') .
@@ -1259,7 +1259,7 @@ end;
       $node_format_fd_name_pad=28;
       $node_format_fd_def_pad=8;
       echo
-      node_dots() .
+      node_dots('all normal Fog fields') .
       node_field('SFBool', '[in,out]', 'volumetric', 'FALSE') .
       node_field('SFVec3f', '[in,out]', 'volumetricDirection',  '0 -1 0', 'any non-zero vector') .
       node_field('SFFloat', '[in,out]', 'volumetricVisibilityStart',  '0') .
@@ -1357,7 +1357,7 @@ end;
       $node_format_fd_def_pad = 10;
 
       echo
-      node_dots() .
+      node_dots('all normal Material fields') .
       node_field('SFBool', '[in,out]', "fogImmune", "FALSE") .
       node_end();
     ?>
@@ -1572,7 +1572,7 @@ end;
     an orientation:
     <?php echo node_begin("PerspectiveCamera / OrthographicCamera / Viewpoint");
       echo
-      node_dots() .
+      node_dots('all normal *Viewpoint fields') .
       node_field('MFVec3f', '[in,out]', "direction",  "[]") .
       node_field('MFVec3f', '[in,out]', "up", "[]") .
       node_field('SFVec3f', '[in,out]', "gravityUp", "0 1 0") .
@@ -1628,7 +1628,7 @@ end;
 
     <?php echo
       node_begin("Material") .
-      node_dots() .
+      node_dots('all normal Material fields') .
       node_field('MFFloat/SFFloat', '[in,out]', "mirror", "0.0", "[0.0; 1.0]") .
       node_end();
     ?>
@@ -1725,7 +1725,7 @@ end;
       $node_format_fd_def_pad = 10;
 
       echo
-      node_dots() .
+      node_dots('all normal Material fields') .
       node_field('MFColor', '[in,out]', "reflSpecular", "[]", "specular reflectance") .
       node_field('MFColor', '[in,out]', "reflDiffuse", "[]", "diffuse reflectance") .
       node_field('MFColor', '[in,out]', "transSpecular", "[]", "specular transmittance") .
@@ -1876,7 +1876,7 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
-      node_dots() .
+      node_dots('all normal NavigationInfo fields') .
       node_field('SFNode', '[]', "octreeRendering", "NULL", "only KambiOctreeProperties node") .
       node_field('SFNode', '[]', "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
       node_field('SFNode', '[]', "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
@@ -1890,7 +1890,7 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
-      node_dots() .
+      node_dots('all normal X3DShapeNode fields') .
       node_field('SFNode', '[]', "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
       node_end();
     ?>
@@ -2272,7 +2272,7 @@ end;
     I'm adding new field:
     <?php echo node_begin("WWWInline");
       echo
-      node_dots() .
+      node_dots('all normal WWWInline fields') .
       node_field('SFBool', '[in,out]', "separate",  "TRUE") .
       node_end();
     ?>
