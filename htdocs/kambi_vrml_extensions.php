@@ -1730,8 +1730,8 @@ end;
       node_field('MFColor', '[in,out]', "reflDiffuse", "[]", "diffuse reflectance") .
       node_field('MFColor', '[in,out]', "transSpecular", "[]", "specular transmittance") .
       node_field('MFColor', '[in,out]', "transDiffuse", "[]", "diffuse transmittance") .
-      node_field('MFFloat (SFFloat in VRML 1.0)', '[in,out]', "reflSpecularExp", "1000000", "specular reflectance exponent") .
-      node_field('MFFloat (SFFloat in VRML 1.0)', '[in,out]', "transSpecularExp", "1000000", "specular transmittance exponent") .
+      node_field('SFFloat (MFFloat in VRML 1.0)', '[in,out]', "reflSpecularExp", "1000000", "specular reflectance exponent") .
+      node_field('SFFloat (MFFloat in VRML 1.0)', '[in,out]', "transSpecularExp", "1000000", "specular transmittance exponent") .
       node_end();
     ?>
 
