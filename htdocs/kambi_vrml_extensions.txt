@@ -1,0 +1,163 @@
+# Specification of extensions from
+# http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php
+# in the format comfortable for white dune scripts.
+
+KambiAppearance : Appearance {
+  ... all normal Appearance fields ...
+  SFNode     [in,out]      normalMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
+  SFNode     [in,out]      heightMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
+  SFFloat    [in,out]      heightMapScale   0.01        # must be > 0, meaningful only if heightMap specified
+  SFBool     [in,out]      shadowCaster     TRUE
+}
+
+X3DLightNode {
+  ... all normal X3DLightNode fields ...
+  SFBool     [in,out]      kambiShadows          FALSE
+  SFBool     [in,out]      kambiShadowsMain      FALSE       # meaningfull only when kambiShadows = TRUE
+  SFFloat    [in,out]      projectionNear        1           # > 0
+  SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
+  SFVec3f    [in,out]      up                    0 1 0
+}
+
+DirectionalLight : X3DLightNode {
+  ... all normal DirectionalLight fields ...
+  SFVec4f    [in,out]      projectionRectangle   -10 10 -10 10  # # left, right, bottom, top; must be left < right and bottom < top
+  SFVec3f    [in,out]      projectionLocation    0 0 0       # affected by node's transformation
+}
+
+SpotLight : X3DLightNode {
+  ... all normal SpotLight fields ...
+  SFFloat    [in,out]      projectionAngle       0
+}
+
+GeneratedShadowMap : X3DTextureNode {
+  SFNode     [in,out]      metadata         NULL                  # [X3DMetadataObject]
+  SFString   [in,out]      update           "NONE"                # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
+  SFInt32    []            size             128
+  SFNode     []            light            NULL                  # any light node
+  SFFloat    [in,out]      scale            1.1
+  SFFloat    [in,out]      bias             4.0
+  SFString   []            compareMode      "COMPARE_R_LEQUAL"    # ["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]
+}
+
+X3DViewpointNode {
+  ... all normal X3DViewpointNode fields ...
+  SFMatrix4f [out]         cameraMatrix
+  SFMatrix4f [out]         cameraInverseMatrix
+  SFMatrix3f [out]         cameraRotationMatrix
+  SFMatrix3f [out]         cameraRotationInverseMatrix
+  SFBool     [in,out]      cameraMatrixSendAlsoOnOffscreenRendering  FALSE
+  MFVec3f    [in,out]      direction   []
+  MFVec3f    [in,out]      up          []
+  SFVec3f    [in,out]      gravityUp   0 1 0
+}
+
+Text3D : X3DGeometryNode {
+  MFString   [in,out]      string      []
+  SFNode     [in,out]      fontStyle   NULL
+  MFFloat    [in,out]      length      []
+  SFFloat    [in,out]      maxExtent   0
+  SFFloat    [in,out]      depth       0.1         # must be >= 0
+  SFBool     [in,out]      solid       TRUE
+}
+
+ImageTexture {
+  ... all normal ImageTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+MovieTexture {
+  ... all normal MovieTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+PixelTexture {
+  ... all normal PixelTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+KambiInline : Inline {
+  ... all normal Inline fields ...
+  MFString   [in,out]      replaceNames  []
+  MFNode     [in,out]      replaceNodes  []          # any VRML node is valid on this list
+}
+
+KambiNavigationInfo : NavigationInfo {
+  ... all normal NavigationInfo fields ...
+  SFBool     []            timeOriginAtLoad    FALSE
+  SFNode []            octreeRendering            NULL    # only KambiOctreeProperties node
+  SFNode []            octreeDynamicCollisions    NULL    # only KambiOctreeProperties node
+  SFNode []            octreeVisibleTriangles     NULL    # only KambiOctreeProperties node
+  SFNode []            octreeCollidableTriangles  NULL    # only KambiOctreeProperties node
+}
+
+X3DComposedGeometryNode : X3DGeometryNode {
+  ... all normal X3DComposedGeometryNode fields ...
+  MFVec3f    [in,out]      radianceTransfer  []
+}
+
+Fog : X3DBindableNode, X3DFogObject {
+  ... all normal Fog fields ...
+  SFBool   [in,out]      volumetric                    FALSE
+  SFVec3f  [in,out]      volumetricDirection           0 -1 0    # any non-zero vector
+  SFFloat  [in,out]      volumetricVisibilityStart     0
+  SFNode   [in,out]      alternative                   NULL      # NULL or another Fog node
+}
+
+Material {
+  ... all normal Material fields ...
+  SFBool     [in,out]      fogImmune             FALSE
+  SFFloat    [in,out]      mirror      0.0         # [0.0; 1.0]
+  MFColor    [in,out]      reflSpecular          []          # specular reflectance
+  MFColor    [in,out]      reflDiffuse           []          # diffuse reflectance
+  MFColor    [in,out]      transSpecular         []          # specular transmittance
+  MFColor    [in,out]      transDiffuse          []          # diffuse transmittance
+  SFFloat    [in,out]      reflSpecularExp       1000000     # specular reflectance exponent
+  SFFloat    [in,out]      transSpecularExp      1000000     # specular transmittance exponent
+}
+
+KambiTriangulation : X3DChildNode {
+  SFInt32  [in,out]      quadricSlices    -1     # {-1} + [3, infinity)
+  SFInt32  [in,out]      quadricStacks    -1     # {-1} + [2, infinity)
+  SFInt32  [in,out]      rectDivisions    -1     # [-1, infinity)
+}
+
+KambiHeadLight : X3DChildNode {
+  SFFloat    [in,out]      ambientIntensity      0           # [0.0, 1.0]
+  SFVec3f    [in,out]      attenuation           1 0 0       # [0, infinity)
+  SFColor    [in,out]      color                 1 1 1       # [0, 1]
+  SFFloat    [in,out]      intensity             1           # [0, 1]
+  SFBool     [in,out]      spot                  FALSE
+  SFFloat    [in,out]      spotDropOffRate       0
+  SFFloat    [in,out]      spotCutOffAngle       0.785398
+}
+
+KambiOctreeProperties : X3DNode {
+  SFInt32 []            maxDepth              -1      # must be >= -1
+  SFInt32 []            leafCapacity          -1      # must be >= -1
+}
+
+X3DShapeNode {
+  ... all normal X3DShapeNode fields ...
+  SFNode []            octreeTriangles            NULL    # only KambiOctreeProperties node
+}
+
+Teapot : X3DGeometryNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFVec3f    []            size        3 3 3
+  SFBool     []            solid       TRUE
+  SFBool     []            manifold    FALSE
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator]
+}
+
+RenderedTexture : X3DTextureNode {
+  SFNode     [in,out]      metadata              NULL             # [X3DMetadataObject]
+  MFInt32    [in,out]      dimensions            128 128 4 1 1
+  SFString   [in,out]      update                "NONE"           # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
+  SFNode     [in,out]      viewpoint             NULL             # [X3DViewpointNode] (VRML 1.0 camera nodes also allowed)
+  SFNode     []            textureProperties     NULL             # [TextureProperties]
+  SFBool     []            repeatS               TRUE
+  SFBool     []            repeatT               TRUE
+  SFBool     []            repeatR               TRUE
+  MFBool     [in,out]      depthMap              []
+}
