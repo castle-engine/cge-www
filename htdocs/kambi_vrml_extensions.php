@@ -1876,7 +1876,7 @@ end;
       $node_format_fd_def_pad = 6;
 
       echo
-      node_dots('all normal NavigationInfo fields') .
+      node_dots('all KambiNavigationInfo fields so far') .
       node_field('SFNode', '[]', "octreeRendering", "NULL", "only KambiOctreeProperties node") .
       node_field('SFNode', '[]', "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
       node_field('SFNode', '[]', "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
