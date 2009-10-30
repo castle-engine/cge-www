@@ -25,7 +25,32 @@ ALL_HTMLS:=view3dscene.html \
   changes_log.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \
   kambi_vrml_test_suite.html \
-  vrml_implementation_status.html vrml_implementation_shaders.html vrml_implementation_nurbs.html \
+  vrml_implementation_cadgeometry.html \
+  vrml_implementation_core.html \
+  vrml_implementation_cubemaptexturing.html \
+  vrml_implementation_environmentaleffects.html \
+  vrml_implementation_environmentalsensor.html \
+  vrml_implementation_eventutilities.html \
+  vrml_implementation_geometry2d.html \
+  vrml_implementation_geometry3d.html \
+  vrml_implementation_grouping.html \
+  vrml_implementation_hanim.html \
+  vrml_implementation_interpolation.html \
+  vrml_implementation_keydevicesensor.html \
+  vrml_implementation_lighting.html \
+  vrml_implementation_navigation.html \
+  vrml_implementation_networking.html \
+  vrml_implementation_nurbs.html \
+  vrml_implementation_pointingdevicesensor.html \
+  vrml_implementation_rendering.html \
+  vrml_implementation_scripting.html \
+  vrml_implementation_shaders.html \
+  vrml_implementation_shape.html \
+  vrml_implementation_status.html \
+  vrml_implementation_text.html \
+  vrml_implementation_texturing3d.html \
+  vrml_implementation_texturing.html \
+  vrml_implementation_time.html \
   kanim_format.html \
   kambi_script.html
 
