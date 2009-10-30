@@ -61,7 +61,7 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-    array('title' => 'Various news - LGPL, SSAO demos, White Dune, more',
+    array('title' => 'News - LGPL, SSAO demos, White Dune, more',
           'year' => 2009,
           'month' => 10,
           'day' => 30,
