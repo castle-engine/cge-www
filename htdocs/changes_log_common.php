@@ -61,6 +61,53 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Various news - LGPL, SSAO demos, White Dune, more',
+          'year' => 2009,
+          'month' => 10,
+          'day' => 30,
+          'pubDate' => /* date_to_timestamp.sh '2009-10-30' */ 1256904000,
+          'guid' => '2009-10-30',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'ssao_barna29_on.png' , 'titlealt' => 'Barna29 (with SSAO)'),
+  array('filename' => 'ssao_barna29_off.png', 'titlealt' => 'Barna29 (without SSAO)'),
+  array('filename' => 'ssao_stairs_on.png' , 'titlealt' => 'Stairs (with SSAO)'),
+  array('filename' => 'ssao_stairs_off.png', 'titlealt' => 'Stairs (without SSAO)'),
+), 2) . '
+
+<ul>
+  <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">The core of our engine is now available under the GNU Lesser General Public License (with "static linking exception")</a>. Basically, this allows using the engine in closed-source programs, as long as you keep open your improvements to the engine.</p>
+
+    <p>I had a long thought before this decision, always and still being a free software fanatic :) <!-- The text <i>In the future I may change the license to more liberal than GNU GPL &mdash; most probably to modified LGPL</i> was present in the "license" section since a few years. --> I wrote a short summary of my thoughts, <span tabindex="0" class="js_link" onclick="kambi_toggle_display(\'lgpl_thoughts\')">click here to read it</span> (hidden by default, as may be boring to most people).</p>
+
+    <ol id="lgpl_thoughts" style="display: none">
+      <li><p>The initial insight is that with strict GPL, potential proprietary users of the engine wouldn\'t "open" their product just to use our engine. Instead they would move their interest elsewhere. We\'re <a href="http://openvrml.org/">not</a> <a href="http://freewrl.sourceforge.net/">the only</a> free/open VRML/X3D engine out there, neither we\'re the <a href="http://www.ogre3d.org/">the</a> <a href="http://irrlicht.sourceforge.net/">only</a> free/open 3d/game engine</a> out there, and everyone else is available under LGPL (or even more permissible licenses).</p></li>
+
+      <li><p>The common answer to above argument is that "popularity of the engine is not all that matters". LGPL is, ultimately, a permission to make closed-source software.</p>
+
+        <p>The counter-thought to this is that LGPL still protects the freedom of my engine. You still have to share modifications to the engine, so it\'s not like properietary software can get all the benefits in some "unfair" way.</p></li>
+    </ol>
+  </li>
+
+  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <tt>GeneratedShadowMap</tt>. The complete examples, with shaders, are available inside our <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/">x3d/shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
+
+    <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
+
+    <p>Some demo screenshots are on the right. They show the same view with/and without SSAO. (The comparison is somewhat unfair, as "without SSAO" versions just have GLSL shaders turned off. But the point is that they don\'t have smooth shadows (occlusion)).</p></li>
+
+  <li><p>New <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a> release supports all <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php">VRML/X3D extensions</a> of our engine. Thanks go to Joerg "MUFTI" Scheurich.</p></li>
+
+  <li><p>Documentation of our "VRML / X3D implementation status" was refactored, each X3D component has now separate page with support details. This should make it easier to read and find needed things. <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html">See the SVN documentation here</a>.
+
+  <!-- Previous documentation (just one long page with stream of information) was fine a long time ago, when so little of VRML/X3D standards was implemented that it was sensible to mention only things that are actually working. Right now it makes more sense to focus on mentioning things that are missing :) -->
+  </p></li>
+
+  <li><p>Also, I noticed today that our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> were down for the last 3 weeks. Sorry about that, fixed now.</p></li>
+</ul>'),
+
     array('title' => 'Development news - more NURBS: interpolators, VRML 97 compatibility',
           'year' => 2009,
           'month' => 9,
