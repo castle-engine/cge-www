@@ -166,3 +166,11 @@ RenderedTexture : X3DTextureNode {
   SFBool     []            repeatR               TRUE
   MFBool     [in,out]      depthMap              []
 }
+
+Logger : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFInt32    [in,out]      level       1
+  SFString   []            logFile     ""
+  SFBool     [in,out]      enabled     TRUE
+  XFAny      [in]          write
+}

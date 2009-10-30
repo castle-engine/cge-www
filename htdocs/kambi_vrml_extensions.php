@@ -2000,9 +2000,22 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://instant-reality.com/documentation/nodetype/Logger/"><tt>Logger</tt></a>:
-    supported <tt>level</tt>, <tt>logFile</tt>,
-    <tt>enabled</tt> fields and <tt>write</tt> inputOnly event.
+    <p>Logger, extremely useful debugger when playing with
+    VRML / X3D routes and events. This is based on,
+    and should be quite compatible,
+    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">Avalon <tt>Logger</tt> node</a>.
+    (Except our interpretation of <tt>logFile</tt>, which is probably
+    quite different, see below.)</p>
+
+    <?php echo node_begin("Logger : X3DChildNode");
+      echo
+      node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('SFInt32', '[in,out]', 'level', '1') .
+      node_field('SFString', '[]', 'logFile', '""') .
+      node_field('SFBool', '[in,out]', 'enabled', 'TRUE') .
+      node_field('XFAny', '[in]', 'write', '') .
+      node_end();
+    ?>
 
     <?php
       echo '<table align="right">' .
@@ -2010,11 +2023,10 @@ end;
         '</table>';
     ?>
 
-    <p>An extremely useful debugger when playing with VRML / X3D routes
-    and events. The idea is simple: whatever is sent to <tt>write</tt>
-    input event is logged on the console. <tt>write</tt> event has special type
-    (Avalon calls this <tt>XFAny</tt>) that allows to receive <i>any</i>
-    VRML field type.
+    <p>The idea is simple: whatever is sent to <tt>write</tt>
+    input event is logged on the console. <tt>write</tt> event has special type,
+    called <tt>XFAny</tt> (also following Avalon) that allows to receive <i>any</i>
+    VRML field type.</p>
 
     <p>Other properties allow to control logging better.
     When <tt>enabled</tt> is false, nothing is logged.
