@@ -108,7 +108,7 @@ is loaded".
     possibilities (VRML/X3D world may adjust to real-world
     day/night state for example), but also some nightmarish
     scenarios ("<i>VRML/X3D world crashes with segfault but only
-    when opened at the night</i>" &mdash; now imagine you have to
+    when opened ~5 minutues after the midnight</i>" &mdash; now imagine you have to
     debug this :) ).
 </ol>
 
