@@ -64,7 +64,7 @@ cd view3dscene/
   #   ./opengl/glw_demo.ppu (would require separate package, like kambi_glwindow_navigated)
   #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
   #   ./opengl/unix/kambiglx.ppu (required only for GLWindow Xlib backend --- hm, maybe add?)
-  #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to kambi_units package later.)
+  #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to kambi_base package later.)
 
 # Test are there no files with accidental svn:executable attrib
 # (may happen if commiting from FAT filesystems on Unix):
