@@ -60,8 +60,6 @@ cd view3dscene/
   # - units inside dir of other OS (for example, leftovers in unix/
   #   dir were not cleaned by windows package, that's ok)
   # - units that I deliberatly do not want to put in a package for now:
-  #   ./opengl/glw_win.ppu,
-  #   ./opengl/glw_demo.ppu (would require separate package, like kambi_glwindow_navigated)
   #   ./opengl/kambiglut.ppu (depends on glut, none of my programs actually uses it)
   #   ./opengl/unix/kambiglx.ppu (required only for GLWindow Xlib backend --- hm, maybe add?)
   #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to kambi_base package later.)
