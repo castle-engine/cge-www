@@ -849,7 +849,7 @@ EXTERNPROTO Text3D [
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
     (default tolerance values used by VRML renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
-    'kambi_vrml_game_engine'); ?> (see <tt>images/tools/detect_alpha_simple_yes_no.pasprogram</tt>
+    'kambi_vrml_game_engine'); ?> (see <tt>examples/images/detect_alpha_simple_yes_no.pasprogram</tt>
     file) if you want to use this algorithm yourself.
     You can also see the results for your textures if you run view3dscene
     with <tt>--debug-log</tt> option.
@@ -1142,7 +1142,7 @@ end;
 </pre>
 
     <p>For working example code in Pascal and VRML see example program
-    <tt>kambi_vrml_game_engine/vrml/opengl/examples/vrml_browser_script_compiled.pasprogram</tt>,
+    <tt>kambi_vrml_game_engine/examples/vrml/vrml_browser_script_compiled.pasprogram</tt>,
     use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
     and note that Pascal code reacts to clicks on TouchSensor.
 
@@ -1202,7 +1202,7 @@ end;
     TODO: make precompute_xxx work with animations, and make an example
     of this.
 
-    <p>For more information, see <tt>kambi_vrml_game_engine/vrml/opengl/examples/radiance_transfer/</tt>
+    <p>For more information, see <tt>kambi_vrml_game_engine/examples/vrml/radiance_transfer/</tt>
     demo in engine sources.</p>
 
     <p>TODO: currently <tt>radianceTransfer</tt> is read but ignored

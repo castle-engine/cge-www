@@ -123,7 +123,7 @@ Textures done with <a href="http://www.gimp.org">GIMP</a>.
 <a href="http://www.imagemagick.org/">ImageMagick</a>.
 <tt>base_shadowed.png</tt> generated using my program <tt>gen_light_map</tt>
 (available as part of <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>,
-see <tt>vrml/tools/gen_light_map.pasprogram</tt> file).
+see <tt>examples/vrml/tools/gen_light_map.pasprogram</tt> file).
 Sky in <tt>skies/</tt> done using <a href="http://www.planetside.co.uk/">
 Terragen</a>.
 <tt>base_b_proc.wrl</tt> done in <a href="http://www.blender3d.org">Blender</a>

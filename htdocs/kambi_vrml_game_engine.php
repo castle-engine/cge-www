@@ -403,7 +403,7 @@ and sometimes some older releases:
     <p><i>Note only for for x86_64</i>:
     to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
     you have to use fixed glext.pas unit from engine sources
-    (<tt>trunk/kambi_vrml_game_engine/opengl/x86_64/</tt>) or
+    (<tt>trunk/kambi_vrml_game_engine/src/opengl/x86_64/</tt>) or
     use newer FPC.</p>
   </li>
 

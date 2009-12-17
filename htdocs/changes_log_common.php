@@ -144,7 +144,7 @@ table_demo_images(array(
 )) . '
 <p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
 
-<p>As a background info: the core of our NURBS implementation (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/vrml/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
+<p>As a background info: the core of our NURBS implementation (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/src/3d/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
 
 <p>For the next engine release, this NURBS support will be extended. I would like to cover X3D NURBS component up to level 2 and also implement most important VRML 97 NURBS nodes for compatibility (they are similar but a little incompatible to X3D ones).</p>
 
@@ -387,7 +387,7 @@ table_demo_images(array(
 <pre>
 $ svn checkout https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/
 
-$ cd kambi_vrml_game_engine/vrml/opengl/examples/shadow_fields
+$ cd kambi_vrml_game_engine/examples/vrml/shadow_fields
 $ ./shadow_fields_compile.sh
 $ ./shadow_fields
 
@@ -574,13 +574,13 @@ Major changes:
 
 <p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
 
-<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/vrml/opengl/examples/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
+<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
 
 <p>The full source code is available, naturally. Simple instructions:</p>
 
 <pre>
 $ svn checkout https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/
-$ cd kambi_vrml_game_engine/vrml/opengl/examples/radiance_transfer
+$ cd kambi_vrml_game_engine/examples/vrml/radiance_transfer
 $ ./radiance_transfer_compile.sh
 $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
 </pre>
@@ -1060,11 +1060,11 @@ Many long-awaited graphic features implemented:</p>
     " . this_a_href_page('castle', 'castle') . " uses bump mapping, for now only
     on the \"fountain\" level.</p>
 
-    <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/vrml/opengl/examples/bump_mapping</tt> demo in engine sources,
+    <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/examples/vrml/bump_mapping</tt> demo in engine sources,
     it demonstrates emboss, dot and all other bump mapping
     methods built in VRML engine. Also my notes about emboss and dot
     (by multitexturing) bump mapping methods may be interesting:
-    see <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/vrml/opengl/examples/bump_mapping/README\">bump_mapping/README</a>.</p>
+    see <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/bump_mapping/README\">bump_mapping/README</a>.</p>
   </li>
 
   <li><p><b>GLSL shaders support:</b> engine supports easily using
@@ -1141,7 +1141,7 @@ settings from Blender are correctly exported to VRML file (as creasteAngle field
     (While OpenGLh was on the level of GL 1.2 + many extensions).</li>
 
   <li>Among many new demo programs, there's also
-    <tt>kambi_vrml_game_engine/vrml/opengl/examples/plane_mirror_and_shadow.pasprogram</tt>
+    <tt>kambi_vrml_game_engine/examples/vrml/plane_mirror_and_shadow.pasprogram</tt>
     to test plane-projected shadows and plane mirrors. Plane-projected shadows
     is only for simple demo (we have implemented shadow volumes, thousand times better
     algorithm, after all), but plane mirrors will be implemented
@@ -1220,7 +1220,7 @@ mainly to bring them up-to-date with current engine state.</p>
         of shadows qualified as z-pass, z-fail, z-fail with light cap needed etc.
       <li>Shadow volumes silhouette optimization improved: now models don't have
         to be perfect manifold to use this. See
-        <tt>kambi_vrml_game_engine/vrml/opengl/examples/shadow_volume_test/</tt>
+        <tt>kambi_vrml_game_engine/examples/vrml/shadow_volume_test/</tt>
         demo, in particular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
         example.</li>
       <li>Much better frustum culling for shadows.</li>
