@@ -130,9 +130,9 @@
         indicates gravity direction. This way you can set gravity up vector
         and initial camera up vector to different things.
       <li>New examples in "Kambi VRML game engine":<br />
-        <tt>3dmodels.gl/examples/shadow_volume_test</tt>,<br />
+        <tt>vrml/opengl/examples/shadow_volume_test</tt>,<br />
         <tt>opengl/examples/demo_matrix_navigation</tt>,<br />
-        <tt>3dgraph/examples/draw_space_filling_curve</tt>,<br />
+        <tt>3d/examples/draw_space_filling_curve</tt>,<br />
         <tt>opengl/examples/fog_coord</tt>,<br />
         <tt>audio/examples/algets</tt> and<br />
         <tt>audio/examples/alplay</tt>.
@@ -235,7 +235,7 @@
 
     <p>Units <?php echo a_href_page('sources', 'sources') ?> updated:
     included is an example how to do fog culling (to the fog visibility range),
-    see the file <tt>units/3dmodels.gl/examples/fog_culling.dpr</tt>.
+    see the file <tt>units/vrml/opengl/examples/fog_culling.dpr</tt>.
     Also blending source and dest factors are now configurable.
     Also behavior on incorrect <tt>Background</tt> nodes is now better
     (reports warning and proceeds).</p></li>
@@ -628,7 +628,7 @@
         <p>Also head bobbing much better, and various other improvements.
 
       <li><p>Important updates to demo_animation
-        (see <tt>units/3dmodels.gl/examples/</tt>) in the
+        (see <tt>units/vrml/opengl/examples/</tt>) in the
         <?php echo a_href_page('sources', 'sources') ?>:
         <ul>
           <li>New demo (gus) showing how to use Blender "armature" animation
@@ -796,7 +796,7 @@
 
     <p>New unit VRMLGLAnimation was created, to easily produce animations
     from still scenes.
-    See extensive demo in <tt>3dmodels.gl/examples/demo_animation.dpr</tt>,
+    See extensive demo in <tt>vrml/opengl/examples/demo_animation.dpr</tt>,
     with raptor and sphere sample models.
 
     <p>I'm also glad to add that I'm starting in
@@ -1012,7 +1012,7 @@
         and many other speed improvements here and there).
         All VRML programs work now faster.
 
-        <p>Added to sources file <tt>units/3dmodels.gl/README.optimization_notes</tt>
+        <p>Added to sources file <tt>units/vrml/opengl/README.optimization_notes</tt>
         that describes how current optimization works, what are the possible
         drawbacks and what are the possible alternatives (and what
         drawbacks are hidden in those alternatives :).
@@ -1078,7 +1078,7 @@
         TOctree.EnumerateCollidingOctreeItems implemented and
         TVRMLFlatSceneGL.RenderFrustumOctree implemented.</small>
 
-      <li><p>Added to sources file <tt>units/3dmodels.gl/README.optimization_notes</tt>
+      <li><p>Added to sources file <tt>units/vrml/opengl/README.optimization_notes</tt>
         that describes how current optimization works, what are the possible
         drawbacks and what are the possible alternatives (and what
         drawbacks are hidden in those alternatives :).
@@ -1094,7 +1094,7 @@
         Also problem with updating Caption too often (this caused
         some noticeable slowdown on XWindows on my system).
 
-      <li><p>Example program <tt>units/3dmodels.gl/simpleViewModel_2.dpr</tt>
+      <li><p>Example program <tt>units/vrml/opengl/simpleViewModel_2.dpr</tt>
         added.
 
       <?php /* echo a_href_page('malfunction', 'malfunction'); (1.0.2):
@@ -1280,11 +1280,11 @@
     functionality of my units:
     <ul>
       <li><tt>units/opengl/examples/menuTest.dpr</tt> (GLWindow with menu)
-      <li><tt>units/3dmodels.gl/examples/simpleViewModel.dpr</tt>
+      <li><tt>units/vrml/opengl/examples/simpleViewModel.dpr</tt>
         (simple demo of loading and rendering VRML/3DS models and
         allowing user to walk in them; something like extremely-simplified
         view3dscene)
-      <li><tt>units/3dmodels/examples/many2vrml.dpr</tt> (converting 3DS and others
+      <li><tt>units/vrml/examples/many2vrml.dpr</tt> (converting 3DS and others
         to VRML)
     </ul>
     Also <?php echo a_href_page('sources', 'sources'); ?> page updated with

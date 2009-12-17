@@ -247,7 +247,7 @@ the programs developed with it:</p>
 
   <li>Programmers may be interested in:
     <ul>
-      <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/3dmodels.gl/examples/bump_mapping/README">Bump
+      <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/vrml/opengl/examples/bump_mapping/README">Bump
         mapping techniques quick overview</a></li>
       <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README">Shading
         languages (in particular ARB vertex/fragment assembly programs,

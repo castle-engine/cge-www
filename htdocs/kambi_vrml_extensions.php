@@ -270,7 +270,7 @@ subdirectories.</p>
         Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
 
       <li><p>Programmers may also compile and run example program
-        <tt>3dmodels.gl/examples/bump_mapping/</tt> in
+        <tt>vrml/opengl/examples/bump_mapping/</tt> in
         <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>, this allows
         to really play with bump mapping settings and see how to use this in
         your own programs.</p></li>
@@ -1142,7 +1142,7 @@ end;
 </pre>
 
     <p>For working example code in Pascal and VRML see example program
-    <tt>kambi_vrml_game_engine/3dmodels.gl/examples/vrml_browser_script_compiled.pasprogram</tt>,
+    <tt>kambi_vrml_game_engine/vrml/opengl/examples/vrml_browser_script_compiled.pasprogram</tt>,
     use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
     and note that Pascal code reacts to clicks on TouchSensor.
 
@@ -1202,7 +1202,7 @@ end;
     TODO: make precompute_xxx work with animations, and make an example
     of this.
 
-    <p>For more information, see <tt>kambi_vrml_game_engine/3dmodels.gl/examples/radiance_transfer/</tt>
+    <p>For more information, see <tt>kambi_vrml_game_engine/vrml/opengl/examples/radiance_transfer/</tt>
     demo in engine sources.</p>
 
     <p>TODO: currently <tt>radianceTransfer</tt> is read but ignored

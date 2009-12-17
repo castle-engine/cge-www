@@ -121,7 +121,7 @@ game engine written in ObjectPascal. Features include:</p>
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
   <li>The engine source code contains <b>many example programs</b>,
-    look into <tt>examples/</tt> subdirectories, like <tt>kambi_vrml_game_engine/3dmodels.gl/examples/</tt>.
+    look into <tt>examples/</tt> subdirectories, like <tt>kambi_vrml_game_engine/vrml/opengl/examples/</tt>.
     There are ready TGLWindow descendants and Lazarus components
     to make simple VRML browser. Oh, yes, the engine may be integrated
     with Lazarus &mdash; we have some <b>Lazarus components</b>,
