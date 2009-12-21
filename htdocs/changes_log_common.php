@@ -46,8 +46,14 @@ function this_a_href_page($title, $page_name)
 
      - short_description: teaser description on the main page.
        If empty, we will take teaser from the normal 'description',
-       up to magic delimited <!-- *** teaser *** -->. If this delimiter
-       is not present, then teaser is just equal to full description.
+       up to the magic delimiter <!-- teaser ... -->.
+
+       "..." inside this comment will be the additional text present
+       only in the teaser. You should use this to close HTML elements
+       that should close now in teaser, but remain open in full version.
+
+       If this delimiter is not present, then teaser is just equal to
+       full description.
 
      - guid will be used also for HTML anchor inside changes_log.php page
 
@@ -60,6 +66,54 @@ function this_a_href_page($title, $page_name)
   $changes_log = array(
 
 /* --------------------------------------------------------------------------- */
+
+    array('title' => 'News - terrain demo, large engine layout changes',
+          'year' => 2009,
+          'month' => 12,
+          'day' => 21,
+          'pubDate' => /* date_to_timestamp.sh '2009-12-21' */ 1261396800,
+          'guid' => '2009-12-21',
+          'link' => 'http://vrmlengine.sourceforge.net/',
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'terrain_1.png', 'titlealt' => 'Terrain from noise'),
+  array('filename' => 'terrain_2.png', 'titlealt' => 'Terrain from SRTM file'),
+)) . '<ol>
+  <li>
+    <p>There\'s a new demo in engine <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN sources</a>: <tt>terrain</tt> (look inside <tt>kambi_vrml_game_engine/examples/vrml/terrain/</tt> directory). It shows basic procedural terrain generation. Uses cosine interpolated noise, summed by <i>Fractional Brownian Motion</i> (which is a fancy way of saying "sum a few scaled noise functions"&nbsp;:)&nbsp;).</p>
+
+    <p>It can also load a terrain data from <a href="http://www2.jpl.nasa.gov/srtm/">SRTM (.hgt files)</a> (for example, <a href="http://netgis.geo.uw.edu.pl/srtm/Europe/">sample files for Europe are here</a>). And it can display a terrain defined by mathematical expression, like <i>sin(x*10) * sin(y*10)</i> (see <a href="http://vrmlengine.sourceforge.net/kambi_script.php">KambiScript language reference</a> for full syntax and functions available for math expressions).</p>
+
+    <p>If you\'re interested in some background, <a href="http://freespace.virgin.net/hugo.elias/models/m_perlin.htm">this is the simplest introduction to "making noise"</a> (although beware that it\'s actually not about Perlin noise :), Perlin noise is a "gradient noise", not covered there).</p>
+
+    <p>I would like to extend this <tt>terrain</tt> demo to something much larger (infinite terrain rendering, render with normals, cover with a couple layers of textures, add water surface, maybe render with Precomputed Radiance Transfer (taken from my other demo) etc.). For now, it\'s a start :)</p>
+  </li>
+
+  <li>
+    <p>Developers will note large changes in the layout of <tt>kambi_vrml_game_engine</tt> archive (and SVN directory). (links below point to appropriate <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">viewvc</a> URL, for your convenience)</p>
+
+    <ol>
+      <li>All "core" sources are moved to the <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/"><tt>src/</tt> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
+
+      <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/examples/"><tt>examples/</tt> subdirectory</a> was moved to the top. I should have done this a long time ago.  If you want to look at VRML demos, now you just go to <tt>examples/vrml/</tt> subdirectory, which is hopefully obvious to new developers. (Previously, you had to dig into cryptically-named <tt>3dmodels.gl/examples/</tt>)
+
+      <!-- teaser </li></ol></li></ol> -->
+
+      <li>Also, some subdirectory names changes, and some units moved around.
+        <ul>
+          <li>We have new <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/glwindow/">subdirectory for <tt>glwindow</tt></a> specific stuff (since the distinction what is for GLWindow, and what is not, is important to many developers; e.g. if you always want to use Lazarus OpenGL control, then GLWindow isn\'t really useful for you).
+          <li>We have new <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/ui/">subdirectory for <tt>ui</tt></a>. This contains now the navigator and GLMenu &mdash; both things were available already, but now are implemented as <tt>TUIControl</tt> descendants, handled in more uniform fashion. In the future, I want to extend this, to make more OpenGL controls this way. The very scene manager may be treated as such "control" one day.
+          <li>I noticed that the most important directories of our engine had a little cryptic naming: 3dgraph, 3dmodels, 3dmodels.gl. After a little shuffling, the new names are <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/3d/">3d</a>, <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/vrml/">vrml</a>, <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/kambi_vrml_game_engine/src/vrml/opengl/">vrml/opengl/</a> &mdash; this should make things much clearer.
+        </ul>
+      <li>A minor thing is also that units Glw_Navigated, Glw_Win, Glw_Demo are gone, along with the one-unit package kambi_glwindow_navigated. I never liked these units, they were just handy shortcuts for simple demo programs. All normal programs should declare and explicitly create TGLWindow instance themselves, this is just 2 more lines of code but gives you better understanding what TGLWindow is and is more clean IMO.
+      <li>Also, new kambi_vrml_game_engine*.tar.gz archives will contain offline HTML docs by pasdoc (the same ones <a href="http://vrmlengine.sourceforge.net/apidoc/html/index.html">as available online</a>).
+    </ol>
+    <!-- p>Please note that because of this change, pretty much everything inside <tt>kambi_vrml_game_engine</tt> is now, well, somewhere else. E.g. some URLs here and there may temporarily not work. Of course, please submit any observed problems, so that I may fix every page to be perfect. -->
+  </li>
+</ol>
+'),
 
     array('title' => 'News - LGPL, SSAO demos, White Dune, more',
           'year' => 2009,
@@ -84,7 +138,7 @@ table_demo_images(array(
     <p>I had a long thought before this decision, always and still being a free software fanatic :) <!-- The text <i>In the future I may change the license to more liberal than GNU GPL &mdash; most probably to modified LGPL</i> was present in the "license" section since a few years. --> I wrote a short summary of my thoughts, <span tabindex="0" class="js_link" onclick="kambi_toggle_display(\'lgpl_thoughts\')">click here to read it</span> (hidden by default, as may be boring to most people).</p>
 
     <ol id="lgpl_thoughts" style="display: none">
-      <li><p>The initial insight is that with strict GPL, potential proprietary users of the engine wouldn\'t "open" their product just to use our engine. Instead they would move their interest elsewhere. We\'re <a href="http://openvrml.org/">not</a> <a href="http://freewrl.sourceforge.net/">the only</a> free/open VRML/X3D engine out there, neither we\'re the <a href="http://www.ogre3d.org/">the</a> <a href="http://irrlicht.sourceforge.net/">only</a> free/open 3d/game engine</a> out there, and everyone else is available under LGPL (or even more permissible licenses).</p></li>
+      <li><p>The initial insight is that with strict GPL, potential proprietary users of the engine wouldn\'t "open" their product just to use our engine. Instead they would move their interest elsewhere. We\'re <a href="http://openvrml.org/">not</a> <a href="http://freewrl.sourceforge.net/">the only</a> free/open VRML/X3D engine out there, neither we\'re the <a href="http://www.ogre3d.org/">the</a> <a href="http://irrlicht.sourceforge.net/">only</a> free/open 3d/game engine out there, and everyone else is available under LGPL (or even more permissible licenses).</p></li>
 
       <li><p>The common answer to above argument is that "popularity of the engine is not all that matters". LGPL is, ultimately, a permission to make closed-source software.</p>
 
@@ -190,7 +244,7 @@ table_demo_images(array(
   <li><p><i>Hardware occlusion query</i> may be activated for rendering, this can speed browsing large scenes enormously. Try it by menu options <i>View -&gt; ... Occlusion Query</i>.</p></li>
 </ul>
 
-<!-- *** teaser *** -->
+<!-- teaser -->
 
 <ul>
   <li><p>When using single texturing, you can set environment mode to replace <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#default_texture_mode_modulate">(default is modulate)</a>.</p></li>
@@ -1439,7 +1493,8 @@ $month_names = array(
   12 => 'December'
 );
 
-define('TEASER_DELIMITER', '<!-- *** teaser *** -->');
+define('TEASER_DELIMITER_BEGIN', '<!-- teaser ');
+define('TEASER_DELIMITER_END', '-->');
 
 function change_log_to_html($change_log_item, $full_description = true)
 {
@@ -1455,16 +1510,24 @@ function change_log_to_html($change_log_item, $full_description = true)
   } else
   {
     $description = $change_log_item['description'];
-    $teaser_delimiter = strpos($description, TEASER_DELIMITER);
+    $teaser_delimiter = strpos($description, TEASER_DELIMITER_BEGIN);
     if ($teaser_delimiter !== FALSE)
     {
+      $teaser_delimiter_end = strpos($description, TEASER_DELIMITER_END);
+
+      $teaser_closing_str = substr($description,
+        $teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN),
+        $teaser_delimiter_end -
+        ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
+
       $description = substr($description, 0, $teaser_delimiter) .
-        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#' .
-        $change_log_item['guid'] . '">[more]</a></p>';
+        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#news-' .
+        $change_log_item['guid'] . '">[read more]</a></p>' .
+        $teaser_closing_str;
     }
   }
 
-  return '<p><a name="' . $change_log_item['guid'] . '"><b>' .
+  return '<p><a name="news-' . $change_log_item['guid'] . '"><b>' .
     $change_log_item['title'] . '</b></a> (' .
     $month_names[$change_log_item['month']] . ' ' .
     $change_log_item['day'] . ', ' .
