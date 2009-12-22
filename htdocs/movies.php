@@ -59,7 +59,7 @@ editing (glued, fading between parts) thanks to
     Video is referenced as
     <?php echo a_href_page_hashlink('MovieTexture VRML 2.0 node,
       loaded from images sequence', 'kambi_vrml_extensions',
-      'ext_movie_from_image_sequence'); ?>.
+      'section_ext_movie_from_image_sequence'); ?>.
     Movie is itself recorded by <?php echo a_href_page('view3dscene',
     'view3dscene'); ?>, using it's
     "Screenshot to video" option. You can view the complete source model

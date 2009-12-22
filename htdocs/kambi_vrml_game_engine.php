@@ -64,7 +64,7 @@ game engine written in ObjectPascal. Features include:</p>
     switching, silhouette detection etc.) and <b>shadow maps</b>.</li>
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'ext_bump_mapping'); ?></b> (using various
+    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> (using various
     implementations: basic multitexturing with dot3 (normalized by cube map or not),
     GLSL normal, GLSL with classic parallax mapping, GLSL with steep parallax
     mapping and self-shadowing).</li>

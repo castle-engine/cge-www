@@ -276,7 +276,7 @@
       "kambi_vrml_extensions"); ?> work in VRML 2.0 too, and actually
     you can even <?php echo a_href_page_hashlink(
       "mix VRML 1.0 and 2.0 features in your files",
-      "kambi_vrml_extensions", 'ext_mix_vrml_1_2'); ?>.
+      "kambi_vrml_extensions", 'section_ext_mix_vrml_1_2'); ?>.
 
     <ul>
       <li><?php echo a_href_page('view3dscene 2.0.0', 'view3dscene') ?>
@@ -616,13 +616,13 @@
         <ul>
           <li><?php echo a_href_page_hashlink(
             'Field <tt>separate</tt> for <tt>WWWInline</tt> node',
-            'kambi_vrml_extensions', 'ext_wwwinline_separate'); ?>.
+            'kambi_vrml_extensions', 'section_ext_wwwinline_separate'); ?>.
           <li><?php echo a_href_page_hashlink(
             '<tt>Fog</tt> node extensions to define volumetric fog',
-            'kambi_vrml_extensions', 'ext_fog_volumetric'); ?>
+            'kambi_vrml_extensions', 'section_ext_fog_volumetric'); ?>
           <li><?php echo a_href_page_hashlink(
             '<tt>fogImmune</tt> field for <tt>Material</tt> node',
-            'kambi_vrml_extensions', 'ext_fog_immune'); ?>
+            'kambi_vrml_extensions', 'section_ext_fog_immune'); ?>
         </ul>
 
         <p>Also head bobbing much better, and various other improvements.
@@ -663,9 +663,9 @@
     <ul>
       <li>VRML 97 nodes
         <?php echo a_href_page_hashlink('NavigationInfo',
-        'kambi_vrml_extensions', 'ext_navigationinfo'); ?> and
+        'kambi_vrml_extensions', 'section_ext_navigationinfo'); ?> and
         <?php echo a_href_page_hashlink('WorldInfo',
-        'kambi_vrml_extensions', 'ext_worldinfo'); ?> handling,
+        'kambi_vrml_extensions', 'section_ext_worldinfo'); ?> handling,
         <?php echo a_href_page('kambi_vrml_test_suite',
         'kambi_vrml_test_suite'); ?> has test VRMLs for this.
 
@@ -953,7 +953,7 @@
 
         <p>Also <?php echo a_href_page_hashlink(
           'all VRML reading code can read VRML files compressed by gzip.',
-          'kambi_vrml_extensions', 'ext_gzip'); ?>
+          'kambi_vrml_extensions', 'section_ext_gzip'); ?>
 
         <p><?php echo a_href_page('view3dscene', 'view3dscene'); ?>
         updated to version 1.1.2,

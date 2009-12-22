@@ -800,7 +800,7 @@ eye-candy features are:</p>
     'vrml_implementation_shaders'); ?>.</p></li>
 
   <li><p><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'ext_bump_mapping'); ?>.
+    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?>.
     See "The Fountain" level for example.</p></li>
 
   <li><p>You can make your level geometry cast dynamic shadows (on everything,
