@@ -36,8 +36,8 @@ cd view3dscene/
 #     castle,
 #     vrml/opengl/examples/simplest_vrml_browser
 # - Compile and run from Lazarus lpi files LCL examples:
-#     lazarus_vrml_browser
-#     lazarus_browser_with_gl_controls
+#     lazarus/vrml_browser
+#     lazarus/vrml_with_2d_controls
 
 # Make sure Lazarus packages have all units included.
 
