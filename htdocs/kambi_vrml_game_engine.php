@@ -375,11 +375,14 @@ The policy is to always support the latest stable release of FPC,
 and sometimes some older releases:
 
 <ul>
-  <li><p><em>FPC 2.2.4</em> : This is the simplest and best option
+  <li><p><em>FPC 2.4.0</em> : This is the simplest and best option
     &mdash; works perfectly, and you can download already
     compiled packages of it from
     <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
   </li>
+
+  <li><p><em>FPC 2.2.4</em> : will work OK for some time, although you're
+    adviced to upgrade to latest FPC.</p>
 
   <li><p><em>FPC 2.2.2</em> : will work OK for some time, although you're
     adviced to upgrade to latest FPC.
