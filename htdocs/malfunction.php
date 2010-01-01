@@ -36,22 +36,16 @@ or something like that. The truth is that
   'malfunction', 'malfunction', VERSION_MALFUNCTION,
   $std_releases_post_1_2_0); ?>
 
-<p>Installing:</p>
+<p><i>Installation</i>: just extract the downloaded archive anywhere.
+Run the game binary (<tt>./malfunction</tt> on Unix,
+<tt>malfunction.exe</tt> on Windows).</p>
 
-<dl>
-  <dt>Linux, FreeBSD and Mac OS X users:</dt>
-
-  <dd>Extract downloaded archive to
-    <tt>/usr/local/share/malfunction/</tt> or <tt>$HOME/.malfunction.data/</tt>.
-    You can move or symlink the executable <tt>malfunction</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).
-    Run the game by running <tt>malfunction</tt>.</dd>
-
-  <dt>Windows users:</dt>
-
-  <dd>Extract downloaded archive to any directory.
-    Run the game by running <tt>malfunction.exe</tt>.
-</dl>
+<p>On Unix, if you don't want to always run the binary from the game's
+directory, you can extract the game (or make a symlink to extracted dir)
+to <tt>$HOME/.malfunction.data/</tt>, or <tt>/usr/local/share/malfunction/</tt>,
+or <tt>/usr/share/malfunction/</tt>. You can then
+move or symlink the binary <tt>malfunction</tt> to any place
+you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

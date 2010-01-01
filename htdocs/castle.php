@@ -105,12 +105,15 @@ You will also need
     <i>If you don't want to hear sounds, you don't have to install
     OpenAL.</i></p>
 
-    <p>Installing actual game: extract downloaded archive to
-    <tt>/usr/local/share/castle/</tt> or <tt>$HOME/.castle.data/</tt>.
-    You can move or symlink the executable <tt>castle</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
+    <p>Installing actual game: extract the downloaded archive anywhere.
+    Run the game by running the binary, like <tt>./castle</tt>.</p>
 
-    <p>Run the game by running <tt>castle</tt>.</p></li>
+    <p>If you don't want to always run the binary from the game's
+    directory, you can also extract the game (or make a symlink to extracted dir)
+    to <tt>$HOME/.castle.data/</tt>, or <tt>/usr/local/share/castle/</tt>,
+    or <tt>/usr/share/castle/</tt>. You can then
+    move or symlink the binary <tt>castle</tt> to any place
+    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
   <li>
     <p><b>Mac OS X:</b></p>
@@ -120,13 +123,10 @@ You will also need
     'Mac OS X dependencies', 'macosx_requirements'); ?> for simple
     instructions how to get them.</p>
 
-    <p>Install actual game like
-    on any other Unix: extract downloaded archive to
-    <tt>/usr/local/share/castle/</tt> or <tt>$HOME/.castle.data/</tt>.
-    You can move or symlink the executable <tt>castle</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
-
-    <p>Run the game by running <tt>castle</tt>.</p></li>
+    <p>Installing actual game: extract the downloaded archive anywhere.
+    Run the game by running the binary, like <tt>./castle</tt>.
+    You can also install / symlink in special dorectories, see
+    above Linux notes.</p>
 
   <li>
     <p><b>Windows:</b></p>
@@ -134,7 +134,7 @@ You will also need
     <p>OpenAL and vorbis libraries are already
     included in the archive. So you don't have to install OpenAL yourself.</p>
 
-    <p>Installing actual game: extract downloaded archive to any directory.
+    <p>Installing actual game: extract the downloaded archive anywhere.
     Run the game by running <tt>castle.exe</tt>.</p>
 
     <p>Note that from the game you will be able to choose various

@@ -64,22 +64,16 @@ appropriate DLLs are already is the archive.
   'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK,
   $std_releases_post_1_2_0); ?>
 
-<p>Installing:</p>
+<p><i>Installation</i>: just extract the downloaded archive anywhere.
+Run the game binary (<tt>./lets_take_a_walk</tt> on Unix,
+<tt>lets_take_a_walk.exe</tt> on Windows).</p>
 
-<dl>
-  <dt>Linux, FreeBSD and Mac OS X users:</dt>
-
-  <dd>Extract downloaded archive to
-    <tt>/usr/local/share/lets_take_a_walk/</tt> or <tt>$HOME/.lets_take_a_walk.data/</tt>.
-    You can move or symlink the executable <tt>lets_take_a_walk</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).
-    Run the game by running <tt>lets_take_a_walk</tt>.</dd>
-
-  <dt>Windows users:</dt>
-
-  <dd>Extract downloaded archive to any directory.
-    Run the game by running <tt>lets_take_a_walk.exe</tt>.</dd>
-</dl>
+<p>On Unix, if you don't want to always run the binary from the game's
+directory, you can extract the game (or make a symlink to extracted dir)
+to <tt>$HOME/.lets_take_a_walk.data/</tt>, or <tt>/usr/local/share/lets_take_a_walk/</tt>,
+or <tt>/usr/share/lets_take_a_walk/</tt>. You can then
+move or symlink the binary <tt>lets_take_a_walk</tt> to any place
+you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
 <p>Press F1 in the game to get help.
 

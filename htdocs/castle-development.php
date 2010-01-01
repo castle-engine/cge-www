@@ -959,9 +959,10 @@ I don't plan to keep FPC 2.0.4 compilation supported much longer,
 now that stable FPC 2.2.0 is released.</p></div>
 
 <p>Before you run the compiled executable, make sure that it's properly
-installed: Unix users should make sure that symlink
+installed: Unix users can make sure that symlink
 <tt>$HOME/.castle.data</tt> is appropriate (you can easily
-make this symlink by <tt>make install</tt>).
+make this symlink by <tt>make install</tt>), although this is not required
+for newer versions (&gt; 0.8.3).
 And on all OSes make sure that you have the appropriate libraries
 installed. Windows developers may be comfortable with simply copying
 appropriate DLL files from precompiled version of the game,
