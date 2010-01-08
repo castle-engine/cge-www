@@ -2,6 +2,60 @@
 Next WWW update:
 Text for next update:
 
+TODO: make here links to pasdoc docs from snapshots.
+
+<p>Hi, fresh development news follow :)<p>
+
+<ol>
+  <li>
+    <p>(Almost) no user-visible changes since last update, but a lot of work was done to make the <tt>TUIControl</tt> architecture working. The key idea is that our most important classes: <tt>TVRMLScene</tt> (with <tt>TVRMLGLScene</tt>), <tt>TVRMLGLAnimation</tt>, <tt>TNavigator</tt> (with <tt>TExamineNavigator</tt>, <tt>TWalkNavigator</tt>) are now descendants of <tt>TUIControl</tt>. By simply adding their instance to the Controls list (like <tt>TGLUIWindow.Controls</tt>, or, for Lazarus users: <tt>TKamOpenGLControl.Controls</tt>) makes them immediately working: they will receive mouse, key events (to handle camera, VRML/X3D events to interact with the scene etc.), they will receive idle events (to make time pass, for animations etc.) and such.</p>
+
+    <p>The direct goal is to make it flexible enough that a fully-funtional VRML browser can be implemented in a few lines:</p>
+
+<pre>
+var
+  Glw: TGLUIWindow;
+  Scene: TVRMLGLScene;
+begin
+  Scene := TVRMLGLScene.Create('my_scene.x3d');
+  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.ProcessEvents := true;
+
+  Glw := TGLUIWindow.Create(Application);
+  Glw.Controls.Add(Scene);
+  Glw.InitAndRun;
+end.
+</pre>
+
+    <p>We're not fully there yet, I have some questions that I haven't decided yet &mdash; for example should creating navigator (camera) class should be explicit, or a default one generated? Should rendering be done automatically, or at least an <tt>OnDraw</tt> callback required? But we're getting close.</p>
+
+    <p>Note that this is different than previous <tt>TGLWindowVRMLBrowser</tt> (and Lazarus component <tt>TKamVRMLBrowser</tt>) approaches: they allowed you to make VRML browser in a few lines, but took some flexibility away. For example, adding a second VRML scene/animation to the <tt>TGLWindowVRMLBrowser</tt> is not so trivial.</p>
+
+    <p>The problem here is that <tt>TGLWindowVRMLBrowser</tt> / <tt>TKamVRMLBrowser</tt> hide some complexity, also hiding some flexibility of the underlying VRML scenes.</p>
+
+    <p>Contrast this with direct usage of <tt>TVRMLGLScene</tt>: this gives you full flexibility, but currently requires to write some dumb glue code to make it fully responding to VRML/X3D interactive events.</p>
+
+    <p>The idea of new approach is to allow the best of both worlds: you will deal directly with the powerful <tt>TVRMLGLScene</tt> instances, and at the same time avoid writing boring code by simply adding scene to some <tt>Controls</tt> list. It should be obvious then how to e.g. add another scene: just create another <tt>TVRMLGLScene</tt> instance and add it to the <tt>Controls</tt> list.</p>
+  </li>
+
+  <li>
+    <p>In related news, the Lazarus integration of the engine gets better, with many old classes reworked as components. This is also tied to the previous change, because <tt>TUIControl</tt> is a descendant of <tt>TComponent</tt> &mdash; which means that important classes of our engine, like <tt>TVRMLGLScene</tt> and navigators are now components that can be registered on Lazarus palette.</p>
+
+    <p>This is, again, not yet finished: some important properties of these classes are not published, or not possible to design from the IDE, limiting their usefullness as components. For example, you cannot add items to the <tt>TKamOpenGLControl.Controls</tt> list yet from the IDE (you have to add by code). But things certainly get better, and are already a large improvement over previous situation.</p>
+
+    <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
+  </li>
+
+  <li><p>GTK 2 backend of our <tt>TGLWindow</tt> class was also much reworked. Namely, 1. we no longer use GTK's <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK's "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
+
+    <p>For more in-depth discussion of past problems, reasonings and solutions, see the document <a ...>TODO why_not_gtk_idle.txt</a>.
+  </li>
+
+  <li><p>A minor improvement to <tt>TGLWindow</tt> are the <tt>MessageOK</tt> and the <tt>MessageYesNo</tt> methods, proving native-looking (GTK, WinAPI etc.) message boxes.</p></li>
+
+  <li><p>Other news: if you're trying to compile the engine with newest FPC 2.4.0, please use engine SVN source for now. Current released tar.gz sources compile only with &lt;= 2.2.4. This problem will of course disappear after new engine release, hopefully later this month.</p></li>
+</ol>
+
 ------------------------------------------------------------------------------
 *If* I'll ever make public vrml-engine blog on michalis.ii:
 
