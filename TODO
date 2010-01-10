@@ -17,17 +17,18 @@ var
   Glw: TGLUIWindow;
   Scene: TVRMLGLScene;
 begin
-  Scene := TVRMLGLScene.Create('my_scene.x3d');
+  Scene := TVRMLGLScene.Create(Application { Owner that will free the Scene });
+  Scene.Load('my_scene.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
-  Glw := TGLUIWindow.Create(Application);
+  Glw := TGLUIWindow.Create(Application { Owner });
   Glw.Controls.Add(Scene);
   Glw.InitAndRun;
 end.
 </pre>
 
-    <p>We're not fully there yet, I have some questions that I haven't decided yet &mdash; for example should creating navigator (camera) class should be explicit, or a default one generated? Should rendering be done automatically, or at least an <tt>OnDraw</tt> callback required? But we're getting close.</p>
+    <p>We're not fully there yet, but getting very close, see examples in engine sources :) I have some questions that I haven't decided yet &mdash; for example should creating navigator (camera) class should be explicit, or a default one generated? Should rendering be done automatically, or at least an <tt>OnDraw</tt> callback required? But we're getting close.</p>
 
     <p>Note that this is different than previous <tt>TGLWindowVRMLBrowser</tt> (and Lazarus component <tt>TKamVRMLBrowser</tt>) approaches: they allowed you to make VRML browser in a few lines, but took some flexibility away. For example, adding a second VRML scene/animation to the <tt>TGLWindowVRMLBrowser</tt> is not so trivial.</p>
 
