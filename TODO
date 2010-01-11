@@ -8,7 +8,7 @@ TODO: make here links to pasdoc docs from snapshots.
 
 <ol>
   <li>
-    <p>(Almost) no user-visible changes since last update, but a lot of work was done to make the <tt>TUIControl</tt> architecture working. The key idea is that our most important classes: <tt>TVRMLScene</tt> (with <tt>TVRMLGLScene</tt>), <tt>TVRMLGLAnimation</tt>, <tt>TNavigator</tt> (with <tt>TExamineNavigator</tt>, <tt>TWalkNavigator</tt>) are now descendants of <tt>TUIControl</tt>. By simply adding their instance to the Controls list (like <tt>TGLUIWindow.Controls</tt>, or, for Lazarus users: <tt>TKamOpenGLControl.Controls</tt>) makes them immediately working: they will receive mouse, key events (to handle camera, VRML/X3D events to interact with the scene etc.), they will receive idle events (to make time pass, for animations etc.) and such.</p>
+    <p>(Almost) no user-visible changes since last update, but a lot of work was done to make the <tt>TUIControl</tt> architecture working. The key idea is that our most important classes: <tt>TVRMLScene</tt> (with <tt>TVRMLGLScene</tt>), <tt>TVRMLGLAnimation</tt>, <tt>TCamera</tt> (with <tt>TExamineCamera</tt>, <tt>TWalkCamera</tt>) are now descendants of <tt>TUIControl</tt>. By simply adding their instance to the Controls list (like <tt>TGLUIWindow.Controls</tt>, or, for Lazarus users: <tt>TKamOpenGLControl.Controls</tt>) makes them immediately working: they will receive mouse, key events (to handle camera, VRML/X3D events to interact with the scene etc.), they will receive idle events (to make time pass, for animations etc.) and such.</p>
 
     <p>The direct goal is to make it flexible enough that a fully-funtional VRML browser can be implemented in a few lines:</p>
 
@@ -28,7 +28,7 @@ begin
 end.
 </pre>
 
-    <p>We're not fully there yet, but getting very close, see examples in engine sources :) I have some questions that I haven't decided yet &mdash; for example should creating navigator (camera) class should be explicit, or a default one generated? Should rendering be done automatically, or at least an <tt>OnDraw</tt> callback required? But we're getting close.</p>
+    <p>We're not fully there yet, but getting very close, see examples in engine sources :) I have some questions that I haven't decided yet &mdash; for example should creating camera class should be explicit, or a default one generated? Should rendering be done automatically, or at least an <tt>OnDraw</tt> callback required? But we're getting close.</p>
 
     <p>Note that this is different than previous <tt>TGLWindowVRMLBrowser</tt> (and Lazarus component <tt>TKamVRMLBrowser</tt>) approaches: they allowed you to make VRML browser in a few lines, but took some flexibility away. For example, adding a second VRML scene/animation to the <tt>TGLWindowVRMLBrowser</tt> is not so trivial.</p>
 
@@ -40,12 +40,16 @@ end.
   </li>
 
   <li>
-    <p>In related news, the Lazarus integration of the engine gets better, with many old classes reworked as components. This is also tied to the previous change, because <tt>TUIControl</tt> is a descendant of <tt>TComponent</tt> &mdash; which means that important classes of our engine, like <tt>TVRMLGLScene</tt> and navigators are now components that can be registered on Lazarus palette.</p>
+    <p>In related news, the Lazarus integration of the engine gets better, with many old classes reworked as components. This is also tied to the previous change, because <tt>TUIControl</tt> is a descendant of <tt>TComponent</tt> &mdash; which means that important classes of our engine, like <tt>TVRMLGLScene</tt> and cameras are now components that can be registered on Lazarus palette.</p>
 
     <p>This is, again, not yet finished: some important properties of these classes are not published, or not possible to design from the IDE, limiting their usefullness as components. For example, you cannot add items to the <tt>TKamOpenGLControl.Controls</tt> list yet from the IDE (you have to add by code). But things certainly get better, and are already a large improvement over previous situation.</p>
 
     <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
   </li>
+
+  <li><p>All "navigator" classes, fields etc. renamed to "camera". So e.g. <tt>TExamineCamera</tt> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
+
+    <p>Old names <i>navigator</i> were coined to emphasize the fact that they do not have to represent "real" camera that is used to display the 3D scene on the screen, they can be used to manipulate any 3D object of your scene. For example shadow_fields demo used 4 examine navigators to manipulate various scene elements, rift used special walk navigator to represent position of the player in the room, etc. But I decided that the name is just confusing, as most of the time you use this as "normal camera". Advanced users can probably grasp the fact that in fact "camera" doesn't have to be used to display whole scene from the screen.</p></li>
 
   <li><p>GTK 2 backend of our <tt>TGLWindow</tt> class was also much reworked. Namely, 1. we no longer use GTK's <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK's "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
 
