@@ -479,7 +479,7 @@ when you're not interested in testing creatures
       <li><p>Sectors and waypoints are used for 2 things:
 
         <ol>
-          <li>To speed up rendering: When player's CameraPos is within
+          <li>To speed up rendering: When player's Position is within
             a given sector (not nil), we have to render only the sectors
             for which VisibleSectors is true.
             TODO: right now it's not used to speed up rendering,
@@ -1032,10 +1032,10 @@ full list of things and resources used).
 <ul>
   <li><p>Everywhere in the game GetCameraHeight returns normal HeightAboveTheGround.
     Usually in my general units (kambi_vrml_game_engine units) I don't make
-    any assumptions about HomeCameraUp, it can be any vector &mdash; which means
+    any assumptions about InitialUp, it can be any vector &mdash; which means
     that SqrHeightAboveTheGround is easier to calculate,
     and calculating actual HeightAboveTheGround costs us Sqrt call.
-    But in this game, we know that HomeCameraUp is always (0, 0, 1),
+    But in this game, we know that InitialUp is always (0, 0, 1),
     and this means that actual HeightAboveTheGround can be calculated
     easily (by TVRMLTriangleOctree.GetCameraHeightZ), without the cost
     of Sqrt.</p></li>
