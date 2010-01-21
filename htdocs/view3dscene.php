@@ -707,27 +707,6 @@ directory.</p>
     Too little radius may produce precision-errors in depth-buffer
     (this can lead to some strange display artifacts).
 
-  <dt>--light-calculate on|off
-  <dd><p>Sets initial state of "Lighting calculate" option.
-    If this is "on", lighting calculations are performed.
-    Every vertex may have different color, depending on surface material,
-    lights set in the scene, camera position etc.
-    If this is "off" scene is rendered without lighting:
-    every triangle has always the same, single color.
-
-    <p>Default is true, which is usually much more reasonable.
-    There is also a menu item "Lighting calculate" that you can use to change
-    this setting while the program is running.
-
-    <!--
-    (uwaga - tylko formaty VRML i 3DS pozwalaj± na
-    definiowanie ¶wiate³ w pliku, w przypadku innych formatów ca³a scena
-    bêdzie wy¶wietlana jako czarna - bo nic nie bêdzie o¶wietlone).
-
-    Give somewhere some description of what is "headlight" and how it is
-    initialized (to SceneLightCount = 0) ?
-    -->
-
   <dt><a name="command_line_options_detail"></a>
       --detail-quadric-slices &lt;integer&gt;<br>
       --detail-quadric-stacks &lt;integer&gt;<br>
