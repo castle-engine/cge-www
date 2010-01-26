@@ -50,7 +50,10 @@ function this_a_href_page($title, $page_name)
        If this delimiter is not present, then teaser is just equal to
        full description.
 
-     - guid will be used also for HTML anchor inside changes_log.php page
+     - guid will be used also for HTML anchor inside changes_log.php page.
+       guid is optional --- we'll generate default guid based on date and title,
+       if not set.
+     - link is also optional, we'll set it to our homepage if not set.
 
      They must be ordered from the newest to the oldest.
      While it doesn't matter for RSS (feed will be sorted anyway by news
@@ -67,7 +70,6 @@ function this_a_href_page($title, $page_name)
           'month' => 12,
           'day' => 21,
           'guid' => '2009-12-21',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -114,7 +116,6 @@ table_demo_images(array(
           'month' => 10,
           'day' => 30,
           'guid' => '2009-10-30',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -160,7 +161,6 @@ table_demo_images(array(
           'month' => 9,
           'day' => 7,
           'guid' => '2009-09-07',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 table_demo_images(array(
@@ -181,7 +181,6 @@ table_demo_images(array(
           'month' => 9,
           'day' => 5,
           'guid' => '2009-09-05',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 table_demo_images(array(
@@ -201,7 +200,6 @@ table_demo_images(array(
           'month' => 8,
           'day' => 26,
           'guid' => '2009-08-26',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 table_demo_images(array(
@@ -250,7 +248,6 @@ table_demo_images(array(
           'month' => 8,
           'day' => 13,
           'guid' => '2009-08-13',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 table_demo_images(array(
@@ -276,7 +273,6 @@ table_demo_images(array(
           'month' => 5,
           'day' => 5,
           'guid' => '2009-05-05',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 table_demo_images(array(
@@ -320,7 +316,6 @@ table_demo_images(array(
           'month' => 4,
           'day' => 10,
           'guid' => '2009-04-10',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => '
 <table align="right">
@@ -362,7 +357,6 @@ table_demo_images(array(
           'month' => 1,
           'day' => 24,
           'guid' => '2009-01-24',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => '
 
@@ -453,7 +447,6 @@ source directories.</p>
           'month' => 1,
           'day' => 3,
           'guid' => '2009-01-03',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => "
 
@@ -497,7 +490,6 @@ Changes:</p>
           'month' => 12,
           'day' => 18,
           'guid' => '2008-12-18',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' => "
 
@@ -581,7 +573,6 @@ Major changes:
           'month' => 11,
           'day' => 9,
           'guid' => '2008-11-09',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
           "
@@ -634,7 +625,6 @@ program to view 25 first <a href=\"http://en.wikipedia.org/wiki/Spherical_harmon
           'month' => 10,
           'day' => 15,
           'guid' => '2008-10-15',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 this_a_href_page('view3dscene 3.1.0', 'view3dscene') . " release,
@@ -761,7 +751,6 @@ choice, automatically detect when roSeparateShapeStates /
           'month' => 9,
           'day' => 12,
           'guid' => '2008-09-12',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 "<p>I'm pleased to present the new, shiny
@@ -870,7 +859,6 @@ Jordi R. Cardona!)</a>.</p>"),
           'month' => 8,
           'day' => 15,
           'guid' => '2008-08-15',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 "<p><a href=\"http://vrmlengine.sourceforge.net/movies/laetitia_sprints.avi\"><img
@@ -903,7 +891,6 @@ web3d.org examples</a>.</p>"),
           'month' => 7,
           'day' => 15,
           'guid' => '2008-07-15',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 'Various exciting news about development of our engine:
@@ -992,7 +979,6 @@ web3d.org examples</a>.</p>"),
           'month' => 5,
           'day' => 9,
           'guid' => '2008-05-09',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 "I present " . a_href_page('three demo movies', 'movies') . "
@@ -1015,7 +1001,6 @@ Some of the latest improvements include
           'month' => 2,
           'day' => 25,
           'guid' => '2008-02-25',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 "Released " . a_href_page('engine version 1.3.1', 'kambi_vrml_game_engine') . ":
@@ -1027,7 +1012,6 @@ engine with Lazarus."),
           'month' => 2,
           'day' => 19,
           'guid' => '2008-02-19',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' =>
 "<p>Many long-awaited graphic features implemented in our engine.
 Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
@@ -1201,7 +1185,6 @@ mainly to bring them up-to-date with current engine state.</p>
           'month' => 11,
           'day' => 17,
           'guid' => '2007-11-17',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' =>
 "<p>A lot of updates today. Here's a shortcut of only the most important changes
 (see " . a_href_page('changes_log', 'changes_log') . " for a full list of changes) :
@@ -1342,7 +1325,6 @@ implementation.</p>
           'month' => 9,
           'day' => 6,
           'guid' => '2007-09-06',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -1377,7 +1359,6 @@ implementation.</p>
           'month' => 8,
           'day' => 25,
           'guid' => '2007-08-25',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -1403,7 +1384,6 @@ implementation.</p>
           'month' => 7,
           'day' => 25,
           'guid' => '2007-07-25',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -1431,7 +1411,6 @@ feed to monitor new releases</a>.</p>"),
           'month' => 7,
           'day' => 23,
           'guid' => '2007-07-23',
-          'link' => 'http://vrmlengine.sourceforge.net/',
           'short_description' => '',
           'description' =>
 
@@ -1457,6 +1436,17 @@ foreach ($changes_log as &$log_entry)
     $log_entry['day'],
     $log_entry['hour'],
     $log_entry['minute']);
+  if (!isset($log_entry['link']))
+    $log_entry['link'] = 'http://vrmlengine.sourceforge.net/';
+  if (!isset($log_entry['guid']))
+    $log_entry['guid'] =
+      $log_entry['year'] . '-' .
+      $log_entry['month'] . '-' .
+      $log_entry['day'] . '-' .
+      /* For safety and to make guid look nicer, remove special characters.
+         Not all these replacements are really necessary, only <> and &
+         to avoid breaking XML. guid is used in both RSS XML and in HTML. */
+      strtr(strtolower($log_entry['title']), ' &;,:*/()<>', '___________');
 }
 unset($log_entry);
 
