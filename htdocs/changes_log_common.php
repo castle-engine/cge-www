@@ -239,9 +239,9 @@ table_demo_images(array(
 <ul>
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">The core of our engine is now available under the GNU Lesser General Public License (with "static linking exception")</a>. Basically, this allows using the engine in closed-source programs, as long as you keep open your improvements to the engine.</p>
 
-    <p>I had a long thought before this decision, always and still being a free software fanatic :) <!-- The text <i>In the future I may change the license to more liberal than GNU GPL &mdash; most probably to modified LGPL</i> was present in the "license" section since a few years. --> I wrote a short summary of my thoughts, <span tabindex="0" class="js_link" onclick="kambi_toggle_display(\'lgpl_thoughts\')">click here to read it</span> (hidden by default, as may be boring to most people).</p>
+    <p>I had a long thought before this decision, always and still being a free software fanatic :) <!-- The text <i>In the future I may change the license to more liberal than GNU GPL &mdash; most probably to modified LGPL</i> was present in the "license" section since a few years. --> I wrote a short summary of my thoughts, <span ' . (HTML_VALIDATION ? '' : 'tabindex="0"') . ' class="js_link" onclick="kambi_toggle_display(\'lgpl-thoughts\')">click here to read it</span> (hidden by default, as may be boring to most people).</p>
 
-    <ol id="lgpl_thoughts" style="display: none">
+    <ol id="lgpl-thoughts" style="display: none">
       <li><p>The initial insight is that with strict GPL, potential proprietary users of the engine wouldn\'t "open" their product just to use our engine. Instead they would move their interest elsewhere. We\'re <a href="http://openvrml.org/">not</a> <a href="http://freewrl.sourceforge.net/">the only</a> free/open VRML/X3D engine out there, neither we\'re the <a href="http://www.ogre3d.org/">the</a> <a href="http://irrlicht.sourceforge.net/">only</a> free/open 3d/game engine out there, and everyone else is available under LGPL (or even more permissible licenses).</p></li>
 
       <li><p>The common answer to above argument is that "popularity of the engine is not all that matters". LGPL is, ultimately, a permission to make closed-source software.</p>
