@@ -42,6 +42,33 @@ function echo_header_bonus ()
   tt.terminal { background-color: #EEE; }
 
   span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
+
+  /* Style for note and note_title shamelessly stolen from CSS
+     of the Subversion book. (from .sidebar and .sidebar .title) */
+  .note_box
+  {
+      border-top: dotted 1px black;
+      border-left: dotted 1px black;
+      border-right: solid 2px black;
+      border-bottom: solid 2px black;
+      background: rgb(240,220,170);
+      padding: 0 0.12in;
+      margin: 0.5in;
+  }
+
+  .note_box .note_title {
+    text-align: center;
+    font-size: 125%;
+  }
+
+  .changes_log_toc {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .changes_log_toc a { text-decoration: none; }
+  .changes_log_toc a:hover { text-decoration: underline; }
 --></style>
 
 <script type="text/javascript">

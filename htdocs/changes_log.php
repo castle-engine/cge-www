@@ -7,20 +7,15 @@
 
 <h1>News about the <i>Kambi VRML game engine</i></h1>
 
-<div class="note" style="
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  background:
-">
+<div class="note_box changes_log_toc">
 
 <p class="note_title">Table of contents</p>
 
 <ul>
   <?php
     foreach ($changes_log as $change_log_item)
-      echo '<li><a href="#' . $change_log_item['anchor'] . '"><b>' .
-        $change_log_item['title'] . '</b></a> (' .
+      echo '<li><a href="#' . $change_log_item['anchor'] . '">' .
+        $change_log_item['title'] . '</a> (' .
         $month_names[$change_log_item['month']] . ' ' .
         $change_log_item['day'] . ', ' .
         $change_log_item['year'] . ')</a></li>';

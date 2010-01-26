@@ -353,7 +353,7 @@ so should be 100% stable.</p>
 <!--
 Too much information:
 
-<div class="note">
+<div class="note_box">
 <p class="note_title">A note to developers familiar with SVN</p>
 
 <p>I know that my layout is a little

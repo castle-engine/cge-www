@@ -764,24 +764,6 @@ function echo_kambi_common_css()
 
   .program_image_link_title { font-size: larger; }
 
-  /* Style for note and note_title shamelessly stolen from CSS
-     of the Subversion book. (from .sidebar and .sidebar .title) */
-  .note
-  {
-      border-top: dotted 1px black;
-      border-left: dotted 1px black;
-      border-right: solid 2px black;
-      border-bottom: solid 2px black;
-      background: rgb(240,220,170);
-      padding: 0 0.12in;
-      margin: 0.5in;
-  }
-
-  .note .note_title {
-    text-align: center;
-    font-size: 125%;
-  }
-
   .rss_link {
     float: right;
     background: red;
