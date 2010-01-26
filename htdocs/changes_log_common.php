@@ -4,6 +4,8 @@
      done before requiring this !
   */
 
+require_once 'vrmlengine_functions.php';
+
 /* For given date, convert it to a Unix timestamp
    (seconds since 1970-01-01 00:00:00 UTC).
 
@@ -28,7 +30,7 @@ function this_a_href_page($title, $page_name)
      like Google RSS on main page, don't handle relative URLs as they
      should. And indeed, no standard guarantees that relative URLs
      in RSS would be handled OK). */
-  return '<a href="http://vrmlengine.sourceforge.net/' . $page_name .
+  return '<a href="' . CURRENT_URL . $page_name .
     '.php">' . $title . '</a>';
 }
 
@@ -1607,7 +1609,7 @@ function change_log_to_html($change_log_item, $full_description = true)
         ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
 
       $description = substr($description, 0, $teaser_delimiter) .
-        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#' .
+        '<p><a href="' . CURRENT_URL . 'changes_log.php#' .
         $change_log_item['anchor'] . '">[read more]</a></p>' .
         $teaser_closing_str;
     }
