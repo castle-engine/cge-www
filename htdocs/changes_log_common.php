@@ -65,12 +65,10 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-
     array('title' => 'Development news: engine 2.0',
-          'year' => 2009,
-          'month' => 12,
-          'day' => 21,
-          'guid' => '2009-12-21',
+          'year' => 2010,
+          'month' => 1,
+          'day' => 26,
           'short_description' => '',
           'description' =>
 
@@ -82,6 +80,8 @@ table_demo_images(array(
 <p>During the last weeks I did a lot of work on the engine API. Especially the new <i>Scene Manager</i> approach makes quite a revolutionary change, and there\'s also 2D <i>Controls</i> manager, better Lazarus components and many more. Together, I feel these are so important for developers using my engine that the next engine version will be bumped to proud <i>2.0.0</i> :)</p>
 
 <p>Not much noticeable for a normal user (sorry; although there are various fixes and improvements here and there). Below news post will probably turn our quite long, and I\'ll keep passing you links to <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">current API reference of SVN code</a>, so... developers: keep reading if you\'re interested, and others: well, this may get dirty, so you can stop reading now :)</p>
+
+<!-- teaser -->
 
 <ol>
   <li>
@@ -105,12 +105,12 @@ begin
   SceneManager.MainScene := Scene;
 
   Window := TGLUIWindow.Create(Application);
-  Window.Controls.Add(Scene);
+  Window.Controls.Add(SceneManager);
   Window.InitAndRun;
 end.
 </pre>
 
-    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_trivial.pasprogram">scene_manager_trivial</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
+    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.pasprogram">scene_manager_trivial</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
 
     <p>This looks nice a relatively straighforward, right? You create 3D object (<tt>Scene</tt>), you create 3D world (<tt>SceneManager</tt>), and a window to display the 3D world (<tt>Window</tt>). What is really the point here is that you immediately know how to add a second 3D object: just create <tt>Scene2</tt>, and add it to <tt>SceneManager.Items</tt>.</p>
 
@@ -152,6 +152,10 @@ end.
 
         <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
       </li>
+
+      <li><p><tt>TBase3D/TUIControl</tt> give various improvements to all 2D/3D objects. For examples, <tt>TVRMLGLScene</tt> automatically sets cursor to "hand" when it\'s over a touch sensor. In fact, every <tt>TBase3D</tt> and <tt>TUIControl</tt> can affect cursor by <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/UIControls.TUIControl.html#Cursor">Cursor</a> property.</p></li>
+
+      <li><p>If you do not explicitly create a camera for the scene manager, a suitable one is automatically created, see <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html#Camera">TKamSceneManager.Camera</a>.</p></li>
 
       <li><p>All "navigator" classes, fields etc. renamed to "camera". So e.g. <tt>TExamineCamera</tt> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
 
