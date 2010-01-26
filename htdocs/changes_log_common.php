@@ -79,7 +79,7 @@ table_demo_images(array(
   array('filename' => 'scene_manager_demos_2.png', 'titlealt' => 'Another screenshot from scene_manager_demos'),
 )) . '
 
-<p>During the last weeks I did a lot of work on the engine API. Especially the new <i>Scene Manager</i> approach makes quite a revolutionary change, and there\'s also 2D <i>Controls</i> manager, better Lazarus components and many more. Together, I feel these are so important for developers using my engine that the next engine version will be bumped to proud <i>2.0.0</i> :) To be released next month.</p>
+<p>During the last weeks I did a lot of work on the engine API. Especially the new <b>Scene Manager</b> approach makes quite a revolutionary change, and there\'s also <i>2D Controls manager</i>, better <i>Lazarus components</i> and many more. Together, I feel these are so important for developers using my engine that the next engine version will be bumped to proud <i>2.0.0</i> :) To be released next month.</p>
 
 <p>Not much noticeable for a normal user (sorry; although there are various fixes and improvements here and there). Below news post turned out quite long, and I\'ll keep passing you links to the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">current API reference of SVN code</a>, so... developers: keep reading if you\'re interested, and others: well, this may get dirty, so you can stop reading now :)</p>
 
@@ -112,7 +112,7 @@ begin
 end.
 </pre>
 
-    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.pasprogram">scene_manager_trivial</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
+    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.pasprogram">scene_manager_basic</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
 
     <p>This looks nice a relatively straighforward, right? You create 3D object (<tt>Scene</tt>), you create 3D world (<tt>SceneManager</tt>), and a window to display the 3D world (<tt>Window</tt>). What is really the point here is that you immediately know how to add a second 3D object: just create <tt>Scene2</tt>, and add it to <tt>SceneManager.Items</tt>.</p>
 
