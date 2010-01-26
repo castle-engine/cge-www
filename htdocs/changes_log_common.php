@@ -65,6 +65,112 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+
+    array('title' => 'Development news: engine 2.0',
+          'year' => 2009,
+          'month' => 12,
+          'day' => 21,
+          'guid' => '2009-12-21',
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'scene_manager_demos_1.png', 'titlealt' => 'Screenshot from scene_manager_demos &mdash; two VRML scenes and one precalculated animation at once'),
+  array('filename' => 'scene_manager_demos_2.png', 'titlealt' => 'Another screenshot from scene_manager_demos'),
+)) . '
+
+<p>During the last weeks I did a lot of work on the engine API. Especially the new <i>Scene Manager</i> approach makes quite a revolutionary change, and there\'s also 2D <i>Controls</i> manager, better Lazarus components and many more. Together, I feel these are so important for developers using my engine that the next engine version will be bumped to proud <i>2.0.0</i> :)</p>
+
+<p>Not much noticeable for a normal user (sorry; although there are various fixes and improvements here and there). Below news post will probably turn our quite long, and I\'ll keep passing you links to <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">current API reference of SVN code</a>, so... developers: keep reading if you\'re interested, and others: well, this may get dirty, so you can stop reading now :)</p>
+
+<ol>
+  <li>
+    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . this_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo). This also concerns 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>.</p>
+
+    <p><b>The goal</b>: the goal (already achieved :) ) is to allow you to make a full 3D model viewer / VRML browser by this simple code:</p>
+
+<pre style="background: #DDD">
+var
+  Window: TGLUIWindow;
+  SceneManager: TKamSceneManager;
+  Scene: TVRMLGLScene;
+begin
+  Scene := TVRMLGLScene.Create(Application { Owner that will free the Scene });
+  Scene.Load(\'my_scene.x3d\');
+  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.ProcessEvents := true;
+
+  SceneManager := TKamSceneManager.Create(Application);
+  SceneManager.Items.Add(Scene);
+  SceneManager.MainScene := Scene;
+
+  Window := TGLUIWindow.Create(Application);
+  Window.Controls.Add(Scene);
+  Window.InitAndRun;
+end.
+</pre>
+
+    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_trivial.pasprogram">scene_manager_trivial</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
+
+    <p>This looks nice a relatively straighforward, right? You create 3D object (<tt>Scene</tt>), you create 3D world (<tt>SceneManager</tt>), and a window to display the 3D world (<tt>Window</tt>). What is really the point here is that you immediately know how to add a second 3D object: just create <tt>Scene2</tt>, and add it to <tt>SceneManager.Items</tt>.</p>
+
+    <p>The idea of <i>scene manager</i> will soon be explained in more detail, for now let\'s go a litle back in time and see what was wrong without the scene manager:</p>
+
+    <p><b>The trouble</b>: our existing classes were nicely encapsulating some functionality (showing menu, rendering VRML etc.) but they <i>were a pain to add to your window / 3D world</i>.</p>
+
+    <p>You could use something like <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindowVRMLBrowser.TGLWindowVRMLBrowser.html">TGLWindowVRMLBrowser</a> (or equivalent Lazarus component, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiVRMLBrowser.TKamVRMLBrowser.html">TKamVRMLBrowser</a>) but these offered too little flexibility. They were made to allow easily loading <i>only one scene</i>.</p>
+
+    <p>For anything more complicated, you had to directly create your <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> etc. classes, and (this is the key point) to handle various window / camera / callbacks to connect the 3D scene with a camera and with a window. For example, you had to register window <tt>OnIdle</tt> callback to increment VRML scene time (to keep animations running etc.) You had to register <tt>OnKeyDown</tt>, <tt>OnKeyUp</tt> and pass key events to VRML scene (to make VRML sensors work), <tt>OnMouseXxx</tt> callbacks had to be passed to handle VRML touch sensors, <tt>OnDraw</tt> to handle scene rendering... You also had to register camera callbacks (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#DoMoveAllowed"><tt>OnMoveAllowed</tt></a>, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnGetCameraHeight"><tt>OnGetCameraHeight</tt></a>) to connect collision detection with your 3D scene. And the list goes on...</p>
+
+    <p>As a witness to all these troubles, have a look at implementation of <tt>GLWindowVRMLBrowser</tt> or (nearly identical) implementation of <tt>KambiVRMLBrowser</tt> is last released engine version. They are long and clumsy. In current SVN code, they are nice, short and clean, and also more flexible (can handle many 3D objects, not just 1 VRML scene).</p>
+
+    <p><b>The solution(s):</b> There are actually two solutions, are directed at 2D controls (taking some space of 3D screen), the other directed at 3D objects. They are quite similar, and nicely playing with each other:</p>
+
+    <ol>
+      <li><p><i>For 3D objects</i>: we have a base class <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.TBase3D.html">TBase3D</a> from which <i>all</i> other 3D objects are derived. For example, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a> are both descendants of <tt>TBase3D</tt> now. There are some other helper 3D objects (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.TBase3DList.html">TBase3DList</a> - list of other 3D objects, and <a href="TODO">TTranslated3D</a> - translated other 3D object). And the real beauty is that you can easily derive your own <tt>TBase3D</tt> descendants, just override a couple methods and you get 3D objects that can be visible, can collide etc. in 3D world.</p>
+
+        <p>Now, what to do with your 3D objects? Add them to your 3D world, of course. The new great class that is fully implemented now is the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a>. In every program you create an instance of this class (or your own dencendant of <tt>TKamSceneManager</tt>), and you add your 3D objects to the scene manager. Scene manager keeps the whole knowledge about your 3D world, as a tree of <tt>TBase3D</tt> objects. After adding your whole 3D world to the scene manager, you can add the scene manager to <tt>Controls</tt> (more on this next), and then scene manager will receive all necessary events from your window, and will pass them to all interested 3D objects. Also scene manager connects your camera, and defines your viewport where 3D world is rendered through this camera.</p>
+      </li>
+
+      <li><p><i>For 2D controls</i>: quite similar solution is used, although with some details different. All stuff that had to receive window events must derive from base <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/UIControls.TUIControl.html">TUIControl</a> class. This means that <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> is now a descendant of <tt>TUIControl</tt>, and in the future I would like to have a small library of generally-usable simple 2D controls available here. Also note that <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a> is <tt>TUIControl</tt> descendant, since scene manager by default acts as a viewport (2D rectangle) through which you can see your 3D world. (Possibility to easily add custom viewports from the same scene manager is the next thing on my to-do list.)</p>
+
+        <p>To actually use the <tt>TUIControl</tt>, you add it to the window\'s <tt>Controls</tt> list. If you use Lazarus component, then you\'re interested in <a href="TODO">TKamOpenGLControl.Controls</a> list. If you use our own window library, you\'re intersted in the <a href="TODO">TGLUIWindow.Controls</a>. Once control is added to the controls list, it will automatically receive all interesting events from our window.</p>
+      </li>
+    </ol>
+
+    <p>That\'s it, actually. Thank you for reading this far, and I hope you\'ll like the changes &mdash; you can try SVN source code already and let me know how it works for you in practice.</p>
+
+  </li>
+
+  <li><p>Other changes:</p>
+
+    <ul>
+      <li>
+        <p>The Lazarus integration of the engine is better, with many old classes reworked as components. This is also tied to the previous change, because both <tt>TBase3D</tt> and <tt>TUIControl</tt> are descendants of <tt>TComponent</tt> &mdash; which means that important classes of our engine, like <tt>TVRMLGLScene</tt> and cameras are now components that can be registered on Lazarus palette.</p>
+
+        <p>This is not yet finished: some important properties of these classes are not published, or not possible to design from the IDE. For example, you cannot add items to the <tt>TKamOpenGLControl.Controls</tt> list yet from the IDE. This doesn\'t limit your possibilities, it only means that you\'ll have to do some work by writing source code as opposed to just clicking in Lazarus. Things for sure are already a lot better than in previous engine release.</p>
+
+        <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
+      </li>
+
+      <li><p>All "navigator" classes, fields etc. renamed to "camera". So e.g. <tt>TExamineCamera</tt> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
+
+        <p>Old names <i>navigator</i> were coined to emphasize the fact that they do not have to represent "real" camera that is used to display the 3D scene on the screen, they can be used to manipulate any 3D object of your scene. For example shadow_fields demo used 4 examine navigators to manipulate various scene elements, rift used special walk navigator to represent position of the player in the room, etc. But I decided that the name is just confusing, as most of the time you use this as "normal camera". Advanced users can probably grasp the fact that in fact "camera" doesn\'t have to be used to display whole scene from the screen.</p></li>
+
+      <li><p>GTK 2 backend of our <tt>TGLWindow</tt> class was also much reworked. Namely, 1. we no longer use GTK\'s <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK\'s "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
+
+        <p>For more in-depth discussion of past problems, reasonings and solutions, see the document <a href="TODO"> why_not_gtk_idle.txt</a>.
+      </li>
+
+      <li><p>A minor improvement to <tt>TGLWindow</tt> are the <tt>MessageOK</tt> and the <tt>MessageYesNo</tt> methods, proving native-looking (GTK, WinAPI etc.) message boxes.</p></li>
+
+      <li><p>Oh, and f you\'re trying to compile the engine with newest FPC 2.4.0, please use engine SVN source for now. Current released tar.gz sources compile only with &lt;= 2.2.4. This problem will of course disappear after new engine is released.</p></li>
+    </ul>
+
+  </li>
+</ol>'),
+
+
     array('title' => 'News - terrain demo, large engine layout changes',
           'year' => 2009,
           'month' => 12,
