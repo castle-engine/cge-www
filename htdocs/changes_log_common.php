@@ -4,29 +4,23 @@
      done before requiring this !
   */
 
-/* Beware that making timestamps using PHP is broken:
+/* For given date, convert it to a Unix timestamp
+   (seconds since 1970-01-01 00:00:00 UTC).
 
-     function date_timestamp($year, $month, $day)
-     {
-       return gmmktime(0, 0, 0, $month, $day, $year);
-     }
+   Date is converted with time set to 12:00 UTC this day.
+   This way the timestamp should represent the same day,
+   when represented as date/time in all timezones.
+   Otherwise people around the world could see actually a different
+   day in their RSS readers than the day written on WWW page like
+   [http://vrmlengine.sourceforge.net/changes_log.php].
 
-     echo date_timestamp(2007, 07, 25) . '<br/>';
-     echo date_timestamp(2007, 08,  1);
-
-   results in
-     1185321600
-     1164931200
-
-   which is obviously wrong, since the 2nd timestamp is smaller than the
-   1st one... This is with PHP 5.2.3-1+b1 from Debian package.
-   For safety, I'll just generate timestamps with ../scripts/date_to_timestamp.sh.
-   This is correct:
-     $ ./date_to_timestamp.sh '2007-07-25'
-     1185321600 // ok, just like PHP gmmktime
-     $ ./date_to_timestamp.sh '2007-08-01'
-     1185926400 // ok, larger than previous one, different than PHP gmmktime
-*/
+   I don't want to write everywhere that my dates are in UTC,
+   as since I only want to set dates --- I can make them the same regardless
+   of timezone. */
+function date_timestamp($year, $month, $day)
+{
+  return gmmktime(12, 0, 0, $month, $day, $year);
+}
 
 function this_a_href_page($title, $page_name)
 {
@@ -1477,6 +1471,17 @@ on SourceForge</a>.
   );
 
 /* --------------------------------------------------------------------------- */
+
+foreach ($changes_log as &$log_entry)
+{
+  $log_entry['pubDate'] = date_timestamp(
+    $log_entry['year'],
+    $log_entry['month'],
+    $log_entry['day'],
+    $log_entry['hour'],
+    $log_entry['minute']);
+}
+unset($log_entry);
 
 $month_names = array(
   1 => 'January',
