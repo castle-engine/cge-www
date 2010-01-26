@@ -1546,8 +1546,10 @@ foreach ($changes_log as &$log_entry)
     $log_entry['day'],
     $log_entry['hour'],
     $log_entry['minute']);
+
   if (!isset($log_entry['link']))
     $log_entry['link'] = 'http://vrmlengine.sourceforge.net/';
+
   if (!isset($log_entry['guid']))
     $log_entry['guid'] =
       $log_entry['year'] . '-' .
@@ -1557,6 +1559,8 @@ foreach ($changes_log as &$log_entry)
          Not all these replacements are really necessary, only <> and &
          to avoid breaking XML. guid is used in both RSS XML and in HTML. */
       strtr(strtolower($log_entry['title']), ' &;,:*/()<>', '___________');
+
+  $log_entry['anchor'] = $log_entry['guid'];
 }
 unset($log_entry);
 
@@ -1603,13 +1607,13 @@ function change_log_to_html($change_log_item, $full_description = true)
         ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
 
       $description = substr($description, 0, $teaser_delimiter) .
-        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#news-' .
-        $change_log_item['guid'] . '">[read more]</a></p>' .
+        '<p><a href="http://vrmlengine.sourceforge.net/changes_log.php#' .
+        $change_log_item['anchor'] . '">[read more]</a></p>' .
         $teaser_closing_str;
     }
   }
 
-  return '<p><a name="news-' . $change_log_item['guid'] . '"><b>' .
+  return '<p><a name="' . $change_log_item['anchor'] . '"><b>' .
     $change_log_item['title'] . '</b></a> (' .
     $month_names[$change_log_item['month']] . ' ' .
     $change_log_item['day'] . ', ' .

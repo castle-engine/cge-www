@@ -1,18 +1,38 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header('Changes log of Kambi VRML game engine', LANG_EN, NULL);
+  common_header('News about the Kambi VRML game engine', LANG_EN, NULL);
+
+  require_once 'changes_log_common.php';
 ?>
 
-<h1>Changes log of Kambi VRML game engine</h1>
+<h1>News about the <i>Kambi VRML game engine</i></h1>
+
+<div class="note" style="
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background:
+">
+
+<p class="note_title">Table of contents</p>
 
 <ul>
-<?php
-  require_once 'changes_log_common.php';
-  foreach ($changes_log as $change_log_item)
-  {
-    echo '<li>' . change_log_to_html($change_log_item) . '</li>';
-  }
-?>
+  <?php
+    foreach ($changes_log as $change_log_item)
+      echo '<li><a href="#' . $change_log_item['anchor'] . '"><b>' .
+        $change_log_item['title'] . '</b></a> (' .
+        $month_names[$change_log_item['month']] . ' ' .
+        $change_log_item['day'] . ', ' .
+        $change_log_item['year'] . ')</a></li>';
+  ?>
+</ul>
+</div>
+
+<ul>
+  <?php
+    foreach ($changes_log as $change_log_item)
+      echo '<li>' . change_log_to_html($change_log_item) . '</li>';
+  ?>
 
   <!-- Older logs are available only in HTML, they were not converted
        to $changes_log format. -->
