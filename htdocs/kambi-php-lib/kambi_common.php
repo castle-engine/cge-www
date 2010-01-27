@@ -686,7 +686,39 @@ function common_set_page_functions()
 function echo_kambi_common_css()
 {
 ?>
-<link type="text/css" rel="stylesheet" media="all"  href="kambi-php-lib/kambi_common.css">
+
+<!--
+  This is unclean, but it's more comfortable to keep below CSS
+  directly inside HTML page. This is in kambi_common.php,
+  that should be useful for both michalis.ii and vrmlengine.sf webpages,
+  and must be suitable also for offline documentation in vrmlengine programs.
+-->
+<!-- link type="text/css" rel="stylesheet" media="all"  href="kambi-php-lib/kambi_common.css" -->
+
+<style type="text/css"><!--
+body { background: white; font-family: sans-serif; }
+
+dt { font-weight: bold; }
+div.page_footer { }
+span.page_copyright { font-size: smaller }
+
+span.version_number { font-size: small }
+
+div.quick_links_bottom_line { text-align: <?php
+  echo (IS_GEN_LOCAL ? 'left' : 'center' ) ?>; }
+
+.rss_link {
+  float: right;
+  background: red;
+  padding: 0.3em;
+  border: thin outset black;
+}
+
+.rss_link a {
+  color: white;
+  font-weight: bold
+}
+--></style>
 <?php
 }
 
