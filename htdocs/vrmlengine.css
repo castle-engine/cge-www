@@ -27,7 +27,7 @@ tt.terminal { background-color: #EEE; }
 
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 
-/* Style for note and note_title shamelessly stolen from CSS
+/* Style for note_box and note_title shamelessly stolen from CSS
    of the Subversion book. (from .sidebar and .sidebar .title) */
 .note_box
 {
