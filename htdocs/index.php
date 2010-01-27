@@ -140,7 +140,7 @@ and I keep them in working and compilable state, but that's it.</p>
 
   <tr>
     <?php program_image_link("rayhunter",
-      "Command-line simple ray-tracer (classic deterministic ray-tracer and basic Monte Carlo path tracer).<br/>Hanles VRML/X3D and other 3D model formats.<br/>" .
+      "Command-line simple ray-tracer (classic deterministic ray-tracer and basic Monte Carlo path tracer).<br/>Handles VRML/X3D and other 3D model formats.<br/>" .
       a_href_page("See also it's gallery.","raytr_gallery"),
       'rayhunter_graz_demo.png',
       "rayhunter"); ?>
