@@ -9,88 +9,14 @@ define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 function echo_header_bonus ()
 {
   ?>
-    <link rel="alternate" type="application/rss+xml"
-      title="Kambi VRML game engine - changes log RSS feed"
-      href="<?php echo CURRENT_URL; ?>changes_log_feed.php">
 
-<style type="text/css"><!--
-  object.movie_thumbnail {
-    width: 200px;
-    height: 167px;
-  }
+<link rel="alternate" type="application/rss+xml"
+  title="Kambi VRML game engine - changes log RSS feed"
+  href="<?php echo CURRENT_URL; ?>changes_log_feed.php">
 
-  table.table_with_thumbs_and_text {
-    background: #DDD;
-    margin: 0.2em;
-    padding: 0.2em;
-    font-size: small;
-  }
+<link type="text/css" rel="stylesheet" media="all"  href="vrmlengine.css">
 
-  table.table_with_movie_thumbnail {
-    width: 210px;
-  }
-
-  pre.light_bg {
-    border: 1px solid #aaaaaa;
-    background-color: #f9f9f9;
-    padding: 0.3em;
-  }
-
-  a.kscript_func_docs { text-decoration: underline; }
-
-  pre.terminal { background-color: #EEE;  padding: 0.3em; }
-  tt.terminal { background-color: #EEE; }
-
-  span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
-
-  /* Style for note and note_title shamelessly stolen from CSS
-     of the Subversion book. (from .sidebar and .sidebar .title) */
-  .note_box
-  {
-      border-top: dotted 1px black;
-      border-left: dotted 1px black;
-      border-right: solid 2px black;
-      border-bottom: solid 2px black;
-      background: rgb(240,220,170);
-      padding: 0 0.12in;
-      margin: 0.5in;
-  }
-
-  .note_box .note_title {
-    text-align: center;
-    font-size: 125%;
-  }
-
-  .changes_log_toc {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .changes_log_toc a { text-decoration: none; }
-  .changes_log_toc a:hover { text-decoration: underline; }
---></style>
-
-<script type="text/javascript">
-/* Based on http://www.netlobo.com/javascript_get_element_id.html */
-function kambi_get_element_by_id(id)
-{
-  if (document.getElementById)
-    return document.getElementById(id); else
-  if (document.all)
-    return document.all[id]; else
-  if (document.layers)
-    return document.layers[id];
-}
-
-function kambi_toggle_display(id)
-{
-  var element = kambi_get_element_by_id(id);
-  if (element.style.display == "none")
-    element.style.display=""; else
-    element.style.display="none";
-}
-</script>
+<script type="text/javascript" src="vrmlengine.js"></script>
 
   <?php
 }
