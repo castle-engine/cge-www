@@ -78,11 +78,6 @@
      Between them insert just the page's body.
 
    Ponadto nastêpuj±ce rzeczy s± sugerowane aby uzyskaæ spójny styl:
-   - Tabelki dostêpnych klawiszy i operacji myszk± robiæ jako
-     <table border="1" class="key_list"> (jak zawrzeæ border="1"
-     w CSS ? Tak ¿eby do table nie by³o potrzebnych ¿adnych innych parametrów
-     poza class ?)
-
    - Wa¿niejsze strony o stosunkowo krótkim tytule mog± siê zaczynaæ
      u¿ywaj±c echo pretty_heading(... tytu³ strony ..., wersja programu),
      w szczególno¶ci mo¿e byæ
