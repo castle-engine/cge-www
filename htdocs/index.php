@@ -45,7 +45,7 @@ Two most important programs available here are
 <p style="background: #DDD; padding: 0.2em; margin: 0px">
 Comments?
 Go to <?php echo MAILING_LIST_LINK; ?> or
-<a href="http://apps.sourceforge.net/phpbb/vrmlengine/">forum</a>.<br/>
+<a href="http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3">forum</a>.<br/>
 See also <?php echo
 a_href_page('the news archive', 'changes_log') ?>.
 </p>
