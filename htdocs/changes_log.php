@@ -18,7 +18,7 @@
         $change_log_item['title'] . '</a> (' .
         $month_names[$change_log_item['month']] . ' ' .
         $change_log_item['day'] . ', ' .
-        $change_log_item['year'] . ')</a></li>';
+        $change_log_item['year'] . ')</li>';
   ?>
 </ul>
 </div>
