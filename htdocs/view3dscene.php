@@ -688,10 +688,15 @@ directory.</p>
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl
       --write-to-vrml &gt; helicopter-corrected.wrl</tt>.
 
-  <dt>--navigation Examine|Walk
-  <dd><p>Set initial navigation mode. Default is <tt>Examine</tt>.
-    You can change navigation mode while the program is running
-    using key <i>Ctrl+N</i> or appropriate menu item.
+  <dt>--navigation EXAMINE|WALK|FLY|NONE...
+  <dd><p>Set initial navigation type. Default is <tt>EXAMINE</tt>.
+    This can be overridden in particular VRML/X3D scene by using the
+    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
+    node. Valid values for this option are the navigation type names
+    for VRML/X3D <tt>NavigationInfo.type</tt>, see link above.</p>
+
+    <p>You can always change navigation mode later, while the program is running:
+    use the menu <i>Navigation</i>.</p>
 
   <dt>--camera-radius &lt;float&gt;
   <dd><p>When you are walking in the scene with
