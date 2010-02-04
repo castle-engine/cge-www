@@ -4,15 +4,16 @@ Text for next update:
 
 - announce:
 
-  Following last news post, work on engine 2.0.0 continues.
+<p>For now, short plans about the <i>The Castle 2</i>. <!-- teaser </p> --> First of all, the game will actually not be called <i>castle</i> anymore, and will not have in fact anything storyline-related with the original <i>castle</i>. It will be just developed using the same engine, starting with exactly the same source code. But all 3D data, storyline (let\'s pretend for the sake of discussion that <i>castle 1.0.0</i> had some storyline), and even the title will be completely separate.</p>
 
-  As part of it, I decided to rename one of the most important new classes: TBase3D to a new name "T3D". (Reasoning: this is a shorter and better name. "Base" prefix was just uncomfortable, esp. since descendants were no longer "base" 3D objects but they were have to be called "TBase3D" in many places.)
+<p>So far I have ideas for two nice storylines for <i>Castle 2</i>. I really don\'t know yet which one I\'ll pick:</p>
 
-  Also, T[Custom]Translated/Listetc3D. renamed to T3DXxx. That is, I moved the "3D" part of the name to the beginning. (Reasoning: looks just better, and is consequent with usage of other common prefixes like TKamXxx and TVRMLXxx classes. General rule is that "common part should be the prefix, not suffix", as this is easier to see (and presents itself better when identifiers are sorted alphabetically in API docs etc.).)
+<ol>
+  <li><p>One idea is called <i>&quot;Human Programming&quot;</i>. This would be a nice short 3D game, with a "survival" feeling (but no, no zombies, thank you very much). It would be essentially one large level to design, plus two special small sceneries.</p></li>
 
-  These renamed concern only new classes, not released anyway yet (and we know anyway that engine 2.0.0 will break some compatibility, so let's take this opportunity and "get" the important classes names right, Ok?).
+  <li><p>The other idea is for now called <i>&quot;The Three Servants&quot;</i> (no, I will not tell you why, discovering the meaning of the title is part of the game actually :) ). This one would be much larger game, with a couple of large levels (I hope to plug some of them with procedurally generated stuff).</p></li>
+</ol>
 
-  Note: I edited previous news post (about engine 2.0.0) to reflect these renames. I don't usually edit my news posts after publishing :), but in this case I decided to fix it (only the mentioned classes renames, nothing more, so you don't have to read it again :) ). Otherwise previous news post, quite important, would be nonsense, with invalid URLs to API docs.
 
 - announce:
 
