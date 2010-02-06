@@ -12,12 +12,14 @@
 
 <p>This is my version of an old game known as "Color Lines".
 
-<ul>
+<div class="table_of_contents">
+<ol>
   <li><a href="#section_rules">Game rules</a>
   <li><a href="#section_download">Download</a>
   <li><a href="#section_detailed_rules">Some detailed game rules</a>
   <li><a href="#section_source">Source code</a>
-</ul>
+</ol>
+</div>
 
 <h2><a name="section_rules">Game rules</a></h2>
 

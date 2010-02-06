@@ -293,7 +293,7 @@ function medium_image_progs_demo_core($image_name, $alt, $title = '$alt',
     $title = $alt;
 
   return
-   "<a href=\"$image_name_original_size\">
+   "<a href=\"$image_name_original_size\" class=\"screenshot\">
       <img "
        . ($align != '' ? "align=\"$align\"" : '') .
        " src=\"$image_name_medium_size\" alt=\"$alt\" "

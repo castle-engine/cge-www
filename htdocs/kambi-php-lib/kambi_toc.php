@@ -84,7 +84,7 @@ class TableOfContents {
      table of contents. */
   function html_toc()
   {
-    $result = '';
+    $result = '<div class="table_of_contents">';
     $old_nesting = -1;
 
     /* Since old_nesting = -1, so first item will always enter
@@ -150,6 +150,8 @@ class TableOfContents {
       $result .= "</li>\n</ol>\n";
       $old_nesting--;
     }
+
+    $result .= '</div>';
 
     return $result;
   }

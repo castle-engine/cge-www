@@ -14,6 +14,7 @@
     '</table>';
 ?>
 
+<div class="table_of_contents">
 <ol>
   <li><a href="#section_overview">Overview</a></li>
   <li><a href="#section_download">Download</a>
@@ -28,6 +29,7 @@
   <li><?php echo a_href_page('Development', 'castle-development') ?></li>
   <li><?php echo a_href_page('Credits', 'castle-credits') ?></li>
 </ol>
+</div>
 
 <h2><a name="section_overview">Overview</a></h2>
 
