@@ -213,7 +213,8 @@ function echo_standard_program_download(
    We will automatically divide $images into rows with $columns images
    (the last row may be left shorter).
 
-   Table uses absolute links (starting with CURRENT_URL) and no CSS classes,
+   Table uses absolute links (starting with CURRENT_URL),
+   and important work is done directly (without need for CSS classes),
    so it's suitable for inclusion also in HTML RSS feeds.
 */
 function table_demo_images($images, $columns=1, $align='right')
@@ -228,7 +229,7 @@ function table_demo_images($images, $columns=1, $align='right')
 
     $result .= '
       <td>
-        <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '">
+        <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '" class="screenshot">
           <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
           alt="' . $image['titlealt'] . '"
           title="' . $image['titlealt'] . '"

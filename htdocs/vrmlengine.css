@@ -117,7 +117,7 @@ td.program_image_link {
 
 .program_image_link_title { font-size: larger; }
 
-a.screenshot       img { border: 2pt solid white; }
+a.screenshot       img { border: 2pt solid #EEE; }
 a.screenshot:hover img { border: 2pt solid #888; }
 
 .table_of_contents a       { text-decoration: none; border-bottom: 1px dotted; }
