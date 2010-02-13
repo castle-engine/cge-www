@@ -44,8 +44,7 @@ Two most important programs available here are
 
 <p style="background: #DDD; padding: 0.2em; margin: 0px">
 Comments?
-Go to <?php echo MAILING_LIST_LINK; ?> or
-<a href="http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3">forum</a>.<br/>
+Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.<br/>
 See also <?php echo
 a_href_page('the news archive', 'changes_log') ?>.
 </p>
@@ -159,12 +158,11 @@ and I keep them in working and compilable state, but that's it.</p>
 
 <?php echo main_list_item('Support', 'support'); ?>
 
-<p>Subscribe to <?php echo MAILING_LIST_LINK; ?>.
-Or go to
-<a href="http://apps.sourceforge.net/phpbb/vrmlengine/">our forum</a>
-(you can post without registering,
+<p>Go to our
+<?php echo FORUM_LINK; ?> (you can post without registering,
 or you can register with your
 <a href="https://sourceforge.net/">SourceForge</a> account).
+Or subscribe to our <?php echo MAILING_LIST_LINK; ?>.
 Any questions, discussion, announcements related to our
 VRML engine (and related programs like view3dscene) are welcome there.</p>
 
