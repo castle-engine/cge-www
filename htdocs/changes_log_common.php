@@ -67,7 +67,7 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-    array('title' => 'Cloth animation with bump mapping demo',
+    array('title' => 'Cloth animation with bump mapping',
           'year' => 2010,
           'month' => 2,
           'day' => 26,
@@ -78,13 +78,13 @@ function this_a_href_page($title, $page_name)
 '<table align="right"><tr><td>
   <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/5DTu9tEn44g&hl=pl_PL&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/5DTu9tEn44g&hl=pl_PL&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
  </td></tr></table>' : '') .
-'<p>Engine 2.0.0 and castle 1.0.0 release got delayed a little. To sweeten the wait, here\'s a short demo movie with a cloth animation (cloth simulated and animated in <a href="http://www.blender.org/">Blender</a>) rendered using our engine with bump mapping. The point here is that both 3D meshes and lights may be animated at real-time and bump mapping works perfectly.</p>
+'<p>To sweeten the wait for engine 2.0.0 (and castle 1.0.0) releases: here\'s a short demo movie with a cloth animation (cloth simulated and animated in <a href="http://www.blender.org/">Blender</a>) rendered using our engine with bump mapping. The point here is that both 3D meshes and lights may be animated in real-time and bump mapping works perfectly.</p>
 
-<p>This isn\'t really a new effect, although some recent improvements made this much easier. Namely:</p>
+<p>This was always possible, but some recent improvements made this much easier. Namely:</p>
 
 <ol>
   <li>Our <tt>examples/vrml/bump_mapping</tt> demo now works with animated objects without any trouble.</li>
-  <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now more general converter from ' . this_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . this_a_href_page('exporting from Blender to kanim', 'blender_stuff') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
+  <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now slightly more general converter from ' . this_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . this_a_href_page('exporting from Blender to kanim', 'blender_stuff') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
 </ol>
 
 <p>The source model is in SVN, in <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/bump_mapping/cloth/</tt>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
