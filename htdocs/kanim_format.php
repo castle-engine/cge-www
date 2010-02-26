@@ -37,6 +37,13 @@ Our engine handles events and interpolators perfectly.
 Internally, they may even be converted (after loading) to precalculated
 animations.</p>
 
+<p>There's also a crude converter from kanim format to VRML/X3D
+interpolators in our engine examples (see <tt>examples/vrml/tools/kanim_to_interpolators</tt>).
+It's a little crude (works only when you animate only a single mesh),
+but may be enough for simple uses. So this is one way to generate an animated
+VRML/X3D file from Blender: export from Blender to kanim, then convert
+kanim to VRML/X3D.</p>
+
 <p>For more technical insight, see
 <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.animation.html">description
 of animation handling in our VRML engine documentation</a>.</p>
