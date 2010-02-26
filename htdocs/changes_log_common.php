@@ -76,7 +76,7 @@ function this_a_href_page($title, $page_name)
 
 (!HTML_VALIDATION ?
 '<table align="right"><tr><td>
-  <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/5DTu9tEn44g&hl=pl_PL&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/5DTu9tEn44g&hl=pl_PL&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+  <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/5DTu9tEn44g&amp;hl=pl_PL&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/5DTu9tEn44g&amp;hl=pl_PL&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
  </td></tr></table>' : '') .
 '<p>To sweeten the wait for engine 2.0.0 (and castle 1.0.0) releases: <a href="http://www.youtube.com/watch?v=5DTu9tEn44g">here\'s a short demo movie</a> with a cloth animation (cloth simulated and animated in <a href="http://www.blender.org/">Blender</a>) rendered using our engine with bump mapping. The point here is that both 3D meshes and lights may be animated in real-time and bump mapping works perfectly.</p>
 
