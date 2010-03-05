@@ -539,7 +539,7 @@ subdirectories.</p>
   <p><tt>"up"</tt> is the up vector of the light node when capturing
   the shadow map. We know the direction for <tt>DirectionalLight</tt> and <tt>SpotLight</tt>,
   but for shadow mapping we also need to know the up vector.
-  Internally, it will be adjusted to be orthogonal to the directional,
+  Internally, it will be adjusted to be orthogonal to the direction,
   so you actually don't have to specify it in many cases &mdash;
   only make sure that it's something non-parallel to the direction.
 
@@ -551,7 +551,7 @@ subdirectories.</p>
   projection rectangle (projection XY sizes) and location for
   projection (although directional light is conceptually at infinity
   and doesn't have a location, but for making a texture projection
-  we actually need to know the light's location):</p>
+  we actually need to define the light's location):</p>
 
   <?php
     echo node_begin('DirectionalLight');
