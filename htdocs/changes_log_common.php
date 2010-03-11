@@ -67,6 +67,33 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Terrain demo much extended',
+          'year' => 2010,
+          'month' => 3,
+          'day' => 11,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
+  array('filename' => 'terrain2.png', 'titlealt' => 'Terrain 2'),
+  array('filename' => 'terrain_wire_lod.png', 'titlealt' => 'Terrain - wireframe view showing our simple LOD approach'),
+  array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
+), 2) . '<p>Our procedural terrain demo (see <tt>kambi_vrml_game_engine/examples/vrml/terrain</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
+
+<ul>
+  <li><i>Heterogeneous</i> terrain (idea from <a href="http://www.kenmusgrave.com/dissertation.html">Ken Musgrave</a>) implemented, this makes more realistic terrain (smooth valleys, noisy mountains).</li>
+  <li>Terrain is rendered with nice blended texture layers, normals are calculated for fake lighting, fog may be used, all by simple GLSL shader.</li>
+  <li>Simple LOD approach for rendering is used, this is an ultra-dumbed-down version of <a href="http://research.microsoft.com/en-us/um/people/hoppe/geomclipmap.pdf">geometry clipmaps</a>. The way I simplified this is unfortunately painfully visible as LOD "popping" artifacts. But, hey, at least I can view really large terrain.</li>
+  <li>You can test various noise interpolation methods, including <i>Catmull-Rom splines</i>.</li>
+  <li>2D noise can be blurred, which (may) improve the terrain look.</li>
+  <li>You can switch camera to <i>Walk</i> mode.</li>
+  <li>You can add a heighmap from grayscale image to generated terrain.</li>
+  <li>Rendering uses VBOs for speed.</li>
+</ul>
+
+<p>Finally, the programmers may be interested in my <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/terrain/TERRAIN_GENERATION_NOTES.txt">my notes and links about basic terrain generation methods</a>.</p>'),
+
     array('title' => 'Cloth animation with bump mapping',
           'year' => 2010,
           'month' => 2,
