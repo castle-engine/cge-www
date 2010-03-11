@@ -243,13 +243,14 @@ the programs developed with it:</p>
     it outputs some additional info about physical material properties
     (concerning Phong BRDF)
 
-  <li>Programmers may be interested in:
+  <li>Programmers may be interested in my notes about:</p>
     <ul>
       <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/bump_mapping/README">Bump
-        mapping techniques quick overview</a></li>
+        mapping techniques</a>,</li>
       <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/glwindow/shading_langs/README">Shading
-        languages (in particular ARB vertex/fragment assembly programs,
-        Cg and mostly GLSL) quick overview</a></li>
+        languages (some info about ARB vertex/fragment assembly programs,
+        and a lot of GLSL)</a>,</li>
+      <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/terrain/TERRAIN_GENERATION_NOTES.txt">Basic terrain (noise) generation.</a>
     </ul>
     I wrote these documents when I was learning these techniques myself,
     they contain some summary and my findings, and links to other useful resources.
