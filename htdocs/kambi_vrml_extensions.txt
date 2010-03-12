@@ -152,7 +152,7 @@ Teapot : X3DGeometryNode {
   SFVec3f    []            size        3 3 3
   SFBool     []            solid       TRUE
   SFBool     []            manifold    FALSE
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, MultiTextureCoordinate]
 }
 
 RenderedTexture : X3DTextureNode {

@@ -2077,7 +2077,7 @@ end;
       node_field('SFVec3f', '[]', 'size', '3 3 3') .
       node_field('SFBool', '[]', 'solid', 'TRUE') .
       node_field('SFBool', '[]', 'manifold', 'FALSE') .
-      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator]') .
+      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, MultiTextureCoordinate]') .
       node_end();
     ?>
 
@@ -2090,6 +2090,7 @@ end;
     Changing size scales the teapot (assuming that size = 3 means "default size").</p>
 
     <p>The <tt>"texCoord"</tt> field may contain a <tt>TextureCoordinateGenerator</tt>
+    (or <tt>MultiTextureCoordinate</tt> with <tt>TextureCoordinateGenerator</tt> children)
     node specifying how texture coordinates are generated.
     Very useful to quickly test various texture coordinate generators
     (e.g. for cube env mapping) on teapot.
