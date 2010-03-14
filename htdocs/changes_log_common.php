@@ -79,7 +79,11 @@ table_demo_images(array(
   array('filename' => 'terrain2.png', 'titlealt' => 'Terrain 2'),
   array('filename' => 'terrain_wire_lod.png', 'titlealt' => 'Terrain - wireframe view showing our simple LOD approach'),
   array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
-), 2) . '<p>Our procedural terrain demo (see <tt>kambi_vrml_game_engine/examples/vrml/terrain</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
+  array('colspan' => 2,
+    'html' => (!HTML_VALIDATION ? '<object width="370" height="227"><param name="movie" value="http://www.youtube.com/v/9qx-Ry2PRWM&hl=pl_PL&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9qx-Ry2PRWM&hl=pl_PL&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="370" height="227"></embed></object>' : '')),
+), 2) .
+
+'<p>Our procedural terrain demo (see <tt>kambi_vrml_game_engine/examples/vrml/terrain</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
 
 <ul>
   <li><i>Heterogeneous</i> terrain (idea from <a href="http://www.kenmusgrave.com/dissertation.html">Ken Musgrave</a>) implemented, this makes more realistic terrain (smooth valleys, noisy mountains).</li>

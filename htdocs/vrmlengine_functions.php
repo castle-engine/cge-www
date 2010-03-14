@@ -205,6 +205,10 @@ function echo_standard_program_download(
    - filename (name of the file, with extension, without path).
      Assumed to exist within original_size and medium_size subdirs.
    - titlealt - text used for both title and alt.
+   - html - if set, the rest (except colspan) is ignored,
+     and we simply put this html into cell content.
+   - colspan (int) - colspan of table cell. It's your responsibility to make it
+     look sensible then.
 
    If $align non-empty, the table is floating left / right.
 
@@ -226,16 +230,28 @@ function table_demo_images($images, $columns=1, $align='right')
   {
     if ($column_now == 0) $result .= '<tr>';
 
-    $result .= '
-      <td>
-        <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '" class="screenshot">
-          <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
-          alt="' . $image['titlealt'] . '"
-          title="' . $image['titlealt'] . '"
-        /></a>
-      </td>';
+    if (isset($image['colspan']))
+      $colspan = ' colspan="' . (int)$image['colspan'] . '"'; else
+      $colspan = '';
 
-    $column_now++;
+    $result .= '<td' . $colspan . '>';
+    if (isset($image['html']))
+    {
+      $result .= $image['html'];
+    } else
+    {
+      $result .= '
+          <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '" class="screenshot">
+            <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
+            alt="' . $image['titlealt'] . '"
+            title="' . $image['titlealt'] . '"
+          /></a>';
+    }
+    $result .= '</td>';
+
+    if (isset($image['colspan']))
+      $column_now += (int)$image['colspan']; else
+      $column_now++;
 
     if ($column_now >= $columns) { $result .= '</tr>'; $column_now = 0; }
   }
