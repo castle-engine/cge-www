@@ -67,6 +67,34 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Custom viewports, engine 2.0.0 release very soon',
+          'year' => 2010,
+          'month' => 3,
+          'day' => 27,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'multiple_viewports_teapot.png', 'titlealt' => 'multiple_viewports: simple teapot scene'),
+  array('filename' => 'multiple_viewports_tower_mirror_raptor.png', 'titlealt' => 'multiple_viewports: scene with raptor animation and mirror by GeneratedCubeMapTexture'),
+  array('filename' => 'multiple_viewports_shadows.png', 'titlealt' => 'multiple_viewports: animated shadows by shadow volumes'),
+  array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
+), 2) .
+
+'<p>You can now have many viewports on the 2D window to observe your 3D world from various cameras. You can make e.g. split-screen games (each view displays different player), 3D modeling programs (where you usually like to see the scene from various angles at once), or just show a view from some special world place (like a security camera).</p>
+
+<p>Your viewports may be placed in any way you like on the screen, they can even be overlapping (one viewport partially obscures another). Each viewport has it\'s own dimensions, own camera, but all viewports share the same 3D world. Each viewport has also it\'s own rendering methods, so you can derive e.g. a specialized viewport that always shows wireframe view of the 3D world.</p>
+
+<p>This very nice feature is implemented thanks to the scene manager framework. The scene manager itself also acts as a viewport (if <tt>DefaultViewport</tt> is true), which is comfortable for simple programs where one viewport is enough. When <tt>DefaultViewport</tt> is false, scene manager is merely a container for your 3D world, referenced by custom viewports (<tt>TKamViewport</tt> classes).</p>
+
+<p>See the screenshots on the right and <tt>kambi_vrml_game_engine/examples/vrml/multiple_viewports.pasprogram</tt> example program in the SVN for demo.</p>
+
+<!-- teaser -->
+
+<p>Other improvements include new button rendered in the OpenGL (<tt>TKamGLButton</tt> in <tt>kambi_vrml_game_engine/src/ui/opengl/glcontrols.pas</tt> unit), you can see it on the screenshots too. This is the start of a promised 2D controls library for the engine. The idea is that such button may be easily themed for your OpenGL game, to match game mood and graphics.</p>
+
+<p>Also there\'s a <tt>TKamGLImage</tt> control, and lot\'s of bugfixes stabilizing engine 2.0.0. It\'s pretty much finished now &mdash; expect engine 2.0.0 and view3dscene 3.5 releases very shortly :)</p>'),
+
     array('title' => 'Terrain demo much extended',
           'year' => 2010,
           'month' => 3,
