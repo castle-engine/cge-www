@@ -148,7 +148,7 @@ parts (99% of usage) of given level are supported.</p>
     according to X3D (there were some incompatible changes in X3D).
     </td></tr>
   <tr><td><?php echo a_href_page('H-Anim'                          , 'vrml_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('NURBS'                           , 'vrml_implementation_nurbs'               ); ?>  </td><td><b>1</b> (basically, just simple curve and surface)</td></tr>
+  <tr><td><?php echo a_href_page('NURBS'                           , 'vrml_implementation_nurbs'               ); ?>  </td><td><b>1</b> (practically: curves, surfaces, interpolators)</td></tr>
   <tr><td>DIS          </td><td></td></tr>
   <tr><td><?php echo a_href_page('Scripting'                       , 'vrml_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td><?php echo a_href_page('Event utilities'                 , 'vrml_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
