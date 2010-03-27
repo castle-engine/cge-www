@@ -18,8 +18,15 @@ make examples
 # FPCUnit tests
 
 cd tests/
-./compile_console.sh # also "make clean -C .." and then recompile all
-                     # in debug mode for compile_console.sh
+./compile_console.sh
+./test_kambi_units -a
+
+# make in tests.inc VRMLENGINE_TRUNK_AVAILABLE defined
+./compile_console.sh
+./test_kambi_units -a
+
+make clean -C ..
+./compile_console.sh # recompile all in debug mode for tests
 ./test_kambi_units -a
 
 # Test view3dscene VRML/X3D loading/saving/rendering
