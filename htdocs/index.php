@@ -243,7 +243,7 @@ the programs developed with it:</p>
     it outputs some additional info about physical material properties
     (concerning Phong BRDF)
 
-  <li>Programmers may be interested in my notes about:</p>
+  <li>Programmers may be interested in my notes about:
     <ul>
       <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/bump_mapping/README">Bump
         mapping techniques</a>,</li>
