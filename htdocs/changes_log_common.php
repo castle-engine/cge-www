@@ -88,19 +88,19 @@ table_demo_images(array(
 <p><b>User-visible features</b>:</p>
 
 <ul>
-  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of X3D NURBS component (level 1) implemented, this includes curves, surfaces and interpolators. Similar VRML 97 NURBS nodes are also handled.</li>
-  <li>Major bugfixes to the GTK 2 (Unix) backend and shadow maps.</li>
-  <li>Countless smaller bugfixes and improvements.</li>
+  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of the X3D NURBS component (level&nbsp;1) implemented, this includes curves, surfaces and interpolators. VRML 97 NURBS nodes are also handled.</li>
+  <li>Major bugfixes to the GTK 2 (Unix) backend and shadow maps handling.</li>
+  <li>Countless small bugfixes and improvements.</li>
 </ul>
 
 <p><b>Programmer-visible engine features</b>:</p>
 
 <ul>
-  <li>Scene manager class (<tt>TKamSceneManager</tt>), a manager of the 3D world.</li>
+  <li>Scene manager (<tt>TKamSceneManager</tt>), a manager of the 3D world.</li>
   <li>Custom viewports (<tt>TKamViewport</tt>) easily usable with our scene manager.</li>
-  <li>2D controls basics: <tt>TKamGLButton</tt>, <tt>TKamGLImage</tt>, better <tt>TGLMenu</tt> and more. Viewports are also 2D controls.</li>
-  <li>Engine sources reorganized into intuitive <tt>src/</tt>, <tt>examples/</tt> etc. directories.</li>
-  <li>Much more components registered on Lazarus palette. (This will be extended in next releases.)</li>
+  <li>2D controls framework: <tt>TKamGLButton</tt>, <tt>TKamGLImage</tt>, better <tt>TGLMenu</tt> and more. Viewports are also 2D controls.</li>
+  <li>Engine sources reorganized into more intuitive <tt>src/</tt>, <tt>examples/</tt> etc. directories.</li>
+  <li>Much more components registered on the Lazarus palette. (This will be extended in next releases.)</li>
   <li>Engine is licensed now on the terms of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
 </ul>
 
