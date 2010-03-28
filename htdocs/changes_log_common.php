@@ -67,6 +67,47 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Release: view3dscene 3.5.0, engine 2.0.0, others',
+          'year' => 2010,
+          'month' => 3,
+          'day' => 28,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
+  array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
+  array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
+  array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
+), 2) .
+
+'<p>Today we release a ' . this_a_href_page('grand new version of the Kambi VRML game engine (2.0.0)', 'kambi_vrml_game_engine') . '. We also make new release of our main tool, ' . this_a_href_page('view3dscene 3.5.0', 'view3dscene') . '. And many other minor programs available here are updated, mainly to bring engine bugfixes to them. (For people waiting on new ' . this_a_href_page('castle 1.0.0', 'castle') . ' release: not yet, but should happen very soon.)</p>
+
+<p>Summary of the changes:</p>
+
+<p><b>User-visible features</b>:</p>
+
+<ul>
+  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of X3D NURBS component (level 1) implemented, this includes curves, surfaces and interpolators. Similar VRML 97 NURBS nodes are also handled.</li>
+  <li>Major bugfixes to the GTK 2 (Unix) backend and shadow maps.</li>
+  <li>Countless smaller bugfixes and improvements.</li>
+</ul>
+
+<p><b>Programmer-visible engine features</b>:</p>
+
+<ul>
+  <li>Scene manager class (<tt>TKamSceneManager</tt>), a manager of the 3D world.</li>
+  <li>Custom viewports (<tt>TKamViewport</tt>) easily usable with our scene manager.</li>
+  <li>2D controls basics: <tt>TKamGLButton</tt>, <tt>TKamGLImage</tt>, better <tt>TGLMenu</tt> and more. Viewports are also 2D controls.</li>
+  <li>Engine sources reorganized into intuitive <tt>src/</tt>, <tt>examples/</tt> etc. directories.</li>
+  <li>Much more components registered on Lazarus palette. (This will be extended in next releases.)</li>
+  <li>Engine is licensed now on the terms of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
+</ul>
+
+<!--
+<p>For more details about changes, see ' . this_a_href_page('the news archive', 'changes_log'). '.</p-->
+'),
+
     array('title' => 'Custom viewports, engine 2.0.0 release very soon',
           'year' => 2010,
           'month' => 3,

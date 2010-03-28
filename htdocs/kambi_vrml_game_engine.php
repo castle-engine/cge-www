@@ -49,7 +49,10 @@ game engine written in ObjectPascal. Features include:</p>
     events (user can interact with the 3D world).</li>
 
   <li><b>3DS, MD3, Wavefront OBJ, Collada</b> file formats are also supported.
-    They can be loaded, and converted to VRML.</li>
+    They are internally converted into the VRML nodes graph,
+    which means that they get all the optimizations for rendering,
+    and 3D content from all file formats can be mixed (for 3D editing tools
+    and such).</li>
 
   <li><b>Animations</b> are supported,
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
@@ -59,6 +62,9 @@ game engine written in ObjectPascal. Features include:</p>
   <li>Octrees are used for various <b>collision detection</b> tasks.
     For dynamic scenes, a hierarchy of octrees is used, allowing accurate
     and fast collision detection even when the scene constantly changes.</li>
+
+  <li><b>Scene manager</b> for centralized 3D world handling,
+    with <b>custom viewports</b> possible.</li>
 
   <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.) and <b>shadow maps</b>.</li>
@@ -121,8 +127,9 @@ game engine written in ObjectPascal. Features include:</p>
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
   <li>The engine source code contains <b>many example programs</b>,
-    look into <tt>examples/</tt> subdirectories, like <tt>kambi_vrml_game_engine/vrml/opengl/examples/</tt>.
-    There are ready TGLWindow descendants and Lazarus components
+    look into <tt>kambi_vrml_game_engine/examples/</tt> subdirectory.</li>
+
+  <li>There are ready TGLWindow descendants and Lazarus components
     to make simple VRML browser. Oh, yes, the engine may be integrated
     with Lazarus &mdash; we have some <b>Lazarus components</b>,
     including ultra-simple VRML browser component (<tt>TKamVRMLBrowser</tt>).
