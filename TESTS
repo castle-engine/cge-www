@@ -38,7 +38,7 @@ cd view3dscene/
 # - Compile and run from Lazarus lpi files non-LCL examples:
 #     view3dscene,
 #     castle,
-#     vrml/opengl/examples/simplest_vrml_browser
+#     examples/vrml/simplest_vrml_browser
 # - Compile and run from Lazarus lpi files LCL examples:
 #     lazarus/vrml_browser
 #     lazarus/vrml_with_2d_controls
