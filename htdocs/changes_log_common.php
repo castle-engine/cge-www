@@ -81,14 +81,12 @@ table_demo_images(array(
   array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
 ), 2) .
 
-'<p>Today we release a ' . this_a_href_page('grand new version of the Kambi VRML game engine (2.0.0)', 'kambi_vrml_game_engine') . '. We also make new release of our main tool, ' . this_a_href_page('view3dscene 3.5.0', 'view3dscene') . '. And many other minor programs available here are updated, mainly to bring engine bugfixes to them. (For people waiting on new ' . this_a_href_page('castle 1.0.0', 'castle') . ' release: not yet, but should happen very soon.)</p>
-
-<p>Summary of the changes:</p>
+'<p>Today we release a ' . this_a_href_page('grand new 2.0.0 version of the Kambi VRML game engine', 'kambi_vrml_game_engine') . ' and a new ' . this_a_href_page('version 3.5.0 of our main tool, view3dscene', 'view3dscene') . '. Other minor programs here are also updated, to bring bugfixes to them. Changes:</p>
 
 <p><b>User-visible features</b>:</p>
 
 <ul>
-  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of the X3D NURBS component (level&nbsp;1) implemented, this includes curves, surfaces and interpolators. VRML 97 NURBS nodes are also handled.</li>
+  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of the X3D NURBS component (level&nbsp;1) is implemented, this includes curves, surfaces and interpolators. VRML 97 NURBS nodes are also handled.</li>
   <li>Major bugfixes to the GTK 2 (Unix) backend and shadow maps handling.</li>
   <li>Countless small bugfixes and improvements.</li>
 </ul>
@@ -104,9 +102,9 @@ table_demo_images(array(
   <li>Engine is licensed now on the terms of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
 </ul>
 
-<!--
-<p>For more details about changes, see ' . this_a_href_page('the news archive', 'changes_log'). '.</p-->
-'),
+<p>For more details about the changes, see ' . this_a_href_page('the news archive', 'changes_log'). '.</p>
+
+<p>For people waiting for new ' . this_a_href_page('castle 1.0.0', 'castle') . ' release: not yet, but should happen very soon.</p>'),
 
     array('title' => 'Custom viewports, engine 2.0.0 release very soon',
           'year' => 2010,
