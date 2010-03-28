@@ -74,7 +74,7 @@ cd view3dscene/
   find . -executable -type f | grep -v ".sh$" | grep -v "~$"
 
 # Test fpmake compilation system:
-  export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.2.4/
+  export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.0/
   fpc fpmake.pp
   ./fpmake build
   ./fpmake clean
