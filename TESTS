@@ -18,9 +18,6 @@ make examples
 # FPCUnit tests
 
 cd tests/
-./compile_console.sh
-./test_kambi_units -a
-
 # make in tests.inc VRMLENGINE_TRUNK_AVAILABLE defined
 ./compile_console.sh
 ./test_kambi_units -a
