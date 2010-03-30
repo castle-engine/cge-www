@@ -36,7 +36,7 @@ I cannot get real security on /tmp/persistent/ on SF, so I take what I can.
 This also means that all counter files will have to be created first,
 from shell server. init_counters.sh may be used to create counters
 from scratch, counters for pages previously existing on
-http://camelot.homedns.org/~michalis/ were moved to SF.
+http://michalis.ii.uni.wroc.pl/~michalis/ were moved to SF.
 
 Counters should have permissions 666 (read-write by all).
 There's no escape from this, Apache must be able to read-write them.
