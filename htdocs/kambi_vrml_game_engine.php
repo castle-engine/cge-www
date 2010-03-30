@@ -311,7 +311,7 @@ notes near some programs below.
   echo_src_archive('kambi_lines', '2.0.0');
 
   echo_src_archive('glplotter', '2.0.0');
-  echo_src_archive('gen_function', '2.0.0');
+  echo_src_archive('gen_function', '1.5.0');
 
   echo_src_archive_2('glViewImage', 'glviewimage', '2.0.0');
   echo_src_archive('bezier_curves', '2.0.0');
