@@ -16,7 +16,7 @@ curves connected smoothly).
 <p>These are binaries of the program. No special installation is required,
 just unpack the archive and run <tt>bezier_curves</tt>.
 <?php echo_standard_program_download('bezier_curves', 'bezier_curves',
-  VERSION_BEZIER_CURVES, $std_releases_post_1_2_0); ?>
+  VERSION_BEZIER_CURVES, $std_releases_post_1_8_0); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 

@@ -56,7 +56,7 @@ right after another.
 
 <?php echo_standard_program_download(
   'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES,
-  $std_releases_post_1_2_0); ?>
+  $std_releases_post_1_8_0); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
 Run the game binary (<tt>./kambi_lines</tt> on Unix,
