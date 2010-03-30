@@ -48,13 +48,7 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
 - Release on SourceForge.
 
-  Old FRS notes:
-  - use releaseforge for comfort,
-  - releasename is just a version number,
-  - As changelog, paste
-      See http://vrmlengine.sourceforge.net/changes_log.php
-
-  New FRS:
+  New FRS (http://p.sf.net/sourceforge/FRS):
   - Upload to
     ssh://kambi,vrmlengine@frs.sourceforge.net/home/frs/project/v/vr/vrmlengine/
     Follow dirnames as default: program_name/version_number/.
