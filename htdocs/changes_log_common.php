@@ -70,7 +70,7 @@ function this_a_href_page($title, $page_name)
     array('title' => 'Release: view3dscene 3.5.0, engine 2.0.0, others',
           'year' => 2010,
           'month' => 3,
-          'day' => 28,
+          'day' => 30,
           'short_description' => '',
           'description' =>
 
