@@ -302,20 +302,20 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '1.8.0');
+  echo_src_archive('view3dscene', '2.0.0');
   echo_src_archive('castle', '1.7.0');
-  echo_src_archive('rayhunter', '1.7.0');
+  echo_src_archive('rayhunter', '2.0.0');
 
-  echo_src_archive('lets_take_a_walk', '1.4.0');
-  echo_src_archive('malfunction', '1.3.1');
-  echo_src_archive('kambi_lines', '1.3.1');
+  echo_src_archive('lets_take_a_walk', '2.0.0');
+  echo_src_archive('malfunction', '2.0.0');
+  echo_src_archive('kambi_lines', '2.0.0');
 
-  echo_src_archive('glplotter', '1.5.0');
-  echo_src_archive('gen_function', '1.5.0');
+  echo_src_archive('glplotter', '2.0.0');
+  echo_src_archive('gen_function', '2.0.0');
 
-  echo_src_archive_2('glViewImage', 'glviewimage', '1.8.0');
-  echo_src_archive('bezier_curves', '1.3.1');
-  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '1.8.0');
+  echo_src_archive_2('glViewImage', 'glviewimage', '2.0.0');
+  echo_src_archive('bezier_curves', '2.0.0');
+  echo_src_archive_2('glcaps and glcaps_glut', 'glcaps', '2.0.0');
 
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');
