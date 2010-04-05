@@ -79,7 +79,9 @@ table_demo_images(array(
 )) .
 '<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . this_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By thy way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
 
-<p>Also ' . this_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>'),
+<p>Also ' . this_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>
+
+<p>' . this_a_href_page('Engine 2.0.1', 'kambi_vrml_game_engine') . ' is also released with these fixes.</p>'),
 
     array('title' => 'Release: view3dscene 3.5.0, engine 2.0.0, others',
           'year' => 2010,

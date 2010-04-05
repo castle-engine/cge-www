@@ -302,7 +302,7 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.0.0');
+  echo_src_archive('view3dscene', '2.0.1');
   echo_src_archive('castle', '1.7.0');
   echo_src_archive('rayhunter', '2.0.0');
 
@@ -315,7 +315,7 @@ notes near some programs below.
 
   echo_src_archive_2('glViewImage', 'glviewimage', '2.0.0');
   echo_src_archive('bezier_curves', '2.0.0');
-  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '2.0.0');
+  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '2.0.1');
 
   echo_src_svnonly('sandbox');
   echo_src_svnonly('rift');
