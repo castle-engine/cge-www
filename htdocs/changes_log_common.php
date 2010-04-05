@@ -67,6 +67,20 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.5.1 bugfix release, glinformation 1.2.0',
+          'year' => 2010,
+          'month' => 4,
+          'day' => 5,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'view3dscene_bsuit.png', 'titlealt' => 'view3dscene showing tremulous battlesuit from MD3 (precalculated animation loaded like kanim)'),
+)) .
+'<p>A bug crawled into view3dscene 3.5.0 release: opening kanim files often fails with <i>"Invalid floating point operation"</i>. Therefore, here we release ' . this_a_href_page('view3dscene 3.5.1', 'view3dscene') . ' with kanim loading fixed. By thy way, <i>View->Blending...</i> menu options are rearranged and <i>Help->OpenGL information</i> looks better now.</p>
+
+<p>Also ' . this_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same content as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>'),
+
     array('title' => 'Release: view3dscene 3.5.0, engine 2.0.0, others',
           'year' => 2010,
           'month' => 3,
