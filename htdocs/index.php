@@ -151,9 +151,8 @@ and I keep them in working and compilable state, but that's it.</p>
     just a toy allowing you to plot Bezier curves in 3D -->
   <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
     plotting rational Bezier curves
-  <li> <?php echo a_href_page("glcaps", "glcaps") ?> &mdash;
-    output some useful information about OpenGL libraries
-    installed on your system.
+  <li> <?php echo a_href_page("glinformation", "glinformation") ?> &mdash;
+    output information about OpenGL installed on your system.
 </ul>
 
 <?php echo main_list_item('Support', 'support'); ?>
@@ -178,7 +177,7 @@ to appropriate tracker.</p>
 <?php /*
 <i>And one more thing : if the bug concerns one of my OpenGL programs,
 remember to attach to your bug report output of the
-< ?php echo a_href_page("glcaps","glcaps") ? > program.</i> */ ?>
+< ?php echo a_href_page("glinformation","glinformation") ? > program.</i> */ ?>
 
 <?php echo main_list_item("Development", 'development'); ?>
 

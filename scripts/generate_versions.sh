@@ -60,10 +60,10 @@ version_call rayhunter
 version_call glViewImage
 version_call glplotter
 version_call bezier_curves
-version_call glcaps
-# glcaps_glut doesn't accept --version, but it should be considered
-# to have the same version as glcaps.
-version_explicit glcaps_glut `glcaps --version`
+version_call glinformation
+# glinformation_glut doesn't accept --version, but it should be considered
+# to have the same version as glinformation.
+version_explicit glinformation_glut `glinformation --version`
 
 version_call gen_function
 

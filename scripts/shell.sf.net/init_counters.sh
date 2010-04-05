@@ -33,7 +33,7 @@ reset_counter ()
 # reset_counter opengl_options
 # reset_counter common_options
 # reset_counter openal_notes
-# reset_counter glcaps
+# reset_counter glinformation
 # reset_counter kambi_mgf2inv
 # reset_counter castle
 # reset_counter castle-development

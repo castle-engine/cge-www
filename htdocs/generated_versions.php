@@ -10,8 +10,8 @@
   define('VERSION_GLVIEWIMAGE', '1.3.1');
   define('VERSION_GLPLOTTER', '1.2.3');
   define('VERSION_BEZIER_CURVES', '1.1.7');
-  define('VERSION_GLCAPS', '1.1.6');
-  define('VERSION_GLCAPS_GLUT', '1.1.6');
+  define('VERSION_GLINFORMATION', '1.1.6');
+  define('VERSION_GLINFORMATION_GLUT', '1.1.6');
   define('VERSION_GEN_FUNCTION', '1.0.3');
   define('VERSION_KAMBI_VRML_GAME_ENGINE', '2.0.0');
   define('VERSION_KAMBI_VRML_TEST_SUITE', '2.7.0');

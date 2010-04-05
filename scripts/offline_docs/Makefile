@@ -15,7 +15,7 @@ ALL_HTMLS:=view3dscene.html \
   opengl_options.html \
   common_options.html \
   lets_take_a_walk.html \
-  glcaps.html \
+  glinformation.html \
   kambi_mgf2inv.html \
   kambi_lines.html \
   malfunction.html \
