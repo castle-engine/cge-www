@@ -142,7 +142,7 @@ table_demo_images(array(
 
 <p>This very nice feature is implemented thanks to the scene manager framework. The scene manager itself also acts as a viewport (if <tt>DefaultViewport</tt> is true), which is comfortable for simple programs where one viewport is enough. When <tt>DefaultViewport</tt> is false, scene manager is merely a container for your 3D world, referenced by custom viewports (<tt>TKamViewport</tt> classes).</p>
 
-<p>See the screenshots on the right and <tt>kambi_vrml_game_engine/examples/vrml/multiple_viewports.pasprogram</tt> example program in the SVN for demo.</p>
+<p>See the screenshots on the right and <tt>kambi_vrml_game_engine/examples/vrml/multiple_viewports.lpr</tt> example program in the SVN for demo.</p>
 
 <!-- teaser -->
 
@@ -269,7 +269,7 @@ begin
 end.
 </pre>
 
-    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.pasprogram">scene_manager_basic</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.pasprogram">scene_manager_demos</a> sample.)</p>
+    <p>(The source code of this is in <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.lpr">scene_manager_basic</a> demo inside engine examples. There\'s also more extensive demo in the <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.lpr">scene_manager_demos</a> sample.)</p>
 
     <p>This looks nice a relatively straighforward, right? You create 3D object (<tt>Scene</tt>), you create 3D world (<tt>SceneManager</tt>), and a window to display the 3D world (<tt>Window</tt>). What is really the point here is that you immediately know how to add a second 3D object: just create <tt>Scene2</tt>, and add it to <tt>SceneManager.Items</tt>.</p>
 
@@ -1424,7 +1424,7 @@ settings from Blender are correctly exported to VRML file (as creasteAngle field
     (While OpenGLh was on the level of GL 1.2 + many extensions).</li>
 
   <li>Among many new demo programs, there's also
-    <tt>kambi_vrml_game_engine/examples/vrml/plane_mirror_and_shadow.pasprogram</tt>
+    <tt>kambi_vrml_game_engine/examples/vrml/plane_mirror_and_shadow.lpr</tt>
     to test plane-projected shadows and plane mirrors. Plane-projected shadows
     is only for simple demo (we have implemented shadow volumes, thousand times better
     algorithm, after all), but plane mirrors will be implemented
