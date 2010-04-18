@@ -67,6 +67,37 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.5.2 release: IMPORT/EXPORT and bugfixes',
+          'year' => 2010,
+          'month' => 4,
+          'day' => 18,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'ddracer_scene85.png', 'titlealt' => 'scene85'),
+  array('filename' => 'ddracer_t128.png', 'titlealt' => 't128'),
+  array('filename' => 'ddracer_t603coupe.png', 'titlealt' => 't603coupe'),
+)) .
+'<p>New ' . this_a_href_page('view3dscene 3.5.2', 'view3dscene') . ' is released today:</p>
+
+<ul>
+  <li><p>New feature in this release is the support for <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/networking.html#IMPORTStatement">X3D IMPORT and EXPORT statements</a>.
+
+    <p>This allows to attach routes to VRML/X3D nodes inside inline files, thus allowing communication between the nodes inside and outside of the inlined file. Available in both classic and XML encodings. Some more <a href="http://vrmlengine.sourceforge.net/vrml_implementation_networking.php">support details is here</a>.
+
+  <li><p>Particular setup with nested PROTOs was expanded incorrectly, fixed now.
+
+    <p>Thanks to David Rehor for reporting, <a href="http://tatraportal.com/drracer/">check out his VRML models here</a> ! (And on the screenshots to the right :) )
+
+  <li><p>Crashes on menu commands <i>Edit -&gt; Remove Geometry Node / Face</i> are now fixed.
+</ul>
+
+<p>Accompaying ' . this_a_href_page('engine 2.0.3', 'kambi_vrml_game_engine') . ' is also released. All above view3dscene features/fixes are actually implemented mostly in the engine. Also, for the programmers: you will find useful .lpi files to compile every engine example from Lazarus. Also program names now use standard Lazarus extension .lpr. (These last improvements were actually already "silently" released in engine version 2.0.2 shortly before 2.0.3.)
+
+<p>Also ' . this_a_href_page('malfunction 1.2.6', 'malfunction') . ' is released, this fixes a crash when opening some levels (caused by the same problem as view3dscene\'s <i>Edit -&gt; Remove Geometry Node / Face</i> crashes).'),
+
+
     array('title' => 'view3dscene 3.5.1 bugfix release, glinformation 1.2.0',
           'year' => 2010,
           'month' => 4,
