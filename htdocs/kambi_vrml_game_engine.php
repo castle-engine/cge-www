@@ -302,12 +302,12 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.0.1');
+  echo_src_archive('view3dscene', '2.0.3');
   echo_src_archive('castle', '1.7.0');
   echo_src_archive('rayhunter', '2.0.0');
 
   echo_src_archive('lets_take_a_walk', '2.0.0');
-  echo_src_archive('malfunction', '2.0.0');
+  echo_src_archive('malfunction', '2.0.3');
   echo_src_archive('kambi_lines', '2.0.0');
 
   echo_src_archive('glplotter', '2.0.0');
