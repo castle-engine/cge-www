@@ -364,12 +364,13 @@ view3dscene additional command-line options</a>.</p>
       <td>pick a point, selecting triangle and object</td></tr>
 </table>
 
-<p>Now, there's a lot of keys that work independent of current navigation
-mode. But I will not list them all here. They all can be seen
-by looking at available menu items. Probably most useful keys
-(and menu items) are <tt>Ctrl+N</tt> (switch to next navigation mode),
-<tt>F1</tt> (toggle status text visibility)
-and <tt>Escape</tt> (exit).
+<p>You can switch between <tt>Examine</tt> and <tt>Walk</tt> navigation
+methods by menu item <i>"Navigation -&gt; Navigation Mode -&gt; Switch to Next"</i>
+(shortcut <tt>Ctrl+N</tt>).</p>
+
+<p>There are a lot of other keys that work independent of current navigation
+mode. You can see them all by exploring menus, and looking at
+the key shortcuts.</p>
 
 <?php section(); ?>
 
