@@ -33,7 +33,10 @@
         this is what is used in the schemas (like <a href="http://www.web3d.org/specifications/x3d-3.2.xsd">x3d-3.2.xsd</a>),
         looking at <a href="http://www.web3d.org/specifications/x3d-dtd-changelog.txt">changelog</a>
         it's clear that the <tt>exportedDEF</tt> was deliberately renamed to
-        <tt>importedDEF</tt>. See <a href="http://web3d.org/pipermail/x3d-public_web3d.org/2010-April/000743.html">my mail on x3d-public</a>.</p>
+        <tt>importedDEF</tt>.
+
+        <p>See <a href="http://web3d.org/pipermail/x3d-public_web3d.org/2010-April/000743.html">my mail on x3d-public</a>,
+        submitted as X3D spec feedback.</p>
 
       <li><p><b><tt>IMPORT / EXPORT</tt> declarations allowed inside nodes,
         just like <tt>ROUTE</tt>s</b>.</p>
@@ -47,7 +50,9 @@
         suggest that they are only allowed at "statements").
         But we allow it also inside nodes (this is consistent,
         and makes converting XML-&gt;classic reliable).
-        See <a href="http://web3d.org/pipermail/x3d-public_web3d.org/2010-April/000744.html">my mail on x3d-public</a>.</p>
+
+        <p>See <a href="http://web3d.org/pipermail/x3d-public_web3d.org/2010-April/000744.html">my mail on x3d-public</a>,
+        submitted as X3D spec feedback.</p>
     </ul>
 </ul>
 
