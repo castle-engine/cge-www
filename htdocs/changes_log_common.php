@@ -1734,8 +1734,8 @@ foreach ($changes_log as &$log_entry)
     $log_entry['year'],
     $log_entry['month'],
     $log_entry['day'],
-    $log_entry['hour'],
-    $log_entry['minute']);
+    (isset($log_entry['hour'])   ? $log_entry['hour']   : 0),
+    (isset($log_entry['minute']) ? $log_entry['minute'] : 0));
 
   if (!isset($log_entry['link']))
     $log_entry['link'] = 'http://vrmlengine.sourceforge.net/';

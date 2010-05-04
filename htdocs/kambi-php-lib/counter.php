@@ -58,6 +58,7 @@ function php_counter($counter_name, $counter_write_bonus = FALSE)
   settype($counter, "string");
 
   $f_out = fopen($f_name, "wb"); /* fwrite/fputs requires "b"inary mode */
+  if (!$f_out) exit('Cannot open counter file "' . $f_name . '"');
   fwrite($f_out, $counter);
   fclose($f_out) or exit('Cannot close counter file "' . $f_name . '"');
 

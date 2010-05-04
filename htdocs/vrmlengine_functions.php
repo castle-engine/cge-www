@@ -50,7 +50,9 @@ function echo_footer ()
   <?php
 
   /* Insert piwik code */
-  if ((!IS_GEN_LOCAL) && ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net'))
+  if ( (!IS_GEN_LOCAL) &&
+       isset($_SERVER["HTTP_HOST"]) &&
+       ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net') )
   {
 ?>
 
