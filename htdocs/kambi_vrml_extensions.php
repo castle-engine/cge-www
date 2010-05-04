@@ -91,6 +91,7 @@ $toc = new TableOfContents(array(
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 1),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 1),
+  new TocItem('Control head bobbing (<tt>KambiNavigationInfo.headBobbing*</tt> fields)', 'ext_head_bobbing', 1),
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 1),
   new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 1),
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
@@ -1052,6 +1053,47 @@ Shape {
     (like <tt>MovieTexture</tt> or <tt>TimeSensor</tt>)
     to start playing at load time, or a determined number of seconds
     after loading of the scene.
+
+<?php echo $toc->html_section(); ?>
+
+    <p><i>"Head bobbing"</i> is the effect of camera moving slightly up
+    and down when you walk on the ground (when gravity works).
+    This simulates our normal human vision &mdash; we can't usually keep
+    our head at the exact same height above the ground when walking
+    or running :)
+    By default our engine does head bobbing (remember, only when gravity
+    works; that is when the navigation mode is <tt>WALK</tt>).
+    This is common in FPS games.</p>
+
+    <p>Using the extensions below you can tune (or even turn off)
+    the head bobbing behavior. For this we add new fields to the
+    <tt>KambiNavigationInfo</tt> node (introduced in the previous section,
+    can be simply used instead of the standard <tt>NavigationInfo</tt>).</p>
+
+    <?php
+      echo node_begin('KambiNavigationInfo : NavigationInfo');
+      $node_format_fd_name_pad = 22;
+      echo
+      node_dots('all normal NavigationInfo fields, and KambiNavigationInfo fields documented previously') .
+      node_field('SFFloat', '[in,out]', 'headBobbing', '0.1') .
+      node_field('SFFloat', '[in,out]', 'headBobbingDistance', '20') .
+      node_end();
+    ?>
+
+    <p>The field <tt>headBobbing</tt> multiplied by the avatar height specifies how far
+    the camera can move up and down. The avatar height is taken from
+    the standard <tt>NavigationInfo.avatarSize</tt> (2nd array element).
+    Set this to exact 0 to disable head bobbing.
+    This must always be &lt; 1. For sensible effects, this should
+    be something rather close to 0.
+
+    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbing">Developers: see also TWalkCamera.HeadBobbing property.</a>)</small></p>
+
+    <p>The field <tt>headBobbingDistance</tt> determines how much horizontal distance you
+    have to move by, to make full head bobbing up and down swing.
+    This distance is affected also by the standard <tt>NavigationInfo.speed</tt>.
+
+    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbingDistance">Developers: see also TWalkCamera.HeadBobbingDistance property.</a>)</small></p>
 
 <?php echo $toc->html_section(); ?>
 
