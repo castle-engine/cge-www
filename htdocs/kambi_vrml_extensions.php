@@ -571,7 +571,7 @@ subdirectories.</p>
   and use the same values (otherwise results will not be of much use).</p>
 
   <p>The field <tt>defaultShadowMap</tt> is meaningful only when some
-  shape uses the </tt>receiveShadows</tt> feature, this will be
+  shape uses the <tt>receiveShadows</tt> feature, this will be
   <a href="#section_ext_easy_shadow_receiver">described later</a>.
 
   <p>DirectionalLight gets additional fields to specify orthogonal
