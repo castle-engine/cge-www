@@ -11,6 +11,11 @@ KambiAppearance : Appearance {
   SFNode     [in,out]      blendMode        NULL        # [BlendMode]
 }
 
+Appearance : X3DAppearanceNode {
+  ... all normal Appearance fields ...
+  MFNode     []            receiveShadows  []          # [X3DLightNode] list
+}
+
 X3DLightNode : X3DChildNode {
   ... all normal X3DLightNode fields ...
   SFBool     [in,out]      kambiShadows          FALSE
@@ -18,6 +23,7 @@ X3DLightNode : X3DChildNode {
   SFFloat    [in,out]      projectionNear        1           # > 0
   SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
   SFVec3f    [in,out]      up                    0 1 0
+  SFNode     []            defaultShadowMap      NULL        # [GeneratedShadowMap]
 }
 
 DirectionalLight : X3DLightNode {
@@ -91,6 +97,8 @@ KambiNavigationInfo : NavigationInfo {
   SFNode []            octreeDynamicCollisions    NULL    # only KambiOctreeProperties node
   SFNode []            octreeVisibleTriangles     NULL    # only KambiOctreeProperties node
   SFNode []            octreeCollidableTriangles  NULL    # only KambiOctreeProperties node
+  SFFloat    [in,out]      headBobbing             0.1    # > 0, < 1
+  SFFloat    [in,out]      headBobbingDistance     20     # > 0
 }
 
 X3DComposedGeometryNode : X3DGeometryNode {

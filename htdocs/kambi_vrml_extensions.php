@@ -81,6 +81,7 @@ $toc = new TableOfContents(array(
   new TocItem('Light parameters for projective texturing and shadow maps', 'ext_light_projective', 2),
   new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
   new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
+  new TocItem('Easily setup shadow receiver', 'ext_easy_shadow_receiver', 2),
 
   new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 1),
 
@@ -484,26 +485,24 @@ subdirectories.</p>
   DEF MySpot SpotLight {
     location 0 0 10
     direction 0 0 -1
-    # Additional fields for projective texturing (part of shadow mapping)
-    projectionNear 1
-    projectionFar 20
+    <b>projectionNear 1
+    projectionFar 20</b>
   }
 
   Shape {
     appearance Appearance {
       material Material { }
-      texture GeneratedShadowMap { light USE MySpot update "ALWAYS" }
+      texture <b>GeneratedShadowMap { light USE MySpot update "ALWAYS" }</b>
     }
     geometry IndexedFaceSet {
       texCoord TextureCoordinateGenerator {
-        mode "PROJECTION"
-        projectedLight USE MySpot
+        <b>mode "PROJECTION"
+        projectedLight USE MySpot</b>
       }
       ....
     }
   }
 </pre>
-
 
   <p>Note that the shadow texture will be applied in a very trivial way,
   just to generate intensity values (0 - in shadow, 1 - not in shadow).
@@ -514,6 +513,28 @@ subdirectories.</p>
   and it's the way of the future anyway. You can start from a trivial
   fragment shader in our examples:
   <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
+
+  <p>An alternative example, to achieve the same thing but easier:
+
+<pre class="vrml_code">
+  DEF MySpot SpotLight {
+    location 0 0 10
+    direction 0 0 -1
+    <b>projectionNear 1
+    projectionFar 20</b>
+  }
+
+  Shape {
+    appearance Appearance {
+      material Material { }
+      <b>receiveShadows MySpot</b>
+    }
+    geometry IndexedFaceSet {  ....  }
+  }
+</pre>
+
+  <p>Using the <tt>receiveShadows</tt> approach is simpler,
+  also the browser will use nice internal GLSL shaders automatically.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -527,6 +548,7 @@ subdirectories.</p>
     node_field('SFFloat', '[in,out]', 'projectionNear' , '1', '&gt; 0') .
     node_field('SFFloat', '[in,out]', 'projectionFar' , '100', 'anything &gt; projectionNear') .
     node_field('SFVec3f', '[in,out]', 'up' , '0 1 0') .
+    node_field('SFNode', '[]', 'defaultShadowMap' , 'NULL', '[GeneratedShadowMap]') .
     node_end();
   ?>
 
@@ -548,6 +570,10 @@ subdirectories.</p>
   texture generation and texture coord generation must know them,
   and use the same values (otherwise results will not be of much use).</p>
 
+  <p>The field <tt>defaultShadowMap</tt> is meaningful only when some
+  shape uses the </tt>receiveShadows</tt> feature, this will be
+  <a href="#section_ext_easy_shadow_receiver">described later</a>.
+
   <p>DirectionalLight gets additional fields to specify orthogonal
   projection rectangle (projection XY sizes) and location for
   projection (although directional light is conceptually at infinity
@@ -559,7 +585,7 @@ subdirectories.</p>
     $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
-    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '-10 10 -10 10', '# left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
+    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '-10 10 -10 10', 'left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
     node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
   ?>
@@ -665,6 +691,32 @@ subdirectories.</p>
   means that comparison is not done, depth texture values are returned directly,
   this is useful for example for debug / demo purposes &mdash; you can
   view the texture as a normal grayscale (luminance) texture.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  There is an easier method to setup your shadow receiver. We add additional
+  field to the <tt>Apperance</tt> node:
+
+  <?php
+    echo node_begin('Appearance : X3DAppearanceNode');
+    echo
+    node_field('MFNode'  , '[]', 'receiveShadows', '[]', '[X3DLightNode] list') .
+    node_end();
+  ?>
+
+  <p>You can simply add a light node to the <tt>receiveShadows</tt>,
+  and this is equivalent to adding appropriate <tt>GeneratedShadowMap</tt>
+  to shape's textures, adding appropriate <tt>TextureCoordinateGenerator</tt>
+  (with <tt>mode="PROJECTION"</tt>) to the texCoord field.
+  We also add appropriate GLSL shader to show the shadow nicely.</p>
+
+  <p>In summary, we do everything automatically, you only set
+  <tt>receiveShadows</tt>.</p>
+
+  <p>If the light node has <tt>defaultShadowMap</tt> assigned, we use
+  this for shadow map properties (like size etc.). Otherwise,
+  we make default shadow map with default properties (and <tt>update</tt>
+  set to <tt>ALWAYS</tt>).</p>
 
 <?php echo $toc->html_section(); ?>
 
