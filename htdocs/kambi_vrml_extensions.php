@@ -2162,6 +2162,8 @@ end;
     <p><i>Compatibility with
     <a href="http://instant-reality.com/documentation/nodetype/Teapot/">Avalon Teapot</a></i>:
     we support <tt>size</tt> and <tt>solid</tt> fields from Avalon.
+    The geometry orientation and dimensions is the same (although our actual mesh
+    tries to be a little better :) ).
     Fields <tt>texCoord</tt> and <tt>manifold</tt> are our own (Kambi engine)
     extensions.</p>
 
@@ -2174,8 +2176,6 @@ end;
       node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, MultiTextureCoordinate]') .
       node_end();
     ?>
-
-    <p>
 
     <p>The <tt>"size"</tt> field allows you to scale
     the teapot, much like the standard <tt>Box</tt> node. The default
