@@ -310,8 +310,9 @@ and Monte Carlo path tracing.
 
   <dd><p>
     Set field of view angle in horizontal direction. In degrees.
-    Default is 60 degrees. Note: vertical angle will be always automatically
-    determined based on horizontal view angle and window width/height.
+    Default is 60 degrees. Note: vertical angle will be automatically
+    determined based on horizontal view angle and window width/height
+    (unless you specify <tt>force-view-angle-y</tt>, see below).
 
   <dt><span class="command_line_option">--force-view-angle-y &lt;float&gt;</span></dt>
 
@@ -320,6 +321,15 @@ and Monte Carlo path tracing.
     output <tt>&lt;image-width&gt;</tt> and <tt>&lt;image-height&gt;</tt>.
     You can use this parameter to force some other non-proportional
     camera vertical angle.</dd>
+
+  <dt><span class="command_line_option">--ortho &lt;float&gt; &lt;float&gt; &lt;float&gt; &lt;float&gt;</span></dt>
+
+  <dd><p>Use orthographic projection, with given left, bottom, right, top
+    dimensions. This makes previous <tt>--view-angle-x</tt> and
+    <tt>--force-view-angle-y</tt> ignored (they are not sensible in orthographic
+    projection). Note that order of arguments follows the
+    X3D OrthoViewpoint specificication (and differs from typical OpenGL,
+    like used by glOrtho).</p></dd>
 
   <dt><span class="command_line_option">--scene-bg-color &lt;red&gt; &lt;green&gt; &lt;blue&gt;</span></dt>
 
