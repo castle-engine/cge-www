@@ -20,7 +20,9 @@
     <tt>load</tt>, <tt>url</tt> features and they also work perfectly.</p></li>
 
   <li><p><tt>IMPORT / EXPORT</tt> feature is fully supported.
-    In both XML and classic encodings, of course.</p>
+    In both XML and classic encodings, of course.
+    Also supported in VRML 97 (including the ability to import in X3D nodes
+    exported in VRML 97, and vice versa).</p>
 
     <ul>
       <li><p><b>Both <tt>importedDEF</tt> (preferred) and
