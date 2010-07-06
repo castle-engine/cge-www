@@ -160,7 +160,7 @@ Teapot : X3DGeometryNode {
   SFVec3f    []            size        3 3 3
   SFBool     []            solid       TRUE
   SFBool     []            manifold    FALSE
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
 }
 
 RenderedTexture : X3DTextureNode {
@@ -181,4 +181,9 @@ Logger : X3DChildNode {
   SFString   []            logFile     ""
   SFBool     [in,out]      enabled     TRUE
   XFAny      [in]          write
+}
+
+ProjectedTextureCoordinate : X3DTextureCoordinateNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
 }

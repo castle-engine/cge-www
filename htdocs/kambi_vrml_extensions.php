@@ -476,7 +476,7 @@ subdirectories.</p>
 
   <p>The engine allows you to trivially generate
   (by <tt>GeneratedShadowMap</tt> node) and apply
-  (by <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>) the shadow map.</p>
+  (by <tt>ProjectedTextureCoordinate</tt>) the shadow map.</p>
 
   <p>An example VRML/X3D code for a light and a shadow receiver
   (everything in the scene will be considered a "shadow caster" for shadow maps):
@@ -495,9 +495,8 @@ subdirectories.</p>
       texture <b>GeneratedShadowMap { light USE MySpot update "ALWAYS" }</b>
     }
     geometry IndexedFaceSet {
-      texCoord TextureCoordinateGenerator {
-        <b>mode "PROJECTION"
-        projectedLight USE MySpot</b>
+      texCoord ProjectedTextureCoordinate {
+        <b>projector USE MySpot</b>
       }
       ....
     }
@@ -612,9 +611,9 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p>New <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>,
-  and new <tt>TextureCoordinateGenerator</tt> field <tt>"projectedLight"</tt>
-  (SFNode, inputOutput, default NULL, allowed any light node).
+  <p>New <tt>ProjectedTextureCoordinate</tt> node with
+  a field <tt>"projector"</tt>
+  (SFNode, inputOutput, default NULL, allowed any light node or viewpoint).
   This will generate texture coordinates for projective texturing:
   a texture coordinate (s, t, r, q) will be generated for a fragment
   that is seen by the light on (s/q, t/q) position, with r/q being the depth.
@@ -673,7 +672,7 @@ subdirectories.</p>
   or you will see that shadows visibly move back).</p>
 
   <p>Note that light node instanced inside <tt>GeneratedShadowMap.light</tt>
-  or <tt>TextureCoordinateGenerator.projectedLight</tt> isn't
+  or <tt>ProjectedTextureCoordinate.projector</tt> isn't
   considered a normal light, that is it doesn't shine anywhere.
   It should be defined anywhere in normal scene part to actually
   act like a normal light. Moreover, it should not be
@@ -706,8 +705,8 @@ subdirectories.</p>
 
   <p>You can simply add a light node to the <tt>receiveShadows</tt>,
   and this is equivalent to adding appropriate <tt>GeneratedShadowMap</tt>
-  to shape's textures, adding appropriate <tt>TextureCoordinateGenerator</tt>
-  (with <tt>mode="PROJECTION"</tt>) to the texCoord field.
+  to shape's textures, adding appropriate <tt>ProjectedTextureCoordinate</tt>
+  to the texCoord field.
   We also add appropriate GLSL shader to show the shadow nicely.</p>
 
   <p>In summary, we do everything automatically, you only set
@@ -2173,7 +2172,7 @@ end;
       node_field('SFVec3f', '[]', 'size', '3 3 3') .
       node_field('SFBool', '[]', 'solid', 'TRUE') .
       node_field('SFBool', '[]', 'manifold', 'FALSE') .
-      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, MultiTextureCoordinate]') .
+      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]') .
       node_end();
     ?>
 
@@ -2184,7 +2183,7 @@ end;
     Changing size scales the teapot (assuming that size = 3 means "default size").</p>
 
     <p>The <tt>"texCoord"</tt> field may contain a <tt>TextureCoordinateGenerator</tt>
-    (or <tt>MultiTextureCoordinate</tt> with <tt>TextureCoordinateGenerator</tt> children)
+    (or <tt>ProjectedTextureCoordinate</tt>, or <tt>MultiTextureCoordinate</tt> with these children)
     node specifying how texture coordinates are generated.
     Very useful to quickly test various texture coordinate generators
     (e.g. for cube env mapping) on teapot.
