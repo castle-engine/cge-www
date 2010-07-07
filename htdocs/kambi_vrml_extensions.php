@@ -78,10 +78,12 @@ $toc = new TableOfContents(array(
   new TocItem('Specify how lights cast shadows (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 2),
 
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
-  new TocItem('Light parameters for projective texturing and shadow maps', 'ext_light_projective', 2),
-  new TocItem('Texture mapping for projective texturing and shadow maps', 'ext_texture_gen_projective', 2),
+  new TocItem('Define shadow receivers', 'ext_receive_shadows', 2),
+  new TocItem('Overview of the lower-level extensions', 'ext_shadow_maps_lower_level', 2),
+  new TocItem('Light sources parameters', 'ext_light_projective', 2),
   new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map', 2),
-  new TocItem('Easily setup shadow receiver', 'ext_easy_shadow_receiver', 2),
+  new TocItem('Projective texture mapping', 'ext_texture_gen_projective', 2),
+  new TocItem('How the receiveShadows field maps to the lower-level extensions', 'ext_receive_shadows_vs_lower_level', 2),
 
   new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 1),
 
@@ -463,6 +465,15 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
+  <p style="border: outset thin black;
+    background: #f8d785;
+    width: 30em;
+    padding: 0.3em;
+    margin: 1em auto;">For reasoning behind these extensions,
+  see also my paper <a href="shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
+  (accepted for Web3D 2010 conference). Specification below comes from
+  this paper (section 4 of the paper, with small updates).</p>
+
   <?php
     echo '<table align="right">' .
         '<tr><td>' . ext_screenshot("trees_river_shadow_maps.png", 'Scenery with shadow maps') .
@@ -474,12 +485,55 @@ subdirectories.</p>
   volumes, which means that you can freely mix both shadow approaches
   (volumes and maps) within a single scene.</p>
 
-  <p>The engine allows you to trivially generate
-  (by <tt>GeneratedShadowMap</tt> node) and apply
-  (by <tt>ProjectedTextureCoordinate</tt>) the shadow map.</p>
+<?php echo $toc->html_section(); ?>
 
-  <p>An example VRML/X3D code for a light and a shadow receiver
-  (everything in the scene will be considered a "shadow caster" for shadow maps):
+  In the simplest case, to enable the shadows authors must only
+  use this field:
+
+  <?php
+    echo node_begin('Appearance');
+    $node_format_fd_name_pad = 20;
+    echo
+    node_dots('all normal Appearance fields') .
+    node_field('MFNode', '[]', 'receiveShadows' , '[]', '[X3DLightNode] list') .
+    node_end();
+  ?>
+
+  <p>Each light present in the \texttt{receiveShadows} list will cast shadows on
+  the given shape. That is, contribution of the light source
+  will be scaled down if the light is occluded at a given fragment.
+  The whole light contribution is affected, including the ambient term.
+  We do not make any additional changes to the X3D lighting model.
+  The resulting fragment color is the sum of all the visible lights (visible
+  because they are not occluded, or because they don't cast shadows on this shape),
+  modified by the material emissive color and fog, following the X3D specification.</p>
+
+  <p>This is the simplest extension to enable shadows.
+  It is suitable for any shadows implementation, not only shadow maps.
+  TODO: we plan to use it for shadow volumes in the future too
+  (removing old <tt>kambiShadowsMain</tt> extensions and such).</p>
+
+  <p>Authors should note that browsers may use internal shaders to produce nice
+  shading for shadow receivers. Custom author shaders may be ignored.
+  If you want to apply your own shaders over shadow receivers, you have to
+  use the lower-level nodes described next instead of this.
+
+<?php echo $toc->html_section(); ?>
+
+  <p>The following extensions make it possible to precisely setup and control
+  shadow maps. Their use requires a basic knowledge of the shadow map approach,
+  and they are necessarily closely tied to the shadow map workflow.
+  On the other hand, they allow the author to define custom shaders
+  for the scene and control every important detail of the shadow mapping process.</p>
+
+  <p>These lower-level extensions give a complete and flexible system to
+  control the shadow maps, making the \texttt{receiveShadows}
+  feature only a shortcut for the simplest setup.</p>
+
+  <p>We make a shadow map texture by the \texttt{GeneratedShadowMap} node,
+  and project it on the shadow receiver by
+  \texttt{ProjectedTextureCoordinate}.
+  An example X3D code (in classic encoding) for a shadow map setup:</p>
 
 <pre class="vrml_code">
   DEF MySpot SpotLight {
@@ -495,10 +549,10 @@ subdirectories.</p>
       texture <b>GeneratedShadowMap { light USE MySpot update "ALWAYS" }</b>
     }
     geometry IndexedFaceSet {
-      texCoord ProjectedTextureCoordinate {
-        <b>projector USE MySpot</b>
-      }
-      ....
+      texCoord <b>ProjectedTextureCoordinate {
+        projector USE MySpot
+      }</b>
+      # ... other IndexedFaceSet fields
     }
   }
 </pre>
@@ -513,7 +567,9 @@ subdirectories.</p>
   fragment shader in our examples:
   <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
 
-  <p>An alternative example, to achieve the same thing but easier:
+  <p>Remember: If you don't want to write your own GLSL shader,
+  and you need nice shadows, then these lower-level extensions are not for you.
+  Instead, you could use easy <tt>receiveShadows</tt>:</p>
 
 <pre class="vrml_code">
   DEF MySpot SpotLight {
@@ -611,21 +667,6 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p>New <tt>ProjectedTextureCoordinate</tt> node with
-  a field <tt>"projector"</tt>
-  (SFNode, inputOutput, default NULL, allowed any light node or viewpoint).
-  This will generate texture coordinates for projective texturing:
-  a texture coordinate (s, t, r, q) will be generated for a fragment
-  that is seen by the light on (s/q, t/q) position, with r/q being the depth.
-  In other words, texture coordinates generated will contain the actual
-  3D geometry positions, but expressed in light's frustum coordinate system.</p>
-
-  <p>This can be used for any kind of projective texturing (not only
-  for shadow maps, but for any situation when light acts like
-  a projector for some texture).</p>
-
-<?php echo $toc->html_section(); ?>
-
   <p>New node:
 
   <?php
@@ -690,6 +731,21 @@ subdirectories.</p>
   means that comparison is not done, depth texture values are returned directly,
   this is useful for example for debug / demo purposes &mdash; you can
   view the texture as a normal grayscale (luminance) texture.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  <p>New <tt>ProjectedTextureCoordinate</tt> node with
+  a field <tt>"projector"</tt>
+  (SFNode, inputOutput, default NULL, allowed any light node or viewpoint).
+  This will generate texture coordinates for projective texturing:
+  a texture coordinate (s, t, r, q) will be generated for a fragment
+  that is seen by the light on (s/q, t/q) position, with r/q being the depth.
+  In other words, texture coordinates generated will contain the actual
+  3D geometry positions, but expressed in light's frustum coordinate system.</p>
+
+  <p>This can be used for any kind of projective texturing (not only
+  for shadow maps, but for any situation when light acts like
+  a projector for some texture).</p>
 
 <?php echo $toc->html_section(); ?>
 
