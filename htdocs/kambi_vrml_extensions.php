@@ -483,10 +483,13 @@ subdirectories.</p>
   </div>
 
   <?php
-    echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("trees_river_shadow_maps.png", 'Scenery with shadow maps') .
-        '</table>';
-    ?>
+  echo table_demo_images(array(
+    array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Scenery with shadow maps'),
+    array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
+    array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+    array('filename' => 'sunny_street_tree_pcf16.png', 'titlealt' => 'Close up shadows on the tree, with Percentage Closer Filtering.'),
+  ));
+  ?>
 
   <p>Our engine implements also another algorithm for shadows:
   the <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
@@ -663,6 +666,13 @@ subdirectories.</p>
     node_end();
   ?>
 
+  <?php
+  echo table_demo_images(array(
+    array('filename' => 'tex_projected_spot_0.png', 'titlealt' => 'SpotLight projecting texture'),
+    array('filename' => 'tex_projected_spot_1.png', 'titlealt' => 'SpotLight projecting texture 2'),
+  ));
+  ?>
+
   <p>SpotLight gets additional field to explicitly specify a perspective
   projection angle.
 
@@ -687,7 +697,7 @@ subdirectories.</p>
   texture rectangle. It also means that some texture space is essentially
   wasted &mdash; we cannot perfectly fit a rectangular texture into a circle shape.
 
-  <p>Figure \ref{fig_tex_projected_spot} shows how a light cone fits within
+  <p>Images on the right show how a light cone fits within
   the projected texture.
 
 <?php echo $toc->html_section(); ?>
@@ -709,6 +719,13 @@ subdirectories.</p>
     node_field('SFFloat' , '[in,out]', 'bias',              '4.0') .
     node_field('SFString', '[]',       'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
     node_end();
+  ?>
+
+  <?php
+  echo table_demo_images(array(
+    array('filename' => 'depths_light_mapped.png', 'titlealt' => 'Shadow map, as seen from the light'),
+    array('filename' => 'depths_camera_mapped.png', 'titlealt' => 'Shadow map mapped over the scene'),
+  ));
   ?>
 
   <p>The <tt>update</tt> field determines how often the shadow map should be
@@ -750,6 +767,14 @@ subdirectories.</p>
   and <tt>ProjectedTextureCoordinate.projector</tt>), as then it's
   unspecified from which view we will generate the shadow map.
 
+  <?php
+  echo table_demo_images(array(
+    array('filename' => 'scale_bias_right.png', 'titlealt' => 'Correct bias/scale'),
+    array('filename' => 'scale_bias_too_large.png', 'titlealt' => 'Too large bias/scale'),
+    array('filename' => 'scale_bias_too_small.png', 'titlealt' => 'Too small bias/scale'),
+  ));
+  ?>
+
   <p>Fields <tt>scale</tt> and <tt>bias</tt> are used
   to offset the scene rendered to the shadow map.
   This avoids the precision problems inherent in the shadow maps comparison.
@@ -762,7 +787,7 @@ subdirectories.</p>
   Increasing the <tt>scale</tt> has to be done a little more carefully
   (it's effect depends on the polygon slope).
 
-  <p>Figure \ref{fig_scale_bias} shows the effects of various
+  <p>Images on the right show the effects of various
   <tt>scale</tt> and <tt>bias</tt> values.
 
   <p>For an OpenGL implementation
