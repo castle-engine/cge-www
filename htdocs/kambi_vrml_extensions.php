@@ -465,14 +465,22 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p style="border: outset thin black;
+  <div style="border: outset thin black;
     background: #f8d785;
-    width: 30em;
     padding: 0.3em;
-    margin: 1em auto;">For reasoning behind these extensions,
+    width: 80%;
+    margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
   see also my paper <a href="shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
   (accepted for Web3D 2010 conference). Specification below comes from
-  this paper (section 4 of the paper, with small updates).</p>
+  this paper (section 4). Text below has some additional notes,
+  mostly stuff specific to our engine and implementation.</p>
+
+  <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
+  are <a href="http://www.acm.org/publications/policies/copyright_policy">Copyright 2010 by ACM, Inc.</a>
+  See the link for details, in general non-commercial use is fine,
+  but commercial use usually requires asking ACM for permission.
+  This is a necessary exception from my usual rules of publishing everything on GNU GPL.</p>
+  </div>
 
   <?php
     echo '<table align="right">' .
@@ -492,14 +500,13 @@ subdirectories.</p>
 
   <?php
     echo node_begin('Appearance');
-    $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal Appearance fields') .
     node_field('MFNode', '[]', 'receiveShadows' , '[]', '[X3DLightNode] list') .
     node_end();
   ?>
 
-  <p>Each light present in the \texttt{receiveShadows} list will cast shadows on
+  <p>Each light present in the <tt>receiveShadows</tt> list will cast shadows on
   the given shape. That is, contribution of the light source
   will be scaled down if the light is occluded at a given fragment.
   The whole light contribution is affected, including the ambient term.
@@ -527,12 +534,12 @@ subdirectories.</p>
   for the scene and control every important detail of the shadow mapping process.</p>
 
   <p>These lower-level extensions give a complete and flexible system to
-  control the shadow maps, making the \texttt{receiveShadows}
+  control the shadow maps, making the <tt>receiveShadows</tt>
   feature only a shortcut for the simplest setup.</p>
 
-  <p>We make a shadow map texture by the \texttt{GeneratedShadowMap} node,
+  <p>We make a shadow map texture by the <tt>GeneratedShadowMap</tt> node,
   and project it on the shadow receiver by
-  \texttt{ProjectedTextureCoordinate}.
+  <tt>ProjectedTextureCoordinate</tt>.
   An example X3D code (in classic encoding) for a shadow map setup:</p>
 
 <pre class="vrml_code">
@@ -597,8 +604,8 @@ subdirectories.</p>
   light sources as cameras. This means that lights need additional parameters
   to specify projection details.
 
-  <p>To every X3D light node (\texttt{DirectionalLight}, \texttt{SpotLight},
-  \texttt{PointLight}) we add new fields:
+  <p>To every X3D light node (<tt>DirectionalLight</tt>, <tt>SpotLight</tt>,
+  <tt>PointLight</tt>) we add new fields:
 
   <?php
     echo node_begin('*Light');
@@ -612,20 +619,20 @@ subdirectories.</p>
     node_end();
   ?>
 
-  <p>The fields \texttt{projectionNear} and \texttt{projectionFar} specify the near
+  <p>The fields <tt>projectionNear</tt> and <tt>projectionFar</tt> specify the near
   and far values for the projection used when rendering to the shadow map texture.
   These are distances from the light position, along the light direction.
-  You should always try to make \texttt{projectionNear} as large as possible
-  and \texttt{projectionFar} as small as possible,
-  this will make depth precision better (keeping \texttt{projectionNear} large
+  You should always try to make <tt>projectionNear</tt> as large as possible
+  and <tt>projectionFar</tt> as small as possible,
+  this will make depth precision better (keeping <tt>projectionNear</tt> large
   is more important for this). At the same time, your projection range
   must include all your shadow casters.
 
-  <p>The field \texttt{up} is the ,,up'' vector of the light camera when capturing
+  <p>The field <tt>up</tt> is the "up" vector of the light camera when capturing
   the shadow map. This is used only with non-point lights
-  (\texttt{DirectionalLight} and \texttt{SpotLight}).
+  (<tt>DirectionalLight</tt> and <tt>SpotLight</tt>).
   Although we know the direction of the light source,
-  but for shadow mapping we also need to know the ,,up'' vector to have camera
+  but for shadow mapping we also need to know the "up" vector to have camera
   parameters fully determined.
   This vector must be adjusted by the implementation to be perfectly orthogonal
   to the light direction, this allows user to avoid explicitly giving
@@ -636,11 +643,11 @@ subdirectories.</p>
   shadow map generation and texture coordinate calculation must know them,
   and use the same values (otherwise results would not be of much use).
 
-  <p>The field \texttt{defaultShadowMap} is meaningful only when some
-  shape uses the \texttt{receiveShadows} feature. This will be described
-  in the later section \ref{sec_how_receive_shadows_maps}.
+  <p>The field <tt>defaultShadowMap</tt> is meaningful only when some
+  shape uses the <tt>receiveShadows</tt> feature. This will be described
+  in the <a href="#section_ext_receive_shadows_vs_lower_level">later section</a>.
 
-  <p>\texttt{DirectionalLight} gets additional fields to specify orthogonal
+  <p><tt>DirectionalLight</tt> gets additional fields to specify orthogonal
   projection rectangle (projection XY sizes) and location for
   the light camera. Although directional light is conceptually at infinity
   and doesn't have a location, but for making a texture projection
@@ -668,17 +675,17 @@ subdirectories.</p>
     node_end();
   ?>
 
-  <p>Leaving \texttt{projectionAngle} at the default zero value is equivalent
-  to setting \texttt{projectionAngle} to \texttt{2 * cutOffAngle}.
+  <p>Leaving <tt>projectionAngle</tt> at the default zero value is equivalent
+  to setting <tt>projectionAngle</tt> to <tt>2 * cutOffAngle</tt>.
   This is usually exactly what is needed.
-  Note that the \texttt{projectionAngle} is
+  Note that the <tt>projectionAngle</tt> is
   the vertical and horizontal field of view for the square texture,
-  while \texttt{cutOffAngle} is the angle of the half of the cone
-  (that's the reasoning for $*2$ multiplier).
-  Using \texttt{2 * cutOffAngle} as \texttt{projectionAngle}
+  while <tt>cutOffAngle</tt> is the angle of the half of the cone
+  (that's the reasoning for *2 multiplier).
+  Using <tt>2 * cutOffAngle</tt> as <tt>projectionAngle</tt>
   makes the perceived light cone fit nicely inside the projected
   texture rectangle. It also means that some texture space is essentially
-  wasted --- we cannot perfectly fit a rectangular texture into a circle shape.
+  wasted &mdash; we cannot perfectly fit a rectangular texture into a circle shape.
 
   <p>Figure \ref{fig_tex_projected_spot} shows how a light cone fits within
   the projected texture.
@@ -704,137 +711,131 @@ subdirectories.</p>
     node_end();
   ?>
 
-  <p>The \texttt{update} field determines how often the shadow map should be
-  regenerated. It is analogous to the \texttt{update} field in the standard
-  \texttt{GeneratedCubeMapTexture} node.
+  <p>The <tt>update</tt> field determines how often the shadow map should be
+  regenerated. It is analogous to the <tt>update</tt> field in the standard
+  <tt>GeneratedCubeMapTexture</tt> node.
 
-  \begin{description}
-    \item[\texttt{"NONE"}] means that the texture is not generated.
+  <ul>
+    <li><p><b><tt>"NONE"</tt></b> means that the texture is not generated.
       It is the default value (because it's the most conservative,
-      so it's the safest value).
+      so it's the safest value).</p></li>
 
-    \item[\texttt{"ALWAYS"}] means that the shadow map must be always accurate.
+    <li><p><b><tt>"ALWAYS"</tt></b> means that the shadow map must be always accurate.
       Generally, it needs to be generated every time shadow caster's geometry
       noticeably changes.
-      The simplest implementation may just render the shadow map at every frame.
+      The simplest implementation may just render the shadow map at every frame.</p></li>
 
-    \item[\texttt{"NEXT\_FRAME\_ONLY"}] says to update the shadow map
-      at the next frame, and afterwards change the value back to \texttt{"NONE"}.
+    <li><p><b><tt>"NEXT_FRAME_ONLY"</tt></b> says to update the shadow map
+      at the next frame, and afterwards change the value back to <tt>"NONE"</tt>.
       This gives the author an explicit control over when the texture is
-      regenerated, for example by sending \texttt{"NEXT\_FRAME\_ONLY"}
-      values by a \texttt{Script} node.
-  \end{description}
+      regenerated, for example by sending <tt>"NEXT_FRAME_ONLY"</tt>
+      values by a <tt>Script</tt> node.</p></li>
+  </ul>
 
-  <p>The field \texttt{size} gives the size of the (square) shadow map texture
+  <p>The field <tt>size</tt> gives the size of the (square) shadow map texture
   in pixels.
 
-  <p>The field \texttt{light} specifies the light node from which to generate the map.
+  <p>The field <tt>light</tt> specifies the light node from which to generate the map.
   Ideally, implementation should support all three X3D light source types.
-  \texttt{NULL} will prevent the texture from generating.
-  It's usually comfortable to \texttt{"USE"} here some existing light node,
+  <tt>NULL</tt> will prevent the texture from generating.
+  It's usually comfortable to <tt>"USE"</tt> here some existing light node,
   instead of defining a new one.
 
-  <p>Note that the light node instanced inside the \texttt{GeneratedShadowMap.light}
-  or \texttt{ProjectedTextureCoordinate.projector} fields isn't
+  <p>Note that the light node instanced inside the <tt>GeneratedShadowMap.light</tt>
+  or <tt>ProjectedTextureCoordinate.projector</tt> fields isn't
   considered a normal light, that is it doesn't shine anywhere.
   It should be defined elsewhere in the scene to actually
   act like a normal light. Moreover, it should not be
-  instanced many times (outside of \texttt{GeneratedShadowMap.light}
-  and \texttt{ProjectedTextureCoordinate.projector}), as then it's
+  instanced many times (outside of <tt>GeneratedShadowMap.light</tt>
+  and <tt>ProjectedTextureCoordinate.projector</tt>), as then it's
   unspecified from which view we will generate the shadow map.
 
-  <p>Fields \texttt{scale} and \texttt{bias} are used
+  <p>Fields <tt>scale</tt> and <tt>bias</tt> are used
   to offset the scene rendered to the shadow map.
   This avoids the precision problems inherent in the shadow maps comparison.
   In short, increase them if you see
   a strange noise appearing on the shadow casters (but don't increase them too much,
   or the shadows will move back).
-  You may increase the \texttt{bias} a little more
+  You may increase the <tt>bias</tt> a little more
   carelessly (it is multiplied by a constant implementation-dependent offset,
   that is usually something very small).
-  Increasing the \texttt{scale} has to be done a little more carefully
+  Increasing the <tt>scale</tt> has to be done a little more carefully
   (it's effect depends on the polygon slope).
 
   <p>Figure \ref{fig_scale_bias} shows the effects of various
-  \texttt{scale} and \texttt{bias} values.
+  <tt>scale</tt> and <tt>bias</tt> values.
 
   <p>For an OpenGL implementation
   that offsets the geometry rendered into the shadow map,
-  \texttt{scale} and \texttt{bias} are an obvious parameters (in this order)
-  for the \texttt{glPolygonOffset} call.
+  <tt>scale</tt> and <tt>bias</tt> are an obvious parameters (in this order)
+  for the <tt>glPolygonOffset</tt> call.
   Other implementations are free to ignore these parameters, or derive
   from them values for their offset methods.
 
-  <p>Field \texttt{compareMode} allows to additionally do depth comparison
-  on the texture. For texture coordinate $(s, t, r, q)$,
-  compare mode allows to compare $r/q$ with $texture(s/q, t/q)$.
+  <p>Field <tt>compareMode</tt> allows to additionally do depth comparison
+  on the texture. For texture coordinate <i>(s, t, r, q)</i>,
+  compare mode allows to compare <i>r/q</i> with <i>texture(s/q, t/q)</i>.
   Typically combined with the projective texture mapping, this is the moment when we
   actually decide which screen pixel is in the shadow and which is not.
-  Default value \texttt{COMPARE\_R\_LEQUAL} is the most useful
+  Default value <tt>COMPARE_R_LEQUAL</tt> is the most useful
   value for standard shadow mapping, it generates 1 (true) when
-  $r/q <= texture(s/q, t/q)$, and 0 (false) otherwise. Recall from
-  the section \ref{sec_algorithm} that, theoretically, assuming infinite shadow map
-  resolution and such, $r/q$ should never be smaller than the texture value.
+  <i>r/q <= texture(s/q, t/q)</i>, and 0 (false) otherwise. Recall from
+  the shadow maps algorithm that, theoretically, assuming infinite shadow map
+  resolution and such, <i>r/q</i> should never be smaller than the texture value.
 
-  <p>When the \texttt{compareMode} is set to \texttt{NONE},
+  <p>When the <tt>compareMode</tt> is set to <tt>NONE</tt>,
   the comparison is not done, and depth texture values are returned directly.
   This is very useful to visualize shadow maps, for debug and demonstration
-  purposes --- you can view the texture as a normal grayscale (luminance) texture.
-  In particular, problems with tweaking the \texttt{projectionNear} and
-  \texttt{projectionFar} values become easily solvable when you can actually
+  purposes &mdash; you can view the texture as a normal grayscale (luminance) texture.
+  In particular, problems with tweaking the <tt>projectionNear</tt> and
+  <tt>projectionFar</tt> values become easily solvable when you can actually
   see how the texture contents look.
 
   <p>For OpenGL implementations, the most natural format for a shadow map texture
-  is the \texttt{GL\_DEPTH\_COMPONENT} (see \texttt{ARB\_depth\_texture}).
-  %% no space on last page: \cite{glext:depthtexture}).
+  is the <tt>GL_DEPTH_COMPONENT</tt> (see <tt>ARB_depth_texture</tt>).
   This makes it ideal for typical shadow map operations.
-  For GLSL shader, this is best used with \texttt{sampler2DShadow}
+  For GLSL shader, this is best used with <tt>sampler2DShadow</tt>
   (for spot and directional lights) and
-  \texttt{samplerCubeShadow} (for point lights).
-  Unless the \texttt{compareMode} is \texttt{NONE}, in which case
+  <tt>samplerCubeShadow</tt> (for point lights).
+  Unless the <tt>compareMode</tt> is <tt>NONE</tt>, in which case
   you should treat them like a normal grayscale textures
-  and use the \texttt{sampler2D} or the \texttt{samplerCube} types.
+  and use the <tt>sampler2D</tt> or the <tt>samplerCube</tt> types.
 
 <?php echo $toc->html_section(); ?>
 
-  <p>We propose a new \texttt{ProjectedTextureCoordinate} node:
+  <p>We propose a new <tt>ProjectedTextureCoordinate</tt> node:
 
-  \begin{mycode}
-  \underline{ProjectedTextureCoordinate : X3DTextureCoordinateNode}
-  \begin{Verbatim}[commandchars=\\\{\}]
-  SFNode    [in,out]  \codeem{projector}  NULL
-    # [SpotLight, DirectionalLight,
-    # X3DViewpointNode]
-  \end{Verbatim}
-  \end{mycode}
+  <?php
+    echo node_begin('ProjectedTextureCoordinate : X3DTextureCoordinateNode');
+    echo
+    node_field('SFNode', '[in,out]', 'projector', 'NULL', '[SpotLight, DirectionalLight, X3DViewpointNode]') .
+    node_end();
+  ?>
 
   <p>This node generates texture coordinates, much like the standard
-  \texttt{TextureCoordinateGenerator} node\footnote{The reasoning
-  for inventing a new node, instead of extending the existing
-  \texttt{TextureCoordinateGenerator}, is that the \texttt{projector}
-  field would not be useful for other \texttt{TextureCoordinateGenerator} modes.}.
-  More precisely, a texture coordinate $(s, t, r, q)$ will be generated for a fragment
-  that corresponds to the shadow map pixel on the position $(s/q, t/q)$,
-  with $r/q$ being the depth (distance from the light source or the viewpoint,
+  <tt>TextureCoordinateGenerator</tt> node.
+  More precisely, a texture coordinate <i>(s, t, r, q)</i> will be generated for a fragment
+  that corresponds to the shadow map pixel on the position <i>(s/q, t/q)</i>,
+  with <i>r/q</i> being the depth (distance from the light source or the viewpoint,
   expressed in the same way as depth buffer values are stored in the shadow map).
   In other words, the generated texture coordinates will contain the actual
   3D geometry positions, but expressed in the projector's frustum coordinate system.
-  This cooperates closely with the \texttt{GeneratedShadowMap.compareMode = COMPARE\_R\_LEQUAL} behavior,
+  This cooperates closely with the <tt>GeneratedShadowMap.compareMode = COMPARE_R_LEQUAL</tt> behavior,
   see the previous subsection.
 
   <p>This can be used in all situations when the light or the viewpoint act like
-  a projector for a 2D texture. For shadow maps, \texttt{projector} should be
+  a projector for a 2D texture. For shadow maps, <tt>projector</tt> should be
   a light source.
 
-  <p>When a perspective \texttt{Viewpoint} is used as the \texttt{projector},
+  <p>When a perspective <tt>Viewpoint</tt> is used as the <tt>projector</tt>,
   we need an additional rule. That's because the viewpoint doesn't explicitly
   determine the horizontal and vertical angles of view, so it doesn't precisely
   define a projection. We resolve it as follows: when the viewpoint
-  \emph{that is not currently bound} is used as a projector,
-  we use \texttt{Viewpoint.fieldOfView} for both the horizontal and vertical
-  view angles. When the \emph{currently bound} viewpoint is used,
-  we follow the standard \texttt{Viewpoint} specification for calculating
-  view angles based on the \texttt{Viewpoint.fieldOfView} and the window sizes.
+  <em>that is not currently bound</em> is used as a projector,
+  we use <tt>Viewpoint.fieldOfView</tt> for both the horizontal and vertical
+  view angles. When the <em>currently bound</em> viewpoint is used,
+  we follow the standard <tt>Viewpoint</tt> specification for calculating
+  view angles based on the <tt>Viewpoint.fieldOfView</tt> and the window sizes.
   We feel that this is the most useful behavior for scene authors.
 
   <p>When the geometry uses a user-specified vertex shader, the implementation
@@ -842,7 +843,7 @@ subdirectories.</p>
   This way shader authors still benefit from the projective texturing extension.
   If the shader author wants to implement projective texturing inside the shader,
   he is of course free to do so, there's no point in using
-  \texttt{ProjectedTextureCoordinate} at all then.
+  <tt>ProjectedTextureCoordinate</tt> at all then.
 
   <p>Note that this is not suitable for point lights. Point lights
   do not have a direction, and their shadow maps can no longer be
@@ -855,53 +856,52 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p>Placing a light on the \texttt{receiveShadows} list is equivalent to
-  adding the appropriate \texttt{GeneratedShadowMap} to the shape's textures,
-  and adding the appropriate \texttt{ProjectedTextureCoordinate} to the geometry
-  \texttt{texCoord} field. Also, \texttt{receiveShadows} makes
+  <p>Placing a light on the <tt>receiveShadows</tt> list is equivalent to
+  adding the appropriate <tt>GeneratedShadowMap</tt> to the shape's textures,
+  and adding the appropriate <tt>ProjectedTextureCoordinate</tt> to the geometry
+  <tt>texCoord</tt> field. Also, <tt>receiveShadows</tt> makes
   the right shading (for example by shaders) automatically used.
 
-  <p>In fact, the \texttt{receiveShadows} feature may be
+  <p>In fact, the <tt>receiveShadows</tt> feature may be
   implemented by a simple transformation of the X3D node graph.
-  Since the \texttt{receiveShadows} and \texttt{defaultShadowMap}
+  Since the <tt>receiveShadows</tt> and <tt>defaultShadowMap</tt>
   fields are not exposed (they do not have accompanying
   input and output events) it's enough to perform such transformation
   once after loading the scene.
   Note that the texture nodes of the shadow receivers
   may have to be internally changed to multi-texture nodes during this operation.
 
-  <p>An author may also \emph{optionally} specify
-  a \texttt{GeneratedShadowMap} node inside the light's
-  \texttt{defaultShadowMap} field. See the section \ref{sec_light_params}
-  for \texttt{defaultShadowMap} declaration.
-  Leaving the \texttt{defaultShadowMap} as \texttt{NULL} means that an
+  <p>An author may also <em>optionally</em> specify
+  a <tt>GeneratedShadowMap</tt> node inside the light's
+  <tt>defaultShadowMap</tt> field. See the <a href="#section_ext_light_projective">lights extensions section</a>
+  for <tt>defaultShadowMap</tt> declaration.
+  Leaving the <tt>defaultShadowMap</tt> as <tt>NULL</tt> means that an
   implicit shadow map with default browser settings should be generated
-  for this light. This must behave like \texttt{update} was set to
-  \texttt{ALWAYS}. The \texttt{projectionNear} and \texttt{projectionFar}
+  for this light. This must behave like <tt>update</tt> was set to
+  <tt>ALWAYS</tt>. The <tt>projectionNear</tt> and <tt>projectionFar</tt>
   ranges of the light should be in this case calculated to include every
   shadow caster between the light source and its shadow receivers.
 
   <p>In effect, to enable the shadows the author must merely
   specify which shapes receive the shadows (and from which lights)
-  by the \texttt{Appearance.receiveShadows} field. This way the author
+  by the <tt>Appearance.receiveShadows</tt> field. This way the author
   doesn't have to deal with lower-level tasks:
 
-  <p>\begin{myenumerate}
-  \itemsep 0pt
-  \item Using \texttt{GeneratedShadowMap} nodes.
-  \item Using \texttt{ProjectedTextureCoordinate} nodes.
-  \item Writing own shaders.
-  \end{myenumerate}
+  <ol>
+    <li>Using <tt>GeneratedShadowMap</tt> nodes.</li>
+    <li>Using <tt>ProjectedTextureCoordinate</tt> nodes.</li>
+    <li>Writing own shaders.</li>
+  </ol>
 
 <?php echo $toc->html_section(); ?>
 
-  <p>By default, every \texttt{Shape} in the scene casts a shadow.
+  <p>By default, every <tt>Shape</tt> in the scene casts a shadow.
   This is the most common setup for shadow maps.
   However it's sometimes useful to explicitly
   disable shadow casting (blocking of the light) for some tricky shapes.
   For example, this is usually desired for shapes that visualize
   the light source position.
-  For this purpose we extend the \texttt{Appearance} node:
+  For this purpose we extend the <tt>Appearance</tt> node:
 
   <?php
     echo node_begin('Appearance');
@@ -914,8 +914,8 @@ subdirectories.</p>
 
   <p>Note that if you disable shadow casting on your shadow receivers
   (that is, you make all the objects only casting or only receiving the shadows,
-  but not both) then you avoid some offset problems with shadow maps. The \texttt{bias}
-  and \texttt{scale} parameters of the \texttt{GeneratedShadowMap}
+  but not both) then you avoid some offset problems with shadow maps. The <tt>bias</tt>
+  and <tt>scale</tt> parameters of the <tt>GeneratedShadowMap</tt>
   become less crucial then.
 
   <p>This is honoured by all our shadow implementations:
