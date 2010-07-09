@@ -491,8 +491,8 @@ subdirectories.</p>
   ));
   ?>
 
-  <p>Our engine implements also another algorithm for shadows:
-  the <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
+  <p>One of the shadows algorithms implemented in our engine is
+  <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
   volumes, which means that you can freely mix both shadow approaches
   (volumes and maps) within a single scene.</p>
 
@@ -519,9 +519,10 @@ subdirectories.</p>
   modified by the material emissive color and fog, following the X3D specification.</p>
 
   <p>This is the simplest extension to enable shadows.
-  It is suitable for any shadows implementation, not only shadow maps.
-  TODO: we plan to use it for shadow volumes in the future too
-  (removing old <tt>kambiShadowsMain</tt> extensions and such).</p>
+  TODO: In the future, it should be suitable for any shadows implementation,
+  not only shadow maps. We plan to use it for shadow volumes in the future too
+  (removing old <tt>kambiShadowsMain</tt> extensions and such),
+  and maybe ray-tracer too.</p>
 
   <p>Authors should note that browsers may use internal shaders to produce nice
   shading for shadow receivers. Custom author shaders may be ignored.
@@ -757,6 +758,8 @@ subdirectories.</p>
   <tt>NULL</tt> will prevent the texture from generating.
   It's usually comfortable to <tt>"USE"</tt> here some existing light node,
   instead of defining a new one.
+  TODO: for now, we do not handle shadow maps from <tt>PointLight</tt>
+  nodes.
 
   <p>Note that the light node instanced inside the <tt>GeneratedShadowMap.light</tt>
   or <tt>ProjectedTextureCoordinate.projector</tt> fields isn't
@@ -826,6 +829,18 @@ subdirectories.</p>
   you should treat them like a normal grayscale textures
   and use the <tt>sampler2D</tt> or the <tt>samplerCube</tt> types.
 
+  <p><i>Variance Shadow Maps</i> notes:
+  If you turn on <i>Variance Shadow Maps</i> (e.g. by <?php echo a_href_page("view3dscene", "view3dscene") ?>
+  menu <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i>), then
+  the generated textures are a little different.
+  If you used the simple <tt>"receiveShadows"</tt> field, everything is taken
+  care of for you. But if you use lower-level nodes and write your own
+  shaders, you must understand the differences:
+  for VSM, shadow maps are treated always as <tt>sampler2D</tt>, with the first
+  two components being <tt>E(depth)</tt> and <tt>E(depth^2)</tt>.
+  See <a href="http://www.punkuser.net/vsm/">the paper about Variance Shadow Maps</a>,
+  and see <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/src/vrml/opengl/glsl/variance_shadow_map_common.fs">example GLSL shader code to handle them</a>.
+
 <?php echo $toc->html_section(); ?>
 
   <p>We propose a new <tt>ProjectedTextureCoordinate</tt> node:
@@ -851,6 +866,8 @@ subdirectories.</p>
   <p>This can be used in all situations when the light or the viewpoint act like
   a projector for a 2D texture. For shadow maps, <tt>projector</tt> should be
   a light source.
+
+  <p>TODO: using viewpoints as projector is not implemented yet in our engine.
 
   <p>When a perspective <tt>Viewpoint</tt> is used as the <tt>projector</tt>,
   we need an additional rule. That's because the viewpoint doesn't explicitly
@@ -879,6 +896,11 @@ subdirectories.</p>
   (to sample the shadow map cube) and a distance to it (to compare
   with the depth read from the texture).
 
+  <p><i>Deprecated:</i> In older engine versions, instead of this node
+  you had to use <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>
+  and <tt>TextureCoordinateGenerator.projectedLight</tt>. This is still
+  handled (for compatibility), but should not be used in new models.
+
 <?php echo $toc->html_section(); ?>
 
   <p>Placing a light on the <tt>receiveShadows</tt> list is equivalent to
@@ -899,8 +921,13 @@ subdirectories.</p>
   <p>An author may also <em>optionally</em> specify
   a <tt>GeneratedShadowMap</tt> node inside the light's
   <tt>defaultShadowMap</tt> field. See the <a href="#section_ext_light_projective">lights extensions section</a>
-  for <tt>defaultShadowMap</tt> declaration.
-  Leaving the <tt>defaultShadowMap</tt> as <tt>NULL</tt> means that an
+  for <tt>defaultShadowMap</tt> declaration. Note that when
+  <tt>GeneratedShadowMap</tt>
+  is placed in a <tt>X3DLightNode.defaultShadowMap</tt> field,
+  then the <tt>GeneratedShadowMap.light</tt> value is ignored (we always
+  use the light containing <tt>defaultShadowMap</tt> declaration then).
+
+  <p>Leaving the <tt>defaultShadowMap</tt> as <tt>NULL</tt> means that an
   implicit shadow map with default browser settings should be generated
   for this light. This must behave like <tt>update</tt> was set to
   <tt>ALWAYS</tt>. The <tt>projectionNear</tt> and <tt>projectionFar</tt>
