@@ -95,7 +95,7 @@ table_demo_images(array(
 
 <p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
 
-<p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</tt>.</p>
+<p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</a>.</p>
 
 <p>Other features implemented:</p>
 
@@ -104,7 +104,7 @@ table_demo_images(array(
   <li>view3dscene <i>Edit -&gt; Merge Close Vertexes</i> menu item, that makes close vertexes to be perfectly equal.</li>
   <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
   <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
-  <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&t=14">reporting</a>.</li>
+  <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=14">reporting</a>.</li>
   <li>Better menu behavior with GTK2 backend.</li>
   <li>Our procedural terrain demo (<tt>examples/vrml/terrain/</tt> in sources) can export the terrain to X3D (<tt>ElevationGrid</tt>) now.</li>
   <li>Support IMPORT/EXPORT for VRML 2.0 (97) too. Although it\'s defined only in X3D spec, it\'s so useful that I enable it also for VRML 2.0.</li>
