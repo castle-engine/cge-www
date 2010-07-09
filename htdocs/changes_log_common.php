@@ -67,7 +67,7 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-    array('title' => 'Development news: Shadow maps, castle fountain, more',
+    array('title' => 'Development news: Many shadow maps improvements, castle fountain, more',
           'year' => 2010,
           'month' => 7,
           'day' => 9,
@@ -82,13 +82,13 @@ table_demo_images(array(
   array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
   array('filename' => 'castle_fountain_2.png', 'titlealt' => 'Fountain close-up view'),
 ), 2) .
-'<p>First all, my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted in <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our shadow mapping extensions, with many improvements over the extensions previously implemented and documented in our engine. You can read the paper online, you can also <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">read the new shadow mapping extensions documentation, from our nightly snapshots</a>.</p>
+'<p>First of all, my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted for the <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our new shadow mapping extensions, with many improvements over the old ones previously implemented in our engine. You can read the paper online, you can also <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">read the new shadow mapping extensions documentation (from our nightly snapshots)</a>.</p>
 
 <p>The improvements already implemented are:</p>
 
 <ul>
   <li>First of all, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_receive_shadows"><tt>Apperance.receiveShadows</tt> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
-  <li>Easy way to turn Percentage Closer Filtering (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <tt>receiveShadows</tt> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
+  <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <tt>receiveShadows</tt> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
   <li>New <tt>ProjectedTextureCoordinate</tt> node, that replaces deprecated now <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>.</li>
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
 </ul>
@@ -96,6 +96,8 @@ table_demo_images(array(
 <p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
 
 <p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</a>.</p>
+
+<!-- teaser -->
 
 <p>Other features implemented:</p>
 
