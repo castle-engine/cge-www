@@ -67,6 +67,52 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Development news: Shadow maps, castle fountain, more',
+          'year' => 2010,
+          'month' => 7,
+          'day' => 9,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
+  array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+  array('filename' => 'sunny_street_tree_pcf16.png', 'titlealt' => 'Close up shadows on the tree, with Percentage Closer Filtering.'),
+  array('filename' => 'depths_camera_mapped.png', 'titlealt' => 'Shadow map mapped over the scene'),
+  array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
+  array('filename' => 'castle_fountain_2.png', 'titlealt' => 'Fountain close-up view'),
+), 2) .
+'<p>First all, my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted in <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our shadow mapping extensions, with many improvements over the extensions previously implemented and documented in our engine. You can read the paper online, you can also <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">read the new shadow mapping extensions documentation, from our nightly snapshots</a>.</p>
+
+<p>The improvements already implemented are:</p>
+
+<ul>
+  <li>First of all, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_receive_shadows"><tt>Apperance.receiveShadows</tt> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
+  <li>Easy way to turn Percentage Closer Filtering (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <tt>receiveShadows</tt> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
+  <li>New <tt>ProjectedTextureCoordinate</tt> node, that replaces deprecated now <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>.</li>
+  <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
+</ul>
+
+<p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
+
+<p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</tt>.</p>
+
+<p>Other features implemented:</p>
+
+<ul>
+  <li>Extensions to <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
+  <li>view3dscene <i>Edit -&gt; Merge Close Vertexes</i> menu item, that makes close vertexes to be perfectly equal.</li>
+  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
+  <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
+  <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&t=14">reporting</a>.</li>
+  <li>Better menu behavior with GTK2 backend.</li>
+  <li>Our procedural terrain demo (<tt>examples/vrml/terrain/</tt> in sources) can export the terrain to X3D (<tt>ElevationGrid</tt>) now.</li>
+  <li>Support IMPORT/EXPORT for VRML 2.0 (97) too. Although it\'s defined only in X3D spec, it\'s so useful that I enable it also for VRML 2.0.</li>
+</ul>
+
+<p>In unrelated news, the quest to release castle 1.0.0 is ongoing (even if terribly delayed). Remember, I wanted to add some eye-candy to "Fountain" level for this? Well, part of the job is done, see the screenshot on the right for a nice water pouring from the fountain.</p>
+'),
+
     array('title' => 'view3dscene 3.5.2 release: IMPORT/EXPORT and bugfixes',
           'year' => 2010,
           'month' => 4,
