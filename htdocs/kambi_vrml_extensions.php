@@ -303,7 +303,7 @@ subdirectories.</p>
     padding: 0.3em;
     width: 80%;
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
-  see also my paper <a href="shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
+  see also my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
   (accepted for Web3D 2010 conference). Specification below comes from
   this paper (section 4). Text below has some additional notes,
   mostly stuff specific to our engine and implementation.</p>
