@@ -7,13 +7,13 @@ KambiAppearance : Appearance {
   SFNode     [in,out]      normalMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
   SFNode     [in,out]      heightMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
   SFFloat    [in,out]      heightMapScale   0.01        # must be > 0, meaningful only if heightMap specified
-  SFBool     [in,out]      shadowCaster     TRUE
   SFNode     [in,out]      blendMode        NULL        # [BlendMode]
 }
 
 Appearance : X3DAppearanceNode {
   ... all normal Appearance fields ...
   MFNode     []            receiveShadows  []          # [X3DLightNode] list
+  SFBool     [in,out]      shadowCaster     TRUE
 }
 
 X3DLightNode : X3DChildNode {
