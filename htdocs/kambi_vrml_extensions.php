@@ -700,8 +700,6 @@ subdirectories.</p>
   a projector for a 2D texture. For shadow maps, <tt>projector</tt> should be
   a light source.
 
-  <p>TODO: using viewpoints as projector is not implemented yet in our engine.
-
   <p>When a perspective <tt>Viewpoint</tt> is used as the <tt>projector</tt>,
   we need an additional rule. That's because the viewpoint doesn't explicitly
   determine the horizontal and vertical angles of view, so it doesn't precisely
@@ -711,6 +709,8 @@ subdirectories.</p>
   view angles. When the <em>currently bound</em> viewpoint is used,
   we follow the standard <tt>Viewpoint</tt> specification for calculating
   view angles based on the <tt>Viewpoint.fieldOfView</tt> and the window sizes.
+  (TODO: our current implementation doesn't treat <em>currently bound</em>
+  viewpoint this way.)
   We feel that this is the most useful behavior for scene authors.
 
   <p>When the geometry uses a user-specified vertex shader, the implementation
