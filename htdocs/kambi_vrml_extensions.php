@@ -507,6 +507,9 @@ subdirectories.</p>
   if and only if <tt>projectionRectangle</tt> is zero.
   This will work perfectly for shadow receivers marked by the
   <tt>receiveShadows</tt> field.
+  <b>This feature was not "invented" at the time of submitting the
+  <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
+  so it's not documented there.</b>
 
   <?php
   echo table_demo_images(array(
