@@ -305,8 +305,12 @@ subdirectories.</p>
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
   see also my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
   (accepted for Web3D 2010 conference). Specification below comes from
-  this paper (section 4). Text below has some additional notes,
-  mostly stuff specific to our engine and implementation.</p>
+  this paper (section 4). Text below has some additional notes
+  (some specific to our engine and implementation),
+  and updates to the <tt>projection*</tt> fields automatic calculation.</p>
+
+  <p><a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
+  from the presentation</a> are also available.</p>
 
   <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
   are <a href="http://www.acm.org/publications/policies/copyright_policy">Copyright 2010 by ACM, Inc.</a>
