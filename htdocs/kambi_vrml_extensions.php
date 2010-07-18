@@ -499,7 +499,7 @@ subdirectories.</p>
     $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
-    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '0 0 0 0', 'left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
+    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '0 0 0 0', 'left, bottom, right, top, like OrthoViewpoint.fieldOfView; must be left &lt; right and bottom &lt; top, or all zero') .
     node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
   ?>
