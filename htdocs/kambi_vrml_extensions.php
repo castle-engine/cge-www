@@ -449,9 +449,9 @@ subdirectories.</p>
     $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
-    node_field('SFFloat', '[in,out]', 'projectionNear' , '1', '&gt; 0') .
-    node_field('SFFloat', '[in,out]', 'projectionFar' , '100', 'must be &gt; projectionNear') .
-    node_field('SFVec3f', '[in,out]', 'up' , '0 1 0') .
+    node_field('SFFloat', '[in,out]', 'projectionNear' , '0', 'must be &gt;= 0') .
+    node_field('SFFloat', '[in,out]', 'projectionFar' , '0', 'must be &gt; projectionNear, or = 0') .
+    node_field('SFVec3f', '[in,out]', 'up' , '0 0 0') .
     node_field('SFNode', '[]', 'defaultShadowMap' , 'NULL', '[GeneratedShadowMap]') .
     node_end();
   ?>
@@ -495,10 +495,18 @@ subdirectories.</p>
     $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
-    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '-10 10 -10 10', 'left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
+    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '0 0 0 0', 'left, right, bottom, top; must be left &lt; right and bottom &lt; top') .
     node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
   ?>
+
+  <p>When <tt>projectionNear</tt>, <tt>projectionFar</tt>, <tt>up</tt>,
+  <tt>projectionRectangle</tt> have (default) zero values, then some sensible
+  values are automatically calculated for them by the browser.
+  <tt>projectionLocation</tt> will also be automaticaly adjusted,
+  if and only if <tt>projectionRectangle</tt> is zero.
+  This will work perfectly for shadow receivers marked by the
+  <tt>receiveShadows</tt> field.
 
   <?php
   echo table_demo_images(array(
@@ -763,9 +771,7 @@ subdirectories.</p>
   <p>Leaving the <tt>defaultShadowMap</tt> as <tt>NULL</tt> means that an
   implicit shadow map with default browser settings should be generated
   for this light. This must behave like <tt>update</tt> was set to
-  <tt>ALWAYS</tt>. The <tt>projectionNear</tt> and <tt>projectionFar</tt>
-  ranges of the light should be in this case calculated to include every
-  shadow caster between the light source and its shadow receivers.
+  <tt>ALWAYS</tt>.
 
   <p>In effect, to enable the shadows the author must merely
   specify which shapes receive the shadows (and from which lights)
