@@ -304,10 +304,11 @@ subdirectories.</p>
     width: 80%;
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
   see also my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
-  (accepted for Web3D 2010 conference). Specification below comes from
-  this paper (section 4). Text below has some additional notes
-  (some specific to our engine and implementation),
-  and updates to the <tt>projection*</tt> fields automatic calculation.</p>
+  (accepted for Web3D 2010 conference; PDF here has some very minimal
+  corrections compared to the conference version).
+  Specification below comes from
+  this paper (section 4). Text below has some additional notes,
+  mostly specific to our engine and implementation.</p>
 
   <p><a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
   from the presentation</a> are also available.</p>
