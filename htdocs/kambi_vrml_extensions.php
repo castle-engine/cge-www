@@ -425,8 +425,6 @@ subdirectories.</p>
   DEF MySpot SpotLight {
     location 0 0 10
     direction 0 0 -1
-    <b>projectionNear 1
-    projectionFar 20</b>
   }
 
   Shape {
@@ -516,6 +514,10 @@ subdirectories.</p>
   <b>This feature was not "invented" at the time of submitting the
   <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
+
+  <p>TODO: for <tt>DirectionLight</tt>, auto-calculating best
+  <tt>projectionRectangle</tt> and <tt>projectionLocation</tt>
+  is not implemented yet.
 
   <?php
   echo table_demo_images(array(
