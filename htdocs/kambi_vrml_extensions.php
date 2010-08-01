@@ -75,6 +75,7 @@ $toc = new TableOfContents(array(
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 1),
 
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
+  new TocItem('Define lights casting shadows on everything', 'ext_light_shadows_on_everything', 2),
   new TocItem('Define shadow receivers', 'ext_receive_shadows', 2),
   new TocItem('Overview of the lower-level extensions', 'ext_shadow_maps_lower_level', 2),
   new TocItem('Light sources parameters', 'ext_light_projective', 2),
@@ -337,8 +338,38 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  In the simplest case, to enable the shadows authors must only
-  use this field:
+  <p>In the very simplest case, to make the light source just cast shadows
+  on everything, set the <tt>shadows</tt> field of the light source
+  to <tt>TRUE</tt>.
+
+  <?php
+    echo node_begin('*Light');
+    $node_format_fd_name_pad = 20;
+    echo
+    node_dots('all normal *Light fields') .
+    node_field('SFBool', '[]', 'shadows' , 'FALSE', '') .
+    node_end();
+  ?>
+
+  <p>This is equivalent to adding this light source to every shape's
+  <tt>receiveShadows</tt> field. Read on to know more details.</p>
+
+  <p>This is the simplest extension to enable shadows.
+  TODO: In the future, this (<tt>shadows</tt> on light) and
+  <tt>receiveShadows</tt> (see below) should be suitable for any shadows implementation,
+  not only shadow maps. We plan to use it for shadow volumes in the future too
+  (removing old <tt>kambiShadowsMain</tt> extensions and such),
+  and maybe ray-tracer too. <tt>shadowCaster</tt> (see below) already works
+  for all our shadows implementations.</p>
+
+  <p>Authors should note that browsers may use internal shaders to produce nice
+  shading for shadow receivers. Custom author shaders may be ignored.
+  If you want to apply your own shaders over shadow receivers, you have to
+  use the lower-level nodes described below instead of this.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  To enable the shadows on specific receivers, use this field:
 
   <?php
     echo node_begin('Appearance');
@@ -356,17 +387,6 @@ subdirectories.</p>
   The resulting fragment color is the sum of all the visible lights (visible
   because they are not occluded, or because they don't cast shadows on this shape),
   modified by the material emissive color and fog, following the X3D specification.</p>
-
-  <p>This is the simplest extension to enable shadows.
-  TODO: In the future, it should be suitable for any shadows implementation,
-  not only shadow maps. We plan to use it for shadow volumes in the future too
-  (removing old <tt>kambiShadowsMain</tt> extensions and such),
-  and maybe ray-tracer too.</p>
-
-  <p>Authors should note that browsers may use internal shaders to produce nice
-  shading for shadow receivers. Custom author shaders may be ignored.
-  If you want to apply your own shaders over shadow receivers, you have to
-  use the lower-level nodes described next instead of this.
 
 <?php echo $toc->html_section(); ?>
 
