@@ -344,7 +344,6 @@ subdirectories.</p>
 
   <?php
     echo node_begin('*Light');
-    $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
     node_field('SFBool', '[]', 'shadows' , 'FALSE', '') .
