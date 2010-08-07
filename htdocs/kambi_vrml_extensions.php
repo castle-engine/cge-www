@@ -2498,7 +2498,9 @@ end;
     <p>This is mostly compatible with
     <a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">Avalon RenderedTexture</a>
     specification. We do not support all Avalon fields,
-    but the basic fields and usage remain the same.</p>
+    but the basic fields and usage remain the same.
+    This is also <a href="http://xj3d.org/extensions/render_texture.html">implemented in Xj3D</a>,
+    in a compatible way.</p>
 
     <?php echo node_begin("RenderedTexture : X3DTextureNode");
       $node_format_fd_name_pad = 20;
@@ -2558,6 +2560,12 @@ end;
     <tt>MFBool</tt> field <tt>depthMap</tt>.
     Also, in current implementation, you should treat <tt>depthMap</tt>
     as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
+
+    <p>TODO: <tt>"scene"</tt> should also be supported.
+    <tt>"background"</tt> and <tt>"fog"</tt> also. And the default
+    background / fog behavior should change? To match the Xj3D,
+    by default no background / fog means that we don't use them,
+    currently we just use the current background / fog.
 
 <?php echo $toc->html_section(); ?>
 
