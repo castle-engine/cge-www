@@ -6,7 +6,7 @@
   define('VERSION_MALFUNCTION', '1.2.6');
   define('VERSION_KAMBI_LINES', '1.1.5');
   define('VERSION_VIEW3DSCENE', '3.6.0');
-  define('VERSION_RAYHUNTER', '1.3.1');
+  define('VERSION_RAYHUNTER', '1.3.2');
   define('VERSION_GLVIEWIMAGE', '1.3.1');
   define('VERSION_GLPLOTTER', '1.2.3');
   define('VERSION_BEZIER_CURVES', '1.1.7');
