@@ -78,4 +78,4 @@ cd view3dscene/
   fpc fpmake.pp
   ./fpmake build
   ./fpmake clean
-  ./fpmake build --nofpccfg
+  ./fpmake build --nofpccfg --verbose
