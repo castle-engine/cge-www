@@ -2322,9 +2322,7 @@ end;
     specifications of Avalon extensions</a>.
 
     <p>Please note that I implemented this all looking at Avalon
-    specifications, which are quite terse. (I didn't actually run
-    instant-reality program (closed-source,
-    not installable under current Debian testing).) Please report
+    specifications, which are quite terse. Please report
     any incompatibilities.
 
 <?php echo $toc->html_section(); ?>
