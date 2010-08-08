@@ -34,8 +34,9 @@
 </table>
 
 <p><tt>rayhunter</tt> is a command-line program that takes
-a 3d model (given as VRML or 3DS file) and renders an image that would be visible
-from given camera looking at given scene. Two ray-tracing algorithms
+a 3D model (like a VRML, X3D or 3DS file) and renders an image that
+would be visible from given camera looking at given scene.
+Two ray-tracing algorithms
 may be used: deterministic (classic Whitted-style ray-tracer)
 and Monte Carlo path tracing.
 
@@ -182,14 +183,13 @@ and Monte Carlo path tracing.
 
     <p>Anything that my code can read (see
     <?php echo a_href_page("view3dscene docs", "view3dscene"); ?>)
-    is accepted here, but actually rendering
-    OBJ (Wavefront) or GEO models has not much sense (because you
-    can't record light information in these formats).
-    VRML 1.0 or 2.0 are the best formats.
+    is accepted here. VRML / X3D are the best formats,
+    we also read 3DS lights, for all other formats: only the headlight will
+    shine over the scene.
 
     <p><tt>-</tt> (single dash) as a filename means stdin.
 
-    <p><b>Notes about rendering 3DS models:</b>
+    <!--p><b>Notes about rendering 3DS models:</b>
     There is no good specification how lights in 3DS files should
     be read and interpreted, and I don't own the proprietary program
     to check how 3DS are supposed to be rendered.
@@ -197,7 +197,7 @@ and Monte Carlo path tracing.
     guarantee anything. If you can provide or point me to some exact
     spec about how the lights and materials in 3DS are supposed
     to be interpreted then post to
-    <?php echo MAILING_LIST_LINK; ?>.
+    < ?php echo MAILING_LIST_LINK; ? -->
 
   <li><p><tt>&lt;output-filename&gt;</tt>
 
