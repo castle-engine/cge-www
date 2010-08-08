@@ -88,7 +88,7 @@ table_demo_images(array(
   <li>Incompatible changes: <tt>DirectionalLight.projectionRectangle</tt> order changed, to match standard <tt>OrthoViewpoint.fieldOfView</tt> order. Also, <tt>projection*</tt> parameters are zero by default (which indicates that they should be automatically calculated).</li>
   <li>Easy menu items to control shadow maps, see the new <i>View -&gt; Shadow Maps -&gt; ...</i> submenu.</li>
   <li>New <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
-  <li>Extensions to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.html#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
+  <li>Extensions to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
   <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://vrmlengine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <tt>--ortho</tt> option).</li>
   <li>See also <a href="http://vrmlengine.sourceforge.net/changes_log.php#2010-7-9-development_news__many_shadow_maps_improvements__castle_fountain__more">previous news item</a> for some more details about new stuff implemented.
 </ul>
