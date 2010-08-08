@@ -407,8 +407,9 @@ subdirectories.</p>
   for the scene and control every important detail of the shadow mapping process.</p>
 
   <p>These lower-level extensions give a complete and flexible system to
-  control the shadow maps, making the <tt>receiveShadows</tt>
-  feature only a shortcut for the simplest setup.</p>
+  control the shadow maps, making the <tt>Appearance.receiveShadows</tt>
+  and <tt>X3DLightNode.shadows</tt> features only a shortcuts
+  for the usual setup.</p>
 
   <p>We make a shadow map texture by the <tt>GeneratedShadowMap</tt> node,
   and project it on the shadow receiver by
@@ -446,6 +447,11 @@ subdirectories.</p>
   and it's the way of the future anyway. You can start from a trivial
   fragment shader in our examples:
   <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
+
+  <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
+  do not affect the lower-level shadow maps. Essentially, when using
+  the lower-level nodes, you directly control the shaders (and everything
+  else) yourself.
 
   <p>Remember: If you don't want to write your own GLSL shader,
   and you need nice shadows, then these lower-level extensions are not for you.
