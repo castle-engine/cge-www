@@ -258,14 +258,12 @@ and Monte Carlo path tracing.
     <ol>
       <li>These command-line parameters.
 
-      <li>First <tt>PerspectiveCamera</tt> or <tt>Viewpoint</tt>
-        node in VRML file (rayhunter ignores <tt>OrthographicCamera</tt>,
-        after all a raytracer always renders with perspective).
+      <li>First <tt>*Camera</tt> or <tt>*Viewpoint</tt> node in VRML file.
         Remember that placement of camera node in VRML file is important --
         camera's properties are modified by current transformation
         of camera node.
 
-      <li>Default values (default VRML 1.0 camera) :
+      <li>Default values (default VRML 1.0 perspective camera) :
         <ul>
           <li><tt>camera-pos = 0 0 1</tt>,
           <li><tt>camera-dir = 0 0 -1</tt>,
@@ -308,15 +306,17 @@ and Monte Carlo path tracing.
 
   <dt><span class="command_line_option">--view-angle-x &lt;float&gt;</span></dt>
 
-  <dd><p>
-    Set field of view angle in horizontal direction. In degrees.
+  <dd><p>Use perspective projection,
+    with given field of view angle in horizontal direction. In degrees.
     Default is 60 degrees. Note: vertical angle will be automatically
     determined based on horizontal view angle and window width/height
     (unless you specify <tt>force-view-angle-y</tt>, see below).
 
   <dt><span class="command_line_option">--force-view-angle-y &lt;float&gt;</span></dt>
 
-  <dd><p>Normally camera vertical angle will be automatically
+  <dd><p>Use perspective projection,
+    with given field of view angle in vertical direction.
+    Normally camera vertical angle will be automatically
     derived from <tt>--view-angle-x</tt> and requested
     output <tt>&lt;image-width&gt;</tt> and <tt>&lt;image-height&gt;</tt>.
     You can use this parameter to force some other non-proportional
