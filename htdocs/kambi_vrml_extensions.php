@@ -842,6 +842,13 @@ subdirectories.</p>
     <?php echo a_href_page("view3dscene", "view3dscene"); ?>
     and VRML browser components) when rendering shadows using shadow volumes.</p>
 
+    <p><i>To be deprecated some day: currently, extensions below
+    (<tt>kambiShadows</tt>, <tt>kambiShadowsMain</tt>) are the only
+    way to get shadow volumes. However, we plan in the future to instead
+    make our <a href="#section_ext_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
+    used also for shadow volumes. The <tt>kambiShadows*</tt> will become
+    deprecated by this point.</i></p>
+
     <p>General notes about using shadows by shadow volumes:
 
     <ul>
@@ -995,7 +1002,7 @@ subdirectories.</p>
 <?php echo $toc->html_section(); ?>
 
   <p>By default, every <tt>Shape</tt> in the scene casts a shadow.
-  This is the most common setup for shadow maps.
+  This is the most common setup for shadows.
   However it's sometimes useful to explicitly
   disable shadow casting (blocking of the light) for some tricky shapes.
   For example, this is usually desired for shapes that visualize
