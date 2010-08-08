@@ -336,6 +336,17 @@ subdirectories.</p>
   volumes, which means that you can freely mix both shadow approaches
   (volumes and maps) within a single scene.</p>
 
+  <p><i>Most important TODOs:</i> While we did a lot of the shadow maps work,
+  there are still important pieces missing. Some of them wait for other work:
+
+  <ul>
+    <li><tt>PointLight</tt> sources do not cast shadow maps yet. (Easy to do, please report if you need it.)
+    <li>Shadows from many lights on a single receiver do not really work yet. (Waits for finishing the "pure shader pipeline".)
+    <!--li>Some non-trivial multi-texture setups will not work nicely with shadow maps yet (waits for finishing the "pure shader pipeline").-->
+    <!--This is expected to be greatly improved during the next releases, where more and more stuff will be moved to the shader pipeline.-->
+    <li>Not every geometry node supports texCoord field yet (for <tt>TextureCoordinateGenerator</tt> and <tt>ProjectedTextureCoordinate</tt>). This means that receiving shadows on <tt>Sphere</tt>, <tt>Box</tt> and such nodes don't work yet. (Waits for finishing the "proxy" geometry approach, where more (almost all?) stuff will be converted to <tt>IndexedFaceSet</tt> before rendering.)</li>
+  </ul>
+
 <?php echo $toc->html_section(); ?>
 
   <p>In the very simplest case, to make the light source just cast shadows
