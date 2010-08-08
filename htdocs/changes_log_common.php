@@ -67,7 +67,7 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-    array('title' => 'view3dscene 3.6.0 release: More shadow maps improvements, more',
+    array('title' => 'view3dscene 3.6.0 release: Many shadow maps improvements',
           'year' => 2010,
           'month' => 8,
           'day' => 8,
@@ -77,7 +77,7 @@ function this_a_href_page($title, $page_name)
 table_demo_images(array(
   array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
-  array('filename' => 'rendered_texture_mirror', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
+  array('filename' => 'rendered_texture_mirror.png', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
 )) .
 '<p>New ' . this_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
 
@@ -94,11 +94,9 @@ table_demo_images(array(
 
 <p>Also, <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d_slides.pdf">the slides from my Web3D 2010 talk about Shadow Maps</a> (and the <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">paper</a>) are available now.</p>
 
-<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <tt>x3d/rendered_texture</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite (version 2.8.0)</a>.</p>
+<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <tt>x3d/rendered_texture</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite (new version 2.8.0)</a>.</p>
 
-<!-- teaser -->
-
-<p>All the shadow maps improvements are actually implemented inside our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">engine (version 2.1.0)</a>.</p>
+<p>All the shadow maps improvements are actually implemented inside our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">engine (new version 2.1.0)</a>.</p>
 '),
 
     array('title' => 'Development news: Many shadow maps improvements, castle fountain, more',
