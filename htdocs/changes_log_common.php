@@ -82,14 +82,14 @@ table_demo_images(array(
 '<p>New ' . this_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
 
 <ul>
-  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</a>
+  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
   <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_receive_shadows">Apperance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
   <li>Light sources\' <tt>projectionNear</tt>, <tt>projectionFar</tt> and such are automatically calculated now to suitable values, as long as you use high-level <tt>X3DLightNode.shadows</tt> or <tt>Apperance.receiveShadows</tt> fields.</li>
   <li>Incompatible changes: <tt>DirectionalLight.projectionRectangle</tt> order changed, to match standard <tt>OrthoViewpoint.fieldOfView</tt> order. Also, <tt>projection*</tt> parameters are zero by default (which indicates that they should be automatically calculated).</li>
   <li>Easy menu items to control shadow maps, see the new <i>View -&gt; Shadow Maps -&gt; ...</i> submenu.</li>
   <li>New <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
   <li>Extensions to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.html#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
-  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://vrmlengine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <tt>--ortho</tt> option).</p></li>
+  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://vrmlengine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <tt>--ortho</tt> option).</li>
   <li>See also <a href="http://vrmlengine.sourceforge.net/changes_log.php#2010-7-9-development_news__many_shadow_maps_improvements__castle_fountain__more">previous news item</a> for some more details about new stuff implemented.
 </ul>
 
