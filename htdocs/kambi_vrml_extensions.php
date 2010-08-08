@@ -1427,6 +1427,13 @@ Shape {
       node_end();
     ?>
 
+    <!---p>Intuitively, <tt>headBobbing</tt> is the intensity of the whole effect
+    (0 = no head bobbing) and <tt>headBobbingDistance</tt> determines
+    the length of a one step of a walking human.</p>
+
+    Commented out, as headBobbingDistance is awfully large now for this..
+    -->
+
     <p>The field <tt>headBobbing</tt> multiplied by the avatar height specifies how far
     the camera can move up and down. The avatar height is taken from
     the standard <tt>NavigationInfo.avatarSize</tt> (2nd array element).
