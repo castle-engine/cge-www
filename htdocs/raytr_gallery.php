@@ -159,16 +159,20 @@ properties so that classic and path tracer results are similar.
 <?php echo path_tracer_params_descr(2, 0.5, 4, 10, 1); ?>
 <?php echo image_tags_table( array("zupa-wlight-path") ); ?>
 
-<p><b>Office and graz</b>. Renderings below were done
-with the same models and camera settings as two renderings
-from classic ray-tracer.
+<p><b>Office and graz</b>. Same models and camera settings as the renderings
+in the <i>classic</i> section before.
+The lower images were processed using <tt>pcond -h</tt> to improve the look.
+
+<p>For <i>graz</i>:
 <?php echo path_tracer_params_descr(1, 0.5, 2000, 1, 1); ?>
  It took a dozen or so hours for each image
 (2000 paths for each pixel !), even though the generated images
 are small, only 400 x 300... And still the images don't look
-particularly pretty, the noise is very high.
-Two lower versions were processed using <tt>pcond -h</tt>
--- processed images are much better.
+particularly pretty, the noise is very high.</p>
+
+<p>For <i>office</i>: settings like above, but rendered to 800 x 600,
+and scaled to 400 x 300.</p>
+
 <?php echo image_tags_table( array(
   "office-wlight-1-path",
   "graz-wlight-1-path" ) ); ?>
