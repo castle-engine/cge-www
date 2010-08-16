@@ -8,20 +8,44 @@
 <?php
   echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
   echo default_medium_image_progs_demo("kambi_lines");
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Download', 'download'),
+      new TocItem('Game rules', 'rules'),
+      new TocItem('Some detailed game rules', 'detailed_rules'),
+      new TocItem('Source code', 'source'),
+    )
+  );
+  $toc->echo_numbers = true;
 ?>
 
 <p>This is my version of an old game known as "Color Lines".
 
-<div class="table_of_contents">
-<ol>
-  <li><a href="#section_rules">Game rules</a>
-  <li><a href="#section_download">Download</a>
-  <li><a href="#section_detailed_rules">Some detailed game rules</a>
-  <li><a href="#section_source">Source code</a>
-</ol>
-</div>
+<?php echo $toc->html_toc(); ?>
 
-<h2><a name="section_rules">Game rules</a></h2>
+<?php echo $toc->html_section(); ?>
+
+<?php echo_standard_program_download(
+  'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES,
+  $std_releases_post_1_8_0); ?>
+
+<p><i>Installation</i>: just extract the downloaded archive anywhere.
+Run the game binary (<tt>./kambi_lines</tt> on Unix,
+<tt>kambi_lines.exe</tt> on Windows).</p>
+
+<p>On Unix, if you don't want to always run the binary from the game's
+directory, you can extract the game (or make a symlink to extracted dir)
+to <tt>$HOME/.kambi_lines.data/</tt>, or <tt>/usr/local/share/kambi_lines/</tt>,
+or <tt>/usr/share/kambi_lines/</tt>. You can then
+move or symlink the binary <tt>kambi_lines</tt> to any place
+you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
+
+<p>You can run the program with <tt>--fullscreen</tt> command-line option,
+the game will then change screen resolution to 640x480 and run in fullscreen
+mode (this is what original DOS "Color Lines" were doing).
+
+<?php echo $toc->html_section(); ?>
 
 <p>The rules are simple:
 <ol>
@@ -52,28 +76,7 @@ are two-colored balls and joker balls (can play a role of any
 color), and you get bonus points for making one "winning move"
 right after another.
 
-<h2><a name="section_download">Download</a></h2>
-
-<?php echo_standard_program_download(
-  'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES,
-  $std_releases_post_1_8_0); ?>
-
-<p><i>Installation</i>: just extract the downloaded archive anywhere.
-Run the game binary (<tt>./kambi_lines</tt> on Unix,
-<tt>kambi_lines.exe</tt> on Windows).</p>
-
-<p>On Unix, if you don't want to always run the binary from the game's
-directory, you can extract the game (or make a symlink to extracted dir)
-to <tt>$HOME/.kambi_lines.data/</tt>, or <tt>/usr/local/share/kambi_lines/</tt>,
-or <tt>/usr/share/kambi_lines/</tt>. You can then
-move or symlink the binary <tt>kambi_lines</tt> to any place
-you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
-
-<p>You can run the program with <tt>--fullscreen</tt> command-line option,
-the game will then change screen resolution to 640x480 and run in fullscreen
-mode (this is what original DOS "Color Lines" were doing).
-
-<h2><a name="section_detailed_rules"></a>Some detailed game rules</h2>
+<?php echo $toc->html_section(); ?>
 
 <dl>
   <dt>Bonus for making one "winning move" right after another</dt>
@@ -120,7 +123,7 @@ mode (this is what original DOS "Color Lines" were doing).
   </dd>
 </dl>
 
-<h2><a name="section_source">Source code</a></h2>
+<?php echo $toc->html_section(); ?>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
