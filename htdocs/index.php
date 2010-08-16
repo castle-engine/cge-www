@@ -14,9 +14,10 @@
 
 <?php echo pretty_heading("Kambi VRML game engine"); ?>
 
-<p><b>For developers:</b> this is a free/open-source engine.
-It's main focus is on 3D games using
-<a href="http://web3d.org/">VRML / X3D</a> format
+<p><b>For developers:</b> this is a free/open-source 3D (game) engine.
+The engine is written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
+code, and we have an excellent support for the
+<a href="http://web3d.org/">VRML / X3D</a> 3D data
 (although other 3D model formats are also supported).
 For more information, documentation and downloads for developers
 see <a href="#support">lower on this page</a>.</p>
