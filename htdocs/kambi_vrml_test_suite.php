@@ -15,8 +15,10 @@
 <?php echo pretty_heading($page_title,
   VERSION_KAMBI_VRML_TEST_SUITE); ?>
 
-<p><?php echo sf_download("Download Kambi VRML test suite",
-'kambi_vrml_test_suite-' . VERSION_KAMBI_VRML_TEST_SUITE . '.tar.gz'); ?>.
+<div class="download">
+<?php echo sf_download("Download Kambi VRML test suite",
+'kambi_vrml_test_suite-' . VERSION_KAMBI_VRML_TEST_SUITE . '.tar.gz'); ?>
+</div>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>

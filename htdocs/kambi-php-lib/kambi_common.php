@@ -551,15 +551,14 @@ function common_set_page_functions()
   {
     case LANG_PL:
       define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        '¬ród³a niniejszego programu s± dostepne ' .
-        a_href_page('na tej stronie', 'sources') .
-        ', je¶li jeste¶ zainteresowany.');
+        'To jest wolne/otwarte oprogramowanie.  Mo¿esz ' .
+        a_href_page('pobraæ ¼ród³a programu (dla programistów)', 'kambi_vrml_game_engine') . '.');
       break;
     case LANG_EN:
       define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        'Sources of this program are available from ' .
-        a_href_page('this page', 'sources') .
-        ', in case you\'re interested.');
+        'This is free/open-source software. You can ' .
+        a_href_page('download sources of this program (for developers and such)', 'kambi_vrml_game_engine') .
+        '.');
       break;
   }
 

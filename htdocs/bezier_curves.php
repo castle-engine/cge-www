@@ -13,12 +13,11 @@
 <p>Plot rational Bezier curves and smooth interpolated curves (Bezier
 curves connected smoothly).
 
-<p>These are binaries of the program. No special installation is required,
-just unpack the archive and run <tt>bezier_curves</tt>.
 <?php echo_standard_program_download('bezier_curves', 'bezier_curves',
   VERSION_BEZIER_CURVES, $std_releases_post_1_8_0); ?>
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <p>Documentation below is in somewhat raw state, sorry.
 

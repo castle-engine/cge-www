@@ -73,15 +73,16 @@ wait only once for "Loading creatures").
   echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
   VERSION_CASTLE, $std_releases_post_1_2_0);
-?>
- See <?php echo a_href_page('changes_log', 'changes_log') ?>
- for the list of changes since last release.
+?></p>
+
+<p>See <?php echo a_href_page('changes_log', 'changes_log') ?> for
+the list of changes since last release.</p>
 
 <p>This is free software, so if you're interested you're also welcome to
 <?php echo sf_download('download game sources',
   'castle-' . VERSION_CASTLE . '-src.tar.gz', true); ?>.
-This contains all Pascal sources, blender models,
-some Makefiles, GIMP xcf files, etc.
+The sources archive has all the Pascal sources, Blender models,
+Makefiles, GIMP xcf files, etc. needed to develop the game.
 You will also need
 <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
  if you want to recompile the game, see

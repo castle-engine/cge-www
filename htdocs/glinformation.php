@@ -13,11 +13,10 @@ about it's version and features. As OpenGL implementation is usually closely
 tied to your graphic card model and drivers, this provides information
 about your GPU, useful for developers of OpenGL (3D) programs.</p>
 
-<p>Download glinformation:</p>
-
 <?php echo_standard_program_download('glinformation', 'glinformation', VERSION_GLINFORMATION,
   $std_releases_post_1_8_0); ?>
 
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <h3>Optional command-line options</h3>

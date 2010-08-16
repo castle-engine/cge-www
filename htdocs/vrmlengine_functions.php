@@ -6,6 +6,12 @@ define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 
+define('S_INSTALLATION_INSTRUCTIONS_SHORT',
+  'No installation is required. Just download and unpack these archives wherever
+  you want, and run the program inside. The documentation
+  (this web page) is also included inside
+  (look in the <tt>documentation/</tt> subdirectory) for offline viewing.');
+
 function echo_header_bonus ()
 {
   ?>
@@ -172,6 +178,8 @@ function echo_standard_program_download(
     $nice_name_start .= ' (' . $prog_version . ')';
   */
 
+  echo '<div class="download">';
+
   if (IS_GEN_LOCAL)
   {
     /* Since the download links contain so many things
@@ -190,15 +198,17 @@ function echo_standard_program_download(
         <a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a>
       </td></tr></table>';
   */
-    echo "<ul>\n";
+    echo '<div class="download_title">' . $nice_name_start . ':</div>';
+    echo '<ul>' . "\n";
     foreach ($os_arch_list as $os_arch)
     {
-      echo '<li>' . sf_download(
-        $nice_name_start . $os_arch_caption[$os_arch],
+      echo '<li>' . sf_download($os_arch_caption[$os_arch],
         $arch_name_start . $os_arch . $os_arch_extension[$os_arch]) . "</li>\n";
     }
     echo "</ul>\n";
   }
+
+  echo '</div>';
 }
 
 /* Return <table> with image links.

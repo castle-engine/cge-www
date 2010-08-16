@@ -83,12 +83,11 @@ is also very useful.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>These are the binaries of the program. No special installation is required,
-just unpack the archive and run <tt>glViewImage</tt>.
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
   VERSION_GLVIEWIMAGE,  $std_releases_post_1_8_0); ?>
 
-<?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <?php echo $toc->html_section(); ?>
 

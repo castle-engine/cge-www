@@ -209,14 +209,11 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <?php section(); ?>
 
-<p>Here are archived binaries of the program. No special installation
-is required, just unpack these archives and run the program.
-This documentation is also included in the archives
-(look in <tt>documentation</tt> subdirectory) for offline viewing.
 <?php echo_standard_program_download('view3dscene', 'view3dscene',
   VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <p><i>Demo scenes</i>:
 In <?php echo a_href_page("Kambi VRML test suite",

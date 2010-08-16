@@ -49,10 +49,10 @@ and Monte Carlo path tracing.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo S_HERE_ARE_BINARIES; ?>
 <?php echo_standard_program_download('rayhunter', 'rayhunter',
   VERSION_RAYHUNTER, $std_releases_post_1_8_0); ?>
 
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
 <?php /* Too small:

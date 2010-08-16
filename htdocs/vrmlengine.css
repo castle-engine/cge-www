@@ -135,3 +135,12 @@ a.screenshot:hover img { border: 2pt solid #888; }
   margin: 0.5in;
 }
 */
+
+div.download {
+  display: inline-block;
+  background: #fdff8c url(images/download_box_bg.png) no-repeat;
+  border: medium outset black;
+  padding: 0.5em;
+}
+
+.download_title { font-weight: bold; }
