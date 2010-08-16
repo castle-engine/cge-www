@@ -544,7 +544,7 @@ and Monte Carlo path tracing.
   <li><p><i>Mostly for <tt>classic</tt> ray-tracer :</i><br>
     <?php echo a_href_page_hashlink(
       "Use <tt>mirror</tt> field of <tt>Material</tt> node to create mirrors",
-      "kambi_vrml_extensions", "ext_material_mirror"); ?>.
+      "kambi_vrml_extensions", "section_ext_material_mirror"); ?>.
 
   <li><p><i>Only for <tt>path</tt> tracer :</i><br>
     We don't use point and directional lights,
@@ -557,7 +557,7 @@ and Monte Carlo path tracing.
     See <?php echo a_href_page_hashlink(
      "fields describing physical properties (Phong's BRDF) for " .
      "<tt>Material</tt>node", "kambi_vrml_extensions",
-     "ext_material_phong_brdf_fields"); ?>.
+     "section_ext_material_phong_brdf_fields"); ?>.
 
   <li><p>Some things not handled (yet): textures, interpolating
     normal vectors (i.e. we're of course calculating pixel color
