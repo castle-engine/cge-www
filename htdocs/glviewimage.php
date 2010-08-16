@@ -9,8 +9,8 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Download', 'download'),
       new TocItem('Features', 'features'),
-      new TocItem('Downloading', 'download'),
       new TocItem('Running', 'run'),
       new TocItem('Special keys', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
@@ -30,12 +30,20 @@
  ?>
 
 <p><tt>glViewImage</tt> is an image viewer, converter and even
-a very limited editor.</p>
+a very limited image editor.</p>
 
 <?php
   echo $toc->html_toc();
   echo $toc->html_section();
 ?>
+
+<?php echo_standard_program_download('glViewImage', 'glviewimage',
+  VERSION_GLVIEWIMAGE,  $std_releases_post_1_8_0); ?>
+
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
+
+<?php echo $toc->html_section(); ?>
 
 <p><tt>glViewImage</tt> was originally developed to test and demonstrate
 the power of image handling inside our VRML engine, but it became quite usable
@@ -80,14 +88,6 @@ is also very useful.</p>
     <a href="http://www.imagemagick.org/">ImageMagick</a>
     package must be available on $PATH for this to work.
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<?php echo_standard_program_download('glViewImage', 'glviewimage',
-  VERSION_GLVIEWIMAGE,  $std_releases_post_1_8_0); ?>
-
-<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <?php echo $toc->html_section(); ?>
 
