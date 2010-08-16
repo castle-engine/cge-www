@@ -54,7 +54,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     array(
       new TocItem('Features', 'features'),
       new TocItem('Downloading and installing', 'install'),
-      new TocItem('Installing GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
+      new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
       new TocItem('Running', 'run'),
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
@@ -228,53 +228,41 @@ in data files of my games
 
 <?php section(false); ?>
 
-<p>To get simple integration with GNOME and other desktops following
-<a href="http://freedesktop.org/">freedesktop.org</a> specifications,
-you can optionally do somewhat more involved installation.
+<p>If you use GNOME (or other desktops following
+<a href="http://freedesktop.org/">freedesktop.org</a> specifications),
+you can optionally do also:
 
-<ol>
-  <li><p>First of all, you will need some scripts and data that
-    currently is only in Subversion repository. Just run<br/><tt>
-  <?php echo sf_checkout_link(true, 'view3dscene/desktop'); ?></tt>
+<pre class="bordered_code">
+cd desktop/
+./install.sh
+</pre>
 
-  <li><p>Make sure <tt>view3dscene</tt> binary is somewhere on the $PATH.
-    You can symlink or just move the binary there.
-
-  <li><p>Then run
-<pre>
-  make install
-</pre> inside downloaded <tt>desktop</tt>
-    directory.
-
-  <li><p>You may need to logout and login again to your GNOME/desktop
-    session for all programs to catch up (alternatively, you can do
-    <tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
-    but this is obviously somewhat brutal method).
-</ol>
-
-<p>That's it! You should now see view3dscene entry in your desktop menu
-(it's in the <i>Graphics</i> category), with a nice icon,
-and all known 3D model files will be recognized and
-double-clicking on them will launch view3dscene.
+This will install view3dscene menu item (look in the <i>Graphics</i> category),
+nice icon, and associate it with
+appropriate 3D model types. You should logout and login again to your GNOME/desktop
+session for all programs to catch up (alternatively, you can do
+<tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
+but this is obviously somewhat brutal method).</p>
 
 <p>If you use GNOME file manager Nautilus there's
 one more cool thing you can do: use
 view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
-in the viewed directory.
-This is simple, assuming you already did previous steps (as it's required
-that view3dscene is on the $PATH and mime types are recognized) run</p>
+in the viewed directory. Assuming that view3dscene is on the $PATH
+and you already did previous <tt>./install.sh</tt>, you can run:</p>
 
-<pre>
-  make install_thumbnailer
+<pre class="bordered_code">
+./install_thumbnailer.sh
 </pre>
 
-<p>inside the downloaded <tt>desktop</tt> directory.
+<p><!--inside the <tt>desktop</tt> directory.-->
 This will add the gconf keys to run thumbnailers on your 3D models.
 Enter some directory with VRML / X3D / other 3D files,
-and enjoy your thumbnails.</p>
-
-<p><i>Beware that loading arbitrary 3D scene may take a lot of time,
+and enjoy your thumbnails :)
+<i>Beware that loading arbitrary 3D scene may take a lot of time,
 so using the thumbnailer may consume a lot of memory and CPU power</i>.
+But it seems that thumbnailer is nicely run with appropriate priority,
+so it doesn't actually exhaust your cpu.
+<!--
 Although we try
 to be fast, and some things are specially optimized for screenshot,
 there are no guarantees. No engine can load arbitrary large
@@ -283,9 +271,10 @@ Nautilus should automatically terminate thumbnailer that
 runs too long, so this is not critical problem. After all, reading large
 movies or images has similar problems, but it works quite Ok, right?
 (Actually, 3D data is much more difficult than reading just a few starting
-seconds of a movie or a simple 2D image...) That said, the author of this
+seconds of a movie or a simple 2D image...) -->
+And the author of this
 text is using view3dscene thumbnailer all the time, and it works
-flawlessly :) so give it a try!
+flawlessly :) So give it a try!
 
 <?php section(); ?>
 

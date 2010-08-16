@@ -92,6 +92,12 @@ pre.vrml_code {
   padding: 0.3em;
 }
 
+pre.bordered_code {
+  border: 1px solid #aaaaaa;
+  background-color: #f9f9f9;
+  padding: 0.3em;
+}
+
 dl.vrml_ver_differences > dt {
   font-weight: normal;
   font-style: italic;
