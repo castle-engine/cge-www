@@ -52,9 +52,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 <?php
   $toc = new TableOfContents(
     array(
-      new TocItem('Features', 'features'),
       new TocItem('Downloading and installing', 'install'),
       new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
+      new TocItem('Features', 'features'),
       new TocItem('Running', 'run'),
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
@@ -69,6 +69,75 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 ?>
 
 <?php section(false); ?>
+
+<?php echo_standard_program_download('view3dscene', 'view3dscene',
+  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
+
+<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
+
+<p><i>Demo scenes</i>:
+In <?php echo a_href_page("Kambi VRML test suite",
+"kambi_vrml_test_suite"); ?> you can find many simple VRML models
+that demonstrate what can be expressed in VRML 1.0, 2.0, X3D
+and what view3dscene can handle and display. These are not any big or
+beautiful scenes, you can find some (slightly) more impressive VRMLs
+in data files of my games
+ <?php echo a_href_page("The Castle", "castle"); ?>,
+ <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
+ <?php echo a_href_page("malfunction", "malfunction"); ?>.
+
+<?php section(false); ?>
+
+<p>If you use GNOME (or other desktops following
+<a href="http://freedesktop.org/">freedesktop.org</a> specifications),
+you can optionally do also:
+
+<pre class="bordered_code">
+cd desktop/
+./install.sh
+</pre>
+
+This will install view3dscene menu item (look in the <i>Graphics</i> category),
+nice icon, and associate it with
+appropriate 3D model types. You should logout and login again to your GNOME/desktop
+session for all programs to catch up (alternatively, you can do
+<tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
+but this is obviously somewhat brutal method).</p>
+
+<p>If you use GNOME file manager Nautilus there's
+one more cool thing you can do: use
+view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
+in the viewed directory. Assuming that view3dscene is on the $PATH
+and you already did previous <tt>./install.sh</tt>, you can run:</p>
+
+<pre class="bordered_code">
+./install_thumbnailer.sh
+</pre>
+
+<p><!--inside the <tt>desktop</tt> directory.-->
+This will add the gconf keys to run thumbnailers on your 3D models.
+Enter some directory with VRML / X3D / other 3D files,
+and enjoy your thumbnails :)
+<i>Beware that loading arbitrary 3D scene may take a lot of time,
+so using the thumbnailer may consume a lot of memory and CPU power</i>.
+But it seems that thumbnailer is nicely run with appropriate priority,
+so it doesn't actually exhaust your cpu.
+<!--
+Although we try
+to be fast, and some things are specially optimized for screenshot,
+there are no guarantees. No engine can load arbitrary large
+3D data without any noticeable resource use.
+Nautilus should automatically terminate thumbnailer that
+runs too long, so this is not critical problem. After all, reading large
+movies or images has similar problems, but it works quite Ok, right?
+(Actually, 3D data is much more difficult than reading just a few starting
+seconds of a movie or a simple 2D image...) -->
+And the author of this
+text is using view3dscene thumbnailer all the time, and it works
+flawlessly :) So give it a try!
+
+<?php section(); ?>
 
 <p>Supported file formats:
 <ul>
@@ -206,75 +275,6 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
     "screenshot" of 3D environment as a cube map (to DDS, or six
     separate images).
 </ul>
-
-<?php section(); ?>
-
-<?php echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
-
-<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
-
-<p><i>Demo scenes</i>:
-In <?php echo a_href_page("Kambi VRML test suite",
-"kambi_vrml_test_suite"); ?> you can find many simple VRML models
-that demonstrate what can be expressed in VRML 1.0, 2.0, X3D
-and what view3dscene can handle and display. These are not any big or
-beautiful scenes, you can find some (slightly) more impressive VRMLs
-in data files of my games
- <?php echo a_href_page("The Castle", "castle"); ?>,
- <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
- <?php echo a_href_page("malfunction", "malfunction"); ?>.
-
-<?php section(false); ?>
-
-<p>If you use GNOME (or other desktops following
-<a href="http://freedesktop.org/">freedesktop.org</a> specifications),
-you can optionally do also:
-
-<pre class="bordered_code">
-cd desktop/
-./install.sh
-</pre>
-
-This will install view3dscene menu item (look in the <i>Graphics</i> category),
-nice icon, and associate it with
-appropriate 3D model types. You should logout and login again to your GNOME/desktop
-session for all programs to catch up (alternatively, you can do
-<tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
-but this is obviously somewhat brutal method).</p>
-
-<p>If you use GNOME file manager Nautilus there's
-one more cool thing you can do: use
-view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
-in the viewed directory. Assuming that view3dscene is on the $PATH
-and you already did previous <tt>./install.sh</tt>, you can run:</p>
-
-<pre class="bordered_code">
-./install_thumbnailer.sh
-</pre>
-
-<p><!--inside the <tt>desktop</tt> directory.-->
-This will add the gconf keys to run thumbnailers on your 3D models.
-Enter some directory with VRML / X3D / other 3D files,
-and enjoy your thumbnails :)
-<i>Beware that loading arbitrary 3D scene may take a lot of time,
-so using the thumbnailer may consume a lot of memory and CPU power</i>.
-But it seems that thumbnailer is nicely run with appropriate priority,
-so it doesn't actually exhaust your cpu.
-<!--
-Although we try
-to be fast, and some things are specially optimized for screenshot,
-there are no guarantees. No engine can load arbitrary large
-3D data without any noticeable resource use.
-Nautilus should automatically terminate thumbnailer that
-runs too long, so this is not critical problem. After all, reading large
-movies or images has similar problems, but it works quite Ok, right?
-(Actually, 3D data is much more difficult than reading just a few starting
-seconds of a movie or a simple 2D image...) -->
-And the author of this
-text is using view3dscene thumbnailer all the time, and it works
-flawlessly :) So give it a try!
 
 <?php section(); ?>
 
