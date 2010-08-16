@@ -40,7 +40,9 @@ LINUX64_BINARY_PATH=/home/michalis/rel/linux64/
 FREEBSD_BINARY_PATH=/freebsd/usr/home/michal/bin/
 MACOSX_BINARY_PATH=/home/michalis/rel/macosx/
 WIN_BINARY_PATH=/home/michalis/rel/win/
-FILE_RELEASES_PATH=/home/michalis/sources/kambi_update_archives/file_releases/
+
+FILE_RELEASES_PATH=`pwd`/file_releases/
+mkdir -p "$FILE_RELEASES_PATH"
 
 WIN32_DLLS_PATH="/home/michalis/sources/kambi_update_archives/kambi_update_archives/win32_dlls/"
 

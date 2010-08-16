@@ -25,9 +25,7 @@ else
   CYG_KAMBI_WWW_LOCAL_PATH="$KAMBI_WWW_LOCAL_PATH"
 fi
 
-ARCHIVE_PATH=`pwd`
-ARCHIVE_PATH=`dirname $ARCHIVE_PATH`
-ARCHIVE_PATH="$ARCHIVE_PATH"/file_releases/
+ARCHIVE_PATH=`pwd`/file_releases/
 mkdir -p "$ARCHIVE_PATH"
 
 # funcs for updating Pascal sources ----------------------------------------
