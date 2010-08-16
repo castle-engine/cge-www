@@ -91,16 +91,20 @@ in data files of my games
 
 <p>If you use GNOME (or other desktops following
 <a href="http://freedesktop.org/">freedesktop.org</a> specifications),
-you can optionally do also:
+you can optionally install also view3dscene menu item
+(look in the <i>Graphics</i> category), with a nice icon, and associate it with
+appropriate 3D model types.</p>
 
 <pre class="bordered_code">
+# Place view3dscene on $PATH, for example like this:
+sudo ln -s /usr/local/bin/view3dscene view3dscene
+
+# Install menu items, icons, mime types:
 cd desktop/
 ./install.sh
 </pre>
 
-This will install view3dscene menu item (look in the <i>Graphics</i> category),
-nice icon, and associate it with
-appropriate 3D model types. You should logout and login again to your GNOME/desktop
+<p>You may need to logout and login again to your GNOME/desktop
 session for all programs to catch up (alternatively, you can do
 <tt>killall gnome-panel &amp;&amp; killall nautilus</tt>
 but this is obviously somewhat brutal method).</p>
