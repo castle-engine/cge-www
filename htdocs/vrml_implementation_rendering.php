@@ -7,7 +7,7 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>Coordinate</tt>, <tt>Color</tt>, <tt>Normal</tt></p>
+  <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>Coordinate</tt>, <tt>Color</tt>, <tt>ColorRGBA</tt>, <tt>Normal</tt></p>
 
   <li><p>New X3D rendering primitives implemented:
 
@@ -69,7 +69,7 @@ Shape {
 
 </ul>
 
-<p><i>TODO</i>: ClipPlane, ColorRGBA is missing.</p>
+<p><i>TODO</i>: ClipPlane is missing.</p>
 
 <?php
   x3d_status_footer();
