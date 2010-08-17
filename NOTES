@@ -46,6 +46,12 @@ Procedure to update WWW content:
 ("locally" means that this is done on a local copy of the repository
 www/ directory, preferably *not* on "online" copy on shell.sf.net):
 
+- When release is packed, it's nice to tag it in SVN:
+
+  svn copy https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/XXX \
+	   https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/XXX/VERSION \
+    -m "Tagging the VERSION version of 'XXX'."
+
 - Release on SourceForge.
 
   New FRS (http://p.sf.net/sourceforge/FRS):
