@@ -120,6 +120,7 @@ $toc = new TableOfContents(array(
   new TocItem('Teapot primitive (<tt>Teapot</tt> node)', 'ext_teapot', 2),
   new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
   new TocItem('Plane (<tt>Plane</tt> node)', 'ext_plane', 2),
+  new TocItem('Boolean value toggler (<tt>Toggler</tt> node)', 'ext_toggler', 2),
 
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 
@@ -2607,6 +2608,59 @@ end;
     to <tt>Rectangle2D</tt> inside our engine, the only difference
     being that <tt>Plane.solid</tt> is <tt>TRUE</tt> by default
     (for <tt>Rectangle2D</tt> spec says it's <tt>FALSE</tt> by default).</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p><a href="http://www.instantreality.org/documentation/nodetype/Toggler/">Avalon Toggler node</a>.
+    A simple event utility for setting/observing a boolean value in various
+    ways. Something like a standard X3D <tt>BooleanToggle</tt> on steroids.
+    We support this node fully, according to instantreality specs.</p>
+
+    <?php echo node_begin("Toggler  : X3DChildNode");
+      $node_format_fd_name_pad = 20;
+      $node_format_fd_def_pad = 15;
+      echo
+      node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+      node_field('SFBool', '[in,out]', 'status',  'FALSE', '') .
+      node_field('SFBool', '[in,out]', 'notStatus',  'TRUE', '') .
+      node_field('XFAny' , '[in]'    , 'toggle', '', 'the type/value send here is ignored') .
+      node_field('XFAny' , '[in]'    , 'set', '', 'the type/value send here is ignored') .
+      node_field('XFAny' , '[in]'    , 'reset', '', 'the type/value send here is ignored') .
+      node_field('SFBool', '[out]'   , 'changed', '', 'always sends TRUE') .
+      node_field('SFBool', '[out]'   , 'on', '', 'always sends TRUE') .
+      node_field('SFBool', '[out]'   , 'off', '', 'always sends TRUE') .
+      node_field('SFBool', '[in,out]', 'enabled',  'TRUE') .
+      node_end();
+    ?>
+
+    <p><tt>"status"</tt> is the boolean value stored.
+    <tt>"notStatus"</tt> is always the negated value of <tt>"status"</tt>.
+    You can set either of them (by sending
+    <tt>"set_status"</tt> or <tt>"set_notStatus"</tt>). Changing any of them
+    causes both output events to be send. That is, <tt>"status_changed"</tt>
+    receives the new boolean value stored, <tt>"notStatus_changed"</tt>
+    received the negation of the new value stored.</p>
+
+    <p>The input events <tt>"toggle"</tt>, <tt>"set"</tt> and <tt>"reset"</tt>
+    provide altenative ways to change the stored boolean value.
+    They accept any VRML/X3D type/value as input
+    (this is called <tt>XFAny</tt> by Avalon), and the value send
+    is actually completely ignored.
+    <tt>"toggle"</tt> always toggles (negates) the stored value,
+    <tt>"set"</tt> changes the stored value to <tt>TRUE</tt>,
+    <tt>"reset"</tt> changes the stored value to <tt>FALSE</tt>.</p>
+
+    <p>The output events <tt>"changed"</tt>, <tt>"on"</tt>, <tt>"off"</tt> provide
+    altenative ways to observe the stored boolean value.
+    They always generate a boolean <tt>TRUE</tt> value when specific
+    thing happens. <tt>"changed"</tt> event is generated when the value
+    changes, <tt>"on"</tt> event is generated when the value changes to <tt>TRUE</tt>,
+    <tt>"off"</tt> event is generated when the value changes to <tt>FALSE</tt>.</p>
+
+    <p><tt>"enabled"</tt> allows to disable input/output events handling.
+    When <tt>enabled = FALSE</tt> then
+    sending input events to above fields has no effect (stored boolean value
+    doesn't change), and no output events are generated.</p>
 
 <?php echo $toc->html_section(); ?>
 
