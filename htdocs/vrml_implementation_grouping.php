@@ -18,7 +18,7 @@
   <li><p><tt>Switch</tt>, <tt>Group</tt>, <tt>Transform</tt></p>
 
     <p>Including special optimizations for animating transformations,
-    be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.</p></li>
+    be sure to select <tt>roSeparateShapesNoTransform</tt> method.</p></li>
 </ul>
 
 <p>Note that explicit bounding boxes are (for now! This may change in the future!) not used by the engine. That is, don't bother calculating / filling the fields <tt>bboxCenter</tt> and <tt>bboxSize</tt> for our engine. The engine currently always internally calculates and keeps up-to-date best-fit boxes (and spheres) for collision, all by itself.</p>

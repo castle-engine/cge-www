@@ -35,7 +35,7 @@
 
     <p>Animating transformations of <tt>Joint</tt> nodes and such
     is optimized, just like for <tt>Transform</tt> node,
-    be sure to select <tt>roSeparateShapeStatesNoTransform</tt> method.
+    be sure to select <tt>roSeparateShapesNoTransform</tt> method.
 </ul>
 
 <?php
