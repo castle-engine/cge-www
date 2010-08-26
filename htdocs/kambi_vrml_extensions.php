@@ -2550,9 +2550,7 @@ end;
 
     <p>First two numbers in <tt>"dimensions"</tt> field specify
     the width and the height of the texture. (Our
-    current implementation ignores the rest of <tt>dimensions</tt> field.
-    Also, in current implementation, you should treat <tt>dimensions</tt> field
-    as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
+    current implementation ignores the rest of <tt>dimensions</tt> field.)</p>
 
     <p><tt>"update"</tt> is the standard field for automatically generated
     textures (works the same as for <tt>GeneratedCubeMapTexture</tt> or <tt>GeneratedShadowMap</tt>).
@@ -2587,9 +2585,7 @@ end;
     <p><tt>"depthMap"</tt>, if it is <tt>TRUE</tt>, then the generated texture
     will contain the depth buffer of the image (instead of the color buffer
     as usual). (Our current implementation only looks at the first item of
-    <tt>MFBool</tt> field <tt>depthMap</tt>.
-    Also, in current implementation, you should treat <tt>depthMap</tt>
-    as <tt>initializeOnly</tt>, i.e. do not change it's value after world is loaded.)</p>
+    <tt>MFBool</tt> field <tt>depthMap</tt>.)</p>
 
     <p>TODO: <tt>"scene"</tt> should also be supported.
     <tt>"background"</tt> and <tt>"fog"</tt> also. And the default
