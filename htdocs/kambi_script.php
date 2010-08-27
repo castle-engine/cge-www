@@ -13,6 +13,11 @@
   }
 ?>
 
+<?php if (!IS_GEN_LOCAL) { ?>
+  <div class="chm" style="float: right"><a href="kambiscript_language.chm">This
+  KambiScript reference in CHM format</a></div>
+<?php } ?>
+
 <?php echo pretty_heading('KambiScript language', NULL,
 'Simple scripting language for Kambi VRML game engine'); ?>
 

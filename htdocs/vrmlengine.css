@@ -150,3 +150,11 @@ div.download {
 }
 
 .download_title { font-weight: bold; }
+
+div.chm {
+  display: inline-block;
+  background: #80f8ff;
+  font-weight: bold;
+  border: medium outset black;
+  padding: 0.5em;
+}
