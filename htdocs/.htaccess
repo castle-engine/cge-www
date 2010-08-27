@@ -1,0 +1,3 @@
+# Otherwise server returns text/plain and the chm
+# contents are displayed as a text file.
+AddType application/octet-stream .chm
