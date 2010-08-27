@@ -122,7 +122,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Time'                            , 'vrml_implementation_time'                ); ?>  </td><td><b>2 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Networking'                      , 'vrml_implementation_networking'          ); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
   <tr><td><?php echo a_href_page('Grouping'                        , 'vrml_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Rendering'                       , 'vrml_implementation_rendering'           ); ?>  </td><td><b>4</b></td></tr>
+  <tr><td><?php echo a_href_page('Rendering'                       , 'vrml_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'vrml_implementation_shape'               ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'vrml_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td></td></tr>

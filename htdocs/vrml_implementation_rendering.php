@@ -9,6 +9,22 @@
 <ul>
   <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>Coordinate</tt>, <tt>Color</tt>, <tt>ColorRGBA</tt>, <tt>Normal</tt></p>
 
+  <li><p><tt>ClipPlane</tt></p>
+
+    <p>OpenGL limits the number of clipping planes that may be enabled
+    at the same time on a single shape. This limit is <i>at least six</i>
+    (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
+    at <i>"Max clip planes"</i> line, to know the limit of your GPU).
+    Following X3D spec, we treat the "more global" clipping planes
+    as more important.</p>
+
+    <p>Note that clipping planes are purely visual effect.
+    The clipped geometry is still present for collision detection,
+    picking, bounding volumes etc.</p>
+
+    <p>TODO: clip planes don't work on background nodes
+    (<tt>X3DBackgroundNode</tt>) yet.</p>
+
   <li><p>New X3D rendering primitives implemented:
 
     <p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
@@ -68,8 +84,6 @@ Shape {
     if this is wrong for whatever reason.
 
 </ul>
-
-<p><i>TODO</i>: ClipPlane is missing.</p>
 
 <?php
   x3d_status_footer();
