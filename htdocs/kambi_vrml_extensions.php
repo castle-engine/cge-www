@@ -2545,6 +2545,9 @@ end;
       node_field('SFBool', '[]', 'repeatT', 'TRUE') .
       node_field('SFBool', '[]', 'repeatR', 'TRUE') .
       node_field('MFBool', '[in,out]', 'depthMap', '[]') .
+      node_field('SFMatrix4f', '[out]', 'viewing', '') .
+      node_field('SFMatrix4f', '[out]', 'projection', '') .
+      node_field('SFBool', '[out]', 'rendering', '') .
       node_end();
     ?>
 
@@ -2586,6 +2589,18 @@ end;
     will contain the depth buffer of the image (instead of the color buffer
     as usual). (Our current implementation only looks at the first item of
     <tt>MFBool</tt> field <tt>depthMap</tt>.)</p>
+
+    <p><tt>"rendering"</tt> output event sends a <tt>TRUE</tt> value right
+    before rendering to the texture, and sends <tt>FALSE</tt> after.
+    It can be useful to e.g. ROUTE this to a <tt>ClipPlane.enabled</tt> field.
+    This is our (Kambi engine) extension, not present in other implementations.
+    In the future, <tt>"scene"</tt> field will be implemented, this will
+    allow more flexibility, but for now the simple <tt>"rendering"</tt> event
+    may be useful.</p>
+
+    <p><tt>"viewing"</tt> and <tt>"projection"</tt> output events are
+    also send right before rendering, they contain the modelview (camera)
+    and projection matrices.</p>
 
     <p>TODO: <tt>"scene"</tt> should also be supported.
     <tt>"background"</tt> and <tt>"fog"</tt> also. And the default
