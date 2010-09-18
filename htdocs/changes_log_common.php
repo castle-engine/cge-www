@@ -67,6 +67,46 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Development news: events optimizations, ClipPlane, CHM docs, and more',
+          'year' => 2010,
+          'month' => 9,
+          'day' => 18,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'jarjar.png', 'titlealt' => 'JarJar animation, made in X3D by Stephen H. France'),
+)) .
+'August was a busy month, as I\'m sure <a href="http://cia.vc/stats/project/vrmlengine">SVN statistics</a> confirm :) A lot of the stuff was tackled, two refactoring passes (primitives rendering and events optimizing) done and a lot of improvements happened along the way:
+
+<ol>
+  <li><p>VRML/X3D features implemented:
+
+    <ul>
+      <li><b>ClipPlane</b> node is handled.
+      <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster (uses <tt>glColorMaterial</tt>).
+      <li><b>RenderedTexture.rendering, viewing, projection</b> output events are implemented.
+      <li><b>TimeSensor.enabled, cycleTime</b> are now handled correctly.
+      <li><b>Toggler</b> node (simple event utility) from InstantReality is handled.
+    </ul>
+
+  <li><p><b>Primitives</b>: more nodes (boxes, spheres, cones, cylinders) are now processed by converting them to <tt>IndexedFaceSet</tt> or similar low-level geometry. (This is called the <i>"proxy mechanism"</i> in sources.) And the whole mechanism is now much more efficient, so e.g. <tt>Extrusion</tt>, <tt>Teapot</tt>, NURBS curves and surfaces are processed now faster.</p>
+
+    <p>The immediate gain from it is that Box (and VRML 1.0 Cube), Cone, Cylinder, Sphere <a href="TODO#tex_coord_for_all">get the "texCoord" field (for TextureCoordinateGenerator, MultiTextureCoordinate, ProjectedTextureCoordinate)</a>. In particular they can be shadow map receivers, they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly.</p>
+
+    <p>Developers: this makes a little incompatible change. TVRMLShape.Geometry/State now may return something more temporary. Most code should work out-of-the-box without changes (and work faster!), but if you e.g. played with removing the geometry nodes --- you should consider using TVRMLShape.OriginalGeometry node instead, see also TVRMLScene.RemoveShapeGeometry.</p>
+  </li>
+
+  <li><p><b>Events</b>: the code handling changes to the VRML/X3D graph (in particular, through the events) got a few refreshments. Some events work better or faster now (e.g. <tt>RenderedTexture.dimensions</tt> and <tt>depthMap</tt> can be changed through events.)</p>
+
+    <p>A couple of large optimizations for <tt>Transform</tt> animation were implemented.</p>
+
+  <li><p>Stephen H. France prepared <a href="http://vrmlengine.sourceforge.net/abbreviated_x3d_specs_for_users.chm">X3D specification including Kambi extensions</a> and <a href="http://vrmlengine.sourceforge.net/kambiscript_language.chm">KambiScript reference</a> in the CHM format. The CHM format makes them easy to browse and search. Thanks!</p>
+
+  <li><p>Next view3dscene release will include scripts to easier setup desktop (GNOME) integration.
+</ol>'),
+
+
     array('title' => 'view3dscene 3.6.0 release: Many shadow maps improvements',
           'year' => 2010,
           'month' => 8,
