@@ -105,7 +105,9 @@ table_demo_images(array(
     <p>A couple of large optimizations for <tt>Transform</tt> animation were implemented.</p>
 
   <!--li><p>Next view3dscene release will include scripts to easier setup desktop (GNOME) integration.</li-->
-</ol>'),
+</ol>
+
+<p>As always, you can test the new features before the next release by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.'),
 
 
     array('title' => 'view3dscene 3.6.0 release: Many shadow maps improvements',
