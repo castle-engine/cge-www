@@ -85,7 +85,7 @@ table_demo_images(array(
 
     <ul>
       <li><b>ClipPlane</b> node is handled.
-      <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster (uses <tt>glColorMaterial</tt>).
+      <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster.<!-- (uses <tt>glColorMaterial</tt>).-->
       <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b> (link to SVN docs)</a> output events are implemented.
       <li><b>TimeSensor.enabled, cycleTime</b> are now handled correctly.
       <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_toggler"><b>Toggler</b> (link to SVN docs) </a> node (simple event utility) from InstantReality is handled.
