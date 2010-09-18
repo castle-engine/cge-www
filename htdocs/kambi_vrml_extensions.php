@@ -88,6 +88,7 @@ $toc = new TableOfContents(array(
 
   new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster', 1),
 
+  new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere.texCoord</tt>)', 'ext_tex_coord', 1),
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
@@ -345,7 +346,7 @@ subdirectories.</p>
     <li>Shadows from many lights on a single receiver do not really work yet. (Waits for finishing the "pure shader pipeline".)
     <!--li>Some non-trivial multi-texture setups will not work nicely with shadow maps yet (waits for finishing the "pure shader pipeline").-->
     <!--This is expected to be greatly improved during the next releases, where more and more stuff will be moved to the shader pipeline.-->
-    <li>Not every geometry node supports texCoord field yet (for <tt>TextureCoordinateGenerator</tt> and <tt>ProjectedTextureCoordinate</tt>). This means that receiving shadows on <tt>Sphere</tt>, <tt>Box</tt> and such nodes don't work yet. (Waits for finishing the "proxy" geometry approach, where more (almost all?) stuff will be converted to <tt>IndexedFaceSet</tt> before rendering.)</li>
+    <li>Nodes handled through the "proxy" geometry approach (like <tt>Sphere</tt>, <tt>Box</tt>) are not processed fully correctly yet for the <tt>receiveShadows</tt> field. (Although they do have <a href="#section_ext_tex_coord">texCoord field</a> now.)</li>
   </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -1034,6 +1035,25 @@ subdirectories.</p>
   <p>This is honoured by all our shadow implementations:
   shadow volumes, shadow maps (that is, both methods for dynamic
   shadows in OpenGL) and also by our ray-tracers.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  <p>We add a <tt>texCoord</tt> field to various VRML/X3D primitives.
+  You can use it to generate texture coordinates on a primitive,
+  by the <tt>TextureCoordinateGenerator</tt> node (for example
+  <a href="#section_ext_tex_coord_worldspace">to make mirrors</a>),
+  or (for shadow maps) <a href="#section_ext_texture_gen_projective"><tt>ProjectedTextureCoordinate</tt></a>.
+
+  <p>You can even use multi-texturing on primitives, with each texture unit
+  having a different generator.
+
+  <?php
+    echo node_begin('Box / Cone / Cylinder / Sphere');
+    echo
+    node_dots('') .
+    node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]') .
+    node_end();
+  ?>
 
 <?php echo $toc->html_section(); ?>
 
