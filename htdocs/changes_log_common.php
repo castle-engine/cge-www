@@ -76,6 +76,7 @@ function this_a_href_page($title, $page_name)
 
 table_demo_images(array(
   array('filename' => 'jarjar.png', 'titlealt' => 'JarJar animation, made in X3D by Stephen H. France'),
+  array('filename' => 'rendered_texture_output_events.png', 'titlealt' => 'RenderedTexture.rendering and ClipPlane demo: the teapot is sliced in half when rendering to the texture'),
 )) .
 'August was a busy month, as I\'m sure <a href="http://cia.vc/stats/project/vrmlengine">SVN statistics</a> confirm :) A lot of the stuff was tackled, two refactoring passes (primitives rendering and events optimizing) done and a lot of improvements happened along the way:
 
