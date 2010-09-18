@@ -10,7 +10,8 @@
   <li><p><tt>TimeSensor</tt></p>
 
     <p>All common <tt>X3DTimeDependentNode</tt> things
-    are implemented. <tt>enabled</tt> is honored. <tt>time</tt> is generated.</p>
+    are implemented. <tt>enabled</tt> is honored. <tt>time</tt>,
+    <tt>cycleTime</tt> are generated.</p>
 
     <p><i>TODO:</i> <tt>fraction_changed</tt> simply generates
     elapsedTime / cycleInterval value. This is quite Ok for most uses.</p>
