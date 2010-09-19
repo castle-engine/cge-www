@@ -40,7 +40,15 @@
 <?php echo $toc->html_section(); ?>
 
 <p>This is an open-source (<a href="#section_license">LGPL / GPL</a>)
-game engine written in ObjectPascal. Features include:</p>
+game engine. In short:
+
+<ul>
+  <li><p>Our main 3D scene format is <a href="http://web3d.org/x3d/specifications/">VRML / X3D</a>, which is an open standard (you'll find you can export to it from virtually any 3D modeller), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (basic Collada, Wavefront, MD3 and others).</p></li>
+
+  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want).</p></li>
+</ul>
+
+<p>More exhaustive list of the features:</p>
 
 <ul>
   <li><b>Optimized OpenGL rendering</b> of models in
