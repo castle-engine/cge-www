@@ -67,6 +67,13 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+/* Next:
+
+  <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
+
+  <p>Various fixes and optimizations, thanks to Stephen H. France and Jens van Schelve for reporting!</p>
+*/
+
     array('title' => 'Development news: ClipPlane, CHM docs, optimizations and more',
           'year' => 2010,
           'month' => 9,
