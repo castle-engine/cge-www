@@ -348,7 +348,6 @@ subdirectories.</p>
     <li>Shadows from many lights on a single receiver do not really work yet. (Waits for finishing the "pure shader pipeline".)
     <!--li>Some non-trivial multi-texture setups will not work nicely with shadow maps yet (waits for finishing the "pure shader pipeline").-->
     <!--This is expected to be greatly improved during the next releases, where more and more stuff will be moved to the shader pipeline.-->
-    <li>Nodes handled through the "proxy" geometry approach (like <tt>Sphere</tt>, <tt>Box</tt>) are not processed fully correctly yet for the <tt>receiveShadows</tt> field. (Although they do have <a href="#section_ext_tex_coord">texCoord field</a> now.)</li>
   </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -539,7 +538,9 @@ subdirectories.</p>
     $node_format_fd_name_pad = 20;
     echo
     node_dots('all normal *Light fields') .
-    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '0 0 0 0', 'left, bottom, right, top, like OrthoViewpoint.fieldOfView; must be left &lt; right and bottom &lt; top, or all zero') .
+    node_field('SFVec4f', '[in,out]', 'projectionRectangle', '0 0 0 0', '
+      # left, bottom, right, top (order like for OrthoViewpoint.fieldOfView).
+      # Must be left &lt; right and bottom &lt; top, or all zero') .
     node_field('SFVec3f', '[in,out]', 'projectionLocation',  '0 0 0', 'affected by node\'s transformation') .
     node_end();
   ?>
