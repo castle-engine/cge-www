@@ -68,6 +68,10 @@ function this_a_href_page($title, $page_name)
 /* --------------------------------------------------------------------------- */
 
 /* Next:
+  Use screenshots:
+  castle_siege_1.png
+  castle_siege_shadows.png
+  rendered_texture_mirror_2.png
 
   <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
 
