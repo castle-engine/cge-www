@@ -134,7 +134,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Texturing'                       , 'vrml_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
   <tr><td><?php echo a_href_page('Interpolation'                   , 'vrml_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Pointing device sensor'          , 'vrml_implementation_pointingdevicesensor'); ?>  </td><td> (TouchSensor supported, but that's it for now)</td></tr>
-  <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
   <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b></td></tr>
