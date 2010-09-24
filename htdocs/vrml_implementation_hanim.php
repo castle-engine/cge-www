@@ -34,8 +34,7 @@
     <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
 
     <p>Animating transformations of <tt>Joint</tt> nodes and such
-    is optimized, just like for <tt>Transform</tt> node,
-    be sure to select <tt>roSeparateShapesNoTransform</tt> method.
+    is optimized, just like for <tt>Transform</tt> node.
 </ul>
 
 <?php
