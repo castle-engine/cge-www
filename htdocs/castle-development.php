@@ -902,7 +902,9 @@ In particular
         stopping all the sounds.
 
       <li>These 2 footsteps should take about 1 second. This is the amount
-        of time that "feels good" with player speed and head bobbing.
+        of time that "feels good" with head bobbing.
+        (See the <tt>data/player.xml</tt> file, <tt>head_bobbing_time = 0.5</tt>
+        there means that 1 footstep = 0.5 of the second for head bobbing.)
     </ul>
 
   <li><p>Remember that if sounds are supposed to be spatialized (i.e. played
