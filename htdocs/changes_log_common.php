@@ -73,6 +73,15 @@ function this_a_href_page($title, $page_name)
   castle_siege_shadows.png
   rendered_texture_mirror_2.png
 
+  <p>StringSensor is implemented.
+
+  <p>All moving and rotating speeds are now expressed inside the engine in nice units/per second.
+    Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>
+    (the name "distance" was greatly misleading...), and is also expressed in seconds now
+    (divide by 50 to get the same behavior with old values).
+
+  <p>Shadow maps (<a href="to exts#shadows">receiveShadows, shadows fields</a>) for primitives (Box, Sphere etc.) is fixed now.
+
   <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
 
   <p>Various fixes and optimizations, thanks to Stephen H. France and Jens van Schelve for reporting!</p>

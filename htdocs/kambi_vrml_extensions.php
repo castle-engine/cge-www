@@ -1447,16 +1447,13 @@ Shape {
       echo
       node_dots('all normal NavigationInfo fields, and KambiNavigationInfo fields documented previously') .
       node_field('SFFloat', '[in,out]', 'headBobbing', '0.1') .
-      node_field('SFFloat', '[in,out]', 'headBobbingDistance', '20') .
+      node_field('SFFloat', '[in,out]', 'headBobbingTime', '0.4') .
       node_end();
     ?>
 
-    <!---p>Intuitively, <tt>headBobbing</tt> is the intensity of the whole effect
-    (0 = no head bobbing) and <tt>headBobbingDistance</tt> determines
-    the length of a one step of a walking human.</p>
-
-    Commented out, as headBobbingDistance is awfully large now for this..
-    -->
+    <p>Intuitively, <tt>headBobbing</tt> is the intensity of the whole effect
+    (0 = no head bobbing) and <tt>headBobbingTime</tt> determines
+    the time of a one step of a walking human.</p>
 
     <p>The field <tt>headBobbing</tt> multiplied by the avatar height specifies how far
     the camera can move up and down. The avatar height is taken from
@@ -1467,11 +1464,10 @@ Shape {
 
     <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbing">Developers: see also TWalkCamera.HeadBobbing property.</a>)</small></p>
 
-    <p>The field <tt>headBobbingDistance</tt> determines how much horizontal distance you
-    have to move by, to make full head bobbing up and down swing.
-    This distance is affected also by the standard <tt>NavigationInfo.speed</tt>.
+    <p>The field <tt>headBobbingTime</tt> determines how much time passes
+    to make full head bobbing sequence (camera swing up and then down back to original height).</tt>.
 
-    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbingDistance">Developers: see also TWalkCamera.HeadBobbingDistance property.</a>)</small></p>
+    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbingTime">Developers: see also TWalkCamera.HeadBobbingTime property.</a>)</small></p>
 
 <?php echo $toc->html_section(); ?>
 
