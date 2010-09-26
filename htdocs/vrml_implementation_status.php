@@ -171,7 +171,6 @@ networking level 3
 Shape level 2
 Geometry2D 1
 Sound 1
-Key device sensor 2
 Environmental sensor 2
 Navigation 2
 */
