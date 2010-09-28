@@ -73,9 +73,9 @@ function this_a_href_page($title, $page_name)
   castle_siege_shadows.png
   rendered_texture_mirror_2.png
 
-  <p>StringSensor is implemented.
+  <p>PlaneSensor, StringSensor are implemented.
 
-  <p>All moving and rotating speeds are now expressed inside the engine in nice units/per second.
+  <p>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second.
     Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>
     (the name "distance" was greatly misleading...), and is also expressed in seconds now
     (divide by 50 to get the same behavior with old values).
@@ -84,7 +84,9 @@ function this_a_href_page($title, $page_name)
 
   <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
 
-  <p>Various fixes and optimizations, thanks to Stephen H. France and Jens van Schelve for reporting!</p>
+  <p>Various fixes to <tt>TimeSensor</tt>, thanks to Stephen H. France for reporting!
+
+  <p>A large fix for <tt>Examine</tt> camera handling. We finally treat <tt>Examine</tt> cameras correctly, we honour <tt>Viewpoint</tt> node for the <tt>Examine</tt> cameras and when you switch navigation method in view3dscene the view stays the same. Thanks to Jens van Schelve for reporting.</p>
 */
 
     array('title' => 'Development news: ClipPlane, CHM docs, optimizations and more',
