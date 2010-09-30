@@ -77,9 +77,9 @@ function this_a_href_page($title, $page_name)
 table_demo_images(array(
   array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
   array('filename' => 'castle_siege_1.png', 'titlealt' => 'castle_siege model from DeleD sample models, converted to VRML by Stephen H. France'),
-  array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege modelfrom DeleD sample models, with shadows'),
+  array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
 )) .
-'<p>The quest to "cleanup and optimize" all around the engine continues :) New features are listed below. As usual, you\'re welcome to test the new features by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
+'<p>The quest to "cleanup and optimize" all around the engine continues :) New features are listed below. As usual, you\'re welcome to test them by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
 
 <ol>
   <li><p><b>Camera improvements</b>:</p>
@@ -87,9 +87,9 @@ table_demo_images(array(
     <ul>
       <li><p><i>Examine camera got a functionality boost</i>, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honours now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)</p>
 
-        <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>"(SceneManager.Camera as TWalkCamera)"</tt> to access Walk-specific properties, you may need to use now <tt>"(SceneManager as TUniversalCamera).Walk"</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</small></p></li>
+        <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML/X3D scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>"(SceneManager.Camera as TWalkCamera)"</tt> to access Walk-specific properties, you may need to use now <tt>"(SceneManager as TUniversalCamera).Walk"</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</small></p></li>
 
-      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <tt>NavigationInfo.transitionType</tt>, <tt>NavigationInfo.transitionTime</tt> fields.</p></li>
+      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <tt>NavigationInfo.transitionType</tt>, <tt>NavigationInfo.transitionTime</tt> fields (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">X3D spec</a>).</p></li>
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
