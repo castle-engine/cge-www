@@ -67,6 +67,11 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
+/* Next news:
+
+Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
+*/
+
     array('title' => 'Development news: Examine improvements, smooth transitions, PlaneSensor and more',
           'year' => 2010,
           'month' => 9,
