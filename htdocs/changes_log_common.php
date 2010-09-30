@@ -75,16 +75,21 @@ function this_a_href_page($title, $page_name)
 
 The quest to "cleanup and optimize" all around the engine continues :)
 
-  <p><b>Cameras</i>: Examine camera got a functionality boost, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honours now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)
+  <p><b>Camera improvements</b>:
 
-    <p>Developers: engine has a new camera class, TUniversalCamera (link to API), that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>(SceneManager.Camera as TWalkCamera)</tt> to access Walk-specific properties, you may need to use now <tt>(SceneManager as TUniversalCamera).Walk</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.
+    <ul>
+      <li><p><i>Examine camera got a functionality boost</i>, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honours now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)</p>
+
+        <p>Developers: engine has a new camera class, TUniversalCamera (link to API), that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>(SceneManager.Camera as TWalkCamera)</tt> to access Walk-specific properties, you may need to use now <tt>(SceneManager as TUniversalCamera).Walk</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</p></li>
+
+      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <tt>NavigationInfo.transitionType</tt>, <tt>NavigationInfo.transitionTime</tt> fields.</p></li>
+
+      <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
+
+        <p>Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a> (the name "distance" was greatly misleading...), and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
+    </ul>
 
   <p>PlaneSensor (link to X3D spec, link to our status), StringSensor (link to X3D spec, link to our status) are implemented.
-
-  <p>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second.
-    Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>
-    (the name "distance" was greatly misleading...), and is also expressed in seconds now
-    (divide by 50 to get the same behavior with old values).
 
   <p>Shadow maps (<a href="to exts#shadows">receiveShadows, shadows fields</a>) for primitives (Box, Sphere etc.) is fixed now.
 

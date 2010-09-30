@@ -24,6 +24,10 @@
 
   <li><p><tt>NavigationInfo</tt></p>
 
+    <p>Nice transitions between viewpoints are supported,
+    honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields.
+    TODO: <tt>transitionComplete</tt> event is not generated for now.</p>
+
     <p>Various details about how we handle NavigationInfo node in
     <?php echo a_href_page('view3dscene','view3dscene'); ?>:
     <ul>
