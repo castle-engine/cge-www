@@ -73,7 +73,13 @@ function this_a_href_page($title, $page_name)
   castle_siege_shadows.png
   rendered_texture_mirror_2.png
 
-  <p>PlaneSensor, StringSensor are implemented.
+The quest to "cleanup and optimize" all around the engine continues :)
+
+  <p><b>Cameras</i>: Examine camera got a functionality boost, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honours now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)
+
+    <p>Developers: engine has a new camera class, TUniversalCamera (link to API), that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>(SceneManager.Camera as TWalkCamera)</tt> to access Walk-specific properties, you may need to use now <tt>(SceneManager as TUniversalCamera).Walk</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.
+
+  <p>PlaneSensor (link to X3D spec, link to our status), StringSensor (link to X3D spec, link to our status) are implemented.
 
   <p>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second.
     Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>
@@ -84,9 +90,7 @@ function this_a_href_page($title, $page_name)
 
   <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
 
-  <p>Various fixes to <tt>TimeSensor</tt>, thanks to Stephen H. France for reporting!
-
-  <p>A large fix for <tt>Examine</tt> camera handling. We finally treat <tt>Examine</tt> cameras correctly, we honour <tt>Viewpoint</tt> node for the <tt>Examine</tt> cameras and when you switch navigation method in view3dscene the view stays the same. Thanks to Jens van Schelve for reporting.</p>
+  <p>Various fixes to <tt>TimeSensor</tt> and some other stuff, thanks to Stephen H. France for reporting.
 */
 
     array('title' => 'Development news: ClipPlane, CHM docs, optimizations and more',
