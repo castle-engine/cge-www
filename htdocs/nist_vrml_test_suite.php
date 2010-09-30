@@ -7,6 +7,7 @@
     td.pass{background-color:rgb(50%,100%,50%)}
     td.fail{background-color:rgb(100%,50%,50%)}
     td.invalid{background-color:rgb(75%,75%,75%)}
+    td.testnr{white-space: nowrap;}
     --></style>
     ');
 ?>
@@ -928,53 +929,76 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="35">Sensors</td>
-    <td rowspan="11">CylinderSensor</td>
-    <td>1</td>
+    <td rowspan="12">Sensors
+
+      <p>(Actually tested on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/">X3DV versions here</a>.)
+    </td>
+    <td rowspan="1">CylinderSensor</td>
+    <td class="testnr">1 .. 11 (all)</td>
     <td class="fail">-</td>
-    <td rowspan="11">CylinderSensor not implemented yet</td>
+    <td rowspan="1">CylinderSensor not implemented yet</td>
   </tr>
 
-<?php
-$current_test_number = 2;
-fail(10);
-?>
-
   <tr>
-    <td rowspan="14">PlaneSensor</td>
-    <td>1</td>
+    <td rowspan="3">PlaneSensor</td>
+    <td class="testnr">1 .. 11</td>
     <td class="pass">+</td>
-    <td>All PlaneSensor tests actually done on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/PlaneSensor/">X3DV versions here</a>.</td>
   </tr>
-
-<?php
-$current_test_number = 2;
-pass(10);
-?>
-
   <tr>
-    <td>12</td>
+    <td class="testnr">12</td>
     <td class="fail">-</td>
     <td>(multisensor) We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
   </tr>
-
-<?php
-$current_test_number = 13;
-pass(2);
-?>
-
   <tr>
-    <td rowspan="10">ProximitySensor</td>
-    <td>1</td>
+    <td class="testnr">13 .. 14</td>
     <td class="pass">+</td>
-    <td rowspan="10">All ProximitySensor tests actually done on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/ProximitySensor/">X3DV versions here</a>.</td>
   </tr>
 
-<?php
-$current_test_number = 2;
-pass(9);
-?>
+  <tr>
+    <td>ProximitySensor</td>
+    <td class="testnr">1 .. 10 (all)</td>
+    <td class="pass">+</td>
+  </tr>
 
+  <tr>
+    <td>SphereSensor</td>
+    <td class="testnr">1 .. 9 (all)</td>
+    <td class="fail">-</td>
+    <td>SphereSensor is not implemented yet.</td>
+  </tr>
+
+  <tr>
+    <td>TimeSensor</td>
+    <td class="testnr">1 .. 19 (all)</td>
+    <td class="pass">+</td>
+  </tr>
+
+  <tr>
+    <td rowspan="4">TouchSensor</td>
+    <td class="testnr">1 .. 6</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td class="testnr">7 (hittexcoord)</td>
+    <td class="fail">-</td>
+    <td>TouchSensor.hitTexCoord_changed not implemented yet.</td>
+  </tr>
+  <tr>
+    <td class="testnr">8</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td class="testnr">9</td>
+    <td class="fail">-</td>
+    <td>Fails only because we do not support CylinderSensor at all. The sibling sensors mechanism works Ok.</td>
+  </tr>
+
+  <tr>
+    <td>VisibilitySensor</td>
+    <td class="testnr">1 .. 9 (all)</td>
+    <td class="fail">-</td>
+    <td>VisibilitySensor is not implemented yet.</td>
+  </tr>
 
   <tr>
     <td colspan="5"><i>... here I again skipped some tests ...</i></td>
