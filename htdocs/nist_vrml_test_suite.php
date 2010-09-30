@@ -55,7 +55,7 @@ function pass($count, $comment = '')
   }
 }
 
-function fail($count, $comment)
+function fail($count, $comment = '')
 {
   global $current_test_number;
   for ($i = 0; $i < $count; $i ++)
@@ -702,7 +702,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="48">Misc</td>
+    <td rowspan="50">Misc</td>
     <td rowspan="18">EXTERNPROTO</td>
     <td>1</td>
     <td class="pass">+</td>
@@ -916,6 +916,65 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
     <td>20</td>
     <td class="pass">+</td>
   </tr>
+
+  <tr>
+    <td rowspan="2">WorldInfo</td>
+    <td>1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td class="pass">+</td>
+  </tr>
+
+  <tr>
+    <td rowspan="35">Sensors</td>
+    <td rowspan="11">CylinderSensor</td>
+    <td>1</td>
+    <td class="fail">-</td>
+    <td rowspan="11">CylinderSensor not implemented yet</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+fail(10);
+?>
+
+  <tr>
+    <td rowspan="14">PlaneSensor</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td>All PlaneSensor tests actually done on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/PlaneSensor/">X3DV versions here</a>.</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(10);
+?>
+
+  <tr>
+    <td>12</td>
+    <td class="fail">-</td>
+    <td>(multisensor) We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
+  </tr>
+
+<?php
+$current_test_number = 13;
+pass(2);
+?>
+
+  <tr>
+    <td rowspan="10">ProximitySensor</td>
+    <td>1</td>
+    <td class="pass">+</td>
+    <td rowspan="10">All ProximitySensor tests actually done on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/ProximitySensor/">X3DV versions here</a>.</td>
+  </tr>
+
+<?php
+$current_test_number = 2;
+pass(9);
+?>
+
 
   <tr>
     <td colspan="5"><i>... here I again skipped some tests ...</i></td>
