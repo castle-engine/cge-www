@@ -751,7 +751,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>11</td>
     <td class="fail">-</td>
-    <td rowspan="2">Scripts are not supported yet.</td>
+    <td rowspan="2">ECMAScript is not supported yet.</td>
   </tr>
   <tr>
     <td>12</td>
@@ -838,7 +838,6 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>7F</td>
     <td class="pass">+</td>
-    <td>Result is Ok, although actually we do not handle PlaneSensor (yet).</td>
   </tr>
   <tr>
     <td>7G</td>
@@ -864,13 +863,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
 
   <tr>
     <td>8</td>
-    <td class="fail">-</td>
-    <td>Although the tested features work Ok, there is a problem
-      (unrelated to protos) with
-      activating TouchSensor when SphereSensor is also enabled.
-      We should activate them both simultaneously, currently
-      only one (SphereSensor in this case, since it's first)
-      is activated.</td>
+    <td class="pass">+</td>
   </tr>
   <tr>
     <td>9</td>
