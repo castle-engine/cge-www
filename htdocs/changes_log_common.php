@@ -67,36 +67,49 @@ function this_a_href_page($title, $page_name)
 
 /* --------------------------------------------------------------------------- */
 
-/* Next:
-  Use screenshots:
-  castle_siege_1.png
-  castle_siege_shadows.png
-  rendered_texture_mirror_2.png
+    array('title' => 'Development news: Examine improvements, smooth transitions, PlaneSensor and more',
+          'year' => 2010,
+          'month' => 9,
+          'day' => 30,
+          'short_description' => '',
+          'description' =>
 
-The quest to "cleanup and optimize" all around the engine continues :)
+table_demo_images(array(
+  array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
+  array('filename' => 'castle_siege_1.png', 'titlealt' => 'castle_siege model from DeleD sample models, converted to VRML by Stephen H. France'),
+  array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege modelfrom DeleD sample models, with shadows'),
+)) .
+'<p>The quest to "cleanup and optimize" all around the engine continues :) New features are listed below. As usual, you\'re welcome to test the new features by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
 
-  <p><b>Camera improvements</b>:
+<ol>
+  <li><p><b>Camera improvements</b>:</p>
 
     <ul>
       <li><p><i>Examine camera got a functionality boost</i>, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honours now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)</p>
 
-        <p>Developers: engine has a new camera class, TUniversalCamera (link to API), that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>(SceneManager.Camera as TWalkCamera)</tt> to access Walk-specific properties, you may need to use now <tt>(SceneManager as TUniversalCamera).Walk</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</p></li>
+        <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>"(SceneManager.Camera as TWalkCamera)"</tt> to access Walk-specific properties, you may need to use now <tt>"(SceneManager as TUniversalCamera).Walk"</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</small></p></li>
 
       <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <tt>NavigationInfo.transitionType</tt>, <tt>NavigationInfo.transitionTime</tt> fields.</p></li>
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
-        <p>Also, <a href="to exts#head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a> (the name "distance" was greatly misleading...), and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
-    </ul>
+        <p>Also, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime (link to SVN docs)</a>, and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
+    </ul></li>
 
-  <p>PlaneSensor (link to X3D spec, link to our status), StringSensor (link to X3D spec, link to our status) are implemented.
+  <li><p>New sensors implemented:<br/>
+    <b><tt>PlaneSensor</tt></b>
+      (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
+       <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_pointingdevicesensor.html">support details in our SVN docs</a>,
+       demos in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
+    <b><tt>StringSensor</tt></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_keydevicesensor.html">support details in our SVN docs</a>, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
-  <p>Shadow maps (<a href="to exts#shadows">receiveShadows, shadows fields</a>) for primitives (Box, Sphere etc.) is fixed now.
+  <li><p><b>Shadow maps</b> (<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<tt>Box</tt>, <tt>Sphere</tt> etc.) are fixed now (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
-  <p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get mirrors on a flat surface. See <TODO svn links>.</p>
+  <li><p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get <b>mirrors on a flat surface</b>. See kambi_vrml_test_suite/x3d/rendered_texture/chess.x3dv in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN kambi_vrml_test_suite</a>.</p></li>
 
-  <p>Various fixes to <tt>TimeSensor</tt> and some other stuff, thanks to Stephen H. France for reporting.
-*/
+  <li><p>Various <b>fixes to <tt>TimeSensor</tt></b> and other stuff, thanks to Stephen H. France for reporting!</p></li>
+</ol>
+'),
 
     array('title' => 'Development news: ClipPlane, CHM docs, optimizations and more',
           'year' => 2010,
