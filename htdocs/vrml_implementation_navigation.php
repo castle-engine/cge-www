@@ -17,16 +17,17 @@
     in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
 
     <p>Animating viewpoint's position and orientation
-    (directly or by it's transformations) works perfectly.
-
-    <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
-    volumes are allowed (We use frustum with z-far in infinity then.)</p>
+    (directly or by it's transformations) works perfectly.</p>
 
   <li><p><tt>NavigationInfo</tt></p>
 
     <p>Nice transitions between viewpoints are supported,
     honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields.
     TODO: <tt>transitionComplete</tt> event is not generated for now.</p>
+
+    <p>Binding different <tt>NavigationInfo</tt> nodes,
+    and changing their exposed fields by events,
+    (just like for <tt>X3DViewpointNode</tt>s) of course works.</p>
 
     <p>Various details about how we handle NavigationInfo node in
     <?php echo a_href_page('view3dscene','view3dscene'); ?>:
@@ -78,6 +79,9 @@
       <li><tt>speed</tt> is calculated to something that should "feel sensible"
         based on scene's bounding box sizes.
     </ul>
+
+    <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
+    volumes are allowed (We use frustum with z-far in infinity then.)</p>
 
   <li><p><tt>LOD</tt>
 
