@@ -1,6 +1,8 @@
 <?php
   require_once 'vrmlengine_functions.php';
+  require_once 'vrml_implementation_common.php';
   common_header("VRML / X3D time origin considered uncomfortable", LANG_EN);
+  vrmlx3d_sidebar();
 ?>
 
 <?php echo pretty_heading($page_title); ?>

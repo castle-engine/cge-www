@@ -1,5 +1,6 @@
 <?php
   require_once 'vrmlengine_functions.php';
+  require_once 'vrml_implementation_common.php';
 
   common_header("VRML / X3D implementation status", LANG_EN);
 
@@ -13,6 +14,8 @@
       new TocItem('NIST VRML test suite results', 'nist_tests', 1),
     ));
   $toc->echo_numbers = true;
+
+  vrmlx3d_sidebar();
 ?>
 
 <?php echo pretty_heading($page_title); ?>

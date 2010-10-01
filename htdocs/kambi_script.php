@@ -1,5 +1,6 @@
 <?php
   require_once 'vrmlengine_functions.php';
+  require_once 'vrml_implementation_common.php';
   common_header('KambiScript language', LANG_EN);
 
   function func_ref($name, $title)
@@ -16,7 +17,10 @@
 <?php if (!IS_GEN_LOCAL) { ?>
   <div class="chm" style="float: right"><a href="kambiscript_language.chm">This
   KambiScript reference in CHM format</a></div>
-<?php } ?>
+<?php } 
+
+  vrmlx3d_sidebar();
+?>
 
 <?php echo pretty_heading('KambiScript language', NULL,
 'Simple scripting language for Kambi VRML game engine'); ?>

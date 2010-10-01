@@ -1,5 +1,6 @@
 <?php
   require_once 'vrmlengine_functions.php';
+  require_once 'vrml_implementation_common.php';
 
   common_header("Kambi VRML test suite", LANG_EN);
 
@@ -10,6 +11,8 @@
       new TocItem('Who made this ?', 'who_made_this'),
       new TocItem('Comments', 'comments')
     ));
+
+  vrmlx3d_sidebar();
 ?>
 
 <?php echo pretty_heading($page_title,

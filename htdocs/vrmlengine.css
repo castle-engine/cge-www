@@ -176,3 +176,16 @@ table.specification td {
   padding:8px;
   white-space:nowrap;
 }
+
+div.sidebar {
+  float: right;
+  background: yellow;
+  border: thin solid black;
+  margin-right: 2em;
+  padding: 0.5em;
+  font-size: 0.7em;
+  clear: right; /* for chm link on kambi_script */
+}
+
+div.sidebar_title { text-align: center; }
+div.sidebar_title h2 { margin-top: 0px; }
