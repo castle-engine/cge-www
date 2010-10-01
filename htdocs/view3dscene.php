@@ -145,7 +145,8 @@ flawlessly :) So give it a try!
 
 <p>Supported file formats:
 <ul>
-  <li><p><b><a href="http://web3d.org/">VRML 1.0, 2.0 and X3D</a></b>. Usual extensions for VRML files are
+  <li><p><b><?php echo a_href_page('VRML 1.0, 2.0 and X3D', 'vrml_x3d'); ?></b>.
+    Usual extensions for VRML files are
     <tt>.wrl</tt>, <tt>.wrz</tt> and <tt>.wrl.gz</tt>.
     For X3D (we support fully both
     XML and classic encoding) extensions are <tt>.x3d</tt>,
