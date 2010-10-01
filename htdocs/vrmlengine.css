@@ -158,3 +158,21 @@ div.chm {
   border: medium outset black;
   padding: 0.5em;
 }
+
+/* Table like X3D specification, used for multi-texturing clarifications
+   on vrml_implementation_texturing.php */
+table.specification { border-collapse:collapse; }
+table.specification th {
+  border-style:groove;
+  font-weight:bold;
+  border-width:medium;
+  padding:8px;
+  white-space:nowrap;
+}
+table.specification td {
+  border-style:groove;
+  font-weight:normal;
+  border-width:medium;
+  padding:8px;
+  white-space:nowrap;
+}
