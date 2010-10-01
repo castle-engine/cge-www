@@ -7,6 +7,7 @@
     array(
       new TocItem('VRML 2.0 / X3D status', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
+      new TocItem('General notes', 'x3d_general', 1),
       new TocItem('VRML 1.0 status', 'vrml_1'),
       new TocItem('Tests passed', 'tests_passed'),
       new TocItem('NIST VRML test suite results', 'nist_tests', 1),
@@ -26,54 +27,10 @@ you should read the other page about
 <?php echo a_href_page('VRML extensions implemented',
 'kambi_vrml_extensions'); ?>.
 
-<p><i>No limits</i>:
-<a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
-VRML 97 and X3D specifications define various limits</a>
-that must be satisfied by VRML browsers to call themselves "conforming"
-to VRML specification. For example, only 500 children per Group
-have to be supported, only SFString with 30,000 characters have to be
-supported etc. My units generally don't have these limits
-(unless explicitly mentioned below). So any number of children in Group
-node is supported, SFString may be of any length etc.
-VRML authors are limited only by the amount of memory available
-on user system, performance of OpenGL implementation etc.
-
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
-
-<p><i>All nodes from all components</i> of X3D edition 2 specification are
-included in the engine.
-The same goes for all the nodes from VRML 2.0 specification
-(it does have some nodes later removed in X3D).
-This doesn't mean that they are meaningfully handled,
-but they <i>are at least parsed correctly</i> (and converting from
-X3D XML to classic VRML preserves them correctly).
-
-<p><i>All field types</i>, including new X3D double-precision and
-matrices, are supported, with the exception of MFImage. MFImage should
-be implemented as soon as I see some usage of this, for now no X3D
-specification nodes actually use this.</p>
-
-<p>We support fully both <i>XML and classic encodings</i>.
-
-<p>Prototypes (both external and not) are 100% done and working :)
-External prototypes recognize URN of standard VRML 97 nodes, i.e.
-<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
-(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
-on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
-
-<p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
-
-<p><i>TODO</i> for all nodes with url fields: for now all URLs
-are interpreted as local file names (absolute or relative).
-So if a VRML file is available on WWW, you should first download it
-(any WWW browser can of course download it and automatically open view3dscene
-for you), remembering to download also any texture/background files
-used.
-(Conceptually, this lack should be mentioned in <tt>Networking</tt>
-component details, but it's so important that I mention it here.)</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -151,6 +108,52 @@ Environmental sensor 2
 Navigation 2
 */
 ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p><i>All nodes from all components</i> of X3D edition 2 specification are
+included in the engine.
+The same goes for all the nodes from VRML 2.0 specification
+(it does have some nodes later removed in X3D).
+This doesn't mean that they are meaningfully handled,
+but they <i>are at least parsed correctly</i> (and converting from
+X3D XML to classic VRML preserves them correctly).
+
+<p><i>All field types</i>, including new X3D double-precision and
+matrices, are supported, with the exception of MFImage. MFImage should
+be implemented as soon as I see some usage of this, for now no X3D
+specification nodes actually use this.</p>
+
+<p>We support fully both <i>XML and classic encodings</i>.
+
+<p>Prototypes (both external and not) are 100% done and working :)
+External prototypes recognize URN of standard VRML 97 nodes, i.e.
+<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
+(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
+on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
+
+<p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
+
+<p><i>TODO</i> for all nodes with url fields: for now all URLs
+are interpreted as local file names (absolute or relative).
+So if a VRML file is available on WWW, you should first download it
+(any WWW browser can of course download it and automatically open view3dscene
+for you), remembering to download also any texture/background files
+used.
+(Conceptually, this lack should be mentioned in <tt>Networking</tt>
+component details, but it's so important that I mention it here.)</p>
+
+<p><i>No limits</i>:
+<a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
+VRML 97 and X3D specifications define various limits</a>
+that must be satisfied by VRML browsers to call themselves "conforming"
+to VRML specification. For example, only 500 children per Group
+have to be supported, only SFString with 30,000 characters have to be
+supported etc. My units generally don't have these limits
+(unless explicitly mentioned below). So any number of children in Group
+node is supported, SFString may be of any length etc.
+VRML authors are limited only by the amount of memory available
+on user system, performance of OpenGL implementation etc.
 
 <?php echo $toc->html_section(); ?>
 
