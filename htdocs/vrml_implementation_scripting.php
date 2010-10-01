@@ -15,7 +15,7 @@
     'section_ext_script_compiled'); ?> and
     <?php echo a_href_page('kambiscript:
     (simple scripting language specific to our engine)',
-    'kambi_vrml_extensions'); ?>.
+    'kambi_script'); ?>.
 
     <p><i>TODO</i>: no standard scripting language, like ECMAScript,
     is implemented now. <tt>directOutput</tt> field of script node
