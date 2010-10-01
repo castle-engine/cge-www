@@ -686,13 +686,13 @@ table_demo_images(array(
 </p>
 
 <ul>
-  <li><p>All X3D multi-texturing nodes implemented. See also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#section_x3d_multitex_clarifications">clarifications how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</p></li>
+  <li><p>All X3D multi-texturing nodes implemented. See also <a href="http://vrmlengine.sourceforge.net/vrml_implementation_texturing.php#section_multi_texturing_clarifications">clarifications how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</p></li>
 
   <li><p>All X3D cube map nodes implemented. This includes <tt>GeneratedCubeMapTexture</tt>, very useful to make mirrors, especially with the help of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR extensions</a>.</p></li>
 
   <li><p>All X3D 3D texture nodes implemented.</p></li>
 
-  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_status.php#section_dds">more details here</a>. New ' . this_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
+  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_texturing.php#section_dds">more details here</a>. New ' . this_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
 
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
 
@@ -732,7 +732,7 @@ table_demo_images(array(
   <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. (<a href="http://vrmlengine.sourceforge.net/miscella/rendered_texture_one_file.x3dv">Simple example</a>).</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
-  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html#section_x3d_multitex_clarifications">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
+  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_texturing.php#section_multi_texturing">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
   <li>Texture handling code was refactored last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
   <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
 </ul>

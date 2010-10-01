@@ -40,7 +40,7 @@
 
   <li><tt>ImageCubeMapTexture</tt>
 
-    <p><?php echo a_href_page_hashlink('DDS file format', 'vrml_implementation_status',
+    <p><?php echo a_href_page_hashlink('DDS file format', 'vrml_implementation_texturing',
     'section_dds'); ?> to specify cube maps
     (including S3TC compressed cube maps) is supported.</p></li>
 

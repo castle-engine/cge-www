@@ -19,7 +19,7 @@
     In case of 2D textures, the 3rd component is just ignored
     and the 4th is normal divisor (as usual for homogeneous coordinates).</p>
 
-    <p><?php echo a_href_page_hashlink('DDS file format', 'vrml_implementation_status',
+    <p><?php echo a_href_page_hashlink('DDS file format', 'vrml_implementation_texturing',
     'section_dds'); ?> to specify 3d (volume)
     textures is supported by <tt>ImageTexture3D</tt>.</p>
 
