@@ -5,7 +5,7 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('VRML 2.0 / X3D status', 'x3d'),
+      new TocItem('X3D and VRML 2.0 status', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('General notes', 'x3d_general', 1),
       new TocItem('VRML 1.0 status', 'vrml_1'),
