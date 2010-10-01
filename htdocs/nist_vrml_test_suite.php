@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("NIST VRML Test Suite results - Kambi VRML game engine", LANG_EN,
+  common_header("NIST Conformance Test Suite results - Kambi VRML game engine", LANG_EN,
     NULL, NULL,
     '<style type="text/css"><!--
     td.pass{background-color:rgb(50%,100%,50%)}
@@ -14,9 +14,11 @@
 
 <?php echo pretty_heading($page_title); ?>
 
-
-<p><a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">
-NIST VRML Test Suite</a> results are below.</p>
+<p>Results of testing our engine on <i>NIST Conformance Test Suite</i>.
+The old and original version of <a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">NIST VRML Test Suite is available here</a>
+(although the links to actual models seem broken).
+The new version of the test suite, with X3D versions of the tests and many new tests for new X3D features,
+<a href="http://www.web3d.org/x3d/content/examples/Conformance/">is maintained on web3d.org</a>.</p>
 
 <p>Each test was classified as "pass" only if it passed fully.
 Which is a good objective measure,
