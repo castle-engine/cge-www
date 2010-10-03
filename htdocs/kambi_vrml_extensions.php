@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  vrmlx3d_header('Kambi VRML / X3D extensions');
+  vrmlx3d_header('VRML / X3D extensions in our engine');
 
   $node_format_fd_type_pad = 0;
   $node_format_fd_name_pad = 0;
@@ -135,7 +135,7 @@ $toc = new TableOfContents(array(
 $toc->echo_numbers = true;
 ?>
 
-<?php echo pretty_heading('Kambi VRML / X3D extensions');  ?>
+<?php echo pretty_heading($page_title);  ?>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
