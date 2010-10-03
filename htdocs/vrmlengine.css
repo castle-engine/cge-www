@@ -179,23 +179,24 @@ table.specification td {
   /* white-space:nowrap; */
 }
 
-table.layout { margin: 0px; padding: 0px; border: 0px; }
+table.layout { margin: 0px; padding: 0px; border: 0px; width: 100%; }
 td.layout { margin: 0px; padding: 0px; border: 0px; vertical-align: top; }
 
 div.sidebar {
-  background: #eee;
-  border: thin solid black;
   margin-left: 0.5em;
   padding: 0.5em;
   font-size: 0.7em;
 }
 
-col.sidebar { width: 15em; }
+col.sidebar { width: 15em; background: #eee; }
 
 div.sidebar_title { text-align: center; }
 div.sidebar_title h2 { margin-top: 0px; font-size: medium; }
 
-td.pass{background-color:rgb(50%,100%,50%)}
-td.fail{background-color:rgb(100%,50%,50%)}
-td.invalid{background-color:rgb(75%,75%,75%)}
-td.testnr{white-space: nowrap;}
+table.nist_test_suite { border-collapse:collapse; border: thin solid #999; }
+table.nist_test_suite td { border: thin solid #999; }
+table.nist_test_suite th { border: thin solid #999; }
+td.pass    { background-color:rgb(50%,100%,50%); }
+td.fail    { background-color:rgb(100%,50%,50%); }
+td.invalid { background-color:rgb(75%,75%,75%); }
+td.testnr  { white-space: nowrap; }

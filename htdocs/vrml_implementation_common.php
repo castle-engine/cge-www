@@ -10,8 +10,8 @@ function vrmlx3d_header($a_page_title)
 {
   common_header($a_page_title, LANG_EN);
   echo '<table class="layout">
-    <col class="content" />
-    <col class="sidebar" />
+    <col class="content">
+    <col class="sidebar">
     <tr><td class="layout">';
 }
 

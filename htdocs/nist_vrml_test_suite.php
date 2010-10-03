@@ -75,7 +75,7 @@ $default_texture_mode_modulate_disclaimer = a_href_page_hashlink(
   'vrml_implementation_texturing', 'default_texture_mode_modulate');
 ?>
 
-<table border="1">
+<table class="nist_test_suite">
   <tr>
     <th>Node Group</th>
     <th>Node</th>
