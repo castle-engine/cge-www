@@ -197,11 +197,11 @@ remember to attach to your bug report output of the
 <p>More details about VRML format handling:</p>
 
 <ul>
-  <li><?php echo a_href_page("Kambi VRML extensions, handled by our engine",
+  <li><?php echo a_href_page("VRML / X3D extensions in our engine",
     "kambi_vrml_extensions"); ?>
-  <li><?php echo a_href_page("Kambi VRML test suite",
+  <li><?php echo a_href_page("VRML / X3D test suite",
     "kambi_vrml_test_suite"); ?>
-  <li><?php echo a_href_page('VRML implementation status',
+  <li><?php echo a_href_page('VRML / X3D implementation status',
     'vrml_implementation_status'); ?>
   <li><?php echo a_href_page('KambiScript, simple scripting language of our engine, usable e.g. in VRML Script nodes',
     'kambi_script'); ?>
