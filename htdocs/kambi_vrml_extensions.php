@@ -23,7 +23,7 @@ function node_begin($node_name)
   $node_format_fd_def_pad = 10;
   $node_format_fd_inout_pad = 12;
 
-  return "<pre><b>$node_name {</b>\n";
+  return '<pre class="vrml_extension_spec"><b>' . $node_name . ' {</b>';
 }
 function node_end()
 {

@@ -98,6 +98,8 @@ pre.bordered_code {
   padding: 0.3em;
 }
 
+pre.vrml_extension_spec { white-space: pre-wrap; }
+
 dl.vrml_ver_differences > dt {
   font-weight: normal;
   font-style: italic;
