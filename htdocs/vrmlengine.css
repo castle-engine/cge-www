@@ -188,7 +188,8 @@ div.sidebar {
   font-size: 0.7em;
 }
 
-col.sidebar { width: 15em; background: #eee; }
+col.sidebar { width: 15em;
+  background: #dddddd url(images/sidebar_bg.png) repeat-y; }
 
 div.sidebar_title { text-align: center; }
 div.sidebar_title h2 { margin-top: 0px; font-size: medium; }
