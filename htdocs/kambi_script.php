@@ -905,5 +905,5 @@ lewej do prawej wiec np. 2*4^2 = 8^2, nie 2*16))
     php_counter("kambi_script", TRUE);
   };
 
-  common_footer();
+  vrmlx3d_footer();
 ?>
