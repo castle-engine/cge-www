@@ -9,7 +9,10 @@ require_once 'vrmlengine_functions.php';
 function vrmlx3d_header($a_page_title)
 {
   common_header($a_page_title, LANG_EN);
-  echo '<table class="layout"><tr><td class="layout">';
+  echo '<table class="layout">
+    <col class="sidebar" />
+    <col class="content" />
+    <tr><td class="layout">';
   vrmlx3d_sidebar();
   echo '</td><td class="layout">';
 }
