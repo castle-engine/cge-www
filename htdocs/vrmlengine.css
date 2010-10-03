@@ -22,7 +22,7 @@ pre.light_bg {
 
 a.kscript_func_docs { text-decoration: underline; }
 
-pre.terminal { background-color: #EEE;  padding: 0.3em; }
+pre.terminal { background-color: #EEE;  padding: 0.3em; white-space: pre-wrap; }
 tt.terminal { background-color: #EEE; }
 
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
