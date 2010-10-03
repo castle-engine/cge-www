@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  vrmlx3d_header("NIST Conformance Test Suite results - Kambi VRML game engine");
+  vrmlx3d_header("NIST conformance test suite results");
 ?>
 
 <?php echo pretty_heading($page_title); ?>
