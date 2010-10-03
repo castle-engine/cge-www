@@ -16,8 +16,8 @@ function vrmlx3d_header($a_page_title)
 
 function vrmlx3d_footer()
 {
-  common_footer();
   echo '</td></tr></table>';
+  common_footer();
 }
 
 function x3d_status_header()
