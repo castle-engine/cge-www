@@ -6,11 +6,24 @@
 
 require_once 'vrmlengine_functions.php';
 
+function vrmlx3d_header($a_page_title)
+{
+  common_header($a_page_title, LANG_EN);
+  echo '<table class="layout"><tr><td class="layout">';
+  vrmlx3d_sidebar();
+  echo '</td><td class="layout">';
+}
+
+function vrmlx3d_footer()
+{
+  common_footer();
+  echo '</td></tr></table>';
+}
+
 function x3d_status_header()
 {
-  common_header(X3D_COMPONENT_NAME . ' component - implementation status - Kambi VRML game engine', LANG_EN);
-
-  vrmlx3d_sidebar();
+  vrmlx3d_header(X3D_COMPONENT_NAME .
+    ' component - implementation status - Kambi VRML game engine');
 
   global $page_title;
   echo pretty_heading('<span style="font-size: medium">' .
@@ -20,7 +33,7 @@ function x3d_status_header()
 
 function x3d_status_footer()
 {
-  common_footer();
+  vrmlx3d_footer();
 }
 
 function vrmlx3d_sidebar()

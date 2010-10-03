@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
-  common_header('KambiScript language', LANG_EN);
+  vrmlx3d_header('KambiScript language');
 
   function func_ref($name, $title)
   {
@@ -18,8 +18,6 @@
   <div class="chm" style="float: right"><a href="kambiscript_language.chm">This
   KambiScript reference in CHM format</a></div>
 <?php } 
-
-  vrmlx3d_sidebar();
 ?>
 
 <?php echo pretty_heading('KambiScript language', NULL,
@@ -275,7 +273,7 @@ function touch_time(value, timestamp)
     'First string of text clicked on ' + string(value),
     'Second string of text.
 Still second string of text.
-As you see, you can simply make a newline in the string literal to get a newline inside the string.'
+Simply make a newline in the string literal to get a newline inside the string.'
   )
 "
 }

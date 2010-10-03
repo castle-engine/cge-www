@@ -1,6 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
-  common_header('What is VRML / X3D', LANG_EN);
+  require_once 'vrml_implementation_common.php';
+  vrmlx3d_header('What is VRML / X3D');
 
   echo table_demo_images(array(
     array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
@@ -47,4 +48,4 @@ X3D, whenever possible.</p>
 <?php echo a_href_page('how we handle the stuff in official VRML/X3D specification', 'vrml_implementation_status'); ?> and
 <?php echo a_href_page('what new features we add to VRML/X3D', 'kambi_vrml_extensions'); ?>.
 
-<?php common_footer(); ?>
+<?php vrmlx3d_footer(); ?>

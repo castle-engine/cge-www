@@ -1,8 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
-  common_header("VRML / X3D time origin considered uncomfortable", LANG_EN);
-  vrmlx3d_sidebar();
+  vrmlx3d_header("VRML / X3D time origin considered uncomfortable");
 ?>
 
 <?php echo pretty_heading($page_title); ?>
@@ -137,6 +136,6 @@ to push default <tt>startTime</tt> and such fields into the past. -->
     php_counter("vrml_time_origin_considered_uncomfortable", TRUE);
   };
 
-  common_footer();
+  vrmlx3d_footer();
 ?>
 

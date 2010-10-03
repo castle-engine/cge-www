@@ -2,9 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  common_header("Kanim file format", LANG_EN,
-    "Specification of kanim file format - Kambi VRML engine's animations");
-  vrmlx3d_sidebar();
+  vrmlx3d_header("Kanim file format");
 ?>
 
 <?php
@@ -138,5 +136,5 @@ of animation handling in our VRML engine documentation</a>.</p>
     $counter = php_counter("kanim_format", true);
   };
 
-  common_footer();
+  vrmlx3d_footer();
 ?>

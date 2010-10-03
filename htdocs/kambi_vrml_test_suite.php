@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  common_header("Kambi VRML test suite", LANG_EN);
+  vrmlx3d_header("Kambi VRML test suite");
 
   $toc = new TableOfContents(
     array(
@@ -11,8 +11,6 @@
       new TocItem('Who made this ?', 'who_made_this'),
       new TocItem('Comments', 'comments')
     ));
-
-  vrmlx3d_sidebar();
 ?>
 
 <?php echo pretty_heading($page_title,
@@ -146,5 +144,5 @@ implementing more features in my VRML engine.
     php_counter("kambi_vrml_test_suite", TRUE);
   };
 
-  common_footer();
+  vrmlx3d_footer();
 ?>

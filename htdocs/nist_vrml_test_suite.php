@@ -2,17 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  common_header("NIST Conformance Test Suite results - Kambi VRML game engine", LANG_EN,
-    NULL, NULL,
-    '<style type="text/css"><!--
-    td.pass{background-color:rgb(50%,100%,50%)}
-    td.fail{background-color:rgb(100%,50%,50%)}
-    td.invalid{background-color:rgb(75%,75%,75%)}
-    td.testnr{white-space: nowrap;}
-    --></style>
-    ');
-
-  vrmlx3d_sidebar();
+  vrmlx3d_header("NIST Conformance Test Suite results - Kambi VRML game engine");
 ?>
 
 <?php echo pretty_heading($page_title); ?>
@@ -1045,5 +1035,5 @@ pass(5);
 </table>
 
 <?php
-  common_footer();
+  vrmlx3d_footer();
 ?>
