@@ -429,9 +429,10 @@ and sometimes some older releases:
     (2007-09-20). But you have to use GL units from FPC &gt;= 2.2.0,
     for example grab them from FPC SVN:</p>
 
-<pre>
+<pre class="terminal">
   svn checkout http://svn.freepascal.org/svn/fpc/tags/release_2_2_0/packages/extra/opengl/
 </pre>
+
   </li>
 
   <li><p><em>Latest FPC development version,
