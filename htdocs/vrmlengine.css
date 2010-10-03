@@ -191,7 +191,7 @@ div.sidebar {
   clear: right; /* for chm link on kambi_script */
 }
 
-col.sidebar { width: 20em; }
+col.sidebar { width: 15em; }
 
 div.sidebar_title { text-align: center; }
 div.sidebar_title h2 { margin-top: 0px; font-size: medium; }

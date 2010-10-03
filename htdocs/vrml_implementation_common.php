@@ -49,9 +49,9 @@ function vrmlx3d_sidebar()
     <h2><?php echo a_href_page('VRML / X3D support', 'vrml_x3d'); ?></h2>
   </div>
   <ul>
-    <li><?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?></li>
-    <li><?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?></li>
-    <li><?php echo a_href_page('VRML implementation status', 'vrml_implementation_status'); ?>
+    <li><?php echo a_href_page('Extensions', 'kambi_vrml_extensions'); ?></li>
+    <li><?php echo a_href_page('Test suite', 'kambi_vrml_test_suite'); ?></li>
+    <li><?php echo a_href_page('Implementation status', 'vrml_implementation_status'); ?>
       <ul>
         <li><?php echo a_href_page('Core'                            , 'vrml_implementation_core'                ); ?>  </li>
         <li><?php echo a_href_page('Time'                            , 'vrml_implementation_time'                ); ?>  </li>
