@@ -28,9 +28,12 @@ function echo_header_bonus ()
   <?php
 }
 
-function vrmlengine_header($a_page_title, $meta_description = NULL)
+function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = NULL)
 {
   common_header($a_page_title, LANG_EN, $meta_description);
+
+  global $vrmlengine_sidebar;
+  $vrmlengine_sidebar = $sidebar;
 
   $menu = array(
     MAIN_PAGE_BASENAME       => array('caption' => 'Main &amp; news'),
@@ -75,11 +78,33 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
     <a href="index.php">Home</a>
     &#187;
     <a href="vrml_implementation_status.php">VRML / X3D implementation status</a>
-  </div>
+  </div>';
 
-  <div class="content">';
+  if (empty($vrmlengine_sidebar))
+    $rendered .= '<div class="content">'; else
+    $rendered .= '<table class="layout">
+      <col class="content_column">
+      <col class="sidebar_column">
+      <tr><td class="layout content">';
 
   echo $rendered;
+}
+
+function vrmlengine_footer()
+{
+  global $vrmlengine_sidebar;
+
+  if (empty($vrmlengine_sidebar))
+    echo '</div>'; else
+  {
+    /* Call $vrmlengine_sidebar now, after common_header
+       (that defines a_href_page) is done. */
+
+    $sidebar_content = call_user_func($vrmlengine_sidebar);
+    echo '</td><td class="layout">' .$sidebar_content. '</td></tr></table>';
+  }
+
+  common_footer();
 }
 
 function echo_footer ()
@@ -132,12 +157,6 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 
 <?php
   }
-}
-
-function vrmlengine_footer()
-{
-  echo '</div>';
-  common_footer();
 }
 
 /* This set_include_path is needed on SourceForge, otherwise

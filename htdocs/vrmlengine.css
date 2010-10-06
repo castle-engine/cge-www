@@ -2,7 +2,7 @@
    Instead use class "content" to add some nice padding between
    window border and actual text. */
 body { margin: 0px; padding: 0px; }
-div.content { margin: 0.4em; }
+.content { margin: 0px; padding: 0.4em; }
 
 object.movie_thumbnail {
   width: 200px;
@@ -186,7 +186,9 @@ table.specification td {
 }
 
 table.layout { margin: 0px; padding: 0px; border: 0px; width: 100%; }
-td.layout { margin: 0px; padding: 0px; border: 0px; vertical-align: top; }
+/* Don't set padding/margin here,
+   sidebar_column and content_column want different padding/margin. */
+td.layout { border: 0px; vertical-align: top; }
 
 div.sidebar {
   margin-left: 0.5em;
@@ -194,8 +196,12 @@ div.sidebar {
   font-size: 0.7em;
 }
 
-col.sidebar { width: 15em;
-  background: #dddddd url(images/sidebar_bg.png) repeat-y; }
+col.sidebar_column {
+  width: 15em;
+  margin: 0px;
+  padding: 0px;
+  background: #dddddd url(images/sidebar_bg.png) repeat-y;
+}
 
 div.sidebar_title { text-align: center; }
 div.sidebar_title h2 { margin-top: 0px; font-size: medium; }
