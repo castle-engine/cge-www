@@ -258,6 +258,7 @@ div.header {
 
 .header_menu td.lower {
   padding: 0px; /* must be 0, otherwise bg of a:hover will not fill the cell */
+  vertical-align: bottom; /* needed when page becomes too narrow to fit all the items without breaking link captions into multiline */
 }
 .header_menu td.lower a         {
   display: block;
