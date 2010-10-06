@@ -9,7 +9,7 @@
 <ul>
   <li><p><tt>Shape</tt>, <tt>Appearance</tt>, <tt>Material</tt></p></li>
 
-  <li><b>VRML 1.0 and multiple materials</b>: multiple materials
+  <li><p><b>VRML 1.0 and multiple materials</b>: multiple materials
     within a single VRML 1.0 <tt>Material</tt> node work 100%
     correctly if you change only emissive and transparency,
     or only diffuse and transparency for each index.

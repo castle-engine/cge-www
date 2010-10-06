@@ -1465,7 +1465,7 @@ Shape {
     <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbing">Developers: see also TWalkCamera.HeadBobbing property.</a>)</small></p>
 
     <p>The field <tt>headBobbingTime</tt> determines how much time passes
-    to make full head bobbing sequence (camera swing up and then down back to original height).</tt>.
+    to make full head bobbing sequence (camera swing up and then down back to original height).
 
     <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbingTime">Developers: see also TWalkCamera.HeadBobbingTime property.</a>)</small></p>
 
