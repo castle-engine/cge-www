@@ -17,7 +17,7 @@
 <?php if (!IS_GEN_LOCAL) { ?>
   <div class="chm" style="float: right"><a href="kambiscript_language.chm">This
   KambiScript reference in CHM format</a></div>
-<?php } 
+<?php }
 ?>
 
 <?php echo pretty_heading('KambiScript language', NULL,
@@ -105,7 +105,7 @@ are understood to contain program in KambiScript language.
 URLs to external files with extension <tt>.kscript</tt> point
 to whole files in KambiScript language. Like</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
 Script {
   inputOnly SFFloat foo
   outputOnly SFFloat foo_plus_one
@@ -125,7 +125,7 @@ Script {
 
 <p>Some examples of simple mathematical expressions for glplotter:</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
   sin(x) ^ 10
   2 * (cos(ln(x)) - 1)
   sin(x) &gt; cos(x)
@@ -134,7 +134,7 @@ Script {
 
 <p>Some example of simple program for VRML script node:</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
 Script {
   # Let's assume some TouchSensor.touchTime is routed here.
   # When user clicks on this touch sensor, you want to close the door
@@ -167,7 +167,7 @@ X3D nodes.
 But script is already simpler and shorter, and allows you to trivially
 add other interesting things.</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
 # Simple converter from SFString to MFString using built-in <?php func_ref('array', 'array'); ?> function.
 Script {
   inputOnly SFString input
@@ -261,7 +261,7 @@ at runtime. Four core types are available:</p>
     VRML string easier (no need to escape quotes by backslashes).
     You can make actual newlines within the string, like in VRML.
     For example:
-<pre class="light_bg">
+<pre class="sourcecode">
 Script {
   # Let's assume some TouchSensor.touchTime is routed here.
   inputOnly SFTime touch_time
@@ -382,7 +382,7 @@ standard:</p>
     For example, assuming <tt>output</tt> is an <tt>outputOnly</tt>
     event of MFFloat type:
 
-<pre class="light_bg">
+<pre class="sourcecode">
 function foo(value, timestamp)
   output := array(0.0, 1.0, 2.0, 3.0);
   array_set(output, 1, 666.0);
@@ -473,7 +473,7 @@ value. If it's true, then <tt>then_code</tt> is executed and returned as
 "instruction" and "expression" terms) this can be used in both
 functional and imperative form. That is, all below are valid:</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
   { imperative form }
   if(x &gt; 3, y := 'yes', y := 'no');
 
@@ -803,7 +803,7 @@ will be more than happy to add them :)
 
 <?php echo $toc->html_section(); ?>
 
-<pre class="light_bg">
+<pre class="sourcecode">
   Operand (aka "something that can be assigned") = Identifier
 
   Factor = Operand |

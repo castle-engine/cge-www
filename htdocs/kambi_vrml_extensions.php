@@ -1522,7 +1522,7 @@ some_other_event=some_other_handler
     appropriate handlers
     in your Pascal code. Like this:</p>
 
-<pre class="light_bg">
+<pre class="sourcecode">
 type
   TMyObject = class
     procedure ScriptInitialization(Value: TVRMLField; const Time: TVRMLTime);

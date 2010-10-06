@@ -20,10 +20,11 @@ table.table_with_movie_thumbnail {
   width: 210px;
 }
 
-pre.light_bg {
+pre.sourcecode {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
+  white-space: pre-wrap;
 }
 
 a.kscript_func_docs { text-decoration: underline; }
