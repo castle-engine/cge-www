@@ -53,7 +53,7 @@ function node_field($field_type, $field_inout, $field_name, $field_default, $fie
 		      .int_to_str($node_format_fd_name_pad). "s  %-"
 		      .int_to_str($node_format_fd_def_pad). "s</b>",
 		      $field_type, $field_inout, $field_name, $field_default);
-  if ($field_comment != "") $r .= "  # $field_comment";
+  if ($field_comment != "") $r .= "  #&nbsp;$field_comment";
   $r .= "\n";
   return $r;
 }
@@ -2647,8 +2647,6 @@ end;
     We support this node fully, according to instantreality specs.</p>
 
     <?php echo node_begin("Toggler  : X3DChildNode");
-      $node_format_fd_name_pad = 20;
-      $node_format_fd_def_pad = 15;
       echo
       node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
       node_field('SFBool', '[in,out]', 'status',  'FALSE', '') .
