@@ -239,6 +239,8 @@ div.header {
   font-size: xx-large; font-weight: bold; color: #EEAD24;
   padding: 0.2em 0.4em 0.8em 0.4em;
 }
+.header_title a { text-decoration: none; color: #EEAD24; }
+
 .header_menu {
   border-collapse: collapse;
   width: 100%;
@@ -248,7 +250,6 @@ div.header {
   border-left: thin dotted #666;
   color: #666666;
 }
-
 .header_menu td.higher_left  { text-align: right; padding-right: 0.4em; }
 .header_menu td.higher_right { text-align: left;  padding-left:  0.4em; }
 
@@ -259,7 +260,6 @@ div.header {
   border-bottom: 0px none;
   padding: 0px; /* must be 0, otherwise bg of a:hover will not fill the cell */
 }
-
 .header_menu td.lower a       { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: #5EB2E5; }
 .header_menu td.lower a:hover { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: black; background: #ddd; }
 
