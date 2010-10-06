@@ -257,7 +257,8 @@ div.header {
 .header_menu td.higher_right { text-align: left;  padding-left:  0.4em; border-left:  thin solid #222; }
 
 .header_menu td.lower_separator {
-  padding: 0.1em;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
   margin-right: 0em;
   margin-left: 0em;
   border-bottom: thin solid #222;
