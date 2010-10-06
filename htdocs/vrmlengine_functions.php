@@ -36,7 +36,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
   $vrmlengine_sidebar = $sidebar;
 
   $menu = array(
-    MAIN_PAGE_BASENAME       => array('caption' => 'Main &amp; news'),
+    MAIN_PAGE_BASENAME       => array('caption' => 'Intro and News'),
     'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'caption' => 'view3dscene'),
     'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'caption' => 'The Castle'),
     'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'caption' => 'All Programs'),
