@@ -59,11 +59,14 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
       </tr>
       <tr>';
 
+  global $page_basename;
   foreach($menu as $menu_item_page => $menu_item)
   {
     $rendered .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
     if (isset($menu_item['hint']))
       $rendered .= ' title="' . $menu_item['hint'] . '"';
+    if ($page_basename == $menu_item_page)
+      $rendered .= ' id="current"';
     $rendered .= '>' . $menu_item['caption'] . '</a></td>';
   }
   unset($menu_item);

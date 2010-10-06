@@ -263,8 +263,13 @@ div.header {
   border-bottom: 0px none;
   padding: 0px; /* must be 0, otherwise bg of a:hover will not fill the cell */
 }
-.header_menu td.lower a       { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: #5EB2E5; }
-.header_menu td.lower a:hover { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: black; background: #ddd; }
+.header_menu td.lower a         { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em;
+  color: #5EB2E5; }
+.header_menu td.lower a#current { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em;
+  color: black; background: white; }
+.header_menu td.lower a:hover   { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em;
+  color: black;
+  /* important, to override a#current */ background: #ddd !important; }
 
 .header_breadcrumbs {
   color: #666666;

@@ -686,7 +686,7 @@ function common_header($a_page_title, $a_page_lang,
   $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
 {
   global $page_title, $page_lang, $s_quick_links, $main_page,
-    $lang_to_html_lang, $this_page_name;
+    $lang_to_html_lang, $this_page_name, $page_basename;
 
   $page_title = $a_page_title;
   $page_lang = $a_page_lang;
