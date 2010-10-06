@@ -52,8 +52,8 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
 
     <table class="header_menu">
       <tr>
-        <td colspan="' . $menu_for_users . '" class="higher">For users</td>
-        <td colspan="' . $menu_for_developers . '" class="higher">For developers</td>
+        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
+        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
       </tr>
       <tr>';
 
@@ -65,6 +65,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
     $rendered .= '>' . $menu_item['caption'] . '</a></td>';
   }
   unset($menu_item);
+  unset($menu_item_page);
 
   $rendered .= '
       </tr>
