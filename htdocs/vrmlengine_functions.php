@@ -82,7 +82,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
 
   if (empty($vrmlengine_sidebar))
     $rendered .= '<div class="content">'; else
-    $rendered .= '<table class="layout">
+    $rendered .= '<table class="layout" cellspacing="0">
       <col class="content_column">
       <col class="sidebar_column">
       <tr><td class="layout content">';
