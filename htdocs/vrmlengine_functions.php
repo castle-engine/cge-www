@@ -45,8 +45,8 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
     'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'caption' => 'VRML/X3D'),
     'other'                  => array('hint' => 'Blender VRML, Wiki, Other documentation pages'              , 'caption' => 'Other'),
   );
-  $menu_for_users = 5;
-  $menu_for_developers = count($menu) - $menu_for_users;
+  $menu_for_users = 5 * 2 + 1;
+  $menu_for_developers = 2 * count($menu) + 1 - $menu_for_users;
 
   $rendered = '
   <div class="header">
@@ -57,7 +57,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
         <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
         <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
       </tr>
-      <tr>';
+      <tr><td class="lower_separator"></td>';
 
   global $page_basename;
   foreach($menu as $menu_item_page => $menu_item)
@@ -67,7 +67,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
       $rendered .= ' title="' . $menu_item['hint'] . '"';
     if ($page_basename == $menu_item_page)
       $rendered .= ' id="current"';
-    $rendered .= '>' . $menu_item['caption'] . '</a></td>';
+    $rendered .= '>' . $menu_item['caption'] . '</a></td><td class="lower_separator"></td>';
   }
   unset($menu_item);
   unset($menu_item_page);
