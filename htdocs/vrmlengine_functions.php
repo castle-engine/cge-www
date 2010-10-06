@@ -33,7 +33,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
   common_header($a_page_title, LANG_EN, $meta_description);
 
   $menu = array(
-    'index'                  => array('caption' => 'Main &amp; news'),
+    MAIN_PAGE_BASENAME       => array('caption' => 'Main &amp; news'),
     'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'caption' => 'view3dscene'),
     'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'caption' => 'The Castle'),
     'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'caption' => 'All Programs'),
@@ -48,7 +48,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
   $rendered = '
   <div class="header">
 
-    <div class="header_title"><a href="'.en_page_url('index').'">Kambi VRML game engine</a></div>
+    <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Kambi VRML game engine</a></div>
 
     <table class="header_menu">
       <tr>
