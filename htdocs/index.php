@@ -12,15 +12,15 @@
   alt="Kambi VRML game engine icon"
   align="right"/>
 
-<?php echo pretty_heading("Kambi VRML game engine"); ?>
+<?php /* echo pretty_heading("Kambi VRML game engine"); */  ?>
 
-<p><b>For developers:</b> this is a free/open-source 3D (game) engine.
+<p><b>For developers:</b> <b>Kambi VRML game engine</b>
+is a free/open-source 3D (game) engine.
 The engine is written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
 code, and we have an excellent support for the
 <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
 (although other 3D model formats are also supported).
-For more information, documentation and downloads for developers
-see <a href="#support">lower on this page</a>.</p>
+See here <?php echo a_href_page('for detailed documentation and downloads for developers', 'kambi_vrml_game_engine'); ?>.</p>
 
 <p><b>For normal human beings:</b> this page is a collection of various
 games and tools developed using our engine. <!--Most of them
