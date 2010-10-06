@@ -1,7 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header("Some notes about command-line options understood by my programs",
-    LANG_EN);
+  vrmlengine_header("Some notes about command-line options understood by my programs");
 ?>
 
 <h2>Some notes about command-line options understood by my programs</h2>
@@ -110,5 +109,5 @@ known and used by most good programs in the world) :
     $counter = php_counter("common_options", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

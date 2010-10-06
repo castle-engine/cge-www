@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("bezier_curves", LANG_EN,
+  vrmlengine_header("bezier_curves",
     "bezier_curves - plot rational bezier curves.");
 ?>
 
@@ -77,5 +77,5 @@ SmoothInterpolatedCurve {
     $counter = php_counter("bezier_curves", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

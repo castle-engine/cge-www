@@ -21,19 +21,10 @@ function image_tags_table($image_names)
 function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
   $prim_samples, $direct_samples)
 {
-  global $page_lang;
-  switch ($page_lang)
-  {
-    case LANG_PL:
-      $result = "Parametry rayhuntera: minimalna g³êboko¶æ $min_depth,
-        non primary samples count : $non_prim_samples,"; break;
-    case LANG_EN:
-      $result = "Rayhunter parameters: minimal depth $min_depth,
-        non primary samples count : $non_prim_samples,"; break;
-  }
-
-  $result .= "<tt>--r-roul-continue $r_roul</tt>,
-             <tt>--primary-samples-count $prim_samples</tt>";
+  $result = "Rayhunter parameters: minimal depth $min_depth,
+    non primary samples count : $non_prim_samples,
+    <tt>--r-roul-continue $r_roul</tt>,
+    <tt>--primary-samples-count $prim_samples</tt>";
   if ($direct_samples != 1) $result .=
     "<tt>--direct-illum-samples-count $direct_samples</tt>";
   $result .= '.';

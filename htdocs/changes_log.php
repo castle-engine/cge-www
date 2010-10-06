@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header('News about the Kambi VRML game engine', LANG_EN, NULL);
+  vrmlengine_header('News about the Kambi VRML game engine');
 
   require_once 'changes_log_common.php';
 ?>
@@ -1590,5 +1590,5 @@ I started to maintain this update log at 18th march, 2004.
     $counter = php_counter("changes_log", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

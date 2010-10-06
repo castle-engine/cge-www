@@ -1,6 +1,6 @@
 <?php
   require_once 'vrmlengine_functions.php';
-  common_header("Demo movies - Kambi VRML game engine", LANG_EN);
+  vrmlengine_header("Demo movies - Kambi VRML game engine");
 
   define('AVI_TITLE', 'Download AVI version');
 
@@ -90,5 +90,5 @@ editing (glued, fading between parts) thanks to
     $counter = php_counter("movies", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

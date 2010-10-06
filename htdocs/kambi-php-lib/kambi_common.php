@@ -43,6 +43,9 @@
    - CURRENT_URL_SHORT (Short server name, corresponding to CURRENT_URL,
      used only to show to humans (when making links
      from offline to online page).
+   - You may want to define KAMBI_NO_HOME_LINK (value is ignored,
+     for now always define to true) to suppress automatic
+     writing of main page link in common_header and common_footer.
 
    ============================================================
 
@@ -795,7 +798,9 @@ function common_header($a_page_title, $a_page_lang,
 <body>
 
 <?php
-  if ( (!$main_page) && ($s_quick_links != '') ) { ?>
+  if ( (!defined('KAMBI_NO_HOME_LINK')) &&
+       (!$main_page) &&
+       ($s_quick_links != '') ) { ?>
     <p align="right"><small> <?php echo $s_quick_links; ?> </small></p>
 <?php };
 }
@@ -821,7 +826,9 @@ and you are free to modify and further distribute it on terms of
 <div class="page_footer">
 
 <?php
-  if ( (!$main_page) && ($s_quick_links != '') ) { ?>
+  if ( (!defined('KAMBI_NO_HOME_LINK')) &&
+      (!$main_page) &&
+      ($s_quick_links != '') ) { ?>
     <div class="quick_links_bottom_line"> <?php echo $s_quick_links; ?> </div>
 <?php };
 

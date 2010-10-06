@@ -8,7 +8,7 @@ require_once 'vrmlengine_functions.php';
 
 function vrmlx3d_header($a_page_title)
 {
-  common_header($a_page_title, LANG_EN);
+  vrmlengine_header($a_page_title);
   echo '<table class="layout">
     <col class="content">
     <col class="sidebar">
@@ -20,7 +20,7 @@ function vrmlx3d_footer()
   echo '</td><td class="layout">';
   vrmlx3d_sidebar();
   echo '</td></tr></table>';
-  common_footer();
+  vrmlengine_footer();
 }
 
 function x3d_status_header()

@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header("Dependencies of my programs on Mac OS X", LANG_EN, '');
+  vrmlengine_header("Dependencies of my programs on Mac OS X");
 ?>
 
 <h1>Dependencies of my programs on Mac OS X</h1>
@@ -65,5 +65,5 @@ or similar file for comfort).
     $counter = php_counter("macosx_requirements", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

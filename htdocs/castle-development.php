@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("The Castle &mdash; development", LANG_EN, '');
+  vrmlengine_header("The Castle &mdash; development");
 
   $toc = new TableOfContents(
     array(
@@ -1125,5 +1125,5 @@ full list of things and resources used).
     $counter = php_counter("castle-development", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

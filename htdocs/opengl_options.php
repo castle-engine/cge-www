@@ -1,7 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header("Standard command-line options understood by my OpenGL programs",
-    LANG_EN);
+  vrmlengine_header("Standard command-line options understood by my OpenGL programs");
 ?>
 
 <h2>Standard command-line options understood by my OpenGL programs</h2>
@@ -91,5 +90,5 @@ accept some set of standard command-line options:
     $counter = php_counter("opengl_options", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

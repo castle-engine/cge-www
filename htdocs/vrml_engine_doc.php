@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("VRML engine documentation", LANG_EN);
+  vrmlengine_header("VRML engine documentation");
 ?>
 
 <h1>VRML engine documentation</h1>
@@ -50,5 +50,5 @@ and <tt>ttf-dejavu</tt> font if you want to make PDF version.</p>
     $counter = php_counter("vrml_engine_doc", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

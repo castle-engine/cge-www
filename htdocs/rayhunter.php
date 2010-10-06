@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'raytr_gallery_funcs.php';
 
-  common_header("rayhunter", LANG_EN,
+  vrmlengine_header("rayhunter",
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .
     "(for Linux, FreeBSD, Mac OS X and Windows).");
@@ -626,4 +626,4 @@ some advantages:
     to write partial result from time to time.
 </ul>
 
-<?php common_footer() ?>
+<?php vrmlengine_footer() ?>

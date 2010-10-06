@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("Blender VRML stuff", LANG_EN,
+  vrmlengine_header("Blender VRML stuff",
     "Various stuff related to Blender and VRML exporters, " .
     "especially for Kambi VRML game engine");
 
@@ -73,5 +73,5 @@ function echo_svn_blender_file($filename)
     $counter = php_counter("blender_stuff", true);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

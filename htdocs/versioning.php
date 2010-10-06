@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  common_header('Versioning scheme of Michalis\' things', LANG_EN, NULL);
+  vrmlengine_header('Versioning scheme of Michalis\' things');
 ?>
 
 <h2>Versioning scheme of Michalis' things</h2>
@@ -108,5 +108,5 @@ like" are given at the bottom of this page.
     $counter = php_counter("versioning", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("glplotter and gen_function", LANG_EN,
+  vrmlengine_header("glplotter and gen_function",
     'glplotter &mdash; program for plotting graphs in OpenGL, and ' .
     'gen_function &mdash; for generating function graphs');
 ?>
@@ -262,5 +262,5 @@ do tutoriala  notki o sk³adni wyra¿en. Notka o u¿yteczno¶ci notacji
     $counter = php_counter("glplotter_and_gen_function", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

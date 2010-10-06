@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("lets_take_a_walk", LANG_EN,
+  vrmlengine_header("lets_take_a_walk",
     "lets_take_a_walk - A small toy ".
     "demonstrating rendering 3d graphic and spatial sound.");
 
@@ -132,5 +132,5 @@ files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
     $counter = php_counter("lets_take_a_walk", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

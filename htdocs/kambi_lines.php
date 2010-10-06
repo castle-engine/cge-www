@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("kambi_lines", LANG_EN,
+  vrmlengine_header("kambi_lines",
     "kambi_lines - small game in OpenGL based on old DOS 'Color Lines'.");
 ?>
 
@@ -152,5 +152,5 @@ of "KDE Lines" graphics.
     $counter = php_counter("kambi_lines", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("Kambi VRML game engine (overview for developers)", LANG_EN);
+  vrmlengine_header("Kambi VRML game engine (overview for developers)");
 
   $toc = new TableOfContents(
     array(
@@ -504,5 +504,5 @@ program after successfully running all 86 tests:<br>
     $counter = php_counter("kambi_vrml_game_engine", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

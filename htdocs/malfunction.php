@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("malfunction", LANG_EN, 'Small 3d game. ' .
+  vrmlengine_header("malfunction", 'Small 3d game. ' .
     'You fly a spaceship and try to shoot down all alien ships.');
 
   $toc = new TableOfContents(
@@ -129,5 +129,5 @@ or using <a href="http://www.blender.org/">Blender</a>
     $counter = php_counter("malfunction", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

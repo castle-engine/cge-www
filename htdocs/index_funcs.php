@@ -3,26 +3,6 @@
 require_once 'vrmlengine_functions.php';
 $main_page = true;
 
-/* See private/old/index_main_list.php
-   for some old ideas for main_list_ things. */
-
-function index_header($a_page_title, $a_page_lang, $meta_description)
-{
-  common_header($a_page_title, $a_page_lang,
-    $meta_description, NULL,
-    '<style type="text/css"><!--
-       DIV.main_list_item {
-         font-family: serif;
-         font-weight: bolder;
-         font-size: large;
-
-         background: #ddddd0;
-
-         padding: 0.1em;
-       }
-     --></style>');
-}
-
 $main_list_item_num = 0;
 function main_list_item($item_title, $anchor_name = '')
 {

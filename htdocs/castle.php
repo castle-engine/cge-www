@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("The Castle", LANG_EN, '');
+  vrmlengine_header("The Castle");
 ?>
 
 <?php
@@ -69,11 +69,11 @@ wait only once for "Loading creatures").
 
 <h2><a name="section_download">Download</a></h2>
 
-<p><?php
+<?php
   echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
   VERSION_CASTLE, $std_releases_post_1_2_0);
-?></p>
+?>
 
 <p>See <?php echo a_href_page('changes_log', 'changes_log') ?> for
 the list of changes since last release.</p>
@@ -191,5 +191,5 @@ See <?php echo a_href_page('credits page', 'castle-credits') ?>.
     $counter = php_counter("castle", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

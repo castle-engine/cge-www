@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("glinformation", LANG_EN,
+  vrmlengine_header("glinformation",
     'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.');
 ?>
 
@@ -78,5 +78,5 @@ so it's able to write some info like all possible visual configurations).</p>
     $counter = php_counter("glinformation", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

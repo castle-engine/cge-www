@@ -1,22 +1,13 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  common_header("view3dscene", LANG_EN,
+  vrmlengine_header("view3dscene",
     'view3dscene is a VRML / X3D browser, also a viewer for other 3D models. ' .
     'Supported formats are X3D, VRML (1.0 and 2.0 (aka VRML 97)), 3DS, MD3, Wavefront OBJ and Collada scenes. ' .
     'Can do collision detection. ' .
     'Can be used as command-line converter from Collada, 3DS, OBJ, MD3 to VRML. ' .
     'Has built-in ray-tracer. Rendering uses OpenGL. ' .
-    'Free software. For Linux, FreeBSD, Mac OS X and Windows.',
-    NULL,
-    '<style type="text/css"><!--
-      HR.ruler_between_sections { width: 100%; }
-      DL.params_list DT  {
-        font-weight: normal; font-family: monospace;
-        margin-top: 1em;
-      }
-    --></style>
-    ');
+    'Free software. For Linux, FreeBSD, Mac OS X and Windows.');
 
   function section($make_hr = true)
   {
@@ -886,5 +877,5 @@ releases of view3dscene.</p>
     $counter = php_counter("view3dscene", TRUE);
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

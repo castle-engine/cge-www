@@ -1,7 +1,7 @@
 <?php
   require_once "index_funcs.php";
 
-  index_header("Kambi VRML game engine", LANG_EN,
+  vrmlengine_header("Kambi VRML game engine",
     'A game engine written using ObjectPascal. ' .
     'Main features: processing and OpenGL rendering of 3D models in VRML ' .
     '(and some other) formats, animation, collision detection, ' .
@@ -313,5 +313,5 @@ drop me a note about this&nbsp;!
     */
   };
 
-  common_footer();
+  vrmlengine_footer();
 ?>

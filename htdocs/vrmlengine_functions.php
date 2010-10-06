@@ -5,6 +5,7 @@ define('COUNTER_DATA_PATH', '/home/groups/v/vr/vrmlengine/persistent/');
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
+define('KAMBI_NO_HOME_LINK', true);
 
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
@@ -25,6 +26,11 @@ function echo_header_bonus ()
 <script type="text/javascript" src="vrmlengine.js"></script>
 
   <?php
+}
+
+function vrmlengine_header($a_page_title, $meta_description = NULL)
+{
+  common_header($a_page_title, LANG_EN, $meta_description);
 }
 
 function echo_footer ()
@@ -77,6 +83,11 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 
 <?php
   }
+}
+
+function vrmlengine_footer()
+{
+  common_footer();
 }
 
 /* This set_include_path is needed on SourceForge, otherwise
