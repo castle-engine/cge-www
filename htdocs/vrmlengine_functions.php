@@ -31,6 +31,55 @@ function echo_header_bonus ()
 function vrmlengine_header($a_page_title, $meta_description = NULL)
 {
   common_header($a_page_title, LANG_EN, $meta_description);
+
+  $menu = array(
+    'index'                  => array('caption' => 'Main &amp; news'),
+    'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'caption' => 'view3dscene'),
+    'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'caption' => 'The Castle'),
+    'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'caption' => 'All Programs'),
+    'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'caption' => 'Support'),
+    'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'caption' => 'Engine'),
+    'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'caption' => 'VRML/X3D'),
+    'other'                  => array('hint' => 'Blender VRML, Wiki, Other documentation pages'              , 'caption' => 'Other'),
+  );
+  $menu_for_users = 5;
+  $menu_for_developers = count($menu) - $menu_for_users;
+
+  $rendered = '
+  <div class="header">
+
+    <div class="header_title">Kambi VRML game engine</div>
+
+    <table class="header_menu">
+      <tr>
+        <td colspan="' . $menu_for_users . '" class="higher">For users</td>
+        <td colspan="' . $menu_for_developers . '" class="higher">For developers</td>
+      </tr>
+      <tr>';
+
+  foreach($menu as $menu_item_page => $menu_item)
+  {
+    $rendered .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
+    if (isset($menu_item['hint']))
+      $rendered .= ' title="' . $menu_item['hint'] . '"';
+    $rendered .= '>' . $menu_item['caption'] . '</a></td>';
+  }
+  unset($menu_item);
+
+  $rendered .= '
+      </tr>
+    </table>
+  </div>
+
+  <div class="header_breadcrumbs">
+    <a href="index.php">Home</a>
+    &#187;
+    <a href="vrml_implementation_status.php">VRML / X3D implementation status</a>
+  </div>
+
+  <div class="content">';
+
+  echo $rendered;
 }
 
 function echo_footer ()
@@ -87,6 +136,7 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 
 function vrmlengine_footer()
 {
+  echo '</div>';
   common_footer();
 }
 

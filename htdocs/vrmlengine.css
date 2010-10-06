@@ -1,3 +1,9 @@
+/* No body margins, we want our header and sidebar closely at window border.
+   Instead use class "content" to add some nice padding between
+   window border and actual text. */
+body { margin: 0px; padding: 0px; }
+div.content { margin: 0.4em; }
+
 object.movie_thumbnail {
   width: 200px;
   height: 167px;
@@ -219,3 +225,45 @@ div.main_list_item {
 
   padding: 0.1em;
 }
+
+/* header ------------------------------------------------------------------- */
+
+/* Header colors and image is inspired by WordPress Gears theme,
+   http://www.mymobiles.com/wordpress-themes/gear */
+
+div.header {
+  background: #353535 url('images/header-pattern.png') repeat-x;
+}
+
+.header_title {
+  font-size: xx-large; font-weight: bold; color: #EEAD24;
+  padding: 0.2em 0.4em 0 0.4em;
+}
+.header_menu {
+  border-collapse: collapse;
+  width: 100%;
+}
+.header_menu td.higher {
+  border-top: thin dotted #666;
+  border-right: thin dotted #666;
+  border-left: thin dotted #666;
+  padding-left: 0.4em;
+  color: #666666;
+}
+.header_menu td.lower {
+  border-left: thin dotted #666;
+  border-right: thin dotted #666;
+  border-top: thin dotted #666;
+  border-bottom: 0px none;
+  padding: 0px; /* must be 0, otherwise bg of a:hover will not fill the cell */
+}
+
+.header_menu td.lower a       { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: #5EB2E5; }
+.header_menu td.lower a:hover { display: block; text-decoration: none; text-align: center; padding: 0em 0.2em; color: black; background: #ddd; }
+
+.header_breadcrumbs {
+  color: #666666;
+  padding: 0.4em;
+}
+.header_breadcrumbs a       { color: #5EB2E5; }
+.header_breadcrumbs a:hover { color: #39C; }

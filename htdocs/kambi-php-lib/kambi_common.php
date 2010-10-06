@@ -524,6 +524,13 @@ function common_set_page_functions()
     return $result;
   }
 
+  /* Simpler version of page_url for websites that are only in English language. */
+  function en_page_url($page_name, $hash_link = '')
+  {
+    $url_comment = '';
+    return page_url($page_name, $hash_link, LANG_EN, $url_comment);
+  }
+
   function a_href_page_core($link_title, $page_name, $hash_link,
     $target_page_lang)
   /* Internal, aby zapewniæ wspóln± implementacjê dla a_href_page i
