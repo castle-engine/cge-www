@@ -265,3 +265,8 @@ div.header {
 }
 .header_breadcrumbs a       { color: #5EB2E5; }
 .header_breadcrumbs a:hover { color: #39C; }
+
+.header_icon { float: right;
+  margin-right: 0.4em;
+  margin-top: 0.4em;
+}

@@ -47,9 +47,8 @@ function vrmlengine_header($a_page_title, $meta_description = NULL)
 
   $rendered = '
   <div class="header">
-
+    <img class="header_icon" src="images/header_icon.png" alt="Kambi VRML game engine icon" />
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Kambi VRML game engine</a></div>
-
     <table class="header_menu">
       <tr>
         <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
