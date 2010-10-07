@@ -1,15 +1,16 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("VRML engine documentation");
+  vrmlengine_header("VRML engine documentation", NULL,
+    array('kambi_vrml_game_engine'));
 ?>
 
-<h1>VRML engine documentation</h1>
+<?php echo pretty_heading('General overview', NULL,
+  'Overview of the engine and VRML, with some information about engine internals'); ?>
 
-<p>An overview of VRML and our Kambi VRML game engine.
-Most of this document was originally written as my master's thesis,
-passed in September 2006.
-<?php echo michalis_mailto('All comments are welcome'); ?>.
+<p>Most of this documentation was originally written as my master's thesis,
+passed in September 2006. Although I keep updating and adding content
+to this as the engine develops.</p>
 
 <p>View in various formats:</p>
 
@@ -42,8 +43,9 @@ to make HTML version of the document from DocBook sources.
 Additionally you will need <tt>fop</tt> (version &gt;= 0.9x)
 and <tt>ttf-dejavu</tt> font if you want to make PDF version.</p>
 
-<p>You can also download the latest version from Subversion by:<br>
-<tt><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></tt></p>
+<p>You can also download the latest version from Subversion by:</p>
+
+<pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
 
 <?php
   if (!IS_GEN_LOCAL) {

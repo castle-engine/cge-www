@@ -27,7 +27,13 @@ $vrmlengine_sitemap = array(
   'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle'),
   'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs'),
   'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
-  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine'),
+
+  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
+    'sub' => array(
+      'reference' => array('title' => 'Reference'),
+      'vrml_engine_doc' => array('title' => 'General documentation'),
+    ),
+  ),
 
   'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
     'sub' => array(
@@ -122,10 +128,7 @@ function _vrmlengine_sidebar($page, $pageinfo)
 {
   $result = '
   <div class="sidebar">
-    <div class="sidebar_title">
-      <small>' . a_href_page('Kambi VRML game engine', MAIN_PAGE_BASENAME) . '</small>
-      <h2>' . _vrmlengine_sidebar_link($page, $pageinfo) . '</h2>
-    </div>';
+    <div class="sidebar_title">' . _vrmlengine_sidebar_link($page, $pageinfo) . '</div>';
 
   if (isset($pageinfo['sub']))
     $result .= _vrmlengine_sidebar_menu($pageinfo['sub']);

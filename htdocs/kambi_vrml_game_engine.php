@@ -1,7 +1,8 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("Kambi VRML game engine (overview for developers)");
+  vrmlengine_header("Engine overview for developers", NULL,
+    array('kambi_vrml_game_engine'));
 
   $toc = new TableOfContents(
     array(
@@ -19,8 +20,7 @@
   $toc->echo_numbers = true;
 ?>
 
-<?php echo pretty_heading('Kambi VRML game engine (overview for developers)',
-  VERSION_KAMBI_VRML_GAME_ENGINE); ?>
+<?php echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE); ?>
 
 <?php
   echo '<table align="right">' .

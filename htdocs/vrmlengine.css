@@ -204,8 +204,11 @@ col.sidebar_column {
   background: #dddddd url(images/sidebar_bg.png) repeat-y;
 }
 
-div.sidebar_title { text-align: center; }
-div.sidebar_title h2 { margin-top: 0px; font-size: medium; }
+div.sidebar_title {
+  font-size: medium; font-weight: bold;
+  padding-left: 1em;
+  margin-bottom: 0.1em;
+}
 
 table.nist_test_suite { border-collapse:collapse; border: thin solid #999; }
 table.nist_test_suite td { border: thin solid #999; }
