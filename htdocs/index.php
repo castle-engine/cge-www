@@ -49,6 +49,11 @@ a_href_page('the news archive', 'changes_log') ?>.
 
 </div>
 
+<p><b>Watch engine development</b>: To <i>really</i> watch the engine development
+closely, you can watch the commits through
+<a href="http://cia.vc/stats/project/vrmlengine">Kambi VRML game engine on
+cia.vc</a>.</p>
+
 <p style="margin-bottom: 0.1em;"><i><b>Author:</b>
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
 (<?php echo michalis_mailto('email'); ?>).</i></p>
