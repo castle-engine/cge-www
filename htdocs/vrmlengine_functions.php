@@ -32,6 +32,7 @@ $vrmlengine_sitemap = array(
     'sub' => array(
       'reference' => array('title' => 'Reference'),
       'vrml_engine_doc' => array('title' => 'General documentation'),
+      'movies' => array('title' => 'Demo movies'),
     ),
   ),
 
