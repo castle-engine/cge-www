@@ -97,12 +97,14 @@ pre.vrml_code {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
+  white-space: pre-wrap;
 }
 
 pre.bordered_code {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
+  white-space: pre-wrap;
 }
 
 pre.vrml_extension_spec { white-space: pre-wrap; }

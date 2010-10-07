@@ -406,7 +406,8 @@ when you're not interested in testing creatures
     speed 20
     ...
     type "WALK" # "WALK" is not really needed for castle,
-                # but useful for testing with general VRML browsers like view3dscene
+                # but useful for testing
+                # with general VRML browsers like view3dscene
   }
 </pre>
     in your level. And force yourself to design a level that "fits"
@@ -742,8 +743,8 @@ when you're not interested in testing creatures
     stdout to a file then). Look there for lines that indicate loading
     of your creature, e.g. for <tt>Alien</tt> creature:</p>
 
-<pre>
-Animation info:                  Alien.Stand animation:    1 scenes *     4276 triangles
+<pre style="white-space: pre-wrap;">
+Animation info: Alien.Stand animation: 1 scenes * 4276 triangles
 Bump mapping: ...
 Shadows: Shadows casters triangles ...
 Shadows: Edges: 6414 manifold, 0 border
