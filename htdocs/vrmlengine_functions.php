@@ -215,13 +215,21 @@ function _vrmlengine_header_menu($current_page)
   $menu_for_users = 5 * 2 + 1;
   $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
 
+  /* It's a hack even to use a table cell for this.
+     It's even bigger hack to insert empty <div> here, but it's required
+     (on Google Chrome and Konqueror and IE, not on FireFox)
+     to place the lower border of separator at exactly the same level
+     as lower border of tabs.
+     Using border-bottom on td.lower_separator doesn't work reliably for this. */
+  $td_separator = '<td class="lower_separator"><div>&nbsp;</div></td>';
+
   $result = '
     <table class="header_menu">
       <tr>
         <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
         <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
       </tr>
-      <tr><td class="lower_separator"></td>';
+      <tr>' . $td_separator;
 
   foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
   {
@@ -233,7 +241,7 @@ function _vrmlengine_header_menu($current_page)
     if (isset($menu_item['title-for-header-menu']))
       $title = $menu_item['title-for-header-menu']; else
       $title = $menu_item['title'];
-    $result .= '>' . $title . '</a></td><td class="lower_separator"></td>';
+    $result .= '>' . $title . '</a></td>' . $td_separator;
   }
   unset($menu_item);
   unset($menu_item_page);
