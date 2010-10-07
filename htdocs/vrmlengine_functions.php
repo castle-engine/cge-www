@@ -20,6 +20,37 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   (this web page) is also included inside
   (look in the <tt>documentation/</tt> subdirectory) for offline viewing.');
 
+/* Complete sitemap of our website.
+   This determines a lot of navigational stuff: header menu, sidebar,
+   breadcrumbs.
+
+   An array, mapping page basename => into the information about the page
+   and it's subitems.
+   Page basename may also contain (after hash) an anchor inside this page.
+   (Although this is not allowed for now for top-level items, but it may
+   be fixed when needed.)
+
+   Page information is another array, that contains
+
+   - title: html safe (with character entities already escaped etc.)
+     title of the page. Required.
+     Used for everything (header menu (if no title-for-header-menu),
+     sidebar, breadcrumbs.)
+
+   - title-for-header-menu: optional alternative to title, used (if set) by
+     header menu.
+
+   - hint: optional tooltip ("title" over <a> in HTML, don't confuse
+     with our title). Used now only over the header menu.
+
+   - sidebar: optional. If set, and true, then this is the "root"
+     of the sidebar. The algorithm used to display the sidebar looks
+     for the 1st item in the path (from sitemap root) that has
+     sidebar=true. If no such item, then no sidebar.
+     Sidebar follows the items defined in 'sub'.
+
+   - sub: optional array of pages under this page.
+*/
 global $vrmlengine_sitemap;
 $vrmlengine_sitemap = array(
   MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
@@ -187,12 +218,42 @@ function _vrmlengine_header_menu($current_page)
 
 function _vrmlengine_breadcrumbs($path)
 {
-  return '
-  <div class="header_breadcrumbs">
-    <a href="index.php">Home</a>
-    &#187;
-    <a href="vrml_implementation_status.php">VRML / X3D implementation status</a>
-  </div>';
+  $result = '';
+
+  /* There is no point in showing breadcrumbs containing only "Home"
+     (because home link is visible anyway on the header).
+     Also, no point in showing breadcrumbs if we're at the 1st page
+     in header menu, as then header menu tab indicates the page.
+     Also, no point when we're inside a page directly under header menu
+     (because then header menu tab + page title shows where we are). */
+  if (count($path) > 2)
+  {
+    global $vrmlengine_sitemap;
+
+    $result = '<div class="header_breadcrumbs">' .
+      a_href_page('Home', MAIN_PAGE_BASENAME);
+
+    $path_item_num = 0;
+    $path_item = '';
+    $path_itemsub = $vrmlengine_sitemap;
+
+    while ($path_item_num < count($path) - 1)
+    {
+      $path_item = $path[$path_item_num];
+      $path_itemtitle = $path_itemsub[$path_item]['title'];
+      if (isset($path_itemsub[$path_item]['sub']))
+        $path_itemsub = $path_itemsub[$path_item]['sub']; else
+        $path_itemsub = NULL;
+
+      $result .= ' &#187; ' . a_href_page($path_itemtitle, $path_item);
+
+      $path_item_num ++;
+    }
+
+    $result .= '</div>';
+  }
+
+  return $result;
 }
 
 function echo_header_bonus ()
@@ -244,6 +305,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
     } else
     {
       $item_for_sidebar = $path[$item_for_sidebar_num];
+      /* TODO 'sub' ? */
       $iteminfo_for_sidebar = $iteminfo_for_sidebar[$path[$item_for_sidebar_num]];
     }
   }
