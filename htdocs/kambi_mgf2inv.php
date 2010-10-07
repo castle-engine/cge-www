@@ -3,7 +3,7 @@
   vrmlengine_header("kambi_mgf2inv",
     'Modified version of mgf2inv converter, this converts mgf files to ' .
     'VRML / Inventor and adds non-standard ' .
-    'fields describing physical properties of materials.', array('other')
+    'fields describing physical properties of materials.', array('all_programs')
     );
 ?>
 

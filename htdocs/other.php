@@ -31,11 +31,6 @@ the programs developed with it:</p>
   <li><?php echo a_href_page('Dependencies on Mac OS X',
     'macosx_requirements'); ?>
 
-  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
-    modified version of the mgf2inv program by Greg Ward,
-    it outputs some additional info about physical material properties
-    (concerning Phong BRDF)
-
   <li>Programmers may be interested in my notes about:
     <ul>
       <li><a href="http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/bump_mapping/README">Bump

@@ -79,6 +79,7 @@ $vrmlengine_sitemap = array(
       ),
       'bezier_curves' => array('title' => 'bezier_curves'),
       'glinformation' => array('title' => 'glinformation'),
+      'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
     ),
   ),
 
@@ -143,7 +144,6 @@ $vrmlengine_sitemap = array(
     'sub' => array(
       'blender_stuff' => array('title' => 'Blender VRML stuff'),
       'common_options' => array('title' => 'Standard command-line options understood by all programs'),
-      'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
       'macosx_requirements' => array('title' => 'Dependencies of my programs on Mac OS X'),
       'openal_notes' => array('title' => 'Notes related to all my programs using OpenAL'),
       'opengl_options' => array('title' => 'Standard command-line options understood by my OpenGL programs'),

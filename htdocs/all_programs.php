@@ -123,6 +123,9 @@ and I keep them in working and compilable state, but that's it.</p>
     plotting rational Bezier curves
   <li> <?php echo a_href_page("glinformation", "glinformation") ?> &mdash;
     output information about OpenGL installed on your system.
+  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
+    convert MGF to Inventor / VRML 1.0 preserving info about
+    physical material properties.
 </ul>
 
 <?php vrmlengine_footer(); ?>
