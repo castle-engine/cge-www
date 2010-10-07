@@ -15,7 +15,7 @@
   echo pretty_heading($page_title);
 ?>
 
-<p>Simply put, VRML/X3D is a file format for 3D models.
+<p>Simply put, X3D (and it's older version, VRML) is a file format for 3D models.
 You will find that virtually any 3D modelling program can export to it,
 for exampe <a href="http://www.blender.org/">Blender</a> includes
 VRML and X3D exporters (and <?php echo
