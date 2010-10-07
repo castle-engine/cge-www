@@ -354,14 +354,14 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
     <img class="header_icon" src="images/header_icon.png" alt="Kambi VRML game engine icon" />
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Kambi VRML game engine</a></div>
     ' . _vrmlengine_header_menu($path[0]) . '
-  </div>' . _vrmlengine_breadcrumbs($path);
+  </div>';
 
   if (empty($vrmlengine_sidebar))
-    $rendered .= '<div class="content">'; else
+    $rendered .=  _vrmlengine_breadcrumbs($path) . '<div class="content">'; else
     $rendered .= '<table class="layout" cellspacing="0">
       <col class="content_column">
       <col class="sidebar_column">
-      <tr><td class="layout content">';
+      <tr><td class="layout content">' . _vrmlengine_breadcrumbs($path);
 
   echo $rendered;
 }
