@@ -148,6 +148,53 @@ function _vrmlengine_sidebar($page, $pageinfo)
   return $result;
 }
 
+function _vrmlengine_header_menu($current_page)
+{
+  global $vrmlengine_sitemap;
+
+  $menu_for_users = 5 * 2 + 1;
+  $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
+
+  $result = '
+    <table class="header_menu">
+      <tr>
+        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
+        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
+      </tr>
+      <tr><td class="lower_separator"></td>';
+
+  foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
+  {
+    $result .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
+    if (isset($menu_item['hint']))
+      $result .= ' title="' . $menu_item['hint'] . '"';
+    if ($menu_item_page == $current_page)
+      $result .= ' id="current"';
+    if (isset($menu_item['title-for-header-menu']))
+      $title = $menu_item['title-for-header-menu']; else
+      $title = $menu_item['title'];
+    $result .= '>' . $title . '</a></td><td class="lower_separator"></td>';
+  }
+  unset($menu_item);
+  unset($menu_item_page);
+
+  $result .= '
+      </tr>
+    </table>';
+
+  return $result;
+}
+
+function _vrmlengine_breadcrumbs($path)
+{
+  return '
+  <div class="header_breadcrumbs">
+    <a href="index.php">Home</a>
+    &#187;
+    <a href="vrml_implementation_status.php">VRML / X3D implementation status</a>
+  </div>';
+}
+
 function echo_header_bonus ()
 {
   ?>
@@ -206,45 +253,12 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
     $vrmlengine_sidebar = _vrmlengine_sidebar($item_for_sidebar, $iteminfo_for_sidebar); else
     $vrmlengine_sidebar = '';
 
-  $menu_for_users = 5 * 2 + 1;
-  $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
-
   $rendered = '
   <div class="header">
     <img class="header_icon" src="images/header_icon.png" alt="Kambi VRML game engine icon" />
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Kambi VRML game engine</a></div>
-    <table class="header_menu">
-      <tr>
-        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
-        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
-      </tr>
-      <tr><td class="lower_separator"></td>';
-
-  foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
-  {
-    $rendered .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
-    if (isset($menu_item['hint']))
-      $rendered .= ' title="' . $menu_item['hint'] . '"';
-    if ($menu_item_page == $path[0])
-      $rendered .= ' id="current"';
-    if (isset($menu_item['title-for-header-menu']))
-      $title = $menu_item['title-for-header-menu']; else
-      $title = $menu_item['title'];
-    $rendered .= '>' . $title . '</a></td><td class="lower_separator"></td>';
-  }
-  unset($menu_item);
-  unset($menu_item_page);
-
-  $rendered .= '
-      </tr>
-    </table>
-  </div>
-
-  <div class="header_breadcrumbs">
-    <a href="index.php">Home</a>
-    &#187;
-    <a href="vrml_implementation_status.php">VRML / X3D implementation status</a>
-  </div>';
+    ' . _vrmlengine_header_menu($path[0]) . '
+  </div>' . _vrmlengine_breadcrumbs($path);
 
   if (empty($vrmlengine_sidebar))
     $rendered .= '<div class="content">'; else
