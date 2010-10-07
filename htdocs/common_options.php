@@ -1,9 +1,10 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header("Some notes about command-line options understood by my programs");
+  vrmlengine_header("Standard command-line options understood by all programs", NULL,
+    array('other'));
 ?>
 
-<h2>Some notes about command-line options understood by my programs</h2>
+<h2>Standard command-line options understood by all programs</h2>
 
 <p>This page describes just some usual conventions used when interpreting
 command-line options by my programs (actually, these conventions are widely

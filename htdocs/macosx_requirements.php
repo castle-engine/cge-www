@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header("Dependencies of my programs on Mac OS X");
+  vrmlengine_header("Dependencies of my programs on Mac OS X", NULL, array('other'));
 ?>
 
 <h1>Dependencies of my programs on Mac OS X</h1>

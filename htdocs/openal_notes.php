@@ -1,6 +1,7 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('Notes related to all my programs using OpenAL');
+  vrmlengine_header('Notes related to all my programs using OpenAL', NULL,
+    array('other'));
 
   $toc = new TableOfContents(
     array(

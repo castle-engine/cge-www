@@ -1,6 +1,7 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header("Standard command-line options understood by my OpenGL programs");
+  vrmlengine_header("Standard command-line options understood by my OpenGL programs", NULL,
+    array('other'));
 ?>
 
 <h2>Standard command-line options understood by my OpenGL programs</h2>

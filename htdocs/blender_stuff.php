@@ -3,7 +3,7 @@
 
   vrmlengine_header("Blender VRML stuff",
     "Various stuff related to Blender and VRML exporters, " .
-    "especially for Kambi VRML game engine");
+    "especially for Kambi VRML game engine", array('other'));
 
 function echo_svn_blender_file($filename)
 {

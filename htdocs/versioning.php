@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('Versioning scheme of Michalis\' things');
+  vrmlengine_header('Versioning scheme of Michalis\' things', NULL, array('other'));
 ?>
 
 <h2>Versioning scheme of Michalis' things</h2>
