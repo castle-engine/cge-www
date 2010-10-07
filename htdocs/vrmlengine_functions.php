@@ -25,6 +25,7 @@ $vrmlengine_sitemap = array(
   MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
   'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
+    'sidebar' => true,
     'sub' => array(
       'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
       'castle-development' => array('title' => 'Development'),
@@ -35,6 +36,7 @@ $vrmlengine_sitemap = array(
   'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
 
   'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
+    'sidebar' => true,
     'sub' => array(
       'reference' => array('title' => 'Reference'),
       'vrml_engine_doc' => array('title' => 'General documentation'),
@@ -43,6 +45,7 @@ $vrmlengine_sitemap = array(
   ),
 
   'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
+    'sidebar' => true,
     'sub' => array(
       'kambi_vrml_extensions' => array('title' => 'Extensions'),
       'kambi_vrml_test_suite' => array('title' => 'Test suite'),
@@ -160,19 +163,48 @@ function echo_header_bonus ()
   <?php
 }
 
-function vrmlengine_header($a_page_title, $meta_description = NULL, $path = NULL)
+/* $path is a list of page names, a path in the tree of $vrmlengine_sitemap,
+   to the current page. The $page_basename is added at the end,
+   if not already there. */
+function vrmlengine_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
   global $vrmlengine_sidebar;
   global $vrmlengine_sitemap;
+  global $page_basename;
 
-  if ($path !== NULL)
+  /* make sure $path ends with $page_basename.
+     This way, we also make sure $path is never empty. */
+  if (count($path) == 0 || $path[count($path) - 1] != $page_basename)
+    $path[] = $page_basename;
+
+  /* traverse $vrmlengine_sitemap, along the $path.
+     Find which items should be used for a sidebar, if any. */
+  $item_for_sidebar_num = 0;
+  $item_for_sidebar = $path[$item_for_sidebar_num];
+  $iteminfo_for_sidebar = $vrmlengine_sitemap[$path[$item_for_sidebar_num]];
+  while (! (isset($iteminfo_for_sidebar['sidebar']) &&
+                  $iteminfo_for_sidebar['sidebar']))
   {
-    /* TODO: for now, $path can only have 1 item,
-       and always indicates sidebar */
-    $vrmlengine_sidebar = _vrmlengine_sidebar($path[0], $vrmlengine_sitemap[$path[0]]);
+    $item_for_sidebar_num ++;
+    if ($item_for_sidebar_num == count($path))
+    {
+      /* end of path, nothing wants sidebar */
+      $item_for_sidebar = NULL;
+      $iteminfo_for_sidebar = NULL;
+      break;
+    } else
+    {
+      $item_for_sidebar = $path[$item_for_sidebar_num];
+      $iteminfo_for_sidebar = $iteminfo_for_sidebar[$path[$item_for_sidebar_num]];
+    }
   }
+
+  /* make sidebar */
+  if ($item_for_sidebar !== NULL && $iteminfo_for_sidebar !== NULL)
+    $vrmlengine_sidebar = _vrmlengine_sidebar($item_for_sidebar, $iteminfo_for_sidebar); else
+    $vrmlengine_sidebar = '';
 
   $menu_for_users = 5 * 2 + 1;
   $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
@@ -188,13 +220,12 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = NULL
       </tr>
       <tr><td class="lower_separator"></td>';
 
-  global $page_basename;
   foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
   {
     $rendered .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
     if (isset($menu_item['hint']))
       $rendered .= ' title="' . $menu_item['hint'] . '"';
-    if ($page_basename == $menu_item_page)
+    if ($menu_item_page == $path[0])
       $rendered .= ' id="current"';
     if (isset($menu_item['title-for-header-menu']))
       $title = $menu_item['title-for-header-menu']; else
