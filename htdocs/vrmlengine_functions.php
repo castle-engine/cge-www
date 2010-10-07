@@ -289,30 +289,36 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
 
   /* traverse $vrmlengine_sitemap, along the $path.
      Find which items should be used for a sidebar, if any. */
-  $item_for_sidebar_num = 0;
-  $item_for_sidebar = $path[$item_for_sidebar_num];
-  $iteminfo_for_sidebar = $vrmlengine_sitemap[$path[$item_for_sidebar_num]];
-  while (! (isset($iteminfo_for_sidebar['sidebar']) &&
-                  $iteminfo_for_sidebar['sidebar']))
+  $sidebarroot_num = -1;
+  $sidebarroot_page = NULL;
+  $sidebarroot_info = NULL;
+  $sidebarroot_sidebar = false;
+  $sidebarroot_sub = $vrmlengine_sitemap;
+  while (!$sidebarroot_sidebar)
   {
-    $item_for_sidebar_num ++;
-    if ($item_for_sidebar_num == count($path))
+    $sidebarroot_num ++;
+    if ($sidebarroot_num == count($path))
     {
       /* end of path, nothing wants sidebar */
-      $item_for_sidebar = NULL;
-      $iteminfo_for_sidebar = NULL;
+      $sidebarroot_page = NULL;
+      $sidebarroot_info = NULL;
       break;
     } else
     {
-      $item_for_sidebar = $path[$item_for_sidebar_num];
-      /* TODO 'sub' ? */
-      $iteminfo_for_sidebar = $iteminfo_for_sidebar[$path[$item_for_sidebar_num]];
+      $sidebarroot_page = $path[$sidebarroot_num];
+      $sidebarroot_info = $sidebarroot_sub[$sidebarroot_page];
+      $sidebarroot_sidebar =
+        isset($sidebarroot_info['sidebar']) &&
+              $sidebarroot_info['sidebar'];
+      if (isset($sidebarroot_info['sub']))
+        $sidebarroot_sub = $sidebarroot_info['sub']; else
+        $sidebarroot_sub = NULL;
     }
   }
 
   /* make sidebar */
-  if ($item_for_sidebar !== NULL && $iteminfo_for_sidebar !== NULL)
-    $vrmlengine_sidebar = _vrmlengine_sidebar($item_for_sidebar, $iteminfo_for_sidebar); else
+  if ($sidebarroot_page !== NULL && $sidebarroot_info !== NULL)
+    $vrmlengine_sidebar = _vrmlengine_sidebar($sidebarroot_page, $sidebarroot_info); else
     $vrmlengine_sidebar = '';
 
   $rendered = '
