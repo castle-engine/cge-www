@@ -743,7 +743,7 @@ when you're not interested in testing creatures
     stdout to a file then). Look there for lines that indicate loading
     of your creature, e.g. for <tt>Alien</tt> creature:</p>
 
-<pre style="white-space: pre-wrap;">
+<pre>
 Animation info: Alien.Stand animation: 1 scenes * 4276 triangles
 Bump mapping: ...
 Shadows: Shadows casters triangles ...

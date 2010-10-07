@@ -180,8 +180,9 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
   VERSION_KAMBI_VRML_GAME_ENGINE . ')',
   'kambi_vrml_game_engine-' . VERSION_KAMBI_VRML_GAME_ENGINE .
   '-src.tar.gz') ?><br>
- Or download from Subversion by:<br><tt>
- <?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></tt>
+ Or download from Subversion by:
+
+<pre class="terminal"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
 
 <p>This archive contains the whole engine sources.
 <!-- Too unimportant:

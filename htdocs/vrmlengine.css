@@ -20,16 +20,20 @@ table.table_with_movie_thumbnail {
   width: 210px;
 }
 
+/* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
+pre {
+  white-space: pre-wrap;
+}
+
 pre.sourcecode {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
-  white-space: pre-wrap;
 }
 
 a.kscript_func_docs { text-decoration: underline; }
 
-pre.terminal { background-color: #EEE;  padding: 0.3em; white-space: pre-wrap; }
+pre.terminal { background-color: #EEE;  padding: 0.3em; }
 tt.terminal { background-color: #EEE; }
 
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
@@ -97,17 +101,15 @@ pre.vrml_code {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
-  white-space: pre-wrap;
 }
 
 pre.bordered_code {
   border: 1px solid #aaaaaa;
   background-color: #f9f9f9;
   padding: 0.3em;
-  white-space: pre-wrap;
 }
 
-pre.vrml_extension_spec { white-space: pre-wrap; }
+pre.vrml_extension_spec { }
 
 dl.vrml_ver_differences > dt {
   font-weight: normal;
