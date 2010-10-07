@@ -55,6 +55,7 @@ global $vrmlengine_sitemap;
 $vrmlengine_sitemap = array(
   MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
+
   'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
     'sidebar' => true,
     'sub' => array(
@@ -63,7 +64,8 @@ $vrmlengine_sitemap = array(
       'castle-credits'     => array('title' => 'Credits'),
     ),
   ),
-  'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs',
+
+  'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'All Programs',
     'sub' => array(
       'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
       'malfunction' => array('title' => 'malfunction'),
@@ -79,9 +81,10 @@ $vrmlengine_sitemap = array(
       'glinformation' => array('title' => 'glinformation'),
     ),
   ),
-  'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
 
-  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
+  'support' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Support'),
+
+  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
     'sidebar' => true,
     'sub' => array(
       'reference' => array('title' => 'Reference'),
@@ -90,7 +93,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
+  'vrml_x3d' => array('hint' => 'Our extensions and status of VRML/X3D implementation', 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
     'sidebar' => true,
     'sub' => array(
       'kambi_vrml_extensions' => array('title' => 'Extensions'),
@@ -136,7 +139,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'other'                  => array('hint' => 'Blender VRML, Wiki, Other documentation pages'              , 'title' => 'Other',
+  'other' => array('hint' => 'Blender VRML, Wiki, Other documentation pages', 'title' => 'Other',
     'sub' => array(
       'blender_stuff' => array('title' => 'Blender VRML stuff'),
       'common_options' => array('title' => 'Standard command-line options understood by all programs'),
