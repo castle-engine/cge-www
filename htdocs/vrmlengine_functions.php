@@ -24,7 +24,13 @@ global $vrmlengine_sitemap;
 $vrmlengine_sitemap = array(
   MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
-  'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle'),
+  'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
+    'sub' => array(
+      'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
+      'castle-development' => array('title' => 'Development'),
+      'castle-credits'     => array('title' => 'Credits'),
+    ),
+  ),
   'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs'),
   'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
 

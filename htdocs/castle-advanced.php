@@ -1,7 +1,7 @@
 <?php
   require_once "vrmlengine_functions.php";
 
-  vrmlengine_header("The Castle &mdash; additional notes");
+  vrmlengine_header("The Castle &mdash; additional notes", NULL, array('castle'));
 
   $toc = new TableOfContents(
     array(

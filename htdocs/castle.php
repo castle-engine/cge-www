@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("The Castle");
+  vrmlengine_header("The Castle", NULL, array('castle'));
 ?>
 
 <?php
@@ -24,10 +24,6 @@
     </ol>
   </li>
   <li><a href="#section_freshmeat">Freshmeat entry</a></li>
-  <li><?php echo a_href_page('Additional notes (troubleshooting)',
-    'castle-advanced') ?></li>
-  <li><?php echo a_href_page('Development', 'castle-development') ?></li>
-  <li><?php echo a_href_page('Credits', 'castle-credits') ?></li>
 </ol>
 </div>
 
