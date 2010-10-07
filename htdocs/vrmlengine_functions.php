@@ -455,7 +455,7 @@ define('FORUM_LINK', '<a href="' . FORUM_URL . '">forum</a>');
 function sf_checkout_link($prefix_command, $vrmlengine_subproject)
 {
   return
-    ($prefix_command ? 'svn&nbsp;checkout&nbsp;' : '') .
+    ($prefix_command ? 'svn checkout ' : '') .
     'https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/' .
     $vrmlengine_subproject;
 }
