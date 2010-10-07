@@ -1,8 +1,7 @@
 <?php
 
 /* Common functions for pages describing VRML/X3D status
-   of particular X3D component.
-   Define 'X3D_COMPONENT_NAME' before including. */
+   of particular X3D component. */
 
 require_once 'vrmlengine_functions.php';
 
@@ -16,14 +15,17 @@ function vrmlx3d_footer()
   vrmlengine_footer();
 }
 
-function x3d_status_header()
+function x3d_status_header($x3d_component_name, $x3d_spec_page_url)
 {
-  vrmlengine_header(X3D_COMPONENT_NAME .
+  vrmlengine_header($x3d_component_name .
     ' component - implementation status - Kambi VRML game engine',
     NULL, array('vrml_x3d', 'vrml_implementation_status'));
 
-  global $page_title;
-  echo pretty_heading(X3D_COMPONENT_NAME . ' component');
+  echo pretty_heading($x3d_component_name . ' component');
+
+  echo '<div class="x3d_spec_component_link">See also <a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/' .
+    $x3d_spec_page_url . '.html">X3D ' .
+    'specification of ' . $x3d_component_name . ' component</a></div>';
 }
 
 function x3d_status_footer()

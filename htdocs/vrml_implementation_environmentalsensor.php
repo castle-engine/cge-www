@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Environmental sensor');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Environmental sensor', 'envsensor');
 ?>
 
 <p>Supported nodes:</p>

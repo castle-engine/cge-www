@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'H-Anim');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('H-Anim', 'hanim');
 ?>
 
 <p>Supported nodes:</p>

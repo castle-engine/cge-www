@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Time');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Time', 'time');
 ?>
 
 <p><tt>TimeSensor</tt> works completely, following X3D 3.2 spec.

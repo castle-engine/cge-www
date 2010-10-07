@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Cube map environmental texturing');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Cube map environmental texturing', 'env_texture');
 ?>
 
 <p>Supported nodes:</p>

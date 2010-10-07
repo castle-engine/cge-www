@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'NURBS');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('NURBS', 'nurbs');
 
   echo table_demo_images(array(
   array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),

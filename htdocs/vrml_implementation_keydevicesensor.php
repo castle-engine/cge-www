@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Key device sensor');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Key device sensor', 'keyboard');
 ?>
 
 <p>Supported nodes: both <tt>KeySensor</tt> and <tt>StringSensor</tt>.

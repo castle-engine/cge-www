@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Rendering');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Rendering', 'rendering');
 ?>
 
 <p>Supported nodes:</p>

@@ -1,7 +1,6 @@
 <?php
-  define('X3D_COMPONENT_NAME', 'Programmable shaders');
   require_once 'vrml_implementation_common.php';
-  x3d_status_header();
+  x3d_status_header('Programmable shaders', 'shaders');
 ?>
 
 <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">

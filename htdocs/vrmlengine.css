@@ -240,6 +240,15 @@ div.main_list_item {
   padding: 0.1em;
 }
 
+div.x3d_spec_component_link {
+  /* float: right; */
+  display: inline-block;
+  background: #EEE;
+  /* #ffff91; */
+  border: thin solid black;
+  padding: 0.3em;
+}
+
 /* header ------------------------------------------------------------------- */
 
 /* Header colors and image is inspired by WordPress Gears theme,
