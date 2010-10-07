@@ -1,18 +1,19 @@
 <?php
 /* PHP functions common for vrmlengine WWW pages. */
 
+/* Constants that should be defined before including kambi_common.php */
+define('COUNTER_DATA_PATH', '/home/groups/v/vr/vrmlengine/persistent/');
+define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
+define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
+define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
+define('KAMBI_NO_HOME_LINK', true);
+
 /* This set_include_path is needed on SourceForge, otherwise
    includes from within kambi-php-lib sometimes fail.
    See ../old_tests/sf_inclusion_test.php for details. */
 set_include_path('.:kambi-php-lib/');
 require_once 'kambi-php-lib/kambi_common.php';
 require_once 'generated_versions.php';
-
-define('COUNTER_DATA_PATH', '/home/groups/v/vr/vrmlengine/persistent/');
-define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
-define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
-define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
-define('KAMBI_NO_HOME_LINK', true);
 
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
