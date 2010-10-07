@@ -1,6 +1,13 @@
 <?php
 /* PHP functions common for vrmlengine WWW pages. */
 
+/* This set_include_path is needed on SourceForge, otherwise
+   includes from within kambi-php-lib sometimes fail.
+   See ../old_tests/sf_inclusion_test.php for details. */
+set_include_path('.:kambi-php-lib/');
+require_once 'kambi-php-lib/kambi_common.php';
+require_once 'generated_versions.php';
+
 define('COUNTER_DATA_PATH', '/home/groups/v/vr/vrmlengine/persistent/');
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
@@ -12,6 +19,121 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   you want, and run the program inside. The documentation
   (this web page) is also included inside
   (look in the <tt>documentation/</tt> subdirectory) for offline viewing.');
+
+global $vrmlengine_sitemap;
+$vrmlengine_sitemap = array(
+  MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
+  'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
+  'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle'),
+  'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs'),
+  'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
+  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine'),
+
+  'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
+    'sub' => array(
+      'kambi_vrml_extensions' => array('title' => 'Extensions'),
+      'kambi_vrml_test_suite' => array('title' => 'Test suite'),
+      'vrml_implementation_status' => array('title' => 'Implementation status',
+        'sub' => array(
+          'vrml_implementation_core'                 => array('title' => 'Core'                            ),
+          'vrml_implementation_time'                 => array('title' => 'Time'                            ),
+          'vrml_implementation_networking'           => array('title' => 'Networking'                      ),
+          'vrml_implementation_grouping'             => array('title' => 'Grouping'                        ),
+          'vrml_implementation_rendering'            => array('title' => 'Rendering'                       ),
+          'vrml_implementation_shape'                => array('title' => 'Shape'                           ),
+          'vrml_implementation_geometry3d'           => array('title' => 'Geometry3D'                      ),
+          'vrml_implementation_geometry2d'           => array('title' => 'Geometry2D'                      ),
+          'vrml_implementation_text'                 => array('title' => 'Text'                            ),
+          'vrml_implementation_lighting'             => array('title' => 'Lighting'                        ),
+          'vrml_implementation_texturing'            => array('title' => 'Texturing',
+            'sub' => array(
+              'vrml_implementation_texturing#section_multi_texturing' => array('title' => 'Clarifications to X3D multi-texturing'),
+              'vrml_implementation_texturing#section_dds'             => array('title' => 'DDS (DirectDraw Surface)'),
+            ),
+          ),
+          'vrml_implementation_interpolation'        => array('title' => 'Interpolation'                   ),
+          'vrml_implementation_pointingdevicesensor' => array('title' => 'Pointing device sensor'          ),
+          'vrml_implementation_keydevicesensor'      => array('title' => 'Key device sensor'               ),
+          'vrml_implementation_environmentalsensor'  => array('title' => 'Environmental sensor'            ),
+          'vrml_implementation_navigation'           => array('title' => 'Navigation'                      ),
+          'vrml_implementation_environmentaleffects' => array('title' => 'Environmental effects'           ),
+          'vrml_implementation_hanim'                => array('title' => 'H-Anim'                          ),
+          'vrml_implementation_nurbs'                => array('title' => 'NURBS'                           ),
+          'vrml_implementation_scripting'            => array('title' => 'Scripting'                       ),
+          'vrml_implementation_eventutilities'       => array('title' => 'Event utilities'                 ),
+          'vrml_implementation_shaders'              => array('title' => 'Programmable shaders'            ),
+          'vrml_implementation_cadgeometry'          => array('title' => 'CAD geometry'                    ),
+          'vrml_implementation_texturing3d'          => array('title' => 'Texturing3D'                     ),
+          'vrml_implementation_cubemaptexturing'     => array('title' => 'Cube map environmental texturing'),
+        )
+      ),
+      'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
+      'kambi_script' => array('title' => 'KambiScript language reference'),
+      'kanim_format' => array('title' => 'Kanim (precalculated animations) file format'),
+      'vrml_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
+    ),
+  ),
+
+  'other'                  => array('hint' => 'Blender VRML, Wiki, Other documentation pages'              , 'title' => 'Other'),
+);
+
+/* Internal for _vrmlengine_sidebar* usage.
+
+   Return a formatted link to given page.
+   $page is the page basename (like for a_href_page), or a basename(hash)anchor.
+   $pageinfo must contain 'title'.
+
+   Looks at global $page_basename, to avoid turning current page name
+   into a link. */
+function _vrmlengine_sidebar_link($page, $pageinfo)
+{
+  $pagelink = explode('#', $page);
+  if (count($pagelink) == 1)
+  {
+    global $page_basename;
+    /* If it's the current page, don't make a link to it */
+    if ($pagelink[0] == $page_basename)
+      return $pageinfo['title']; else
+      return a_href_page($pageinfo['title'], $pagelink[0]);
+  } else
+  if (count($pagelink) == 2)
+    return a_href_page_hashlink($pageinfo['title'], $pagelink[0], $pagelink[1]); else
+    return '<b>Invalid sidebar link ' . htmlspecialchars($pagelink) . '</b>';
+}
+
+/* Internal for _vrmlengine_sidebar* usage.
+   Return a <ul> listing items on $sub. */
+function _vrmlengine_sidebar_menu($sub)
+{
+  $result = '<ul>';
+  foreach($sub as $page => $pageinfo)
+  {
+    $result .= '<li>' . _vrmlengine_sidebar_link($page, $pageinfo);
+    if (isset($pageinfo['sub']))
+      $result .= _vrmlengine_sidebar_menu($pageinfo['sub']);
+    $result .= '</li>';
+  }
+  $result .= '</ul>';
+  return $result;
+}
+
+/* Return a rendered HTML sidebar. */
+function _vrmlengine_sidebar($page, $pageinfo)
+{
+  $result = '
+  <div class="sidebar">
+    <div class="sidebar_title">
+      <small>' . a_href_page('Kambi VRML game engine', MAIN_PAGE_BASENAME) . '</small>
+      <h2>' . _vrmlengine_sidebar_link($page, $pageinfo) . '</h2>
+    </div>';
+
+  if (isset($pageinfo['sub']))
+    $result .= _vrmlengine_sidebar_menu($pageinfo['sub']);
+
+  $result .= '</div>';
+
+  return $result;
+}
 
 function echo_header_bonus ()
 {
@@ -28,25 +150,22 @@ function echo_header_bonus ()
   <?php
 }
 
-function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = NULL)
+function vrmlengine_header($a_page_title, $meta_description = NULL, $path = NULL)
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
   global $vrmlengine_sidebar;
-  $vrmlengine_sidebar = $sidebar;
+  global $vrmlengine_sitemap;
 
-  $menu = array(
-    MAIN_PAGE_BASENAME       => array('caption' => 'Intro and News'),
-    'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'caption' => 'view3dscene'),
-    'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'caption' => 'The Castle'),
-    'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'caption' => 'All Programs'),
-    'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'caption' => 'Support'),
-    'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'caption' => 'Engine'),
-    'vrml_x3d'               => array('hint' => 'Our extensions and status of VRML/X3D implementation'       , 'caption' => 'VRML/X3D'),
-    'other'                  => array('hint' => 'Blender VRML, Wiki, Other documentation pages'              , 'caption' => 'Other'),
-  );
+  if ($path !== NULL)
+  {
+    /* TODO: for now, $path can only have 1 item,
+       and always indicates sidebar */
+    $vrmlengine_sidebar = _vrmlengine_sidebar($path[0], $vrmlengine_sitemap[$path[0]]);
+  }
+
   $menu_for_users = 5 * 2 + 1;
-  $menu_for_developers = 2 * count($menu) + 1 - $menu_for_users;
+  $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
 
   $rendered = '
   <div class="header">
@@ -60,14 +179,17 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $sidebar = N
       <tr><td class="lower_separator"></td>';
 
   global $page_basename;
-  foreach($menu as $menu_item_page => $menu_item)
+  foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
   {
     $rendered .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
     if (isset($menu_item['hint']))
       $rendered .= ' title="' . $menu_item['hint'] . '"';
     if ($page_basename == $menu_item_page)
       $rendered .= ' id="current"';
-    $rendered .= '>' . $menu_item['caption'] . '</a></td><td class="lower_separator"></td>';
+    if (isset($menu_item['title-for-header-menu']))
+      $title = $menu_item['title-for-header-menu']; else
+      $title = $menu_item['title'];
+    $rendered .= '>' . $title . '</a></td><td class="lower_separator"></td>';
   }
   unset($menu_item);
   unset($menu_item_page);
@@ -99,13 +221,7 @@ function vrmlengine_footer()
 
   if (empty($vrmlengine_sidebar))
     echo '</div>'; else
-  {
-    /* Call $vrmlengine_sidebar now, after common_header
-       (that defines a_href_page) is done. */
-
-    $sidebar_content = call_user_func($vrmlengine_sidebar);
-    echo '</td><td class="layout">' .$sidebar_content. '</td></tr></table>';
-  }
+    echo '</td><td class="layout">' .$vrmlengine_sidebar. '</td></tr></table>';
 
   common_footer();
 }
@@ -161,15 +277,6 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 <?php
   }
 }
-
-/* This set_include_path is needed on SourceForge, otherwise
-   includes from within kambi-php-lib sometimes fail.
-   See ../old_tests/sf_inclusion_test.php for details. */
-set_include_path('.:kambi-php-lib/');
-
-require_once 'kambi-php-lib/kambi_common.php';
-
-require_once 'generated_versions.php';
 
 define('SF_UNIX_NAME', 'vrmlengine');
 
