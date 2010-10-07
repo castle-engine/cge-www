@@ -187,7 +187,8 @@ binary_add_gpl2 ()
 # (these other filenames may be given with some preceding path
 # relative to $VRMLENGINE_HTDOCS_LOCAL_PATH).
 #
-# Also, vrmlengine.css will always be copied to documentation/.
+# Also, vrmlengine.css and images/header*
+# will always be copied to documentation/.
 #
 # This function ignores and modifies current dir.
 binary_add_doc ()
@@ -238,6 +239,11 @@ binary_add_doc ()
       cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}${DOC_FILE_NAME}" "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
     fi
   done
+
+  mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
+  cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
+     "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
+    "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
 
   cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}"vrmlengine.css "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}"
 }
