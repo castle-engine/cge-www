@@ -1,9 +1,9 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('Versioning scheme of Michalis\' things', NULL, array('other'));
+  vrmlengine_header('Versioning scheme', NULL, array('other'));
 ?>
 
-<h2>Versioning scheme of Michalis' things</h2>
+<h2>Versioning scheme</h2>
 
 <p>This is versioning scheme used in all Michalis' software on these pages.
 This versioning scheme is of course inspired by versioning schemes of many

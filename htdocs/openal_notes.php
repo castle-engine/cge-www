@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('Notes related to all my programs using OpenAL', NULL,
+  vrmlengine_header('OpenAL notes', NULL,
     array('other'));
 
   $toc = new TableOfContents(
@@ -13,7 +13,12 @@
   );
 ?>
 
-<h2>Notes related to all my programs using OpenAL</h2>
+<?php echo pretty_heading($page_title, NULL,
+  'Notes related to all my programs using OpenAL'); ?>
+
+<p><a href="http://connect.creativelabs.com/openal/">OpenAL</a>
+is a cool cross-platform library for 3D sound.
+All the sound played by our engine goes through it.</p>
 
 Contents:
 <?php echo $toc->html_toc(); ?>

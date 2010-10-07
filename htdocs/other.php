@@ -14,22 +14,15 @@ the programs developed with it:</p>
     (<b>Please</b> contribute to it, and then we'll make the wiki link more visible!)
   <li><?php echo a_href_page(
     "Blender VRML stuff", "blender_stuff"); ?></li>
-  <li><?php echo a_href_page(
-    "Standard command-line options understood by all OpenGL programs",
-    "opengl_options"); ?>
-  <li><?php echo a_href_page(
-    'Notes related to programs using OpenAL', 'openal_notes'); ?>
-  <li><?php echo a_href_page(
-    "Command-line options understood by all programs here",
-    "common_options"); ?>
-
-  <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
+  <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
+  <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
+  <li><?php echo a_href_page('OpenAL notes', 'openal_notes'); ?>
 
   <li><?php echo current_www_a_href_size('All Windows DLLs used by programs here',
     'miscella/win32_dlls.zip'); ?>
 
-  <li><?php echo a_href_page('Dependencies on Mac OS X',
-    'macosx_requirements'); ?>
+  <li><?php echo a_href_page('Dependencies on Mac OS X', 'macosx_requirements'); ?>
+  <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
 
   <li>Programmers may be interested in my notes about:
     <ul>

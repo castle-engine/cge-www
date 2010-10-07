@@ -143,11 +143,11 @@ $vrmlengine_sitemap = array(
   'other' => array('hint' => 'Blender VRML, Wiki, Other documentation pages', 'title' => 'Other',
     'sub' => array(
       'blender_stuff' => array('title' => 'Blender VRML stuff'),
-      'common_options' => array('title' => 'Standard command-line options understood by all programs'),
-      'macosx_requirements' => array('title' => 'Dependencies of my programs on Mac OS X'),
-      'openal_notes' => array('title' => 'Notes related to all my programs using OpenAL'),
-      'opengl_options' => array('title' => 'Standard command-line options understood by my OpenGL programs'),
-      'versioning' => array('title' => 'Versioning scheme of Michalis\' things'),
+      'common_options' => array('title' => 'Standard command-line options'),
+      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
+      'openal_notes' => array('title' => 'OpenAL notes'),
+      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
+      'versioning' => array('title' => 'Versioning scheme of programs'),
     ),
   ),
 );
