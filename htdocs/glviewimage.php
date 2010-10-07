@@ -5,7 +5,8 @@
     "glViewImage - a small image viewer using OpenGL. " .
     "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .
     "Has some nice features that allow you to scale images and test " .
-    "are they &quot;tileable&quot;.");
+    "are they &quot;tileable&quot;.",
+    array('all_programs'));
 
   $toc = new TableOfContents(
     array(

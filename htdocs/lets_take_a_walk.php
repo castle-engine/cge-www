@@ -3,7 +3,8 @@
 
   vrmlengine_header("lets_take_a_walk",
     "lets_take_a_walk - A small toy ".
-    "demonstrating rendering 3d graphic and spatial sound.");
+    "demonstrating rendering 3d graphic and spatial sound.",
+    array('all_programs'));
 
   $toc = new TableOfContents(
     array(

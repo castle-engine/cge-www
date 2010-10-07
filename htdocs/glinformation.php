@@ -2,7 +2,8 @@
   require_once 'vrmlengine_functions.php';
 
   vrmlengine_header("glinformation",
-    'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.');
+    'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.',
+    array('all_programs'));
 ?>
 
 <?php echo pretty_heading("glinformation", VERSION_GLINFORMATION); ?>

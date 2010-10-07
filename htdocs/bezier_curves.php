@@ -2,7 +2,8 @@
   require_once 'vrmlengine_functions.php';
 
   vrmlengine_header("bezier_curves",
-    "bezier_curves - plot rational bezier curves.");
+    "bezier_curves - plot rational bezier curves.",
+    array('all_programs'));
 ?>
 
 <?php

@@ -3,7 +3,8 @@
 
   vrmlengine_header("glplotter and gen_function",
     'glplotter &mdash; program for plotting graphs in OpenGL, and ' .
-    'gen_function &mdash; for generating function graphs');
+    'gen_function &mdash; for generating function graphs',
+    array('all_programs'));
 ?>
 
 <h1>glplotter

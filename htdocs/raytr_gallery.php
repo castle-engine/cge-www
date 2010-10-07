@@ -1,6 +1,7 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header("Small gallery of images rendered using rayhunter");
+  vrmlengine_header("Small gallery of images rendered using rayhunter", NULL,
+    array('all_programs', 'rayhunter', 'raytr_gallery'));
   require_once "raytr_gallery_funcs.php";
 
   $toc = new TableOfContents(

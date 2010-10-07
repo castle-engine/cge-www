@@ -63,7 +63,22 @@ $vrmlengine_sitemap = array(
       'castle-credits'     => array('title' => 'Credits'),
     ),
   ),
-  'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs'),
+  'all_programs'           => array('hint' => 'All the games and tools using our 3D engine'                , 'title' => 'All Programs',
+    'sub' => array(
+      'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
+      'malfunction' => array('title' => 'malfunction'),
+      'kambi_lines' => array('title' => 'kambi_lines'),
+      'glviewimage' => array('title' => 'glViewImage'),
+      'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
+      'rayhunter' => array('title' => 'rayhunter',
+        'sub' => array(
+          'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
+        ),
+      ),
+      'bezier_curves' => array('title' => 'bezier_curves'),
+      'glinformation' => array('title' => 'glinformation'),
+    ),
+  ),
   'support'                => array('hint' => 'Ask for help, report bugs, discuss features'                , 'title' => 'Support'),
 
   'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers'                   , 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',

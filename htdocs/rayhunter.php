@@ -5,7 +5,8 @@
   vrmlengine_header("rayhunter",
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .
-    "(for Linux, FreeBSD, Mac OS X and Windows).");
+    "(for Linux, FreeBSD, Mac OS X and Windows).",
+    array('all_programs'));
   require_once "octree_consts.php";
 
   $toc = new TableOfContents(

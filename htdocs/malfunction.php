@@ -2,7 +2,8 @@
   require_once 'vrmlengine_functions.php';
 
   vrmlengine_header("malfunction", 'Small 3d game. ' .
-    'You fly a spaceship and try to shoot down all alien ships.');
+    'You fly a spaceship and try to shoot down all alien ships.',
+    array('all_programs'));
 
   $toc = new TableOfContents(
     array(

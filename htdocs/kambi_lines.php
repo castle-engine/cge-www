@@ -2,7 +2,8 @@
   require_once 'vrmlengine_functions.php';
 
   vrmlengine_header("kambi_lines",
-    "kambi_lines - small game in OpenGL based on old DOS 'Color Lines'.");
+    "kambi_lines - small game in OpenGL based on old DOS 'Color Lines'.",
+    array('all_programs'));
 ?>
 
 <?php
