@@ -36,7 +36,7 @@ Two most important programs available here are
 <div class="rss_link"><a href="news_feed.php">RSS</a></div>
 <?php
   require_once 'news_common.php';
-  echo last_change_log_to_html(false);
+  echo last_news_to_html(false);
 ?>
 </div>
 

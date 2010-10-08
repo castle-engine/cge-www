@@ -240,10 +240,15 @@ div.x3d_spec_component_link {
   padding: 0.3em;
 }
 
-/* header ------------------------------------------------------------------- */
+/* news --------------------------------------------------------------------- */
 
-/* Header colors and image is inspired by WordPress Gears theme,
-   http://www.mymobiles.com/wordpress-themes/gear */
+div.news_item { border-bottom: medium groove #555; }
+.old_news_item span.news_date { font-weight: bold; }
+
+span.news_title { font-size: larger; font-weight: bold; }
+div.news_item span.news_title { text-decoration: underline; }
+
+/* header ------------------------------------------------------------------- */
 
 div.header {
   background: #ffeaa9 url('images/header-pattern.png') repeat-x;

@@ -1927,38 +1927,42 @@ foreach ($news as &$log_entry)
 }
 unset($log_entry);
 
-$month_names = array(
-  1 => 'January',
-  2 => 'February',
-  3 => 'March',
-  4 => 'April',
-  5 => 'May',
-  6 => 'June',
-  7 => 'July',
-  8 => 'August',
-  9 => 'September',
-  10 => 'October',
-  11 => 'November',
-  12 => 'December'
-);
-
 define('TEASER_DELIMITER_BEGIN', '<!-- teaser ');
 define('TEASER_DELIMITER_END', '-->');
 
-function change_log_to_html($change_log_item, $full_description = true)
+function vrmlengine_news_date_long($news_item)
 {
-  global $month_names;
+  $month_names = array(
+    1 => 'January',
+    2 => 'February',
+    3 => 'March',
+    4 => 'April',
+    5 => 'May',
+    6 => 'June',
+    7 => 'July',
+    8 => 'August',
+    9 => 'September',
+    10 => 'October',
+    11 => 'November',
+    12 => 'December'
+  );
+  return $month_names[$news_item['month']] . ' ' .
+    $news_item['day'] . ', ' .
+    $news_item['year'];
+}
 
+function news_to_html($news_item, $full_description = true)
+{
   if ($full_description)
   {
-    $description = $change_log_item['description'];
+    $description = $news_item['description'];
   } else
-  if ($change_log_item['short_description'] != '')
+  if ($news_item['short_description'] != '')
   {
-    $description = $change_log_item['short_description'];
+    $description = $news_item['short_description'];
   } else
   {
-    $description = $change_log_item['description'];
+    $description = $news_item['description'];
     $teaser_delimiter = strpos($description, TEASER_DELIMITER_BEGIN);
     if ($teaser_delimiter !== FALSE)
     {
@@ -1971,24 +1975,22 @@ function change_log_to_html($change_log_item, $full_description = true)
 
       $description = substr($description, 0, $teaser_delimiter) .
         '<p><a href="' . CURRENT_URL . 'news.php#' .
-        $change_log_item['anchor'] . '">[read more]</a></p>' .
+        $news_item['anchor'] . '">[read more]</a></p>' .
         $teaser_closing_str;
     }
   }
 
-  return '<p><a name="' . $change_log_item['anchor'] . '"><b>' .
-    $change_log_item['title'] . '</b></a> (' .
-    $month_names[$change_log_item['month']] . ' ' .
-    $change_log_item['day'] . ', ' .
-    $change_log_item['year'] . ') :</p>' .
+  return '<p><a name="' . $news_item['anchor'] . '"><span class="news_title">' .
+    $news_item['title'] . '</span></a> (' .
+    vrmlengine_news_date_long($news_item) . ')&nbsp;:</p>' .
     $description;
 }
 
-function last_change_log_to_html($full_description = true)
+function last_news_to_html($full_description = true)
 {
   global $news;
 
-  return change_log_to_html($news[0], $full_description);
+  return news_to_html($news[0], $full_description);
 }
 
 ?>
