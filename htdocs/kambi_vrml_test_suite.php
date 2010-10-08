@@ -7,8 +7,9 @@
   $toc = new TableOfContents(
     array(
       new TocItem('About', 'about'),
+      new TocItem('Other demo VRML / X3D scenes', 'other'),
       new TocItem('SVN', 'svn'),
-      new TocItem('Who made this ?', 'who_made_this'),
+      new TocItem('Credits', 'credits'),
       new TocItem('Comments', 'comments')
     ));
 ?>
@@ -54,8 +55,40 @@ and continue working (omitting problematic part).</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can always download the very current version of these tests from
-Subversion by:</p>
+<p>If you're looking for VRML / X3D demos, there are much more
+cool 3D files scattered around our repository.
+Get <a href="http://subversion.apache.org/">Subversion (SVN)</a>
+and download them by commands below:
+
+<ul>
+  <li><p>Nice demo of shadow maps (done for <?php echo a_href_page_hashlink('shadow maps paper', 'kambi_vrml_extensions', 'section_ext_shadow_maps'); ?>):
+
+    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/sunny_street/'); ?></pre>
+
+    <p>Also the shadow map slides contain some simple tests:
+
+    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/slides/'); ?></pre>
+  </li>
+
+  <li><p>Simple examples of VRML 1.0 and 2.0 (done for <?php echo a_href_page('engine documentation', 'vrml_engine_doc'); ?>):
+
+    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/examples/'); ?></pre>
+  </li>
+
+  <li>Our games contain many 3D models, download them and look inside
+    <tt>data/</tt> subdirectories:
+    <?php echo a_href_page("The Castle", "castle"); ?>,
+    <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
+    <?php echo a_href_page("malfunction", "malfunction"); ?>.
+    All the 3D data can be opened with general VRML/X3D browser
+    like <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+  </li>
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can always download the very current version of this
+<i>Kambi VRML test suite</i> from Subversion by:</p>
 
 <pre class="terminal"><?php
   echo sf_checkout_link(true, 'kambi_vrml_test_suite'); ?></pre>
@@ -65,7 +98,7 @@ Subversion by:</p>
 <p>Models :
 
 <ul>
-  <li>Victor Amat provided a lot of interesting demos.
+  <li><p><i>Victor Amat</i> provided a lot of interesting demos.
     To mention some:
     flat mirrors by <tt>RenderedTexture</tt> (see <tt>x3d/rendered_texture/</tt>),
     Screen Space Ambient Occlusion (see <tt>x3d/shadow_maps/ssao*</tt>),
@@ -74,7 +107,10 @@ Subversion by:</p>
     <tt>vrml_2/camera_{orient,rot}.wrl</tt>,
     <tt>orientation_interpolator_alum_box.wrl</tt>,
     test textures for spherical mapping testing (<tt>textures/spheremap-*.jpg</tt>).
-    Thousand thanks!</li>
+    Thousand thanks!</p></li>
+
+  <li><p><i>Stephen H. France</i> provided various tests for <tt>TimeSensor</tt>,
+    <tt>Extrusion</tt> and others. Thanks!</p></li>
 
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
@@ -128,14 +164,14 @@ taking 6 MB !).
 
 <?php echo $toc->html_section(); ?>
 
-<p>Any comments about these tests are welcome on
-<?php echo MAILING_LIST_LINK; ?>.
-
-<p>I am constantly adding more test files to this archive as I'm
-implementing more features in my VRML engine.
+<p>Comments and contributions to these tests/demos are most welcome.
+See <?php echo a_href_page('support', 'support'); ?> for ways to contact us.
+If you have some cool 3D model, or interesting, or difficult for our engine,
+or just something you want to show to somebody :),
+feel welcome to send it to Michalis!</p>
 
 <p>Feel free to expand, modify, redistribute these test files
-&mdash; they are covered by GNU GPL license.
+&mdash; they are covered by GNU GPL &gt;= 2 license.</p>
 
 <?php
   if (!IS_GEN_LOCAL) {

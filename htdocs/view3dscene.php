@@ -68,15 +68,9 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <p><i>Demo scenes</i>:
-In <?php echo a_href_page("Kambi VRML test suite",
-"kambi_vrml_test_suite"); ?> you can find many simple VRML models
-that demonstrate what can be expressed in VRML 1.0, 2.0, X3D
-and what view3dscene can handle and display. These are not any big or
-beautiful scenes, you can find some (slightly) more impressive VRMLs
-in data files of my games
- <?php echo a_href_page("The Castle", "castle"); ?>,
- <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
- <?php echo a_href_page("malfunction", "malfunction"); ?>.
+<?php echo a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite"); ?>
+ contains many demo VRML / X3D models, you can open them with <tt>view3dscene</tt>.
+It also contains links to other 3D models scattered around our repository.</p>
 
 <?php section(false); ?>
 
