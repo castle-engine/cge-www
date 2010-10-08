@@ -1403,7 +1403,7 @@ web3d.org examples</a>.</p>"),
         and <tt>KambiInline</tt> (an Inline that can somewhat
         process the inlined content).</p></li>
 
-      <li><p>
+      <li>
 
         ' . (!HTML_VALIDATION ?
         '<table align="right"><tr><td>
@@ -1411,7 +1411,7 @@ web3d.org examples</a>.</p>"),
          </td></tr></table>' : '')
         . '
 
-        Texture department:
+        <p>Texture department:
         Textures with full alpha channel are now nicely rendered with blending
         (and textures will simple alpha channel are still detected and rendered
         faster by alpha_test). Moreover, <tt>MovieTexture</tt> node is now

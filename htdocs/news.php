@@ -53,7 +53,7 @@ function vrmlengine_sitemap_add_news()
   <!-- Older logs are available only in HTML, they were not converted
        to $news format. -->
 
-  <li><p><a name="older_news"><b>July 19, 2007:</b></p>
+  <li><p><a name="older_news"><b>July 19, 2007:</b></a></p>
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
