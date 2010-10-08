@@ -33,9 +33,9 @@ Two most important programs available here are
 
 <div class="latest_update_description" style="padding: 0px;">
 <div style="padding: 0.5em">
-<div class="rss_link"><a href="changes_log_feed.php">RSS</a></div>
+<div class="rss_link"><a href="news_feed.php">RSS</a></div>
 <?php
-  require_once 'changes_log_common.php';
+  require_once 'news_common.php';
   echo last_change_log_to_html(false);
 ?>
 </div>
@@ -44,7 +44,7 @@ Two most important programs available here are
 Comments?
 Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.<br/>
 See also <?php echo
-a_href_page('the news archive', 'changes_log') ?>.
+a_href_page('the news archive', 'news') ?>.
 </p>
 
 </div>

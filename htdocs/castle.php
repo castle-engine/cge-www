@@ -71,7 +71,7 @@ wait only once for "Loading creatures").
   VERSION_CASTLE, $std_releases_post_1_2_0);
 ?>
 
-<p>See <?php echo a_href_page('changes_log', 'changes_log') ?> for
+<p>See <?php echo a_href_page('news', 'news') ?> for
 the list of changes since last release.</p>
 
 <p>This is free software, so if you're interested you're also welcome to

@@ -299,7 +299,7 @@ function echo_header_bonus ()
 
 <link rel="alternate" type="application/rss+xml"
   title="Kambi VRML game engine - changes log RSS feed"
-  href="<?php echo CURRENT_URL; ?>changes_log_feed.php">
+  href="<?php echo CURRENT_URL; ?>news_feed.php">
 
 <link type="text/css" rel="stylesheet" media="all"  href="vrmlengine.css">
 
