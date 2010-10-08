@@ -245,8 +245,8 @@ div.x3d_spec_component_link {
 div.news_item { border-bottom: medium groove #555; }
 .old_news_item span.news_date { font-weight: bold; }
 
-span.news_title { font-size: larger; font-weight: bold; }
-div.news_item span.news_title { text-decoration: underline; }
+span.news_title { font-weight: bold; }
+div.news_item span.news_title { font-size: larger; text-decoration: underline; }
 
 /* header ------------------------------------------------------------------- */
 
