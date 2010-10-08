@@ -12,6 +12,7 @@
       new TocItem('Credits', 'credits'),
       new TocItem('Comments', 'comments')
     ));
+  $toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title,
