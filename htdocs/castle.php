@@ -166,22 +166,6 @@ entry on freshmeat</a>. You can use this e.g. to subscribe to new
 releases, so that you will be automatically notified about new
 releases of "The Castle".</p>
 
-<h2><a name="section_advanced">Additional notes (troubleshooting)</a></h2>
-
-For some detailed notes how the game works, or what to try when things
-don't work as they should (troubleshooting), see
-<?php echo a_href_page('additional game notes', 'castle-advanced') ?>.
-
-<h2><a name="section_development">Development</a></h2>
-
-For information about how you can help, how to compile the game,
-how to modify the game data &mdash; see the separate
-<?php echo a_href_page('development page', 'castle-development') ?>.
-
-<h2><a name="section_credits">Credits</a></h2>
-
-See <?php echo a_href_page('credits page', 'castle-credits') ?>.
-
 <?php
   if (!IS_GEN_LOCAL) {
     $counter = php_counter("castle", TRUE);
