@@ -1,8 +1,8 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('News about the Kambi VRML game engine');
-
   require_once 'news_common.php';
+  vrmlengine_header('News about the Kambi VRML game engine', NULL,
+    array('index'));
 ?>
 
 <h1>News about the <i>Kambi VRML game engine</i></h1>
