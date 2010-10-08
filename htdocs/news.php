@@ -1,27 +1,48 @@
 <?php
+function vrmlengine_news_date_short($news_item)
+{
+  return sprintf('%04d-%02d-%02d',
+    $news_item['year'],
+    $news_item['month'],
+    $news_item['day']);
+}
+
+function vrmlengine_news_date_long($news_item)
+{
+  global $month_names;
+  return $month_names[$change_log_item['month']] . ' ' .
+    $change_log_item['day'] . ', ' .
+    $change_log_item['year'];
+}
+
+function vrmlengine_sitemap_add_news()
+{
+  global $vrmlengine_sitemap, $news;
+  foreach ($news as $news_item)
+  {
+    $vrmlengine_sitemap['index']['sub']['news']['sidebar'] = true;
+    $vrmlengine_sitemap['index']['sub']['news']['sub']['news#' . $news_item['anchor']] =
+      array('title' =>  '(' . vrmlengine_news_date_short($news_item) . ') ' .
+        $news_item['title']);
+  }
+  $vrmlengine_sitemap['index']['sub']['news#older_news'] =
+    array('title' => '(2007-07-19) Older news');
+}
+
   require_once "vrmlengine_functions.php";
   require_once 'news_common.php';
+
+  /* Must be called when $vrmlengine_sitemap is defined
+     (by vrmlengine_functions.php) and $news is defined
+     (by news_common.php), but before vrmlengine_header is called
+     (which actually searches sitemap and renders sidebar). */
+  vrmlengine_sitemap_add_news();
+
   vrmlengine_header('News about the Kambi VRML game engine', NULL,
     array('index'));
 ?>
 
-<h1>News about the <i>Kambi VRML game engine</i></h1>
-
-<div class="note_box news_toc">
-
-<p class="note_title">Table of contents</p>
-
-<ul>
-  <?php
-    foreach ($news as $change_log_item)
-      echo '<li><a href="#' . $change_log_item['anchor'] . '">' .
-        $change_log_item['title'] . '</a> (' .
-        $month_names[$change_log_item['month']] . ' ' .
-        $change_log_item['day'] . ', ' .
-        $change_log_item['year'] . ')</li>';
-  ?>
-</ul>
-</div>
+<h1>News</h1>
 
 <ul>
   <?php
@@ -32,7 +53,7 @@
   <!-- Older logs are available only in HTML, they were not converted
        to $news format. -->
 
-  <li><p><b>July 19, 2007:</b>
+  <li><p><a name="older_news"><b>July 19, 2007:</b></p>
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.

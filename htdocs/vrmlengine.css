@@ -56,15 +56,6 @@ span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
   font-size: 125%;
 }
 
-.news_toc {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.news_toc a { text-decoration: none; }
-.news_toc a:hover { text-decoration: underline; }
-
 /* Tables with key controls should be done with
    <table border="1" class="key_list"> */
 table.key_list { width: 90%; }

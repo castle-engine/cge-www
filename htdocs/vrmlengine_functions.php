@@ -54,7 +54,12 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
 */
 global $vrmlengine_sitemap;
 $vrmlengine_sitemap = array(
-  MAIN_PAGE_BASENAME       => array('title' => 'Intro and News'),
+  MAIN_PAGE_BASENAME       => array('title' => 'Intro and News',
+    'sub' => array(
+      'news' => array('title' => 'News'),
+    ),
+  ),
+
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
   'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
