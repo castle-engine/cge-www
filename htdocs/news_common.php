@@ -24,7 +24,7 @@ function date_timestamp($year, $month, $day)
   return gmmktime(12, 0, 0, $month, $day, $year);
 }
 
-function this_a_href_page($title, $page_name)
+function news_a_href_page($title, $page_name)
 {
   /* For RSS feed, URLs must be absolute (some RSS readers,
      like Google RSS on main page, don't handle relative URLs as they
@@ -171,7 +171,7 @@ table_demo_images(array(
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'rendered_texture_mirror.png', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
 )) .
-'<p>New ' . this_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
+'<p>New ' . news_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
 
 <ul>
   <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
@@ -252,7 +252,7 @@ table_demo_images(array(
   array('filename' => 'ddracer_t128.png', 'titlealt' => 't128'),
   array('filename' => 'ddracer_t603coupe.png', 'titlealt' => 't603coupe'),
 )) .
-'<p>New ' . this_a_href_page('view3dscene 3.5.2', 'view3dscene') . ' is released today:</p>
+'<p>New ' . news_a_href_page('view3dscene 3.5.2', 'view3dscene') . ' is released today:</p>
 
 <ul>
   <li><p>New feature in this release is the support for <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/networking.html#IMPORTStatement">X3D IMPORT and EXPORT statements</a>.
@@ -266,9 +266,9 @@ table_demo_images(array(
   <li><p>Crashes on menu commands <i>Edit -&gt; Remove Geometry Node / Face</i> are now fixed.
 </ul>
 
-<p>Accompaying ' . this_a_href_page('engine 2.0.3', 'kambi_vrml_game_engine') . ' is also released. All above view3dscene features/fixes are actually implemented mostly in the engine. Also, for the programmers: you will find useful .lpi files to compile every engine example from Lazarus. Also program names now use standard Lazarus extension .lpr. (These last improvements were actually already "silently" released in engine version 2.0.2 shortly before 2.0.3.)
+<p>Accompaying ' . news_a_href_page('engine 2.0.3', 'kambi_vrml_game_engine') . ' is also released. All above view3dscene features/fixes are actually implemented mostly in the engine. Also, for the programmers: you will find useful .lpi files to compile every engine example from Lazarus. Also program names now use standard Lazarus extension .lpr. (These last improvements were actually already "silently" released in engine version 2.0.2 shortly before 2.0.3.)
 
-<p>Also ' . this_a_href_page('malfunction 1.2.6', 'malfunction') . ' is released, this fixes a crash when opening some levels (caused by the same problem as view3dscene\'s <i>Edit -&gt; Remove Geometry Node / Face</i> crashes).'),
+<p>Also ' . news_a_href_page('malfunction 1.2.6', 'malfunction') . ' is released, this fixes a crash when opening some levels (caused by the same problem as view3dscene\'s <i>Edit -&gt; Remove Geometry Node / Face</i> crashes).'),
 
 
     array('title' => 'view3dscene 3.5.1 bugfix release, glinformation 1.2.0',
@@ -281,11 +281,11 @@ table_demo_images(array(
 table_demo_images(array(
   array('filename' => 'view3dscene_bsuit.png', 'titlealt' => 'view3dscene showing tremulous battlesuit from MD3'),
 )) .
-'<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . this_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By the way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
+'<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . news_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By the way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
 
-<p>Also ' . this_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>
+<p>Also ' . news_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>
 
-<p>' . this_a_href_page('Engine 2.0.1', 'kambi_vrml_game_engine') . ' is also released with these fixes.</p>'),
+<p>' . news_a_href_page('Engine 2.0.1', 'kambi_vrml_game_engine') . ' is also released with these fixes.</p>'),
 
     array('title' => 'Release: view3dscene 3.5.0, engine 2.0.0, others',
           'year' => 2010,
@@ -301,12 +301,12 @@ table_demo_images(array(
   array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
 ), 2) .
 
-'<p>Today we release a ' . this_a_href_page('grand new 2.0.0 version of the Kambi VRML game engine', 'kambi_vrml_game_engine') . ' and a new ' . this_a_href_page('version 3.5.0 of our main tool, view3dscene', 'view3dscene') . '. Other minor programs here are also updated, to bring bugfixes to them. Changes:</p>
+'<p>Today we release a ' . news_a_href_page('grand new 2.0.0 version of the Kambi VRML game engine', 'kambi_vrml_game_engine') . ' and a new ' . news_a_href_page('version 3.5.0 of our main tool, view3dscene', 'view3dscene') . '. Other minor programs here are also updated, to bring bugfixes to them. Changes:</p>
 
 <p><b>User-visible features</b>:</p>
 
 <ul>
-  <li>' . this_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of the X3D NURBS component (level&nbsp;1) is implemented, this includes curves, surfaces and interpolators. VRML 97 NURBS nodes are also handled.</li>
+  <li>' . news_a_href_page('NURBS support', 'vrml_implementation_nurbs') . '. Most of the X3D NURBS component (level&nbsp;1) is implemented, this includes curves, surfaces and interpolators. VRML 97 NURBS nodes are also handled.</li>
   <li>Major bugfixes to the GTK 2 (Unix) backend and shadow maps handling.</li>
   <li>Countless small bugfixes and improvements.</li>
 </ul>
@@ -322,9 +322,9 @@ table_demo_images(array(
   <li>Engine is licensed now on the terms of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
 </ul>
 
-<p>For more details about the changes, see ' . this_a_href_page('the news archive', 'news'). '.</p>
+<p>For more details about the changes, see ' . news_a_href_page('the news archive', 'news'). '.</p>
 
-<p>For people waiting for new ' . this_a_href_page('castle 1.0.0', 'castle') . ' release: not yet, but should happen very soon.</p>'),
+<p>For people waiting for new ' . news_a_href_page('castle 1.0.0', 'castle') . ' release: not yet, but should happen very soon.</p>'),
 
     array('title' => 'Custom viewports, engine 2.0.0 release very soon',
           'year' => 2010,
@@ -367,7 +367,7 @@ table_demo_images(array(
   array('filename' => 'terrain_wire_lod.png', 'titlealt' => 'Terrain - wireframe view showing our simple LOD approach'),
   array('filename' => 'terrain_nice_fog.png', 'titlealt' => 'Terrain - valley view with a hint of fog'),
   array('colspan' => 2,
-    'html' => (!HTML_VALIDATION ? '<object width="370" height="227"><param name="movie" value="http://www.youtube.com/v/9qx-Ry2PRWM&hl=pl_PL&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9qx-Ry2PRWM&hl=pl_PL&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="370" height="227"></embed></object>' : '')),
+    'html' => (!HTML_VALIDATION ? '<object width="370" height="227"><param name="movie" value="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="370" height="227"></embed></object>' : '')),
 ), 2) .
 
 '<p>Our procedural terrain demo (see <tt>kambi_vrml_game_engine/examples/vrml/terrain</tt> in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
@@ -402,7 +402,7 @@ table_demo_images(array(
 
 <ol>
   <li>Our <tt>examples/vrml/bump_mapping</tt> demo now works with animated objects without any trouble.</li>
-  <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now slightly more general converter from ' . this_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . this_a_href_page('exporting from Blender to kanim', 'blender_stuff') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
+  <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now slightly more general converter from ' . news_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . news_a_href_page('exporting from Blender to kanim', 'blender_stuff') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
 </ol>
 
 <p>The source model is in SVN, in <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/bump_mapping/cloth/</tt>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
@@ -416,7 +416,7 @@ table_demo_images(array(
 
 '<p>Nearly all existing programs (examples and normal games) are now happily converted to the new <i>scene manager</i> approach. Scene manager interface got a lot of improvements by the way, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">check the docs</a>. This means that engine 2.0.0 is coming along nicely and will soon be released :)</p>
 
-<p>In particular, ' . this_a_href_page('The Castle', 'castle') . ' source code is converted to use the scene manager. This means that finally you can construct <i>"The Castle"</i> interactive levels by VRML/X3D events, using VRML/X3D time, touch sensors, key sensors, proximity sensors (see <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/index.html">X3D spec</a> for sensor nodes docs), scripts in ' . this_a_href_page('KambiScript', 'kambi_script') . ' and such. To celebrate this, I plan to add a little eye-candy to castle\'s "Fountain" level, and then officially release the final <b>"The Castle 1.0.0"</b> along with <b>engine 2.0.0</b>. After that, work on "The Castle 2" may begin :)</p>
+<p>In particular, ' . news_a_href_page('The Castle', 'castle') . ' source code is converted to use the scene manager. This means that finally you can construct <i>"The Castle"</i> interactive levels by VRML/X3D events, using VRML/X3D time, touch sensors, key sensors, proximity sensors (see <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/index.html">X3D spec</a> for sensor nodes docs), scripts in ' . news_a_href_page('KambiScript', 'kambi_script') . ' and such. To celebrate this, I plan to add a little eye-candy to castle\'s "Fountain" level, and then officially release the final <b>"The Castle 1.0.0"</b> along with <b>engine 2.0.0</b>. After that, work on "The Castle 2" may begin :)</p>
 
 <p>More teasers about the <i>Castle 1.0.0</i> release and plans for <i>Castle 2</i> in later post hopefully next week.</p>
 
@@ -448,7 +448,7 @@ table_demo_images(array(
 
 <ol>
   <li>
-    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . this_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo).</p>
+    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . news_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo).</p>
 
     <p><b>The goal</b>: the goal (already achieved :) ) is to allow you to make a full 3D model viewer / VRML browser (with collisions, fully optimized rendering etc.) by this simple code:</p>
 
@@ -681,8 +681,8 @@ table_demo_images(array(
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
 )) . '
 
-<p>' . this_a_href_page('view3dscene 3.4', 'view3dscene') . ' is released! The codename of this release should be <i>"Everything you wanted to know about textures"</i>, as most of the new features deal with X3D advanced texturing nodes.
-<!-- ' . this_a_href_page('See recent news archive', 'news') . '  -->
+<p>' . news_a_href_page('view3dscene 3.4', 'view3dscene') . ' is released! The codename of this release should be <i>"Everything you wanted to know about textures"</i>, as most of the new features deal with X3D advanced texturing nodes.
+<!-- ' . news_a_href_page('See recent news archive', 'news') . '  -->
 </p>
 
 <ul>
@@ -692,7 +692,7 @@ table_demo_images(array(
 
   <li><p>All X3D 3D texture nodes implemented.</p></li>
 
-  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_texturing.php#section_dds">more details here</a>. New ' . this_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
+  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_texturing.php#section_dds">more details here</a>. New ' . news_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
 
   <li><p><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
 
@@ -923,9 +923,9 @@ source directories.</p>
           'short_description' => '',
           'description' => "
 
-<p>" . this_a_href_page('view3dscene 3.3', 'view3dscene') . " is released,
+<p>" . news_a_href_page('view3dscene 3.3', 'view3dscene') . " is released,
 just a mixture of various new features, optimizations and fixes.
-Traditionally, " . this_a_href_page('underlying
+Traditionally, " . news_a_href_page('underlying
 Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
 Changes:</p>
 
@@ -946,13 +946,13 @@ Changes:</p>
 
   <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_octree_properties\">KambiOctreeProperties, an extensions to specify octree limits for your scene</a>. <a href=\"" . CURRENT_URL . "vrml_engine_doc/output/xsl/html/section.octrees_dynamic.html\">Section \"Octrees for dynamic worlds\" added to the documentation</a>, to explain how octree works since 1.6.0 version. The shape octree was speed up by mailboxes.</li>
 
-  <li>Various workarounds for <a href=\"http://mesa3d.org/\">Mesa</a> bugs (in particular on Intel GPUs) and Mesa detection improved. This should significantly improve stability for Unix users with cheaper graphic cards. Because of this, also " . this_a_href_page('castle 0.8.3', 'castle') . " and " . this_a_href_page('glcaps 1.1.4', 'glcaps') . " are released, to get these fixes too.</li>
+  <li>Various workarounds for <a href=\"http://mesa3d.org/\">Mesa</a> bugs (in particular on Intel GPUs) and Mesa detection improved. This should significantly improve stability for Unix users with cheaper graphic cards. Because of this, also " . news_a_href_page('castle 0.8.3', 'castle') . " and " . news_a_href_page('glcaps 1.1.4', 'glcaps') . " are released, to get these fixes too.</li>
 
   <li>Various frustum culling optimizations.</li>
 
   <li>Small improvements in the view3dscene interface: blend status text, a shapes count fix, and keeping the selected triangle when transforming shape.</li>
 
-  <li>The path tracer honors VRML &gt;= 2.0 materials, and <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_material_phong_brdf_fields\">VRML &gt;= 2.0 materials have the physical fields</a>. Because of this, also " . this_a_href_page('rayhunter 1.3.0', 'rayhunter') . " is released.</li>
+  <li>The path tracer honors VRML &gt;= 2.0 materials, and <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_material_phong_brdf_fields\">VRML &gt;= 2.0 materials have the physical fields</a>. Because of this, also " . news_a_href_page('rayhunter 1.3.0', 'rayhunter') . " is released.</li>
 </ul>
 
 <p><a href=\"http://www.archlinux.org/\">Arch Linux</a> users may now install view3dscene from SVN easily by <a href=\"http://aur.archlinux.org/packages.php?ID=22782\">view3dscene Arch Linux package</a>. Thanks to Antonio Bonifati!
@@ -966,9 +966,9 @@ Changes:</p>
           'short_description' => '',
           'description' => "
 
-<p>" . this_a_href_page('view3dscene 3.2', 'view3dscene') . " is released,
+<p>" . news_a_href_page('view3dscene 3.2', 'view3dscene') . " is released,
 with a lot of improvements and optimizations for dynamic VRML/X3D worlds.
-As usual, this is accompanied by " . this_a_href_page('underlying
+As usual, this is accompanied by " . news_a_href_page('underlying
 Kambi VRML game engine 1.6.0', 'kambi_vrml_game_engine') . " release.
 Major changes:
 
@@ -990,7 +990,7 @@ Major changes:
     . "
 
 
-    <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . this_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
+    <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
     ") and open it. It shows how you can edit the world by KambiScript, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
 
   <li><p>Changing <b><tt>Switch.whichChoice</tt> is greatly optimized</b>.
@@ -1016,13 +1016,13 @@ Major changes:
 
 
     <p><b>Dynamic shadows support is greatly improved</b>, finally
-    " . this_a_href_page('view3dscene', 'view3dscene') . " can render
+    " . news_a_href_page('view3dscene', 'view3dscene') . " can render
     with shadows, honoring our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
     We also have new <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
     <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
-    " . this_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') . "
+    " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') . "
     in new view3dscene.
 
     <p>view3dscene has now view mode <i>Fill Mode -&gt;
@@ -1100,8 +1100,8 @@ program to view 25 first <a href=\"http://en.wikipedia.org/wiki/Spherical_harmon
           'guid' => '2008-10-15',
           'short_description' => '',
           'description' =>
-this_a_href_page('view3dscene 3.1.0', 'view3dscene') . " release,
-along with " . this_a_href_page('underlying
+news_a_href_page('view3dscene 3.1.0', 'view3dscene') . " release,
+along with " . news_a_href_page('underlying
 Kambi VRML game engine 1.5.0', 'kambi_vrml_game_engine') . " release.
 Most notable improvements are:
 
@@ -1134,7 +1134,7 @@ http://127.0.0.1/~michalis/vrmlengine/
 </table>
 
 <ul>
-  <li><p><b>Scripting in " . this_a_href_page('KambiScript language',
+  <li><p><b>Scripting in " . news_a_href_page('KambiScript language',
     'kambi_script') . "</b>. KambiScript is a simple scripting language,
     invented specially for our engine. It's powerful
     enough for many tasks, you can process all VRML data types
@@ -1144,7 +1144,7 @@ http://127.0.0.1/~michalis/vrmlengine/
     Endless possibilities are available now for VRML authors, you can
     write complete interactive 3D games and run them with view3dscene
     (or any other VRML browser using our engine).
-    " . this_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
+    " . news_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
     " contains source VRML files with KambiScript tests (see <tt>x3d/kambi_extensions/kambi_script_*</tt>
     in there, like
     <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
@@ -1227,9 +1227,9 @@ choice, automatically detect when roSeparateShapeStates /
           'short_description' => '',
           'description' =>
 "<p>I'm pleased to present the new, shiny
-" . this_a_href_page('view3dscene 3.0', 'view3dscene') . " release,
+" . news_a_href_page('view3dscene 3.0', 'view3dscene') . " release,
 with a lot of new <a href=\"http://www.web3d.org/\">VRML/X3D</a> features
-implemented. Also " . this_a_href_page('underlying Kambi VRML game engine 1.4.0', 'kambi_vrml_game_engine') . "
+implemented. Also " . news_a_href_page('underlying Kambi VRML game engine 1.4.0', 'kambi_vrml_game_engine') . "
 is released and some other programs here get minor updates.</p>
 
 <p>New features of the engine and view3dscene:</p>
@@ -1253,7 +1253,7 @@ is released and some other programs here get minor updates.</p>
 
 <ul>
   <li><p><b>X3D support</b> (both XML and classic encoding).
-    Our " . this_a_href_page('VRML implementation status', 'vrml_implementation_status') . "
+    Our " . news_a_href_page('VRML implementation status', 'vrml_implementation_status') . "
     page has detailed information about supported features.</p></li>
 
   <li><p><b>Events mechanism</b> (routes, exposed events, sensors, interpolators etc.)
@@ -1278,7 +1278,7 @@ is released and some other programs here get minor updates.</p>
     for VRML 97) work too.
     Prototypes and external prototypes also work 100% with events according
     to specification, so you can pass events to/from prototypes.
-    New " . this_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
+    New " . news_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
     has some simple demos of our events implementation.</p></li>
 
   <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
@@ -1315,7 +1315,7 @@ is released and some other programs here get minor updates.</p>
     </ul>
   </li>
 
-  <li><p>" . this_a_href_page('"The Castle" 0.8.2', 'castle') . " release also deserves
+  <li><p>" . news_a_href_page('"The Castle" 0.8.2', 'castle') . " release also deserves
     mention, as it fixes <b>support for OpenAL Soft</b> implementation
     (available on newer Linux distros).
     It also allows creators of future levels and creatures to use X3D,
@@ -1373,9 +1373,9 @@ web3d.org examples</a>.</p>"),
     free software VRML 97 modeler,
     can export normal VRML animations
     (expressed in terms of VRML interpolators) to our ' .
-    this_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .
+    news_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .
     ' and it supports our ' .
-    this_a_href_page('extension nodes and fields', 'kambi_vrml_extensions') .
+    news_a_href_page('extension nodes and fields', 'kambi_vrml_extensions') .
     ' (run with <tt>-kambi</tt> command-line option, or use <i>"Start next time
     with kambi support"</i> menu item). Thousand thanks for
     Joerg "MUFTI" Scheurich!</p>
@@ -1422,7 +1422,7 @@ web3d.org examples</a>.</p>"),
         AVI version with perfect quality</a>.)</p>
 
       <li><p>Flames movie above was not only played in our ' .
-        this_a_href_page('view3dscene', 'view3dscene') . ', it was also
+        news_a_href_page('view3dscene', 'view3dscene') . ', it was also
         recorded directly by view3dscene. That\'s right: Screenshot options
         were much improved, it\'s now possible to capture animation
         as a movie file (with perfect quality, as opposed to using independent
@@ -1454,7 +1454,7 @@ web3d.org examples</a>.</p>"),
           'guid' => '2008-05-09',
           'short_description' => '',
           'description' =>
-"I present " . a_href_page('three demo movies', 'movies') . "
+"I present " . news_a_href_page('three demo movies', 'movies') . "
 showing off my engine. Feast your eyes on!
 
 <p>In related news, development of the engine goes on.
@@ -1476,7 +1476,7 @@ Some of the latest improvements include
           'guid' => '2008-02-25',
           'short_description' => '',
           'description' =>
-"Released " . a_href_page('engine version 1.3.1', 'kambi_vrml_game_engine') . ":
+"Released " . news_a_href_page('engine version 1.3.1', 'kambi_vrml_game_engine') . ":
 fixed Lazarus packages compilation, for developers that want to use our
 engine with Lazarus."),
 
@@ -1487,11 +1487,11 @@ engine with Lazarus."),
           'guid' => '2008-02-19',
           'short_description' =>
 "<p>Many long-awaited graphic features implemented in our engine.
-Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
-" . this_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
-" . this_a_href_page('castle 0.8.1', 'castle') . ".
+Released " . news_a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
+" . news_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
+" . news_a_href_page('castle 0.8.1', 'castle') . ".
 Below is only a shortcut of the most important changes
-(see " . a_href_page('changes_log', 'news') . " for a full list of changes) :</p>
+(see " . news_a_href_page('changes_log', 'news') . " for a full list of changes) :</p>
 
 <ul>
   <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">Bump
@@ -1503,8 +1503,8 @@ Below is only a shortcut of the most important changes
     GLSL and ARB assembly shaders.</li>
 
   <li>Anti-aliasing available in both "
-    . this_a_href_page('view3dscene', 'view3dscene') . "
-    and " . this_a_href_page('castle', 'castle') . ".</li>
+    . news_a_href_page('view3dscene', 'view3dscene') . "
+    and " . news_a_href_page('castle', 'castle') . ".</li>
 
   <li>Collada model format basic support (1.3.x and 1.4.x)
     added to the engine, you can also convert Collada files to VRML 2.0.</li>
@@ -1513,25 +1513,25 @@ Below is only a shortcut of the most important changes
     dragging.</li>
 
   <li><tt>--screenshot</tt> command-line option for
-    " . this_a_href_page('view3dscene', 'view3dscene') . ",
+    " . news_a_href_page('view3dscene', 'view3dscene') . ",
     to take screenshots of the scene in batch mode.</li>
 
-  <li>" . this_a_href_page('Our Blender VRML 97 exporter script', 'blender_stuff') . "
+  <li>" . news_a_href_page('Our Blender VRML 97 exporter script', 'blender_stuff') . "
     improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
     settings from Blender are correctly exported to VRML.</li>
 </ul>
 
 <p>Other releases:
-" . this_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
+" . news_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
 has many new tests/demos for new features (bump mapping, GLSL,
 Collada format). Also released most other programs,
 to bring them up-to-date with current engine state.</p>
 ",
           'description' =>
 
-"<p>Released " . a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
-" . this_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
-" . this_a_href_page('castle 0.8.1', 'castle') . ".
+"<p>Released " . news_a_href_page('engine version 1.3.0', 'kambi_vrml_game_engine') . ",
+" . news_a_href_page('view3dscene 2.4.0', 'view3dscene') . " and
+" . news_a_href_page('castle 0.8.1', 'castle') . ".
 Many long-awaited graphic features implemented:</p>
 
 <ul>
@@ -1542,9 +1542,9 @@ Many long-awaited graphic features implemented:</p>
     dot by GLSL (optionally with parallax mapping, optionally with
     steep parallax mapping and self-shadowing).</p>
 
-    <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to easily
+    <p>" . news_a_href_page('view3dscene', 'view3dscene') . " allows to easily
     turn on bump mapping, assuming model specifies normal maps.<br/>
-    " . this_a_href_page('castle', 'castle') . " uses bump mapping, for now only
+    " . news_a_href_page('castle', 'castle') . " uses bump mapping, for now only
     on the \"fountain\" level.</p>
 
     <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/examples/vrml/bump_mapping</tt> demo in engine sources,
@@ -1561,7 +1561,7 @@ Many long-awaited graphic features implemented:</p>
     specify GLSL shaders inside VRML file</a>, which is a great feature
     for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
 
-    <p>" . this_a_href_page('view3dscene', 'view3dscene') . " allows to control
+    <p>" . news_a_href_page('view3dscene', 'view3dscene') . " allows to control
     GLSL shaders and even simply assign GLSL shaders
     (check out <i>Edit -&gt; Simply assign GLSL shader to all objects</i>
     menu item), so you can test your shaders with any 3D model.</p>
@@ -1570,14 +1570,14 @@ Many long-awaited graphic features implemented:</p>
     <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README\">shading_langs_demo/README</a>.</p>
 
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
-    graphic card). " . this_a_href_page('view3dscene', 'view3dscene') . "
+    graphic card). " . news_a_href_page('view3dscene', 'view3dscene') . "
     has comfortable menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>
     and also a command-line option <tt>--anti-alias</tt> to control this,
-    " . this_a_href_page('castle', 'castle') . " has comfortable menu item
+    " . news_a_href_page('castle', 'castle') . " has comfortable menu item
     in <i>Video options</i>.</p>
 
   <li><p><b>Collada model format</b> basic support (1.3.x and 1.4.x)
-    added to the engine (" . this_a_href_page('view3dscene', 'view3dscene') . "
+    added to the engine (" . news_a_href_page('view3dscene', 'view3dscene') . "
     and everything else open Collada files, just like any other model format;
     you can also convert Collada files to VRML 2.0).</p>
   </li>
@@ -1589,14 +1589,14 @@ Many long-awaited graphic features implemented:</p>
   <li><p><tt>Examine</tt> mode allows to rotate and move the scene by mouse
     dragging. This is more intuitive and sometimes comfortable.
     This feature is mostly noticeable in
-    " . this_a_href_page('view3dscene', 'view3dscene') . ", although
+    " . news_a_href_page('view3dscene', 'view3dscene') . ", although
     some example programs in engine demos also use such examine mode
     and also benefit from this.</p>
   </li>
 </ul>
 
 <p>Besides improvements above, some improvements specific to
-" . this_a_href_page('view3dscene', 'view3dscene') . ":</p>
+" . news_a_href_page('view3dscene', 'view3dscene') . ":</p>
 
 <ul>
   <li><tt>--screenshot</tt> command-line option, requested a few times,
@@ -1607,7 +1607,7 @@ Many long-awaited graphic features implemented:</p>
     \"f\" key changes fill mode instead of fog state).</li>
 </ul>
 
-<p>Also " . this_a_href_page('our Blender VRML 97 exporter script', 'blender_stuff') . "
+<p>Also " . news_a_href_page('our Blender VRML 97 exporter script', 'blender_stuff') . "
 improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
 settings from Blender are correctly exported to VRML file (as creasteAngle field).</p>
 
@@ -1637,17 +1637,17 @@ settings from Blender are correctly exported to VRML file (as creasteAngle field
 </ul>
 
 <p>Other releases:
-" . this_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
+" . news_a_href_page('Kambi VRML test suite 2.1.0', 'kambi_vrml_test_suite') . "
 has many new tests/demos for new features (bump mapping, GLSL,
 Collada format). Also released:
-" . this_a_href_page('rayhunter 1.2.2', 'rayhunter') . ",
-" . this_a_href_page('lets_take_a_walk 1.2.1', 'lets_take_a_walk') . ",
-" . this_a_href_page('malfunction 1.2.4', 'malfunction') . ",
-" . this_a_href_page('kambi_lines 1.1.4', 'kambi_lines') . ",
-" . this_a_href_page('glplotter 1.2.1', 'glplotter_and_gen_function') . ",
-" . this_a_href_page('glViewImage 1.2.2', 'glviewimage') . ",
-" . this_a_href_page('bezier_curves 1.1.6', 'bezier_curves') . ",
-" . this_a_href_page('glcaps 1.1.2', 'glcaps') . ",
+" . news_a_href_page('rayhunter 1.2.2', 'rayhunter') . ",
+" . news_a_href_page('lets_take_a_walk 1.2.1', 'lets_take_a_walk') . ",
+" . news_a_href_page('malfunction 1.2.4', 'malfunction') . ",
+" . news_a_href_page('kambi_lines 1.1.4', 'kambi_lines') . ",
+" . news_a_href_page('glplotter 1.2.1', 'glplotter_and_gen_function') . ",
+" . news_a_href_page('glViewImage 1.2.2', 'glviewimage') . ",
+" . news_a_href_page('bezier_curves 1.1.6', 'bezier_curves') . ",
+" . news_a_href_page('glcaps 1.1.2', 'glcaps') . ",
 mainly to bring them up-to-date with current engine state.</p>
 "),
 
@@ -1660,33 +1660,33 @@ mainly to bring them up-to-date with current engine state.</p>
           'guid' => '2007-11-17',
           'short_description' =>
 "<p>A lot of updates today. Here's a shortcut of only the most important changes
-(see " . a_href_page('news', 'news') . " for a full list of changes) :
+(see " . news_a_href_page('news', 'news') . " for a full list of changes) :
 <ul>
-  <li>" . a_href_page('"The Castle" 0.8.0', 'castle') . " released:
+  <li>" . news_a_href_page('"The Castle" 0.8.0', 'castle') . " released:
     new demo level <i>the fountain</i> (VRML 2.0, dynamic shadows),
     many shadows improvements (z-fail, proper detection z-pass/z-fail, shadow
     culling etc.), conserve memory feature (all Radeon issues should be fixed
     now).</li>
-  <li>" . a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
+  <li>" . news_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
     prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
     VRML 2.0 lights are correctly handled,
     handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
     <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
-  <li>" . a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
+  <li>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
     released: most things mentioned above were actually implemented in the base
     engine units, also: x86-64 port.</li>
-  <li>" . a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
+  <li>" . news_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
     released: many new tests for new features.</li>
-  <li>" . a_href_page('Blender VRML stuff page added, with improved VRML 2.0
+  <li>" . news_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
     exporter and kanim exporter', 'blender_stuff') . ".</li>
-  <li>Updated version of " . a_href_page('VRML engine documentation',
+  <li>Updated version of " . news_a_href_page('VRML engine documentation',
     'vrml_engine_doc') . " is available, with a
     <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
     about shadows implementation.</a></li>
 </ul>",
           'description' =>
 
-"<p>" . this_a_href_page('"The Castle" 0.8.0', 'castle') . " released:
+"<p>" . news_a_href_page('"The Castle" 0.8.0', 'castle') . " released:
 
 <ul>
   <li><p>New demo level: <i>the fountain</i>, done in pure VRML 2.0
@@ -1731,7 +1731,7 @@ mainly to bring them up-to-date with current engine state.</p>
   <li>Nicer credits screen.</li>
 </ul>
 
-<p>" . this_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
+<p>" . news_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
 
 <ul>
   <li>Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>)
@@ -1757,7 +1757,7 @@ mainly to bring them up-to-date with current engine state.</p>
     href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
 </ul>
 
-<p>" . this_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
+<p>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
 released. Most features mentioned above for view3dscene and castle
 (shadows, optimizations, all VRML 2.0 features) are actually implemented
 in the engine, and other programs only use them. Additionally, some
@@ -1777,16 +1777,16 @@ more internal features not mentioned above:</p>
   <li><p>Everything is compiled using new FPC 2.2.0.</p></li>
 </ul>
 
-<p>" . this_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
+<p>" . news_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
 released: many new tests to test new features (protos, external protos,
 colors, light scope, running path to test NavigationInfo.speed, 3d text),
 some important VRML 1.0 tests ported to VRML 2.0 too (castle,
 relative_names, texture_test, house behind the glass).</p>
 
-<p>" . this_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
+<p>" . news_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
 exporter and kanim exporter', 'blender_stuff') . ".</p>
 
-<p>Updated version of " . this_a_href_page('VRML engine documentation',
+<p>Updated version of " . news_a_href_page('VRML engine documentation',
 'vrml_engine_doc') . " is available, with a chapter about shadows
 implementation.</p>
 "),
@@ -1802,20 +1802,20 @@ implementation.</p>
           'description' =>
 
 "<ul>
-  <li>" . this_a_href_page('glplotter 1.2.0 and gen_function 1.0.2',
+  <li>" . news_a_href_page('glplotter 1.2.0 and gen_function 1.0.2',
     'glplotter_and_gen_function') . " released: glplotter GUI greatly improved:
     Open/Add menu items to open graphs from files
     and to generate graphs from function expressions.
     This means that now you don't have to specify graphs at command-line,
     and now you don't have to write pipes with gen_function.
     Also documentation and some options translated finally to English.</li>
-  <li>" . this_a_href_page('view3dscene 2.2.1', 'view3dscene') . " released:
+  <li>" . news_a_href_page('view3dscene 2.2.1', 'view3dscene') . " released:
     bug fix release. Fixed crash when removing geometry node from
     VRML 2.0 hierarchy. Fixed jagged animation when world time was
     really large (usually occurs when \"on display\" time pass was
     really large for some time). Fixed messing the gravity
     \"up\" vector when reopening the scene.</li>
-  <li>" . this_a_href_page('Kambi VRML game engine 1.1.1',
+  <li>" . news_a_href_page('Kambi VRML game engine 1.1.1',
     'kambi_vrml_game_engine') . " released: changes needed by
     view3dscene and glplotter above.</li>
   <li><a href=\"http://vrmlengine.sourceforge.net/news_feed.php\">RSS
@@ -1836,14 +1836,14 @@ implementation.</p>
           'description' =>
 
 "<ul>
-  <li>" . this_a_href_page('view3dscene 2.2.0', 'view3dscene') . " release:
+  <li>" . news_a_href_page('view3dscene 2.2.0', 'view3dscene') . " release:
     view3dscene can display animations now (for now in " .
-     this_a_href_page(
+     news_a_href_page(
     "Kanim (Kambi VRML engine animations) format", 'kanim_format') . " and
     MD3).</li>
-  <li>" . this_a_href_page('Kambi VRML test suite 1.1.0',
+  <li>" . news_a_href_page('Kambi VRML test suite 1.1.0',
     'kambi_vrml_test_suite') . " release: many kanim demos added.</li>
-  <li>" . this_a_href_page('Kambi VRML game engine 1.1.0',
+  <li>" . news_a_href_page('Kambi VRML game engine 1.1.0',
     'kambi_vrml_game_engine') . " release: many changes, for animations
     in view3dscene, also GLMenu and GameSoundEngine units added
     (some \"The Castle\" code improved and moved to a generally-usefull
@@ -1893,8 +1893,8 @@ file release system now. This is another step in moving to
 on SourceForge</a>.
 
 <p>Also, some things now get version numbers:
-" . this_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
-" . this_a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite") . " (1.0.0).
+" . news_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
+" . news_a_href_page("Kambi VRML test suite", "kambi_vrml_test_suite") . " (1.0.0).
 </p>")
 
   );
