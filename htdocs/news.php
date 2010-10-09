@@ -16,7 +16,7 @@ function vrmlengine_sitemap_add_news()
   foreach ($news as $news_item)
   {
     $vrmlengine_sitemap['index']['sidebar'] = true;
-    $vrmlengine_sitemap['index']['sub']['news.php?item=' . $news_item['id']] =
+    $vrmlengine_sitemap['index']['sub']['news.php?id=' . $news_item['id']] =
       array('title' =>  '(' . vrmlengine_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }
@@ -70,11 +70,11 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   vrmlengine_sitemap_add_news();
 
   /* calculate $previous_item, $item, $next_item */
-  if (isset($_GET['item']))
+  if (isset($_GET['id']))
   {
-    vrmlengine_news_item_by_id($_GET['item'], $previous_item, $item, $next_item);
+    vrmlengine_news_item_by_id($_GET['id'], $previous_item, $item, $next_item);
     if ($item === NULL)
-      die('Invalid news item "' . $_GET['item'] . '"');
+      die('Invalid news item "' . $_GET['id'] . '"');
   } else
   {
     /* By default, if someone uses just "news.php" URL,
@@ -87,7 +87,7 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   }
 
   /* set $page_basename explicitly */
-  $page_basename = 'news.php?item=' . $item['id'];
+  $page_basename = 'news.php?id=' . $item['id'];
 
   vrmlengine_header($item['title'] . ' | News', NULL,
     array(MAIN_PAGE_BASENAME, $page_basename));
@@ -95,9 +95,9 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   /* Remember that naming "previous / next" in the array
      is reversed to what user considers previous/next (earlier/later) */
   if ($next_item)
-    echo '<div class="news_previous_next" style="float: left"><a title="' . $next_item['title'] . '" href="news.php?item=' . $next_item['id'] . '">&laquo; Previous</a></div>';
+    echo '<div class="news_previous_next" style="float: left"><a title="' . $next_item['title'] . '" href="news.php?id=' . $next_item['id'] . '">&laquo; Previous</a></div>';
   if ($previous_item)
-    echo '<div class="news_previous_next" style="float: right"><a title="' . $previous_item['title'] . '" href="news.php?item=' . $previous_item['id'] . '">Next &raquo;</a></div>';
+    echo '<div class="news_previous_next" style="float: right"><a title="' . $previous_item['title'] . '" href="news.php?id=' . $previous_item['id'] . '">Next &raquo;</a></div>';
 
   echo '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>';
 
