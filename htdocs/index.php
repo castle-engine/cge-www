@@ -40,11 +40,13 @@ Two most important programs available here are
 ?>
 </div>
 
-<p style="background: #DDD; padding: 0.2em; margin: 0px">
-Comments?
-Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.<br/>
-See also <?php echo
-a_href_page('previous news', 'news.php?id=' . $news[1]['id']) ?>.
+<table class="news_older_newer"><tr>
+  <td class="news_newer">Comments?
+  Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.</td>
+  <td class="news_older">
+  See also <?php echo
+  a_href_page('previous news &raquo;', 'news.php?id=' . $news[1]['id']) ?></td>
+</tr></table>
 </p>
 
 </div>
