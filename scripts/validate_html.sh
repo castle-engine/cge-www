@@ -20,7 +20,8 @@ for PHP_NAME in *.php; do
       | generated_versions.php | octree_consts.php | raytr_gallery_funcs.php \
       | changes_log_common.php | changes_log_feed.php | gen_funkcja.pl.php \
       | glplotter.pl.php | sources_docs.php | sources.php \
-      | vrml_implementation_common.php | glcaps.php )
+      | vrml_implementation_common.php | glcaps.php \
+      | news_common.php | news_feed.php | changes_log.php )
       ;;
 
     *)
