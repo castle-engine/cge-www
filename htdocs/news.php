@@ -16,18 +16,18 @@ function vrmlengine_sitemap_add_news()
   foreach ($news as $news_item)
   {
     $vrmlengine_sitemap['index']['sub']['news']['sidebar'] = true;
-    $vrmlengine_sitemap['index']['sub']['news']['sub']['news.php?item=' . $news_item['anchor']] =
+    $vrmlengine_sitemap['index']['sub']['news']['sub']['news.php?item=' . $news_item['id']] =
       array('title' =>  '(' . vrmlengine_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }
 }
 
-/* Return news item from $anchor, or NULL if not found. */
-function vrmlengine_news_item_by_anchor($anchor)
+/* Return news item from $id, or NULL if not found. */
+function vrmlengine_news_item_by_id($id)
 {
   global $news;
   foreach($news as $news_item)
-    if ($news_item['anchor'] == $anchor)
+    if ($news_item['id'] == $id)
       return $news_item;
   return NULL;
 }
@@ -45,7 +45,7 @@ function vrmlengine_news_item_by_anchor($anchor)
 
   if (isset($_GET['item']))
   {
-    $item = vrmlengine_news_item_by_anchor($_GET['item']);
+    $item = vrmlengine_news_item_by_id($_GET['item']);
     if ($item === NULL)
       die('Invalid news item "' . $_GET['item'] . '"');
   } else
@@ -54,7 +54,7 @@ function vrmlengine_news_item_by_anchor($anchor)
     $item = $news[0];
 
   vrmlengine_header($item['title'] . ' | News', NULL,
-    array('index', 'news', 'news.php?item=' . $item['anchor']));
+    array('index', 'news', 'news.php?item=' . $item['id']));
 
   echo '<div class="news_item">' . news_to_html($item) . '</div>';
 

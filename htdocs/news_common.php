@@ -61,7 +61,7 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
        If this delimiter is not present, then teaser is just equal to
        full description.
 
-     - guid will be used also for HTML anchor inside news.php page.
+     - guid will be used also for NEWS-ID, to have news.php?item=NEWS-ID page.
        guid is optional --- we'll generate default guid based on date and title,
        if not set.
      - link is also optional, we'll set it to our homepage if not set.
@@ -3525,7 +3525,7 @@ foreach ($news as &$log_entry)
          to avoid breaking XML. guid is used in both RSS XML and in HTML. */
       strtr(strtolower($log_entry['title']), ' &;,:*/()<>', '___________');
 
-  $log_entry['anchor'] = $log_entry['guid'];
+  $log_entry['id'] = $log_entry['guid'];
 }
 unset($log_entry);
 
@@ -3576,14 +3576,14 @@ function news_to_html($news_item, $full_description = true)
         ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
 
       $description = substr($description, 0, $teaser_delimiter) .
-        '<p><a href="' . CURRENT_URL . 'news.php#' .
-        $news_item['anchor'] . '">[read more]</a></p>' .
+        '<p><a href="' . CURRENT_URL . 'news.php?item=' .
+        $news_item['id'] . '">[read more]</a></p>' .
         $teaser_closing_str;
     }
   }
 
-  return '<p><a name="' . $news_item['anchor'] . '"><span class="news_title">' .
-    $news_item['title'] . '</span></a><br/><span class="news_date">(' .
+  return '<p><span class="news_title">' .
+    $news_item['title'] . '</span><br/><span class="news_date">(' .
     vrmlengine_news_date_long($news_item) . ')</span></p>' .
     $description;
 }
