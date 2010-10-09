@@ -19,11 +19,7 @@ to this as the engine develops.</p>
   <li><a href="vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html">
     HTML (one big file)</a><li>
   <li><?php echo current_www_a_href_size(
-    'PDF', 'vrml_engine_doc/output/xsl/vrml_engine.pdf'); ?>
-
-    <p>First page of the PDF version contains the title in Polish.
-    But don't worry &mdash; second page contains the English title,
-    and everything is written in English.</p></li>
+    'PDF', 'vrml_engine_doc/output/xsl/vrml_engine.pdf'); ?></li>
 </ul>
 
 <h2>Sources</h2>
