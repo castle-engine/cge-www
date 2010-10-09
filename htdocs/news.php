@@ -30,8 +30,7 @@ function vrmlengine_sitemap_add_news()
      (which actually searches sitemap and renders sidebar). */
   vrmlengine_sitemap_add_news();
 
-  vrmlengine_header('News about the Kambi VRML game engine', NULL,
-    array('index'));
+  vrmlengine_header('News', NULL, array('index'));
 ?>
 
 <h1>News</h1>
