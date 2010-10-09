@@ -15,8 +15,8 @@ function vrmlengine_sitemap_add_news()
   global $vrmlengine_sitemap, $news;
   foreach ($news as $news_item)
   {
-    $vrmlengine_sitemap['index']['sub']['news']['sidebar'] = true;
-    $vrmlengine_sitemap['index']['sub']['news']['sub']['news.php?item=' . $news_item['id']] =
+    $vrmlengine_sitemap['index']['sidebar'] = true;
+    $vrmlengine_sitemap['index']['sub']['news.php?item=' . $news_item['id']] =
       array('title' =>  '(' . vrmlengine_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }
@@ -69,6 +69,7 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
      (which actually searches sitemap and renders sidebar). */
   vrmlengine_sitemap_add_news();
 
+  /* calculate $previous_item, $item, $next_item */
   if (isset($_GET['item']))
   {
     vrmlengine_news_item_by_id($_GET['item'], $previous_item, $item, $next_item);
@@ -85,8 +86,11 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
       $next_item = NULL;
   }
 
+  /* set $page_basename explicitly */
+  $page_basename = 'news.php?item=' . $item['id'];
+
   vrmlengine_header($item['title'] . ' | News', NULL,
-    array('index', 'news', 'news.php?item=' . $item['id']));
+    array(MAIN_PAGE_BASENAME, $page_basename));
 
   /* Remember that naming "previous / next" in the array
      is reversed to what user considers previous/next (earlier/later) */

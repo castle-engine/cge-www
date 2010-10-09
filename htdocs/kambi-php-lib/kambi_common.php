@@ -693,6 +693,8 @@ div.quick_links_bottom_line { text-align: <?php
    gdy znajde do tego powody).
 
    $a_page_lang musi byc elementem supported_page_langs($page_basename)
+
+   Sets global $page_basename, if not already set.
 */
 function common_header($a_page_title, $a_page_lang,
   $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
@@ -715,9 +717,12 @@ function common_header($a_page_title, $a_page_lang,
   $this_page_name = basename($this_page_name);
 
   /* calculate $page_basename (requires $page_lang and $this_page_name) */
-  $page_basename = $this_page_name;
-  $page_basename = basename($page_basename, '.php');
-  $page_basename = basename($page_basename, '.' . $lang_to_html_lang[$page_lang]);
+  if (!isset($page_basename))
+  {
+    $page_basename = $this_page_name;
+    $page_basename = basename($page_basename, '.php');
+    $page_basename = basename($page_basename, '.' . $lang_to_html_lang[$page_lang]);
+  }
 
   /* evaluate $supported_langs (requires $page_basename) */
   $supported_langs = supported_page_langs($page_basename);

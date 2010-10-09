@@ -54,10 +54,9 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
 */
 global $vrmlengine_sitemap;
 $vrmlengine_sitemap = array(
-  MAIN_PAGE_BASENAME       => array('title' => 'Intro and News',
-    'sub' => array(
-      'news' => array('title' => 'News'),
-    ),
+  MAIN_PAGE_BASENAME       => array('title' => 'News' /* for sidebar on news.php */, 'title-for-header-menu' => 'Intro and News'
+    /* 'sub' and 'sidebar' of this will be calculated by news.php page,
+       since it may be time-consuming (requires reading large $news table). */
   ),
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
