@@ -1917,7 +1917,7 @@ on SourceForge</a>.
   '<!-- Older logs are available only in HTML, they were not converted
        to $news format. -->
 
-  <div class="old_news_item news_item"><p><a name="older_news"><span class="news_date">July 19, 2007:</span></a></p>
+  <div class="old_news_item"><p><a name="older_news"><span class="old_news_date">July 19, 2007:</span></a></p>
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
@@ -1937,7 +1937,7 @@ on SourceForge</a>.
     <p>See ' . news_a_href_page('sources', 'sources') . ' and many other
     pages for detailed instructions how to get code out of SVN repository.</p></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">June 12, 2007:</span>
+  <div class="old_news_item"><p><span class="old_news_date">June 12, 2007:</span>
     <p>Finally, the great update happens ! Most important are
     ' . news_a_href_page('"The Castle" 0.7.0', 'castle') . ' and
     ' . news_a_href_page('view3dscene 2.1.0', 'view3dscene') . ' releases,
@@ -2091,7 +2091,7 @@ on SourceForge</a>.
     ' . news_a_href_page('kambi_lines 1.1.2', 'kambi_lines') . '.
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">February 28, 2007:</span>
+  <div class="old_news_item"><p><span class="old_news_date">February 28, 2007:</span>
     <p>Hello! It\'s been a while without any significant update on this page &mdash;
     so I thought that I just let you all know that the work on
      ' . news_a_href_page('"The Castle"', 'castle') . ' and
@@ -2103,7 +2103,7 @@ on SourceForge</a>.
     wanting to use my engine, or 3D content designers for "The Castle") were done,
     along with a lot of bugfixes and many small feature additions.</p></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">October 7, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">October 7, 2006:</span>
     <p>Good news for FreeBSD users: I finally upgraded my FreeBSD to 6.1,
     and got NVidia OpenGL working smoothly there, along with OpenAL.
     So I updated all FreeBSD binaries on these pages to their latest version.
@@ -2111,7 +2111,7 @@ on SourceForge</a>.
      compiles and works perfectly under FreeBSD (although the FreeBSD binary
     is not included in the game archive yet).</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">October 1, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">October 1, 2006:</span>
     <p>A made a new page about my
     ' . news_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . '.
      Most of the content of this page was already said here and there,
@@ -2121,12 +2121,12 @@ on SourceForge</a>.
     <tt>opengl/examples/test_font_break</tt> and
     <tt>opengl/examples/multi_glwindow</tt>.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">September 27, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">September 27, 2006:</span>
     <p>Final version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
       'vrml_engine_doc') . ' is available now.</p></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">September 21, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">September 21, 2006:</span>
 
     <p>Newest version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
@@ -2140,7 +2140,7 @@ on SourceForge</a>.
     Also behavior on incorrect <tt>Background</tt> nodes is now better
     (reports warning and proceeds).</p></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">September 13, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">September 13, 2006:</span>
 
     <p>First of all, a draft and unfinished version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
@@ -2164,7 +2164,7 @@ on SourceForge</a>.
       'kambi_vrml_test_suite') . '
      <tt>vrml_2/kambi_extensions/fog_linear_with_immune.wrl</tt> test fixed.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">August 24, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">August 24, 2006:</span>
 
     <p>First of all, I\'m proud to announce that
     <b>VRML 2.0 (aka VRML 97) support is implemented now</b>.
@@ -2246,7 +2246,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">August 1, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">August 1, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', "castle") . '
      (0.6.5) released: whole documentation is in HTML (available
     both here online and offline inside <tt>documentation/</tt>
@@ -2272,7 +2272,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">July 12, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">July 12, 2006:</span>
     <ul>
       <li>New program is available:
         <a href="http://michalis.ii.uni.wroc.pl/~michalis/grammar_compression.php">grammar_compression</a>
@@ -2286,7 +2286,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">July 3, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">July 3, 2006:</span>
     <ul>
       <li>
         ' . news_a_href_page('view3dscene 1.2.5', 'view3dscene') . '
@@ -2307,7 +2307,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">June 8, 2006:</span>
+  <div class="old_news_item"><p><span class="old_news_date">June 8, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.6.4)
     released. Various small improvements and one important fix:
     open-source Radeon drivers
@@ -2336,7 +2336,7 @@ on SourceForge</a>.
     -->
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 19, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 19, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.6.3)
     released. Various "cleaning" changes and fixes:
     <ul>
@@ -2404,7 +2404,7 @@ on SourceForge</a>.
          to bring some fixes and source updates (for compat with my units). -->
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 9, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 9, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.6.2)
     released. Changes from version 0.6.0 include:
     right mouse button now does jumping, sound of SpiderQueen hurt fixed,
@@ -2416,7 +2416,7 @@ on SourceForge</a>.
     competition. Version 0.6.2 brings only minor corrections to README and
     "Credits" text.</div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 8, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 8, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.6.0)
     released. This is final (or almost-final) version for the PGD competition.
     List of changes since 0.5.9 version is huge, among the most important
@@ -2437,7 +2437,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 4, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 4, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.9)
     released: creatures are now configurable by <tt>kinds.xml</tt> file,
     <tt>--debug-no-creatures</tt> command-line option,
@@ -2448,7 +2448,7 @@ on SourceForge</a>.
     compiled only for Linux is here</a>.
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 3, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 3, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.8)
     released: debug menu for lights improved (ambientIntensity for lights,
     "Edit headlight", "Global Ambient Light"), some other small things.
@@ -2459,7 +2459,7 @@ on SourceForge</a>.
     compiled only for Linux is here</a>.
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">May 1, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">May 1, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.7)
     released: debug menu item to change jump properties,
     debug menu item to edit level lights, some other small fixes.
@@ -2468,7 +2468,7 @@ on SourceForge</a>.
     compiled only for Linux is here</a>.
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">April 30, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">April 30, 2006:</span>
     <p>New version of
     ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.6)
     released: trying to nail down display bugs on Radeon:
@@ -2476,7 +2476,7 @@ on SourceForge</a>.
     "Creature animation smoothness" and "Restore to defaults" in "Video options".
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">April 29, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">April 29, 2006:</span>
     <p>New version of
     ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.5)
     released: many small pending features/bugfixes done: you can restart
@@ -2490,14 +2490,14 @@ on SourceForge</a>.
     left/right keys are by default assigned to left/right strafes now,
     some others.</div>
 
-  <div class="old_news_item news_item"><span class="news_date">April 27, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">April 27, 2006:</span>
     <p>New version of
     ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.4)
     released: mouse looking implemented. Also "The Castle" archives
     are now hosted on much faster server provided by
     <a href="http://stoma.bestweb.pl/">Szymon</a> (thanks!).</div>
 
-  <div class="old_news_item news_item"><span class="news_date">April 26, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">April 26, 2006:</span>
     <ul>
       <li>New preview version of
         ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.3)
@@ -2513,7 +2513,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">April 17, 2006:</span>
+  <div class="old_news_item"><span class="old_news_date">April 17, 2006:</span>
 
     <ul>
       <li>First of all, ' . news_a_href_page('a preview of my new game "The Castle" is available',
@@ -2569,7 +2569,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">March 9, 2006</span><br>
+  <div class="old_news_item"><span class="old_news_date">March 9, 2006</span><br>
     Many ' . news_a_href_page('view3dscene', 'view3dscene') . ' (ver 1.2.1)
     updates:
     <ul>
@@ -2607,7 +2607,7 @@ on SourceForge</a>.
     just to keep them in compileable state -->
     </div>
 
-  <div class="old_news_item news_item"><span class="news_date">February 24, 2006</span><br>
+  <div class="old_news_item"><span class="old_news_date">February 24, 2006</span><br>
     Many updates. Every OpenGL based program updated,
     ' . news_a_href_page('all units and programs sources', 'sources') . '
     updated (along with ' . news_a_href_page('their documentation', 'reference') . ').
@@ -2700,7 +2700,7 @@ on SourceForge</a>.
     so I will not upload here completely untested binaries.
     If you use FreeBSD, feel free to just compile them yourself.</div>
 
-  <div class="old_news_item news_item"><span class="news_date">February 13, 2006</span><br>
+  <div class="old_news_item"><span class="old_news_date">February 13, 2006</span><br>
     Many modifications to my general units done, so
     ' . news_a_href_page('all units and programs sources', 'sources') . '
     are updated. As usual,
@@ -2718,31 +2718,31 @@ on SourceForge</a>.
     pages around April 2006, and between February and April 2006 I will
     constantly update my units on these pages.</div>
 
-  <div class="old_news_item news_item"><span class="news_date">January 16, 2006</span><br>
+  <div class="old_news_item"><span class="old_news_date">January 16, 2006</span><br>
     And once again, ' . news_a_href_page('documentation generated by pasdoc',
       'reference') . ' and units
       ' . news_a_href_page('sources', 'sources') . ' updated again:
     a lot of content translated to English.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">December 11, 2005</span><br>
+  <div class="old_news_item"><p><span class="old_news_date">December 11, 2005</span><br>
     ' . news_a_href_page('Documentation generated by pasdoc', 'reference') . '
     and units ' . news_a_href_page('sources', 'sources') . ' updated again:
     much more impressive introduction page, old README_GLOBAL file removed,
     many things translated to English. Some issues with compilation
     with FPC 2.0.2 fixed.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">November 27, 2005</span><br>
+  <div class="old_news_item"><p><span class="old_news_date">November 27, 2005</span><br>
     ' . news_a_href_page('Documentation generated by pasdoc', 'reference') . '
      and units ' . news_a_href_page('sources', 'sources') . ' updated
     to reflect many new features and improvements in
     <a href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> released yesterday.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">November 12, 2005</span><br>
+  <div class="old_news_item"><p><span class="old_news_date">November 12, 2005</span><br>
     ' . news_a_href_page("lets_take_a_walk", "lets_take_a_walk") . '
     1.1.2 released (only for Linux) &mdash; fixed problem with linking to
     current Debian-testing openal version.</div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">October 2, 2005</span><br>
+  <div class="old_news_item"><p><span class="old_news_date">October 2, 2005</span><br>
     A lot of content on these pages finally translated to English.
     New versions of most programs released, with updated documentation
     and often other improvements. Full list of changes:
@@ -2809,7 +2809,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">September 12, 2005</span>
+  <div class="old_news_item"><p><span class="old_news_date">September 12, 2005</span>
     <ul>
       <li>Units ' . news_a_href_page('sources', 'sources') . ' and
         ' . news_a_href_page('documentation generated by pasdoc', 'reference') . '
@@ -2830,7 +2830,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">June 07, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">June 07, 2005:</span>
     <ul>
       <li>' . news_a_href_page('Documentation of my sources generated by pasdoc',
         'reference') . ' updated, to reflect many recent improvements done to
@@ -2841,7 +2841,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">May 21, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">May 21, 2005:</span>
     <ul>
       <li>' . news_a_href_page('Demo of documentation of my sources',
         'reference') . '  added, as generated by
@@ -2910,7 +2910,7 @@ on SourceForge</a>.
     <!-- glViewImage sources only updated to 1.1.2, small fixes to sources -->
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">March 14, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">March 14, 2005:</span>
 
   <!--
     /*
@@ -3026,7 +3026,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">February 28, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">February 28, 2005:</span>
     <ul>
       <li>Finally, GLWindow unit may be based on GTK 2 instead of that old GTK 1.
         Besides obvious usability benefits of using GTK 2, which is just
@@ -3079,7 +3079,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">February 3, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">February 3, 2005:</span>
     <ul>
       <li><p>Complete rework of Images unit interface.
         Now it has object-oriented interface, much safer and cleaner.
@@ -3193,7 +3193,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">January 12, 2005:</span>
+  <div class="old_news_item"><p><span class="old_news_date">January 12, 2005:</span>
     Added to ' . news_a_href_page('sources', 'sources') . '
     nice example programs that demonstrate some higher-level
     functionality of my units:
@@ -3211,14 +3211,14 @@ on SourceForge</a>.
     as usual. Added \'xxx.dylib\' library names for Darwin.
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">December 10, 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">December 10, 2004:</span>
     ' . news_a_href_page('Sources of units and view3dscene', 'sources') . '
     updated: units and view3dscene compile with FPC 1.9.5 from CVS
     from 2004-12-07 (at least under Linux), <tt>units/base/examples/</tt>
     subdirectory with two small example programs.
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">December 5, 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">December 5, 2004:</span>
     ' . news_a_href_page('Sources of units', 'sources') . '
      updated to commit many improvements to docs
     (some translations to English and some preparations to generate
@@ -3230,7 +3230,7 @@ on SourceForge</a>.
     However expect many work to happen here next year.
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">August 23, 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">August 23, 2004:</span>
     <ul>
       <li>I ported all programs (except edytorek) to FreeBSD.
         You can download FreeBSD releases (tar.gz archives) from pages
@@ -3271,7 +3271,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p>(August 7: another update of units\' sources, small changes)
+  <div class="old_news_item"><p>(August 7: another update of units\' sources, small changes)
         <!--
           update malfunction-src (progress interface changed),
           update units-src
@@ -3283,7 +3283,7 @@ on SourceForge</a>.
             EXTENDED_EQUALS_DOUBLE )
         --></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">August 2, 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">August 2, 2004:</span>
     <ul>
       <li>Updated ' . news_a_href_page('sources', 'sources') . ' of
         standard units, view3dscene and rayhunter. Using correct FPC UNIX
@@ -3293,7 +3293,7 @@ on SourceForge</a>.
         improvements.
     </ul></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">31 July 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">31 July 2004:</span>
     <ul>
       <li>Various small internal changes/improvements in
         ' . news_a_href_page('sources', 'sources') . ', ProgressUnit improved.
@@ -3302,7 +3302,7 @@ on SourceForge</a>.
     </ul>
     <!-- (on HTML pages: /s/~/$HOME/, consequently) --></div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">27 June 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">27 June 2004:</span>
     <ul>
       <li>' . news_a_href_page('view3dscene', 'view3dscene') . ' updated:
         "Configure scene loading" submenu
@@ -3325,7 +3325,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">29 May 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">29 May 2004:</span>
     <ul>
       <li>' . news_a_href_page('view3dscene',  'view3dscene') . ' updated:
         <ul>
@@ -3357,7 +3357,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">25 May 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">25 May 2004:</span>
     <ul>
       <li>bezier_curves updated: smooth interpolated curves
         (smoothly connected Bezier curves) implemented,
@@ -3369,7 +3369,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">20 May 2004:</span>
+  <div class="old_news_item"><p><span class="old_news_date">20 May 2004:</span>
     <ul>
       <li>' . news_a_href_page("view3dscene", "view3dscene") . ' updated:
         <ul>
@@ -3399,7 +3399,7 @@ on SourceForge</a>.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">8th of May, 2004</span>
+  <div class="old_news_item"><p><span class="old_news_date">8th of May, 2004</span>
     <ul>
       <li>Finally ! ' . news_a_href_page(
         'Sources for Pascal programs are published !', 'sources') . '
@@ -3417,7 +3417,7 @@ on SourceForge</a>.
   27.04: bezier_curves "raw" wrzucone
 -->
 
-  <div class="old_news_item news_item"><p><span class="news_date">26th of April, 2004</span>
+  <div class="old_news_item"><p><span class="old_news_date">26th of April, 2004</span>
     <ul>
       <li>UI improved:
         ' . news_a_href_page('glViewImage', 'glviewimage') . ' and
@@ -3447,7 +3447,7 @@ Bistream Vera fonts. view3dscene archives updated,  rayhunter-src sources
 remade.
 -->
 
-  <div class="old_news_item news_item"><p><span class="news_date">13th of April, 2004</span>
+  <div class="old_news_item"><p><span class="old_news_date">13th of April, 2004</span>
     <ul>
       <li>On 10.04 my small page joined strike against software patents in Europe.
       <li>' . news_a_href_page('glViewImage', 'glviewimage') . ',
@@ -3487,7 +3487,7 @@ remade.
     </ul>
     </div>
 
-  <div class="old_news_item news_item"><p><span class="news_date">18th of march, 2004</span>: I updated ' . news_a_href_page("view3dscene",
+  <div class="old_news_item"><p><span class="old_news_date">18th of march, 2004</span>: I updated ' . news_a_href_page("view3dscene",
     "view3dscene") . ' and ' . news_a_href_page("glViewImage", "glviewimage") . '.
     Now both programs have a useful menu bar, under Windows and Linux.
     Under Linux this requires installation of GTK 1.x and gtkglarea libraries.

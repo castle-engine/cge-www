@@ -242,7 +242,7 @@ div.x3d_spec_component_link {
 
 /* news --------------------------------------------------------------------- */
 
-div.old_news_item span.news_date { font-weight: bold; }
+span.old_news_date { font-weight: bold; }
 div.old_news_item { border-bottom: medium groove #555; }
 
 span.news_title { font-weight: bold; text-decoration: underline; }
