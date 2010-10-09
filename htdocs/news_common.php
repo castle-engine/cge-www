@@ -1,8 +1,5 @@
 <?php /* -*- mode: php -*- */
-  /* This is common content for both making RSS feed of news,
-     and HTML version. You must have already common_set_page_functions
-     done before requiring this !
-  */
+/* Common content for presenting news as an RSS feed and HTML pages. */
 
 require_once 'vrmlengine_functions.php';
 
@@ -94,6 +91,8 @@ Also, vrml_x3d page explains "What is VRML / X3D" in a short and a very friendly
 
 
 Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
+
+vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
 */
 
     array('title' => 'Development news: Examine improvements, smooth transitions, PlaneSensor and more',
@@ -3615,3 +3614,43 @@ function last_news_to_html($full_description = true)
 }
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
