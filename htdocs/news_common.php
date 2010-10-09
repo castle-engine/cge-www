@@ -78,6 +78,19 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* Next news:
 
+Our website got a few important improvements. I hope that they address problems with our current webpages, that grew somewhat organically.
+
+1. New webpage has a nice header, with simple menu at the top. This menu gives you quick links to most important stuff of the website, instead of a large main page. Now you e.g. immediately see the links to "Support", and "Engine" (overview for developers).
+
+2. Some pages have a sidebar for easier navigation. This is primarily useful with vrml_x3d page, which has a huge number of useful content especially under "Implementation status". Hopefully this is all easier to navigate now.
+
+Also, vrml_x3d page explains "What is VRML / X3D" in a short and a very friendly way. This will hopefully explain newcomers (to our engine, and/or vrml) why this 3D format is so great that I based my whole engine on it :)
+
+3. We also have "breadcrumbs", which together with header and sidebar should help you realize where you are in the website. Some of the pages in more crowded sections (inside castle subpages, and "Implementation status" subpages) were already trying to show it. Hopefully this will get more useful now.
+
+4. Also our news page is nicer now, with only one post per page (otherwise it was awfully long) and a nice buttons previous/next and sidebar with posts.
+
+
 Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
 */
 
@@ -3553,7 +3566,7 @@ function vrmlengine_news_date_long($news_item)
     $news_item['year'];
 }
 
-function news_to_html($news_item, $full_description = true)
+function news_to_html($news_item, $full_description = true, $link_to_self = false)
 {
   if ($full_description)
   {
@@ -3582,8 +3595,13 @@ function news_to_html($news_item, $full_description = true)
     }
   }
 
-  return '<p><span class="news_title">' .
-    $news_item['title'] . '</span><br/><span class="news_date">(' .
+  $title = $news_item['title'];
+  if ($link_to_self)
+    $title = '<a href="' . CURRENT_URL . 'news.php?item=' .
+      $news_item['id'] . '">' . $title . '</a>';
+  $title = '<span class="news_title">' . $title . '</span>';
+
+  return '<p>' . $title . '<br/><span class="news_date">(' .
     vrmlengine_news_date_long($news_item) . ')</span></p>' .
     $description;
 }
@@ -3592,7 +3610,7 @@ function last_news_to_html($full_description = true)
 {
   global $news;
 
-  return news_to_html($news[0], $full_description);
+  return news_to_html($news[0], $full_description, /* link to self */ true);
 }
 
 ?>

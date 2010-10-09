@@ -240,6 +240,8 @@ div.x3d_spec_component_link {
   padding: 0.3em;
 }
 
+/* news --------------------------------------------------------------------- */
+
 table.news_older_newer {
   width: 100%;
   border: thin solid #ffeaa9;
@@ -250,14 +252,15 @@ table.news_older_newer {
 td.news_newer { text-align: left; }
 td.news_older { text-align: right; }
 
-/* news --------------------------------------------------------------------- */
-
 span.old_news_date { font-weight: bold; }
 div.old_news_item { border-bottom: medium groove #555; }
 
 span.news_title { font-weight: bold; text-decoration: underline; }
 span.news_date { color: #888; }
 div.news_item span.news_title { font-size: larger; }
+
+/* turn off normal link decoration inside news_title */
+span.news_title a { color: black; }
 
 /* header ------------------------------------------------------------------- */
 
