@@ -43,32 +43,20 @@ function vrmlengine_news_item_by_anchor($anchor)
      (which actually searches sitemap and renders sidebar). */
   vrmlengine_sitemap_add_news();
 
-  $item = NULL;
   if (isset($_GET['item']))
   {
     $item = vrmlengine_news_item_by_anchor($_GET['item']);
     if ($item === NULL)
       die('Invalid news item "' . $_GET['item'] . '"');
-  }
-
-  if ($item === NULL)
-    vrmlengine_header('News', NULL, array('index', 'news')); else
-    vrmlengine_header($item['title'] . ' | News', NULL,
-      array('index', 'news', 'news.php?item=' . $item['anchor']));
-
-  if ($item === NULL)
-  {
-    echo pretty_heading($page_title);
-    foreach ($news as $news_item)
-      echo '<div class="news_item">' . news_to_html($news_item) . '</div>';
   } else
-  {
-    echo '<div class="news_item">' . news_to_html($item) . '</div>';
-  }
+    /* By default, if someone uses just "news.php" URL,
+       choose the latest news item. */
+    $item = $news[0];
 
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("news", TRUE);
-  };
+  vrmlengine_header($item['title'] . ' | News', NULL,
+    array('index', 'news', 'news.php?item=' . $item['anchor']));
+
+  echo '<div class="news_item">' . news_to_html($item) . '</div>';
 
   vrmlengine_footer();
 ?>
