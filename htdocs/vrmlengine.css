@@ -240,14 +240,15 @@ div.x3d_spec_component_link {
   padding: 0.3em;
 }
 
-div.news_previous_next {
-  display: block;
-  background: #ffeaa9;
+table.news_older_newer {
+  width: 100%;
+  border: thin solid #ffeaa9;
+  background: #fff4d2;
   padding: 0.3em;
 }
 
-div.news_previous { width: 50%; display: inline-block; text-align: left; }
-div.news_next     { width: 50%; display: inline-block; text-align: right; }
+td.news_newer { text-align: left; }
+td.news_older { text-align: right; }
 
 /* news --------------------------------------------------------------------- */
 
