@@ -429,6 +429,12 @@ function common_set_page_functions()
      jezyka (".pl" lub innych, jesli kiedys je dodam).
      Czyli basename strony.
 
+     Eventually, if $page_name already contains a .php extension, then we will
+     not add any new language/php/html extension at the end.
+     Remember that this disables language switching and local html generation,
+     and so generally should not be used, as it means that page_url
+     isn't of much use.
+
      $hash_link, je¿eli ró¿ny od '', to bêdzie dopisany (i poprzedzony hashem)
      do URLa strony.
 
@@ -473,6 +479,8 @@ function common_set_page_functions()
          str_append_part_to1st($url_comment, ', ', $next_part) */
     $url_comment = '';
 
+    $already_has_extension = strpos($page_name, '.php') !== FALSE;
+
     /* optionally change $target_page_lang */
     if (!in_array($target_page_lang, supported_page_langs($page_name)))
     {
@@ -496,11 +504,14 @@ function common_set_page_functions()
       $language_suffix = ''; else
       $language_suffix = '.' . $lang_to_html_lang[$target_page_lang];
 
-    $result = $page_name . $language_suffix;
+    $result = $page_name;
+    if (!$already_has_extension)
+      $result .= $language_suffix;
 
     if (!is_page_available_locally($result))
     {
-      $result = CURRENT_URL . $result . '.php';
+      if (!$already_has_extension)
+        $result = CURRENT_URL . $result . '.php';
       switch ($page_lang)
       {
         case LANG_PL: str_append_part_to1st($url_comment, ', ',
@@ -509,6 +520,7 @@ function common_set_page_functions()
           'link to ' . CURRENT_URL_SHORT); break;
       }
     } else
+    if (!$already_has_extension)
     {
       if (IS_GEN_PAGE_HREFS_TO_HTML)
         $result .= '.html'; else
