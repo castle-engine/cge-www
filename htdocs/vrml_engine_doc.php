@@ -1,11 +1,10 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("VRML engine documentation", NULL,
-    array('kambi_vrml_game_engine'));
+  vrmlengine_header("Documentation", NULL, array('kambi_vrml_game_engine'));
 ?>
 
-<?php echo pretty_heading('General overview', NULL,
+<?php echo pretty_heading('Documentation', NULL,
   'Overview of the engine and VRML, with some information about engine internals'); ?>
 
 <p>Most of this documentation was originally written as my master's thesis,

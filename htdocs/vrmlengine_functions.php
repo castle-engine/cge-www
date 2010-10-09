@@ -94,7 +94,7 @@ $vrmlengine_sitemap = array(
     'sidebar' => true,
     'sub' => array(
       'reference' => array('title' => 'Reference'),
-      'vrml_engine_doc' => array('title' => 'General documentation'),
+      'vrml_engine_doc' => array('title' => 'Documentation'),
       'movies' => array('title' => 'Demo movies'),
     ),
   ),
