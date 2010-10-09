@@ -3254,8 +3254,8 @@ on SourceForge</a>.
       DONE:
       release version of every Pascal program compiled and tested
         for FreeBSD and Windows and Linux
-      check Linux rayhunter -- was it working before fixing ProcTimer ?
-        (probably too late -- it seems it was already recompiled with
+      check Linux rayhunter - - was it working before fixing ProcTimer ?
+        (probably too late - - it seems it was already recompiled with
         ProcTimer fixed, nevermind)
       check for broken links, check for valid html
       uaktualnic wszystkie archives programow Pascalowych
