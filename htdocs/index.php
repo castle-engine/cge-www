@@ -44,7 +44,7 @@ Two most important programs available here are
 Comments?
 Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.<br/>
 See also <?php echo
-a_href_page('the news archive', 'news') ?>.
+a_href_page('previous news', 'news.php?id=' . $news[1]['id']) ?>.
 </p>
 
 </div>
