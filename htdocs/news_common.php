@@ -3583,8 +3583,8 @@ function news_to_html($news_item, $full_description = true)
   }
 
   return '<p><a name="' . $news_item['anchor'] . '"><span class="news_title">' .
-    $news_item['title'] . '</span></a> (' .
-    vrmlengine_news_date_long($news_item) . ')&nbsp;:</p>' .
+    $news_item['title'] . '</span></a><br/><span class="news_date">(' .
+    vrmlengine_news_date_long($news_item) . ')</span></p>' .
     $description;
 }
 
