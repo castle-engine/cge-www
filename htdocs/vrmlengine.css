@@ -241,13 +241,14 @@ div.x3d_spec_component_link {
 }
 
 div.news_previous_next {
-  display: inline-block;
+  display: block;
   background: #EEE;
-  border: thin solid black;
+  /* border: thin solid black; */
   padding: 0.3em;
 }
 
-div.news_previous_next a { display: block; }
+div.news_previous { width: 50%; display: inline-block; text-align: left; }
+div.news_next     { width: 50%; display: inline-block; text-align: right; }
 
 /* news --------------------------------------------------------------------- */
 

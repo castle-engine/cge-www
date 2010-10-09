@@ -92,14 +92,21 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   vrmlengine_header($item['title'] . ' | News', NULL,
     array(MAIN_PAGE_BASENAME, $page_basename));
 
-  /* Remember that naming "previous / next" in the array
+  /* Calculate $previous_next_bar.
+     Remember that naming "previous / next" in the array
      is reversed to what user considers previous/next (earlier/later) */
-  if ($next_item)
-    echo '<div class="news_previous_next" style="float: left"><a title="' . $next_item['title'] . '" href="news.php?id=' . $next_item['id'] . '">&laquo; Previous</a></div>';
-  if ($previous_item)
-    echo '<div class="news_previous_next" style="float: right"><a title="' . $previous_item['title'] . '" href="news.php?id=' . $previous_item['id'] . '">Next &raquo;</a></div>';
+  $previous_next_bar = '';
+  if ($next_item !== NULL || $previous_item !== NULL)
+  {
+    $previous_next_bar .= '<div class="news_previous_next">';
+    if ($next_item !== NULL)
+      $previous_next_bar .= '<div class="news_previous"><a title="' . $next_item['title'] . '" href="news.php?id=' . $next_item['id'] . '">&laquo; Previous</a></div>';
+    if ($previous_item !== NULL)
+      $previous_next_bar .= '<div class="news_next"><a title="' . $previous_item['title'] . '" href="news.php?id=' . $previous_item['id'] . '">Next &raquo;</a></div>';
+    $previous_next_bar .= '</div>';
+  }
 
-  echo '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>';
+  echo $previous_next_bar . '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>' . $previous_next_bar;
 
   vrmlengine_footer();
 ?>
