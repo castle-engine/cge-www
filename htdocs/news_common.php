@@ -64,7 +64,9 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
      - guid will be used also for NEWS-ID, to have news.php?item=NEWS-ID page.
        guid is optional --- we'll generate default guid based on date and title,
        if not set.
-     - link is also optional, we'll set it to our homepage if not set.
+
+     - link: do not give it here.
+       We'll set link to the URL like xxx/news.php?id=xxx.
 
      They must be ordered from the newest to the oldest.
      While it doesn't matter for RSS (feed will be sorted anyway by news
@@ -3525,9 +3527,6 @@ foreach ($news as &$log_entry)
     (isset($log_entry['hour'])   ? $log_entry['hour']   : 0),
     (isset($log_entry['minute']) ? $log_entry['minute'] : 0));
 
-  if (!isset($log_entry['link']))
-    $log_entry['link'] = 'http://vrmlengine.sourceforge.net/';
-
   if (!isset($log_entry['guid']))
     $log_entry['guid'] =
       $log_entry['year'] . '-' .
@@ -3539,6 +3538,8 @@ foreach ($news as &$log_entry)
       strtr(strtolower($log_entry['title']), ' &;,:*/()<>', '___________');
 
   $log_entry['id'] = $log_entry['guid'];
+
+  $log_entry['link'] = CURRENT_URL . 'news.php?id=' . $log_entry['id'];
 }
 unset($log_entry);
 
