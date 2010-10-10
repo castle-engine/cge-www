@@ -47,7 +47,6 @@ Two most important programs available here are
   See also <?php echo
   a_href_page('previous news &raquo;', 'news.php?id=' . $news[1]['id']) ?></td>
 </tr></table>
-</p>
 
 </div>
 
