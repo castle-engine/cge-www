@@ -75,25 +75,38 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* --------------------------------------------------------------------------- */
 
-/* Next news:
+/*
+vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
 
-Our website got a few important improvements. I hope that they address problems with our current webpages, that grew somewhat organically.
-
-1. New webpage has a nice header, with simple menu at the top. This menu gives you quick links to most important stuff of the website, instead of a large main page. Now you e.g. immediately see the links to "Support", and "Engine" (overview for developers).
-
-2. Some pages have a sidebar for easier navigation. This is primarily useful with vrml_x3d page, which has a huge number of useful content especially under "Implementation status". Hopefully this is all easier to navigate now.
-
-Also, vrml_x3d page explains "What is VRML / X3D" in a short and a very friendly way. This will hopefully explain newcomers (to our engine, and/or vrml) why this 3D format is so great that I based my whole engine on it :)
-
-3. We also have "breadcrumbs", which together with header and sidebar should help you realize where you are in the website. Some of the pages in more crowded sections (inside castle subpages, and "Implementation status" subpages) were already trying to show it. Hopefully this will get more useful now.
-
-4. Also our news page is nicer now, with only one post per page (otherwise it was awfully long) and a nice buttons previous/next and sidebar with posts.
-
-
+<p>
 Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
 
-vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
 */
+
+    array('title' => 'Website facelift',
+          'year' => 2010,
+          'month' => 10,
+          'day' => 10,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'www_facelift_index.png', 'titlealt' => 'Snapshot comparing old and new index page look'),
+  array('filename' => 'www_facelift_vrml_status.png', 'titlealt' => 'Snapshot comparing old and new vrml_implementation_status page look'),
+)) .
+'<p>As you can see, this week brings many improvements to our website. I hope it\'s now easier to navigate, and things look a little better :)</p>
+
+<ol>
+  <li><p>We have a nice header, visible at the top of every page, with most important links / sections clearly emphasized. Among other things, this avoids the previous looong index page. And makes the important but previously too-easy-to-miss links ' . news_a_href_page('"Support"', 'support') . ' and ' . news_a_href_page('"Engine" (for developers)', 'kambi_vrml_game_engine') . ' more visible.</p></li>
+
+  <li><p>Some sections get a sidebar on the right for easier navigation. This is especially useful with ' . news_a_href_page('VRML/X3D', 'vrml_x3d') . ' section, which has a huge number of useful content especially under ' . news_a_href_page('Implementation status', 'vrml_implementation_status') . '.</p></li>
+
+  <li><p>We also have "breadcrumbs" visible on pages deeper in the hierarchy, like ' . news_a_href_page('Shaders implementation status', 'vrml_implementation_shaders') . '. Together with header and sidebar they (hopefully) clearly show you where you are in the website.</p></li>
+
+  <li><p>New ' . news_a_href_page('VRML/X3D', 'vrml_x3d') . ' page, an introduction to the whole VRML/X3D section, explains <i>"What is VRML / X3D"</i> in a short and friendly way. This will hopefully explain newcomers (to our engine, and/or X3D) why this 3D format is so great that I based my whole engine on it :)</p></li>
+
+  <li>Our news are nicer now, with each ' . news_a_href_page('news', 'news') . ' post displayed on a separate page (previous "one page with all the news" was getting awfully long to load).  You get nice <i>Newer / Older</i> links and a sidebar to navigate among our news posts easily.</li>
+</ol>'),
 
     array('title' => 'Development news: Examine improvements, smooth transitions, PlaneSensor and more',
           'year' => 2010,
