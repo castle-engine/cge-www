@@ -155,14 +155,6 @@ div.download {
 
 .download_title { font-weight: bold; }
 
-div.chm {
-  display: inline-block;
-  background: #80f8ff;
-  font-weight: bold;
-  border: medium outset black;
-  padding: 0.5em;
-}
-
 /* Table like X3D specification, used for multi-texturing clarifications
    on vrml_implementation_texturing.php */
 table.specification { border-collapse:collapse; }
@@ -231,8 +223,9 @@ div.main_list_item {
   padding: 0.1em;
 }
 
-div.x3d_spec_component_link {
-  /* float: right; */
+/* Don't set it float here, we may want to use it with various float values
+   or without float. */
+div.useful_link {
   display: inline-block;
   background: #EEE;
   /* #ffff91; */

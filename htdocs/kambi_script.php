@@ -15,7 +15,7 @@
 ?>
 
 <?php if (!IS_GEN_LOCAL) { ?>
-  <div class="chm" style="float: right"><a href="kambiscript_language.chm">This
+  <div class="useful_link" style="float: right"><a href="kambiscript_language.chm">This
   KambiScript reference in CHM format</a></div>
 <?php }
 ?>
