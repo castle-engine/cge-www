@@ -36,6 +36,12 @@ a.kscript_func_docs { text-decoration: underline; }
 pre.terminal { background-color: #EEE;  padding: 0.3em; }
 tt.terminal { background-color: #EEE; }
 
+/* SVN URLs tend to be long, and they look confusing when they are wrapped
+   (in Firefox/Iceweasel) or cannot wrap (in Google Chrome and probably
+   others). */
+pre.small { font-size: xx-small; }
+tt.small { font-size: xx-small; }
+
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 
 /* Style for note_box and note_title shamelessly stolen from CSS

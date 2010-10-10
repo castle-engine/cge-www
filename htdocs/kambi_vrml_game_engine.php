@@ -182,7 +182,7 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
   '-src.tar.gz') ?><br>
  Or download from Subversion by:
 
-<pre class="terminal"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
 
 <p>This archive contains the whole engine sources.
 <!-- Too unimportant:
@@ -271,7 +271,7 @@ notes near some programs below.
 <?php
   function echo_src_svnonly($name)
   {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal">' .
+    echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal small">' .
         sf_checkout_link(true, $name) . '</tt></li>
       ';
   }
@@ -300,8 +300,8 @@ notes near some programs below.
     }
 
     echo
-      '<p>Download from Subversion by:<br><tt class="terminal">' .
-        sf_checkout_link(true, $internal_name) . '</tt></li>
+      '<p>Download from Subversion by:</p><pre class="terminal small">' .
+        sf_checkout_link(true, $internal_name) . '</pre></li>
       ';
   }
 
@@ -346,7 +346,7 @@ book about the Subversion</a>.</p>
 
 <p>To download full sources for all projects, do</p>
 
-<pre class="terminal">  <?php echo sf_checkout_link(true, ''); ?></pre>
+<pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
 
 <p>Please note that the full <tt>trunk</tt> is quite large.
 It contains everything: th core engine sources (<tt>kambi_vrml_game_engine</tt> subdirectory),

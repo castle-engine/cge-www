@@ -40,7 +40,7 @@ and <tt>ttf-dejavu</tt> font if you want to make PDF version.</p>
 
 <p>You can also download the latest version from Subversion by:</p>
 
-<pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
 
 <?php
   if (!IS_GEN_LOCAL) {

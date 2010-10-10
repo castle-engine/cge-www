@@ -63,7 +63,7 @@ function echo_svn_blender_file($filename)
 </ul>
 
 <p>You can grab all this stuff from SVN:
-<pre>
+<pre class="terminal small">
 <?php echo sf_checkout_link(true, 'blender'); ?>
 </pre>
 

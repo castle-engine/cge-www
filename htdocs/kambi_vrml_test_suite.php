@@ -64,16 +64,16 @@ and download them by commands below:
 <ul>
   <li><p>Nice demo of shadow maps (done for <?php echo a_href_page_hashlink('shadow maps paper', 'kambi_vrml_extensions', 'section_ext_shadow_maps'); ?>):
 
-    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/sunny_street/'); ?></pre>
+    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/sunny_street/'); ?></pre>
 
     <p>Also the shadow map slides contain some simple tests:
 
-    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/slides/'); ?></pre>
+    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/slides/'); ?></pre>
   </li>
 
   <li><p>Simple examples of VRML 1.0 and 2.0 (done for <?php echo a_href_page('engine documentation', 'vrml_engine_doc'); ?>):
 
-    <pre class="terminal"><?php echo sf_checkout_link(true, 'vrml_engine_doc/examples/'); ?></pre>
+    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/examples/'); ?></pre>
   </li>
 
   <li>Our games contain many 3D models, download them and look inside
@@ -91,7 +91,7 @@ and download them by commands below:
 <p>You can always download the very current version of this
 <i>Kambi VRML test suite</i> from Subversion by:</p>
 
-<pre class="terminal"><?php
+<pre class="terminal small"><?php
   echo sf_checkout_link(true, 'kambi_vrml_test_suite'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
