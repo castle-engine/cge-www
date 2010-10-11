@@ -87,6 +87,7 @@ pure non-scripted VRML).</p>
       new TocItem('String functions', 'functions_string', 1),
       new TocItem('Array functions', 'functions_array', 1),
       new TocItem('Vector functions', 'functions_vector', 1),
+      new TocItem('Rotation functions', 'functions_rotation', 2),
       new TocItem('Matrix functions', 'functions_matrix', 1),
       new TocItem('Image functions', 'functions_image', 1),
       new TocItem('VRML node functions', 'functions_node', 1),
@@ -677,14 +678,52 @@ as RGB color, and converts it to a single float &mdash; color intensity
 (calculated much like an average of vector components, but taking into
 account human eye sensitivity).
 
-<p>Note that VRML rotations (<tt>SFRotation</tt>, or an element of
+<?php echo $toc->html_section(); ?>
+
+<p>VRML/X3D rotations (<tt>SFRotation</tt>, or an element of
 <tt>MFRotation</tt> array) are, in KambiScript, just 4-value single-precision
 vectors. First three items are rotation axis (should be always normalized,
-VRML requires this), 4th item is the rotation angle (in radians).
+VRML/X3D require this), 4th item is the rotation angle (in radians).
 So you can operate on rotations from KambiScript using all normal functions
-on vectors. For now, there are no functions specialized in rotation
-processing, but they may be added (we have quaternions covered in our engine)
-&mdash; report if needed.</p>
+on vectors.</p>
+
+<p>Some functions specially suitable for rotations are also available:</p>
+
+<ul>
+  <li><p><?php func('orientation_from_direction_up', 'orientation_from_direction_up(dir, up)'); ?>
+    converts a direction and up 3D vectors into an orientation.
+    This is a rotation that transforms default direction (0, 0, -1)
+    and default up (0, 1, 0) into your desired <tt>direction</tt> and <tt>up</tt> vectors.
+    This is suitable for example for calculating
+    VRML/X3D <tt>Viewpoint.orientation</tt>.</p>
+
+    <p>Given here direction and up vectors do not have to be normalized
+    (they only must not be zero). They also do not have to be orthogonal
+    (we will internally fix the up vector, if needed, to be orthogonal
+    to direction).</p>
+
+  <li><p><?php func('rotate', 'rotate(rotation, point)'); ?>
+    rotates given 3D <tt>point</tt>. <tt>rotation</tt> parameter contains
+    an axis (first three components) and an angle in radians (last component),
+    so it's compatible with VRML/X3D <tt>SFRotation</tt>.</p>
+
+  <li><p><?php func('orientation_to_direction', 'orientation_to_direction(rotation)'); ?>
+    determines direction vector back from an orientation,
+    inverting what <?php func_ref('orientation_from_direction_up', 'orientation_from_direction_up'); ?> did.
+    Similarly <?php func('orientation_to_up', 'orientation_to_up(rotation)'); ?>.
+    Resulting direction and up vectors are always normalized.</p>
+
+    <p>These functions are equivalent to using <tt>rotate(rotation, (0, 0, -1))</tt>
+    (for <tt>orientation_to_direction</tt>) and <tt>rotate(rotation, (0, 1, 0))</tt>
+    (for <tt>orientation_to_up</tt>).</p></li>
+
+  <li><p><?php func('slerp', 'slerp(value, rotation1, rotation2)'); ?>
+    calculates a <a href="http://en.wikipedia.org/wiki/Slerp">spherical linear interpolation</a>
+    between two rotations. For <tt>value</tt> = 0 the result
+    is <tt>rotation1</tt>, for <tt>value</tt> = 1 the result
+    is <tt>rotation2</tt>, and between (and outside) the result is a nicely interpolated
+    rotation on a unit sphere.</p></li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
