@@ -36,8 +36,6 @@
     <p>Automatic 3D texture coord generation for primitives (<tt>Box</tt>,
     <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>) is done
     (according to X3D spec, <i>33.2.4 Texture coordinate generation for primitive objects</i>).
-    TODO: Although it's reversed on the bottom disk of
-    <tt>Cone</tt> and <tt>Cylinder</tt> for now.
 </ul>
 
 <?php
