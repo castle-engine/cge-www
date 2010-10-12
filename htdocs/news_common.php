@@ -81,6 +81,10 @@ vrml_engine_doc got some updates, first of all a new short chapter about scene m
 <p>
 Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
 
+New functions for KambiScript to handle rotations, see TODO, demo at TODO.
+
+Various fixes along the way.
+
 */
 
     array('title' => 'Website facelift',
