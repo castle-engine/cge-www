@@ -85,6 +85,9 @@ New functions for KambiScript to handle rotations, see TODO, demo at TODO.
 
 Various fixes along the way.
 
+At 3.7.0 release: mention that view3dscene download links,
+and easy instructions to get GNOME integration and thumbnailer (make screenshot),
+are now more visible on view3dscene webpage.
 */
 
     array('title' => 'Website facelift',
