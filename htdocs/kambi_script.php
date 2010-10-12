@@ -940,9 +940,5 @@ lewej do prawej wiec np. 2*4^2 = 8^2, nie 2*16))
 -->
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    php_counter("kambi_script", TRUE);
-  };
-
   vrmlx3d_footer();
 ?>

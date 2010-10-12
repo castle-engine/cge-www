@@ -74,9 +74,5 @@ SmoothInterpolatedCurve {
 ?>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("bezier_curves", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

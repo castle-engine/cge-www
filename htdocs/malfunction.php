@@ -126,9 +126,5 @@ or using <a href="http://www.blender.org/">Blender</a>
 (and processed by some Emacs macros).
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("malfunction", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

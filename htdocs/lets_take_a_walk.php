@@ -129,9 +129,5 @@ see <tt>lets_take_a_walk/devel/vrml/process_base_b.lpr</tt> file).
 files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("lets_take_a_walk", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

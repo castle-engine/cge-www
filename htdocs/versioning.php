@@ -104,9 +104,5 @@ like" are given at the bottom of this page.
 </ul>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("versioning", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

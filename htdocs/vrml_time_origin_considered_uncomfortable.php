@@ -132,10 +132,6 @@ sensible default behavior for me. (You can always set for example
 to push default <tt>startTime</tt> and such fields into the past. -->
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    php_counter("vrml_time_origin_considered_uncomfortable", TRUE);
-  };
-
   vrmlx3d_footer();
 ?>
 

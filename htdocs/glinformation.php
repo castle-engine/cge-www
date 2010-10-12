@@ -75,9 +75,5 @@ so it's able to write some info like all possible visual configurations).</p>
 ?>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("glinformation", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

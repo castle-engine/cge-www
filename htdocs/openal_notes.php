@@ -241,9 +241,5 @@ OpenAL sound under FreeBSD. Run my programs with <tt>--no-sound</tt> option.</p>
 <p><b>In FreeBSD 6.x</b> I was glad to notice that OpenAL works smoothly.</p>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("openal_notes", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

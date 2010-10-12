@@ -149,9 +149,5 @@ of "KDE Lines" graphics.
     DEPENDS_MACOSX)); */ ?>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("kambi_lines", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

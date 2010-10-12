@@ -867,9 +867,5 @@ releases, so that you will be automatically notified about new
 releases of view3dscene.</p>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("view3dscene", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

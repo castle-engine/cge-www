@@ -106,9 +106,5 @@ known and used by most good programs in the world) :
 </ul>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("common_options", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

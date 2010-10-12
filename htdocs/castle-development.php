@@ -1122,9 +1122,5 @@ full list of things and resources used).
 </ul>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("castle-development", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

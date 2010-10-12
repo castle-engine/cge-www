@@ -232,9 +232,5 @@ See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
   "box-path-samp10x10-depth2-rroul0.5") ); ?>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("raytr_gallery", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

@@ -215,9 +215,5 @@ zrobi³em te¿ PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
 -->
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("glviewimage", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

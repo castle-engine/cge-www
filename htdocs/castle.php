@@ -167,9 +167,5 @@ releases, so that you will be automatically notified about new
 releases of "The Castle".</p>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("castle", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

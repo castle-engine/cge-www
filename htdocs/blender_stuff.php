@@ -69,9 +69,5 @@ function echo_svn_blender_file($filename)
 
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("blender_stuff", true);
-  };
-
   vrmlengine_footer();
 ?>

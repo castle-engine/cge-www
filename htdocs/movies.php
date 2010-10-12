@@ -86,9 +86,5 @@ editing (glued, fading between parts) thanks to
 </ol>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("movies", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

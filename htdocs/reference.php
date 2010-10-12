@@ -46,9 +46,5 @@ both as the author of this code and as a developer of
 </div>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("reference", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

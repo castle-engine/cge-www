@@ -183,9 +183,5 @@ The last version uploaded for PGD competition was 0.6.1.
 using <?php echo a_href_page('my normal versioning scheme', 'versioning') ?>.
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("castle-advanced", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

@@ -87,9 +87,5 @@ accept some set of standard command-line options:
 "general notes about options understood by my programs", "common_options"); ?>.
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("opengl_options", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

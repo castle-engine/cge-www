@@ -132,9 +132,5 @@ of animation handling in our VRML engine documentation</a>.</p>
 </pre>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("kanim_format", true);
-  };
-
   vrmlx3d_footer();
 ?>

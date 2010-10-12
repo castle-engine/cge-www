@@ -259,9 +259,5 @@ do tutoriala  notki o sk³adni wyra¿en. Notka o u¿yteczno¶ci notacji
 -->
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("glplotter_and_gen_function", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

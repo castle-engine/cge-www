@@ -288,9 +288,5 @@ on numerous VRML models available on the WWW. -->
 </ul>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    php_counter("vrml_implementation_status", TRUE);
-  };
-
   vrmlx3d_footer();
 ?>

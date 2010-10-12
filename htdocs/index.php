@@ -60,12 +60,5 @@ cia.vc</a>.</p>
 (<?php echo michalis_mailto('email'); ?>).</i></p>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("index", TRUE);
-    /* echo "<p>Stronê odwiedzono " . $counter . " razy.";
-       // chwilowo licznik dziala ukryty
-    */
-  };
-
   vrmlengine_footer();
 ?>

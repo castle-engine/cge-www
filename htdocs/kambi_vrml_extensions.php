@@ -2853,9 +2853,5 @@ Group {
     <tt>vrml_1/kambi_extensions/inline_not_separate.wrl</tt>.
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    php_counter("kambi_vrml_extensions", TRUE);
-  };
-
   vrmlx3d_footer();
 ?>

@@ -52,9 +52,5 @@ mgf2inv version too)
 name... -->
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("kambi_mgf2inv", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

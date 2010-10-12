@@ -61,9 +61,5 @@ before executing programs. (you can add this to your <tt>.bashrc</tt>
 or similar file for comfort).
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("macosx_requirements", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

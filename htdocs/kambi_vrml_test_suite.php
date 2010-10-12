@@ -175,9 +175,5 @@ feel welcome to send it to Michalis!</p>
 &mdash; they are covered by GNU GPL &gt;= 2 license.</p>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    php_counter("kambi_vrml_test_suite", TRUE);
-  };
-
   vrmlx3d_footer();
 ?>

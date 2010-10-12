@@ -501,9 +501,5 @@ program after successfully running all 86 tests:<br>
 ?>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("kambi_vrml_game_engine", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

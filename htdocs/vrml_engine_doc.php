@@ -43,9 +43,5 @@ and <tt>ttf-dejavu</tt> font if you want to make PDF version.</p>
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("vrml_engine_doc", TRUE);
-  };
-
   vrmlengine_footer();
 ?>

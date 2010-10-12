@@ -225,9 +225,5 @@ I and II Music" as compiled by Paul Burdette</a>.
 </div>
 
 <?php
-  if (!IS_GEN_LOCAL) {
-    $counter = php_counter("castle-credits", TRUE);
-  };
-
   vrmlengine_footer();
 ?>
