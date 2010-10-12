@@ -438,6 +438,19 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 <object><noscript><p><img src="http://apps.sourceforge.net/piwik/vrmlengine/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
 <!-- End Piwik Tag -->
 
+<!-- Piwik -->
+<script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://michalis.ii.uni.wroc.pl/piwik/" : "http://michalis.ii.uni.wroc.pl/piwik/");
+ document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+    try {
+   var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+   piwikTracker.trackPageView();
+   piwikTracker.enableLinkTracking();
+ } catch( err ) {}
+</script><noscript><p><img src="http://michalis.ii.uni.wroc.pl/piwik/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tag -->
+
 <?php
   }
 }
