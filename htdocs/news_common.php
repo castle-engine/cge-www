@@ -88,6 +88,8 @@ Various fixes along the way.
 At 3.7.0 release: mention that view3dscene download links,
 and easy instructions to get GNOME integration and thumbnailer (make screenshot),
 are now more visible on view3dscene webpage.
+
+Changing Transform node containing light sources is greatly optimized now. This also causes a regression: if you instantiate this light source (thrugh DEF/USE), and then try to animate it by changing it's Transform node --- to many instances will be updated. This is a regression (something that used to work correctly now doesn't work), but I feel it's justified --- while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is much better.
 */
 
     array('title' => 'Website facelift',
