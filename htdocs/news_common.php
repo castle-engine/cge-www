@@ -90,6 +90,8 @@ and easy instructions to get GNOME integration and thumbnailer (make screenshot)
 are now more visible on view3dscene webpage.
 
 Changing Transform node containing light sources is greatly optimized now. This also causes a regression: if you instantiate this light source (thrugh DEF/USE), and then try to animate it by changing it's Transform node --- to many instances will be updated. This is a regression (something that used to work correctly now doesn't work), but I feel it's justified --- while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is much better.
+
+Warnings after loading a model are signalled by a "%d warnings" button by view3dscene. This way warnings are still clearly visible (the button only disappears after you first use it), but don't make an "obstacle" (modal box) to viewing the model.
 */
 
     array('title' => 'Website facelift',
