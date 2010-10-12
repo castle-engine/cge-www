@@ -15,9 +15,9 @@ to this as the engine develops.</p>
 
 <ul>
   <li><a href="vrml_engine_doc/output/xsl/html/">
-    HTML (split in many pages)</a><li>
+    HTML (split in many pages)</a></li>
   <li><a href="vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html">
-    HTML (one big file)</a><li>
+    HTML (one big file)</a></li>
   <li><?php echo current_www_a_href_size(
     'PDF', 'vrml_engine_doc/output/xsl/vrml_engine.pdf'); ?></li>
 </ul>
