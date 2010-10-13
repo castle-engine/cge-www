@@ -76,6 +76,11 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 /* --------------------------------------------------------------------------- */
 
 /*
+table_demo_images(array(
+  array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
+  array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
+)) .
+
 vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
 
 <p>
