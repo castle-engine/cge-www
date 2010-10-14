@@ -97,6 +97,12 @@ are now more visible on view3dscene webpage.
 Changing Transform node containing light sources is greatly optimized now. This also causes a regression: if you instantiate this light source (thrugh DEF/USE), and then try to animate it by changing it's Transform node --- to many instances will be updated. This is a regression (something that used to work correctly now doesn't work), but I feel it's justified --- while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is much better.
 
 Warnings after loading a model are signalled by a "%d warnings" button by view3dscene. This way warnings are still clearly visible (the button only disappears after you first use it), but don't make an "obstacle" (modal box) to viewing the model.
+
+I added to NURBS implementation status page notes about <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.
+
+Mouse wheel is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), TODO: it can also be used as a shortcut for castle actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small>
+
+Smooth camera transitions under Windows are fixed.
 */
 
     array('title' => 'Website facelift',
