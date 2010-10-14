@@ -100,7 +100,7 @@ Warnings after loading a model are signalled by a "%d warnings" button by view3d
 
 I added to NURBS implementation status page notes about <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.
 
-Mouse wheel is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), TODO: it can also be used as a shortcut for castle actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small>
+Mouse wheel is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for castle actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small>
 
 Smooth camera transitions under Windows are fixed.
 */
