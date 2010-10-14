@@ -84,9 +84,9 @@ to make things behave intuitive.</p>
 <p>In particular, when writing an exporter from normal 3D modelling programs,
 like <a href="http://www.blender.org/">Blender</a>, note that you have
 to multiply Blender control points * Blender weights to get correct
-X3D control points. Or you can use <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>,
+X3D control points. When you use <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>,
 a NURBS 3D modeller especially suited for working with VRML/X3D,
-that hides this (the <a href="http://129.69.35.12/dune/docs/usage_docs/dune_en.html#nurbsbasics">curve "handles"</a>
+this non-intuitive behevior is somewhat hidden (the <a href="http://129.69.35.12/dune/docs/usage_docs/dune_en.html#nurbsbasics">curve "handles"</a>
 you see in White Dune are actually <i>"X3D control points / divided by weight"</i>).</p>
 
 <p>Our behavior is compatible with other X3D browsers/editors
