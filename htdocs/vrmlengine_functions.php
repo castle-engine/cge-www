@@ -129,7 +129,11 @@ $vrmlengine_sitemap = array(
           'vrml_implementation_navigation'           => array('title' => 'Navigation'                      ),
           'vrml_implementation_environmentaleffects' => array('title' => 'Environmental effects'           ),
           'vrml_implementation_hanim'                => array('title' => 'H-Anim'                          ),
-          'vrml_implementation_nurbs'                => array('title' => 'NURBS'                           ),
+          'vrml_implementation_nurbs'                => array('title' => 'NURBS',
+            'sub' => array(
+              'vrml_implementation_nurbs#section_homogeneous_coordinates' => array('title' => 'Control points are in homogeneous coordinates'),
+            ),
+          ),
           'vrml_implementation_scripting'            => array('title' => 'Scripting'                       ),
           'vrml_implementation_eventutilities'       => array('title' => 'Event utilities'                 ),
           'vrml_implementation_shaders'              => array('title' => 'Programmable shaders'            ),

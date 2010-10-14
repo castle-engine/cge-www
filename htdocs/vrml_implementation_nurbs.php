@@ -7,32 +7,91 @@
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
 ));
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('X3D support', 'x3d_support'),
+      new TocItem('VRML 2.0 (97) support', 'vrml2_support'),
+      new TocItem('Control points are in homogeneous coordinates', 'homogeneous_coordinates'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Full support for <tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>, <tt>NurbsOrientationInterpolator</tt>.</p>
+
+<p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p>
+
+<p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.</p>
 
 <ul>
-  <li><p>Full support for <tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>, <tt>NurbsOrientationInterpolator</tt>.</p>
+  <li><p>Only X3D surfaces have <tt>xClosed</tt> fields. We treat TRUE value there as "possibly closed", that is &mdash; if field indicates closed, we still check if limiting points match (X3D spec suggests we should do this, as far as I understand). This means X3D models may be loaded faster &mdash; if xClosed = FALSE, we do not even check if limiting points match.</p></li>
 
-    <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p></li>
+  <li><p>Only VRML 97 surfaces have <tt>ccw</tt> field.</p></li>
 
-  <li><p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p>
+  <li><p>VRML 97 versions specify <tt>coord</tt> as direct <tt>MFVec3f</tt> field, while X3D versions specify <tt>coord</tt> as <tt>SFNode</tt> (containing <tt>Coordinate</tt> or similar node).</p></li>
 
-    <p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.</p>
+  <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different field names (keyValue, keyWeight, following interpolator conventions) than X3D <tt>NurbsPositionInterpolator</tt> (controlPoint, weight, following nurbs conventions).</p></li>
 
-    <ul>
-      <li><p>Only X3D surfaces have <tt>xClosed</tt> fields. We treat TRUE value there as "possibly closed", that is &mdash; if field indicates closed, we still check if limiting points match (X3D spec suggests we should do this, as far as I understand). This means X3D models may be loaded faster &mdash; if xClosed = FALSE, we do not even check if limiting points match.</p></li>
-
-      <li><p>Only VRML 97 surfaces have <tt>ccw</tt> field.</p></li>
-
-      <li><p>VRML 97 versions specify <tt>coord</tt> as direct <tt>MFVec3f</tt> field, while X3D versions specify <tt>coord</tt> as <tt>SFNode</tt> (containing <tt>Coordinate</tt> or similar node).</p></li>
-
-      <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different field names (keyValue, keyWeight, following interpolator conventions) than X3D <tt>NurbsPositionInterpolator</tt> (controlPoint, weight, following nurbs conventions).</p></li>
-
-      <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different default value for order (4) than X3D version (3). Beware of this when converting from VRML 97 to X3D.</p></li>
-    </ul>
-  </li>
+  <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different default value for order (4) than X3D version (3). Beware of this when converting from VRML 97 to X3D.</p></li>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Note that in VRML and X3D, NURBS control points are expressed in
+homogeneous coordinates. That is, the control point is actually
+a 4D vector <tt>(x, y, z, weight)</tt>, which means that it's actual 3D position
+is <tt>(x/weight, y/weight, z/weight)</tt>.</p>
+
+<p>This may be a little confusing, if you're used to normal NURBS
+equation definition like from <a href="http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/NURBS-def.html">here</a>
+or <a href="http://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at wikipedia</a>.
+Instead of usual equation:</p>
+
+<pre class="sourcecode">P(u) = (sum of basis * control point * weight) / (sum of basis * weight)</pre>
+
+<p>VRML/X3D uses a simpler equation:</p>
+
+<pre class="sourcecode">P(u) = (sum of basis * control point) / (sum of basis * weight)</pre>
+
+<p>That is, <i>"X3D control point"</i> (as specified in VRML/X3D file) is assumed
+to be already multiplied by weight.</p>
+
+<p>If you want to intuitively pull the curve toward the control point,
+you should</p>
+
+<ol>
+  <li>Calculate <i>"normal control point"</i> (3D, not in homogeneous coordinates)
+    as <i>"X3D control point / weight"</i>.</li>
+  <li>Increase the weight (to pull the curve toward <i>"normal control point"</i>),
+    or decrease (to push the curve away from it).</li>
+  <li>Calculate new <i>"X3D control point"</i> as
+    <i>"normal control point * new weight"</i>.</li>
+</ol>
+
+<p>In other words, if you just want to increase the weight 2 times,
+then the corresponding control point should also be multiplied * 2,
+to make things behave intuitive.</p>
+
+<p>In particular, when writing an exporter from normal 3D modelling programs,
+like <a href="http://www.blender.org/">Blender</a>, note that you have
+to multiply Blender control points * Blender weights to get correct
+X3D control points. Or you can use <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>,
+a NURBS 3D modeller especially suited for working with VRML/X3D,
+that hides this (the <a href="http://129.69.35.12/dune/docs/usage_docs/dune_en.html#nurbsbasics">curve "handles"</a>
+you see in White Dune are actually <i>"X3D control points / divided by weight"</i>).</p>
+
+<p>Our behavior is compatible with other X3D browsers/editors
+(at least <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>,
+Octaga, InstantPlayer, BitManagement).
 
 <?php
   x3d_status_footer();
