@@ -12,7 +12,7 @@
     and <tt>hitNormal_changed</tt> generates only the flat (per-face) normal.
     Everything else works perfectly, which should be enough for typical uses.</p>
 
-  <li><p><tt>PlaneSensor</tt>
+  <li><p><tt>PlaneSensor</tt></p>
 
     <p><i>Note</i>: when <tt>axisRotation</tt> with non-zero rotation is used,
     <tt>trackPoint_changed</tt> is generated in local sensor coordinates
@@ -27,9 +27,12 @@
 
     <!--p>Tests with other browsers (InstantReality, Octaga) showed weird
     effects, it doesn't seem <tt>axisRotation</tt> is supported at all.-->
+    </p></li>
+
+  <li><p><tt>SphereSensor</tt></p></li>
 </ul>
 
-<p><i>TODO</i>: CylinderSensor, SphereSensor are missing.</p>
+<p><i>TODO</i>: CylinderSensor is missing.</p>
 
 <?php
   x3d_status_footer();
