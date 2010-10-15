@@ -924,7 +924,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="12">Sensors
+    <td rowspan="13">Sensors
 
       <p>(Actually tested on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/">X3DV versions here</a>.)
     </td>
@@ -956,10 +956,14 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td>SphereSensor</td>
-    <td class="testnr">1 .. 9 (all)</td>
+    <td rowspan="2">SphereSensor</td>
+    <td class="testnr">all except multisensor</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td class="testnr">multisensor</td>
     <td class="fail">-</td>
-    <td>SphereSensor is not implemented yet.</td>
+    <td>We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
   </tr>
 
   <tr>
