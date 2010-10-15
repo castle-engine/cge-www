@@ -103,6 +103,10 @@ I added to NURBS implementation status page notes about <a href="http://vrmlengi
 Mouse wheel is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for castle actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small>
 
 Smooth camera transitions under Windows are fixed.
+
+OrthoViewpoint improvements, to internally adjust fieldOfView to keep aspect ratio.
+
+SphereSensor implemented.
 */
 
     array('title' => 'Website facelift',
