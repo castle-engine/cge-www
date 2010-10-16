@@ -30,9 +30,12 @@
     </p></li>
 
   <li><p><tt>SphereSensor</tt></p></li>
-</ul>
 
-<p><i>TODO</i>: CylinderSensor is missing.</p>
+  <li><p><tt>CylinderSensor</tt></p></li>
+
+    <p>Including <tt>axisRotation</tt>, notes above about
+    <tt>PlaneSensor.axisRotation</tt> apply also here.</p>
+</ul>
 
 <?php
   x3d_status_footer();
