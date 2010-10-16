@@ -725,6 +725,9 @@ on vectors.</p>
     rotation on a unit sphere.</p></li>
 </ul>
 
+<p>Example: see <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_rotations.x3dv">kambi_script_rotations.x3dv</a>
+for a simple X3D Script using above rotation functions.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p>3x3 and 4x4 matrices are supported. Single- and double- precision.
