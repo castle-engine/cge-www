@@ -75,48 +75,61 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* --------------------------------------------------------------------------- */
 
-/*
-table_demo_images(array(
-  array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
-  array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
-)) .
-
+/* next news:
 vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
-
-<p>
-Fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).
-
-New functions for KambiScript to handle rotations, see TODO, demo at TODO.
-
-Various fixes along the way.
 
 At 3.7.0 release: mention that view3dscene download links,
 and easy instructions to get GNOME integration and thumbnailer (make screenshot),
 are now more visible on view3dscene webpage.
 
-Changing Transform node containing light sources is greatly optimized now. This also causes a regression: if you instantiate this light source (thrugh DEF/USE), and then try to animate it by changing it's Transform node --- to many instances will be updated. This is a regression (something that used to work correctly now doesn't work), but I feel it's justified --- while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is much better.
-
-Warnings after loading a model are signalled by a "%d warnings" button by view3dscene. This way warnings are still clearly visible (the button only disappears after you first use it), but don't make an "obstacle" (modal box) to viewing the model.
-
-I added to NURBS implementation status page notes about <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.
-
-Mouse wheel is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for castle actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small>
-
-Smooth camera transitions under Windows are fixed.
-
-OrthoViewpoint improvements, to internally adjust fieldOfView to keep aspect ratio.
-
-All X3D dragging sensors (PlaneSensor, SphereSensor, CylinderSensor) are implemented now. Very nice tools to allow user to edit portions of your 3D scenes &mdash; PlaneSensor allows moving, SphereSensor allows free rotation, CylinderSensor allows rotations constrained around an axis.
-I encourage you to try them --- test e.g. X3D conformace models
-(<a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/PlaneSensor/">PlaneSensor</a>,
- <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/SphereSensor/">SphereSensor</a>,
- <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/CylinderSensor/">CylinderSensor</a>)
- or VRML 97 annotated reference examples
-(<a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-334.htm">PlaneSensor</a>,
- <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-344.htm">SphereSensor</a>,
- <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-315.htm">CylinderSensor</a>)
-or our Kambi VRML test suite (see SVN, files <tt>x3d/xxx_sensor*.x3dv</tt>). They allow you to really easily add great interactivity to your VRML/X3D scenes.
 */
+
+    array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
+          'year' => 2010,
+          'month' => 10,
+          'day' => 17,
+          'short_description' => '',
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
+  array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
+)) .
+'Welcome to the weekly news :) As usual, remember you can try out all the improvements right now by using our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.
+
+<ul>
+  <li><p>All <b>X3D dragging sensors (PlaneSensor, SphereSensor, CylinderSensor)</b> are implemented now. Very nice tools to allow user to edit portions of your 3D scenes &mdash; PlaneSensor allows moving, SphereSensor allows free rotation, CylinderSensor allows rotations constrained around an axis.</p>
+
+    <p>I encourage you to try them &mdash; test e.g. X3D conformace models
+    (<a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/PlaneSensor/">PlaneSensor</a>,
+     <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/SphereSensor/">SphereSensor</a>,
+     <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/CylinderSensor/">CylinderSensor</a>)
+     or VRML 97 annotated reference examples
+    (<a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-334.htm">PlaneSensor</a>,
+     <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-344.htm">SphereSensor</a>,
+     <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-315.htm">CylinderSensor</a>)
+    or our Kambi VRML test suite (see SVN, files <tt>x3d/xxx_sensor*.x3dv</tt>). They allow you to really easily add great interactivity to your VRML/X3D scenes.</p>
+
+    <p>Also related to sensors: fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).</p></li>
+
+  <li><p>New functions for <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_script.html#section_functions_rotation"><b>KambiScript to handle rotations</b> (SVN docs)</a>.</p></li>
+
+  <li><p>Changing <b><tt>Transform</tt> node containing light sources</b> is greatly optimized now.</p>
+
+    <p>This also causes a regression: if you instantiate this light source (through DEF/USE), and then try to animate it by changing it\'s Transform node &mdash; too many light instances will be updated. This is a regression (something that used to work correctly, but now doesn\'t work), but I feel it\'s justified &mdash; while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is at least usable in common cases.</p>
+
+    <p>Various fixes along the way. Including shadow map regeneration when light changes.</p></li>
+
+  <li><p><b>Mouse wheel</b> is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for ' . news_a_href_page('castle', 'castle') . ' actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small></p></li>
+
+  <li><p>Warnings after loading a model are signalled by a <b>"%d warnings" button</b> by ' . news_a_href_page('view3dscene', 'view3dscene') . '. This way warnings are still clearly visible (the button only disappears after you use it on this model), but don\'t make an "obstacle" (modal box) to viewing the model.</p></li>
+
+  <li><p>I added to NURBS implementation status page notes about <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.</p></li>
+
+  <li><p>Smooth camera transitions under Windows are fixed.</p></li>
+
+  <li><p>OrthoViewpoint improvements, to internally adjust fieldOfView to keep aspect ratio. (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/ortho_viewpoint.x3dv">OrthoViewpoint.fieldOfView demo</a>)</p></li>
+</ul>'),
 
     array('title' => 'Website facelift',
           'year' => 2010,
