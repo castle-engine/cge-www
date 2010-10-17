@@ -92,6 +92,7 @@ are now more visible on view3dscene webpage.
           'description' =>
 
 table_demo_images(array(
+  array('filename' => 'fish.png', 'titlealt' => 'Fish and animals, by Elenka Besedova'),
   array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
   array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
 )) .
