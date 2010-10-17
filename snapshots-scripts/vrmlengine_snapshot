@@ -53,8 +53,8 @@ export KAMBI_FPC_OPTIONS=-Twin32
 move_all_programs '.exe' win-i386
 export KAMBI_FPC_OPTIONS=''
 
-echo '---------------------------------------------------------------'
-echo 'Compiled OK, moving to the "latest" symlink.'
+echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
+echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTPUT_LOG"
 
 # Clean old snapshots, to conserve disk space.
 # Keep only snapshots from last couple of days.
@@ -82,22 +82,23 @@ echo '---------------------------------------------------------------'    >> "$O
 echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
 
 cd  ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/
-make clean             2>&1 >> "$OUTPUT_LOG"
-make                   2>&1 >> "$OUTPUT_LOG"
-make examples          2>&1 >> "$OUTPUT_LOG"
+make clean             >> "$OUTPUT_LOG" 2>&1
+make                   >> "$OUTPUT_LOG" 2>&1
+make examples          >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'   >> "$OUTPUT_LOG"
 echo 'Runing tests (auto-tests, with engine in -dRELEASE mode):'         >> "$OUTPUT_LOG"
 
 cd tests/
-make clean -C  ../     2>&1 >> "$OUTPUT_LOG"
-make       -C  ../     2>&1 >> "$OUTPUT_LOG"
-./compile_console.sh   2>&1 >> "$OUTPUT_LOG"
-./test_kambi_units -a  2>&1 >> "$OUTPUT_LOG"
+make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
+make       -C  ../                       >> "$OUTPUT_LOG" 2>&1
+./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
+./test_kambi_units -a                    >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'            >> "$OUTPUT_LOG"
 
-make clean -C  ../     2>&1 >> "$OUTPUT_LOG"
-./compile_console.sh   2>&1 >> "$OUTPUT_LOG" # let engine be compiled by compile_console.sh, in debug mode
-./test_kambi_units -a  2>&1 >> "$OUTPUT_LOG"
+make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
+# let engine be compiled by compile_console.sh, in debug mode
+./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
+./test_kambi_units -a                    >> "$OUTPUT_LOG" 2>&1
