@@ -924,14 +924,23 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="13">Sensors
+    <td rowspan="14">Sensors
 
       <p>(Actually tested on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/">X3DV versions here</a>.)
     </td>
-    <td rowspan="1">CylinderSensor</td>
-    <td class="testnr">1 .. 11 (all)</td>
+    <td rowspan="3">CylinderSensor</td>
+    <td class="testnr">all except below</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td class="testnr">minmax disk</td>
+    <td class="fail">?</td>
+    <td>We do honor min/maxAngle. However, this test uses min/max values of -2Pi/+2Pi, effectively allowing any rotation value. The test requirement ("one full rotation") assumes that browser calculates following rotations as angles outside of [-2Pi, 2Pi] range, which is not required by the specification (and not really clearly doable, when you receive discrete mouse events you cannot 100% reliably detect when "full rotation" occurs.)</td>
+  </tr>
+  <tr>
+    <td class="testnr">multisensor</td>
     <td class="fail">-</td>
-    <td rowspan="1">CylinderSensor not implemented yet</td>
+    <td>We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
   </tr>
 
   <tr>
@@ -940,9 +949,9 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td class="testnr">12</td>
+    <td class="testnr">12 (multisensor)</td>
     <td class="fail">-</td>
-    <td>(multisensor) We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
+    <td>We do not "see" the higher TouchSensor so it doesn't even get isOver events.</td>
   </tr>
   <tr>
     <td class="testnr">13 .. 14</td>
@@ -973,7 +982,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="4">TouchSensor</td>
+    <td rowspan="3">TouchSensor</td>
     <td class="testnr">1 .. 6</td>
     <td class="pass">+</td>
   </tr>
@@ -983,13 +992,8 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
     <td>TouchSensor.hitTexCoord_changed not implemented yet.</td>
   </tr>
   <tr>
-    <td class="testnr">8</td>
+    <td class="testnr">8..9</td>
     <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td class="testnr">9</td>
-    <td class="fail">-</td>
-    <td>Fails only because we do not support CylinderSensor at all. The sibling sensors mechanism works Ok.</td>
   </tr>
 
   <tr>
