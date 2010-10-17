@@ -807,7 +807,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>7A</td>
     <td class="pass">+</td>
-    <td>Result is Ok, but we do not handle SphereSensor,
+    <td>Result is Ok, but we do not handle
       Sound, AudioClip nodes (yet).</td>
   </tr>
   <tr>
