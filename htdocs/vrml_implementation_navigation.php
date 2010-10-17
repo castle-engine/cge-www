@@ -69,8 +69,7 @@
       <li><tt>avatarSize[0]</tt> and <tt>avatarSize[1]</tt>
         are guessed based on scene's bounding box sizes.
 
-      <li><tt>headlight</tt> is set to true if and only if there are no
-        lights defined in the scene.
+      <li><tt>headlight</tt> is set to true.
 
       <li><tt>type</tt> is set to <tt>"EXAMINE"</tt> (this follows the spec,
         as <tt>[EXAMINE, ANY]</tt> is the default <tt>NavigationInfo.type</tt> value).
