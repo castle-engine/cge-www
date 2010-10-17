@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eu
+
+cd ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/doc/pasdoc/
+make clean
+make
+
+OUTPUT_PATH="$HOME"/public_html/vrmlengine-snapshots/docs/reference/
+rm -Rf "$OUTPUT_PATH"
+mkdir "$OUTPUT_PATH"
+mv latex/docs.pdf "$OUTPUT_PATH"
+mv html "$OUTPUT_PATH"
