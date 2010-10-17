@@ -106,7 +106,16 @@ Smooth camera transitions under Windows are fixed.
 
 OrthoViewpoint improvements, to internally adjust fieldOfView to keep aspect ratio.
 
-SphereSensor implemented.
+All X3D dragging sensors (PlaneSensor, SphereSensor, CylinderSensor) are implemented now. Very nice tools to allow user to edit portions of your 3D scenes &mdash; PlaneSensor allows moving, SphereSensor allows free rotation, CylinderSensor allows rotations constrained around an axis.
+I encourage you to try them --- test e.g. X3D conformace models
+(<a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/PlaneSensor/">PlaneSensor</a>,
+ <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/SphereSensor/">SphereSensor</a>,
+ <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/CylinderSensor/">CylinderSensor</a>)
+ or VRML 97 annotated reference examples
+(<a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-334.htm">PlaneSensor</a>,
+ <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-344.htm">SphereSensor</a>,
+ <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-315.htm">CylinderSensor</a>)
+or our Kambi VRML test suite (see SVN, files <tt>x3d/xxx_sensor*.x3dv</tt>). They allow you to really easily add great interactivity to your VRML/X3D scenes.
 */
 
     array('title' => 'Website facelift',
