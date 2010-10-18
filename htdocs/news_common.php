@@ -82,6 +82,13 @@ At 3.7.0 release: mention that view3dscene download links,
 and easy instructions to get GNOME integration and thumbnailer (make screenshot),
 are now more visible on view3dscene webpage.
 
+  <li><p>The pages describing our ('VRML/X3D implementation status', vrml_implementation_status.php) for each X3D component are much improved. Each component page starts with a very short introduction, describing what the component is and how it's used in the most typical cases. Also, the node names are links to actual X3D specification pages.</p>
+
+    <p>The idea behind these improvements is to give interested developers (in particular, the ones not familiar with VRML/X3D yet) a way to orient themselves, in the large number of VRML/X3D nodes. We give an easy overview of the component and the links to X3D specification to learn more details.</p>
+
+    <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
+
+
 */
 
     array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
