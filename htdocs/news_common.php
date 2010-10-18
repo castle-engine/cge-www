@@ -88,7 +88,7 @@ are now more visible on view3dscene webpage.
 
     <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
 
-
+  <li><p>Shadow maps PCF methods (in particular "PCF bilinear") look now better, because they know the correct shadow map size.</p></li>
 */
 
     array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
