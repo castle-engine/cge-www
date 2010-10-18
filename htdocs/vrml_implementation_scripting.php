@@ -1,12 +1,16 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Scripting', 'scripting');
+  x3d_status_header('Scripting', 'scripting',
+    'This component defines scripting support. <tt>Script</tt> is the
+     only node defined here, it\'s like a black box that receives
+     VRML/X3D events, processes them with some external language,
+     and sends new VRML/X3D events.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>Script</tt>
+  <li><p><?php echo x3d_node_link('Script'); ?>
 
     <p>We handle special script protocols <?php echo a_href_page_hashlink('compiled:
     (to link scripts with handlers written in compiled language (ObjectPascal))',

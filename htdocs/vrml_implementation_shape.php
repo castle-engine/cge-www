@@ -1,12 +1,17 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Shape', 'shape');
+  x3d_status_header('Shape', 'shape',
+    'This component defines the materials and containers for geometric
+     nodes and their appearance.'
+    );
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>Shape</tt>, <tt>Appearance</tt>, <tt>Material</tt></p></li>
+  <li><p><?php echo x3d_node_link('Shape'); ?>,
+    <?php echo x3d_node_link('Appearance'); ?>,
+    <?php echo x3d_node_link('Material'); ?></p></li>
 
   <li><p><b>VRML 1.0 and multiple materials</b>: multiple materials
     within a single VRML 1.0 <tt>Material</tt> node work 100%

@@ -1,6 +1,13 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Texturing', 'texturing');
+  x3d_status_header('Texturing', 'texturing',
+    'This component provides extensive textures support.
+     2D textures may be loaded from image files (<tt>ImageTexture</tt>),
+     movie files (<tt>MovieTexture</tt>) or encoded directly in VRML/X3D files
+     (<tt>PixelTexture</tt>, also <tt>ImageTexture</tt> with <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data</a> urls).
+     Multiple textures may be overlayed on a single polygon in a variety
+     of ways. Texture coordinates may be explicitly provided or automatically
+     calculated, and may be transformed.');
 
   $toc = new TableOfContents(
     array(
@@ -22,7 +29,10 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>ImageTexture</tt>, <tt>TextureTransform</tt>, <tt>TextureCoordinate</tt>, <tt>PixelTexture</tt></p>
+  <li><p><?php echo x3d_node_link('ImageTexture'); ?>,
+    <?php echo x3d_node_link('TextureTransform'); ?>,
+    <?php echo x3d_node_link('TextureCoordinate'); ?>,
+    <?php echo x3d_node_link('PixelTexture'); ?></p>
 
     <p><i>Note</i>: ImageTexture allows various texture formats,
     including JPEG, PNG, BMP, PPM, RGBE. GIF format is supported
@@ -65,7 +75,7 @@
     GL_REPLACE</i> to change this (from code, use
     <tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).</p>
 
-  <li><p><tt>MovieTexture</tt>
+  <li><p><?php echo x3d_node_link('MovieTexture'); ?>
 
     <p><i>TODO</i>: for now, the sound of the movie is not played.
 
@@ -101,9 +111,9 @@
         'section_ext_movie_from_image_sequence'); ?>.
     </ul>
 
-  <li><tt>MultiTexture</tt>,
-      <tt>MultiTextureCoordinate</tt>,
-      <tt>MultiTextureTransform</tt>
+  <li><?php echo x3d_node_link('MultiTexture'); ?>,
+      <?php echo x3d_node_link('MultiTextureCoordinate'); ?>,
+      <?php echo x3d_node_link('MultiTextureTransform'); ?>
 
     <p><i>TODO</i>: modes
     <tt>MODULATEALPHA_ADDCOLOR</tt>,
@@ -132,7 +142,7 @@
     for more details about multi-texture handling.
   </li>
 
-  <li><tt>TextureCoordinateGenerator</tt>
+  <li><?php echo x3d_node_link('TextureCoordinateGenerator'); ?>
 
     <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE",
     "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".</p>
@@ -151,7 +161,7 @@
     <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
     "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
 
-  <li><p><tt>TextureProperties</tt>
+  <li><p><?php echo x3d_node_link('TextureProperties'); ?>
 
     <p><tt>minificationFilter</tt>, <tt>magnificationFilter</tt>,
     <tt>anisotropicDegree</tt> are supported. <i>TODO</i>: rest is not.

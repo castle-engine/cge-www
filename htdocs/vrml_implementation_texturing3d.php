@@ -1,14 +1,29 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Texturing3D', 'texture3D');
+  x3d_status_header('Texturing3D', 'texture3D',
+    'This component defines nodes for using 3D textures.
+     3D textures often allow a simple coordinate mapping,
+     and enable a variety of graphic effects,
+     particularly since they may be utilized by <i>Programmable shaders</i>
+     component shaders.
+     3D textures may be loaded from image files or inlined in the VRML/X3D file.
+     3D texture coordinates may be specified explicitly or
+     automatically generated, and they may be transformed.'
+  );
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,<br/>
-      <tt>TextureCoordinate3D</tt>, <tt>TextureCoordinate4D</tt>,<br/>
-      <tt>ImageTexture3D</tt>, <tt>ComposedTexture3D</tt>, <tt>PixelTexture3D</tt></p>
+  <li><p><?php echo x3d_node_link('TextureTransformMatrix3D'); ?>,
+      <?php echo x3d_node_link('TextureTransform3D'); ?>,<br/>
+
+      <?php echo x3d_node_link('TextureCoordinate3D'); ?>,
+      <?php echo x3d_node_link('TextureCoordinate4D'); ?>,<br/>
+
+      <?php echo x3d_node_link('ImageTexture3D'); ?>,
+      <?php echo x3d_node_link('ComposedTexture3D'); ?>,
+      <?php echo x3d_node_link('PixelTexture3D'); ?></p>
 
     <p>3D textures, coordinates for 3D textures, transforming
     coordinates for 3D textures &mdash; all done.</p>

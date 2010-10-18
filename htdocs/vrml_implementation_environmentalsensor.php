@@ -1,12 +1,16 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Environmental sensor', 'envsensor');
+  x3d_status_header('Environmental sensor', 'envsensor',
+    'This component defines nodes to detect some changes in the environment.
+     <tt>ProximitySensor</tt>, the only currently implemented node,
+     alows to detect when user is inside a defined 3D space.'
+  );
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>ProximitySensor</tt></p>
+  <li><p><?php echo x3d_node_link('ProximitySensor'); ?></p>
 
     <p><i>TODO</i>: <tt>centerOfRotation_changed</tt>
     are not generated. Rest works Ok, according to spec. Timestamps

@@ -1,6 +1,9 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Programmable shaders', 'shaders');
+  x3d_status_header('Programmable shaders', 'shaders',
+    'This component defines nodes for using high-level shading languages
+     available on modern graphic cards.'
+  );
 ?>
 
 <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
@@ -17,8 +20,9 @@
   </td></tr>
 </table>
 
-<p><a name="shaders"></a><tt>ComposedShader</tt> and <tt>ShaderPart</tt> nodes
-allow you to write shaders in GLSL language.
+<p><?php echo x3d_node_link('ComposedShader'); ?> and
+<?php echo x3d_node_link('ShaderPart'); ?> nodes
+allow you to write shaders in the <a href="http://www.opengl.org/documentation/glsl/">OpenGL shading language (GLSL)</a>.
 
 <ul>
   <li><p><b>Basic example.</b></p>

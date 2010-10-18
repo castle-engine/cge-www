@@ -1,9 +1,14 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Key device sensor', 'keyboard');
+  x3d_status_header('Key device sensor', 'keyboard',
+    'This component defines nodes to interact with a keyboard.
+     <tt>KeySensor</tt> processes simple key presses / releases.
+     <tt>StringSensor</tt> provides a simple way for user to type and edit
+     a string.');
 ?>
 
-<p>Supported nodes: both <tt>KeySensor</tt> and <tt>StringSensor</tt>.
+<p>Supported nodes: both <?php echo x3d_node_link('KeySensor'); ?> and
+<?php echo x3d_node_link('StringSensor'); ?>.
 
 <p><i>TODO</i>: for now, only 8-bit ASCII characters are passed
 (to the <tt>KeySensor.keyPress/keyRelease</tt> events,

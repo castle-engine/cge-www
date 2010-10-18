@@ -239,6 +239,17 @@ div.useful_link {
   padding: 0.3em;
 }
 
+div.x3d_component_intro {
+  display: block;
+  border: thin solid #333;
+  background: #fff4d2;
+  padding: 0.3em;
+}
+
+div.x3d_component_intro p.paragraph_first { margin-top: 0px; }
+div.x3d_component_intro p.paragraph_last { margin-bottom: 0px; }
+div.x3d_component_intro p.paragraph_first tt { font-weight: bold; }
+
 /* news --------------------------------------------------------------------- */
 
 table.news_older_newer {

@@ -1,18 +1,25 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Grouping', 'group');
+  x3d_status_header('Grouping', 'group',
+    'This component defines the basic nodes to operate on groups of other
+     nodes. <tt>Transform</tt> node allows to additionally translate,
+     rotate or scale a group of nodes. <tt>Switch</tt> node allows to
+     choose one children from a group of nodes (which is a useful tool
+     for various interactive animations).');
 ?>
 
 <p>Supported:</p>
 
 <ul>
-  <li><p><tt>StaticGroup</tt>
+  <li><p><?php echo x3d_node_link('StaticGroup'); ?>
 
     <p>(Although it doesn't make any extra optimization, and works exactly like
     a regular <tt>Group</tt>. Our <tt>Group</tt> already has all the optimizations
     possible, you can just use it and refrain from changing it's contents.)</p></li>
 
-  <li><p><tt>Switch</tt>, <tt>Group</tt>, <tt>Transform</tt></p>
+  <li><p><?php echo x3d_node_link('Switch'); ?>,
+         <?php echo x3d_node_link('Group'); ?>,
+         <?php echo x3d_node_link('Transform'); ?></p>
 
     <p>Including special optimizations for animating transformations
     (be sure to select <i>Separate Shapes No Transform</i> optimization method,

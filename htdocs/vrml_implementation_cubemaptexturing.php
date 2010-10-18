@@ -1,12 +1,21 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Cube map environmental texturing', 'env_texture');
+  x3d_status_header('Cube map environmental texturing', 'env_texture',
+    'This component defines nodes for using cube map textures.
+     Such textures generate a color based on a direction.
+     They are one of the common methods for environment mapping
+     (that is, simulation of mirror-like surfaces).
+     <tt>ComposedCubeMapTexture</tt> and <tt>ImageCubeMapTexture</tt>
+     allow loading a cube map texture from file(s).
+     <tt>GeneratedCubeMapTexture</tt> allows to create and use
+     an environment map capturing actual environment in your virtual 3D world,
+     thus making true realtime mirror.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><tt>ComposedCubeMapTexture</tt>
+  <li><?php echo x3d_node_link('ComposedCubeMapTexture'); ?>
 
     <p><i>Orientation notes:</i>
     The images are expected to be oriented just like for
@@ -37,13 +46,13 @@
     also uses this</a>.
     We support for cube maps all normal texture filterings, including mipmaps.</p></li>
 
-  <li><tt>ImageCubeMapTexture</tt>
+  <li><?php echo x3d_node_link('ImageCubeMapTexture'); ?>
 
     <p><?php echo a_href_page_hashlink('DDS file format', 'vrml_implementation_texturing',
     'section_dds'); ?> to specify cube maps
     (including S3TC compressed cube maps) is supported.</p></li>
 
-  <li><tt>GeneratedCubeMapTexture</tt>
+  <li><?php echo x3d_node_link('GeneratedCubeMapTexture'); ?>
 
     <p>Texture is rendered from the middle 3D point of bounding box
     of the shape using this texture. You cannot reUSE the same <tt>GeneratedCubeMapTexture</tt>

@@ -1,12 +1,14 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Text', 'text');
+  x3d_status_header('Text', 'text',
+    'This component defines nodes for rendering 3D text.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>Text</tt>, <tt>FontStyle</tt>
+  <li><p><?php echo x3d_node_link('Text'); ?>,
+    <?php echo x3d_node_link('FontStyle'); ?>
 
     <p>Most important properties
     (size, spacing, justify, family, style) are handled fully.

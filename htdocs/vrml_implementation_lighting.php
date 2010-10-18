@@ -1,12 +1,15 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Lighting', 'lighting');
+  x3d_status_header('Lighting', 'lighting',
+    'This component defines light source nodes.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><tt>DirectionalLight</tt>, <tt>PointLight</tt>, <tt>SpotLight</tt>
+  <li><?php echo x3d_node_link('DirectionalLight'); ?>,
+    <?php echo x3d_node_link('PointLight'); ?>,
+    <?php echo x3d_node_link('SpotLight'); ?>
 
     <p><i>Note</i>: VRML 2.0 <tt>SpotLight.beamWidth</tt>
     idea cannot be translated to a standard

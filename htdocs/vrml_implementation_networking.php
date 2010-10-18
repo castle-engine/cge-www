@@ -1,17 +1,22 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Networking', 'networking');
+  x3d_status_header('Networking', 'networking',
+    'This component contains the basic tools to combine various VRML/X3D models.
+     <tt>Inline</tt> allows to insert another 3D model into
+     the current file. <tt>Anchor</tt> makes a link that, when clicked,
+     will jump to the referenced file (similar to HTML &lt;a href="..."&gt;).'
+    );
 ?>
 
 <p>Supported:</p>
 
 <ul>
-  <li><p><tt>Anchor</tt>
+  <li><p><?php echo x3d_node_link('Anchor'); ?>
 
     <p><i>TODO</i>: <tt>parameter</tt> field is ignored, everything else
     is handled (according to X3D spec).</p></li>
 
-  <li><p><tt>Inline</tt>, (VRML 97) <tt>InlineLoadControl</tt></p>
+  <li><p><?php echo x3d_node_link('Inline'); ?>, (VRML 97) <tt>InlineLoadControl</tt></p>
 
     <p>Yes, this includes handling of <tt>InlineLoadControl</tt> features
     to react to <tt>load</tt>, <tt>url</tt> and generate <tt>children</tt>

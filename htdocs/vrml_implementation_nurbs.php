@@ -1,6 +1,8 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('NURBS', 'nurbs');
+  x3d_status_header('NURBS', 'nurbs',
+    'This component defines nodes for rendering and animating along
+    smooth NURBS curves and surfaces.');
 
   echo table_demo_images(array(
   array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
@@ -22,7 +24,11 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Full support for <tt>NurbsPatchSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>, <tt>NurbsOrientationInterpolator</tt>.</p>
+<p>Full support for <?php echo x3d_node_link('NurbsPatchSurface'); ?>, 
+<?php echo x3d_node_link('NurbsCurve'); ?>, 
+<?php echo x3d_node_link('NurbsPositionInterpolator'); ?>, 
+<?php echo x3d_node_link('NurbsSurfaceInterpolator'); ?>, 
+<?php echo x3d_node_link('NurbsOrientationInterpolator'); ?>.</p>
 
 <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>
 

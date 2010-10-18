@@ -1,17 +1,23 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('H-Anim', 'hanim');
+  x3d_status_header('H-Anim', 'hanim',
+    'This component defines nodes for humanoid animation.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>Humanoid</tt>, <tt>Joint</tt>, <tt>Segment</tt>,
-    <tt>Site</tt>, <tt>Displacer</tt>
+  <li><p><?php echo x3d_node_link('Humanoid'); ?>,
+    <?php echo x3d_node_link('Joint'); ?>,
+    <?php echo x3d_node_link('Segment'); ?>,
+    <?php echo x3d_node_link('Site'); ?>,
+    <?php echo x3d_node_link('Displacer'); ?> (VRML 2.0 (97) version)
 
-    <p><tt>HAnimHumanoid</tt>, <tt>HAnimJoint</tt>,
-    <tt>HAnimSegment</tt>, <tt>HAnimSite</tt>, <tt>HAnimDisplacer</tt>
-    (X3D version)
+    <p><?php echo x3d_node_link('HAnimHumanoid'); ?>,
+    <?php echo x3d_node_link('HAnimJoint'); ?>,
+    <?php echo x3d_node_link('HAnimSegment'); ?>,
+    <?php echo x3d_node_link('HAnimSite'); ?>,
+    <?php echo x3d_node_link('HAnimDisplacer'); ?> (X3D version)
 
     <p>We have the basic HAnim support, which means that we can correctly
     render your human designed with HAnim nodes and efficiently animate it

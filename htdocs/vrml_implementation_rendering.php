@@ -1,40 +1,36 @@
 <?php
   require_once 'vrml_implementation_common.php';
-  x3d_status_header('Rendering', 'rendering');
+  x3d_status_header('Rendering', 'rendering',
+    'This component defines the basic properties of geometric objects,
+     and nodes to render triangles, lines and points.
+     See <i>Geometry3D</i> component for more comfortable
+     geometric objects like polygons and spheres.');
 ?>
 
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><tt>PointSet</tt>, <tt>IndexedLineSet</tt>, <tt>Coordinate</tt>, <tt>Color</tt>, <tt>ColorRGBA</tt>, <tt>Normal</tt></p>
+  <li><p><?php echo x3d_node_link('Coordinate'); ?>,
+    <?php echo x3d_node_link('Color'); ?>,
+    <?php echo x3d_node_link('ColorRGBA'); ?>,
+    <?php echo x3d_node_link('Normal'); ?></p>
 
-  <li><p><tt>ClipPlane</tt></p>
+  <li><p>Triangles, lines and points:
 
-    <p>OpenGL limits the number of clipping planes that may be enabled
-    at the same time on a single shape. This limit is <i>at least six</i>
-    (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
-    at <i>"Max clip planes"</i> line, to know the limit of your GPU).
-    Following X3D spec, we treat the "more global" clipping planes
-    as more important.</p>
-
-    <p>Note that clipping planes are purely visual effect.
-    The clipped geometry is still present for collision detection,
-    picking, bounding volumes etc.</p>
-
-    <p>TODO: clip planes don't work on background nodes
-    (<tt>X3DBackgroundNode</tt>) yet.</p>
-
-  <li><p>New X3D rendering primitives implemented:
-
-    <p><tt>IndexedTriangleSet</tt>, <tt>TriangleSet</tt>,
+    <p><?php echo x3d_node_link('IndexedTriangleSet'); ?>,
+    <?php echo x3d_node_link('TriangleSet'); ?>,
     (also analogous <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
     from <?php echo a_href_page('CAD geometry', 'vrml_implementation_cadgeometry'); ?> component).
 
-    <p><tt>IndexedTriangleFanSet</tt>, <tt>TriangleFanSet</tt>,
-    <tt>IndexedTriangleStripSet</tt>, <tt>TriangleStripSet</tt>
+    <p><?php echo x3d_node_link('IndexedTriangleFanSet'); ?>,
+    <?php echo x3d_node_link('TriangleFanSet'); ?>,
+    <?php echo x3d_node_link('IndexedTriangleStripSet'); ?>,
+    <?php echo x3d_node_link('TriangleStripSet'); ?>
 
-    <p><tt>LineSet</tt> (<tt>IndexedLineSet</tt> is also handled,
-    this is part of VRML 2.0)
+    <p><?php echo x3d_node_link('LineSet'); ?>,
+    <?php echo x3d_node_link('IndexedLineSet'); ?>
+
+    <p><?php echo x3d_node_link('PointSet'); ?>
 
     <p><i>TODO</i>: missing is only the implementation of new X3D fields
     <tt>attrib</tt> and <tt>fogCoord</tt>.
@@ -82,6 +78,21 @@ Shape {
     automatic generation of texture coords in this case, let me know
     if this is wrong for whatever reason.
 
+  <li><p><?php echo x3d_node_link('ClipPlane'); ?></p>
+
+    <p>OpenGL limits the number of clipping planes that may be enabled
+    at the same time on a single shape. This limit is <i>at least six</i>
+    (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
+    at <i>"Max clip planes"</i> line, to know the limit of your GPU).
+    Following X3D spec, we treat the "more global" clipping planes
+    as more important.</p>
+
+    <p>Note that clipping planes are purely visual effect.
+    The clipped geometry is still present for collision detection,
+    picking, bounding volumes etc.</p>
+
+    <p>TODO: clip planes don't work on background nodes
+    (<tt>X3DBackgroundNode</tt>) yet.</p>
 </ul>
 
 <?php
