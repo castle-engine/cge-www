@@ -32,6 +32,10 @@ vrml_implementation_text.html \
 vrml_implementation_texturing3d.html \
 vrml_implementation_texturing.html \
 vrml_implementation_time.html \
+vrml_x3d.html \
+nist_vrml_test_suite.html \
+kanim_format.html \
+vrml_time_origin_considered_uncomfortable.html \
 kambi_script.html"
 
 make clean $HTMLS LOCALLY_AVAIL="$HTMLS"
