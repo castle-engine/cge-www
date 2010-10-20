@@ -1446,7 +1446,7 @@ Shape {
       $node_format_fd_name_pad = 22;
       echo
       node_dots('all normal NavigationInfo fields, and KambiNavigationInfo fields documented previously') .
-      node_field('SFFloat', '[in,out]', 'headBobbing', '0.1') .
+      node_field('SFFloat', '[in,out]', 'headBobbing', '0.02') .
       node_field('SFFloat', '[in,out]', 'headBobbingTime', '0.4') .
       node_end();
     ?>
