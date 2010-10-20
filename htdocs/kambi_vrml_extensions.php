@@ -1559,7 +1559,7 @@ end;
 
     <p>For working example code in Pascal and VRML see example program
     <tt>kambi_vrml_game_engine/examples/vrml/vrml_browser_script_compiled.lpr</tt>,
-    use it to open <tt>kambi_vrml_test_suite/x3d/simple_script_tests.x3dv</tt>,
+    use it to open <tt>models/compiled_script_tests.x3dv</tt>,
     and note that Pascal code reacts to clicks on TouchSensor.
 
 <?php echo $toc->html_section(); ?>
