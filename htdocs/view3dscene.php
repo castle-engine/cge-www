@@ -77,8 +77,8 @@ It also contains links to other 3D models scattered around our repository.</p>
 <p>If you use GNOME (or other desktops following
 <a href="http://freedesktop.org/">freedesktop.org</a> specifications),
 you can optionally install also view3dscene menu item
-(look in the <i>Graphics</i> category), with a nice icon, and associate it with
-appropriate 3D model types.</p>
+(will be placed in the <i>Graphics</i> menu category), with a nice icon,
+and associate it with appropriate 3D model types.</p>
 
 <pre class="bordered_code">
 # Place view3dscene on $PATH, for example like this:
