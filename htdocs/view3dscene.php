@@ -282,21 +282,16 @@ view3dscene additional command-line options</a>.</p>
 <p><b>Controls in <tt>Examine</tt> navigation mode :</b>
 <table border="1" class="key_list">
   <tr><th colspan="2">Mouse:</th></tr>
-
-  <tr><td>Left mouse dragging</td>               <td>rotate scene</td></tr>
-  <tr><td>Middle mouse dragging (or Left mouse + Shift)</td>
-      <td>move scene horizontally/vertically</td></tr>
-  <tr><td>Right mouse dragging (or Left mouse + Ctrl)</td>
-      <td>move scene closer/further</td></tr>
+  <tr><td>Rotate</td> <td>Left mouse dragging</td>                           </tr>
+  <tr><td>Move</td>   <td>Middle mouse dragging (or Left mouse + Shift)</td> </tr>
+  <tr><td>Zoom</td>   <td>Right mouse dragging (or Left mouse + Ctrl)</td>   </tr>
 
   <tr><th colspan="2">Keys:</th></tr>
-
-  <tr><td>Arrows / PageUp / PageDown</td>        <td>rotate scene</td></tr>
-  <tr><td>Space</td>                             <td>stop rotating scene</td></tr>
-  <tr><td>Ctrl + Arrows / PageUp / PageDown</td> <td>move scene</td></tr>
-  <tr><td>+ / -</td>                             <td>scale scene</td></tr>
-  <tr><td>Home</td>
-      <td>restore default rotation, translation and scale</td></tr>
+  <tr><td>Rotate</td>        <td>Arrows / PageUp / PageDown</td>        </tr>
+  <tr><td>Stop rotating</td> <td>Space</td>                             </tr>
+  <tr><td>Move</td>          <td>Ctrl + Arrows / PageUp / PageDown</td> </tr>
+  <tr><td>Scale</td>         <td>+ / -</td>                             </tr>
+  <tr><td>Restore default transformation</td>           <td>Home</td>   </tr>
 </table>
 
 <p><b>Controls in <tt>Walk / Fly</tt> navigation mode :</b><br>
@@ -304,37 +299,39 @@ view3dscene additional command-line options</a>.</p>
 
   <tr><th colspan="2">Basic:</th></tr>
 
-  <tr><td>Up / Down</td>            <td>move</td></tr>
-  <tr><td>Left / Right</td>         <td>rotate</td></tr>
-  <tr><td>PageUp / PageDown</td>    <td>raise/bow your head</td></tr>
-  <tr><td>Home</td>
-      <td>restore head raise to initial position (neutralize any effect of
-          PageUp / PageDown)</td></tr>
-  <tr><td>Insert / Delete</td>     <td>fly up / down</td></tr>
-  <tr><td>Comma / Period</td>      <td>strafe moving</td></tr>
-  <tr><td>A / Z</td>
-    <td>jump / crouch (only when <i>Gravity</i> works, in <tt>Walk</tt> mode)</td></tr>
-  <tr><td colspan="2">Note: when <i>mouse look</i> is turned <i>on</i> then
+  <tr><td>Forward / backward</td>    <td>Up / Down</td>            </tr>
+  <tr><td>Rotate</td>                <td>Left / Right</td>         </tr>
+  <tr><td>Raise / bow your head</td> <td>PageUp / PageDown</td>    </tr>
+  <tr><td>Restore head raise to initial position (neutralize any effect of
+          PageUp / PageDown)</td>    <td>Home</td>                 </tr>
+  <tr><td>Fly up / down</td>         <td>Insert / Delete</td>      </tr>
+  <tr><td>Move left / right</td>     <td>Comma / Period</td>       </tr>
+  <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt>Walk</tt> mode)</td>
+      <td>A / Z</td> </tr>
+
+  <tr><td colspan="2" style="text-align: left">Turn <i>Mouse Look</i> <i>On</i>
+    to comfortably look around
+    by moving the mouse. Then the keys for strafe and rotations swap their
+    meaning:
     <ul style="margin: 0;">
-      <li>Left / Right keys are responsible for strafe moving</li>
-      <li>Comma / Period keys are for rotations</li>
+      <li>Left / Right keys move left / right</li>
+      <li>Comma / Period rotate</li>
     </ul></td></tr>
 
   <tr><th colspan="2">Additional controls:</th></tr>
 
-  <tr><td>+ / -</td>
-      <td>increase / decrease moving speed (has effect on keys
-        Up / Down, Insert / Delete, Comma / Period)</td></tr>
-  <tr><td>Ctrl + Insert/Delete</td>
-      <td>increase / decrease avatar height (preferred camera height above the ground)</td></tr>
-  <tr><td>Ctrl + Left / Right</td>
-      <td>rotate <i>slower</i> (useful when you want to set up camera
+  <tr><td>Increase / decrease moving speed (has effect on keys
+        Up / Down, Insert / Delete, Comma / Period)</td> <td>+ / -</td></tr>
+  <tr><td>Increase / decrease avatar height (preferred camera height above the ground)</td>
+      <td>Ctrl + Insert/Delete</td></tr>
+  <tr><td>Rotate <i>slower</i> (useful when you want to set up camera
          very precisely, e.g. to use this camera setting to render a scene
-         image using ray-tracer)</td></tr>
-  <tr><td>Ctrl + PageUp / PageDown</td>
-      <td>raise / bow your head <i>slower</i></td></tr>
-  <tr><td>Right mouse click</td>
-      <td>pick a point, selecting triangle and object</td></tr>
+         image using ray-tracer)</td>
+       <td>Ctrl + Left / Right</td> </tr>
+  <tr><td>Raise / bow your head <i>slower</i></td>
+      <td>Ctrl + PageUp / PageDown</td></tr>
+  <tr><td>Pick a point, selecting triangle and object</td>
+      <td>Right mouse click</td>  </tr>
 </table>
 
 <p><i>Left mouse button</i> is also universally used for interacting
