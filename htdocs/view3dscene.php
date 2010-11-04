@@ -205,12 +205,11 @@ flawlessly :) So give it a try!
 
 <p>Among many features are:
 <ul>
-  <li>Two navigation modes are available: <tt>Walk</tt>
-    (walking like in FPS (Doom, Quake) games,
-    with collision detection, gravity and related features available) and
-    <tt>Examine</tt> (this allows you to easily rotate and scale the whole
-    model). <!-- trochê tak jakbysmy trzymali w rêkach
-    pude³eczko ze scen± w ¶rodku -->
+  <li>Various navigation modes are available:
+    <tt>Examine</tt> (easily rotate and move the whole model),
+    <tt>Walk</tt> (walk like in FPS games,
+    with collision detection, gravity and related features available),
+    <tt>Fly</tt> (similar to <tt>Walk</tt> but without gravity).
   <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML.
     (Collada to VRML 2.0, rest to VRML 1.0 currently.)
   <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
@@ -230,7 +229,7 @@ flawlessly :) So give it a try!
     w rodzaju pó³cieni i krwawienia kolorów). -->
 
   <li><p>You can inspect your model (select triangles by clicking
-    <i>right mouse button</i> in <i>Walk</i> mode,
+    <i>right mouse button</i> in <i>Walk / Fly</i> mode,
     and use menu item <i>Help</i> -> <i>Selected object information</i>).
 
     <p>There are also very limited editing capabilities. They are
@@ -300,7 +299,7 @@ view3dscene additional command-line options</a>.</p>
       <td>restore default rotation, translation and scale</td></tr>
 </table>
 
-<p><b>Controls in <tt>Walk</tt> navigation mode :</b><br>
+<p><b>Controls in <tt>Walk / Fly</tt> navigation mode :</b><br>
 <table border="1" class="key_list">
 
   <tr><th colspan="2">Basic:</th></tr>
@@ -314,7 +313,7 @@ view3dscene additional command-line options</a>.</p>
   <tr><td>Insert / Delete</td>     <td>fly up / down</td></tr>
   <tr><td>Comma / Period</td>      <td>strafe moving</td></tr>
   <tr><td>A / Z</td>
-    <td>jump / crouch (only when <i>Gravity</i> works in <tt>Walk</tt> mode)</td></tr>
+    <td>jump / crouch (only when <i>Gravity</i> works, in <tt>Walk</tt> mode)</td></tr>
   <tr><td colspan="2">Note: when <i>mouse look</i> is turned <i>on</i> then
     <ul style="margin: 0;">
       <li>Left / Right keys are responsible for strafe moving</li>
@@ -334,15 +333,15 @@ view3dscene additional command-line options</a>.</p>
          image using ray-tracer)</td></tr>
   <tr><td>Ctrl + PageUp / PageDown</td>
       <td>raise / bow your head <i>slower</i></td></tr>
-  <tr><td>Left mouse click</td>
-      <td>activate VRML/X3D sensor, to interact with VRML world</td></tr>
   <tr><td>Right mouse click</td>
       <td>pick a point, selecting triangle and object</td></tr>
 </table>
 
-<p>You can switch between <tt>Examine</tt> and <tt>Walk</tt> navigation
-methods by menu item <i>"Navigation -&gt; Navigation Mode -&gt; Switch to Next"</i>
-(shortcut <tt>Ctrl+N</tt>).</p>
+<p><i>Left mouse button</i> is also universally used for interacting
+with the VRML/X3D world. When the cursor turns into a grabbing hand
+you know you can click or drag on this object. This is realized
+by the <?php echo a_href_page('VRML/X3D pointing-device sensors',
+'vrml_implementation_pointingdevicesensor'); ?>.</p>
 
 <p>There are a lot of other keys that work independent of current navigation
 mode. You can see them all by exploring menus, and looking at
@@ -677,10 +676,8 @@ directory.</p>
     use the menu <i>Navigation</i>.</p>
 
   <dt>--camera-radius &lt;float&gt;
-  <dd><p>When you are walking in the scene with
-    <tt>Walk</tt> navigation model with collision
-    detection on, for the sake of collision detection "user" is treated
-    as a sphere with non-zero radius.
+  <dd><p>When you move in the scene with collision
+    detection, the "user" is treated as a colliding sphere with given radius.
     Default radius of this sphere is the average size of scene bounding box
     divided by 100.
     Using this command-line option, you can set the radius of this sphere
@@ -727,24 +724,31 @@ directory.</p>
 
   <dt>--renderer-optimization none|scene-as-a-whole|separate-shapes|separate-shapes-no-transform
   <dd><p>Set rendering optimization.
-    It's difficult to describe in short what each value means,
-    you can just try them all. They all produce identical results, but some
-    are slower and some are faster.
+
     <ul>
-      <li><tt>"none"</tt> will always be the slowest one (use only for testing
-        purposes)
-      <li><tt>"scene-as-a-whole"</tt> is the best when you're always
-        looking at the scene as a whole object (e.g. usually in
-        Examine navigation mode)
-      <li><tt>"separate-shapes"</tt> may have great efficiency
-        in Walk navigation mode, when you often can't see whole scene at once.
-        This is the default optimization kind, because it can be superior
-        over all others, and, in some worst cases, is not much slower
-        than <tt>"scene-as-a-whole"</tt>.
-      <li><tt>"separate-shapes-no-transform"</tt> is like
-        <tt>"separate-shapes"</tt> but may additionally conserve
-        memory used for OpenGL display lists. Don't use this when
-        you use volumetric fog on the scene.
+      <li><p><tt>"none"</tt> doesn't really optimize anything, like the name
+        suggests. It assumes that the 3D world completely changes
+        in every frame, so there's really no point in caching and preparing
+        anything. In practice, used only for testing purposes.</p>
+
+      <li><p><tt>"scene-as-a-whole"</tt> assumes that the scene
+        is mostly static and is usually completely visible.
+        In such situations, it is absolutely the fastest.
+
+        <p>Some dynamic scene changes don't work, some work but are very slow.
+        When you walk inside the scene, it's very non-optimal (frustum culling
+        and such cannot work).</p>
+
+      <li><p><tt>"separate-shapes"</tt> and
+        <tt>"separate-shapes-no-transform"</tt> are the best
+        general optimizations for 3D worlds. They are good for both dynamic
+        and static scenes. They provide nice speedup (frustum culling and such)
+        when you don't see the whole 3D world at once.</p>
+
+        <p>The difference between those two: in short,
+        <tt>"separate-shapes-no-transform"</tt>
+        is better in some cases, faster and uses less memory.
+        <tt>"separate-shapes"</tt> will be removed soon.</p>
     </ul>
 
     <p>For more technical details see
