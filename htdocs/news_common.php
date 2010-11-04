@@ -89,6 +89,20 @@ are now more visible on view3dscene webpage.
     <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
 
   <li><p>Shadow maps PCF methods (in particular "PCF bilinear") look now better, because they know the correct shadow map size.</p></li>
+
+  <li><p>Toolbar: At the top of view3dscene window you will now see a very nice toolbar with most common buttons. This provides the most important buttons - open, change navigation mode, change collisions, and view warnings.
+
+    <p>The buttons to change navigation mode are an improvement also. Previously we had only Examine, and Walk modes explicitly shown. The "Fly" was not explicitly shown, as it was just "Walk mode with Gravity off (and some prefer... settings different)". Now we have a separate button for "Fly" mode. You can also just change explicitly "Gravity", this will toggle you between "Walk" and "Fly". We also have a separate "None" navigation type.
+
+    In summary, the options to change navigation mode should be now cleaner, both in the menu and on the toolbar.
+
+    Status text (at the bottom) is also shorter now.</p>
+
+  <li><p>Tooltips ("hints") are implemented for our OpenGL controls.
+
+    They are used by view3dscene to display nice description of keys/mouse for given navigation mode --- just mouse over the "Examine", "Walk", "Fly" buttons. I really hope that this is useful (for both new and advanced users), comments about how you like are most welcome. Hopefully, this will make the navigation keys/mouse more known --- currently you have to read the docs, and I fear that many people simply don't do that and instead use only a subset of our camera navigation controls.
+
+    Developers: you may be interested that tooltips are implemented for everything, and you can render a toolbar both in 2D and 3D. So you can e.g. position a text in 3D coordinates, over an 3D object, as a tooltip. See TUIControl.TooltipStyle, TUIControl.DrawTooltip.
 */
 
     array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
