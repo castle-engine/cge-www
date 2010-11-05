@@ -309,9 +309,9 @@ view3dscene additional command-line options</a>.</p>
   <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt>Walk</tt> mode)</td>
       <td>A / Z</td> </tr>
 
-  <tr><td colspan="2" style="text-align: left">Turn <i>Mouse Look</i> <i>On</i>
-    to comfortably look around
-    by moving the mouse. Then the keys for strafe and rotations swap their
+  <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
+    (Ctrl+M) to comfortably look around
+    by moving the mouse.</b> In the "Mouse Look" mode, the keys for strafe and rotations swap their
     meaning:
     <ul style="margin: 0;">
       <li>Left / Right keys move left / right</li>
