@@ -63,7 +63,7 @@ This page collects various developer information how you can
 help, and how you can compile and extend the game's code and data.</p>
 
 <p>All questions, feedback, etc. may be posted to
-<?php echo MAILING_LIST_LINK; ?>.
+<?php echo a_href_page('our forum or mailing list', 'support'); ?>.
 
 <p>Of course, any help with designing levels, items, monsters, creating
 sounds and / or providing significant feedback will be mentioned in the
@@ -108,8 +108,7 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
 
     <p>Bugs should be submitted to
     <a href="<?php echo BUGS_TRACKER_URL; ?>">bug tracker</a>,
-    if you're unsure is it a "real" bug you can also post to
-    <?php echo MAILING_LIST_LINK; ?>.
+    or <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
     </li>
 
   <li><p>Features. Do you think that anything should be added ?
@@ -119,7 +118,8 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
 
     <p>Feature requests should be submitted to
     <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature request
-    tracker</a> or to <?php echo MAILING_LIST_LINK; ?>.
+    tracker</a>
+    or <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
     </li>
 </ul>
 
@@ -158,11 +158,11 @@ with useful programs and collections of textures etc. see
 <?php echo $toc->html_section(); ?>
 
 <p>The short 1-sentence introduction is: you can use any 3D modelling program
-able to create VRML 1.0 or 2.0 (aka 97) files.</p>
+able to create <?php echo a_href_page('VRML or X3D', 'vrml_x3d'); ?> files.</p>
 
-<p>VRML 1.0 and 2.0 formats have official specifications
-and our engine is capable
-of handling any VRML 1.0 valid files and most VRML 2.0 files (actually,
+<p>VRML and X3D formats have official specifications
+and our engine is capable of handling most of their features
+(actually,
 <?php echo a_href_page('even more than that', 'kambi_vrml_extensions') ?>).
 So the engine is not tied to any particular modelling program.
 Use <?php echo a_href_page('view3dscene', 'view3dscene') ?>
@@ -171,23 +171,23 @@ Use <?php echo a_href_page('view3dscene', 'view3dscene') ?>
 <p>You may want to view in view3dscene some of the models from
 <?php echo a_href_page("Kambi VRML test suite",
   "kambi_vrml_test_suite"); ?> &mdash;
-there are many testcases and demos of what can be expressed in VRML 1.0 and 2.0
+there are many testcases and demos of what can be expressed in VRML / X3D
 and what our engine can understand and render.</p>
 
 <p>My favourite 3d modeller is <a href="http://www.blender3d.org/">Blender</a>.
-It's open source, it's available for Linux (yeah, Windows too
+It's open source, it's available for Linux (yeah, Windows and others too
 if you insist :), and it has an enormous set of features.
-Including good export for VRML 1.0 and 2.0, of course.
+Including good export for VRML / X3D, of course.
 Basically there are no special
 rules for designing in Blender models for our engine &mdash;
-just do whatever you like (and whatever can be exported to VRML 1.0 or 2.0).</p>
+just do whatever you like (and whatever can be exported to VRML / X3D).</p>
 
 <p>The engine also handles perfectly VRML files exported from <i>3ds Max</i>.
 So you can use <i>3ds Max</i> to make models too. Also VRMLs produced
 by open-source modeller <a href="http://www.artofillusion.org/">Art of Illusion</a>
 are perfect. I suspect that all significant 3D modelling tools are able
-to export decently to VRML, so you can probably use any modeller you like.
-(This was one of the reasons that I chose VRML format as my basic format
+to export decently to VRML or X3D, so you can probably use any modeller you like.
+(This was one of the reasons that I chose VRML / X3D format as my basic format
 &mdash; it's nice to see that it pays off :) ).
 Note that I'd like to make the game using as much open-source tools as possible,
 so using open-source modeller is strongly favored over proprietary modellers.
@@ -196,17 +196,17 @@ so using open-source modeller is strongly favored over proprietary modellers.
 
 <ul>
   <li><p>I often "wrap" (using <tt>WWWInline</tt> VRML 1.0 or
-    <tt>Inline</tt> VRML 2.0 node) models produced by
+    <tt>Inline</tt> VRML 2.0 / X3D node) models produced by
     Blender inside some small VRML files written by hand.
     For example, <tt>data/levels/castle_hall_final.wrl</tt> is a small VRML file that is
     maintained by hand. It sets up some things that were uncomfortable
     (or impossible, due to lacks of VRML 1.0 exporter) to set up from Blender,
-    and includes (using <tt>WWWInline</tt> node) other VRML file
+    and includes (using <tt>WWWInline</tt> node) other VRML / X3D file
     (<tt>data/levels/castle_hall_processed.wrl</tt> in this case)
     that defines geometry,
     materials and textures of the level.</p></li>
 
-  <li><p>Moreover, I sometimes want to post-process VRML files generated from
+  <li><p>Moreover, I sometimes want to post-process VRML / X3D files generated from
     Blender. I use EmacsLisp macros for this (since this is a great language
     for text operations, and it's built in my favourite editor :) ).
     For example <tt>data/levels/castle_hall.wrl</tt> in VRML file
@@ -219,18 +219,18 @@ so using open-source modeller is strongly favored over proprietary modellers.
 
   <li><p><i>3DS / MD3 / Collada / other formats notes:</i><br/>
     Actually, you can also use models in other formats instead
-    of VRML. Our engine can handle other formats, see
+    of VRML / X3D. Our engine can handle other formats, see
     <?php echo a_href_page('view3dscene', 'view3dscene') ?>
     for more detailed info.</p>
 
     <p>So if your favourite 3d modelling program is not able to export
-    to VRML but it's able to export to e.g. 3DS &mdash; you can use it too.
+    to VRML / X3D but it's able to export to e.g. 3DS &mdash; you can use it too.
     But, since 3DS is a closed format, it will never be supported
     completely by our engine (just like by any other program, since everyone
     has to "reverse engineer" 3DS).</p>
 
     <p><i>Collada</i> format is a positive exception to this. It's an XML format with
-    an open specification, pretty much like X3D / VRML.
+    an open specification, pretty much like VRML / X3D.
     So using 3D models in Collada format is actually not a bad idea &mdash;
     except that we do not handle all features from Collada files currently.
     But Collada support can (and will be, if needed) easily improved &mdash;
@@ -238,12 +238,12 @@ so using open-source modeller is strongly favored over proprietary modellers.
 
     <p>Still, note that <em>everything</em> that can be expressed
     in other 3D formats handled and that is understood
-    by our engine can also be expressed in VRML.
+    by our engine can also be expressed in VRML / X3D.
     But not vice-versa, i.e. there are some features that
-    are available with my engine when using VRML but are not available
+    are available with my engine when using VRML / X3D but are not available
     when using e.g. 3DS.
     So the bottom line is: well, you can use 3DS or some other formats
-    with my engine, it works OK, but VRML format is just way better :)</p></li>
+    with my engine, it works OK, but VRML / X3D format is just way better :)</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -306,11 +306,11 @@ when you're not interested in testing creatures
 
     <p>In VRML 1.0, such node should be a parent of some shape
     (e.g. <tt>IndexedFaceSet</tt>) node.
-    In VRML 2.0, such node should be within <tt>Shape</tt> node that
+    In VRML 2.0 / X3D, such node should be within <tt>Shape</tt> node that
     has parent named <tt>ME_LevelBox</tt>.
     What this means in practice, is that in Blender you can simply
     name the Blender's mesh <tt>LevelBox</tt> and it will be correctly
-    recognized by our engine if you export to VRML 1.0 or 2.0 using
+    recognized by our engine if you export to VRML / X3D using
     standard Blender exporters.
 
     <p>When such node is found, we calculate it's BoundingBox and remove
@@ -321,7 +321,7 @@ when you're not interested in testing creatures
 
     <p>Usually you will add <tt>LevelBox</tt> node using Blender, you can also
     use <?php echo a_href_page('view3dscene', 'view3dscene') ?> &mdash;
-    see command 'Console -> Print scene bounding box as VRML node'.
+    see command 'Console -&gt; Print scene bounding box'.
 
   <li><p>Similar to <tt>LevelBox</tt>, I do identical trick to calculate
     water boxes. Just place a mesh with name 'WaterBox'.
@@ -340,7 +340,7 @@ when you're not interested in testing creatures
     of assumptions that really need +Z to be up.
     (like <tt>TItemOnLevel.PlayerCollision</tt>).
 
-  <li><p>Typical VRML nodes that I write "by hand"
+  <li><p>Typical VRML / X3D nodes that I write "by hand"
     (in <tt>level_final.wrl</tt> file) are:
 
     <ul>
@@ -376,7 +376,7 @@ when you're not interested in testing creatures
 
       <li><tt>Light</tt> nodes
 
-        <p>I usually write light nodes in a separate VRML file
+        <p>I usually write light nodes in a separate VRML / X3D file
         (that contains only light nodes; see e.g. <tt>data/levels/castle_hall_lights.wrl</tt>).
         This is comfortable, because I usually want to use level lights
         also on other objects (like enemies) that are not part of the level
@@ -617,7 +617,7 @@ when you're not interested in testing creatures
     <p>Traditionally this image is stored inside
     <tt>data/items/your_item/image.png</tt> image.
     You may also provide <tt>data/items/your_item/image.wrl</tt>
-    VRML file, that includes item's model file and sets camera to
+    3D file, that includes item's model file and sets camera to
     the same viewport you used to render the image.
     This is essential for people that may later want to modify your model
     and remake the image.
@@ -687,10 +687,10 @@ when you're not interested in testing creatures
         Together with debug menu command <i>Time stop for creatures</i>,
         this allows you quite easily and comfortably place creatures on the level,
         and you're able to freely set both their position and direction
-        then. This should be extended: 1. new VRML nodes specially for
+        then. This should be extended: 1. new VRML / X3D nodes specially for
         "The Castle" that express creatures on the level (as alternative
         to creatures "stub boxes", or maybe inside such stub boxes ?)
-        2. debug menu command to dump current creatures to such VRML nodes,
+        2. debug menu command to dump current creatures to such VRML / X3D nodes,
         so that you can paste them to level <tt>xxx_final.wrl</tt> file.
 
       <li>To really add the creature to the game add 1 line to
@@ -769,23 +769,9 @@ Shadows: Edges: 6414 manifold, 0 border
     that essentially makes their rendering very fast (rendering each
     animation frame should be as fast as if it was a still scene).
     However it costs much in terms of memory consumption (and in
-    "Loading creatures" time). Some features that should be avoided:
-
-    <ul>
-      <li><p>Different material for each vertex. This is taken from vertex painting
-        in blender when exporting to VRML 1.0.
-        I.e. you can leave vertex painting as generated (incorrectly)
-        by blender, as PER_VERTEX_INDEXED. If you fix it to PER_VERTEX your
-        models will take a lot of more memory space. E.g. for SpiderQueen
-        this is 270 MB with vertex painting vs 80 MB without vertex painting
-        (triangle count is 2715).
-
-        <p>This shoudn't matter in VRML &gt;= 2.0 so much, as
-        VRML &gt;= 2.0 has
-        only colors-per-vertex, that is implemented by GL_COLOR_MATERIAL,
-        and should be much faster and less memory-consuming.
-      </li>
-    </ul>
+    "Loading creatures" time). So be sure to test how much memory is consumed
+    by the game after your new animation is loaded. (using system monitors
+    or such).</p>
   </li>
 </ul>
 
@@ -797,7 +783,7 @@ eye-candy features are:</p>
 
 <ul>
   <li><p><?php echo a_href_page(
-    'Write shaders in GLSL, and connect them to objects in your VRML models',
+    'Write shaders in GLSL, and connect them to objects in your VRML / X3D models',
     'vrml_implementation_shaders'); ?>.</p></li>
 
   <li><p><?php echo a_href_page_hashlink('Bump mapping',
@@ -869,7 +855,8 @@ In particular
     means a sound that will be played when player's life points
     will significantly drop down (this will be played along with
     showing "red-out" effect). If you have doubts what given sound
-    is intended to be, just ask on <?php echo MAILING_LIST_LINK; ?>.
+    is intended to be, just ask on
+    <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
   </li>
 </ul>
 
@@ -986,7 +973,7 @@ and Blender's *.blend files that are the "source" version of some *.wrl files).
 is something like "The Castle 2.0", or even "The Castle 3.0",
 and probably will not be actually named "The Castle" anymore.
 Still, technically it will be "The Castle" continuation, based
-on next-generation of our VRML engine.</i></p>
+on next-generation of our VRML/X3D engine.</i></p>
 
 <p>I feel obligated here to say what exactly this game is going to be.
 So beware, I'm going to be dreaming in the next paragraph.
