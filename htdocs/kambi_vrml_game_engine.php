@@ -7,9 +7,9 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Features', 'features'),
-      new TocItem('Sources', 'download_src'),
-      new TocItem('Core engine sources', 'engine_src', 1),
-      new TocItem("Related programs' sources", 'program_sources', 1),
+      new TocItem('Download sources', 'download_src'),
+      new TocItem('Engine sources', 'engine_src', 1),
+      new TocItem("Other programs' sources", 'program_sources', 1),
       new TocItem("Subversion (SVN) notes", 'svn', 1),
       new TocItem('FPC version required', 'fpc_ver', 1),
       new TocItem('License', 'license'),
@@ -175,46 +175,28 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 <?php echo $toc->html_section(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>Sources of <i>Kambi VRML game engine</i>:<br>
- <?php echo sf_download('Download engine sources (version ' .
+<div class="download">
+<?php echo sf_download('Download "Kambi VRML game engine" (version ' .
   VERSION_KAMBI_VRML_GAME_ENGINE . ')',
   'kambi_vrml_game_engine-' . VERSION_KAMBI_VRML_GAME_ENGINE .
-  '-src.tar.gz') ?><br>
- Or download from Subversion by:
-
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
+  '-src.tar.gz'); ?>
+</div>
 
 <p>This archive contains the whole engine sources.
-<!-- Too unimportant:
-  There are some helper files used when making documentation of
-  my units with the help of
-<a href="http://pasdoc.sourceforge.net/">pasdoc</a>.
-There are helper scripts and files to compile my programs.  -->
-There are many simple example programs included in this archive
-(see <tt>examples/</tt> subdirectories),
-and some small tools-like programs that are not released in compiled form
-on these pages (see <tt>tools/</tt> subdirectories).
-<!-- I plan to add some more usable tools:
-<tt>font2pascal</tt> (to generate those units in fonts/ directory),
-<tt>kambi_bfnt_show</tt> and <tt>kambi_ttf_show</tt>
-(to view TTF fonts as bitmap or outline OpenGL fonts)
-and more examples of using my units. All those programs are ready,
-I just have to upload them here as soon as I will have some time. -->
+There are many simple example programs included
+(see <tt>examples/</tt> subdirectory).
+Compile everything with simple "<tt>make</tt>" inside the
+<tt>kambi_vrml_game_engine/</tt> directory.
+Compile examples <!-- (the ones that do not require Lazarus) --> by
+simple "<tt>make examples</tt>". Or you can compile and run from
+<a href="http://lazarus.freepascal.org/">Lazarus</a>.
+
+<p>For more details about trying out the examples, compiling and generally
+using the engine see the "Introduction" page in our
+<?php echo a_href_page('reference', 'reference') ?>.
 
 <!--
-Too unimportant:
-<p>In the future I may
-split this archive to a couple of smaller ones (like "units for graphics",
-"units for OpenAL" etc.).
--->
-
-<p>Compile everything with simple <tt>make</tt> inside the <tt>kambi_vrml_game_engine/</tt>
-subdirectory.
-Compile examples and tools <!-- (the ones that do not require Lazarus) --> by
-simple <tt>make examples</tt>.
-
-<!--
-Don't mention Lazarus here &mdash; the explanations that actually the engine
+The explanations that actually the engine
 main OpenGL initialization method is <b>not</b> the Lazarus TOpenGLControl
 takes too much space.
 
@@ -239,6 +221,10 @@ but are not included in source archives (since they are only usable
 for Windows users). In general, for all OSes, see section
 "Requirements" in the documentation of programs and make sure that
 you have appropriate libraries installed on your system.</p>
+
+<p>Alternatively, you can get the latest (bleeing-edge) sources from Subversion by:
+
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
