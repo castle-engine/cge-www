@@ -113,10 +113,6 @@ and download them by commands below:
   <li><p><i>Stephen H. France</i> provided various tests for <tt>TimeSensor</tt>,
     <tt>Extrusion</tt> and others. Thanks!</p></li>
 
-  <li><p>tree_sprite rendered from a model
-    <a href="http://opengameart.org/content/tree-leave-lowpoly">Tree leave LowPoly
-    from opengameart.org</a>, by Moser Juan Jose, CC-BY 3.0.</p></li>
-
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
     were extracted from VRML 1.0 specification.</li>
@@ -144,6 +140,9 @@ and download them by commands below:
 <p>Textures :
 
 <ul>
+  <li>tree_sprite rendered from a model
+    <a href="http://opengameart.org/content/tree-leave-lowpoly">Tree leave LowPoly
+    from opengameart.org</a>, by Moser Juan Jose, CC-BY 3.0.</li>
   <li><tt>textures/castle/</tt> are from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public domain textures from unfinished game "Golgotha"</a><!-- (previously on http://www.jonathanclark.com/, but host seems dead now)--></li>
   <li><tt>textures/test_texture.png</tt> based on <a href="http://gimp-savvy.com/cgi-bin/img.cgi?ufwsMV1VJR1LXOE702">this
     photo</a> from <a href="http://gimp-savvy.com/PHOTO-ARCHIVE/">Copyright-Free
