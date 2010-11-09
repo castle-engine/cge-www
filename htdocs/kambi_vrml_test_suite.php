@@ -113,6 +113,10 @@ and download them by commands below:
   <li><p><i>Stephen H. France</i> provided various tests for <tt>TimeSensor</tt>,
     <tt>Extrusion</tt> and others. Thanks!</p></li>
 
+  <li><p>tree_sprite rendered from a model
+    <a href="http://opengameart.org/content/tree-leave-lowpoly">Tree leave LowPoly
+    from opengameart.org</a>, by Moser Juan Jose, CC-BY 3.0.</p></li>
+
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
     were extracted from VRML 1.0 specification.</li>
