@@ -10,7 +10,10 @@
      where different versions of 3D scene are displayed depending
      on the camera distance. <tt>Collision</tt> allows to use a simpler
      geometry for collision purposes, or even to turn the collisions off
-     (like a fake walls hiding secret rooms in games).');
+     (like a fake walls hiding secret rooms in games).
+     <tt>Billboard</tt> may be used to create sprites, as it aligns
+     geometry (flat or not) with respect to the camera.
+     ');
 ?>
 
 <p>Supported nodes:</p>
@@ -107,9 +110,7 @@
 
   <li><p><?php echo x3d_node_link('Billboard'); ?></p>
 
-    <p><i>TODO</i>: Not really handled:
-    it just works like a <tt>Group</tt>. Often that's enough
-    for it to look sensible, but it's hardly a real support...</p>
+    <p>Works fully.</p>
 
   <li><p><?php echo x3d_node_link('Collision'); ?></p>
 

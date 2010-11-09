@@ -70,7 +70,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Pointing device sensor'          , 'vrml_implementation_pointingdevicesensor'); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
-  <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>1</b> (+ most, but not all, features up to level 3)</td></tr>
+  <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b> (although without <tt>ViewpointGroup</tt>)</td></tr>
   <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b></td></tr>
   <tr><td>Geospatial   </td><td>
     As an exception, geospatial VRML 97 nodes
@@ -99,14 +99,12 @@ Profiles:
 - interchange: according to table, done!
 - to interactive, missing
 networking level 2
-Pointing device sensor level 1
 - to immersive, missing
 networking level 3
 Shape level 2
 Geometry2D 1
 Sound 1
 Environmental sensor 2
-Navigation 2
 */
 ?>
 
