@@ -76,6 +76,8 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 /* --------------------------------------------------------------------------- */
 
 /* next news:
+Development news: Billboards, transform optimizations, UI: toolbars + hints, more
+
 vrml_engine_doc got some updates, first of all a new short chapter about scene manager.
 
 At 3.7.0 release: mention that view3dscene download links,
@@ -103,6 +105,14 @@ are now more visible on view3dscene webpage.
     They are used by view3dscene to display nice description of keys/mouse for given navigation mode --- just mouse over the "Examine", "Walk", "Fly" buttons. I really hope that this is useful (for both new and advanced users), comments about how you like are most welcome. Hopefully, this will make the navigation keys/mouse more known --- currently you have to read the docs, and I fear that many people simply don't do that and instead use only a subset of our camera navigation controls.
 
     Developers: you may be interested that tooltips are implemented for everything, and you can render a toolbar both in 2D and 3D. So you can e.g. position a text in 3D coordinates, over an 3D object, as a tooltip. See TUIControl.TooltipStyle, TUIControl.DrawTooltip.
+
+    screenshot: stuff with Examine and Walk/Fly tooltips.
+
+  <li><p>A major Transform optimization is implemented. This makes Transform animation really working at instant speeds.
+
+    <p>Billboard node is implemented. Useful for sprites and such.
+
+    screenshot: billboards_0.png
 */
 
     array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
