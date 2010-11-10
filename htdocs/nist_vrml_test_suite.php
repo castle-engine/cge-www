@@ -399,6 +399,25 @@ pass(2, 'Results look slightly incorrect, but matching precisely Xj3D and OpenVR
   </tr>
 
   <tr>
+    <td rowspan="2">Grouping</td>
+    <td>Transform</td>
+    <td>all 25</td>
+    <td class="pass">+</td>
+    <td>Note that "scaleorient Y" and "scaleorient Z" text descriptions are incorrect. Our results are correct (and match at least InstantPlayer).</td>
+  </tr>
+
+  <tr>
+    <td>Billboard</td>
+    <td>all 6</td>
+    <td class="pass">+</td>
+    <td>Note that "axis - rot Z" doesn't make much sense, when axisOfRotation is Z then rotating around it doesn't change the local Z vector, so the results are undefined... We do just nothing in this case. Results in other browsers (at least InstantPlayer) are weird, and it's also OK &mdash; it's undefined situation.</td>
+  </tr>
+
+  <tr>
+    <td colspan="5"><i>...here I skipped some tests, to be checked later...</i></td>
+  </tr>
+
+  <tr>
     <td rowspan="113">Geometry</td>
     <td rowspan="6">Box</td>
     <td>1</td>
