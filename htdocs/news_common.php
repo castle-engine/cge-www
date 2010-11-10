@@ -86,6 +86,8 @@ are now more visible on view3dscene webpage.
     <p>The idea behind these improvements is to give interested developers (in particular, the ones not familiar with VRML/X3D yet) a way to orient themselves, in the large number of VRML/X3D nodes. We give an easy overview of the component and the links to X3D specification to learn more details.</p>
 
     <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
+
+Mention plan for next releases (sound, etc.).
 */
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
