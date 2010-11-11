@@ -9,6 +9,11 @@
   alt="Kambi VRML game engine icon"
   align="right"/>
 
+<div style="float: right; margin: 1em;">
+<a class="FlattrButton" style="display:none;"
+href="http://vrmlengine.sourceforge.net/"></a>
+</div>
+
 <?php /* echo pretty_heading("Kambi VRML game engine"); */  ?>
 
 <p><b>For developers:</b> <b>Kambi VRML game engine</b>
