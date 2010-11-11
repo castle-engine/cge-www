@@ -34,7 +34,7 @@ Two most important programs available here are
 <p><b>Latest update:</b>
 
 <!-- To force engine icon separated from "latest update" frame on wide pages -->
-<br clear="all"/>
+<br clear="all" />
 
 <div class="latest_update_description" style="padding: 0px;">
 <div style="padding: 0.5em">

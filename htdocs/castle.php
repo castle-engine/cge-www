@@ -4,10 +4,14 @@
   vrmlengine_header("The Castle", NULL, array('castle'));
 ?>
 
+<div style="float: right; margin: 1em;">
+<a class="FlattrButton" style="display:none;"
+href="http://vrmlengine.sourceforge.net/"></a>
+</div>
+
 <?php
   echo pretty_heading('The Castle', VERSION_CASTLE);
-
-  echo '<table align="right">' .
+  echo '<table align="right" style="clear: right">' .
     '<tr><td>' . medium_image_progs_demo("castle_screen_demo_1.png", "castle", false) .
     '<tr><td>' . medium_image_progs_demo("castle_screen_demo_4.png", "castle", false) .
     '<tr><td>' . medium_image_progs_demo("castle_screen_demo_5.png", "castle", false) .
