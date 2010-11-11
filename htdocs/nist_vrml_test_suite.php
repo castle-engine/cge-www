@@ -8,10 +8,11 @@
 <?php echo pretty_heading($page_title); ?>
 
 <p>Results of testing our engine on <i>NIST Conformance Test Suite</i>.
-The old and original version of <a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">NIST VRML Test Suite is available here</a>
-(although the links to actual models seem broken).
-The new version of the test suite, with X3D versions of the tests and many new tests for new X3D features,
-<a href="http://www.web3d.org/x3d/content/examples/Conformance/">is maintained on web3d.org</a>.</p>
+<a href="http://www.web3d.org/x3d/content/examples/Conformance/">NIST
+test suite is maintained and available currently on web3d.org</a>.
+For historical purposes, you can also see at
+<a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">the old and original version of NIST VRML Test Suite</a>
+(but not that the links to actual models are broken there).</p>
 
 <p>Each test was classified as "pass" only if it passed fully.
 Which is a good objective measure,
@@ -832,9 +833,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   <tr>
     <td>7B</td>
     <td class="fail">-</td>
-    <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).
-      Also Billboard is crude, although this is not noticeable here.
-    </td>
+    <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).</td>
   </tr>
   <tr>
     <td>7C</td>
