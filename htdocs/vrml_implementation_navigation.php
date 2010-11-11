@@ -123,9 +123,26 @@
     always calculates and updates the bounding boxes where needed.
 
     <p>TODO: collideTime and isActive out events are not implemented yet.
-</ul>
 
-<p><i>TODO</i>: ViewpointGroup missing.</p>
+  <li><p><?php echo x3d_node_link('ViewpointGroup'); ?></p>
+
+    <p>You can use them to create submenus in "Viewpoints" menu in
+    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
+    <tt>description</tt> and <tt>children</tt> work.
+    Also, you can use this to hide some viewpoints from the menu:
+    <tt>displayed</tt> field works.</p>
+
+    <p>TODO: size/center is not honored yet. Group is displayed
+    regardless of camera position. A possible workarond could be
+    to use a <tt>ProximitySensor</tt> node,
+    routing <tt>ProximitySensor.isActive</tt> to the <tt>displayed</tt> field...
+    Except this workaround will not work too, because changing
+    of the <tt>displayed</tt> field after the scene loading
+    doesn't change the menu for now.</p>
+
+    <p>TODO: retainUserOffsets is ignored.</p>
+  </li>
+</ul>
 
 <?php
   x3d_status_footer();

@@ -88,6 +88,8 @@ are now more visible on view3dscene webpage.
     <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
 
 Mention plan for next releases (sound, etc.).
+
+ViewpointGroup implemented: you can use it to create tree-like structure for viewpoints menu, and to hide some viewpoints from the menu. (link to our impl status).
 */
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
