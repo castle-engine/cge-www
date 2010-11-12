@@ -724,8 +724,8 @@ directory.</p>
         it improves how objects look with OpenGL shading.
     </ol>
 
-  <dt>--renderer-optimization none|scene-as-a-whole|separate-shapes|separate-shapes-no-transform
-  <dd><p>Set rendering optimization.
+  <dt>--renderer-optimization none|scene-display-list|shape-display-list</dt>
+  <dd><p>Set rendering optimization.</p>
 
     <ul>
       <li><p><tt>"none"</tt> doesn't really optimize anything, like the name
@@ -733,7 +733,7 @@ directory.</p>
         in every frame, so there's really no point in caching and preparing
         anything. In practice, used only for testing purposes.</p>
 
-      <li><p><tt>"scene-as-a-whole"</tt> assumes that the scene
+      <li><p><tt>"scene-display-list"</tt> assumes that the scene
         is mostly static and is usually completely visible.
         In such situations, it is absolutely the fastest.
 
@@ -741,16 +741,10 @@ directory.</p>
         When you walk inside the scene, it's very non-optimal (frustum culling
         and such cannot work).</p>
 
-      <li><p><tt>"separate-shapes"</tt> and
-        <tt>"separate-shapes-no-transform"</tt> are the best
-        general optimizations for 3D worlds. They are good for both dynamic
-        and static scenes. They provide nice speedup (frustum culling and such)
+      <li><p><tt>"shape-display-list"</tt> is the best
+        general optimization for 3D worlds. This is good for both dynamic
+        and static scenes. This provides nice speedup (frustum culling and such)
         when you don't see the whole 3D world at once.</p>
-
-        <p>The difference between those two: in short,
-        <tt>"separate-shapes-no-transform"</tt>
-        is better in some cases, faster and uses less memory.
-        <tt>"separate-shapes"</tt> will be removed soon.</p>
     </ul>
 
     <p>For more technical details see
