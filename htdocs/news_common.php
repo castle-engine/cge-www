@@ -90,6 +90,10 @@ are now more visible on view3dscene webpage.
 Mention plan for next releases (sound, etc.).
 
 ViewpointGroup implemented: you can use it to create tree-like structure for viewpoints menu, and to hide some viewpoints from the menu. (link to our impl status).
+
+Screen Effects are implemented in view3dscene. These are neat effects done by post-processing the image with shaders. Try them by activating any effect (maybe more than one) in the <i>View -&gt; Screen Effects</i> menu. Right now there are only trivial grayscale, negative, and gamma tools.
+
+Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and few uses. New Screen Effects allow much more effects, with much nicer approach.
 */
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
