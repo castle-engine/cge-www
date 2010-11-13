@@ -77,6 +77,11 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* next news:
 
+table_demo_images(array(
+  array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
+  array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
+)) .
+
 At 3.7.0 release: mention that view3dscene download links,
 and easy instructions to get GNOME integration and thumbnailer (make screenshot),
 are now more visible on view3dscene webpage.
