@@ -20,10 +20,14 @@
   $toc->echo_numbers = true;
 ?>
 
-<?php echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE); ?>
+<div style="float: right; margin: 1em;">
+<a class="FlattrButton" style="display:none;"
+href="http://vrmlengine.sourceforge.net/"></a>
+</div>
 
 <?php
-  echo '<table align="right">' .
+  echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE);
+  echo '<table align="right" style="clear: right">' .
     '<tr><td>' . medium_image_progs_demo_core("fountain_only_materials.png", '&quot;The Fountain&quot; level with only materials') .
     '<tr><td>' . medium_image_progs_demo_core("fountain_shadows.png", '&quot;The Fountain&quot; level textured with shadows') .
     '<tr><td>' . medium_image_progs_demo_core("fountain_toon_shading.png", '&quot;The Fountain&quot; level with toon shading GLSL program') .
