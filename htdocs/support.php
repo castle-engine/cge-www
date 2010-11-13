@@ -50,11 +50,12 @@ and view3dscene, and our games :) Thanks!</p>
   through SourceForge</a>. This allows you to make a one-time donation
   using your <a href="https://www.paypal.com/">PayPal</a> account.</p>
 
-  <p>If you donate while logged-in to your
+  <p><small>If you donate while logged-in to your
   <a href="https://sourceforge.net/account/">SourceForge account</a>,
-  you will be "recognized": a suitable icon near your username on
-  all SourceForge pages will be displayed (although you can resign from it,
-  if you want).</p>
+  you will be "recognized" (if you want): <!--a suitable icon near your username on
+  all SourceForge pages will be displayed,
+  and -->you will be listed on
+  <a href="https://sourceforge.net/project/project_donations.php?group_id=200653">our "donations" page</a>.</small></p>
 
   <!--You can also write a comment (public or not) while donating.-->
   <!-- Place here a list of subscribers gen by SF once it's sensible -->
