@@ -47,14 +47,15 @@ and view3dscene, and our games :) Thanks!</p>
   <p><a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
 
   <p>You can <a href="https://sourceforge.net/donate/index.php?group_id=200653">donate
-  through SourceForge</a>. This allows you to make a one-time donation
+  through SourceForge</a>. This allows to make a donation
   using your <a href="https://www.paypal.com/">PayPal</a> account.</p>
 
   <p><small>If you donate while logged-in to your
   <a href="https://sourceforge.net/account/">SourceForge account</a>,
-  you will be "recognized" (if you want): <!--a suitable icon near your username on
+  you will be recognized (if you want) on
+  <!--a suitable icon near your username on
   all SourceForge pages will be displayed,
-  and -->you will be listed on
+  and -->
   <a href="https://sourceforge.net/project/project_donations.php?group_id=200653">our "donations" page</a>.</small></p>
 
   <!--You can also write a comment (public or not) while donating.-->
@@ -65,10 +66,10 @@ and view3dscene, and our games :) Thanks!</p>
   <p><a class="FlattrButton" style="display:none;"
   href="http://vrmlengine.sourceforge.net/"></a></p>
 
-  <p>You can donate through  <a href="http://flattr.com/">Flattr</a>
+  <p>You can donate through <a href="http://flattr.com/">Flattr</a>
   by clicking the button above. This allows you to donate
   a small amount of money this month (click on the button again
-  next month, to donate again, if you want :) to our engine.</p>
+  next month to donate again, if you want :)</p>
   </td>
 </tr></table>
 
