@@ -83,6 +83,7 @@ table_demo_images(array(
   array('filename' => 'screen_effect_castle_hall_0.png', 'titlealt' => 'Castle Hall screen: no effects'),
   array('filename' => 'screen_effect_castle_hall_1.png', 'titlealt' => 'Castle Hall screen: edge detection effect, with some gamma and negative'),
   array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
+  array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
 )) .
 
 At 3.7.0 release: mention that view3dscene download links,
