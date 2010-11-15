@@ -25,7 +25,6 @@ $toc = new TableOfContents(array(
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 1),
   new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 1),
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
-  new TocItem('Programmable shaders (X3D feature available also in VRML 97)', 'ext_shaders', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 1),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 1),
@@ -993,21 +992,12 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p>See <?php echo a_href_page('X3D implementation status about programmable shaders',
-      'vrml_implementation_shaders'); ?>.
-
-    <p>Since we officially support X3D now, this is not really an extension,
-    it's just normal X3D feature. You can use it in VRML 2.0 models too,
-    as usual our engine allows you to mix VRML versions freely.
-
-<?php echo $toc->html_section(); ?>
-
-    Because of the way how I implemented VRML 1.0, 2.0 and X3D handling,
+    <p>Because of the way how I implemented VRML 1.0, 2.0 and X3D handling,
     you have effectively the <i>sum of all VRML features</i>
     available. Which means that actually you can mix VRML 1.0 and 2.0 and X3D
     nodes to some extent. If given node name exists in two VRML/X3D versions,
     then VRML/X3D file header defines how the node behaves. Otherwise,
-    node behaves according to it's VRML/X3D specification.
+    node behaves according to it's VRML/X3D specification.</p>
 
     <p>For example, this means that a couple of VRML 2.0/X3D nodes
     are available (and behave exactly like they should) also for VRML 1.0
@@ -1019,12 +1009,13 @@ end;
       <li><a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#NavigationInfo">NavigationInfo</a>
     </ul>
 
-    <p>Also VRML 1.0 things are available in VRML 2.0, e.g.
-    <tt>OrthographicCamera</tt> (this is one thing not available
-    in VRML 2.0 specification; although for X3D
-    you should rather use standard <tt>OrthoViewpoint</tt>).</p>
+    <p>If you're missing an orthographic viewpoint in VRML 2.0,
+    you can use VRML 1.0 <tt>OrthographicCamera</tt> or
+    you ca use X3D <tt>OrthoViewpoint</tt>.</p>
 
-    <p>Also things like GLSL shaders (from X3D) are available in VRML 97.</p>
+    <p>If you're missing GLSL shaders in VRML 2.0,
+    you can use <?php echo a_href_page('X3D programmable shaders',
+    'vrml_implementation_shaders'); ?> inside VRML 2.0.</p>
 
     <p>You can also <a href="#ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or X3D, or the other way around</a>.
