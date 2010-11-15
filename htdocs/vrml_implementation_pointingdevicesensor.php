@@ -5,7 +5,7 @@
      <tt>TouchSensor</tt> allows to catch click events on 3D objects.
      Drag sensors allow user to edit a transformation of 3D objects:
      <tt>PlaneSensor</tt> allows to move objects,
-     <tt>SphereSensor</tt> allows to rotate objects</tt>,
+     <tt>SphereSensor</tt> allows to rotate objects,
      and <tt>CylinderSensor</tt> allows to rotate objects around a constrained
      axis.');
 ?>
@@ -38,10 +38,10 @@
 
   <li><p><?php echo x3d_node_link('SphereSensor'); ?></p></li>
 
-  <li><p><?php echo x3d_node_link('CylinderSensor'); ?></p></li>
+  <li><p><?php echo x3d_node_link('CylinderSensor'); ?></p>
 
     <p>Including <tt>axisRotation</tt>, notes above about
-    <tt>PlaneSensor.axisRotation</tt> apply also here.</p>
+    <tt>PlaneSensor.axisRotation</tt> apply also here.</p></li>
 </ul>
 
 <?php
