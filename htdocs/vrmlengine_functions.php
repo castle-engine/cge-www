@@ -728,6 +728,8 @@ function medium_image_progs_demo_core($image_name, $alt, $title = '$alt',
    automatycznie jako "$prog_name_screen_demo.png" */
 function default_medium_image_progs_demo($prog_name)
 {
-  return medium_image_progs_demo("${prog_name}_screen_demo.png", $prog_name);
+  return table_demo_images(array(
+    array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
+  ));
 }
 ?>
