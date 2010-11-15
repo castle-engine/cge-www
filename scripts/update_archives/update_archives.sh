@@ -31,6 +31,39 @@ WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 
 # ot, taka pomocnicza sta³a
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
+DOC_FILES_VRML='kanim_format.html
+  kambi_script.html
+  kambi_vrml_test_suite.html
+  kambi_vrml_extensions.html
+  kambi_vrml_extensions_shadow_maps.html
+  kambi_vrml_extensions_vrml1.html
+  kambi_vrml_extensions_screen_effects.html
+  vrml_implementation_cadgeometry.html
+  vrml_implementation_core.html
+  vrml_implementation_cubemaptexturing.html
+  vrml_implementation_environmentaleffects.html
+  vrml_implementation_environmentalsensor.html
+  vrml_implementation_eventutilities.html
+  vrml_implementation_geometry2d.html
+  vrml_implementation_geometry3d.html
+  vrml_implementation_grouping.html
+  vrml_implementation_hanim.html
+  vrml_implementation_interpolation.html
+  vrml_implementation_keydevicesensor.html
+  vrml_implementation_lighting.html
+  vrml_implementation_navigation.html
+  vrml_implementation_networking.html
+  vrml_implementation_nurbs.html
+  vrml_implementation_pointingdevicesensor.html
+  vrml_implementation_rendering.html
+  vrml_implementation_scripting.html
+  vrml_implementation_shaders.html
+  vrml_implementation_shape.html
+  vrml_implementation_status.html
+  vrml_implementation_text.html
+  vrml_implementation_texturing3d.html
+  vrml_implementation_texturing.html
+  vrml_implementation_time.html'
 
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
 MAKE="$KAMBI_GNU_MAKE"
@@ -381,10 +414,7 @@ case "$1" in
   view3dscene)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" view3dscene
-    binary_add_doc view3dscene.html kambi_vrml_extensions.html \
-      kambi_vrml_test_suite.html vrml_implementation_status.html \
-      kanim_format.html kambi_script.html \
-      $DOC_FILES_GL_PARAMS
+    binary_add_doc view3dscene.html $DOC_FILES_GL_PARAMS $DOC_FILES_VRML
     update_small_program view3dscene "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -397,7 +427,7 @@ case "$1" in
   rayhunter)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" rayhunter
-    binary_add_doc rayhunter.html common_options.html kambi_vrml_extensions.html
+    binary_add_doc rayhunter.html common_options.html $DOC_FILES_VRML
     update_small_program rayhunter "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2

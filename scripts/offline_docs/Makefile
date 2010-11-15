@@ -11,7 +11,6 @@ PHP_DIR:=../../htdocs/
 ALL_HTMLS:=view3dscene.html \
   rayhunter.html \
   glviewimage.html \
-  kambi_vrml_extensions.html \
   opengl_options.html \
   common_options.html \
   lets_take_a_walk.html \
@@ -25,6 +24,12 @@ ALL_HTMLS:=view3dscene.html \
   changes_log.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \
   kambi_vrml_test_suite.html \
+  kanim_format.html \
+  kambi_script.html \
+  kambi_vrml_extensions.html \
+  kambi_vrml_extensions_shadow_maps.html \
+  kambi_vrml_extensions_vrml1.html \
+  kambi_vrml_extensions_screen_effects.html \
   vrml_implementation_cadgeometry.html \
   vrml_implementation_core.html \
   vrml_implementation_cubemaptexturing.html \
@@ -50,9 +55,7 @@ ALL_HTMLS:=view3dscene.html \
   vrml_implementation_text.html \
   vrml_implementation_texturing3d.html \
   vrml_implementation_texturing.html \
-  vrml_implementation_time.html \
-  kanim_format.html \
-  kambi_script.html
+  vrml_implementation_time.html
 
 #LOCALLY_AVAIL:=$(ALL_HTMLS)
 LOCALLY_AVAIL:=
