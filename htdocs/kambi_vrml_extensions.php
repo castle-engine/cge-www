@@ -9,6 +9,7 @@ $toc = new TableOfContents(array(
   new TocItem('Introduction', 'introduction'),
   new TocItem('Extensions', 'extensions'),
 
+  new TocItem('Screen effects (<tt>ScreenEffect</tt> node)', 'ext_screen_effects', 1),
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 1),
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
   new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
@@ -129,6 +130,10 @@ in <?php echo a_href_page("Kambi VRML test suite",
 subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+  <p><?php echo a_href_page('Screen Effect extensions are described here', 'kambi_vrml_extensions_screen_effects'); ?>.</p>
 
 <a name="ext_bump_mapping"></a><?php echo $toc->html_section(); ?>
 

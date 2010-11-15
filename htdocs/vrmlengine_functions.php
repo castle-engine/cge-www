@@ -104,8 +104,9 @@ $vrmlengine_sitemap = array(
     'sub' => array(
       'kambi_vrml_extensions' => array('title' => 'Extensions',
         'sub' => array(
-          'kambi_vrml_extensions_shadow_maps' => array('title' => 'Shadow Maps extensions'),
-          'kambi_vrml_extensions_vrml1' => array('title' => 'VRML 1.0 (old) extensions'),
+          'kambi_vrml_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
+          'kambi_vrml_extensions_screen_effects' => array('title' => 'Screen Effects'),
+          'kambi_vrml_extensions_vrml1' => array('title' => 'VRML 1.0 (old)'),
         ),
       ),
       'kambi_vrml_test_suite' => array('title' => 'Test suite'),
