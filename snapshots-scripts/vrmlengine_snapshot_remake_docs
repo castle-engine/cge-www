@@ -6,6 +6,9 @@ cd ~/sources/vrmlengine/trunk/www/scripts/offline_docs/
 export VRMLENGINE_HTDOCS_LOCAL_PATH=/home/michalis/sources/vrmlengine/trunk/www/htdocs/
 
 HTMLS="kambi_vrml_extensions.html \
+kambi_vrml_extensions_shadow_maps.html \
+kambi_vrml_extensions_vrml1.html \
+kambi_vrml_extensions_screen_effects.html \
 vrml_implementation_cadgeometry.html \
 vrml_implementation_core.html \
 vrml_implementation_cubemaptexturing.html \
