@@ -102,7 +102,11 @@ $vrmlengine_sitemap = array(
   'vrml_x3d' => array('hint' => 'Our extensions and status of VRML/X3D implementation', 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
     'sidebar' => true,
     'sub' => array(
-      'kambi_vrml_extensions' => array('title' => 'Extensions'),
+      'kambi_vrml_extensions' => array('title' => 'Extensions',
+        'sub' => array(
+          'kambi_vrml_extensions_shadow_maps' => array('title' => 'Shadow Maps extensions'),
+        ),
+      ),
       'kambi_vrml_test_suite' => array('title' => 'Test suite'),
       'vrml_implementation_status' => array('title' => 'Implementation status',
         'sub' => array(
