@@ -2047,7 +2047,7 @@ on SourceForge</a>.
 /* --------------------------------------------------------------------------- */
 
     array('title' => 'Older news',
-          'year' => 2010,
+          'year' => 2007,
           'month' => 7,
           'day' => 19,
           'short_description' => '',
