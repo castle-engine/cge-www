@@ -610,6 +610,8 @@ function echo_standard_program_download(
      and we simply put this html into cell content.
    - colspan (int) - colspan of table cell. It's your responsibility to make it
      look sensible then.
+   - linktarget (string) - optional URL (full URL!) where the link leads.
+     If not specified, the link leads to full image size.
 
    If $align non-empty, the table is floating left / right.
 
@@ -641,8 +643,11 @@ function table_demo_images($images, $columns=1, $align='right')
       $result .= $image['html'];
     } else
     {
+      if (isset($image['linktarget']))
+        $linktarget = $image['linktarget']; else
+        $linktarget = CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'];
       $result .= '
-          <a href="' . CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'] . '" class="screenshot">
+          <a href="' . $linktarget . '" class="screenshot">
             <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
             alt="' . $image['titlealt'] . '"
             title="' . $image['titlealt'] . '"

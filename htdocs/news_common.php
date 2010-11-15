@@ -937,16 +937,11 @@ table_demo_images(array(
           'day' => 10,
           'guid' => '2009-04-10',
           'short_description' => '',
-          'description' => '
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/cubemap_teapot.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/cubemap_teapot.png"
-      alt="Teapot with cube map reflections"
-      title="Teapot with cube map reflections"
-    /></a>
-  </td></tr>
-</table>
+          'description' =>
+
+table_demo_images(array(
+  array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
+)) . '
 
 <p>Hi! I didn\'t post a message here since some time, but rest assured that the development of next engine version continues :) Things already implemented in the SVN include:
 
@@ -978,57 +973,16 @@ table_demo_images(array(
           'day' => 24,
           'guid' => '2009-01-24',
           'short_description' => '',
-          'description' => '
+          'description' =>
 
-<table align="right">
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_chinchilla.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_chinchilla.png"
-      alt="Chinchilla with Dynamic Ambient Occlusion"
-      title="Chinchilla with Dynamic Ambient Occlusion"
-    /></a>
-  </td>
-
-  <td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_chinchilla_elements.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_chinchilla_elements.png"
-      alt="Chinchilla elements used for Dynamic Ambient Occlusion"
-      title="Chinchilla elements used for Dynamic Ambient Occlusion"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/dyn_ao_peach.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/dyn_ao_peach.png"
-      alt="Peach with Dynamic Ambient Occlusion"
-      title="Peach with Dynamic Ambient Occlusion"
-    /></a>
-  </td>
-
-  <td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_1.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_1.png"
-      alt="Shadow Fields screenshot 1"
-      title="Shadow Fields screenshot 1"
-    /></a>
-  </td></tr>
-
-  <tr><td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_2.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_2.png"
-      alt="Shadow Fields screenshot 2"
-      title="Shadow Fields screenshot 2"
-    /></a>
-  </td>
-
-  <td>
-    <a href="http://vrmlengine.sourceforge.net/images/progs_demo/original_size/sf_3.png">
-      <img align="right" src="http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/sf_3.png"
-      alt="Shadow Fields screenshot 3"
-      title="Shadow Fields screenshot 3"
-    /></a>
-  </td></tr>
-</table>
+table_demo_images(array(
+  array('filename' => 'dyn_ao_chinchilla.png', 'titlealt' => 'Chinchilla with Dynamic Ambient Occlusion'),
+  array('filename' => 'dyn_ao_chinchilla_elements.png', 'titlealt' => 'Chinchilla elements used for Dynamic Ambient Occlusion'),
+  array('filename' => 'dyn_ao_peach.png', 'titlealt' => 'Peach with Dynamic Ambient Occlusion'),
+  array('filename' => 'sf_1.png', 'titlealt' => 'Shadow Fields screenshot 1'),
+  array('filename' => 'sf_2.png', 'titlealt' => 'Shadow Fields screenshot 2'),
+  array('filename' => 'sf_3.png', 'titlealt' => 'Shadow Fields screenshot 3'),
+), 2) . '
 
 <p>This week I implemented a demo of <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter14.html">Dynamic Ambient Occlusion</a> using our engine.</p>
 
@@ -1076,15 +1030,10 @@ Traditionally, " . news_a_href_page('underlying
 Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
 Changes:</p>
 
-<table align=\"right\">
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/apple_lods.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/apple_lods.png\"
-      alt=\"Apple model with various levels of detail\"
-      title=\"Apple model with various levels of detail\"
-    /></a>
-  </td></tr>
-</table>
+" .
+table_demo_images(array(
+  array('filename' => 'apple_lods.png', 'titlealt' => 'Apple model with various levels of detail'),
+)) . "
 
 <ul>
   <li><b>LOD (level-of-detail)</b> node proper handling.</li>
@@ -1150,18 +1099,14 @@ Major changes:
     <p>Thanks to <a href=\"http://www.de-panther.com/\">De-Panther</a> for
     pushing me to implement a lot of these features!
 
+
+" .
+table_demo_images(array(
+  array('filename' => 'shadows_dynamic_2.png', 'titlealt' => 'Dynamic shadows screenshot'),
+))
+. "
+
   <li>
-<table align=\"right\">
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/shadows_dynamic_2.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/shadows_dynamic_2.png\"
-      alt=\"Dynamic shadows screenshot\"
-      title=\"Dynamic shadows screenshot\"
-    /></a>
-  </td></tr>
-</table>
-
-
     <p><b>Dynamic shadows support is greatly improved</b>, finally
     " . news_a_href_page('view3dscene', 'view3dscene') . " can render
     with shadows, honoring our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
@@ -1195,30 +1140,13 @@ Major changes:
           'guid' => '2008-11-09',
           'short_description' => '',
           'description' =>
-          "
-<table align=\"right\">
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_normal.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_normal.png\"
-      alt=\"Normal OpenGL lighting\"
-      title=\"Normal OpenGL lighting\"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_simple_occlusion.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_simple_occlusion.png\"
-      alt=\"Rendering with simple ambient occlusion\"
-      title=\"Rendering with simple ambient occlusion\"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/chinchilla_diffuse_prt.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/chinchilla_diffuse_prt.png\"
-      alt=\"Precomputed Radiance Transfer\"
-      title=\"Precomputed Radiance Transfer\"
-    /></a>
-  </td></tr>
-</table>
+
+table_demo_images(array(
+  array('filename' => 'chinchilla_normal.png', 'titlealt' => 'Normal OpenGL lighting'),
+  array('filename' => 'chinchilla_simple_occlusion.png', 'titlealt' => 'Rendering with simple ambient occlusion'),
+  array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
+))
+. "
 
 <p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
 
@@ -1252,33 +1180,13 @@ along with " . news_a_href_page('underlying
 Kambi VRML game engine 1.5.0', 'kambi_vrml_game_engine') . " release.
 Most notable improvements are:
 
-<!--
-http://vrmlengine.sourceforge.net/
-http://127.0.0.1/~michalis/vrmlengine/
--->
-<table align=\"right\">
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_ball_game.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_ball_game.png\"
-      alt=\"Simple game implemented in pure X3D with KambiScript\"
-      title=\"Simple game implemented in pure X3D with KambiScript\"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_particles.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_particles.png\"
-      alt=\"Particle engine programmed in pure X3D with KambiScript\"
-      title=\"Particle engine programmed in pure X3D with KambiScript\"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/kambi_script_edit_texture.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/kambi_script_edit_texture.png\"
-      alt=\"Texture editor (pure X3D with KambiScript)\"
-      title=\"Texture editor (pure X3D with KambiScript)\"
-    /></a>
-  </td></tr>
-</table>
+" .
+table_demo_images(array(
+  array('filename' => 'kambi_script_ball_game.png', 'titlealt' => 'Simple game implemented in pure X3D with KambiScript'),
+  array('filename' => 'kambi_script_particles.png', 'titlealt' => 'Particle engine programmed in pure X3D with KambiScript'),
+  array('filename' => 'kambi_script_edit_texture.png', 'titlealt' => 'Texture editor (pure X3D with KambiScript)'),
+))
+. "
 
 <ul>
   <li><p><b>Scripting in " . news_a_href_page('KambiScript language',
@@ -1381,22 +1289,11 @@ is released and some other programs here get minor updates.</p>
 
 <p>New features of the engine and view3dscene:</p>
 
-<table align=\"right\">
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/deranged_house_final_0.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/deranged_house_final_0.png\"
-      alt=\"ProximitySensor in action\"
-      title=\"ProximitySensor in action\"
-    /></a>
-  </td></tr>
-  <tr><td>
-    <a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/ikea_bead_toy.png\">
-      <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/ikea_bead_toy.png\"
-      alt=\"Animation (IkeaBeadToy model from www.web3d examples)\"
-      title=\"Animation (IkeaBeadToy model from www.web3d examples)\"
-    /></a>
-  </td></tr>
-</table>
+" . table_demo_images(array(
+  array('filename' => 'deranged_house_final_0.png', 'titlealt' => 'ProximitySensor in action'),
+  array('filename' => 'ikea_bead_toy.png', 'titlealt' => 'Animation (IkeaBeadToy model from www.web3d examples)'),
+))
+. "
 
 <ul>
   <li><p><b>X3D support</b> (both XML and classic encoding).
@@ -1439,10 +1336,12 @@ is released and some other programs here get minor updates.</p>
     (with perfect quality, as opposed to using independent
     programs that capture OpenGL output).</p></li>
 
-  <li><p><a href=\"http://vrmlengine.sourceforge.net/images/progs_demo/original_size/view3dscene_thumbnailer_demo.png\">
-    <img align=\"right\" src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png\"
-    alt=\"&quot;view3dscene&quot; as nautilus thumbnailer\" /></a>
-    <a href=\"http://www.gnome.org/\">GNOME</a> users will be happy to
+  <li>
+" . table_demo_images(array(
+  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
+))
+. "
+    <p><a href=\"http://www.gnome.org/\">GNOME</a> users will be happy to
     hear that view3dscene can be easily used as nautilus thumbnailer,
     so you can see thumbnails of your VRML / X3D and other 3D model files.</p></li>
 
@@ -1481,12 +1380,13 @@ Jordi R. Cardona!)</a>.</p>"),
           'guid' => '2008-08-15',
           'short_description' => '',
           'description' =>
-"<p><a href=\"http://vrmlengine.sourceforge.net/movies/laetitia_sprints.avi\"><img
-  src=\"http://vrmlengine.sourceforge.net/images/progs_demo/medium_size/laetitia_sprints_demo.png\"
-  alt=\"Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator\"
-  align=\"right\" /></a>
 
-An extremely important feature of VRML / X3D is finally implemented:
+table_demo_images(array(
+  array('filename' => 'laetitia_sprints_demo.png', 'titlealt' => 'Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator', 'linktarget' => CURRENT_URL .  'movies/laetitia_sprints.avi'),
+))
+. "
+
+<p>An extremely important feature of VRML / X3D is finally implemented:
 routes and events mechanism works. This means that you can express animations and interactions
 within single VRML / X3D file, like envisioned in the specifications.</p>
 
@@ -1575,10 +1475,11 @@ web3d.org examples</a>.</p>"),
         as a movie file (with perfect quality, as opposed to using independent
         programs that capture OpenGL output).</p>
 
-        <p><a href="' . CURRENT_URL . 'images/progs_demo/original_size/view3dscene_thumbnailer_demo.png">
-        <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/view3dscene_thumbnailer_demo.png"
-        alt="&quot;view3dscene&quot; as nautilus thumbnailer" /></a>
-        <a href="http://www.gnome.org/">GNOME</a> users will be happy to
+' . table_demo_images(array(
+  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
+))
+. '
+        <p><a href="http://www.gnome.org/">GNOME</a> users will be happy to
         hear that view3dscene can be easily used as nautilus thumbnailer,
         so you can see thumbnails of your VRML / X3D and other 3D model files
         (see the screenshot).
