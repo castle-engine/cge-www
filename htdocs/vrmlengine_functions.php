@@ -677,63 +677,6 @@ function table_demo_images($images, $columns=1, $align='right')
   return $result;
 }
 
-/* $image_name = nazwa obrazka istniej±ca w progs_demo/original_size/ i
-   progs_demo/medium_size/.
-   Zwróci odpowiednie tagi które zawieraj± <img...> do obrazka w medium_size
-   i s± zawarte w <a href...> do obrazka w original_size.
-   Jezeli $aligned to obrazek bêdzie dosuniêty do prawej, tzn. mieæ align="right".
-   $prog_name zostanie u¿yte aby wygenerowaæ odpowiedni tekst dla atrybutu
-   alt= obrazka, to bêdzie co¶ w rodzaju "Obrazek z &quot;$prog_name&quot;",
-   odpowiednio przet³umaczone na $page_lang.
-
-   Mo¿e zwróciæ '' je¶li obrazki nie s± dostêpne lokalnie. Mówi±c bardziej
-   ogólnie, mo¿esz u¿ywaæ tej funkcji bez wzglêdu na warto¶æ IS_GEN_LOCAL -
-   ona sobie poradzi tak czy tak. */
-function medium_image_progs_demo($image_name, $prog_name, $aligned = true)
-{
-  global $page_lang;
-  switch ($page_lang)
-  {
-    case LANG_PL: $alt = "Obrazek z &quot;$prog_name&quot;"; break;
-    case LANG_EN: $alt = "Image from &quot;$prog_name&quot;"; break;
-  }
-
-  return medium_image_progs_demo_core($image_name, $alt, '', ($aligned ? 'right' : ''));
-}
-
-function medium_image_progs_demo_core($image_name, $alt, $title = '$alt',
-  $align = '', $online_if_not_available = false)
-{
-  $image_name_original_size = "images/progs_demo/original_size/$image_name";
-  $image_name_medium_size   = "images/progs_demo/medium_size/$image_name";
-
-  if (!is_file_available_locally($image_name_original_size) ||
-      !is_file_available_locally($image_name_medium_size))
-  {
-    if ($online_if_not_available) {
-      /* Then image links will be done as normal, except will use full URL
-         always pointing to online version. */
-      $image_name_original_size = CURRENT_URL . $image_name_original_size;
-      $image_name_medium_size   = CURRENT_URL . $image_name_medium_size  ;
-    } else
-    {
-      return '';
-    }
-  }
-
-  if ($title === '$alt')
-    $title = $alt;
-
-  return
-   "<a href=\"$image_name_original_size\" class=\"screenshot\">
-      <img "
-       . ($align != '' ? "align=\"$align\"" : '') .
-       " src=\"$image_name_medium_size\" alt=\"$alt\" "
-       . ($title != '' ? "title=\"$title\"" : '') .
-       "/>
-    </a>";
-}
-
 /* Thumbnail for this program. Filename and alt/title auto-generated
    from $prog_name. */
 function default_program_thumbnail($prog_name)
