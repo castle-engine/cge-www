@@ -51,8 +51,7 @@ by processing the rendered image. For&nbsp;demos, see:</p>
 the <tt>ScreenEffect</tt> node:</p>
 
 <?php echo node_begin("ScreenEffect : X3DChildNode");
-  $node_format_fd_name_pad = 20;
-  $node_format_fd_def_pad = 15;
+  $node_format_fd_def_pad = 8;
   echo
   node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
   node_field('SFBool', '[in,out]', 'enabled', 'TRUE') .
