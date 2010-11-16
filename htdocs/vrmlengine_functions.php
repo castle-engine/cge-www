@@ -734,9 +734,9 @@ function medium_image_progs_demo_core($image_name, $alt, $title = '$alt',
     </a>";
 }
 
-/* To samo co medium_image_progs_demo tyle ¿e tutaj $image_name jest generowany
-   automatycznie jako "$prog_name_screen_demo.png" */
-function default_medium_image_progs_demo($prog_name)
+/* Thumbnail for this program. Filename and alt/title auto-generated
+   from $prog_name. */
+function default_program_thumbnail($prog_name)
 {
   return table_demo_images(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),

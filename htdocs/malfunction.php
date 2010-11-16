@@ -16,7 +16,7 @@
 
 <?php
   echo pretty_heading("malfunction", VERSION_MALFUNCTION);
-  echo default_medium_image_progs_demo("malfunction");
+  echo default_program_thumbnail("malfunction");
 ?>
 
 <p>If you want, you can dream that you're a saviour of galaxy

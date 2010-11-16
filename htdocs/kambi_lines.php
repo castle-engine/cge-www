@@ -8,7 +8,7 @@
 
 <?php
   echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
-  echo default_medium_image_progs_demo("kambi_lines");
+  echo default_program_thumbnail("kambi_lines");
 
   $toc = new TableOfContents(
     array(

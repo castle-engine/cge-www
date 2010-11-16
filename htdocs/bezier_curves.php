@@ -8,7 +8,7 @@
 
 <?php
   echo pretty_heading("bezier_curves", VERSION_BEZIER_CURVES);
-  echo default_medium_image_progs_demo("bezier_curves");
+  echo default_program_thumbnail("bezier_curves");
 ?>
 
 <p>Plot rational Bezier curves and smooth interpolated curves (Bezier

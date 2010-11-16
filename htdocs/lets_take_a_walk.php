@@ -18,7 +18,7 @@
 
 <?php
   echo pretty_heading($page_title, VERSION_LETS_TAKE_A_WALK);
-  echo default_medium_image_progs_demo("lets_take_a_walk");
+  echo default_program_thumbnail("lets_take_a_walk");
 ?>
 
 <p><b>Let's take a walk</b> is not really a game. It's rather a toy &mdash;
