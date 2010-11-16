@@ -152,12 +152,12 @@ subdirectories.</p>
     ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("bump_demo_leaf_nobump.png", 'Leaf (without bump mapping)') .
-        '<tr><td>' . ext_screenshot("bump_demo_leaf.png", 'Leaf (with bump mapping)') .
-        '<tr><td>' . ext_screenshot("parallax_demo_lion_noparallax.png", 'Lion texture (without parallax mapping)') .
-        '<tr><td>' . ext_screenshot("parallax_demo_lion.png", 'Lion texture (with parallax mapping)') .
-        '</table>';
+      echo table_demo_images(array(
+        array('filename' => "bump_demo_leaf_nobump.png", 'titlealt' => 'Leaf (without bump mapping)'),
+        array('filename' => "bump_demo_leaf.png", 'titlealt' => 'Leaf (with bump mapping)'),
+        array('filename' => "parallax_demo_lion_noparallax.png", 'titlealt' => 'Lion texture (without parallax mapping)'),
+        array('filename' => "parallax_demo_lion.png", 'titlealt' => 'Lion texture (with parallax mapping)'),
+      ));
     ?>
 
     <p>Texture specified as <tt>normalMap</tt> describes normal vector
@@ -230,11 +230,11 @@ subdirectories.</p>
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("shadows_dynamic_2.png", 'Dynamic shadows demo') .
-        '<tr><td>' . ext_screenshot("castle_screen_3.png", 'Werewolves with shadows') .
-        '<tr><td>' . ext_screenshot("castle_shadows_fountain.png", 'Castle &quot;fountain&quot; level with shadows') .
-        '</table>';
+      echo table_demo_images(array(
+        array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
+        array('filename' => "castle_screen_3.png", 'titlealt' =>  'Werewolves with shadows'),
+        array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle &quot;fountain&quot; level with shadows'),
+      ));
     ?>
 
     <p>These extensions describe the shadows behavior when using
@@ -480,10 +480,10 @@ subdirectories.</p>
 <?php echo $toc->html_section(); ?>
 
   <?php
-    echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("cubemap_teapot.png", 'Teapot with cube map reflections') .
-        '</table>';
-    ?>
+  echo table_demo_images(array(
+    array('filename' => "cubemap_teapot.png", 'titlealt' => 'Teapot with cube map reflections'),
+  ));
+  ?>
 
     <p><tt>TextureCoordinateGenerator.mode</tt> allows two additional
     generation modes:
@@ -569,9 +569,9 @@ EXTERNPROTO Text3D [
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("alpha_channel_override_demo.png", 'Demo of alphaChannel override') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel override'),
+    ));
     ?>
 
     <p>Alpha channel of your textures
@@ -934,20 +934,11 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-<table align="right">
-  <tr><td>
-    <?php echo ext_screenshot('chinchilla_normal.png',
-      'Normal OpenGL lighting'); ?>
-  </td></tr>
-  <tr><td>
-    <?php echo ext_screenshot('chinchilla_simple_occlusion.png',
-      'Rendering with simple ambient occlusion'); ?>
-  </td></tr>
-  <tr><td>
-    <?php echo ext_screenshot('chinchilla_diffuse_prt.png',
-      'Precomputed Radiance Transfer'); ?>
-  </td></tr>
-</table>
+<?php echo table_demo_images(array(
+  array('filename' => 'chinchilla_normal.png', 'titlealt' => 'Normal OpenGL lighting'),
+  array('filename' => 'chinchilla_simple_occlusion.png', 'titlealt' => 'Rendering with simple ambient occlusion'),
+  array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
+)); ?>
 
     <?php
       echo node_begin('X3DComposedGeometryNode : X3DGeometryNode');
@@ -1168,9 +1159,9 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("kambi_triangulation_demo.png", 'KambiTriangulation demo screenshot') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "kambi_triangulation_demo.png", 'titlealt' => 'KambiTriangulation demo screenshot'),
+    ));
     ?>
 
     <p>New node:
@@ -1581,9 +1572,9 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("octree_hello_world_shadow.png", 'Octree visualization') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "octree_hello_world_shadow.png", 'titlealt' => 'Octree visualization'),
+    ));
     ?>
 
     <p>Like most 3D engines, <i>Kambi VRML game engine</i> uses a smart
@@ -1703,10 +1694,10 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-  <?php
-    echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("blend_mode_demo.png", 'Various blend modes with transparent teapots') .
-        '</table>';
+    <?php
+    echo table_demo_images(array(
+      array('filename' => "blend_mode_demo.png", 'titlealt' => 'Various blend modes with transparent teapots')
+    ));
     ?>
 
     <p>We add new field to <tt>KambiAppearance</tt> node: <tt>blendMode</tt> (SFNode,
@@ -1788,9 +1779,9 @@ end;
     ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("logger.png", 'Logger node demo') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "logger.png", 'titlealt' => 'Logger node demo'),
+    ));
     ?>
 
     <p>The idea is simple: whatever is sent to <tt>write</tt>
@@ -1827,9 +1818,9 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("teapot_demo.png", 'Teapot node demo') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "teapot_demo.png", 'titlealt' => 'Teapot node demo'),
+    ));
     ?>
 
     <p>A teapot. Useful non-trivial shape for testing various display modes,
@@ -1888,10 +1879,10 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo '<table align="right">' .
-        '<tr><td>' . ext_screenshot("rendered_texture.png", 'RenderedTexture demo') .
-        '<tr><td>' . ext_screenshot("rendered_texture_with_background.png", 'RenderedTexture with background and mirrors thrown in') .
-        '</table>';
+    echo table_demo_images(array(
+      array('filename' => "rendered_texture.png", 'titlealt' => 'RenderedTexture demo'),
+      array('filename' => "rendered_texture_with_background.png", 'titlealt' => 'RenderedTexture with background and mirrors thrown in'),
+    ));
     ?>
 
     <p>Texture rendered from a specified viewpoint in the 3D scene.

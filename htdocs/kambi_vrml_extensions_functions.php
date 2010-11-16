@@ -54,15 +54,4 @@ function node_field($field_type, $field_inout, $field_name, $field_default, $fie
   return $r;
 }
 
-function ext_screenshot($image_name, $alt_and_title)
-{
-  return medium_image_progs_demo_core($image_name, $alt_and_title, '$alt', '',
-    /* $online_if_not_available: to see images in offline version.
-       They are aligned to the right, so even if working offline
-       (and images not available), empty image boxes will not look so bad.
-       And they are useful, they provide useful info for extensions.
-    */
-    true);
-}
-
 ?>
