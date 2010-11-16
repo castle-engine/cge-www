@@ -27,15 +27,15 @@ href="http://vrmlengine.sourceforge.net/"></a>
 
 <?php
   echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE);
-  echo '<table align="right" style="clear: right">' .
-    '<tr><td>' . medium_image_progs_demo_core("fountain_only_materials.png", '&quot;The Fountain&quot; level with only materials') .
-    '<tr><td>' . medium_image_progs_demo_core("fountain_shadows.png", '&quot;The Fountain&quot; level textured with shadows') .
-    '<tr><td>' . medium_image_progs_demo_core("fountain_toon_shading.png", '&quot;The Fountain&quot; level with toon shading GLSL program') .
-    '<tr><td>' . medium_image_progs_demo_core("fountain_bump_mapping_good_materials.png", '&quot;The Fountain&quot; level with bump mapping used') .
-    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_normal.png", '&quot;The Gate&quot; level with normal fill mode') .
-    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_solid_wireframe.png", '&quot;The Gate&quot; level with solid wireframe fill mode') .
-    '<tr><td>' . medium_image_progs_demo_core("gate_fill_mode_silhouette.png", '&quot;The Gate&quot; level with silhouette fill mode') .
-    '</table>';
+  echo table_demo_images(array(
+    array('filename' => 'fountain_only_materials.png', 'titlealt' => '&quot;The Fountain&quot; level with only materials'),
+    array('filename' => 'fountain_shadows.png', 'titlealt' => '&quot;The Fountain&quot; level textured with shadows'),
+    array('filename' => 'fountain_toon_shading.png', 'titlealt' => '&quot;The Fountain&quot; level with toon shading GLSL program'),
+    array('filename' => 'fountain_bump_mapping_good_materials.png', 'titlealt' => '&quot;The Fountain&quot; level with bump mapping used'),
+    array('filename' => 'gate_fill_mode_normal.png', 'titlealt' => '&quot;The Gate&quot; level with normal fill mode'),
+    array('filename' => 'gate_fill_mode_solid_wireframe.png', 'titlealt' => '&quot;The Gate&quot; level with solid wireframe fill mode'),
+    array('filename' => 'gate_fill_mode_silhouette.png', 'titlealt' => '&quot;The Gate&quot; level with silhouette fill mode'),
+  ));
 ?>
 
 <p>Contents:

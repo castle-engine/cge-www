@@ -24,10 +24,10 @@
 
 <?php
   echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE);
-  echo '<table align="right">' .
-    '<tr><td>' . medium_image_progs_demo("glviewimage_welcome.png", "glviewimage", false) .
-    '<tr><td>' . medium_image_progs_demo("glviewimage_dds.png", "glviewimage", false) .
-    '</table>';
+  echo table_demo_images(array(
+    array('filename' => 'glviewimage_welcome.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
+    array('filename' => 'glviewimage_dds.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
+  ));
  ?>
 
 <p><tt>glViewImage</tt> is an image viewer, converter and even

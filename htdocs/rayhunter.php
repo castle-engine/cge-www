@@ -20,19 +20,20 @@
   );
 ?>
 
-<?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER); ?>
+<?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
 
-<table align="right" class="table_with_thumbs_and_text" style="width: 110px">
-  <tr><td><?php echo image_tag('graz-wlight-1-classic-filt'); ?></td></tr>
-  <tr><td><?php echo image_tag('sibenik-wlight-1-classic-filt'); ?></td></tr>
-  <tr><td><?php echo image_tag('forest'); ?></td></tr>
-  <tr><td><?php echo image_tag('alien_two_mirrors_2'); ?></td></tr>
-  <tr><td><?php echo image_tag('zupa-wlight-path'); ?></td></tr>
-  <tr><td><?php echo image_tag('box-path-samp10x5-depth2-rroul0.5'); ?></td></tr>
-  <tr><td><?php echo image_tag('graz-wlight-1-path-filt'); ?></td></tr>
-  <tr><td>More sample images in
-    <?php echo a_href_page("rayhunter gallery.","raytr_gallery"); ?></td></tr>
-</table>
+  echo table_demo_images(array(
+    array('html' => image_tag('graz-wlight-1-classic-filt')),
+    array('html' => image_tag('sibenik-wlight-1-classic-filt')),
+    array('html' => image_tag('forest')),
+    array('html' => image_tag('alien_two_mirrors_2')),
+    array('html' => image_tag('zupa-wlight-path')),
+    array('html' => image_tag('box-path-samp10x5-depth2-rroul0.5')),
+    array('html' => image_tag('graz-wlight-1-path-filt')),
+    array('html' => '<div class="thumbs_cell_with_text_or_movie">More sample images in '
+      . a_href_page("rayhunter gallery.","raytr_gallery") . '</div>'),
+  ));
+?>
 
 <p><tt>rayhunter</tt> is a command-line program that takes
 a 3D model (like a VRML, X3D or 3DS file) and renders an image that

@@ -4,21 +4,18 @@
     'This component defines nodes for using high-level shading languages
      available on modern graphic cards.'
   );
-?>
 
-<table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
-  <tr><td>
-    <?php echo medium_image_progs_demo_core("glsl_teapot_demo.png", 'Teapot VRML model rendered with toon shading in GLSL'); ?>
-  </td></tr>
-  <tr><td>
-    This movie shows GLSL shaders by our engine. You can also
-    <?php echo current_www_a_href_size('get AVI version with much better quality',
-      'movies/2.avi'); ?>.
-    <?php if (!HTML_VALIDATION) { ?>
-    <object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="200" height="167"></embed></object>
-    <?php } ?>
-  </td></tr>
-</table>
+  echo table_demo_images(array(
+    array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot VRML model rendered with toon shading in GLSL'),
+    array('html' =>
+      '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine. You can also '
+      . current_www_a_href_size('get AVI version with much better quality', 'movies/2.avi')
+      . (!HTML_VALIDATION ?
+      '<object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="200" height="167"></embed></object>'
+      : '')
+      . '</div>'),
+  ));
+?>
 
 <p><?php echo x3d_node_link('ComposedShader'); ?> and
 <?php echo x3d_node_link('ShaderPart'); ?> nodes

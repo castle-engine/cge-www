@@ -11,11 +11,11 @@ href="http://vrmlengine.sourceforge.net/"></a>
 
 <?php
   echo pretty_heading('The Castle', VERSION_CASTLE);
-  echo '<table align="right" style="clear: right">' .
-    '<tr><td>' . medium_image_progs_demo("castle_screen_demo_1.png", "castle", false) .
-    '<tr><td>' . medium_image_progs_demo("castle_screen_demo_4.png", "castle", false) .
-    '<tr><td>' . medium_image_progs_demo("castle_screen_demo_5.png", "castle", false) .
-    '</table>';
+  echo table_demo_images(array(
+    array('filename' => 'castle_screen_demo_1.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+    array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+    array('filename' => 'castle_screen_demo_5.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+  ));
 ?>
 
 <div class="table_of_contents">

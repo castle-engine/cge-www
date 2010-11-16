@@ -619,13 +619,23 @@ function echo_standard_program_download(
    We will automatically divide $images into rows with $columns images
    (the last row may be left shorter).
 
-   Table uses absolute links (starting with CURRENT_URL),
-   and important work is done directly (without need for CSS classes),
-   so it's suitable for inclusion also in HTML RSS feeds.
+   The table uses absolute links (starting with CURRENT_URL).
+   The important work is always done directly (without need for CSS classes),
+   so $vrmlengine_force_absolute_url makes content suitable
+   for inclusion also in HTML RSS feeds.
+   (Maybe it will be conditional on global variable
+   $vrmlengine_force_absolute_url = true in the future.
+   If global variable $vrmlengine_force_absolute_url = false
+   and resource exists locally (is_file_available_locally) then
+   only local link will be done.)
 */
 function table_demo_images($images, $columns=1, $align='right')
 {
-  $result = '<table' . ($align != '' ? ' align="'.$align.'"' : '') . '>';
+  /* style="clear: right" is added to work nicely with Flattr images,
+     that are on some pages (like castle.php) directly above this table
+     and also aligned to the right. */
+  $result = '<table' . ($align != '' ? ' align="'.$align.'"' : '') .
+    ' style="clear: right">';
 
   $column_now = 0;
 

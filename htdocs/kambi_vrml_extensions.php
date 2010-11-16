@@ -614,16 +614,18 @@ EXTERNPROTO Text3D [
 
 <?php echo $toc->html_section(); ?>
 
-    <table align="right" class="table_with_movie_thumbnail table_with_thumbs_and_text">
-      <tr><td><?php echo ext_screenshot("fireplace_movie_texture_demo.png", 'Fireplace demo screenshot'); ?>
-      <tr><td>This movie shows how it looks animated. You can also
-        <?php echo current_www_a_href_size('get AVI version with much better quality',
-          'movies/fireplace_demo.avi'); ?>
-        <?php if (!HTML_VALIDATION) { ?>
-        <object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>
-        <?php } ?>
-      </td></tr>
-    </table>
+<?php
+  echo table_demo_images(array(
+    array('filename' => 'fireplace_movie_texture_demo.png', 'titlealt' => 'Fireplace demo screenshot'),
+    array('html' =>
+      '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated. You can also '
+      . current_www_a_href_size('get AVI version with much better quality', 'movies/fireplace_demo.avi')
+      . (!HTML_VALIDATION ?
+      '<object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>'
+      : '')
+      . '</div>'),
+  ));
+?>
 
     <p>For <tt>MovieTexture</tt> nodes, you can use an URL like
     <tt>image%d.png</tt> to load movie from a sequence of images.

@@ -9,15 +9,13 @@ object.movie_thumbnail {
   height: 167px;
 }
 
-table.table_with_thumbs_and_text {
+div.thumbs_cell_with_text_or_movie {
+  width: 210px;
   background: #DDD;
-  margin: 0.2em;
+  margin: 0em;
   padding: 0.2em;
   font-size: small;
-}
-
-table.table_with_movie_thumbnail {
-  width: 210px;
+  text-align: center;
 }
 
 /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */

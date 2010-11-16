@@ -13,11 +13,11 @@ and gen_function
   <span style="font-size: small">(version <?php echo VERSION_GEN_FUNCTION; ?>)</span></h1>
 
 <?php
-  echo '<table align="right">' .
-    '<tr><td>' . medium_image_progs_demo("glplotter_screen_demo_1.png", "glplotter", false) .
-    '<tr><td>' . medium_image_progs_demo("glplotter_screen_demo_2.png", "glplotter", false) .
-    '<tr><td>' . medium_image_progs_demo("glplotter_screen_demo_3.png", "glplotter", false) .
-    '</table>';
+  echo table_demo_images(array(
+    array('filename' => 'glplotter_screen_demo_1.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
+    array('filename' => 'glplotter_screen_demo_2.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
+    array('filename' => 'glplotter_screen_demo_3.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
+  ));
 ?>
 
 <p><i>glplotter</i> draws graphs. It can generate graphs
