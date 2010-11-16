@@ -28,14 +28,16 @@ href="http://vrmlengine.sourceforge.net/"></a>
 <?php
   echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE);
   echo vrmlengine_thumbs(array(
-    array('filename' => 'fountain_only_materials.png', 'titlealt' => '&quot;The Fountain&quot; level with only materials'),
-    array('filename' => 'fountain_shadows.png', 'titlealt' => '&quot;The Fountain&quot; level textured with shadows'),
-    array('filename' => 'fountain_toon_shading.png', 'titlealt' => '&quot;The Fountain&quot; level with toon shading GLSL program'),
-    array('filename' => 'fountain_bump_mapping_good_materials.png', 'titlealt' => '&quot;The Fountain&quot; level with bump mapping used'),
-    array('filename' => 'gate_fill_mode_normal.png', 'titlealt' => '&quot;The Gate&quot; level with normal fill mode'),
-    array('filename' => 'gate_fill_mode_solid_wireframe.png', 'titlealt' => '&quot;The Gate&quot; level with solid wireframe fill mode'),
-    array('filename' => 'gate_fill_mode_silhouette.png', 'titlealt' => '&quot;The Gate&quot; level with silhouette fill mode'),
-  ));
+    array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
+    array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
+    array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
+    array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
+    array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
+    array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+    array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
+    array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+    array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
+));
 ?>
 
 <p>Contents:
@@ -93,6 +95,10 @@ game engine. In short:
     'vrml_implementation_shaders'); ?>.
     So GLSL shaders are fully available
     for model designers, programmer doesn't have to do anything.
+
+  <li><b>Screen-space effects</b> in GLSL are very easy to create (see
+    <?php echo a_href_page('ScreenEffect docs',
+    'kambi_vrml_extensions_screen_effects'); ?>).
 
   <li>Advanced texturing, following X3D standard: <b>multi-texturing</b>,
     <b>cube map texturing</b> (can be loaded from separate files,
