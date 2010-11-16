@@ -100,6 +100,8 @@ For people who know a little GLSL: you have quite powerful toy for designing you
 <p><small>Developers: Screen effects may be defined inside VRML/X3D file, and they can also be defined (and controlled) directly in Object Pascal source code. You only have to override <a href="">TKamAbstractViewport.ScreenEffects and TKamAbstractViewport.GetScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code for a simple example. And see v3dscenescreeneffects.pas for more involved example straight from the view3dscene sources.</p>
 
 Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and few uses. New Screen Effects allow much more effects, with much nicer approach.
+
+I added a section about "Donating" to our "Support" page, and I added Flattr buttons in a couple of more important pages of our website.
 */
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
