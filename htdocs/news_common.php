@@ -93,7 +93,11 @@ Mention plan for next releases (sound, etc.).
 
 ViewpointGroup implemented: you can use it to create tree-like structure for viewpoints menu, and to hide some viewpoints from the menu. (link to our impl status).
 
-Screen Effects are implemented in view3dscene. These are neat effects done by post-processing the image with shaders. Try them by activating any effect (maybe more than one) in the <i>View -&gt; Screen Effects</i> menu. Right now there are only trivial grayscale, negative, and gamma tools.
+<b>Screen effects</b> is a new eye-candy feature in our engine. Eveyone is welcome to try the <i>View -&gt; Screen Effects</i> menu in view3dscene to try various interesting effects that can be applied on any 3D scene. Note that multiple effects can be used at once, this allows for various neat effects, see the screenshots on this page.
+
+For people who know a little GLSL: you have quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that can process the screen in any way you like. You have color buffer and depth buffer contents available, and with the power of GLSL shading language your possibilities are endless :) You can warp the view, make a fancy headlight in screen space, film grain, edge detection, blur, simple color operations (simple gamma correction, negative, etc.)... and many more :) <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">Documentation and examples of definining your own screen effects are here.</a>
+
+<p><small>Developers: Screen effects may be defined inside VRML/X3D file, and they can also be defined (and controlled) directly in Object Pascal source code. You only have to override <a href="">TKamAbstractViewport.ScreenEffects and TKamAbstractViewport.GetScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code for a simple example. And see v3dscenescreeneffects.pas for more involved example straight from the view3dscene sources.</p>
 
 Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and few uses. New Screen Effects allow much more effects, with much nicer approach.
 */

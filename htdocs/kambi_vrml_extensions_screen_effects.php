@@ -30,15 +30,15 @@ $toc->echo_numbers = true;
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p><i>Screen effects</i> allow you to create many effects
-by processing the rendered image. For&nbsp;demos, see:</p>
+<p><i>Screen effects</i> allow you to create nice effects
+by processing the rendered image. Demos:</p>
 
 <ul>
-  <li><p><?php echo a_href_page('view3dscene', 'view3dscene') ?>
-    menu <i>View -&gt; Screen Effects</i>. Note that you can activate
-    many effects at the same time.</p></li>
+  <li><p>Try the <i>View -&gt; Screen Effects</i> menu in <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
+    after loading any 3D scene.
+    Note that you can activate many effects at the same time.</p></li>
 
-  <li><p>VRML/X3D file <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effects.x3dv">screen_effects.x3dv</a>.
+  <li><p>Open the X3D file <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effects.x3dv">screen_effects.x3dv</a>.
     You should download full
     <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
     and open file <tt>x3d/screen_effects.x3dv</tt> there, to see the complete
@@ -47,8 +47,11 @@ by processing the rendered image. For&nbsp;demos, see:</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Define your own screen effects in VRML/X3D files by using
-the <tt>ScreenEffect</tt> node:</p>
+<p>You can define your own screen effects by using
+the <tt>ScreenEffect</tt> node in your VRML/X3D files. This allows you to process
+the rendered screen with GLSL shaders in any way you like. Color and depth buffer
+contents are available to your shader, and with the power of GLSL shading language
+your possibilities are endless :)</p>
 
 <?php echo node_begin("ScreenEffect : X3DChildNode");
   $node_format_fd_def_pad = 8;
@@ -66,7 +69,7 @@ child of the <tt>Switch</tt> node or such) and when the <tt>"enabled"</tt>
 field is <tt>TRUE</tt>.
 In the simple cases, you usually just add <tt>ScreenEffect</tt> node
 anywhere at the top level of your VRML/X3D file. If you use many
-<tt>ScreenEffect</tt> nodes, then their order matters: 
+<tt>ScreenEffect</tt> nodes, then their order matters:
 they process the rendered screen in the given order.</p>
 
 <p>You have to specify a shader to process the rendered screen by the
