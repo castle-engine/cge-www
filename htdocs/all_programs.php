@@ -19,6 +19,8 @@ function main_list_item($item_title, $anchor_name = '')
     '</div>';
 }
 
+/* Image used here for $image_name must have "program_link_size"
+   generated, so make sure it's listed in images/Makefile in PROGRAM_LINK_SIZE. */
 function program_image_link($title, $subtitle, $image_name, $page_name)
 {
   echo '<td class="program_image_link"><p>' .
