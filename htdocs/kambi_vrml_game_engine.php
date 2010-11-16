@@ -468,27 +468,30 @@ As a special exception, the copyright holders of this library give you permissio
 
 <?php echo $toc->html_section(); ?>
 
+<?php echo table_demo_images(array(
+  array('filename' => 'test_kambi_units_screen_demo.png', 'titlealt' => 'test_kambi_units')
+));
+?>
+
 <p>I'm managing a suite of automatic tests,
 in the spirit of <a href="http://www.extremeprogramming.org/">Extreme Programming</a>.
 On 2005-04-25 I converted my tests to use
 <a href="http://camelos.sourceforge.net/fpcUnit.html">fpcunit</a>
 (this is a close FPC analogy to <a href="http://www.junit.org/">JUnit for Java</a>)
-and it's <a href="http://www.lazarus.freepascal.org/">Lazarus</a> GUI runner.
+and it's <a href="http://www.lazarus.freepascal.org/">Lazarus</a> GUI runner.</p>
 
-<p>The tests are included with the rest of engine sources,
-see subdirectory <tt>tests/</tt>. This is a GUI program, so you can
-compile it from Lazarus. You can also compile a console version
-(that doesn't require any part of Lazarus LCL) by <tt>compile_console.sh</tt>
-script inside.
+<p>The tests are included in the engine sources,
+see the subdirectory <tt>tests/</tt>. You can open and run them
+from Lazarus to see a result in a nice GUI window.</p>
 
-<p>I will not give you a compiled executable of the testing program
-(after all, it would have little sense, because all tests would succeed,
-unless there's some problem specific to your OS configuration),
-but I am generous enough to show you a snapshot of a happy test_kambi_units
-program after successfully running all 86 tests:<br>
-<?php echo
-  medium_image_progs_demo('test_kambi_units_screen_demo.png', 'test_kambi_units', false)
-?>
+<p>You can also compile and run a console version, that doesn't require
+Lazarus (LCL), only pure FPC is needed:</p>
+
+<pre class="terminal">
+cd tests/
+./compile_console.sh
+./test_kambi_units -a
+</pre>
 
 <?php
   vrmlengine_footer();
