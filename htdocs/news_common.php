@@ -104,7 +104,7 @@ Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources
           'day' => 10,
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'tooltip_examine.png', 'titlealt' => 'Examine navigation tooltip'),
   array('filename' => 'tooltip_walkfly.png', 'titlealt' => 'Walk/Fly navigation tooltip'),
   array('filename' => 'billboards_0.png', 'titlealt' => 'Billboard demo'),
@@ -153,7 +153,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'fish.png', 'titlealt' => 'Fish and animals, by Elenka Besedova'),
   array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
   array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
@@ -201,7 +201,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'www_facelift_index.png', 'titlealt' => 'Snapshot comparing old and new index page look'),
   array('filename' => 'www_facelift_vrml_status.png', 'titlealt' => 'Snapshot comparing old and new vrml_implementation_status page look'),
 )) .
@@ -226,7 +226,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
   array('filename' => 'castle_siege_1.png', 'titlealt' => 'castle_siege model from DeleD sample models, converted to VRML by Stephen H. France'),
   array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
@@ -270,7 +270,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'jarjar.png', 'titlealt' => 'JarJar animation, made in X3D by Stephen H. France'),
   array('filename' => 'rendered_texture_output_events.png', 'titlealt' => 'RenderedTexture.rendering and ClipPlane demo: the teapot is sliced in half when rendering to the texture'),
 )) .
@@ -313,7 +313,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'rendered_texture_mirror.png', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
@@ -346,7 +346,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'sunny_street_tree_pcf16.png', 'titlealt' => 'Close up shadows on the tree, with Percentage Closer Filtering.'),
@@ -394,7 +394,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'ddracer_scene85.png', 'titlealt' => 'scene85'),
   array('filename' => 'ddracer_t128.png', 'titlealt' => 't128'),
   array('filename' => 'ddracer_t603coupe.png', 'titlealt' => 't603coupe'),
@@ -425,7 +425,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'view3dscene_bsuit.png', 'titlealt' => 'view3dscene showing tremulous battlesuit from MD3'),
 )) .
 '<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . news_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By the way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
@@ -441,7 +441,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
   array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
@@ -480,7 +480,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'multiple_viewports_teapot.png', 'titlealt' => 'multiple_viewports: simple teapot scene'),
   array('filename' => 'multiple_viewports_tower_mirror_raptor.png', 'titlealt' => 'multiple_viewports: scene with raptor animation and mirror by GeneratedCubeMapTexture'),
   array('filename' => 'multiple_viewports_shadows.png', 'titlealt' => 'multiple_viewports: animated shadows by shadow volumes'),
@@ -508,7 +508,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
   array('filename' => 'terrain2.png', 'titlealt' => 'Terrain 2'),
   array('filename' => 'terrain_wire_lod.png', 'titlealt' => 'Terrain - wireframe view showing our simple LOD approach'),
@@ -582,7 +582,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'scene_manager_demos_1.png', 'titlealt' => 'Screenshot from scene_manager_demos &mdash; two VRML scenes and one precalculated animation at once'),
   array('filename' => 'scene_manager_demos_2.png', 'titlealt' => 'Another screenshot from scene_manager_demos'),
 )) . '
@@ -693,7 +693,7 @@ end.
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'terrain_1.png', 'titlealt' => 'Terrain from noise'),
   array('filename' => 'terrain_2.png', 'titlealt' => 'Terrain from SRTM file'),
 )) . '<ol>
@@ -739,7 +739,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'ssao_barna29_on.png' , 'titlealt' => 'Barna29 (with SSAO)'),
   array('filename' => 'ssao_barna29_off.png', 'titlealt' => 'Barna29 (without SSAO)'),
   array('filename' => 'ssao_stairs_on.png' , 'titlealt' => 'Stairs (with SSAO)'),
@@ -783,7 +783,7 @@ table_demo_images(array(
           'guid' => '2009-09-07',
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
 )) . '
@@ -803,7 +803,7 @@ table_demo_images(array(
           'guid' => '2009-09-05',
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
 )) . '
 <p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
@@ -822,7 +822,7 @@ table_demo_images(array(
           'guid' => '2009-08-26',
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
   array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
@@ -870,7 +870,7 @@ table_demo_images(array(
           'guid' => '2009-08-13',
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'rendered_texture.png', 'titlealt' => 'RenderedTexture demo'),
 )) . '
 <p>New features in SVN:</p>
@@ -895,7 +895,7 @@ table_demo_images(array(
           'guid' => '2009-05-05',
           'short_description' => '',
           'description' =>
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
   array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
   array('filename' => 'anisotropic_demo.png', 'titlealt' => 'Demo how anisotropic filtering helps'),
@@ -939,7 +939,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
 )) . '
 
@@ -975,7 +975,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'dyn_ao_chinchilla.png', 'titlealt' => 'Chinchilla with Dynamic Ambient Occlusion'),
   array('filename' => 'dyn_ao_chinchilla_elements.png', 'titlealt' => 'Chinchilla elements used for Dynamic Ambient Occlusion'),
   array('filename' => 'dyn_ao_peach.png', 'titlealt' => 'Peach with Dynamic Ambient Occlusion'),
@@ -1031,7 +1031,7 @@ Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
 Changes:</p>
 
 " .
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'apple_lods.png', 'titlealt' => 'Apple model with various levels of detail'),
 )) . "
 
@@ -1101,7 +1101,7 @@ Major changes:
 
 
 " .
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'shadows_dynamic_2.png', 'titlealt' => 'Dynamic shadows screenshot'),
 ))
 . "
@@ -1141,7 +1141,7 @@ table_demo_images(array(
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'chinchilla_normal.png', 'titlealt' => 'Normal OpenGL lighting'),
   array('filename' => 'chinchilla_simple_occlusion.png', 'titlealt' => 'Rendering with simple ambient occlusion'),
   array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
@@ -1181,7 +1181,7 @@ Kambi VRML game engine 1.5.0', 'kambi_vrml_game_engine') . " release.
 Most notable improvements are:
 
 " .
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'kambi_script_ball_game.png', 'titlealt' => 'Simple game implemented in pure X3D with KambiScript'),
   array('filename' => 'kambi_script_particles.png', 'titlealt' => 'Particle engine programmed in pure X3D with KambiScript'),
   array('filename' => 'kambi_script_edit_texture.png', 'titlealt' => 'Texture editor (pure X3D with KambiScript)'),
@@ -1289,7 +1289,7 @@ is released and some other programs here get minor updates.</p>
 
 <p>New features of the engine and view3dscene:</p>
 
-" . table_demo_images(array(
+" . vrmlengine_thumbs(array(
   array('filename' => 'deranged_house_final_0.png', 'titlealt' => 'ProximitySensor in action'),
   array('filename' => 'ikea_bead_toy.png', 'titlealt' => 'Animation (IkeaBeadToy model from www.web3d examples)'),
 ))
@@ -1337,7 +1337,7 @@ is released and some other programs here get minor updates.</p>
     programs that capture OpenGL output).</p></li>
 
   <li>
-" . table_demo_images(array(
+" . vrmlengine_thumbs(array(
   array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
 ))
 . "
@@ -1381,7 +1381,7 @@ Jordi R. Cardona!)</a>.</p>"),
           'short_description' => '',
           'description' =>
 
-table_demo_images(array(
+vrmlengine_thumbs(array(
   array('filename' => 'laetitia_sprints_demo.png', 'titlealt' => 'Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator', 'linktarget' => CURRENT_URL .  'movies/laetitia_sprints.avi'),
 ))
 . "
@@ -1475,7 +1475,7 @@ web3d.org examples</a>.</p>"),
         as a movie file (with perfect quality, as opposed to using independent
         programs that capture OpenGL output).</p>
 
-' . table_demo_images(array(
+' . vrmlengine_thumbs(array(
   array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
 ))
 . '

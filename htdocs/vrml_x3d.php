@@ -3,7 +3,7 @@
   require_once 'vrml_implementation_common.php';
   vrmlx3d_header('What is VRML / X3D');
 
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
 //    array('filename' => 'castle_screen_3.png', 'titlealt' => 'Werewolves with shadows'),
 //    array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture with background and mirrors thrown in'),

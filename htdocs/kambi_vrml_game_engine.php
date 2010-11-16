@@ -27,7 +27,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 
 <?php
   echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE);
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'fountain_only_materials.png', 'titlealt' => '&quot;The Fountain&quot; level with only materials'),
     array('filename' => 'fountain_shadows.png', 'titlealt' => '&quot;The Fountain&quot; level textured with shadows'),
     array('filename' => 'fountain_toon_shading.png', 'titlealt' => '&quot;The Fountain&quot; level with toon shading GLSL program'),
@@ -468,7 +468,7 @@ As a special exception, the copyright holders of this library give you permissio
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo table_demo_images(array(
+<?php echo vrmlengine_thumbs(array(
   array('filename' => 'test_kambi_units_screen_demo.png', 'titlealt' => 'test_kambi_units')
 ));
 ?>

@@ -8,7 +8,7 @@
 // $toc = new TableOfContents(array());
 // $toc->echo_numbers = true;
 
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
     array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
     array('filename' => 'screen_effect_castle_hall_0.png', 'titlealt' => 'Castle Hall screen: no effects'),

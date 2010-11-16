@@ -22,7 +22,7 @@
 
 <?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
 
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('html' => image_tag('graz-wlight-1-classic-filt')),
     array('html' => image_tag('sibenik-wlight-1-classic-filt')),
     array('html' => image_tag('forest')),

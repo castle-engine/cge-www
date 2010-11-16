@@ -25,7 +25,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 
 <?php
   echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'view3dscene_2.0.0_screen_demo.png', 'titlealt' => 'Screenshot from &quot;view3dscene&quot;'),
     array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => 'Screenshot from &quot;view3dscene&quot;'),
     array('filename' => 'view3dscene_screen_demo_2.png', 'titlealt' => 'Screenshot from &quot;view3dscene&quot;'),

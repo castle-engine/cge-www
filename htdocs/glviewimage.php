@@ -24,7 +24,7 @@
 
 <?php
   echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE);
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'glviewimage_welcome.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
     array('filename' => 'glviewimage_dds.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
   ));

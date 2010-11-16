@@ -5,7 +5,7 @@
      available on modern graphic cards.'
   );
 
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot VRML model rendered with toon shading in GLSL'),
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine. You can also '

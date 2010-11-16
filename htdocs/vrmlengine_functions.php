@@ -629,7 +629,7 @@ function echo_standard_program_download(
    and resource exists locally (is_file_available_locally) then
    only local link will be done.)
 */
-function table_demo_images($images, $columns=1, $align='right')
+function vrmlengine_thumbs($images, $columns=1, $align='right')
 {
   /* style="clear: right" is added to work nicely with Flattr images,
      that are on some pages (like castle.php) directly above this table
@@ -681,7 +681,7 @@ function table_demo_images($images, $columns=1, $align='right')
    from $prog_name. */
 function default_program_thumbnail($prog_name)
 {
-  return table_demo_images(array(
+  return vrmlengine_thumbs(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
   ));
 }

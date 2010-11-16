@@ -13,7 +13,7 @@ and gen_function
   <span style="font-size: small">(version <?php echo VERSION_GEN_FUNCTION; ?>)</span></h1>
 
 <?php
-  echo table_demo_images(array(
+  echo vrmlengine_thumbs(array(
     array('filename' => 'glplotter_screen_demo_1.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
     array('filename' => 'glplotter_screen_demo_2.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
     array('filename' => 'glplotter_screen_demo_3.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
