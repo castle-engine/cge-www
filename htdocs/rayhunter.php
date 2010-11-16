@@ -1,6 +1,5 @@
 <?php
   require_once 'vrmlengine_functions.php';
-  require_once 'raytr_gallery_funcs.php';
 
   vrmlengine_header("rayhunter",
     "rayhunter - simple raytracer. Classic ray tracer " .
@@ -23,13 +22,13 @@
 <?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
 
   echo vrmlengine_thumbs(array(
-    array('html' => image_tag('graz-wlight-1-classic-filt')),
-    array('html' => image_tag('sibenik-wlight-1-classic-filt')),
-    array('html' => image_tag('forest')),
-    array('html' => image_tag('alien_two_mirrors_2')),
-    array('html' => image_tag('zupa-wlight-path')),
-    array('html' => image_tag('box-path-samp10x5-depth2-rroul0.5')),
-    array('html' => image_tag('graz-wlight-1-path-filt')),
+    array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
+    array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
+    array('filename' => 'forest.png', 'titlealt' => ''),
+    array('filename' => 'alien_two_mirrors_2.png', 'titlealt' => ''),
+    array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
+    array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),
+    array('filename' => 'graz-wlight-1-path-filt.png', 'titlealt' => ''),
     array('html' => '<div class="thumbs_cell_with_text_or_movie">More sample images in '
       . a_href_page("rayhunter gallery.","raytr_gallery") . '</div>'),
   ));
