@@ -158,7 +158,7 @@ shader:</p>
     Note that using <tt>gl_FragCoord.st</tt> as texture coordinate
     will work in simple cases too,
     but it's not adviced, because it will not work intuitively
-    when you use <a href="http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/ch02s04.html">custom viewports</a>
+    when you use <a href="http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <tt>gl_TexCoord[0].st</tt>
     will cooperate nicely with custom viewports.</p></li>
 
