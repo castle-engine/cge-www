@@ -22,8 +22,8 @@
          <?php echo x3d_node_link('Cone'); ?>,
          <?php echo x3d_node_link('Cylinder'); ?></p>
 
-    <p>Including support for <tt>solid</tt> field added in X3D,
-    allows to you to turn on or off back-face culling for them.</p></li>
+    <p>Including support for <tt>solid</tt> field (added in X3D),
+    so you can turn on or off back-face culling for them.</p></li>
 
   <li><p><?php echo x3d_node_link('ElevationGrid'); ?></p>
 
