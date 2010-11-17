@@ -15,6 +15,7 @@ $toc = new TableOfContents(array(
 $toc->echo_numbers = true;
 
   echo vrmlengine_thumbs(array(
+    array('filename' => 'screen_effect_blood_in_the_eyes.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
     array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
     array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
     array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
@@ -38,11 +39,13 @@ by processing the rendered image. Demos:</p>
     after loading any 3D scene.
     Note that you can activate many effects at the same time.</p></li>
 
-  <li><p>Open the X3D file <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effects.x3dv">screen_effects.x3dv</a>.
+  <li><p>Try the X3D files <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effects.x3dv">screen_effects.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>.
     You should download full
     <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
-    and open file <tt>x3d/screen_effects.x3dv</tt> there, to see the complete
-    demo with an example castle model underneath.</p></li>
+    and open files <tt>x3d/screen_effects*.x3dv</tt> there, to see the complete
+    working demos with an example castle model underneath.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
