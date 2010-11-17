@@ -156,6 +156,10 @@ and download them by commands below:
     <a href="http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/">Philippe
     David steep parallax mapping code</a>, based on <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">paper
     about steep mapping</a>.
+  <li><tt>blood_in_the_eyes</tt> texture based on a fragment of
+    <a href="http://ftp.gnome.org/pub/GNOME/teams/art.gnome.org/backgrounds/NATURE-Poppy_1024x768.jpg">Poppy
+    background by Pieter Krul (GNU LGPL)</a>
+    from  <a href="http://art.gnome.org/backgrounds/nature">art.gnome.org nature backgrounds</>.</li>
   <li>rest created by Kambi using <a href="http://www.gimp.org/">GIMP</a></li>
 </ul>
 
