@@ -160,7 +160,7 @@ shader:</p>
     or even totally ignore it for special tricks.
     Note that using <tt>gl_FragCoord.st</tt> as texture coordinate
     will work in simple cases too,
-    but it's not adviced, because it will not work intuitively
+    but it's not advised, because it will not work intuitively
     when you use <a href="http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <tt>gl_TexCoord[0].st</tt>
     will cooperate nicely with custom viewports.</p></li>
@@ -173,7 +173,7 @@ shader:</p>
   <li><p>If you set <tt>"needsDepth"</tt> to <tt>TRUE</tt> then we also pass
     <tt>"screen_depth"</tt>, a rectangle texture containing depth buffer contents,
     to the shader. You can define a uniform variable (<tt>sampler2DRect</tt> or
-    <tt>sampler2DRectShadow</tt>, the former is usually more useful for scren effects)
+    <tt>sampler2DRectShadow</tt>, the former is usually more useful for screen effects)
     to handle this texture in your shader.
     Remember to <b>always set "needsDepth" to TRUE if you want to use
     the <tt>"screen_depth"</tt></b>.</p>

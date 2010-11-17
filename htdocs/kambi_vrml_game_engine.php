@@ -49,7 +49,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 game engine. In short:
 
 <ul>
-  <li><p>Our main 3D scene format is <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, which is an open standard (you'll find you can export to it from virtually any 3D modeller), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (basic Collada, Wavefront, MD3 and others).</p></li>
+  <li><p>Our main 3D scene format is <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (basic Collada, Wavefront, MD3 and others).</p></li>
 
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want).</p></li>
 </ul>
@@ -85,7 +85,7 @@ game engine. In short:
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
     'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> (using various
-    implementations: basic multitexturing with dot3 (normalized by cube map or not),
+    implementations: basic multi-texturing with dot3 (normalized by cube map or not),
     GLSL normal, GLSL with classic parallax mapping, GLSL with steep parallax
     mapping and self-shadowing).</li>
 
@@ -114,7 +114,7 @@ game engine. In short:
     but magnitudes better &mdash; using clean ObjectPascal, for start.
     Also it allows you to easily create <b>menu bars, open/save file and similar
     dialogs</b> that are implemented using native controls (GTK (1.0 or 2.0, and yes,
-    GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
+    GTK 2.0 version is perfectly stable and advised) or WinAPI).</li>
 
   <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
@@ -217,7 +217,7 @@ for anything.
 these are not an
 essential part of the engine for now.
 The main way for
-intiializing OpenGL for games is by GLWindow unit that doesn't depend on
+initializing OpenGL for games is by GLWindow unit that doesn't depend on
 any Lazarus units. -->
 
 <p>Note: under Windows you will need some DLLs
@@ -232,7 +232,7 @@ for Windows users). In general, for all OSes, see section
 "Requirements" in the documentation of programs and make sure that
 you have appropriate libraries installed on your system.</p>
 
-<p>Alternatively, you can get the latest (bleeing-edge) sources from Subversion by:
+<p>Alternatively, you can get the latest (bleeding-edge) sources from Subversion by:
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
 
@@ -394,10 +394,10 @@ and sometimes some older releases:
   </li>
 
   <li><p><em>FPC 2.2.4</em> : will work OK for some time, although you're
-    adviced to upgrade to latest FPC.</p>
+    advised to upgrade to latest FPC.</p>
 
   <li><p><em>FPC 2.2.2</em> : will work OK for some time, although you're
-    adviced to upgrade to latest FPC.
+    advised to upgrade to latest FPC.
 
     <p>Note: under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
     linker errors like</p>
@@ -413,7 +413,7 @@ and sometimes some older releases:
   </li>
 
   <li><p><em>FPC 2.2.0</em> : will work OK for some time, although you're
-    adviced to upgrade to latest FPC.
+    advised to upgrade to latest FPC.
 
     <p><i>Note only for for x86_64</i>:
     to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
@@ -456,7 +456,7 @@ As a special exception, the copyright holders of this library give you permissio
 
 <p>Important notes:</p>
 <ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>kambi_vrml_game_enggine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>kambi_vrml_game_engine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
 
     <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
 

@@ -769,7 +769,7 @@ were quite old, and they didn't make much point anymore.
 - Smooth shading is obvious to anyone knowing 3D graphics (and normal people
   just don't care, default = smooth shading is good for them),
   and creaseAngle is part of VRML/X3D specification. So no point explaining it.
-- Raytracer UI is hopefully intuitive now, and does't need explaining.
+- Raytracer UI is hopefully intuitive now, and doesn't need explaining.
   They it's affected by window size and KambiNavigationInfo.octreeVisibleTriangles
   is obvious.
   That it's the same as rayhunter, is mentioned prominently in "features" list.t
