@@ -65,7 +65,7 @@ $toc->echo_numbers = true;
 <p><b>Compatibility</b> notes:</p>
 
 <ul>
-  <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceeded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
+  <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
 
     <p><?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
 
@@ -137,7 +137,7 @@ subdirectories.</p>
 
 <a name="ext_bump_mapping"></a><?php echo $toc->html_section(); ?>
 
-    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiApperance</tt>
+    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiAppearance</tt>
     node that adds some new fields useful for bump mapping:
 
     <?php
@@ -175,7 +175,7 @@ subdirectories.</p>
     automatically do appropriate bump mapping.</p>
 
     <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
-    method, done by pure multitexturing or GLSL programs, depending on
+    method, done by pure multi-texturing or GLSL programs, depending on
     OpenGL capabilities). If you additionally specify some texture as
     <tt>heightMap</tt> then parallax mapping
     (<a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
@@ -211,9 +211,9 @@ subdirectories.</p>
         ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
         field of Appearance") is also specified.</li>
       <li>This must be a simple 2D texture
-        node (like <tt>ImageTexture</tt>). For example multitexture is not
+        node (like <tt>ImageTexture</tt>). For example multi-texture is not
         allowed (bump mapping has
-        to configure it's own multitexturing setup to work).</li>
+        to configure it's own multi-texturing setup to work).</li>
       <li>Using bump mapping overrides your GLSL shaders on the same shape.
         Generally, bump mapping has to configure it's own shaders to work.</li>
       <li>Bump mapping is available only for geometry rendered through the
@@ -299,13 +299,13 @@ subdirectories.</p>
       <li><p>Shadow casters may be transparent (have material with
         <tt>transparency</tt> &gt; 0), this is handled perfectly.
 
-        <p>However, note that <i>all opqaue shapes must
+        <p>However, note that <i>all opaque shapes must
         be 2-manifold</i> and separately <i>all transparent shapes must
         be 2-manifold</i>. For example, it's Ok to have some transparent
         box cast shadows over the model. But it's not Ok to have a shadow casting
         box composed for two separate VRML shapes: one shape defines
         one box face as transparent, the other shape defines
-        the rest of box faces as opque.
+        the rest of box faces as opaque.
 
         <p>(For programmers: reasoning may be found in
         <tt>TVRMLGLScene.RenderSilhouetteShadowVolume</tt> comments,
@@ -332,7 +332,7 @@ subdirectories.</p>
       node_dots('all normal *Light fields') .
       node_field('SFBool', '[in,out]', 'kambiShadows' , 'FALSE') .
       node_field('SFBool', '[in,out]', 'kambiShadowsMain' , 'FALSE',
-        'meaningfull only when kambiShadows = TRUE') .
+        'meaningful only when kambiShadows = TRUE') .
       node_end();
     ?>
 
@@ -560,7 +560,7 @@ EXTERNPROTO Text3D [
 
       <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
         node from Parallel Graphics</a>. At the beginning I implemented this
-        externsion differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
+        extension differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
         for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
         these Parallel Graphics <tt>Text3D</tt> definition, so I decided
         to make my version compatible.</li>
@@ -590,7 +590,7 @@ EXTERNPROTO Text3D [
 
     <p>Sometimes you want to override results of this automatic detection.
     For example, maybe your texture has some pixels using full range alpha
-    but you stil want to use simpler rendering by alpha_test.
+    but you still want to use simpler rendering by alpha_test.
 
     <p>So we add new field to all texture nodes
     (<tt>ImageTexture</tt>, <tt>MovieTexture</tt>, also <tt>Texture2</tt>
