@@ -188,3 +188,10 @@ ProjectedTextureCoordinate : X3DTextureCoordinateNode {
   SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
 }
+
+ScreenEffect : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL      # [X3DMetadataObject]
+  SFBool     [in,out]      enabled     TRUE
+  SFBool     [in,out]      needsDepth  FALSE
+  MFNode     [in,out]      shaders     []        # [X3DShaderNode]
+}
