@@ -128,9 +128,15 @@ game engine. In short:
   <li><b>3D sound</b> by OpenAL helpers, including intelligent OpenAL sound manager
     and OggVorbis format handling.</li>
 
+  <li>Basic <b>2D controls rendered through OpenGL</b>
+    (buttons, panels, tooltips, menus etc.) are available.
+    Good for games, where making a custom-looking GUI (that fits with
+    your game theme) is important.</li>
+
   <li><b>Anti-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
 
-  <li><b>Ray-tracer</b> based on VRML models is implemented.</li>
+  <li>Simple <b>ray-tracer</b> is implemented
+    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>).</li>
 
   <li>Playing <b>movie files</b>. This includes loading and saving
     as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
