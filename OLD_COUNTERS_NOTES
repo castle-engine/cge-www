@@ -1,0 +1,32 @@
+(This is obsolete info for creating counters for 
+htdocs/kambi-php-lib/counter.php . I don't use them anymore,
+piwik gives me all that I need and more.)
+
+How counters dir was created:
+
+cd /tmp/persistent
+mkdir vrmlengine
+cd vrmlengine
+mkdir counters
+chgrp vrmlengine counters
+chmod g+x counters
+chmod g+w counters
+
+Result: l shows now
+drwxrwxr-x  2 kambi vrmlengine 4096 Jul 24 22:25 counters/
+
+Note that without "chmod o+w counters" other people
+cannot add new files or delete files from this directory
+(either using WWW scripts, that run as nobody, or from SF shell).
+Although they can freely modify or empty the files contents,
+hopefully this will secure me at least against some stupid attackers
+that try to "cd" some dirs inside /tmp/persistent/ and execute rm -Rf *.
+I cannot get real security on /tmp/persistent/ on SF, so I take what I can.
+
+This also means that all counter files will have to be created first,
+from shell server. init_counters.sh may be used to create counters
+from scratch, counters for pages previously existing on
+http://camelot.homedns.org/~michalis/ were moved to SF.
+
+Counters should have permissions 666 (read-write by all).
+There's no escape from this, Apache must be able to read-write them.
