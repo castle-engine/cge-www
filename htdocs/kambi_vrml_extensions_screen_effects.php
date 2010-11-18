@@ -54,10 +54,13 @@ by processing the rendered image. Demos:</p>
 <?php echo $toc->html_section(); ?>
 
 <p>You can define your own screen effects by using
-the <tt>ScreenEffect</tt> node in your VRML/X3D files. This allows you to process
-the rendered screen with GLSL shaders in any way you like. Color and depth buffer
-contents are available to your shader, and with the power of GLSL shading language
-your possibilities are endless :)</p>
+the <tt>ScreenEffect</tt> node in your VRML/X3D files.
+Inside the <tt>ScreenEffect</tt> node you provide your own shader code
+to process the screen, given the current color and depth buffer contents.
+With the power of GLSL shading language,
+your possibilities are endless :). You can warp the view,
+apply textures in screen-space, do edge detection,
+color operations and so on.</p>
 
 <?php echo node_begin("ScreenEffect : X3DChildNode");
   $node_format_fd_def_pad = 8;

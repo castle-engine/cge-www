@@ -75,34 +75,97 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* --------------------------------------------------------------------------- */
 
-/* next news:
 
-Screens from screen_effects!
+    array('title' => 'view3dscene 3.7.0 release: Screen effects, drag sensors, Billboard, and more',
+          'year' => 2010,
+          'month' => 11,
+          'day' => 18,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
+  array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
+  array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
+  array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
+  array('filename' => 'screen_effect_film_grain.png', 'titlealt' => 'Film grain effect'),
+  array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
+  array('filename' => 'tooltip_examine.png', 'titlealt' => 'Examine navigation tooltip'),
+  array('filename' => 'billboards_0.png', 'titlealt' => 'Billboard demo'),
+  array('filename' => 'bridge_final_0.png', 'titlealt' => 'Bridge model in engine examples'),
+), 2) .
+'<p>After 3 months of work, I\'m proud to present a new release
+of our VRML/X3D browser:
+' . news_a_href_page('view3dscene 3.7.0', 'view3dscene') . '.</p>
 
-At 3.7.0 release: mention that view3dscene download links,
-and easy instructions to get GNOME integration and thumbnailer (make screenshot),
-are now more visible on view3dscene webpage.
+<!--p>There are many new features and improvements, some of which were already
+announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
 
-  <li><p>The pages describing our ('VRML/X3D implementation status', vrml_implementation_status.php) for each X3D component are much improved. Each component page starts with a very short introduction, describing what the component is and how it's used in the most typical cases. Also, the node names are links to actual X3D specification pages.</p>
+<ul>
+  <li><p><b>Screen effects</b> is a new eye-candy feature in our engine. Try the <i>View -&gt; Screen Effects</i> menu in ' . news_a_href_page('view3dscene', 'view3dscene') . ' to try various interesting effects that can be applied on any 3D scene.</p>
 
-    <p>The idea behind these improvements is to give interested developers (in particular, the ones not familiar with VRML/X3D yet) a way to orient themselves, in the large number of VRML/X3D nodes. We give an easy overview of the component and the links to X3D specification to learn more details.</p>
+    <p>For people who know a little <a href="http://www.opengl.org/documentation/glsl/">GLSL (OpenGL Shading Language)</a>, this is quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that can process the screen in any way you like, given the color and depth buffer. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">Documentation and examples of definining your own screen effects are here.</a></p>
 
-    <p>And everything is of course interspersed with the details about our engine implementation, it's strength and current limitations.</p></li>
+    <p><small>Developers: Screen effects may also be defined (and controlled) directly from the Object Pascal source code. You only have to override <a href="http://vrmlengine.sourceforge.net/apidoc/html/KambiSceneManager.TKamAbstractViewport.html#ScreenEffects">TKamAbstractViewport.ScreenEffects and TKamAbstractViewport.GetScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code (' . news_a_href_page('in engine sources in examples/vrml/', 'kambi_vrml_game_engine') . ') for a simple example. And see <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/view3dscene/v3dscenescreeneffects.pas">v3dscenescreeneffects.pas</a> for more involved example straight from the ' . news_a_href_page('view3dscene', 'view3dscene') . ' sources.</small></p>
 
-Mention plan for next releases (sound, etc.).
+    <!--p>Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and little use. New Screen Effects allow much more effects, with a modern implementation.</p-->
+  </li>
 
-ViewpointGroup implemented: you can use it to create tree-like structure for viewpoints menu, and to hide some viewpoints from the menu. (link to our impl status).
+  <li><p><b>New nodes</b> implemented: <a href="http://vrmlengine.sourceforge.net/vrml_implementation_pointingdevicesensor.php">drag sensors (<tt>PlaneSensor, SphereSensor, CylinderSensor</tt>)</a>,
+    <a href="http://vrmlengine.sourceforge.net/vrml_implementation_rendering.php"><tt>ClipPlane</tt>, <tt>ColorRGBA</tt></a>,
+    <a href="http://vrmlengine.sourceforge.net/vrml_implementation_navigation.php"><tt>Billboard</tt>, <tt>ViewpointGroup</tt></a>,
+    <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_toggler">Toggler</a>.</p>
+  </li>
 
-<b>Screen effects</b> is a new eye-candy feature in our engine. Eveyone is welcome to try the <i>View -&gt; Screen Effects</i> menu in view3dscene to try various interesting effects that can be applied on any 3D scene. Note that multiple effects can be used at once, this allows for various neat effects, see the screenshots on this page.
+  <li><p>Major <b>improvements or fixes to existing nodes</b>:
+    <tt>Transform</tt> (and similar nodes from H-Anim) animation is greatly optimized.
+    Also changing <tt>Transform</tt> node containing light sources works fast now.
+    Many <a href="http://vrmlengine.sourceforge.net/vrml_implementation_time.php"><tt>TimeSensor</tt></a>,
+    <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a>,
+    <tt>OrthoViewpoint</tt> improvements.
+    <!--Events mechanism is optimized for many fields.-->
+    See ' . news_a_href_page('news archive for details', 'news') . '.</p></li>
 
-For people who know a little GLSL: you have quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that can process the screen in any way you like. You have color buffer and depth buffer contents available, and with the power of GLSL shading language your possibilities are endless :) You can warp the view, make a fancy headlight in screen space, film grain, edge detection, blur, simple color operations (simple gamma correction, negative, etc.)... and many more :) <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">Documentation and examples of definining your own screen effects are here.</a>
+  <li><p><b>Camera improvements</b>: Examine camera now honours <tt>Viewpoint</tt>
+    nodes. Swithing navigation mode preserves camera view.
+    Smooth transitions (following <tt>NavigationInfo.transitionType, NavigationInfo.transitionTime</tt> fields)
+    are done. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_head_bobbing">headBobbingDistance
+    is renamed into much more suitable headBobbingTime and expressed in seconds</a>.
+    Mouse wheel is supported for zooming in Examine mode.</p>
+  </li>
 
-<p><small>Developers: Screen effects may be defined inside VRML/X3D file, and they can also be defined (and controlled) directly in Object Pascal source code. You only have to override <a href="">TKamAbstractViewport.ScreenEffects and TKamAbstractViewport.GetScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code for a simple example. And see v3dscenescreeneffects.pas for more involved example straight from the view3dscene sources.</p>
+  <li><p><b>User interface improvements</b>: nice toolbar at the top of the window,
+    with most important buttons. Navigation mode buttons have tooltips (hover
+    mouse over them to see) describing camera controls.
+    Nice "%s warnings" button.</p></li>
 
-Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and few uses. New Screen Effects allow much more effects, with much nicer approach.
+  <li><p>Primitives (<tt>Box, Cone, Cylinder, Sphere</tt>) have the
+    <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord">texCoord</a>
+    field and work with <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a>,
+    multi-texturing, <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a> etc.</p>
+  </li>
 
-I added a section about "Donating" to our "Support" page, and I added Flattr buttons in a couple of more important pages of our website.
-*/
+  <li><p>New functions for <a href="http://vrmlengine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b> (SVN docs)</a>.</p></li>
+</ul>
+
+<p>Our website and documentation also got a lot of improvements.
+Most of them were already announced in previous news items, and will not
+be repeated now. Some new improvements:</p>
+
+<ul>
+  <li><p>' . news_a_href_page('view3dscene', 'view3dscene') . ' download links,
+    and easy instructions to get GNOME integration and thumbnailer,
+    are now more visible on view3dscene webpage.</p></li>
+
+  <li><p>The pages describing our ' . news_a_href_page('VRML/X3D implementation status', 'vrml_implementation_status') . ' for each X3D component are much improved. Each component page starts with a very short introduction, describing what the component is and how it\'s used in the most typical cases. Also, the node names are links to actual X3D specification pages.</p>
+
+    <p>The idea behind these improvements is to give interested developers (in particular, the ones not familiar with VRML/X3D yet) a way to orient themselves in the large number of VRML/X3D nodes. We give an easy overview of the component and the links to X3D specification to learn more details.</p>
+
+    <p>And everything is of course interspersed with the details about our engine implementation, it\'s strength and current limitations.</p>
+  </li>
+
+  <li><p>Finally, I added ' . news_a_href_page('a section about donating at the bottom of the "Support" page', 'support') . ' and a button to <a href="https://flattr.com/thing/82694/Kambi-VRML-game-engine">donate through Flattr</a> to a couple pages.</p></li>
+</ul>
+'),
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
           'year' => 2010,
