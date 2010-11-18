@@ -63,7 +63,8 @@ DOC_FILES_VRML='kanim_format.html
   vrml_implementation_text.html
   vrml_implementation_texturing3d.html
   vrml_implementation_texturing.html
-  vrml_implementation_time.html'
+  vrml_implementation_time.html
+  vrml_x3d.html'
 
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
 MAKE="$KAMBI_GNU_MAKE"
