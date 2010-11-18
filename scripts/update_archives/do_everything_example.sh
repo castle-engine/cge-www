@@ -17,5 +17,5 @@ set -eu
 # ./update_pascal_src.sh malfunction
 
 ./update_pascal_src.sh kambi_vrml_game_engine
-./update_pascal_src.sh kambi_vrml_test_suite
+./update_archives.sh kambi_vrml_test_suite
 
