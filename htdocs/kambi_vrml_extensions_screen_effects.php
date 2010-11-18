@@ -19,6 +19,7 @@ $toc->echo_numbers = true;
     array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
     array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
     array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
+    array('filename' => 'screen_effect_film_grain.png', 'titlealt' => 'Film grain effect'),
     array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
     // array('filename' => 'screen_effect_castle_hall_0.png', 'titlealt' => 'Castle Hall screen: no effects'),
     array('filename' => 'screen_effect_castle_hall_1.png', 'titlealt' => 'Castle Hall screen: edge detection effect, with some gamma and negative'),
@@ -42,7 +43,8 @@ by processing the rendered image. Demos:</p>
 
   <li><p>Try the X3D files <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effects.x3dv">screen_effects.x3dv</a>,
     <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>.
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download full
     <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
     and open files <tt>x3d/screen_effects*.x3dv</tt> there, to see the complete
