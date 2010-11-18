@@ -77,7 +77,7 @@ WIN_BINARY_PATH=/home/michalis/rel/win/
 FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
 
-WIN32_DLLS_PATH="/home/michalis/sources/kambi_update_archives/kambi_update_archives/win32_dlls/"
+WIN32_DLLS_PATH="${VRMLENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/win32_dlls/
 
 OFFLINE_DOCS_PATH="${VRMLENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
 
