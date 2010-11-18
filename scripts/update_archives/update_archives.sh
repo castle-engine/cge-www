@@ -637,6 +637,10 @@ case "$1" in
       kambi_vrml_test_suite/README.html
     cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}"vrmlengine.css \
       kambi_vrml_test_suite/
+    mkdir -p kambi_vrml_test_suite/images/
+    cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
+       "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
+       kambi_vrml_test_suite/images/
 
     find ./ -type f -and -exec chmod 644 '{}' ';'
     find ./ -type d -and -exec chmod 755 '{}' ';'
