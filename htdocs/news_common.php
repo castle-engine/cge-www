@@ -76,7 +76,7 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 /* --------------------------------------------------------------------------- */
 
 
-    array('title' => 'view3dscene 3.7.0 release: Screen effects, drag sensors, Billboard, and more',
+    array('title' => 'view3dscene 3.7.0 release: Screen effects, drag sensors, ClipPlane, Billboard, toolbar and much more',
           'year' => 2010,
           'month' => 11,
           'day' => 18,
@@ -101,11 +101,11 @@ of our VRML/X3D browser:
 announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
 
 <ul>
-  <li><p><b>Screen effects</b> is a new eye-candy feature in our engine. Try the <i>View -&gt; Screen Effects</i> menu in ' . news_a_href_page('view3dscene', 'view3dscene') . ' to try various interesting effects that can be applied on any 3D scene.</p>
+  <li><p><b>Screen effects</b> is a new eye-candy feature in our engine. Try the <i>View -&gt; Screen Effects</i> menu in ' . news_a_href_page('view3dscene', 'view3dscene') . ' for various effects that can be applied on any 3D scene.</p>
 
-    <p>For people who know a little <a href="http://www.opengl.org/documentation/glsl/">GLSL (OpenGL Shading Language)</a>, this is quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that can process the screen in any way you like, given the color and depth buffer. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">Documentation and examples of definining your own screen effects are here.</a></p>
+    <p>For people who know a little <a href="http://www.opengl.org/documentation/glsl/">GLSL (OpenGL Shading Language)</a>, this is quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that processes the screen in any way you like, given the color and depth buffer. <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">Documentation and examples of definining your own screen effects are here.</a></p>
 
-    <p><small>Developers: Screen effects may also be defined (and controlled) directly from the Object Pascal source code. You only have to override <a href="http://vrmlengine.sourceforge.net/apidoc/html/KambiSceneManager.TKamAbstractViewport.html#ScreenEffects">TKamAbstractViewport.ScreenEffects and TKamAbstractViewport.GetScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code (' . news_a_href_page('in engine sources in examples/vrml/', 'kambi_vrml_game_engine') . ') for a simple example. And see <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/view3dscene/v3dscenescreeneffects.pas">v3dscenescreeneffects.pas</a> for more involved example straight from the ' . news_a_href_page('view3dscene', 'view3dscene') . ' sources.</small></p>
+    <p><small>Developers: Screen effects may also be defined (and controlled) directly from the Object Pascal source code. You only have to override <a href="http://vrmlengine.sourceforge.net/apidoc/html/KambiSceneManager.TKamAbstractViewport.html#ScreenEffects">TKamAbstractViewport.GetScreenEffects and TKamAbstractViewport.ScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code (' . news_a_href_page('in engine sources in examples/vrml/', 'kambi_vrml_game_engine') . ') for a simple example. And see <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/trunk/view3dscene/v3dscenescreeneffects.pas">v3dscenescreeneffects.pas</a> for more involved example straight from the ' . news_a_href_page('view3dscene', 'view3dscene') . ' sources.</small></p>
 
     <!--p>Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and little use. New Screen Effects allow much more effects, with a modern implementation.</p-->
   </li>
@@ -144,7 +144,7 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
     multi-texturing, <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a> etc.</p>
   </li>
 
-  <li><p>New functions for <a href="http://vrmlengine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b> (SVN docs)</a>.</p></li>
+  <li><p>New functions for <a href="http://vrmlengine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
 </ul>
 
 <p>Our website and documentation also got a lot of improvements.
@@ -165,6 +165,8 @@ be repeated now. Some new improvements:</p>
 
   <li><p>Finally, I added ' . news_a_href_page('a section about donating at the bottom of the "Support" page', 'support') . ' and a button to <a href="https://flattr.com/thing/82694/Kambi-VRML-game-engine">donate through Flattr</a> to a couple pages.</p></li>
 </ul>
+
+<p>As usual, view3dscene release is accompanied by ' . news_a_href_page('new engine release (2.2.0)', 'kambi_vrml_game_engine') . ' (this is where the magic actually happens :), and ' . news_a_href_page('new Kambi VRML test suite release (2.9.0)', 'kambi_vrml_test_suite') . ' (which contains tests and demos of all the new features).</p>
 '),
 
     array('title' => 'Development news: Billboards, transform optimizations, UI: toolbars and hints, more',
