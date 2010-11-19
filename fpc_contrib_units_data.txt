@@ -1,7 +1,7 @@
 Name: Kambi VRML game engine
 Author: Michalis Kamburelis
-Version: 2.0.0
-File URL: http://downloads.sf.net/vrmlengine/kambi_vrml_game_engine-2.0.0-src.tar.gz
+Version: 2.2.0
+File URL: http://downloads.sf.net/vrmlengine/kambi_vrml_game_engine-2.2.0-src.tar.gz
 Homepage URL: http://vrmlengine.sourceforge.net/
 E-mail: michalis.kambi@gmail.com
 Date: ...
@@ -19,6 +19,7 @@ description:An open-source game engine. Features include:
   <li>Shadows by both shadow volumes (full implementation, with z-fail / z-pass switching, silhouette detection etc.) and shadow maps.</li>
   <li>Bump mapping (using various implementations: basic multitexturing with dot3 (normalized by cube map or not), GLSL normal, GLSL with classic parallax mapping, GLSL with steep parallax mapping and self-shadowing).</li>
   <li>Shaders. There are classes to easily use ARB fragment / vertex programs and GLSL shaders. Most important, you can add and control GLSL shaders from VRML. So GLSL shaders are fully available for model designers, programmer doesn't have to do anything.</li>
+  <li>Screen-space effects in GLSL.</li>
   <li>Advanced texturing, following X3D standard: multi-texturing, cube map texturing (can be loaded from separate files, DDS files, or captured during runtime), 3D textures, S3TC compressed textures, anisotropic filtering.</li>
   <li>Speeding up rendering by hardware occlusion query, a simple approach and more involved Coherent Hierarchical Culling.</li>
   <li>GLWindow unit is available to easily create windows with OpenGL context. The intention of this unit is to be something like glut, but magnitudes better - using clean ObjectPascal, for start. Also it allows you to easily create menu bars, open/save file and similar dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes, GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
@@ -26,7 +27,7 @@ description:An open-source game engine. Features include:
   <li>Handling of fonts, including rendering them with OpenGL, as bitmap or outline (3D) fonts.</li>
   <li>3D sound by OpenAL helpers, including intelligent OpenAL sound manager and OggVorbis format handling.</li>
   <li>Anti-aliasing (initializing OpenGL multi-sampling) is covered.</li>
-  <li>Ray-tracer based on VRML models is implemented.</li>
+  <li>Simple ray-tracer is implemented.</li>
   <li>Playing movie files. This includes loading and saving as image sequence or "real" movie files (ffmpeg is needed to encode / decode movie files). While the implementation is limited to a small movies for now (as memory consumption is large), it's perfect for flame or smoke animation in games. We even have a simple movie editor as an example program in engine sources.</li>
   <li>The engine is portable. Currently tested and used on Linux, FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64. Porters/testers for other OS/processors are welcome, the engine should be able to run on all modern OSes supported by FPC.</li>
   <li>There are many example programs, look in sources <tt>kambi_vrml_game_engine/examples/</tt> subdirectory.</li>
