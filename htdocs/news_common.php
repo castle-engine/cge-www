@@ -116,7 +116,7 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
     <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_toggler">Toggler</a>.</p>
   </li>
 
-  <li><p>Major <b>improvements or fixes to existing nodes</b>:
+  <li><p>Major <b>improvements and fixes to existing nodes</b>:
     <tt>Transform</tt> (and similar nodes from H-Anim) animation is greatly optimized.
     Also changing <tt>Transform</tt> node containing light sources works fast now.
     Many <a href="http://vrmlengine.sourceforge.net/vrml_implementation_time.php"><tt>TimeSensor</tt></a>,
