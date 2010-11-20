@@ -66,16 +66,8 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 
 <?php section(false); ?>
 
-<div class="download"><div class="download_title">Download view3dscene:</div><ul>
-<li><a href="http://downloads.sourceforge.net/vrmlengine/view3dscene-3.7.0-linux-i386.tar.gz"> for Linux (i386)</a></li>
-<li><a href="http://downloads.sourceforge.net/vrmlengine/view3dscene-3.7.0-linux-x86_64.tar.gz"> for Linux (x86_64)</a></li>
-<li><a href="http://downloads.sourceforge.net/vrmlengine/view3dscene-3.7.0-win-i386.zip"> for Windows (i386)</a></li>
-<li><i><small>Mac OS X release will be done on Saturday (2010-11-20)</small></i></li>
-</ul>
-</div>
-
-<?php /* echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); */ ?>
+<?php echo_standard_program_download('view3dscene', 'view3dscene',
+  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
