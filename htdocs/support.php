@@ -44,11 +44,13 @@ and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>
   <td>
-  <p><a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
+  <p><a href="https://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
 
   <p>You can <a href="https://sourceforge.net/donate/index.php?group_id=200653">donate
-  through SourceForge</a>. This allows to make a donation
-  using your <a href="https://www.paypal.com/">PayPal</a> account.</p>
+  through SourceForge</a>. This allows you to make a donation
+  from your <a href="https://www.paypal.com/">PayPal</a> account
+  (or you can just provide your credit card information to PayPal
+  for a one-time donation).</p>
 
   <p><small>If you donate while logged-in to your
   <a href="https://sourceforge.net/account/">SourceForge account</a>,
