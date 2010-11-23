@@ -42,7 +42,7 @@ GeneratedShadowMap : X3DTextureNode {
   SFNode     [in,out]      metadata         NULL                  # [X3DMetadataObject]
   SFString   [in,out]      update           "NONE"                # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
   SFInt32    []            size             128
-  SFNode     []            light            NULL                  # any light node
+  SFNode     []            light            NULL                  # [X3DLightNode]
   SFFloat    [in,out]      scale            1.1
   SFFloat    [in,out]      bias             4.0
   SFString   []            compareMode      "COMPARE_R_LEQUAL"    # ["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]
