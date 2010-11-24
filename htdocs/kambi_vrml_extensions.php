@@ -410,7 +410,14 @@ subdirectories.</p>
   or (for shadow maps) <a href="#section_ext_texture_gen_projective"><tt>ProjectedTextureCoordinate</tt></a>.
 
   <p>You can even use multi-texturing on primitives, with each texture unit
-  having a different generator.
+  having a different generator.</p>
+
+  <p>Note that you cannot use explicit <tt>TextureCoordinate</tt> nodes
+  for primitives, because you don't know the geometry of the primitive.
+  So only coordinate-generating nodes are allowed. If you use
+  <tt>MultiTextureCoordinate</tt> node here, it can also contain
+  only coordinate-generating nodes (<tt>TextureCoordinateGenerator</tt> or
+  <tt>ProjectedTextureCoordinate</tt>).</p>
 
   <?php
     echo node_begin('Box / Cone / Cylinder / Sphere');
