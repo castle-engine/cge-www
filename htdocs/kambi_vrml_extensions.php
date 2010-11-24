@@ -409,23 +409,39 @@ subdirectories.</p>
   <a href="#section_ext_tex_coord_worldspace">to make mirrors</a>),
   or (for shadow maps) <a href="#section_ext_texture_gen_projective"><tt>ProjectedTextureCoordinate</tt></a>.
 
-  <p>You can even use multi-texturing on primitives, with each texture unit
-  having a different generator.</p>
+  <p>You can even use multi-texturing on primitives, by
+  <tt>MultiGeneratedTextureCoordinate</tt> node. This works exactly like
+  standard <tt>MultiTextureCoordinate</tt>, except only coordinate-generating
+  children are allowed.</p>
 
   <p>Note that you cannot use explicit <tt>TextureCoordinate</tt> nodes
   for primitives, because you don't know the geometry of the primitive.
-  So only coordinate-generating nodes are allowed. If you use
-  <tt>MultiTextureCoordinate</tt> node here, it can also contain
-  only coordinate-generating nodes (<tt>TextureCoordinateGenerator</tt> or
-  <tt>ProjectedTextureCoordinate</tt>).</p>
+  For a similar reason you cannot use <tt>MultiTextureCoordinate</tt>
+  (as it would allow <tt>TextureCoordinate</tt> as children).</p>
 
   <?php
     echo node_begin('Box / Cone / Cylinder / Sphere');
     echo
     node_dots('') .
-    node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]') .
+    node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]') .
     node_end();
   ?>
+
+  <?php
+    echo node_begin('MultiGeneratedTextureCoordinate : X3DTextureCoordinateNode');
+    echo
+    node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+    node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate]') .
+    node_end();
+  ?>
+
+  <p><i>Note: <tt>MultiGeneratedTextureCoordinate</tt> is not available
+  in view3dscene &lt;= 3.7.0.</i> (Only in
+  <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly
+  builds</a> for now.) If you have to use the stable view3dscene, you can just use
+  standard <tt>MultiTextureCoordinate</tt> for now, it will in practice
+  work like <tt>MultiGeneratedTextureCoordinate</tt> too
+  (but this is only to keep compatibility).</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1847,7 +1863,7 @@ end;
       node_field('SFVec3f', '[]', 'size', '3 3 3') .
       node_field('SFBool', '[]', 'solid', 'TRUE') .
       node_field('SFBool', '[]', 'manifold', 'FALSE') .
-      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]') .
+      node_field('SFNode', '[in,out]', 'texCoord', 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]') .
       node_end();
     ?>
 
@@ -1857,15 +1873,13 @@ end;
     is 3.0 (all other sizes are actually slightly smaller).
     Changing size scales the teapot (assuming that size = 3 means "default size").</p>
 
-    <p>The <tt>"texCoord"</tt> field may contain a <tt>TextureCoordinateGenerator</tt>
-    (or <tt>ProjectedTextureCoordinate</tt>, or <tt>MultiTextureCoordinate</tt> with these children)
-    node specifying how texture coordinates are generated.
+    <p>The <tt>"texCoord"</tt> field may contain a texture-generating node.
     Very useful to quickly test various texture coordinate generators
     (e.g. for cube env mapping) on teapot.
     When <tt>texCoord</tt> is not present but texture coordinates
     are required (because appearance specifies a texture),
     we will generate default texture coords (using the same
-    alrgoithm as for <tt>IndexedFaceSet</tt>).</p>
+    alrgorithm as for <tt>IndexedFaceSet</tt>).</p>
 
     <p>The <tt>"solid"</tt> field has standard meaning: if true (default),
     it's assumed

@@ -161,7 +161,7 @@ Teapot : X3DGeometryNode {
   SFVec3f    []            size        3 3 3
   SFBool     []            solid       TRUE
   SFBool     []            manifold    FALSE
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
 RenderedTexture : X3DTextureNode {
@@ -184,24 +184,29 @@ Logger : X3DChildNode {
   XFAny      [in]          write
 }
 
+MultiGeneratedTextureCoordinate : X3DTextureCoordinateNode {
+  SFNode [in,out] metadata NULL [X3DMetadataObject]
+  MFNode [in,out] texCoord NULL [TextureCoordinateGenerator, ProjectedTextureCoordinate]
+}
+
 Box : X3DGeometryNode {
   ... all normal Box fields ...
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
 Cone : X3DGeometryNode {
   ... all normal Cone fields ...
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
 Cylinder : X3DGeometryNode {
   ... all normal Cylinder fields ...
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
 Sphere : X3DGeometryNode {
   ... all normal Sphere fields ...
-  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiTextureCoordinate]
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
 ProjectedTextureCoordinate : X3DTextureCoordinateNode {
