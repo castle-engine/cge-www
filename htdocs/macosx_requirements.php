@@ -96,7 +96,8 @@ welcome to help.</p>
     <p>It's a matter of creating and implementing a file like
     <tt>kambi_vrml_game_engine/src/glwindow/glwindow_(cocoa|carbon).inc</tt>,
     based on
-    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_implementation_template.inc</tt>.
+    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_backend_template.inc</tt>
+    ("implementation_template" in older engine versions).
     See <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>.
     See at other "backends" (currently GTK, WinAPI, Xlib, Glut are available)
     for examples how to implement such thing, everything is inside
