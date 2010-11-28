@@ -18,16 +18,15 @@ href="http://vrmlengine.sourceforge.net/"></a>
 
 <p><b>For developers:</b> <b>Kambi VRML game engine</b>
 is a free/open-source 3D (game) engine.
-The engine is written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
-code, and we have an excellent support for the
-<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
+The engine is&nbsp;written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
+code, and we have an&nbsp;excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
 (although other 3D model formats are also supported).
-See here <?php echo a_href_page('for detailed documentation and downloads for developers', 'kambi_vrml_game_engine'); ?>.</p>
+See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads for developers', 'kambi_vrml_game_engine'); ?>.</p>
 
-<p><b>For normal human beings:</b> this page is a collection of various
+<p><b>For normal human beings:</b> this page is a&nbsp;collection of&nbsp;various
 games and tools developed using our engine. <!--Most of them
 are somewhat related to 3D graphics.-->
-Two most important programs available here are
+Two&nbsp;most important programs available here are
 <a href="castle.php">"The Castle"</a> game and
 <a href="view3dscene.php">view3dscene</a> 3D model viewer.</p>
 
