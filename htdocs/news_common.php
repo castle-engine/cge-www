@@ -76,6 +76,38 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 /* --------------------------------------------------------------------------- */
 
 
+    array('title' => 'Development news: major improvements to engine API reference, future plans',
+          'year' => 2010,
+          'month' => 12,
+          'day' => 2,
+          'short_description' => '',
+          'description' =>
+'<p>In the last few days, I was working hard on making our
+<i>engine API reference</i> perfect.
+<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">The new and improved reference is here</a>, while
+' . news_a_href_page('the stable (old) reference is here', 'reference') . '.
+Of course at the next engine release, the new one will replace the old one :)</p>
+
+<ul>
+  <li><p><b>All units have now a nice documentation</b>, in English, suitable for <a href="http://pasdoc.sipsolutions.net/">PasDoc</a>, with nice formatting, abstracts etc.</p></li>
+
+  <li><p>While doing the above, I also had to revisit some of the really ancient code of the engine (as this is where most of the bad docs, that needed fixing / translating, were). This caused me to <b>cleanup and even remove some of the old cruft from the engine</b> &mdash; total of 7 units are gone (some removed completely, some were trimmed down to a tiny utilities that were integrated into another units), some miscellanaus old hacks (like opengltypes.inc stuff, or TSkyCube, some FPC 1.0.x hacks etc.) are also removed.</p>
+
+    <p>Out of curiosity, I did a line count on *.pas and *inc files in our engine (omitting auto-generated code). The total number is that since 2.2.0, the engine has 3863 lines <b>less</b>, making for code that much cleaner! Yeah!</p></li>
+
+  <li><p><b>Future plans</b>:
+    <ul>
+      <li><p><i>' . news_a_href_page('castle', 'castle') . ' 1.0.0 release</i> is planned very soon. This will not include any new user-visible new features, but will incorporate all the engine bugfixes and speed improvements from last engine versions. The idea is to signal that "castle" is mostly finished now, and we\'re ready for new challenges :) A new large game using our engine is planned (since quite some time already :)</p></li>
+
+      <li><p><i>' . news_a_href_page('view3dscene', 'view3dscene') . ' 3.8.0</i> is planned to include <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/sound.html">X3D Sound component</a> implementation. At least the basic stuff, that works easily using our current OpenAL framework and allocator.</p></li>
+
+      <li><p><i>' . news_a_href_page('view3dscene', 'view3dscene') . ' 3.9.0</i> is planned to have a more modern renderer, where <i>everything</i> rendered in 3D goes through VBO. This should make a performance boost for newer GPUs, also making some dynamic scenes work much faster. For older GPUs, the old rendering method (using locked vertex arrays and display lists) will be kept (and hopefully auto-selected).</p>
+
+        <p>This will also bring many GLSL shaders improvements. Full GLSL-only pipeline should be done in view3dscene 3.9.0 or 3.10.0.</p></li>
+    </ul>
+  </li>
+</ul>'),
+
     array('title' => 'view3dscene 3.7.0 release: Screen effects, drag sensors, ClipPlane, Billboard, toolbar and much more',
           'year' => 2010,
           'month' => 11,
