@@ -17,7 +17,7 @@ $toc = new TableOfContents(array(
   new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere.texCoord</tt>)', 'ext_tex_coord', 1),
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
-  new TocItem('Standard tex coord generation by <tt>TextureCoordinateGenerator.mode</tt>', 'ext_tex_coord_bounds', 1),
+  new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
   new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 1),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
@@ -528,10 +528,15 @@ subdirectories.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p>Two more values for <tt>TextureCoordinateGenerator.mode</tt>:</p>
+  <p>Three more values for <tt>TextureCoordinateGenerator.mode</tt>:</p>
 
   <ol>
     <li><tt>BOUNDS</tt>:
+      Automatically generate nice texture coordinates, suitable for 2D or 3D
+      textures. This is equivalent to either <tt>BOUNDS2D</tt> or <tt>BOUNDS3D</tt>,
+      depending on what type of texture is actually used during rendering.
+
+    <li><tt>BOUNDS2D</tt>:
       Automatically generate nice 2D texture coordinates, based on the local
       bounding box of given shape. This texture mapping is precisely defined
       by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/geometry3D.html#IndexedFaceSet"><tt>IndexedFaceSet</tt> description</a>.
