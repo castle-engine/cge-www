@@ -102,3 +102,13 @@ make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
 # let engine be compiled by compile_console.sh, in debug mode
 ./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
 ./test_kambi_units -a                    >> "$OUTPUT_LOG" 2>&1
+
+echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+echo 'Making docs:'                                                       >> "$OUTPUT_LOG"
+~/bin/vrmlengine_snapshot_remake_docs >> "$OUTPUT_LOG" 2>&1
+
+echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+echo 'Making reference using PasDoc:'                                     >> "$OUTPUT_LOG"
+~/bin/vrmlengine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
+
+echo "----------- That's all folks :)" >> "$OUTPUT_LOG"

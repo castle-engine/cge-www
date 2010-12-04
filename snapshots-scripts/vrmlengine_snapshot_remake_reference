@@ -3,10 +3,10 @@ set -eu
 
 cd ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/doc/pasdoc/
 make clean
-make
+make html
 
 OUTPUT_PATH="$HOME"/public_html/vrmlengine-snapshots/docs/reference/
 rm -Rf "$OUTPUT_PATH"
 mkdir "$OUTPUT_PATH"
-mv latex/docs.pdf "$OUTPUT_PATH"
+# mv latex/docs.pdf "$OUTPUT_PATH" # latex/pdf docs are not made, don't look good enough
 mv html "$OUTPUT_PATH"
