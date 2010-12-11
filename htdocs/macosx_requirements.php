@@ -57,12 +57,18 @@
     It is <i>not</i> necessary to use any fink packages from unstable
     branch !</p></li>
 
-  <li><p><b>OpenAL</b> for game sound (may be downloaded from Creative,
-    see download links from
-    <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">openal.org downloads</a>,
-    newer Mac OS X has this pre-installed ?)
-    along with <b>vorbisfile</b> (may be installed by
-    <a href="http://www.finkproject.org/">fink</a>).</p></li>
+  <li><p><b>vorbisfile</b> (may be installed by
+    <a href="http://www.finkproject.org/">fink</a>).
+    Without this, all my programs will still work fine, you just will not
+    hear OggVorbis music.</p></li>
+
+  <li><p><b>For Mac OS X older than Tiger (that is, 10.3 or older):
+    get OpenAL</b> for game sound. It may be downloaded from
+    Creative, see download links from
+    <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">openal.org downloads</a>.
+    For Mac OS X since Tiger, OpenAL comes already preinstalled.
+    Even without OpenAL installed, all my programs will still work fine,
+    you just will not get any sound.</p>
 </ul>
 
 <p>For libs installed by fink, you may have to add them to your libs
