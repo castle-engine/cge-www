@@ -88,7 +88,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'support' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Support'),
+  'support' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
 
   'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
     'sidebar' => true,

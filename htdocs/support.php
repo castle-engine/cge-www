@@ -1,19 +1,19 @@
 <?php
   require_once 'vrmlengine_functions.php';
-  vrmlengine_header('Support');
+  vrmlengine_header('Forum');
 
   echo pretty_heading($page_title, NULL, 'Ask for help, report bugs, discuss features');
 ?>
 
-<p>Go to our
-<?php echo FORUM_LINK; ?> (you can post without registering,
-or you can register with your
-<a href="https://sourceforge.net/">SourceForge</a> account).
-Or subscribe to our <?php echo MAILING_LIST_LINK; ?>.
-Any questions, discussion, announcements related to our
-VRML engine (and related programs like view3dscene) are welcome there.</p>
+<p><span style="font-weight: bold"><a href="<?php echo FORUM_URL; ?>">Go to our forum.</a></span> You can post without registering, or you can register with your <a href="https://sourceforge.net/">SourceForge</a> account.
+Any questions related to our VRML engine (and related programs like
+view3dscene) are welcome.
+</p>
 
-<p>Submit
+<p>Alternatively, if you prefer to send questions through email,
+you can subscribe and post to our <?php echo MAILING_LIST_LINK; ?>.</p>
+
+<p>You can also submit
 <a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
 <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature requests</a>,
 <a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>
