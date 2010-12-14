@@ -69,9 +69,8 @@ and view3dscene, and our games :) Thanks!</p>
   href="http://vrmlengine.sourceforge.net/"></a></p>
 
   <p>You can donate through <a href="http://flattr.com/">Flattr</a>
-  by clicking the button above. This allows you to donate
-  a small amount of money this month (click on the button again
-  next month to donate again, if you want :)</p>
+  by clicking the button above. Click the button again to subscribe
+  for a longer time.</p>
   </td>
 </tr></table>
 
