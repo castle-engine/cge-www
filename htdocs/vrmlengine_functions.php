@@ -655,10 +655,10 @@ function vrmlengine_thumbs($images, $columns=1, $align='right')
     {
       if (isset($image['linktarget']))
         $linktarget = $image['linktarget']; else
-        $linktarget = CURRENT_URL . 'images/progs_demo/original_size/' . $image['filename'];
+        $linktarget = CURRENT_URL . 'images/original_size/' . $image['filename'];
       $result .= '
           <a href="' . $linktarget . '" class="screenshot">
-            <img align="right" src="' . CURRENT_URL . 'images/progs_demo/medium_size/' . $image['filename'] . '"
+            <img align="right" src="' . CURRENT_URL . 'images/thumb_size/' . $image['filename'] . '"
             alt="' . $image['titlealt'] . '"
             title="' . $image['titlealt'] . '"
           /></a>';

@@ -24,7 +24,7 @@ function main_list_item($item_title, $anchor_name = '')
 function program_image_link($title, $subtitle, $image_name, $page_name)
 {
   echo '<td class="program_image_link"><p>' .
-    a_href_page("<img src=\"images/progs_demo/program_link_size/$image_name\"
+    a_href_page("<img src=\"images/program_link_size/$image_name\"
       alt=\"$title\" />", $page_name) .
     '</p><p class="program_image_link_title">' .
     a_href_page("<b>$title</b>", $page_name) .
