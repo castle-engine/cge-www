@@ -64,7 +64,8 @@ in one model):
 
     <p>One nice open-source modeller that can create such humanoids is
     <a href="http://www.seamless3d.com/">Seamless3D</a>, our implementation
-    was tested on <a href="http://www.seamless3d.com/browser_test/index.html">Lucy</a>.</p>
+    was tested on <a href="http://www.seamless3d.com/browser_test/index.html">Lucy</a>.
+    Make sure to export a version <i>without JavaScript</i>.</p>
 
     <p>TODO: animation of skinned humanoids is a little jerky on slower
     computers. This will be fully fixed with full-VBO renderer,
