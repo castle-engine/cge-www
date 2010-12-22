@@ -4,6 +4,10 @@
     'This component defines nodes for humanoid animation.');
 ?>
 
+<p>We support the H-Anim component, so you can
+render your humanoid and animate it through interpolators.
+Both skeletal and skinned animation is supported.</p>
+
 <p>Supported nodes:</p>
 
 <ul>
@@ -19,10 +23,6 @@
     <?php echo x3d_node_link('HAnimSite'); ?>,
     <?php echo x3d_node_link('HAnimDisplacer'); ?> (X3D version)
 
-    <p>We have the basic HAnim support, which means that we can correctly
-    render your human designed with HAnim nodes and efficiently animate it
-    through VRML interpolators.
-
     <p>As you see, X3D version has exactly the same nodes, working the same way,
     but with <tt>HAnim</tt> prefix before node name. (I have no idea why
     this prefix was added in X3D specification, but it's supported.)
@@ -31,15 +31,44 @@
     engine you can generally mix VRML versions",
     'kambi_vrml_extensions',
     'section_ext_mix_vrml_1_2'); ?>). But VRML authors/generators should
-    not overuse this, and try to conform to appropriate spec where possible.
+    not overuse this, and try to conform to appropriate spec where possible.</p>
+    </li>
+</ul>
 
-    <p>The implementation takes some care to handle all existing VRML versions:
-    <a href="http://h-anim.org/Specifications/H-Anim1.0/">HAnim 1.0</a>,
-    <a href="http://h-anim.org/Specifications/H-Anim1.1/">HAnim 1.1</a>,
-    <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
+<p>The implementation takes some care to handle all existing H-Anim versions:
+<a href="http://h-anim.org/Specifications/H-Anim1.0/">HAnim 1.0</a>,
+<a href="http://h-anim.org/Specifications/H-Anim1.1/">HAnim 1.1</a>,
+<a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
 
-    <p>Animating transformations of <tt>Joint</tt> nodes and such
-    is optimized, just like for <tt>Transform</tt> node.
+<p>Both H-Anim animation types are supported (they can also be mixed
+in one model):
+<ul>
+  <li><p><i>skeletal</i> &mdash; you place your geometry inside
+    joints (as segments or sites). This is simple, and joints
+    work then quite like animated transform nodes.
+    Animating transformations of <tt>Joint</tt> nodes and such
+    is optimized, just like for <tt>Transform</tt> node.</p>
+    </li>
+
+  <li><p><i>skinned</i> &mdash; place the actual geometry (shapes)
+    inside "<tt>HAnimHumanoid.skin</tt>" field.
+    Then you refer (<tt>USE</tt>) the skin coordinates in
+    "<tt>HAnimHumanoid.skinCoord</tt>". And finally,
+    in each joint you modify skin coordinates by
+    "<tt>HAnimJoint.skinCoord</tt>", "<tt>HAnimJoint.skinCoordWeight</tt>".</p>
+
+    <p><a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality
+    has a nice overview of how the X3D nodes should be set up</a>,
+    see also the X3D and <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19774-HumanoidAnimation/">latest H-Anim</a>
+    specifications of course.</p>
+
+    <p>One nice open-source modeller that can create such humanoids is
+    <a href="http://www.seamless3d.com/">Seamless3D</a>, our implementation
+    was tested on <a href="http://www.seamless3d.com/browser_test/index.html">Lucy</a>.</p>
+
+    <p>TODO: animation of skinned humanoids is a little jerky on slower
+    computers. This will be fully fixed with full-VBO renderer,
+    planned for view3dscene 3.9.0.</p></li>
 </ul>
 
 <?php
