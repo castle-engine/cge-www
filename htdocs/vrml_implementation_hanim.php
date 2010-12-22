@@ -55,7 +55,13 @@ in one model):
     Then you refer (<tt>USE</tt>) the skin coordinates in
     "<tt>HAnimHumanoid.skinCoord</tt>". And finally,
     in each joint you modify skin coordinates by
-    "<tt>HAnimJoint.skinCoord</tt>", "<tt>HAnimJoint.skinCoordWeight</tt>".</p>
+    "<tt>HAnimJoint.skinCoordIndex</tt>", "<tt>HAnimJoint.skinCoordWeight</tt>".</p>
+
+    <p>Remember that you also have to list (<tt>USE</tt>) all
+    the joints inside flat list "<tt>HAnimHumanoid.joints</tt>".
+    Actually, specification requires them in every case (not only
+    for skinned animation), but our engine <i>for now</i> uses them only
+    for joints that affect "<tt>skinCoordIndex</tt>".</p>
 
     <p><a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality
     has a nice overview of how the X3D nodes should be set up</a>,
