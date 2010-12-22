@@ -85,6 +85,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
   array('filename' => 'hanim_0.png', 'titlealt' => 'BoxMan with joints visualized'),
+  array('filename' => 'billboards_with_shadow.png', 'titlealt' => 'Billboards casting shadows'),
 ), 1) .
 '<p>I just implemented animating skinned humanoids, following the H-Anim specification. This is implemented in our engine, and in particular can be used by our ' . news_a_href_page('view3dscene', 'view3dscene') . '.</p>
 
