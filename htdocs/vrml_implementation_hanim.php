@@ -73,11 +73,15 @@ in one model):
     was tested on <a href="http://www.seamless3d.com/browser_test/index.html">Lucy</a>.
     Make sure to export a version <i>without JavaScript</i>.</p>
 
+    <p>You can try the <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    <i>Edit -&gt; Add Humanoids Joints Visualization</i>
+    menu option to see the joints centers and their names.</p>
+
     <p>TODO: animation of skinned humanoids is a little jerky on slower
     computers. This will be fully fixed with full-VBO renderer,
-    planned for view3dscene 3.9.0.</p></li>
+    planned for view3dscene 3.9.0.</p>
 
-    <p>TODO: <tt>skinNormal</tt> is not supported yet.</p>
+    <p>TODO: <tt>skinNormal</tt> is not supported yet.</p></li>
 </ul>
 
 <?php
