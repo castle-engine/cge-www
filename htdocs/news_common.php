@@ -75,6 +75,25 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'Development news: animating skinned H-Anim humanoids',
+          'year' => 2010,
+          'month' => 12,
+          'day' => 22,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
+  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
+  array('filename' => 'hanim_0.png', 'titlealt' => 'BoxMan with joints visualized'),
+), 2) .
+'<p>I just implemented animating skinned humanoids, following the H-Anim specification. This is implemented in our engine, and in particular can be used by our ' . news_a_href_page('view3dscene', 'view3dscene') . '.</p>
+
+<p><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_hanim.html">Documentation of current (SVN) H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="http://vrmlengine.sourceforge.net/vrml_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
+
+<p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
+
+<p>Check out also the new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i>.</p>
+'),
 
     array('title' => 'Development news: major improvements to engine API reference, future plans',
           'year' => 2010,
