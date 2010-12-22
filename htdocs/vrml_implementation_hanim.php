@@ -70,6 +70,8 @@ in one model):
     <p>TODO: animation of skinned humanoids is a little jerky on slower
     computers. This will be fully fixed with full-VBO renderer,
     planned for view3dscene 3.9.0.</p></li>
+
+    <p>TODO: <tt>skinNormal</tt> is not supported yet.</p>
 </ul>
 
 <?php
