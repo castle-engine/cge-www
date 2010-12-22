@@ -93,6 +93,25 @@ vrmlengine_thumbs(array(
 <p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
 
 <p>Check out also the new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i>.</p>
+
+<p>Other improvements in our engine and ' . news_a_href_page('view3dscene', 'view3dscene') . ':</p>
+
+<ul>
+  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord (SVN docs)</a>.</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*) (SVN docs)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li>Fix Collada-&gt;VRML conversion (thanks to Simon from <a href="http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3">forum</a>).</li>
+  <li>Zoom improved, to prevent going too far away from object by zoom-in.</li>
+  <li>Help wanted: if you\'re familiar with Mac OS X (and FreePascal), I outlined <a href="http://vrmlengine.sourceforge.net/macosx_requirements.php">here how you can help</a>.</li>
+  <li>Fixed <tt>view3dscene --screenshot</tt> modal box on invalid filename.</li>
+  <li>When local geometry (like coordinates) is often changed, shape changes into "dynamic" state: it\'s octree will be very simple, so we will not waste time on rebuilding it.</li>
+  <li>Make a nice warning when more than one value specified for SFNode field value in X3D encoding.</li>
+  
+  <li>Engine terrain demo works also on GPUs without GLSL support.</li>
+  <li>Fixes for rendering Walk/Fly tooltips in view3dscene on some GPUs.</li>
+  <li>Engine documentation improved a lot, I talked about this in details in <a href="http://vrmlengine.sourceforge.net/news.php?item=2010-12-2-development_news__major_improvements_to_engine_api_reference__future_plans">previous news post</a>.</li>
+  <!--li>Memory leaks when reading invalid XML files fixed.</li-->
+
+</ul>
 '),
 
     array('title' => 'Development news: major improvements to engine API reference, future plans',
