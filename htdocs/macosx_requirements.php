@@ -86,11 +86,14 @@ work on Mac OS X is admittedly a simple and straightforward port from Linux.
 It doesn't look natively (like other normal Mac OS X programs),
 it requires some uncommon libraries (not only X11, but also GTK and GtkGLExt
 from fink) and so on. If you're a developer familiar with Mac OS X
-native toolkit (as far as I know, this means
-<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a>
-or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>)
-and <a href="http://www.freepascal.org/">FreePascal</a> &mdash; you're most
+native toolkit and
+<a href="http://www.freepascal.org/">FreePascal</a> &mdash; you're most
 welcome to help.</p>
+
+<p><i>Mac OS X native toolkit</i> as far as I know means
+<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a>
+or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
+<a href="http://lists.lazarus.freepascal.org/pipermail/lazarus/2010-December/058470.html">This thread on Lazarus mailing list</a> (these are people actually making native Mac OS X stuff using FPC, so they know what they are talking about :) suggests the <i>Cocoa</i> is the right choice.</p>
 
 <p>The plan:</p>
 
