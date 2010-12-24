@@ -11,7 +11,7 @@
       new TocItem('Engine sources', 'engine_src', 1),
       new TocItem("Other programs' sources", 'program_sources', 1),
       new TocItem("Subversion (SVN) notes", 'svn', 1),
-      new TocItem('FPC version required', 'fpc_ver', 1),
+      new TocItem('FPC (Free Pascal Compiler) versions', 'fpc_ver', 1),
       new TocItem('License', 'license'),
       new TocItem('Documentation', 'docs'),
       new TocItem('Automatic tests', 'tests')
@@ -387,25 +387,22 @@ to compile most things by using ready provided compilation scripts.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The engine is meant to be compiled with
-<a href="http://www.freepascal.org/">Free Pascal Compiler (FPC)</a>.
-The policy is to always support the latest stable release of FPC,
-and sometimes some older releases:
+<p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
+(FPC)</a> to use our engine. You may also find it comfortable
+to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
+which is an IDE (editor, debugger etc.) built around FPC.</p>
+
+<p><b>We always support and advice the latest stable release of FPC
+(currently 2.4.2).</b>.</p>
+
+<p>We also support a couple of older FPC releases.
+Currently every FPC version &gt;= 2.0.4 is OK,
+although some older versions require some
+quirks to successfully compile:</p>
 
 <ul>
-  <li><p><em>FPC 2.4.0</em> : This is the simplest and best option
-    &mdash; works perfectly, and you can download already
-    compiled packages of it from
-    <a href="http://www.freepascal.org/">www.freepascal.org</a>.</p>
-  </li>
-
-  <li><p><em>FPC 2.2.4</em> : will work OK for some time, although you're
-    advised to upgrade to latest FPC.</p>
-
-  <li><p><em>FPC 2.2.2</em> : will work OK for some time, although you're
-    advised to upgrade to latest FPC.
-
-    <p>Note: under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
+  <li><p><b>FPC 2.2.2 and older</b>:
+    Under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
     linker errors like</p>
 
     <p><tt>/usr/local/lib/fpc/2.2.2/units/x86_64-linux/gtk2/gtk2.o: In function `GTK2_GTK_TYPE_FILE_FOLDER$$QWORD': gtk2.pas:(.text+0x105b5): undefined reference to `gtk_file_folder_get_type'</tt></p>
@@ -418,33 +415,26 @@ and sometimes some older releases:
     get a working executable.</p>
   </li>
 
-  <li><p><em>FPC 2.2.0</em> : will work OK for some time, although you're
-    advised to upgrade to latest FPC.
-
-    <p><i>Note only for for x86_64</i>:
-    to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
+  <li><p><b>FPC 2.2.0 and older</b>:
+    Only for x86_64: to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
     you have to use fixed glext.pas unit from engine sources
     (<tt>trunk/kambi_vrml_game_engine/src/opengl/x86_64/</tt>) or
     use newer FPC.</p>
   </li>
 
-  <li><p><em>FPC 2.0.4</em> : will work OK for some time from now
-    (2007-09-20). But you have to use GL units from FPC &gt;= 2.2.0,
+  <li><p><b>FPC 2.0.4 and older</b>:
+    You have to use GL units from FPC &gt;= 2.2.0,
     for example grab them from FPC SVN:</p>
 
 <pre class="terminal">
-  svn checkout http://svn.freepascal.org/svn/fpc/tags/release_2_2_0/packages/extra/opengl/
+svn checkout http://svn.freepascal.org/svn/fpc/tags/release_2_2_0/packages/extra/opengl/
 </pre>
 
   </li>
-
-  <li><p><em>Latest FPC development version,
-    downloadable from FPC SVN repository</em>, usually works.
-    However, you must remember that SVN version changes rapidly
-    and no-one can give any guarantee about current stability of FPC from SVN
-    (or stability of my programs compiled with this FPC).</p>
-  </li>
 </ul>
+
+<!--p>I also regularly test FPC from SVN,
+so it's usually painless to use even development FPC releases.</p-->
 
 <?php echo $toc->html_section(); ?>
 
