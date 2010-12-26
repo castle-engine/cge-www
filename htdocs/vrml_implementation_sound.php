@@ -11,6 +11,10 @@
 ));
 ?>
 
+<p><b>Work in progress: the sound support is not released yet.
+You have to use <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly
+builds</a> to test features described here.</b></p>
+
 <p><?php echo x3d_node_link('Sound'); ?> defines a sound in the 3D world.
 It contains (in the "<tt>source</tt>" field) an <tt>AudioClip</tt> node.
 Supported fields:</p>
