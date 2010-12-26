@@ -55,13 +55,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'vrml_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry2D'                      , 'vrml_implementation_geometry2d'          ); ?>  </td><td></td></tr>
   <tr><td><?php echo a_href_page('Text'                            , 'vrml_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td>Sound        </td><td>
-    Although our engine
-    supports 3D sounds and music (using OpenAL, sound formats
-    allowed now are WAV and OggVorbis), this is currently not integrated
-    with VRML in any way &mdash; it's only available if you use our engine
-    to write your own programs.
-    </td></tr>
+  <tr><td><?php echo a_href_page('Sound'                           , 'vrml_implementation_sound'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Lighting'                        , 'vrml_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Texturing'                       , 'vrml_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
   <tr><td><?php echo a_href_page('Interpolation'                   , 'vrml_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
