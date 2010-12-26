@@ -121,6 +121,7 @@ $vrmlengine_sitemap = array(
           'vrml_implementation_geometry3d'           => array('title' => 'Geometry3D'                      ),
           'vrml_implementation_geometry2d'           => array('title' => 'Geometry2D'                      ),
           'vrml_implementation_text'                 => array('title' => 'Text'                            ),
+          'vrml_implementation_sound'                => array('title' => 'Sound'                           ),
           'vrml_implementation_lighting'             => array('title' => 'Lighting'                        ),
           'vrml_implementation_texturing'            => array('title' => 'Texturing',
             'sub' => array(
