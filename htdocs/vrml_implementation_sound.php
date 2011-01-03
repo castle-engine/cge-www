@@ -25,22 +25,27 @@ Supported fields:</p>
   <li>priority (we have a smart sounds allocator, so it actually matters when you have many sounds playing at once)</li>
   <li>source (to indicate AudioClip node)</li>
   <li>spatialize. Note that multi-channel (e.g. stereo) sounds are never spatialized.</li>
+  <li>minFront and maxFront values are handled.</li>
 </ul>
 
 <p>TODO:</p>
 
 <ul>
-  <li>All sound nodes are treated like they would be in an active graph part.
+  <li><p>Our sound attenuation model is a little simpler than VRML/X3D requirements.
+    We have an inner sphere, of radius minFront, where sound gain is at maximum.
+    And we have an outer sphere, of radius maxFront, where sound gain drops
+    to zero. Between them sound gain drops linearly.</p>
+
+    <p>Contrast this with VRML/X3D spec, that requires two ellipsoids
+    (not just spheres). In our implementation, the sounds at your back
+    are attenuated just the same as the front sounds.
+    We simply ignore direction, minBack and maxBack fields.</p></li>
+
+  <li><p>All sound nodes are treated like they would be in an active graph part.
     In other words, a Sound node plays the same, regardless if it's an
     active or inactive child of LOD / Switch child nodes.</li>
-  <li>The ellipsoids defining sound range don't matter.
-    So Sound.direction, min/maxBack/Front are ignored.
-    Sound is always spatialized following the default OpenAL settings.
-    Beware of placing too many simultaneously playing sounds in your 3D world.
 
-    <p>This will be partially fixed for 3.8.0 release, such that minFront
-    and maxFront will matter.</li>
-  <li>Sounds are not sorted exactly like the specification says.
+  <li><p>Sounds are not sorted exactly like the specification says.
     In short, we only look at your given "priority" field,
     disregarding current sound distance to player and such.</li>
 </ul>
