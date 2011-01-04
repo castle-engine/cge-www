@@ -24,7 +24,7 @@ Supported fields:</p>
   <li>location (correctly transformed by Sound transformation; animating either location field and the transformation around it also works perfectly)</li>
   <li>priority (we have a smart sounds allocator, so it actually matters when you have many sounds playing at once)</li>
   <li>source (to indicate AudioClip node)</li>
-  <li>spatialize. Note that multi-channel (e.g. stereo) sounds are never spatialized.</li>
+  <li>spatialize. Note that <b>multi-channel (e.g. stereo) sounds are never spatialized</b>.</li>
   <li>minFront and maxFront values are handled.</li>
 </ul>
 
