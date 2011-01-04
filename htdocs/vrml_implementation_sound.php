@@ -67,17 +67,23 @@ Supported fields:</p>
     we just start playing, always from the beginning.</p>
 </ul>
 
+<li><i>Note about multiple instances:</i> VRML/X3D define the play/stop events
+at the <tt>AudioClip</tt> node (not at higher-level <tt>Sound</tt> node,
+which would be more useful IMO). This means that <tt>USE</tt>ing many times
+the same <tt>AudioClip</tt> or <tt>Sound</tt> nodes doesn't make much sense.
+You can only achieve the same sound, playing simultaneously the same thing,
+from multiple 3D sources. Since such simultaneous sounds are pretty useless,
+we don't even implement them (so don't reUSE <tt>AudioClip</tt> or <tt>Sound</tt> nodes,
+or an arbitrary one will be playing).
+If you want to use the same sound file many times, you will usually
+want to just add many <tt>AudioClip</tt> nodes, and set their <tt>url</tt>
+field to the same value. Our implementation is optimized for this case,
+we have an internal cache that will actually load the sound file only once,
+even when it's referenced by many <tt>AudioClip.url</tt> values.</p>
+
 <p>TODO: There's no streaming implemented yet. So too many and too long
 music files in one world may cause large memory consumption,
 and at the first play of a long sound there may be a noticeable loading delay.</p>
-
-<p>TODO: <tt>Sound</tt> and <tt>AudioClip</tt> nodes should only be
-instantiated once in the scene (don't USE it many times).
-The specification doesn't say what to do on multiple instantiated AudioClips,
-and I see no sensible interpretation. Playing all instances would be useless,
-as all audio clips have to start/stop playing at the same time
-(startTime and such is defined at AudioClip), so you would hear the same sound
-from various points of 3D space.</p>
 
 <p>TODO: Only <tt>AudioClip</tt> works as sound source for now.
 You cannot use <tt>MovieTexture</tt> as sound source.</p>
