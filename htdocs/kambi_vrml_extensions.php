@@ -437,12 +437,7 @@ subdirectories.</p>
   ?>
 
   <p><i>Note: <tt>MultiGeneratedTextureCoordinate</tt> is not available
-  in view3dscene &lt;= 3.7.0.</i> (Only in
-  <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly
-  builds</a> for now.) If you have to use the stable view3dscene, you can just use
-  standard <tt>MultiTextureCoordinate</tt> for now, it will in practice
-  work like <tt>MultiGeneratedTextureCoordinate</tt> too
-  (but this is only to keep compatibility).</p>
+  in older view3dscene &lt;= 3.7.0.</i>.</p>
 
 <?php echo $toc->html_section(); ?>
 

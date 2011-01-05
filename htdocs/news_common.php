@@ -75,6 +75,49 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
 /* --------------------------------------------------------------------------- */
 
+    array('title' => 'view3dscene 3.8.0: 3D sound, skinned H-Anim, more',
+          'year' => 2011,
+          'month' => 1,
+          'day' => 5,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
+  array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
+  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
+), 1) .
+'<p><b>3D sound in VRML/X3D</b> worlds is implemented. Grab the new ' . news_a_href_page('view3dscene 3.8.0', 'view3dscene') . ', and for some demo open files <tt>x3d/sound_final.x3dv</tt> and <tt>x3d/sound_location_animate.x3dv</tt> from the ' . news_a_href_page('kambi_vrml_test_suite', 'kambi_vrml_test_suite') . '. ' . news_a_href_page('Detailed documentation for Sound support is here', 'vrml_implementation_sound') . '.</p>
+
+<p>Note that you have to install some additional libraries to hear sounds (OpenAL to hear anything, and VorbisFile to load OggVorbis format). For Windows, these are already included in the zip file, and you actually don\'t have to do anything. For Linux, you should install them using your package managar. For Mac OS X, ' . news_a_href_page('OpenAL is already preinstalled and you can get VorbisFile from fink', 'macosx_requirements') . '.</p>
+
+<p>If you want to mute / unmute sound, you can use <i>File -&gt; Preferences -&gt; Sound</i> menu item of view3dscene. There\'s also <i>File -&gt; Preferences -&gt; Sound Device</i> choice. ' . news_a_href_page('Command-line options for controlling sound are documented here', 'openal_notes') . '.</p>
+
+<p>For developers, as usual we release a <b>new <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.3.0</a></b>. Besides sound in VRML/X3D, you will notice a new shiny SoundEngine (instance of TALSoundEngine, in ALSoundEngine unit) that makes using OpenAL a breeze from ObjectPascal code. Sample usage:</p>
+
+<pre class="sourcecode">
+var Buffer: TALBuffer;
+...
+Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
+SoundEngine.PlaySound(Buffer, ...); // see TALSoundEngine.PlaySound parameters
+</pre>
+
+<p>See the <a href="http://vrmlengine.sourceforge.net/reference.php">engine reference</a>, in particular <a href="http://vrmlengine.sourceforge.net/apidoc/html/ALSoundEngine.TALSoundEngine.html">TALSoundEngine class reference</a>, for details. You can try adding this code spinnet to any example in engine sources, e.g. to the <tt>examples/vrml/scene_manager_demos.lpr</tt>.</p>
+
+<p><b>Animating skinned H-Anim humanoids</b> is also implemented. You can use view3dscene to open e.g. <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>. The <a href="http://vrmlengine.sourceforge.net/vrml_implementation_hanim.php">details about H-Anim support are here</a>. The new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i> may be useful too.</p>
+
+<p>See also the video below. At first you see InstantReality results and then the view3dscene. Thanks to Peter "griff" Griffith for testing and creating this video!</p>
+
+' . (!HTML_VALIDATION ? '<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/v20CFbKWAYU?fs=1&amp;hl=pl_PL"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/v20CFbKWAYU?fs=1&amp;hl=pl_PL" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>' : '') . '
+
+<p>Some <b>other notable features</b> implemented:</p>
+
+<ul>
+  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li><a href="http://vrmlengine.sourceforge.net/reference.php">Engine reference for developers</a> improved a lot.</li>
+</ul>
+'),
+
     array('title' => 'Development news: animating skinned H-Anim humanoids',
           'year' => 2010,
           'month' => 12,
@@ -106,7 +149,7 @@ vrmlengine_thumbs(array(
   <li>Fixed <tt>view3dscene --screenshot</tt> modal box on invalid filename.</li>
   <li>When local geometry (like coordinates) is often changed, shape changes into "dynamic" state: it\'s octree will be very simple, so we will not waste time on rebuilding it.</li>
   <li>Make a nice warning when more than one value specified for SFNode field value in X3D encoding.</li>
-  
+
   <li>Engine terrain demo works also on GPUs without GLSL support.</li>
   <li>Fixes for rendering Walk/Fly tooltips in view3dscene on some GPUs.</li>
   <li>Engine documentation improved a lot, I talked about this in details in <a href="http://vrmlengine.sourceforge.net/news.php?item=2010-12-2-development_news__major_improvements_to_engine_api_reference__future_plans">previous news post</a>.</li>
