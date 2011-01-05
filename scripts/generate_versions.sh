@@ -68,9 +68,9 @@ version_explicit glinformation_glut `glinformation --version`
 version_call gen_function
 
 # Keep this synchronized with P.Version in ../../kambi_vrml_game_engine/fpmake.pp
-version_explicit kambi_vrml_game_engine 2.2.0
+version_explicit kambi_vrml_game_engine 2.3.0
 
-version_explicit kambi_vrml_test_suite 2.9.0
+version_explicit kambi_vrml_test_suite 2.10.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 
