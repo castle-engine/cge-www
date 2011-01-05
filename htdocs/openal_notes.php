@@ -8,7 +8,6 @@
       new TocItem('Installing OpenAL', 'install'),
       new TocItem('Command-line options respected by all my programs that use OpenAL',
         'options'),
-      new TocItem('FreeBSD specific notes', 'freebsd')
     )
   );
 ?>
@@ -33,16 +32,14 @@ Section below describes how to install OpenAL in the
 <dl>
   <dt>Linux users:</dt>
   <dd><p>Install appropriate package for your Linux distribution.
-    Under <i>Debian etch</i> this is package <tt>libopenal0a</tt>,
-    under <i>Debian lenny</i> <tt>libopenal1</tt>. For other distros,
-    look for something similar, with <tt>openal</tt> in their name.
-    </p>
+    Look for a package named like <tt>libopenal*</tt>.</p>
 
     <p>My games work with both common OpenAL implementations:
     <i>OpenAL Sample Implementation</i> (the original implementation,
     from Loki, unmaintained) and
     <a href="http://kcat.strangesoft.net/openal.html">OpenAL Soft</a>
-    (the newer, maintained version).</p>
+    (the newer, maintained version). Modern distributions (at least Debian
+    and Ubuntu) contain <i>OpenAL Soft</i>.</p>
     </dd>
 
   <dt>FreeBSD users:</dt>
@@ -107,12 +104,11 @@ source code</a> instructions.
       <dd><p>The default device selected on Linux should usually be ALSA,
         and should work just perfect on modern systems.</p>
 
-        <p>That said, you can check various available devices and
-        try them out. Enumerating available devices (for example by
-        <tt> --print-audio-devices</tt> command-line option
+        <p>That said, you can check various available devices and try them out.
+        Use the <tt>--help</tt> command-line option,
         or <i>Sound output device</i> menu item in
-        <?php echo a_href_page('The Castle', 'castle'); ?>) should work.
-        You can select and try other devices.</p>
+        <?php echo a_href_page('The Castle', 'castle'); ?>),
+        or <i>File -&gt; Preferences -&gt; Sound Device</i> to see the available devices.</p>
 
         <p>A useful device is <i>"Wave File Writer"</i>, to record
         3D sound to file. Note that you have to specify output filename
@@ -206,39 +202,15 @@ file = /tmp/output.wav
       <dt>Windows users:</dt>
       <dd><p>Newer Creative's OpenAL implementation has two devices:
         <tt>Generic Hardware</tt> (uses <tt>DirectSound3D</tt>)
-        and <tt>Generic Software</tt> (uses <tt>DirectSound</tt>).
+        and <tt>Generic Software</tt> (uses <tt>DirectSound</tt>).<p>
 
-        <p>Like with Unices, it may be worth checking every
-        available device to find which one suits you best.
-        Call my programs with command-line options like
-        <pre>
-  --audio-device "Generic Hardware"
-  --audio-device "Generic Software"
-</pre>
+        <p>As far as I know, <tt>Generic Software</tt> can only support
+        stereo sound (2 channels, not more). On the other hand, it sometimes
+        sounds better than <tt>Generic Hardware</tt>.
       </dd>
     </dl>
   </dd>
-
-  <dt>--print-audio-devices</dt>
-  <dd><p>Query OpenAL for a list of available devices. Prints
-    all allowed arguments for <tt>--audio-device</tt>
-    option given above. Note that not all OpenAL
-    implementations support it.</dd>
 </dl>
-
-<?php echo $toc->html_section(); ?>
-
-<p><b>In FreeBSD 5.x</b> I had some serious problems getting OpenAL to
-work smoothly within my OpenGL programs.
-It was reported on openal mailing list, but this was probably the kind of problem
-that results from a combination of various things &mdash;
-like my particular sound card, maybe combined with NVidia OpenGL using
-some significant CPU time etc. So nothing was solved.
-Only <tt>waveout</tt> and <tt>null</tt> OpenAL devices worked correctly.
-So if you experience problems, you should probably live without
-OpenAL sound under FreeBSD. Run my programs with <tt>--no-sound</tt> option.</p>
-
-<p><b>In FreeBSD 6.x</b> I was glad to notice that OpenAL works smoothly.</p>
 
 <?php
   vrmlengine_footer();
