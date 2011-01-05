@@ -415,9 +415,9 @@ case "$1" in
   view3dscene)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" view3dscene
-    binary_add_doc view3dscene.html $DOC_FILES_GL_PARAMS $DOC_FILES_VRML
+    binary_add_doc view3dscene.html openal_notes.html $DOC_FILES_GL_PARAMS $DOC_FILES_VRML
     update_small_program view3dscene "$WIN_BINARY_PATH"
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
+    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
     if [ "$TARGET_OS" = linux   ]; then binary_add_view3dscene_desktop; fi
     if [ "$TARGET_OS" = freebsd ]; then binary_add_view3dscene_desktop; fi
