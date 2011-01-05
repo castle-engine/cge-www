@@ -753,83 +753,10 @@ directory.</p>
 </dl>
 
 <p>As usual all
-<?php echo a_href_page("standard options understood by my OpenGL programs",
-"opengl_options") ?> are also allowed.
-See also <?php echo a_href_page(
-"notes about command-line options understood by my programs", "common_options") ?>.
-
-<?php
-
-/*
-------------------------------------------------------------------------------
-These two sections:
-  new TocItem('A few words about flat/smooth shading', 'sthg_about_shading'),
-  new TocItem('Notes about ray-tracer', 'raytracer'),
-were quite old, and they didn't make much point anymore.
-- Smooth shading is obvious to anyone knowing 3D graphics (and normal people
-  just don't care, default = smooth shading is good for them),
-  and creaseAngle is part of VRML/X3D specification. So no point explaining it.
-- Raytracer UI is hopefully intuitive now, and doesn't need explaining.
-  They it's affected by window size and KambiNavigationInfo.octreeVisibleTriangles
-  is obvious.
-  That it's the same as rayhunter, is mentioned prominently in "features" list.t
-So I remove them (leaving in comments for now). Let's not clutter the documentation.
-
-section(); ? >
-
-<p>Using menu item <i>View -&gt; Smooth shading</i> you
-can switch between using flat and smooth shading. Default is to use
-smooth shading.
-
-<p>Flat shading means that each triangle has only one normal vector
-and only one solid color. Smooth shading means that adjacent triangles
-with a <i>similar</i> plane can share the same normal vectors at their
-common edges. In effect shapes that are approximating some perfectly smooth
-surfaces (e.g. spheres) may be rendered better with smooth shading.
-Moreover smooth shading allows triangle to have different material
-properties at each vertex (e.g. one vertex is yellow, the other one is blue),
-you can see example of this in
-< ?php echo a_href_page('Kambi VRML test suite',
-'kambi_vrml_test_suite'); ? >
- in file <tt>vrml_1/materials.wrl</tt>.
-
-<p>Group of planes are <i>similar</i> if angle between each pair
-of planes is smaller than <b>creaseAngle</b> value (of last seen
-<b>ShapeHints</b> in VRML 1.0, or of the given geometry node in VRML &gt;= 2.0).
-For other 3D model formats we use
-default <tt>creaseAngle</tt> = 0.5 radians (a little less than 30 degrees).
-
-<p>Note: if VRML file already had some normal vectors recorded
-(in <tt>Normal</tt> nodes) then program will use them, in both flat
-and smooth shading.
-Usually it's not important but to be sure that proper normals are
-used you can use menu item <i>"Edit -> Remove normals info from scene"</i>.
-
-< ?php section(); ? >
-
-<p>Use menu item <i>Display -&gt; Raytrace!</i> to render image using
-ray-tracing. I implemented two ray-tracing versions: classic
-(Whitted-style) and path tracing. view3dscene will ask you which
-algorithm to use, and with what parameters.
-
-<p>Rendered image will be successively displayed.
-You can press <tt>Escape</tt> to stop the process if it takes too long.
-After generating image program will wait for pressing <tt>Escape</tt>,
-you can also save generated image to file.
-
-<p>What to do to make this process less time-consuming?
-First of all, the simplest thing to do is to shrink the window.
-Second, the quality of octree has great influence on rendering time
-&mdash; you can try tightening it by <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
-inside VRML/X3D file
-(see < ?php echo a_href_page_hashlink('octree properties extension',
-'kambi_vrml_extensions', 'section_ext_octree_properties'); ? >).</p>
-
-<p>More detailed description of how ray-tracer works is given in
-< ?php echo a_href_page('documentation of rayhunter', 'rayhunter'); ? >.
-
-*/
-?>
+<?php echo a_href_page("standard options understood by OpenGL programs", "opengl_options") ?>,
+<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal_notes'); ?>,
+<?php echo a_href_page('standard options understood by all my programs','common_options'); ?>
+ are allowed. Run with command-line <tt>--help</tt> to get full list.
 
 <?php section(); ?>
 
