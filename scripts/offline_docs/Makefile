@@ -55,7 +55,8 @@ ALL_HTMLS:=view3dscene.html \
   vrml_implementation_text.html \
   vrml_implementation_texturing3d.html \
   vrml_implementation_texturing.html \
-  vrml_implementation_time.html
+  vrml_implementation_time.html \
+  vrml_x3d.html
 
 #LOCALLY_AVAIL:=$(ALL_HTMLS)
 LOCALLY_AVAIL:=
