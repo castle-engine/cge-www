@@ -47,7 +47,7 @@ Section below describes how to install OpenAL in the
     the trick.</p></dd>
 
   <dt>Mac OS X users:</dt>
-  <dd><p>Newer Mac OS X seems to have this automatically installed.
+  <dd><p>New Mac OS X installs have OpenAL already installed.
     If not, you can download and run
     <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">Creative
     free OpenAL installer for Mac OS X</a>. (Choose <i>OpenAL_Installer_OSX</i>,
@@ -56,7 +56,7 @@ Section below describes how to install OpenAL in the
 
   <dt>Windows users:</dt>
   <dd><p>OpenAL libraries (DLL files) should already be included in all
-    binary packages of my games under Windows. So you don't have to do anything.
+    binary packages of my games under Windows. So you don't have to do anything.</p>
 
     <p>However, you're free to remove appropriate DLL files
     (<tt>OpenAL32.dll</tt> and <tt>wrap_oal.dll</tt>) provided in my archives
@@ -78,37 +78,32 @@ source code</a> instructions.
 
 <dl class="command_line_options_list">
   <dt>--no-sound</dt>
-  <dd><p>Don't use OpenAL, even if it's available. The program
-    will not even try to initialize OpenAL. Note that you
-    <i>don't have</i> to use this option if you don't have
+  <dd><p>Don't output any sound, even if OpenAL is available and seems perfectly working.
+    Our programs will not even try to initialize OpenAL in this case.
+    Note that you <i>don't have</i> to use this option if you don't have
     OpenAL installed. This parameter is useful only if you
     have OpenAL, but you don't want to use it for
     whatever reason (e.g. because your cat sleeps on the
     chair beside you and you don't want to wake him up).</dd>
 
-  <dt>--audio-device OPENAL-DEVICE-NAME</dt>
-  <dd><p>Use given <tt>OPENAL-DEVICE-NAME</tt>. Details follow:
+  <dt>--audio-device DEVICE-NAME</dt>
+  <dd><p>Use given <tt>DEVICE-NAME</tt> for sound output. For best sound quality,
+    you should try all the devices and choose the one working best on your system.
+    On Windows, often <i>Generic Software</i> sounds better than the default one.
+    On other systems, the default one is usually the best, but you're still free to experiment.</p>
 
-    <p>Since the default OpenAL implementations
-    are purely in software, various OpenAL devices often
-    mean that various software "backends" will be used.
-
-    <p>There is no sure way to determine which OpenAL
-    device will sound and work best, be fastest etc.
-    You just have to try them all to be sure
-    that you get all you can from OpenAL.
+    <p>To list the available devices use the <tt>--help</tt> command-line option
+    (at the <tt>--audio-device</tt> description you will see a list of devices detected).
+    In <?php echo a_href_page('The Castle', 'castle'); ?>
+    you can also see and choose them by the <i>Sound output device</i> menu.
+    In <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    you have comfortable menu <i>File -&gt; Preferences -&gt; Sound Device</i>.</p>
 
     <dl>
       <dt>Linux and FreeBSD users with OpenAL-Soft (newer) implementation:</dt>
 
       <dd><p>The default device selected on Linux should usually be ALSA,
         and should work just perfect on modern systems.</p>
-
-        <p>That said, you can check various available devices and try them out.
-        Use the <tt>--help</tt> command-line option,
-        or <i>Sound output device</i> menu item in
-        <?php echo a_href_page('The Castle', 'castle'); ?>),
-        or <i>File -&gt; Preferences -&gt; Sound Device</i> to see the available devices.</p>
 
         <p>A useful device is <i>"Wave File Writer"</i>, to record
         3D sound to file. Note that you have to specify output filename
