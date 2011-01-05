@@ -77,6 +77,15 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
  contains many demo VRML / X3D models, you can open them with <tt>view3dscene</tt>.
 It also contains links to other 3D models scattered around our repository.</p>
 
+<p>If you want to hear 3D sound, you should also install
+<a href="http://openal.org">OpenAL</a> and
+<a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
+libraries.
+For Windows, they are already included in the zip file, so you don't
+have to do anything. For Linux, you should install them using your
+package managar. For Mac OS X, <?php echo a_href_page('OpenAL is already
+preinstalled and you can get VorbisFile from fink', 'macosx_requirements'); ?>.</p>
+
 <?php section(false); ?>
 
 <p>If you use GNOME (or other desktops following
@@ -764,6 +773,7 @@ directory.</p>
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
   DEPENDS_UNIX_GLWINDOW_GTK_2,
+  SUGGESTS_OPENAL_VORBISFILE,
   DEPENDS_MACOSX)); ?>
 
 <p>To play movies (in VRML <tt>MovieTexture</tt> nodes) and

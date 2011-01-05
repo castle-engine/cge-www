@@ -599,13 +599,13 @@ function common_set_page_functions()
      in program\'s archive, so you don\'t have to do anything)');
   define('SUGGESTS_OPENAL',
     a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-    ' is not strictly required, but is suggested
+    ' is strongly suggested if you want to hear sound
     (under Windows appropriate DLL files are already included
     in program\'s archive, so you don\'t have to do anything)');
   define('SUGGESTS_OPENAL_VORBISFILE',
     a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-    ' and <tt>vorbisfile</tt> library are not strictly required,
-    but are suggested
+    ' and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
+    libraries are strongly suggested if you want to hear sound
     (under Windows appropriate DLL files are already included
     in program\'s archive, so you don\'t have to do anything)');
   define('DEPENDS_UNIX_GLWINDOW_GTK_1',
