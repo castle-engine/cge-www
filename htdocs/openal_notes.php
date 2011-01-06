@@ -87,10 +87,8 @@ source code</a> instructions.
     chair beside you and you don't want to wake him up).</dd>
 
   <dt>--audio-device DEVICE-NAME</dt>
-  <dd><p>Use given <tt>DEVICE-NAME</tt> for sound output. For best sound quality,
-    you should try all the devices and choose the one working best on your system.
-    On Windows, often <i>Generic Software</i> sounds better than the default one.
-    On other systems, the default one is usually the best, but you're still free to experiment.</p>
+  <dd><p>Use given <tt>DEVICE-NAME</tt> for sound output. Usually, the default
+    one should be the best.</p>
 
     <p>To list the available devices use the <tt>--help</tt> command-line option
     (at the <tt>--audio-device</tt> description you will see a list of devices detected).
@@ -100,10 +98,21 @@ source code</a> instructions.
     you have comfortable menu <i>File -&gt; Preferences -&gt; Sound Device</i>.</p>
 
     <dl>
+      <dt>Windows users:</dt>
+      <dd><p>You may see two devices with newer OpenAL implementation:
+        "<i>Generic Hardware</i>" (uses <i>DirectSound3D</i>)
+        and "<i>Generic Software</i>" (uses <i>DirectSound</i>).
+        As far as I know, "<i>Generic Software</i>" can only support
+        stereo sound (2 channels, not more). On the other hand, it sometimes
+        sounds better than "<i>Generic Hardware</i>".</p>
+
+        <p>So be sure to try both devices and choose the better one.</p>
+      </dd>
+
       <dt>Linux and FreeBSD users with OpenAL-Soft (newer) implementation:</dt>
 
       <dd><p>The default device selected on Linux should usually be ALSA,
-        and should work just perfect on modern systems.</p>
+        and should work perfectly on modern systems.</p>
 
         <p>A useful device is <i>"Wave File Writer"</i>, to record
         3D sound to file. Note that you have to specify output filename
@@ -121,8 +130,7 @@ file = /tmp/output.wav
       </dd>
 
       <dt>Linux and FreeBSD users with OpenAL Sample (older) implementation:</dt>
-      <dd><p>Usual OpenAL implementation will have the following
-        devices available:
+      <dd><p>The following devices are available:
 
         <table class="thin_borders">
           <tr><th>OpenAL Name</th>
@@ -192,16 +200,6 @@ file = /tmp/output.wav
         line
 
         <pre>  ( define devices '(alsa) )</pre>
-      </dd>
-
-      <dt>Windows users:</dt>
-      <dd><p>Newer Creative's OpenAL implementation has two devices:
-        <tt>Generic Hardware</tt> (uses <tt>DirectSound3D</tt>)
-        and <tt>Generic Software</tt> (uses <tt>DirectSound</tt>).<p>
-
-        <p>As far as I know, <tt>Generic Software</tt> can only support
-        stereo sound (2 channels, not more). On the other hand, it sometimes
-        sounds better than <tt>Generic Hardware</tt>.
       </dd>
     </dl>
   </dd>
