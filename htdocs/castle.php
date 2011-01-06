@@ -72,7 +72,7 @@ wait only once for "Loading creatures").
 <?php
   echo_standard_program_download(
   '"The Castle", version ' . VERSION_CASTLE, 'castle',
-  VERSION_CASTLE, $std_releases_post_1_2_0);
+  VERSION_CASTLE, $std_releases_post_1_8_0);
 ?>
 
 <p>See <?php echo a_href_page('news', 'news') ?> for
