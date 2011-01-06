@@ -78,7 +78,7 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
     array('title' => 'view3dscene 3.8.0: 3D sound, skinned H-Anim, more',
           'year' => 2011,
           'month' => 1,
-          'day' => 5,
+          'day' => 6,
           'short_description' => '',
           'description' =>
 vrmlengine_thumbs(array(
