@@ -63,7 +63,7 @@ Supported fields:</p>
     we just start playing, always from the beginning.</p>
 </ul>
 
-<li><i>Note about multiple instances:</i> VRML/X3D define the play/stop events
+<p><i>Note about multiple instances:</i> VRML/X3D define the play/stop events
 at the <tt>AudioClip</tt> node (not at higher-level <tt>Sound</tt> node,
 which would be more useful IMO). This means that <tt>USE</tt>ing many times
 the same <tt>AudioClip</tt> or <tt>Sound</tt> nodes doesn't make much sense.
