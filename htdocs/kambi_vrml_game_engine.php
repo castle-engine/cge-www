@@ -313,8 +313,8 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.2.0');
-  echo_src_archive('castle', '1.7.0');
+  echo_src_archive('view3dscene', '2.3.0');
+  echo_src_archive('castle', '2.3.0');
   echo_src_archive('rayhunter', '2.1.0');
 
   echo_src_archive('lets_take_a_walk', '2.0.0');
