@@ -580,7 +580,7 @@ case "$1" in
 
     # We call areFilenamesLower ourselves (not from update_full_program),
     # because we have special ignore rules.
-    areFilenamesLower -i Makefile -i Makefile.common -i README \
+    areFilenamesLower -i Makefile -i Makefile.common -i README -i README.txt \
       "$BINARY_ARCHIVE_TEMP_PATH"data/
 
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL \
