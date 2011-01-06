@@ -28,11 +28,10 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
   - Upload to
     ssh://kambi,vrmlengine@frs.sourceforge.net/home/frs/project/v/vr/vrmlengine/
     Follow dirnames as default: program_name/version_number/.
-  - Only for view3dscene: In file explorer
-    https://sourceforge.net/project/admin/explorer.php?group_id=200653
-    mark platforms for new files. This is only for platform (default guessed
-    looking at OS) links, so it's done only for view3dscene as our "default"
-    package".
+  - Only for view3dscene: On https://sourceforge.net/projects/vrmlengine/files/
+    mark new view3dscene released files as default downloads for given OS.
+    This is only for default download on given OS, we suggest here
+    view3dscene as our "default package".
 
   After release, download and compare are the files the same.
 
