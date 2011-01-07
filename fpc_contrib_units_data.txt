@@ -1,6 +1,6 @@
 Name: Kambi VRML game engine
 Author: Michalis Kamburelis
-Version: 2.2.0
+Version: 2.3.0
 File URL: http://downloads.sf.net/vrmlengine/kambi_vrml_game_engine-2.2.0-src.tar.gz
 Homepage URL: http://vrmlengine.sourceforge.net/
 E-mail: michalis.kambi@gmail.com
