@@ -125,8 +125,12 @@ game engine. In short:
   <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
     as bitmap or outline (3D) fonts.</li>
 
-  <li><b>3D sound</b> by OpenAL helpers, including intelligent OpenAL sound manager
-    and OggVorbis format handling.</li>
+  <li>Comfortable <b>3D sound engine</b>,
+    using <?php echo a_href_page('OpenAL', 'openal_notes'); ?>,
+    with intelligent sound source management,
+    supporting WAV and OggVorbis formats.
+    Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'vrml_implementation_sound'); ?>, so content creators
+    can define sound sources themselves.</li>
 
   <li>Basic <b>2D controls rendered through OpenGL</b>
     (buttons, panels, tooltips, menus etc.) are available.

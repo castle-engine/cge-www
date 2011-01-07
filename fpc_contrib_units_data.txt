@@ -25,7 +25,8 @@ description:An open-source game engine. Features include:
   <li>GLWindow unit is available to easily create windows with OpenGL context. The intention of this unit is to be something like glut, but magnitudes better - using clean ObjectPascal, for start. Also it allows you to easily create menu bars, open/save file and similar dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes, GTK 2.0 version is perfectly stable and adviced) or WinAPI).</li>
   <li>Reading and writing of images in various formats, processing them and using as OpenGL textures. Besides many common image formats (png, jpg, ppm, bmp, just for starters), included is also support for DDS (textures with compression, mipmaps, 3d, cube maps) and RGBE format (Radiance HDR format).</li>
   <li>Handling of fonts, including rendering them with OpenGL, as bitmap or outline (3D) fonts.</li>
-  <li>3D sound by OpenAL helpers, including intelligent OpenAL sound manager and OggVorbis format handling.</li>
+  <li>Comfortable 3D sound engine, using OpenAL, with intelligent sound source management, supporting WAV and OggVorbis formats. Includes VRML/X3D integration, so content creators can define sound sources themselves.</li>
+  <li>Basic 2D controls rendered through OpenGL (buttons, panels, tooltips, menus etc.) are available. Good for games, where making a custom-looking GUI (that fits with your game theme) is important.</li>
   <li>Anti-aliasing (initializing OpenGL multi-sampling) is covered.</li>
   <li>Simple ray-tracer is implemented.</li>
   <li>Playing movie files. This includes loading and saving as image sequence or "real" movie files (ffmpeg is needed to encode / decode movie files). While the implementation is limited to a small movies for now (as memory consumption is large), it's perfect for flame or smoke animation in games. We even have a simple movie editor as an example program in engine sources.</li>
