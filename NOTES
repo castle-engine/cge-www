@@ -69,6 +69,7 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
   script init_counters.sh and then run it on SF
 
 - after important release, I may wish to announce it:
+
   - sf news for vrmlengine project
   - engine source code release means updating FPC contrib units info
     (see fpc_contrib_units_data.txt,
@@ -76,8 +77,16 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
   - new release of view3dscene and/or castle go to freshmeat:
     http://freshmeat.net/projects/view3dscene/
     http://freshmeat.net/projects/castlegame/
-  - pascalgamedevelopment may be informed about especially important
-    releases
+  - http://www.pascalgamedevelopment.com/
+    instructions on
+    http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums&p=51857#post51857
+  - x3d-public mailing list
+  - if new VRML extensions: remember to post to Joerg about them
+  - http://www.lazarus.freepascal.org/
+    Examples on:
+    http://www.lazarus.freepascal.org/index.php/topic,11716.0.html
+    http://www.lazarus.freepascal.org/index.php/topic,11165.0.html
+
   - really large new features may cause updates of project description:
     - on SourceForge
     - cia.vc: http://cia.vc/stats/project/vrmlengine
@@ -85,13 +94,10 @@ www/ directory, preferably *not* on "online" copy on shell.sf.net):
     - Lazarus wiki: http://wiki.freepascal.org/Kambi_VRML_game_engine
       http://wiki.lazarus.freepascal.org/Components_and_Code_examples#Packages_for_FPC.2FLazarus_.28not_hosted_here.29
       http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Kambi_VRML_game_engine
-  - x3d-public mailing list
-  - if new VRML extensions: remember to post to Joerg about them
-  - http://www.lazarus.freepascal.org/
 
-  - Maybe: http://www.web3d.org/news/submit/
-    ... but it's pretty much ignored, giving up on this.
-    As well as submitting to web3d.org list of progs.
-
-  - Some day:
-    announce on game engines list http://www.devmaster.net/engines/
+  - Maybe:
+    - http://www.web3d.org/news/submit/
+      ... but it's pretty much ignored, giving up on this.
+      As well as submitting to web3d.org list of progs.
+    - Some day:
+      announce on game engines list http://www.devmaster.net/engines/
