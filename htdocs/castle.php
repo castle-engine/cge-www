@@ -96,7 +96,7 @@ You will also need
     <p><b>Linux, FreeBSD:</b></p>
 
     <p>To hear game sounds you should first
-    <?php echo a_href_page_hashlink('install OpenAL', 'openal_notes',
+    <?php echo a_href_page_hashlink('install OpenAL', 'openal',
     'section_install'); ?> and vorbisfile library.
     If installing the older OpenAL <i>Sample Implementation from Loki</i>
     be sure to install also <tt>libvorbis-dev</tt> package

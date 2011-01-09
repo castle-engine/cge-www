@@ -34,7 +34,7 @@ for a little longer investigating program's
 <?php echo $toc->html_section(); ?>
 
 <p>Note that to hear game sounds you should first
-<?php echo a_href_page_hashlink('install OpenAL', 'openal_notes',
+<?php echo a_href_page_hashlink('install OpenAL', 'openal',
   'section_install'); ?>. Windows users don't have to do anything,
 appropriate DLLs are already is the archive.
 
@@ -87,7 +87,7 @@ you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 <ul>
   <li><?php echo a_href_page_hashlink(
     'Standard command-line options for my programs using OpenAL',
-    'openal_notes', 'section_options'); ?>
+    'openal', 'section_options'); ?>
   <li><?php echo a_href_page(
     'Standard command-line options for my programs using OpenGL',
     'opengl_options'); ?>. Note that by default this program

@@ -126,7 +126,7 @@ game engine. In short:
     as bitmap or outline (3D) fonts.</li>
 
   <li>Comfortable <b>3D sound engine</b>,
-    using <?php echo a_href_page('OpenAL', 'openal_notes'); ?>,
+    using <?php echo a_href_page('OpenAL', 'openal'); ?>,
     with intelligent sound source management,
     supporting WAV and OggVorbis formats.
     Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'vrml_implementation_sound'); ?>, so content creators

@@ -98,8 +98,7 @@ You can also set this from the main menu:
 <p>OpenAL is used to play sounds. See
 <?php echo a_href_page(
   'my instructions about installing OpenAL and command-line
-  options common for my programs using OpenAL',
-  'openal_notes'); ?>.
+  options common for my programs using OpenAL', 'openal'); ?>.
 
 <p>For best effect, be sure to try all available devices in "Sound options" &mdash;
 the default device doesn't always sound the best.

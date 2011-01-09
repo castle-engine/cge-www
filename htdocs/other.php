@@ -16,7 +16,7 @@ the programs developed with it:</p>
     "Blender VRML stuff", "blender_stuff"); ?></li>
   <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
   <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
-  <li><?php echo a_href_page('OpenAL notes', 'openal_notes'); ?>
+  <li><?php echo a_href_page('OpenAL notes', 'openal'); ?>
 
   <li><?php echo current_www_a_href_size('All Windows DLLs used by programs here',
     'miscella/win32_dlls.zip'); ?>

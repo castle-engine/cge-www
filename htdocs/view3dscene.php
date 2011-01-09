@@ -78,7 +78,7 @@ in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
 It also contains links to other 3D models scattered around our repository.</p>
 
 <p>If you want to hear 3D sound, you should also install
-<a href="http://openal.org">OpenAL</a> and
+<?php echo a_href_page('OpenAL', 'openal'); ?></a> and
 <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
 libraries.
 For Windows, they are already included in the zip file, so you don't
@@ -763,7 +763,7 @@ directory.</p>
 
 <p>As usual all
 <?php echo a_href_page("standard options understood by OpenGL programs", "opengl_options") ?>,
-<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal_notes'); ?>,
+<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal'); ?>,
 <?php echo a_href_page('standard options understood by all my programs','common_options'); ?>
  are allowed. Run with command-line <tt>--help</tt> to get full list.
 

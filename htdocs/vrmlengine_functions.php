@@ -161,7 +161,7 @@ $vrmlengine_sitemap = array(
       'blender_stuff' => array('title' => 'Blender VRML stuff'),
       'common_options' => array('title' => 'Standard command-line options'),
       'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
-      'openal_notes' => array('title' => 'OpenAL notes'),
+      'openal' => array('title' => 'OpenAL (3D sound)'),
       'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
       'versioning' => array('title' => 'Versioning scheme of programs'),
     ),
