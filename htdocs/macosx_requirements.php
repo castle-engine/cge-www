@@ -127,7 +127,14 @@ or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
     for pointers</p></li>
 
   <li><p><i>Make "Mac OS X bundle"</i> (it's basically a directory pretending
-    to be an application). You can find view3dscene SVG icon in the sources.</p></li>
+    to be an application). You can find view3dscene SVG icon in the sources.</p>
+
+    <p>Actually, this step is already somewhat done at least for view3dscene.
+    A script <tt>create_macosx_bundle.sh</tt> will make a nice view3dscene.app,
+    that you should be able to execute. Unfortunately, it doesn't really work yet,
+    and probably would be awkward anyway as our window is part of X server.
+    But anyway, once above step is done, finishing the "bundle" work is probably trivial.</p>
+    </li>
 
   <li><p>Optionally, <i>add libpng and vorbisfile libraries to the bundle</i>.
     We will still be able to link to them dynamically, as far as I know.
