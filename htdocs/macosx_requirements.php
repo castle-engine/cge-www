@@ -21,16 +21,22 @@
 <p>Library requirements of using my engine on Mac OS X:
 
 <ul>
-  <li><p>For OpenGL programs, <b>X11</b> (may be found on Mac OS X install CD).</p>
+  <li><p>For OpenGL programs, <b>X11</b> is needed (may be found on Mac OS X install CD).
+    Install it, and run before executing our programs.</p>
 
-    <p>And you should run my programs from within X11 xterm, to use your display.
-    Or you will have to specify your X display by command-line option explicitly,
-    like <tt>--display=:0</tt></p>
+    <p>Our programs will appear as part of "X11 server" on your desktop.
+    If you start our program from outside of X (like by double-clicking the application
+    in Finder), note that our window may not be focused at start. Just click on it once
+    to make the window focused (receiving keys input and such).</p>
 
-    <p>This requirement will be removed if at some time I'll implement
-    GLWindow unit using some native Mac OS X libraries.
-    Contributions are most welcome if you're experienced with programming
-    under Mac OS X !</p></li>
+    <p><i>Somewhat internal notes:</i> if you start our program from within
+    X11 xterm, it will be focused at the start. When you start us outside of X11,
+    and we detect that the default X display doesn't work,
+    we automatically use display name <tt>:0</tt> under Mac OS X.
+    This way we attach to the running X server, even if you execute us from some
+    other application.
+    <i>For programs released before 2011-01-10: you should explicitly start
+    with command-line option <tt>--display=:0</tt>, or always run us from X11 xterm.</i></p></li>
 
   <li><p><b>libpng</b> (may be installed by
     <a href="http://www.finkproject.org/">fink</a>),
