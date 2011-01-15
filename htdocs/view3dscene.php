@@ -36,22 +36,12 @@ href="http://vrmlengine.sourceforge.net/"></a>
 <p>view3dscene is a VRML / X3D browser, and a viewer for other 3D model
 formats.</p>
 
-<!-- Removed: too long useless text:
-
-<p>Below is full documentation of a program. Basic things that you
-want to read are in first two sections (<a href="#section_install">Downloading
-and installing</a> and <a href="#section_run">Running</a>)
-and it's good to take a look at the most important keys
-in section <a href="#section_keys">Controlling with keys &amp; mouse</a>.
--->
-
 <?php
   $toc = new TableOfContents(
     array(
       new TocItem('Downloading and installing', 'install'),
       new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
       new TocItem('Features', 'features'),
-      new TocItem('Running', 'run'),
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
@@ -237,10 +227,6 @@ flawlessly :) So give it a try!
     to generate nice views of the scene (with shadows, mirrors,
     and transmittance). Classic ray-tracer implements exactly VRML 97 / X3D
     lighting equations.
-    <!-- promienie za³amane. a w przypadku
-    path tracera Monte Carlo uwzglêdniamy fizyczne w³a¶ciwo¶ci materia³u
-    i powierzchniowe ¼ród³a ¶wiat³a których wynikiem s± dodatkowe efekty
-    w rodzaju pó³cieni i krwawienia kolorów). -->
 
   <li><p>You can inspect your model (select triangles by clicking
     <i>right mouse button</i> in <i>Walk / Fly</i> mode,
@@ -278,18 +264,6 @@ flawlessly :) So give it a try!
     "screenshot" of 3D environment as a cube map (to DDS, or six
     separate images).
 </ul>
-
-<?php section(); ?>
-
-<p>Simply run without any command-line parameters.
-Load your model file using "Open" menu item.</p>
-
-<p>You can provide on the command-line file name to load.
-As usual, dash (<tt>-</tt>) means that standard input will be read
-(in this case the input must be in Inventor / VRML / X3D (classic) format).</p>
-
-<p>Also read <a href="#section_command_line_options">about
-view3dscene additional command-line options</a>.</p>
 
 <?php section(); ?>
 
