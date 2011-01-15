@@ -12,10 +12,11 @@
      provide the well-known simple 3D objects.');
 ?>
 
-<p>Supported nodes:</p>
+<p>We fully support everything, with all the fields,
+following latest X3D spec:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p>
+  <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p></li>
 
   <li><p><?php echo x3d_node_link('Sphere'); ?>,
          <?php echo x3d_node_link('Box'); ?>,
@@ -25,22 +26,8 @@
     <p>Including support for <tt>solid</tt> field (added in X3D),
     so you can turn on or off back-face culling for them.</p></li>
 
-  <li><p><?php echo x3d_node_link('ElevationGrid'); ?></p>
-
-    <p><i>TODO</i>: when colors are present and <tt>colorPerVertex</tt>
-    is different than <tt>normalPerVertex</tt> (from field or calculated
-    based on creaseAngle) then shading results may be incorrect.
-    Reasons for this &mdash; see comments about X3D <tt>[Indexed]TriangleFan/StripSet</tt>
-    above on this page.</p>
-
-    <p><i>TODO</i>: <tt>creaseAngle</tt> is not fully handled:
-    we always generate all flat normals (if creaseAngle = 0) or
-    all smooth normals (if creaseAngle &lt;&gt; 0).</p></li>
-
-  <li><p><?php echo x3d_node_link('Extrusion'); ?></p>
-
-    <p>Works fully.</p></li>
-
+  <li><p><?php echo x3d_node_link('ElevationGrid'); ?></p></li>
+  <li><p><?php echo x3d_node_link('Extrusion'); ?></p></li>
 </ul>
 
 <?php
