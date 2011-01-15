@@ -464,7 +464,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
 
   <tr>
     <td rowspan="14">ElevationGrid</td>
-    <td>1</td>
+    <td>1 (default - grid)</td>
     <td class="pass">+</td>
     <td>Note that by default ElevationGrid is not smoothed (creaseAngle = 0),
       this is following the spec.
@@ -498,7 +498,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>9</td>
+    <td>9 (test - normalfaces)</td>
     <td class="pass">+</td>
     <td>The reference image of the test is bad. The result should
       be more obvious (whole rows of quads have the same normal),
@@ -515,9 +515,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
   </tr>
   <tr>
     <td>12</td>
-    <td class="fail">-</td>
-    <td>Although we do generate smooth normals, they are
-      not used since colorPerVertex forces us to use smooth shading.
+    <td class="pass">+</td>
   </tr>
   <tr>
     <td>13</td>
@@ -595,10 +593,7 @@ pass(1, 'Unrelated <tt>Box</tt> test...');
   </tr>
   <tr>
     <td>16</td>
-    <td class="fail">-</td>
-    <td>This links to ElevationGrid creaseAngle test, that fails...
-      Has nothing to do with Extrusion actually. (And we do
-      handle creaseAngle on Extrusion correctly!)
+    <td class="pass">+</td>
   </tr>
   <tr>
     <td>17</td>
