@@ -12,7 +12,7 @@
 test suite is maintained and available currently on web3d.org</a>.
 For historical purposes, you can also see at
 <a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">the old and original version of NIST VRML Test Suite</a>
-(but not that the links to actual models are broken there).</p>
+(but the links to actual models are broken there).</p>
 
 <p>Each test was classified as "pass" only if it passed fully.
 Which is a good objective measure,
@@ -24,10 +24,8 @@ implementation as practically finished.
 But unrelated things like missing <tt>Script</tt> support for ECMAScript
 prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
 
-<p>Cases are marked above as "success" (+) only if they succeed
-completely.
-The style of table below was modeled after similar page
-<a href="http://www.openvrml.org/doc/conformance.html">
+<p>The style of table below was modeled after similar page
+at <a href="http://www.openvrml.org/doc/conformance.html">
 OpenVRML Conformance Test Results</a>. <!-- See there also
 for some  remarks about invalid tests included in
 NIST test suite. -->
@@ -419,7 +417,7 @@ pass(2, 'Results look slightly incorrect, but matching precisely Xj3D and OpenVR
   </tr>
 
   <tr>
-    <td rowspan="113">Geometry</td>
+    <td rowspan="108">Geometry</td>
     <td rowspan="6">Box</td>
     <td>1</td>
     <td class="pass">+</td>
@@ -682,16 +680,10 @@ pass(4);
 ?>
 
   <tr>
-    <td rowspan="6">Sphere</td>
-    <td>1</td>
+    <td>Sphere</td>
+    <td>1 - 3 (all)</td>
     <td class="pass">+</td>
-    <td>Unrelated <tt>Text</tt> tests...
   </tr>
-
-<?php
-$current_test_number = 2;
-pass(5, 'Unrelated <tt>Box</tt> tests...');
-?>
 
   <tr>
     <td rowspan="12">Text</td>
