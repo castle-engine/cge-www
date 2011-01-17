@@ -217,11 +217,6 @@ subdirectories.</p>
         to configure it's own multi-texturing setup to work).</li>
       <li>Using bump mapping overrides your GLSL shaders on the same shape.
         Generally, bump mapping has to configure it's own shaders to work.</li>
-      <li>Bump mapping is available only for geometry rendered through the
-        <tt>IndexedFaceSet</tt>. This includes true <tt>IndexedFaceSet</tt>
-        geometry, and also NURBS surfaces, <tt>Extrusion</tt>,
-        <tt>Teapot</tt>, <tt>Box</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>,
-        <tt>Sphere</tt> and probably more in the future.</li>
     </ul>
 
 <?php echo $toc->html_section(); ?>

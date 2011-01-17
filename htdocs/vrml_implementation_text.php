@@ -38,6 +38,12 @@
     in collision detection, while spec says that text shouldn't collide.
 </ul>
 
+<p>TODO: <tt>Text</tt> and <tt>Text3D</tt> are rendered
+without vertex arrays and vertex buffers (they may be slower than normal
+nodes), and they don't support multi-texturing yet.
+This also means that bump mapping doesn't work on them,
+and that they cannot be used as shadow maps receivers.</p>
+
 <?php
   x3d_status_footer();
 ?>
