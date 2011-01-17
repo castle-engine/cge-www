@@ -51,7 +51,7 @@ parts [
     <a href="http://instant-reality.com/">InstantPlayer</a>).</p>
   </li>
 
-  <li><p><b>Passing values to to GLSL shader uniform variables.</b></p>
+  <li><p><b>Passing values to GLSL shader uniform variables.</b></p>
 
     <p>You can also set uniform variables for your shaders from VRML,
     just add lines like</p>
@@ -93,7 +93,7 @@ ROUTE MyTimer.time TO MyShader.time
     not supported yet.</p>
   </li>
 
-  <li><p><b><a name="glsl_passing_uniform_textures">Passing textures to to GLSL shader uniform variables.</a></b></p>
+  <li><p><b><a name="glsl_passing_uniform_textures">Passing textures to GLSL shader uniform variables.</a></b></p>
 
     <p>You can also specify texture node (as <tt>SFNode</tt> field, or an array
     of textures in <tt>MFNode</tt> field) as a uniform field value.
@@ -149,24 +149,22 @@ initializeOnly SFNode texture_two ImageTexture { url "two.png" }
     will not work.</p>
   </li>
 
-  <li><p><b>TODO</b></p>
+  <li><p><b>Passing attributes to GLSL shader uniform variables.</b></p>
 
-    <p>TODO: attributes for shaders in VRML are not yet passed.
-    They are implemented in the engine classes of course, it's only a matter
-    of implementing link between VRML and them.
-    <!-- Also <tt>Cg</tt> handling is quite possible in the future. -->
-    If you have some interesting VRML / X3D models that use these programmable
-    shaders features, feel free to contact me and I'll implement them
-    in our engine.</p>
+    <p>You can also pass per-vertex attributes to your shader.
+    You can pass floats, vectors and matrices.
+    The way do use this of course follows X3D specification,
+    see <?php echo x3d_node_link('FloatVertexAttribute'); ?>,
+    <?php echo x3d_node_link('Matrix3VertexAttribute'); ?>,
+    <?php echo x3d_node_link('Matrix4VertexAttribute'); ?> nodes.
+    You can place them in the <tt>attrib</tt> field of most geometry nodes
+    (like <tt>IndexedFaceSet</tt>).</p>
 
-    <p>(I mean, I will implement them anyway some day, but it's always
-    much more interesting to implement features when you actually have
-    a real use for them... In other words, I'm just dying to see some
-    beautiful VRML/X3D models that heavily use programmable shaders :).</p>
+    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/attributes.x3dv">Example attributes.x3dv</a>,
+    showing how to pass elevation grid heights by the shader attributes.</p>
 
-    <p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
-    program now.
-    (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
+  <li><p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
+    program now. (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
     X3DShaderNode.)
   </li>
 </ul>

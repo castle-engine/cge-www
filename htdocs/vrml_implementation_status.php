@@ -74,7 +74,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td>DIS          </td><td></td></tr>
   <tr><td><?php echo a_href_page('Scripting'                       , 'vrml_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only KambiScript / compiled protocols)</td></tr>
   <tr><td><?php echo a_href_page('Event utilities'                 , 'vrml_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Programmable shaders'            , 'vrml_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (basically; GLSL language)</td></tr>
+  <tr><td><?php echo a_href_page('Programmable shaders'            , 'vrml_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (GLSL language)</td></tr>
   <tr><td><?php echo a_href_page('CAD geometry'                    , 'vrml_implementation_cadgeometry'         ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Texturing3D'                     , 'vrml_implementation_texturing3d'         ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Cube map environmental texturing', 'vrml_implementation_cubemaptexturing'    ); ?>  </td><td><b>3 (all)</b></td></tr>
