@@ -78,7 +78,7 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
     array('title' => 'Development news: first milestone of new renderer reached, GLSL attributes and other new features',
           'year' => 2011,
           'month' => 1,
-          'day' => 17,
+          'day' => 18,
           'short_description' => '',
           'description' =>
 vrmlengine_thumbs(array(
@@ -87,7 +87,7 @@ vrmlengine_thumbs(array(
 ), 1) .
 '<p>I have committed to SVN a large rework of our renderer. Everything is now rendered through <i>locked interleaved vertex arrays</i>. And I mean <i>everything</i>, really every feature of VRML/X3D shapes &mdash; all colors, normals, texture coords etc. are loaded through vertex arrays. This opens wide the door for much more optimized, modern renderer using exclusively VBOs for nearest release. It will also eventually allow OpenGL ES version for modern mobile phones. (But shhhhh, this is all not ready yet.)</p>
 
-<p>User-visible improvements done while improving our renderer:</p>
+<p>Improvements already done while improving our renderer:</p>
 
 <ul>
   <li>GLSL attributes from VRML/X3D nodes: support for <tt>FloatVertexAttribute</tt>, <tt>Matrix3VertexAttribute</tt>, <tt>Matrix4VertexAttribute</tt> nodes.</li>
