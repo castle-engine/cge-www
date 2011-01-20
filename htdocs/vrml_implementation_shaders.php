@@ -7,6 +7,7 @@
 
   echo vrmlengine_thumbs(array(
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot VRML model rendered with toon shading in GLSL'),
+    array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine. You can also '
       . current_www_a_href_size('get AVI version with much better quality', 'movies/2.avi')
@@ -43,12 +44,21 @@ parts [
 
   <li><p><b>Inline shader source code.</b></p>
 
-    <p>You can directly place shader source code inside of an URL.
-    We recognize URL as containing direct shader source if it has any newlines
-    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+    <p>You can directly write the shader source code inside an URL field
+    (instead of putting it in an external file).
+    The best way to do this, following the standards, is to use
+    the <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>.
+    In the simplest case, just start the URL with "<tt>data:text/plain,</tt>"
+    and then write your shader code.</p>
 
-    <p>This is a non-standard extension (although compatible at least with
-    <a href="http://instant-reality.com/">InstantPlayer</a>).</p>
+    <p>Only in the XML encoding: you can also just place
+    shader source code inside the CDATA.</p>
+
+    <p>As a non-standard extension (but compatible at least with
+    <a href="http://instant-reality.com/">InstantPlayer</a>)
+    we also recognize URL as containing direct shader source if it
+    has any newlines
+    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
   </li>
 
   <li><p><b>Passing values to GLSL shader uniform variables.</b></p>

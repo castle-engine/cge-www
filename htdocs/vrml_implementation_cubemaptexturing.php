@@ -10,6 +10,11 @@
      <tt>GeneratedCubeMapTexture</tt> allows to create and use
      an environment map capturing actual environment in your virtual 3D world,
      thus making true realtime mirror.');
+
+echo vrmlengine_thumbs(array(
+  array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+  array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
+));
 ?>
 
 <p>Supported nodes:</p>
