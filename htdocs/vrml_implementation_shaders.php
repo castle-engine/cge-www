@@ -117,16 +117,18 @@ shaders ComposedShader {
 language "GLSL"
 parts [
   ShaderPart { type "FRAGMENT" url
-  "  uniform sampler2D texture_one;
-     uniform sampler2D texture_two;
+  "data:text/plain,
 
-     void main()
-     {
-       gl_FragColor = gl_Color *
-         max(
-           texture2D(texture_one, gl_TexCoord[0].st),
-           texture2D(texture_two, gl_TexCoord[1].st));
-     }
+   uniform sampler2D texture_one;
+   uniform sampler2D texture_two;
+
+   void main()
+   {
+     gl_FragColor = gl_Color *
+       max(
+         texture2D(texture_one, gl_TexCoord[0].st),
+         texture2D(texture_two, gl_TexCoord[1].st));
+   }
   " }
 ]
 initializeOnly SFNode texture_one ImageTexture { url "one.png" }

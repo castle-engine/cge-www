@@ -105,7 +105,7 @@ containing the screen colors. Your fragment shader is supposed to calculate
 ScreenEffect {
   shaders ComposedShader {
     language "GLSL"
-    parts ShaderPart { type "FRAGMENT" url "
+    parts ShaderPart { type "FRAGMENT" url "data:text/plain,
 #extension GL_ARB_texture_rectangle : enable
 uniform sampler2DRect screen;
 void main (void)
