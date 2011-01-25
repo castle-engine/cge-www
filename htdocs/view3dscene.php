@@ -706,33 +706,6 @@ directory.</p>
         <i>over-triangulating</i>, we do such dividing, because
         it improves how objects look with OpenGL shading.
     </ol>
-
-  <dt>--renderer-optimization none|scene-display-list|shape-display-list</dt>
-  <dd><p>Set rendering optimization.</p>
-
-    <ul>
-      <li><p><tt>"none"</tt> doesn't really optimize anything, like the name
-        suggests. It assumes that the 3D world completely changes
-        in every frame, so there's really no point in caching and preparing
-        anything. In practice, used only for testing purposes.</p>
-
-      <li><p><tt>"scene-display-list"</tt> assumes that the scene
-        is mostly static and is usually completely visible.
-        In such situations, it is absolutely the fastest.
-
-        <p>Some dynamic scene changes don't work, some work but are very slow.
-        When you walk inside the scene, it's very non-optimal (frustum culling
-        and such cannot work).</p>
-
-      <li><p><tt>"shape-display-list"</tt> is the best
-        general optimization for 3D worlds. This is good for both dynamic
-        and static scenes. This provides nice speedup (frustum culling and such)
-        when you don't see the whole 3D world at once.</p>
-    </ul>
-
-    <p>For more technical details see
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLGLScene.html#TGLRendererOptimization">documentation
-    of TGLRendererOptimization type in VRMLGLScene unit</a>.
 </dl>
 
 <p>As usual all

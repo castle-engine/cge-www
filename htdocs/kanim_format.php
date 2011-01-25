@@ -74,13 +74,6 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // without any smoothing of transitions with
                         // intermediate scenes.
 
-  optimization="separate-shapes-no-transform"
-                        // Suggested optimization method.
-                        // This is again only a hint for the renderer, and may
-                        // be ignored, see `view3dscene --help' to see the
-                        // list of available values.
-                        // Ignore this if you don't know what it means.
-
   equality_epsilon="0.001"
                         // Epsilon to use when comparing animation frames
                         // and deciding which parts didn't move at all between
