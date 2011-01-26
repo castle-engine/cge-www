@@ -123,11 +123,9 @@ and download them by commands below:
 
   <li><p>Everything else was created by Michalis Kamburelis, aka Kambi.
 
-    <p>Some models (castle, house_behind_the_glass, break_no_transform,
-    transparent_materials, alien_mirror) were created using
+    <p>Some models were created using
     <a href="http://www.blender3d.org/">Blender</a>,
-    some of their Blender source files
-    are available in <tt>blender/</tt> subdirectory.
+    their Blender source files are available in <tt>blender/</tt> subdirectory.
 
     <p>Most of the models were just written by hand.
 
