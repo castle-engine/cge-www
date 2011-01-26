@@ -1070,7 +1070,6 @@ end;
       node_field('SFBool', '[in,out]', 'volumetric', 'FALSE') .
       node_field('SFVec3f', '[in,out]', 'volumetricDirection',  '0 -1 0', 'any non-zero vector') .
       node_field('SFFloat', '[in,out]', 'volumetricVisibilityStart',  '0') .
-      node_field('SFNode', '[in,out]', 'alternative', 'NULL', '[X3DFogObject]') .
       node_end();
     ?>
 
@@ -1130,29 +1129,6 @@ end;
     <tt>vrml_2/kambi_extensions/fog_volumetric/</tt> subdirectories).
     Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
-
-    <p>The" <tt>alternative</tt>" field will be used if renderer (like OpenGL)
-    for any reason doesn't allow volumetric fog (or at least doesn't
-    allow it to be implemented efficiently). Currently, this means
-    that <tt>GL_EXT_fog_coord</tt> extension is not supported.
-    In such case we'll look at "<tt>alternative</tt>" field:</p>
-
-    <ul>
-      <li><p>If <tt>alternative</tt> is <tt>NULL</tt> (the default),
-        then no fog will be rendered.</p></li>
-
-      <li><p>Otherwise we'll try to use fog node recorded in "<tt>alternative</tt>".</p>
-
-        <p>If fog node recorded in <tt>alternative</tt> is not suitable too
-        (e.g. because it also uses volumetric fog) then we'll look at it's
-        "<tt>alternative</tt>" field in turn... So in the usual case
-        a fog node placed within the <tt>alternative</tt> will not use
-        volumetric fog.</p>
-      </li>
-    </ul>
-
-    <p>"<tt>alternative</tt>" will also be tried if the value specified in
-    <tt>fogType</tt> field node is not recognized.</p>
 
 <?php echo $toc->html_section(); ?>
 

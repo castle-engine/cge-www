@@ -107,12 +107,11 @@ X3DComposedGeometryNode : X3DGeometryNode {
   MFVec3f    [in,out]      radianceTransfer  []
 }
 
-Fog : X3DBindableNode, X3DFogObject {
-  ... all normal Fog fields ...
+X3DFogObject {
+  ... all normal X3DFogObject (Fog, LocalFog in spec) fields ...
   SFBool   [in,out]      volumetric                    FALSE
   SFVec3f  [in,out]      volumetricDirection           0 -1 0    # any non-zero vector
   SFFloat  [in,out]      volumetricVisibilityStart     0
-  SFNode   [in,out]      alternative                   NULL      # NULL or another Fog node
 }
 
 Material : X3DMaterialNode {
