@@ -29,7 +29,6 @@ $toc = new TableOfContents(array(
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> and <tt>LocalFog</tt> nodes)', 'ext_fog_volumetric', 1),
-  new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 1),
   new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML/X3D version', 'ext_inline_for_all', 1),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 1),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
@@ -1129,32 +1128,6 @@ end;
     <tt>vrml_2/kambi_extensions/fog_volumetric/</tt> subdirectories).
     Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
-
-<?php echo $toc->html_section(); ?>
-
-    New field for <tt>Material</tt> node:
-
-    <?php echo node_begin("Material");
-      $node_format_fd_name_pad = 20;
-      $node_format_fd_def_pad = 10;
-
-      echo
-      node_dots('all normal Material fields') .
-      node_field('SFBool', '[in,out]', "fogImmune", "FALSE") .
-      node_end();
-    ?>
-
-    <p>When <tt>fogImmune</tt> of given object's material is <tt>TRUE</tt>,
-    then the fog effect (specified by <tt>Fog</tt> node) is <i>not applied</i>
-    to the object. Object is "immune" to fog.
-
-    <p>This should be used only in a very special cases, when the scene
-    looks better with the material left without fog effect.
-    For example, I used this in <?php echo a_href_page('The Castle', 'castle'); ?>
-    for a river surface material
-    &mdash; it's a transparent material, and the whole level is covered
-    with a volumetric fog. It just looks better when the river surface
-    is not affected by the fog color.
 
 <?php echo $toc->html_section(); ?>
 

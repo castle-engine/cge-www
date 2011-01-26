@@ -116,7 +116,6 @@ X3DFogObject {
 
 Material : X3DMaterialNode {
   ... all normal Material fields ...
-  SFBool     [in,out]      fogImmune             FALSE
   SFFloat    [in,out]      mirror      0.0         # [0.0; 1.0]
   MFColor    [in,out]      reflSpecular          []          # specular reflectance
   MFColor    [in,out]      reflDiffuse           []          # diffuse reflectance
