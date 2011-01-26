@@ -28,7 +28,7 @@ $toc = new TableOfContents(array(
   new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 1),
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
-  new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> node)', 'ext_fog_volumetric', 1),
+  new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> and <tt>LocalFog</tt> nodes)', 'ext_fog_volumetric', 1),
   new TocItem('Special objects immune to fog (<tt>fogImmune</tt> field for <tt>Material</tt> node)', 'ext_fog_immune', 1),
   new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML/X3D version', 'ext_inline_for_all', 1),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 1),
@@ -1057,64 +1057,65 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    I add to <tt>Fog</tt> node some additional fields to allow
-    definition of volumetric fog:
+    We add to all <tt>X3DFogObject</tt> nodes
+    (<tt>Fog</tt> and <tt>LocalFog</tt>) additional fields to allow
+    easy definition of volumetric fog:
 
-    <?php echo node_begin("Fog : X3DBindableNode, X3DFogObject");
+    <?php echo node_begin("X3DFogObject");
       $node_format_fd_type_pad=8;
       $node_format_fd_name_pad=28;
       $node_format_fd_def_pad=8;
       echo
-      node_dots('all normal Fog fields') .
+      node_dots('all normal X3DFogObject fields') .
       node_field('SFBool', '[in,out]', 'volumetric', 'FALSE') .
       node_field('SFVec3f', '[in,out]', 'volumetricDirection',  '0 -1 0', 'any non-zero vector') .
       node_field('SFFloat', '[in,out]', 'volumetricVisibilityStart',  '0') .
-      node_field('SFNode', '[in,out]', 'alternative', 'NULL', 'NULL or another Fog node') .
+      node_field('SFNode', '[in,out]', 'alternative', 'NULL', '[X3DFogObject]') .
       node_end();
     ?>
 
-    <p>Meaning: when <tt>volumetric</tt> is <tt>FALSE</tt> (the default),
-    every other <tt>volumetricXxx</tt> field is ignored and Fog behaves
-    like defined in VRML 97 spec. If <tt>volumetric</tt> is <tt>TRUE</tt>,
-    then the volumetric fog is used.
+    <p>When "<tt>volumetric</tt>" is <tt>FALSE</tt> (the default),
+    every other "<tt>volumetricXxx</tt>" field is ignored and you have
+    normal (not volumetric) fog following the VRML/X3D specification.
+    When "<tt>volumetric</tt>" is <tt>TRUE</tt>, then the volumetric fog
+    described below is used.</p>
 
-    <p><tt>volumetricDirection</tt> is the direction of the volumetric fog,
-    it must be any non-zero vector (it's length doesn't matter).
-    Every vertex of the 3D scene is projected
-    on <tt>volumetricDirection</tt> vector, and then the resulting
-    distance (signed distance, i.e. along the direction of this vector)
-    of this point is used to determine fog amount. For example:
-    in the simple case when <tt>volumetricDirection</tt>
-    is <tt>(0, 1, 0)</tt>, then the Y coordinate of every vertex determines
-    the amount of fog. In the default case when
-    <tt>volumetricDirection</tt> is <tt>(0, -1, 0)</tt>,
+    <p>"<tt>volumetricDirection</tt>" determines in which direction density
+    of the fog increases (that is, fog color is more visible).
+    It must not be a zero vector. It's length doesn't matter.
+    Every vertex of the 3D scene is projected on the "<tt>volumetricDirection</tt>"
+    vector, attached to the origin of fog node coordinate system
+    (TODO: for now, origin of global coordinate system).
+    From the resulting signed distance along this vector we subtract
+    "<tt>volumetricVisibilityStart</tt>", and then use the result to determine
+    fog amount, just like it would be a distance to the camera for normal fog.</p>
+
+    <p>For example in the default case when
+    "<tt>volumetricDirection</tt>" is <tt>(0, -1, 0)</tt>,
     then the <i>negated</i> Y coordinate of every vertex determines
-    the amount of fog. I will call such calculated amount of fog the
-    <i>FogAmount</i>.
+    the amount of fog (that is, fog density increases when Y decreases).</p>
 
-    <p>Now <i>FogAmount</i> values between
-    <tt>volumetricVisibilityStart</tt> and
-    <tt>volumetricVisibilityStart + visibilityRange</tt>
-    correspond to fog color being applied in appropriately 0 (none)
-    and 1 (full) amount. <tt>fogType</tt> determines how values
-    between are interpolated (in the simple <tt>LINEAR</tt> case
-    they are interpolated linearly).
+    <p>The effect of "<tt>volumetricVisibilityStart</tt>" is to shift
+    where fog starts. Effectively, fog density changes between the distances
+    "<tt>volumetricVisibilityStart</tt>" (no fog) and
+    "<tt>volumetricVisibilityStart + visibilityRange</tt>" (full fog).
+    Remember that "<tt>visibilityRange</tt>" must be &gt;= 0, as required
+    by VRML/X3D specification.
+    Note that <tt>fogType</tt> still determines how values
+    between are interpolated, so the fog may be linear or exponential,
+    following normal VRML/X3D equations.</p>
 
-    <p>Note that <tt>volumetricVisibilityStart</tt> is transformed
-    by the <tt>Fog</tt> node transformation scaling,
-    just like <tt>visibilityRange</tt> in VRML spec.
-
-    <p>Note that <tt>visibilityRange</tt> must stay &gt;= 0, as required
-    by VRML specification. This means that <tt>volumetricDirection</tt>
-    always specifies the direction of the fog: the more into
-    <tt>volumetricDirection</tt>, the more fog appears. For example,
-    if your world is oriented such that the +Y is the "up", and ground
-    is on Y = 0, and you want your fog to start from height Y = 20,
-    you should set <tt>volumetricDirection</tt> to <tt>(0, -1, 0)</tt>
-    (actually, that's the default) and set <tt>volumetricVisibilityStart</tt>
+    <p>For example if your world is oriented such that the +Y is the "up",
+    and ground is on Y = 0, and you want your fog to start from height Y = 20,
+    you should set "<tt>volumetricDirection</tt>" to <tt>(0, -1, 0)</tt>
+    (actually, that's the default) and set "<tt>volumetricVisibilityStart</tt>"
     to <tt>-20</tt> (note <tt>-20</tt> instead of <tt>20</tt>;
-    flipping <tt>volumetricDirection</tt> flips also the meaning of
-    <tt>volumetricVisibilityStart</tt>).
+    flipping "<tt>volumetricDirection</tt>" flips also the meaning of
+    "<tt>volumetricVisibilityStart</tt>").</p>
+
+    <p>The "<tt>volumetricVisibilityStart</tt>" is transformed
+    by the fog node transformation scaling,
+    just like "<tt>visibilityRange</tt>" in VRML/X3D spec.
 
     <p>Oh, and note that in our programs for now <tt>EXPONENTIAL</tt> fog
     (both volumetric and not) is actually approximated by OpenGL
@@ -1130,29 +1131,28 @@ end;
     Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
 
-    <p>One additional field not explained yet: <tt>alternative</tt>.
-    This will be used if current graphic output (e.g. OpenGL implementation)
+    <p>The" <tt>alternative</tt>" field will be used if renderer (like OpenGL)
     for any reason doesn't allow volumetric fog (or at least doesn't
     allow it to be implemented efficiently). Currently, this means
     that <tt>GL_EXT_fog_coord</tt> extension is not supported.
-    In such case we'll look at <tt>alternative</tt> field:</p>
+    In such case we'll look at "<tt>alternative</tt>" field:</p>
 
     <ul>
       <li><p>If <tt>alternative</tt> is <tt>NULL</tt> (the default),
         then no fog will be rendered.</p></li>
 
-      <li><p>Otherwise we'll try to use fog node recorded in <tt>alternative</tt>.</p>
+      <li><p>Otherwise we'll try to use fog node recorded in "<tt>alternative</tt>".</p>
 
         <p>If fog node recorded in <tt>alternative</tt> is not suitable too
         (e.g. because it also uses volumetric fog) then we'll look at it's
-        <tt>alternative</tt> field in turn... So in the usual case
+        "<tt>alternative</tt>" field in turn... So in the usual case
         a fog node placed within the <tt>alternative</tt> will not use
         volumetric fog.</p>
       </li>
     </ul>
 
-    <p><tt>alternative</tt> will also be tried if the value specified in
-    <tt>fogType</tt> field of <tt>Fog</tt> node is not recognized.</p>
+    <p>"<tt>alternative</tt>" will also be tried if the value specified in
+    <tt>fogType</tt> field node is not recognized.</p>
 
 <?php echo $toc->html_section(); ?>
 
