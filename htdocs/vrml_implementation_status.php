@@ -63,7 +63,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Key device sensor'               , 'vrml_implementation_keydevicesensor'     ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'vrml_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'vrml_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b></td></tr>
+  <tr><td><?php echo a_href_page('Environmental effects'           , 'vrml_implementation_environmentaleffects'); ?>  </td><td><b>2</b> (and level 4, but without level 3)</td></tr>
   <tr><td>Geospatial   </td><td>
     As an exception, geospatial VRML 97 nodes
     may not even be correctly parsed by our engine. They are parsed

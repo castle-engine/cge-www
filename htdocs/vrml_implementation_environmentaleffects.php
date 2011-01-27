@@ -3,7 +3,7 @@
   x3d_status_header('Environmental effects', 'enveffects',
     'This component defines special rendering effects.
      <tt>Background</tt> defines the sky colors and textures.
-     <tt>Fog</tt> simulates natural fog.'
+     <tt>Fog</tt> and <tt>LocalFog</tt> simulate natural fog.'
   );
 ?>
 
@@ -11,7 +11,8 @@
 
 <ul>
   <li><p><?php echo x3d_node_link('Background'); ?>,
-    <?php echo x3d_node_link('Fog'); ?></p></li>
+    <?php echo x3d_node_link('Fog'); ?>,
+    <?php echo x3d_node_link('LocalFog'); ?></p></li>
 
   <li><p><?php echo x3d_node_link('FogCoordinate'); ?> is also supported.
 
