@@ -44,6 +44,15 @@ and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>
   <td>
+  <p><a class="FlattrButton" style="display:none;"
+  href="http://vrmlengine.sourceforge.net/"></a></p>
+
+  <p>You can donate through <a href="http://flattr.com/">Flattr</a>
+  by clicking the button above. Click the button again to subscribe
+  for a longer time.</p>
+  </td>
+
+  <td>
   <p><a href="https://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
 
   <p>You can <a href="https://sourceforge.net/donate/index.php?group_id=200653">donate
@@ -65,12 +74,17 @@ and view3dscene, and our games :) Thanks!</p>
   </td>
 
   <td>
-  <p><a class="FlattrButton" style="display:none;"
-  href="http://vrmlengine.sourceforge.net/"></a></p>
+  <script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
+  <script type="text/javascript">
+   // <![CDATA[
+     new Fundry.Widget('https://fundry.com/project/91-kambi-vrml-game-engine/widget', {width: '320px', height: '200px'});
+   // ]]>
+  </script>
+  <a href="http://fundry.com/">Powered by Fundry</a>
 
-  <p>You can donate through <a href="http://flattr.com/">Flattr</a>
-  by clicking the button above. Click the button again to subscribe
-  for a longer time.</p>
+  <p>You can offer money for a particular feature.
+  You can propose your own feature, or agree to a feature
+  proposed by another user or developer.</p>
   </td>
 </tr></table>
 
