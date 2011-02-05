@@ -519,12 +519,6 @@ of a scene, at it's default camera, just call</p>
 
   <li><p>To make your screenshot look best, you may want to use anti-aliasing,
     see <tt>--anti-alias</tt> option below.</p></li>
-
-  <li><p>On Windows, you have to suffer an annoyance of seeing the view3dscene window
-    on the screen while rendering. That's because I didn't implement real OpenGL-context-to-bitmap
-    rendering, and on Windows the window must be visible (and cannot even be obscured by
-    other windows, so don't Alt+Tab while recording!) to be able to capture output
-    (read: to get something meaningful reading OpenGL color buffer).</p></li>
 </ul>
 
 <p>Generally, you can take a look at (complex) example how to make
