@@ -15,9 +15,29 @@
 <ul>
   <li><p><?php echo x3d_node_link('TouchSensor'); ?>
 
-    <p><i>TODO</i>: <tt>hitTexCoord_changed</tt> is not working,
-    and <tt>hitNormal_changed</tt> generates only the flat (per-face) normal.
-    Everything else works perfectly, which should be enough for typical uses.</p>
+    <p>Full support, including:</p>
+
+    <ul>
+      <li><p><tt>hitTexCoord_changed</tt> event.
+        You should apply some texture on your shape,
+        otherwise texture coordinates will not be geneted (and this event
+        will always generate zero vector).</p>
+
+        <p>Note that it's only a single 2D
+        texture coordinate. If you use volumetric 3D textures (from DDS file),
+        the additional texture coordinate components will be ignored.
+        If you use multi-texturing, the additional texture units (above the
+        first) will be ignored.</p></li>
+
+      <li><p><tt>hitNormal_changed</tt> event. Generates nice smooth normals when
+        the shape is smooth (e.g. creaseAngle &gt; 0).
+
+        <p>Note: Normals output by <tt>hitNormal_changed</tt> are in
+        the shape local coordinate system.
+        Spec doesn't say in which coordinate system they should be,
+        please report if you have any idea what is expected /
+        what other browsers do.</p></li>
+    </ul>
 
   <li><p><?php echo x3d_node_link('PlaneSensor'); ?></p>
 
