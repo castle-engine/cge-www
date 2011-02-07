@@ -929,7 +929,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="14">Sensors
+    <td rowspan="12">Sensors
 
       <p>(Actually tested on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/">X3DV versions here</a>.)
     </td>
@@ -987,17 +987,8 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="3">TouchSensor</td>
-    <td class="testnr">1 .. 6</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td class="testnr">7 (hittexcoord)</td>
-    <td class="fail">-</td>
-    <td>TouchSensor.hitTexCoord_changed not implemented yet.</td>
-  </tr>
-  <tr>
-    <td class="testnr">8..9</td>
+    <td>TouchSensor</td>
+    <td class="testnr">1 .. 9 (all)</td>
     <td class="pass">+</td>
   </tr>
 
