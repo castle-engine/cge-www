@@ -21,8 +21,7 @@ on some program:
 
 - Recompile the program with *release* settings:
   - make sure you're using correct FPC version (fpc -l)
-  - make -C ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/ clean
-    (use "gmake" under FreeBSD)
+  - cd ~/sources/vrmlengine/trunk/ && ./clean_everything.sh
   - compile program with release settings, and move binary where appropriate:
     if using Emacs, open program's .lpr file, and compile with C-F10
     if not, see kam-compile-release-command* at the bottom of .lpr file
