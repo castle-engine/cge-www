@@ -22,7 +22,7 @@ for PHP_NAME in *.php; do
       | glplotter.pl.php | sources_docs.php | sources.php \
       | vrml_implementation_common.php | glcaps.php \
       | news_common.php | news_feed.php | changes_log.php \
-      | kambi_vrml_extensions_functions.php )
+      | kambi_vrml_extensions_functions.php | openal_notes.php )
       ;;
 
     *)

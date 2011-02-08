@@ -71,7 +71,7 @@ formats.</p>
 It also contains links to other 3D models scattered around our repository.</p>
 
 <p>If you want to hear 3D sound, you should also install
-<?php echo a_href_page('OpenAL', 'openal'); ?></a> and
+<?php echo a_href_page('OpenAL', 'openal'); ?> and
 <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
 libraries.
 For Windows, they are already included in the zip file, so you don't
