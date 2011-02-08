@@ -76,6 +76,6 @@ cd view3dscene/
 # Test fpmake compilation system:
   export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.0/
   fpc fpmake.pp
-  ./fpmake build
-  ./fpmake clean
+  ./fpmake build -v
+  ./fpmake clean -v
   ./fpmake build --nofpccfg --verbose
