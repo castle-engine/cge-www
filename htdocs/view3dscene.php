@@ -57,10 +57,7 @@ formats.</p>
 <?php section(false); ?>
 
 <?php echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE,
-  /* $std_releases_post_1_8_0 */
-  array('linux-i386', 'linux-x86_64', 'win-i386', 'stub-macosx-later')
-  ); ?>
+  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
