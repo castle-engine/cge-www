@@ -19,7 +19,7 @@ set -eu
 #
 # This script doesn't care for current dir from which it is run.
 
-. mk_archive
+. mk_archive.sh
 
 . generated_versions.sh
 

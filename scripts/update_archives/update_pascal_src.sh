@@ -12,7 +12,7 @@ set -eu
 # This script should be run from it's containing dir
 # (this is used by us for calculating $ARCHIVE_PATH).
 
-. mk_archive
+. mk_archive.sh
 
 . generated_versions.sh
 
