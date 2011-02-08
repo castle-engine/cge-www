@@ -61,6 +61,8 @@ Procedure to update WWW content:
   (These are some things that are automatically generated and it would
   be a waste to keep them inside SVN repository... so they have to
   be copied in a normal way.) :
+  - reference and vrml_engine_doc can be automatically uploaded by "make upload"
+    in appropriate dir
   - upload on SF within htdocs/ all that's needed
   - make sure that "other" users don't have uncessesary permissions
     (files created by svn inside .svn and files updated by SVN
@@ -72,9 +74,6 @@ Procedure to update WWW content:
   - on SF shell server, run check_sums_md5.sh. This will check md5 sums
     uploaded in previous step, thus checking that all files (even those
     ignored by SVN) were uploaded correctly.
-
-- if you want to create some new counters, make sure to update
-  script init_counters.sh and then run it on SF
 
 - after important release, I may wish to announce it:
 

@@ -1,4 +1,4 @@
-(This is obsolete info for creating counters for 
+(This is obsolete info for creating counters for
 htdocs/kambi-php-lib/counter.php . I don't use them anymore,
 piwik gives me all that I need and more.)
 
@@ -30,3 +30,6 @@ http://camelot.homedns.org/~michalis/ were moved to SF.
 
 Counters should have permissions 666 (read-write by all).
 There's no escape from this, Apache must be able to read-write them.
+
+If you want to create some new counters, make sure to update
+script init_counters.sh and then run it on SF.
