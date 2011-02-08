@@ -19,15 +19,13 @@ on some program:
 - Make sure you did `svn update' of program sources.
   And make sure no local modifications remain - `svn status' should return empty.
 
-  Under Linux, take care to update both ~/sources/vrmlengine/trunk/ and
-  /mnt/fat/mojepasy/vrmlengine/trunk/, as update_xxx scripts work with
-  the latter. So be sure that they are in sync, just to be safe.
-
 - Recompile the program with *release* settings:
-  - make sure you're using correct FPC version
-  - (g)make -C ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/ clean
-  - open program's .lpr file in Emacs
-  - compile it with C-F10, this will compile with proper *release* options
+  - make sure you're using correct FPC version (fpc -l)
+  - make -C ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/ clean
+    (use "gmake" under FreeBSD)
+  - compile program with release settings, and move binary where appropriate:
+    if using Emacs, open program's .lpr file, and compile with C-F10
+    if not, see kam-compile-release-command* at the bottom of .lpr file
 
 - If the program has version number:
   - You should recompile program both for target OS (the OS for which you
@@ -51,9 +49,6 @@ on some program:
   Run documentation in browser.
 
 - Call ./update_pascal_src.sh with proper options
-
-  Before packing new kambi_vrml_game_engine version,
-  check tests: ~/sources/vrmlengine/trunk/www/TESTS
 
 After this, see SF update procedure on
 ../../NOTES.txt
