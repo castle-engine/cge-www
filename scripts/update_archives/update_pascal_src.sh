@@ -170,15 +170,6 @@ case "$1" in
   # Archive contains files and subdirs inside
   # "$VRMLENGINE_PATH"kambi_vrml_game_engine/
   kambi_vrml_game_engine)
-    make -C "$VRMLENGINE_PATH"kambi_vrml_game_engine/ container_units
-
-    # Test do things compile OK:
-    echo '----------------------------------------'
-    echo 'Testing compilation ...'
-    make -C "$VRMLENGINE_PATH"kambi_vrml_game_engine/ all examples
-    echo '...testing done.'
-    echo '----------------------------------------'
-
     mk_archive_begin
 
     pascal_src_add_standard "$VRMLENGINE_PATH"kambi_vrml_game_engine/
