@@ -592,8 +592,13 @@ function echo_standard_program_download(
     echo '<ul>' . "\n";
     foreach ($os_arch_list as $os_arch)
     {
-      echo '<li>' . sf_download($os_arch_caption[$os_arch],
-        $arch_name_start . $os_arch . $os_arch_extension[$os_arch]) . "</li>\n";
+      echo '<li>';
+      if ($os_arch == 'stub-macosx-later')
+        echo '<i>Mac OS X release will follow later.</i>'; else
+        /*  BTW, <a href="http://vrmlengine.sourceforge.net/macosx_requirements.php#section_help_wanted">programmers who want to help make better Mac OS X releases are wanted</a>. */
+        echo sf_download($os_arch_caption[$os_arch],
+          $arch_name_start . $os_arch . $os_arch_extension[$os_arch]);
+      echo '</li>' . "\n";
     }
     echo "</ul>\n";
   }
