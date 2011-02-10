@@ -7,14 +7,16 @@
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
-  new TocItem('Define lights casting shadows on everything', 'ext_light_shadows_on_everything'),
-  new TocItem('Define shadow receivers', 'ext_receive_shadows'),
-  new TocItem('Overview of the lower-level extensions', 'ext_shadow_maps_lower_level'),
-  new TocItem('Light sources parameters', 'ext_light_projective'),
-  new TocItem('Automatically generated shadow maps', 'ext_generated_shadow_map'),
-  new TocItem('Projective texture mapping', 'ext_texture_gen_projective'),
-  new TocItem('How the receiveShadows field maps to the lower-level extensions', 'ext_receive_shadows_vs_lower_level'),
-  new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'ext_shadow_caster'),
+  new TocItem('Examples', 'examples'),
+  new TocItem('Define lights casting shadows on everything', 'light_shadows_on_everything'),
+  new TocItem('Define shadow receivers', 'receive_shadows'),
+  new TocItem('The lower-level extensions', 'lower_level'),
+  new TocItem('Overview of the lower-level extensions', 'lower_level_overview', 1),
+  new TocItem('Light sources parameters', 'light_parameters', 1),
+  new TocItem('Automatically generated shadow maps', 'generated_shadow_map', 1),
+  new TocItem('Projective texture mapping', 'texture_projective', 1),
+  new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
+  new TocItem('Optionally specify shadow casters (<tt>KambiAppearance.shadowCaster</tt>)', 'shadow_caster'),
 ));
 $toc->echo_numbers = true;
 ?>
@@ -32,8 +34,8 @@ $toc->echo_numbers = true;
     width: 80%;
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
   see also my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
-  (accepted for Web3D 2010 conference). PDF linked here has some very minor
-  corrections (for <tt>projection*</tt> fields)
+  (accepted for Web3D 2010 conference). PDF linked here has some absolutely minor
+  corrections (for <tt>projection*</tt> fields and fixed URLs)
   compared to the conference version.
   <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
   from the presentation</a> are also available.</p>
@@ -69,9 +71,22 @@ $toc->echo_numbers = true;
   <ul>
     <li><tt>PointLight</tt> sources do not cast shadow maps yet. (Easy to do, please report if you need it.)
     <li>Shadows from many lights on a single receiver do not really work yet. (Waits for finishing the "pure shader pipeline".)
-    <!--li>Some non-trivial multi-texture setups will not work nicely with shadow maps yet (waits for finishing the "pure shader pipeline").-->
-    <!--This is expected to be greatly improved during the next releases, where more and more stuff will be moved to the shader pipeline.-->
   </ul>
+
+<?php echo $toc->html_section(); ?>
+
+  <p><?php echo a_href_page('Kambi VRML test suite',
+  'kambi_vrml_test_suite'); ?> contains some models using shadow maps,
+  download it and open with <?php echo a_href_page('view3dscene',
+  'view3dscene'); ?> files insde <tt>x3d/shadow_maps</tt> subdirectory.</p>
+
+  <p>An example model "sunny_street" demonstrating shadow maps may be found in SVN:
+
+  <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/sunny_street/'); ?></pre>
+
+  <p>Also the slides contain some simple tests:
+
+  <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/slides/'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
@@ -123,6 +138,8 @@ $toc->echo_numbers = true;
   The resulting fragment color is the sum of all the visible lights (visible
   because they are not occluded, or because they don't cast shadows on this shape),
   modified by the material emissive color and fog, following the X3D specification.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
