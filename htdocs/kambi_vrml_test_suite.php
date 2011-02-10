@@ -64,11 +64,11 @@ and download them by commands below:
 <ul>
   <li><p>Nice demo of shadow maps (done for <?php echo a_href_page_hashlink('shadow maps paper', 'kambi_vrml_extensions', 'section_ext_shadow_maps'); ?>):
 
-    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/sunny_street/'); ?></pre>
+    <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/sunny_street/'); ?></pre>
 
     <p>Also the shadow map slides contain some simple tests:
 
-    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/shadow_maps_x3d/slides/'); ?></pre>
+    <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/slides/'); ?></pre>
   </li>
 
   <li><p>Simple examples of VRML 1.0 and 2.0 (done for <?php echo a_href_page('engine documentation', 'vrml_engine_doc'); ?>):
