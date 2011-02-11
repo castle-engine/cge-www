@@ -170,10 +170,6 @@ subdirectories.</p>
     in image editing programs image Y grows down but we want Y
     (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
 
-    <p>This allows bump mapping to be used. If you set BumpMappingMaximum attribute
-    (and pass light position for bump mapping), our VRML engine will
-    automatically do appropriate bump mapping.</p>
-
     <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
     method, done by pure multi-texturing or GLSL programs, depending on
     OpenGL capabilities). If you additionally specify some texture as
@@ -183,16 +179,25 @@ subdirectories.</p>
     <tt>heightMapScale</tt> allows you to tweak the perceived height of bumps
     for parallax mapping.</p>
 
-    <p>You can test it in</p>
+    <p>Since version 3.10.0 of view3dscene (2.5.0 of engine),
+    new shader pipeline allows the bump mapping to cooperate with
+    all normal VRML/X3D lighting and multi-texturing settings.
+    So the same lights and textures are used for bump mapping lighting
+    equations, only they have more interesting normals.</p>
+
+    <p>Note that bump mapping only works if you also assigned a normal
+    (2D) texture to your shape. We assume that normal map and height map
+    is mapped on your surface in the same way (same texture coordinates,
+    same texture transform) as the first texture (in case of multi-texturing).</p>
+
+    <p>Examples:</p>
 
     <ul>
-      <li><p>You can turn it on and see the effects in
-        <?php echo a_href_page("view3dscene", "view3dscene") ?>.
-        In view3dscene, for simplicity, bump mapping light position is always
-        set to current camera position. Sample models with normal maps
-        and height maps are inside <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?>, in directory
-        <tt>vrml_2/kambi_extensions/bump_mapping/</tt>.</p></li>
+      <li><p>Open with
+        <?php echo a_href_page("view3dscene", "view3dscene") ?>
+        sample models from <?php echo a_href_page('Kambi VRML test suite',
+        'kambi_vrml_test_suite'); ?> (see directory
+        <tt>vrml_2/kambi_extensions/bump_mapping/)</tt>.</p></li>
 
       <li><p>You can see this used in
         <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
@@ -203,19 +208,6 @@ subdirectories.</p>
         <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>, this allows
         to really play with bump mapping settings and see how to use this in
         your own programs.</p></li>
-    </ul>
-
-    <p>Note some limitations of bump mapping:</p>
-    <ul>
-      <li>Currently bump mapping is used only when normal texture
-        ("normal" texture as in "texture used for normal purposes, in <tt>texture</tt>
-        field of Appearance") is also specified.</li>
-      <li>This must be a simple 2D texture
-        node (like <tt>ImageTexture</tt>). For example multi-texture is not
-        allowed (bump mapping has
-        to configure it's own multi-texturing setup to work).</li>
-      <li>Using bump mapping overrides your GLSL shaders on the same shape.
-        Generally, bump mapping has to configure it's own shaders to work.</li>
     </ul>
 
 <?php echo $toc->html_section(); ?>
