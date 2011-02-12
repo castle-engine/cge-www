@@ -49,7 +49,7 @@ should be able to at least gracefully omit them.--></p>
 of <?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
 "kanim_format") ?>.</p>
 
-<p>Files inside <tt>warnings/</tt> subdirectory are deliberately invalid
+<p>Files inside <tt>warnings/</tt> subdirectories are deliberately invalid
 in some ways. Good VRML browser should report their problems by a nice
 error message, or even (in cases when possible) report it only as a warning
 and continue working (omitting problematic part).</p>
