@@ -196,8 +196,8 @@ subdirectories.</p>
       <li><p>Open with
         <?php echo a_href_page("view3dscene", "view3dscene") ?>
         sample models from <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?> (see directory
-        <tt>vrml_2/kambi_extensions/bump_mapping/)</tt>.</p></li>
+        'kambi_vrml_test_suite'); ?> (see subdirectory
+        <tt>bump_mapping/)</tt>.</p></li>
 
       <li><p>You can see this used in
         <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.

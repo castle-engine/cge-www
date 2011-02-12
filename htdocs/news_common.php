@@ -819,7 +819,7 @@ vrmlengine_thumbs(array(
   <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now slightly more general converter from ' . news_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . news_a_href_page('exporting from Blender to kanim', 'blender_stuff') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
 </ol>
 
-<p>The source model is in SVN, in <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/bump_mapping/cloth/</tt>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
+<p>The source model is in SVN, in <tt>kambi_vrml_test_suite/bump_mapping/cloth/</tt>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
 
     array('title' => 'More engine 2.0 news: all examples and &quot;The Castle&quot; use scene manager',
           'year' => 2010,
