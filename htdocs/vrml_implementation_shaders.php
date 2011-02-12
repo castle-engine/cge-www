@@ -38,7 +38,7 @@ parts [
 </pre>
 
     <p>See <?php echo a_href_page("Kambi VRML test suite",
-    "kambi_vrml_test_suite"); ?>, directory <tt>x3d/shaders/</tt>
+    "kambi_vrml_test_suite"); ?>, directory <tt>shaders/</tt>
     for working demos of this.</p>
   </li>
 
@@ -58,7 +58,7 @@ parts [
     <a href="http://instant-reality.com/">InstantPlayer</a>)
     we also recognize URL as containing direct shader source if it
     has any newlines
-    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
   </li>
 
   <li><p><b>Passing values to GLSL shader uniform variables.</b></p>
@@ -138,8 +138,8 @@ initializeOnly SFNode texture_two ImageTexture { url "two.png" }
 
     <p>A full working version of this example can be found
     in <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
-    (look for file <tt>x3d/shaders/simple_multitex_shaders.x3dv</tt>),
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
+    (look for file <tt>shaders/simple_multitex_shaders.x3dv</tt>),
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
     </p>
 
     <p>When using GLSL shaders in X3D you should pass all
@@ -172,7 +172,7 @@ initializeOnly SFNode texture_two ImageTexture { url "two.png" }
     You can place them in the <tt>attrib</tt> field of most geometry nodes
     (like <tt>IndexedFaceSet</tt>).</p>
 
-    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shaders/attributes.x3dv">Example attributes.x3dv</a>,
+    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shaders/attributes.x3dv">Example attributes.x3dv</a>,
     showing how to pass elevation grid heights by the shader attributes.</p>
 
   <li><p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL

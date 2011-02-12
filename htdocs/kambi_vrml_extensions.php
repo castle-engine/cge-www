@@ -124,10 +124,9 @@ Some other extensions may be able supported for other reasons:
 
 <p><b>Examples</b>: VRML/X3D models that use these extensions may be found
 in <?php echo a_href_page("Kambi VRML test suite",
-"kambi_vrml_test_suite"); ?> &mdash; look inside
-<tt>vrml_1/kambi_extensions/</tt>, <tt>vrml_2/kambi_extensions/</tt>,
-<tt>x3d/kambi_extensions/</tt>, <tt>x3d/shaders/kambi_extensions/</tt>
-subdirectories.</p>
+"kambi_vrml_test_suite"); ?>. Look there at directory names,
+in particular <tt>kambi_extensions</tt> subdirectories (but also some
+others) are full of demos of our extensions.</p>
 
 <?php echo $toc->html_section(); ?>
 

@@ -102,9 +102,9 @@ and download them by commands below:
   <li><p><i>Victor Amat</i> provided a lot of interesting demos.
     To mention some:
     flat mirrors by <tt>RenderedTexture</tt> (see <tt>x3d/rendered_texture/</tt>),
-    Screen Space Ambient Occlusion (see <tt>x3d/shadow_maps/ssao*</tt>),
+    Screen Space Ambient Occlusion (see <tt>shadow_maps/ssao*</tt>),
     shadow maps tests (including demo to visualize bias/scale,
-    <tt>x3d/shadow_maps/shadow_bias.x3dv</tt>),
+    <tt>shadow_maps/shadow_bias.x3dv</tt>),
     <tt>vrml_2/camera_{orient,rot}.wrl</tt>,
     <tt>orientation_interpolator_alum_box.wrl</tt>,
     test textures for spherical mapping testing (<tt>textures/spheremap-*.jpg</tt>).

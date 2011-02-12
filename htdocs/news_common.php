@@ -522,7 +522,7 @@ vrmlengine_thumbs(array(
        demos in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
     <b><tt>StringSensor</tt></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_keydevicesensor.html">support details in our SVN docs</a>, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
-  <li><p><b>Shadow maps</b> (<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<tt>Box</tt>, <tt>Sphere</tt> etc.) are fixed now (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/primitives.x3dv">demo</a>).</p></li>
+  <li><p><b>Shadow maps</b> (<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<tt>Box</tt>, <tt>Sphere</tt> etc.) are fixed now (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
   <li><p>Victor Amat updated the demo using our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get <b>mirrors on a flat surface</b>. See kambi_vrml_test_suite/x3d/rendered_texture/chess.x3dv in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN kambi_vrml_test_suite</a>.</p></li>
 
@@ -1027,7 +1027,7 @@ vrmlengine_thumbs(array(
     </ol>
   </li>
 
-  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <tt>GeneratedShadowMap</tt>. The complete examples, with shaders, are available inside our <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/shadow_maps/">x3d/shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
+  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <tt>GeneratedShadowMap</tt>. The complete examples, with shaders, are available inside our <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
 
     <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
 
