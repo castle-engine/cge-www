@@ -182,13 +182,13 @@ function input(value, timestamp)
 
 <p>Some larger examples:
 <ul>
-  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv">kambi_script_ball_game.x3dv</a>
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/ball_game.x3dv">kambi_script_ball_game.x3dv</a>
     &mdash; a small X3D game, with whole game logic implemented in KambiScript
     (key handling by KeySensor node). Can be played in any VRML browser
     supporting KambiScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
     or any of the example VRML browser components in engine sources.
 
-  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
     &mdash; a toy image editor. Again, it's a pure X3D file (you can
     open it and use with any VRML browser supporting KambiScript).
     Uses KambiScript to implement various simple image editing
@@ -197,7 +197,7 @@ function input(value, timestamp)
     since KambiScript doesn't allow to save files from VRML for safety reasons.)
     But it shows that even image processing is quite easy with KambiScript.
 
-  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_particles.x3dv">kambi_script_particles.x3dv</a>
+  <li><p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/particles.x3dv">kambi_script_particles.x3dv</a>
     &mdash; a simple particle engine. Whole particles animation,
     logic (randomization, speed, gravity) is implemented in KambiScript.
     "Particles" are rendered as points and lines (<tt>PointSet</tt>,
@@ -725,7 +725,7 @@ on vectors.</p>
     rotation on a unit sphere.</p></li>
 </ul>
 
-<p>Example: see <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_rotations.x3dv">kambi_script_rotations.x3dv</a>
+<p>Example: see <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/rotations.x3dv">kambi_script_rotations.x3dv</a>
 for a simple X3D Script using above rotation functions.</p>
 
 <?php echo $toc->html_section(); ?>

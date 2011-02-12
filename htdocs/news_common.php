@@ -1467,11 +1467,11 @@ vrmlengine_thumbs(array(
     write complete interactive 3D games and run them with view3dscene
     (or any other VRML browser using our engine).
     " . news_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
-    " contains source VRML files with KambiScript tests (see <tt>x3d/kambi_extensions/kambi_script_*</tt>
+    " contains source VRML files with KambiScript tests (see <tt>kambi_script/</tt>
     in there, like
-    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
+    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
     or
-    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/kambi_extensions/kambi_script_particles.x3dv\">kambi_script_particles.x3dv</a>),
+    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/particles.x3dv\">kambi_script_particles.x3dv</a>),
     you can simply open them in view3dscene.</p></li>
 
   <li><p><b>Animating camera by animating Viewpoint position</b> (or it's transformation)
