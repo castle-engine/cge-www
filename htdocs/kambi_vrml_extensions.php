@@ -10,7 +10,7 @@ $toc = new TableOfContents(array(
   new TocItem('Extensions', 'extensions'),
 
   new TocItem('Screen effects (<tt>ScreenEffect</tt> node)', 'ext_screen_effects', 1),
-  new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>KambiAppearance</tt>)', 'ext_bump_mapping', 1),
+  new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>Appearance</tt>)', 'ext_bump_mapping', 1),
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
   new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
   new TocItem('Specify what lights cast shadows for shadow volumes (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 2),
@@ -40,7 +40,7 @@ $toc = new TableOfContents(array(
 
   new TocItem('Extensions compatible with Avalon / instant-reality', 'ext_avalon', 1),
 
-  new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>KambiAppearance.blendMode</tt>)', 'ext_blending', 2),
+  new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>Appearance.blendMode</tt>)', 'ext_blending', 2),
   new TocItem('Transform by explicit 4x4 matrix (<tt>MatrixTransform</tt> node)', 'ext_matrix_transform', 2),
   new TocItem('Events logger (<tt>Logger</tt> node)', 'ext_logger', 2),
   new TocItem('Teapot primitive (<tt>Teapot</tt> node)', 'ext_teapot', 2),
@@ -136,14 +136,13 @@ others) are full of demos of our extensions.</p>
 
 <a name="ext_bump_mapping"></a><?php echo $toc->html_section(); ?>
 
-    <p>Instead of <tt>Appearance</tt> node, you can use <tt>KambiAppearance</tt>
-    node that adds some new fields useful for bump mapping:
+    <p>We add to the <tt>Appearance</tt> node new fields useful for bump mapping:
 
     <?php
-      echo node_begin('KambiAppearance : Appearance');
+      echo node_begin('Appearance : X3DAppearanceNode');
       $node_format_fd_name_pad = 15;
       echo
-      node_dots('all normal Appearance fields') .
+      node_dots('all previous Appearance fields') .
       node_field('SFNode', '[in,out]', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
       node_field('SFNode', '[in,out]', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
       node_field('SFFloat', '[in,out]', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
@@ -208,6 +207,13 @@ others) are full of demos of our extensions.</p>
         to really play with bump mapping settings and see how to use this in
         your own programs.</p></li>
     </ul>
+
+    <p>Note: you can also use these fields within <tt>KambiAppearance</tt> node
+    instead of <tt>Appearance</tt>. This allows you to declare <tt>KambiAppearance</tt>
+    by EXTERNPROTO, that fallbacks on standard <tt>Appearance</tt>,
+    and thus bump mapping extensions will be gracefully omitted by other
+    browsers. See <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?> for examples.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1683,7 +1689,7 @@ end;
     ));
     ?>
 
-    <p>We add new field to <tt>KambiAppearance</tt> node: <tt>blendMode</tt> (SFNode,
+    <p>We add new field to <tt>Appearance</tt> node: <tt>blendMode</tt> (SFNode,
     NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
     node to specify blending mode done for partially-transparent objects.
     BlendMode node is not X3D standard, but it's specified by Avalon:
@@ -1699,7 +1705,7 @@ end;
     <p>For example:
 
 <pre class="vrml_code">
-  appearance KambiAppearance {
+  appearance Appearance {
     material Material {
       transparency 0.5
     }
