@@ -10,7 +10,7 @@ set -eu
 export LANG=C
 
 # Make sure you have dircleaner, fpc etc. on $PATH
-export PATH=~/bin:/usr/local/bin:"${PATH}"
+export PATH=/home/michalis/bin:/usr/local/bin:"${PATH}"
 
 move_all_programs ()
 {
@@ -77,6 +77,13 @@ set -e
 # Create "latest" link, comfortable for users.
 rm -f ~/public_html/vrmlengine-snapshots/latest
 ln -s `date +%F` ~/public_html/vrmlengine-snapshots/latest
+
+echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+echo 'Regenerate papers PDF:'                                             >> "$OUTPUT_LOG"
+cd ~/sources/vrmlengine/trunk/papers/compositing_shaders/
+make clean >> "$OUTPUT_LOG" 2>&1
+make       >> "$OUTPUT_LOG" 2>&1
+mv -f compositing_shaders.pdf ~/public_html/
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
