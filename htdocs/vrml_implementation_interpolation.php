@@ -34,9 +34,18 @@
 
 <p><i>TODO</i>: EaseInEaseOut, Spline*, SquadOrientationInterpolator missing.</p>
 
-<p><i>Extensions:</i> We add <?php <tt>ColorSetInterpolator</tt>,
-that generates <tt>MFColor</tt> values. Works and looks exactly like
-<tt>CoordinateInterpolator</tt> otherwise.</p>
+<p><b>Extensions:</b> We add <tt>ColorSetInterpolator</tt>,
+that generates <tt>MFColor</tt> values:
+
+<ul>
+  <li>Works and looks exactly like
+    other interpolation nodes. Is similar to <tt>CoordinateInterpolator</tt>,
+    but generates colors. Is similar to <tt>ColorInterpolator</tt>,
+    but generates many values. Colors should be interpolated in HSV
+    space (TODO although for now are not).</li>
+
+  <li>Useful to interpolate e.g. <tt>Background.skyColor</tt> values.</li>
+</ul>
 
 <?php
   x3d_status_footer();
