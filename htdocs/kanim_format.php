@@ -3,11 +3,24 @@
   require_once 'vrml_implementation_common.php';
 
   vrmlx3d_header("Kanim file format");
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('What it is', 'what'),
+      new TocItem('Exact format specification', 'specification'),
+      new TocItem('Shortcomings of this format', 'shortcomings'),
+    )
+  );
 ?>
 
 <?php
   echo pretty_heading("Kanim file format");
 ?>
+
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <p>Files with extension *.kanim represent <i>"Kambi VRML engine's animations"</i>.
 These are XML files that describe precalculated animation as a sequence of files.
@@ -48,7 +61,7 @@ kanim to VRML/X3D.</p>
 <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.animation.html">description
 of animation handling in our VRML engine documentation</a>.</p>
 
-<hr />
+<hr /> <?php echo $toc->html_section(); ?>
 
 <p>File format is simple:
 
@@ -123,6 +136,40 @@ of animation handling in our VRML engine documentation</a>.</p>
 
 &lt;/animation&gt;
 </pre>
+
+<hr/> <?php echo $toc->html_section(); ?>
+
+<p>As I mentioned above, kanim format is obsolete.
+Some things that cannot be achieved using kanim (and probably never
+will be, as we would advice everyone to use VRML/X3D interpolators
+for all your needs):</p>
+
+<ul>
+  <li><p>Our collision detection uses the first (or both first and last)
+    frame. Octrees are not updated between frames.
+    So collision detection, mouse picking,
+    raytracer rendering are all done using octree for the 1st animation frame.</p>
+
+    <p>Use instead VRML/X3D interpolators, when octree is properly managed.</p>
+  </li>
+
+  <li><p>Background animations do not work (we use MainScene.Background always).</p>
+
+    <p>Use instead VRML/X3D interpolators, when background is fast updated.
+    Note that you can use our
+    <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
+    'vrml_status_interpolation'); ?> to animate sets of colors like
+    <tt>skyColor</tt>, <tt>groundColor</tt>.
+    See examples in <?php echo a_href_page('Kambi VRML test suite',
+    'kambi_vrml_test_suite'); ?>
+    (look inside <tt>vrml_2/background_animate*</tt>) for demos.</p>
+  </li>
+
+  <li><p>Some view3dscene features: saving to VRML only saves the 1st frame,
+    "Remove Selected Geometry/Face" only works on 1st frame
+    (so doesn't really work for kanim at all).</p></li>
+</ul>
+
 
 <?php
   vrmlx3d_footer();
