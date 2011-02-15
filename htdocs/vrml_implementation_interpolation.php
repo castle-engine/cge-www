@@ -34,6 +34,10 @@
 
 <p><i>TODO</i>: EaseInEaseOut, Spline*, SquadOrientationInterpolator missing.</p>
 
+<p><i>Extensions:</i> We add <?php <tt>ColorSetInterpolator</tt>,
+that generates <tt>MFColor</tt> values. Works and looks exactly like
+<tt>CoordinateInterpolator</tt> otherwise.</p>
+
 <?php
   x3d_status_footer();
 ?>
