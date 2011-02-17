@@ -215,6 +215,10 @@ simple "<tt>make examples</tt>". Or you can compile and run from
 using the engine see the "Introduction" page in our
 <?php echo a_href_page('reference', 'reference') ?>.
 
+<p>Note: if you use <b>FPC 2.2.4 (or older)</b>
+download <a href="http://downloads.sourceforge.net/vrmlengine/kambi_vrml_game_engine-2.4.0-for-fpc22.tar.gz">this version instead</a>
+(it fixes a compatibility bug that slipped into official 2.4.0 engine release).</p>
+
 <!--
 The explanations that actually the engine
 main OpenGL initialization method is <b>not</b> the Lazarus TOpenGLControl
@@ -405,6 +409,11 @@ although some older versions require some
 quirks to successfully compile:</p>
 
 <ul>
+  <li><p><b>FPC 2.2.4 and older</b>: a compatibility problem slipped
+    into the engine 2.4.0 releae. Use these
+    <a href="http://downloads.sourceforge.net/vrmlengine/kambi_vrml_game_engine-2.4.0-for-fpc22.tar.gz">patched sources</a>
+    instead of the "official" download.</p>
+
   <li><p><b>FPC 2.2.2 and older</b>:
     Under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
     linker errors like</p>
