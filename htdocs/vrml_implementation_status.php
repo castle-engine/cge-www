@@ -152,16 +152,21 @@ on user system, performance of OpenGL implementation etc.
 All nodes and features are handled, with the exception of:
 
 <ul>
-  <li>Handling URLs in fields <tt>WWWInline.name</tt> and
+  <li><p>Handling URLs in fields <tt>WWWInline.name</tt> and
     <tt>Texture2.filename</tt>. As for now, only local file names are
     allowed there.
     <!-- Relative paths are resolved with respect to the path of originating
          VRML file. -->
 
-  <li><tt>AsciiText.width</tt> is ignored.
+  <li><p><tt>AsciiText.width</tt> is ignored.
 
-  <li>Value of <tt>height</tt> / <tt>heightAngle</tt> fields of camera
-    nodes are ignored.
+  <li><p><tt>OrthographicCamera.height</tt> and
+    <tt>PerspectiveCamera.heightAngle</tt> fields work like
+    X3D <tt>OrthoViewpoint.fieldOfView</tt> and
+    <tt>Viewpoint.fieldOfView</tt>. This means that they specify
+    the angle/height along the <i>smaller</i> browser window size &mdash;
+    which is <i>usualy the height</i>, but <i>may be width</i> is you
+    resize the window to be taller and thinner.
 </ul>
 
 <p><b>VRML 1.0 features that will probably never be implemented,
