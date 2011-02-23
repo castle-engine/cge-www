@@ -36,13 +36,17 @@ Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
 
-<h2>VRML and Kanim exporters, for Blender 2.49</h2>
+<h2>VRML 97 (2.0) and KAnim exporters, for Blender 2.4x</h2>
 
-<p>(These probably will not work with Blender 2.5x, and I probably will
-not update them. X3D exporter above should fully replace VRML exporter
-(although it still has a way to go, even splitting is not implemented
-in released version yer). Also, we hope one day to see animation export to X3D,
-and then our Kanim should also be useless.)</p>
+<p>(Please note that I don't use exporters below anymore,
+they probably will not work with Blender 2.5x or newer,
+and I probably will not update them. X3D is the future,
+and X3D exporter above should be your preferred option.
+Although X3D exporter above is still far from perfect
+(even splitting is not implemented in released version yet),
+but let's try to make it better.
+We also hope one day to see animation export to X3D,
+and then our KAnim will also be useless.)</p>
 
 <ul>
   <li><p>Script <?php echo_svn_blender_file('kambi_vrml97_export.py') ?>
