@@ -42,11 +42,8 @@ on any license required for official Blender wiki / docs contents is granted.</p
 they probably will not work with Blender 2.5x or newer,
 and I probably will not update them. X3D is the future,
 and X3D exporter above should be your preferred option.
-Although X3D exporter above is still far from perfect
-(even splitting is not implemented in released version yet),
-but let's try to make it better.
 We also hope one day to see animation export to X3D,
-and then our KAnim will also be useless.)</p>
+and then our "KAnim hack" will no longer be useful.)</p>
 
 <ul>
   <li><p>Script <?php echo_svn_blender_file('kambi_vrml97_export.py') ?>
