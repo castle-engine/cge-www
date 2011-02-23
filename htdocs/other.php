@@ -13,7 +13,7 @@ the programs developed with it:</p>
     of Kambi VRML game engine</a>
     (<b>Please</b> contribute to it, and then we'll make the wiki link more visible!)
   <li><?php echo a_href_page(
-    "Blender VRML stuff", "blender_stuff"); ?></li>
+    "Blender VRML/X3D exporters", "blender_stuff"); ?></li>
   <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
   <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
   <li><?php echo a_href_page('OpenAL notes', 'openal'); ?>
