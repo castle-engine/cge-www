@@ -1,9 +1,8 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("Blender VRML stuff",
-    "Various stuff related to Blender and VRML exporters, " .
-    "especially for Kambi VRML game engine", array('other'));
+  vrmlengine_header("Blender VRML/X3D exporters with Kambi fixes and modifications",
+    NULL, array('other'));
 
 function echo_svn_blender_file($filename)
 {
@@ -14,10 +13,36 @@ function echo_svn_blender_file($filename)
 ?>
 
 <?php
-  echo pretty_heading("Blender VRML stuff");
+  echo pretty_heading('Blender VRML/X3D exporters', NULL,
+    'with Kambi fixes and modifications');
 ?>
 
-<p>Various utilities for Blender, related to VRML :
+<h2>X3D exporter, for Blender 2.56</h2>
+
+<ul>
+  <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
+    Contains notes how the exporter (both original distributed in Blender
+    and modified by me) works, how you should setup your model.
+    And contains notes about our modifications.
+
+  <p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
+    Get the actual exporter.
+</ul>
+
+<p>Blender people: feel welcome to take my fixes / changes,
+and apply them to Blender sources. Michalis will try to report them when
+he has time (which doesn't happen too often unfortunately).
+Also feel free to take my notes, and use/convert them for documentation
+anywhere on Blender site, wiki etc. Permission to use my notes
+on any license required for official Blender wiki / docs contents is granted.</p>
+
+<h2>VRML and Kanim exporters, for Blender 2.49</h2>
+
+<p>(These probably will not work with Blender 2.5x, and I probably will
+not update them. X3D exporter above should fully replace VRML exporter
+(although it still has a way to go, even splitting is not implemented
+in released version yer). Also, we hope one day to see animation export to X3D,
+and then our Kanim should also be useless.)</p>
 
 <ul>
   <li><p>Script <?php echo_svn_blender_file('kambi_vrml97_export.py') ?>
@@ -61,6 +86,8 @@ function echo_svn_blender_file($filename)
       'kanim_format'); ?>. Thanks to Grzegorz Hermanowicz for starting this !</p>
   </li>
 </ul>
+
+<h2>Subversion</h2>
 
 <p>You can grab all this stuff from SVN:
 <pre class="terminal small">
