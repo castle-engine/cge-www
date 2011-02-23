@@ -627,7 +627,7 @@ case "$1" in
     mk_archive_begin
 
     cp -R "$VRMLENGINE_PATH"kambi_vrml_test_suite/ .
-    dircleaner . clean -d .svn -f '*.blend1'
+    dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
 
     # Trzeba najpierw zrobiæ make clean bo dotychczasowe le¿±ce tam HTMLe
     # mog³y byæ wygenerowane z innymi LOCALLY_AVAIL
