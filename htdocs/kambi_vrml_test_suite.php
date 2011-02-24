@@ -9,7 +9,7 @@
       new TocItem('About', 'about'),
       new TocItem('Other demo VRML / X3D scenes', 'other'),
       new TocItem('SVN', 'svn'),
-      new TocItem('Credits', 'credits'),
+      new TocItem('Authors', 'authors'),
       new TocItem('Comments', 'comments')
     ));
   $toc->echo_numbers = true;
@@ -96,7 +96,15 @@ and download them by commands below:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Models :
+<p>Most of the 3D models inside were created by Kambi (Michalis Kamburelis).
+Most the simple test models were simply manually crafted in a text editor.
+The more complicated meshes were created in
+<a href="http://www.blender3d.org/">Blender</a> (usually using our
+<?php echo a_href_page('modified Blender VRML/X3D exporter', 'blender_stuff'); ?>),
+you will find the .blend source files inside.
+For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
+
+<p>Models:
 
 <ul>
   <li><p><i>Victor Amat</i> provided a lot of interesting demos.
@@ -113,6 +121,18 @@ and download them by commands below:
   <li><p><i>Stephen H. France</i> provided various tests for <tt>TimeSensor</tt>,
     <tt>Extrusion</tt> and others. Thanks!</p></li>
 
+  <li><p>Various models were based on
+    <a href="http://opengameart.org/">OpenGameArt.org</a> models,
+    also some textures were taken from there. This is a great site
+    where you can find models and textures on clear open-source licenses
+    (GPL or CC), thousand thanks go to it's many contributors.
+
+    <p>Examples include
+    <a href="http://opengameart.org/content/shrine-shinto-japan">Shinto Shrine</a>
+    (used for compositing shaders demo inside <tt>compositing_shaders/shinto_shrine/</tt>).
+    also a lot of textures, see <tt>compositing_shaders/textures/AUTHORS.txt</tt>.</p>
+  </li>
+
   <li><p><tt>vrml_1/instancing.wrl</tt> and
     <tt>vrml_1/vrml_spec_sample*.wrl</tt>
     were extracted from VRML 1.0 specification.</li>
@@ -120,22 +140,9 @@ and download them by commands below:
   <li><p><tt>3ds/p47d.3ds</tt> by Orin Palmer,
     <a href="http://www.3dcafe.com/">www.3dcafe.com</a>
     (from free models section), see the file <tt>3ds/p47d.txt</tt>.</li>
-
-  <li><p>Everything else was created by Michalis Kamburelis, aka Kambi.
-
-    <p>Some models were created using
-    <a href="http://www.blender3d.org/">Blender</a>,
-    their Blender source files are available in <tt>blender/</tt> subdirectory.
-
-    <p>Most of the models were just written by hand.
-
-    <p>Note that many models in <tt>vrml_2</tt> subdirectory
-    were created by translating (by hand) appropriate <tt>vrml_1</tt>
-    files. In most cases these two versions (VRML 1.0 and 2.0)
-    should render <i>exactly</i> the same.</li>
 </ul>
 
-<p>Textures :
+<p>Textures:
 
 <ul>
   <li>tree_sprite rendered from a model
@@ -157,8 +164,7 @@ and download them by commands below:
   <li><tt>blood_in_the_eyes</tt> texture based on a fragment of
     <a href="http://ftp.gnome.org/pub/GNOME/teams/art.gnome.org/backgrounds/NATURE-Poppy_1024x768.jpg">Poppy
     background by Pieter Krul (GNU LGPL)</a>
-    from  <a href="http://art.gnome.org/backgrounds/nature">art.gnome.org nature backgrounds</>.</li>
-  <li>rest created by Kambi using <a href="http://www.gimp.org/">GIMP</a></li>
+    from  <a href="http://art.gnome.org/backgrounds/nature">art.gnome.org nature backgrounds</a>.</li>
 </ul>
 
 <p>Skies in <tt>skies</tt> subdirectory done with
