@@ -7,7 +7,6 @@
   $toc = new TableOfContents(
     array(
       new TocItem('About', 'about'),
-      new TocItem('Other demo VRML / X3D scenes', 'other'),
       new TocItem('SVN', 'svn'),
       new TocItem('Authors', 'authors'),
       new TocItem('Comments', 'comments')
@@ -47,38 +46,6 @@ VRML/X3D browsers.</p>
 <p>Files inside <tt>warnings/</tt> subdirectories are deliberately invalid
 in some ways. Good VRML/X3D browser should display a sensible warning
 message and (when possible) continue (omitting only the problematic part).</p>
-
-<?php echo $toc->html_section(); ?>
-
-<p>If you're looking for VRML / X3D demos, there are much more
-cool 3D files scattered around our repository.
-Get <a href="http://subversion.apache.org/">Subversion (SVN)</a>
-and download them by commands below:
-
-<ul>
-  <li><p>Nice demo of shadow maps (done for <?php echo a_href_page_hashlink('shadow maps paper', 'kambi_vrml_extensions', 'section_ext_shadow_maps'); ?>):
-
-    <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/sunny_street/'); ?></pre>
-
-    <p>Also the shadow map slides contain some simple tests:
-
-    <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/slides/'); ?></pre>
-  </li>
-
-  <li><p>Simple examples of VRML 1.0 and 2.0 (done for <?php echo a_href_page('engine documentation', 'vrml_engine_doc'); ?>):
-
-    <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc/examples/'); ?></pre>
-  </li>
-
-  <li>Our games contain many 3D models, download them and look inside
-    <tt>data/</tt> subdirectories:
-    <?php echo a_href_page("The Castle", "castle"); ?>,
-    <?php echo a_href_page("lets_take_a_walk", "lets_take_a_walk"); ?>,
-    <?php echo a_href_page("malfunction", "malfunction"); ?>.
-    All the 3D data can be opened with general VRML/X3D browser
-    like <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
-  </li>
-</ul>
 
 <?php echo $toc->html_section(); ?>
 
