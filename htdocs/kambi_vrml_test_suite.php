@@ -1,0 +1,1 @@
+<?php header('Location: demo_models.php'); ?>
