@@ -699,8 +699,7 @@ EXTERNPROTO Text3D [
 
     <p>Samples of <tt>MovieTexture</tt> usage
     are inside <?php echo a_href_page('our VRML/X3D demo models',
-    'demo_models'); ?>, in directory
-    <tt>vrml_2/movie_texture/</tt>.
+    'demo_models'); ?>, in subdirectory <tt>movie_texture/</tt>.
 
 <?php echo $toc->html_section(); ?>
 
