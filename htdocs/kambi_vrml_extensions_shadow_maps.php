@@ -75,8 +75,8 @@ $toc->echo_numbers = true;
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Kambi VRML test suite',
-  'kambi_vrml_test_suite'); ?> contains some models using shadow maps,
+  <p><?php echo a_href_page('Our VRML/X3D demo models',
+  'demo_models'); ?> contain some models using shadow maps,
   download it and open with <?php echo a_href_page('view3dscene',
   'view3dscene'); ?> files insde <tt>shadow_maps</tt> subdirectory.</p>
 
@@ -189,7 +189,7 @@ $toc->echo_numbers = true;
   the way to make shadow mapping both beautiful and in one pass (read: fast),
   and it's the way of the future anyway. You can start from a trivial
   fragment shader in our examples:
-  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
+  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
 
   <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
   do not affect the lower-level shadow maps. Essentially, when using

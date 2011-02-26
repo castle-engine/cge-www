@@ -160,8 +160,8 @@ for all your needs):</p>
     <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
     'vrml_status_interpolation'); ?> to animate sets of colors like
     <tt>skyColor</tt>, <tt>groundColor</tt>.
-    See examples in <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>
+    See our <?php echo a_href_page('VRML/X3D demo models',
+    'demo_models'); ?>
     (look inside <tt>vrml_2/background_animate*</tt>) for demos.</p>
   </li>
 

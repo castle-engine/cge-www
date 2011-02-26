@@ -73,8 +73,8 @@ echo vrmlengine_thumbs(array(
     use existing values of their textures. This means that recursive mirrors,
     i.e. mirror that can be seen in another mirror, works to any level
     (each frame rendered uses textures generated in the previous frame).
-    You can see recursive mirrors in some examples in <?php
-    echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
+    You can see recursive mirrors in our <?php
+    echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>
     (see <tt>x3d/cubemap_generated_recursive.x3dv</tt>
     <tt>x3d/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
 

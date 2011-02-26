@@ -25,7 +25,7 @@
     to any defined viewpoint, displaying viewpoints descriptions.
     Extensive tests of various viewpoint properties, including fieldOfView,
     are inside <?php
-      echo a_href_page('my VRML test suite', 'kambi_vrml_test_suite'); ?>
+      echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
     in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
 
     <p>Animating viewpoint's position and orientation

@@ -67,7 +67,7 @@ $toc->echo_numbers = true;
 <ul>
   <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
 
-    <p><?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
+    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
 
     <p>Our extensions are identified by URN like "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
 
@@ -123,8 +123,8 @@ Some other extensions may be able supported for other reasons:
 <p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/x3d/specifications/vrml/">you can find the official VRML / X3D specifications here</a>.</p>
 
 <p><b>Examples</b>: VRML/X3D models that use these extensions may be found
-in <?php echo a_href_page("Kambi VRML test suite",
-"kambi_vrml_test_suite"); ?>. Look there at directory names,
+in <?php echo a_href_page("our VRML/X3D demo models",
+"demo_models"); ?>. Look there at directory names,
 in particular <tt>kambi_extensions</tt> subdirectories (but also some
 others) are full of demos of our extensions.</p>
 
@@ -193,8 +193,8 @@ others) are full of demos of our extensions.</p>
     <ul>
       <li><p>Open with
         <?php echo a_href_page("view3dscene", "view3dscene") ?>
-        sample models from <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?> (see subdirectory
+        sample models from <?php echo a_href_page('our VRML/X3D demo models',
+        'demo_models'); ?> (see subdirectory
         <tt>bump_mapping/)</tt>.</p></li>
 
       <li><p>You can see this used in
@@ -212,8 +212,8 @@ others) are full of demos of our extensions.</p>
     instead of <tt>Appearance</tt>. This allows you to declare <tt>KambiAppearance</tt>
     by EXTERNPROTO, that fallbacks on standard <tt>Appearance</tt>,
     and thus bump mapping extensions will be gracefully omitted by other
-    browsers. See <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?> for examples.</p>
+    browsers. See <?php echo a_href_page('VRML/X3D demo models',
+    'demo_models'); ?> for examples.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -252,8 +252,8 @@ others) are full of demos of our extensions.</p>
         By default everything is considered a "shadow caster".</p></li>
 
       <li><p>Test X3D model that uses dynamic shadows is available
-        in <?php echo a_href_page('Kambi VRML test suite',
-        'kambi_vrml_test_suite'); ?>, see file <tt>kambi_vrml_test_suite/x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
+        in our <?php echo a_href_page('VRML/X3D demo models',
+        'demo_models'); ?>, see file <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
 
       <li>
         <!-- this is somewhat copied and modified text from
@@ -574,8 +574,8 @@ others) are full of demos of our extensions.</p>
     &mdash; so this node also allows you to make 2D text that's supposed to be
     visible from only front side.</p>
 
-    <p>See <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, file
+    <p>See our <?php echo a_href_page('VRML/X3D demo models',
+    'demo_models'); ?>, file
     <tt>vrml_2/kambi_extensions/text_depth.wrl</tt> for example use of this.</p>
 
     <p>Compatibility:
@@ -698,8 +698,8 @@ EXTERNPROTO Text3D [
     require an alpha channel.
 
     <p>Samples of <tt>MovieTexture</tt> usage
-    are inside <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, in directory
+    are inside <?php echo a_href_page('our VRML/X3D demo models',
+    'demo_models'); ?>, in directory
     <tt>vrml_2/movie_texture/</tt>.
 
 <?php echo $toc->html_section(); ?>
@@ -1118,9 +1118,8 @@ end;
     exponential fog are actually different and incompatible,
     so results will be a little different than they should be.
 
-    <p><?php echo a_href_page('VRML test suite',
-    'kambi_vrml_test_suite'); ?>
-    has test VRMLs for this
+    <p><?php echo a_href_page('Our VRML/X3D demo models',
+    'demo_models'); ?> have test models for this
     (see <tt>vrml_1/kambi_extensions/fog_volumetric/</tt> and
     <tt>vrml_2/kambi_extensions/fog_volumetric/</tt> subdirectories).
     Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
@@ -1214,9 +1213,9 @@ end;
     better rendering time.
 
     <p>Test VRML file:
-    see <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, file
-    <tt>kambi_vrml_test_suite/vrml_2/kambi_extensions/kambi_triangulation.wrl</tt>.
+    see <?php echo a_href_page('our VRML/X3D demo models',
+    'demo_models'); ?>, file
+    <tt>vrml_2/kambi_extensions/kambi_triangulation.wrl</tt>.
 
 <?php echo $toc->html_section(); ?>
 

@@ -23,7 +23,7 @@ ALL_HTMLS:=view3dscene.html \
   openal_notes.html \
   changes_log.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \
-  kambi_vrml_test_suite.html \
+  demo_models.html \
   kanim_format.html \
   kambi_script.html \
   kambi_vrml_extensions.html \

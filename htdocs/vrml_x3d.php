@@ -23,8 +23,8 @@ a_href_page('we also have our own customized exporter', 'blender_stuff'); ?>).</
 
 <p>To start the fun, just create some VRML/X3D models
 (or download them from the Internet, or grab our
-<?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>
- with many examples) and open them with our
+<?php echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>)
+and open them with our
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
 
 <p>As a 3D file format, VRML/X3D is quite unique because it's designed

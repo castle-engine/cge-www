@@ -33,7 +33,7 @@ WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
 DOC_FILES_VRML='kanim_format.html
   kambi_script.html
-  kambi_vrml_test_suite.html
+  demo_models.html
   kambi_vrml_extensions.html
   kambi_vrml_extensions_shadow_maps.html
   kambi_vrml_extensions_vrml1.html
@@ -623,29 +623,29 @@ case "$1" in
     mk_archive_end
     ;;
 
-  kambi_vrml_test_suite)
+  demo_models)
     mk_archive_begin
 
-    cp -R "$VRMLENGINE_PATH"kambi_vrml_test_suite/ .
+    cp -R "$VRMLENGINE_PATH"demo_models/ .
     dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
 
     # Trzeba najpierw zrobiæ make clean bo dotychczasowe le¿±ce tam HTMLe
     # mog³y byæ wygenerowane z innymi LOCALLY_AVAIL
     $MAKE -C "$OFFLINE_DOCS_PATH" clean
-    $MAKE -C "$OFFLINE_DOCS_PATH" kambi_vrml_test_suite.html LOCALLY_AVAIL=
-    cp "$OFFLINE_DOCS_PATH"kambi_vrml_test_suite.html \
-      kambi_vrml_test_suite/README.html
+    $MAKE -C "$OFFLINE_DOCS_PATH" demo_models.html LOCALLY_AVAIL=
+    cp "$OFFLINE_DOCS_PATH"demo_models.html \
+      demo_models/README.html
     cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}"vrmlengine.css \
-      kambi_vrml_test_suite/
-    mkdir -p kambi_vrml_test_suite/images/
+      demo_models/
+    mkdir -p demo_models/images/
     cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
        "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
-       kambi_vrml_test_suite/images/
+       demo_models/images/
 
     find ./ -type f -and -exec chmod 644 '{}' ';'
     find ./ -type d -and -exec chmod 755 '{}' ';'
 
-    ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"kambi_vrml_test_suite-"$GENERATED_VERSION_KAMBI_VRML_TEST_SUITE".tar.gz
+    ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"demo_models-"$GENERATED_VERSION_KAMBI_VRML_TEST_SUITE".tar.gz
     mk_archive_pack "$ARCHIVE_FILE_NAME"
     mk_archive_end
 

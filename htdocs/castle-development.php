@@ -168,9 +168,9 @@ So the engine is not tied to any particular modelling program.
 Use <?php echo a_href_page('view3dscene', 'view3dscene') ?>
  to view the various models outside of the game.</p>
 
-<p>You may want to view in view3dscene some of the models from
-<?php echo a_href_page("Kambi VRML test suite",
-  "kambi_vrml_test_suite"); ?> &mdash;
+<p>You may want to view in view3dscene some of our
+<?php echo a_href_page("VRML/X3D demo models",
+  "demo_models"); ?> &mdash;
 there are many testcases and demos of what can be expressed in VRML / X3D
 and what our engine can understand and render.</p>
 

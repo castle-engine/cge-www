@@ -175,9 +175,8 @@ Group {
     is a little dangerous (because you have to be careful what
     you include), but it also allows you to do various tricks.
 
-    <p>Test VRML file:
-    see <?php echo a_href_page('VRML test suite',
-    'kambi_vrml_test_suite'); ?>, file
+    <p>Test VRML file: see our <?php echo a_href_page('VRML/X3D demo models',
+    'demo_models'); ?>, file
     <tt>vrml_1/kambi_extensions/inline_not_separate.wrl</tt>.
 
 <?php

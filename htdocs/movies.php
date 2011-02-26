@@ -63,9 +63,8 @@ editing (glued, fading between parts) thanks to
     Movie is itself recorded by <?php echo a_href_page('view3dscene',
     'view3dscene'); ?>, using it's
     "Screenshot to video" option. You can view the complete source model
-    of this in <?php echo a_href_page('Kambi VRML test suite',
-    'kambi_vrml_test_suite'); ?>, in directory
-    <tt>vrml_2/movie_texture/</tt>.
+    of this in our <?php echo a_href_page('VRML/X3D demo models',
+    'demo_models'); ?>, in directory <tt>vrml_2/movie_texture/</tt>.
     <br/>
     <?php echo current_www_a_href_size(AVI_TITLE, 'movies/fireplace_demo.avi'); ?>
 
@@ -76,9 +75,9 @@ editing (glued, fading between parts) thanks to
 
   <li><p>Dynamic world with dynamic collisions.
     This shows <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    with <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv">demo dynamic_world.x3dv</a>
-    loaded (you can grab it along with the rest of
-    <?php echo a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>).
+    with <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/dynamic_world.x3dv">demo dynamic_world.x3dv</a>
+    loaded (you can grab it along with the rest of our
+    <?php echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>).
 
     <?php if (!HTML_VALIDATION) { ?>
     <p><object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/qtrSIisc6do&hl=pl&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>

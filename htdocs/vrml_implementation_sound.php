@@ -12,8 +12,8 @@
 ?>
 
 <p>For a demo open files <tt>x3d/sound_final.x3dv</tt> and
-<tt>x3d/sound_location_animate.x3dv</tt> from the <?php echo
-a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite'); ?>.
+<tt>x3d/sound_location_animate.x3dv</tt> from our <?php echo
+a_href_page('VRML/X3D demo models', 'demo_models'); ?>.
 
 <p><?php echo x3d_node_link('Sound'); ?> defines a sound in the 3D world.
 It contains (in the "<tt>source</tt>" field) an <tt>AudioClip</tt> node.

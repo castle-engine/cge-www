@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
   require_once 'vrml_implementation_common.php';
 
-  vrmlx3d_header("VRML / X3D test suite");
+  vrmlx3d_header("VRML / X3D demo models");
 
   $toc = new TableOfContents(
     array(
@@ -16,11 +16,11 @@
 ?>
 
 <?php echo pretty_heading($page_title,
-  VERSION_KAMBI_VRML_TEST_SUITE); ?>
+  VERSION_DEMO_MODELS); ?>
 
 <div class="download">
-<?php echo sf_download("Download Kambi VRML test suite",
-'kambi_vrml_test_suite-' . VERSION_KAMBI_VRML_TEST_SUITE . '.tar.gz'); ?>
+<?php echo sf_download("Download Kambi VRML/X3D demo models",
+'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
 </div>
 
 <p>Contents:
@@ -28,31 +28,25 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is a collection of VRML (1.0, 2.0 aka VRML 97), X3D and some
-other demo and test files. They show what can be achieved with VRML / X3D
-language and test some difficult cases.
-<!-- They are (mostly) not pretty models of some "real-world" things, -->
-At the beginning of each file you can read some
+<p>This is our collection of demonstration, example and test 3D models.
+Most of them are in VRML (1.0, 2.0 aka VRML 97) and X3D formats,
+although other 3D formats handled by
+ <?php echo a_href_page('view3dscene', 'view3dscene'); ?> are also included.
+Some models are impressive demos of a particular feature,
+and some models are plain boring tests of implementation details.
+They show what can be achieved with VRML/X3D and what we can handle.
+At the beginning of many files (remember that you can open wrl/x3dv/x3d files
+in normal text editor too) you can find some
 comments explaining what this file demonstrates.
 
-<p>I created those files to test <?php echo a_href_page('our VRML/X3D engine', 'index'); ?>.
-However, most of them should be handled by all conforming
-VRML / X3D browsers. With the exception of files dependinng on
-<?php echo a_href_page('our extensions', 'kambi_vrml_extensions'); ?>,
-which are mostly (but not only) inside the <tt>kambi_extensions/</tt>
-subdirectories of this test suite.
-<!--Although some of VRML &gt;= 2.0 extensions used are preceeded by appropriate
-<tt>EXTERNPROTO</tt> statements, so every conforming VRML &gt;= 2.0 browser
-should be able to at least gracefully omit them.--></p>
-
-<p>Files inside <tt>kanim/</tt> subdirectory demonstrate usage
-of <?php echo a_href_page("Kanim (Kambi VRML engine animations) file format",
-"kanim_format") ?>.</p>
+<p>These models were created to test
+<?php echo a_href_page('our Kambi VRML/X3D game engine', 'index'); ?>,
+but many of them should also be handled by other conforming
+VRML/X3D browsers.</p>
 
 <p>Files inside <tt>warnings/</tt> subdirectories are deliberately invalid
-in some ways. Good VRML browser should report their problems by a nice
-error message, or even (in cases when possible) report it only as a warning
-and continue working (omitting problematic part).</p>
+in some ways. Good VRML/X3D browser should display a sensible warning
+message and (when possible) continue (omitting only the problematic part).</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -92,7 +86,7 @@ and download them by commands below:
 <i>Kambi VRML test suite</i> from Subversion by:</p>
 
 <pre class="terminal small"><?php
-  echo sf_checkout_link(true, 'kambi_vrml_test_suite'); ?></pre>
+  echo sf_checkout_link(true, 'demo_models'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
