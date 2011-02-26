@@ -25,9 +25,7 @@ to this as the engine develops.</p>
 <h2>Sources</h2>
 
 <p>Sources archive (full DocBook sources, Makefile, XSL, images &mdash;
-everything you need to remake the HTML / PDF outputs above; also
-includes VRML files sources, so you can view them comfortably in
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.) :<br />
+everything you need to remake the HTML / PDF outputs above) :<br />
 <?php echo current_www_a_href_size(
   'vrml_engine_doc.tar.gz',
   'vrml_engine_doc/vrml_engine_doc.tar.gz'); ?></p>
@@ -41,6 +39,12 @@ and <tt>ttf-dejavu</tt> font if you want to make PDF version.</p>
 <p>You can also download the latest version from Subversion by:</p>
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
+
+<p>The example VRML 1.0/2.0 models, used for screenshots
+in this work, are available inside <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
+ (see in <tt>vrml_engine_doc_simple_examples</tt> subdirectory).
+So you can view them comfortably in
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.
 
 <?php
   vrmlengine_footer();
