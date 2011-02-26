@@ -76,18 +76,12 @@ $toc->echo_numbers = true;
 <?php echo $toc->html_section(); ?>
 
   <p><?php echo a_href_page('Our VRML/X3D demo models',
-  'demo_models'); ?> contain some models using shadow maps,
-  download it and open with <?php echo a_href_page('view3dscene',
-  'view3dscene'); ?> files insde <tt>shadow_maps</tt> subdirectory.</p>
-
-  <p>An example model "sunny_street" demonstrating shadow maps may be found in SVN:
-
-  <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/sunny_street/'); ?></pre>
-
-  <p>Also the slides contain some simple tests:
-
-  <pre class="terminal small"><?php echo sf_checkout_link(true, 'papers/shadow_maps_x3d/slides/'); ?></pre>
-
+  'demo_models'); ?> contain many demos using shadow maps.
+  Download them and open with <?php echo a_href_page('view3dscene',
+  'view3dscene'); ?> files insde <tt>shadow_maps</tt> subdirectory.
+  See in particular the nice model inside <tt>shadow_maps/sunny_street/</tt>,
+  that was used for some screenshots visible on this page.</p>
+  
 <?php echo $toc->html_section(); ?>
 
   <p>In the very simplest case, to make the light source just cast shadows
