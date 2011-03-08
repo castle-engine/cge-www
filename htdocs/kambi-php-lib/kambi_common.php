@@ -59,38 +59,38 @@
        suitable for offline viewing. It differs from the online
        version in many details.
 
-   - Nigdy nie rób bezpo¶rednich linków do stron za pomoc± <a href ...>,
-     zawsze u¿ywaj funkcji a_href_page[_hashlink]. Ona zajmuje siê
-     kilkoma rzeczami, np. dba o to aby wszystko dzia³a³o dobrze
-     dla ka¿dej warto¶ci IS_GEN_LOCAL (i dla dowolnej kombinacji plików
-     dostêpnych lokalnie w/g funkcji is_page_available_locally),
-     IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona te¿ zajmuje siê
-     automatycznie doklejeniem odpowiedniego sufixu jêzyka do nazwy strony.
+   - Nigdy nie rÃ³b bezpoÅ›rednich linkÃ³w do stron za pomocÄ… <a href ...>,
+     zawsze uÅ¼ywaj funkcji a_href_page[_hashlink]. Ona zajmuje siÄ™
+     kilkoma rzeczami, np. dba o to aby wszystko dziaÅ‚aÅ‚o dobrze
+     dla kaÅ¼dej wartoÅ›ci IS_GEN_LOCAL (i dla dowolnej kombinacji plikÃ³w
+     dostÄ™pnych lokalnie w/g funkcji is_page_available_locally),
+     IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona teÅ¼ zajmuje siÄ™
+     automatycznie doklejeniem odpowiedniego sufixu jÄ™zyka do nazwy strony.
 
-     Wyj±tkiem s± hash-linki w obrêbie tej samej strony, tzn. linki
+     WyjÄ…tkiem sÄ… hash-linki w obrÄ™bie tej samej strony, tzn. linki
      a postaci <a href="[tutaj hash]hash_link_na_tej_samej_stronie">...</a>,
      to jest dozwolone.
 
-   - Podobnie, nie rób bezpo¶rednich linków do innych plików.
-     Co wiêcej, nie u¿ywaj a_href_size z funcs.php.
-     Zamiast tego u¿ywaj current_www_a_href_size, z tych samych powodów
-     co wy¿ej a_href_page[_hashlink].
+   - Podobnie, nie rÃ³b bezpoÅ›rednich linkÃ³w do innych plikÃ³w.
+     Co wiÄ™cej, nie uÅ¼ywaj a_href_size z funcs.php.
+     Zamiast tego uÅ¼ywaj current_www_a_href_size, z tych samych powodÃ³w
+     co wyÅ¼ej a_href_page[_hashlink].
 
    - Use common_header(...odpowiednie parametry...) and
      common_footer() for page header/footer.
      Between them insert just the page's body.
 
-   Ponadto nastêpuj±ce rzeczy s± sugerowane aby uzyskaæ spójny styl:
-   - Wa¿niejsze strony o stosunkowo krótkim tytule mog± siê zaczynaæ
-     u¿ywaj±c echo pretty_heading(... tytu³ strony ..., wersja programu),
-     w szczególno¶ci mo¿e byæ
+   Ponadto nastÄ™pujÄ…ce rzeczy sÄ… sugerowane aby uzyskaÄ‡ spÃ³jny styl:
+   - WaÅ¼niejsze strony o stosunkowo krÃ³tkim tytule mogÄ… siÄ™ zaczynaÄ‡
+     uÅ¼ywajÄ…c echo pretty_heading(... tytuÅ‚ strony ..., wersja programu),
+     w szczegÃ³lnoÅ›ci moÅ¼e byÄ‡
        echo pretty_heading($page_title);
 
-   - Przy opisie instalacji moich gier pod UNIXy home directory u¿ytkownika
-     bêdê oznacza³ jako "$HOME" (a nie np. "~"). Mimo ¿e algorytm wyznaczania
-     katalogu domowego jest nieco bardziej z³o¿ony (KambiUtils.HomeDir)
-     ni¿ tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
-     uwa¿am za lepszy od ~ bo jest d³u¿szy.
+   - Przy opisie instalacji moich gier pod UNIXy home directory uÅ¼ytkownika
+     bÄ™dÄ™ oznaczaÅ‚ jako "$HOME" (a nie np. "~"). Mimo Å¼e algorytm wyznaczania
+     katalogu domowego jest nieco bardziej zÅ‚oÅ¼ony (KambiUtils.HomeDir)
+     niÅ¼ tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
+     uwaÅ¼am za lepszy od ~ bo jest dÅ‚uÅ¼szy.
   */
 
   /* assert_options(ASSERT_ACTIVE, 1); */
@@ -160,19 +160,19 @@
      --gen-local : ustaw IS_GEN_LOCAL na true
      --gen-page-hrefs-to-html : ustaw IS_GEN_PAGE_HREFS_TO_HTML na true
      --locally-avail ARGS... :
-       wszystkie parametry za --locally-avail zostan± potraktowane jako
-       nazwy plików które deklarujemy jako dostêpne lokalnie w sensie funkcji
+       wszystkie parametry za --locally-avail zostanÄ… potraktowane jako
+       nazwy plikÃ³w ktÃ³re deklarujemy jako dostÄ™pne lokalnie w sensie funkcji
        is_file_available_locally.
-     Wszystkie nieznane parametry spowoduj± exit() z odpowiednim komunikatem
-     b³êdu.
+     Wszystkie nieznane parametry spowodujÄ… exit() z odpowiednim komunikatem
+     bÅ‚Ä™du.
 
-     Tutaj ustawiamy sta³e IS_GEN_LOCAL, IS_GEN_PAGE_HREFS_TO_HTML
-     oraz zmienn± $locally_available_files. Tutaj te¿ ustawiamy sobie
-     prawid³owe current dir w przypadku IS_GEN_LOCAL=true.
+     Tutaj ustawiamy staÅ‚e IS_GEN_LOCAL, IS_GEN_PAGE_HREFS_TO_HTML
+     oraz zmiennÄ… $locally_available_files. Tutaj teÅ¼ ustawiamy sobie
+     prawidÅ‚owe current dir w przypadku IS_GEN_LOCAL=true.
   */
 
-  /* Zmienna wewnêtrzna dla funkcji is_file_available_locally, ustawiana
-     w kodzie poni¿ej. */
+  /* Zmienna wewnÄ™trzna dla funkcji is_file_available_locally, ustawiana
+     w kodzie poniÅ¼ej. */
   $locally_available_files = array();
 
   if (array_key_exists('argc', $_SERVER))
@@ -196,7 +196,7 @@
 
   // testy: echo "Locally available are "; print_r($locally_available_files);
 
-  /* Je¿eli sta³e nie zosta³y ustawione przed odpowiednie parametry
+  /* JeÅ¼eli staÅ‚e nie zostaÅ‚y ustawione przed odpowiednie parametry
      to ustaw je teraz. */
   define_if_needed('IS_GEN_LOCAL', false);
   define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
@@ -211,36 +211,36 @@
 /* ============================================================
    some functions related to IS_GEN_LOCAL */
 
-/* Jako $file_name podaj nazwê pliku. Np. "view3dscene.php",
-   "view3dscene.pl.php". Dozwolone jest poprzedzenie tego wzglêdnym katalogiem,
+/* Jako $file_name podaj nazwÄ™ pliku. Np. "view3dscene.php",
+   "view3dscene.pl.php". Dozwolone jest poprzedzenie tego wzglÄ™dnym katalogiem,
    jak np. "miscella/badBlaster.zip".
 
-   Je¿eli IS_GEN_LOCAL i plik nie jest dostêpny lokalnie to zwróci false,
-   wpp. zwróci true. Ujmuj±c to inaczej zwraca
-   (!IS_GEN_LOCAL or plik jest dostêpny lokalnie).
+   JeÅ¼eli IS_GEN_LOCAL i plik nie jest dostÄ™pny lokalnie to zwrÃ³ci false,
+   wpp. zwrÃ³ci true. UjmujÄ…c to inaczej zwraca
+   (!IS_GEN_LOCAL or plik jest dostÄ™pny lokalnie).
 
-   Np. gdy generujemy dokumentacjê lokaln± specjalnie do do³±czenia jej do
-   programu rayhunter to mamy dostêpne pliki "rayhunter.html",
+   Np. gdy generujemy dokumentacjÄ™ lokalnÄ… specjalnie do doÅ‚Ä…czenia jej do
+   programu rayhunter to mamy dostÄ™pne pliki "rayhunter.html",
    "rayhunter.pl.html", "common_options.html"
-   tzn. dla tych warto¶ci $file_name ta funkcja zwróci true;
-   dla pozosta³ych stron, np. "view3dscene.html", ta funkcja
-   zwróci false. Gdy generujemy strony nie-lokalnie (czyli IS_GEN_LOCAL=false)
-   to zawsze zwraca true, bo wtedy zak³ada ¿e przecie¿ na serwerze CURRENT_URL
-   s± dostêpne wszystkie pliki. */
+   tzn. dla tych wartoÅ›ci $file_name ta funkcja zwrÃ³ci true;
+   dla pozostaÅ‚ych stron, np. "view3dscene.html", ta funkcja
+   zwrÃ³ci false. Gdy generujemy strony nie-lokalnie (czyli IS_GEN_LOCAL=false)
+   to zawsze zwraca true, bo wtedy zakÅ‚ada Å¼e przecieÅ¼ na serwerze CURRENT_URL
+   sÄ… dostÄ™pne wszystkie pliki. */
 function is_file_available_locally($file_name)
 {
   global $locally_available_files;
   return (!IS_GEN_LOCAL || in_array($file_name, $locally_available_files));
 }
 
-/* Jak is_file_available_locally tyle ¿e tej funkcji mo¿esz u¿ywaæ tylko
+/* Jak is_file_available_locally tyle Å¼e tej funkcji moÅ¼esz uÅ¼ywaÄ‡ tylko
    dla stron (tzn. HTML/PHP) i nie podajesz tutaj rozszerzenia strony
    (".html" lub ".php"). */
 function is_page_available_locally($page_name)
 {
-  /* Mo¿emy tu zawsze doklejaæ suffix .html bo strony lokalne zawsze
-     maj± rozszerzenie .html a dla stron nielokalnych funkcja
-     is_file_available_locally dzia³a nie patrz±c w ogóle na $file_name. */
+  /* MoÅ¼emy tu zawsze doklejaÄ‡ suffix .html bo strony lokalne zawsze
+     majÄ… rozszerzenie .html a dla stron nielokalnych funkcja
+     is_file_available_locally dziaÅ‚a nie patrzÄ…c w ogÃ³le na $file_name. */
   return is_file_available_locally($page_name . '.html');
 }
 
@@ -250,11 +250,11 @@ function is_page_available_locally($page_name)
   define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
     'is required, just unpack these archives and run the program.');
 
-  /* sta³e do specyfikowania jêzyka, w zmiennej $page_lang i w parametrach
-     wielu funkcji. Kiedy¶ u¿ywa³em tutaj stringów "en", "pl" - u¿ywanie
-     sta³ych intów ma t± zaletê ¿e trudniej jest siê pomyliæ (w razie czego
-     dostaniemy ewidentny b³±d - nieznany identyfikator) oraz ³atwiej
-     przetwarzaæ (to tylko inty, nie jakie¶ stringi). */
+  /* staÅ‚e do specyfikowania jÄ™zyka, w zmiennej $page_lang i w parametrach
+     wielu funkcji. KiedyÅ› uÅ¼ywaÅ‚em tutaj stringÃ³w "en", "pl" - uÅ¼ywanie
+     staÅ‚ych intÃ³w ma tÄ… zaletÄ™ Å¼e trudniej jest siÄ™ pomyliÄ‡ (w razie czego
+     dostaniemy ewidentny bÅ‚Ä…d - nieznany identyfikator) oraz Å‚atwiej
+     przetwarzaÄ‡ (to tylko inty, nie jakieÅ› stringi). */
   define('LANG_PL', 0);
   define('LANG_EN', 1);
 
@@ -271,9 +271,9 @@ function is_page_available_locally($page_name)
      This was Polish at first, now it's English. */
   define('LANG_WITHOUT_FILENAME_SUFFIX', LANG_EN);
 
-  /* Stala tablica; przet³umacz moje sta³e LANG_xxx na lang u¿ywany w HTMLu
-     (zreszt± to nie jest specyficzne dla HTMLa, to jaki¶ bardziej ogólny
-     standard nazewnictwa jêzyków). */
+  /* Stala tablica; przetÅ‚umacz moje staÅ‚e LANG_xxx na lang uÅ¼ywany w HTMLu
+     (zresztÄ… to nie jest specyficzne dla HTMLa, to jakiÅ› bardziej ogÃ³lny
+     standard nazewnictwa jÄ™zykÃ³w). */
   $lang_to_html_lang = array(LANG_PL => 'pl',
                              LANG_EN => 'en');
 
@@ -302,28 +302,28 @@ function is_page_available_locally($page_name)
 
   /* Global variables =======================================================
 
-     ¯adna funkcja z tego pliku (poza common_header)
-     nie mo¿e byæ wywo³ana przed zainicjowaniem
-     wszystkich poni¿szych zmiennych (za wyj±tkiem kilku wyj±tków które bêd±
-     mia³y to wyra¼nie stwierdzone w komentarzu; bêdzie wtedy wyra¼nie okre¶lone
-     których zmiennych dana funkcja wymaga).
+     Å»adna funkcja z tego pliku (poza common_header)
+     nie moÅ¼e byÄ‡ wywoÅ‚ana przed zainicjowaniem
+     wszystkich poniÅ¼szych zmiennych (za wyjÄ…tkiem kilku wyjÄ…tkÃ³w ktÃ³re bÄ™dÄ…
+     miaÅ‚y to wyraÅºnie stwierdzone w komentarzu; bÄ™dzie wtedy wyraÅºnie okreÅ›lone
+     ktÃ³rych zmiennych dana funkcja wymaga).
 
-     Jest gwarantowane ¿e wywo³anie common_header zapewnia ¿e wszystkie te
-     zmienne s± zainicjowane, wiêc po wywo³aniu common_header nie musisz siê
-     ju¿ o nic martwiæ. */
+     Jest gwarantowane Å¼e wywoÅ‚anie common_header zapewnia Å¼e wszystkie te
+     zmienne sÄ… zainicjowane, wiÄ™c po wywoÅ‚aniu common_header nie musisz siÄ™
+     juÅ¼ o nic martwiÄ‡. */
 
-  /* Poni¿sze zmienne s± inicjowane w common_header, wcze¶niej nale¿y je
-     traktowaæ jako NIE zainicjowane (czyli nie nadaj±ce siê do u¿ycia). */
+  /* PoniÅ¼sze zmienne sÄ… inicjowane w common_header, wczeÅ›niej naleÅ¼y je
+     traktowaÄ‡ jako NIE zainicjowane (czyli nie nadajÄ…ce siÄ™ do uÅ¼ycia). */
   $page_title = '';
-  /* Jêzyk strony, po zainicjowaniu warto¶æ to jedna ze sta³ych LANG_. */
+  /* JÄ™zyk strony, po zainicjowaniu wartoÅ›Ä‡ to jedna ze staÅ‚ych LANG_. */
   $page_lang = -1;
   /* internal, used only in common_header/footer() */
   $s_quick_links = '';
 
-  /* Poni¿sze zmienne s± zainicjowane na domy¶lne warto¶ci z chwil± w³±czenia
-     tego pliku. Je¶li chcesz zmieniæ
-     ich warto¶ci to musisz to zrobiæ rêcznie przed wywo³aniem jakiejkolwiek
-     innej funkcji z tego pliku (tak¿e common_header). */
+  /* PoniÅ¼sze zmienne sÄ… zainicjowane na domyÅ›lne wartoÅ›ci z chwilÄ… wÅ‚Ä…czenia
+     tego pliku. JeÅ›li chcesz zmieniÄ‡
+     ich wartoÅ›ci to musisz to zrobiÄ‡ rÄ™cznie przed wywoÅ‚aniem jakiejkolwiek
+     innej funkcji z tego pliku (takÅ¼e common_header). */
   $main_page = false;
 
 /* functions ======================================================= */
@@ -332,9 +332,9 @@ function is_page_available_locally($page_name)
    Na pewno zdefiniuje min jeden element w stylu h1
    (wiec subsections na stronie powinienes tagowac jako h2).
 
-   Kiedy¶ by³ tu heading z cieniem przy u¿yciu CSSa (ten sam napis
-   wypisany dwa razy), ale usun±³em to -- to nie chcia³o wygl±daæ
-   dobrze we wszystkich przegl±darkach przy dowolnych ustawieniach.
+   KiedyÅ› byÅ‚ tu heading z cieniem przy uÅ¼yciu CSSa (ten sam napis
+   wypisany dwa razy), ale usunÄ…Å‚em to -- to nie chciaÅ‚o wyglÄ…daÄ‡
+   dobrze we wszystkich przeglÄ…darkach przy dowolnych ustawieniach.
 
    You may supply $version_number, this is intended for pages
    that document functionality of some program.
@@ -435,42 +435,42 @@ function common_set_page_functions()
      and so generally should not be used, as it means that page_url
      isn't of much use.
 
-     $hash_link, je¿eli ró¿ny od '', to bêdzie dopisany (i poprzedzony hashem)
+     $hash_link, jeÅ¼eli rÃ³Å¼ny od '', to bÄ™dzie dopisany (i poprzedzony hashem)
      do URLa strony.
 
-     $target_page_lang: sta³a LANG_xxx, jêzyk docelowy strony.
-     Mo¿esz tutaj podawaæ zmienn± globaln± $page_lang.
-     Je¿eli dana strona w danym jêzyku nie istnieje (chwilowo sprawdzanie
+     $target_page_lang: staÅ‚a LANG_xxx, jÄ™zyk docelowy strony.
+     MoÅ¼esz tutaj podawaÄ‡ zmiennÄ… globalnÄ… $page_lang.
+     JeÅ¼eli dana strona w danym jÄ™zyku nie istnieje (chwilowo sprawdzanie
      istnienia strony nie bierze pod uwage IS_GEN_LOCAL, ale powinno)
-     to mo¿e wybraæ arbitralnie inny jêzyk. Chwilowo "zmiana jêzyka na inny"
-     jest ³atwa do zdefiniowania bo mamy tylko dwa jêzyki (en i pl) wiêc
-     je¶li jeden nie istnieje to bierzemy drugi. Zawsze przy takiej zmianie
-     jêzyka (tzn. gdy dostajemy stronê w innym jêzyku ni¿ za¿±dany
+     to moÅ¼e wybraÄ‡ arbitralnie inny jÄ™zyk. Chwilowo "zmiana jÄ™zyka na inny"
+     jest Å‚atwa do zdefiniowania bo mamy tylko dwa jÄ™zyki (en i pl) wiÄ™c
+     jeÅ›li jeden nie istnieje to bierzemy drugi. Zawsze przy takiej zmianie
+     jÄ™zyka (tzn. gdy dostajemy stronÄ™ w innym jÄ™zyku niÅ¼ zaÅ¼Ä…dany
      $target_page_lang)
      dostaniemy dodatkowo komentarz w url_comment (np. " (polish)" gdy
-     ze strony w jêzyku LANG_EN za¿±dali¶my innej strony po angielsku
-     ($target_page_lang = LANG_EN) ale dostali¶my stronê po polsku
-     (np. dla 'glplottera' który nie ma wersji angielskiej)).
+     ze strony w jÄ™zyku LANG_EN zaÅ¼Ä…daliÅ›my innej strony po angielsku
+     ($target_page_lang = LANG_EN) ale dostaliÅ›my stronÄ™ po polsku
+     (np. dla 'glplottera' ktÃ³ry nie ma wersji angielskiej)).
 
-     Innymi s³owy, podaj±c $target_page_lang NIE my¶l o tym w jakim jêzyku
-     dana strona jest dostêpna. My¶l o tym w jakim jêzyku CHCESZ dostaæ
-     stronê (a wiêc zazwyczaj w takim samym jêzyku w jakim jest aktualna
-     strona). Je¿eli strona w jêzyku jakiego chcesz jest niedostêpna to
-     zostanie podana strona w jêzyku dostêpnym i odpowiednie ostrze¿enie
-     dostaniesz w $url_comment. Ma to m.in. t± zaletê ¿e je¿eli kiedy¶ dodam
-     np. stronê glplottera po angielsku to wystarczy ¿e uaktualniê tablicê
+     Innymi sÅ‚owy, podajÄ…c $target_page_lang NIE myÅ›l o tym w jakim jÄ™zyku
+     dana strona jest dostÄ™pna. MyÅ›l o tym w jakim jÄ™zyku CHCESZ dostaÄ‡
+     stronÄ™ (a wiÄ™c zazwyczaj w takim samym jÄ™zyku w jakim jest aktualna
+     strona). JeÅ¼eli strona w jÄ™zyku jakiego chcesz jest niedostÄ™pna to
+     zostanie podana strona w jÄ™zyku dostÄ™pnym i odpowiednie ostrzeÅ¼enie
+     dostaniesz w $url_comment. Ma to m.in. tÄ… zaletÄ™ Å¼e jeÅ¼eli kiedyÅ› dodam
+     np. stronÄ™ glplottera po angielsku to wystarczy Å¼e uaktualniÄ™ tablicÄ™
      $pages_langs i wszystkie linki do glplottera ze stron angielskich
-     (które chwilowo s± linkami do strony glplottera po poslku) automatycznie
-     zmieni± siê na linki do strony po angielsku.
+     (ktÃ³re chwilowo sÄ… linkami do strony glplottera po poslku) automatycznie
+     zmieniÄ… siÄ™ na linki do strony po angielsku.
 
      Ta funkcja zwraca url zadanej strony, czyli page_name z doklejonym suffixem
-     jezyka i rozszerzeniem i ew. poprzedzone CURRENT_URL (je¶li strona
-     generowana z IS_GEN_LOCAL odwo³uje siê do czego¶ niedostêpnego lokalnie).
+     jezyka i rozszerzeniem i ew. poprzedzone CURRENT_URL (jeÅ›li strona
+     generowana z IS_GEN_LOCAL odwoÅ‚uje siÄ™ do czegoÅ› niedostÄ™pnego lokalnie).
 
      Pod $url_comment zwraca komentarz do URLa w postaci "" (pusty string) lub
-     " <i>(komentarz)</i>" (zwróæ uwagê na spacjê na pocz±tku),
-     np. " <i>(nie-lokalny link)</i>". Powiniene¶ gdzie¶ pokazaæ ten url_comment
-     u¿ytkownikowi bo on zawiera generalnie wa¿ne informacje. */
+     " <i>(komentarz)</i>" (zwrÃ³Ä‡ uwagÄ™ na spacjÄ™ na poczÄ…tku),
+     np. " <i>(nie-lokalny link)</i>". PowinieneÅ› gdzieÅ› pokazaÄ‡ ten url_comment
+     uÅ¼ytkownikowi bo on zawiera generalnie waÅ¼ne informacje. */
   {
     global $page_lang, $lang_to_html_lang;
 
@@ -515,7 +515,7 @@ function common_set_page_functions()
       switch ($page_lang)
       {
         case LANG_PL: str_append_part_to1st($url_comment, ', ',
-          'odsy³acz do ' . CURRENT_URL_SHORT); break;
+          'odsyÅ‚acz do ' . CURRENT_URL_SHORT); break;
         case LANG_EN: str_append_part_to1st($url_comment, ', ',
           'link to ' . CURRENT_URL_SHORT); break;
       }
@@ -545,7 +545,7 @@ function common_set_page_functions()
 
   function a_href_page_core($link_title, $page_name, $hash_link,
     $target_page_lang)
-  /* Internal, aby zapewniæ wspóln± implementacjê dla a_href_page i
+  /* Internal, aby zapewniÄ‡ wspÃ³lnÄ… implementacjÄ™ dla a_href_page i
      a_href_page_hashlink */
   {
     $page_url = page_url($page_name, $hash_link, $target_page_lang, $url_comment);
@@ -553,7 +553,7 @@ function common_set_page_functions()
   }
 
   function a_href_page($link_title, $page_name, $target_page_lang = PAGE_LANG)
-  /* Zwraca href do tej strony, co¶ w rodzaju <a href=$page_url>$link_title</a>,
+  /* Zwraca href do tej strony, coÅ› w rodzaju <a href=$page_url>$link_title</a>,
      gdzie $page_url = page_url($page_name, '', $target_page_lang). */
   {
     return a_href_page_core($link_title, $page_name, '', $target_page_lang);
@@ -573,8 +573,8 @@ function common_set_page_functions()
   {
     case LANG_PL:
       define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        'To jest wolne/otwarte oprogramowanie.  Mo¿esz ' .
-        a_href_page('pobraæ ¼ród³a programu (dla programistów)', 'kambi_vrml_game_engine') . '.');
+        'To jest wolne/otwarte oprogramowanie.  MoÅ¼esz ' .
+        a_href_page('pobraÄ‡ ÅºrÃ³dÅ‚a programu (dla programistÃ³w)', 'kambi_vrml_game_engine') . '.');
       break;
     case LANG_EN:
       define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
@@ -681,11 +681,11 @@ div.quick_links_bottom_line { text-align: <?php
 
 /* header ============================================================ */
 
-/* $meta_description :string/NULL = krótki opis strony,
-   o ile nie bêdzie NULL bêdzie wypisany jako <meta name="Description" ...>
+/* $meta_description :string/NULL = krÃ³tki opis strony,
+   o ile nie bÄ™dzie NULL bÄ™dzie wypisany jako <meta name="Description" ...>
 
    $meta_keywords :string/NULL = dodatkowe keywords strony rozdzielone ",",
-   o ile nie bêdzie NULL to bêdzie wypisany jako <meta name="Keywords" ...>.
+   o ile nie bÄ™dzie NULL to bÄ™dzie wypisany jako <meta name="Keywords" ...>.
 
    $bonus_header_tags = beda wypisane tuz przed </head>.
    Moga zawierac rozne rzeczy specyficzne dla strony,
@@ -707,10 +707,10 @@ function common_header($a_page_title, $a_page_lang,
 
   /* calculate $this_page_name */
   /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
-     dostajê dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceñ (do --gen-local):
-     pod Linuxem dostajê $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
-     dostajê $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
-     Wiêc pod Windowsem biorê je z $_SERVER['argv'][0]. */
+     dostajÄ™ dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceÅ„ (do --gen-local):
+     pod Linuxem dostajÄ™ $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
+     dostajÄ™ $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
+     WiÄ™c pod Windowsem biorÄ™ je z $_SERVER['argv'][0]. */
   $this_page_name = $_SERVER['PHP_SELF'];
   if ($this_page_name == '')
     $this_page_name = $_SERVER['argv'][0];
@@ -746,7 +746,7 @@ function common_header($a_page_title, $a_page_lang,
   {
     switch ($page_lang)
     {
-      case LANG_PL: $SBackToMain = 'powrót do strony g³ównej'; break;
+      case LANG_PL: $SBackToMain = 'powrÃ³t do strony gÅ‚Ã³wnej'; break;
       case LANG_EN: $SBackToMain = 'back to main page'; break;
     }
     $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
@@ -793,7 +793,7 @@ function common_header($a_page_title, $a_page_lang,
   {
     switch ($page_lang)
     {
-      case LANG_PL: $main_page_title = 'Strona g³ówna'; break;
+      case LANG_PL: $main_page_title = 'Strona gÅ‚Ã³wna'; break;
       case LANG_EN: $main_page_title = 'Main page'; break;
     }
     $page_url = page_url(MAIN_PAGE_BASENAME, '', $page_lang, $url_comment);
