@@ -1,6 +1,67 @@
 <?php
 
 array_push($news,
+    array('title' => 'Development news: Beautiful shader rendering, compositing shaders extensions, shadow maps, Blender X3D exporter mods, and more',
+          'year' => 2011,
+          'month' => 3,
+          'day' => 8,
+          'short_description' => '',
+          'description' =>
+'<ol>
+  <li><p>We have a new shiny method of rendering everything through shaders (OpenGL Shading Language, aka GLSL). All of the standard X3D effects, and our extensions, are implemented in this mode. This results in much better look of many scenes.</p>
+
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://vrmlengine.sourceforge.net/vrml_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>.). For testing purposes, you can switch to <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> menu. The results should be the same (or better) than current renderer.
+
+    <ul>
+      <li><p>All the <i>lighting is calculated per-pixel</i> in shader rendering (we have the <i>Phong shading</i>, as opposed to the <i>Gouraud shading</i>). This is targetted at high-end GPUs anyway, so for now I decided that there\'s no point in making alternative per-vertex lighting. This means you should expect much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :)</p>
+
+        <p>Note that shapes that don\'t need any shader effects are still by default rendered through the fixed-function pipeline. So the performance of simple scenes should not suffer on low-end GPUs.</p></li>
+
+      <li><p>Our <i>bump mapping</i> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping really works, under all lighting and texturing conditions, and uses all normal VRML/X3D lights into account.</p>
+
+        <p>We also enable now bump mapping by default.</p>
+
+        <p>Our bump mapping works also with two-sides lighting now.</p>
+      </li>
+
+      <li><p>The <i>shadow maps</i> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+
+        <p>Shadow maps also work now with all the multi-textured shapes. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
+      </li>
+    </ul>
+
+    <p>Another huge improvement is our <i>compositing shaders</i> approach. I wrote a paper about this that will be submitted for the Web3D 2011 conference, and will be available here publicly later (I don\'t think I should make it public before being accepted). The <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models. Drop me a mail if you\'d like to get a peek at my paper PDF.</p>
+
+    <p>New <i>"View -&gt; Shaders"</i> submenu allows to choose when shaders are used.</p>
+
+    <ul>
+      <li><i>Disable</i> means <i>never</i>. Our effects will not work, standard ComposedShader will not work, shadow maps will not work. Also, screen effects (that always require shaders) are off.</li>
+      <li><i>Enable When Required</i> means that we used fixed-function pipeline for the shapes that don\'t use any shader effects, and shader pipeline for shapes that do.</li>
+      <li><i>Enable For Everything</i> means that we use shader pipeline for all the shapes. You will see beautiful per-pixel lighting on everything. On the other hand, rendering may be slower, unless you have really brand new GPU.</li>
+    </ul>
+
+    <p>Note that this all in development right now. There are some rough edges for now, in particular:</p>
+
+    <ul>
+      <li>Shaders caching is not implemented, so scenes with many shapes may take a while to load.</li>
+      <li><i>Parallax bump mapping</i> is not ported to new renderer for now. Only standard bump mapping is available. Similarly, <i>Variance Shadow Maps</i> are not ported &mdash; only standard shadow maps work.</li>
+      <li>Some less common multi-texturing options (add/subtract modes and such), and some volumetric fog options, are not ported yet to the new renderer.</li>
+    </ul>
+  </li>
+
+  <li><p><a href="http://vrmlengine.sourceforge.net/demo_models.php">"Kambi VRML test suite" will be renamed to "VRML / X3D demo models"</a> upon the next release. The SVN already has many improvements:</p>
+
+    <ul>
+      <li>New directory layout, to emphasize foremost what features are tested (shadow_maps, shaders etc.)</li>
+      <li>New <tt>compositing_shaders</tt> demos, testing our extensions for compositing shaders.</li>
+      <li>Some new shadow_maps demos (sunny_street and others) are added. Previously they were in the <tt>papers/shadow_maps_x3d/</tt> subdir in SVN, which wasn\'t well known.</li>
+      <li>Some basic demos from our vrml_engine_doc are added</li>
+      <li>Many other fixes. Thanks in particular go to "Circular" for a lot of reports on the <a href="http://www.lazarus.freepascal.org/index.php/topic,12059.0.html">Lazarus forum thread</a>.</li>
+    </ul>
+  </li>
+</ol>
+'),
+
     array('title' => 'view3dscene 3.9.0: new renderer, GLSL attributes, multiple viewports. Also: &quot;fundry&quot;, a way to donate to particular feature',
           'year' => 2011,
           'month' => 2,
