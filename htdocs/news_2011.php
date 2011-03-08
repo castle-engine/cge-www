@@ -12,15 +12,15 @@ vrmlengine_thumbs(array(
   array('filename' => 'castle_light_2.png', 'titlealt' => 'Castle fountain level with shaders, fun with lighting 2'),
   array('filename' => 'castle_light_1.png', 'titlealt' => 'Castle fountain level with shaders, fun with lighting 1'),
   array('filename' => 'castle_light_3.png', 'titlealt' => 'Castle fountain level with shaders, fun with lighting 3'),
-  array('filename' => 'shadow_map_spot.png', 'titlealt' => 'Spot light casting shadows'),
   array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
   array('filename' => 'volumetric_animated_fog_no_fog.png', 'titlealt' => 'Scene for the volumetric fog, here visible with fog turned off'),
   array('filename' => 'volumetric_animated_fog_no_light.png', 'titlealt' => 'Volumetric fog, with normal lighting turned off'),
+  array('filename' => 'shadow_map_spot.png', 'titlealt' => 'Spot light casting shadows'),
   array('filename' => 'fancy_light_spot_shape.png', 'titlealt' => 'Textured spot light with shadow'),
   array('filename' => 'flowers.png', 'titlealt' => 'Flowers bending under the wind, transformed on GPU in object space'),
   array('filename' => 'fresnel_and_toon.png', 'titlealt' => 'Toon and Fresnel effects combined'),
   array('filename' => 'noise.png', 'titlealt' => '3D and 2D smooth noise on GPU, wrapped in ShaderTexture'),
-)) .
+), 2) .
 '<p>A lot of great news about engine development below :) As always, remember you can try them all immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>!</p>
 
 <ol>
