@@ -25,13 +25,13 @@
 <p>Programming and modelling (of everything not covered below) :
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
 
-<p><a href="http://stoma.bestweb.pl/">Szymon Stoma and Ka∂ka Zaremba</a>
+<p><a href="http://stoma.bestweb.pl/">Szymon Stoma and Ka≈õka Zaremba</a>
 designed and modelled the scenario
 on "The Gate" level (all models in <tt>data/levels/gate/gate_parts/</tt>),
 modelled various objects (keys, bow, quiver, arrows, ball_missile_s),
 provided some sounds and a large amount of feedback. Thanks!
 <!-- All their work is on GNU GPL,
-contact Szymon &amp; Ka∂ka</a>
+contact Szymon &amp; Ka≈õka</a>
 for other licensing.
 --></p>
 
@@ -67,7 +67,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
     Terms are some open license (like artistic or gpl).</li>
 
   <li><tt>tree.blend</tt> based on <tt>tree02.3DS</tt>
-    from Micha≥ Wojtkiewicz. Thanks!</li>
+    from Micha≈Ç Wojtkiewicz. Thanks!</li>
 
   <li>Werewolf and Alien creatures' models based on free models from
     <a href="http://www.3dcafe.com/">www.3dcafe.com</a>.

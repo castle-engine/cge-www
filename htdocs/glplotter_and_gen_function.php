@@ -193,7 +193,7 @@ name=x^2
 <?php
   /* Removed docs: to verbose, not useful for most people...
 
-A nastêpne linie mo¿naby zapisaæ w bardziej czytelnej (ale równowa¿nej)
+A nastÄ™pne linie moÅ¼naby zapisaÄ‡ w bardziej czytelnej (ale rÃ³wnowaÅ¼nej)
 postaci jako:
 <pre>
   0 0
@@ -205,7 +205,7 @@ postaci jako:
 </pre>
 
 Czyli lewa kolumna to po kolei numbers od 0 do 5 (co 1) a prawa kolumna
-to warto¶ci funkcji <tt>x^2</tt> (czyli x<sup>2</sup>) gdzie x to warto¶æ
+to wartoÅ›ci funkcji <tt>x^2</tt> (czyli x<sup>2</sup>) gdzie x to wartoÅ›Ä‡
 w lewej kolumnie.
 
 <p>Polecenia
@@ -214,13 +214,13 @@ w lewej kolumnie.
   glplotter plik.plot
 </pre>
 
-albo, krócej,
+albo, krÃ³cej,
 
 <pre>
   gen_function "x^2" 0 5 1 | glplotter -
 </pre>
 
-wy¶wietl± wiêc wykresik funkcji x<sup>2</sup> na przedziale <tt>[0;5]</tt>. */
+wyÅ›wietlÄ… wiÄ™c wykresik funkcji x<sup>2</sup> na przedziale <tt>[0;5]</tt>. */
 ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
@@ -250,9 +250,9 @@ as a function expression, operating on argument "X".
     obracanie
 - esc (wyjscie)
 
-do tutoriala  notki o sk³adni wyra¿en. Notka o u¿yteczno¶ci notacji
-  Iversona i ogólniej f-cji boolowskich np. maj±c dan± funkcjê
-  f(x) i chc±c by by³a okre¶lona tylko gdy dane wyra¿enie W boolowskie
+do tutoriala  notki o skÅ‚adni wyraÅ¼en. Notka o uÅ¼ytecznoÅ›ci notacji
+  Iversona i ogÃ³lniej f-cji boolowskich np. majÄ…c danÄ… funkcjÄ™
+  f(x) i chcÄ…c by byÅ‚a okreÅ›lona tylko gdy dane wyraÅ¼enie W boolowskie
   (a wiec 1 = true, 0 = false) bylo true wystarczy zrobic
   g(x) = f(x) / W (gdy W = 0 czyni funkcje nieokreslona,
   gdy W = 1 czyni g(x) = f(x))

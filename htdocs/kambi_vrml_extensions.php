@@ -1200,9 +1200,9 @@ end;
     Various algorithms and programs may realize triangulation differently,
     and then hints given by this node may be interpreted somewhat
     differently or just ignored.
-    <!-- np. program moøe ustalaÊ jako∂Ê triangulacji w zaleøno∂ci
-    od odleg≥o∂ci obiektu od patrz±cego i wtedy zaimplementowanie
-    obs≥ugi tego wÍz≥a wi±za≥oby siÍ z dodatkowymi komplikacjami -->
+    <!-- np. program mo≈ºe ustalaƒá jako≈õƒá triangulacji w zale≈ºno≈õci
+    od odleg≈Ço≈õci obiektu od patrzƒÖcego i wtedy zaimplementowanie
+    obs≈Çugi tego wƒôz≈Ça wiƒÖza≈Çoby siƒô z dodatkowymi komplikacjami -->
     That said, this node is useful when you're designing some
     VRML models and you want to fine-tune the compromise
     between OpenGL rendering speed and quality of some objects.
@@ -1345,13 +1345,13 @@ end;
     always silently corrected to be orthogonal to <tt>direction</tt>.
     Lengths of these vectors are always ignored.
     <!--
-    (m.in. dlatego øe w standardowym VRMLu nie moøna przy
-    pomocy <tt>orientation</tt> ustalaÊ d≥ugo∂ci tych wektorÛw, ale takøe dlatego
-    øe tak jest wygodniej, zazwyczaj by≥oby to raczej uci±øliwe niø
-    funkcjonalne gdyby w jaki∂ sposÛb robiÊ co∂ inaczej w zaleønosci od
-    d≥ugo∂ci tych wektorow; takøe dlatego øe jest w VRMLowej kamerze
-    pole <tt>focalDistance</tt> sluø±ce w≥asnie do robienia rzeczy ktÛre
-    mÛglby∂ chcieÊ zrobiÊ na podstawie dlugo∂ci wektora <tt>direction</tt>).
+    (m.in. dlatego ≈ºe w standardowym VRMLu nie mo≈ºna przy
+    pomocy <tt>orientation</tt> ustalaƒá d≈Çugo≈õci tych wektor√≥w, ale tak≈ºe dlatego
+    ≈ºe tak jest wygodniej, zazwyczaj by≈Çoby to raczej uciƒÖ≈ºliwe ni≈º
+    funkcjonalne gdyby w jaki≈õ spos√≥b robiƒá co≈õ inaczej w zale≈ºnosci od
+    d≈Çugo≈õci tych wektorow; tak≈ºe dlatego ≈ºe jest w VRMLowej kamerze
+    pole <tt>focalDistance</tt> slu≈ºƒÖce w≈Çasnie do robienia rzeczy kt√≥re
+    m√≥glby≈õ chcieƒá zrobiƒá na podstawie dlugo≈õci wektora <tt>direction</tt>).
     -->
 
     <p>As for gravity: VRML 2.0 spec says to take standard +Y vector

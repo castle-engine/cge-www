@@ -43,11 +43,11 @@ accept some set of standard command-line options:
     distance from upper or lower screen border.
 
     <!-- p><i>
-    (Mo¿na te¿ zamiast <tt>- -geometry</tt> napisaæ <tt>-geometry</tt> (z jednym
-    my¶lnikiem). Standardowo programy pod XWindows akceptuj± parametr
-    <tt>-geometry</tt> z jednym my¶lnikiem, ale ja osobi¶cie preferujê pisaæ
-    dwa my¶lniki przed d³ugimi opcjami (zgodnie z konwencj± GNU) wiêc obie
-    postacie s± dozwolone.)</i>
+    (MoÅ¼na teÅ¼ zamiast <tt>- -geometry</tt> napisaÄ‡ <tt>-geometry</tt> (z jednym
+    myÅ›lnikiem). Standardowo programy pod XWindows akceptujÄ… parametr
+    <tt>-geometry</tt> z jednym myÅ›lnikiem, ale ja osobiÅ›cie preferujÄ™ pisaÄ‡
+    dwa myÅ›lniki przed dÅ‚ugimi opcjami (zgodnie z konwencjÄ… GNU) wiÄ™c obie
+    postacie sÄ… dozwolone.)</i>
 
     Kambi: -geometry zabronione, w zamian za to uzywam ParsePars -->
 
@@ -56,8 +56,8 @@ accept some set of standard command-line options:
     <tt>WIDTHxHEIGHT</tt> part and provide only
     <tt>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</tt> part.
 
-    <!--  Literka "x" w <tt>WIDTHxHEIGHT</tt> mo¿e tak naprawdê
-    byæ du¿ym "X" lub ma³ym "x". -->
+    <!--  Literka "x" w <tt>WIDTHxHEIGHT</tt> moÅ¼e tak naprawdÄ™
+    byÄ‡ duÅ¼ym "X" lub maÅ‚ym "x". -->
 
     <p>This option works the same as standard <tt>-geometry</tt> option for
     most XWindows programs.

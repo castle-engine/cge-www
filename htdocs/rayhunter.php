@@ -285,8 +285,8 @@ and Monte Carlo path tracing.
       <li>If <tt>camera-dir</tt> and <tt>camera-up</tt>
         will not be orthogonal
         <!--
-        (bez wzglêdu na to jak± metod± zosta³y uzyskane - z parametru,
-        z warto¶ci zapisanej w VRMLu czy z warto¶ci domy¶lnej)
+        (bez wzglÄ™du na to jakÄ… metodÄ… zostaÅ‚y uzyskane - z parametru,
+        z wartoÅ›ci zapisanej w VRMLu czy z wartoÅ›ci domyÅ›lnej)
         -->
         vector <tt>up</tt> will be corrected.
         <tt>camera-dir</tt> and <tt>camera-up</tt> vectors must not be
@@ -454,7 +454,7 @@ and Monte Carlo path tracing.
     <p>For educational purposed you can also set this to 0
     &mdash; then you will get a naive path tracer
     that just hopes to hit some light sources with random rays.
-    <!-- tzn. bezpo¶rednie o¶wietlenie bêdzie liczone tak samo jak po¶rednie. -->
+    <!-- tzn. bezpoÅ›rednie oÅ›wietlenie bÄ™dzie liczone tak samo jak poÅ›rednie. -->
     You will then need many many paths, even for simplest models,
     to get nice renderings.
 
@@ -505,10 +505,10 @@ and Monte Carlo path tracing.
     (see <?php echo a_href_page_hashlink('octree properties extension',
     'kambi_vrml_extensions', 'section_ext_octree_properties'); ?>).
 
-    <?php /* Niniejsze drzewo ósemkowe nie zawsze bêdzie absolutnie optymalne,
-    ale zazwyczaj bêdzie naprawdê dobre i nie bêdzie zajmowa³o zbyt du¿o
-    miejsca w pamiêci (oko³o 10 MB na scenach do 100 000 trójk±tów -
-    nie jest tak ¼le). Ale je¶li chcesz zmusiæ */ ?></dd>
+    <?php /* Niniejsze drzewo Ã³semkowe nie zawsze bÄ™dzie absolutnie optymalne,
+    ale zazwyczaj bÄ™dzie naprawdÄ™ dobre i nie bÄ™dzie zajmowaÅ‚o zbyt duÅ¼o
+    miejsca w pamiÄ™ci (okoÅ‚o 10 MB na scenach do 100 000 trÃ³jkÄ…tÃ³w -
+    nie jest tak Åºle). Ale jeÅ›li chcesz zmusiÄ‡ */ ?></dd>
 </dl>
 
 <p>See also <?php echo a_href_page(
@@ -584,10 +584,10 @@ and Monte Carlo path tracing.
         as long as surfaces have the same material), but there
         is never 100% warranty for such things (because it involves
         floating-point errors).
-        <!-- ale nie ma to 100% gwarancji i nie mo¿e mieæ
-        (bo nigdy dok³adnie nie wiadomo - czy rzeczywi¶cie na tym wielok±cie
-        te dwa trójk±ty nie zas³aniaj± siê wzajemnie czy te¿ raczej twórcy sceny
-        chodzi³o o to ¿e jeden wielok±t jest bardzo minimalnie nad drugim ?)
+        <!-- ale nie ma to 100% gwarancji i nie moÅ¼e mieÄ‡
+        (bo nigdy dokÅ‚adnie nie wiadomo - czy rzeczywiÅ›cie na tym wielokÄ…cie
+        te dwa trÃ³jkÄ…ty nie zasÅ‚aniajÄ… siÄ™ wzajemnie czy teÅ¼ raczej twÃ³rcy sceny
+        chodziÅ‚o o to Å¼e jeden wielokÄ…t jest bardzo minimalnie nad drugim ?)
         -->
     </ul>
 </ul>

@@ -47,7 +47,7 @@ appropriate DLLs are already is the archive.
 
      pod Windowsem:
      lets_take_a_walk_win.zip zawiera wszystkie trzy pierwsze spakowane
-     w jednym zipie - dla wygody wielu ludzi którzy bêd± chcieli uzywac
+     w jednym zipie - dla wygody wielu ludzi ktÃ³rzy bÄ™dÄ… chcieli uzywac
      mojej gry tylko pod Windowsem i nie zrozumieliby dlaczego musza
      downloadowac az 3 pliki.
 

@@ -210,8 +210,8 @@ JPEG handled using
 and translated to Delphi by Nomssi Nzali Jacques H. C).
 -->
 
-<!-- li> Mój w³asny kod obs³uguje BMP, PPM, RGBE, czystym przypadkiem
-zrobi³em te¿ PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
+<!-- li> MÃ³j wÅ‚asny kod obsÅ‚uguje BMP, PPM, RGBE, czystym przypadkiem
+zrobiÅ‚em teÅ¼ PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
 -->
 
 <?php

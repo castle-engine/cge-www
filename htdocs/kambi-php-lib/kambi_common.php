@@ -763,7 +763,7 @@ function common_header($a_page_title, $a_page_lang,
 <?php echo "<html lang=\"" .$lang_to_html_lang[$page_lang]. "\">\n"; ?>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="Author" content="Michalis Kamburelis">
 
