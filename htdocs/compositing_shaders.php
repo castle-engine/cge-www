@@ -66,4 +66,20 @@ so browse them (or do "svn checkout") from these URLs:</p>
 
 <p>...will be maintained here. For now, refer to the paper.</p>
 
+<p>Plug points not documented in the paper:</p>
+
+<pre style="border: thin solid #333; padding: 0.2em;">void <b>PLUG_material_light_colors</b>(
+  inout vec4 ambient,
+  inout vec4 diffuse,
+  inout vec4 specular,
+  const in gl_LightSourceParameters light_source,
+  const in gl_LightProducts light_products,
+  const in gl_MaterialParameters material)
+</pre>
+
+<p>Colors, combining material and light parameters, may be changed here.
+By default, they come from <tt>light_products</tt> values,
+which in turn are calculated by multiplying corresponding
+<tt>light_source</tt> and <tt>material</tt> colors.</p>
+
 <?php vrmlengine_footer(); ?>
