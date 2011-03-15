@@ -51,14 +51,16 @@ parts [
     In the simplest case, just start the URL with "<tt>data:text/plain,</tt>"
     and then write your shader code.</p>
 
-    <p>Only in the XML encoding: you can also just place
+    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shaders/shaders_inlined.x3dv">Example: shaders_inlined.x3dv</a>.</p>
+
+    <p>Only in the X3D XML encoding: you can also place
     shader source code inside the CDATA.</p>
 
-    <p>As a non-standard extension (but compatible at least with
+    <p>As an extension (but compatible at least with
     <a href="http://instant-reality.com/">InstantPlayer</a>)
     we also recognize URL as containing direct shader source if it
-    has any newlines
-    and doesn't start with any URL protocol, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shaders/shaders_inlined.x3dv">example: shaders_inlined.x3dv</a>.</p>
+    has any newlines and doesn't start with any URL protocol.
+    But it's better to use "<tt>data:text/plain,</tt>" mentioned above.
   </li>
 
   <li><p><b>Passing values to GLSL shader uniform variables.</b></p>
@@ -156,9 +158,10 @@ initializeOnly SFNode texture_two ImageTexture { url "two.png" }
     textures). But this feature should
     not be used or depended upon in the long run.</p>
 
-    <p>Note that for now you have to pass textures in VRML/X3D events.
-    Using <tt>inputOnly</tt> event to pass texture node to GLSL shader
-    will not work.</p>
+    <p>Note that for now you have to pass textures in VRML/X3D fields
+    (<tt>initializeOnly</tt> or <tt>inputOutput</tt>).
+    TODO: Using <tt>inputOnly</tt> event to pass texture node to GLSL shader
+    does not work.</p>
   </li>
 
   <li><p><b>Passing attributes to GLSL shader uniform variables.</b></p>
