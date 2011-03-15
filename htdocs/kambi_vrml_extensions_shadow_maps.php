@@ -81,7 +81,7 @@ $toc->echo_numbers = true;
   'view3dscene'); ?> files insde <tt>shadow_maps</tt> subdirectory.
   See in particular the nice model inside <tt>shadow_maps/sunny_street/</tt>,
   that was used for some screenshots visible on this page.</p>
-  
+
 <?php echo $toc->html_section(); ?>
 
   <p>In the very simplest case, to make the light source just cast shadows
@@ -248,10 +248,17 @@ $toc->echo_numbers = true;
   Although we know the direction of the light source,
   but for shadow mapping we also need to know the "up" vector to have camera
   parameters fully determined.
-  This vector must be adjusted by the implementation to be perfectly orthogonal
-  to the light direction, this allows user to avoid explicitly giving
-  this vector in many cases. Results are undefined only if this vector
-  is (almost) parallel to the light direction.
+
+  <p>You usually don't need to provide the "<tt>up</tt>" vector value in the file.
+  We intelligently guess (or fix your provided value) to be always Ok.
+  The "up" value is processed like this:
+  <ol>
+    <li>If <i>up = zero</i> (default), assume <i>up := +Y axis (0,1,0)</i>.</li>
+    <li>If <i>up is parallel to the direction vector</i>,
+      set <i>up := arbitrary vector orthogonal to the direction</i>.</li>
+    <li>Finally, make sure up vector is exactly orthogonal to the direction
+      (eventually rotating it slightly).</li>
+  </ol>
 
   <p>These properties are specified at the light node, because both
   shadow map generation and texture coordinate calculation must know them,
