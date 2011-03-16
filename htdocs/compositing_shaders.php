@@ -68,7 +68,7 @@ so browse them (or do "svn checkout") from these URLs:</p>
 
 <p>Plug points not documented in the paper:</p>
 
-<pre style="border: thin solid #333; padding: 0.2em;">void <b>PLUG_material_light_colors</b>(
+<pre class="plug_declaration">void <b>PLUG_material_light_colors</b>(
   inout vec4 ambient,
   inout vec4 diffuse,
   inout vec4 specular,
@@ -81,5 +81,17 @@ so browse them (or do "svn checkout") from these URLs:</p>
 By default, they come from <tt>light_products</tt> values,
 which in turn are calculated by multiplying corresponding
 <tt>light_source</tt> and <tt>material</tt> colors.</p>
+
+<pre class="plug_declaration">void <b>PLUG_lighting_apply</b>(
+  inout vec4 fragment_color,
+  const vec4 vertex_eye,
+  const vec3 normal_eye_fragment)
+</pre>
+
+<p>At this point, the lighting is calculated. Light contributions are summed,
+along with material emissive and global scene ambient colors,
+result is clamped to 1.0, and the alpha value is set correctly.
+You can change now the fragment color, if you want to do something <i>before</i>
+texturing is applied.</p>
 
 <?php vrmlengine_footer(); ?>

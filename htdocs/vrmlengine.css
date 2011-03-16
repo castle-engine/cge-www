@@ -40,6 +40,8 @@ tt.terminal { background-color: #EEE; }
 pre.small { font-size: xx-small; }
 tt.small { font-size: xx-small; }
 
+pre.plug_declaration { border: thin solid #333; padding: 0.2em; }
+
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 
 /* Style for note_box and note_title shamelessly stolen from CSS
