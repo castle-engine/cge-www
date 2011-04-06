@@ -143,9 +143,9 @@ others) are full of demos of our extensions.</p>
       $node_format_fd_name_pad = 15;
       echo
       node_dots('all previous Appearance fields') .
-      node_field('SFNode', '[in,out]', 'normalMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('SFNode', '[in,out]', 'heightMap' , 'NULL', 'only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
-      node_field('SFFloat', '[in,out]', 'heightMapScale', '0.01', 'must be &gt; 0, meaningful only if heightMap specified') .
+      node_field('SFNode', '[in,out]', 'normalMap' , 'NULL', 'only 2D texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('SFNode', '[in,out]', 'heightMap' , 'NULL', 'deprecated; only 2D texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed') .
+      node_field('SFFloat', '[in,out]', 'heightMapScale', '0.01', 'must be &gt; 0') .
       node_end();
     ?>
 
@@ -158,23 +158,36 @@ others) are full of demos of our extensions.</p>
       ));
     ?>
 
-    <p>Texture specified as <tt>normalMap</tt> describes normal vector
-    values on each texel. Normal vector values are actually encoded as colors:
-    normal vector (x, y, z) should be encoded as RGB((x+1)/2, (y+1)/2, (z+1)/2).
-    You can use e.g.
-    <a href="http://nifelheim.dyndns.org/~cocidius/normalmap/">GIMP
-    normalmap plugin</a> to generate such normal maps.
-    (<i>Hint:</i> Remember to check "invert y" when generating normal maps,
-    in image editing programs image Y grows down but we want Y
-    (as interpreted by normals) to grow up, just like texture T coordinate.)</p>
+    <p>RGB channels of the texture specified as <tt>normalMap</tt> describe
+    normal vector values of the surface. Normal vectors are encoded as colors:
+    vector <tt>(x, y, z)</tt> should be encoded as <tt>RGB((x+1)/2, (y+1)/2, (z+1)/2)</tt>.
 
-    <p><tt>normalMap</tt> is enough to use normal bump mapping ("dot product"
-    method, done by pure multi-texturing or GLSL programs, depending on
-    OpenGL capabilities). If you additionally specify some texture as
-    <tt>heightMap</tt> then parallax mapping
-    (<a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
-    self-shadowing</a>, if used OpenGL will support it) will be additionally used.
-    <tt>heightMapScale</tt> allows you to tweak the perceived height of bumps
+    <p>You can use e.g.
+    <a href="http://code.google.com/p/gimp-normalmap/">GIMP
+    normalmap plugin</a> to generate such normal maps from your textures.
+    <i>Hint:</i> Remember to check "invert y" when generating normal maps,
+    in image editing programs image Y grows down but we want Y
+    (as interpreted by normals) to grow up, just like texture T coordinate.</p>
+
+    <p>Such normal map is enough to use the classic bump mapping method,
+    and already enhances the visual look of your scene. For most effective
+    results, you can place some dynamic light source in the scene
+    &mdash; the bump mapping effect is then obvious.</p>
+
+    <p>You can additionally specify a height map.
+    Since version 3.10.0 of view3dscene (2.5.0 of engine), this height map
+    is specified within the alpha channel of the <tt>normalMap</tt> texture.
+    This leads to easy and efficient implementation, and also it is easy
+    for texture creators: in <a href="http://code.google.com/p/gimp-normalmap/">GIMP
+    normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>.
+    A height map allows to use more sophisticated <i>parallax bump mapping</i> algorithm,
+    actually we have a full <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
+    self-shadowing</a> implementation. This can make the effect truly
+    amazing, but also slower.</p>
+
+    <p>If the height map (that is, the alpha channel of <tt>normalMap</tt>)
+    exists, then we also look at the <tt>heightMapScale</tt> field.
+    This allows you to tweak the perceived height of bumps
     for parallax mapping.</p>
 
     <p>Since version 3.10.0 of view3dscene (2.5.0 of engine),
@@ -203,9 +216,9 @@ others) are full of demos of our extensions.</p>
 
       <li><p>Programmers may also compile and run example program
         <tt>vrml/opengl/examples/bump_mapping/</tt> in
-        <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>, this allows
-        to really play with bump mapping settings and see how to use this in
-        your own programs.</p></li>
+        <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>.
+        This is a technical demo, showing some other (older) methods
+        of bump mapping, and allows to tweak various settings.</p></li>
     </ul>
 
     <p>Note: you can also use these fields within <tt>KambiAppearance</tt> node
