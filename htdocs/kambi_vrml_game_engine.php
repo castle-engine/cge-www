@@ -317,7 +317,7 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.4.0');
+  echo_src_archive('view3dscene', '2.4.1');
   echo_src_archive('castle', '2.3.0');
   echo_src_archive('rayhunter', '2.1.0');
 
