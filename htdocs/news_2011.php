@@ -18,7 +18,7 @@ vrmlengine_thumbs(array(
   <li>passed to OpenGL much faster (no need for passing a separate texture, and no need to combine images at loading).</li>
 </ol>
 
-<p>The old method for passing <tt>heightMap</tt> (by a separate <tt>Apperance.heightMap</tt> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the heightmap in alpha channel of the normalmap. The new method feels easier for both texture creators and for the implementation.</p>
+<p>The old method for passing <tt>heightMap</tt> (by a separate <tt>Apperance.heightMap</tt> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the height-map in alpha channel of the normal-map. The new method feels easier for both texture creators and for the implementation.</p>
 
 <p>In another news, we released <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine version 2.4.1</a>. This is a bugfix release for 2.4.0 &mdash; no new features, only most critical fixes ported from trunk:</p>
 
