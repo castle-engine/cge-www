@@ -68,7 +68,7 @@ so browse them (or do "svn checkout") from these URLs:</p>
 
 <p>Plug points not documented in the paper:</p>
 
-<pre class="plug_declaration">void <b>PLUG_material_light_diffuse(
+<pre class="plug_declaration">void <b>PLUG_material_light_diffuse</b>(
   inout vec4 diffuse,
   const in vec4 vertex_eye,
   const in vec3 normal_eye,
@@ -91,5 +91,16 @@ along with material emissive and global scene ambient colors,
 result is clamped to 1.0, and the alpha value is set correctly.
 You can change now the fragment color, if you want to do something <i>before</i>
 texturing is applied.</p>
+
+<pre class="plug_declaration">void <b>PLUG_fragment_eye_space</b>(
+  const vec4 vertex_eye,
+  inout vec3 normal_eye)
+</pre>
+
+<p>In addition to paper notes: note that if you modify here normal vector,
+you may have to take care to properly negate it. When <tt>gl_FrontFacing</tt>
+is false, we're looking at the other side than where standard <tt>gl_Normal</tt>
+was pointing. For example, for bump mapping, it's most sensible to negate
+only the Z component of the normal vector in tangent space.</p>
 
 <?php vrmlengine_footer(); ?>
