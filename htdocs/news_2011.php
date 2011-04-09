@@ -1,6 +1,34 @@
 <?php
 
 array_push($news,
+    array('title' => 'Development news: Finishing shader rendering, steep parallax bump mapping reimplemented more efficiently, engine 2.4.1 fixes release',
+          'year' => 2011,
+          'month' => 4,
+          'day' => 9,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle &quot;overburn&quot; simple effect.'),
+  array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering.')
+)) .
+'The work on finishing new renderer continues. In particular, <i>parallax bump mapping</i> (including <i>steep parallax bump mapping with optional self-shadowing</i>) has been reimplemented for new shader pipeline. Specifying height maps for parallax bump mapping is different now: they should be passed as the alpha channel of a normal map texture. This is something that can be:
+
+<ol>
+  <li>trivially easily created (in <a href="http://code.google.com/p/gimp-normalmap/">GIMP normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>),</li>
+  <li>passed to OpenGL much faster (no need for passing a separate texture, and no need to combine images at loading).</li>
+</ol>
+
+<p>The old method for passing <tt>heightMap</tt> (by a separate <tt>Apperance.heightMap</tt> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the heightmap in alpha channel of the normalmap. The new method feels easier for both texture creators and for the implementation.</p>
+
+<p>In another news, we released <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine version 2.4.1</a>. This is a bugfix release for 2.4.0 &mdash; no new features, only most critical fixes ported from trunk:</p>
+
+<ul>
+  <li>fix FPC 2.2.4 and older compilation (like for Lazarus 0.9.28),</li>
+  <li>fix to Lazarus components redraw issues,</li>
+  <li>fixes for DRAFT.engine_tutorial (look in doc/ subdirectory),</li>
+  <li>added <tt>examples/lazarus/load_model_and_camera_manually</tt>.</li>
+</ul>'),
+
     array('title' => 'Development news: Beautiful shader rendering, compositing shaders extensions, shadow maps, Blender X3D exporter mods, and more',
           'year' => 2011,
           'month' => 3,
