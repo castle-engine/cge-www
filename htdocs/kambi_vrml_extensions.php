@@ -37,6 +37,7 @@ $toc = new TableOfContents(array(
   new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 1),
   new TocItem('Fields describing physical properties (Phong\'s BRDF) for <tt>Material</tt> node', 'ext_material_phong_brdf_fields', 1),
   new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 1),
+  new TocItem('Interpolate sets of colors (node <tt>ColorSetInterpolator</tt>)', 'ext_color_set_interpolator', 1),
 
   new TocItem('Extensions compatible with Avalon / instant-reality', 'ext_avalon', 1),
 
@@ -1680,6 +1681,11 @@ end;
     VRML graph by other events. So if you have multiple
     <tt>[Kambi]NavigationInfo</tt> nodes in your world, I advice to
     specify in all of them exactly the same <tt>octreeXxx</tt> fields values.
+
+<?php echo $toc->html_section(); ?>
+
+    <p><?php echo a_href_page('<tt>ColorSetInterpolator</tt> docs are at the bottom
+    of "Interpolation component" page', 'vrml_implementation_interpolation'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 

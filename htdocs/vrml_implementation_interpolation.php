@@ -1,11 +1,24 @@
 <?php
   require_once 'vrml_implementation_common.php';
+  require_once 'kambi_vrml_extensions_functions.php';
   x3d_status_header('Interpolation', 'interp',
     'This component defines nodes to interpolate between a given set
      of values. Interpolators are often used for animation,
      receiving time values from <tt>TimeSensor</tt> and sending interpolated
      values to visible nodes.');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Support', 'support'),
+      new TocItem('Extension: ColorSetInterpolator', 'color_set_interpolator'),
+    ));
+  $toc->echo_numbers = true;
 ?>
+
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <p>Supported nodes:</p>
 
@@ -34,18 +47,40 @@
 
 <p><i>TODO</i>: EaseInEaseOut, Spline*, SquadOrientationInterpolator missing.</p>
 
-<p><b>Extensions:</b> We add <tt>ColorSetInterpolator</tt>,
-that generates <tt>MFColor</tt> values:
+<?php echo $toc->html_section(); ?>
 
-<ul>
-  <li>Works and looks exactly like
-    other interpolation nodes. Is similar to <tt>CoordinateInterpolator</tt>,
-    but generates colors. Is similar to <tt>ColorInterpolator</tt>,
-    but generates many values. Colors should be interpolated in HSV
-    space (TODO although for now are not).</li>
+<p>As an extension, we add the <tt>ColorSetInterpolator</tt> node,
+that generates <tt>MFColor</tt> values.</p>
 
-  <li>Useful to interpolate e.g. <tt>Background.skyColor</tt> values.</li>
-</ul>
+<?php echo
+  node_begin('ColorSetInterpolator : X3DInterpolatorNode');
+  $node_format_fd_name_pad = 15;
+  $node_format_fd_def_pad = 6;
+  echo
+  node_field('SFNode', '[in,out]', 'metadata'      , 'NULL'   , '[X3DMetadataObject]; defined by X3DNode') .
+  node_field('SFFloat', '[in]'    , 'set_fraction' , ''  , 'defined by X3DInterpolatorNode') .
+  node_field('MFFloat', '[in,out]', 'key'          , '[]', 'defined by X3DInterpolatorNode') .
+  node_field('MFColor', '[in,out]', 'keyValue'     , '[]') .
+  node_field('MFColor', '[out]'   , 'value_changed', ''  ) .
+  node_end();
+?>
+
+<p>The number of items in the "<tt>keyValue</tt>" field should be a multiple
+of the number of items in the "<tt>key</tt>" field, that is
+<tt>keyValue.count = key.count * singleValueChangedCount</tt>.
+When the "<tt>set_fraction</tt>" input event is received,
+we linearly interpolate
+the colors, and the "<tt>value_changed</tt>" event is generated with
+a set of <tt>singleValueChangedCount</tt> colors.</p>
+
+<p>This works and looks exactly like
+other interpolation nodes. It is similar to <tt>CoordinateInterpolator</tt>,
+but generates colors. It is similar to <tt>ColorInterpolator</tt>,
+but generates many values. Colors should be interpolated in HSV
+space (TODO although for now are not, in our implementation).</p>
+
+<p>Useful to interpolate e.g. <tt>Background.skyColor</tt> values,
+or <tt>Color.color</tt> values.</p>
 
 <?php
   x3d_status_footer();

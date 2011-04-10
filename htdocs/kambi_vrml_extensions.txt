@@ -227,3 +227,10 @@ ScreenEffect : X3DChildNode {
   SFBool     [in,out]      needsDepth  FALSE
   MFNode     [in,out]      shaders     []        # [X3DShaderNode]
 }
+
+# See http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php
+ColorSetInterpolator : X3DInterpolatorNode {
+  ... all normal X3DInterpolatorNode fields ...
+  MFColor [in,out] keyValue []
+  MFColor [out]    value_changed
+}
