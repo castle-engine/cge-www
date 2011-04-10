@@ -8,7 +8,7 @@
 # as (in the future) these should not be specific to our engine),
 # also InstantReality already has Appearance.blendMode.
 #
-# You can however use KambiAppearance is your models, this allows you
+# You can however use KambiAppearance in your models, this allows you
 # to declare KambiAppearance by EXTERNPROTO and fallback on standard
 # Appearance.
 KambiAppearance : Appearance {
@@ -231,6 +231,6 @@ ScreenEffect : X3DChildNode {
 # See http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php
 ColorSetInterpolator : X3DInterpolatorNode {
   ... all normal X3DInterpolatorNode fields ...
-  MFColor [in,out] keyValue []
-  MFColor [out]    value_changed
+  MFColor  [in,out]  keyValue           []
+  MFColor  [out]     value_changed
 }
