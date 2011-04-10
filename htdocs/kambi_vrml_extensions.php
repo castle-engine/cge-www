@@ -49,6 +49,8 @@ $toc = new TableOfContents(array(
   new TocItem('Plane (<tt>Plane</tt> node)', 'ext_plane', 2),
   new TocItem('Boolean value toggler (<tt>Toggler</tt> node)', 'ext_toggler', 2),
 
+  new TocItem('Extensions compatible with BitManagement / BS Contact', 'ext_bitmanagement', 1),
+
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 ));
 $toc->echo_numbers = true;
@@ -2040,6 +2042,16 @@ end;
     When <tt>enabled = FALSE</tt> then
     sending input events to above fields has no effect (stored boolean value
     doesn't change), and no output events are generated.</p>
+
+<?php echo $toc->html_section(); ?>
+
+  <p>We have a (very crude) implementation of some BitManagement
+  specific extensions:</p>
+  <ul>
+    <li><tt>Circle</tt> (treat as standard <tt>Circle2D</tt>)</li>
+    <li><tt>Layer2D</tt>, <tt>Layer3D</tt>, <tt>OrderedGroup</tt> (treat as standard <tt>Group</tt>)</li>
+    <li><tt>MouseSensor</tt> (does nothing, we merely parse it Ok)</li>
+  </ul>
 
 <?php echo $toc->html_section(); ?>
 
