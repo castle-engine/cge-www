@@ -5,6 +5,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('What do you need to use my programs on Mac OS X now', 'requirements_now'),
+      new TocItem('Developers: additional stuff to install/configure', 'developers_libs'),
       new TocItem('Developers: help wanted for making more native Mac OS X port', 'help_wanted'),
     )
   );
@@ -46,21 +47,14 @@
   <li><p>When GLWindow uses GTK backend (view3dscene compiled by default script
     does use GTK, "The Castle" compiled by default script doesn't use GTK):
     <b>GTK and GtkGLExt</b> are required.
-    May be installed by <a href="http://www.finkproject.org/">fink</a>
-    (look for packages <tt>gtk+2</tt>, <tt>gtkglext1</tt>).
+    Simple <tt>fink install gtkglext1</tt> should pull everything, with necessary
+    dependencies.</p>
 
-    <p><i>Note:</i> Binary <tt>gtk+2</tt> packages in fink may be too old.
-    If you get errors on the console like</p>
+    <p>Note that binary fink packages are usually too old (if available at all...).
+    So just go with "source" installation. Don't be afraid if you're not a programmer
+    &mdash; the process goes smoothly, just follow fink installation instructions.</p>
 
-<pre>
-  dyld: Library not loaded: /sw/lib/libgtk-x11-2.0.0.dylib
-  Referenced from: /xxx/view3dscene
-  Reason: Incompatible library version: view3dscene requires version 601.0.0 or later, but libgtk-x11-2.0.0.dylib provides version 401.0.0
-</pre>
-
-    <p>then try installing gtk from source packages, they have newer version
-    (or bug fink to update binary packages more often :) ).
-    It is <i>not</i> necessary to use any fink packages from unstable
+    <p>It is <i>not</i> necessary to use any fink packages from unstable
     branch !</p></li>
 
   <li><p><b>vorbisfile</b> (may be installed by
@@ -84,6 +78,27 @@ path by command like
 </pre>
 before executing programs. (you can add this to your <tt>.bashrc</tt>
 or similar file for comfort).
+
+<?php echo $toc->html_section(); ?>
+
+<p>To actually compile my programs on Mac OS X, developers may need to install
+a little more packages. Of course <a href="http://freepascal.org/">FreePascal Compiler</a>
+is required. For comfortable RAD development, you may also consider
+<a href="http://www.lazarus.freepascal.org/">Lazarus</a> (FPC is already included
+with Lazarus installations, if you choose normal packages).</p>
+
+<p>As of fink 0.29.21 (on Mac OS X 10.6.7), you should additionally install
+the fink <tt>pango1-xft2-shlibs</tt> package. Simple <tt>fink install pango1-xft2-shlibs</tt>
+should do the trick.</p>
+
+<p>For linking, make sure that linker knows the location of fink and X11
+libraries. If you have installed fink and X11 in standard locations,
+you can simply add these lines to <tt>/etc/fpc.cfg</tt> file:</p>
+
+<pre class="code">
+-Fl/sw/lib/
+-Fl/usr/X11/lib/
+</pre>
 
 <?php echo $toc->html_section(); ?>
 
