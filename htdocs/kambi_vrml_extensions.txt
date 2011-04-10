@@ -23,6 +23,7 @@ Appearance : X3DAppearanceNode {
   SFNode     [in,out]      heightMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
   SFFloat    [in,out]      heightMapScale   0.01        # must be > 0, meaningful only if heightMap specified
   SFNode     [in,out]      blendMode        NULL        # [BlendMode]
+  MFNode     []            effects          []          # [Effect]
 }
 
 X3DLightNode : X3DChildNode {
@@ -34,6 +35,12 @@ X3DLightNode : X3DChildNode {
   SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
   SFVec3f    [in,out]      up                    0 1 0
   SFNode     []            defaultShadowMap      NULL        # [GeneratedShadowMap]
+  MFNode     []            effects               []          # [Effect]
+}
+
+X3DTextureNode : X3DAppearanceChildNode {
+  ... all normal X3DTextureNode fields ...
+  MFNode     []            effects          []          # [Effect]
 }
 
 DirectionalLight : X3DLightNode {
@@ -233,4 +240,31 @@ ColorSetInterpolator : X3DInterpolatorNode {
   ... all normal X3DInterpolatorNode fields ...
   MFColor  [in,out]  keyValue           []
   MFColor  [out]     value_changed
+}
+
+# See http://vrmlengine.sourceforge.net/compositing_shaders.php for Effect etc. docs
+
+Effect : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL    # [X3DMetadataObject]
+  SFString   []            language    ""      # allowed values like ComposedShader.language
+  SFBool     [in,out]      enabled     TRUE
+  MFNode     []            parts       []      # [EffectPart]
+
+  # And any number of uniform variables, just like for ComposedShader node:
+  fieldType []       fieldName
+  fieldType [in]     fieldName
+  fieldType [out]    fieldName
+  fieldType [in,out] fieldName
+}
+
+EffectPart : X3DNode, X3DUrlObject {
+  SFNode   [in,out] metadata NULL       # [X3DMetadataObject]
+  MFString []       url      []         # (may be changed to [in,out] one day)
+  SFString []       type     "VERTEX"   # ["VERTEX"|"FRAGMENT"]
+}
+
+ShaderTexture : X3DTextureNode {
+  SFNode   [in,out] metadata        NULL        # [X3DMetadataObject]; defined in X3DNode
+  MFNode   []       effects         []          # [Effect]; defined in X3DTextureNode
+  SFString []       defaultTexCoord "BOUNDS2D"  # ["BOUNDS2D"|"BOUNDS3D"]
 }
