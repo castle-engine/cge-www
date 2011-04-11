@@ -19,16 +19,18 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Library requirements of using my engine on Mac OS X:
+<p>Before you run our programs on Mac OS X, you may need to install
+some additional software:
 
 <ul>
   <li><p>For OpenGL programs, <b>X11</b> is needed (may be found on Mac OS X install CD).
     Install it, and run before executing our programs.</p>
 
-    <p>Our programs will appear as part of "X11 server" on your desktop.
-    If you start our program from outside of X (like by double-clicking the application
-    in Finder), note that our window may not be focused at start. Just click on it once
-    to make the window focused (receiving keys input and such).</p>
+    <p>Our programs will appear as part of "<i>X11 server</i>" on your desktop.
+    If you start our program outside of X11
+    (like by double-clicking the application
+    in the <i>Finder</i>), the window will not be "focused"
+    (receiving key events) at start. Just click the window to make it focused.</p>
 
     <p><i>Somewhat internal notes:</i> if you start our program from within
     X11 xterm, it will be focused at the start. When you start us outside of X11,
@@ -47,15 +49,18 @@
   <li><p>When GLWindow uses GTK backend (view3dscene compiled by default script
     does use GTK, "The Castle" compiled by default script doesn't use GTK):
     <b>GTK and GtkGLExt</b> are required.
-    Simple <tt>fink install gtkglext1</tt> should pull everything, with necessary
-    dependencies.</p>
+    They should be installed using <a href="http://www.finkproject.org/">fink</a>.
+    Follow fink installation instructions, then
+    simple command "<tt>fink install gtkglext1</tt>" should install all
+    the libraries we require (if in trouble, look for packages by "<tt>fink list xxx</tt>").</p>
 
     <p>Note that binary fink packages are usually too old (if available at all...).
-    So just go with "source" installation. Don't be afraid if you're not a programmer
-    &mdash; the process goes smoothly, just follow fink installation instructions.</p>
+    So just go with the "source" installation. Don't be afraid if you're not a programmer
+    &mdash; the process goes smoothly, just follow the instructions
+    and be patient.</p>
 
     <p>It is <i>not</i> necessary to use any fink packages from unstable
-    branch !</p></li>
+    branch.</p></li>
 
   <li><p><b>vorbisfile</b> (may be installed by
     <a href="http://www.finkproject.org/">fink</a>).
@@ -81,21 +86,21 @@ or similar file for comfort).
 
 <?php echo $toc->html_section(); ?>
 
-<p>To actually compile my programs on Mac OS X, developers may need to install
-a little more packages. Of course <a href="http://freepascal.org/">FreePascal Compiler</a>
+<p>To actually compile our programs on Mac OS X, developers may need to install
+a little more stuff. Of course <a href="http://freepascal.org/">FreePascal Compiler</a>
 is required. For comfortable RAD development, you may also consider
 <a href="http://www.lazarus.freepascal.org/">Lazarus</a> (FPC is already included
-with Lazarus installations, if you choose normal packages).</p>
+inside Lazarus installations, if you choose normal packages).</p>
 
 <p>As of fink 0.29.21 (on Mac OS X 10.6.7), you should additionally install
-the fink <tt>pango1-xft2-shlibs</tt> package. Simple <tt>fink install pango1-xft2-shlibs</tt>
-should do the trick.</p>
+the fink "<tt>pango1-xft2-shlibs</tt>" package. Simple "<tt>fink install pango1-xft2-shlibs</tt>"
+should do the trick. This is necessary for successful linking.</p>
 
-<p>For linking, make sure that linker knows the location of fink and X11
+<p>The linker must know the location of fink and X11
 libraries. If you have installed fink and X11 in standard locations,
-you can simply add these lines to <tt>/etc/fpc.cfg</tt> file:</p>
+you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
 
-<pre class="code">
+<pre class="sourcecode">
 -Fl/sw/lib/
 -Fl/usr/X11/lib/
 </pre>
