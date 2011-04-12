@@ -68,7 +68,7 @@ version_explicit glinformation_glut `glinformation --version`
 version_call gen_function
 
 # Keep this synchronized with P.Version in ../../kambi_vrml_game_engine/fpmake.pp
-version_explicit kambi_vrml_game_engine 2.4.1
+version_explicit kambi_vrml_game_engine 2.4.2
 
 version_explicit demo_models 2.11.0
 
