@@ -158,7 +158,7 @@ for all your needs):</p>
     <p>Use instead VRML/X3D interpolators, when background is fast updated.
     Note that you can use our
     <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
-    'vrml_status_interpolation'); ?> to animate sets of colors like
+    'vrml_implementation_interpolation'); ?> to animate sets of colors like
     <tt>skyColor</tt>, <tt>groundColor</tt>.
     See our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>
