@@ -14,6 +14,7 @@ make examples
   # (instead of potentially retrying "make examples" many times),
   # but you have to watch output (exit status = 0 is meaningless for
   # "make examples-ignore-errors").
+make examples-laz
 
 # FPCUnit tests
 
