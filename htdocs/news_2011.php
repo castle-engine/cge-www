@@ -9,8 +9,8 @@ array_push($news,
           'description' =>
 vrmlengine_thumbs(array(
   array('filename' => 'vrml_browser_example.png', 'titlealt' => 'vrml_browser - our engine Lazarus example, simple 3D model browser in Lazarus.'),
-  array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
   array('filename' => 'vrml_with_2d_controls_example.png', 'titlealt' => 'vrml_with_2d_controls - our engine Lazarus example, 3D scene with our 2D controls in OpenGL context.'),
+  array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
 )) .
 '<p>In the last weeks, we have made a couple of small bugfix releases of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">our engine for developers</a>. Only minimal bugfixes and small improvements:</p>
 
