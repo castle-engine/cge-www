@@ -15,15 +15,16 @@ vrmlengine_thumbs(array(
 '<p>In the last weeks, we have made a couple of small bugfix releases of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">our engine for developers</a>. Only minimal bugfixes and small improvements:</p>
 
 <ul>
-  <li>Engine 2.4.2: fixes the <tt>kambi_glwindow</tt> package compilation with Lazarus 0.9.30 (adds include path properly). Default TWalkCamera.GravityUp is now set (preventing errors with cameras that weren\'t initialized with Init).<li>
-  <li>Engine 2.4.3: fixes the compilation of all examples with Lazarus 0.9.30. This will be checked more automatically for next releases, so Lazarus compilation problems should not repeat. Also fixes the key problems with Lazarus component (not always set initial focus, not always correct shift/alt/ctrl state).</li>
-  <li>Engine 2.4.4: TGLMenu improvements (Items, OnClick, some other useful stuff available and published)</li>
+  <li><i>Engine 2.4.2</i>: Fixes the <tt>kambi_glwindow</tt> package compilation with Lazarus 0.9.30 (correct include path). Default <tt>TWalkCamera.GravityUp</tt> is now set to +Y (previously was zero, causing errors with cameras that weren\'t initialized by <tt>TWalkCamera.Init</tt>).</li>
+  <li><i>Engine 2.4.3</i>: Fixes the compilation of all examples with Lazarus 0.9.30. This will be checked more automatically for next releases, so Lazarus compilation problems should not occur again. Also fixes the key problems with Lazarus component (not always having initial focus, not always knowing the correct shift/alt/ctrl state).</li>
+  <li><i>Engine 2.4.4</i>: TGLMenu improvements (Items, OnClick, some other useful stuff available and published). See <tt>examples/lazarus/vrml_with_2d_controls</tt> for demo.</li>
 </ul>
 
-<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="http://127.0.0.1/~michalis/vrmlengine/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
+<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
 
-<p>Also, we have added a <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension (SVN docs)</a> to animate MFColor (set of colors) fields.</p>
+<p>Also, we added a <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension (SVN docs)</a> to animate MFColor (set of colors) fields.</p>
 '),
+
     array('title' => 'Development news: Finishing shader rendering, steep parallax bump mapping reimplemented, engine 2.4.1 fixes release',
           'year' => 2011,
           'month' => 4,
