@@ -287,7 +287,9 @@ notes near some programs below.
   function echo_src_archive_2($title, $internal_name, $engine_ver)
   {
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
-    $version = constant($version_const_name);
+    if ($internal_name == 'castle')
+      $version = '0.9.1'; else
+      $version = constant($version_const_name);
 
     echo '<li><p>' .
       sf_download('sources of '.$title,
@@ -318,7 +320,7 @@ notes near some programs below.
   }
 
   echo_src_archive('view3dscene', '2.4.4');
-  echo_src_archive('castle', '2.3.0');
+  echo_src_archive('castle', '2.4.4');
   echo_src_archive('rayhunter', '2.1.0');
 
   echo_src_archive('lets_take_a_walk', '2.0.0');
