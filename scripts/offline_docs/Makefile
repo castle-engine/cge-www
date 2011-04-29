@@ -51,6 +51,7 @@ ALL_HTMLS:=view3dscene.html \
   vrml_implementation_scripting.html \
   vrml_implementation_shaders.html \
   vrml_implementation_shape.html \
+  vrml_implementation_sound.html \
   vrml_implementation_status.html \
   vrml_implementation_text.html \
   vrml_implementation_texturing3d.html \
