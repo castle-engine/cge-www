@@ -43,12 +43,18 @@ to replicate existing functionality (like lighting and texturing operations),
 and your effects automatically cooperate with each other and with standard
 rendering features.</p>
 
-<p>We have prepared a paper for <a href="http://www.web3d2011.org/">Web3D 2011</a>
-conference describing our idea, and the introduced VRML/X3D extensions,
-in detail. The paper will be linked here later
-(before the conference, 20 June 2011). For now, you can
-<?php echo michalis_mailto('drop me a mail'); ?> if you want to get a link
-to it's first version :)</p>
+<p>More details about this idea, and detailed specification,
+will be available here later.</p>
+
+<!--
+We have prepared a paper
+describing our idea, and the introduced VRML/X3D extensions,
+in detail.
+It will be linked here later. For now, you can
+<?php echo michalis_mailto('drop me a mail'); ?> if you're interested in it :)</p>
+
+No details for now, to not interfere with blind review process.
+-->
 
 <?php echo $toc->html_section(); ?>
 
