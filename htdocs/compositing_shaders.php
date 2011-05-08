@@ -62,13 +62,24 @@ No details for now, to not interfere with blind review process.
 <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
 Look inside the subdirectory <tt>compositing_shaders/</tt> there,
 also the <tt>water/</tt> subdirectory contains water implementation
-using our effects. Note that for now these are available only in the SVN,
-so browse them (or do "svn checkout") from these URLs:</p>
+using our effects.</p>
+
+<p>Note that <b>for now the relevant demos are not available in released archives
+(tar.gz files)</b>. Instead, you have to get them from SVN. You can visit
+SVN links below with your browser, or you can download them by
+"svn checkout":</p>
 
 <ul>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/compositing_shaders/">compositing_shaders</a></li>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/water/">water</a></li>
+  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/">demo_models</a> (complete)</li>
+  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/compositing_shaders/">demo_models/compositing_shaders</a> subdirectory</li>
+  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/water/">demo_models/water</a> subdirectory</li>
 </ul>
+
+<p>You can open the example models with any of our engine tools, like
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+Note however that <b>for now the "stable" view3dcene doesn't contain
+our effects implementation</b>, so after downloading view3dscene,
+override it's binary with <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">a fresh view3dscene binary from nightly builds</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
