@@ -11,6 +11,7 @@
     array(
       new TocItem('Support', 'support'),
       new TocItem('Extension: ColorSetInterpolator', 'color_set_interpolator'),
+      new TocItem('Extension: VectorInterpolator', 'vector_interpolator'),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -81,6 +82,27 @@ space (TODO although for now are not, in our implementation).</p>
 
 <p>Useful to interpolate e.g. <tt>Background.skyColor</tt> values,
 or <tt>Color.color</tt> values.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>As an extension, we add the <tt>VectorInterpolator</tt> node,
+that generates <tt>MFFloat</tt> values. This is
+<a href="http://doc.instantreality.org/documentation/nodetype/VectorInterpolator/">compatible with InstantReality</a>.</p>
+
+<?php echo
+  node_begin('VectorInterpolator : X3DInterpolatorNode');
+  $node_format_fd_name_pad = 15;
+  $node_format_fd_def_pad = 6;
+  echo
+  node_field('SFNode', '[in,out]', 'metadata'      , 'NULL'   , '[X3DMetadataObject]; defined by X3DNode') .
+  node_field('SFFloat', '[in]'    , 'set_fraction' , ''  , 'defined by X3DInterpolatorNode') .
+  node_field('MFFloat', '[in,out]', 'key'          , '[]', 'defined by X3DInterpolatorNode') .
+  node_field('MFFloat', '[in,out]', 'keyValue'     , '[]') .
+  node_field('MFFloat', '[out]'   , 'value_changed', ''  ) .
+  node_end();
+?>
+
+<p>Useful to interpolate e.g. by <tt>ElevationGrid.set_height</tt>.</p>
 
 <?php
   x3d_status_footer();

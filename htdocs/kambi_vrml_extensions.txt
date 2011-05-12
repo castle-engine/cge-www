@@ -242,6 +242,12 @@ ColorSetInterpolator : X3DInterpolatorNode {
   MFColor  [out]     value_changed
 }
 
+VectorInterpolator : X3DInterpolatorNode {
+  ... all normal X3DInterpolatorNode fields ...
+  MFFloat  [in,out]  keyValue           []
+  MFFloat  [out]     value_changed
+}
+
 # See http://vrmlengine.sourceforge.net/compositing_shaders.php for Effect etc. docs
 
 Effect : X3DChildNode {

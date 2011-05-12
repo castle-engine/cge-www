@@ -48,6 +48,7 @@ $toc = new TableOfContents(array(
   new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture', 2),
   new TocItem('Plane (<tt>Plane</tt> node)', 'ext_plane', 2),
   new TocItem('Boolean value toggler (<tt>Toggler</tt> node)', 'ext_toggler', 2),
+  new TocItem('Interpolate sets of floats (node <tt>VectorInterpolator</tt>)', 'ext_vector_interpolator', 2),
 
   new TocItem('Extensions compatible with BitManagement / BS Contact', 'ext_bitmanagement', 1),
 
@@ -2042,6 +2043,11 @@ end;
     When <tt>enabled = FALSE</tt> then
     sending input events to above fields has no effect (stored boolean value
     doesn't change), and no output events are generated.</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p><?php echo a_href_page('<tt>VectorInterpolator</tt> docs are at the bottom
+    of "Interpolation component" page', 'vrml_implementation_interpolation'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
