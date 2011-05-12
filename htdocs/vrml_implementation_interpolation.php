@@ -102,6 +102,14 @@ that generates <tt>MFFloat</tt> values. This is
   node_end();
 ?>
 
+<p>The number of items in the "<tt>keyValue</tt>" field should be a multiple
+of the number of items in the "<tt>key</tt>" field, that is
+<tt>keyValue.count = key.count * singleValueChangedCount</tt>.
+When the "<tt>set_fraction</tt>" input event is received,
+we linearly interpolate
+the floats, and the "<tt>value_changed</tt>" event is generated with
+a set of <tt>singleValueChangedCount</tt> floats.</p>
+
 <p>Useful to interpolate e.g. by <tt>ElevationGrid.set_height</tt>.</p>
 
 <?php
