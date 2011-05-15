@@ -81,3 +81,7 @@ cd view3dscene/
   ./fpmake build -v
   ./fpmake clean -v
   ./fpmake build --nofpccfg --verbose
+
+# Finally, search and remove not needed empty dirs from SVN repo
+# (they sometimes are left, as I use git-svn, which leaves them in repo,
+# as git is unable to deal with directories): find-empty-dirs
