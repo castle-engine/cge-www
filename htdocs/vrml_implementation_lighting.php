@@ -21,10 +21,13 @@
     also don't seem to do anything better.
 
     <p>VRML 2.0 spec requires that at least 8 lights
-    are supported. My units can support as many lights as are
+    are supported. Our engine can support as many lights as are
     allowed by your OpenGL implementation, which is <i>at least</i> 8.
 
-    <p><i>TODO</i>: <tt>global</tt> field from X3D is not supported for now. We handle this following VRML 97 spec, which means that the default <tt>global</tt> value is always used: directional lights are never global, positional/spot ligthts are always global.</p>
+    <p><tt>global</tt> field from X3D is also supported. The default
+    value of this field is consistent with VRML 2.0 specification
+    (that always wants directional lights non-global, and other lights
+    always global).
 </ul>
 
 <?php
