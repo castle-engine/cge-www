@@ -57,7 +57,8 @@ Two&nbsp;most important programs available here are
 <p><b>Watch engine development</b>: To <i>really</i> watch the engine development
 closely, you can watch the commits through
 <a href="http://cia.vc/stats/project/vrmlengine">Kambi VRML game engine on
-cia.vc</a>.</p>
+cia.vc</a>. There is also <a href="https://www.ohloh.net/p/vrmlengine">our
+project page on Ohloh</a> (you're welcome to click on <i>"I use this"</i> button there!).</p>
 
 <p style="margin-bottom: 0.1em;"><i><b>Author:</b>
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
