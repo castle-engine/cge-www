@@ -214,8 +214,7 @@ flawlessly :) So give it a try!
     <tt>Walk</tt> (walk like in FPS games,
     with collision detection, gravity and related features available),
     <tt>Fly</tt> (similar to <tt>Walk</tt> but without gravity).
-  <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML.
-    (Collada to VRML 2.0, rest to VRML 1.0 currently.)
+  <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML 2.0.
   <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
     and in effect view3dscene will work as a "pretty-printer"
     for VRML / X3D files.
