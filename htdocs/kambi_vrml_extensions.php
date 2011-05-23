@@ -91,12 +91,12 @@ Commented out, too much useless info:
 Some other extensions may be able supported for other reasons:
 
 - Some of VRML 1.0 extensions are borrowed from VRML 97 specification
-    (e.g. <a href="#ext_light_attenuation">attenuation field for lights</a>),
+    (e.g. <a href="#section_ext_light_attenuation">attenuation field for lights</a>),
     I just allow them also in VRML 1.0.</p></li>
 
 - Some other extensions like
-    <a href="#ext_gzip">compressing VRML files by gzip</a>
-    or <a href="#ext_multi_root_node">multiple root nodes in VRML 1.0</a>
+    <a href="#section_ext_gzip">compressing VRML files by gzip</a>
+    or <a href="#section_ext_multi_root_node">multiple root nodes in VRML 1.0</a>
     are often implemented in other VRML viewers.</p></li>
 
 -->
@@ -1064,7 +1064,7 @@ end;
     you can use <?php echo a_href_page('X3D programmable shaders',
     'vrml_implementation_shaders'); ?> inside VRML 2.0.</p>
 
-    <p>You can also <a href="#ext_inline_for_all">freely include
+    <p>You can also <a href="#section_ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or X3D, or the other way around</a>.
 
 <?php echo $toc->html_section(); ?>
