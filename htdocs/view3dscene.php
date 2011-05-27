@@ -170,7 +170,7 @@ flawlessly :) So give it a try!
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
     (<tt>.dae</tt> extension). All existing Collada versions (in particular,
     we support both 1.3.x and 1.4.x versions) are handled.
-    Also, it can be used as converter from Collada to VRML 2.0.</p>
+    You can also convert Collada to X3D.</p>
 
     <p>As far as features go, we currently support only geometry with materials.
     It was tested on various Collada files, in particular on Collada files
@@ -214,7 +214,7 @@ flawlessly :) So give it a try!
     <tt>Walk</tt> (walk like in FPS games,
     with collision detection, gravity and related features available),
     <tt>Fly</tt> (similar to <tt>Walk</tt> but without gravity).
-  <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML 2.0.
+  <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to X3D.
   <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
     and in effect view3dscene will work as a "pretty-printer"
     for VRML / X3D files.
