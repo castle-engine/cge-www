@@ -12,30 +12,36 @@ vrmlengine_thumbs(array(
   array('filename' => 'light_street_lights_radius_shaders.png', 'titlealt' => 'Lights with radius with shader rendering'),
   array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
 )) .
-'<p>Work on next <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> release continues. Some highlights from this month:</p>
+'<p>Work on next <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> release continues. Some highlights from May:</p>
 
 <ul>
-  <li><a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</li>
-  <li>Lights improvements:
+  <li><p><a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
+
+  <li><p>Lights improvements:</p>
     <ul>
       <li>Lights attenuation is correctly rendered in shader pipeline.</li>
       <li>X3D light source "global" field is correctly supported now. (Previously, we were following VRML 97 spec, where directional lights are never global and point/spot lights are always global.)</li>
       <li>Light radius is correctly and precisely (per-pixel) checked in shader pipeline. This allows to use light "radius" for much more dramatic effects, compare 2 screenshots from light_street_lights_radius demo (source model in <a href="http://vrmlengine.sourceforge.net/demo_models.php">demo models</a> SVN).</li>
     </ul></li>
-  <li>Other shader pipeline improvements:
+
+  <li><p>Other shader pipeline improvements:</p>
     <ul>
       <li>Shader programs are now correctly cached and shared between shapes. This results in <i>much</i> faster loading and less memory usage for shader pipeline.</li>
       <li>Workarounded ATI fglrx bugs (on newer versions, &gt;= Catalyst 10.10) for shadow maps and bump mapping (<a href="http://forums.amd.com/devforum/messageview.cfm?catid=392&amp;threadid=148827&amp;enterthread=y">this one</a>, and other). Again, fglrx wins the contest for the most buggy OpenGL driver.</li>
       <li>Variance Shadow Maps restored for new shader rendering. Work much better now! (But still should be treated as experimental. You can try <i>View-&gt;Shadow Maps-&gt;Variance Shadow Maps</i>.)</li>
     </ul></li>
-  <li>Converters improvements:
+
+  <li><p>Converters improvements:</p>
     <ul>
       <li>Conversion of 3DS, GEO, Wavefront OBJ and MD3 reimplemented to produce X3D (instead of old VRML 1.0).</li>
       <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name: we search for texture filename ignoring case (useful if you\'re on case-sensitive file-system, like usually on Unix), we look inside textures/ subdirectory, we try to strip basename from filename in case it was absolute. If original texture filename was not found, but we found a suitable alternative, we use it (notifying you about this by a warning, so you know what going on &mdash; we used somewhat different texture filename).</li>
       <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul></li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_vector_interpolator"><tt>VectorInterpolator</tt> extension (SVN docs)</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/vector_interpolator.x3dv">Simple demo</a>.</li>
+
+  <li><p><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_vector_interpolator"><tt>VectorInterpolator</tt> extension (SVN docs)</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/vector_interpolator.x3dv">Simple demo</a>.</p></li>
 </ul>
+
+<p>You may also be interested in <a href="http://vrmlengine.sourceforge.net/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">is available here</a>.</p>
 
 <p>As usual, you can try everything by <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">our snapshots</a>.</p>
 '),
