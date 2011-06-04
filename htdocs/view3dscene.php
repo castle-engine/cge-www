@@ -716,7 +716,7 @@ directory.</p>
   SUGGESTS_OPENAL_VORBISFILE,
   DEPENDS_MACOSX)); ?>
 
-<p>To play movies (in VRML <tt>MovieTexture</tt> nodes) and
+<p>To play movies (in VRML/X3D <tt>MovieTexture</tt> nodes) and
 to record movies (by <tt>--screenshot-range</tt> option)
 you have to install <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
 and make sure it's available on $PATH.
@@ -734,6 +734,8 @@ and make sure it's available on $PATH.
 <p>Also <tt>convert</tt> program from
 <a href="http://www.imagemagick.org/">ImageMagick</a>
 package must be available on $PATH for some image formats to work.
+See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
+ for a list of image formats handled.
 
 <?php section(); ?>
 
