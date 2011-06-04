@@ -578,8 +578,8 @@ function common_set_page_functions()
       break;
     case LANG_EN:
       define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        'This is free/open-source software. You can ' .
-        a_href_page('download sources of this program (for developers and such)', 'kambi_vrml_game_engine') .
+        'This is free/open-source software. Developers can ' .
+        a_href_page('download sources of this program', 'kambi_vrml_game_engine') .
         '.');
       break;
   }

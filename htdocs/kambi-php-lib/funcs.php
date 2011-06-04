@@ -106,10 +106,9 @@ function array_to_ul($arr)
   return $result;
 }
 
-/* This is my email address. Using the constant makes it easier to change
-   the address, but also it may save my ass, otherwise I could type my email
-   address wrong in some cases, and such a mistake would be hard to
-   catch. */
+/* Michalis' email address. Using the constant makes it easier to change
+   the address everywhere at once, and once saves me from accidentaly
+   making typos in my email. */
 define('MICHALIS_EMAIL', 'michalis.kambi AT gmail.com');
 define('MICHALIS_SF_EMAIL', 'kambi AT users.sourceforge.net');
 
