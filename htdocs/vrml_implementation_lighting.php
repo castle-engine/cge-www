@@ -61,6 +61,9 @@ This is usually slower but also more beautiful than default
     are precisely rendered.</p></li>
   <li><p>Lights attenuation is also calculated per-pixel,
     this sometimes gives much better results.</li>
+  <li><p>Spot lights <tt>beamWidth</tt> is correctly applied
+    (for fixed-function rendering, <tt>beamWidth</tt> could not be perfectly
+    represented by OpenGL spot exponent).</li>
   <li>
     <?php
       echo vrmlengine_thumbs(array(
