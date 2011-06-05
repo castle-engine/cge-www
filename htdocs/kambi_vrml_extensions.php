@@ -1464,8 +1464,9 @@ end;
       node_field('SFColor', '[in,out]', 'color'           , '1 1 1', '[0, 1]') .
       node_field('SFFloat', '[in,out]', 'intensity'       , '1', '[0, 1]') .
       node_field('SFBool', '[in,out]', 'spot'            , 'FALSE') .
-      node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0) .
-      node_field('SFFloat', '[in,out]', 'spotCutOffAngle' , 0.785398) .
+      node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0, 'deprecated, ignored') .
+      node_field('SFFloat', '[in,out]', 'spotBeamWidth' , '&pi;/2') .
+      node_field('SFFloat', '[in,out]', 'spotCutOffAngle' , '&pi;/4') .
       node_end();
     ?>
 
@@ -1473,10 +1474,15 @@ end;
     <tt>ambientIntensity</tt>, <tt>attenuation</tt>, <tt>color</tt> and <tt>intensity</tt>
     are the same as for <tt>PointLight</tt> or <tt>DirectionalLight</tt>
     in VRML 2.0. If <tt>spot</tt> is <tt>TRUE</tt> then the light
-    makes a spot, meaning of <tt>spotDropOffRate</tt> and
-    <tt>spotCutOffAngle</tt> is the same as in VRML 1.0
-    (I didn't use <tt>beamWidth</tt> from VRML 2.0 spec because it
-    translates badly to OpenGL).
+    makes a spot, meaning of
+    <tt>spotCutOffAngle</tt> and <tt>spotBeamWidth</tt> is the same as for VRML 2.0 <tt>SpotLight</tt>.</p>
+
+    <p><i>History</i>: Previously we use <tt>spotDropOffRate</tt>,
+    following VRML 1.0 and fixed-function OpenGL spot exponent equation.
+    Now we insted use <tt>spotBeamWidth</tt>, following VRML 2.0 / X3D specifications.
+    <tt>spotBeamWidth</tt> is not reflected precisely in standard Gouraud shading,
+    you may want to turn on <?php echo a_href_page_hashlink('per-pixel lighting',
+    'vrml_implementation_lighting', 'section_per_pixel_lighting'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
