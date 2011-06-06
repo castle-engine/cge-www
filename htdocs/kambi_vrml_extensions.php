@@ -1445,6 +1445,12 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
+    <?php
+    echo vrmlengine_thumbs(array(
+      array('filename' => "headlight_per_pixel.png", 'titlealt' => 'Spot headlight with per-pixel lighting'),
+    ));
+    ?>
+
     <p>You can configure the appearance of headlight by the <tt>headlightNode</tt>
     field of <tt>KambiNavigationInfo</tt> node.
     <tt>KambiNavigationInfo</tt> is just a replacement of standard
