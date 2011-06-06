@@ -6,11 +6,13 @@
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_vrml1'));
 
 $toc = new TableOfContents(array(
-  new TocItem('Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>', 'ext_cone_cyl_parts_none'),
-  new TocItem('Fields <tt>attenuation</tt> and <tt>ambientIntensity</tt> for light nodes', 'ext_light_attenuation'),
+  new TocItem('Lights can be global', 'ext_global'),
+  new TocItem('Lights have <tt>attenuation</tt>', 'ext_light_attenuation'),
+  new TocItem('Lights have <tt>ambientIntensity</tt>', 'ext_light_ambient'),
   new TocItem('Parts of Inventor in VRML', 'ext_iv_in_vrml'),
   new TocItem('Multi root node', 'ext_multi_root_node'),
   new TocItem('Field <tt>separate</tt> for <tt>WWWInline</tt> node', 'ext_wwwinline_separate'),
+  new TocItem('Field <tt>parts</tt> in <tt>Cone</tt> and <tt>Cylinder</tt> nodes may have value <tt>NONE</tt>', 'ext_cone_cyl_parts_none'),
 ));
 $toc->echo_numbers = true;
 ?>
@@ -22,9 +24,16 @@ $toc->echo_numbers = true;
 
 <?php echo $toc->html_section(); ?>
 
-    This way every possible value is allowed for <tt>parts</tt>
-    field. This is comfortable for operating on these nodes,
-    especially from programs &mdash; there is no special "forbidden" value.
+  <p>All light source nodes have <tt>global</tt> field. The default value
+  of it is <tt>FALSE</tt>, and it means to use standard VRML 1.0 light scope
+  rules (light affects everything following, and is delimited by <tt>Separator</tt>).
+
+  <p>You can change it to <tt>global</tt> = TRUE, and then the standard
+  X3D global light behavior will be used: light will affect everything,
+  regardless of light node placement in node graph. For developers:
+  this also indicates that light shines on other 3D objects,
+  outside of this scene, if you use <tt>TKamSceneManager.GlobalLights := true;</tt>.
+  Very useful to make your creatures, items and such lit by the level lights.
 
 <?php echo $toc->html_section(); ?>
 
@@ -36,7 +45,9 @@ $toc->echo_numbers = true;
     and because the default value of this field (1,0,0)
     assures that standard VRML 1.0 files are interpreted correctly.
 
-    <p>Moreover, all lights have <tt>ambientIntensity</tt> field,
+<?php echo $toc->html_section(); ?>
+
+    <p>All lights have <tt>ambientIntensity</tt> field,
     also defined exactly like in VRML 97. However, when reading VRML 1.0
     files, we treat default value of <tt>ambientIntensity</tt>
     as -1 (while VRML 97 specification gives 0). And when rendering,
@@ -178,6 +189,12 @@ Group {
     <p>Test VRML file: see our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>, file
     <tt>vrml_1/kambi_extensions/inline_not_separate.wrl</tt>.
+
+<?php echo $toc->html_section(); ?>
+
+    This way every possible value is allowed for <tt>parts</tt>
+    field. This is comfortable for operating on these nodes,
+    especially from programs &mdash; there is no special "forbidden" value.
 
 <?php
   vrmlengine_footer();
