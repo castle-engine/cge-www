@@ -170,12 +170,13 @@ PROTO KambiNavigationInfo [
   outputOnly  SFBool   isBound
   outputOnly  SFBool   transitionComplete
 
-  # Kambi extension, will be ignored
-  initializeOnly  SFBool   timeOriginAtLoad  FALSE
+  # Kambi extensions
+  initializeOnly SFBool  timeOriginAtLoad           FALSE
   initializeOnly SFNode  octreeRendering            NULL
   initializeOnly SFNode  octreeDynamicCollisions    NULL
   initializeOnly SFNode  octreeVisibleTriangles     NULL
   initializeOnly SFNode  octreeCollidableTriangles  NULL
+  inputOutput    SFNode  headlightNode              NULL
 ] {
   NavigationInfo {
     set_bind              IS  set_bind

@@ -530,7 +530,7 @@ and Monte Carlo path tracing.
     <p>We handle all VRML light nodes &mdash; <tt>DirectionalLight</tt>,
     <tt>SpotLight</tt> and <tt>PointLight</tt>. Also the headlight
     is used, configurable by <tt>NavigationInfo.headlight</tt>
-    and <?php echo a_href_page_hashlink('KambiHeadLight node',
+    and <?php echo a_href_page_hashlink('KambiNavigationInfo.headlightNode',
     'kambi_vrml_extensions', 'section_ext_headlight'); ?>.
 
     <p>For <tt>&lt;recursion-depth&gt;</tt> equal zero we use only
