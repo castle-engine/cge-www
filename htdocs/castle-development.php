@@ -374,20 +374,16 @@ when you're not interested in testing creatures
         "Print current camera node (Ctrl+C)" feature.
       </li>
 
-      <li><tt>Light</tt> nodes
-
-        <p>I usually write light nodes in a separate VRML / X3D file
-        (that contains only light nodes; see e.g. <tt>data/levels/castle_hall_lights.wrl</tt>).
-        This is comfortable, because I usually want to use level lights
-        also on other objects (like enemies) that are not part of the level
-        object.
+      <li><tt>Light</tt> nodes, that are "global" (will shine
+        on other objects (like enemies) that are not part of the level
+        object).
 
         <p>(Also, while Blender exporters can export Blender lights to VRML,
         it doesn't allow me to use all features of VRML lights.)
 
         <p>Since version 0.5.7 you can also edit the lights from the game
         &mdash; see "Debug options" menu for "Edit lights" command.
-        So you have to add appropriate nodes to xxx_lights.wrl
+        So you have to add appropriate nodes to xxx_final.wrl
         file by hand, and then you can just run the game and configure lights
         properties from the game.
       </li>
