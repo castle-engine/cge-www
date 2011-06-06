@@ -34,7 +34,7 @@ $toc = new TableOfContents(array(
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 1),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 1),
-  new TocItem('Headlight properties (node <tt>KambiHeadLight</tt>)', 'ext_headlight', 1),
+  new TocItem('Customize headlight (<tt>KambiNavigationInfo.headlightNode</tt>)', 'ext_headlight', 1),
   new TocItem('Fields describing physical properties (Phong\'s BRDF) for <tt>Material</tt> node', 'ext_material_phong_brdf_fields', 1),
   new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 1),
   new TocItem('Interpolate sets of colors (node <tt>ColorSetInterpolator</tt>)', 'ext_color_set_interpolator', 1),
@@ -1445,15 +1445,105 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    If this node is present and headlight is turned on (e.g. because
-    <tt>headlight</tt> field of <tt>NavigationInfo</tt> is <tt>TRUE</tt>)
-    then this configures the headlight properties.
+    <p>You can configure the appearance of headlight by the <tt>headlightNode</tt>
+    field of <tt>KambiNavigationInfo</tt> node.
+    <tt>KambiNavigationInfo</tt> is just a replacement of standard
+    <tt>NavigationInfo</tt>, adding some extensions specific to our engine.
 
-    <p>The default values
-    of this node are compatible with VRML specification, that explicitly
-    states that <tt>NavigationInfo.headlight</tt> should have
-    <i>intensity = 1, color = (1 1 1),
-    ambientIntensity = 0.0, and direction = (0 0 -1)</i>.
+    <?php echo node_begin("KambiNavigationInfo : NavigationInfo");
+      $node_format_fd_type_pad = 5;
+      $node_format_fd_name_pad = 25;
+      $node_format_fd_def_pad = 6;
+
+      echo
+      node_dots('all KambiNavigationInfo fields so far') .
+      node_field('SFNode', '[in,out]', "headlightNode", "NULL", "[X3DLightNode]") .
+      node_end();
+    ?>
+
+    <p><tt>headlightNode</tt> defines the type and properties of the
+    light following the avatar ("head light"). You can put any
+    valid X3D light node here. If you don't give anything here (but still
+    request the headlight by <tt>NavigationInfo.headlight = TRUE</tt>,
+    which is the default) then the default <tt>DirectionalLight</tt>
+    will be used for headlight.
+
+    <ul>
+      <li><p>Almost everything (with the exceptions listed below)
+        works as usual for all the light sources.
+        Changing colors and intensity obviously work.
+        Changing the light type, including making it a spot light
+        or a point light, also works.
+
+        <p>Note that for nice spot headlights, you will usually want to
+        <?php echo a_href_page_hashlink('enable per-pixel lighting
+        on everything by View-&gt;Shaders-&gt;Enable For Everything',
+        'vrml_implementation_lighting', 'section_per_pixel_lighting'); ?>
+        Otherwise the ugliness of default fixed-function Gouraud shading
+        will be visible in case of spot lights (you will see how
+        the spot shape "crawls" on the triangles,
+        instead of staying in a nice circle).
+
+        <p>To visualize nicely <tt>SpotLight.beamWidth</tt>
+        you also may consider
+        <?php echo a_href_page_hashlink('enabling per-pixel lighting
+        on everything by View-&gt;Shaders-&gt;Enable For Everything',
+        'vrml_implementation_lighting', 'section_per_pixel_lighting'); ?>.
+
+        <p>Note that instead of setting headlight to spot, you may also
+        consider cheating: you can create a screen effect that simulates
+        the headlight. See view3dscene <i>"Screen Effects -&gt; Headlight"</i>
+        for demo, and <?php echo a_href_page('screen effects documentation',
+        'kambi_vrml_extensions_screen_effects'); ?> for ways to create
+        this yourself. This is an entirely different beast, more cheating
+        but also potentially more efficient (for starters, you don't have
+        to use per-pixel lighting on everything to make it nicely round).
+
+      <li><p>The <tt>"location"</tt> of the light (if you put here <tt>PointLight</tt>
+        or <tt>SpotLight</tt>) that you set will be ignored,
+        and instead will be reset on each frame to the player's location
+        (in world coordinates)<!--, TODO: modified by the
+        headlightMove (default zero, see below)-->.
+
+        <p>You can ROUTE your light's location to something, to see it changing.
+        <!-- TODO: test. This is useful to visualize headlight location,
+        together with headlightMove. -->
+
+      <li><p>Similarly, the <tt>"direction"</tt> of the light
+        (if this is <tt>DirectionalLight</tt> or <tt>SpotLight</tt>)
+        that you set will be ignored, and instead will be reset
+        on each frame to the player's normalized direction
+        (in world coordinates). You can ROUTE this direction to see it changing.
+
+     <li><p>The <tt>"global"</tt> field doesn't matter.
+       Headlight always shines on everything, ignoring normal VRML/X3D
+       light scope rules.
+
+     <!--
+       TODO: test
+       Even the <a>"shadows" and related fields</a> on the light will work,
+       so the headlight *can* cast a shadow.
+       Yes, this makes sense and is even nicely noticeable in some settings.
+       Try orthographic camera with a shadow-casting spot light,
+       with this you will usually see the shadow.
+
+       TODO: You'll usually want to set headlightTranslation to
+       something small but non-zero, to add some translation
+       (with respect to the camera position) to the headlight.
+       This allows you to move the light source slightly with respect
+       to the camera, which is a nice way of making the shadows from
+       headlight visible. It is also useful to simulate e.g.
+       a torch &mdash; a torch is probably held by a single hand
+       (so it's more to the left or right side) and slightly above the head.
+       Non-zero headlightTranslation allows to trivially simulate this &mdash;
+       a light source that is close, but not precisely at, the player position.
+
+       TODO: also headlightOrientation?
+     -->
+    </ul>
+
+    <p><i>History</i>: We used to configure headlight by different,
+    specialized node. This is still parsed but ignored in new versions:
 
     <?php
       echo node_begin('KambiHeadLight : X3DChildNode');
@@ -1464,25 +1554,10 @@ end;
       node_field('SFColor', '[in,out]', 'color'           , '1 1 1', '[0, 1]') .
       node_field('SFFloat', '[in,out]', 'intensity'       , '1', '[0, 1]') .
       node_field('SFBool', '[in,out]', 'spot'            , 'FALSE') .
-      node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0, 'deprecated, ignored') .
-      node_field('SFFloat', '[in,out]', 'spotBeamWidth' , '&pi;/2') .
+      node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0) .
       node_field('SFFloat', '[in,out]', 'spotCutOffAngle' , '&pi;/4') .
       node_end();
     ?>
-
-    <p>The meaning of these field should be self-explanatory:
-    <tt>ambientIntensity</tt>, <tt>attenuation</tt>, <tt>color</tt> and <tt>intensity</tt>
-    are the same as for <tt>PointLight</tt> or <tt>DirectionalLight</tt>
-    in VRML 2.0. If <tt>spot</tt> is <tt>TRUE</tt> then the light
-    makes a spot, meaning of
-    <tt>spotCutOffAngle</tt> and <tt>spotBeamWidth</tt> is the same as for VRML 2.0 <tt>SpotLight</tt>.</p>
-
-    <p><i>History</i>: Previously we use <tt>spotDropOffRate</tt>,
-    following VRML 1.0 and fixed-function OpenGL spot exponent equation.
-    Now we insted use <tt>spotBeamWidth</tt>, following VRML 2.0 / X3D specifications.
-    <tt>spotBeamWidth</tt> is not reflected precisely in standard Gouraud shading,
-    you may want to turn on <?php echo a_href_page_hashlink('per-pixel lighting',
-    'vrml_implementation_lighting', 'section_per_pixel_lighting'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
