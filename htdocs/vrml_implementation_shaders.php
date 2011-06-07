@@ -25,15 +25,16 @@ allow you to write shaders in the <a href="http://www.opengl.org/documentation/g
 <ul>
   <li><p><b>Basic example.</b></p>
 
-    <p>Add inside <tt>Appearance</tt> node VRML code like</p>
+    <p>Examples below are in the classic (VRML) encoding.
+    Add inside the <tt>Appearance</tt> node code like</p>
 
 <pre class="vrml_code">
 shaders ComposedShader {
-language "GLSL"
-parts [
-  ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
-  ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
-]
+  language "GLSL"
+  parts [
+    ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
+    ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+  ]
 }
 </pre>
 
@@ -65,7 +66,7 @@ parts [
 
   <li><p><b>Passing values to GLSL shader uniform variables.</b></p>
 
-    <p>You can also set uniform variables for your shaders from VRML,
+    <p>You can also set uniform variables for your shaders from VRML/X3D,
     just add lines like</p>
 
 <pre class="vrml_code">
@@ -73,20 +74,20 @@ inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
     to your ComposedShader node. These uniforms may also be modified by
-    VRML events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
-    for example here's a simple way to pass current VRML time (in seconds)
+    VRML/X3D events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
+    for example here's a simple way to pass the current time (in seconds)
     to your shader:
 
 <pre class="vrml_code">
 # ......
 # somewhere within Appearance:
 shaders DEF MyShader ComposedShader {
-language "GLSL"
-parts [
-  ShaderPart { type "VERTEX" url "my_shader.vs" }
-  ShaderPart { type "FRAGMENT" url "my_shader.fs" }
-]
-inputOnly SFTime time
+  language "GLSL"
+  parts [
+    ShaderPart { type "VERTEX" url "my_shader.vs" }
+    ShaderPart { type "FRAGMENT" url "my_shader.fs" }
+  ]
+  inputOnly SFTime time
 }
 
 # ......
@@ -95,9 +96,9 @@ DEF MyTimer TimeSensor { loop TRUE }
 ROUTE MyTimer.time TO MyShader.time
 </pre>
 
-    <p>Setting uniform values this way, from VRML fields/events,
-    is supported for all required by spec types.
-    So you can use VRML/X3D vector/matrix types to
+    <p>Setting uniform values this way, from VRML/X3D fields/events,
+    is supported for all required by specification types.
+    So you can use VRML/X3D vector/matrix fields to
     set GLSL vectors/matrices, you can use VRML/X3D
     multiple-value fields to set GLSL array types and such.</p>
 
@@ -116,25 +117,25 @@ ROUTE MyTimer.time TO MyShader.time
 
 <pre class="vrml_code">
 shaders ComposedShader {
-language "GLSL"
-parts [
-  ShaderPart { type "FRAGMENT" url
-  "data:text/plain,
+  language "GLSL"
+  parts [
+    ShaderPart { type "FRAGMENT" url
+    "data:text/plain,
 
-   uniform sampler2D texture_one;
-   uniform sampler2D texture_two;
+     uniform sampler2D texture_one;
+     uniform sampler2D texture_two;
 
-   void main()
-   {
-     gl_FragColor = gl_Color *
-       max(
-         texture2D(texture_one, gl_TexCoord[0].st),
-         texture2D(texture_two, gl_TexCoord[1].st));
-   }
-  " }
-]
-initializeOnly SFNode texture_one ImageTexture { url "one.png" }
-initializeOnly SFNode texture_two ImageTexture { url "two.png" }
+     void main()
+     {
+       gl_FragColor = gl_Color *
+         max(
+           texture2D(texture_one, gl_TexCoord[0].st),
+           texture2D(texture_two, gl_TexCoord[1].st));
+     }
+    " }
+  ]
+  initializeOnly SFNode texture_one ImageTexture { url "one.png" }
+  initializeOnly SFNode texture_two ImageTexture { url "two.png" }
 }
 </pre>
 
