@@ -58,12 +58,12 @@ game engine. In short:
 
 <ul>
   <li><b>Optimized OpenGL rendering</b> of models in
-    <b>VRML 1.0, 2.0 (aka VRML 97) and X3D</b> formats.
+    <b>X3D, VRML 2.0 (97) and VRML 1.0</b> formats.
     Including support for advanced VRML/X3D features like prototypes and
     events (user can interact with the 3D world).</li>
 
   <li><b>3DS, MD3, Wavefront OBJ, Collada</b> file formats are also supported.
-    They are internally converted into the VRML nodes graph,
+    They are internally converted into the VRML/X3D nodes graph,
     which means that they get all the optimizations for rendering,
     and 3D content from all file formats can be mixed (for 3D editing tools
     and such).</li>
@@ -81,20 +81,28 @@ game engine. In short:
     with <b>custom viewports</b> possible.</li>
 
   <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
-    switching, silhouette detection etc.) and <b>shadow maps</b>.</li>
+    switching, silhouette detection etc.) and <b>shadow maps</b>.
+    <?php echo a_href_page('Our shadow maps are very comfortable to use',
+    'kambi_vrml_extensions_shadow_maps'); ?>, and shadows from multiple light
+    sources are correctly rendered.
+    We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> (using various
-    implementations: basic multi-texturing with dot3 (normalized by cube map or not),
-    GLSL normal, GLSL with classic parallax mapping, GLSL with steep parallax
-    mapping and self-shadowing).</li>
+    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> is trivially
+    easy to use. Various algorithms are available: from
+    the classic bump mapping (take normal from the texture),
+    through the parallax bump mapping,
+    up to the steep parallax bump mapping with self-shadowing.</li>
 
   <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
-    and GLSL shaders. Most important, you can
-    <?php echo a_href_page('add and control GLSL shaders from VRML',
+    and GLSL shaders. Most importantly, you can
+    <?php echo a_href_page('add and control GLSL shaders from VRML/X3D',
     'vrml_implementation_shaders'); ?>.
     So GLSL shaders are fully available
     for model designers, programmer doesn't have to do anything.
+    We have developed special extensions to
+    <?php echo a_href_page('composite shader effects',
+    'compositing_shaders'); ?>.
 
   <li><b>Screen-space effects</b> in GLSL are very easy to create (see
     <?php echo a_href_page('ScreenEffect docs',
