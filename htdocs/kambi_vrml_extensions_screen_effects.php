@@ -41,13 +41,13 @@ by processing the rendered image. Demos:</p>
     after loading any 3D scene.
     Note that you can activate many effects at the same time.</p></li>
 
-  <li><p>Try the X3D files <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/screen_effects.x3dv">screen_effects.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
+  <li><p>Try the X3D files <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effects.x3dv">screen_effects.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
     <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
-    and open files <tt>x3d/screen_effects*.x3dv</tt> there, to see the complete
+    and open files in <tt>screen_effects</tt> subdirectory there, to see the complete
     working demos with an example castle model underneath.</p></li>
 </ul>
 
