@@ -11,8 +11,7 @@
 ));
 ?>
 
-<p>For a demo open files <tt>x3d/sound_final.x3dv</tt> and
-<tt>x3d/sound_location_animate.x3dv</tt> from our <?php echo
+<p>For a demo open files inside <tt>sound</tt> subdirectory in our <?php echo
 a_href_page('VRML/X3D demo models', 'demo_models'); ?>.
 
 <p><?php echo x3d_node_link('Sound'); ?> defines a sound in the 3D world.
