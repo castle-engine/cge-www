@@ -17,5 +17,5 @@ echo -n 'Calculating sums.md5 ... '
 echo 'done.'
 
 echo -n 'Uploading sums.md5 ... '
-  scp "$SUMS" kambi@shell.sourceforge.net:/home/groups/v/vr/vrmlengine/sums.md5
+  scp "$SUMS" kambi@shell.sourceforge.net:/home/project-web/vrmlengine/sums.md5
 echo 'done.'
