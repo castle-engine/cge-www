@@ -1,6 +1,60 @@
 <?php
 
 array_push($news,
+    array('title' => 'Development news: lights improvements, shadow volumes in demo_models, Hunter\'s Mark, more',
+          'year' => 2011,
+          'month' => 6,
+          'day' => 20,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => "headlight_per_pixel.png", 'titlealt' => 'Spot headlight with per-pixel lighting'),
+  array('filename' => 'castle_headlight_1.png', 'titlealt' => 'Castle level with sharp spot headlight'),
+  array('filename' => 'castle_headlight_2.png', 'titlealt' => 'Castle level with smooth spot headlight'),
+  array('filename' => 'castle_headlight_3.png', 'titlealt' => 'Castle level with smooth spot headlight'),
+  array('html' => ''), // empty cell
+  array('filename' => 'shadows_chopper_and_house.png', 'titlealt' => 'Shadow volumes from chopper over a house scenery. Chopper can be moved, rotated, scaled by mouse.'),
+  array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
+  array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
+  array('filename' => 'hunters_mark_mainmenu.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - main menu'),
+  array('filename' => 'hunters_mark_ingame.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - in game'),
+  array('filename' => 'hunters_mark_ingamemenu.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - menu in game'),
+  array('filename' => 'hunters_mark_credits.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - credits'),
+), 2) .
+'<p>Work on next <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> and <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">engine</a> release continues. I hope to release the next versions before the end of this month (it\'s already much delayed according to my plans, sorry :). Some highlights from this month\'s work:</p>
+
+<ul>
+  <li><p>All the lights, including headlight, are now correctly passed to the shader pipeline renderer. This means that using spot light as a headlight looks good now if you use <i>View-&gt;Shader-&gt;Enable For Everything</i>, the spot is calculated nicely.</p></li>
+
+  <li><p>You have much more options for customizing the headlight, by new <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_headlight">KambiNavigationInfo.headlightNode (SVN docs)</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
+
+    <p>Old <tt>KambiHeadLight</tt> node is deprecated and ignored now. It was exposing headlight in a way that was a little alien to other VRML/X3D lights, and is no longer comfortable to implement.</p></li>
+
+  <li><p><tt>SpotLight.beamWidth</tt> is handled perfectly and precisely with shader pipeline. <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_lighting.html#section_per_pixel_lighting">See per-pixel lighting notes (SVN docs)</a></p></li>
+
+  <li><p>Shadow volumes demos are moved to <tt>demo_models/shadow_volumes/</tt> (will be part of next release of <a href="http://vrmlengine.sourceforge.net/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <tt>PlaneSensor</tt> and <tt>SphereSensor</tt> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
+
+    <p>Old and mostly useless demo <tt>examples/shadow_volume_test/</tt> is removed, all the fun can now be performed by opening the files from <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> (or any other 3D browser from engine examples).</p></li>
+
+  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> was updated to set correct <tt>creaseAngle</tt> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
+
+  <li><p>Bartha Rolland (aka B42iso) has made a small game called <i>Hunter\'s Mark</i> using our engine :) The screenshots are visible on the side of this news post. An excerpt from the mail:</p>
+
+    <div class="quote">
+    I\'m really amazed at Kambi VRML. It\'s easy to use if you know the basics of Pascal programing language and Lazarus. [...] I was able to create a game using the map models from "The Castle".This game i named "Hunter\'s Mark" is just a project,but I\'m going to start the developing of a real game as soon as I feel like the time is right.
+    </div>
+
+    <p>Cool :)</p>
+    </li>
+
+  <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <tt>TKamSceneManager.InitializeLights</tt> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <tt>TVRMLGLScene.GlobalLights</tt>, and you can easily make all global lights shine on everything through <tt>TKamSceneManager.UseGlobalLights</tt>.
+
+    <p>This works even for VRML 1.0 (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions_vrml1.html#section_ext_global">because VRML 1.0 lights can also be global (SVN docs)</a>, this is another extension of our engine).</p>
+
+    <p>The old dirty idea of "light set" (load lights from special xxx_lights files into special <tt>TVRMLGLLightSet</tt> class) is removed. This was ugly and complicated. Now, just place your lights inside normal scene (like a level), and use <tt>UseGlobalLights</tt> to shine on everything. More elaborate scenarios are possible through InitializeLights.</p></li>
+</ul>
+'),
+
     array('title' => 'Development news: many shader pipeline improvements, many 3DS/Wavefront etc. converters improvements, more',
           'year' => 2011,
           'month' => 6,

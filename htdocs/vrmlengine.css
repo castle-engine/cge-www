@@ -354,3 +354,9 @@ table.donations td p {
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+div.quote {
+  margin-left: 1em;
+  background: #FFD;
+  border: dotted 1px black;
+}
