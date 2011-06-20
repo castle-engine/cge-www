@@ -36,8 +36,6 @@ vrmlengine_thumbs(array(
 
     <p>Old and mostly useless demo <tt>examples/shadow_volume_test/</tt> is removed, all the fun can now be performed by opening the files from <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> (or any other 3D browser from engine examples).</p></li>
 
-  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> was updated to set correct <tt>creaseAngle</tt> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
-
   <li><p>Bartha Rolland (aka B42iso) has made a small game called <i>Hunter\'s Mark</i> using our engine :) The screenshots are visible on the side of this news post. An excerpt from the mail:</p>
 
     <div class="quote">
@@ -46,6 +44,8 @@ vrmlengine_thumbs(array(
 
     <p>Cool :)</p>
     </li>
+
+  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> was updated to set correct <tt>creaseAngle</tt> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <tt>TKamSceneManager.InitializeLights</tt> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <tt>TVRMLGLScene.GlobalLights</tt>, and you can easily make all global lights shine on everything through <tt>TKamSceneManager.UseGlobalLights</tt>.
 
