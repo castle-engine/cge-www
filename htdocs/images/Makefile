@@ -10,7 +10,7 @@
 
 # ALL_ORIGINAL is a space-separated list of original images.
 # ALL_MEDIUM is a space-separated list of target medium-sized images.
-ALL_ORIGINAL:=$(wildcard original_size/*.png)
+ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
 ALL_MEDIUM:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
 
 # Only a small number of images needs "program_link_size"
