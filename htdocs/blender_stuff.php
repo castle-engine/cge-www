@@ -17,7 +17,7 @@ function echo_svn_blender_file($filename)
     'with Kambi fixes and modifications');
 ?>
 
-<h2>X3D exporter, for Blender 2.57</h2>
+<h2>X3D exporter, for Blender 2.58</h2>
 
 <ul>
   <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
