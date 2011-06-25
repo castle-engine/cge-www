@@ -31,7 +31,7 @@ function echo_svn_blender_file($filename)
 
 <p>Blender people: feel welcome to take my fixes / changes,
 and apply them to Blender sources. Michalis will try to report them when
-he has time (which doesn't happen too often unfortunately).
+he has time.
 Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
