@@ -6,8 +6,6 @@ this (on each platform) before release:
 ./compile_all_programs.sh unix|windows
 ./compile_all_programs.sh lazarus
 cd kambi_vrml_game_engine/
-make clean_container_units container_units # not a test, but useful to run
-                                           # and eventually commit
 make
 make examples
   # Or "make examples-ignore-errors", this compiles everything,
@@ -60,8 +58,6 @@ cd view3dscene/
 
   # Should find only files
   # - inside packages/../lib/
-  # - allkambi*.pas units (that's ok, they are not part of any package
-  #   and are not used by any program)
   # - units inside examples/, tools/, tests/ dir
   # - units inside dir of other OS (for example, leftovers in unix/
   #   dir were not cleaned by windows package, that's ok)
@@ -76,7 +72,7 @@ cd view3dscene/
   find . -executable -type f | grep -v ".sh$" | grep -v "~$"
 
 # Test fpmake compilation system:
-  export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.0/
+  # remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.4/
   fpc fpmake.pp
   ./fpmake build -v
   ./fpmake clean -v
