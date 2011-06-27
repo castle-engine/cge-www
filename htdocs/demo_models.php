@@ -130,10 +130,6 @@ For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
 
 <p>Skies in <tt>skies</tt> subdirectory done with
 <a href="http://www.planetside.co.uk/">Terragen</a>.
-They have rather poor quality (small resolution
-and highly compressed JPEGs), otherwise they would take too much
-space in the archive (originally generated 512x512 PNG images were
-taking 6 MB !).
 
 <?php echo $toc->html_section(); ?>
 
