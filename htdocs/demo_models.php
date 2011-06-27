@@ -94,13 +94,8 @@ For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
     also a lot of textures, see <tt>compositing_shaders/textures/AUTHORS.txt</tt>.</p>
   </li>
 
-  <li><p><tt>vrml_1/instancing.wrl</tt> and
-    <tt>vrml_1/vrml_spec_sample*.wrl</tt>
-    were extracted from VRML 1.0 specification.</li>
-
-  <li><p><tt>3ds/p47d.3ds</tt> by Orin Palmer,
-    <a href="http://www.3dcafe.com/">www.3dcafe.com</a>
-    (from free models section), see the file <tt>3ds/p47d.txt</tt>.</li>
+  <li><p><i>Orin Palmer</i> created plane model in 3DS, see <tt>3ds/p47d.3ds</tt>
+    and <tt>3ds/p47d.txt</tt>.</li>
 </ul>
 
 <p>Textures:
