@@ -20,13 +20,26 @@ function echo_svn_blender_file($filename)
 <h2>X3D exporter, for Blender 2.58</h2>
 
 <ul>
-  <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
-    Contains notes how the exporter (both original distributed in Blender
-    and modified by me) works, how you should setup your model.
-    And contains notes about our modifications.
-
   <p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
-    Get the actual exporter.
+    Download the actual exporter.
+
+    <p>Copy it over (overwrite) the original Blender exporter,
+    which is in <tt>&lt;blender-installation-dir&gt;/2.58/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
+    <!--You will need to restart Blender (if currently running to load the new exporter.-->
+
+    <p>Note that for 2.58 exporter, I advice to use <i>Triangulate=Off</i>.
+    There are some problems with triangulation: it cannot preserve vertex sharing
+    in case of some UVs or vertex colors (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27773&amp;group_id=9&amp;atid=498">#27773, in svn it now forces Normals=On</a>),
+    it cannot preserve creaseAngle (<a href="http://projects.blender.org/tracker/?func=detail&amp;aid=27769&amp;group_id=9&amp;atid=127">#27769</a>).
+    Using <i>Normals=On</i> makes <i>Triangulate=On</i> better,
+    but sometimes normals are still incorrect in my experience. I try to investigate
+    and submit to Blender relevant patches or bugs, for now with official 2.58
+    it's safer to just use <i>Triangulate=Off</i> in my experience.
+
+  <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
+    Detailed notes how the exporter (both original distributed in Blender
+    and modified by me) works, how you should setup your model.
+    At the end, contains notes about our modifications.
 </ul>
 
 <p>Blender people: feel welcome to take my fixes / changes,
