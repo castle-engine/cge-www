@@ -43,8 +43,16 @@ to replicate existing functionality (like lighting and texturing operations),
 and your effects automatically cooperate with each other and with standard
 rendering features.</p>
 
-<p>More details about this idea, and detailed specification,
-will be available here later.</p>
+<p>More details will be available later on this page.
+My paper about this idea was accepted to the
+<a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>,
+and will be published here around September 2011.
+Also around September 2011: my Ph.D. thesis, on the same subject,
+will be available here.</p>
+
+<p>If you're interested in more information now,
+<?php echo michalis_mailto('send me a mail'); ?>.
+Also, investigate the examples mentioned below.</p>
 
 <!--
 We have prepared a paper
@@ -60,9 +68,11 @@ No details for now, to not interfere with blind review process.
 
 <p>The examples are available inside
 <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
-Look inside the subdirectory <tt>compositing_shaders/</tt> there,
-also the <tt>water/</tt> subdirectory contains water implementation
+Download them, and look inside the subdirectory <tt>compositing_shaders</tt> there.
+Also the <tt>water</tt> subdirectory contains water implementation
 using our effects.</p>
+
+<?php /*
 
 <p>Note that <b>for now the relevant demos are not available in released archives
 (tar.gz files)</b>. Instead, you have to get them from SVN. You can visit
@@ -75,11 +85,15 @@ SVN links below with your browser, or you can download them by
   <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/water/">demo_models/water</a> subdirectory</li>
 </ul>
 
+*/ ?>
+
 <p>You can open the example models with any of our engine tools, like
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
+<?php /*
 Note however that <b>for now the "stable" view3dcene doesn't contain
 our effects implementation</b>, so after downloading view3dscene,
 override it's binary with <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">a fresh view3dscene binary from nightly builds</a>.</p>
+*/ ?>
 
 <?php echo $toc->html_section(); ?>
 
