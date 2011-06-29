@@ -90,6 +90,8 @@ echo 'Runing tests (clean and compile everything with examples):'         >> "$O
 
 cd  ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/
 make clean             >> "$OUTPUT_LOG" 2>&1
+# make examples-laz first, to avoid creating .ppu colliding with Lazarus.
+make examples-laz      >> "$OUTPUT_LOG" 2>&1
 make                   >> "$OUTPUT_LOG" 2>&1
 make examples          >> "$OUTPUT_LOG" 2>&1
 
