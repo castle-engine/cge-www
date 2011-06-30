@@ -49,7 +49,7 @@ cd view3dscene/
   # This can be tested by
   cd kambi_vrml_game_engine/
   make clean
-  make
+  make examples # (merely "make" doesn't place unit files along sources, and for this test we actually want it)
   # Now compile our packages from Lazarus,
   # letting Lazarus remove ppu files of units that belong to package.
   # This will leave only ppu files of units that don't belong to packages,
