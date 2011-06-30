@@ -13,6 +13,7 @@ make examples
   # (instead of potentially retrying "make examples" many times),
   # but you have to watch output (exit status = 0 is meaningless for
   # "make examples-ignore-errors").
+make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
 # FPCUnit tests
