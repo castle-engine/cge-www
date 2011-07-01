@@ -20,7 +20,7 @@ function echo_svn_blender_file($filename)
 <h2>X3D exporter, for Blender 2.58</h2>
 
 <ul>
-  <p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
+  <li><p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
     Download the actual exporter.
 
     <p>Copy it over (overwrite) the original Blender exporter,
