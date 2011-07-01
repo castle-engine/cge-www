@@ -18,8 +18,17 @@
   VERSION_DEMO_MODELS); ?>
 
 <div class="download">
-<?php echo sf_download("Download Kambi VRML/X3D demo models",
-'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
+<?php
+  if (IS_GEN_LOCAL)
+  {
+    echo '<p><a href="' . CURRENT_URL . $this_page_name .
+      '">Download Kambi VRML/X3D demo models from it\'s WWW page</a>.</p>';
+  } else
+  {
+    echo sf_download("Download Kambi VRML/X3D demo models",
+      'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz');
+  }
+?>
 </div>
 
 <p>Contents:
