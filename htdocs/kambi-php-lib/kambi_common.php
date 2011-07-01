@@ -512,13 +512,7 @@ function common_set_page_functions()
     {
       if (!$already_has_extension)
         $result = CURRENT_URL . $result . '.php';
-      switch ($page_lang)
-      {
-        case LANG_PL: str_append_part_to1st($url_comment, ', ',
-          'odsyłacz do ' . CURRENT_URL_SHORT); break;
-        case LANG_EN: str_append_part_to1st($url_comment, ', ',
-          'link to ' . CURRENT_URL_SHORT); break;
-      }
+      str_append_part_to1st($url_comment, ', ', 'online docs');
     } else
     if (!$already_has_extension)
     {
