@@ -26,11 +26,11 @@ vrmlengine_thumbs(array(
 <ul>
   <li><p>All the lights, including headlight, are now correctly passed to the shader pipeline renderer. This means that using spot light as a headlight looks good now if you use <i>View-&gt;Shader-&gt;Enable For Everything</i>, the spot is calculated nicely.</p></li>
 
-  <li><p>You have much more options for customizing the headlight, by new <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_headlight">KambiNavigationInfo.headlightNode (SVN docs)</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
+  <li><p>You have much more options for customizing the headlight, by new <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
 
     <p>Old <tt>KambiHeadLight</tt> node is deprecated and ignored now. It was exposing headlight in a way that was a little alien to other VRML/X3D lights, and is no longer comfortable to implement.</p></li>
 
-  <li><p><tt>SpotLight.beamWidth</tt> is handled perfectly and precisely with shader pipeline. <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_lighting.html#section_per_pixel_lighting">See per-pixel lighting notes (SVN docs)</a></p></li>
+  <li><p><tt>SpotLight.beamWidth</tt> is handled perfectly and precisely with shader pipeline. <a href="http://vrmlengine.sourceforge.net/vrml_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
 
   <li><p>Shadow volumes demos are moved to <tt>demo_models/shadow_volumes/</tt> (will be part of next release of <a href="http://vrmlengine.sourceforge.net/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <tt>PlaneSensor</tt> and <tt>SphereSensor</tt> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
 
@@ -49,7 +49,7 @@ vrmlengine_thumbs(array(
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <tt>TKamSceneManager.InitializeLights</tt> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <tt>TVRMLGLScene.GlobalLights</tt>, and you can easily make all global lights shine on everything through <tt>TKamSceneManager.UseGlobalLights</tt>.
 
-    <p>This works even for VRML 1.0 (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions_vrml1.html#section_ext_global">because VRML 1.0 lights can also be global (SVN docs)</a>, this is another extension of our engine).</p>
+    <p>This works even for VRML 1.0 (<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_vrml1.php#section_ext_global">because VRML 1.0 lights can also be global</a>, this is another extension of our engine).</p>
 
     <p>The old dirty idea of "light set" (load lights from special xxx_lights files into special <tt>TVRMLGLLightSet</tt> class) is removed. This was ugly and complicated. Now, just place your lights inside normal scene (like a level), and use <tt>UseGlobalLights</tt> to shine on everything. More elaborate scenarios are possible through InitializeLights.</p></li>
 </ul>
@@ -92,7 +92,7 @@ vrmlengine_thumbs(array(
       <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul></li>
 
-  <li><p><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_vector_interpolator"><tt>VectorInterpolator</tt> extension (SVN docs)</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/vector_interpolator.x3dv">Simple demo</a>.</p></li>
+  <li><p><a href="http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/vector_interpolator.x3dv">Simple demo</a>.</p></li>
 </ul>
 
 <p>You may also be interested in <a href="http://vrmlengine.sourceforge.net/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">is available here</a>.</p>
@@ -121,7 +121,7 @@ vrmlengine_thumbs(array(
 
 <p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
 
-<p>Also, we added a <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_interpolation.html#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension (SVN docs)</a> to animate MFColor (set of colors) fields.</p>
+<p>Also, we added a <a href="http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</p>
 '),
 
     array('title' => 'Development news: Finishing shader rendering, steep parallax bump mapping reimplemented, engine 2.4.1 fixes release',

@@ -107,7 +107,7 @@ vrmlengine_thumbs(array(
 
 <p>Also basic VRML 97 NURBS nodes are implemented, for compatibility.</p>
 
-<p><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_nurbs.html">Up-to-date documentation about supported NURBS nodes is here.</a> Some demo scenes are inside kambi_vrml_test_suite in SVN, see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_curve_interpolators.x3dv">nurbs_curve_interpolators.x3dv</a> and <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_surface_interpolator.x3dv">nurbs_surface_interpolator.x3dv</a>.</p>
+<p><a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php">Up-to-date documentation about supported NURBS nodes is here.</a> Some demo scenes are inside kambi_vrml_test_suite in SVN, see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_curve_interpolators.x3dv">nurbs_curve_interpolators.x3dv</a> and <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/nurbs_surface_interpolator.x3dv">nurbs_surface_interpolator.x3dv</a>.</p>
 
 <p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
 '),
@@ -192,7 +192,7 @@ vrmlengine_thumbs(array(
 <p>New features in SVN:</p>
 
 <ul>
-  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. (<a href="http://vrmlengine.sourceforge.net/miscella/rendered_texture_one_file.x3dv">Simple example</a>).</li>
+  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. (<a href="http://vrmlengine.sourceforge.net/miscella/rendered_texture_one_file.x3dv">Simple example</a>).</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
   <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
   <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_texturing.php#section_multi_texturing">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
@@ -225,7 +225,7 @@ vrmlengine_thumbs(array(
   <li>3D textures (full support for X3D <tt>Texturing3D</tt> component).
     In particular, <tt>ImageTexture3D</tt> supports 3D textures in DDS format.</li>
   <li>New extensions to easily make
-    <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">projective
+    <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">projective
     texturing and shadow maps</a> within your VRML/X3D worlds.</li>
   <li>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>
     field).</li>

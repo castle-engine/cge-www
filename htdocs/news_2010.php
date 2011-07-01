@@ -15,7 +15,7 @@ vrmlengine_thumbs(array(
 ), 1) .
 '<p>I just implemented animating skinned humanoids, following the H-Anim specification. This is implemented in our engine, and in particular can be used by our ' . news_a_href_page('view3dscene', 'view3dscene') . '.</p>
 
-<p><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_hanim.html">Documentation of current (SVN) H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="http://vrmlengine.sourceforge.net/vrml_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
+<p><a href="http://vrmlengine.sourceforge.net/vrml_implementation_hanim.php">Documentation of current H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="http://vrmlengine.sourceforge.net/vrml_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
 
 <p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
 
@@ -24,8 +24,8 @@ vrmlengine_thumbs(array(
 <p>Other improvements in our engine and ' . news_a_href_page('view3dscene', 'view3dscene') . ':</p>
 
 <ul>
-  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord (SVN docs)</a>.</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*) (SVN docs)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
   <li>Fix Collada-&gt;VRML conversion (thanks to Simon from <a href="http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3">forum</a>).</li>
   <li>Zoom improved, to prevent going too far away from object by zoom-in.</li>
   <li>Help wanted: if you\'re familiar with Mac OS X (and FreePascal), I outlined <a href="http://vrmlengine.sourceforge.net/macosx_requirements.php">here how you can help</a>.</li>
@@ -243,7 +243,7 @@ vrmlengine_thumbs(array(
 
     <p>Also related to sensors: fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).</p></li>
 
-  <li><p>New functions for <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_script.html#section_functions_rotation"><b>KambiScript to handle rotations</b> (SVN docs)</a>.</p></li>
+  <li><p>New functions for <a href="http://vrmlengine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
 
   <li><p>Changing <b><tt>Transform</tt> node containing light sources</b> is greatly optimized now.</p>
 
@@ -313,15 +313,15 @@ vrmlengine_thumbs(array(
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
-        <p>Also, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime (link to SVN docs)</a>, and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
+        <p>Also, <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>, and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
     </ul></li>
 
   <li><p>New sensors implemented:<br/>
     <b><tt>PlaneSensor</tt></b>
       (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
-       <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_pointingdevicesensor.html">support details in our SVN docs</a>,
+       <a href="http://vrmlengine.sourceforge.net/vrml_implementation_pointingdevicesensor.php">support details</a>,
        demos in <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
-    <b><tt>StringSensor</tt></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/vrml_implementation_keydevicesensor.html">support details in our SVN docs</a>, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
+    <b><tt>StringSensor</tt></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://vrmlengine.sourceforge.net/vrml_implementation_keydevicesensor.php">support details</a>, <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
   <li><p><b>Shadow maps</b> (<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<tt>Box</tt>, <tt>Sphere</tt> etc.) are fixed now (<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
@@ -350,16 +350,16 @@ vrmlengine_thumbs(array(
     <ul>
       <li><b>ClipPlane</b> node is handled.
       <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster.<!-- (uses <tt>glColorMaterial</tt>).-->
-      <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b> (link to SVN docs)</a> output events are implemented.
+      <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b></a> output events are implemented.
       <li><b>TimeSensor.enabled, cycleTime</b> are now handled correctly.
-      <li><a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_toggler"><b>Toggler</b> (link to SVN docs) </a> node (simple event utility) from InstantReality is handled.
+      <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_toggler"><b>Toggler</b></a> node (simple event utility) from InstantReality is handled.
     </ul>
 
   <li><p>Stephen H. France prepared <b><a href="http://vrmlengine.sourceforge.net/abbreviated_x3d_specs_for_users.chm">X3D specification including Kambi extensions</a> and <a href="http://vrmlengine.sourceforge.net/kambiscript_language.chm">KambiScript reference</a></b> in the CHM format. The CHM format makes them easy to browse and search. Thanks!</p>
 
   <li><p><b>Primitives</b>: more nodes (boxes, spheres, cones, cylinders) are now processed by converting them to <tt>IndexedFaceSet</tt> or similar low-level geometry. (This is called the <i>"proxy mechanism"</i> in sources.) And the whole mechanism is now much more efficient, so e.g. <tt>Extrusion</tt>, <tt>Teapot</tt>, NURBS curves and surfaces are processed now faster.</p>
 
-    <p>The immediate gain from it is that Box, Cone, Cylinder, Sphere <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord">get the "texCoord" field (link to SVN docs)</a>. In particular they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly, and they can be shadow map receivers (although this last thing still needs a little work).</p>
+    <p>The immediate gain from it is that Box, Cone, Cylinder, Sphere <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord">get the "texCoord" field</a>. In particular they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly, and they can be shadow map receivers (although this last thing still needs a little work).</p>
 
     <!--p>Developers: this makes a little incompatible change. TVRMLShape.Geometry/State now may return something more temporary. Most code should work out-of-the-box without changes (and work faster!), but if you e.g. played with removing the geometry nodes &mdash; you should consider using TVRMLShape.OriginalGeometry node instead, see also TVRMLScene.RemoveShapeGeometry.</p-->
   </li>
@@ -422,12 +422,12 @@ vrmlengine_thumbs(array(
   array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
   array('filename' => 'castle_fountain_2.png', 'titlealt' => 'Fountain close-up view'),
 ), 2) .
-'<p>First of all, my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted for the <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our new shadow mapping extensions, with many improvements over the old ones previously implemented in our engine. You can read the paper online, you can also <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_shadow_maps">read the new shadow mapping extensions documentation (from our nightly snapshots)</a>.</p>
+'<p>First of all, my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted for the <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our new shadow mapping extensions, with many improvements over the old ones previously implemented in our engine. You can read the paper online, you can also <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">read the new shadow mapping extensions documentation</a>.</p>
 
 <p>The improvements already implemented are:</p>
 
 <ul>
-  <li>First of all, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_receive_shadows"><tt>Apperance.receiveShadows</tt> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
+  <li>First of all, <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php#section_receive_shadows"><tt>Apperance.receiveShadows</tt> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
   <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <tt>receiveShadows</tt> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
   <li>New <tt>ProjectedTextureCoordinate</tt> node, that replaces deprecated now <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>.</li>
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
@@ -442,7 +442,7 @@ vrmlengine_thumbs(array(
 <p>Other features implemented:</p>
 
 <ul>
-  <li>Extensions to <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
+  <li>Extensions to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
   <li>view3dscene <i>Edit -&gt; Merge Close Vertexes</i> menu item, that makes close vertexes to be perfectly equal.</li>
   <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
   <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
