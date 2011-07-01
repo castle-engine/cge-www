@@ -26,6 +26,7 @@ ALL_HTMLS:=view3dscene.html \
   demo_models.html \
   kanim_format.html \
   kambi_script.html \
+  compositing_shaders.html \
   kambi_vrml_extensions.html \
   kambi_vrml_extensions_shadow_maps.html \
   kambi_vrml_extensions_vrml1.html \
@@ -57,7 +58,9 @@ ALL_HTMLS:=view3dscene.html \
   vrml_implementation_texturing3d.html \
   vrml_implementation_texturing.html \
   vrml_implementation_time.html \
-  vrml_x3d.html
+  vrml_x3d.html \
+  nist_vrml_test_suite.html \
+  vrml_time_origin_considered_uncomfortable.html
 
 #LOCALLY_AVAIL:=$(ALL_HTMLS)
 LOCALLY_AVAIL:=

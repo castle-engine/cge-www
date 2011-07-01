@@ -34,6 +34,7 @@ DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
 DOC_FILES_VRML='kanim_format.html
   kambi_script.html
   demo_models.html
+  compositing_shaders.html
   kambi_vrml_extensions.html
   kambi_vrml_extensions_shadow_maps.html
   kambi_vrml_extensions_vrml1.html
@@ -59,11 +60,14 @@ DOC_FILES_VRML='kanim_format.html
   vrml_implementation_scripting.html
   vrml_implementation_shaders.html
   vrml_implementation_shape.html
+  vrml_implementation_sound.html
   vrml_implementation_status.html
   vrml_implementation_text.html
   vrml_implementation_texturing3d.html
   vrml_implementation_texturing.html
   vrml_implementation_time.html
+  nist_vrml_test_suite.html
+  vrml_time_origin_considered_uncomfortable.html
   vrml_x3d.html'
 
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
