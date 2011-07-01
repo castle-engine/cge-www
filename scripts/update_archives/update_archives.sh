@@ -645,7 +645,7 @@ case "$1" in
     find ./ -type f -and -exec chmod 644 '{}' ';'
     find ./ -type d -and -exec chmod 755 '{}' ';'
 
-    ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"demo_models-"$GENERATED_VERSION_KAMBI_VRML_TEST_SUITE".tar.gz
+    ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"demo_models-"$GENERATED_VERSION_DEMO_MODELS".tar.gz
     mk_archive_pack "$ARCHIVE_FILE_NAME"
     mk_archive_end
 
