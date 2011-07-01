@@ -83,10 +83,6 @@ in one model):
     <i>Edit -&gt; Add Humanoids Joints Visualization</i>
     menu option to see the joints centers and their names.</p>
 
-    <p>TODO: animation of skinned humanoids is a little jerky on slower
-    computers. This will be fully fixed with full-VBO renderer,
-    planned for view3dscene 3.9.0.</p>
-
     <p>TODO: <tt>skinNormal</tt> is not supported yet.</p></li>
 </ul>
 
