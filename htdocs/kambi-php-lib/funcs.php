@@ -45,7 +45,7 @@ function readable_byte_size($bytes)
       return int_to_str($kbytes) . ' KB'; else
     {
       $mbytes = $kbytes / KILO; /* $mbytes niech bedzie floatem */
-      return number_format($mbytes, 3, '.', ' ') . ' MB';
+      return number_format($mbytes, 1, '.', ' ') . ' MB';
     }
   }
 }
