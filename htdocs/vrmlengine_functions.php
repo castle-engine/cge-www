@@ -463,16 +463,16 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 
 <!-- Piwik -->
 <script type="text/javascript">
-    var pkBaseURL = (("https:" == document.location.protocol) ? "https://michalis.ii.uni.wroc.pl/piwik/" : "http://michalis.ii.uni.wroc.pl/piwik/");
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://vrmlengine.sourceforge.net/piwik/" : "http://vrmlengine.sourceforge.net/piwik/");
  document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
 </script><script type="text/javascript">
     try {
-   var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+   var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
    piwikTracker.trackPageView();
    piwikTracker.enableLinkTracking();
  } catch( err ) {}
-</script><noscript><p><img src="http://michalis.ii.uni.wroc.pl/piwik/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tag -->
+</script><noscript><p><img src="http://vrmlengine.sourceforge.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
 
 <?php
   }
