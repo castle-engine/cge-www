@@ -27,7 +27,7 @@ vrmlengine_thumbs(array(
   /* ColorSetInterpolator */
   array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
 ), 2) .
-'<p>We\'re proud to release a new stable version of <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a>, our VRML/X3D browser and other 3D models viewer, and <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine</a>, which is at the core of view3dscene and where all the magic is actually implemented :)</p>
+'<p>We\'re proud to release a new stable versions of <b><a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a></b>, our VRML/X3D browser and other 3D models viewer, and <b><a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine</a></b>, which is at the core of view3dscene and where all the magic is actually implemented :)</p>
 
 <p>Important new features:</p>
 
@@ -70,7 +70,7 @@ vrmlengine_thumbs(array(
 
   <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <tt>normalMap</tt> features.</p></li>
 
-  <li><p><b>Minor other</b> engine and view3dscene important features and fixes:
+  <li><p><b>Other new features and fixes</b>:</p>
     <ul>
       <li>X3D light source "global" field is correctly supported now.</li>
       <li>You have much more options for customizing the headlight, by new <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
