@@ -296,7 +296,7 @@ notes near some programs below.
   {
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
     if ($internal_name == 'castle')
-      $version = '0.9.1'; else
+      $version = '0.9.2'; else
       $version = constant($version_const_name);
 
     echo '<li><p>' .
