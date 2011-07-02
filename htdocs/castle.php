@@ -79,14 +79,12 @@ wait only once for "Loading creatures").
 the list of changes since last release.</p>
 
 <p>This is free software, so if you're interested you're also welcome to
-<?php echo sf_download('download game sources',
-  'castle-' . VERSION_CASTLE . '-src.tar.gz', true); ?>.
-The sources archive has all the Pascal sources, Blender models,
+<?php echo a_href_page_hashlink('download game sources', 'kambi_vrml_game_engine',
+'section_download_src'); ?> (from this page, grab engine sources + castle sources).
+The castle sources contain all the Pascal sources, Blender models,
 Makefiles, GIMP xcf files, etc. needed to develop the game.
-You will also need
-<?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
- if you want to recompile the game, see
-<?php echo a_href_page_hashlink('here for more info',
+To compile, you will also need to download engine sources.
+See <?php echo a_href_page_hashlink('here for more info about compiling',
 'castle-development', 'section_compiling'); ?>.
 
 <h3><a name="subsection_install">Installing</a></h3>

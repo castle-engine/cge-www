@@ -903,12 +903,11 @@ In particular
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo sf_download('Download game sources',
-  'castle-' . VERSION_CASTLE . '-src.tar.gz'); ?>.
-You will also need
-<?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
- sources, unpack them in such way that <tt>kambi_vrml_game_engine/</tt>
-and <tt>castle/</tt> directories are together within the same directory.
+<p><?php echo a_href_page_hashlink('Download game sources', 'kambi_vrml_game_engine',
+'section_download_src'); ?>. From this page, grab both
+<i>Kambi VRML game engine</i> sources and <i>castle</i> sources.
+Unpack them in such way that <tt>kambi_vrml_game_engine/</tt>
+and <tt>castle/</tt> directories are together (siblings) under the same directory.
 
 <p>Then compile inside <tt>castle/</tt> directory by simple
 <pre>
@@ -926,6 +925,7 @@ Required compiler is
  &mdash; usually this is "latest stable FPC version").
  There is no Delphi support &mdash; I live in the open source world.
 
+<!--
 <div style="border: thin solid gray; margin-left: 3em; padding: 0.5em;">
 <p><i>Old notes for compiling with FPC &lt;= 2.0.4 :</i>
 
@@ -943,12 +943,13 @@ compilation (i.e. without <tt>make clean</tt>) pushed it to "move forward".</p>
 <p>Best workaround is of course to upgrade to FPC 2.2.0.
 I don't plan to keep FPC 2.0.4 compilation supported much longer,
 now that stable FPC 2.2.0 is released.</p></div>
+-->
 
 <p>Before you run the compiled executable, make sure that it's properly
-installed: Unix users can make sure that symlink
-<tt>$HOME/.castle.data</tt> is appropriate (you can easily
-make this symlink by <tt>make install</tt>), although this is not required
-for newer versions (&gt; 0.8.3).
+installed: Unix users can make a symlink
+<tt>$HOME/.castle.data</tt> (you can easily
+make this symlink by <tt>make install</tt>), unless you know you will
+always run the game with current directory = castle directory.
 And on all OSes make sure that you have the appropriate libraries
 installed. Windows developers may be comfortable with simply copying
 appropriate DLL files from precompiled version of the game,
