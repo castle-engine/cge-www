@@ -7,6 +7,7 @@
     array(
       new TocItem('Support', 'support'),
       new TocItem('Per-pixel lighting', 'per_pixel_lighting'),
+      new TocItem('Problems? Get latest GPU drivers', 'latest_gpu_drivers', 1),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -81,6 +82,43 @@ This is usually slower but also more beautiful than default
     <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>).
     </p></li>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Using shader pipeline (forced on everything by
+<i>"Shaders-&gt;Enable For Required"</i>, or activated
+automatically for shapes using
+<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a>
+or
+<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a>)
+requires a good graphic card with latest drivers.
+<!--This means that they work much better than previously (where
+sometimes I used simplified dumb shaders, and sometimes default
+behavior was to not use shaders at all). --> Before reporting
+problems, make sure that you have the latest OS version, with the
+latest drivers. You may need to download
+latest drivers from</p>
+
+<ul>
+  <li><a href="http://www.nvidia.com/">NVidia</a>,</li>
+  <li><a href="http://www.amd.com/">AMD (Radeon GPUs)</a>,</li>
+  <li><a href="http://downloadcenter.intel.com/">Intel drivers
+    (most cheap GPUs)</a>,</li>
+  <li>laptop owners may often get more stable drivers from their laptop manufacturer.</li>
+</ul>
+
+<p>Windows often comes with quite outdated drivers, so be sure to get drivers from
+above sites.
+On Linux and Mac OS X, it should be enough to make sure you use the
+latest version of your system, with all updates applied. On Linux,
+you <i>may</i> need to install the proprietary drivers to squeeze best
+performance from your NVidia/Radeon GPU. (Although latest <a
+href="http://www.mesa3d.org/">Mesa</a> may also be quite capable
+of handling simpler stuff, even with shaders.)</p>
+
+<p>Note that models without effects are still rendered using standard
+fixed-function pipeline. Which means that they still work fast even
+on older hardware.</p>
 
 <?php
   x3d_status_footer();
