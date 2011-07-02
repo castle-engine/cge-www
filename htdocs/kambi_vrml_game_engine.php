@@ -328,7 +328,7 @@ notes near some programs below.
   }
 
   echo_src_archive('view3dscene', '2.5.0');
-  echo_src_archive('castle', '2.4.4');
+  echo_src_archive('castle', '2.5.0');
   echo_src_archive('rayhunter', '2.1.0');
 
   echo_src_archive('lets_take_a_walk', '2.0.0');
