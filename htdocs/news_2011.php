@@ -1,6 +1,87 @@
 <?php
 
 array_push($news,
+    array('title' => 'view3dscene 3.10.0, engine 2.5.0, demo models 3.0.0 released',
+          'year' => 2011,
+          'month' => 7,
+          'day' => 2,
+          'short_description' => '',
+          'description' =>
+'<p>We\'re proud to release a new stable version of <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a>, our VRML/X3D and other 3D models viewer, and <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine</a>, where all the magic takes place :)</p>
+
+<p>Important new features:</p>
+
+<ul>
+  <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
+
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://vrmlengine.sourceforge.net/vrml_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). You can switch <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> menu, to have <i>everything</i> rendered through shaders (make sure you have a good GPU).
+
+    <ul>
+      <li><p>All the <a href="http://vrmlengine.sourceforge.net/vrml_implementation_lighting.php#section_per_pixel_lighting">lighting is calculated per-pixel</a> in shader rendering (we use the <i>Phong shading</i>). This means you see much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :) Also light\'s attenuation, radius, <tt>SpotLight.beamWidth</tt> are precisely rendered now.</p>
+
+      <li><p>Our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping works under all lighting and texturing conditions, and takes all normal VRML/X3D lights into account.</p>
+
+        <p>We also make bump mapping "enabled" by default.</p>
+
+        <p>Our bump mapping works also with two-side lighting now.</p>
+      </li>
+
+      <li><p>The <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+
+        <p>Shadow maps also work now with all the multi-texturing possibilities. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
+      </li>
+    </ul>
+
+  <li><p>Another big news is our <b>compositing shaders</b> extensions. The <a href="http://vrmlengine.sourceforge.net/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models.</p>
+
+    <p>My paper about this was accepted for <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>, and will be available here publicly later.</p></li>
+
+  <li><p><b>Converters improvements</b>:</p>
+    <ul>
+      <li>Conversion of 3DS, GEO, Wavefront OBJ, MD3, Collada reimplemented to produce X3D 3.2 (instead of old VRML 1.0).</li>
+      <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name.</li>
+      <li>We read normalmap (aka bumpmap) information from 3DS and Wavefront OBJ models. This is naturally converted to <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
+    </ul>
+  </li>
+
+  <li><p>We also release <b>grand new version of our <a href="http://vrmlengine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.0.0</a></b> (previously called <i>Kambi VRML test suite</i>). A ton of new models were added, and many were improved &mdash; the whole archive is 65 megabytes now (compared to previous 41 megabytes).
+
+    <p>Most of the stuff is reorganized into directories named after features (like <tt>shadow_maps</tt>, <tt>shaders</tt> etc.) as opposed to versions (like <tt>vrml_2</tt>, <tt>x3d</tt>). Brand new models are mainly in the <tt>compositing_shaders</tt> and <tt>shadow_volumes</tt> directories, but also explore other directories &mdash; the new layout should allow you to discover some old-but-hard-to-find gems inside :) The idea is that new directory names indicate features, so you can immediately see the features of engine and view3dscene.</p>
+
+  <li><p>We also release <b>(in source only) <a href="http://vrmlengine.sourceforge.net/castle.php">castle</a> version 0.9.2</b>. This is for developers, so you have castle sources compatible with latest engine.</p></li>
+
+  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <tt>normalMap</tt> features.</p></li>
+
+  <li><p><b>Minor other</b> engine and view3dscene important features and fixes:
+    <ul>
+      <li>X3D light source "global" field is correctly supported now.</li>
+      <li><a href="http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/vector_interpolator.x3dv">Simple demo</a>.</li>
+      <li>You have much more options for customizing the headlight, by new <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
+      <li><a href="http://vrmlengine.sourceforge.net/vrml_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</li>
+      <li><tt>LineProperties</tt> node implemented (<a href="http://vrmlengine.sourceforge.net/vrml_implementation_shape.php">see Shape component support</a>).</li>
+      <li>Transform animation optimizations.</li>
+      <li>Various prototype speed and memory optimizations.</li>
+      <li>Crude implementation of <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bitmanagement">some BitManagement nodes</a>.</li>
+      <li><a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">heighMap for bump mapping</a> should be placed within alpha channel of normalmap image, and <i>parallax bump mapping</i> works now much more efficient.</li>
+      <li>view3dscene has new <i>File -&gt; Preferences</i> persistent settings for line width (controls all line visualization, like wireframe, bounding box, <tt>LineSet</tt> etc.), point size and default background color.</li>
+      <li>VRML 1.0 <tt>PerspectiveCamera.heightAngle</tt> and <tt>OrthographicCamera.height</tt> support.</li>
+      <li>Shadow maps <i>PCF 4 bilinear</i> fixes &mdash; it was too dark.</li>
+      <li>Various smaller engine fixes (some redraw, camera, fpc versions issues fixed).</li>
+      <!-- Remaining bits missing from shader pipeline implemented: <a href="">our volumetric fog</a> and X3D explicit <tt>fogCoord</tt> field handling.
+           No space, obvious? -->
+    </ul>
+  </li>
+</ul>
+
+<p>This long news message is still only a shortcut of new features :)
+For some more in-depth information, see also previous "development news"
+(<a href="http://vrmlengine.sourceforge.net/news.php?id=2011-6-20-development_news__lights_improvements__shadow_volumes_in_demo_models__hunter%27s_mark__more">2011-6-20</a>,
+ <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-6-1-development_news__many_shader_pipeline_improvements__many_3ds_wavefront_etc._converters_improvements__more">2011-6-01</a>,
+ <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-4-21-development_news__engine_2.4.4_fixes_release__colorsetinterpolator">2011-4-21</a>,
+ <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-4-9-development_news__finishing_shader_rendering__steep_parallax_bump_mapping_reimplemented__engine_2.4.1_fixes_release">2011-4-09</a>,
+ <a href="http://vrmlengine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">2011-3-08</a>).</p>
+'),
+
     array('title' => 'Development news: lights improvements, shadow volumes in demo_models, Hunter\'s Mark, more',
           'year' => 2011,
           'month' => 6,
