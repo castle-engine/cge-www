@@ -407,7 +407,7 @@ to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
 which is an IDE (editor, debugger etc.) built around FPC.</p>
 
 <p><b>We always support and advice the latest stable release of FPC
-(currently 2.4.2).</b>.</p>
+(currently 2.4.4).</b>.</p>
 
 <p>We also support a couple of older FPC releases.
 Currently every FPC version &gt;= 2.0.4 is OK,
