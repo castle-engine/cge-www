@@ -54,12 +54,17 @@ will be available here.</p>
 <?php echo michalis_mailto('send me a mail'); ?>.
 Also, investigate the examples mentioned below.</p>
 
+<p>If you speak Polish,
+<?php echo current_www_a_href_size(
+'slides in Polish with introductory information about our "compositing shaders" idea are available here',
+'compositing_shaders_sem_dokt_polish.pdf'); ?>.</p>
+
 <!--
 We have prepared a paper
 describing our idea, and the introduced VRML/X3D extensions,
 in detail.
 It will be linked here later. For now, you can
-<?php echo michalis_mailto('drop me a mail'); ?> if you're interested in it :)</p>
+< ?php echo michalis_mailto('drop me a mail');  ?> if you're interested in it :)</p>
 
 No details for now, to not interfere with blind review process.
 -->
