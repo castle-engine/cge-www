@@ -11,6 +11,8 @@
   if (count($news) > FEED_MAX_COUNT)
     $news = array_slice($news, 0, FEED_MAX_COUNT);
 
+  header('Content-type: application/rss+xml; charset=utf-8');
+
   $rss = new rss_generator('News about the Kambi VRML game engine');
   $rss->link = 'http://vrmlengine.sourceforge.net/';
   $rss->description = 'All the news about the Kambi VRML game engine - changes, releases and more.';
