@@ -450,9 +450,8 @@ function echo_footer ()
    This piwik is broken, see
    https://sourceforge.net/apps/trac/sourceforge/ticket/17978
    (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
-   https://sourceforge.net/apps/trac/sourceforge/ticket/1494
-   So I use my local piwik installation. Only one piwik.js should be included,
-   so this one is just commented out.
+   So I use my local piwik installation.
+   Only one piwik.js should be included, so this one is just commented out.
 
 <!-- Piwik -->
 <script type="text/javascript">
