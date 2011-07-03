@@ -446,7 +446,13 @@ function echo_footer ()
        isset($_SERVER["HTTP_HOST"]) &&
        ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net') )
   {
-?>
+/* Tracking code for old piwik as SF hosted app.
+   This piwik is broken, see
+   https://sourceforge.net/apps/trac/sourceforge/ticket/17978
+   (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
+   https://sourceforge.net/apps/trac/sourceforge/ticket/1494
+   So I use my local piwik installation. Only one piwik.js should be included,
+   so this one is just commented out.
 
 <!-- Piwik -->
 <script type="text/javascript">
@@ -460,6 +466,9 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 </script>
 <object><noscript><p><img src="http://apps.sourceforge.net/piwik/vrmlengine/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
 <!-- End Piwik Tag -->
+
+*/
+?>
 
 <!-- Piwik -->
 <script type="text/javascript">
