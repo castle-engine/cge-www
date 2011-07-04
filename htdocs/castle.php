@@ -63,7 +63,15 @@ wait only once for "Loading creatures").
 */
 ?>
 
-<p>For ambitious future plans about this game, see
+<p><i>History and plans:</i> This game was initially developed for
+<a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
+competition. It was at the beginning of 2006, in the time where
+<?php echo a_href_page('our engine', 'kambi_vrml_game_engine'); ?>
+ didn't even have a version number yet :) (So, it was before 1.0.0 engine release.)
+A new game, that actually uses the current capabilities of our engine
+(thousand things were developed since 2006 &mdash; new graphic effects,
+new ways to be interactive / animated etc.) is planned.
+For some ambitious future plans about this game, see
 <?php echo a_href_page_hashlink('my goals for this game',
 'castle-development', 'section_goals'); ?>.
 

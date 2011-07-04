@@ -972,8 +972,7 @@ and probably will not be actually named "The Castle" anymore.
 Still, technically it will be "The Castle" continuation, based
 on next-generation of our VRML/X3D engine.</i></p>
 
-<p>I feel obligated here to say what exactly this game is going to be.
-So beware, I'm going to be dreaming in the next paragraph.
+<p>Beware, I'm going to be dreaming in the next paragraph.
 
 <p>Basically the game is intended to be like FPS but with some nice storyline.
 This also means that it should feel more like RPG (in more-or-less
