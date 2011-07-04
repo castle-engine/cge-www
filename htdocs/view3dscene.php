@@ -293,7 +293,7 @@ flawlessly :) So give it a try!
           PageUp / PageDown)</td>    <td>Home</td>                 </tr>
   <tr><td>Fly up / down</td>         <td>Insert / Delete</td>      </tr>
   <tr><td>Move left / right</td>     <td>Comma / Period</td>       </tr>
-  <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt>Walk</tt> mode)</td>
+  <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt style="background-color: transparent;">Walk</tt> mode)</td>
       <td>A / Z</td> </tr>
 
   <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
