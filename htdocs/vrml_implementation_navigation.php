@@ -23,13 +23,12 @@
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
     to any defined viewpoint, displaying viewpoints descriptions.
-    Extensive tests of various viewpoint properties, including fieldOfView,
-    are inside <?php
-      echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
-    in <tt>vrml_2/viewpoint_*.wrl</tt> files.</p>
+    For tests of various viewpoint properties see
+    <tt>navigation</tt> subdirectory inside <?php
+      echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Animating viewpoint's position and orientation
-    (directly or by it's transformations) works perfectly.</p>
+    (directly or by it's transformations) also works perfectly.</p>
 
   <li><p><?php echo x3d_node_link('OrthoViewpoint'); ?>
 
@@ -43,8 +42,7 @@
     TODO: <tt>transitionComplete</tt> event is not generated for now.</p>
 
     <p>Binding different <tt>NavigationInfo</tt> nodes,
-    and changing their exposed fields by events,
-    (just like for <tt>X3DViewpointNode</tt>s) of course works.</p>
+    and changing their exposed fields by events, of course works.</p>
 
     <p>Various details about how we handle NavigationInfo node in
     <?php echo a_href_page('view3dscene','view3dscene'); ?>:
@@ -60,40 +58,37 @@
         honored (user will not be able to move in Walk/Fly modes,
         only to rotate).
 
-      <li><tt>type</tt> of navigation: <tt>EXAMINE</tt>, <tt>WALK</tt>,
-        <tt>FLY</tt>, <tt>NONE</tt> are fully supported. They map to appropriate
-        view3dscene internal navigation settings:
-        <ul>
-          <li><tt>EXAMINE</tt> in VRML &mdash; internal <tt>Examine</tt> style,
-          <li><tt>WALK</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            with gravity and moving versus <i>gravity</i> up vector,
-          <li><tt>FLY</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            without gravity, and moving versus <i>current</i> up vector,
-          <li><tt>NONE</tt> in VRML &mdash; internal <tt>Walk</tt> style
-            without gravity, and with "disable normal navigation".
-        </ul>
+      <li>navigation types fully supported are: <tt>EXAMINE</tt>, <tt>WALK</tt>,
+        <tt>FLY</tt>, <tt>NONE</tt>.
+
+        Inside the engine, the navigation paradigm is actually a little
+        more flexible. You can fine-tune the rotations and gravity
+        behavior by view3dscene <i>Navigation -> Walk and Fly Settings</i>
+        menu.
+        <!--
+        For example, the difference between <tt>Walk</tt> and <tt>Fly</tt>
+        is not only that the gravity if off when flying.
+        It's also that in fly mode, you rotate around <i>current</i> up vector,
+        not around the <i>gravity</i> up vector,
+        -->
 
       <li>The presence of navigation type
-        <tt>ANY</tt> is not important (view3dscene always
+        <tt>ANY</tt> is not important for now (view3dscene always
         shows controls to change navigation settings).
     </ul>
 
-    <p>When no <tt>NavigationInfo</tt> node is present in the scene,
-    we try to intelligently guess related properties.
-    (We try to guess "intelligently" because simply assuming that
-    "no NavigationInfo node" is equivalent to "presence of
-    default NavigationInfo" is <i>not good</i> for most scenes).
+    <p>When no <tt>NavigationInfo</tt> node is present in the scene:
     <ul>
-      <li><tt>avatarSize[0]</tt> and <tt>avatarSize[1]</tt>
-        are guessed based on scene's bounding box sizes.
+      <li><tt>avatarSize</tt> and <tt>speed</tt>
+        are calculated based on scene's bounding box sizes, to a values that
+        will hopefully "feel right".
+        We try to calculate them intelligently, because simply using
+        <tt>NavigationInfo</tt> defaults results in bad experience
+        in many scenes.</p>
 
-      <li><tt>headlight</tt> is set to true.
-
-      <li><tt>type</tt> is set to <tt>"EXAMINE"</tt> (this follows the spec,
-        as <tt>[EXAMINE, ANY]</tt> is the default <tt>NavigationInfo.type</tt> value).
-
-      <li><tt>speed</tt> is calculated to something that should "feel sensible"
-        based on scene's bounding box sizes.
+      <li><tt>headlight</tt> behaves like true,
+        <tt>type</tt> behaves like <tt>[EXAMINE, ANY]</tt>,
+        this follows <tt>NavigationInfo</tt> defaults.</p>
     </ul>
 
     <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
