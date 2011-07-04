@@ -16,6 +16,10 @@ make examples
 make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
+# define KAMBI_VRMLENGINE_LGPL in ../kambi_vrml_game_engine/src/base/kambiconf.inc
+make
+# revert ../kambi_vrml_game_engine/src/base/kambiconf.inc
+
 # FPCUnit tests
 
 cd tests/
