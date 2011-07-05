@@ -29,7 +29,7 @@ some additional software:
     <p>Our programs will appear as part of "<i>X11 server</i>" on your desktop.
     If you start our program outside of X11
     (like by double-clicking the application
-    in the <i>Finder</i>), the window will not be "focused"
+    in the <i>Finder</i>), the window may not be "focused"
     (receiving key events) at start. Just click the window to make it focused.</p>
 
     <p><i>Somewhat internal notes:</i> if you start our program from within
