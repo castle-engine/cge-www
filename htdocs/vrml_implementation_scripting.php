@@ -5,9 +5,25 @@
      only node defined here, it\'s like a black box that receives
      VRML/X3D events, processes them with some external language,
      and sends new VRML/X3D events.');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of <?php echo a_href_page('KambiScript', 'kambi_script'); ?>,
+see the <tt>kambi_script</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('Script'); ?>
