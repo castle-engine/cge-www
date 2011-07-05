@@ -16,11 +16,32 @@
       : '')
       . '</div>'),
   ));
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Support', 'support'),
+      new TocItem('Simple examples', 'examples'),
+    ));
+  $toc->echo_numbers = true;
 ?>
+
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For complete demos and tests of these features,
+see the <tt>shaders</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <p><?php echo x3d_node_link('ComposedShader'); ?> and
 <?php echo x3d_node_link('ShaderPart'); ?> nodes
 allow you to write shaders in the <a href="http://www.opengl.org/documentation/glsl/">OpenGL shading language (GLSL)</a>.
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><b>Basic example.</b></p>
@@ -37,10 +58,6 @@ shaders ComposedShader {
   ]
 }
 </pre>
-
-    <p>See <?php echo a_href_page("our VRML/X3D demo models",
-    "demo_models"); ?> (look inside <tt>shaders</tt> directory)
-    for working demos of this.</p>
   </li>
 
   <li><p><b>Inline shader source code.</b></p>

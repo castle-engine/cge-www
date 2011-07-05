@@ -7,12 +7,27 @@
     parameters. Sounds may be spatialized (3D) or not.');
 
   echo vrmlengine_thumbs(array(
-  array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
-));
+    array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
+  ));
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>For a demo open files inside <tt>sound</tt> subdirectory in our <?php echo
-a_href_page('VRML/X3D demo models', 'demo_models'); ?>.
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of these features,
+see the <tt>sound</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <p><?php echo x3d_node_link('Sound'); ?> defines a sound in the 3D world.
 It contains (in the "<tt>source</tt>" field) an <tt>AudioClip</tt> node.

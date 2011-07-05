@@ -14,18 +14,31 @@
      <tt>Billboard</tt> may be used to create sprites, as it aligns
      geometry (flat or not) with respect to the camera.
      ');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of these features,
+see the <tt>navigation</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('Viewpoint'); ?></p>
 
     <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
     to any defined viewpoint, displaying viewpoints descriptions.
-    For tests of various viewpoint properties see
-    <tt>navigation</tt> subdirectory inside <?php
-      echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Animating viewpoint's position and orientation
     (directly or by it's transformations) also works perfectly.</p>

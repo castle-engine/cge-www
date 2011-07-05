@@ -5,13 +5,14 @@
     smooth NURBS curves and surfaces.');
 
   echo vrmlengine_thumbs(array(
-  array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
-  array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
-  array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
-));
+    array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
+    array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
+    array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
+  ));
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Demos', 'demos'),
       new TocItem('X3D support', 'x3d_support'),
       new TocItem('VRML 2.0 (97) support', 'vrml2_support'),
       new TocItem('Control points are in homogeneous coordinates', 'homogeneous_coordinates'),
@@ -24,10 +25,16 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Full support for <?php echo x3d_node_link('NurbsPatchSurface'); ?>, 
-<?php echo x3d_node_link('NurbsCurve'); ?>, 
-<?php echo x3d_node_link('NurbsPositionInterpolator'); ?>, 
-<?php echo x3d_node_link('NurbsSurfaceInterpolator'); ?>, 
+<p>For demos and tests of these features,
+see the <tt>nurbs</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Full support for <?php echo x3d_node_link('NurbsPatchSurface'); ?>,
+<?php echo x3d_node_link('NurbsCurve'); ?>,
+<?php echo x3d_node_link('NurbsPositionInterpolator'); ?>,
+<?php echo x3d_node_link('NurbsSurfaceInterpolator'); ?>,
 <?php echo x3d_node_link('NurbsOrientationInterpolator'); ?>.</p>
 
 <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>

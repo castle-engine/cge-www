@@ -2,9 +2,25 @@
   require_once 'vrml_implementation_common.php';
   x3d_status_header('Text', 'text',
     'This component defines nodes for rendering 3D text.');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For complete demos and tests of these features,
+see the <tt>text</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('Text'); ?>,

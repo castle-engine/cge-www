@@ -8,9 +8,25 @@
      <tt>SphereSensor</tt> allows to rotate objects,
      and <tt>CylinderSensor</tt> allows to rotate objects around a constrained
      axis.');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of these features,
+see the <tt>sensors_pointing_device</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('TouchSensor'); ?>
