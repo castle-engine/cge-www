@@ -110,8 +110,8 @@ really large size), and only if the mirror object is small compared
 to the surrounding enviroment (as there are are no self-reflections).</p>
 
 <!--p>(Note that
-<?php echo a_href_page_hashlink('<tt>Teapot</tt> node is our extension (compatible with InstantReality)',
-'kambi_vrml_extensions', 'section_ext_teapot'); ?>)</p-->
+< ?php echo a_href_page_hashlink('<tt>Teapot</tt> node is our extension (compatible with InstantReality)',
+'kambi_vrml_extensions', 'section_ext_teapot'); ? >)</p-->
 
 <?php echo $toc->html_section(); ?>
 
