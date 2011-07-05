@@ -19,6 +19,7 @@ echo vrmlengine_thumbs(array(
   $toc = new TableOfContents(
     array(
       new TocItem('Demos', 'demos'),
+      new TocItem('Tutorial: How to make a mirror', 'example'),
       new TocItem('Supported nodes', 'support'),
     ));
   $toc->echo_numbers = true;
@@ -32,6 +33,85 @@ echo vrmlengine_thumbs(array(
 <p>For demos and tests of these features,
 see the <tt>cube_environment_mapping</tt> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The <tt>GeneratedCubeMapTexture</tt> node is a ready solution
+to simulate mirror-like surfaces. It should be coupled with
+<?php echo a_href_page_hashlink('texture coordinates to reflect in world space',
+'kambi_vrml_extensions', 'section_ext_tex_coord_worldspace'); ?>
+ to produce a mirror effect in a <i>really easy way</i>.</p>
+
+<ol>
+  <li><p>Choose a shape in your VRML/X3D model that should act like a mirror.</p></li>
+  <li><p>As it's texture set <tt>GeneratedCubeMapTexture</tt> node.</p>
+
+    <p>This texture will be automatically generated to represent
+    the environment around the given shape (the shape itself
+    is not rendered into this texture, it doesn't mirror itself).
+    Set <tt>GeneratedCubeMapTexture.update</tt> to specify when this texture
+    should be generated. Two sensible values are <tt>ALWAYS</tt>
+    (if the world around is dynamic) or <tt>NEXT_FRAME_ONLY</tt>
+    (if the world around is completely static).</p>
+
+    <p>The texture is actually kept as six square 2D textures inside
+    the graphic card. You can control the size of these squares
+    by <tt>GeneratedCubeMapTexture.size</tt>: larger values
+    mean better quality, but also worse speed.</p>
+
+    <p>Note that if your shape already uses some texture,
+    you will have to convert it's textures into <tt>MultiTexture</tt>
+    node, with the 1st item containing the old texture,
+    and the 2nd item containing the new <tt>GeneratedCubeMapTexture</tt>.
+    See <?php echo a_href_page('"Texturing" component',
+    'vrml_implementation_texturing'); ?> for multi-texture documentation.</p></li>
+
+  <li><p>As the texture coordinates set <tt>TextureCoordinateGenerator</tt>
+    node with <tt>mode</tt> field set to <tt>WORLDSPACEREFLECTIONVECTOR</tt>.</p>
+
+    <p>Note that if your shape already uses some texture coordinates,
+    you will have to convert them into <tt>MultiTextureCoordinate</tt>,
+    see notes above about <tt>MultiTexture</tt>.</p>
+
+    <p>Note that in our engine all 3D geometry nodes have the <tt>texCoord</tt>
+    field, so you can do this really with every shape.
+    Even with the primitives
+    like  <?php echo a_href_page_hashlink('Box / Cone / Cylinder / Sphere',
+    'kambi_vrml_extensions', 'section_ext_tex_coord'); ?>.</p>
+  </li>
+</ol>
+
+<p>As an example, consider this teapot, with bold text to emphasize
+the mirror stuff:</p>
+
+<pre class="vrml_code">
+Shape {
+  appearance Appearance {
+    material Material { }
+    <b>texture GeneratedCubeMapTexture {
+      update "ALWAYS"
+      size 512
+    }</b>
+  }
+  geometry Teapot {
+    <b>texCoord TextureCoordinateGenerator { mode "WORLDSPACEREFLECTIONVECTOR" }</b>
+  }
+}
+</pre>
+
+<p>Place this in some interesting environment to see the nice mirror :)
+<!--
+ (otherwise, the mirror
+will just reflect the background color, which isn't really impressive :)
+-->
+This approach works best for curvy
+surfaces (perfectly flat surfaces usually look bad unless you use
+really large size), and only if the mirror object is small compared
+to the surrounding enviroment (as there are are no self-reflections).</p>
+
+<!--p>(Note that
+<?php echo a_href_page_hashlink('<tt>Teapot</tt> node is our extension (compatible with InstantReality)',
+'kambi_vrml_extensions', 'section_ext_teapot'); ?>)</p-->
 
 <?php echo $toc->html_section(); ?>
 
