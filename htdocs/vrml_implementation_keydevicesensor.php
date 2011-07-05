@@ -5,9 +5,27 @@
      <tt>KeySensor</tt> processes simple key presses / releases.
      <tt>StringSensor</tt> provides a simple way for user to type and edit
      a string.');
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes: both <?php echo x3d_node_link('KeySensor'); ?> and
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of these features,
+see the <tt>sensors_key</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>All: <?php echo x3d_node_link('KeySensor'); ?> and
 <?php echo x3d_node_link('StringSensor'); ?>.
 
 <p><i>TODO</i>: for now, only 8-bit ASCII characters are passed

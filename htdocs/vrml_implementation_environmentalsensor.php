@@ -5,9 +5,25 @@
      <tt>ProximitySensor</tt>, the only currently implemented node,
      alows to detect when user is inside a defined 3D space.'
   );
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+    ));
+  $toc->echo_numbers = true;
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For demos and tests of these features,
+see the <tt>sensors_proximity</tt> subdirectory inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('ProximitySensor'); ?></p>
