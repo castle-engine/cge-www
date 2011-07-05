@@ -98,6 +98,7 @@ Procedure to update WWW content:
     Examples on:
     http://www.lazarus.freepascal.org/index.php/topic,11716.0.html
     http://www.lazarus.freepascal.org/index.php/topic,11165.0.html
+  - Post new topic on our forum, to encourage some discussion.
 
   - really large new features may cause updates of project description:
     - on SourceForge
