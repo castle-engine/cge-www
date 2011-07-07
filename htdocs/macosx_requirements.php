@@ -131,8 +131,7 @@ or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
     <p>It's a matter of creating and implementing a file like
     <tt>kambi_vrml_game_engine/src/glwindow/glwindow_(cocoa|carbon).inc</tt>,
     based on
-    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_backend_template.inc</tt>
-    ("implementation_template" in older engine versions).
+    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_backend_template.inc</tt>.
     See <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>.
     See at other "backends" (currently GTK, WinAPI, Xlib, Glut are available)
     for examples how to implement such thing, everything is inside
@@ -159,8 +158,8 @@ or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
   <li><p>Optionally, <i>add libpng and vorbisfile libraries to the bundle</i>.
     We will still be able to link to them dynamically, as far as I know.
     libpng is required for PNG reading (unless new Mac OS X already includes it?).
-    vorbisfile is required for OggVorbis playing (coming soon in view3dscene
-    3.8.0, already available in castle).</p></li>
+    vorbisfile is required for OggVorbis playing (used by some castle
+    music tracks, used by view3dscene <tt>Sound</tt> demos).</p></li>
 
   <li><p>Finally, prepare a script to pack a nice .dmg (instead of current
     .tar.gz) distribution (of view3dscene, or castle &mdash; doesn't matter,
