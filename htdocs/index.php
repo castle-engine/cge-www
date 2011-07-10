@@ -12,6 +12,8 @@
 <div style="float: right; margin: 1em;">
 <a class="FlattrButton" style="display:none;"
 href="http://vrmlengine.sourceforge.net/"></a>
+<br/><br/>
+<g:plusone></g:plusone>
 </div>
 
 <?php /* echo pretty_heading("Kambi VRML game engine"); */  ?>
@@ -65,6 +67,7 @@ project page on Ohloh</a> (you're welcome to rate and click on
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
 (<?php echo michalis_mailto('email'); ?>).</i></p>
 
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <?php
   vrmlengine_footer();
 ?>
