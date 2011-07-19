@@ -34,7 +34,8 @@ make clean -C ..
 # Test view3dscene VRML/X3D loading/saving/rendering
 
 cd view3dscene/
-./run_tests.sh
+./run_tests.sh > run_tests_valid_output.txt 2>&1
+svn diff # check, fix or commit differences
 # (You may also uncomment longer mk_screnshot tests in run_test_once.sh
 # and rerun run_tests.sh)
 
