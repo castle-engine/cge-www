@@ -265,6 +265,7 @@ Effect : X3DChildNode {
 }
 
 EffectPart : X3DNode, X3DUrlObject {
+  # for XML encoding, default containerField: parts
   SFNode   [in,out] metadata NULL       # [X3DMetadataObject]
   MFString []       url      []         # (may be changed to [in,out] one day)
   SFString []       type     "VERTEX"   # ["VERTEX"|"FRAGMENT"]
