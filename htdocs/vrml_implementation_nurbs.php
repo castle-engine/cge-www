@@ -55,6 +55,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different field names (keyValue, keyWeight, following interpolator conventions) than X3D <tt>NurbsPositionInterpolator</tt> (controlPoint, weight, following nurbs conventions).</p></li>
 
   <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different default value for order (4) than X3D version (3). Beware of this when converting from VRML 97 to X3D.</p></li>
+
+  <li><p>In VRML 97, <tt>knot</tt> and <tt>weight</tt> data is <tt>MFFloat</tt>, single-precision. In X3D, it's <tt>MFDouble</tt>.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
