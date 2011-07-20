@@ -2,19 +2,6 @@
 # http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php
 # in the format comfortable for white dune scripts.
 
-# Now we just add most fields to the standard "Appearance" node,
-# not "KambiAppearance". Some reasons: we describe in shadow_maps_x3d paper
-# our propositions for Appearance (without introducing KambiAppearance,
-# as (in the future) these should not be specific to our engine),
-# also InstantReality already has Appearance.blendMode.
-#
-# You can however use KambiAppearance in your models, this allows you
-# to declare KambiAppearance by EXTERNPROTO and fallback on standard
-# Appearance.
-KambiAppearance : Appearance {
-  ... all normal Appearance fields ...
-}
-
 Appearance : X3DAppearanceNode {
   ... all normal Appearance fields ...
   MFNode     []            receiveShadows  []          # [X3DLightNode] list
@@ -24,6 +11,20 @@ Appearance : X3DAppearanceNode {
   SFFloat    [in,out]      heightMapScale   0.01        # must be > 0, meaningful only if heightMap specified
   SFNode     [in,out]      blendMode        NULL        # [BlendMode]
   MFNode     []            effects          []          # [Effect]
+}
+
+# Now we just add all new fields to the standard "Appearance" node,
+# no need to use "KambiAppearance".
+# Some reasons: we describe in shadow_maps_x3d paper
+# our propositions for Appearance (without introducing KambiAppearance,
+# as (in the future) these should not be specific to our engine),
+# also InstantReality already has Appearance.blendMode.
+#
+# You can however use KambiAppearance in your models, this allows you
+# to declare KambiAppearance by EXTERNPROTO and fallback on standard
+# Appearance.
+KambiAppearance : Appearance {
+  ... all Appearance fields (with our extensions, see above) ...
 }
 
 X3DLightNode : X3DChildNode {
@@ -229,6 +230,7 @@ ProjectedTextureCoordinate : X3DTextureCoordinateNode {
   SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
 }
 
+# See http://vrmlengine.sourceforge.net/kambi_vrml_extensions_screen_effects.php
 ScreenEffect : X3DChildNode {
   SFNode     [in,out]      metadata    NULL      # [X3DMetadataObject]
   SFBool     [in,out]      enabled     TRUE
