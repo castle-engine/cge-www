@@ -238,7 +238,7 @@ flawlessly :) So give it a try!
     and use menu item <i>Help</i> -> <i>Selected object information</i>).
 
     <p>There are also very limited editing capabilities. They are
-    intended to be used only as a post-processing of some model.
+    intended to be used only as post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
 
   <li><p><i>Interactive animations</i> may be played from VRML / X3D files,
