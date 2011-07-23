@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header("Dependencies of my programs on Mac OS X", NULL, array('other'));
+  vrmlengine_header("Dependencies of my programs on Mac OS X", NULL, array('all_programs'));
 
   $toc = new TableOfContents(
     array(

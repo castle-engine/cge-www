@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('OpenAL (3D Sound)', NULL, array('other'));
+  vrmlengine_header('OpenAL (3D Sound)', NULL, array('all_programs'));
 
   $toc = new TableOfContents(
     array(

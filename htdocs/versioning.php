@@ -1,6 +1,6 @@
 <?php
   require_once "vrmlengine_functions.php";
-  vrmlengine_header('Versioning scheme', NULL, array('other'));
+  vrmlengine_header('Versioning scheme', NULL, array('all_programs'));
 ?>
 
 <h2>Versioning scheme</h2>
