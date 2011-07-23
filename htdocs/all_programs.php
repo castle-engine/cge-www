@@ -130,4 +130,18 @@ and I keep them in working and compilable state, but that's it.</p>
     physical material properties.
 </ul>
 
+<?php echo main_list_item("Miscellaneous documentation"); ?>
+
+<p>Some miscellaneous documentation applicable to all programs here:
+
+<ul>
+  <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
+  <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
+  <li><?php echo a_href_page('OpenAL notes', 'openal'); ?>
+  <li><?php echo current_www_a_href_size('All Windows DLLs used by programs here',
+    'miscella/win32_dlls.zip'); ?>
+  <li><?php echo a_href_page('Dependencies on Mac OS X', 'macosx_requirements'); ?>
+  <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
+</ul>
+
 <?php vrmlengine_footer(); ?>
