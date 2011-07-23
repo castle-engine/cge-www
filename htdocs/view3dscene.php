@@ -60,7 +60,13 @@ formats.</p>
 <?php echo_standard_program_download('view3dscene', 'view3dscene',
   VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
 
-<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
+<p>No installation is required. Just download and unpack these archives wherever
+you want, and run the <tt>view3dscene</tt> program inside.
+Included is also the <tt>tovrmlx3d</tt> program,
+useful for <a href="#section_converting">batch converting 3D models to VRML/X3D</a>.
+The documentation (this web page) is also included inside, for offline viewing
+(open the <tt>documentation/view3dscene.html</tt> file).</p>
+
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <p><i>Demo scenes</i>: our
