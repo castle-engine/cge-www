@@ -95,6 +95,8 @@ $vrmlengine_sitemap = array(
 
   'support' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
 
+  'donate' => array('title' => 'Donate'),
+
   'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
     'sidebar' => true,
     'sub' => array(
@@ -224,7 +226,7 @@ function _vrmlengine_header_menu($current_page)
 {
   global $vrmlengine_sitemap;
 
-  $menu_for_users = 5 * 2 + 1;
+  $menu_for_users = 6 * 2 + 1;
   $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
 
   /* It's a hack even to use a table cell for this.
