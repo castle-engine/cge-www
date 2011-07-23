@@ -756,6 +756,12 @@ is only useful for converting). More precisely:
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl
       --write &gt; helicopter-corrected.wrl</tt>.
 
+    <p><i>Deprecated:</i> I don't think the <tt>--scene-change-*</tt>
+    options are useful.
+    Doing this operation interactively is sometimes useful (to check bad models),
+    doing it from command-line probably not (you better fix your exporter).
+    Please report if you have a good reason to keep this working.
+
   <dt>--navigation EXAMINE|WALK|FLY|NONE...
   <dd><p>Set initial navigation type. Default is <tt>EXAMINE</tt>.
     This can be overridden in particular VRML/X3D scene by using the
@@ -825,6 +831,11 @@ is only useful for converting). More precisely:
         <i>over-triangulating</i>, we do such dividing, because
         it improves how objects look with OpenGL shading.
     </ol>
+
+    <p><i>Deprecated:</i> instead of using this option,
+    consider adding/editing <?php echo a_href_page_hashlink(
+    'a <tt>KambiTriangulation</tt> node in your scene',
+    'kambi_vrml_extensions', 'section_ext_kambi_triangulation'); ?>.
 </dl>
 
 <p>As usual all
