@@ -84,6 +84,12 @@ $vrmlengine_sitemap = array(
       'bezier_curves' => array('title' => 'bezier_curves'),
       'glinformation' => array('title' => 'glinformation'),
       'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
+
+      'common_options' => array('title' => 'Standard command-line options'),
+      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
+      'openal' => array('title' => 'OpenAL (3D sound)'),
+      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
+      'versioning' => array('title' => 'Versioning scheme of programs'),
     ),
   ),
 
@@ -156,16 +162,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'other' => array('hint' => 'Blender VRML, Wiki, Other documentation pages', 'title' => 'Other',
-    'sub' => array(
-      'blender_stuff' => array('title' => 'Blender VRML stuff'),
-      'common_options' => array('title' => 'Standard command-line options'),
-      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
-      'openal' => array('title' => 'OpenAL (3D sound)'),
-      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
-      'versioning' => array('title' => 'Versioning scheme of programs'),
-    ),
-  ),
+  'blender_stuff' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
 
 /* Internal for _vrmlengine_sidebar* usage.

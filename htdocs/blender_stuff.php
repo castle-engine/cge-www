@@ -1,8 +1,8 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("Blender VRML/X3D exporters with Kambi fixes and modifications",
-    NULL, array('other'));
+  vrmlengine_header("Blender X3D exporter (with Kambi modifications)",
+    NULL, array('blender_stuff'));
 
 function echo_svn_blender_file($filename)
 {
@@ -13,15 +13,16 @@ function echo_svn_blender_file($filename)
 ?>
 
 <?php
-  echo pretty_heading('Blender VRML/X3D exporters', NULL,
-    'with Kambi fixes and modifications');
+  echo pretty_heading('Blender X3D exporter', NULL,
+    'with Kambi modifications');
 ?>
 
 <p><a href="http://www.blender.org/">Blender</a> is a magnificent
 free open-source 3D modelling software. Latest Blender version already
 includes an X3D exporter, so you can export your content and open it with
 our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
-We publish here some improvements / fixes / documentation for the exporter.</p>
+We publish here some improvements / fixes / documentation for
+Blender's X3D exporter.</p>
 
 <h2>X3D exporter, for Blender 2.58</h2>
 
