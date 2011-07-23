@@ -30,8 +30,8 @@ See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads f
 games and tools developed using our engine. <!--Most of them
 are somewhat related to 3D graphics.-->
 Two&nbsp;most important programs available here are
-<a href="castle.php">"The Castle"</a> game and
-<a href="view3dscene.php">view3dscene</a> 3D model viewer.</p>
+<a href="view3dscene.php">view3dscene</a> 3D model viewer and
+<a href="castle.php">"The Castle"</a> game.</p>
 
 <p><b>Latest update:</b>
 
