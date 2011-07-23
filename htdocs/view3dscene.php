@@ -45,6 +45,7 @@ formats.</p>
       new TocItem('Controlling program with keys &amp; mouse', 'keys'),
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
+      new TocItem('Converting to VRML/X3D', 'converting', 1),
       new TocItem('Other options', 'other_options', 1),
       new TocItem(DEPENDS, 'depends'),
       new TocItem('Freshmeat entry', 'freshmeat'),
@@ -169,8 +170,7 @@ flawlessly :) So give it a try!
 
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
     (<tt>.dae</tt> extension). All existing Collada versions (in particular,
-    we support both 1.3.x and 1.4.x versions) are handled.
-    You can also convert Collada to X3D.</p>
+    we support both 1.3.x and 1.4.x versions) are handled.</p>
 
     <p>As far as features go, we currently support only geometry with materials.
     It was tested on various Collada files, in particular on Collada files
@@ -215,9 +215,15 @@ flawlessly :) So give it a try!
     with collision detection, gravity and related features available),
     <tt>Fly</tt> (similar to <tt>Walk</tt> but without gravity).
   <li>Conversion of 3DS, MD3, Wavefront OBJ, Collada and GEO files to X3D.
-  <li>You can also simply open and save any VRML 1.0 or 2.0 or X3D file
-    and in effect view3dscene will work as a "pretty-printer"
-    for VRML / X3D files.
+  <li>You can convert between X3D classic and XML encodings (in both directions),
+    and you can convert from VRML 2 to X3D.
+    You can also use view3dscene as a "pretty-printer",
+    just open and save any VRML/X3D file without any version conversion.
+
+    <p>Command-line options to convert in batch mode (<tt>--write</tt>)
+    are available in view3dscene. Special minimized binary
+    <tt>tovrmlx3d</tt> (useful to install on servers without GUI libraries
+    available) is also included in view3dscene archive.
   <li>A wealth of Kambi engine's rendering features are available,
     like GLSL shaders, bump mapping and shadows.
   <li>Built-in ray-tracer
@@ -527,17 +533,124 @@ directory.</p>
 
 <?php section(false); ?>
 
-<dl class="params_list">
-  <dt>--write-to-vrml
-  <dd><p>Option <tt>--write-to-vrml</tt> means "don't open any window,
-    just convert the input model to VRML,
-    write the result to the standard output and exit".
-    This way you can use view3dscene to convert
-    3DS, MD3, Wavefront OBJ, Collada and GEO files to VRML, like<br>
-    <tt>&nbsp;&nbsp;view3dscene scene.3ds --write-to-vrml &gt; scene.wrl</tt> , <br>
-    you can also use this to do some VRML file processing using
-    options <tt>--scene-change-*</tt> described below.
+<p>In interactive mode, you can use view3dscene menu items
+<i>File -&gt; Save As..</i> to save (converting if needed) all 3D model
+formats to VRML/X3D.
 
+<ul>
+  <li><p>Formats <b>3DS, MD3, Wavefront OBJ, Collada and GEO</b>
+    are always converted <b>to X3D</b>.</p>
+
+  <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
+    can be saved back <b>to their original format</b>.
+    In this case, view3dscene is simply a "pretty-printer",
+    exactly preserving all the information inside the file,
+    only reformatting your content and removing the comments.
+
+  <li><p><b>VRML 2.0</b> can be also converted <b>to X3D</b>.
+
+    <p>Conversion from VRML 2.0 to X3D is mostly trivial.
+    There are some different keywords between VRML 2 and X3D,
+    <!--(and only X3D has XML encoding),-->
+    but generally X3D is simply a superset of everything that VRML 2 has.
+    The only slightly more involved conversion is done for NURBS nodes
+    (<tt>NurbsCurve</tt>, <tt>NurbsSurface</tt> in VRML 2,
+    <tt>NurbsPatchSurface</tt> in X3D, <tt>NurbsPositionInterpolator</tt>)
+    as <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
+</ul>
+
+<p>You can also change the X3D encoding (from classic to XML or the other way
+around). Changing encoding is a lossless operation,
+as the same nodes graph can be exactly expressed in both encodings.</p>
+
+<p>All these convertions can be also performed in batch mode
+by command-line options described below. You can either use view3dscene with <tt>--write</tt>
+option, or you can use separate binary <tt>tovrmlx3d</tt>.
+Separate <tt>tovrmlx3d</tt> may be sometimes more desirable,
+as it's smaller, not linked with any GUI libraries (so it will work
+even on a stripped-down system) and has simpler command-line options
+(as it's purpose is only to convert).</p>
+
+<p>Examples:</p>
+<pre class="bordered_code">
+# Convert Collada to X3D
+view3dscene input.dae --write &gt; output.x3dv
+# Same as above, but by tovrmlx3d binary
+tovrmlx3d   input.dae         &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in classic encoding.
+# You could add --encoding=classic, but it's not needed
+# (it is the default anyway).
+view3dscene input.wrl --write --write-force-x3d &gt; output.x3dv
+# Same as above, but by tovrmlx3d binary
+tovrmlx3d   input.wrl               --force-x3d &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in XML encoding.
+# You could add --[write-]force-x3d, but it's not needed
+# (it is implied by XML encoding anyway).
+view3dscene input.wrl --write --write-encoding=xml &gt; output.x3d
+# Same as above, but by tovrmlx3d binary
+tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
+</pre>
+
+<p>Detailed docs of <tt>view3dscene</tt> command-line options for converting:</p>
+
+<dl class="params_list">
+  <dt>--write</dt>
+  <dd><p>Do not open any window,
+    only write the 3D model to the standard output as VRML/X3D and exit.
+    Other <tt>--write-xxx</tt> options affect the generated output.
+    Model will also be processed by <tt>--scene-change-*</tt> options,
+    if specified (see their docs lower on this page).
+  </dd>
+
+  <dt>--write-encoding classic|xml</dt>
+  <dd><p>Choose encoding of the output file. By default, we use classic encoding.</p>
+
+    <p>This option is meaningful only when <tt>--write</tt> option is also used.</p>
+  </dd>
+
+  <dt>--write-force-x3d</dt>
+  <dd><p>Force output to be an X3D file. This is really useful only
+    when input model is VRML 2.0.
+
+    <p>Conversion to X3D is also automatically forced (no need to specify it explicitly
+    by this option) if the chosen encoding is XML
+    (that is, you used <tt>--write-encoding=xml</tt>).
+    That's because only X3D supports XML encoding.</p>
+
+    <p>Summarizing, you only need
+    to use this option when you want to convert VRML 2 to X3D in classic encoding.
+
+    <p>When this is used on VRML 1.0 or Inventor models, we'll also
+    convert parts of them to X3D. But the result is not really useful:
+    you will get a file encoded using X3D keywords, but using
+    VRML 1.0/Inventor node names. Real convertion from VRML 1.0/Inventor
+    to X3D is not implemented (yet).
+
+    <p>This has no effect when used on 3D models that are already X3D,
+    or that can be only output as X3D (3DS, MD3, Wavefront OBJ etc.).
+
+    <p>This option is meaningful only when <tt>--write</tt> option is also used.</p>
+  </dd>
+</dl>
+
+<p><tt>tovrmlx3d</tt> has analogous options for converting,
+but without the <tt>write-</tt> prefix (as <tt>tovrmlx3d</tt>
+is only useful for converting). More precisely:
+
+<ul>
+  <li><tt>tovrmlx3d</tt> always reads input 3D model (from filename given on a command-line),
+    and outputs it on standard output as VRML/X3D.
+  <li><tt>--encoding=classic|xml</tt> instructs to use given encoding.
+    See <tt>--write-encoding=classic|xml</tt> docs above.
+  <li><tt>--force-x3d</tt> instructs to force X3D convertion.
+    See <tt>--write-force-x3d</tt> docs above.
+</ul>
+
+<?php section(false); ?>
+
+<dl class="params_list">
   <dt>--anti-alias AMOUNT</dt>
   <dd><p>Use full-screen anti-aliasing. You can also configure it from
     the menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>.
@@ -567,7 +680,7 @@ directory.</p>
       --scene-change-no-solid-objects<br>
       --scene-change-no-convex-faces
   <dd><p>Using one of these options changes the scene before it
-    is displayed (or saved to VRML, if you used <tt>--write-to-vrml</tt>
+    is displayed (or saved to VRML/X3D, if you used <tt>--write</tt>
     option). These options are useful when you suspect that some
     of the informations in scene file are incorrect.
 
@@ -577,7 +690,7 @@ directory.</p>
     Instead, you can use "Edit" menu commands to perform any
     of these scene changes at any time.
     Really, these command-line options are usable mostly
-    when you're using parameter <tt>--write-to-vrml</tt>.
+    when you're using parameter <tt>--write</tt>.
 
     <p>Below is the detailed description of what each
     scene change does. This is also a documentation what
@@ -641,7 +754,7 @@ directory.</p>
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl</tt><br>
     I can also correct this model once using command<br>
     <tt>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl
-      --write-to-vrml &gt; helicopter-corrected.wrl</tt>.
+      --write &gt; helicopter-corrected.wrl</tt>.
 
   <dt>--navigation EXAMINE|WALK|FLY|NONE...
   <dd><p>Set initial navigation type. Default is <tt>EXAMINE</tt>.
@@ -652,6 +765,12 @@ directory.</p>
 
     <p>You can always change navigation mode later, while the program is running:
     use the menu <i>Navigation</i>.</p>
+
+    <p><i>Deprecated:</i> instead of using this option,
+    consider adding/editing a <tt>NavigationInfo</tt> node in your scene.
+    Editing your scene (or creating a VRML/X3D file that includes the original
+    scene, by <tt>Inline</tt> node, and only adds some customization)
+    is much more flexible.
 
   <dt>--camera-radius &lt;float&gt;
   <dd><p>When you move in the scene with collision
@@ -664,6 +783,13 @@ directory.</p>
     impossible (because every possible move will produce a collision).
     Too little radius may produce precision-errors in depth-buffer
     (this can lead to some strange display artifacts).
+
+    <p><i>Deprecated:</i> instead of using this option,
+    consider adding/editing a <tt>NavigationInfo</tt> node in your scene
+    (camera radius is taken from the first float on <tt>NavigationInfo.avatarSize</tt>).
+    Editing your scene (or creating a VRML/X3D file that includes the original
+    scene, by <tt>Inline</tt> node, and only adds some customization)
+    is much more flexible.
 
   <dt><a name="command_line_options_detail"></a>
       --detail-quadric-slices &lt;integer&gt;<br>
