@@ -63,7 +63,7 @@ formats.</p>
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <tt>view3dscene</tt> program inside.
 Included is also the <tt>tovrmlx3d</tt> program,
-useful for <a href="#section_converting">batch converting 3D models to VRML/X3D</a>.
+useful for <a href="#section_converting">converting 3D models to VRML/X3D in batch (command-line) mode</a>.
 The documentation (this web page) is also included inside, for offline viewing
 (open the <tt>documentation/view3dscene.html</tt> file).</p>
 
