@@ -17,6 +17,12 @@ function echo_svn_blender_file($filename)
     'with Kambi fixes and modifications');
 ?>
 
+<p><a href="http://www.blender.org/">Blender</a> is a magnificent
+free open-source 3D modelling software. Latest Blender version already
+includes an X3D exporter, so you can export your content and open it with
+our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
+We publish here some improvements / fixes / documentation for the exporter.</p>
+
 <h2>X3D exporter, for Blender 2.58</h2>
 
 <ul>
