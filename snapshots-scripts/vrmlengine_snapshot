@@ -33,6 +33,7 @@ move_all_programs ()
   mv rift/rift"$EXT" "$OUT_PATH"
   mv sandbox/sandbox"$EXT" "$OUT_PATH"
   mv view3dscene/view3dscene"$EXT" "$OUT_PATH"
+  mv view3dscene/tovrmlx3d"$EXT" "$OUT_PATH"
 }
 
 OUTPUT_PATH=~/public_html/vrmlengine-snapshots/`date +%F`/
