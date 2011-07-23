@@ -511,7 +511,7 @@ Below is only a shortcut of the most important changes
     " . news_a_href_page('view3dscene', 'view3dscene') . ",
     to take screenshots of the scene in batch mode.</li>
 
-  <li>" . news_a_href_page('Our Blender VRML 97 exporter script', 'blender_stuff') . "
+  <li>" . news_a_href_page('Our Blender VRML 97 exporter script', 'blender') . "
     improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
     settings from Blender are correctly exported to VRML.</li>
 </ul>
@@ -602,7 +602,7 @@ Many long-awaited graphic features implemented:</p>
     \"f\" key changes fill mode instead of fog state).</li>
 </ul>
 
-<p>Also " . news_a_href_page('our Blender VRML 97 exporter script', 'blender_stuff') . "
+<p>Also " . news_a_href_page('our Blender VRML 97 exporter script', 'blender') . "
 improved: <i>set solid / set smooth / autosmooth / autosmooth degrees</i>
 settings from Blender are correctly exported to VRML file (as creasteAngle field).</p>
 

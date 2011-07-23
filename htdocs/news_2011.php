@@ -68,7 +68,7 @@ vrmlengine_thumbs(array(
 
   <li><p>We also release <b>(in source only) <a href="http://vrmlengine.sourceforge.net/castle.php">castle</a> version 0.9.2</b>. This is for developers, so you have <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_download_src">castle sources compatible with latest engine</a>.</p></li>
 
-  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <tt>normalMap</tt> features.</p></li>
+  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <tt>normalMap</tt> features.</p></li>
 
   <li><p><b>Other new features and fixes</b>:</p>
     <ul>
@@ -145,7 +145,7 @@ vrmlengine_thumbs(array(
     <p>Cool :)</p>
     </li>
 
-  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender X3D exporter</a> was updated to set correct <tt>creaseAngle</tt> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
+  <li><p>Our <a href="http://vrmlengine.sourceforge.net/blender.php">Blender X3D exporter</a> was updated to set correct <tt>creaseAngle</tt> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <tt>TKamSceneManager.InitializeLights</tt> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <tt>TVRMLGLScene.GlobalLights</tt>, and you can easily make all global lights shine on everything through <tt>TKamSceneManager.UseGlobalLights</tt>.
 
@@ -169,7 +169,7 @@ vrmlengine_thumbs(array(
 '<p>Work on next <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> release continues. Some highlights from May:</p>
 
 <ul>
-  <li><p><a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
+  <li><p><a href="http://vrmlengine.sourceforge.net/blender.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
 
   <li><p>Lights improvements:</p>
     <ul>
@@ -342,7 +342,7 @@ vrmlengine_thumbs(array(
     </ul>
   </li>
 
-  <li><p><a href="http://vrmlengine.sourceforge.net/blender_stuff.php">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
+  <li><p><a href="http://vrmlengine.sourceforge.net/blender.php">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
 
   <li><p>For developers using FPC 2.2.4 (or older): a bug slipped into the last engine sources, preventing compilation with FPC 2.2.4 or older. A fixed version of the sources is released, see <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_fpc_ver">FPC version notes</a> and <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php#section_engine_src">engine sources</a>. Thanks to Stephen H. France for reporting this!</p></li>
 

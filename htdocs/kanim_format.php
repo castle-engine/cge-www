@@ -34,7 +34,7 @@ It's useful only if your favorite 3D modeler cannot export VRML/X3D
 animation with interpolators, but it can export static VRML/X3D files.</p>
 
 <p><?php echo a_href_page(
-  "Blender exporter for this format is available", "blender_stuff"); ?>,
+  "Blender exporter for this format is available", "blender"); ?>,
 since Blender cannot export animations with interpolators to VRML.</p>
 
 <p>On the positive side, there is at least one open-source

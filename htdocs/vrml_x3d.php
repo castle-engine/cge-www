@@ -19,7 +19,7 @@
 You will find that virtually any 3D modelling program can export to it,
 for exampe <a href="http://www.blender.org/">Blender</a> includes
 VRML and X3D exporters (and <?php echo
-a_href_page('we also have our own customized exporter', 'blender_stuff'); ?>).</p>
+a_href_page('we also have our own customized exporter', 'blender'); ?>).</p>
 
 <p>To start the fun, just create some VRML/X3D models
 (or download them from the Internet, or grab our

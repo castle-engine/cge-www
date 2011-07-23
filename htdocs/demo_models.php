@@ -70,7 +70,7 @@ message and (when possible) continue (omitting only the problematic part).</p>
 Most the simple test models were simply manually crafted in a text editor.
 The more complicated meshes were created in
 <a href="http://www.blender3d.org/">Blender</a> (usually using our
-<?php echo a_href_page('modified Blender VRML/X3D exporter', 'blender_stuff'); ?>),
+<?php echo a_href_page('modified Blender exporters', 'blender'); ?>),
 you will find the .blend source files inside.
 For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
 

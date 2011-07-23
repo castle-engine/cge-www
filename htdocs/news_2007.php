@@ -26,7 +26,7 @@ array_push($news,
   <li>" . news_a_href_page('Kambi VRML test suite 2.0.0', 'kambi_vrml_test_suite') . "
     released: many new tests for new features.</li>
   <li>" . news_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
-    exporter and kanim exporter', 'blender_stuff') . ".</li>
+    exporter and kanim exporter', 'blender') . ".</li>
   <li>Updated version of " . news_a_href_page('VRML engine documentation',
     'vrml_engine_doc') . " is available, with a
     <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
@@ -132,7 +132,7 @@ some important VRML 1.0 tests ported to VRML 2.0 too (castle,
 relative_names, texture_test, house behind the glass).</p>
 
 <p>" . news_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
-exporter and kanim exporter', 'blender_stuff') . ".</p>
+exporter and kanim exporter', 'blender') . ".</p>
 
 <p>Updated version of " . news_a_href_page('VRML engine documentation',
 'vrml_engine_doc') . " is available, with a chapter about shadows

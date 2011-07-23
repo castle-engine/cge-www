@@ -162,7 +162,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'blender_stuff' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
+  'blender' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
 
 /* Internal for _vrmlengine_sidebar* usage.

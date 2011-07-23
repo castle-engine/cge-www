@@ -2,7 +2,7 @@
   require_once 'vrmlengine_functions.php';
 
   vrmlengine_header("Blender X3D exporter (with Kambi modifications)",
-    NULL, array('blender_stuff'));
+    NULL, array('blender'));
 
 function echo_svn_blender_file($filename)
 {
