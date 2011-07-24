@@ -79,12 +79,15 @@ set -e
 rm -f ~/public_html/vrmlengine-snapshots/latest
 ln -s `date +%F` ~/public_html/vrmlengine-snapshots/latest
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Regenerate papers PDF:'                                             >> "$OUTPUT_LOG"
-cd ~/sources/vrmlengine/trunk/papers/compositing_shaders/
-make clean >> "$OUTPUT_LOG" 2>&1
-make       >> "$OUTPUT_LOG" 2>&1
-mv -f compositing_shaders.pdf ~/public_html/
+# Not done anymore, compositing_shaders is finished now,
+# final PDF version is in SVN.
+#
+# echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+# echo 'Regenerate papers PDF:'                                             >> "$OUTPUT_LOG"
+# cd ~/sources/vrmlengine/trunk/papers/compositing_shaders/
+# make clean >> "$OUTPUT_LOG" 2>&1
+# make       >> "$OUTPUT_LOG" 2>&1
+# mv -f compositing_shaders.pdf ~/public_html/
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
