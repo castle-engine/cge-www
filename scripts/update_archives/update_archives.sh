@@ -73,11 +73,11 @@ DOC_FILES_VRML='kanim_format.html
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
 MAKE="$KAMBI_GNU_MAKE"
 
-LINUX32_BINARY_PATH=/home/michalis/bin/
-LINUX64_BINARY_PATH=/home/michalis/rel/linux64/
+LINUX32_BINARY_PATH="$HOME"/bin/
+LINUX64_BINARY_PATH="$HOME"/rel/linux64/
 FREEBSD_BINARY_PATH=/freebsd/usr/home/michal/bin/
-MACOSX_BINARY_PATH=/home/michalis/rel/macosx/
-WIN_BINARY_PATH=/home/michalis/rel/win/
+MACOSX_BINARY_PATH="$HOME"/rel/macosx/
+WIN_BINARY_PATH="$HOME"/rel/win/
 
 FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
@@ -413,6 +413,22 @@ update_small_program ()
   update_full_program "$BINARY_BASENAME" "$WIN32_BINARY_PATH" '' ''
 }
 
+# Add another executable.
+#
+# $1 - binary basename. Directory and extension will be automatically figured out,
+#      just like for other binaries added by update_small_program etc.
+#
+# Call this only after binary_archive_begin (depends on some vars set).
+# Call this after binary_set_unix_permissions (otherwise
+# binary_set_unix_permissions will override our permissions with non-executable).
+binary_add_executable ()
+{
+  FULL_BINARY_NAME=`get_binary_full_file_name "$1" "$TARGET_OS" "$TARGET_ARCH" "$WIN_BINARY_PATH"`
+  BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
+  cp -f "$FULL_BINARY_NAME" "$BINARY_ARCHIVE_TEMP_PATH"
+  chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"
+}
+
 # main part ------------------------------------------------------------
 
 case "$1" in
@@ -426,6 +442,7 @@ case "$1" in
     if [ "$TARGET_OS" = linux   ]; then binary_add_view3dscene_desktop; fi
     if [ "$TARGET_OS" = freebsd ]; then binary_add_view3dscene_desktop; fi
     binary_set_unix_permissions
+    binary_add_executable tovrmlx3d
     binary_archive_end 't'
     ;;
 
@@ -479,13 +496,7 @@ case "$1" in
     update_small_program "$1" "$WIN_BINARY_PATH"
     binary_add_gpl2
     binary_set_unix_permissions
-
-    # add glinformation_glut binary
-    FULL_BINARY_NAME=`get_binary_full_file_name glinformation_glut "$TARGET_OS" "$TARGET_ARCH" "$WIN_BINARY_PATH"`
-    BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
-    cp -f "$FULL_BINARY_NAME" "$BINARY_ARCHIVE_TEMP_PATH"
-    chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"
-
+    binary_add_executable glinformation_glut
     binary_archive_end 't'
     ;;
 
