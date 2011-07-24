@@ -93,9 +93,9 @@ echo '---------------------------------------------------------------'    >> "$O
 echo 'Runing tovrmlx3d tests:'                                            >> "$OUTPUT_LOG"
 
 cd ~/sources/vrmlengine/trunk/view3dscene/
-./compile.sh
+./compile.sh                                                              >> "$OUTPUT_LOG" 2>&1
 ./run_tests.sh > run_tests_valid_output_new.txt 2>&1
-diff run_tests_valid_output_new.txt run_tests_valid_output.txt
+diff run_tests_valid_output_new.txt run_tests_valid_output.txt            >> "$OUTPUT_LOG" 2>&1
 rm -f run_tests_valid_output_new.txt
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
