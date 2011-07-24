@@ -30,7 +30,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
     array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
     array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
 //    array('filename' => 'view3dscene_2.0.0_screen_demo.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with mountains sky'),
-    array('filename' => 'tooltip_examine.png', 'titlealt' => 'Examine navigation tooltip'),
+    array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some smoke through 3D texture'),
     array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => '&quot;view3dscene&quot; rendering Tremulous creature from MD3'),
 //    array('filename' => 'view3dscene_screen_demo_2.png', 'titlealt' => '&quot;view3dscene&quot; in the middle of ray-tracing'),
 //    array('filename' => 'view3dscene_screen_demo_3.png', 'titlealt' => '&quot;view3dscene&quot; with ProximitySensor visualization'),
