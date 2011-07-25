@@ -73,7 +73,7 @@ your 3D worlds, you can:
     But also post about "normal" 3D models that simply look nice in our
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> or such.
   <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
-  <li><p>Look into improving our documemtation.
+  <li><p>Look into improving our documentation.
     Our <?php echo a_href_page('VRML / X3D documentation', 'vrml_x3d'); ?>
     is large, and always wants to be larger. Contributions describing
     how something works, or how to do something practical, are welcome.

@@ -14,7 +14,7 @@ for any bugfix or a new feature or a new game getting released.</p>
 and be able to ditch other boring jobs, and commit
 100% of my computer time to this engine. So please donate &mdash; even
 a very small amount will increase my happiness, with will in turn
-directly improve the awesomness of our engine,
+directly improve the awesomeness of our engine,
 and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>

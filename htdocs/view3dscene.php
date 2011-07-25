@@ -86,7 +86,7 @@ you can open them all with <tt>view3dscene</tt>.</p>
 libraries.
 For Windows, they are already included in the zip file, so you don't
 have to do anything. For Linux, you should install them using your
-package managar. For Mac OS X, <?php echo a_href_page('OpenAL is already
+package manager. For Mac OS X, <?php echo a_href_page('OpenAL is already
 preinstalled and you can get VorbisFile from fink', 'macosx_requirements'); ?>.</p>
 
 <?php section(false); ?>
@@ -575,7 +575,7 @@ formats to VRML/X3D.
 around). Changing encoding is a lossless operation,
 as the same nodes graph can be exactly expressed in both encodings.</p>
 
-<p>All these convertions can be also performed in batch mode
+<p>All these conversions can be also performed in batch mode
 by command-line options described below. You can either use view3dscene with <tt>--write</tt>
 option, or you can use separate binary <tt>tovrmlx3d</tt>.
 Separate <tt>tovrmlx3d</tt> may be sometimes more desirable,
@@ -637,7 +637,7 @@ tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
     <p>When this is used on VRML 1.0 or Inventor models, we'll also
     convert parts of them to X3D. But the result is not really useful:
     you will get a file encoded using X3D keywords, but using
-    VRML 1.0/Inventor node names. Real convertion from VRML 1.0/Inventor
+    VRML 1.0/Inventor node names. Real conversion from VRML 1.0/Inventor
     to X3D is not implemented (yet).
 
     <p>This has no effect when used on 3D models that are already X3D,
@@ -656,7 +656,7 @@ is only useful for converting). More precisely:
     and outputs it on standard output as VRML/X3D.
   <li><tt>--encoding=classic|xml</tt> instructs to use given encoding.
     See <tt>--write-encoding=classic|xml</tt> docs above.
-  <li><tt>--force-x3d</tt> instructs to force X3D convertion.
+  <li><tt>--force-x3d</tt> instructs to force X3D conversion.
     See <tt>--write-force-x3d</tt> docs above.
 </ul>
 
