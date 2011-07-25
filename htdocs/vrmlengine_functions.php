@@ -93,7 +93,7 @@ $vrmlengine_sitemap = array(
     ),
   ),
 
-  'support' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
+  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
 
   'donate' => array('title' => 'Donate'),
 

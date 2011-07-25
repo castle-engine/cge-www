@@ -395,7 +395,7 @@ vrmlengine_thumbs(array(
     </ul>
   </li>
 
-  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="http://vrmlengine.sourceforge.net/support.php">Forum page (that I overuse for other support and donation links)</a>.</p></li>
+  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="http://vrmlengine.sourceforge.net/donate.php">Donate page</a>.</p></li>
 
   <li><p>At the end: I decided to <b>deprecate some of our old extensions</b>. As far as I know noone used them, and they are rather useless in the light of new features:</p>
 

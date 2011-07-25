@@ -160,7 +160,7 @@ be repeated now. Some new improvements:</p>
     <p>And everything is of course interspersed with the details about our engine implementation, it\'s strength and current limitations.</p>
   </li>
 
-  <li><p>Finally, I added ' . news_a_href_page('a section about donating at the bottom of the "Support" page', 'support') . ' and a button to <a href="https://flattr.com/thing/82694/Kambi-VRML-game-engine">donate through Flattr</a> to a couple pages.</p></li>
+  <li><p>Finally, I added ' . news_a_href_page('a section about donating', 'donate') . ' and a button to <a href="https://flattr.com/thing/82694/Kambi-VRML-game-engine">donate through Flattr</a> to a couple pages.</p></li>
 </ul>
 
 <p>As usual, view3dscene release is accompanied by ' . news_a_href_page('new engine release (2.2.0)', 'kambi_vrml_game_engine') . ' (this is where the magic actually happens :), and ' . news_a_href_page('new Kambi VRML test suite release (2.9.0)', 'kambi_vrml_test_suite') . ' (which contains tests and demos of all the new features).</p>
@@ -276,7 +276,7 @@ vrmlengine_thumbs(array(
 '<p>As you can see, this week brings many improvements to our website. I hope it\'s now easier to navigate, and things look a little better :)</p>
 
 <ol>
-  <li><p>We have a nice header, visible at the top of every page, with most important links / sections clearly emphasized. Among other things, this avoids the previous looong index page. And makes the important but previously too-easy-to-miss links ' . news_a_href_page('"Support"', 'support') . ' and ' . news_a_href_page('"Engine" (for developers)', 'kambi_vrml_game_engine') . ' more visible.</p></li>
+  <li><p>We have a nice header, visible at the top of every page, with most important links / sections clearly emphasized. Among other things, this avoids the previous looong index page. And makes the important but previously too-easy-to-miss links ' . news_a_href_page('"Forum"', 'forum') . ' and ' . news_a_href_page('"Engine" (for developers)', 'kambi_vrml_game_engine') . ' more visible.</p></li>
 
   <li><p>Some sections get a sidebar on the right for easier navigation. This is especially useful with ' . news_a_href_page('VRML/X3D', 'vrml_x3d') . ' section, which has a huge number of useful content especially under ' . news_a_href_page('Implementation status', 'vrml_implementation_status') . '.</p></li>
 

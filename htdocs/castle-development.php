@@ -63,7 +63,7 @@ This page collects various developer information how you can
 help, and how you can compile and extend the game's code and data.</p>
 
 <p>All questions, feedback, etc. may be posted to
-<?php echo a_href_page('our forum or mailing list', 'support'); ?>.
+<?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
 
 <p>Of course, any help with designing levels, items, monsters, creating
 sounds and / or providing significant feedback will be mentioned in the
@@ -108,7 +108,7 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
 
     <p>Bugs should be submitted to
     <a href="<?php echo BUGS_TRACKER_URL; ?>">bug tracker</a>,
-    or <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
+    or <?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
     </li>
 
   <li><p>Features. Do you think that anything should be added ?
@@ -119,7 +119,7 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
     <p>Feature requests should be submitted to
     <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature request
     tracker</a>
-    or <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
+    or <?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
     </li>
 </ul>
 
@@ -851,7 +851,7 @@ In particular
     will significantly drop down (this will be played along with
     showing "red-out" effect). If you have doubts what given sound
     is intended to be, just ask on
-    <?php echo a_href_page('our forum or mailing list', 'support'); ?>.
+    <?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
   </li>
 </ul>
 

@@ -138,7 +138,7 @@ For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>Comments and contributions to these tests/demos are most welcome.
-See <?php echo a_href_page('support', 'support'); ?> for ways to contact us.
+See <?php echo a_href_page('forum', 'forum'); ?> for ways to contact us.
 If you have some cool 3D model, or interesting, or difficult for our engine,
 or just something you want to show to somebody :),
 feel welcome to send it to Michalis!</p>
