@@ -1,6 +1,48 @@
 <?php
 
 array_push($news,
+    array('title' => 'view3dscene 3.10.1, engine 2.5.1 released: XML output',
+          'year' => 2011,
+          'month' => 7,
+          'day' => 25,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - tower with sunset sky'),
+  array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - Examine navigation tooltip, and some fog by texture layers'),
+  array('filename' => 'xmlportals_to_x3d_barricade_0.png', 'titlealt' => 'Testing model for xmlportals_to_x3d'),
+  array('filename' => 'xmlportals_to_x3d_barricade_2.png', 'titlealt' => 'Portals visualized by xmlportals_to_x3d'),
+)) .
+'<p>We present new releases of <b><a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene 3.10.1</a></b>, our VRML/X3D browser and 3D models viewer, and <b><a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.5.1</a></b>, the engine underneath.</p>
+
+<ul>
+  <li>The main new feature of <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> is the ability to save files in X3D XML encoding (in addition to previous VRML/X3D classic encoding). This allows you to convert between X3D encodings.</li>
+  <li><a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> can also convert from VRML 2 to X3D (necessary if you want to save VRML 2 to X3D XML, optional if you want to save VRML 2 to X3D classic).</li>
+  <li>All convertions are available through three <i>File -&gt; Save As...</i> menu items in view3dscene.</li>
+  <li>All convertions can also be done in batch mode, by new command-line options <tt>--write</tt>, <tt>--write-encoding</tt>, <tt>--write-force-x3d</tt>. Old <tt>--write-to-vrml</tt> option becomes deprecated (it\'s a shortcut for <tt>--write --write-encoding=classic</tt>). <a href="http://vrmlengine.sourceforge.net/view3dscene.php#section_converting">Documentation of convertion options is here.</a></li>
+  <li>Independent <tt>tovrmlx3d</tt> binary is also provided inside view3dscene release, to perform convertion in batch mode. It\'s usually better to use this than <tt>view3dscene --write</tt>, because <tt>tovrmlx3d</tt> is not linked to GUI libraries (so can work on stripped-down systems) and has simpler command-line options (it\'s purpose is only to convert).</li>
+  <li>Various small improvements to classic encoding output were also done. We better treat X3D <tt>META</tt> (adding ourselves to <tt>META</tt> <tt>generator/source</tt> fields, moving previous (different) values to <tt>generator-previous/source-previous</tt>). We have better, consistent newlines around <tt>SFNode/MFNode</tt> fields. Command-line convertion does not "expand" <tt>receiveShadows</tt> and <tt>defaultShadowMap</tt> fields.</li>
+</ul>
+
+<p>Also, various small improvements to the engine API for developers. Engine 2.6.0 is planned to have some large API improvements, this is a first small step:</p>
+
+<ul>
+  <li>Annoying suffixes <tt>_2</tt>, <tt>_3</tt> were removed from most node class names. For example, you can just write <tt>TNodeGroup</tt> or <tt>TNodeTransform</tt> to use <tt>Group</tt> or <tt>Transform</tt> from latest standard version (in these, as in most cases, "latest" node version accounts for both VRML 2.0 and X3D; only the ancient VRML 1.0 nodes need <tt>_1</tt> suffix).
+    <p>For compatibility, the old names with suffixes still exist, but you should drop them (assuming of course that you want to target your work for the latest version of the standard, that is X3D &mdash; not VRML 1.0 or 2.0).</p>
+  </li>
+  <li>Large and useless <tt>SuggestedVRMLVersion</tt> mechanism (to auto-detect standard version before saving) was removed.</li>
+  <li><tt>xmlportals_to_x3d</tt> example removed. This was a visualization (and converter to X3D) for an output (Boost serialized data) from Remigiusz Żukowski program to automatically detect portals in 3D scene. (<a href="http://www.ii.uni.wroc.pl/~anl/MGR/">You can read Remigiusz paper (in Polish) here</a>.) This program was not available publicly and is not extended anymore, as far as I know, so I don\'t think that my visualization tool is useful anymore. (It will live in SVN repository anyway.)</li>
+  <li>Capturing warnings is simplified. This unfortunately breaks compatibility (otherwise we would need awfully complicated hacks only to keep compatibility). Units <tt>VRMLErrors</tt> and <tt>DataErrors</tt> no longer exist. Unit <tt>KambiWarnings</tt> is added, with <tt>OnWarning</tt> variable, that captures both VRML/X3D and other (Collada, sound files, images) warnings (warning type can be distinguished by <tt>Category</tt> string).</li>
+</ul>
+
+<p>Also minor website improvements:</p>
+
+<ul>
+  <li>Large <a href="http://vrmlengine.sourceforge.net/forum.php">"Helping in the engine development" section on the forum page.</a></li>
+  <li>Some new screenshots on <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> page. The "tower" screenshot, that served as our "iconic" screenshot on various sites, is updated with a sunset lighting and sky.</li>
+  <li>Separate <a href="http://vrmlengine.sourceforge.net/donate.php">"Donate" page</a>.</li>
+</ul>'),
+
     array('title' => 'view3dscene 3.10.0, engine 2.5.0, demo models 3.0.0 released',
           'year' => 2011,
           'month' => 7,
