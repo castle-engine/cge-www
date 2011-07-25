@@ -145,7 +145,7 @@ with useful programs and collections of textures etc. see
   <li><?php echo a_href_page_hashlink('list
     of things used when developing this game', 'castle-credits',
     'section_graphics'); ?>
-  <li><a href="http://pascalgamedevelopment.com/viewtopic.php?p=21080">
+  <li><a href="http://www.pascalgamedevelopment.com/archive/index.php/t-2847.html">
     "Where can I find free repeatable textures?" thread on PGD forums</a>
   <li><?php echo a_href_page_hashlink('list
     of things used when developing malfunction', 'malfunction',
@@ -808,7 +808,7 @@ So your help here is welcomed as well.
 (Still, remember that sounds have to be available under GNU GPL or some
 super-set of it, like LGPL or public domain.)
 Some useful links to start searching for sounds can be found at
-<a href="http://www.pascalgamedevelopment.com/viewtopic.php?t=2564&amp;start=0">"Where
+<a href="http://www.pascalgamedevelopment.com/showthread.php?2278-Where-do-you-get-your-sounds-and-samples">"Where
 do you get your sounds and samples ?" thread on PGD</a>.
 In particular
 <ul>
