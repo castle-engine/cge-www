@@ -97,11 +97,11 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         will hopefully "feel right".
         We try to calculate them intelligently, because simply using
         <tt>NavigationInfo</tt> defaults results in bad experience
-        in many scenes.</p>
+        in many scenes.</li>
 
       <li><tt>headlight</tt> behaves like true,
         <tt>type</tt> behaves like <tt>[EXAMINE, ANY]</tt>,
-        this follows <tt>NavigationInfo</tt> defaults.</p>
+        this follows <tt>NavigationInfo</tt> defaults.</li>
     </ul>
 
     <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
