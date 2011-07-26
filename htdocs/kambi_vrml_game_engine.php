@@ -296,7 +296,7 @@ notes near some programs below.
   {
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
     if ($internal_name == 'castle')
-      $version = '0.9.2'; else
+      $version = '0.9.3'; else
       $version = constant($version_const_name);
 
     echo '<li><p>' .
@@ -327,8 +327,8 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.5.0');
-  echo_src_archive('castle', '2.5.0');
+  echo_src_archive('view3dscene', '2.5.1');
+  echo_src_archive('castle', '2.5.1');
   echo_src_archive('rayhunter', '2.1.0');
 
   echo_src_archive('lets_take_a_walk', '2.0.0');
