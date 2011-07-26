@@ -643,9 +643,10 @@ case "$1" in
 
     cp -R "$VRMLENGINE_PATH"demo_models/ .
     dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
+    make -C demo_models/shadow_maps/sunny_street/ clean
 
-    # Trzeba najpierw zrobiæ make clean bo dotychczasowe le¿±ce tam HTMLe
-    # mog³y byæ wygenerowane z innymi LOCALLY_AVAIL
+    # Do "make clean" first, because current HTML files present there
+    # could be generated with different LOCALLY_AVAIL values.
     $MAKE -C "$OFFLINE_DOCS_PATH" clean
     $MAKE -C "$OFFLINE_DOCS_PATH" demo_models.html LOCALLY_AVAIL=
     cp "$OFFLINE_DOCS_PATH"demo_models.html \
