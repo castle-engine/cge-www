@@ -1,6 +1,6 @@
 Name: Kambi VRML game engine
 Author: Michalis Kamburelis
-Version: 2.5.0
+Version: 2.5.1
 File URL: http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php
 Homepage URL: http://vrmlengine.sourceforge.net/
 E-mail: michalis.kambi@gmail.com
@@ -13,6 +13,7 @@ description:An open-source game engine. Features include:
 <ul>
   <li>Optimized OpenGL rendering of models in VRML 1.0, 2.0 (aka VRML 97) and X3D formats. Including support for advanced VRML/X3D features like prototypes and events (user can interact with the 3D world).</li>
   <li>3DS, MD3, Wavefront OBJ, Collada file formats are also supported. They are internally converted into the VRML/X3D nodes graph, which means that they get all the optimizations for rendering, and 3D content from all file formats can be mixed (for 3D editing tools and such).</li>
+  <li>Saving the current state of VRML/X3D node graph to standardized XML and classic encodings. You can even use it to make your own 3D modeller on top of our engine. Various conversions between 3D model formats and limited editing capabilities are provided out-of-the-box by our tools.</li>
   <li>Animations are supported, in two flavors: interactive animation interpolated at runtime, or precalculated animation for fast playback.</li>
   <li>Octrees are used for various collision detection tasks.</li>
   <li>Scene manager for centralized 3D world handling, with custom viewports possible.</li>
