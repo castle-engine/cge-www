@@ -162,12 +162,11 @@ for all your needs):</p>
     <tt>skyColor</tt>, <tt>groundColor</tt>.
     See our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>
-    (look inside <tt>vrml_2/background_animate*</tt>) for demos.</p>
+    (look inside <tt>background/background_animate*</tt>) for demos.</p>
   </li>
 
-  <li><p>Some view3dscene features: saving to VRML only saves the 1st frame,
-    "Remove Selected Geometry/Face" only works on 1st frame
-    (so doesn't really work for kanim at all).</p></li>
+  <li><p>Some view3dscene features, like saving to VRML/X3D and
+    "Remove Selected Geometry/Face", only work on the 1st animation frame.</p></li>
 </ul>
 
 
