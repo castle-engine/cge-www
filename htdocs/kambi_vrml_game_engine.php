@@ -68,6 +68,12 @@ game engine. In short:
     and 3D content from all file formats can be mixed (for 3D editing tools
     and such).</li>
 
+  <li><b>Saving</b> the current state of VRML/X3D node graph
+    to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
+    You can even use it to make your own 3D modeller on top of our engine.
+    Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
+    and limited editing capabilities are provided out-of-the-box by our tools.</li>
+
   <li><b>Animations</b> are supported,
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
     interactive animation interpolated at runtime,
