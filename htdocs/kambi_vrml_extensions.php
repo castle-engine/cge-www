@@ -240,37 +240,26 @@ others) are full of demos of our extensions.</p>
 
     <?php
       echo vrmlengine_thumbs(array(
-        array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
+        array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
+        array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
+//        array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
         array('filename' => "castle_screen_3.png", 'titlealt' =>  'Werewolves with shadows'),
         array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle &quot;fountain&quot; level with shadows'),
       ));
     ?>
 
-    <p>These extensions describe the shadows behavior when using
-    the <i>shadow volumes</i> algorithm.
-    They are interpreted by all programs from my engine
-    (like <?php echo a_href_page('"The Castle"', 'castle'); ?>,
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
-    and VRML browser components) when rendering shadows using shadow volumes.</p>
-
-    <p><i>To be deprecated some day: currently, extensions below
-    (<tt>kambiShadows</tt>, <tt>kambiShadowsMain</tt>) are the only
-    way to get shadow volumes. However, we plan in the future to instead
-    make our <a href="#section_ext_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
-    used also for shadow volumes. The <tt>kambiShadows*</tt> will become
-    deprecated by this point.</i></p>
-
-    <p>General notes about using shadows by shadow volumes:
+    <p>Specify the shadows behavior for the <i>shadow volumes</i> algorithm.</p>
 
     <ul>
-      <li><p>Shadows are produced if and only if you have some light node
-        in the scene with <tt>kambiShadows = kambiShadowsMain = TRUE</tt>.
-        That's all that is required to turn shadows on.
-        By default everything is considered a "shadow caster".</p></li>
+      <li><p>To see the shadows, it is necessary to choose
+        one light in the scene (probably the brightest, main light)
+        and set it's fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt>
+        both to <tt>TRUE</tt>. That's it. Everything by default
+        is a shadow caster.</p></li>
 
-      <li><p>Test X3D model that uses dynamic shadows is available
-        in our <?php echo a_href_page('VRML/X3D demo models',
-        'demo_models'); ?>, see file <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt>.
+      <li><p>Demo VRML/X3D models that use dynamic shadows volumes are
+        inside our <?php echo a_href_page('VRML/X3D demo models',
+        'demo_models'); ?>, see subdirectory <tt>shadow_volumes/</tt>.
 
       <li>
         <!-- this is somewhat copied and modified text from
@@ -278,16 +267,18 @@ others) are full of demos of our extensions.</p>
 
         <p>For shadow volumes to work perfectly, all parts of the model
         that are shadow casters should sum to a number of 2-manifold parts.
-        It's allowed to not make them perfectly 2-manifold, but then
-        in some cases, some artifacts are unavoidable &mdash; see
-        <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
-        chapter "Shadows" for description.
-        To be manifold, edge must have exactly two neighboring faces,
-        so that ideally the whole shape is a correct closed volume.
+        This means that every edge has exactly 2 (not more, not less)
+        neighbor faces, so the whole shape is a closed volume.
         Also, faces must be oriented consistently (e.g. CCW outside).
         This requirement is often quite naturally satisfiable for natural
-        objects, people etc., and consistent ordering allows you to use backface culling which
+        objects. Also, consistent ordering allows you to use backface culling
+        (<tt>solid=TRUE</tt> in VRML/X3D), which
         is a good thing on it's own.</p>
+
+        <p>It's allowed for some part to not be perfectly 2-manifold, but then
+        some rendering problems are unavoidable. See
+        <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+        chapter "Shadows" for description.
 
         <p>You can inspect whether your model is detected as a 2-manifold
         by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
@@ -301,7 +292,8 @@ others) are full of demos of our extensions.</p>
         you can easily detect why the mesh is not
         manifold by <i>Select non-manifold</i> command (in edit mode).
         Also, remember that faces must be ordered consistently CCW
-        &mdash; I think that in some cases <i>Recalculate normals outside</i>
+        &mdash; in some cases <i>Recalculate normals outside</i>
+        (this actually changes vertex order in Blender)
         may be needed to reorder them properly.
       </li>
 
@@ -316,27 +308,22 @@ others) are full of demos of our extensions.</p>
         one box face as transparent, the other shape defines
         the rest of box faces as opaque.
 
-        <p>(For programmers: reasoning may be found in
+        <!--p>(For programmers: reasoning may be found in
         <tt>TVRMLGLScene.RenderSilhouetteShadowVolume</tt> comments,
         see <tt>glDepthFunc(GL_NEVER)</tt> notes. For transparent triangles,
-        light/dark caps must always be drawn, even in Z-pass approach.)
-
-      <li><p>Remember to choose rendering optimization <i>other than
-        "scene as a whole"</i> ("scene as a whole" bakes whole rendering
-        call into a single display list, which means that even lights
-        cannot be dynamically turned on/off). None of my programs uses
-        "scene as a whole" by default (as you can guess, "scene as a whole"
-        is only for special purposes when the scene is really absolutely
-        static), so you should be safe here by default.</p></li>
+        light/dark caps must always be drawn, even in Z-pass approach.)-->
     </ul>
 
 <?php echo $toc->html_section(); ?>
 
-    <p>To all VRML light nodes, we add two fields:
+    <p>To all VRML/X3D light nodes, we add two fields:
 
     <?php
       echo node_begin('*Light');
-      $node_format_fd_name_pad = 20;
+      $node_format_fd_type_pad = 7;
+      $node_format_fd_name_pad = 16;
+      $node_format_fd_def_pad = 5;
+      $node_format_fd_inout_pad = 8;
       echo
       node_dots('all normal *Light fields') .
       node_field('SFBool', '[in,out]', 'kambiShadows' , 'FALSE') .
@@ -409,6 +396,13 @@ others) are full of demos of our extensions.</p>
     This is a useful trick when there is no comfortable main light on the scene,
     so you want to add it, but you don't want to make the scene
     actually brighter.</p>
+
+    <p><i>To be deprecated some day: currently
+    <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> are the only
+    way to get shadow volumes. However, we plan in the future to instead
+    make our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
+    usable also for shadow volumes. The <tt>kambiShadows*</tt> will become
+    deprecated then.</i></p>
 
 <?php echo $toc->html_section(); ?>
 
