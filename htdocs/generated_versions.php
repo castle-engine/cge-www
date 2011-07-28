@@ -12,5 +12,5 @@
   define('VERSION_GLINFORMATION_GLUT', '1.2.0');
   define('VERSION_GEN_FUNCTION', '1.0.3');
   define('VERSION_KAMBI_VRML_GAME_ENGINE', '2.5.1');
-  define('VERSION_DEMO_MODELS', '3.0.0');
+  define('VERSION_DEMO_MODELS', '3.0.1');
 ?>
