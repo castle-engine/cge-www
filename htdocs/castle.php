@@ -16,22 +16,23 @@ href="http://vrmlengine.sourceforge.net/"></a>
     array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
     array('filename' => 'castle_screen_demo_5.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
   ));
+
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Overview', 'overview'),
+      new TocItem('Download', 'download'),
+      new TocItem('Installing', 'install', 1),
+      new TocItem('Uninstalling', 'uninstall', 1),
+      new TocItem('Movies', 'movies'),
+      new TocItem('Freshmeat entry', 'freshmeat'),
+    ));
+  $toc->echo_numbers = true;
+
 ?>
 
-<div class="table_of_contents">
-<ol>
-  <li><a href="#section_overview">Overview</a></li>
-  <li><a href="#section_download">Download</a>
-    <ol>
-      <li><a href="#subsection_install">Installing</a></li>
-      <li><a href="#subsection_uninstall">Uninstalling</a></li>
-    </ol>
-  </li>
-  <li><a href="#section_freshmeat">Freshmeat entry</a></li>
-</ol>
-</div>
+<?php echo $toc->html_toc(); ?>
 
-<h2><a name="section_overview">Overview</a></h2>
+<?php echo $toc->html_section(); ?>
 
 <p><i>"The Castle"</i> is a first-person shooter style game in a dark
 fantasy setting. Your main weapon is a sword, so the
@@ -75,7 +76,7 @@ For some ambitious future plans about this game, see
 <?php echo a_href_page_hashlink('my goals for this game',
 'castle-development', 'section_goals'); ?>.
 
-<h2><a name="section_download">Download</a></h2>
+<?php echo $toc->html_section(); ?>
 
 <?php
   echo_standard_program_download(
@@ -95,7 +96,7 @@ To compile, you will also need to download engine sources.
 See <?php echo a_href_page_hashlink('here for more info about compiling',
 'castle-development', 'section_compiling'); ?>.
 
-<h3><a name="subsection_install">Installing</a></h3>
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li>
@@ -134,7 +135,7 @@ See <?php echo a_href_page_hashlink('here for more info about compiling',
 
     <p>Installing actual game: extract the downloaded archive anywhere.
     Run the game by running the binary, like <tt>./castle</tt>.
-    You can also install / symlink in special dorectories, see
+    You can also install / symlink in special directories, see
     above Linux notes.</p>
 
   <li>
@@ -156,7 +157,7 @@ See <?php echo a_href_page_hashlink('here for more info about compiling',
     </li>
 </ul>
 
-<h3><a name="subsection_uninstall">Uninstalling</a></h3>
+<?php echo $toc->html_section(); ?>
 
 <p>Just delete the directory where you unpacked the game.
 You may also want to delete configuration file:</p>
@@ -168,7 +169,25 @@ You may also want to delete configuration file:</p>
   <tr><td>Windows 95 / 98 / ME <td><tt>&lt;program's directory&gt;\castle.conf</tt>
 </table>
 
-<h2><a name="section_freshmeat">Freshmeat entry</a></h2>
+<?php echo $toc->html_section(); ?>
+
+<div style="border: thin solid #D3D3D3; padding: 0.5em;">
+<p style="margin-top: 0em">Short gameplay sequences, and playing around with shadow volumes.<br/>
+<b>Spoiler alert</b>: the first half of the movie shows levels you will see
+later in the game.</p>
+
+<iframe width="425" height="349" src="http://www.youtube.com/embed/qpUTK3_r7Lc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div style="border: thin solid #D3D3D3; padding: 0.5em; margin-top: 1em;">
+<p style="margin-top: 0em">Playing through The Castle (walkthrough) by "qubodup".<br/>
+<b>Spoiler alert</b>: this is a complete walkthrough :)
+Watch if you get stuck, or if you don't want to play the full game!</p>
+
+<iframe width="560" height="349" src="http://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<?php echo $toc->html_section(); ?>
 
 <p>Here's a link to
 <a href="http://freshmeat.net/projects/castlegame/">"The Castle"
