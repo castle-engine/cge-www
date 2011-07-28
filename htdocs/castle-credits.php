@@ -46,7 +46,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><?php echo a_href_page('My VRML 3d game engine',
+  <li><?php echo a_href_page('My "Kambi VRML game engine"',
     'kambi_vrml_game_engine'); ?>.
     You can treat this engine as part of this game
     (I'm actually extending it while developing this game...),
@@ -89,7 +89,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
   <li>Many textures from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public
     domain Golgotha textures</a></li>
 
-  <li>Many textures from <a href="http://lemog.free.fr/">http://lemog.free.fr/</a>
+  <li>Many textures from <a href="http://www.lemog.fr/lemog_textures/index.php">LeMog - 3d Textures</a>
 
   <li>Some post-processing of VRML models is done using EmacsLisp,
     see <tt>data/kambi-castle-utils.el</tt> and various Makefiles,
