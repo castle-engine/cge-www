@@ -184,7 +184,7 @@ for my engine).</p>
 
 <p>Thanks go to whole Id staff that produced DOOM. For a lot of technical details
 how DOOM E1M1 level was done in my game, see the file
-<tt>data/levels/doom/e1m1/README</tt> in game data.
+<tt>data/levels/doom/e1m1/README.txt</tt> in game data.
 Music is taken from great <a href="http://www.sirgalahad.org/paul/doom/">"DOOM
 I and II Music" as compiled by Paul Burdette</a>.
 
