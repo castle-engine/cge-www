@@ -6,16 +6,21 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Download', 'download'),
       new TocItem('About', 'about'),
-      new TocItem('SVN', 'svn'),
+      new TocItem('Development', 'development'),
       new TocItem('Authors', 'authors'),
-      new TocItem('Comments', 'comments')
     ));
   $toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title,
   VERSION_DEMO_MODELS); ?>
+
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <div class="download">
 <?php
@@ -31,13 +36,10 @@
 ?>
 </div>
 
-<p>Contents:
-<?php echo $toc->html_toc(); ?>
-
 <?php echo $toc->html_section(); ?>
 
 <p>This is our collection of demonstration, example and test 3D models.
-Most of them are in VRML (1.0, 2.0 aka VRML 97) and X3D formats,
+Most of them are in X3D and VRML (1.0, 2.0 aka VRML 97) formats,
 although other 3D formats handled by
  <?php echo a_href_page('view3dscene', 'view3dscene'); ?> are also included.
 Some models are impressive demos of a particular feature,
@@ -58,8 +60,16 @@ message and (when possible) continue (omitting only the problematic part).</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can always download the very current version of this
-<i>Kambi VRML test suite</i> from Subversion by:</p>
+<p>Comments and contributions to these demos are most welcome.
+See <?php echo a_href_page('forum', 'forum'); ?> for ways to contact us.
+If you have some cool 3D model, or interesting, or difficult for our engine,
+or just something you want to show to somebody :),
+feel welcome to send it to Michalis!</p>
+
+<p>Feel free to expand, modify, redistribute these test files
+&mdash; they are covered by GNU GPL &gt;= 2 license.</p>
+
+<p>You can always download the very current version of these models from SVN by:</p>
 
 <pre class="terminal small"><?php
   echo sf_checkout_link(true, 'demo_models'); ?></pre>
@@ -72,9 +82,10 @@ The more complicated meshes were created in
 <a href="http://www.blender3d.org/">Blender</a> (usually using our
 <?php echo a_href_page('modified Blender exporters', 'blender'); ?>),
 you will find the .blend source files inside.
-For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
+For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.
+Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 
-<p>Models:
+<p>Large/important contributions:</p>
 
 <ul>
   <li><p><i>Victor Amat</i> provided a lot of interesting demos.
@@ -104,47 +115,22 @@ For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.</p>
   </li>
 
   <li><p><i>Orin Palmer</i> created plane model in 3DS, see <tt>3ds/p47d.3ds</tt>
-    and <tt>3ds/p47d.txt</tt>.</li>
-</ul>
+    and <tt>3ds/p47d.txt</tt>.</p></li>
 
-<p>Textures:
+  <li><p>Many textures inside <tt>textures/castle/</tt>
+    are from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public domain textures from unfinished game "Golgotha"</a><!-- (previously on http://www.jonathanclark.com/, but host seems dead now)-->
+    </p></li>
 
-<ul>
-  <li>tree_sprite rendered from a model
-    <a href="http://opengameart.org/content/tree-leave-lowpoly">Tree leave LowPoly
-    from opengameart.org</a>, by Moser Juan Jose, CC-BY 3.0.</li>
-  <li><tt>textures/castle/</tt> are from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public domain textures from unfinished game "Golgotha"</a><!-- (previously on http://www.jonathanclark.com/, but host seems dead now)--></li>
-  <li><tt>textures/test_texture.png</tt> based on <a href="http://gimp-savvy.com/cgi-bin/img.cgi?ufwsMV1VJR1LXOE702">this
-    photo</a> from <a href="http://gimp-savvy.com/PHOTO-ARCHIVE/">Copyright-Free
-    Photo Archive</a>, public domain.</li>
-  <li><tt>brick031.jpg</tt> from
-    <a href="http://www.grsites.com/">grsites.com</a></li>
-  <li>leaf textures based on
-    <a href="http://flickr.com/photos/martinlabar/2072745893/">"Maple
-    leaf on concrete" photo by Martin LaBar</a></li>
   <li>lion bump mapping textures from
     <a href="http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/">Philippe
     David steep parallax mapping code</a>, based on <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">paper
     about steep mapping</a>.
-  <li><tt>blood_in_the_eyes</tt> texture based on a fragment of
-    <a href="http://ftp.gnome.org/pub/GNOME/teams/art.gnome.org/backgrounds/NATURE-Poppy_1024x768.jpg">Poppy
-    background by Pieter Krul (GNU LGPL)</a>
-    from  <a href="http://art.gnome.org/backgrounds/nature">art.gnome.org nature backgrounds</a>.</li>
+
+  <li><p>See also <tt>AUTHORS.txt</tt> files inside the archive for detailed
+    and complete listing of authors and sources.</p></li>
 </ul>
 
-<p>Skies in <tt>skies</tt> subdirectory done with
-<a href="http://www.planetside.co.uk/">Terragen</a>.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Comments and contributions to these tests/demos are most welcome.
-See <?php echo a_href_page('forum', 'forum'); ?> for ways to contact us.
-If you have some cool 3D model, or interesting, or difficult for our engine,
-or just something you want to show to somebody :),
-feel welcome to send it to Michalis!</p>
-
-<p>Feel free to expand, modify, redistribute these test files
-&mdash; they are covered by GNU GPL &gt;= 2 license.</p>
+<p>Thanks to everyone!</p>
 
 <?php
   vrmlx3d_footer();
