@@ -181,7 +181,8 @@ flawlessly :) So give it a try!
     is handled, animation is played.</p>
 
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
-    (<tt>.dae</tt> extension). Collada versions 1.3.x and 1.4.x are handled.
+    (<tt>.dae</tt> extension). All modern Collada versions (1.3, 1.4, 1.5)
+    are handled.
     We support a lot of Collada features &mdash; geometry with materials,
     textures, cameras, lights. Tested on many Collada examples,
     like <a href="http://collada.org/owl/">Collada Test Model Bank</a>
