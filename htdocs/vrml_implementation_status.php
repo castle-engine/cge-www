@@ -251,7 +251,6 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
   <li><p>VRML 1.0 specification suggests that to list viewpoints
     in the menu (like our "Jump to viewpoint") you should
     place miltiple camera nodes under a Switch.
-    This is even used by my 3DS -&gt; VRML 1.0 converter.
 
     <p>We will not implement it &mdash; too much complication
     (need to look for viewpoints in VRML 1.0 in inactive graph parts).

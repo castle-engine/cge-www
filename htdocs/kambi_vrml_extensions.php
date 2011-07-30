@@ -29,7 +29,7 @@ $toc = new TableOfContents(array(
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> and <tt>LocalFog</tt> nodes)', 'ext_fog_volumetric', 1),
-  new TocItem('Inline nodes allow to include 3D models in other handled formats (3DS, MD3, Wavefront OBJ, Collada) and any VRML/X3D version', 'ext_inline_for_all', 1),
+  new TocItem('Inline nodes allow to include 3D models in other handled formats (Collada, 3DS, MD3, Wavefront OBJ, others) and any VRML/X3D version', 'ext_inline_for_all', 1),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 1),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
   new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 1),
@@ -1139,7 +1139,7 @@ end;
 
     Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControl</tt> in VRML &gt;= 2.0
     and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
-    other VRML files, but also other 3DS, MD3, Wavefront OBJ, Collada models.
+    other VRML files, but also other Collada, 3DS, MD3, Wavefront OBJ models.
     Internally, all those formats are converted to VRML/X3D before
     displaying anyway. If you want to precisely know how the conversion
     to VRML/X3D goes, you can always do the explicit conversion to VRML/X3D
@@ -1152,7 +1152,7 @@ end;
 
     <p>This also works for jumping to scenes by clicking on an
     <tt>Anchor</tt> node &mdash; you can make an <tt>Anchor</tt> to any
-    VRML version, or a 3DS, Collada etc. file.
+    VRML/X3D version, or a Collada, 3DS, etc. file.
 
 <?php echo $toc->html_section(); ?>
 

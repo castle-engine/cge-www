@@ -49,7 +49,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 game engine. In short:
 
 <ul>
-  <li><p>Our main 3D scene format is <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (basic Collada, Wavefront, MD3 and others).</p></li>
+  <li><p>Our main 3D scene format is <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (Collada, Wavefront, MD3 and others).</p></li>
 
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want).</p></li>
 </ul>
@@ -62,7 +62,7 @@ game engine. In short:
     Including support for advanced VRML/X3D features like prototypes and
     events (user can interact with the 3D world).</li>
 
-  <li><b>3DS, MD3, Wavefront OBJ, Collada</b> file formats are also supported.
+  <li><b>Collada, 3DS, MD3, Wavefront OBJ</b> file formats are also supported.
     They are internally converted into the VRML/X3D nodes graph,
     which means that they get all the optimizations for rendering,
     and 3D content from all file formats can be mixed (for 3D editing tools

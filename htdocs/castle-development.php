@@ -182,8 +182,8 @@ Basically there are no special
 rules for designing in Blender models for our engine &mdash;
 just do whatever you like (and whatever can be exported to VRML / X3D).</p>
 
-<p>The engine also handles perfectly VRML files exported from <i>3ds Max</i>.
-So you can use <i>3ds Max</i> to make models too. Also VRMLs produced
+<p>The engine also handles perfectly VRML/X3D files exported from <i>3ds Max</i>.
+So you can use <i>3ds Max</i> to make models too. Also VRML/X3D produced
 by open-source modeller <a href="http://www.artofillusion.org/">Art of Illusion</a>
 are perfect. I suspect that all significant 3D modelling tools are able
 to export decently to VRML or X3D, so you can probably use any modeller you like.
@@ -216,32 +216,24 @@ so using open-source modeller is strongly favored over proprietary modellers.
   <li><p><i>X3D and VRML 2.0 (aka 97) notes:</i><br />
     It's adviced to use <?php echo a_href_page("our customized exporter", "blender"); ?>.</li>
 
-  <li><p><i>3DS / MD3 / Collada / other formats notes:</i><br/>
+  <li><p><i>Collada/ 3DS / MD3 / other formats notes:</i><br/>
     Actually, you can also use models in other formats instead
     of VRML / X3D. Our engine can handle other formats, see
     <?php echo a_href_page('view3dscene', 'view3dscene') ?>
     for more detailed info.</p>
 
     <p>So if your favourite 3d modelling program is not able to export
-    to VRML / X3D but it's able to export to e.g. 3DS &mdash; you can use it too.
-    But, since 3DS is a closed format, it will never be supported
-    completely by our engine (just like by any other program, since everyone
-    has to "reverse engineer" 3DS).</p>
-
-    <p><i>Collada</i> format is a positive exception to this. It's an XML format with
-    an open specification, pretty much like VRML / X3D.
-    So using 3D models in Collada format is actually not a bad idea &mdash;
-    except that we do not handle all features from Collada files currently.
-    But Collada support can (and will be, if needed) easily improved &mdash;
-    don't hesitate to report if some Collada feature is not handled, we'll fix it.</p>
+    to VRML / X3D but it's able to export to e.g. Collada &mdash;
+    you can use it too. We support quite a lot of Collada and other
+    3D formats features.</p>
 
     <p>Still, note that <em>everything</em> that can be expressed
     in other 3D formats handled and that is understood
     by our engine can also be expressed in VRML / X3D.
     But not vice-versa, i.e. there are some features that
     are available with my engine when using VRML / X3D but are not available
-    when using e.g. 3DS.
-    So the bottom line is: well, you can use 3DS or some other formats
+    when using e.g. Collada.
+    So the bottom line is: well, you can use Collada or some other formats
     with my engine, it works OK, but VRML / X3D format is just way better :)</p></li>
 </ul>
 

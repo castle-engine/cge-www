@@ -35,7 +35,7 @@
 ?>
 
 <p><tt>rayhunter</tt> is a command-line program that takes
-a 3D model (like a VRML, X3D or 3DS file) and renders an image that
+a 3D model (like a VRML, X3D or Collada file) and renders an image that
 would be visible from given camera looking at given scene.
 Two ray-tracing algorithms
 may be used: deterministic (classic Whitted-style ray-tracer)
@@ -185,8 +185,8 @@ and Monte Carlo path tracing.
     <p>Anything that my code can read (see
     <?php echo a_href_page("view3dscene docs", "view3dscene"); ?>)
     is accepted here. VRML / X3D are the best formats,
-    we also read 3DS lights, for all other formats: only the headlight will
-    shine over the scene.
+    we also read Collada and 3DS lights, for all other formats: only
+    the headlight will shine over the scene.
 
     <p><tt>-</tt> (single dash) as a filename means stdin.
 
@@ -294,10 +294,8 @@ and Monte Carlo path tracing.
         Lengths of <tt>camera-dir</tt> and <tt>camera-up</tt> are not important,
         <tt>dir</tt> vector is always scaled based on <tt>camera-radius</tt> when
         program starts.
-      <li>What about formats other than VRML (3DS, OBJ, GEO) ?
-        In 3DS we can get camera definition from 3DS file (it's always
-        perspective camera, never orthographic).
-        In OBJ and GEO we simply can't get camera definition from file.
+      <li>Besides VRML/X3D, also Collada and 3DS can include camera information,
+        so we can use it. Other 3D formats don't support camera information.
     </ul>
 
     <p>Note that you can use <?php echo a_href_page("view3dscene", "view3dscene"); ?>
