@@ -16,7 +16,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'collada_seymour.png', 'titlealt' => 'Collada Seymour model (from collada.org/owl)'),
   array('filename' => 'collada_turbochi_fromxsi.png', 'titlealt' => 'Collada Turbochi model (from collada.org/owl)'),
 )) .
-'<p>Our <a href="http://collada.org/">Collada</a> import got huge improvements last week. This improves both rendering of Collada models, and converting them to X3D (as our importer simply loads Collada to X3D node graph in memory). As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>!</p>
+'<p>Our <a href="http://collada.org/">Collada</a> importer received a lot of improvements this week. They improve both rendering of Collada models, and converting them to X3D (as our importer simply loads Collada to X3D node graph in memory). As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>!</p>
 
 <p>New Collada features handled:</p>
 
