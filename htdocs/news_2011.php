@@ -1,6 +1,53 @@
 <?php
 
 array_push($news,
+    array('title' => 'Development news: huge Collada import improvements',
+          'year' => 2011,
+          'month' => 8,
+          'day' => 1,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
+  array('filename' => 'collada_logo.png', 'titlealt' => 'Collada flat logo (from collada.org/owl)'),
+  array('filename' => 'collada_faerie_forrest_day.png', 'titlealt' => 'Collada Faerie Forest (from collada.org/owl)'),
+  array('filename' => 'collada_faerie_forrest_day_1.png', 'titlealt' => 'Collada Faerie Forest (from collada.org/owl), different view'),
+  array('filename' => 'collada_lunar_vehicle_tris.png', 'titlealt' => 'Collada Lunar Vehicle (from collada.org/owl)'),
+  array('filename' => 'collada_seymour.png', 'titlealt' => 'Collada Seymour model (from collada.org/owl)'),
+  array('filename' => 'collada_turbochi_fromxsi.png', 'titlealt' => 'Collada Turbochi model (from collada.org/owl)'),
+)) .
+'<p>Our Collada import got huge improvements recently. This improves both rendering of Collada models, and converting them to X3D (as our importer simply loads Collada to X3D node graph in memory). New Collada features handled:</p>
+
+<ul>
+  <li>Geometry with many polylists (for example exported from <a href="http://www.blender.org/">Blender</a> when you use multiple materials on a single Blender object) works now.</li>
+  <li>Textures (texture image name, tex coords, tex coord index).</li>
+  <li>Normals.</li>
+  <li>Cameras (perspective, orthographic &mdash; all possible types) and their properties (field of view, znear, zfar).</li>
+  <li>Lights (spot, point, directional, ambient &mdash; all possible types) and their properties (color, attenuation, falloff angle, radius (from Blender profile &lt;dist&gt;)).</li>
+  <li>All primitives (trifans, tristrips, lines, linestrips, in addition to previous polygons, polylist, triangles &mdash; all possible types).</li>
+  <li>Collada 1.5 version is recognized and handled. We now handle any 1.3, 1.4, 1.5.</li>
+  <li>Appearances, coordinates, tex coords, normals are correctly reUSEd when converting Collada to X3D.</li>
+  <li>Double sided information from Collada is read. There is no standard way for this in Collada 1.4 as far as I know, we just handle what <a href="http://www.blender.org/">Blender</a> exporter and various <a href="http://collada.org/owl/">Collada test models</a> use inside &lt;geometry&gt;:
+
+<pre>
+  &lt;extra&gt;
+    &lt;technique profile="MAYA"&gt;
+      &lt;double_sided&gt;1&lt;/double_sided&gt;
+    &lt;/technique&gt;
+  &lt;/extra&gt;
+</pre>
+
+    Any value &lt;&gt; 0 as double_sided means "true".</li>
+  <li>&lt;lambert&gt; is handled (just like &lt;phong&gt;).</li>
+  <li>A lot of fixes (to allow libraries in weird orders, etc.).</li>
+</ul>
+
+<p>Our Collada import was tested on many models from <a href="http://collada.org/owl/">COLLADA Test Model Bank</a> and on Collada models exported from <a href="http://www.blender.org/">Blender 2.58</a>.</p>
+
+<p>Note that Blender currently writes incorrect normals (disregarding <i>"Auto Smooth Angle"</i>), this makes models exported from Blender (Collada as well as X3D) have incorrect shading.<!-- (Todo: link to #bugreport).--></p>
+
+<p>Also, <a href="http://vrmlengine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.0.1</a> have been released, with minor fixes and updates, including better webpage text.</p>'),
+
     array('title' => 'view3dscene 3.10.1, engine 2.5.1 released: XML output',
           'year' => 2011,
           'month' => 7,
