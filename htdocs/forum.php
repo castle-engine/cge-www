@@ -88,7 +88,7 @@ your 3D worlds, you can:
   <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly
     builds of our binaries</a>. These are build automatically every night
     using current SVN code. You can test them and catch eventual bugs
-    before the release. This was you can also preview new features before they
+    before the release. This way you can also preview new features before they
     are released.
 
     <p>Bugs can be reported on the <a href="<?php echo FORUM_URL; ?>">forum</a>
@@ -107,6 +107,9 @@ your 3D worlds, you can:
     If you have ready patches, you can send them straight to the
     <a href="<?php echo PATCHES_TRACKER_URL; ?>">patches tracker</a>.
 
+    <p>Some ideas for development are proposed on
+    <a href="https://fundry.com/project/91-kambi-vrml-game-engine">Fundry page of our engine</a>.
+
   <li><p><a href="http://apps.sourceforge.net/mediawiki/vrmlengine/">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.
 
@@ -123,11 +126,15 @@ your 3D worlds, you can:
     the quality of <a href="http://www.blender.org/">Blender</a> X3D exporter.
     Of course, you can use anything to generate VRML/X3D for use with our engine.
     But if you make FOSS game, you have probably already chosen
-    <a href="http://www.blender.org/">Blender</a> as your 3D modeller.
+    <a href="http://www.blender.org/">Blender</a> as your main 3D modeller.
 
     <p>Blender is really fantastic. But the current exporter from Blender to X3D
     lacks some important features. For starters, there isn't
-    any way to export animation to X3D. There are also various other small lacks.
+    any way to export animation to X3D. At least exporting animation
+    of transformations (translation, rotation, scale of objects) would
+    already be very useful. Exporting mesh deformation
+    (from shape keys, or derived from bone animation) would be great.
+    There are also various other small lacks.
     Many features of VRML/X3D and our engine are not used intensively enough,
     because there isn't any way to express them and export from Blender.
 
