@@ -416,42 +416,8 @@ which is an IDE (editor, debugger etc.) built around FPC.</p>
 (currently 2.4.4).</b>.</p>
 
 <p>We also support a couple of older FPC releases.
-Currently every FPC version &gt;= 2.0.4 is OK,
-although some older versions require some
-quirks to successfully compile:</p>
-
-<ul>
-  <li><p><b>FPC 2.2.2 and older</b>:
-    Under GTK &gt;= 2.14 (like in Ubuntu &gt;= 8.10) you may get
-    linker errors like</p>
-
-    <p><tt>/usr/local/lib/fpc/2.2.2/units/x86_64-linux/gtk2/gtk2.o: In function `GTK2_GTK_TYPE_FILE_FOLDER$$QWORD': gtk2.pas:(.text+0x105b5): undefined reference to `gtk_file_folder_get_type'</tt></p>
-
-    <p>These are results of GTK 2.14 removing these functions (thus breaking
-    compatibility). It's <a href="http://mantis.freepascal.org/view.php?id=11837">fixed in FPC &gt; 2.2.2</a>,
-    temporary workaround (if you need to stick to FPC &lt;= 2.2.2) is to add
-    <tt>-k--noinhibit-exec</tt> to the fpc command-line when compiling programs.
-    These errors will be then treated as mere warnings, and you should
-    get a working executable.</p>
-  </li>
-
-  <li><p><b>FPC 2.2.0 and older</b>:
-    Only for x86_64: to avoid <a href="http://bugs.freepascal.org/view.php?id=10508">this bug</a>,
-    you have to use fixed glext.pas unit from engine sources
-    (<tt>trunk/kambi_vrml_game_engine/src/opengl/x86_64/</tt>) or
-    use newer FPC.</p>
-  </li>
-
-  <li><p><b>FPC 2.0.4 and older</b>:
-    You have to use GL units from FPC &gt;= 2.2.0,
-    for example grab them from FPC SVN:</p>
-
-<pre class="terminal">
-svn checkout http://svn.freepascal.org/svn/fpc/tags/release_2_2_0/packages/extra/opengl/
-</pre>
-
-  </li>
-</ul>
+With new engine versions (later than 2.5.1), <b>FPC versions &gt;= 2.2.4
+are supported</b>.</p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
