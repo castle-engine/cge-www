@@ -532,13 +532,78 @@ of a scene, at it's default camera, just call</p>
     script.</p></li>
 
   <li><p>To make your screenshot look best, you may want to use anti-aliasing,
-    see <tt>--anti-alias</tt> option below.</p></li>
-</ul>
+    see <tt>--anti-alias</tt> option below.</p>
 
-<p>Generally, you can take a look at (complex) example how to make
-a screenshot from animation in
-<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
-directory.</p>
+    <p>Take a look at the example how to make
+    a screenshot from animation in
+    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
+    directory.</p></li>
+
+  <li><p>To <b>take a screenshot on a stripped-down Unix server</b>,
+    please bear in mind that you need to install a graphic environment
+    (that is, <i>X Windows</i> and <i>OpenGL</i>) on your server. Even in batch mode,
+    we still use OpenGL to grab the screenshot images
+    (because using off-screen Mesa or our toy ray-tracer doesn't result
+    in a really nice output; we really want OpenGL for all those GLSL effects
+    and such).<!-- Which means that all that GUI stuff must be installed
+    and working on your server.--></p>
+
+    <p>Normally, you also need <i>GTK</i> and <i>GTKGlExt</i> libraries installed.
+    However, you can compile from sources a version of view3dscene that doesn't
+    need these libraries, and directly accesses XWindows. To do this:
+
+    <ol>
+      <li><?php echo a_href_page('Download the sources of
+        kambi_vrml_game_engine and view3dscene', 'kambi_vrml_game_engine'); ?>.
+        Unpack them, such that <tt>kambi_vrml_game_engine/</tt> and <tt>view3dscene/</tt>
+        directories are siblings.
+      <li>In the terminal, do <pre class="bordered_code">
+export KAMBI_FPC_OPTIONS=-dGLWINDOW_XLIB
+cd view3dscene/
+./compile.sh
+# and copy resulting view3dscene (and tovrmlx3d) binaries wherever you want
+</pre></li>
+    </ol>
+
+    <p>On a server, you probably want to initialize taking a screenshot
+    from a script, and your script isn't necessarily running within the X server.
+    There are basically two solutions to this:
+    <!--
+    Note that the instructions below are not really specific to view3dscene,
+    the same concepts work with any X program.--></p>
+
+    <ol>
+      <li><p>You can keep the X server running continously,
+        and keep your user logged in to the X server,
+        and instruct view3dscene to connect to your running X server.
+        You do this by adding <tt>--display=:0</tt> option
+        to the view3dscene command-line (where <tt>:0</tt> is a common example; for details,
+        see X manuals). Or you can set and export the <tt>DISPLAY</tt>
+        environment variable, like <tt>export DISPLAY=:0</tt>.
+
+        <p>Unfortunately, this method sometimes doesn't work.
+        On some systems, the view3dscene will get an OpenGL context without
+        a FrameBuffer (long story short, it means that you cannot capture
+        the screen without actually seeing the window) and the resulting screenshot
+        will be pure black (or garbage).
+        On other systems, there is a problem with <tt>glXChooseVisual</tt>
+        that may hang until you actually switch the current terminal
+        to the X server.
+
+      <li><p>The other approach, more reliable in my experience
+        (<?php echo a_href_page('please share your own experience
+        on the forum', 'forum'); ?>) is to create new X server along with running
+        view3dscene, by using <tt>xinit</tt>. See <tt>man xinit</tt> for full
+        details, in short use something like <tt>xinit /full/path/to/view3dscene my_model.x3d --screenshot 0 /tmp/output.png -- :1</tt>. The important thing
+        is to specify the full path of the view3dscene binary (otherwise xinit
+        only adds the arguments to some useless default xterm command-line). Adding <tt>-- :1</tt>
+        at the end is only necessary if the default display (<tt>:0</tt>)
+        may be already taken. <tt>xinit</tt> will create an X server
+        with new display name, run view3dscene, and exit immediately
+        when view3dscene exits (which should be as soon as a screenshot is done).
+    </ol>
+  </li>
+</ul>
 
 <?php section(false); ?>
 
