@@ -548,9 +548,11 @@ of a scene, at it's default camera, just call</p>
     and such).<!-- Which means that all that GUI stuff must be installed
     and working on your server.--></p>
 
-    <p>Normally, you also need <i>GTK</i> and <i>GTKGlExt</i> libraries installed.
+    <p>Normally, you also need <i>GTK</i> and <i>GtkGLExt</i> libraries installed.
     However, you can compile from sources a version of view3dscene that doesn't
-    need these libraries, and directly accesses XWindows. To do this:
+    need these libraries, and directly accesses XWindows. It will miss
+    a menu bar and some other nice GUI stuff, but that's not a problem if you only
+    want to run it in batch mode for screenshots. To do this:
 
     <ol>
       <li><?php echo a_href_page('Download the sources of
@@ -573,7 +575,7 @@ cd view3dscene/
     the same concepts work with any X program.--></p>
 
     <ol>
-      <li><p>You can keep the X server running continously,
+      <li><p>You can keep the X server running continuously,
         and keep your user logged in to the X server,
         and instruct view3dscene to connect to your running X server.
         You do this by adding <tt>--display=:0</tt> option
