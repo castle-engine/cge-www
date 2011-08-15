@@ -74,7 +74,7 @@ is also very useful.</p>
     Radiance</a>. It allows storing colors with high dynamic range.
   <li><b>IPL</b> - IPLab, only 16 bits per pixel are supported (gray-scale).
   <li>Many image formats are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a>
-    library: <b>JPEG, GIF, TGA, XPM, PSD, PCX</b>.
+    library: <b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM (PBM, PGM; PPM is by native code)</b>.
     This gives us native support for these formats (no extra libraries needed,
     fcl-image is compiled in).
   <li>Many image formats may be loaded by using external programs.
