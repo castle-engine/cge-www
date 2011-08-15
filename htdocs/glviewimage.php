@@ -59,7 +59,6 @@ is also very useful.</p>
 
 <ul>
   <li><b>PNG</b> - Portable Network Graphic,
-  <li><b>JPEG</b> - actually JFIF, JPEG File Interchange Format,
   <li><b>BMP</b> - Windows Bitmap,
   <li><b>PPM</b> - Portable Pixel Map,
   <li><b>DDS</b> - <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
@@ -73,18 +72,18 @@ is also very useful.</p>
     format made by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">
     Radiance</a>. It allows storing colors with high dynamic range.
-  <li>And there are some other formats that I implemented
-    only "by accident"; their implementation is only partial
-    and I do not plan to make it better.
-    Those are: <b>PCX</b> (only 256-colored PCX are supported)
-    and <b>IPL</b> (IPLab, only 16 bits per pixel are supported (gray-scale)).
-  <li>Many other image formats may be loaded by using external programs.
+  <li><b>IPL</b> - IPLab, only 16 bits per pixel are supported (gray-scale).
+  <li>Many image formats are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a>
+    library: <b>JPEG, GIF, TGA, XPM, PSD, PCX</b>.
+    This gives us native support for these formats (no extra libraries needed,
+    fcl-image is compiled in).
+  <li>Many image formats may be loaded by using external programs.
     This means that some other program is run "under the hood"
     to convert to some format supported natively. If all goes well,
     this is completely transparent for user.
     <!-- (usually PNG, because it's lossless and preserves alpha channel). -->
     For now, this is used to load
-    <b>GIF</b>, <b>TGA</b>, <b>SGI</b>, <b>TIFF</b>, <b>JP2</b> and <b>EXR</b> files.
+    <b>TIFF</b>, <b>SGI</b>, <b>JP2</b> and <b>EXR</b> files.
     <tt>convert</tt> program from
     <a href="http://www.imagemagick.org/">ImageMagick</a>
     package must be available on $PATH for this to work.
