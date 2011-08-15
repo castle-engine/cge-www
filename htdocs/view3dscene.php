@@ -946,7 +946,7 @@ and make sure it's available on $PATH.
 
 <p>Also <tt>convert</tt> program from
 <a href="http://www.imagemagick.org/">ImageMagick</a>
-package must be available on $PATH for some image formats to work.
+package must be available on $PATH for some miscellaneous image formats to work.
 See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
  for a list of image formats handled.
 

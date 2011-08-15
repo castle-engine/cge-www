@@ -35,10 +35,7 @@
     <?php echo x3d_node_link('PixelTexture'); ?></p>
 
     <p><i>Note</i>: ImageTexture allows various texture formats,
-    including JPEG, PNG, BMP, PPM, RGBE. GIF format is supported
-    by running <tt>convert</tt> program from
-    <a href="http://www.imagemagick.org/">ImageMagick</a>
-    package "under the hood".
+    including JPEG, PNG, GIF, BMP, PPM, RGBE.
     See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
     documentation for more detailed list.
 
