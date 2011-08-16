@@ -54,7 +54,7 @@ This is fast, but not always perfect.</p>
 forces everything to be rendered through GLSL shaders, which always
 perform per-pixel lighting.
 This is usually slower but also more beautiful than default
-<i>"Shaders-&gt;Enable For Required"</i>.</p>
+<i>"Shaders-&gt;Enable When Required"</i>.</p>
 
 <ul>
   <li><p>Per-pixel lighting means that local lighting effects,
@@ -86,7 +86,7 @@ This is usually slower but also more beautiful than default
 <?php echo $toc->html_section(); ?>
 
 <p>Using shader pipeline (forced on everything by
-<i>"Shaders-&gt;Enable For Required"</i>, or activated
+<i>"Shaders-&gt;Enable For Everything"</i>, or activated
 automatically for shapes using
 <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a>
 or
@@ -116,7 +116,8 @@ performance from your NVidia/Radeon GPU. (Although latest <a
 href="http://www.mesa3d.org/">Mesa</a> may also be quite capable
 of handling simpler stuff, even with shaders.)</p>
 
-<p>Note that models without effects are still rendered using standard
+<p>Note that by default (<i>"Shaders-&gt;Enable When Required"</i>)
+models without effects are still rendered using standard
 fixed-function pipeline. Which means that they still work fast even
 on older hardware.</p>
 
