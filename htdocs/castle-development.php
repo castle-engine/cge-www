@@ -214,7 +214,7 @@ so using open-source modeller is strongly favored over proprietary modellers.
     and it's processed to <tt>data/levels/castle_hall_processed.wrl</tt>.</p></li>
 
   <li><p><i>X3D and VRML 2.0 (aka 97) notes:</i><br />
-    It's adviced to use <?php echo a_href_page("our customized exporter", "blender"); ?>.</li>
+    It's advised to use <?php echo a_href_page("our customized exporter", "blender"); ?>.</li>
 
   <li><p><i>Collada/ 3DS / MD3 / other formats notes:</i><br/>
     Actually, you can also use models in other formats instead

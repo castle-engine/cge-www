@@ -1844,7 +1844,7 @@ end;
     extracts scaling factors by very naive
     method. (Although this is planned to be fixed using
     <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
-    The bottom line is: <i>You are well adviced to try
+    The bottom line is: <i>You are well advised to try
     to express all transformations using stardard <tt>Transform</tt> node</i>.
 
     <p>This node may be useful

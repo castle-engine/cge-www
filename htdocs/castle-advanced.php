@@ -136,7 +136,7 @@ Other command-line options, not mentioned in this file before:
     from the OpenGL context) and loading creatures will be (very slightly)
     faster.
 
-    <p>It's adviced to use this option only if stencil buffer
+    <p>It's advised to use this option only if stencil buffer
     of your graphic card requires too much resources.
     Then setting "Video options -> Shadows" option will not help,
     but this command-line option will help.
