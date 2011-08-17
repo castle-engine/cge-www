@@ -79,26 +79,6 @@ will display graphs of sinus and x<sup>2</sup> at once.
 Of course, in case of function expressions, it's usually more comfortable
 to set them up inside glplotter using <i>"Functions"</i> menu.
 
-<p>Other command-line options control the initial visibility of various UI
-elements:
-
-<pre>
-  --crosshair           --no-crosshair
-  --point-coords        --no-point-coords
-  --main-xy-lines       --no-main-xy-lines
-  --map                 --no-map
-  --grid-1              --no-grid-1
-  --num-scale-1         --no-num-scale-1
-  --numbers-1           --no-numbers-1
-  --grid-pi             --no-grid-pi
-  --num-scale-pi        --no-num-scale-pi
-  --numbers-pi          --no-numbers-pi
-  --grid-custom         --no-grid-custom
-  --num-scale-custom    --no-num-scale-custom
-  --numbers-custom      --no-numbers-custom
-  --only-points         --no-only-points
-</pre>
-
 <p>Options <tt>--light</tt> and <tt>--dark</tt> allow you to choose
 appropriate color scheme.
 
