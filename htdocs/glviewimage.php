@@ -55,38 +55,51 @@ you can see how alpha channel of the image looks on various background colors.
 The ability to load and save even some uncommon image formats (DDS, RGBE)
 is also very useful.</p>
 
-<p>Various image formats are supported:
+<p>Many image formats are supported:
 
 <ul>
-  <li><b>PNG</b> - Portable Network Graphic,
-  <li><b>BMP</b> - Windows Bitmap,
-  <li><b>PPM</b> - Portable Pixel Map,
-  <li><b>DDS</b> - <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
-    Draw Surface</a>. This image format is commonly used for advanced
-    texturing, as it can store compressed
-    textures, possibly with mipmaps, cube maps, volume textures.
-    You can view all subimages within one DDS file, see menu items
+  <li><b>PNG</b>: Portable Network Graphic. Excellent open format for images,
+    offering good lossless image compression
+    and full alpha channel.
+
+  <li><b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM (PBM, PGM, PPM)</b>:
+    are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC
+    fcl-image</a> library.
+    This gives us full support for these formats, without any extra
+    libraries necessary (fcl-image is compiled inside our programs).
+
+  <li><b>DDS</b>: <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
+    Draw Surface</a>. This image format may be used for advanced
+    texturing, as it can store textures compressed for GPUs,
+    possibly with mipmaps, cube maps, volume textures.
+    With <tt>glViewImage</tt> you can view all subimages
+    within one DDS file, see menu items
     <i>Images-&gt;Next/Previous subimage in DDS</i>. Saving to DDS images
-    is also supported.
-  <li><b>RGBE</b> - Red + Green + Blue + Exponent,
-    format made by Greg Ward, described in "<i>Graphic Gems II</i>",
-    used e.g. in <a href="http://floyd.lbl.gov/radiance/">
-    Radiance</a>. It allows storing colors with high dynamic range.
-  <li><b>IPL</b> - IPLab, only 16 bits per pixel are supported (gray-scale).
-  <li>Many image formats are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a>
-    library: <b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM (PBM, PGM; PPM is by native code)</b>.
-    This gives us native support for these formats (no extra libraries needed,
-    fcl-image is compiled in).
-  <li>Many image formats may be loaded by using external programs.
-    This means that some other program is run "under the hood"
-    to convert to some format supported natively. If all goes well,
-    this is completely transparent for user.
-    <!-- (usually PNG, because it's lossless and preserves alpha channel). -->
-    For now, this is used to load
-    <b>TIFF</b>, <b>SGI</b>, <b>JP2</b> and <b>EXR</b> files.
-    <tt>convert</tt> program from
-    <a href="http://www.imagemagick.org/">ImageMagick</a>
-    package must be available on $PATH for this to work.
+    is also supported. <?php echo a_href_page_hashlink(
+    'Details about using DDS format for textures in our engine are here.',
+    'vrml_implementation_texturing', 'section_dds'); ?>
+
+  <li><b>RGBE</b>: simple HDR (high dynamic range) format.
+    The format name is an acronym for <i>Red + Green + Blue + Exponent</i>,
+    it was developed by by Greg Ward, described in "<i>Graphic Gems II</i>",
+    used e.g. in <a href="http://floyd.lbl.gov/radiance/">Radiance</a>.
+
+  <li><b>BMP</b>: Windows Bitmap. Native support.
+
+  <!--li><b>PPM</b>: Portable Pixel Map. Simple uncompressed image format,
+    supported by practically all graphic programs. Native support.
+    (Actually for now PPM handling doesn't use FpImage, but this may be temporary,
+    and doesn't really matter for user.)
+  -->
+
+  <li><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).
+
+  <li><p><b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
+    To load and save these images, you need to install
+    the <a href="http://www.imagemagick.org/">ImageMagick</a>
+    package, and make sure it's <tt>convert</tt> program is available on $PATH.
+    Then our engine will recognize these image formats,
+    and seamlessly load/save them (by running <tt>convert</tt> "under the hood").
 </ul>
 
 <?php echo $toc->html_section(); ?>
