@@ -244,12 +244,30 @@ The main way for
 initializing OpenGL for games is by GLWindow unit that doesn't depend on
 any Lazarus units. -->
 
-<p>Note: under Windows you will need some DLLs
+<p>An important strength of our engine is that you can express a lot
+of stuff inside your data, that is inside
+<?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?> models.
+So many features of our engine
+(<?php echo a_href_page('shaders','vrml_implementation_shaders'); ?>,
+ <?php echo a_href_page('screen effects', 'kambi_vrml_extensions_screen_effects'); ?>,
+ <?php echo a_href_page('mirrors', 'vrml_implementation_cubemaptexturing'); ?>
+ and many many more) don't have any special ObjectPascal examples,
+because they are simply not needed. For simple uses, you just define what you
+need inside VRML/X3D file (of course, for advanced usage you can do a lot more
+with ObjectPascal code, and you can always build/modify VRML/X3D graph
+by ObjectPascal code).
+So <i>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></i>
+ and try opening them with any engine example program (like <tt>scene_manager_basic.lpr</tt>,
+or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+&mdash; you will find that everything just works,
+not requiring a single line of ObjectPascal code.</p>
+
+<p><i>Under Windows you will need some DLLs</i>
 to successfully run some of the programs.
 I collected all DLLs needed by my programs
 <?php echo current_www_a_href_size('in this archive',
   'miscella/win32_dlls.zip'); ?>, so just download
-this and put in program's exe directory.
+this and put in program's exe directory (or somewhere on $PATH).
 These DLLs are already included in binary archives of my programs,
 but are not included in source archives (since they are only usable
 for Windows users). In general, for all OSes, see section
