@@ -1,6 +1,115 @@
 <?php
 
 array_push($news,
+    array('title' => 'Engine rename soon, development news: some important fixes / improvements, many API improvements',
+          'year' => 2011,
+          'month' => 8,
+          'day' => 22,
+          'short_description' => '',
+          'description' =>
+vrmlengine_thumbs(array(
+  array('filename' => 'humanoid_transparent_bg.png', 'titlealt' => 'Humanoid model, captured with transparent background, replaced in GIMP with some texture and gradient'),
+  array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
+)) .
+'<ol>
+  <li><p>First, the big news: <b>Grand engine rename is coming!</b> New name of the engine is planned to be
+
+    <p style="font-size: larger; font-weight: bold">
+    "Castle Game Engine"
+    </p>
+
+    <p>For two reasons, the current name of our engine, <i>"Kambi VRML game engine"</i>, feels a little uncomfortable since some time:</p>
+
+    <ol>
+      <li><p>Our focus, since quite some time, is on X3D. Yes, X3D is really just VRML 3.0, even the header shows this (X3D versions start from 3). But people from the outside don\'t know about this, and may think that we support only some old standard from ~1997. So, at the very least, the "VRML" in the name should be replaced with VRML/X3D or just X3D.</p>
+        <p>This was caused by history &mdash; the engine development started when VRML 1.0 (now ancient) was still useful (e.g. Blender had built-in VRML 1.0 exporter), and VRML 2 (97) was just gaining popularity.</p>
+        <p>The problem isn\'t limited to engine name, unfortunately. Most important units and classes inside the engine start with "VRML" instead "X3D". Our SourceForge project name and URL has "vrml" inside. So the rename will be some organizational challenge, but I think that we just have to "bite the bullet".</p></li>
+      <li><p>"Kambi" in the name, which is really just a shortcut of my last name, feels like this is too much of a personal project. One-man achievement. Which is, well, kind of true for now... :) But I really want to change it, and hope to get some more developers involved.</p>
+        <p>I really believe the engine is great already, and I want to make it better &mdash; and there are hundreds of interesting features to add, and there\'s no way I can manage to do everything alone. Even if I managed to create something impressive already :)</p>
+        </li>
+    </ol>
+
+    <p>Looking back, I should have just made more creative name than just slapping "Kambi" (my last name) + VRML (technology) + "Game Engine" :) For example, <a href="http://www.ogre3d.org/">Ogre</a> has a nice name, that also immediately suggests the engine icon &mdash; ogre\'s head, used also in many Ogre3D examples. I like it.</p>
+
+    <p>We already have a very nice engine icon, that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="http://vrmlengine.sourceforge.net/castle.php">"The Castle"</a>. Soo... I would like to propose a new engine name: <i>Castle Game Engine</i>. (Short (Unix) name: <tt>castle-engine</tt>, with dash inside.) Nothing is set in stone yet, so if you have an idea for even cooler name &mdash; please write e.g. on <a href="http://vrmlengine.sourceforge.net/forum.php">forum</a>.</p>
+
+    <p>No "VRML" in the name, no "Kambi" in the name. Has nice connection with engine icon. When googling "castle game engine", we already hit our engine page on the 3rd place (because of "The Castle" game).</p>
+
+    <p>The engine rename means also renaming all identifiers, so this will be a large breakage of API compatibility.</p>
+
+    <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="http://vrmlengine.sourceforge.net/forum.php">through forum</a>) if you have any questions.</p>
+
+    <p>Of course, old URLs will continue to work for a long time. I\'ll set appropriate redirects wherever possible.</p>
+
+    <p>We also take this opportunity to migrate to new SourceForge project platform. The new SourceForge project page is on https://sourceforge.net/p/castle-engine/ (although old-style URL http://sourceforge.net/projects/castle-engine/ also works). You can see there a Wiki (hopefully will work better than HostedApp MediaWiki), new "Discussion" forum (possibly we will use it, instead of PhpBB hosted forum).
+  </li>
+
+  <li><p><b>Important user-visible improvements</b> in the <a href="http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php">engine</a> and <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a>:</p>
+    <ul>
+      <li>Loading on many scenes in now ~2 times faster :), and is done immediately. That is because we fixed octree creation, it was mistakenly done <i>twice</i>, and the 2nd time was on-demand.</li>
+      <li>More image formats supported (without the need for installing any external program or library). We use excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a> to load and save various image formats now. This improves reading of some formats (PCX, JPG), and introduces some new formats support (GIF, TGA, XPM, PSD).
+        <p>Note that some formats, like PNG and DDS, are still read using our internal code (in case on PNG, this relies on libpng that is distributed with Windows binaries and present on all Unix installations). These formats already have good (optimized, and using full format features) reader inside our engine, so no need to change them.</p>
+        <p>See <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/glviewimage.html">glviewimage docs in SVN</a> for a current list of supported image formats.</p>
+      <li>New view3dscene menu item to take a screenshot with transparent background, <i>Display -&gt; Screenshot To Image (Transparent Background)</i>. (<a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=164">Requested on forum</a>).</li>
+      <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to use it repeatedly, and to also work with <tt>IndexedTriangleSet</tt>.</li>
+      <li>Fixed "pure shader renderer" on shapes that have textures with full (not only 0/1) alpha channel. In some situations, they were mistakenly drawn with additional alpha test, and effectively some parts of them were invisible. This bug slipped in 3.10.0 release.</li>
+      <li><a href="http://vrmlengine.sourceforge.net/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">Collada importer improvements, this was mentioned in detail in previous news</a>. Static stuff from Collada models is read almost fully.</li>
+    </ul>
+  </li>
+
+  <li><p><b>Engine improvements</b>. Next engine version promises some work on engine API to make it simpler and leaner. Some of the larger developer-visible changes:</p>
+
+    <ul>
+      <li>Generics everywhere! We have replaced <i>all</i> of our containers with clean FPC/Lazarus generics.
+        <ul>
+          <li>We heavily use generic TFPGObjectList for all lists of objects inside our engine. Our previous "objectslist.inc" template is removed.</li>
+          <li>We create and heavily use TGenericStructList, a generic list that can be used for generic lists of records and all other types in FPC/Lazarus (as <a href="http://bugs.freepascal.org/view.php?id=15480">standard FGL doesn\'t work for them</a>). Our previous "dynarray.inc" template is removed.</li>
+          <li>For containers of simple types, we use TFPGList.</li>
+          <li>All list names follow TItemList consistent naming, not TItemsList, not TDynXxxArray.</li>
+          <li>TDynPointerArray is removed, use instead standard TFPList.</li>
+          <li>We keep all strings inside TKamStringList, which is a simple descendant of standard TStringList. No more custom string list container.</li>
+        </ul>
+      <li>Object3DAsVRML is renamed to X3DLoad, with various X3DLoadInternal* helper units.</li>
+      <li>Various simplifications around (to KambiGLUtils, to VectorMath) to remove old $ifdef stuff needed for older FPC versions and such. We require now FPC &gt;= 2.2.4 (there is really no sensible way to get our generics working with earlier FPC releases). <!--; and note that 2.2.4 will make a lot of memory leaks, see src/base/fglobjectlist22.pas comments; updating to FPC 2.4.x, preferably just latest 2.4.4, is strongly advised). We also always compile with FPC objfpc mode, which removes the need for various $ifdefs. --></li>
+      <li>Under GLX (Unix), we can use new GLX &gt;= 1.3 functions to init context, and we have a testing code to activate OpenGL >= 3.0 forward-compatible context. (<a href="http://bugs.freepascal.org/view.php?id=19953">Relevant patches to FPC also submitted</a>.
+        <p>(No, we generally don\'t fully work in 3.0 forward context yet, some deprecated features from GL &lt; 3 are still used around, e.g. for fonts. But it\'s nice that we can actually check it now, and push forward.)</p>
+        <p>Better support for using some features from OpenGL core is now done. Previously, we depended on more features being available as extensions (multi-texturing, 3D textures). Using them as extensions makes sense for newer extensions, when many GPUs don\'t have the necessary core yet.</p></li>
+      <li>Camera components in Lazarus package have now icons.</li>
+      <li>TBox3D and TQuaternion records remade into old-style object. Previous procedures Box3DXxx(Box, ...) have to be changed now to Box.Xxx(...). This results in nicer API, method names may be shorter and look cleaner.</li>
+      <li>T3DTranslated is free from OpenGL dependency, and moves to Base3D unit.</li>
+      <li>Removed tgAll and TransparentGroup, this was an unnecessary complication. We have now just Transparent:boolean, and our T3D.Render only renders only opaque or only transparent.</li>
+      <li>Notifications (GLNotifications, these messages <i>"You picked up Potion Of Life"</i> etc. you see in FPS games) were reimplemented. There are now TUIControl descendants, so can be used just like our other 2D controls. They are also visible on component palette now.</li>
+      <li>Examples rearranged. Many useless examples removed, many good examples visible better. Some new examples are being planned, to showcase some engine features. Also, lets_take_a_walk and rift may be moved inside engine examples.
+
+        <p>Outdated engine examples removed:</p>
+        <ul>
+          <li>Removed examples/vrml/direct_vrmlglscene_test_*. These were really old examples, showing how to use TVRMLGLScene without the scene manager. This is very discouraged and uncomfortable (scene manager is really needed to get most of the engine), and generally has no point now.</li>
+          <li>Removed examples/images/dds_remove_small_mipmaps. This was a tool to remove from DDS mipmaps the levels with one of the sizes < 4. It workarounds bug in older version of GIMP-DDS, it generated invalid images for smaller mipmaps. The bug is fixed in GIMP-DDS >= 2.0.9. See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564111 . Since the fixed version of GIMP-DDS is available since a long time (and the tool didn\'t really serve any other purpose), it\'s removed now.</li>
+          <li>Removed md3tovrmlsequence. We can convert MD3 to X3D now, Kanim doesn\'t matter anymore.</li>
+          <li>Removed svn_to_grayscale, this was really for PZA only.</li>
+          <li>Removed images/detect_alpha_simple_yes_no, test was moved into image_identify</li>
+          <li>Removed demo_parseparameters (useless, many programs show this)</li>
+          <li>Removed demo_textreader (trivial, and not really important for anyone)</li>
+          <li>Removed glwindow/test_menu_change_from_keyup (was only testing an old bug, solved long time ago)</li>
+          <li>Removed glwindow/multi_texture_demo. It can be fully replaced by a trivial X3D model in demo_models/texturing_advanced/multi_tex_order.x3dv</li>
+          <li>Removed test_platform_specific_utils example, moved to automatic tests in tests/testosspecific.pas</li>
+          <li>Removed shading_langs mode (Cg, ARB assembly, direct TGLSLProgram usage &mdash; only the last one is really relevant to our engine, and it\'s not advised anyway, usually you should just use GLSL within VRML/X3D mpdels).</li>
+          <li>Removed lazarus/camera demo. We have other demos for cameras there. And this duplicates glwindow/demo_camera anyway.</li>
+        </ul>
+
+        <p>Renamed/moved some examples:</p>
+        <ul>
+          <li>glwindow/demo_camera to vrml/custom_3d_object, to reflect the *real* purpose of this demo (for camera demo, see every 3d demo).</li>
+          <li>dynamic_ambient_occlusion, radiance_transfer, terrain, other demos moved up, to be more visible.</li>
+          <li>menu_test, menu_test_alternative merged into glwindow_menu demo.</li>
+          <li>Move demo_camera to custom_3d_render.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+'),
+
     array('title' => 'Development news: huge Collada import improvements',
           'year' => 2011,
           'month' => 7,
