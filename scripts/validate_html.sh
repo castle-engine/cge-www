@@ -27,7 +27,8 @@ for PHP_NAME in *.php; do
       | vrml_implementation_common.php | glcaps.php \
       | news_common.php | news_feed.php | changes_log.php \
       | kambi_vrml_extensions_functions.php | openal_notes.php  \
-      | kambi_vrml_test_suite.php | news_????.php | blender_stuff.php | support.php )
+      | kambi_vrml_test_suite.php | news_????.php | blender_stuff.php \
+      | support.php | kambi_vrml_game_engine.php )
       ;;
 
     *)
