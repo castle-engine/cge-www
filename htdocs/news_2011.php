@@ -1,13 +1,14 @@
 <?php
 
 array_push($news,
-    array('title' => 'Engine rename to &quot;Castle Game Engine&quot;, development news: some important fixes / improvements, many API improvements',
+    array('title' => 'Engine rename to &quot;Castle Game Engine&quot; soon, development news: some important fixes / improvements, many API improvements',
           'year' => 2011,
           'month' => 8,
           'day' => 22,
           'short_description' => '',
           'description' =>
 vrmlengine_thumbs(array(
+  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
   array('filename' => 'humanoid_transparent_bg.png', 'titlealt' => 'Humanoid model, captured with transparent background, replaced in GIMP with some texture and gradient'),
   array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
 )) .
@@ -18,6 +19,8 @@ vrmlengine_thumbs(array(
     "Castle Game Engine"
     </p>
 
+    <p>(Short (Unix) name: <tt>castle-engine</tt>, with dash inside.)</p>
+
     <p>For two reasons, the current name of our engine, <i>"Kambi VRML game engine"</i>, feels a little uncomfortable:</p>
 
     <ol>
@@ -25,17 +28,16 @@ vrmlengine_thumbs(array(
         <p>This was caused by history &mdash; the engine development started when VRML 1.0 (now ancient) was still useful (e.g. <a href="http://www.blender.org/">Blender</a> had built-in VRML 1.0 exporter), and VRML 2 (97) was just gaining popularity.</p>
         <p>The problem isn\'t limited to engine name, unfortunately. Most important units and classes inside the engine start with "VRML" instead "X3D". Our SourceForge project name and URL has "vrml" inside. So the rename will be some organizational challenge, but I think that we just have to "bite the bullet".</p></li>
       <li><p>"Kambi" in the name, which is really just a shortcut of my last name, feels like this is too much of a personal project. One-man achievement. Which is, well, kind of true for now... :) But I really want to change it, and hope to get some more developers involved.</p>
-        <p>I really believe the engine is great already, and I want to make it better &mdash; and there are hundreds of interesting features to add, and there\'s no way I can manage to do everything alone. Even if I managed to create something impressive already :)</p>
         </li>
     </ol>
 
     <p>Looking back, I should have just made more creative name than just slapping "Kambi" (my last name) + VRML (technology) + "Game Engine" :) For example, <a href="http://www.ogre3d.org/">Ogre</a> has a nice name, that also immediately suggests the engine icon &mdash; ogre\'s head, used also in many Ogre3D examples. I like it.</p>
 
-    <p>We already have a very nice engine icon, that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="http://vrmlengine.sourceforge.net/castle.php">"The Castle"</a>. Soo... I would like to propose a new engine name: <i>Castle Game Engine</i>. (Short (Unix) name: <tt>castle-engine</tt>, with dash inside.) So no more "VRML" in the name, no more "Kambi" in the name. New name has nice connection with engine icon. When googling "castle game engine", we already hit our engine page (because of "The Castle" game).</p>
+    <p>We already have a nice engine icon that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="http://vrmlengine.sourceforge.net/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="http://vrmlengine.sourceforge.net/castle.php">"The Castle"</a>. So the new name <i>"Castle Game Engine"</i> seems sensible. No more "VRML" in the name, no more "Kambi" in the name. New name has nice connection with engine icon. When googling "castle game engine", we already hit our engine page (because of "The Castle" game).</p>
 
     <p>Nothing is set in stone yet, so if you have an idea for an even cooler name &mdash; please write e.g. on <a href="http://vrmlengine.sourceforge.net/forum.php">forum</a>.</p>
 
-    <p>The engine rename means also renaming all identifiers, so this will be a large breakage of API compatibility.</p>
+    <p>The engine rename means also renaming many identifiers (as the idea is to get rid of VRML prefix), so this will be a large breakage of API compatibility.</p>
 
     <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="http://vrmlengine.sourceforge.net/forum.php">through forum</a>) if you have any questions.</p>
 
