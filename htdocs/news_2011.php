@@ -1,7 +1,7 @@
 <?php
 
 array_push($news,
-    array('title' => 'Engine rename soon, development news: some important fixes / improvements, many API improvements',
+    array('title' => 'Engine rename to &quot;Castle Game Engine&quot;, development news: some important fixes / improvements, many API improvements',
           'year' => 2011,
           'month' => 8,
           'day' => 22,
@@ -74,28 +74,27 @@ vrmlengine_thumbs(array(
       <li>Notifications (GLNotifications, these messages <i>"You picked up Potion Of Life"</i> etc. you see in FPS games) were reimplemented. There are now TUIControl descendants, so can be used just like our other 2D controls. They are also visible on the Lazarus component palette now.</li>
       <li>Examples rearranged. Many useless examples removed, many good examples visible better. Some new examples are being planned, to showcase some engine features. Also, lets_take_a_walk and rift may be moved inside engine examples.
 
-        <p>Outdated engine examples removed:</p>
-        <ul>
-          <li>Removed examples/vrml/direct_vrmlglscene_test_*. These were really old examples, showing how to use TVRMLGLScene without the scene manager. This is very discouraged and uncomfortable (scene manager is really needed to get most of the engine), and generally has no point now.</li>
-          <li>Removed examples/images/dds_remove_small_mipmaps. This was a tool to remove from DDS mipmaps the levels with one of the sizes < 4. It workarounds bug in older version of GIMP-DDS, it generated invalid images for smaller mipmaps. The bug is fixed in GIMP-DDS >= 2.0.9. See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564111 . Since the fixed version of GIMP-DDS is available since a long time (and the tool didn\'t really serve any other purpose), it\'s removed now.</li>
-          <li>Removed md3tovrmlsequence. We can convert MD3 to X3D now, Kanim doesn\'t matter anymore.</li>
-          <li>Removed svn_to_grayscale, this was really for PZA only.</li>
-          <li>Removed images/detect_alpha_simple_yes_no, test was moved into image_identify</li>
-          <li>Removed demo_parseparameters (useless, many programs show this)</li>
-          <li>Removed demo_textreader (trivial, and not really important for anyone)</li>
-          <li>Removed glwindow/test_menu_change_from_keyup (was only testing an old bug, solved long time ago)</li>
-          <li>Removed glwindow/multi_texture_demo. It can be fully replaced by a trivial X3D model in demo_models/texturing_advanced/multi_tex_order.x3dv</li>
-          <li>Removed test_platform_specific_utils example, moved to automatic tests in tests/testosspecific.pas</li>
-          <li>Removed shading_langs mode (Cg, ARB assembly, direct TGLSLProgram usage &mdash; only the last one is really relevant to our engine, and it\'s not advised anyway, usually you should just use GLSL within VRML/X3D mpdels).</li>
-          <li>Removed lazarus/camera demo. We have other demos for cameras there. And this duplicates glwindow/demo_camera anyway.</li>
-        </ul>
+        <p>Outdated engine examples removed:
+          direct_vrmlglscene_test_*, <!--. These were really old examples, showing how to use TVRMLGLScene without the scene manager. This is very discouraged and uncomfortable (scene manager is really needed to get most of the engine), and generally has no point now.</li-->,
+          dds_remove_small_mipmaps, <!--. This was a tool to remove from DDS mipmaps the levels with one of the sizes < 4. It workarounds bug in older version of GIMP-DDS, it generated invalid images for smaller mipmaps. The bug is fixed in GIMP-DDS >= 2.0.9. See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564111 . Since the fixed version of GIMP-DDS is available since a long time (and the tool didn\'t really serve any other purpose), it\'s removed now.</li-->
+          md3tovrmlsequence, <!--. We can convert MD3 to X3D now, Kanim doesn\'t matter anymore.</li -->
+          svn_to_grayscale, <!--this was really for PZA only.</li -->
+          detect_alpha_simple_yes_no, <!-- test was moved into image_identify</li -->
+          demo_parseparameters, <!-- (useless, many programs show this)</li-->
+          demo_textreader, <!-- (trivial, and not really important for anyone)</li-->
+          test_menu_change_from_keyup, <!-- (was only testing an old bug, solved long time ago)</li-->
+          multi_texture_demo, <!--. It can be fully replaced by a trivial X3D model in demo_models/texturing_advanced/multi_tex_order.x3dv</li-->
+          test_platform_specific_utils example, <!--moved to automatic tests in tests/testosspecific.pas</li-->
+          shading_langs mode, <!-- (Cg, ARB assembly, direct TGLSLProgram usage &mdash; only the last one is really relevant to our engine, and it\'s not advised anyway, usually you should just use GLSL within VRML/X3D mpdels).</li-->
+          lazarus/camera. <!-- demo. We have other demos for cameras there. And this duplicates glwindow/demo_camera anyway.</li-->
+        </p>
 
-        <p>Renamed/moved some examples:</p>
+        <!--p>Renamed/moved some examples:</p>
         <ul>
           <li>glwindow/demo_camera to vrml/custom_3d_object, to reflect the *real* purpose of this demo (for camera demo, see every 3d demo).</li>
           <li>dynamic_ambient_occlusion, radiance_transfer, terrain, other demos moved up, to be more visible.</li>
           <li>menu_test, menu_test_alternative merged into glwindow_menu demo.</li>
-        </ul>
+        </ul-->
       </li>
     </ul>
   </li>
