@@ -1,7 +1,7 @@
 <?php
 
 array_push($news,
-    array('title' => 'Engine rename to &quot;Castle Game Engine&quot; soon, development news: some important fixes / improvements, many API improvements',
+    array('title' => 'Engine rename to "Castle Game Engine" soon, development news: some important fixes / improvements, many API improvements',
           'year' => 2011,
           'month' => 8,
           'day' => 22,
