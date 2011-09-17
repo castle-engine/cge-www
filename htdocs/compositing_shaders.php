@@ -50,14 +50,16 @@ and will be published here around September 2011.
 Also around September 2011: my Ph.D. thesis, on the same subject,
 will be available here.</p>
 
-<p>If you're interested in more information now,
+<p><?php echo current_www_a_href_size(
+'Slides from my presentation (on TPCG11) about "compositing shaders" idea are here',
+'compositing_shaders_slides.pdf'); ?>, enjoy! There are also 
+<?php echo current_www_a_href_size(
+'slides in Polish (with roughly the same content) that I used for my talk on seminar on ii.uni.wroc.pl',
+'compositing_shaders_sem_dokt_polish.pdf'); ?>.</p>
+
+<p>If you're interested in more information,
 <?php echo michalis_mailto('send me a mail'); ?>.
 Also, investigate the examples mentioned below.</p>
-
-<p>If you speak Polish,
-<?php echo current_www_a_href_size(
-'slides in Polish with introductory information about our "compositing shaders" idea are available here',
-'compositing_shaders_sem_dokt_polish.pdf'); ?>.</p>
 
 <!--
 We have prepared a paper
