@@ -315,7 +315,7 @@ function echo_header_bonus ()
   title="Kambi VRML game engine - changes log RSS feed"
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
-<link type="text/css" rel="stylesheet" media="all"  href="vrmlengine.css">
+<link type="text/css" rel="stylesheet" media="all"  href="castle-engine.css">
 
 <script type="text/javascript" src="vrmlengine.js"></script>
 
