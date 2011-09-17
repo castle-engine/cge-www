@@ -67,7 +67,7 @@ wait only once for "Loading creatures").
 <p><i>History and plans:</i> This game was initially developed for
 <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
 competition. It was at the beginning of 2006, in the time where
-<?php echo a_href_page('our engine', 'kambi_vrml_game_engine'); ?>
+<?php echo a_href_page('our engine', 'engine'); ?>
  didn't even have a version number yet :) (So, it was before 1.0.0 engine release.)
 A new game, that actually uses the current capabilities of our engine
 (thousand things were developed since 2006 &mdash; new graphic effects,
@@ -88,7 +88,7 @@ For some ambitious future plans about this game, see
 the list of changes since last release.</p>
 
 <p>This is free software, so if you're interested you're also welcome to
-<?php echo a_href_page_hashlink('download game sources', 'kambi_vrml_game_engine',
+<?php echo a_href_page_hashlink('download game sources', 'engine',
 'section_download_src'); ?> (from this page, grab engine sources + castle sources).
 The castle sources contain all the Pascal sources, Blender models,
 Makefiles, GIMP xcf files, etc. needed to develop the game.

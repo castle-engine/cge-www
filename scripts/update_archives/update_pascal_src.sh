@@ -107,7 +107,7 @@ pascal_src_add_standard ()
     # Old: copy COPYING file to each dir in PROGRAM_SPECIFIC_DIR.
     # No longer done, it's better to just add these files to SVN archive.
     # (This way they are also in binary archives, and we can specify
-    # different licenses (e.g. GPL2 and LGPL2 for kambi_vrml_game_engine.))
+    # different licenses (e.g. GPL2 and LGPL2 for castle_game_engine.))
     # cp /usr/share/common-licenses/GPL "$ARCHIVE_DIR"/COPYING
 
     echo "Created directory $PROGRAM_SPECIFIC_DIR_NAME in the archive."
@@ -165,22 +165,21 @@ pascal_src_archive_end ()
 # main ------------------------------------------------------------
 
 case "$1" in
-  # update src/pascal/kambi_vrml_game_engine.tar.gz
-  #
+  # Update engine sources archive.
   # Archive contains files and subdirs inside
-  # "$VRMLENGINE_PATH"kambi_vrml_game_engine/
-  kambi_vrml_game_engine)
+  # "$CASTLE_ENGINE_PATH"castle_game_engine/
+  castle_game_engine)
     mk_archive_begin
 
-    pascal_src_add_standard "$VRMLENGINE_PATH"kambi_vrml_game_engine/
+    pascal_src_add_standard "$VRMLENGINE_PATH"castle_game_engine/
 
-    make -C "$MK_ARCHIVE_TEMP_PATH"kambi_vrml_game_engine/ cleanmore
+    make -C "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/ cleanmore
 
-    cd "$MK_ARCHIVE_TEMP_PATH"kambi_vrml_game_engine/doc/pasdoc/
+    cd "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/doc/pasdoc/
     make clean html
-    rm -Rf "$MK_ARCHIVE_TEMP_PATH"kambi_vrml_game_engine/doc/pasdoc/cache/
+    rm -Rf "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/doc/pasdoc/cache/
 
-    pascal_src_archive_end kambi_vrml_game_engine
+    pascal_src_archive_end castle_game_engine
     ;;
 
 # update sources of specific programs ----------------------------

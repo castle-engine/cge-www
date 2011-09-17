@@ -894,10 +894,10 @@ In particular
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page_hashlink('Download game sources', 'kambi_vrml_game_engine',
+<p><?php echo a_href_page_hashlink('Download game sources', 'engine',
 'section_download_src'); ?>. From this page, grab both
 <i>Kambi VRML game engine</i> sources and <i>castle</i> sources.
-Unpack them in such way that <tt>kambi_vrml_game_engine/</tt>
+Unpack them in such way that <tt>castle_game_engine/</tt>
 and <tt>castle/</tt> directories are together (siblings) under the same directory.
 
 <p>Then compile inside <tt>castle/</tt> directory by simple
@@ -912,7 +912,7 @@ under Windows. Note that you must use GNU make.
 Required compiler is
 <a href="http://www.freepascal.org/">FreePascal</a>
 (you can look at <?php echo a_href_page_hashlink(
-  'notes about FPC version required', 'kambi_vrml_game_engine', 'section_fpc_ver'); ?>
+  'notes about FPC version required', 'engine', 'section_fpc_ver'); ?>
  &mdash; usually this is "latest stable FPC version").
  There is no Delphi support &mdash; I live in the open source world.
 
@@ -993,7 +993,7 @@ like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>).
 Everything should run on any modern OS/processor supported by
 <a href="http://www.freepascal.org/">FreePascal</a> compiler,
-see <?php echo a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine'); ?>
+see <?php echo a_href_page('Castle Game Engine', 'engine'); ?>
  for exact listing (if you want to port
 it to other system, you're welcome to provide the patches and compiled binaries).
 And I'm trying to do all game data using open-source things,
@@ -1008,7 +1008,7 @@ full list of things and resources used).
 
 <ul>
   <li><p>Everywhere in the game GetCameraHeight returns normal HeightAboveTheGround.
-    Usually in my general units (kambi_vrml_game_engine units) I don't make
+    Usually in my general units (castle_game_engine units) I don't make
     any assumptions about InitialUp, it can be any vector &mdash; which means
     that SqrHeightAboveTheGround is easier to calculate,
     and calculating actual HeightAboveTheGround costs us Sqrt call.

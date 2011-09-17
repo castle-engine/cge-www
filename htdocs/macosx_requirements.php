@@ -129,10 +129,10 @@ or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
     disappear and will provide a native look.</p>
 
     <p>It's a matter of creating and implementing a file like
-    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_(cocoa|carbon).inc</tt>,
+    <tt>castle_game_engine/src/glwindow/glwindow_(cocoa|carbon).inc</tt>,
     based on
-    <tt>kambi_vrml_game_engine/src/glwindow/glwindow_backend_template.inc</tt>.
-    See <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>.
+    <tt>castle_game_engine/src/glwindow/glwindow_backend_template.inc</tt>.
+    See <?php echo a_href_page('engine sources', 'engine'); ?>.
     See at other "backends" (currently GTK, WinAPI, Xlib, Glut are available)
     for examples how to implement such thing, everything is inside
     <tt>src/glwindow/</tt> dir.</p>

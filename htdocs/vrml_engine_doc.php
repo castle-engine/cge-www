@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("Documentation", NULL, array('kambi_vrml_game_engine'));
+  vrmlengine_header("Documentation", NULL, array('engine'));
 ?>
 
 <?php echo pretty_heading('Documentation', NULL,

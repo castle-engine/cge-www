@@ -217,12 +217,6 @@ others) are full of demos of our extensions.</p>
       <li><p>You can see this used in
         <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
         Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
-
-      <li><p>Programmers may also compile and run example program
-        <tt>vrml/opengl/examples/bump_mapping/</tt> in
-        <?php echo a_href_page('engine sources', 'kambi_vrml_game_engine'); ?>.
-        This is a technical demo, showing some other (older) methods
-        of bump mapping, and allows to tweak various settings.</p></li>
     </ul>
 
     <p>Note: you can also use these fields within <tt>KambiAppearance</tt> node

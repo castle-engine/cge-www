@@ -1,8 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
 
-  vrmlengine_header("Engine overview for developers", NULL,
-    array('kambi_vrml_game_engine'));
+  vrmlengine_header("Engine overview for developers", NULL, array('engine'));
 
   $toc = new TableOfContents(
     array(
@@ -26,7 +25,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 </div>
 
 <?php
-  echo pretty_heading($page_title, VERSION_KAMBI_VRML_GAME_ENGINE);
+  echo pretty_heading($page_title, VERSION_CASTLE_GAME_ENGINE);
   echo vrmlengine_thumbs(array(
     array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
     array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
@@ -169,7 +168,7 @@ game engine. In short:
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
   <li>There are <b>many example programs</b>, look in sources
-    <tt>kambi_vrml_game_engine/examples/</tt> subdirectory.</li>
+    <tt>castle_game_engine/examples/</tt> subdirectory.</li>
 
   <li>There are ready TGLWindow descendants and Lazarus components
     to make simple VRML browser. Oh, yes, the engine may be integrated
@@ -211,8 +210,8 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
 <div class="download">
 <?php echo sf_download('Download "Kambi VRML game engine" (version ' .
-  VERSION_KAMBI_VRML_GAME_ENGINE . ')',
-  'kambi_vrml_game_engine-' . VERSION_KAMBI_VRML_GAME_ENGINE .
+  VERSION_CASTLE_GAME_ENGINE . ')',
+  'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE .
   '-src.tar.gz'); ?>
 </div>
 
@@ -220,7 +219,7 @@ It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 There are many simple example programs included
 (see <tt>examples/</tt> subdirectory).
 Compile everything with simple "<tt>make</tt>" inside the
-<tt>kambi_vrml_game_engine/</tt> directory.
+<tt>castle_game_engine/</tt> directory.
 Compile examples <!-- (the ones that do not require Lazarus) --> by
 simple "<tt>make examples</tt>". Or you can compile and run from
 <a href="http://lazarus.freepascal.org/">Lazarus</a>.
@@ -276,7 +275,7 @@ you have appropriate libraries installed on your system.</p>
 
 <p>Alternatively, you can get the latest (bleeding-edge) sources from Subversion by:
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'kambi_vrml_game_engine'); ?></pre>
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
@@ -291,7 +290,7 @@ Then execute <tt>compile.sh</tt> scripts to compile the programs you want.
 function older_engine_version($older_version)
 {
   echo sf_download($older_version . ' version',
-    'kambi_vrml_game_engine-' . $older_version . '-src.tar.gz');
+    'castle_game_engine-' . $older_version . '-src.tar.gz');
 }
 ?>
 
@@ -327,7 +326,7 @@ notes near some programs below.
       sf_download('sources of '.$title,
         $internal_name . '-' . $version . '-src.tar.gz');
 
-    if ($engine_ver == VERSION_KAMBI_VRML_GAME_ENGINE)
+    if ($engine_ver == VERSION_CASTLE_GAME_ENGINE)
     {
       echo '<br/>These tar.gz sources are compatible with latest engine ';
       older_engine_version($engine_ver);
@@ -389,7 +388,7 @@ book about the Subversion</a>.</p>
 <pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
 
 <p>Please note that the full <tt>trunk</tt> is quite large.
-It contains everything: th core engine sources (<tt>kambi_vrml_game_engine</tt> subdirectory),
+It contains everything: th core engine sources (<tt>castle_game_engine</tt> subdirectory),
 webpages stuff (in <tt>www</tt> subdirectory),
 <tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
 Often you want to download only specific subdirectories of it.</p>
@@ -414,10 +413,10 @@ Too much information:
 
 <p>I know that my layout is a little
 non-standard: standard way is to make subdirectory for each project
-at top level (like <tt>kambi_vrml_game_engine</tt>, <tt>castle</tt> etc.)
+at top level (like <tt>castle_game_engine</tt>, <tt>castle</tt> etc.)
 and beneath each of them make subdirectories <tt>trunk</tt>, <tt>tags</tt>.
 But current layout is more comfortable for users: usually you want to
-download both <tt>kambi_vrml_game_engine</tt> and one of the other directories
+download both <tt>castle_game_engine</tt> and one of the other directories
 (like <tt>castle</tt>) and have them as siblings, since this allows you
 to compile most things by using ready provided compilation scripts.</p>
 </div>
@@ -456,11 +455,11 @@ As a special exception, the copyright holders of this library give you permissio
 
 <p>Important notes:</p>
 <ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>kambi_vrml_game_engine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>KAMBI_VRMLENGINE_LGPL</tt> symbol defined in file <tt>castle_game_engine/base/kambiconf.inc</tt>. Just put there <tt>{$define KAMBI_VRMLENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define KAMBI_VRMLENGINE_LGPL}</tt>).</p>
 
     <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
 
-  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>kambi_vrml_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
+  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>castle_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>

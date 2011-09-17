@@ -5,8 +5,8 @@
     'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
 ?>
 
-<img src="images/kambi_vrml_game_engine_icon.png"
-  alt="Kambi VRML game engine icon"
+<img src="images/castle_game_engine_icon.png"
+  alt="Castle Game Engine icon"
   align="right"/>
 
 <div style="float: right; margin: 1em;">
@@ -24,7 +24,7 @@ is a free/open-source 3D (game) engine.
 The engine is&nbsp;written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
 code, and we have an&nbsp;excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
 (although other 3D model formats are also supported).
-See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads for developers', 'kambi_vrml_game_engine'); ?>.</p>
+See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads for developers', 'engine'); ?>.</p>
 
 <p><b>For normal human beings:</b> this page is a&nbsp;collection of&nbsp;various
 games and tools developed using our engine. <!--Most of them

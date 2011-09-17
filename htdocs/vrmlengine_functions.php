@@ -97,7 +97,7 @@ $vrmlengine_sitemap = array(
 
   'donate' => array('title' => 'Donate'),
 
-  'kambi_vrml_game_engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
+  'engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
     'sidebar' => true,
     'sub' => array(
       'reference' => array('title' => 'Reference'),

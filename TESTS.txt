@@ -5,7 +5,7 @@ this (on each platform) before release:
 
 ./compile_all_programs.sh unix|windows
 ./compile_all_programs.sh lazarus
-cd kambi_vrml_game_engine/
+cd castle_game_engine/
 make
 make examples
   # Or "make examples-ignore-errors", this compiles everything,
@@ -16,9 +16,9 @@ make examples
 make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
-# define KAMBI_VRMLENGINE_LGPL in ../kambi_vrml_game_engine/src/base/kambiconf.inc
+# define KAMBI_VRMLENGINE_LGPL in ../castle_game_engine/src/base/kambiconf.inc
 make
-# revert ../kambi_vrml_game_engine/src/base/kambiconf.inc
+# revert ../castle_game_engine/src/base/kambiconf.inc
 
 # FPCUnit tests
 
@@ -40,7 +40,7 @@ svn diff # check, fix or commit differences
 # and rerun run_tests.sh)
 
 # Test Lazarus compilation:
-# - Recompile kambi_vrml_game_engine packages
+# - Recompile castle_game_engine packages
 # - Compile and run from Lazarus lpi files non-LCL examples:
 #     view3dscene,
 #     castle,
@@ -52,7 +52,7 @@ svn diff # check, fix or commit differences
 # Make sure Lazarus packages have all units included.
 
   # This can be tested by
-  cd kambi_vrml_game_engine/
+  cd castle_game_engine/
   make clean
   make examples # (merely "make" doesn't place unit files along sources, and for this test we actually want it)
   # Now compile our packages from Lazarus,

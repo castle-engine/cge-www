@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-cd ~/sources/vrmlengine/trunk/kambi_vrml_game_engine/doc/pasdoc/
+cd ~/sources/vrmlengine/trunk/castle_game_engine/doc/pasdoc/
 make clean
 make html
 

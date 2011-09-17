@@ -16,6 +16,6 @@ set -eu
 # ./update_archives.sh malfunction linux x86_64
 # ./update_pascal_src.sh malfunction
 
-./update_pascal_src.sh kambi_vrml_game_engine
+./update_pascal_src.sh castle_game_engine
 ./update_archives.sh demo_models
 

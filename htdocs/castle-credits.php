@@ -46,8 +46,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><?php echo a_href_page('My "Kambi VRML game engine"',
-    'kambi_vrml_game_engine'); ?>.
+  <li><?php echo a_href_page('My "Castle Game Engine"', 'engine'); ?>.
     You can treat this engine as part of this game
     (I'm actually extending it while developing this game...),
     but it's generally useful.</li>

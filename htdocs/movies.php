@@ -1,6 +1,6 @@
 <?php
   require_once 'vrmlengine_functions.php';
-  vrmlengine_header("Demo movies", NULL, array('kambi_vrml_game_engine'));
+  vrmlengine_header("Demo movies", NULL, array('engine'));
 
   define('AVI_TITLE', 'Download AVI version');
 

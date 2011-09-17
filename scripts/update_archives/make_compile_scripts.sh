@@ -4,7 +4,7 @@ set -eu
 # This generates compile.sh scripts for all programs.
 
 # This adds script "compile.sh" to compile program/programs with fpc
-# using kambi.cfg from kambi_vrml_game_engine.
+# using kambi.cfg from castle_game_engine.
 #
 # $1 = COMPILE_SH_FULLNAME, filename of the script (absolute).
 #      E.g. "/blah/program_name/compile.sh"

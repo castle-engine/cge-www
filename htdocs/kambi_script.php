@@ -830,9 +830,9 @@ of them:
 the new value of 1st argument).</p>
 
 <p>For example KambiScript programs that generate and process images,
-see e.g. <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/kambiscript/mkimage_gradient.kscript">mkimage_gradient.kscript
+see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/kambiscript/mkimage_gradient.kscript">mkimage_gradient.kscript
 (generate simple gradient image)</a> and
-<a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/kambiscript/mkimage_sobel_edge.kscript">mkimage_sobel_edge.kscript
+<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/kambiscript/mkimage_sobel_edge.kscript">mkimage_sobel_edge.kscript
 (process any image with Sobel operator (edge detection))</a>.
 
 <?php echo $toc->html_section(); ?>

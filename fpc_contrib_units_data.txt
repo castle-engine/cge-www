@@ -1,8 +1,8 @@
 Name: Kambi VRML game engine
 Author: Michalis Kamburelis
 Version: 2.5.1
-File URL: http://vrmlengine.sourceforge.net/kambi_vrml_game_engine.php
-Homepage URL: http://vrmlengine.sourceforge.net/
+File URL: http://castle-engine.sourceforge.net/engine.php
+Homepage URL: http://castle-engine.sourceforge.net/
 E-mail: michalis.kambi@gmail.com
 Date: ...
 Supported OSes: Linux, Mac OS X, Win, others
@@ -32,7 +32,7 @@ description:An open-source game engine. Features include:
   <li>Simple ray-tracer is implemented.</li>
   <li>Playing movie files. This includes loading and saving as image sequence or "real" movie files (ffmpeg is needed to encode / decode movie files). While the implementation is limited to a small movies for now (as memory consumption is large), it's perfect for flame or smoke animation in games. We even have a simple movie editor as an example program in engine sources.</li>
   <li>The engine is portable. Currently tested and used on Linux, FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64. Porters/testers for other OS/processors are welcome, the engine should be able to run on all modern OSes supported by FPC.</li>
-  <li>There are many example programs, look in sources <tt>kambi_vrml_game_engine/examples/</tt> subdirectory.</li>
+  <li>There are many example programs, look in sources <tt>castle_game_engine/examples/</tt> subdirectory.</li>
   <li>Engine components are independent when possible. For example, you can only take model loading and processing code, and write the rendering yourself. Or you can use our OpenGL rendering, but still initialize OpenGL context yourself (no requirement to do it by our GLWindow unit). And so on. Of course, ultimately you can just use everything from our engine, nicely integrated - but the point is that you don't have to.</li>
 </ul>
 Category: graphics
