@@ -3,7 +3,7 @@
 
 /* Constants that should be defined before including kambi_common.php */
 define('COUNTER_DATA_PATH', '/home/project-web/vrmlengine/persistent/');
-define('ENV_VARIABLE_NAME_LOCAL_PATH', 'VRMLENGINE_HTDOCS_LOCAL_PATH');
+define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_HTDOCS_LOCAL_PATH');
 define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
