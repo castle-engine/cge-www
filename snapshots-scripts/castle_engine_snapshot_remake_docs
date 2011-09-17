@@ -1,9 +1,9 @@
 #!/bin/bash
 set -eu
 
-cd ~/sources/vrmlengine/trunk/www/scripts/offline_docs/
+cd ~/sources/castle-engine/trunk/www/scripts/offline_docs/
 
-export VRMLENGINE_HTDOCS_LOCAL_PATH=/home/michalis/sources/vrmlengine/trunk/www/htdocs/
+export CASTLE_ENGINE_HTDOCS_LOCAL_PATH=/home/michalis/sources/castle-engine/trunk/www/htdocs/
 
 HTMLS="kambi_vrml_extensions.html \
 kambi_vrml_extensions_shadow_maps.html \
@@ -45,10 +45,9 @@ glviewimage.html"
 
 make clean $HTMLS LOCALLY_AVAIL="$HTMLS"
 
-OUTPUT=~/public_html/vrmlengine-snapshots/docs/
+OUTPUT=~/public_html/castle-engine-snapshots/docs/
 mv -f $HTMLS $OUTPUT
-cp -f ~/sources/vrmlengine/trunk/www/htdocs/shadow_maps_x3d.pdf $OUTPUT
-cp -f ~/sources/vrmlengine/trunk/www/htdocs/vrmlengine.css $OUTPUT
+cp -f ~/sources/castle-engine/trunk/www/htdocs/shadow_maps_x3d.pdf $OUTPUT
+cp -f ~/sources/castle-engine/trunk/www/htdocs/castle-engine.css $OUTPUT
 mkdir -p $OUTPUT/images
-cp -f ~/sources/vrmlengine/trunk/www/htdocs/images/header*.png $OUTPUT/images
-
+cp -f ~/sources/castle-engine/trunk/www/htdocs/images/header*.png $OUTPUT/images

@@ -1,10 +1,10 @@
 #!/bin/bash
 set -eu
 
-# Rebuild programs in ~/sources/vrmlengine/trunk/
+# Rebuild programs in ~/sources/castle-engine/trunk/
 # (does a full rebuild, updating from SVN and cleaning to make
 # a full build with newest sources),
-# then move resulting binaries to ~/public_html/vrmlengine-snapshots/ subdir.
+# then move resulting binaries to ~/public_html/castle-engine-snapshots/ subdir.
 
 # log messages and dates in english
 export LANG=C
@@ -36,12 +36,12 @@ move_all_programs ()
   mv view3dscene/tovrmlx3d"$EXT" "$OUT_PATH"
 }
 
-OUTPUT_PATH=~/public_html/vrmlengine-snapshots/`date +%F`/
+OUTPUT_PATH=~/public_html/castle-engine-snapshots/`date +%F`/
 mkdir -p "$OUTPUT_PATH"
 
 OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
 
-cd ~/sources/vrmlengine/trunk/
+cd ~/sources/castle-engine/trunk/
 svn up > "$OUTPUT_LOG"
 
 dircleaner . clean >> "$OUTPUT_LOG"
@@ -59,7 +59,7 @@ echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTP
 
 # Clean old snapshots, to conserve disk space.
 # Keep only snapshots from last couple of days.
-cd ~/public_html/vrmlengine-snapshots/
+cd ~/public_html/castle-engine-snapshots/
 set +e
 find . -mindepth 1 -maxdepth 1 \
   -type d -and \
@@ -76,15 +76,15 @@ find . -mindepth 1 -maxdepth 1 \
 set -e
 
 # Create "latest" link, comfortable for users.
-rm -f ~/public_html/vrmlengine-snapshots/latest
-ln -s `date +%F` ~/public_html/vrmlengine-snapshots/latest
+rm -f ~/public_html/castle-engine-snapshots/latest
+ln -s `date +%F` ~/public_html/castle-engine-snapshots/latest
 
 # Not done anymore, compositing_shaders is finished now,
 # final PDF version is in SVN.
 #
 # echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 # echo 'Regenerate papers PDF:'                                             >> "$OUTPUT_LOG"
-# cd ~/sources/vrmlengine/trunk/papers/compositing_shaders/
+# cd ~/sources/castle-engine/trunk/papers/compositing_shaders/
 # make clean >> "$OUTPUT_LOG" 2>&1
 # make       >> "$OUTPUT_LOG" 2>&1
 # mv -f compositing_shaders.pdf ~/public_html/
@@ -92,7 +92,7 @@ ln -s `date +%F` ~/public_html/vrmlengine-snapshots/latest
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tovrmlx3d tests:'                                            >> "$OUTPUT_LOG"
 
-cd ~/sources/vrmlengine/trunk/view3dscene/
+cd ~/sources/castle-engine/trunk/view3dscene/
 ./compile.sh                                                              >> "$OUTPUT_LOG" 2>&1
 ./run_tests.sh > /tmp/view3dscene_run_tests_output.txt 2>&1
 diff -u /tmp/view3dscene_run_tests_output.txt run_tests_valid_output.txt  >> "$OUTPUT_LOG"
@@ -101,7 +101,7 @@ rm -f /tmp/view3dscene_run_tests_output.txt
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
 
-cd  ~/sources/vrmlengine/trunk/castle_game_engine/
+cd  ~/sources/castle-engine/trunk/castle_game_engine/
 make clean             >> "$OUTPUT_LOG" 2>&1
 # make examples-laz first, to avoid creating .ppu colliding with Lazarus.
 make examples-laz      >> "$OUTPUT_LOG" 2>&1
@@ -127,10 +127,10 @@ make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Making docs:'                                                       >> "$OUTPUT_LOG"
-~/bin/vrmlengine_snapshot_remake_docs >> "$OUTPUT_LOG" 2>&1
+~/bin/castle_engine_snapshot_remake_docs >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Making reference using PasDoc:'                                     >> "$OUTPUT_LOG"
-~/bin/vrmlengine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
+~/bin/castle_engine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
 
 echo "----------- That's all folks :)" >> "$OUTPUT_LOG"
