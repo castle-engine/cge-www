@@ -35,7 +35,6 @@
    ============================================================
 
    Before including this file, you should define a couple of constants:
-   - COUNTER_DATA_PATH (see counter.php)
    - ENV_VARIABLE_NAME_LOCAL_PATH (needed only if you intend to make
      local HTML versions by command-line php)
    - CURRENT_URL (URL to main directory of these very web pages,
