@@ -358,7 +358,7 @@ div.main {
 		height: 100px;
 	}
 		
-	        /* Kambi+, to make link to vrmlengine.sf.net look good */
+	        /* Kambi+, to make link to castle-engine.sf.net look good */
 		.kambi-vrmlengine-para         { color: #666666; }
 		.kambi-vrmlengine-para a       { color: #5eb2e5; text-decoration:underline; }
 		.kambi-vrmlengine-para a:hover { color: #eead24; text-decoration:underline; }

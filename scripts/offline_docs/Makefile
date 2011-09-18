@@ -73,7 +73,7 @@ all: $(ALL_HTMLS)
 clean:
 	rm -f $(ALL_HTMLS)
 
-COMMON_DEPENDENCIES := $(PHP_DIR)vrmlengine_functions.php \
+COMMON_DEPENDENCIES := $(PHP_DIR)castle_engine_functions.php \
   $(PHP_DIR)kambi-php-lib/kambi_common.php
 
 %.html : $(PHP_DIR)%.php $(COMMON_DEPENDENCIES)

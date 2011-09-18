@@ -40,7 +40,7 @@ Castle 1/2.0.0 stuff:
 <p>Some website improvements:</p>
 
 <ul>
-  <li><p>Since this message, the "latest news" of our engine are hosted using a WordPress blog on <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-blog/">http://michalis.ii.uni.wroc.pl/vrmlengine-blog/</a>. All previous URLs will continue to work, and the latest news will always be visible on the main page. You just have more options now, most of all you can comment about the engine updates.</p>
+  <li><p>Since this message, the "latest news" of our engine are hosted using a WordPress blog on <a href="http://michalis.ii.uni.wroc.pl/castle-engine-blog/">http://michalis.ii.uni.wroc.pl/castle-engine-blog/</a>. All previous URLs will continue to work, and the latest news will always be visible on the main page. You just have more options now, most of all you can comment about the engine updates.</p>
 </ul>
 
 - copy the news both to WP and changes_log_common, add this to www/NOTES

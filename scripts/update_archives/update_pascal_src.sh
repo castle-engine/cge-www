@@ -2,7 +2,7 @@
 set -eu
 
 # Update archives with my Pascal sources in file_releases/.
-# Kambi VRML game engine sources are expected inside $VRMLENGINE_PATH.
+# Kambi VRML game engine sources are expected inside $CASTLE_ENGINE_PATH.
 #
 # All archives are build as tar.gz.
 # Use this only from Linux, although any Unix should be Ok actually.
@@ -171,7 +171,7 @@ case "$1" in
   castle_game_engine)
     mk_archive_begin
 
-    pascal_src_add_standard "$VRMLENGINE_PATH"castle_game_engine/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"castle_game_engine/
 
     make -C "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/ cleanmore
 
@@ -189,7 +189,7 @@ case "$1" in
     # 3dgraph/ 3dmodels/ base/ fonts/ images/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"rayhunter/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"rayhunter/
     pascal_src_archive_end rayhunter
     ;;
 
@@ -198,7 +198,7 @@ case "$1" in
     # 3dgraph/ 3dmodels/ 3dmodels.gl/ audio/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"lets_take_a_walk/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"lets_take_a_walk/
     pascal_src_archive_end lets_take_a_walk
     ;;
 
@@ -207,7 +207,7 @@ case "$1" in
     # 3dgraph/ 3dmodels/ 3dmodels.gl/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"view3dscene/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"view3dscene/
     pascal_src_archive_end view3dscene
     ;;
 
@@ -216,7 +216,7 @@ case "$1" in
     # 3dgraph/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"glviewimage/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glviewimage/
     pascal_src_archive_end glviewimage
     ;;
 
@@ -225,7 +225,7 @@ case "$1" in
     # 3dgraph/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"glplotter/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glplotter/
     pascal_src_archive_end glplotter
     ;;
 
@@ -234,7 +234,7 @@ case "$1" in
     # 3dgraph/ base/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"glinformation/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glinformation/
     pascal_src_archive_end glinformation
     ;;
 
@@ -243,7 +243,7 @@ case "$1" in
     # base/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"gen_function/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"gen_function/
     pascal_src_archive_end gen_function
     ;;
 
@@ -252,7 +252,7 @@ case "$1" in
     # 3dgraph/ 3dmodels/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"bezier_curves/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"bezier_curves/
     pascal_src_archive_end bezier_curves
     ;;
 
@@ -261,7 +261,7 @@ case "$1" in
     # 3dgraph/ 3dmodels/ 3dmodels.gl/ base/ fonts/ images/ opengl/
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"malfunction/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"malfunction/
     pascal_src_archive_end malfunction
     ;;
 
@@ -269,24 +269,24 @@ case "$1" in
     # Used units:
     # 3dgraph/ base/ fonts/ images/ opengl/
 
-    rm -f "$VRMLENGINE_PATH"kambi_lines/KAMBI_LINES.hsc \
-          "$VRMLENGINE_PATH"kambi_lines/KAMBI_LINES.ini
+    rm -f "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.hsc \
+          "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.ini
 
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"kambi_lines/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"kambi_lines/
     pascal_src_archive_end kambi_lines
     ;;
 
   castle)
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"castle/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"castle/
     $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"castle clean clean_private clean_binaries
     pascal_src_archive_end castle
     ;;
 
   rift)
     mk_archive_begin
-    pascal_src_add_standard "$VRMLENGINE_PATH"rift/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"rift/
     pascal_src_archive_end rift
     ;;
 

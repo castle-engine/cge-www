@@ -25,7 +25,7 @@ pascal_src_add_compile_script ()
 
   rm -f "$COMPILE_SH_FULLNAME"
 
-  emacs_batch -l "$CAMELOT_LOCAL_PATH""${VRMLENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/update_archives.el \
+  emacs_batch -l "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/update_archives.el \
     "$COMPILE_SH_FULLNAME" \
     --exec "$GENERATE_COMPILE_SCRIPT" \
     --exec "(save-buffer)"
@@ -51,51 +51,51 @@ pascal_src_add_compile_script_xlib ()
 }
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"rayhunter/compile.sh \
+  "$CASTLE_ENGINE_PATH"rayhunter/compile.sh \
   "(create-compile-script '(\"../rayhunter/rayhunter.lpr\"))"
 
 pascal_src_add_compile_script_xlib \
-  "$VRMLENGINE_PATH"lets_take_a_walk \
+  "$CASTLE_ENGINE_PATH"lets_take_a_walk \
   lets_take_a_walk/lets_take_a_walk.lpr
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"view3dscene/compile.sh \
+  "$CASTLE_ENGINE_PATH"view3dscene/compile.sh \
   "(create-compile-script '(\"../view3dscene/view3dscene.lpr\") t)"
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"glviewimage/compile.sh \
+  "$CASTLE_ENGINE_PATH"glviewimage/compile.sh \
   "(create-compile-script '(\"../glviewimage/glViewImage.lpr\") t)"
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"glplotter/compile.sh \
+  "$CASTLE_ENGINE_PATH"glplotter/compile.sh \
   "(create-compile-script '(\"../glplotter/glplotter.lpr\") t)"
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"glcaps/compile.sh \
+  "$CASTLE_ENGINE_PATH"glcaps/compile.sh \
   "(create-compile-script '(\
       \"../glcaps/glcaps.lpr\" \
       \"../glcaps/glcaps_glut.lpr\") t)"
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"gen_funkcja/compile.sh \
+  "$CASTLE_ENGINE_PATH"gen_funkcja/compile.sh \
   "(create-compile-script '(\"../gen_funkcja/gen_funkcja.lpr\"))"
 
 pascal_src_add_compile_script \
-  "$VRMLENGINE_PATH"bezier_curves/compile.sh \
+  "$CASTLE_ENGINE_PATH"bezier_curves/compile.sh \
   "(create-compile-script '(\"../bezier_curves/bezier_curves.lpr\") t)"
 
 pascal_src_add_compile_script_xlib \
-  "$VRMLENGINE_PATH"malfunction \
+  "$CASTLE_ENGINE_PATH"malfunction \
   malfunction/malfunction.lpr
 
 pascal_src_add_compile_script_xlib \
-  "$VRMLENGINE_PATH"kambi_lines \
+  "$CASTLE_ENGINE_PATH"kambi_lines \
   kambi_lines/kambi_lines.lpr
 
 pascal_src_add_compile_script_xlib \
-  "$VRMLENGINE_PATH"rift \
+  "$CASTLE_ENGINE_PATH"rift \
   rift/rift.pasprogram
 
 pascal_src_add_compile_script_xlib \
-  "$VRMLENGINE_PATH"sandbox \
+  "$CASTLE_ENGINE_PATH"sandbox \
   sandbox/sandbox.lpr

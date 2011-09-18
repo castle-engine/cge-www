@@ -8,11 +8,10 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
 
 <?php
   /* Kambi: insert SF logo */
-  if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
+  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net')
   {
   ?>
-    Hosted by
-    <a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&type=9" width="80" height="15" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+    <a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
   <?php
   }
 ?>
@@ -23,22 +22,11 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
 			<?php
 
   /* Kambi: insert piwik code on SourceForge */
-  if ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net')
+  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net')
   {
 ?>
 
-<!-- Piwik -->
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://apps.sourceforge.net/piwik/vrmlengine/" : "http://apps.sourceforge.net/piwik/vrmlengine/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-piwik_action_name = '';
-piwik_idsite = 1;
-piwik_url = pkBaseURL + "piwik.php";
-piwik_log(piwik_action_name, piwik_idsite, piwik_url);
-</script>
-<object><noscript><p><img src="http://apps.sourceforge.net/piwik/vrmlengine/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
-<!-- End Piwik Tag -->
+<!-- SF hosted piwik broken -->
 
 <?php
   }

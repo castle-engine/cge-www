@@ -11,10 +11,10 @@ set -eu
 
 do_linkchecker ()
 {
-  linkchecker --config=/home/michalis/sources/vrmlengine/trunk/www/scripts/linkchecker.conf "$@"
+  linkchecker --config=/home/michalis/sources/castle-engine/trunk/www/scripts/linkchecker.conf "$@"
 }
 
-do_linkchecker http://127.0.0.1/~michalis/vrmlengine/
+do_linkchecker http://127.0.0.1/~michalis/castle-engine/
 
 # Test also do offline docs have links ok
 

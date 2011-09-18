@@ -23,7 +23,7 @@ make
 # FPCUnit tests
 
 cd tests/
-# make in tests.inc VRMLENGINE_TRUNK_AVAILABLE defined
+# make in tests.inc CASTLE_ENGINE_TRUNK_AVAILABLE defined
 ./compile_console.sh
 ./test_kambi_units -a
 

@@ -1,6 +1,6 @@
 Layout:
 
-htodcs/ is exactly what goes into http://vrmlengine.sourceforge.net/
+htodcs/ is exactly what goes into http://castle-engine.sourceforge.net/
 
 screenshots/ are only a copy (sometimes with better resolution)
 of the same screenshots that are available on SF screenshot
@@ -26,8 +26,8 @@ Procedure to update WWW content:
 
 - When release is packed, it's nice to tag it in SVN:
 
-  svn copy https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/XXX \
-	   https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/XXX/VERSION \
+  svn copy http://svn.code.sf.net/p/castle-engine/code/trunk/XXX \
+           http://svn.code.sf.net/p/castle-engine/code/tags/XXX/VERSION \
     -m "Tagging the VERSION version of 'XXX'."
 
 - Release on SourceForge.
@@ -58,8 +58,8 @@ Procedure to update WWW content:
   - svn update on SF within htdocs/
 
 - if may be good to fix old links leading to
-  http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/ now
-  to go to http://vrmlengine.sourceforge.net/ .
+  http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/ now
+  to go to http://castle-engine.sourceforge.net/ .
   (M-x kam-vrmlengine-snapshot-docs-to-normal in Michalis Emacs.)
 
 - if you change some content outside SVN:
@@ -82,7 +82,7 @@ Procedure to update WWW content:
 
 - after important release, I may wish to announce it:
 
-  - sf news for vrmlengine project
+  - sf news for castle-engine project (remove this probably, I don't enable "blog" on Allura)
   - engine source code release means updating FPC contrib units info
     (see fpc_contrib_units_data.txt,
     http://www.freepascal.org/contrib/db.php3?category=Graphics).

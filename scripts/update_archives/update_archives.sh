@@ -15,7 +15,7 @@ set -eu
 #   (other OSes filesystems are not directly visible from Windows).
 #
 # This script requires a couple of environment variables defined to work:
-# KAMBI_WWW_LOCAL_PATH, VRMLENGINE_HTDOCS_LOCAL_PATH, KAMBI_OS_NAME, KAMBI_GNU_MAKE.
+# KAMBI_WWW_LOCAL_PATH, CASTLE_ENGINE_HTDOCS_LOCAL_PATH, KAMBI_OS_NAME, KAMBI_GNU_MAKE.
 #
 # This script doesn't care for current dir from which it is run.
 
@@ -82,9 +82,9 @@ WIN_BINARY_PATH="$HOME"/rel/win/
 FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
 
-WIN32_DLLS_PATH="${VRMLENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/win32_dlls/
+WIN32_DLLS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/win32_dlls/
 
-OFFLINE_DOCS_PATH="${VRMLENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
+OFFLINE_DOCS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
 
 # utils -----------------------------------------------------------------
 
@@ -221,11 +221,11 @@ binary_add_gpl2 ()
 # ('documentation/' subdirectory will be created if not exists).
 # Filenames ended by '.html' will be copied from OFFLINE_DOCS.
 #
-# Other filenames will be directly copied from $VRMLENGINE_HTDOCS_LOCAL_PATH
+# Other filenames will be directly copied from $CASTLE_ENGINE_HTDOCS_LOCAL_PATH
 # (these other filenames may be given with some preceding path
-# relative to $VRMLENGINE_HTDOCS_LOCAL_PATH).
+# relative to $CASTLE_ENGINE_HTDOCS_LOCAL_PATH).
 #
-# Also, vrmlengine.css and images/header*
+# Also, castle-engine.css and images/header*
 # will always be copied to documentation/.
 #
 # This function ignores and modifies current dir.
@@ -274,27 +274,27 @@ binary_add_doc ()
     else
       THIS_DOC_FILE_SUBDIR="${DOC_SUBDIR_NAME}"`stringoper ExtractFilePath "${DOC_FILE_NAME}"`
       mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
-      cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}${DOC_FILE_NAME}" "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
+      cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}${DOC_FILE_NAME}" "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
     fi
   done
 
   mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
-  cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
-     "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
+  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
+     "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
     "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
 
-  cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}"vrmlengine.css "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}"
+  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}"
 }
 
 binary_add_view3dscene_desktop ()
 {
   mkdir "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/install.sh             "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/install_thumbnailer.sh "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/view3dscene.desktop    "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/view3dscene.png        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/view3dscene.svg        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$VRMLENGINE_PATH"view3dscene/desktop/view3dscene.xml        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/install.sh             "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/install_thumbnailer.sh "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.desktop    "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.png        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.svg        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.xml        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
 }
 
 # This sets appropriate permissions: executable for binary and dirs,
@@ -505,7 +505,7 @@ case "$1" in
     binary_archive_begin "$2" "$3" malfunction
     binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
     update_full_program malfunction \
-      "$VRMLENGINE_PATH"malfunction/ \
+      "$CASTLE_ENGINE_PATH"malfunction/ \
       'data/' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
@@ -523,7 +523,7 @@ case "$1" in
       images/kambi_lines/ball_red_white_1.png \
       images/kambi_lines/red_white_combo.png
     update_full_program kambi_lines \
-      "$VRMLENGINE_PATH"kambi_lines/ \
+      "$CASTLE_ENGINE_PATH"kambi_lines/ \
       'images/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
@@ -537,7 +537,7 @@ case "$1" in
     binary_archive_begin "$2" "$3" lets_take_a_walk
     binary_add_doc lets_take_a_walk.html openal_notes.html $DOC_FILES_GL_PARAMS
     update_full_program lets_take_a_walk \
-      "$VRMLENGINE_PATH"lets_take_a_walk/ \
+      "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
       'data/' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
@@ -551,7 +551,7 @@ case "$1" in
     binary_archive_begin "$2" "$3" bezier_curves
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
     update_small_program bezier_curves  \
-      "$VRMLENGINE_PATH"bezier_curves/
+      "$CASTLE_ENGINE_PATH"bezier_curves/
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -562,7 +562,7 @@ case "$1" in
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" sandbox
     update_full_program sandbox \
-      "$VRMLENGINE_PATH"sandbox/ \
+      "$CASTLE_ENGINE_PATH"sandbox/ \
       'README tiles/ maps/' \
       ''
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
@@ -578,7 +578,7 @@ case "$1" in
       opengl_options.html common_options.html \
       castle.html castle-advanced.html castle-development.html castle-credits.html
     update_full_program castle \
-      "$VRMLENGINE_PATH"castle/ \
+      "$CASTLE_ENGINE_PATH"castle/ \
       'data/ README TODO Makefile' \
       ''
 
@@ -631,7 +631,7 @@ case "$1" in
     cp "$WIN32_DLLS_PATH"* "$MK_ARCHIVE_TEMP_PATH"
     dircleaner "$MK_ARCHIVE_TEMP_PATH" clean
 
-    ARCHIVE_FILE_NAME="${VRMLENGINE_HTDOCS_LOCAL_PATH}miscella/win32_dlls.zip"
+    ARCHIVE_FILE_NAME="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}miscella/win32_dlls.zip"
     mk_archive_pack "$ARCHIVE_FILE_NAME"
     echo 'Updated '"$ARCHIVE_FILE_NAME"
 
@@ -641,7 +641,7 @@ case "$1" in
   demo_models)
     mk_archive_begin
 
-    cp -R "$VRMLENGINE_PATH"demo_models/ .
+    cp -R "$CASTLE_ENGINE_PATH"demo_models/ .
     dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
     make -C demo_models/shadow_maps/sunny_street/ clean
 
@@ -651,11 +651,11 @@ case "$1" in
     $MAKE -C "$OFFLINE_DOCS_PATH" demo_models.html LOCALLY_AVAIL=
     cp "$OFFLINE_DOCS_PATH"demo_models.html \
       demo_models/README.html
-    cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}"vrmlengine.css \
+    cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css \
       demo_models/
     mkdir -p demo_models/images/
-    cp "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
-       "${VRMLENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
+    cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
+       "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
        demo_models/images/
 
     find ./ -type f -and -exec chmod 644 '{}' ';'
@@ -672,7 +672,7 @@ case "$1" in
     cd /mnt/fat/3dmodels/blender/forest/
     FOREST_ARCHIVE=forest.tar.gz
     make "$FOREST_ARCHIVE"
-    cp "$FOREST_ARCHIVE" "$VRMLENGINE_HTDOCS_LOCAL_PATH"miscella/
+    cp "$FOREST_ARCHIVE" "$CASTLE_ENGINE_HTDOCS_LOCAL_PATH"miscella/
     echo "Updated $FOREST_ARCHIVE"
     ;;
 

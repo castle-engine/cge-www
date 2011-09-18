@@ -1,5 +1,5 @@
 This is a collection of Windows DLLs used by various VRML engine
-programs, see [http://vrmlengine.sourceforge.net/].
+programs, see [http://castle-engine.sourceforge.net/].
 All Windows binary releases already contains these DLLs
 (or only their subset, as e.g. OpenAL and OggVorbis stuff is not
 needed by many programs). So normal users should not need to download
