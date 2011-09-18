@@ -320,7 +320,7 @@ function echo_header_bonus ()
 
 <link type="text/css" rel="stylesheet" media="all"  href="castle-engine.css">
 
-<script type="text/javascript" src="vrmlengine.js"></script>
+<script type="text/javascript" src="castle-engine.js"></script>
 
 <script type="text/javascript">
 /* <![CDATA[ */
