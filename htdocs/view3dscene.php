@@ -181,8 +181,12 @@ flawlessly :) So give it a try!
     is handled, animation is played.</p>
 
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
-    (<tt>.dae</tt> extension). All modern Collada versions (1.3, 1.4, 1.5)
-    are handled.
+    (<tt>.dae</tt> extension). Current (3.10.1) view3dscene support for Collada
+    is quite limited (only geometry with materials).
+
+    <p>But the next view3dscene release will have a lof of new Collada features
+    (you can try them already by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>).
+    All modern Collada versions (1.3, 1.4, 1.5) are handled.
     We support a lot of Collada features &mdash; geometry with materials,
     textures, cameras, lights. Tested on many Collada examples,
     like <a href="http://collada.org/owl/">Collada Test Model Bank</a>

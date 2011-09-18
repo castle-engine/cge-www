@@ -68,6 +68,12 @@ is also very useful.</p>
     This gives us full support for these formats, without any extra
     libraries necessary (fcl-image is compiled inside our programs).
 
+    <p>Temporary note: in stable (1.3.1) glViewImage, actually some of these
+    formats require still <a href="http://www.imagemagick.org/">ImageMagick</a>
+    on $PATH. You can use
+    <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>
+    (or wait for next release) to actually get fcl-image benefits.
+
   <li><b>DDS</b>: <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
     Draw Surface</a>. This image format may be used for advanced
     texturing, as it can store textures compressed for GPUs,
@@ -194,7 +200,6 @@ then you loose RGBE precision (and clamp color values above 1.0).
 <p>Also, S3TC compressed images (from DDS files) will be always decompressed,
 and saving them back will always make uncompressed files.
 
-<a name="section_depends"></a>
 <?php echo $toc->html_section(); ?>
 
 <?php echo depends_ul(array(
