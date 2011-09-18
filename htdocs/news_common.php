@@ -97,8 +97,9 @@ foreach ($news as &$log_entry)
       $log_entry['day'] . '-' .
       /* For safety and to make guid look nicer, remove special characters.
          Not all these replacements are really necessary, only <> and &
-         to avoid breaking XML. guid is used in both RSS XML and in HTML. */
-      strtr(strtolower($log_entry['title']), ' &;,:*/()<>+', '____________');
+         to avoid breaking XML, and " to avoid breaking HTML.
+         guid is used in both RSS XML and in HTML. */
+      strtr(strtolower($log_entry['title']), ' &;,:*/()<>+"', '_____________');
 
   $log_entry['id'] = $log_entry['guid'];
 
