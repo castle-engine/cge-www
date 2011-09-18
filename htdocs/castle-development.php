@@ -896,7 +896,7 @@ In particular
 
 <p><?php echo a_href_page_hashlink('Download game sources', 'engine',
 'section_download_src'); ?>. From this page, grab both
-<i>Kambi VRML game engine</i> sources and <i>castle</i> sources.
+<i><?php echo ENGINE_NAME; ?></i> sources and <i>castle</i> sources.
 Unpack them in such way that <tt><?php echo ENGINE_DIR_NAME; ?>/</tt>
 and <tt>castle/</tt> directories are together (siblings) under the same directory.
 

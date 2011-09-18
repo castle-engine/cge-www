@@ -7,7 +7,7 @@
 <?php echo pretty_heading('Reference'); ?>
 
 <div style="text-align: center;">
-<div style="font-weight: bold; font-size: large; border: thin outset black; background: #ffff91; display: inline-block; padding: 0.5em;">Go to <a href="apidoc/html/index.html">reference of Kambi VRML game engine API</a></div>
+<div style="font-weight: bold; font-size: large; border: thin outset black; background: #ffff91; display: inline-block; padding: 0.5em;">Go to <a href="apidoc/html/index.html">reference of Castle Game Engine API</a></div>
 </div>
 
 <p>You want to start reading from the initial

@@ -1,7 +1,7 @@
 <?php
   require_once 'vrmlengine_functions.php';
   $main_page = true;
-  vrmlengine_header('Kambi VRML game engine',
+  vrmlengine_header('Castle Game Engine',
     'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
 ?>
 
@@ -17,9 +17,7 @@ href="http://vrmlengine.sourceforge.net/"></a>
 <g:plusone></g:plusone-->
 </div>
 
-<?php /* echo pretty_heading("Kambi VRML game engine"); */  ?>
-
-<p><b>For developers:</b> <b>Kambi VRML game engine</b>
+<p><b>For developers:</b> <b>Castle Game Engine (previously "Kambi VRML game engine")</b>
 is a free/open-source 3D (game) engine.
 The engine is&nbsp;written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
 code, and we have an&nbsp;excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
@@ -59,8 +57,8 @@ Two&nbsp;most important programs available here are
 
 <p><b>Watch engine development</b>: To <i>really</i> watch the engine development
 closely, you can watch the commits through
-<a href="http://cia.vc/stats/project/vrmlengine">Kambi VRML game engine on
-cia.vc</a>. There is also <a href="https://www.ohloh.net/p/vrmlengine">our
+<a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
+cia.vc</a>. There is also <a href="https://www.ohloh.net/p/castle-engine">our
 project page on Ohloh</a> (you're welcome to rate and click on
 <i>"I use this"</i> button there!).</p>
 

@@ -1659,7 +1659,7 @@ end;
     ));
     ?>
 
-    <p>Like most 3D engines, <i>Kambi VRML game engine</i> uses a smart
+    <p>Like most 3D engines, <i>Castle Game Engine</i> uses a smart
     tree structure to handle collision detection in arbitrary 3D worlds.
     The structure used in our engine is the <i>octree</i>, with a couple
     of special twists to handle dynamic scenes. See

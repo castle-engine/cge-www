@@ -4,7 +4,7 @@
 
   define('AVI_TITLE', 'Download AVI version');
 
-  echo pretty_heading("Demo movies - Kambi VRML game engine");
+  echo pretty_heading("Demo movies");
 ?>
 
 <p>Various demo videos showing our engine at work. YouTube videos have

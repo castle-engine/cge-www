@@ -18,7 +18,7 @@ function vrmlx3d_footer()
 function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_intro)
 {
   vrmlengine_header($x3d_component_name .
-    ' component - implementation status - Kambi VRML game engine',
+    ' component - implementation status - Castle Game Engine',
     NULL, array('vrml_x3d', 'vrml_implementation_status'));
 
   echo pretty_heading($x3d_component_name . ' component');

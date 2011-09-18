@@ -202,14 +202,14 @@ game engine. In short:
 <p>The engine was used to develop all programs on these pages.
 It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
-<p>See also <?php echo a_href_page('demo movies of Kambi VRML game engine',
+<p>See also <?php echo a_href_page('demo movies of ' . ENGINE_NAME,
 'movies'); ?>.
 
 <?php echo $toc->html_section(); ?>
 <?php echo $toc->html_section(); ?>
 
 <div class="download">
-<?php echo sf_download('Download "Kambi VRML game engine" (version ' .
+<?php echo sf_download('Download "' .ENGINE_NAME. '" (version ' .
   VERSION_CASTLE_GAME_ENGINE . ')',
   ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE .
   '-src.tar.gz'); ?>

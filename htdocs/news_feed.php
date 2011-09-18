@@ -13,8 +13,8 @@
 
   header('Content-type: application/rss+xml; charset=utf-8');
 
-  $rss = new rss_generator('News about the Kambi VRML game engine');
+  $rss = new rss_generator('News about the Castle Game Engine');
   $rss->link = 'http://vrmlengine.sourceforge.net/';
-  $rss->description = 'All the news about the Kambi VRML game engine - changes, releases and more.';
+  $rss->description = 'All the news about the Castle Game Engine - changes, releases and more.';
   echo $rss->get($news);
 ?>

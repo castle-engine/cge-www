@@ -316,7 +316,7 @@ function echo_header_bonus ()
   ?>
 
 <link rel="alternate" type="application/rss+xml"
-  title="Kambi VRML game engine - changes log RSS feed"
+  title="Castle Game Engine - News Feed"
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
 <link type="text/css" rel="stylesheet" media="all"  href="castle-engine.css">
@@ -394,8 +394,8 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
 
   $rendered = '
   <div class="header">
-    <!--img class="header_icon" src="images/header_icon.png" alt="Kambi VRML game engine icon" /-->
-    <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Kambi VRML game engine</a></div>
+    <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
+    <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
     ' . _vrmlengine_header_menu($path[0]) . '
   </div>';
 
@@ -425,7 +425,7 @@ function echo_footer ()
   if (IS_GEN_LOCAL) { ?>
     <address>
     By Michalis Kamburelis, as part of
-    <?php echo "<a href=\"" . CURRENT_URL . "\">Kambi VRML game engine</a>"; ?>.
+    <?php echo "<a href=\"" . CURRENT_URL . "\">Castle Game Engine</a>"; ?>.
     </address>
     <?php
   }
@@ -434,7 +434,7 @@ function echo_footer ()
 
   <table><tr>
 
-    <td><a href="http://sourceforge.net/projects/vrmlengine"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=200653&amp;type=11" width="120" height="30" border="0" alt="Get Kambi VRML game engine at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td>
+    <td><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a></td>
 
     <td><?php echo PAGE_COPYRIGHT; ?></td>
 

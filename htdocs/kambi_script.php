@@ -21,10 +21,10 @@
 ?>
 
 <?php echo pretty_heading('KambiScript language', NULL,
-'Simple scripting language for Kambi VRML game engine'); ?>
+'Simple scripting language for Castle Game Engine'); ?>
 
 <p><tt>KambiScript</tt> is a simple scripting language used in
-our <i>Kambi VRML game engine</i>. You can use it in VRML/X3D <tt>Script</tt>
+our <i>Castle Game Engine</i>. You can use it in VRML/X3D <tt>Script</tt>
 nodes. Also it's syntax of mathematical expressions is usable
 throughout our engine, for example <?php echo a_href_page(
 'glplotter and gen_function',
