@@ -1,3 +1,16 @@
 # Otherwise server returns text/plain and the chm
 # contents are displayed as a text file.
 AddType application/octet-stream .chm
+
+Redirect sources.php                engine.php
+Redirect gen_funkcja.pl.php         glplotter_and_gen_function.php
+Redirect support.php                forum.php
+Redirect kambi_vrml_game_engine.php engine.php
+Redirect openal_notes.php           openal.php
+Redirect changes_log.php            news.php
+Redirect blender_stuff.php          blender.php
+Redirect changes_log_feed.php       news_feed.php
+Redirect sources_docs.php           reference.php
+Redirect glplotter.pl.php           glplotter_and_gen_function.php
+Redirect kambi_vrml_test_suite.php  demo_models.php
+Redirect glcaps.php                 glinformation.php
