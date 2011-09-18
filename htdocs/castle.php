@@ -8,7 +8,7 @@
 
 <?php
   echo pretty_heading('The Castle', VERSION_CASTLE);
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'castle_screen_demo_1.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
     array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
     array('filename' => 'castle_screen_demo_5.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),

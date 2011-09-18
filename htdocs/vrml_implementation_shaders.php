@@ -5,7 +5,7 @@
      available on modern graphic cards.'
   );
 
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot VRML model rendered with toon shading in GLSL'),
     array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
     array('html' =>

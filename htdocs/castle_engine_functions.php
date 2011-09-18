@@ -54,8 +54,8 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
 
    - sub: optional array of pages under this page.
 */
-global $vrmlengine_sitemap;
-$vrmlengine_sitemap = array(
+global $castle_sitemap;
+$castle_sitemap = array(
   MAIN_PAGE_BASENAME       => array('title' => 'News' /* for sidebar on news.php */, 'title-for-header-menu' => 'Intro and News'
     /* 'sub' and 'sidebar' of this will be calculated by news.php page,
        since it may be time-consuming (requires reading large $news table). */
@@ -170,7 +170,7 @@ $vrmlengine_sitemap = array(
   'blender' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
 
-/* Internal for _vrmlengine_sidebar* usage.
+/* Internal for _castle_sidebar* usage.
 
    Return a formatted link to given page.
    $page is the page basename (like for a_href_page), or a basename(hash)anchor.
@@ -178,7 +178,7 @@ $vrmlengine_sitemap = array(
 
    Looks at global $page_basename, to avoid turning current page name
    into a link. */
-function _vrmlengine_sidebar_link($page, $pageinfo)
+function _castle_sidebar_link($page, $pageinfo)
 {
   $pagelink = explode('#', $page);
   if (count($pagelink) == 1)
@@ -194,16 +194,16 @@ function _vrmlengine_sidebar_link($page, $pageinfo)
     return '<b>Invalid sidebar link ' . htmlspecialchars($pagelink) . '</b>';
 }
 
-/* Internal for _vrmlengine_sidebar* usage.
+/* Internal for _castle_sidebar* usage.
    Return a <ul> listing items on $sub. */
-function _vrmlengine_sidebar_menu($sub)
+function _castle_sidebar_menu($sub)
 {
   $result = '<ul>';
   foreach($sub as $page => $pageinfo)
   {
-    $result .= '<li>' . _vrmlengine_sidebar_link($page, $pageinfo);
+    $result .= '<li>' . _castle_sidebar_link($page, $pageinfo);
     if (isset($pageinfo['sub']))
-      $result .= _vrmlengine_sidebar_menu($pageinfo['sub']);
+      $result .= _castle_sidebar_menu($pageinfo['sub']);
     $result .= '</li>';
   }
   $result .= '</ul>';
@@ -211,14 +211,14 @@ function _vrmlengine_sidebar_menu($sub)
 }
 
 /* Return a rendered HTML sidebar. */
-function _vrmlengine_sidebar($page, $pageinfo)
+function _castle_sidebar($page, $pageinfo)
 {
   $result = '
   <div class="sidebar">
-    <div class="sidebar_title">' . _vrmlengine_sidebar_link($page, $pageinfo) . '</div>';
+    <div class="sidebar_title">' . _castle_sidebar_link($page, $pageinfo) . '</div>';
 
   if (isset($pageinfo['sub']))
-    $result .= _vrmlengine_sidebar_menu($pageinfo['sub']);
+    $result .= _castle_sidebar_menu($pageinfo['sub']);
 
   $result .= '</div>';
 
@@ -227,10 +227,10 @@ function _vrmlengine_sidebar($page, $pageinfo)
 
 function _castle_engine_header_menu($current_page)
 {
-  global $vrmlengine_sitemap;
+  global $castle_sitemap;
 
   $menu_for_users = 6 * 2 + 1;
-  $menu_for_developers = 2 * count($vrmlengine_sitemap) + 1 - $menu_for_users;
+  $menu_for_developers = 2 * count($castle_sitemap) + 1 - $menu_for_users;
 
   /* It's a hack even to use a table cell for this.
      It's even bigger hack to insert empty <div> here, but it's required
@@ -248,7 +248,7 @@ function _castle_engine_header_menu($current_page)
       </tr>
       <tr>' . $td_separator;
 
-  foreach($vrmlengine_sitemap as $menu_item_page => $menu_item)
+  foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
     $result .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
     if (isset($menu_item['hint']))
@@ -270,7 +270,7 @@ function _castle_engine_header_menu($current_page)
   return $result;
 }
 
-function _vrmlengine_breadcrumbs($path)
+function _castle_breadcrumbs($path)
 {
   $result = '';
 
@@ -282,14 +282,14 @@ function _vrmlengine_breadcrumbs($path)
      (because then header menu tab + page title shows where we are). */
   if (count($path) > 2)
   {
-    global $vrmlengine_sitemap;
+    global $castle_sitemap;
 
     $result = '<div class="header_breadcrumbs">' .
       a_href_page('Home', MAIN_PAGE_BASENAME);
 
     $path_item_num = 0;
     $path_item = '';
-    $path_itemsub = $vrmlengine_sitemap;
+    $path_itemsub = $castle_sitemap;
 
     while ($path_item_num < count($path) - 1)
     {
@@ -339,15 +339,15 @@ function echo_header_bonus ()
   <?php
 }
 
-/* $path is a list of page names, a path in the tree of $vrmlengine_sitemap,
+/* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
 function castle_engine_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
-  global $vrmlengine_sidebar;
-  global $vrmlengine_sitemap;
+  global $castle_sidebar;
+  global $castle_sitemap;
   global $page_basename;
 
   /* make sure $path ends with $page_basename.
@@ -355,13 +355,13 @@ function castle_engine_header($a_page_title, $meta_description = NULL, $path = a
   if (count($path) == 0 || $path[count($path) - 1] != $page_basename)
     $path[] = $page_basename;
 
-  /* traverse $vrmlengine_sitemap, along the $path.
+  /* traverse $castle_sitemap, along the $path.
      Find which items should be used for a sidebar, if any. */
   $sidebarroot_num = -1;
   $sidebarroot_page = NULL;
   $sidebarroot_info = NULL;
   $sidebarroot_sidebar = false;
-  $sidebarroot_sub = $vrmlengine_sitemap;
+  $sidebarroot_sub = $castle_sitemap;
   while (!$sidebarroot_sidebar)
   {
     $sidebarroot_num ++;
@@ -386,8 +386,8 @@ function castle_engine_header($a_page_title, $meta_description = NULL, $path = a
 
   /* make sidebar */
   if ($sidebarroot_page !== NULL && $sidebarroot_info !== NULL)
-    $vrmlengine_sidebar = _vrmlengine_sidebar($sidebarroot_page, $sidebarroot_info); else
-    $vrmlengine_sidebar = '';
+    $castle_sidebar = _castle_sidebar($sidebarroot_page, $sidebarroot_info); else
+    $castle_sidebar = '';
 
   $rendered = '
   <div class="header">
@@ -396,23 +396,23 @@ function castle_engine_header($a_page_title, $meta_description = NULL, $path = a
     ' . _castle_engine_header_menu($path[0]) . '
   </div>';
 
-  if (empty($vrmlengine_sidebar))
-    $rendered .=  _vrmlengine_breadcrumbs($path) . '<div class="content">'; else
+  if (empty($castle_sidebar))
+    $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
     $rendered .= '<table class="layout" cellspacing="0">
       <col class="content_column">
       <col class="sidebar_column">
-      <tr><td class="layout content">' . _vrmlengine_breadcrumbs($path);
+      <tr><td class="layout content">' . _castle_breadcrumbs($path);
 
   echo $rendered;
 }
 
 function castle_engine_footer()
 {
-  global $vrmlengine_sidebar;
+  global $castle_sidebar;
 
-  if (empty($vrmlengine_sidebar))
+  if (empty($castle_sidebar))
     echo '</div>'; else
-    echo '</td><td class="layout">' .$vrmlengine_sidebar. '</td></tr></table>';
+    echo '</td><td class="layout">' .$castle_sidebar. '</td></tr></table>';
 
   common_footer();
 }
@@ -448,27 +448,11 @@ function echo_footer ()
        isset($_SERVER["HTTP_HOST"]) &&
        ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net') )
   {
-/* Tracking code for old piwik as SF hosted app.
-   This piwik is broken, see
+/* The hosted app piwik is broken, see
    https://sourceforge.net/apps/trac/sourceforge/ticket/17978
    (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
    So I use my local piwik installation.
-   Only one piwik.js should be included, so this one is just commented out.
-   Also, it's for vrmlengine, not castle-engine.
-
-<!-- Piwik -->
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://apps.sourceforge.net/piwik/vrmlengine/" : "http://apps.sourceforge.net/piwik/vrmlengine/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-piwik_action_name = '';
-piwik_idsite = 1;
-piwik_url = pkBaseURL + "piwik.php";
-piwik_log(piwik_action_name, piwik_idsite, piwik_url);
-</script>
-<object><noscript><p><img src="http://apps.sourceforge.net/piwik/vrmlengine/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
-<!-- End Piwik Tag -->
-
+   Only one piwik.js should be included.
 */
 ?>
 
@@ -489,7 +473,7 @@ piwikTracker.enableLinkTracking();
   }
 }
 
-define('SF_UNIX_NAME', 'vrmlengine');
+define('SF_UNIX_NAME', 'vrmlengine'); // used only by download links. For now, downloads go to vrmlengine space.
 
 define('MAILING_LIST_URL', 'https://lists.sourceforge.net/lists/listinfo/vrmlengine-main');
 define('FORUM_URL', 'http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3');
@@ -500,15 +484,14 @@ define('PATCHES_TRACKER_URL',          'http://sourceforge.net/tracker/?group_id
 define('MAILING_LIST_LINK', '<a href="' . MAILING_LIST_URL . '">vrmlengine-main mailing list</a>');
 define('FORUM_LINK', '<a href="' . FORUM_URL . '">forum</a>');
 
-/* Return SVN URL to appropriate vrmlengine subproject repository place.
-   If $prefix_command is true then also will add 'svn&nbsp;checkout&nbsp;' line
+/* Return SVN URL to appropriate path with repository trunk.
+   If $prefix_command is true then also will add 'svn checkout ' text
    at the beginning. */
-function sf_checkout_link($prefix_command, $vrmlengine_subproject)
+function sf_checkout_link($prefix_command, $path)
 {
   return
     ($prefix_command ? 'svn checkout ' : '') .
-    'http://svn.code.sf.net/p/castle-engine/code/trunk/' .
-    $vrmlengine_subproject;
+    'http://svn.code.sf.net/p/castle-engine/code/trunk/' . $path;
 }
 
 /* Makes a link to a download from SourceForge file release system. */
@@ -638,15 +621,15 @@ function echo_standard_program_download(
 
    The table uses absolute links (starting with CURRENT_URL).
    The important work is always done directly (without need for CSS classes),
-   so $vrmlengine_force_absolute_url makes content suitable
+   so $castle_force_absolute_url makes content suitable
    for inclusion also in HTML RSS feeds.
    (Maybe it will be conditional on global variable
-   $vrmlengine_force_absolute_url = true in the future.
-   If global variable $vrmlengine_force_absolute_url = false
+   $castle_force_absolute_url = true in the future.
+   If global variable $castle_force_absolute_url = false
    and resource exists locally (is_file_available_locally) then
    only local link will be done.)
 */
-function vrmlengine_thumbs($images, $columns=1, $align='right')
+function castle_thumbs($images, $columns=1, $align='right')
 {
   /* style="clear: right" is added to work nicely with Flattr images,
      that are on some pages (like castle.php) directly above this table
@@ -698,7 +681,7 @@ function vrmlengine_thumbs($images, $columns=1, $align='right')
    from $prog_name. */
 function default_program_thumbnail($prog_name)
 {
-  return vrmlengine_thumbs(array(
+  return castle_thumbs(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
   ));
 }

@@ -14,7 +14,7 @@ $toc = new TableOfContents(array(
 ));
 $toc->echo_numbers = true;
 
-echo vrmlengine_thumbs(array(
+echo castle_thumbs(array(
   array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
   array('filename' => 'volumetric_animated_fog_no_fog.png', 'titlealt' => 'Scene for the volumetric fog, here visible with fog turned off'),
   array('filename' => 'volumetric_animated_fog_no_light.png', 'titlealt' => 'Volumetric fog, with normal lighting turned off'),

@@ -154,7 +154,7 @@ others) are full of demos of our extensions.</p>
     ?>
 
     <?php
-      echo vrmlengine_thumbs(array(
+      echo castle_thumbs(array(
         array('filename' => "bump_demo_leaf_nobump.png", 'titlealt' => 'Leaf (without bump mapping)'),
         array('filename' => "bump_demo_leaf.png", 'titlealt' => 'Leaf (with bump mapping)'),
         array('filename' => "parallax_demo_lion_noparallax.png", 'titlealt' => 'Lion texture (without parallax mapping)'),
@@ -233,7 +233,7 @@ others) are full of demos of our extensions.</p>
 <?php echo $toc->html_section(); ?>
 
     <?php
-      echo vrmlengine_thumbs(array(
+      echo castle_thumbs(array(
         array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
         array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
 //        array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
@@ -495,7 +495,7 @@ others) are full of demos of our extensions.</p>
 <?php echo $toc->html_section(); ?>
 
   <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => "cubemap_teapot.png", 'titlealt' => 'Teapot with cube map reflections'),
   ));
   ?>
@@ -613,7 +613,7 @@ EXTERNPROTO Text3D [
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel override'),
     ));
     ?>
@@ -659,7 +659,7 @@ EXTERNPROTO Text3D [
 <?php echo $toc->html_section(); ?>
 
 <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'fireplace_movie_texture_demo.png', 'titlealt' => 'Fireplace demo screenshot'),
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated. You can also '
@@ -977,7 +977,7 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'chinchilla_normal.png', 'titlealt' => 'Normal OpenGL lighting'),
   array('filename' => 'chinchilla_simple_occlusion.png', 'titlealt' => 'Rendering with simple ambient occlusion'),
   array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
@@ -1151,7 +1151,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "kambi_triangulation_demo.png", 'titlealt' => 'KambiTriangulation demo screenshot'),
     ));
     ?>
@@ -1434,7 +1434,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "headlight_per_pixel.png", 'titlealt' => 'Spot headlight with per-pixel lighting'),
       array('filename' => 'castle_headlight_1.png', 'titlealt' => 'Castle level with sharp spot headlight'),
       array('filename' => 'castle_headlight_2.png', 'titlealt' => 'Castle level with smooth spot headlight'),
@@ -1654,7 +1654,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "octree_hello_world_shadow.png", 'titlealt' => 'Octree visualization'),
     ));
     ?>
@@ -1782,7 +1782,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "blend_mode_demo.png", 'titlealt' => 'Various blend modes with transparent teapots')
     ));
     ?>
@@ -1866,7 +1866,7 @@ end;
     ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "logger.png", 'titlealt' => 'Logger node demo'),
     ));
     ?>
@@ -1905,7 +1905,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "teapot_demo.png", 'titlealt' => 'Teapot node demo'),
     ));
     ?>
@@ -1964,7 +1964,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <?php
-    echo vrmlengine_thumbs(array(
+    echo castle_thumbs(array(
       array('filename' => "rendered_texture.png", 'titlealt' => 'RenderedTexture demo'),
       array('filename' => "rendered_texture_with_background.png", 'titlealt' => 'RenderedTexture with background and mirrors thrown in'),
     ));

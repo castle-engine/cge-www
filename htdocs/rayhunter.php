@@ -21,7 +21,7 @@
 
 <?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
 
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
     array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
     array('filename' => 'forest.png', 'titlealt' => ''),

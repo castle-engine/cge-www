@@ -52,7 +52,7 @@ $toc->echo_numbers = true;
   </div>
 
   <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Scenery with shadow maps'),
     array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
     array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
@@ -302,7 +302,7 @@ $toc->echo_numbers = true;
   is not implemented yet.
 
   <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'tex_projected_spot_0.png', 'titlealt' => 'SpotLight projecting texture'),
     array('filename' => 'tex_projected_spot_1.png', 'titlealt' => 'SpotLight projecting texture 2'),
   ));
@@ -357,7 +357,7 @@ $toc->echo_numbers = true;
   ?>
 
   <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'depths_light_mapped.png', 'titlealt' => 'Shadow map, as seen from the light'),
     array('filename' => 'depths_camera_mapped.png', 'titlealt' => 'Shadow map mapped over the scene'),
   ));
@@ -405,7 +405,7 @@ $toc->echo_numbers = true;
   unspecified from which view we will generate the shadow map.
 
   <?php
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'scale_bias_right.png', 'titlealt' => 'Correct bias/scale'),
     array('filename' => 'scale_bias_too_large.png', 'titlealt' => 'Too large bias/scale'),
     array('filename' => 'scale_bias_too_small.png', 'titlealt' => 'Too small bias/scale'),

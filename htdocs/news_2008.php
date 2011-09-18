@@ -48,7 +48,7 @@ Major changes:
 
 
 " .
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'shadows_dynamic_2.png', 'titlealt' => 'Dynamic shadows screenshot'),
 ))
 . "
@@ -88,7 +88,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'chinchilla_normal.png', 'titlealt' => 'Normal OpenGL lighting'),
   array('filename' => 'chinchilla_simple_occlusion.png', 'titlealt' => 'Rendering with simple ambient occlusion'),
   array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
@@ -128,7 +128,7 @@ Kambi VRML game engine 1.5.0', 'kambi_vrml_game_engine') . " release.
 Most notable improvements are:
 
 " .
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'kambi_script_ball_game.png', 'titlealt' => 'Simple game implemented in pure X3D with KambiScript'),
   array('filename' => 'kambi_script_particles.png', 'titlealt' => 'Particle engine programmed in pure X3D with KambiScript'),
   array('filename' => 'kambi_script_edit_texture.png', 'titlealt' => 'Texture editor (pure X3D with KambiScript)'),
@@ -236,7 +236,7 @@ is released and some other programs here get minor updates.</p>
 
 <p>New features of the engine and view3dscene:</p>
 
-" . vrmlengine_thumbs(array(
+" . castle_thumbs(array(
   array('filename' => 'deranged_house_final_0.png', 'titlealt' => 'ProximitySensor in action'),
   array('filename' => 'ikea_bead_toy.png', 'titlealt' => 'Animation (IkeaBeadToy model from www.web3d examples)'),
 ))
@@ -284,7 +284,7 @@ is released and some other programs here get minor updates.</p>
     programs that capture OpenGL output).</p></li>
 
   <li>
-" . vrmlengine_thumbs(array(
+" . castle_thumbs(array(
   array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
 ))
 . "
@@ -328,7 +328,7 @@ Jordi R. Cardona!)</a>.</p>"),
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'laetitia_sprints_demo.png', 'titlealt' => 'Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator', 'linktarget' => CURRENT_URL .  'movies/laetitia_sprints.avi'),
 ))
 . "
@@ -422,7 +422,7 @@ web3d.org examples</a>.</p>"),
         as a movie file (with perfect quality, as opposed to using independent
         programs that capture OpenGL output).</p>
 
-' . vrmlengine_thumbs(array(
+' . castle_thumbs(array(
   array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
 ))
 . '
@@ -561,7 +561,7 @@ Many long-awaited graphic features implemented:</p>
     menu item), so you can test your shaders with any 3D model.</p>
 
     <p><i>For programmers</i>: you may find useful my notes about shading languages in
-    <a href=\"http://michalis.ii.uni.wroc.pl/wsvn/michalis/obscure_vrmlengine_demos_and_tools/shading_langs/README.txt\">shading_langs_demo/README</a>.</p>
+    <a href=\"http://michalis.ii.uni.wroc.pl/wsvn/michalis/obscure_castle_engine_demos_and_tools/shading_langs/README.txt\">shading_langs_demo/README</a>.</p>
 
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
     graphic card). " . news_a_href_page('view3dscene', 'view3dscene') . "

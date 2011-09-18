@@ -67,7 +67,7 @@ from collection of models of the
 here</a>). One faint light is under the desk light, the other light
 shines from the outside (and that's how louvers cast shadows on the whole room).
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'office-wlight-1-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-3-classic-filt.png', 'titlealt' => ''),
@@ -79,7 +79,7 @@ shines from the outside (and that's how louvers cast shadows on the whole room).
 scenes collection. Four bright lights are placed right under the ceiling,
 note also two blueish mirrors hanging on the walls.
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-3-classic-filt.png', 'titlealt' => ''),
@@ -95,7 +95,7 @@ Some artifacts are visible near the stairs
 (at the lower side of the 1st image and the left side of the 2nd image)
 because two model's walls share the same place on the same plane
 (uh, I didn't manage to correct this in the model).
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'sibenik-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'sibenik-wlight-3-classic-filt.png', 'titlealt' => ''),
@@ -112,7 +112,7 @@ because the spoon appears to be broken. In the upper part
 you can see some rays are transmitted completely inside underwater.
 <!-- wystepuje calkowite odbicie wewnetrzne - - how to translate this ? -->
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'zupa-wlight-classic-filt.png', 'titlealt' => ''),
 ), 1000, ''); ?>
 
@@ -128,7 +128,7 @@ Main feature of this rendering is to demonstrate that
  <?php echo a_href_page("rayhunter", "rayhunter"); ?>
  handles <a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#Fog">VRML Fog node</a>.
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'forest.png', 'titlealt' => ''),
 ), 1000, ''); ?>
 
@@ -143,7 +143,7 @@ to material by hand). Third image is another rendering from
 time both walls act as mirrors (stronger mirrors, 0.9) and so the reflection is "recursive"
 (raytracer with depth 10 was used).
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'alien_mirror_blender_rendering.png', 'titlealt' => ''),
   array('filename' => 'alien_one_mirror_2.png', 'titlealt' => ''),
   array('filename' => 'alien_two_mirrors_2.png', 'titlealt' => ''),
@@ -178,7 +178,7 @@ properties so that classic and path tracer results are similar.
 
 <p><b>Spoon in a watery soup</b> this time by path tracer.
 <?php echo path_tracer_params_descr(2, 0.5, 4, 10, 1); ?>
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
 ), 1000, ''); ?>
 
@@ -196,7 +196,7 @@ particularly pretty, the noise is very high.</p>
 <p>For <i>office</i>: settings like above, but rendered to 800 x 600,
 and scaled to 400 x 300.</p>
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'office-wlight-1-path.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-1-path.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-1-path-filt.png', 'titlealt' => ''),
@@ -233,7 +233,7 @@ also a good idea :)
     small noise and not biased.
 </ul>
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'box-path-samp1x10-depth3.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp1x10-rroul0.8.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp1x10-depth2-rroul0.5.png', 'titlealt' => ''),
@@ -247,7 +247,7 @@ and 100 (= 10 primary x 10 non-primary) samples per pixel. For 2nd and following
 images I used 10 primary samples per pixel to have anti-aliasing.
 See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
  for the explanation what are the "primary" and "non-primary" samples.
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'box-path-samp1x1-depth2-rroul0.5.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp10x1-depth2-rroul0.5.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),

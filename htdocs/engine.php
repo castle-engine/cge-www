@@ -21,7 +21,7 @@
   flattr_button();
 
   echo pretty_heading($page_title, VERSION_CASTLE_GAME_ENGINE);
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
     array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
     array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
@@ -451,7 +451,7 @@ As a special exception, the copyright holders of this library give you permissio
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo vrmlengine_thumbs(array(
+<?php echo castle_thumbs(array(
   array('filename' => 'test_kambi_units_screen_demo.png', 'titlealt' => 'test_kambi_units')
 ));
 ?>

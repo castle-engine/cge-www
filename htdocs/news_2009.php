@@ -9,7 +9,7 @@ array_push($news,
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'terrain_1.png', 'titlealt' => 'Terrain from noise'),
   array('filename' => 'terrain_2.png', 'titlealt' => 'Terrain from SRTM file'),
 )) . '<ol>
@@ -55,7 +55,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'ssao_barna29_on.png' , 'titlealt' => 'Barna29 (with SSAO)'),
   array('filename' => 'ssao_barna29_off.png', 'titlealt' => 'Barna29 (without SSAO)'),
   array('filename' => 'ssao_stairs_on.png' , 'titlealt' => 'Stairs (with SSAO)'),
@@ -99,7 +99,7 @@ vrmlengine_thumbs(array(
           'guid' => '2009-09-07',
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
 )) . '
@@ -119,7 +119,7 @@ vrmlengine_thumbs(array(
           'guid' => '2009-09-05',
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
 )) . '
 <p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
@@ -138,7 +138,7 @@ vrmlengine_thumbs(array(
           'guid' => '2009-08-26',
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
   array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
@@ -186,7 +186,7 @@ vrmlengine_thumbs(array(
           'guid' => '2009-08-13',
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'rendered_texture.png', 'titlealt' => 'RenderedTexture demo'),
 )) . '
 <p>New features in SVN:</p>
@@ -211,7 +211,7 @@ vrmlengine_thumbs(array(
           'guid' => '2009-05-05',
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'trees_river_shadow_maps.png', 'titlealt' => 'Shadow maps'),
   array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
   array('filename' => 'anisotropic_demo.png', 'titlealt' => 'Demo how anisotropic filtering helps'),
@@ -255,7 +255,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
 )) . '
 
@@ -291,7 +291,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'dyn_ao_chinchilla.png', 'titlealt' => 'Chinchilla with Dynamic Ambient Occlusion'),
   array('filename' => 'dyn_ao_chinchilla_elements.png', 'titlealt' => 'Chinchilla elements used for Dynamic Ambient Occlusion'),
   array('filename' => 'dyn_ao_peach.png', 'titlealt' => 'Peach with Dynamic Ambient Occlusion'),
@@ -347,7 +347,7 @@ Kambi VRML game engine 1.7.0', 'kambi_vrml_game_engine') . " is released along.
 Changes:</p>
 
 " .
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'apple_lods.png', 'titlealt' => 'Apple model with various levels of detail'),
 )) . "
 

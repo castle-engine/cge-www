@@ -2,7 +2,7 @@
 
 /* Functions ----------------------------------------------------------------- */
 
-function vrmlengine_news_date_short($news_item)
+function castle_news_date_short($news_item)
 {
   return sprintf('%04d-%02d-%02d',
     $news_item['year'],
@@ -10,14 +10,14 @@ function vrmlengine_news_date_short($news_item)
     $news_item['day']);
 }
 
-function vrmlengine_sitemap_add_news()
+function castle_sitemap_add_news()
 {
-  global $vrmlengine_sitemap, $news;
+  global $castle_sitemap, $news;
   foreach ($news as $news_item)
   {
-    $vrmlengine_sitemap['index']['sidebar'] = true;
-    $vrmlengine_sitemap['index']['sub']['news.php?id=' . $news_item['id']] =
-      array('title' =>  '(' . vrmlengine_news_date_short($news_item) . ') ' .
+    $castle_sitemap['index']['sidebar'] = true;
+    $castle_sitemap['index']['sub']['news.php?id=' . $news_item['id']] =
+      array('title' =>  '(' . castle_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }
 }
@@ -28,7 +28,7 @@ function vrmlengine_sitemap_add_news()
 
    So to easily detect if the item was found, it's enough to just
    check if returned $current === NULL.  */
-function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
+function castle_news_item_by_id($id, &$previous, &$current, &$next)
 {
   global $news;
 
@@ -63,16 +63,16 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   require_once "castle_engine_functions.php";
   require_once 'news_common.php';
 
-  /* Must be called when $vrmlengine_sitemap is defined
+  /* Must be called when $castle_sitemap is defined
      (by castle_engine_functions.php) and $news is defined
      (by news_common.php), but before castle_engine_header is called
      (which actually searches sitemap and renders sidebar). */
-  vrmlengine_sitemap_add_news();
+  castle_sitemap_add_news();
 
   /* calculate $previous_item, $item, $next_item */
   if (isset($_GET['id']))
   {
-    vrmlengine_news_item_by_id($_GET['id'], $previous_item, $item, $next_item);
+    castle_news_item_by_id($_GET['id'], $previous_item, $item, $next_item);
     if ($item === NULL)
       die('Invalid news item "' . $_GET['id'] . '"');
   } else

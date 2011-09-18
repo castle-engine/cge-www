@@ -7,7 +7,7 @@ array_push($news,
           'day' => 22,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
   array('filename' => 'hanim_0.png', 'titlealt' => 'BoxMan with joints visualized'),
@@ -79,7 +79,7 @@ Of course at the next engine release, the new one will replace the old one :)</p
           'day' => 18,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
   array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
   array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
@@ -172,7 +172,7 @@ be repeated now. Some new improvements:</p>
           'day' => 10,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'tooltip_examine.png', 'titlealt' => 'Examine navigation tooltip'),
   array('filename' => 'tooltip_walkfly.png', 'titlealt' => 'Walk/Fly navigation tooltip'),
   array('filename' => 'billboards_0.png', 'titlealt' => 'Billboard demo'),
@@ -221,7 +221,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'fish.png', 'titlealt' => 'Fish and animals, by Elenka Besedova'),
   array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
   array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
@@ -269,7 +269,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'www_facelift_index.png', 'titlealt' => 'Snapshot comparing old and new index page look'),
   array('filename' => 'www_facelift_vrml_status.png', 'titlealt' => 'Snapshot comparing old and new vrml_implementation_status page look'),
 )) .
@@ -294,7 +294,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
   array('filename' => 'castle_siege_1.png', 'titlealt' => 'castle_siege model from DeleD sample models, converted to VRML by Stephen H. France'),
   array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
@@ -338,7 +338,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'jarjar.png', 'titlealt' => 'JarJar animation, made in X3D by Stephen H. France'),
   array('filename' => 'rendered_texture_output_events.png', 'titlealt' => 'RenderedTexture.rendering and ClipPlane demo: the teapot is sliced in half when rendering to the texture'),
 )) .
@@ -381,7 +381,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'rendered_texture_mirror.png', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
@@ -414,7 +414,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'sunny_street_above_view.png', 'titlealt' => 'Just a screenshot with nice shadow maps'),
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'sunny_street_tree_pcf16.png', 'titlealt' => 'Close up shadows on the tree, with Percentage Closer Filtering.'),
@@ -462,7 +462,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'ddracer_scene85.png', 'titlealt' => 'scene85'),
   array('filename' => 'ddracer_t128.png', 'titlealt' => 't128'),
   array('filename' => 'ddracer_t603coupe.png', 'titlealt' => 't603coupe'),
@@ -493,7 +493,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'view3dscene_bsuit.png', 'titlealt' => 'view3dscene showing tremulous battlesuit from MD3'),
 )) .
 '<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . news_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By the way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
@@ -509,7 +509,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
   array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
@@ -548,7 +548,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'multiple_viewports_teapot.png', 'titlealt' => 'multiple_viewports: simple teapot scene'),
   array('filename' => 'multiple_viewports_tower_mirror_raptor.png', 'titlealt' => 'multiple_viewports: scene with raptor animation and mirror by GeneratedCubeMapTexture'),
   array('filename' => 'multiple_viewports_shadows.png', 'titlealt' => 'multiple_viewports: animated shadows by shadow volumes'),
@@ -576,7 +576,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
   array('filename' => 'terrain2.png', 'titlealt' => 'Terrain 2'),
   array('filename' => 'terrain_wire_lod.png', 'titlealt' => 'Terrain - wireframe view showing our simple LOD approach'),
@@ -650,7 +650,7 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'scene_manager_demos_1.png', 'titlealt' => 'Screenshot from scene_manager_demos &mdash; two VRML scenes and one precalculated animation at once'),
   array('filename' => 'scene_manager_demos_2.png', 'titlealt' => 'Another screenshot from scene_manager_demos'),
 )) . '

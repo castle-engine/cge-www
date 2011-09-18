@@ -3,7 +3,7 @@
   x3d_status_header('H-Anim', 'hanim',
     'This component defines nodes for humanoid animation.');
 
-echo vrmlengine_thumbs(array(
+echo castle_thumbs(array(
   array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
   array('filename' => 'hanim_0.png', 'titlealt' => 'BoxMan with joints visualized'),

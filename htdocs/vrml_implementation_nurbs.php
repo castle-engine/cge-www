@@ -4,7 +4,7 @@
     'This component defines nodes for rendering and animating along
     smooth NURBS curves and surfaces.');
 
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
     array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
     array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),

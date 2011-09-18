@@ -14,7 +14,7 @@ $toc = new TableOfContents(array(
 ));
 $toc->echo_numbers = true;
 
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
     array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
     array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),

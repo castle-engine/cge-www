@@ -14,7 +14,7 @@
   $toc->echo_numbers = true;
 
   echo pretty_heading($page_title, VERSION_DEMO_MODELS);
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     /* shader pipeline */
     array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Shinto shrine model, from http://opengameart.org/content/shrine-shinto-japan , with multiple shadow maps enabled'),
     array('filename' => 'metallic_shiny.png', 'titlealt' => 'Shiny dark metallic material under multiple lights, with per-pixel lighting.'),

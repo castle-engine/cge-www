@@ -7,7 +7,7 @@ array_push($news,
           'day' => 22,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
   array('filename' => 'humanoid_transparent_bg.png', 'titlealt' => 'Humanoid model, captured with transparent background, replaced in GIMP with some texture and gradient'),
   array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
@@ -109,7 +109,7 @@ vrmlengine_thumbs(array(
           'day' => 31,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
   array('filename' => 'collada_logo.png', 'titlealt' => 'Collada flat logo (from collada.org/owl)'),
   array('filename' => 'collada_faerie_forrest_day.png', 'titlealt' => 'Collada Faerie Forest (from collada.org/owl)'),
@@ -158,7 +158,7 @@ vrmlengine_thumbs(array(
           'day' => 25,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - tower with sunset sky'),
   array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - Examine navigation tooltip, and some fog by texture layers'),
   array('filename' => 'xmlportals_to_x3d_barricade_0.png', 'titlealt' => 'Testing model for xmlportals_to_x3d'),
@@ -200,7 +200,7 @@ vrmlengine_thumbs(array(
           'day' => 2,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   /* shader pipeline */
   array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Shinto shrine model, from http://opengameart.org/content/shrine-shinto-japan , with multiple shadow maps enabled'),
   array('filename' => 'metallic_shiny.png', 'titlealt' => 'Shiny dark metallic material under multiple lights, with per-pixel lighting.'),
@@ -300,7 +300,7 @@ For some more in-depth information, see also previous "development news"
           'day' => 20,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => "headlight_per_pixel.png", 'titlealt' => 'Spot headlight with per-pixel lighting'),
   array('filename' => 'castle_headlight_1.png', 'titlealt' => 'Castle level with sharp spot headlight'),
   array('filename' => 'castle_headlight_2.png', 'titlealt' => 'Castle level with smooth spot headlight'),
@@ -354,7 +354,7 @@ vrmlengine_thumbs(array(
           'day' => 1,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'light_street_lights_radius_no_shaders.png', 'titlealt' => 'Lights with radius without shader rendering'),
   array('filename' => 'light_street_lights_radius_shaders.png', 'titlealt' => 'Lights with radius with shader rendering'),
   array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
@@ -399,7 +399,7 @@ vrmlengine_thumbs(array(
           'day' => 21,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'vrml_browser_example.png', 'titlealt' => 'vrml_browser - our engine Lazarus example, simple 3D model browser in Lazarus.'),
   array('filename' => 'vrml_with_2d_controls_example.png', 'titlealt' => 'vrml_with_2d_controls - our engine Lazarus example, 3D scene with our 2D controls in OpenGL context.'),
   array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
@@ -423,7 +423,7 @@ vrmlengine_thumbs(array(
           'day' => 9,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle &quot;overburn&quot; simple effect.'),
   array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering.')
 )) .
@@ -464,7 +464,7 @@ vrmlengine_thumbs(array(
           'day' => 8,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'metallic_shiny.png', 'titlealt' => 'Shiny dark metallic material under multiple lights, with per-pixel lighting.'),
   array('filename' => 'castle_light_2.png', 'titlealt' => 'Castle fountain level with shaders, fun with lighting 2'),
   array('filename' => 'castle_light_1.png', 'titlealt' => 'Castle fountain level with shaders, fun with lighting 1'),
@@ -553,7 +553,7 @@ vrmlengine_thumbs(array(
           'day' => 6,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
   array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
   array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
@@ -606,7 +606,7 @@ vrmlengine_thumbs(array(
           'day' => 18,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
   array('filename' => 'venus_spheremap.png', 'titlealt' => 'Venus model with environment sphere mapping (model referenced from FreeWRL examples)'),
 ), 1) .
@@ -634,7 +634,7 @@ vrmlengine_thumbs(array(
           'day' => 6,
           'short_description' => '',
           'description' =>
-vrmlengine_thumbs(array(
+castle_thumbs(array(
   array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
   array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),

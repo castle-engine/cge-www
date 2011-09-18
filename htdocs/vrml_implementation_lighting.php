@@ -67,7 +67,7 @@ This is usually slower but also more beautiful than default
     represented by OpenGL spot exponent).</li>
   <li>
     <?php
-      echo vrmlengine_thumbs(array(
+      echo castle_thumbs(array(
         array('filename' => 'light_street_lights_radius_no_shaders.png', 'titlealt' => 'Lights with radius with fixed-function pipeline rendering'),
         array('filename' => 'light_street_lights_radius_shaders.png', 'titlealt' => 'Light with radius with per-pixel lighting (shader pipeline)'),
       ));

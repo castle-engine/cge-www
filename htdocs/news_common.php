@@ -110,7 +110,7 @@ unset($log_entry);
 define('TEASER_DELIMITER_BEGIN', '<!-- teaser ');
 define('TEASER_DELIMITER_END', '-->');
 
-function vrmlengine_news_date_long($news_item)
+function castle_news_date_long($news_item)
 {
   $month_names = array(
     1 => 'January',
@@ -167,7 +167,7 @@ function news_to_html($news_item, $full_description = true, $link_to_self = fals
   $title = '<span class="news_title">' . $title . '</span>';
 
   return '<p>' . $title . '<br/><span class="news_date">(' .
-    vrmlengine_news_date_long($news_item) . ')</span></p>' .
+    castle_news_date_long($news_item) . ')</span></p>' .
     $description;
 }
 

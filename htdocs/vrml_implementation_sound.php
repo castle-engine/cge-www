@@ -6,7 +6,7 @@
     <tt>Sound</tt> positions the sound in 3D world and configures sound
     parameters. Sounds may be spatialized (3D) or not.');
 
-  echo vrmlengine_thumbs(array(
+  echo castle_thumbs(array(
     array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
   ));
 
