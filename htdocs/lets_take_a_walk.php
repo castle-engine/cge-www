@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("lets_take_a_walk",
+  castle_header("lets_take_a_walk",
     "lets_take_a_walk - A small toy ".
     "demonstrating rendering 3d graphic and spatial sound.",
     array('all_programs'));
@@ -129,5 +129,5 @@ see <tt>lets_take_a_walk/devel/vrml/process_base_b.lpr</tt> file).
 files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

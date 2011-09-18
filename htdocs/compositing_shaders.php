@@ -2,7 +2,7 @@
 require_once 'castle_engine_functions.php';
 require_once 'kambi_vrml_extensions_functions.php';
 
-castle_engine_header('Compositing Shaders', NULL,
+castle_header('Compositing Shaders', NULL,
   array('vrml_x3d', 'kambi_vrml_extensions', 'compositing_shaders'));
 
 $toc = new TableOfContents(array(
@@ -241,4 +241,4 @@ result is clamped to 1.0, and the alpha value is set correctly.
 You can change now the fragment color, if you want to do something <i>before</i>
 texturing is applied.</p>
 
-<?php castle_engine_footer(); ?>
+<?php castle_footer(); ?>

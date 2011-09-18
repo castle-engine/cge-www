@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("bezier_curves",
+  castle_header("bezier_curves",
     "bezier_curves - plot rational bezier curves.",
     array('all_programs'));
 ?>
@@ -74,5 +74,5 @@ SmoothInterpolatedCurve {
 ?>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

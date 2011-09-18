@@ -65,7 +65,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
 
   /* Must be called when $castle_sitemap is defined
      (by castle_engine_functions.php) and $news is defined
-     (by news_common.php), but before castle_engine_header is called
+     (by news_common.php), but before castle_header is called
      (which actually searches sitemap and renders sidebar). */
   castle_sitemap_add_news();
 
@@ -89,7 +89,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
   /* set $page_basename explicitly */
   $page_basename = 'news.php?id=' . $item['id'];
 
-  castle_engine_header($item['title'] . ' | News', NULL,
+  castle_header($item['title'] . ' | News', NULL,
     array(MAIN_PAGE_BASENAME, $page_basename));
 
   /* Calculate $older_newer_bar.
@@ -110,5 +110,5 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
     '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>' .
     $older_newer_bar;
 
-  castle_engine_footer();
+  castle_footer();
 ?>

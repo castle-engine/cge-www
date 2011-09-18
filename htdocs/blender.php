@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("Blender X3D exporter (with Kambi modifications)",
+  castle_header("Blender X3D exporter (with Kambi modifications)",
     NULL, array('blender'));
 
 function echo_svn_blender_file($filename)
@@ -115,5 +115,5 @@ and then our "KAnim hack" will no longer be useful.)</p>
 
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

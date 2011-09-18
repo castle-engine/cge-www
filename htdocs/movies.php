@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_engine_header("Demo movies", NULL, array('engine'));
+  castle_header("Demo movies", NULL, array('engine'));
 
   define('AVI_TITLE', 'Download AVI version');
 
@@ -85,5 +85,5 @@ editing (glued, fading between parts) thanks to
 </ol>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

@@ -225,7 +225,7 @@ function _castle_sidebar($page, $pageinfo)
   return $result;
 }
 
-function _castle_engine_header_menu($current_page)
+function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
@@ -342,7 +342,7 @@ function echo_header_bonus ()
 /* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
-function castle_engine_header($a_page_title, $meta_description = NULL, $path = array())
+function castle_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
@@ -393,7 +393,7 @@ function castle_engine_header($a_page_title, $meta_description = NULL, $path = a
   <div class="header">
     <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
-    ' . _castle_engine_header_menu($path[0]) . '
+    ' . _castle_header_menu($path[0]) . '
   </div>';
 
   if (empty($castle_sidebar))
@@ -406,7 +406,7 @@ function castle_engine_header($a_page_title, $meta_description = NULL, $path = a
   echo $rendered;
 }
 
-function castle_engine_footer()
+function castle_footer()
 {
   global $castle_sidebar;
 

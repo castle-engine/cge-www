@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_engine_header('Forum');
+  castle_header('Forum');
 
   echo pretty_heading($page_title, NULL, 'Ask for help, report bugs, discuss features');
 ?>
@@ -148,4 +148,4 @@ your 3D worlds, you can:
   </li>
 </ul>
 
-<?php castle_engine_footer(); ?>
+<?php castle_footer(); ?>

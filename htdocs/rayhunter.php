@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("rayhunter",
+  castle_header("rayhunter",
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .
     "(for Linux, FreeBSD, Mac OS X and Windows).",
@@ -625,4 +625,4 @@ some advantages:
     to write partial result from time to time.
 </ul>
 
-<?php castle_engine_footer() ?>
+<?php castle_footer() ?>

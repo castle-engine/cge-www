@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("glplotter and gen_function",
+  castle_header("glplotter and gen_function",
     'glplotter &mdash; program for plotting graphs in OpenGL, and ' .
     'gen_function &mdash; for generating function graphs',
     array('all_programs'));
@@ -239,5 +239,5 @@ do tutoriala  notki o składni wyrażen. Notka o użyteczności notacji
 -->
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

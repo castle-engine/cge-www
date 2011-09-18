@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_engine_header('Donate');
+  castle_header('Donate');
   echo pretty_heading($page_title);
 ?>
 
@@ -62,4 +62,4 @@ and view3dscene, and our games :) Thanks!</p>
   </td>
 </tr></table>
 
-<?php castle_engine_footer(); ?>
+<?php castle_footer(); ?>

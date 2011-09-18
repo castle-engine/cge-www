@@ -1,6 +1,6 @@
 <?php
   require_once "castle_engine_functions.php";
-  castle_engine_header('OpenAL (3D Sound)', NULL, array('all_programs'));
+  castle_header('OpenAL (3D Sound)', NULL, array('all_programs'));
 
   $toc = new TableOfContents(
     array(
@@ -204,5 +204,5 @@ file = /tmp/output.wav
 </dl>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

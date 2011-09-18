@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
-  castle_engine_header('Shadow Maps extensions', NULL,
+  castle_header('Shadow Maps extensions', NULL,
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_shadow_maps'));
 
 $toc = new TableOfContents(array(
@@ -607,5 +607,5 @@ $toc->echo_numbers = true;
   shadows in OpenGL) and also by our ray-tracers.</p>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

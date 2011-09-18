@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
-  castle_engine_header('VRML 1.0 (old) extensions', NULL,
+  castle_header('VRML 1.0 (old) extensions', NULL,
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_vrml1'));
 
 $toc = new TableOfContents(array(
@@ -197,5 +197,5 @@ Group {
     especially from programs &mdash; there is no special "forbidden" value.
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

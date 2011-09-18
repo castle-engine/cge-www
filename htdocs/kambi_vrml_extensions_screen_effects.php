@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
-  castle_engine_header('Screen Effects', NULL,
+  castle_header('Screen Effects', NULL,
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_screen_effects'));
 
 $toc = new TableOfContents(array(
@@ -218,4 +218,4 @@ that can change during the world life. If you want to (de)activate
 the shader dynamically (based on some events in your world),
 you can send events to the exposed <tt>"enabled"</tt> field.</p>
 
-<?php castle_engine_footer(); ?>
+<?php castle_footer(); ?>

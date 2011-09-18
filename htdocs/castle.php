@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("The Castle", NULL, array('castle'));
+  castle_header("The Castle", NULL, array('castle'));
 
   flattr_button();
 ?>
@@ -193,5 +193,5 @@ releases, so that you will be automatically notified about new
 releases of "The Castle".</p>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

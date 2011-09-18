@@ -1,6 +1,6 @@
 <?php
   require_once "castle_engine_functions.php";
-  castle_engine_header('Versioning scheme', NULL, array('all_programs'));
+  castle_header('Versioning scheme', NULL, array('all_programs'));
 ?>
 
 <h2>Versioning scheme</h2>
@@ -104,5 +104,5 @@ like" are given at the bottom of this page.
 </ul>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

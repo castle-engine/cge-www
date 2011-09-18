@@ -1,6 +1,6 @@
 <?php
   require_once "castle_engine_functions.php";
-  castle_engine_header("Standard command-line options for OpenGL programs", NULL,
+  castle_header("Standard command-line options for OpenGL programs", NULL,
     array('all_programs'));
 ?>
 
@@ -87,5 +87,5 @@ accept some set of standard command-line options:
 "general notes about options understood by my programs", "common_options"); ?>.
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

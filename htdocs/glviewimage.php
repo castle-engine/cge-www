@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("glViewImage",
+  castle_header("glViewImage",
     "glViewImage - a small image viewer using OpenGL. " .
     "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .
     "Has some nice features that allow you to scale images and test " .
@@ -232,5 +232,5 @@ zrobiłem też PCXy 256 kolorowe i pewien specyficzny przypadek formatu IPLab.
 -->
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

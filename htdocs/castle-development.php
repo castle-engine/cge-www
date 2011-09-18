@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("The Castle &mdash; development", NULL, array('castle'));
+  castle_header("The Castle &mdash; development", NULL, array('castle'));
 
   $toc = new TableOfContents(
     array(
@@ -1096,5 +1096,5 @@ full list of things and resources used).
 </ul>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

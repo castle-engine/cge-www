@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("Engine overview for developers", NULL, array('engine'));
+  castle_header("Engine overview for developers", NULL, array('engine'));
 
   $toc = new TableOfContents(
     array(
@@ -477,5 +477,5 @@ cd tests/
 </pre>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

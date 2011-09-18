@@ -1,7 +1,7 @@
 <?php
   require_once "castle_engine_functions.php";
 
-  castle_engine_header("The Castle &mdash; additional notes", NULL, array('castle'));
+  castle_header("The Castle &mdash; additional notes", NULL, array('castle'));
 
   $toc = new TableOfContents(
     array(
@@ -182,5 +182,5 @@ The last version uploaded for PGD competition was 0.6.1.
 using <?php echo a_href_page('my normal versioning scheme', 'versioning') ?>.
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

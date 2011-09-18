@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("view3dscene",
+  castle_header("view3dscene",
     'view3dscene is a VRML / X3D browser, also a viewer for other 3D models. ' .
     'Supported formats are X3D, VRML (1.0 and 2.0 (aka VRML 97)), Collada, 3DS, MD3, Wavefront OBJ scenes. ' .
     'Can do collision detection. ' .
@@ -958,5 +958,5 @@ releases, so that you will be automatically notified about new
 releases of view3dscene.</p>
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

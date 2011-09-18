@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("malfunction", 'Small 3d game. ' .
+  castle_header("malfunction", 'Small 3d game. ' .
     'You fly a spaceship and try to shoot down all alien ships.',
     array('all_programs'));
 
@@ -126,5 +126,5 @@ or using <a href="http://www.blender.org/">Blender</a>
 (and processed by some Emacs macros).
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>

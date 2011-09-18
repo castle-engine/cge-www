@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_engine_header("Documentation", NULL, array('engine'));
+  castle_header("Documentation", NULL, array('engine'));
 ?>
 
 <?php echo pretty_heading('Documentation', NULL,
@@ -47,5 +47,5 @@ So you can view them comfortably in
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.
 
 <?php
-  castle_engine_footer();
+  castle_footer();
 ?>
