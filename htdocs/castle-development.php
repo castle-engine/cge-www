@@ -897,7 +897,7 @@ In particular
 <p><?php echo a_href_page_hashlink('Download game sources', 'engine',
 'section_download_src'); ?>. From this page, grab both
 <i>Kambi VRML game engine</i> sources and <i>castle</i> sources.
-Unpack them in such way that <tt>castle_game_engine/</tt>
+Unpack them in such way that <tt><?php echo ENGINE_DIR_NAME; ?>/</tt>
 and <tt>castle/</tt> directories are together (siblings) under the same directory.
 
 <p>Then compile inside <tt>castle/</tt> directory by simple
@@ -1008,7 +1008,7 @@ full list of things and resources used).
 
 <ul>
   <li><p>Everywhere in the game GetCameraHeight returns normal HeightAboveTheGround.
-    Usually in my general units (castle_game_engine units) I don't make
+    Usually in my general units (<?php echo ENGINE_DIR_NAME; ?> units) I don't make
     any assumptions about InitialUp, it can be any vector &mdash; which means
     that SqrHeightAboveTheGround is easier to calculate,
     and calculating actual HeightAboveTheGround costs us Sqrt call.
