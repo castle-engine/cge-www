@@ -22,7 +22,7 @@
    ============================================================
 
    This is a common functions library, shared by both
-   http://vrmlengine.sourceforge.net/ and
+   http://castle-engine.sourceforge.net/ and
    http://michalis.ii.uni.wroc.pl/~michalis/
    websites.
 
@@ -639,8 +639,8 @@ function echo_kambi_common_css()
 <!--
   This is unclean, but it's more comfortable to keep below CSS
   directly inside HTML page. This is in kambi_common.php,
-  that should be useful for both michalis.ii and vrmlengine.sf webpages,
-  and must be suitable also for offline documentation in vrmlengine programs.
+  that should be useful for both michalis.ii and castle-engine.sf.net webpages,
+  and must be suitable also for offline documentation in castle-engine programs.
 -->
 <!-- link type="text/css" rel="stylesheet" media="all"  href="kambi-php-lib/kambi_common.css" -->
 
