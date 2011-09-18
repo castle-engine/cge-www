@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("view3dscene",
+  castle_engine_header("view3dscene",
     'view3dscene is a VRML / X3D browser, also a viewer for other 3D models. ' .
     'Supported formats are X3D, VRML (1.0 and 2.0 (aka VRML 97)), Collada, 3DS, MD3, Wavefront OBJ scenes. ' .
     'Can do collision detection. ' .
@@ -16,14 +16,9 @@
     global $toc;
     echo $toc->html_section();
   }
-?>
 
-<div style="float: right; margin: 1em;">
-<a class="FlattrButton" style="display:none;"
-href="http://vrmlengine.sourceforge.net/"></a>
-</div>
+  flattr_button();
 
-<?php
   echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
   echo vrmlengine_thumbs(array(
     array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
@@ -520,7 +515,7 @@ of a scene, at it's default camera, just call</p>
   <li><p>To control the look of your screenshot, you often want to
     use VRML nodes like <tt>Viewpoint</tt>, <tt>NavigationInfo</tt>,
     <tt>Background</tt>. For example, take a look at
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p></li>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p></li>
 
   <li><p>You can generate wanted <tt>Viewpoint</tt> node
     also by using view3dscene, just set your camera (in interactive mode)
@@ -532,7 +527,7 @@ of a scene, at it's default camera, just call</p>
     (documented at <?php echo a_href_page("standard options
     understood by our OpenGL programs", "opengl_options") ?>).
     For example, take a look at
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
     script.</p></li>
 
   <li><p>To make your screenshot look best, you may want to use anti-aliasing,
@@ -540,7 +535,7 @@ of a scene, at it's default camera, just call</p>
 
     <p>Take a look at the example how to make
     a screenshot from animation in
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
     directory.</p></li>
 
   <li><p>To <b>take a screenshot on a stripped-down Unix server</b>,
@@ -636,7 +631,7 @@ formats to VRML/X3D.
     The only slightly more involved conversion is done for NURBS nodes
     (<tt>NurbsCurve</tt>, <tt>NurbsSurface</tt> in VRML 2,
     <tt>NurbsPatchSurface</tt> in X3D, <tt>NurbsPositionInterpolator</tt>)
-    as <a href="http://vrmlengine.sourceforge.net/vrml_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
+    as <a href="http://castle-engine.sourceforge.net/vrml_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
 </ul>
 
 <p>You can also change the X3D encoding (from classic to XML or the other way
@@ -963,5 +958,5 @@ releases, so that you will be automatically notified about new
 releases of view3dscene.</p>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

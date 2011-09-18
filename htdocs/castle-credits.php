@@ -1,7 +1,7 @@
 <?php
-  require_once "vrmlengine_functions.php";
+  require_once "castle_engine_functions.php";
 
-  vrmlengine_header("The Castle &mdash; credits", NULL, array('castle'));
+  castle_engine_header("The Castle &mdash; credits", NULL, array('castle'));
 
   $toc = new TableOfContents(
     array(
@@ -224,5 +224,5 @@ I and II Music" as compiled by Paul Burdette</a>.
 </div>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

@@ -1,14 +1,12 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("Blender X3D exporter (with Kambi modifications)",
+  castle_engine_header("Blender X3D exporter (with Kambi modifications)",
     NULL, array('blender'));
 
 function echo_svn_blender_file($filename)
 {
-  echo '<a href="' .
-    'http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/blender/' .
-    $filename . '">' . $filename . '</a>';
+  echo '<a href="' . sf_checkout_link(false, 'blender/' . $filename) . '">' . $filename . '</a>';
 }
 ?>
 
@@ -117,5 +115,5 @@ and then our "KAnim hack" will no longer be useful.)</p>
 
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

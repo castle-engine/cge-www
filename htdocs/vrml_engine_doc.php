@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("Documentation", NULL, array('engine'));
+  castle_engine_header("Documentation", NULL, array('engine'));
 ?>
 
 <?php echo pretty_heading('Documentation', NULL,
@@ -47,5 +47,5 @@ So you can view them comfortably in
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

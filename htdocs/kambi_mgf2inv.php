@@ -1,6 +1,6 @@
 <?php
-  require_once "vrmlengine_functions.php";
-  vrmlengine_header("kambi_mgf2inv",
+  require_once "castle_engine_functions.php";
+  castle_engine_header("kambi_mgf2inv",
     'Modified version of mgf2inv converter, this converts mgf files to ' .
     'VRML / Inventor and adds non-standard ' .
     'fields describing physical properties of materials.', array('all_programs')
@@ -52,5 +52,5 @@ mgf2inv version too)
 name... -->
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

@@ -1,8 +1,8 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
-  vrmlengine_header('Screen Effects', NULL,
+  castle_engine_header('Screen Effects', NULL,
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_screen_effects'));
 
 $toc = new TableOfContents(array(
@@ -41,10 +41,10 @@ by processing the rendered image. Demos:</p>
     after loading any 3D scene.
     Note that you can activate many effects at the same time.</p></li>
 
-  <li><p>Try the X3D files <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effects.x3dv">screen_effects.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
+  <li><p>Try the X3D files <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effects.x3dv">screen_effects.x3dv</a>,
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
     <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
     and open files in <tt>screen_effects</tt> subdirectory there, to see the complete
@@ -170,7 +170,7 @@ shader:</p>
     Note that using <tt>gl_FragCoord.st</tt> as texture coordinate
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
-    when you use <a href="http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
+    when you use <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <tt>gl_TexCoord[0].st</tt>
     will cooperate nicely with custom viewports.</p></li>
 
@@ -218,4 +218,4 @@ that can change during the world life. If you want to (de)activate
 the shader dynamically (based on some events in your world),
 you can send events to the exposed <tt>"enabled"</tt> field.</p>
 
-<?php vrmlengine_footer(); ?>
+<?php castle_engine_footer(); ?>

@@ -1,13 +1,10 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("The Castle", NULL, array('castle'));
+  castle_engine_header("The Castle", NULL, array('castle'));
+
+  flattr_button();
 ?>
-
-<div style="float: right; margin: 1em;">
-<a class="FlattrButton" style="display:none;"
-href="http://vrmlengine.sourceforge.net/"></a>
-</div>
 
 <?php
   echo pretty_heading('The Castle', VERSION_CASTLE);
@@ -196,5 +193,5 @@ releases, so that you will be automatically notified about new
 releases of "The Castle".</p>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

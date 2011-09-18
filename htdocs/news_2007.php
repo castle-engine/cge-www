@@ -19,7 +19,7 @@ array_push($news,
     prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
     VRML 2.0 lights are correctly handled,
     handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
-    <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
   <li>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
     released: most things mentioned above were actually implemented in the base
     engine units, also: x86-64 port.</li>
@@ -29,7 +29,7 @@ array_push($news,
     exporter and kanim exporter', 'blender') . ".</li>
   <li>Updated version of " . news_a_href_page('VRML engine documentation',
     'vrml_engine_doc') . " is available, with a
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
+    <a href=\"http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
     about shadows implementation.</a></li>
 </ul>",
           'description' =>
@@ -43,7 +43,7 @@ array_push($news,
     eye candy graphical effects, for now enjoy VRML 2.0 and shadows :)</p></li>
 
   <li><p>Shadows improvements (see also
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">new chapter
+    <a href=\"http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">new chapter
     in documentation about shadows</a>) :</p>
 
     <ul>
@@ -102,7 +102,7 @@ array_push($news,
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
   <li><a
-    href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
 </ul>
 
 <p>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
@@ -166,7 +166,7 @@ implementation.</p>
   <li>" . news_a_href_page('Kambi VRML game engine 1.1.1',
     'kambi_vrml_game_engine') . " released: changes needed by
     view3dscene and glplotter above.</li>
-  <li><a href=\"http://vrmlengine.sourceforge.net/news_feed.php\">RSS
+  <li><a href=\"http://castle-engine.sourceforge.net/news_feed.php\">RSS
     feed</a> listing all changes is available now.
     <small>SouceForge already made RSS feeds for our project,
     but they didn't allow me HTML code there, and HTML links
@@ -216,8 +216,8 @@ as hosted on SourceForge.</p>
 <a href=\"http://sourceforge.net/project/showfiles.php?group_id=200653\">file
 downloads</a> use all the power and speed of SF mirrors,
 development is done inside
-<a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/\">publicly
-visible SVN repository</a>, we have a public " . MAILING_LIST_LINK . ",
+publicly
+visible SVN repository, we have a public " . MAILING_LIST_LINK . ",
 we have trackers for
 <a href=\"" .  BUGS_TRACKER_URL . "\">bugs</a>,
 <a href=\"" .  FEATURE_REQUESTS_TRACKER_URL . "\">feature requests</a>,
@@ -237,8 +237,7 @@ feed to monitor new releases</a>.</p>"),
 
 "<p>Download links for most VRML stuff on this page direct to SourceForge
 file release system now. This is another step in moving to
-<a href=\"http://sourceforge.net/projects/vrmlengine\">vrmlengine
-on SourceForge</a>.
+vrmlengine on SourceForge.
 
 <p>Also, some things now get version numbers:
 " . news_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
@@ -260,8 +259,7 @@ on SourceForge</a>.
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
-    See <a href="http://sourceforge.net/projects/vrmlengine">vrmlengine
-    project page on SourceForge</a>.</p>
+    See vrmlengine project page on SourceForge.</p>
 
     <p>I already use their SVN repository to host my code.
     Most of my whole private repository was imported there,

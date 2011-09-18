@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("The Castle &mdash; development", NULL, array('castle'));
+  castle_engine_header("The Castle &mdash; development", NULL, array('castle'));
 
   $toc = new TableOfContents(
     array(
@@ -1096,5 +1096,5 @@ full list of things and resources used).
 </ul>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

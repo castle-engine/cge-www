@@ -1,7 +1,7 @@
 <?php /* -*- mode: php -*- */
 /* Common content for presenting news as an RSS feed and HTML pages. */
 
-require_once 'vrmlengine_functions.php';
+require_once 'castle_engine_functions.php';
 
 /* For given date, convert it to a Unix timestamp
    (seconds since 1970-01-01 00:00:00 UTC).
@@ -11,7 +11,7 @@ require_once 'vrmlengine_functions.php';
    when represented as date/time in all timezones.
    Otherwise people around the world could see actually a different
    day in their RSS readers than the day written on WWW page like
-   [http://vrmlengine.sourceforge.net/news.php].
+   [http://castle-engine.sourceforge.net/news.php].
 
    I don't want to write everywhere that my dates are in UTC,
    as since I only want to set dates --- I can make them the same regardless

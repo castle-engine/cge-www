@@ -69,7 +69,7 @@ shaders ComposedShader {
     In the simplest case, just start the URL with "<tt>data:text/plain,</tt>"
     and then write your shader code.</p>
 
-    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shaders/shaders_inlined.x3dv">Example: shaders_inlined.x3dv</a>.</p>
+    <p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/shaders_inlined.x3dv">Example: shaders_inlined.x3dv</a>.</p>
 
     <p>Only in the X3D XML encoding: you can also place
     shader source code inside the CDATA.</p>
@@ -159,7 +159,7 @@ shaders ComposedShader {
     <p>A full working version of this example can be found
     in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
     (look for file <tt>shaders/simple_multitex_shaders.x3dv</tt>),
-    <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
     </p>
 
     <p>When using GLSL shaders in X3D you should pass all
@@ -193,7 +193,7 @@ shaders ComposedShader {
     You can place them in the <tt>attrib</tt> field of most geometry nodes
     (like <tt>IndexedFaceSet</tt>).</p>
 
-    <p><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shaders/attributes.x3dv">Example attributes.x3dv</a>,
+    <p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/attributes.x3dv">Example attributes.x3dv</a>,
     showing how to pass elevation grid heights by the shader attributes.</p>
 
   <li><p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL

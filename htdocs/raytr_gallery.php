@@ -1,6 +1,6 @@
 <?php
-  require_once "vrmlengine_functions.php";
-  vrmlengine_header("Small gallery of images rendered using rayhunter", NULL,
+  require_once "castle_engine_functions.php";
+  castle_engine_header("Small gallery of images rendered using rayhunter", NULL,
     array('all_programs', 'rayhunter', 'raytr_gallery'));
 
 function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
@@ -255,5 +255,5 @@ See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
 ), 1000, ''); ?>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
-require_once 'vrmlengine_functions.php';
-vrmlengine_header('All Programs');
+require_once 'castle_engine_functions.php';
+castle_engine_header('All Programs');
 
 /* Some functions ----------------------------------------------------------- */
 
@@ -144,4 +144,4 @@ and I keep them in working and compilable state, but that's it.</p>
   <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
 </ul>
 
-<?php vrmlengine_footer(); ?>
+<?php castle_engine_footer(); ?>

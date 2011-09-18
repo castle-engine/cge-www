@@ -1,6 +1,6 @@
 <?php
-  require_once 'vrmlengine_functions.php';
-  vrmlengine_header("Demo movies", NULL, array('engine'));
+  require_once 'castle_engine_functions.php';
+  castle_engine_header("Demo movies", NULL, array('engine'));
 
   define('AVI_TITLE', 'Download AVI version');
 
@@ -75,7 +75,7 @@ editing (glued, fading between parts) thanks to
 
   <li><p>Dynamic world with dynamic collisions.
     This shows <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    with <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/x3d/dynamic_world.x3dv">demo dynamic_world.x3dv</a>
+    with <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/dynamic_world.x3dv">demo dynamic_world.x3dv</a>
     loaded (you can grab it along with the rest of our
     <?php echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>).
 
@@ -85,5 +85,5 @@ editing (glued, fading between parts) thanks to
 </ol>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

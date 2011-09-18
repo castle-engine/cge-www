@@ -1,5 +1,5 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
   require_once 'vrml_implementation_common.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
@@ -73,9 +73,9 @@ $toc->echo_numbers = true;
 
     <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
 
-    <p>Our extensions are identified by URN like "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>".</p>
+    <p>Our extensions are identified by URN like "<tt>urn:castle-engine.sourceforge.net:node:KambiTriangulation</tt>". For compatibility, also deprecated "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>" is recognized.</p>
 
-    <p>Our extensions' external prototypes may specify a fallback URL <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.wrl">http://vrmlengine.sourceforge.net/fallback_prototypes.wrl</a> for VRML 2.0. For X3D, analogous URL is <a href="http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv">http://vrmlengine.sourceforge.net/fallback_prototypes.x3dv</a>. Such fallback URL will allow other VRML browsers to partially handle our extensions. For example, see <tt>EXTERNPROTO</tt> example for <a href="#section_ext_text3d">Text3D</a> &mdash; browsers that don't handle Text3D node directly should use our fallback URL and render Text3D like normal 2D text node.</p>
+    <p>Our extensions' external prototypes may specify a fallback URL <a href="http://castle-engine.sourceforge.net/fallback_prototypes.wrl">http://castle-engine.sourceforge.net/fallback_prototypes.wrl</a> for VRML 2.0. For X3D, analogous URL is <a href="http://castle-engine.sourceforge.net/fallback_prototypes.x3dv">http://castle-engine.sourceforge.net/fallback_prototypes.x3dv</a>. Such fallback URL will allow other VRML browsers to partially handle our extensions. For example, see <tt>EXTERNPROTO</tt> example for <a href="#section_ext_text3d">Text3D</a> &mdash; browsers that don't handle Text3D node directly should use our fallback URL and render Text3D like normal 2D text node.</p>
 
     <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <tt>isA</tt> and <tt>fields</tt>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
   </li>
@@ -394,7 +394,7 @@ others) are full of demos of our extensions.</p>
     <p><i>To be deprecated some day: currently
     <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> are the only
     way to get shadow volumes. However, we plan in the future to instead
-    make our <a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
+    make our <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
     usable also for shadow volumes. The <tt>kambiShadows*</tt> will become
     deprecated then.</i></p>
 
@@ -595,8 +595,8 @@ EXTERNPROTO Text3D [
   exposedField SFFloat maxExtent
   exposedField SFFloat depth
   exposedField SFBool solid
-] [ "urn:vrmlengine.sourceforge.net:node:Text3D",
-    "http://vrmlengine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
+] [ "urn:castle-engine.sourceforge.net:node:Text3D",
+    "http://castle-engine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
 </pre>
 
         <p>This way other VRML browsers should be able to

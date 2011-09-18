@@ -1,8 +1,8 @@
 <?php
-require_once 'vrmlengine_functions.php';
+require_once 'castle_engine_functions.php';
 require_once 'kambi_vrml_extensions_functions.php';
 
-vrmlengine_header('Compositing Shaders', NULL,
+castle_engine_header('Compositing Shaders', NULL,
   array('vrml_x3d', 'kambi_vrml_extensions', 'compositing_shaders'));
 
 $toc = new TableOfContents(array(
@@ -79,28 +79,8 @@ Download them, and look inside the subdirectory <tt>compositing_shaders</tt> the
 Also the <tt>water</tt> subdirectory contains water implementation
 using our effects.</p>
 
-<?php /*
-
-<p>Note that <b>for now the relevant demos are not available in released archives
-(tar.gz files)</b>. Instead, you have to get them from SVN. You can visit
-SVN links below with your browser, or you can download them by
-"svn checkout":</p>
-
-<ul>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/">demo_models</a> (complete)</li>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/compositing_shaders/">demo_models/compositing_shaders</a> subdirectory</li>
-  <li><a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/water/">demo_models/water</a> subdirectory</li>
-</ul>
-
-*/ ?>
-
 <p>You can open the example models with any of our engine tools, like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
-<?php /*
-Note however that <b>for now the "stable" view3dcene doesn't contain
-our effects implementation</b>, so after downloading view3dscene,
-override it's binary with <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">a fresh view3dscene binary from nightly builds</a>.</p>
-*/ ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -261,4 +241,4 @@ result is clamped to 1.0, and the alpha value is set correctly.
 You can change now the fragment color, if you want to do something <i>before</i>
 texturing is applied.</p>
 
-<?php vrmlengine_footer(); ?>
+<?php castle_engine_footer(); ?>

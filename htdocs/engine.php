@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("Engine overview for developers", NULL, array('engine'));
+  castle_engine_header("Engine overview for developers", NULL, array('engine'));
 
   $toc = new TableOfContents(
     array(
@@ -17,14 +17,9 @@
     )
   );
   $toc->echo_numbers = true;
-?>
 
-<div style="float: right; margin: 1em;">
-<a class="FlattrButton" style="display:none;"
-href="http://vrmlengine.sourceforge.net/"></a>
-</div>
+  flattr_button();
 
-<?php
   echo pretty_heading($page_title, VERSION_CASTLE_GAME_ENGINE);
   echo vrmlengine_thumbs(array(
     array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
@@ -393,15 +388,15 @@ webpages stuff (in <tt>www</tt> subdirectory),
 <tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
 Often you want to download only specific subdirectories of it.</p>
 
-<p>You can also <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">browse
-the SVN repository using ViewVC</a>.</p>
+<p>You can also <a href="https://sourceforge.net/p/castle-engine/code/">browse
+the SVN repository</a>.</p>
 
 <p>Code from SVN is always the bleeding-edge current
 version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
 You can also download the code from one of
-<tt class="terminal">https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/tags/</tt>
+<tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</tt>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 
@@ -482,5 +477,5 @@ cd tests/
 </pre>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

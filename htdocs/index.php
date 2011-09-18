@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
   $main_page = true;
-  vrmlengine_header('Castle Game Engine',
+  castle_engine_header('Castle Game Engine',
     'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
 ?>
 
@@ -10,8 +10,7 @@
   align="right"/>
 
 <div style="float: right; margin: 1em;">
-<a class="FlattrButton" style="display:none;"
-href="http://vrmlengine.sourceforge.net/"></a>
+<?php flattr_button(false); ?>
 <!-- 1+ button doesn't work (changes into exclamation mark), don't know why -->
 <!--br/><br/>
 <g:plusone></g:plusone-->
@@ -68,5 +67,5 @@ project page on Ohloh</a> (you're welcome to rate and click on
 
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

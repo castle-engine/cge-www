@@ -1,5 +1,5 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
   $page_lang = LANG_EN;
   common_set_page_functions();
@@ -14,7 +14,7 @@
   header('Content-type: application/rss+xml; charset=utf-8');
 
   $rss = new rss_generator('News about the Castle Game Engine');
-  $rss->link = 'http://vrmlengine.sourceforge.net/';
+  $rss->link = 'http://castle-engine.sourceforge.net/';
   $rss->description = 'All the news about the Castle Game Engine - changes, releases and more.';
   echo $rss->get($news);
 ?>

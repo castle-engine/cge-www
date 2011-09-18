@@ -33,7 +33,7 @@ Major changes:
     . "
 
 
-    <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
+    <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
     ") and open it. It shows how you can edit the world by KambiScript, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
 
   <li><p>Changing <b><tt>Switch.whichChoice</tt> is greatly optimized</b>.
@@ -56,8 +56,8 @@ vrmlengine_thumbs(array(
   <li>
     <p><b>Dynamic shadows support is greatly improved</b>, finally
     " . news_a_href_page('view3dscene', 'view3dscene') . " can render
-    with shadows, honoring our <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
-    We also have new <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
+    with shadows, honoring our <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
+    We also have new <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
     <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
@@ -73,7 +73,7 @@ vrmlengine_thumbs(array(
     <tt>X3DSequencerNode</tt>,
     <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt> implemented.
 
-    <p><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
+    <p><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
 
   <li><p>Bugfix for open file dialog under GTK 2.14 (like Ubuntu 8.10).
     Thanks to Graham Seed for reporting.
@@ -97,12 +97,12 @@ vrmlengine_thumbs(array(
 
 <p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
 
-<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
+<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/examples/vrml/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
 
 <p>The full source code is available, naturally. Simple instructions:</p>
 
 <pre>
-$ svn checkout https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_game_engine/
+$ svn checkout http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/
 $ cd kambi_vrml_game_engine/examples/vrml/radiance_transfer
 $ ./radiance_transfer_compile.sh
 $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
@@ -149,9 +149,9 @@ vrmlengine_thumbs(array(
     " . news_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
     " contains source VRML files with KambiScript tests (see <tt>kambi_script/</tt>
     in there, like
-    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
+    <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/kambi_script/ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
     or
-    <a href=\"https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/kambi_vrml_test_suite/kambi_script/particles.x3dv\">kambi_script_particles.x3dv</a>),
+    <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/kambi_script/particles.x3dv\">kambi_script_particles.x3dv</a>),
     you can simply open them in view3dscene.</p></li>
 
   <li><p><b>Animating camera by animating Viewpoint position</b> (or it's transformation)
@@ -196,7 +196,7 @@ vrmlengine_thumbs(array(
     fixes were made, to make them more easily usable. Thanks to De-Panther for
     pushing me to implement this :)</p></li>
 
-  <li><p><b><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_script_compiled\">Script
+  <li><p><b><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_script_compiled\">Script
     protocol \"<tt>compiled:</tt>\"</a></b> is implemented, to easily link
     VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
 
@@ -260,10 +260,10 @@ is released and some other programs here get minor updates.</p>
 
     <p>Linear interpolators are also implemented.
     Some \"event utilities\" nodes are implemented
-    (including useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
+    (including useful <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"http://vrmlengine.sourceforge.net/vrml_implementation_shaders.php\">Routing
+    <a href=\"http://castle-engine.sourceforge.net/vrml_implementation_shaders.php\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
     for VRML 97) work too.
@@ -272,7 +272,7 @@ is released and some other programs here get minor updates.</p>
     New " . news_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
     has some simple demos of our events implementation.</p></li>
 
-  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
+  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
     to load movie from a sequence of images (with possible alpha
     channel)</a>, this is great for pre-rendered animations of flames, smoke etc.
     Normal movie formats are also handled if <a href=\"http://ffmpeg.mplayerhq.hu/\">ffmpeg</a>
@@ -295,12 +295,12 @@ is released and some other programs here get minor updates.</p>
   <li><p>Many other features, including
     <ul>
       <li><tt>Extrusion</tt> node handling,</li>
-      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
-      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
+      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
+      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
         to automatically replace nodes within inlined content</a>,</li>
-      <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load\">extension
+      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load\">extension
         to force VRML time-origin to start at loading time</a>, because
-        <a href=\"http://vrmlengine.sourceforge.net/vrml_time_origin_considered_uncomfortable.php\">standard
+        <a href=\"http://castle-engine.sourceforge.net/vrml_time_origin_considered_uncomfortable.php\">standard
         VRML time origin is uncomfortable in my opinion,</a></li>
       <li>new X3D Indexed Triangles/Quads primitives (thanks to completely
         reorganized mesh renderer code),</li>
@@ -412,7 +412,7 @@ web3d.org examples</a>.</p>"),
         handled (movie can be read from image sequences, like <tt>image%d.png</tt>,
         and from normal movie formats thanks to <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>).
         As a demo, see the flames animation on the right.
-        (You can also <a href="http://vrmlengine.sourceforge.net/movies/fireplace_demo.avi">download
+        (You can also <a href="http://castle-engine.sourceforge.net/movies/fireplace_demo.avi">download
         AVI version with perfect quality</a>.)</p>
 
       <li><p>Flames movie above was not only played in our ' .
@@ -489,11 +489,11 @@ Below is only a shortcut of the most important changes
 (see " . news_a_href_page('changes_log', 'news') . " for a full list of changes) :</p>
 
 <ul>
-  <li><a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">Bump
+  <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">Bump
     mapping</a>. Various bump mapping methods are implemented,
     the most advanced being steep parallax mapping with self-shadowing.</li>
 
-  <li>Shaders support, including <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">specifying GLSL
+  <li>Shaders support, including <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">specifying GLSL
     shaders in VRML</a>. Programmers may easily initialize
     GLSL and ARB assembly shaders.</li>
 
@@ -530,7 +530,7 @@ to bring them up-to-date with current engine state.</p>
 Many long-awaited graphic features implemented:</p>
 
 <ul>
-  <li><p><b>Bump mapping</b>: <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
+  <li><p><b>Bump mapping</b>: <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
     renderer allows bump mapping</a>. Various bump mapping methods
     are implemented (best method is auto-detected and used at runtime):
     dot by multitexturing (not normalized and normalized by cube map),
@@ -545,14 +545,13 @@ Many long-awaited graphic features implemented:</p>
     <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/examples/vrml/bump_mapping</tt> demo in engine sources,
     it demonstrates emboss, dot and all other bump mapping
     methods built in VRML engine. Also my notes about emboss and dot
-    (by multitexturing) bump mapping methods may be interesting:
-    see <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/examples/vrml/bump_mapping/README\">bump_mapping/README</a>.</p>
+    (by multitexturing) bump mapping methods may be interesting.</p>
   </li>
 
   <li><p><b>GLSL shaders support:</b> engine supports easily using
     ARB vertex / fragment programs (assembly shaders) and&nbsp;GLSL.</p>
 
-    <p>You can also <a href=\"http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">directly
+    <p>You can also <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">directly
     specify GLSL shaders inside VRML file</a>, which is a great feature
     for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
 
@@ -562,7 +561,7 @@ Many long-awaited graphic features implemented:</p>
     menu item), so you can test your shaders with any 3D model.</p>
 
     <p><i>For programmers</i>: you may find useful my notes about shading languages in
-    <a href=\"http://vrmlengine.svn.sourceforge.net/viewvc/*checkout*/vrmlengine/trunk/kambi_vrml_game_engine/opengl/examples/shading_langs/README\">shading_langs_demo/README</a>.</p>
+    <a href=\"http://michalis.ii.uni.wroc.pl/wsvn/michalis/obscure_vrmlengine_demos_and_tools/shading_langs/README.txt\">shading_langs_demo/README</a>.</p>
 
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
     graphic card). " . news_a_href_page('view3dscene', 'view3dscene') . "

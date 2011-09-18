@@ -1,6 +1,6 @@
 <?php
-  require_once "vrmlengine_functions.php";
-  vrmlengine_header("Standard command-line options", NULL,
+  require_once "castle_engine_functions.php";
+  castle_engine_header("Standard command-line options", NULL,
     array('all_programs'));
 ?>
 
@@ -106,5 +106,5 @@ known and used by most good programs in the world) :
 </ul>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

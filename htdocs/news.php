@@ -60,12 +60,12 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
 
 /* End of functions ---------------------------------------------------------- */
 
-  require_once "vrmlengine_functions.php";
+  require_once "castle_engine_functions.php";
   require_once 'news_common.php';
 
   /* Must be called when $vrmlengine_sitemap is defined
-     (by vrmlengine_functions.php) and $news is defined
-     (by news_common.php), but before vrmlengine_header is called
+     (by castle_engine_functions.php) and $news is defined
+     (by news_common.php), but before castle_engine_header is called
      (which actually searches sitemap and renders sidebar). */
   vrmlengine_sitemap_add_news();
 
@@ -89,7 +89,7 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
   /* set $page_basename explicitly */
   $page_basename = 'news.php?id=' . $item['id'];
 
-  vrmlengine_header($item['title'] . ' | News', NULL,
+  castle_engine_header($item['title'] . ' | News', NULL,
     array(MAIN_PAGE_BASENAME, $page_basename));
 
   /* Calculate $older_newer_bar.
@@ -110,5 +110,5 @@ function vrmlengine_news_item_by_id($id, &$previous, &$current, &$next)
     '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>' .
     $older_newer_bar;
 
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

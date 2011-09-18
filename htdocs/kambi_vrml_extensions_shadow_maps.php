@@ -1,8 +1,8 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
   require_once 'kambi_vrml_extensions_functions.php';
 
-  vrmlengine_header('Shadow Maps extensions', NULL,
+  castle_engine_header('Shadow Maps extensions', NULL,
     array('vrml_x3d', 'kambi_vrml_extensions', 'kambi_vrml_extensions_shadow_maps'));
 
 $toc = new TableOfContents(array(
@@ -33,11 +33,11 @@ $toc->echo_numbers = true;
     padding: 0.3em;
     width: 80%;
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
-  see also my paper <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
+  see also my paper <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
   (accepted for Web3D 2010 conference). PDF linked here has some absolutely minor
   corrections (for <tt style="background-color: transparent;">projection*</tt> fields and fixed URLs)
   compared to the conference version.
-  <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
+  <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
   from the presentation</a> are also available.</p>
 
   <p>Specification below comes from
@@ -183,7 +183,7 @@ $toc->echo_numbers = true;
   the way to make shadow mapping both beautiful and in one pass (read: fast),
   and it's the way of the future anyway. You can start from a trivial
   fragment shader in our examples:
-  <a href="https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/demo_models/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
+  <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
 
   <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
   do not affect the lower-level shadow maps. Essentially, when using
@@ -294,7 +294,7 @@ $toc->echo_numbers = true;
   This will work perfectly for shadow receivers marked by the
   <tt>receiveShadows</tt> field.
   <b>This feature was not "invented" at the time of submitting the
-  <a href="http://vrmlengine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
+  <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
 
   <p>TODO: for <tt>DirectionLight</tt>, auto-calculating best
@@ -607,5 +607,5 @@ $toc->echo_numbers = true;
   shadows in OpenGL) and also by our ray-tracers.</p>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

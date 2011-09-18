@@ -1,11 +1,11 @@
 <?php
-/* PHP functions common for vrmlengine WWW pages. */
+/* PHP functions common for castle-engine WWW pages. */
 
 /* Constants that should be defined before including kambi_common.php */
 define('COUNTER_DATA_PATH', '/home/project-web/vrmlengine/persistent/');
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_HTDOCS_LOCAL_PATH');
-define('CURRENT_URL', 'http://vrmlengine.sourceforge.net/');
-define('CURRENT_URL_SHORT', 'vrmlengine.sf.net');
+define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
+define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
 
 // before making 1st release under "castle game engine" name:
@@ -226,7 +226,7 @@ function _vrmlengine_sidebar($page, $pageinfo)
   return $result;
 }
 
-function _vrmlengine_header_menu($current_page)
+function _castle_engine_header_menu($current_page)
 {
   global $vrmlengine_sitemap;
 
@@ -327,11 +327,9 @@ function echo_header_bonus ()
 /* <![CDATA[ */
     (function() {
         var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-
         t.parentNode.insertBefore(s, t);
     })();
 /* ]]> */
@@ -345,7 +343,7 @@ function echo_header_bonus ()
 /* $path is a list of page names, a path in the tree of $vrmlengine_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
-function vrmlengine_header($a_page_title, $meta_description = NULL, $path = array())
+function castle_engine_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
@@ -396,7 +394,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
   <div class="header">
     <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
-    ' . _vrmlengine_header_menu($path[0]) . '
+    ' . _castle_engine_header_menu($path[0]) . '
   </div>';
 
   if (empty($vrmlengine_sidebar))
@@ -409,7 +407,7 @@ function vrmlengine_header($a_page_title, $meta_description = NULL, $path = arra
   echo $rendered;
 }
 
-function vrmlengine_footer()
+function castle_engine_footer()
 {
   global $vrmlengine_sidebar;
 
@@ -449,7 +447,7 @@ function echo_footer ()
   /* Insert piwik code */
   if ( (!IS_GEN_LOCAL) &&
        isset($_SERVER["HTTP_HOST"]) &&
-       ($_SERVER["HTTP_HOST"] == 'vrmlengine.sourceforge.net') )
+       ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net') )
   {
 /* Tracking code for old piwik as SF hosted app.
    This piwik is broken, see
@@ -457,6 +455,7 @@ function echo_footer ()
    (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
    So I use my local piwik installation.
    Only one piwik.js should be included, so this one is just commented out.
+   Also, it's for vrmlengine, not castle-engine.
 
 <!-- Piwik -->
 <script type="text/javascript">
@@ -476,7 +475,7 @@ piwik_log(piwik_action_name, piwik_idsite, piwik_url);
 
 <!-- Piwik -->
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://vrmlengine.sourceforge.net/piwik/" : "http://vrmlengine.sourceforge.net/piwik/");
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://castle-engine.sourceforge.net/piwik/" : "http://castle-engine.sourceforge.net/piwik/");
 document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
 </script><script type="text/javascript">
 try {
@@ -484,7 +483,7 @@ var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
 piwikTracker.trackPageView();
 piwikTracker.enableLinkTracking();
 } catch( err ) {}
-</script><noscript><p><img src="http://vrmlengine.sourceforge.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+</script><noscript><p><img src="http://castle-engine.sourceforge.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 
 <?php
@@ -509,7 +508,7 @@ function sf_checkout_link($prefix_command, $vrmlengine_subproject)
 {
   return
     ($prefix_command ? 'svn checkout ' : '') .
-    'https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk/' .
+    'http://svn.code.sf.net/p/castle-engine/code/trunk/' .
     $vrmlengine_subproject;
 }
 
@@ -608,7 +607,7 @@ function echo_standard_program_download(
       echo '<li>';
       if ($os_arch == 'stub-macosx-later')
         echo '<i>Mac OS X release will follow later.</i>'; else
-        /*  BTW, <a href="http://vrmlengine.sourceforge.net/macosx_requirements.php#section_help_wanted">programmers who want to help make better Mac OS X releases are wanted</a>. */
+        /*  BTW, <a href="http://castle-engine.sourceforge.net/macosx_requirements.php#section_help_wanted">programmers who want to help make better Mac OS X releases are wanted</a>. */
         echo sf_download($os_arch_caption[$os_arch],
           $arch_name_start . $os_arch . $os_arch_extension[$os_arch]);
       echo '</li>' . "\n";
@@ -703,5 +702,15 @@ function default_program_thumbnail($prog_name)
   return vrmlengine_thumbs(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
   ));
+}
+
+function flattr_button($align = true)
+{
+  if ($align) echo '<div style="float: right; margin: 1em;">';
+  echo '
+    <a class="FlattrButton" style="display:none;" href="http://castle-engine.sourceforge.net/"></a>
+    <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
+    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>';
+  if ($align) echo '</div>';
 }
 ?>

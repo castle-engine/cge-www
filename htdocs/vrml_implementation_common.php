@@ -3,21 +3,21 @@
 /* Common functions for pages describing VRML/X3D status
    of particular X3D component. */
 
-require_once 'vrmlengine_functions.php';
+require_once 'castle_engine_functions.php';
 
 function vrmlx3d_header($a_page_title)
 {
-  vrmlengine_header($a_page_title, NULL, array('vrml_x3d'));
+  castle_engine_header($a_page_title, NULL, array('vrml_x3d'));
 }
 
 function vrmlx3d_footer()
 {
-  vrmlengine_footer();
+  castle_engine_footer();
 }
 
 function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_intro)
 {
-  vrmlengine_header($x3d_component_name .
+  castle_engine_header($x3d_component_name .
     ' component - implementation status - Castle Game Engine',
     NULL, array('vrml_x3d', 'vrml_implementation_status'));
 
@@ -35,7 +35,7 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
 
 function x3d_status_footer()
 {
-  vrmlengine_footer();
+  castle_engine_footer();
 }
 
 /* Display name of VRML/X3D node, linked to it's description

@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("glinformation",
+  castle_engine_header("glinformation",
     'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.',
     array('all_programs'));
 ?>
@@ -75,5 +75,5 @@ so it's able to write some info like all possible visual configurations).</p>
 ?>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

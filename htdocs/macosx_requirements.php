@@ -1,6 +1,6 @@
 <?php
-  require_once "vrmlengine_functions.php";
-  vrmlengine_header("Dependencies of my programs on Mac OS X", NULL, array('all_programs'));
+  require_once "castle_engine_functions.php";
+  castle_engine_header("Dependencies of my programs on Mac OS X", NULL, array('all_programs'));
 
   $toc = new TableOfContents(
     array(
@@ -171,5 +171,5 @@ users of our programs will be your reward :) At such moments,
 I wish I had a kingdom and three daughters.</p>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
-  require_once 'vrmlengine_functions.php';
+  require_once 'castle_engine_functions.php';
 
-  vrmlengine_header("kambi_lines",
+  castle_engine_header("kambi_lines",
     "kambi_lines - small game in OpenGL based on old DOS 'Color Lines'.",
     array('all_programs'));
 ?>
@@ -149,5 +149,5 @@ of "KDE Lines" graphics.
     DEPENDS_MACOSX)); */ ?>
 
 <?php
-  vrmlengine_footer();
+  castle_engine_footer();
 ?>

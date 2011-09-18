@@ -1,6 +1,6 @@
 <?php
-  require_once 'vrmlengine_functions.php';
-  vrmlengine_header('Donate');
+  require_once 'castle_engine_functions.php';
+  castle_engine_header('Donate');
   echo pretty_heading($page_title);
 ?>
 
@@ -19,8 +19,7 @@ and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>
   <td>
-  <p><a class="FlattrButton" style="display:none;"
-  href="http://vrmlengine.sourceforge.net/"></a></p>
+  <p><?php flattr_button(false); ?></p>
 
   <p>You can donate through <a href="http://flattr.com/">Flattr</a>
   by clicking the button above. Click the button again to subscribe
@@ -63,4 +62,4 @@ and view3dscene, and our games :) Thanks!</p>
   </td>
 </tr></table>
 
-<?php vrmlengine_footer(); ?>
+<?php castle_engine_footer(); ?>
