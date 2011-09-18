@@ -237,7 +237,7 @@ feed to monitor new releases</a>.</p>"),
 
 "<p>Download links for most VRML stuff on this page direct to SourceForge
 file release system now. This is another step in moving to
-vrmlengine on SourceForge.
+SourceForge.
 
 <p>Also, some things now get version numbers:
 " . news_a_href_page('Kambi VRML game engine', 'kambi_vrml_game_engine') . " (1.0.0),
@@ -259,7 +259,7 @@ vrmlengine on SourceForge.
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
-    See vrmlengine project page on SourceForge.</p>
+    See project page on SourceForge.</p>
 
     <p>I already use their SVN repository to host my code.
     Most of my whole private repository was imported there,

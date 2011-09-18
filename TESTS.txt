@@ -16,7 +16,7 @@ make examples
 make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
-# define KAMBI_VRMLENGINE_LGPL in ../castle_game_engine/src/base/kambiconf.inc
+# define CASTLE_ENGINE_LGPL in ../castle_game_engine/src/base/kambiconf.inc
 make
 # revert ../castle_game_engine/src/base/kambiconf.inc
 
