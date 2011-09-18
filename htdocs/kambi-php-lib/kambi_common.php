@@ -96,7 +96,6 @@
 
   require_once 'funcs.php';
   require_once 'kambi_toc.php';
-  require_once 'counter.php';
 
   /* Constants always defined by this script (so they are accessible after
        including this script) :
@@ -144,8 +143,8 @@
        look as usual (links to index.html, default background contains link to
        bg image etc.); it was useful once when on camelot.homedns.org
        php was not available - I was then able to generate all pages locally
-       with href's to htmls and everything (well, with the exception of
-       counters in counter.php) worked as expected; now it is still useful
+       with href's to htmls and everything worked as expected;
+       now it is still useful
        since it is required by IS_GEN_LOCAL).
 
        Always true if IS_GEN_LOCAL, use command-line param --gen-page-hrefs-to-html
