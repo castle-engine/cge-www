@@ -560,8 +560,8 @@ of a scene, at it's default camera, just call</p>
 
     <ol>
       <li><?php echo a_href_page('Download the sources of
-        castle_game_engine and view3dscene', 'engine'); ?>.
-        Unpack them, such that <tt>castle_game_engine/</tt> and <tt>view3dscene/</tt>
+        ' .ENGINE_DIR_NAME. ' and view3dscene', 'engine'); ?>.
+        Unpack them, such that <tt><?php echo ENGINE_DIR_NAME; ?>/</tt> and <tt>view3dscene/</tt>
         directories are siblings.
       <li>In the terminal, do <pre class="bordered_code">
 export KAMBI_FPC_OPTIONS=-dGLWINDOW_XLIB
