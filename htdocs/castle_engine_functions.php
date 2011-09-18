@@ -335,7 +335,7 @@ function echo_header_bonus ()
 /* ]]> */
 </script>
 
-<!--script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script-->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 
   <?php
 }

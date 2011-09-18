@@ -11,9 +11,12 @@
 
 <div style="float: right; margin: 1em;">
 <?php flattr_button(false); ?>
-<!-- 1+ button doesn't work (changes into exclamation mark), don't know why -->
-<!--br/><br/>
-<g:plusone></g:plusone-->
+<!-- If you have problems with +1 button,
+  http://www.google.com/support/forum/p/Webmasters/thread?tid=04ed1149585fd12f&hl=en
+  contains many hints.
+  For me, what worked was to enable "Accept Third-Party Cookies" in FF. -->
+<br/><br/>
+<g:plusone></g:plusone>
 </div>
 
 <p><b>For developers:</b> <b>Castle Game Engine (previously "Kambi VRML game engine")</b>
