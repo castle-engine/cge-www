@@ -17,7 +17,7 @@ vrmlengine_thumbs(array(
 
 <p><a href="http://castle-engine.sourceforge.net/vrml_implementation_hanim.php">Documentation of current H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="http://castle-engine.sourceforge.net/vrml_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
 
-<p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
+<p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
 
 <p>Check out also the new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i>.</p>
 
@@ -49,7 +49,7 @@ vrmlengine_thumbs(array(
           'description' =>
 '<p>In the last few days, I was working hard on making our
 <i>engine API reference</i> perfect.
-<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">The new and improved reference is here</a>, while
+<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">The new and improved reference is here</a>, while
 ' . news_a_href_page('the stable (old) reference is here', 'reference') . '.
 Of course at the next engine release, the new one will replace the old one :)</p>
 
@@ -211,7 +211,7 @@ vrmlengine_thumbs(array(
     </ul></li>
 </ul>
 
-<p>As usual, you can test the new features by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
+<p>As usual, you can test the new features by trying our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 '),
 
     array('title' => 'Development news: drag sensors, KambiScript rotations, mouse wheel, more',
@@ -226,7 +226,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'fz.png', 'titlealt' => 'Fz Quake2 player model, converted to VRML/X3D by Stephen H. France, originally by Phillip T. Wheeler'),
   array('filename' => 'projected_spotlight.png', 'titlealt' => 'Animated projector with beam and shadow, by Victor Amat'),
 )) .
-'Welcome to the weekly news :) As usual, remember you can try out all the improvements right now by using our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.
+'Welcome to the weekly news :) As usual, remember you can try out all the improvements right now by using our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.
 
 <ul>
   <li><p>All <b>X3D dragging sensors (PlaneSensor, SphereSensor, CylinderSensor)</b> are implemented now. Very nice tools to allow user to edit portions of your 3D scenes &mdash; PlaneSensor allows moving, SphereSensor allows free rotation, CylinderSensor allows rotations constrained around an axis.</p>
@@ -299,7 +299,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'castle_siege_1.png', 'titlealt' => 'castle_siege model from DeleD sample models, converted to VRML by Stephen H. France'),
   array('filename' => 'castle_siege_shadows.png', 'titlealt' => 'castle_siege model from DeleD sample models, with shadows'),
 )) .
-'<p>The quest to "cleanup and optimize" all around the engine continues :) New features are listed below. As usual, you\'re welcome to test them by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
+'<p>The quest to "cleanup and optimize" all around the engine continues :) New features are listed below. As usual, you\'re welcome to test them by trying our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 
 <ol>
   <li><p><b>Camera improvements</b>:</p>
@@ -371,7 +371,7 @@ vrmlengine_thumbs(array(
   <!--li><p>Next view3dscene release will include scripts to easier setup desktop (GNOME) integration.</li-->
 </ol>
 
-<p>As always, you can test the new features before the next release by trying our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.'),
+<p>As always, you can test the new features before the next release by trying our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.'),
 
 
     array('title' => 'view3dscene 3.6.0 release: Many shadow maps improvements',
@@ -433,7 +433,7 @@ vrmlengine_thumbs(array(
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
 </ul>
 
-<p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
+<p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 
 <p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</a>.</p>
 
@@ -629,15 +629,15 @@ vrmlengine_thumbs(array(
           'short_description' => '',
           'description' =>
 
-'<p>Nearly all existing programs (examples and normal games) are now happily converted to the new <i>scene manager</i> approach. Scene manager interface got a lot of improvements by the way, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">check the docs</a>. This means that engine 2.0.0 is coming along nicely and will soon be released :)</p>
+'<p>Nearly all existing programs (examples and normal games) are now happily converted to the new <i>scene manager</i> approach. Scene manager interface got a lot of improvements by the way, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">check the docs</a>. This means that engine 2.0.0 is coming along nicely and will soon be released :)</p>
 
 <p>In particular, ' . news_a_href_page('The Castle', 'castle') . ' source code is converted to use the scene manager. This means that finally you can construct <i>"The Castle"</i> interactive levels by VRML/X3D events, using VRML/X3D time, touch sensors, key sensors, proximity sensors (see <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/index.html">X3D spec</a> for sensor nodes docs), scripts in ' . news_a_href_page('KambiScript', 'kambi_script') . ' and such. To celebrate this, I plan to add a little eye-candy to castle\'s "Fountain" level, and then officially release the final <b>"The Castle 1.0.0"</b> along with <b>engine 2.0.0</b>. After that, work on "The Castle 2" may begin :)</p>
 
 <p>More teasers about the <i>Castle 1.0.0</i> release and plans for <i>Castle 2</i> in later post hopefully next week.</p>
 
-<p>Getting back to the engine work, one important news for developers:  <!-- teaser --> I renamed one of the most important new classes: what was <tt>TBase3D</tt> is now called "<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a>". (Reasoning: this is a shorter and better name. "Base" prefix was just uncomfortable, esp. since descendants were no longer "base" 3D objects but they were have to be called "TBase3D" in many places.)</p>
+<p>Getting back to the engine work, one important news for developers:  <!-- teaser --> I renamed one of the most important new classes: what was <tt>TBase3D</tt> is now called "<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a>". (Reasoning: this is a shorter and better name. "Base" prefix was just uncomfortable, esp. since descendants were no longer "base" 3D objects but they were have to be called "TBase3D" in many places.)</p>
 
-<p>Also, some other classes (<tt>T[Custom]Translated/List3D</tt>) renamed to follow <tt>T3DXxx</tt> pattern, like <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a>. That is, I moved the "3D" part of the name to the beginning. (Reasoning: looks just better, and is consequent with usage of other common prefixes like TKamXxx and TVRMLXxx classes. General rule is that "common part should be the prefix, not suffix", as this is easier to see (and presents itself better when identifiers are sorted alphabetically in API docs etc.).)</p>
+<p>Also, some other classes (<tt>T[Custom]Translated/List3D</tt>) renamed to follow <tt>T3DXxx</tt> pattern, like <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a>. That is, I moved the "3D" part of the name to the beginning. (Reasoning: looks just better, and is consequent with usage of other common prefixes like TKamXxx and TVRMLXxx classes. General rule is that "common part should be the prefix, not suffix", as this is easier to see (and presents itself better when identifiers are sorted alphabetically in API docs etc.).)</p>
 
 <p>These renames concern only new classes, not released anyway yet (and we know anyway that engine 2.0.0 will break some compatibility, so let\'s take this opportunity and "get" the important classes names right, Ok? :) ).</p>
 
@@ -657,13 +657,13 @@ vrmlengine_thumbs(array(
 
 <p>During the last weeks I did a lot of work on the engine API. Especially the new <b>Scene Manager</b> approach makes quite a revolutionary change, and there\'s also <i>2D Controls manager</i>, better <i>Lazarus components</i> and many more. Together, I feel these are so important for developers using my engine that the next engine version will be bumped to proud <i>2.0.0</i> :) To be released next month.</p>
 
-<p>Not much noticeable for a normal user (sorry; although there are various fixes and improvements here and there). Below news post turned out quite long, and I\'ll keep passing you links to the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/">current API reference of SVN code</a>, so... developers: keep reading if you\'re interested, and others: well, this may get dirty, so you can stop reading now :)</p>
+<p>Not much noticeable for a normal user (sorry; although there are various fixes and improvements here and there). Below news post turned out quite long, and I\'ll keep passing you links to the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">current API reference of SVN code</a>, so... developers: keep reading if you\'re interested, and others: well, this may get dirty, so you can stop reading now :)</p>
 
 <!-- teaser -->
 
 <ol>
   <li>
-    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . news_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo).</p>
+    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . news_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo).</p>
 
     <p><b>The goal</b>: the goal (already achieved :) ) is to allow you to make a full 3D model viewer / VRML browser (with collisions, fully optimized rendering etc.) by this simple code:</p>
 
@@ -696,23 +696,23 @@ end.
 
     <p><b>The trouble</b>: our existing classes were nicely encapsulating some functionality (showing menu, rendering VRML etc.) but they <i>were a pain to add to your window / 3D world</i>.</p>
 
-    <p>You could use something like <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindowVRMLBrowser.TGLWindowVRMLBrowser.html">TGLWindowVRMLBrowser</a> (or equivalent Lazarus component, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiVRMLBrowser.TKamVRMLBrowser.html">TKamVRMLBrowser</a>) but these offered too little flexibility. They were made to allow easily loading <i>only one scene</i>.</p>
+    <p>You could use something like <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindowVRMLBrowser.TGLWindowVRMLBrowser.html">TGLWindowVRMLBrowser</a> (or equivalent Lazarus component, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiVRMLBrowser.TKamVRMLBrowser.html">TKamVRMLBrowser</a>) but these offered too little flexibility. They were made to allow easily loading <i>only one scene</i>.</p>
 
-    <p>For anything more complicated, you had to directly create your <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> etc. classes, and (this is the key point) to handle various window / camera / callbacks to connect the 3D scene with a camera and with a window. For example, you had to register window <tt>OnIdle</tt> callback to increment VRML scene time (to keep animations running etc.) You had to register <tt>OnKeyDown</tt>, <tt>OnKeyUp</tt> and pass key events to VRML scene (to make VRML sensors work), <tt>OnMouseXxx</tt> callbacks had to be passed to handle VRML touch sensors, <tt>OnDraw</tt> to handle scene rendering. You also had to register camera callbacks (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnMoveAllowed"><tt>OnMoveAllowed</tt></a>, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnGetCameraHeight"><tt>OnGetCameraHeight</tt></a>) to connect collision detection with your 3D scene. And the list goes on...</p>
+    <p>For anything more complicated, you had to directly create your <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> etc. classes, and (this is the key point) to handle various window / camera / callbacks to connect the 3D scene with a camera and with a window. For example, you had to register window <tt>OnIdle</tt> callback to increment VRML scene time (to keep animations running etc.) You had to register <tt>OnKeyDown</tt>, <tt>OnKeyUp</tt> and pass key events to VRML scene (to make VRML sensors work), <tt>OnMouseXxx</tt> callbacks had to be passed to handle VRML touch sensors, <tt>OnDraw</tt> to handle scene rendering. You also had to register camera callbacks (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnMoveAllowed"><tt>OnMoveAllowed</tt></a>, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnGetCameraHeight"><tt>OnGetCameraHeight</tt></a>) to connect collision detection with your 3D scene. And the list goes on...</p>
 
     <p>As a witness to all these troubles, have a look at implementation of <tt>GLWindowVRMLBrowser</tt> or (nearly identical) implementation of <tt>KambiVRMLBrowser</tt> is last released engine version. They are long and clumsy. In current SVN code, they are nice, short and clean, and also more flexible (can handle many 3D objects, not just 1 VRML scene).</p>
 
     <p><b>The solution(s):</b> There are actually two solutions, one directed at 3D objects (living in the 3D world), the other at 2D controls (merely taking some space on the 2D window) . They are quite similar, and nicely playing with each other:</p>
 
     <ol>
-      <li><p><i>For 3D objects</i>: we have a base class <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a> from which <i>all</i> other 3D objects are derived. For example, <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a> are both descendants of <tt>T3D</tt> now. There are some other helper 3D objects (<a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> - list of other 3D objects, and <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a> - translated other 3D object). And the real beauty is that you can easily derive your own <tt>T3D</tt> descendants, just override a couple methods and you get 3D objects that can be visible, can collide etc. in 3D world.</p>
+      <li><p><i>For 3D objects</i>: we have a base class <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a> from which <i>all</i> other 3D objects are derived. For example, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a> are both descendants of <tt>T3D</tt> now. There are some other helper 3D objects (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> - list of other 3D objects, and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a> - translated other 3D object). And the real beauty is that you can easily derive your own <tt>T3D</tt> descendants, just override a couple methods and you get 3D objects that can be visible, can collide etc. in 3D world.</p>
 
-        <p>Now, what to do with your 3D objects? Add them to your 3D world, of course. The new great class that is fully implemented now is the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a>. In every program you create an instance of this class (or your own dencendant of <tt>TKamSceneManager</tt>), and you add your 3D objects to the scene manager. Scene manager keeps the whole knowledge about your 3D world, as a tree of <tt>T3D</tt> objects. After adding your whole 3D world to the scene manager, you can add the scene manager to <tt>Controls</tt> (more on this next), and then scene manager will receive all necessary events from your window, and will pass them to all interested 3D objects. Also scene manager connects your camera, and defines your viewport where 3D world is rendered through this camera.</p>
+        <p>Now, what to do with your 3D objects? Add them to your 3D world, of course. The new great class that is fully implemented now is the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a>. In every program you create an instance of this class (or your own dencendant of <tt>TKamSceneManager</tt>), and you add your 3D objects to the scene manager. Scene manager keeps the whole knowledge about your 3D world, as a tree of <tt>T3D</tt> objects. After adding your whole 3D world to the scene manager, you can add the scene manager to <tt>Controls</tt> (more on this next), and then scene manager will receive all necessary events from your window, and will pass them to all interested 3D objects. Also scene manager connects your camera, and defines your viewport where 3D world is rendered through this camera.</p>
       </li>
 
-      <li><p><i>For 2D controls</i>: quite similar solution is used, although with some details different. All stuff that had to receive window events must derive from base <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/UIControls.TUIControl.html">TUIControl</a> class. This means that <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> is now a descendant of <tt>TUIControl</tt>, and in the future I would like to have a small library of generally-usable simple 2D controls available here. Also note that <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a> is <tt>TUIControl</tt> descendant, since scene manager by default acts as a viewport (2D rectangle) through which you can see your 3D world. (Possibility to easily add custom viewports from the same scene manager is the next thing on my to-do list.)</p>
+      <li><p><i>For 2D controls</i>: quite similar solution is used, although with some details different. All stuff that had to receive window events must derive from base <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html">TUIControl</a> class. This means that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> is now a descendant of <tt>TUIControl</tt>, and in the future I would like to have a small library of generally-usable simple 2D controls available here. Also note that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a> is <tt>TUIControl</tt> descendant, since scene manager by default acts as a viewport (2D rectangle) through which you can see your 3D world. (Possibility to easily add custom viewports from the same scene manager is the next thing on my to-do list.)</p>
 
-        <p>To actually use the <tt>TUIControl</tt>, you add it to the window\'s <tt>Controls</tt> list. If you use Lazarus component, then you\'re interested in <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiGLControl.TKamOpenGLControl.html#Controls">TKamOpenGLControl.Controls</a> list. If you use our own window library, you\'re intersted in the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindow.TGLUIWindow.html#Controls">TGLUIWindow.Controls</a>. Once control is added to the controls list, it will automatically receive all interesting events from our window.</p>
+        <p>To actually use the <tt>TUIControl</tt>, you add it to the window\'s <tt>Controls</tt> list. If you use Lazarus component, then you\'re interested in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiGLControl.TKamOpenGLControl.html#Controls">TKamOpenGLControl.Controls</a> list. If you use our own window library, you\'re intersted in the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLUIWindow.html#Controls">TGLUIWindow.Controls</a>. Once control is added to the controls list, it will automatically receive all interesting events from our window.</p>
       </li>
     </ol>
 
@@ -731,20 +731,20 @@ end.
         <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
       </li>
 
-      <li><p><tt>T3D/TUIControl</tt> give various improvements to all 2D/3D objects. For examples, <tt>TVRMLGLScene</tt> automatically sets cursor to "hand" when it\'s over a touch sensor. In fact, every <tt>T3D</tt> and <tt>TUIControl</tt> can affect cursor by <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/UIControls.TUIControl.html#Cursor">Cursor</a> property.</p></li>
+      <li><p><tt>T3D/TUIControl</tt> give various improvements to all 2D/3D objects. For examples, <tt>TVRMLGLScene</tt> automatically sets cursor to "hand" when it\'s over a touch sensor. In fact, every <tt>T3D</tt> and <tt>TUIControl</tt> can affect cursor by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html#Cursor">Cursor</a> property.</p></li>
 
-      <li><p>If you do not explicitly create a camera for the scene manager, a suitable one is automatically created, see <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html#Camera">TKamSceneManager.Camera</a>.</p></li>
+      <li><p>If you do not explicitly create a camera for the scene manager, a suitable one is automatically created, see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html#Camera">TKamSceneManager.Camera</a>.</p></li>
 
-      <li><p>All "navigator" classes, fields etc. are renamed to "camera". So e.g. <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/Cameras.TExamineCamera.html">TExamineCamera</a> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
+      <li><p>All "navigator" classes, fields etc. are renamed to "camera". So e.g. <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TExamineCamera.html">TExamineCamera</a> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
 
         <p>Old names <i>navigator</i> were coined to emphasize the fact that they do not have to represent "real" camera that is used to display the 3D scene on the screen, they can be used to manipulate any 3D object of your scene. For example <tt>shadow_fields</tt> demo uses 4 examine navigators to manipulate various scene elements, <tt>rift</tt> uses special walk navigator to represent position of the player in the room, etc. But I decided that the name is just confusing, as most of the time you use this as a "normal camera". Advanced users can probably grasp the fact that in fact "camera" doesn\'t have to be used to display whole scene from the screen.</p></li>
 
-      <li><p>GTK 2 backend of our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> class was much reworked. Namely, 1. we no longer use GTK\'s <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK\'s "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to GTK idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
+      <li><p>GTK 2 backend of our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> class was much reworked. Namely, 1. we no longer use GTK\'s <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK\'s "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to GTK idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
 
         <p>For more in-depth discussion of past problems, reasonings and solutions, see the document <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/src/glwindow/gtk/why_not_using_gtk_idle.txt">why_not_gtk_idle.txt</a>.
       </li>
 
-      <li><p>A minor improvements to the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> are the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindow.TGLWindow.html#MessageOK">MessageOK</a> and the <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/reference/html/GLWindow.TGLWindow.html#MessageYesNo">MessageYesNo</a> methods, proving native-looking (GTK, WinAPI etc.) message boxes.</p></li>
+      <li><p>A minor improvements to the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> are the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html#MessageOK">MessageOK</a> and the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html#MessageYesNo">MessageYesNo</a> methods, proving native-looking (GTK, WinAPI etc.) message boxes.</p></li>
 
       <li><p>Oh, and f you\'re trying to compile the engine with newest FPC 2.4.0, please use engine SVN source for now. Current released tar.gz sources compile only with &lt;= 2.2.4. This problem will of course disappear after new engine is released.</p></li>
     </ul>

@@ -85,7 +85,7 @@ your 3D worlds, you can:
     documentation pages, or maybe make link to wiki more prominent,
     maybe even move whole current static documentation to wiki.)-->
 
-  <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly
+  <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly
     builds of our binaries</a>. These are build automatically every night
     using current SVN code. You can test them and catch eventual bugs
     before the release. This way you can also preview new features before they

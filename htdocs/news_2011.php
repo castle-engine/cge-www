@@ -51,7 +51,7 @@ vrmlengine_thumbs(array(
       <li>Loading of many scenes is now ~2 times faster :), and is done immediately. That is because we fixed octree creation, it was mistakenly done <i>twice</i>, and the 2nd time was on-demand.</li>
       <li>More image formats supported (without the need for installing any external program or library). We use excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a> to load and save various image formats now. This improves reading of some formats (PCX, JPG), and introduces some new formats (GIF, TGA, XPM, PSD).
         <p>Note that some formats, like PNG and DDS, are still read using our internal code (in case on PNG, this relies on libpng that is distributed with Windows binaries and present on all Unix installations). These formats already have good (optimized, and using full format features) reader inside our engine, so no need to change them.</p>
-        <p>See <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/docs/glviewimage.html">glviewimage docs in SVN</a> for a current list of supported image formats.</p>
+        <p>See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/glviewimage.html">glviewimage docs in SVN</a> for a current list of supported image formats.</p>
       <li>New view3dscene menu item to take a screenshot with transparent background, <i>Display -&gt; Screenshot To Image (Transparent Background)</i>. (<a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=164">Requested on forum</a>).</li>
       <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to allow using it repeatedly, and to work with <tt>IndexedTriangleSet</tt>.</li>
       <li>Fixed "pure shader renderer" on shapes that have textures with full (not only 0/1) alpha channel. In some situations, they were mistakenly drawn with additional alpha test, and effectively some parts of them were invisible. This bug slipped in 3.10.0 release.</li>
@@ -118,7 +118,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'collada_seymour.png', 'titlealt' => 'Collada Seymour model (from collada.org/owl)'),
   array('filename' => 'collada_turbochi_fromxsi.png', 'titlealt' => 'Collada Turbochi model (from collada.org/owl)'),
 )) .
-'<p>Our <a href="http://collada.org/">Collada</a> importer received a lot of improvements this week. They improve both rendering of Collada models, and converting them to X3D (as our importer simply loads Collada to X3D node graph in memory). As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>!</p>
+'<p>Our <a href="http://collada.org/">Collada</a> importer received a lot of improvements this week. They improve both rendering of Collada models, and converting them to X3D (as our importer simply loads Collada to X3D node graph in memory). As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>!</p>
 
 <p>New Collada features handled:</p>
 
@@ -390,7 +390,7 @@ vrmlengine_thumbs(array(
 
 <p>You may also be interested in <a href="http://castle-engine.sourceforge.net/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">is available here</a>.</p>
 
-<p>As usual, you can try everything by <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">our snapshots</a>.</p>
+<p>As usual, you can try everything by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">our snapshots</a>.</p>
 '),
 
     array('title' => 'Development news: Engine 2.4.4 fixes release, ColorSetInterpolator',
@@ -478,7 +478,7 @@ vrmlengine_thumbs(array(
   array('filename' => 'fresnel_and_toon.png', 'titlealt' => 'Toon and Fresnel effects combined'),
   array('filename' => 'noise.png', 'titlealt' => '3D and 2D smooth noise on GPU, wrapped in ShaderTexture'),
 ), 2) .
-'<p>We have some great news about the recent engine developments. As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>!</p>
+'<p>We have some great news about the recent engine developments. As always, remember that you can try all the new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>!</p>
 
 <ol>
   <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
@@ -622,7 +622,7 @@ vrmlengine_thumbs(array(
   <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<tt>data:text/plain,</tt>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). For a demo, see the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
 </ul>
 
-<p>As always, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/vrmlengine-snapshots/">nightly builds</a>.</p>
+<p>As always, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 
 <p>(Note that the <tt>Text</tt> nodes are an exception, they don\'t benefit from new renderer features. Parts of <tt>Text</tt> geometry are rendered through a different method, that is not integrated with vertex arrays. This will not be touched for next release, text nodes are not that much important.)</p>
 

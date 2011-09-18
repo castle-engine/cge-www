@@ -78,18 +78,18 @@ vrmlengine_thumbs(array(
 
   <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <tt>GeneratedShadowMap</tt>. The complete examples, with shaders, are available inside our <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
 
-    <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
+    <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
 
     <p>Some demo screenshots are on the right. They show the same view with/and without SSAO. (The comparison is somewhat unfair, as "without SSAO" versions just have GLSL shaders turned off. But the point is that they don\'t have smooth shadows (occlusion)).</p></li>
 
   <li><p>New <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a> release supports all <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php">VRML/X3D extensions</a> of our engine. Thanks go to Joerg "MUFTI" Scheurich.</p></li>
 
-  <li><p>Documentation of our "VRML / X3D implementation status" was refactored, each X3D component has now separate page with support details. This should make it easier to read and find needed things. <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_status.html">See the SVN documentation here</a>.
+  <li><p>Documentation of our "VRML / X3D implementation status" was refactored, each X3D component has now separate page with support details. This should make it easier to read and find needed things. <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/vrml_implementation_status.html">See the SVN documentation here</a>.
 
   <!-- Previous documentation (just one long page with stream of information) was fine a long time ago, when so little of VRML/X3D standards was implemented that it was sensible to mention only things that are actually working. Right now it makes more sense to focus on mentioning things that are missing :) -->
   </p></li>
 
-  <li><p>Also, I noticed today that our <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> were down for the last 3 weeks. Sorry about that, fixed now.</p></li>
+  <li><p>Also, I noticed today that our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> were down for the last 3 weeks. Sorry about that, fixed now.</p></li>
 </ul>'),
 
     array('title' => 'Development news - more NURBS: interpolators, VRML 97 compatibility',
@@ -109,7 +109,7 @@ vrmlengine_thumbs(array(
 
 <p><a href="http://castle-engine.sourceforge.net/vrml_implementation_nurbs.php">Up-to-date documentation about supported NURBS nodes is here.</a> Some demo scenes are inside kambi_vrml_test_suite in SVN, see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/nurbs_curve_interpolators.x3dv">nurbs_curve_interpolators.x3dv</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/nurbs_surface_interpolator.x3dv">nurbs_surface_interpolator.x3dv</a>.</p>
 
-<p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
+<p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
 '),
 
     array('title' => 'Development news - NURBS basics',
@@ -128,7 +128,7 @@ vrmlengine_thumbs(array(
 
 <p>For the next engine release, this NURBS support will be extended. I would like to cover X3D NURBS component up to level 2 and also implement most important VRML 97 NURBS nodes for compatibility (they are similar but a little incompatible to X3D ones).</p>
 
-<p>For now, you can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>.</p>
+<p>For now, you can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>.</p>
 '),
 
     array('title' => 'view3dscene 3.4 release - advanced texturing',
@@ -193,14 +193,14 @@ vrmlengine_thumbs(array(
 
 <ul>
   <li><a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint. Useful for many effects. The most straightforward use would be to make a "security camera" or a "portal", through which a player can peek what happens at the other place in 3D world. (<a href="http://castle-engine.sourceforge.net/miscella/rendered_texture_one_file.x3dv">Simple example</a>).</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
-  <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
-  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/docs/vrml_implementation_texturing.php#section_multi_texturing">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/kambi_vrml_extensions.html#section_ext_viewpoint_camera_matrix">Viewpoint.camera*Matrix</a> output events are implemented, very useful for shaders.</li>
+  <li><a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/kambi_vrml_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
+  <li>We have a <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/vrml_implementation_texturing.php#section_multi_texturing">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
   <li>Texture handling code was refactored last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
   <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
 </ul>
 
-<p>Still no official release, but view3dscene 3.4 should be released Really Soon :) For now you can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>.</p>
+<p>Still no official release, but view3dscene 3.4 should be released Really Soon :) For now you can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 '),
 
 
@@ -243,7 +243,7 @@ vrmlengine_thumbs(array(
 </ul>
 
 <p>For the brave: you can test these features already by trying the
-<a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds</a>
+<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>
 (or grabbing source code from SVN and compiling yourself, of course).</p>
 '),
 
@@ -280,7 +280,7 @@ vrmlengine_thumbs(array(
   <li>Finish GLSL stuff by supporting X3D attributes nodes.</li>
 </ul>
 
-<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/~michalis/vrmlengine-snapshots/">nightly builds of vrmlengine binaries (including view3dscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
+<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds of vrmlengine binaries (including view3dscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
 '),
 
     array('title' => 'Dynamic Ambient Occlusion, Shadow Fields demos in the engine sources',
