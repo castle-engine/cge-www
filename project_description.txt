@@ -1,0 +1,24 @@
+Short project description, used on:
+- https://sourceforge.net/projects/castle-engine/
+- http://cia.vc/stats/project/castle-engine
+- https://www.ohloh.net/p/castle-engine
+
+Game engine focused on VRML and X3D formats. Processing and optimized OpenGL rendering of 3D models (in VRML/X3D and other formats), animation, collision detection, shadows, shaders, 3D sound. Written using ObjectPascal (compiled by FreePascal). Previously "Kambi VRML game engine".
+
+- https://flattr.com/thing/398312/Castle-Game-Engine
+- https://fundry.com/project/91-castle-game-engine
+  (same thing as https://fundry.com/project/91-kambi-vrml-game-engine)
+
+An open-source 3D game engine with an excellent support for VRML / X3D and many advanced graphic effects. Written in clean Object Pascal. The engine is the basis for our view3dscene (VRML / X3D browser), and "The Castle" (FPS game). Previously known as "Kambi VRML game engine".
+
+------------------------------------------------------------------------------
+Description of project vrmlengine, used on
+- https://sourceforge.net/projects/vrml-engine/
+- http://cia.vc/stats/project/vrmlengine
+- https://www.ohloh.net/p/vrmlengine
+
+The "Kambi VRML game engine" is renamed to "Castle Game Engine" (short name castle-engine). For commits and all current information see castle-engine project.
+
+- https://flattr.com/thing/82694/Kambi-VRML-game-engine
+
+The "Kambi VRML game engine" is renamed to "Castle Game Engine" (short name castle-engine). For all current information see castle-engine project.

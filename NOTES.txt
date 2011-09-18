@@ -101,11 +101,12 @@ Procedure to update WWW content:
   - Post new topic on our forum, to encourage some discussion.
   - Post on facebook, google+, twitter.
 
-  - really large new features may cause updates of project description:
-    - on SourceForge
-    - cia.vc: http://cia.vc/stats/project/vrmlengine
-    - ohloh: https://www.ohloh.net/p/vrmlengine
-    - Lazarus wiki: http://wiki.freepascal.org/Kambi_VRML_game_engine
+  - really large new features may cause updates of project description.
+    Change project_description.txt text, and see there for a list of places
+    where it's used.
+
+    Also Lazarus wiki contains longer description of our project:
+      http://wiki.freepascal.org/Kambi_VRML_game_engine
       http://wiki.lazarus.freepascal.org/Components_and_Code_examples#Packages_for_FPC.2FLazarus_.28not_hosted_here.29
       http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Kambi_VRML_game_engine
 
