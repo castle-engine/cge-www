@@ -88,10 +88,10 @@ This is usually slower but also more beautiful than default
 <p>Using shader pipeline (forced on everything by
 <i>"Shaders-&gt;Enable For Everything"</i>, or activated
 automatically for shapes using
-<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a>
-or
-<a href="http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a>)
-requires a good graphic card with latest drivers.
+<?php echo a_href_page('shadow maps', 'kambi_vrml_extensions_shadow_maps'); ?>
+ or
+<?php echo a_href_page_hashlink('bump mapping', 'kambi_vrml_extensions' , 'section_ext_bump_mapping'); ?>
+ requires a good graphic card with latest drivers.
 <!--This means that they work much better than previously (where
 sometimes I used simplified dumb shaders, and sometimes default
 behavior was to not use shaders at all). --> Before reporting

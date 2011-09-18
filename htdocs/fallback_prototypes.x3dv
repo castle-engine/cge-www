@@ -2,8 +2,8 @@
 PROFILE Interchange
 
 # This X3D file specifies "fallback" prototypes for extensions
-# of Kambi X3D game engine,
-# [http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php].
+# of Castle Game Engine,
+# [http://castle-engine.sourceforge.net/kambi_vrml_extensions.php].
 #
 # This file will *not* be used by Kambi VRML game engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.
@@ -153,7 +153,7 @@ PROTO Teapot [
   }
 }
 
-# See http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load
+# See http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load
 PROTO KambiNavigationInfo [
 
   # Standard X3D NavigationInfo fields/events

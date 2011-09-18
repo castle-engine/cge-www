@@ -2,7 +2,7 @@
 
 # This VRML file specifies "fallback" prototypes for extensions
 # of Kambi VRML game engine,
-# [http://vrmlengine.sourceforge.net/kambi_vrml_extensions.php].
+# [http://castle-engine.sourceforge.net/kambi_vrml_extensions.php].
 #
 # This file will *not* be used by Kambi VRML game engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.

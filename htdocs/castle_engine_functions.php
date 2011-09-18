@@ -476,6 +476,7 @@ piwikTracker.enableLinkTracking();
 
 define('SF_UNIX_NAME', 'vrmlengine'); // used only by download links. For now, downloads go to vrmlengine space.
 
+define('WIKI_URL', 'https://sourceforge.net/p/castle-engine/wiki/');
 define('MAILING_LIST_URL', 'https://lists.sourceforge.net/lists/listinfo/vrmlengine-main');
 define('FORUM_URL', 'http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3');
 define('BUGS_TRACKER_URL',             'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974391');

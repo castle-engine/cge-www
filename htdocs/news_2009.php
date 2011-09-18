@@ -24,7 +24,7 @@ castle_thumbs(array(
   </li>
 
   <li>
-    <p>Developers will note large changes in the layout of <tt>kambi_vrml_game_engine</tt> archive (and SVN directory). (links below point to appropriate <a href="http://vrmlengine.svn.sourceforge.net/viewvc/vrmlengine/">viewvc</a> URL, for your convenience)</p>
+    <p>Developers will note large changes in the layout of <tt>kambi_vrml_game_engine</tt> archive (and SVN directory).</p>
 
     <ol>
       <li>All "core" sources are moved to the <a href="' . sf_checkout_link(false, ENGINE_DIR_NAME . '/src/') . '"><tt>src/</tt> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
@@ -280,7 +280,7 @@ castle_thumbs(array(
   <li>Finish GLSL stuff by supporting X3D attributes nodes.</li>
 </ul>
 
-<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds of vrmlengine binaries (including view3dscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
+<p>For the impatient: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds of all binaries (including view3dscene) are available.</a> They are build automatically every night using current SVN code. Use at your own risk, of course &mdash; they <i>do</i> contain some known bugs. For now, they are made for Linux and Windows (32-bit).</p>
 '),
 
     array('title' => 'Dynamic Ambient Occlusion, Shadow Fields demos in the engine sources',

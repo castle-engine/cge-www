@@ -78,7 +78,7 @@ your 3D worlds, you can:
     is large, and always wants to be larger. Contributions describing
     how something works, or how to do something practical, are welcome.
 
-    <p><a href="http://apps.sourceforge.net/mediawiki/vrmlengine/">You can
+    <p><a href="<?php echo WIKI_URL; ?>">You can
     add your contributions directly to our wiki</a>.
     (Once we'll get some user content in our wiki,
     we'll think how to make it more visible.)<!-- &mdash; copy it to the current "static"
@@ -110,7 +110,7 @@ your 3D worlds, you can:
     <p>Some ideas for development are proposed on
     <a href="https://fundry.com/project/91-kambi-vrml-game-engine">Fundry page of our engine</a>.
 
-  <li><p><a href="http://apps.sourceforge.net/mediawiki/vrmlengine/">Contribute
+  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.
 
   <li><p><?php echo a_href_page_hashlink('Help to port our <tt>GLWindow</tt> unit
