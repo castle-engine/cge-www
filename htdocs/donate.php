@@ -27,6 +27,20 @@ and view3dscene, and our games :) Thanks!</p>
   </td>
 
   <td>
+  <script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
+  <script type="text/javascript">
+   // <![CDATA[
+     new Fundry.Widget('https://fundry.com/project/91-castle-game-engine/widget', {width: '320px', height: '200px'});
+   // ]]>
+  </script>
+  <a href="http://fundry.com/">Powered by Fundry</a>
+
+  <p>You can offer money for a particular feature.
+  You can propose your own feature, or agree to a feature
+  proposed by another user or developer.</p>
+  </td>
+
+  <td>
   <p><a href="https://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
 
   <p>You can <a href="https://sourceforge.net/donate/index.php?group_id=200653">donate
@@ -45,20 +59,6 @@ and view3dscene, and our games :) Thanks!</p>
 
   <!--You can also write a comment (public or not) while donating.-->
   <!-- Place here a list of subscribers gen by SF once it's sensible -->
-  </td>
-
-  <td>
-  <script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
-  <script type="text/javascript">
-   // <![CDATA[
-     new Fundry.Widget('https://fundry.com/project/91-castle-game-engine/widget', {width: '320px', height: '200px'});
-   // ]]>
-  </script>
-  <a href="http://fundry.com/">Powered by Fundry</a>
-
-  <p>You can offer money for a particular feature.
-  You can propose your own feature, or agree to a feature
-  proposed by another user or developer.</p>
   </td>
 </tr></table>
 
