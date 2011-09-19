@@ -30,7 +30,7 @@ See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads f
 games and tools developed using our engine. <!--Most of them
 are somewhat related to 3D graphics.-->
 Two&nbsp;most important programs available here are
-<a href="view3dscene.php">view3dscene</a> 3D model viewer 
+<a href="view3dscene.php">view3dscene</a> 3D model viewer
 and&nbsp;<a href="castle.php">"The&nbsp;Castle"</a> game.</p>
 
 <p><b>Latest update:</b>
@@ -58,9 +58,13 @@ and&nbsp;<a href="castle.php">"The&nbsp;Castle"</a> game.</p>
 </div>
 
 <p><b>Watch engine development</b>: To <i>really</i> watch the engine development
-closely, you can watch the commits through
+closely, you can
+<a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
+<!-- not polled unfortunately:
 <a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
-cia.vc</a>. There is also <a href="https://www.ohloh.net/p/castle-engine">our
+cia.vc</a>.
+-->
+There is also <a href="https://www.ohloh.net/p/castle-engine">our
 project page on Ohloh</a> (you're welcome to rate and click on
 <i>"I use this"</i> button there!).</p>
 
