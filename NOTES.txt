@@ -106,9 +106,9 @@ Procedure to update WWW content:
     where it's used.
 
     Also Lazarus wiki contains longer description of our project:
-      http://wiki.freepascal.org/Kambi_VRML_game_engine
+      http://wiki.freepascal.org/Castle_Game_Engine
       http://wiki.lazarus.freepascal.org/Components_and_Code_examples#Packages_for_FPC.2FLazarus_.28not_hosted_here.29
-      http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Kambi_VRML_game_engine
+      http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Castle_Game_Engine
 
   - Maybe:
     - http://www.web3d.org/news/submit/
