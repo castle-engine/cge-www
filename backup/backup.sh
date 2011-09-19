@@ -18,10 +18,19 @@ backup_svn ()
 
 backup_xml ()
 {
-  export PERL5LIB="$HOME"/sources/adocman/adocman-0.13/
-  xml_export --username=kambi --password=`print_sf_password` --groupid=200653 --login
-  xml_export --groupid=200653 > vrmlengine_export.xml
+  # It seems that below doesn't work (generated xml_export_output is empty)
+  echo -n 'xml_export: '
+  echo -n 'Logging in... '; xml_export --username=kambi --password=`print_sf_password` --login
+  echo -n 'Downloading... '; xml_export --groupid=200653 > xml_export_output.xml
+  echo 'Done.'
+
+  echo '--------------------'
+  echo "Please check `pwd`/xml_export_output.xml"
+  echo "--- if it's bad, you have to use"
+  echo "[http://sourceforge.net/export/xml_export.php?group_id=4213]"
+  echo " from a real WWW browser"
+  echo '--------------------'
 }
 
 backup_svn
-backup_xml
+#backup_xml
