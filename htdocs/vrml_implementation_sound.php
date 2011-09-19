@@ -7,7 +7,7 @@
     parameters. Sounds may be spatialized (3D) or not.');
 
   echo castle_thumbs(array(
-    array('filename' => 'sound.png', 'titlealt' => 'Sound demo (from Kambi VRML test suite)'),
+    array('filename' => 'sound.png', 'titlealt' => 'Sound demo'),
   ));
 
   $toc = new TableOfContents(

@@ -34,9 +34,9 @@ Procedure to update WWW content:
 
   New FRS (http://p.sf.net/sourceforge/FRS):
   - Upload to
-    ssh://kambi,vrmlengine@frs.sourceforge.net/home/frs/project/v/vr/vrmlengine/
+    sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
     Follow dirnames as default: program_name/version_number/.
-  - Only for view3dscene: On https://sourceforge.net/projects/vrmlengine/files/
+  - Only for view3dscene: On https://sourceforge.net/projects/castle-engine/files/
     mark new view3dscene released files as default downloads for given OS.
     This is only for default download on given OS, we suggest here
     view3dscene as our "default package".

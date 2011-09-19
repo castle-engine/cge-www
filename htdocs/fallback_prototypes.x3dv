@@ -5,7 +5,7 @@ PROFILE Interchange
 # of Castle Game Engine,
 # [http://castle-engine.sourceforge.net/kambi_vrml_extensions.php].
 #
-# This file will *not* be used by Kambi VRML game engine programs
+# This file will *not* be used by Castle Game Engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.
 #
 # This file may be used by other VRML / X3D browsers so that they are able

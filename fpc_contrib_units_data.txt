@@ -1,4 +1,4 @@
-Name: Kambi VRML game engine
+Name: Castle Game Engine
 Author: Michalis Kamburelis
 Version: 2.5.1
 File URL: http://castle-engine.sourceforge.net/engine.php

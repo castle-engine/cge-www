@@ -8,7 +8,7 @@
 
 <p><b>This is mostly a rant about why I (<?php echo michalis_mailto('Michalis'); ?>)
 think that VRML/X3D idea of time origin ("January 1, 1970") is a bad idea.
-Don't worry, Kambi VRML engine complies with VRML standard in this regard
+Don't worry, Castle Game Engine complies with VRML/X3D standard in this regard
 &mdash; I'm just quite unhappy about this.</b> You can change the behavior
 to more sane (in my opinion) by using <?php echo a_href_page_hashlink(
   'our extension <tt>KambiNavigationInfo.timeOriginAtLoad</tt>',

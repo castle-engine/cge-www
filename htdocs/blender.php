@@ -101,7 +101,7 @@ and then our "KAnim hack" will no longer be useful.)</p>
     (requires accompanying <?php echo_svn_blender_file('kambi_vrml97_export_base.py') ?>) :</p>
 
     <p>Exporter to
-    <?php echo a_href_page("kanim (Kambi VRML engine animations) format",
+    <?php echo a_href_page("kanim (Castle Game Engine animations) format",
       'kanim_format'); ?>. Thanks to Grzegorz Hermanowicz for starting this !</p>
   </li>
 </ul>

@@ -121,7 +121,7 @@ specification nodes actually use this.</p>
 External prototypes recognize URN of standard VRML 97 nodes, i.e.
 <tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
 (<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
-on <?php echo a_href_page('Kambi VRML extensions', 'kambi_vrml_extensions'); ?>.
+on <?php echo a_href_page('VRML/X3D extensions', 'kambi_vrml_extensions'); ?>.
 
 <p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
 

@@ -172,7 +172,7 @@ flawlessly :) So give it a try!
     the official X3D specifications</a>.
 
   <li><p><b><?php echo a_href_page(
-    "Kanim (Kambi VRML engine animations)", 'kanim_format'); ?></b> format
+    "Kanim (Castle Game Engine animations)", 'kanim_format'); ?></b> format
     is handled, animation is played.</p>
 
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>

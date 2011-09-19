@@ -22,13 +22,13 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Files with extension *.kanim represent <i>"Kambi VRML engine's animations"</i>.
+<p>Files with extension *.kanim represent <i>"Castle Game Engine's animations"</i>.
 These are XML files that describe precalculated animation as a sequence of files.
 Animation shows the transition from the first model to the last.
 Where models are structurally equal, intermediate frames are
 created by linear interpolation to show smooth changes.</p>
 
-<p><b>Since animation by VRML events and interpolators is implemented
+<p><b>Since animation by VRML/X3D events and interpolators is implemented
 in our engine now, Kanim format becomes obsolete.</b>
 It's useful only if your favorite 3D modeler cannot export VRML/X3D
 animation with interpolators, but it can export static VRML/X3D files.</p>

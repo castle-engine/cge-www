@@ -1,10 +1,10 @@
 #VRML V2.0 utf8
 
 # This VRML file specifies "fallback" prototypes for extensions
-# of Kambi VRML game engine,
+# of Castle Game Engine,
 # [http://castle-engine.sourceforge.net/kambi_vrml_extensions.php].
 #
-# This file will *not* be used by Kambi VRML game engine programs
+# This file will *not* be used by Castle Game Engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.
 #
 # This file may be used by other VRML browsers so that they are able
@@ -33,7 +33,7 @@ PROTO KambiAppearance [
   exposedField SFNode textureTransform  NULL
 
   # This is from X3D.
-  # Kambi VRML game engine treats it as part of normal Appearance
+  # Castle Game Engine treats it as part of normal Appearance
   # node, but actually this is an extension for pure VRML 2.0.
   exposedField SFNode fillProperties    NULL
   exposedField SFNode lineProperties    NULL

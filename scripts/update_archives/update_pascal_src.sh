@@ -2,7 +2,7 @@
 set -eu
 
 # Update archives with my Pascal sources in file_releases/.
-# Kambi VRML game engine sources are expected inside $CASTLE_ENGINE_PATH.
+# Castle Game Engine sources are expected to be inside $CASTLE_ENGINE_PATH.
 #
 # All archives are build as tar.gz.
 # Use this only from Linux, although any Unix should be Ok actually.

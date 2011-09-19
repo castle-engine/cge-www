@@ -37,10 +37,10 @@
   if (IS_GEN_LOCAL)
   {
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '">Download Kambi VRML/X3D demo models from it\'s WWW page</a>.</p>';
+      '">Download VRML/X3D demo models from it\'s WWW page</a>.</p>';
   } else
   {
-    echo sf_download("Download Kambi VRML/X3D demo models",
+    echo sf_download("Download VRML/X3D demo models",
       'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz');
   }
 ?>
@@ -60,7 +60,7 @@ in normal text editor too) you can find some
 comments explaining what this file demonstrates.
 
 <p>These models were created to test
-<?php echo a_href_page('our Kambi VRML/X3D game engine', 'index'); ?>,
+<?php echo a_href_page('our Castle Game Engine', 'index'); ?>,
 but many of them should also be handled by other conforming
 VRML/X3D browsers.</p>
 
