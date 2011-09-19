@@ -1,5 +1,35 @@
 <?php
 
+/* Next news:
+
+Hi everyone,
+
+1. So the first news is that you can probably see "Castle Game Engine" slapped everywhere around the webpages :), instead of old "Kambi VRML game engine". That's right: as announced, we rename our engine to a new, better name.
+
+  <li><p>Most old URLs will still work, appropriate redirects are done to go to new castle-engine website.
+
+  <li><p><New forum (using SourceForge Allura)>
+         <New wiki (also using SourceForge Allura)>
+         <New flattr button (needs to be changed since we change URL.> Please click this to donate, thank you :)
+
+  <li><p>New SourceForge project page is on <>. We use new SourceForge 2.0 Allura project platform --- I think it works quite nicely. And we get nice wiki and forum for free, we'll try to use them (instead of MediaWiki and awfully ugly+bloated PhpBB).
+
+  <li><p>The URL of SVN repository changed. You can "svn switch" your existing repository, like
+
+svn switch --relocate https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/trunk http://svn.code.sf.net/p/castle-engine/code/trunk
+
+Or you can just do a fresh "svn checkuot" of course. There are different protocols available to access the new SVN repository, all listed on https://sourceforge.net/p/castle-engine/code/, for maximum comfort and flexibility (svn:// and http:// for anonymous RO, svn+ssh:// and https:// for authenticated RW). Links on my page will advice the http:// protocol usually (as it's easy to check it also in a WWW browser, without SVN client). Developers should <a href="https://sourceforge.net/p/forge/documentation/svn%20-%20Beta/">prefer svn+ssh://, it can be faster than https:// according to SF docs</a>.
+
+  <li><p>We have <a href="http://cia.vc/stats/project/castle-engine">a new cia.vc</a> page (not stats there yet, <a href="http://code.google.com/p/cia-vc/issues/detail?id=50">looks like cia.vc has problems with SVN polling</a>) and <a href="https://www.ohloh.net/p/vrmlengine">a new ohloh page</a>. <a href="http://cia.vc/stats/project/vrmlengine">Old cia.vc page</a> and <a href="https://www.ohloh.net/p/vrmlengine">old ohloh page</a> should not be used anymore (please update your bookmarks etc.).
+
+  <li><p>For now, downloads still go to the old vrmlengine project space, although this is probably not very noticeable --- just click the link and download, all works Ok. This will be changed with next release of view3dscene and everything else, when I'll upload everything to new castle-engine space and update links.
+
+2. I was at TPCG11 conference and gave a talk about our "Compositing Shaders in X3D" idea. I think it went quite good :) <Slides from the presentation are available>.
+
+TODO:Look in SVN -- any relevant changes visible to users?
+
+*/
+
 array_push($news,
     array('title' => 'Engine rename to "Castle Game Engine" soon, development news: some important fixes / improvements, many API improvements',
           'year' => 2011,
