@@ -5,7 +5,14 @@ backup_svn ()
 {
   mkdir -p subversion/
   cd subversion/
-  rsync -av vrmlengine.svn.sourceforge.net::svn/vrmlengine/* .
+
+  # Documented on
+  # https://sourceforge.net/apps/trac/sourceforge/wiki/SVN%20adminrepo
+  # rsync -av vrmlengine.svn.sourceforge.net::svn/vrmlengine/* .
+
+  # Documented at the bottom of
+  # https://sourceforge.net/p/forge/documentation/svn%20-%20Beta/
+  rsync -av svn.code.sf.net::p/castle-engine/code/* .
   cd ../
 }
 
