@@ -13,7 +13,7 @@ An open-source 3D game engine with an excellent support for VRML / X3D and many 
 
 ------------------------------------------------------------------------------
 Description of project vrmlengine, used on
-- https://sourceforge.net/projects/vrml-engine/
+- https://sourceforge.net/projects/vrmlengine/
 - http://cia.vc/stats/project/vrmlengine
 - https://www.ohloh.net/p/vrmlengine
 
