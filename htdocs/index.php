@@ -72,18 +72,6 @@ project page on Ohloh</a> (you're welcome to rate and click on
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
 (<?php echo michalis_mailto('email'); ?>).</i></p>
 
-<a href="https://fundry.com/project/91-castle-game-engine">suggestions</a>
-<a href="https://fundry.com/project/91-kambi-vrml-game-engine">suggestions</a>
-
-<script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
-<script type="text/javascript">
- // <![CDATA[
-   new Fundry.Widget('https://fundry.com/project/91-castle-game-engine/widget', {width: '320px', height: '200px'});
-			   // ]]>
-</script>
-<a href="http://fundry.com/">Powered by Fundry</a>
-
-
 <?php
   castle_footer();
 ?>
