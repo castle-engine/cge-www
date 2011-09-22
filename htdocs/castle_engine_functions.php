@@ -503,53 +503,16 @@ function sf_download($title, $file_name)
     '/' . $file_name . '">' . $title. '</a>';
 }
 
-$os_arch_caption = array(
-  'linux-i386'   => ' for Linux (i386)',
-  'linux-x86_64' => ' for Linux (x86_64)',
-  'win-i386'     => ' for Windows (i386)',
-  'freebsd-i386' => ' for FreeBSD (i386)',
-  'macosx-i386'  => ' for Mac OS X (i386)',
-  /* TODO: these are only temporary os_arch names, without i386 suffix.
-     That's because when my engine was i386 only, I didn't add i386 suffix.
-     Until every program is re-released with i386 suffix, old programs
-     will use this. */
-  'linux'        => ' for Linux (i386)',
-  'win'          => ' for Windows (i386)',
-  'freebsd'      => ' for FreeBSD (i386)',
-  'macosx'       => ' for Mac OS X (i386)',
-);
-
-$os_arch_extension = array(
-  'linux-i386'   => '.tar.gz',
-  'linux-x86_64' => '.tar.gz',
-  'win-i386'     => '.zip',
-  'freebsd-i386' => '.tar.gz',
-  'macosx-i386'  => '.tar.gz',
-  'linux'        => '.tar.gz',
-  'win'          => '.zip',
-  'freebsd'      => '.tar.gz',
-  'macosx'       => '.tar.gz',
-);
-
-$std_releases_pre_1_2_0 = array('linux', 'win', 'freebsd', 'macosx');
-$std_releases_post_1_2_0 = array('linux-i386', 'win-i386', 'macosx-i386');
-$std_releases_post_1_8_0 = array('linux-i386', 'linux-x86_64', 'win-i386', 'macosx-i386');
-
-/* This echoes an <ul> list with items for all platforms where I compile
+/* This echoes a list to download for all platforms where I compile
    my programs. Each item looks like
      < ?php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
    where $prog_nice_name = Foo, $prog_archive_basename = foo.
 
    If $prog_version is '' then the whole -version part will be omitted
    (i.e. $prog_version = '' causes also the dash '-' before version
-   to disappear, since this is what you usually want).
-
-   $os_arch_list is a list of os_arch for which this program was released.
-   They have to be a suffix of the released filenames. They also have to
-   be an entries to $os_arch_caption and similar arrays. */
+   to disappear, since this is what you usually want). */
 function echo_standard_program_download(
-  $prog_nice_name, $prog_archive_basename, $prog_version,
-  $os_arch_list)
+  $prog_nice_name, $prog_archive_basename, $prog_version)
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
 
@@ -564,6 +527,35 @@ function echo_standard_program_download(
     $nice_name_start .= ' (' . $prog_version . ')';
   */
 
+  /* Hardcode $os_arch_list for now.
+     It used to be configurable, but it was more trouble than it was worth. */
+  $os_arch_list = array(
+    'linux-i386',
+    'linux-x86_64',
+    'win-i386',
+    'macosx-i386');
+
+  $os_arch_caption = array(
+    'linux-i386'   => ' Linux<br/>(32 bit)',
+    'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
+    'win-i386'     => ' Windows<br/>(32 bit)',
+    'macosx-i386'  => ' Mac OS X<br/>(32 bit)',
+  );
+
+  $os_arch_extension = array(
+    'linux-i386'   => '.tar.gz',
+    'linux-x86_64' => '.tar.gz',
+    'win-i386'     => '.zip',
+    'macosx-i386'  => '.tar.gz',
+  );
+
+  $os_arch_icon = array(
+    'linux-i386'   => 'linux32',
+    'linux-x86_64' => 'linux64',
+    'win-i386'     => 'win',
+    'macosx-i386'  => 'macosx'
+  );
+
   echo '<div class="download">';
 
   if (IS_GEN_LOCAL)
@@ -577,26 +569,21 @@ function echo_standard_program_download(
       '">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
   } else
   {
-  /*
-    Still unsure if this looks good:
-
-    echo '<table align="right"><tr><td>
-        <a href="http://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a>
-      </td></tr></table>';
-  */
-    echo '<div class="download_title">' . $nice_name_start . ':</div>';
-    echo '<ul>' . "\n";
+    echo '<div class="download_title">' . $nice_name_start . ':</div>
+      <table><tr>';
     foreach ($os_arch_list as $os_arch)
     {
-      echo '<li>';
-      if ($os_arch == 'stub-macosx-later')
-        echo '<i>Mac OS X release will follow later.</i>'; else
-        /*  BTW, <a href="http://castle-engine.sourceforge.net/macosx_requirements.php#section_help_wanted">programmers who want to help make better Mac OS X releases are wanted</a>. */
-        echo sf_download($os_arch_caption[$os_arch],
-          $arch_name_start . $os_arch . $os_arch_extension[$os_arch]);
-      echo '</li>' . "\n";
+      echo '<td>';
+      echo sf_download(
+        '<img src="images/os_icons/' .
+        /* This size should be synched with images/Makefile rule */
+        $os_arch_icon[$os_arch] . '.png" width="64" height="64" alt="' .
+        $os_arch_caption[$os_arch] . '"><br/>' .
+        $os_arch_caption[$os_arch],
+        $arch_name_start . $os_arch . $os_arch_extension[$os_arch]);
+      echo '</td>' . "\n";
     }
-    echo "</ul>\n";
+    echo "</tr></table>\n";
   }
 
   echo '</div>';

@@ -59,7 +59,7 @@ formats.</p>
 <?php section(false); ?>
 
 <?php echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE, $std_releases_post_1_8_0); ?>
+  VERSION_VIEW3DSCENE); ?>
 
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <tt>view3dscene</tt> program inside.

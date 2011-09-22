@@ -62,8 +62,7 @@ appropriate DLLs are already is the archive.
 ?>
 
 <?php echo_standard_program_download(
-  'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK,
-  $std_releases_post_1_8_0); ?>
+  'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
 Run the game binary (<tt>./lets_take_a_walk</tt> on Unix,

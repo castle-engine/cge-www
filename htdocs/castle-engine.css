@@ -164,7 +164,12 @@ div.download {
   padding: 0.5em;
 }
 
-.download_title { font-weight: bold; }
+.download_title { font-weight: bold; margin-bottom: 1em; }
+
+div.download table td { text-align: center;
+  padding-left: 1em; padding-right: 1em; }
+div.download table a { display: block; text-decoration: none; color: black;
+  border: thin dashed #CCC; }
 
 /* Table like X3D specification, used for multi-texturing clarifications
    on vrml_implementation_texturing.php */

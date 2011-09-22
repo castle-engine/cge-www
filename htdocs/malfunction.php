@@ -34,8 +34,7 @@ or something like that. The truth is that
 <?php echo $toc->html_section(); ?>
 
 <?php echo_standard_program_download(
-  'malfunction', 'malfunction', VERSION_MALFUNCTION,
-  $std_releases_post_1_8_0); ?>
+  'malfunction', 'malfunction', VERSION_MALFUNCTION); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
 Run the game binary (<tt>./malfunction</tt> on Unix,

@@ -15,7 +15,7 @@
 curves connected smoothly).
 
 <?php echo_standard_program_download('bezier_curves', 'bezier_curves',
-  VERSION_BEZIER_CURVES, $std_releases_post_1_8_0); ?>
+  VERSION_BEZIER_CURVES); ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>

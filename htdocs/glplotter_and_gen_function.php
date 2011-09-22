@@ -54,7 +54,7 @@ of keys).--></p>
 <?php echo $toc->html_section(); ?>
 
 <?php echo_standard_program_download('glplotter', 'glplotter',
-  VERSION_GLPLOTTER, $std_releases_post_1_8_0); ?>
+  VERSION_GLPLOTTER); ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
@@ -134,8 +134,16 @@ Whitespace at the beginning and end of the line is always ignored.
 It's seldom needed &mdash; glplotter can make a graph from function expression
 on it's own, see menu <i>"Functions"</i>.
 
-<?php echo_standard_program_download('gen_function', 'gen_function',
-  VERSION_GEN_FUNCTION, $std_releases_post_1_2_0); ?>
+<p>TODO: Compiled binary not redistributed now, there was not enough interest
+in this program to recompile and test it for latest updates.
+You have to get the source code and compile it yourself for now,
+report if this is a problem.</p>
+
+<?php /*
+echo_standard_program_download('gen_function', 'gen_function',
+  VERSION_GEN_FUNCTION, ...);
+*/
+?>
 
 <p>Call like:
 <pre>
