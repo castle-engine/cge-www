@@ -26,6 +26,8 @@ Or you can just do a fresh "svn checkuot" of course. There are different protoco
 
 2. I was at TPCG11 conference and gave a talk about our "Compositing Shaders in X3D" idea. I think it went quite good :) <Slides from the presentation are available>.
 
+3. Various small website improvements, like nice OS icons for download links.
+
 TODO:Look in SVN -- any relevant changes visible to users?
 
 */
