@@ -673,13 +673,17 @@ function default_program_thumbnail($prog_name)
   ));
 }
 
-function flattr_button($align = true)
+function flattr_button($align = true, $echo = true)
 {
-  if ($align) echo '<div style="float: right; margin: 1em;">';
-  echo '
+  $result = '';
+  if ($align) $result .= '<div style="float: right; margin: 1em;">';
+  $result .= '
     <a class="FlattrButton" style="display:none;" href="http://castle-engine.sourceforge.net/"></a>
     <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>';
-  if ($align) echo '</div>';
+  if ($align) $result .= '</div>';
+  if ($echo)
+    echo $result; else
+    return $result;
 }
 ?>
