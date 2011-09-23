@@ -48,7 +48,7 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
      - year, month, day fields (shown at some places,
        and pubDate timestamp will be auto-generated based on them)
 
-     - short_description: teaser description on the main page.
+     - short_description: HTML teaser description on the main page.
        If empty, we will take teaser from the normal 'description',
        up to the magic delimiter <!-- teaser ... -->.
 
@@ -65,6 +65,9 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
      - link: do not give it here.
        We'll set link to the URL like xxx/news.php?id=xxx.
+
+     - description: HTML full description. (also used by rss_generator.)
+     - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
 
      They must be ordered from the newest to the oldest.
      While it doesn't matter for RSS (feed will be sorted anyway by news

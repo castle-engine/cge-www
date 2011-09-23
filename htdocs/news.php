@@ -100,9 +100,9 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
   {
     $older_newer_bar .= '<table class="news_older_newer"><tr>';
     if ($previous_item !== NULL)
-      $older_newer_bar .= '<td class="news_newer"><a title="' . $previous_item['title'] . '" href="news.php?id=' . $previous_item['id'] . '">&laquo; Newer</a></td>';
+      $older_newer_bar .= '<td class="news_newer"><a title="' . htmlspecialchars($previous_item['title']) . '" href="news.php?id=' . $previous_item['id'] . '">&laquo; Newer</a></td>';
     if ($next_item !== NULL)
-      $older_newer_bar .= '<td class="news_older"><a title="' . $next_item['title'] . '" href="news.php?id=' . $next_item['id'] . '">Older &raquo;</a></td>';
+      $older_newer_bar .= '<td class="news_older"><a title="' . htmlspecialchars($next_item['title']) . '" href="news.php?id=' . $next_item['id'] . '">Older &raquo;</a></td>';
     $older_newer_bar .= '</tr></table>';
   }
 
