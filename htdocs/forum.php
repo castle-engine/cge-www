@@ -22,11 +22,8 @@ view3dscene or castle) are welcome. Create a new topic, and go!</div>
 <p>Alternatively, if you prefer to send questions through email,
 you can subscribe and post to our <?php echo MAILING_LIST_LINK; ?>.</p>
 
-<p>You can also submit
-<a href="<?php echo BUGS_TRACKER_URL; ?>">bugs</a>,
-<a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature requests</a>,
-<a href="<?php echo PATCHES_TRACKER_URL; ?>">patches</a>
-to appropriate tracker.</p>
+<p>You can also
+<a href="<?php echo TICKETS_TRACKER_URL; ?>">submit bugs and feature requests to our "tickets" tracker</a>.</p>
 
 <p>If you really want to contact the author directly,
 <?php echo michalis_mailto('send email to Michalis Kamburelis'); ?>.</p>
@@ -92,7 +89,7 @@ your 3D worlds, you can:
     are released.
 
     <p>Bugs can be reported on the <a href="<?php echo FORUM_URL; ?>">forum</a>
-    or in the <a href="<?php echo BUGS_TRACKER_URL; ?>">bug tracker</a>.
+    or in the <a href="<?php echo TICKETS_TRACKER_URL; ?>">tickets tracker</a>.
 </ul>
 
 <p><b>For ObjectPascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers</b>:
@@ -104,8 +101,6 @@ your 3D worlds, you can:
   <li><p>Many areas of the engine could use the help of an interested developer.
     If you'd like to join, or just send some patches improving something,
     feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
-    If you have ready patches, you can send them straight to the
-    <a href="<?php echo PATCHES_TRACKER_URL; ?>">patches tracker</a>.
 
     <p>Some ideas for development are proposed on
     <a href="https://fundry.com/project/91-kambi-vrml-game-engine">Fundry page of our engine</a>.

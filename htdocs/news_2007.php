@@ -218,10 +218,9 @@ downloads</a> use all the power and speed of SF mirrors,
 development is done inside
 publicly
 visible SVN repository, we have a public " . MAILING_LIST_LINK . ",
-we have trackers for
-<a href=\"" .  BUGS_TRACKER_URL . "\">bugs</a>,
-<a href=\"" .  FEATURE_REQUESTS_TRACKER_URL . "\">feature requests</a>,
-<a href=\"" .  PATCHES_TRACKER_URL . "\">patches</a>,
+we have trackers for bugs,
+feature requests,
+patches,
 there's <a href=\"http://sourceforge.net/export/rss2_projfiles.php?group_id=200653\">RSS
 feed to monitor new releases</a>.</p>"),
 

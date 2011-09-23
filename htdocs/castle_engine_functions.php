@@ -476,14 +476,12 @@ piwikTracker.enableLinkTracking();
 
 define('SF_UNIX_NAME', 'vrmlengine'); // used only by download links. For now, downloads go to vrmlengine space.
 
-define('WIKI_URL', 'https://sourceforge.net/p/castle-engine/wiki/');
-define('MAILING_LIST_URL', 'https://lists.sourceforge.net/lists/listinfo/vrmlengine-main');
-define('FORUM_URL', 'http://apps.sourceforge.net/phpbb/vrmlengine/viewforum.php?f=3');
-define('BUGS_TRACKER_URL',             'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974391');
-define('FEATURE_REQUESTS_TRACKER_URL', 'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974394');
-define('PATCHES_TRACKER_URL',          'http://sourceforge.net/tracker/?group_id=200653&amp;atid=974393');
+define('WIKI_URL',            'https://sourceforge.net/p/castle-engine/wiki/');
+define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
+define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/');
+define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
 
-define('MAILING_LIST_LINK', '<a href="' . MAILING_LIST_URL . '">vrmlengine-main mailing list</a>');
+define('MAILING_LIST_LINK', '<a href="' . MAILING_LIST_URL . '">castle-engine-main mailing list</a>');
 define('FORUM_LINK', '<a href="' . FORUM_URL . '">forum</a>');
 
 /* Return SVN URL to appropriate path with repository trunk.

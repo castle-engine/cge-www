@@ -106,8 +106,8 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
     Make sure you have absolutely newest drivers (including OpenGL
     library) for your graphic card.
 
-    <p>Bugs should be submitted to
-    <a href="<?php echo BUGS_TRACKER_URL; ?>">bug tracker</a>,
+    <p>Bugs should be submitted to our
+    <a href="<?php echo TICKETS_TRACKER_URL; ?>">tickets tracker</a>,
     or <?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
     </li>
 
@@ -116,9 +116,8 @@ More detailed list is inside game archive in <tt>TODO</tt> file.
     &mdash; new key / mouse commands, changing the behavior of
     present commands, displaying some things in a different way, etc.
 
-    <p>Feature requests should be submitted to
-    <a href="<?php echo FEATURE_REQUESTS_TRACKER_URL; ?>">feature request
-    tracker</a>
+    <p>Feature requests should also be submitted to
+    the <a href="<?php echo TICKETS_TRACKER_URL; ?>">tickets tracker</a>
     or <?php echo a_href_page('our forum or mailing list', 'forum'); ?>.
     </li>
 </ul>
