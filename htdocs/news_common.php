@@ -61,7 +61,8 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
 
      - guid will be used also for NEWS-ID, to have news.php?item=NEWS-ID page.
        guid is optional --- we'll generate default guid based on date and title,
-       if not set.
+       if not set. If you provide it, make sure it does not contain any special
+       characters for HTML or XML attributes or content.
 
      - link: do not give it here.
        We'll set link to the URL like xxx/news.php?id=xxx.

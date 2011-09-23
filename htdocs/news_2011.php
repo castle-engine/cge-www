@@ -6,6 +6,7 @@ array_push($news,
           'month' => 9,
           'day' => 23,
           'short_description' => '',
+          'guid' => '2011-9-23-rename',
           'description' =>
 castle_thumbs(array(
   array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
