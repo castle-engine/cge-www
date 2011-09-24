@@ -380,7 +380,7 @@ The biggest advantage of recording movie this way
 is that the movie is guaranteed to be captured with stable number
 of frames per second. This is different than using
 some independent programs to capture OpenGL output, like
-the fine <a href="http://nullkey.ath.cx/projects/glc">GLC</a>
+the fine <a href="https://github.com/nullkey/glc/wiki/">GLC</a>
 (<a href="http://www.dedoimedo.com/computers/glc.html">nice GLC overview here</a>),
 as real-time capture usually means that the program
 runs slower, and often you loose movie quality.
