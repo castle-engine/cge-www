@@ -517,7 +517,8 @@ of a scene, at it's default camera, just call</p>
     <tt>Background</tt>. For example, take a look at
     <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p>
 
-    <p>You can use <tt>--viewpoint</tt> command-line option (see below)
+    <p><b>Only since next release (after 3.10.1):</b>
+    You can use <tt>--viewpoint</tt> command-line option (see below)
     to choose a different viewpoint for screenshot.</p>
     </li>
 
@@ -757,7 +758,8 @@ is only useful for converting). More precisely:
 
   <dt>--viewpoint VIEWPOINT-NAME</dt>
   <dd>
-  <p>Specifies the name or a number of the viewpoint that will be bound (used) when the scene is loaded.</p>
+  <p><b>Only since next release (after 3.10.1):</b>
+  Specifies the name or a number of the viewpoint that will be bound (used) when the scene is loaded.</p>
 
   <p>By default, when this option is not used, we follow VRML/X3D standard and use the first viewpoint found in the file (but not in the inlined files). Of course you can always add nodes to the scene to trigger binding other viewpoints at the beginning (for example, add <tt>ProximitySensor</tt> with very large size that sends the <tt>enter</tt> event to the <tt>set_bind</tt> of chosen viewpoint). Or you can just exchange the order of viewpoint nodes. But sometimes it's not comfortable to edit the scene. Especially if you want to use the <tt>--screenshot</tt> options to capture a scene, it's useful to be able to choose a viewpoint by this command-line option.</p>
 
