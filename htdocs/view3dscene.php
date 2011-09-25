@@ -751,6 +751,17 @@ is only useful for converting). More precisely:
     you can test each method and just decide which looks best and isn't too slow
     on your 3D model and graphic card.</p></dd>
 
+  <dt>--viewpoint VIEWPOINT-NAME</dt>
+  <dd>
+  <p>Specifies the name or a number of the viewpoint that will be bound (used) when the scene is loaded.</p>
+
+  <p>By default, when this option is not used, we follow VRML/X3D standard and use the first viewpoint found in the file (but not in the inlined files). Of course you can always add nodes to the scene to trigger binding other viewpoints at the beginning (for example, add <tt>ProximitySensor</tt> with very large size that sends the <tt>enter</tt> event to the <tt>set_bind</tt> of chosen viewpoint). Or you can just exchange the order of viewpoint nodes. But sometimes it's not comfortable to edit the scene. Especially if you want to use the <tt>--screenshot</tt> options to capture a scene, it's useful to be able to choose a viewpoint by this command-line option.</p>
+
+  <p>If you use this option: when the given <tt>VIEWPOINT-NAME</tt> is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, <tt>VIEWPOINT-NAME</tt> is treated as a node name (node name is given by <tt>"DEF Xxx"</tt> in VRML/X3D, and it cannot start with a digit, so this is unambigous).</p>
+
+  <p>In interactive mode, remember that you don't need this option &mdash; instead you can use comfortable <i>Navigation -&gt; Viewpoints</i> menu.</p>
+  </dd>
+
   <dt>--scene-change-no-normals<br>
       --scene-change-no-solid-objects<br>
       --scene-change-no-convex-faces
