@@ -5,12 +5,13 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Features', 'features'),
+      new TocItem('Introduction', 'intro'),
       new TocItem('Download sources', 'download_src'),
       new TocItem('Engine sources', 'engine_src', 1),
       new TocItem("Other programs' sources", 'program_sources', 1),
       new TocItem("Subversion (SVN) notes", 'svn', 1),
       new TocItem('FPC (Free Pascal Compiler) versions', 'fpc_ver', 1),
+      new TocItem('Features', 'features'),
       new TocItem('License', 'license'),
       new TocItem('Documentation', 'docs'),
       new TocItem('Automatic tests', 'tests')
@@ -40,162 +41,19 @@
 <?php echo $toc->html_section(); ?>
 
 <p>This is an open-source (<a href="#section_license">LGPL / GPL</a>)
-game engine. In short:
+3D game engine. In short:
 
 <ul>
   <li><p>Our main 3D scene format is <?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a 3D scene format that can also express interactive world features, scripting etc.). Even if you don't know VRML/X3D, the whole engine is designed as a general-purpose 3D engine, and other 3D model formats are supported as well (Collada, Wavefront, MD3 and others).</p></li>
 
+  <li><p>We have a lot of 3D graphic features. Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
+
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want).</p></li>
 </ul>
 
-<p>More exhaustive list of the features:</p>
-
-<ul>
-  <li><b>Optimized OpenGL rendering</b> of models in
-    <b>X3D, VRML 2.0 (97) and VRML 1.0</b> formats.
-    Including support for advanced VRML/X3D features like prototypes and
-    events (user can interact with the 3D world).</li>
-
-  <li><b>Collada, 3DS, MD3, Wavefront OBJ</b> file formats are also supported.
-    They are internally converted into the VRML/X3D nodes graph,
-    which means that they get all the optimizations for rendering,
-    and 3D content from all file formats can be mixed (for 3D editing tools
-    and such).</li>
-
-  <li><b>Saving</b> the current state of VRML/X3D node graph
-    to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
-    You can even use it to make your own 3D modeller on top of our engine.
-    Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
-    and limited editing capabilities are provided out-of-the-box by our tools.</li>
-
-  <li><b>Animations</b> are supported,
-    <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
-    interactive animation interpolated at runtime,
-    or precalculated animation for fast playback.</li>
-
-  <li>Octrees are used for various <b>collision detection</b> tasks.
-    For dynamic scenes, a hierarchy of octrees is used, allowing accurate
-    and fast collision detection even when the scene constantly changes.</li>
-
-  <li><b>Scene manager</b> for centralized 3D world handling,
-    with <b>custom viewports</b> possible.</li>
-
-  <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
-    switching, silhouette detection etc.) and <b>shadow maps</b>.
-    <?php echo a_href_page('Our shadow maps are very comfortable to use',
-    'kambi_vrml_extensions_shadow_maps'); ?>, and shadows from multiple light
-    sources are correctly rendered.
-    We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
-
-  <li><b><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> is trivially
-    easy to use. Various algorithms are available: from
-    the classic bump mapping (take normal from the texture),
-    through the parallax bump mapping,
-    up to the steep parallax bump mapping with self-shadowing.</li>
-
-  <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
-    and GLSL shaders. Most importantly, you can
-    <?php echo a_href_page('add and control GLSL shaders from VRML/X3D',
-    'vrml_implementation_shaders'); ?>.
-    So GLSL shaders are fully available
-    for model designers, programmer doesn't have to do anything.
-    We have developed special extensions to
-    <?php echo a_href_page('composite shader effects',
-    'compositing_shaders'); ?>.
-
-  <li><b>Screen-space effects</b> in GLSL are very easy to create (see
-    <?php echo a_href_page('ScreenEffect docs',
-    'kambi_vrml_extensions_screen_effects'); ?>).
-
-  <li>Advanced texturing, following X3D standard: <b>multi-texturing</b>,
-    <b>cube map texturing</b> (can be loaded from separate files,
-    DDS files, or captured during runtime), <b>3D textures</b>,
-    <b>S3TC compressed textures</b>, <b>anisotropic filtering</b>.
-
-  <li>Speeding up rendering by <b>hardware occlusion query</b>,
-    a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
-    more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
-
-  <li>GLWindow unit is available to easily <b>create windows with OpenGL
-    context</b>. The intention of this unit is to be something like glut,
-    but magnitudes better &mdash; using clean ObjectPascal, for start.
-    Also it allows you to easily create <b>menu bars, open/save file and similar
-    dialogs</b> that are implemented using native controls (GTK (1.0 or 2.0, and yes,
-    GTK 2.0 version is perfectly stable and advised) or WinAPI).</li>
-
-  <li>Reading and writing of <b>images</b> in various formats, processing them
-    and using as OpenGL textures. Besides many common image formats
-    (png, jpg, ppm, bmp, just for starters), included is also support for
-    <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
-    RGBE format (Radiance HDR format).</li>
-
-  <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
-    as bitmap or outline (3D) fonts.</li>
-
-  <li>Comfortable <b>3D sound engine</b>,
-    using <?php echo a_href_page('OpenAL', 'openal'); ?>,
-    with intelligent sound source management,
-    supporting WAV and OggVorbis formats.
-    Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'vrml_implementation_sound'); ?>, so content creators
-    can define sound sources themselves.</li>
-
-  <li>Basic <b>2D controls rendered through OpenGL</b>
-    (buttons, panels, tooltips, menus etc.) are available.
-    Good for games, where making a custom-looking GUI (that fits with
-    your game theme) is important.</li>
-
-  <li><b>Anti-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
-
-  <li>Simple <b>ray-tracer</b> is implemented
-    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>).</li>
-
-  <li>Playing <b>movie files</b>. This includes loading and saving
-    as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
-    is needed to encode / decode movie files). While the implementation
-    is limited to a small movies for now (as memory consumption is large),
-    it's perfect for flame or smoke animation in games. We even have a simple
-    movie editor as an example program in engine sources.
-
-  <li>The engine is <b>portable</b>. Currently tested and used on Linux,
-    FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
-    Porters/testers for other OS/processors are welcome,
-    the engine should be able to run on all modern OSes supported by FPC.</li>
-
-  <li>There are <b>many example programs</b>, look in sources
-    <tt><?php echo ENGINE_DIR_NAME; ?>/examples/</tt> subdirectory.</li>
-
-  <li>There are ready TGLWindow descendants and Lazarus components
-    to make simple VRML browser. Oh, yes, the engine may be integrated
-    with Lazarus &mdash; we have some <b>Lazarus components</b>,
-    including ultra-simple VRML browser component (<tt>TKamVRMLBrowser</tt>).
-
-  <li>Engine components are independent when possible.
-    For example, you can only take model loading and processing
-    code, and write the rendering yourself. Or you can use our OpenGL rendering,
-    but still initialize OpenGL context yourself (no requirement to do it
-    by our <tt>GLWindow</tt> unit). And so on.
-    Of course, ultimately you can just use everything from our engine,
-    nicely integrated &mdash; but the point is that you don't have to.</li>
-
-  <!-- <li>Evaluating mathematical expressions -->
-  <!-- li>Curves handling.</li -->
-  <!--
-      <li>ParsingPars, unit to parse command-line options
-
-      <li>VectorMath, unit with many vector-and-matrix operations,
-        mainly for 3d graphics
-
-      <li>KambiScript, parsing and executing KambiScript programs
-        and mathematical expressions
-
-      <li>TDynXxxArray classes, something like richer dynamic arrays,
-        done like "simulated" C++ templates
-  -->
-</ul>
-
-<p>The engine was used to develop all programs on these pages.
-It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
+<p>The <a href="#section_features">features section</a> below on this page
+contains more exhaustive list of engine features, with links to detailed
+information.</p>
 
 <p>See also <?php echo a_href_page('demo movies of ' . ENGINE_NAME,
 'movies'); ?>.
@@ -416,6 +274,157 @@ are supported</b>.</p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
+
+<?php echo $toc->html_section(); ?>
+
+<p>Exhaustive list of our engine features:</p>
+
+<ul>
+  <li><b>Optimized OpenGL rendering</b> of models in
+    <b>X3D, VRML 2.0 (97) and VRML 1.0</b> formats.
+    Including support for advanced VRML/X3D features like prototypes and
+    events (user can interact with the 3D world).</li>
+
+  <li><b>Collada, 3DS, MD3, Wavefront OBJ</b> file formats are also supported.
+    They are internally converted into the VRML/X3D nodes graph,
+    which means that they get all the optimizations for rendering,
+    and 3D content from all file formats can be mixed (for 3D editing tools
+    and such).</li>
+
+  <li><b>Saving</b> the current state of VRML/X3D node graph
+    to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
+    You can even use it to make your own 3D modeller on top of our engine.
+    Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
+    and limited editing capabilities are provided out-of-the-box by our tools.</li>
+
+  <li><b>Animations</b> are supported,
+    <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
+    interactive animation interpolated at runtime,
+    or precalculated animation for fast playback.</li>
+
+  <li>Octrees are used for various <b>collision detection</b> tasks.
+    For dynamic scenes, a hierarchy of octrees is used, allowing accurate
+    and fast collision detection even when the scene constantly changes.</li>
+
+  <li><b>Scene manager</b> for centralized 3D world handling,
+    with <b>custom viewports</b> possible.</li>
+
+  <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
+    switching, silhouette detection etc.) and <b>shadow maps</b>.
+    <?php echo a_href_page('Our shadow maps are very comfortable to use',
+    'kambi_vrml_extensions_shadow_maps'); ?>, and shadows from multiple light
+    sources are correctly rendered.
+    We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
+
+  <li><b><?php echo a_href_page_hashlink('Bump mapping',
+    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?></b> is trivially
+    easy to use. Various algorithms are available: from
+    the classic bump mapping (take normal from the texture),
+    through the parallax bump mapping,
+    up to the steep parallax bump mapping with self-shadowing.</li>
+
+  <li><b>Shaders</b>. There are classes to easily use ARB fragment / vertex programs
+    and GLSL shaders. Most importantly, you can
+    <?php echo a_href_page('add and control GLSL shaders from VRML/X3D',
+    'vrml_implementation_shaders'); ?>.
+    So GLSL shaders are fully available
+    for model designers, programmer doesn't have to do anything.
+    We have developed special extensions to
+    <?php echo a_href_page('composite shader effects',
+    'compositing_shaders'); ?>.
+
+  <li><b>Screen-space effects</b> in GLSL are very easy to create (see
+    <?php echo a_href_page('ScreenEffect docs',
+    'kambi_vrml_extensions_screen_effects'); ?>).
+
+  <li>Advanced texturing, following X3D standard: <b>multi-texturing</b>,
+    <b>cube map texturing</b> (can be loaded from separate files,
+    DDS files, or captured during runtime), <b>3D textures</b>,
+    <b>S3TC compressed textures</b>, <b>anisotropic filtering</b>.
+
+  <li>Speeding up rendering by <b>hardware occlusion query</b>,
+    a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
+    more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
+
+  <li>GLWindow unit is available to easily <b>create windows with OpenGL
+    context</b>. The intention of this unit is to be something like glut,
+    but magnitudes better &mdash; using clean ObjectPascal, for start.
+    Also it allows you to easily create <b>menu bars, open/save file and similar
+    dialogs</b> that are implemented using native controls (GTK (1.0 or 2.0, and yes,
+    GTK 2.0 version is perfectly stable and advised) or WinAPI).</li>
+
+  <li>Reading and writing of <b>images</b> in various formats, processing them
+    and using as OpenGL textures. Besides many common image formats
+    (png, jpg, ppm, bmp, just for starters), included is also support for
+    <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
+    RGBE format (Radiance HDR format).</li>
+
+  <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
+    as bitmap or outline (3D) fonts.</li>
+
+  <li>Comfortable <b>3D sound engine</b>,
+    using <?php echo a_href_page('OpenAL', 'openal'); ?>,
+    with intelligent sound source management,
+    supporting WAV and OggVorbis formats.
+    Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'vrml_implementation_sound'); ?>, so content creators
+    can define sound sources themselves.</li>
+
+  <li>Basic <b>2D controls rendered through OpenGL</b>
+    (buttons, panels, tooltips, menus etc.) are available.
+    Good for games, where making a custom-looking GUI (that fits with
+    your game theme) is important.</li>
+
+  <li><b>Anti-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
+
+  <li>Simple <b>ray-tracer</b> is implemented
+    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>).</li>
+
+  <li>Playing <b>movie files</b>. This includes loading and saving
+    as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+    is needed to encode / decode movie files). While the implementation
+    is limited to a small movies for now (as memory consumption is large),
+    it's perfect for flame or smoke animation in games. We even have a simple
+    movie editor as an example program in engine sources.
+
+  <li>The engine is <b>portable</b>. Currently tested and used on Linux,
+    FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64.
+    Porters/testers for other OS/processors are welcome,
+    the engine should be able to run on all modern OSes supported by FPC.</li>
+
+  <li>There are <b>many example programs</b>, look in sources
+    <tt><?php echo ENGINE_DIR_NAME; ?>/examples/</tt> subdirectory.</li>
+
+  <li>There are ready TGLWindow descendants and Lazarus components
+    to make simple VRML browser. Oh, yes, the engine may be integrated
+    with Lazarus &mdash; we have some <b>Lazarus components</b>,
+    including ultra-simple VRML browser component (<tt>TKamVRMLBrowser</tt>).
+
+  <li>Engine components are independent when possible.
+    For example, you can only take model loading and processing
+    code, and write the rendering yourself. Or you can use our OpenGL rendering,
+    but still initialize OpenGL context yourself (no requirement to do it
+    by our <tt>GLWindow</tt> unit). And so on.
+    Of course, ultimately you can just use everything from our engine,
+    nicely integrated &mdash; but the point is that you don't have to.</li>
+
+  <!-- <li>Evaluating mathematical expressions -->
+  <!-- li>Curves handling.</li -->
+  <!--
+      <li>ParsingPars, unit to parse command-line options
+
+      <li>VectorMath, unit with many vector-and-matrix operations,
+        mainly for 3d graphics
+
+      <li>KambiScript, parsing and executing KambiScript programs
+        and mathematical expressions
+
+      <li>TDynXxxArray classes, something like richer dynamic arrays,
+        done like "simulated" C++ templates
+  -->
+</ul>
+
+<p>The engine was used to develop all programs on these pages.
+It should be compiled by <a href="http://www.freepascal.org">FreePascal</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
