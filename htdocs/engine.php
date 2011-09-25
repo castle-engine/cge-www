@@ -9,8 +9,8 @@
       new TocItem('Download', 'download_src'),
       new TocItem('Engine', 'engine_src', 1),
       new TocItem("Other programs' sources", 'program_sources', 1),
-      new TocItem("Subversion (SVN) notes", 'svn', 1),
       new TocItem('FPC (Free Pascal Compiler) versions', 'fpc_ver', 1),
+      new TocItem("Getting bleeding-edge (development) version from Subversion (SVN)", 'svn', 1),
       new TocItem('Features', 'features'),
       new TocItem('Documentation', 'docs'),
       new TocItem('License', 'license'),
@@ -230,6 +230,23 @@ version of program you will also have documentation there).
 
 <?php echo $toc->html_section(); ?>
 
+<p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
+(FPC)</a> to use our engine. You may also find it comfortable
+to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
+which is an IDE (editor, debugger etc.) built around FPC.</p>
+
+<p><b>We always support and advice the latest stable release of FPC
+(currently 2.4.4).</b>.</p>
+
+<p>We also support a couple of older FPC releases.
+With new engine versions (later than 2.5.1), <b>FPC versions &gt;= 2.2.4
+are supported</b>.</p>
+
+<!--p>I also regularly test FPC from SVN,
+so it's usually painless to use even development FPC releases.</p-->
+
+<?php echo $toc->html_section(); ?>
+
 <p>You can get all the sources from our Subversion repository.
 If you don't know about Subversion, see
 <a href="http://subversion.tigris.org/">Subversion main site</a> and
@@ -257,23 +274,6 @@ You can also download the code from one of
 <tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</tt>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
-
-<?php echo $toc->html_section(); ?>
-
-<p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
-(FPC)</a> to use our engine. You may also find it comfortable
-to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
-which is an IDE (editor, debugger etc.) built around FPC.</p>
-
-<p><b>We always support and advice the latest stable release of FPC
-(currently 2.4.4).</b>.</p>
-
-<p>We also support a couple of older FPC releases.
-With new engine versions (later than 2.5.1), <b>FPC versions &gt;= 2.2.4
-are supported</b>.</p>
-
-<!--p>I also regularly test FPC from SVN,
-so it's usually painless to use even development FPC releases.</p-->
 
 <?php echo $toc->html_section(); ?>
 
