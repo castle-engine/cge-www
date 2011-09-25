@@ -1,5 +1,9 @@
 <?php
 
+/* To next news:
+--viewpoint command-line option was implemented for <a>view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with --screenshot option.
+*/
+
 array_push($news,
     array('title' => 'Rename "Kambi VRML game engine" to "Castle Game Engine", moving to SourceForge Allura platform, my slides from TPCG11',
           'year' => 2011,
