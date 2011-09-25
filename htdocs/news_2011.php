@@ -14,7 +14,7 @@ castle_thumbs(array(
 '<p>Hi everyone,</p>
 
 <ol>
-  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="http://castle-engine.sourceforge.net/news.php?item=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
+  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="http://castle-engine.sourceforge.net/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
 
     <ul>
       <li><p>Most old URLs will still work, appropriate redirects are done to go to the new castle-engine website.
