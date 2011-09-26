@@ -170,6 +170,7 @@ div.download table td { text-align: center;
   padding-left: 1em; padding-right: 1em; }
 div.download table a { display: block; text-decoration: none; color: black;
   border: thin dashed #CCC; }
+div.download table a img { border: 0px none; }
 
 /* Table like X3D specification, used for multi-texturing clarifications
    on vrml_implementation_texturing.php */
