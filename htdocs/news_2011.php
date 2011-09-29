@@ -1,7 +1,21 @@
 <?php
 
 /* To next news:
---viewpoint command-line option was implemented for <a>view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with --screenshot option.
+
+  - As announced, rename of our engine ("Kambi VRML game engine" -> "Castle Game Engine") will also bring renames of a lot of identifiers. Since we're breaking compatibility anyway, I took some time to really think about new proper names for various stuff (previous names were invented somewhat organically, often without consistency or following the *implementation* approach, instead of following the typical usage).
+
+    I wrote a document describing in details what renames were done, and what is the reasoning behind them. I hope you appreciate this kind of transparency :), Link to naming_engine_3.0.txt. To upgrade your existing programs to new engine version, just do the same renames in your code --- both Pascal sources and form resources (lfm), and all will work Ok :)
+
+    In short:
+
+    - Our official prefix for most units is now CastleXxx. No more KambiXxx, VRMLXxx, VRMLGLXxx units. Most of them become CastleXxx, with the exception of concepts defined in the X3D specification: X3DNodes, X3DFields, X3DLexer (many other castle units in fact use or depend on X3D stuff too; the whole engine is based on X3D nodes graph after all).
+    - Our official prefix for classes is now TCastleXxx, but preferably no prefix at all. All components get TCastle prefix (these are registered on component palette, so essentially have to live in global namespace with all other components, so prefixing them is a good idea). T3D descendants are treated specially, and get T3D prefix. Most other classes have no prefix at all, not needed.
+      Generally no more TGLXxx, TKamGLXxx, TVRMLXxx, TVRMLGLXxx. They become TCastleXxx or T3DXxx (if it's a component) or just TXxx.
+      Our most important class, TVRMLGLScene, is now called T3DScene. This nicely removes the implementation details from it's name (the fact that it's rendered using OpenGL, and uses X3D scene graph inside). These implementation details were really excessive (for an identifier name), because everything in our engine uses OpenGL (and if other renderer will be made, it should be pluggable and will not change the name anyway), and this component can load 3D data in any format (even if internally everything is converted into X3D nodes graph).
+    - Control and window names simplified and made consistent: simple control or window is now TCastleWindow or TCastleControl. Descends from TCastleWindow/ControlXxx, adds SceneManager and easy Load method. For most programs/games with 3D world and 2D controls, just use this.
+
+
+--viewpoint command-line option was implemented for <a>view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with --screenshot option. As requested  on <a href=">vrmlengine forum</a>.
 */
 
 array_push($news,
