@@ -108,7 +108,7 @@ your 3D worlds, you can:
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.
 
-  <li><p><?php echo a_href_page_hashlink('Help to port our <tt>GLWindow</tt> unit
+  <li><p><?php echo a_href_page_hashlink('Help to port our <tt>CastleWindow</tt> unit
     to Cocoa (Mac OS X)', 'macosx_requirements', 'help_wanted'); ?>.
     This is an easy and rewarding task for a developer interested in Mac OS X,
     it will make our programs look more native and friendly on Mac OS X.

@@ -564,7 +564,7 @@ of a scene, at it's default camera, just call</p>
         Unpack them, such that <tt><?php echo ENGINE_DIR_NAME; ?>/</tt> and <tt>view3dscene/</tt>
         directories are siblings.
       <li>In the terminal, do <pre class="bordered_code">
-export KAMBI_FPC_OPTIONS=-dGLWINDOW_XLIB
+export KAMBI_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd view3dscene/
 ./compile.sh
 # and copy resulting view3dscene (and tovrmlx3d) binaries wherever you want
@@ -941,7 +941,7 @@ is only useful for converting). More precisely:
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  DEPENDS_UNIX_GLWINDOW_GTK_2,
+  DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
   SUGGESTS_OPENAL_VORBISFILE,
   DEPENDS_MACOSX)); ?>
 

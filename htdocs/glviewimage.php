@@ -205,7 +205,7 @@ and saving them back will always make uncompressed files.
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  DEPENDS_UNIX_GLWINDOW_GTK_2,
+  DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
   DEPENDS_MACOSX)); ?>
 
 <p><tt>convert</tt> program from

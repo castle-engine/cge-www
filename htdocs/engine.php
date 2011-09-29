@@ -93,7 +93,7 @@ for anything.
 these are not an
 essential part of the engine for now.
 The main way for
-initializing OpenGL for games is by GLWindow unit that doesn't depend on
+initializing OpenGL for games is by CastleWindow unit that doesn't depend on
 any Lazarus units. -->
 
 <p>An important strength of our engine is that you can express a lot
@@ -356,7 +356,7 @@ so should be 100% stable.</p>
     a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
     more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
 
-  <li>GLWindow unit is available to easily <b>create windows with OpenGL
+  <li>CastleWindow unit is available to easily <b>create windows with OpenGL
     context</b>. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
     Also it allows you to easily create <b>menu bars, open/save file and similar
@@ -404,16 +404,17 @@ so should be 100% stable.</p>
   <li>There are <b>many example programs</b>, look in sources
     <tt><?php echo ENGINE_DIR_NAME; ?>/examples/</tt> subdirectory.</li>
 
-  <li>There are ready TGLWindow descendants and Lazarus components
-    to make simple VRML browser. Oh, yes, the engine may be integrated
-    with Lazarus &mdash; we have some <b>Lazarus components</b>,
-    including ultra-simple VRML browser component (<tt>TKamVRMLBrowser</tt>).
+  <li>There are ready window classes (<tt>TCastleWindow</tt>)
+    and Lazarus components (<tt>TCastleControl</tt>) to make simple
+    VRML/X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
+    The engine is integrated with Lazarus &mdash;
+    we have various <b>Lazarus components</b>.</li>
 
   <li>Engine <b>components are independent</b> when possible.
     For example, you can only take model loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
     but still initialize OpenGL context yourself (no requirement to do it
-    by our <tt>GLWindow</tt> unit). And so on.
+    by our <tt>CastleWindow</tt> unit). And so on.
     Of course, ultimately you can just use everything from our engine,
     nicely integrated &mdash; but the point is that you don't have to.</li>
 
@@ -425,7 +426,7 @@ so should be 100% stable.</p>
       <li>VectorMath, unit with many vector-and-matrix operations,
         mainly for 3d graphics
 
-      <li>KambiScript, parsing and executing KambiScript programs
+      <li>CastleScript, parsing and executing CastleScript programs
         and mathematical expressions
 
       <li>TDynXxxArray classes, something like richer dynamic arrays,

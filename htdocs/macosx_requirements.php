@@ -46,7 +46,7 @@ some additional software:
     if you want to be able to open any
     images/textures etc. stored in PNG images.</p></li>
 
-  <li><p>When GLWindow uses GTK backend (view3dscene compiled by default script
+  <li><p>When CastleWindow uses GTK backend (view3dscene compiled by default script
     does use GTK, "The Castle" compiled by default script doesn't use GTK):
     <b>GTK and GtkGLExt</b> are required.
     They should be installed using <a href="http://www.finkproject.org/">fink</a>.
@@ -124,23 +124,23 @@ or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
 <p>The plan:</p>
 
 <ol>
-  <li><p><i>Port our <tt>GLWindow</tt> unit to native Mac OS X toolkit</i>.
+  <li><p><i>Port our <tt>CastleWindow</tt> unit to native Mac OS X toolkit</i>.
     This is the main work, it will make dependencies on X11, GTK, GtkGLExt
     disappear and will provide a native look.</p>
 
     <p>It's a matter of creating and implementing a file like
-    <tt>castle_game_engine/src/glwindow/glwindow_(cocoa|carbon).inc</tt>,
+    <tt>castle_game_engine/src/window/castlewindow_(cocoa|carbon).inc</tt>,
     based on
-    <tt>castle_game_engine/src/glwindow/glwindow_backend_template.inc</tt>.
+    <tt>castle_game_engine/src/window/castlewindow_backend_template.inc</tt>.
     See <?php echo a_href_page('engine sources', 'engine'); ?>.
     See at other "backends" (currently GTK, WinAPI, Xlib, Glut are available)
     for examples how to implement such thing, everything is inside
-    <tt>src/glwindow/</tt> dir.</p>
+    <tt>src/window/</tt> dir.</p>
 
     <p>Alternatively, send me a simple and clear example of FPC program
     using Carbon/Cocoa that 1. creates and shows a window
     2. with menu bar 3. and with OpenGL context area covering the window.
-    I should be able to port such example to my "GLWindow" then.</p>
+    I should be able to port such example to my "CastleWindow" then.</p>
 
     <p>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
     for pointers</p></li>

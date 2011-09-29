@@ -87,7 +87,7 @@
 
    - Przy opisie instalacji moich gier pod UNIXy home directory użytkownika
      będę oznaczał jako "$HOME" (a nie np. "~"). Mimo że algorytm wyznaczania
-     katalogu domowego jest nieco bardziej złożony (KambiUtils.HomeDir)
+     katalogu domowego jest nieco bardziej złożony (CastleUtils.HomeDir)
      niż tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
      uważam za lepszy od ~ bo jest dłuższy.
   */
@@ -600,10 +600,10 @@ function common_set_page_functions()
     libraries are strongly suggested if you want to hear sound
     (under Windows appropriate DLL files are already included
     in program\'s archive, so you don\'t have to do anything)');
-  define('DEPENDS_UNIX_GLWINDOW_GTK_1',
+  define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_1',
     'Under Unices (Linux, FreeBSD, Mac OS X):
     <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
-  define('DEPENDS_UNIX_GLWINDOW_GTK_2',
+  define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
     'Under Unix (Linux, FreeBSD, Mac OS X):
     <a href="http://www.gtk.org/">GTK+</a> >= 2.6 and
     <a href="http://gtkglext.sourceforge.net/">GtkGLExt</a> >= 1.0.6');

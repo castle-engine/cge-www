@@ -69,7 +69,7 @@ SmoothInterpolatedCurve {
 <?php echo depends_ul( array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  DEPENDS_UNIX_GLWINDOW_GTK_2,
+  DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
   DEPENDS_MACOSX) );
 ?>
 

@@ -124,7 +124,7 @@ Whitespace at the beginning and end of the line is always ignored.
 <?php echo depends_ul( array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  DEPENDS_UNIX_GLWINDOW_GTK_2,
+  DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
   DEPENDS_MACOSX) );
 ?>
 
@@ -223,8 +223,8 @@ When we deal with function expressions, then <tt>x</tt> represents the argument,
 e.g. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> etc.
 
 <p>For detailed information about syntax and built-in functions,
-see <?php echo a_href_page('KambiScript language reference', 'kambi_script'); ?>.
-We use a subset of KambiScript syntax, allowing only a simple expression
+see <?php echo a_href_page('CastleScript language reference', 'kambi_script'); ?>.
+We use a subset of CastleScript syntax, allowing only a simple expression
 as a function expression, operating on argument "X".
 
 <!--
