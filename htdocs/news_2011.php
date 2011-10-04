@@ -16,6 +16,8 @@
 
 
 --viewpoint command-line option was implemented for <a>view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with --screenshot option. As requested  on <a href=">vrmlengine forum</a>.
+
+Shadow map generation improved: for shadow maps, we render model with shaders turned *off*. This is consistent with VSM (that require using custom shader, so user shaders are also ignored at shadow map capture). I avoids problems with shaders writing to gl_FragDepth and accidentaly breaking shadow map content. Thanks to Victor Amat for pointing this out!
 */
 
 array_push($news,
