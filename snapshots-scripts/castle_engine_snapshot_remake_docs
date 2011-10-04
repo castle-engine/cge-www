@@ -40,7 +40,7 @@ vrml_x3d.html \
 nist_vrml_test_suite.html \
 kanim_format.html \
 vrml_time_origin_considered_uncomfortable.html \
-kambi_script.html \
+castle_script.html \
 glviewimage.html"
 
 make clean $HTMLS LOCALLY_AVAIL="$HTMLS"

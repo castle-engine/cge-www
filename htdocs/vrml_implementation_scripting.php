@@ -19,8 +19,8 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>For demos and tests of <?php echo a_href_page('KambiScript', 'kambi_script'); ?>,
-see the <tt>kambi_script</tt> subdirectory inside <?php
+<p>For demos and tests of <?php echo a_href_page('CastleScript', 'castle_script'); ?>,
+see the <tt>castle_script</tt> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -32,18 +32,18 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     (to link scripts with handlers written in compiled language (ObjectPascal))',
     'kambi_vrml_extensions',
     'section_ext_script_compiled'); ?> and
-    <?php echo a_href_page('kambiscript:
+    <?php echo a_href_page('castlescript:
     (simple scripting language specific to our engine)',
-    'kambi_script'); ?>.
+    'castle_script'); ?>.
 
     <p><i>TODO</i>: no standard scripting language, like ECMAScript,
     is implemented now. <tt>directOutput</tt> field of script node
     is ignored (<tt>compiled:</tt> scripts have always direct access
-    to whole VRML scene, <tt>kambiscript:</tt> has never access to VRML nodes).
+    to whole VRML scene, <tt>castlescript:</tt> has never access to VRML nodes).
 
     <p><tt>mustEvaluate</tt> is also ignored for now. This is non-optimal but
     valid behavior. Our current scripting protocols have no "loading"
-    overhead (we don't initialize any scripting engine, kambiscript: and
+    overhead (we don't initialize any scripting engine, castlescript: and
     compiled: scripts are just tightly built-in the engine) so this doesn't
     hurt us in practice.
 </ul>

@@ -223,7 +223,7 @@ When we deal with function expressions, then <tt>x</tt> represents the argument,
 e.g. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> etc.
 
 <p>For detailed information about syntax and built-in functions,
-see <?php echo a_href_page('CastleScript language reference', 'kambi_script'); ?>.
+see <?php echo a_href_page('CastleScript language reference', 'castle_script'); ?>.
 We use a subset of CastleScript syntax, allowing only a simple expression
 as a function expression, operating on argument "X".
 

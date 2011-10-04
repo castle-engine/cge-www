@@ -162,7 +162,7 @@ $castle_sitemap = array(
         )
       ),
       'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
-      'kambi_script' => array('title' => 'KambiScript language reference'),
+      'castle_script' => array('title' => 'CastleScript language reference'),
       'kanim_format' => array('title' => 'Kanim (precalculated animations) file format'),
       'vrml_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
     ),

@@ -25,7 +25,7 @@ $toc = new TableOfContents(array(
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 1),
   new TocItem('Control head bobbing (<tt>KambiNavigationInfo.headBobbing*</tt> fields)', 'ext_head_bobbing', 1),
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 1),
-  new TocItem('KambiScript (<tt>kambiscript:</tt> Script protocol)', 'ext_kambiscript', 1),
+  new TocItem('CastleScript (<tt>castlescript:</tt> Script protocol)', 'ext_castlescript', 1),
   new TocItem('Precalculated radiance transfer (<tt>radianceTransfer</tt> in all <tt>X3DComposedGeometryNode</tt> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <tt>Fog</tt> and <tt>LocalFog</tt> nodes)', 'ext_fog_volumetric', 1),
@@ -303,7 +303,7 @@ others) are full of demos of our extensions.</p>
         the rest of box faces as opaque.
 
         <!--p>(For programmers: reasoning may be found in
-        <tt>TVRMLGLScene.RenderSilhouetteShadowVolume</tt> comments,
+        <tt>T3DScene.RenderSilhouetteShadowVolume</tt> comments,
         see <tt>glDepthFunc(GL_NEVER)</tt> notes. For transparent triangles,
         light/dark caps must always be drawn, even in Z-pass approach.)-->
     </ul>
@@ -932,11 +932,11 @@ some_other_event=some_other_handler
 <pre class="sourcecode">
 type
   TMyObject = class
-    procedure ScriptInitialization(Value: TVRMLField; const Time: TVRMLTime);
-    procedure TouchHandler(Value: TVRMLField; const Time: TVRMLTime);
+    procedure ScriptInitialization(Value: TVRMLField; const Time: TX3DTime);
+    procedure TouchHandler(Value: TVRMLField; const Time: TX3DTime);
   end;
 
-procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TVRMLTime);
+procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TX3DTime);
 begin
   { ... do here whatever you want ...
 
@@ -944,7 +944,7 @@ begin
   }
 end;
 
-procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TVRMLTime);
+procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TX3DTime);
 begin
   { ... do here whatever you want ...
 
@@ -958,7 +958,7 @@ begin
   }
 end;
 
-  { ... and somewhere after creating TVRMLScene (or TVRMLGLScene) do this: }
+  { ... and somewhere after creating T3DSceneCore (or T3DScene) do this: }
 
   Scene.RegisterCompiledScript('script_initialization', @MyObject.ScriptInitialization);
   Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
@@ -972,8 +972,8 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <p>We have a simple scripting language that can be used inside <tt>Script</tt>
-    nodes. See <?php echo a_href_page('KambiScript documentation (with examples)',
-    'kambi_script'); ?>.
+    nodes. See <?php echo a_href_page('CastleScript documentation (with examples)',
+    'castle_script'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -1685,7 +1685,7 @@ end;
     <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
     chapter "octrees"</a> you can
     also take a look at the (source code and docs) of the
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLScene.TVRMLScene.html#Spatial">TVRMLScene.Spatial</a> property
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLScene.T3DSceneCore.html#Spatial">T3DSceneCore.Spatial</a> property
     and units
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangle.html">VRMLTriangle</a>,
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangleOctree.html">VRMLTriangleOctree</a> and
@@ -1740,7 +1740,7 @@ end;
       node_end();
     ?>
 
-    <p>See the API documentation for classes <tt>TVRMLScene</tt> and <tt>TVRMLShape</tt>
+    <p>See the API documentation for classes <tt>T3DSceneCore</tt> and <tt>TShape</tt>
     for precise description about what each octree is.
     In normal simulation of dynamic 3D scenes,
     we use only <tt>octreeRendering</tt>, <tt>octreeDynamicCollisions</tt> and

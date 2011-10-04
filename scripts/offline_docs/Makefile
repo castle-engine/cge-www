@@ -25,7 +25,7 @@ ALL_HTMLS:=view3dscene.html \
   castle.html castle-advanced.html castle-development.html castle-credits.html \
   demo_models.html \
   kanim_format.html \
-  kambi_script.html \
+  castle_script.html \
   compositing_shaders.html \
   kambi_vrml_extensions.html \
   kambi_vrml_extensions_shadow_maps.html \

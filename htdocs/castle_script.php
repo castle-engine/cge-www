@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
   require_once 'vrml_implementation_common.php';
-  vrmlx3d_header('KambiScript language');
+  vrmlx3d_header('CastleScript language');
 
   function func_ref($name, $title)
   {
@@ -16,14 +16,15 @@
 
 <?php if (!IS_GEN_LOCAL) { ?>
   <div class="useful_link" style="float: right"><a href="kambiscript_language.chm">This
-  KambiScript reference in CHM format</a></div>
+  CastleScript reference in CHM format</a></div>
 <?php }
 ?>
 
-<?php echo pretty_heading('KambiScript language', NULL,
+<?php echo pretty_heading('CastleScript language', NULL,
 'Simple scripting language for Castle Game Engine'); ?>
 
-<p><tt>KambiScript</tt> is a simple scripting language used in
+<p><tt>CastleScript</tt> (previously "KambiScript")
+is a simple scripting language used in
 our <i>Castle Game Engine</i>. You can use it in VRML/X3D <tt>Script</tt>
 nodes. Also it's syntax of mathematical expressions is usable
 throughout our engine, for example <?php echo a_href_page(
@@ -101,24 +102,26 @@ pure non-scripted VRML).</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>URLs in <tt>Script</tt> node starting with <tt>kambiscript:</tt>
-are understood to contain program in KambiScript language.
-URLs to external files with extension <tt>.kscript</tt> point
-to whole files in KambiScript language. Like</p>
+<p>URLs in <tt>Script</tt> node starting with <tt>castlescript:</tt>
+are understood to contain program in CastleScript language.
+URLs to external files with extension <tt>.castlescript</tt> point
+to whole files in CastleScript language.
+(Deprecated: also <tt>kambiscript:</tt> as a protocol and
+<tt>.castlescript</tt> as extension are recognized.) Like</p>
 
 <pre class="sourcecode">
 Script {
   inputOnly SFFloat foo
   outputOnly SFFloat foo_plus_one
 
-  url "kambiscript:
+  url "castlescript:
 function foo(value, timestamp)
 foo_plus_one := value + 1
 "
 }
 
 Script {
-  url "my_script.kscript"
+  url "my_script.castlescript"
 }
 </pre>
 
@@ -152,7 +155,7 @@ Script {
   # that starts opening animation.
   outputOnly SFTime open_time
 
-  url "kambiscript:
+  url "castlescript:
 function touch_time(value, timestamp)
 if (open,
     close_time := timestamp,
@@ -173,7 +176,7 @@ add other interesting things.</p>
 Script {
   inputOnly SFString input
   outputOnly MFString output
-    url "kambiscript:
+    url "castlescript:
 function input(value, timestamp)
   output := array(value)
 "
@@ -182,24 +185,24 @@ function input(value, timestamp)
 
 <p>Some larger examples:
 <ul>
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/kambi_script/ball_game.x3dv">kambi_script_ball_game.x3dv</a>
-    &mdash; a small X3D game, with whole game logic implemented in KambiScript
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/ball_game.x3dv">castle_script_ball_game.x3dv</a>
+    &mdash; a small X3D game, with whole game logic implemented in CastleScript
     (key handling by KeySensor node). Can be played in any VRML browser
-    supporting KambiScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
+    supporting CastleScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
     or any of the example VRML browser components in engine sources.
 
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/kambi_script/edit_texture.x3dv">kambi_script_edit_texture.x3dv</a>
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/edit_texture.x3dv">castle_script_edit_texture.x3dv</a>
     &mdash; a toy image editor. Again, it's a pure X3D file (you can
-    open it and use with any VRML browser supporting KambiScript).
-    Uses KambiScript to implement various simple image editing
+    open it and use with any VRML browser supporting CastleScript).
+    Uses CastleScript to implement various simple image editing
     functions. It's a toy, not to be treated as a serious image editor
     of course (there is no possibility to save created image for starter,
-    since KambiScript doesn't allow to save files from VRML for safety reasons.)
-    But it shows that even image processing is quite easy with KambiScript.
+    since CastleScript doesn't allow to save files from VRML for safety reasons.)
+    But it shows that even image processing is quite easy with CastleScript.
 
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/kambi_script/particles.x3dv">kambi_script_particles.x3dv</a>
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/particles.x3dv">particles.x3dv</a>
     &mdash; a simple particle engine. Whole particles animation,
-    logic (randomization, speed, gravity) is implemented in KambiScript.
+    logic (randomization, speed, gravity) is implemented in CastleScript.
     "Particles" are rendered as points and lines (<tt>PointSet</tt>,
     <tt>IndexedLineSet</tt>).
 </ul>
@@ -247,7 +250,7 @@ at runtime. Four core types are available:</p>
     Extended.</p></li>
 
   <li><p><i>Booleans.</i> Two obvious constants are available, <tt>false</tt>
-    and <tt>true</tt> (case is ignored, as usual in KambiScript,
+    and <tt>true</tt> (case is ignored, as usual in CastleScript,
     so you can also write uppercase
     <tt>FALSE</tt> or <tt>TRUE</tt> like in classic VRML).
     Built-in function
@@ -258,7 +261,7 @@ at runtime. Four core types are available:</p>
     consecutive apostrophes inside mean that you want a single literal
     apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
     Apostrophe was chosen not only because, y'know, it's Pascalish :),
-    but also because it makes embedding KambiScript code within
+    but also because it makes embedding CastleScript code within
     VRML string easier (no need to escape quotes by backslashes).
     You can make actual newlines within the string, like in VRML.
     For example:
@@ -268,7 +271,7 @@ Script {
   inputOnly SFTime touch_time
   outputOnly MFString text
 
-  url "kambiscript:
+  url "castlescript:
 function touch_time(value, timestamp)
   text := array(
     'First string of text clicked on ' + string(value),
@@ -291,7 +294,7 @@ you don't have to write <tt>my_float := 44.0</tt>).
 In particular, note that <i>boolean type is not interchangeable
 with integer</i> like in C. If you want to convert between boolean and integer,
 you have to convert explicitly by <tt>bool(my_int)</tt> or <tt>int(my_bool)</tt>,
-like in Pascal. The only exception is when using KambiScript solely for
+like in Pascal. The only exception is when using CastleScript solely for
 mathematical expressions (like in <?php echo a_href_page(
 'glplotter and gen_function',
 'glplotter_and_gen_function'); ?>, internally using <tt>ParseFloatExpression</tt>
@@ -299,7 +302,7 @@ function): in this case, result is always implicitly converted to float,
 like it would be embedded within <tt>float(...)</tt> call.
 </p>
 
-<p>When using KambiScript inside VRML scripts, internally you have
+<p>When using CastleScript inside VRML scripts, internally you have
 all the VRML field types available (which means that
 vec2f, vec3f, vec4f, matrix, image and others are included).
 There is no special syntax for reading/writing other types, instead
@@ -309,7 +312,7 @@ For example for vec3f type you have "constructor"
 reader for particular component <?php func_ref('vector_get', 'vector_get(vector, index)'); ?>,
 and setter for particular component <?php func_ref('vector_set', 'vector_set(vector, index, component_value)'); ?>.
 Even images have functions to create and modify them, which means
-that you can use KambiScript to perform basic image creation and processing.</p>
+that you can use CastleScript to perform basic image creation and processing.</p>
 
 <p>Also array types are internally available, for VRML multiple-value
 (MFXxx) types. Again no special syntax is available (sorry, no bracket parenthesis),
@@ -368,7 +371,7 @@ standard:</p>
 <ul>
   <li><p>Assigning value to initializeOnly (not exposed) field is simple, it just
     assigns value to this field. You can use initializeOnly fields as
-    "variables" available for your scripts (since KambiScript doesn't
+    "variables" available for your scripts (since CastleScript doesn't
     allow you to declare or use new variables within the program, for now).
     </p></li>
 
@@ -424,7 +427,7 @@ and functions.</p>
     <p>Bool is converted to 0 (false) or 1 (true).
     Yes, unlike most languages that usually
     don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
-    KambiScript actually guarantees that "true" will result in 1.
+    CastleScript actually guarantees that "true" will result in 1.
     This is sometimes useful in smart mathematical expressions
     (like <tt>my_int := 1 - int(my_bool)</tt>).</p>
 
@@ -470,7 +473,7 @@ have the necessary type. For example, converting float to float is a valid
 conditional instruction. <tt>condition</tt> is first calculated, must be a boolean
 value. If it's true, then <tt>then_code</tt> is executed and returned as
 "if" value. Otherwise, <tt>else_code</tt> is executed and returned as
-"if" value. You may note that (because of KambiScript unification of
+"if" value. You may note that (because of CastleScript unification of
 "instruction" and "expression" terms) this can be used in both
 functional and imperative form. That is, all below are valid:</p>
 
@@ -502,7 +505,7 @@ if it's still true then execute <tt>loop_code</tt> again, ... you get the idea.<
 
 <p><?php func('for', 'for(counter, begin_value, end_value, loop_code)'); ?> performs
 a for loop. <tt>counter</tt> must be an assignable integer variable
-(note that for now you cannot declare new variables for KambiScript;
+(note that for now you cannot declare new variables for CastleScript;
 you usually need to overuse <tt>initializeOnly</tt> field of VRML script
 node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
 be integer values, will be calculated once at the beginning of the loop.
@@ -587,7 +590,7 @@ And you can get / set a specific character of the string with
 <?php func_ref('array_get_count', 'array_get(string, index)'); ?> /
 <?php func_ref('array_set_count', 'array_set(string, index, character)'); ?>.
 Indexes for characters inside string are zero-based, like for all arrays
-in KambiScript.</p>
+in CastleScript.</p>
 
 <p><?php func('character_from_code', 'character_from_code(int)'); ?> converts integer
 character code to a 1-letter string with this character.
@@ -681,10 +684,10 @@ account human eye sensitivity).
 <?php echo $toc->html_section(); ?>
 
 <p>VRML/X3D rotations (<tt>SFRotation</tt>, or an element of
-<tt>MFRotation</tt> array) are, in KambiScript, just 4-value single-precision
+<tt>MFRotation</tt> array) are, in CastleScript, just 4-value single-precision
 vectors. First three items are rotation axis (should be always normalized,
 VRML/X3D require this), 4th item is the rotation angle (in radians).
-So you can operate on rotations from KambiScript using all normal functions
+So you can operate on rotations from CastleScript using all normal functions
 on vectors.</p>
 
 <p>Some functions specially suitable for rotations are also available:</p>
@@ -725,7 +728,7 @@ on vectors.</p>
     rotation on a unit sphere.</p></li>
 </ul>
 
-<p>Example: see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/kambi_script/rotations.x3dv">kambi_script_rotations.x3dv</a>
+<p>Example: see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/rotations.x3dv">castle_script_rotations.x3dv</a>
 for a simple X3D Script using above rotation functions.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -823,24 +826,24 @@ of them:
   <li><p>More "set" functions were planned, like <tt>image_set_rectangle</tt>,
     <tt>image_apply_decal</tt>, but finally I didn't have the nerve
     to implement everything possible :) Report if you would like any function to be added
-    to KambiScript for images.</p></li>
+    to CastleScript for images.</p></li>
 </ul>
 
 <p>For comfort, <tt>set</tt> functions return back the image (that is,
 the new value of 1st argument).</p>
 
-<p>For example KambiScript programs that generate and process images,
-see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/kambiscript/mkimage_gradient.kscript">mkimage_gradient.kscript
+<p>For example CastleScript programs that generate and process images,
+see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/castlescript/mkimage_gradient.castlescript">mkimage_gradient.castlescript
 (generate simple gradient image)</a> and
-<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/kambiscript/mkimage_sobel_edge.kscript">mkimage_sobel_edge.kscript
+<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/castlescript/mkimage_sobel_edge.castlescript">mkimage_sobel_edge.castlescript
 (process any image with Sobel operator (edge detection))</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>None for now. Currently, you cannot process VRML nodes directly by
-KambiScript. Whether it will ever be allowed in KambiScript, depends
-on the "success" of KambiScript &mdash; if you write your own scripts
-in KambiScript and feel that you need this, please report. Michalis
+CastleScript. Whether it will ever be allowed in CastleScript, depends
+on the "success" of CastleScript &mdash; if you write your own scripts
+in CastleScript and feel that you need this, please report. Michalis
 will be more than happy to add them :)
 
 <?php echo $toc->html_section(); ?>
@@ -884,7 +887,7 @@ will be more than happy to add them :)
 
   NonAssignmentExpression = ComparisonArgument [{ComparisonOperator ComparisonArgument}] |
 
-  # Programmers using our engine: note that KambiScriptParser.ParseFloatExpression
+  # Programmers using our engine: note that CastleScriptParser.ParseFloatExpression
   # parses exactly "NonAssignmentExpression" token, as defined above,
   # with the Factor definition hacked to also allow only NonAssignmentExpression
   # inside parenthesis. In other words, ParseFloatExpression takes care to only
@@ -898,14 +901,14 @@ will be more than happy to add them :)
   Function = "function" "(" [Identifier [{"," Identifier}] ")" Expression
   Program = [{Function}]
 
-  # Programmers using our engine: note that KambiScriptParser.ParseProgram
+  # Programmers using our engine: note that CastleScriptParser.ParseProgram
   # parses exactly "Program" token defined above.
 
   # ------------------------------------------------
   # Programmers using our engine: note that above part of the grammar
-  # was handled inside KambiScriptParser. Grammar below is handled
-  # inside KambiScriptLexer.
-  # A "token" returned by KambiScriptLexer corresponds to a non-terminal
+  # was handled inside CastleScriptParser. Grammar below is handled
+  # inside CastleScriptLexer.
+  # A "token" returned by CastleScriptLexer corresponds to a non-terminal
   # symbol in the part of the grammar below, resolved by lexer.
 
   # Identifier is just a sequence of letters, underscores, digits,

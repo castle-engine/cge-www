@@ -32,7 +32,7 @@ WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 # ot, taka pomocnicza sta³a
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
 DOC_FILES_VRML='kanim_format.html
-  kambi_script.html
+  castle_script.html
   demo_models.html
   compositing_shaders.html
   kambi_vrml_extensions.html
