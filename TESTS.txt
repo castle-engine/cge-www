@@ -16,9 +16,9 @@ make examples
 make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
-# define CASTLE_ENGINE_LGPL in ../castle_game_engine/src/base/kambiconf.inc
+# define CASTLE_ENGINE_LGPL in ../castle_game_engine/src/base/castleconf.inc
 make
-# revert ../castle_game_engine/src/base/kambiconf.inc
+# revert ../castle_game_engine/src/base/castleconf.inc
 
 # FPCUnit tests
 
