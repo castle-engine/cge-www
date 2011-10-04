@@ -185,13 +185,13 @@ function input(value, timestamp)
 
 <p>Some larger examples:
 <ul>
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/ball_game.x3dv">castle_script_ball_game.x3dv</a>
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/ball_game.x3dv">ball_game.x3dv</a>
     &mdash; a small X3D game, with whole game logic implemented in CastleScript
     (key handling by KeySensor node). Can be played in any VRML browser
     supporting CastleScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
     or any of the example VRML browser components in engine sources.
 
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/edit_texture.x3dv">castle_script_edit_texture.x3dv</a>
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/edit_texture.x3dv">edit_texture.x3dv</a>
     &mdash; a toy image editor. Again, it's a pure X3D file (you can
     open it and use with any VRML browser supporting CastleScript).
     Uses CastleScript to implement various simple image editing
@@ -728,7 +728,7 @@ on vectors.</p>
     rotation on a unit sphere.</p></li>
 </ul>
 
-<p>Example: see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/rotations.x3dv">castle_script_rotations.x3dv</a>
+<p>Example: see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/rotations.x3dv">rotations.x3dv</a>
 for a simple X3D Script using above rotation functions.</p>
 
 <?php echo $toc->html_section(); ?>
