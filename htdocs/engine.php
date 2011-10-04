@@ -462,7 +462,7 @@ As a special exception, the copyright holders of this library give you permissio
 
 <p>Important notes:</p>
 <ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt><?php echo ENGINE_LGPL_DEF; ?></tt> symbol defined in file <tt><?php echo ENGINE_DIR_NAME; ?>/base/kambiconf.inc</tt>. Just put there <tt>{$define <?php echo ENGINE_LGPL_DEF; ?>}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define <?php echo ENGINE_LGPL_DEF; ?>}</tt>).</p>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt><?php echo ENGINE_LGPL_DEF; ?></tt> symbol defined in file <tt><?php echo ENGINE_DIR_NAME; ?>/base/<?php echo ENGINE_CONF_NAME; ?>.inc</tt>. Just put there <tt>{$define <?php echo ENGINE_LGPL_DEF; ?>}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define <?php echo ENGINE_LGPL_DEF; ?>}</tt>).</p>
 
     <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
 

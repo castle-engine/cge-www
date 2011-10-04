@@ -11,6 +11,7 @@ define('KAMBI_NO_HOME_LINK', true);
 define('ENGINE_NAME', 'Kambi VRML Game Engine'); // 'Castle Game Engine');
 define('ENGINE_DIR_NAME', 'kambi_vrml_game_engine'); // 'castle_game_engine');
 define('ENGINE_LGPL_DEF', 'KAMBI_VRMLENGINE_LGPL'); // 'CASTLE_ENGINE_LGPL');
+define('ENGINE_CONF_NAME', 'kambiconf'); // 'castleconf');
 
 /* This set_include_path is needed on SourceForge, otherwise
    includes from within kambi-php-lib sometimes fail. */
