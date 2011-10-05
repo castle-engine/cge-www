@@ -115,7 +115,7 @@ cd tests/
 make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
 make       -C  ../                       >> "$OUTPUT_LOG" 2>&1
 ./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
-./test_kambi_units -a                    >> "$OUTPUT_LOG" 2>&1
+./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'            >> "$OUTPUT_LOG"
@@ -123,7 +123,7 @@ echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'            >> "$O
 make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
 # let engine be compiled by compile_console.sh, in debug mode
 ./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
-./test_kambi_units -a                    >> "$OUTPUT_LOG" 2>&1
+./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Making docs:'                                                       >> "$OUTPUT_LOG"

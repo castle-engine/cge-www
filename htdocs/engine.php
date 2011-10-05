@@ -472,7 +472,7 @@ As a special exception, the copyright holders of this library give you permissio
 <?php echo $toc->html_section(); ?>
 
 <?php echo castle_thumbs(array(
-  array('filename' => 'test_kambi_units_screen_demo.png', 'titlealt' => 'test_kambi_units')
+  array('filename' => 'test_castle_game_engine_screen_demo.png', 'titlealt' => 'test_castle_game_engine')
 ));
 ?>
 
@@ -493,7 +493,7 @@ Lazarus (LCL), only pure FPC is needed:</p>
 <pre class="terminal">
 cd tests/
 ./compile_console.sh
-./test_kambi_units -a
+./test_castle_game_engine -a
 </pre>
 
 <?php

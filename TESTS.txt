@@ -25,11 +25,11 @@ make
 cd tests/
 # make in tests.inc CASTLE_ENGINE_TRUNK_AVAILABLE defined
 ./compile_console.sh
-./test_kambi_units -a
+./test_castle_game_engine -a
 
 make clean -C ..
 ./compile_console.sh # recompile all in debug mode for tests
-./test_kambi_units -a
+./test_castle_game_engine -a
 
 # Test view3dscene VRML/X3D loading/saving/rendering
 
