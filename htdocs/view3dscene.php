@@ -564,7 +564,7 @@ of a scene, at it's default camera, just call</p>
         Unpack them, such that <tt><?php echo ENGINE_DIR_NAME; ?>/</tt> and <tt>view3dscene/</tt>
         directories are siblings.
       <li>In the terminal, do <pre class="bordered_code">
-export KAMBI_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
+export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd view3dscene/
 ./compile.sh
 # and copy resulting view3dscene (and tovrmlx3d) binaries wherever you want
