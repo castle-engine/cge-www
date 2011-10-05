@@ -258,7 +258,7 @@ book about the Subversion</a>.</p>
 <pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
 
 <p>Please note that the full <tt>trunk</tt> is quite large.
-It contains everything: th core engine sources (<tt><?php echo ENGINE_DIR_NAME; ?></tt> subdirectory),
+It contains everything: the core engine sources (<tt><?php echo ENGINE_DIR_NAME; ?></tt> subdirectory),
 webpages stuff (in <tt>www</tt> subdirectory),
 <tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
 Often you want to download only specific subdirectories of it.</p>
