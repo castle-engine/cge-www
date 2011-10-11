@@ -44,7 +44,7 @@ OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
 cd ~/sources/castle-engine/trunk/
 svn up > "$OUTPUT_LOG"
 
-dircleaner . clean >> "$OUTPUT_LOG"
+./clean_everything.sh >> "$OUTPUT_LOG"
 
 ./compile_all_programs.sh unix  >> "$OUTPUT_LOG" 2>&1
 move_all_programs '' linux-i386
