@@ -303,7 +303,7 @@ others) are full of demos of our extensions.</p>
         the rest of box faces as opaque.
 
         <!--p>(For programmers: reasoning may be found in
-        <tt>T3DScene.RenderSilhouetteShadowVolume</tt> comments,
+        <tt>TCastleScene.RenderSilhouetteShadowVolume</tt> comments,
         see <tt>glDepthFunc(GL_NEVER)</tt> notes. For transparent triangles,
         light/dark caps must always be drawn, even in Z-pass approach.)-->
     </ul>
@@ -957,7 +957,7 @@ begin
   }
 end;
 
-  { ... and somewhere after creating T3DSceneCore (or T3DScene) do this: }
+  { ... and somewhere after creating TCastleSceneCore (or TCastleScene) do this: }
 
   Scene.RegisterCompiledScript('script_initialization', @MyObject.ScriptInitialization);
   Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
@@ -1682,7 +1682,7 @@ end;
     <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
     chapter "octrees"</a> you can
     also take a look at the (source code and docs) of the
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/CastleSceneCore.T3DSceneCore.html#Spatial">T3DSceneCore.Spatial</a> property
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/CastleSceneCore.TCastleSceneCore.html#Spatial">TCastleSceneCore.Spatial</a> property
     and units
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/Triangle.html">Triangle</a>,
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/TriangleOctree.html">TriangleOctree</a> and
@@ -1737,7 +1737,7 @@ end;
       node_end();
     ?>
 
-    <p>See the API documentation for classes <tt>T3DSceneCore</tt> and <tt>TShape</tt>
+    <p>See the API documentation for classes <tt>TCastleSceneCore</tt> and <tt>TShape</tt>
     for precise description about what each octree is.
     In normal simulation of dynamic 3D scenes,
     we use only <tt>octreeRendering</tt>, <tt>octreeDynamicCollisions</tt> and
