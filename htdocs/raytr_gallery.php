@@ -151,8 +151,7 @@ time both walls act as mirrors (stronger mirrors, 0.9) and so the reflection is 
 
 <p>You can download corresponding blender and VRML data files from <?php
   echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
- (look for <tt>blender/alien_mirror.blend</tt> and
-<tt>vrml_2/kambi_extensions/alien_mirror.wrl</tt> files).
+ (look for <tt>lights_materials/raytracer/alien_mirror.wrl</tt>, there's also <tt>.blend</tt>).
 By the way, this is one of the first rayhunter renderings of VRML 2.0 models !
 
 <hr> <!-- =============================================== -->

@@ -71,7 +71,7 @@ $toc->echo_numbers = true;
 <ul>
   <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
 
-    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>kambi_extensions/</tt> should be partially handled by other VRML browsers.</p>
+    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>castle_extensions/</tt> should be partially handled by other VRML browsers.</p>
 
     <p>Our extensions are identified by URN like "<tt>urn:castle-engine.sourceforge.net:node:KambiTriangulation</tt>". For compatibility, also deprecated "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>" is recognized.</p>
 
@@ -129,7 +129,7 @@ Some other extensions may be able supported for other reasons:
 <p><b>Examples</b>: VRML/X3D models that use these extensions may be found
 in <?php echo a_href_page("our VRML/X3D demo models",
 "demo_models"); ?>. Look there at directory names,
-in particular <tt>kambi_extensions</tt> subdirectories (but also some
+in particular <tt>castle_extensions</tt> subdirectories (but also some
 others) are full of demos of our extensions.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -580,8 +580,7 @@ others) are full of demos of our extensions.</p>
     visible from only front side.</p>
 
     <p>See our <?php echo a_href_page('VRML/X3D demo models',
-    'demo_models'); ?>, file
-    <tt>vrml_2/kambi_extensions/text_depth.wrl</tt> for example use of this.</p>
+    'demo_models'); ?>, file <tt>text/text_depth.wrl</tt> for example use of this.</p>
 
     <p>Compatibility:
     <ul>
@@ -1123,8 +1122,7 @@ end;
 
     <p><?php echo a_href_page('Our VRML/X3D demo models',
     'demo_models'); ?> have test models for this
-    (see <tt>vrml_1/kambi_extensions/fog_volumetric/</tt> and
-    <tt>vrml_2/kambi_extensions/fog_volumetric/</tt> subdirectories).
+    (see <tt>fog/fog_volumetric/</tt> subdirectory there).
     Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
     and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
 
@@ -1218,7 +1216,7 @@ end;
     <p>Test VRML file:
     see <?php echo a_href_page('our VRML/X3D demo models',
     'demo_models'); ?>, file
-    <tt>vrml_2/kambi_extensions/kambi_triangulation.wrl</tt>.
+    <tt>vrml_2/castle_extensions/kambi_triangulation.wrl</tt>.
 
 <?php echo $toc->html_section(); ?>
 

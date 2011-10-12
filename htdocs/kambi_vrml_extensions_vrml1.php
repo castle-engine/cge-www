@@ -188,7 +188,7 @@ Group {
 
     <p>Test VRML file: see our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>, file
-    <tt>vrml_1/kambi_extensions/inline_not_separate.wrl</tt>.
+    <tt>vrml_1/castle_extensions/inline_not_separate.wrl</tt>.
 
 <?php echo $toc->html_section(); ?>
 
