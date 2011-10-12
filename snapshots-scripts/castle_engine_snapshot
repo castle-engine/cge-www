@@ -79,6 +79,9 @@ set -e
 rm -f ~/public_html/castle-engine-snapshots/latest
 ln -s `date +%F` ~/public_html/castle-engine-snapshots/latest
 
+# This will be redone at the end, but make sure now it's done --- in case something fails later
+public_html_setup_permissions.sh
+
 # Not done anymore, compositing_shaders is finished now,
 # final PDF version is in SVN.
 #
@@ -133,4 +136,10 @@ echo '---------------------------------------------------------------'    >> "$O
 echo 'Making reference using PasDoc:'                                     >> "$OUTPUT_LOG"
 ~/bin/castle_engine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
 
+echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+echo 'Setting www-data permissions:'                                      >> "$OUTPUT_LOG"
+
+public_html_setup_permissions.sh
+
 echo "----------- That's all folks :)" >> "$OUTPUT_LOG"
+
