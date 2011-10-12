@@ -60,7 +60,7 @@ Procedure to update WWW content:
 - if may be good to fix old links leading to
   http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/ now
   to go to http://castle-engine.sourceforge.net/ .
-  (M-x kam-vrmlengine-snapshot-docs-to-normal in Michalis Emacs.)
+  (M-x kam-castle-engine-snapshot-docs-to-normal in Michalis Emacs.)
 
 - if you change some content outside SVN:
   (These are some things that are automatically generated and it would

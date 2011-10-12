@@ -7,14 +7,14 @@
 
      Needed local install of pear package Mail.php
 
-  // pear config-set php_dir /home/project-web/vrmlengine/pear
-  // pear config-set data_dir /home/project-web/vrmlengine/pear
-  // pear config-set test_dir /home/project-web/vrmlengine/pear/test
-  // pear config-set doc_dir /home/project-web/vrmlengine/pear/doc
+  // pear config-set php_dir /home/project-web/castle-engine/pear
+  // pear config-set data_dir /home/project-web/castle-engine/pear
+  // pear config-set test_dir /home/project-web/castle-engine/pear/test
+  // pear config-set doc_dir /home/project-web/castle-engine/pear/doc
   // pear install --alldeps mail
   */
 
-set_include_path('/home/project-web/vrmlengine/pear' . PATH_SEPARATOR
+set_include_path('/home/project-web/castle-engine/pear' . PATH_SEPARATOR
                  . get_include_path());
 
 // testing pear
@@ -27,7 +27,7 @@ include('Mail.php');
 $recipients = array( 'michalis.kambi@gmail.com' ); # Can be one or more emails
 
 $headers = array (
-		  'From' => 'admin@vrmlengine.sourceforge.net',
+		  'From' => 'admin@castle-engine.sourceforge.net',
 		  'To' => join(', ', $recipients),
 		  'Subject' => 'Testing email from project web',
 		  );
@@ -38,7 +38,7 @@ $mail_object =& Mail::factory('smtp',
 			      array(
 				    'host' => 'prwebmail',
 				    'auth' => true,
-				    'username' => 'vrmlengine',
+				    'username' => 'castle-engine',
 				    'password' => 'FILL-THIS', # As set on your project's config page
         'debug' => true, # uncomment to enable debugging
     ));
