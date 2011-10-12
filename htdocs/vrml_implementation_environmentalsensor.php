@@ -1,0 +1,1 @@
+<?php header('Location: x3d_implementation_environmentalsensor.php'); ?>

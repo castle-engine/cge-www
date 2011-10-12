@@ -1,0 +1,1 @@
+<?php header('Location: x3d_extensions_shadow_maps.php'); ?>

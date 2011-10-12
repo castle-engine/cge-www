@@ -1,0 +1,1 @@
+<?php header('Location: x3d_time_origin_considered_uncomfortable.php'); ?>

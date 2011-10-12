@@ -28,7 +28,41 @@ for PHP_NAME in *.php; do
       | news_common.php | news_feed.php | changes_log.php \
       | x3d_extensions_functions.php | openal_notes.php  \
       | kambi_vrml_test_suite.php | news_????.php | blender_stuff.php \
-      | support.php | kambi_vrml_game_engine.php )
+      | support.php | kambi_vrml_game_engine.php \
+      | kambi_vrml_extensions.php \
+      | kambi_vrml_extensions_screen_effects.php \
+      | kambi_vrml_extensions_shadow_maps.php \
+      | kambi_vrml_extensions.txt \
+      | kambi_vrml_extensions_vrml1.php \
+      | vrml_engine_doc.php \
+      | vrml_implementation_cadgeometry.php \
+      | vrml_implementation_core.php \
+      | vrml_implementation_cubemaptexturing.php \
+      | vrml_implementation_environmentaleffects.php \
+      | vrml_implementation_environmentalsensor.php \
+      | vrml_implementation_eventutilities.php \
+      | vrml_implementation_geometry2d.php \
+      | vrml_implementation_geometry3d.php \
+      | vrml_implementation_grouping.php \
+      | vrml_implementation_hanim.php \
+      | vrml_implementation_interpolation.php \
+      | vrml_implementation_keydevicesensor.php \
+      | vrml_implementation_lighting.php \
+      | vrml_implementation_navigation.php \
+      | vrml_implementation_networking.php \
+      | vrml_implementation_nurbs.php \
+      | vrml_implementation_pointingdevicesensor.php \
+      | vrml_implementation_rendering.php \
+      | vrml_implementation_scripting.php \
+      | vrml_implementation_shaders.php \
+      | vrml_implementation_shape.php \
+      | vrml_implementation_sound.php \
+      | vrml_implementation_status.php \
+      | vrml_implementation_text.php \
+      | vrml_implementation_texturing3d.php \
+      | vrml_implementation_texturing.php \
+      | vrml_implementation_time.php \
+      | vrml_time_origin_considered_uncomfortable.php )
       ;;
 
     *)
