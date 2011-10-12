@@ -919,7 +919,7 @@ some_other_event=some_other_handler
     when <tt>yet_another_event</tt> is received.</p>
 
     <p>As you see, <tt>compiled:</tt> Script content simply maps
-    VRML event names to Pascal compiled handler names.
+    VRML/X3D event names to Pascal compiled handler names.
     Each line maps <tt>event_name=handler_name</tt>. Lines without
     <tt>=</tt> character are understood to map handler of the same
     name, that is simple line <tt>event_name</tt> is equivalent to
@@ -932,11 +932,11 @@ some_other_event=some_other_handler
 <pre class="sourcecode">
 type
   TMyObject = class
-    procedure ScriptInitialization(Value: TVRMLField; const Time: TX3DTime);
-    procedure TouchHandler(Value: TVRMLField; const Time: TX3DTime);
+    procedure ScriptInitialization(Value: TX3DField; const Time: TX3DTime);
+    procedure TouchHandler(Value: TX3DField; const Time: TX3DTime);
   end;
 
-procedure TMyObject.ScriptInitialization(Value: TVRMLField; const Time: TX3DTime);
+procedure TMyObject.ScriptInitialization(Value: TX3DField; const Time: TX3DTime);
 begin
   { ... do here whatever you want ...
 
@@ -944,7 +944,7 @@ begin
   }
 end;
 
-procedure TMyObject.TouchHandler(Value: TVRMLField; const Time: TX3DTime);
+procedure TMyObject.TouchHandler(Value: TX3DField; const Time: TX3DTime);
 begin
   { ... do here whatever you want ...
 
@@ -964,10 +964,9 @@ end;
   Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
 </pre>
 
-    <p>For working example code in Pascal and VRML see example program
-    <tt>kambi_vrml_game_engine/examples/vrml/vrml_browser_script_compiled.lpr</tt>,
-    use it to open <tt>models/compiled_script_tests.x3dv</tt>,
-    and note that Pascal code reacts to clicks on TouchSensor.
+    <p>For working example code in Pascal and VRML/X3D of this, see
+    <tt>castle_game_engine/examples/3d_rendering_processing/call_pascal_code_from_3d_model_script.lpr</tt>
+    in <?php echo a_href_page('engine sources', 'engine'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -1375,7 +1374,7 @@ end;
     and one that uses <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt>
     fields.
 
-     <!-- funkcje VRMLFields.CamDirUp2Orient i VectorMath.RotatePointAroundAxis -->
+     <!-- funkcje X3DFields.CamDirUp2Orient i VectorMath.RotatePointAroundAxis -->
 
 <?php echo $toc->html_section(); ?>
 
@@ -1685,11 +1684,11 @@ end;
     <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
     chapter "octrees"</a> you can
     also take a look at the (source code and docs) of the
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLScene.T3DSceneCore.html#Spatial">T3DSceneCore.Spatial</a> property
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/CastleSceneCore.T3DSceneCore.html#Spatial">T3DSceneCore.Spatial</a> property
     and units
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangle.html">VRMLTriangle</a>,
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLTriangleOctree.html">VRMLTriangleOctree</a> and
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/VRMLShapeOctree.html">VRMLShapeOctree</a>.<p>
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/Triangle.html">Triangle</a>,
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/TriangleOctree.html">TriangleOctree</a> and
+    <a href="<?php echo CURRENT_URL; ?>apidoc/html/ShapeOctree.html">ShapeOctree</a>.<p>
 
     <p>A new node:
 
