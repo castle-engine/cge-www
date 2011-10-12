@@ -15,7 +15,7 @@ set -eu
 #   (other OSes filesystems are not directly visible from Windows).
 #
 # This script requires a couple of environment variables defined to work:
-# KAMBI_WWW_LOCAL_PATH, CASTLE_ENGINE_HTDOCS_LOCAL_PATH, KAMBI_OS_NAME, KAMBI_GNU_MAKE.
+# CASTLE_ENGINE_HTDOCS_LOCAL_PATH, KAMBI_GNU_MAKE.
 #
 # This script doesn't care for current dir from which it is run.
 

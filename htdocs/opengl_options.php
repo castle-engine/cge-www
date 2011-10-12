@@ -42,15 +42,6 @@ accept some set of standard command-line options:
     Similar for <tt>+YOFF</tt> or <tt>-YOFF</tt> &mdash; they specify
     distance from upper or lower screen border.
 
-    <!-- p><i>
-    (Można też zamiast <tt>- -geometry</tt> napisać <tt>-geometry</tt> (z jednym
-    myślnikiem). Standardowo programy pod XWindows akceptują parametr
-    <tt>-geometry</tt> z jednym myślnikiem, ale ja osobiście preferuję pisać
-    dwa myślniki przed długimi opcjami (zgodnie z konwencją GNU) więc obie
-    postacie są dozwolone.)</i>
-
-    Kambi: -geometry zabronione, w zamian za to uzywam ParsePars -->
-
     <p>You can omit the <tt>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</tt> part
     and provide only <tt>WIDTHxHEIGHT</tt> part. You can also omit
     <tt>WIDTHxHEIGHT</tt> part and provide only

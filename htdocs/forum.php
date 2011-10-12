@@ -103,7 +103,7 @@ your 3D worlds, you can:
     feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
 
     <p>Some ideas for development are proposed on
-    <a href="https://fundry.com/project/91-kambi-vrml-game-engine">Fundry page of our engine</a>.
+    <a href="https://fundry.com/project/91-castle-game-engine">Fundry page of our engine</a>.
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.

@@ -16,15 +16,6 @@ set -eu
 
 . generated_versions.sh
 
-# calculate CYG_KAMBI_WWW_LOCAL_PATH:
-# cygwin's version of KAMBI_WWW_LOCAL_PATH under Win32,
-# same as KAMBI_WWW_LOCAL_PATH under other OSes.
-if kambi_is_windows; then
-  CYG_KAMBI_WWW_LOCAL_PATH="`cygpath \"$KAMBI_WWW_LOCAL_PATH\"`"
-else
-  CYG_KAMBI_WWW_LOCAL_PATH="$KAMBI_WWW_LOCAL_PATH"
-fi
-
 ARCHIVE_PATH=`pwd`/file_releases/
 mkdir -p "$ARCHIVE_PATH"
 
