@@ -295,17 +295,17 @@ castle_thumbs(array(
 <ul>
   <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
 
-    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/vrml_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). You can switch <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu, to have <i>everything</i> rendered through shaders (make sure you have a good GPU).
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). You can switch <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu, to have <i>everything</i> rendered through shaders (make sure you have a good GPU).
 
     <ul>
-      <li><p>All the <a href="http://castle-engine.sourceforge.net/vrml_implementation_lighting.php#section_per_pixel_lighting">lighting is calculated per-pixel</a> in shader rendering (we use the <i>Phong shading</i>). This means you see much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :) Also light\'s attenuation, radius, <tt>SpotLight.beamWidth</tt> are precisely rendered now.</p>
+      <li><p>All the <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">lighting is calculated per-pixel</a> in shader rendering (we use the <i>Phong shading</i>). This means you see much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :) Also light\'s attenuation, radius, <tt>SpotLight.beamWidth</tt> are precisely rendered now.</p>
 
-      <li><p>Our <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Now bump mapping works under all lighting and texturing conditions, works with two-sided lighting, and takes all normal VRML/X3D lights into account.</p>
+      <li><p>Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Now bump mapping works under all lighting and texturing conditions, works with two-sided lighting, and takes all normal VRML/X3D lights into account.</p>
 
         <p>This also allows us to make bump mapping "enabled" by default. (You can control it by <i>View -&gt; Bump Mapping</i> menu of view3dscene of course.)</p>
       </li>
 
-      <li><p>The <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+      <li><p>The <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
 
         <p>Shadow maps also work now with all the multi-texturing possibilities. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
       </li>
@@ -319,7 +319,7 @@ castle_thumbs(array(
     <ul>
       <li>Conversion of 3DS, GEO, Wavefront OBJ, MD3, Collada reimplemented to produce X3D&nbsp;3.2.</li>
       <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name.</li>
-      <li>We read normalmap (aka bumpmap) information from 3DS and Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
+      <li>We read normalmap (aka bumpmap) information from 3DS and Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul>
   </li>
 
@@ -334,14 +334,14 @@ castle_thumbs(array(
   <li><p><b>Other new features and fixes</b>:</p>
     <ul>
       <li>X3D light source "global" field is correctly supported now.</li>
-      <li>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
-      <li><a href="http://castle-engine.sourceforge.net/vrml_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/vrml_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</li>
-      <li><tt>LineProperties</tt> node implemented (<a href="http://castle-engine.sourceforge.net/vrml_implementation_shape.php">see Shape component support</a>).</li>
+      <li>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</li>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</li>
+      <li><tt>LineProperties</tt> node implemented (<a href="http://castle-engine.sourceforge.net/x3d_implementation_shape.php">see Shape component support</a>).</li>
       <li>Transform animation optimizations.</li>
       <li>Various prototype speed and memory optimizations.</li>
-      <li>Crude implementation of <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bitmanagement">some BitManagement nodes</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">heigthMap for bump mapping</a> should be placed within alpha channel of normalmap image, and <i>parallax bump mapping</i> works now much more efficient.</li>
+      <li>Crude implementation of <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bitmanagement">some BitManagement nodes</a>.</li>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">heigthMap for bump mapping</a> should be placed within alpha channel of normalmap image, and <i>parallax bump mapping</i> works now much more efficient.</li>
       <li>view3dscene has new <i>File -&gt; Preferences</i> persistent settings for line width (controls all line visualization, like wireframe, bounding box, <tt>LineSet</tt> etc.), point size and default background color.</li>
       <li>VRML 1.0 <tt>PerspectiveCamera.heightAngle</tt> and <tt>OrthographicCamera.height</tt> support.</li>
       <li>Shadow maps <i>PCF 4 bilinear</i> fixes &mdash; it was too dark.</li>
@@ -387,11 +387,11 @@ castle_thumbs(array(
 <ul>
   <li><p>All the lights, including headlight, are now correctly passed to the shader pipeline renderer. This means that using spot light as a headlight looks good now if you use <i>View-&gt;Shader-&gt;Enable For Everything</i>, the spot is calculated nicely.</p></li>
 
-  <li><p>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
+  <li><p>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
 
     <p>Old <tt>KambiHeadLight</tt> node is deprecated and ignored now. It was exposing headlight in a way that was a little alien to other VRML/X3D lights, and is no longer comfortable to implement.</p></li>
 
-  <li><p><tt>SpotLight.beamWidth</tt> is handled perfectly and precisely with shader pipeline. <a href="http://castle-engine.sourceforge.net/vrml_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
+  <li><p><tt>SpotLight.beamWidth</tt> is handled perfectly and precisely with shader pipeline. <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
 
   <li><p>Shadow volumes demos are moved to <tt>demo_models/shadow_volumes/</tt> (will be part of next release of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <tt>PlaneSensor</tt> and <tt>SphereSensor</tt> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
 
@@ -410,7 +410,7 @@ castle_thumbs(array(
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <tt>TKamSceneManager.InitializeLights</tt> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <tt>TVRMLGLScene.GlobalLights</tt>, and you can easily make all global lights shine on everything through <tt>TKamSceneManager.UseGlobalLights</tt>.
 
-    <p>This works even for VRML 1.0 (<a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions_vrml1.php#section_ext_global">because VRML 1.0 lights can also be global</a>, this is another extension of our engine).</p>
+    <p>This works even for VRML 1.0 (<a href="http://castle-engine.sourceforge.net/x3d_extensions_vrml1.php#section_ext_global">because VRML 1.0 lights can also be global</a>, this is another extension of our engine).</p>
 
     <p>The old dirty idea of "light set" (load lights from special xxx_lights files into special <tt>TVRMLGLLightSet</tt> class) is removed. This was ugly and complicated. Now, just place your lights inside normal scene (like a level), and use <tt>UseGlobalLights</tt> to shine on everything. More elaborate scenarios are possible through InitializeLights.</p></li>
 </ul>
@@ -450,10 +450,10 @@ castle_thumbs(array(
     <ul>
       <li>Conversion of 3DS, GEO, Wavefront OBJ and MD3 reimplemented to produce X3D (instead of old VRML 1.0).</li>
       <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name: we search for texture filename ignoring case (useful if you\'re on case-sensitive file-system, like usually on Unix), we look inside textures/ subdirectory, we try to strip basename from filename in case it was absolute. If original texture filename was not found, but we found a suitable alternative, we use it (notifying you about this by a warning, so you know what going on &mdash; we used somewhat different texture filename).</li>
-      <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
+      <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul></li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/vrml_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</p></li>
+  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_vector_interpolator"><tt>VectorInterpolator</tt> extension</a> implemented to animate MFFloat sets, for example to animate <tt>ElevationGrid.set_height</tt>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</p></li>
 </ul>
 
 <p>You may also be interested in <a href="http://castle-engine.sourceforge.net/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">is available here</a>.</p>
@@ -482,7 +482,7 @@ castle_thumbs(array(
 
 <p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
 
-<p>Also, we added a <a href="http://castle-engine.sourceforge.net/vrml_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</p>
+<p>Also, we added a <a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_color_set_interpolator"><tt>ColorSetInterpolator</tt> extension</a> to animate MFColor (set of colors) fields.</p>
 '),
 
     array('title' => 'Development news: Finishing shader rendering, steep parallax bump mapping reimplemented, engine 2.4.1 fixes release',
@@ -497,7 +497,7 @@ castle_thumbs(array(
 )) .
 '<p>The work on finishing new shader renderer continues :) Bottom of this post contains more details.</p>
 
-<p><i>Parallax bump mapping</i> (including <i>steep parallax bump mapping with optional self-shadowing</i>) has been reimplemented for the new shader pipeline. (See <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">our bump mapping extensions docs</a>.) Specifying height maps for parallax bump mapping is different now: they should be passed as the alpha channel of a normal map texture. This is something that can be:</p>
+<p><i>Parallax bump mapping</i> (including <i>steep parallax bump mapping with optional self-shadowing</i>) has been reimplemented for the new shader pipeline. (See <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions docs</a>.) Specifying height maps for parallax bump mapping is different now: they should be passed as the alpha channel of a normal map texture. This is something that can be:</p>
 
 <ol>
   <li>trivially easily created (in <a href="http://code.google.com/p/gimp-normalmap/">GIMP normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>),</li>
@@ -551,21 +551,21 @@ castle_thumbs(array(
 <ol>
   <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
 
-    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/vrml_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). For testing purposes, you can switch to <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu. The results should be the same (or better) than current renderer.
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). For testing purposes, you can switch to <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu. The results should be the same (or better) than current renderer.
 
     <ul>
       <li><p>All the <i>lighting is calculated per-pixel</i> in shader rendering (we use the <i>Phong shading</i>). This is targeted at high-end GPUs anyway, so for now I decided that there\'s no point in making alternative per-vertex lighting (<i>Gouraud shading</i>). This means you should expect much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :)</p>
 
         <p>Note that shapes that don\'t need any shader effects are still by default rendered through the fixed-function pipeline. So the performance of simple scenes should not suffer on low-end GPUs.</p></li>
 
-      <li><p>Our <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping works under all lighting and texturing conditions, and takes all normal VRML/X3D lights into account.</p>
+      <li><p>Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping works under all lighting and texturing conditions, and takes all normal VRML/X3D lights into account.</p>
 
         <p>We also make bump mapping "enabled" by default.</p>
 
         <p>Our bump mapping works also with two-side lighting now.</p>
       </li>
 
-      <li><p>The <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+      <li><p>The <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
 
         <p>Shadow maps also work now with all the multi-texturing possibilities. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
       </li>
@@ -574,7 +574,7 @@ castle_thumbs(array(
     <p>New <i>"View -&gt; Shaders"</i> submenu allows to choose when shaders are used:</p>
 
     <ul>
-      <li><i>Disable</i> means <i>never</i>. Our effects will not work, standard ComposedShader will not work, shadow maps will not work. Also, <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions_screen_effects.php">screen effects</a> (that always require shaders) are off.</li>
+      <li><i>Disable</i> means <i>never</i>. Our effects will not work, standard ComposedShader will not work, shadow maps will not work. Also, <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">screen effects</a> (that always require shaders) are off.</li>
       <li><i>Enable When Required</i> means that we use fixed-function pipeline for the shapes that don\'t use any shader effects, and shader pipeline for shapes that do.</li>
       <li><i>Enable For Everything</i> means that we use shader pipeline for all the shapes. You will see beautiful per-pixel lighting on everything. On the other hand, rendering may be slower, unless you have really brand new GPU.</li>
     </ul>
@@ -633,11 +633,11 @@ castle_thumbs(array(
 
     <ul>
       <li>GLSL attributes from VRML/X3D nodes: support for <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/shaders.html"><tt>FloatVertexAttribute</tt>, <tt>Matrix3VertexAttribute</tt>, <tt>Matrix4VertexAttribute</tt> nodes</a>.</li>
-      <li><a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/enveffects.html#LocalFog">LocalFog</a> support. This allows you to limit (or turn off) fog for particular shapes. Our <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_fog_volumetric">volumetric fog</a> extensions are available for this type of fog, as well as normal <tt>Fog</tt>.</li>
-      <li><a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/enveffects.html#FogCoordinate">FogCoordinate</a> node support (explicit per-vertex fog intensities). <a href="http://castle-engine.sourceforge.net/vrml_implementation_environmentaleffects.php">Support details are here</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
+      <li><a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/enveffects.html#LocalFog">LocalFog</a> support. This allows you to limit (or turn off) fog for particular shapes. Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_fog_volumetric">volumetric fog</a> extensions are available for this type of fog, as well as normal <tt>Fog</tt>.</li>
+      <li><a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/enveffects.html#FogCoordinate">FogCoordinate</a> node support (explicit per-vertex fog intensities). <a href="http://castle-engine.sourceforge.net/x3d_implementation_environmentaleffects.php">Support details are here</a>.</li>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
       <li><tt>ElevationGrid.creaseAngle</tt> is now working correctly (previously only all smooth or all flat normals were possible for ElevationGrid).</li>
-      <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<tt>data:text/plain,</tt>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). See <a href="http://castle-engine.sourceforge.net/vrml_implementation_shaders.php">examples in our docs here</a>, also the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
+      <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<tt>data:text/plain,</tt>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). See <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">examples in our docs here</a>, also the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
     </ul>
 
     <p>With the new renderer, you should enjoy better speed on many scenes &mdash; in some cases the improvement is large (although, admittedly, in some cases it\'s not really noticeable). If you\'re curious, some (not impressive, but also not bad) <a href="http://svn.code.sf.net/p/castle-engine/code/branches/view3dscene-old-renderer-for-comparison/STATS.txt">results are here</a>.</p>
@@ -651,7 +651,7 @@ castle_thumbs(array(
   <li><p>Other important new features / fixes:</p>
     <ul>
       <li>The <b>screenshot options work now more reliably</b> on modern GPUs (that have <i>Framebuffer Object</i>). This allows to hide the window during screenshot process on all the platforms, and capture larger image sizes reliably. See <a href="http://castle-engine.sourceforge.net/view3dscene.php#section_screenshot"><tt>--screenshot</tt> and <tt>--screenshot-range</tt> options documentation</a>.</li>
-      <li><tt>TouchSensor.hitTexCoord_changed</tt> implemented, <tt>hitNormal_changed</tt> improved to generate smooth normals. See <a href="http://castle-engine.sourceforge.net/vrml_implementation_pointingdevicesensor.php">support details here</a>.</li>
+      <li><tt>TouchSensor.hitTexCoord_changed</tt> implemented, <tt>hitNormal_changed</tt> improved to generate smooth normals. See <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">support details here</a>.</li>
       <li>For programmers, an improved TVRMLShape.LocalTriangulate callback is available. See <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=25">this forum thread for more information</a>.</li>
     </ul>
   </li>
@@ -684,7 +684,7 @@ castle_thumbs(array(
 
 <ul>
   <li>GLSL attributes from VRML/X3D nodes: support for <tt>FloatVertexAttribute</tt>, <tt>Matrix3VertexAttribute</tt>, <tt>Matrix4VertexAttribute</tt> nodes.</li>
-  <li><a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
   <li><tt>ElevationGrid.creaseAngle</tt> is now working correctly (previously only all smooth or all flat normals were possible for ElevationGrid).</li>
   <li><tt>FogCoordinate</tt> node support (explicit per-vertex fog intensities).</li>
   <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<tt>data:text/plain,</tt>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). For a demo, see the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
@@ -707,7 +707,7 @@ castle_thumbs(array(
   array('filename' => 'lucy_test.png', 'titlealt' => 'Lucy (from Seamless3d test page)'),
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
 ), 1) .
-'<p><b>3D sound in VRML/X3D</b> worlds is implemented. Grab the new ' . news_a_href_page('view3dscene 3.8.0', 'view3dscene') . ', and for some demo open files <tt>x3d/sound_final.x3dv</tt> and <tt>x3d/sound_location_animate.x3dv</tt> from the ' . news_a_href_page('kambi_vrml_test_suite', 'kambi_vrml_test_suite') . '. ' . news_a_href_page('Detailed documentation for Sound support is here', 'vrml_implementation_sound') . '.</p>
+'<p><b>3D sound in VRML/X3D</b> worlds is implemented. Grab the new ' . news_a_href_page('view3dscene 3.8.0', 'view3dscene') . ', and for some demo open files <tt>x3d/sound_final.x3dv</tt> and <tt>x3d/sound_location_animate.x3dv</tt> from the ' . news_a_href_page('kambi_vrml_test_suite', 'kambi_vrml_test_suite') . '. ' . news_a_href_page('Detailed documentation for Sound support is here', 'x3d_implementation_sound') . '.</p>
 
 <p>Note that you have to install some additional libraries to hear sounds (OpenAL to hear anything, and VorbisFile to load OggVorbis format). For Windows, these are already included in the zip file, and you actually don\'t have to do anything. For Linux, you should install them using your package managar. For Mac OS X, ' . news_a_href_page('OpenAL is already preinstalled and you can get VorbisFile from fink', 'macosx_requirements') . '.</p>
 
@@ -724,7 +724,7 @@ SoundEngine.PlaySound(Buffer, ...); // see TALSoundEngine.PlaySound parameters
 
 <p>See the <a href="http://castle-engine.sourceforge.net/reference.php">engine reference</a>, in particular <a href="http://castle-engine.sourceforge.net/apidoc/html/ALSoundEngine.TALSoundEngine.html">TALSoundEngine class reference</a>, for details. You can try adding this code spinnet to any example in engine sources, e.g. to the <tt>examples/vrml/scene_manager_demos.lpr</tt>.</p>
 
-<p><b>Animating skinned H-Anim humanoids</b> is also implemented. You can use view3dscene to open e.g. <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>. The <a href="http://castle-engine.sourceforge.net/vrml_implementation_hanim.php">details about H-Anim support are here</a>. The new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i> may be useful too.</p>
+<p><b>Animating skinned H-Anim humanoids</b> is also implemented. You can use view3dscene to open e.g. <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>. The <a href="http://castle-engine.sourceforge.net/x3d_implementation_hanim.php">details about H-Anim support are here</a>. The new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i> may be useful too.</p>
 
 <p>See also the video below. At first you see InstantReality results and then the view3dscene. Thanks to Peter "griff" Griffith for testing and creating this video!</p>
 
@@ -733,8 +733,8 @@ SoundEngine.PlaySound(Buffer, ...); // see TALSoundEngine.PlaySound parameters
 <p>Some <b>other notable features</b> implemented:</p>
 
 <ul>
-  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
-  <li><a href="http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
   <li><a href="http://castle-engine.sourceforge.net/reference.php">Engine reference for developers</a> improved a lot.</li>
 </ul>
 

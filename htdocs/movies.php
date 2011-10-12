@@ -58,7 +58,7 @@ editing (glued, fading between parts) thanks to
   <li value="4"><p>Rendering flames.
     Video is referenced as
     <?php echo a_href_page_hashlink('MovieTexture VRML 2.0 node,
-      loaded from images sequence', 'kambi_vrml_extensions',
+      loaded from images sequence', 'x3d_extensions',
       'section_ext_movie_from_image_sequence'); ?>.
     Movie is itself recorded by <?php echo a_href_page('view3dscene',
     'view3dscene'); ?>, using it's

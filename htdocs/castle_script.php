@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  require_once 'vrml_implementation_common.php';
+  require_once 'x3d_implementation_common.php';
   vrmlx3d_header('CastleScript language');
 
   function func_ref($name, $title)

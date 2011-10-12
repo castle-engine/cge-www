@@ -56,7 +56,7 @@ This way I did trivial anti-aliasing by <i>oversampling</i>.
 
 <p>For classic ray-tracer I added some point/directional/spot lights
 to the models. Sometimes I added <?php echo a_href_page_hashlink(
- '<tt>mirror</tt> property', 'kambi_vrml_extensions', 'section_ext_material_mirror'); ?>
+ '<tt>mirror</tt> property', 'x3d_extensions', 'section_ext_material_mirror'); ?>
  to turn some materials into mirrors.
 
 <p><b>Office</b>. I used <tt>office.mgf</tt> model

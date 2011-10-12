@@ -173,7 +173,7 @@ div.download table a { display: block; text-decoration: none; color: black;
 div.download table a img { border: 0px none; }
 
 /* Table like X3D specification, used for multi-texturing clarifications
-   on vrml_implementation_texturing.php */
+   on x3d_implementation_texturing.php */
 table.specification { border-collapse:collapse; }
 table.specification th {
   border-style:groove;

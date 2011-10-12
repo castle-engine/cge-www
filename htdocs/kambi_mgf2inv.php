@@ -18,7 +18,7 @@ also developed by Greg Ward)</a> format into VRML 1.0 models (or Inventor
 <p>My <tt>kambi_mgf2inv</tt> writes
 <?php echo a_href_page_hashlink("six additional fields of node <tt>Material</tt>
 that describe physical material properties for Phong BRDF",
-"kambi_vrml_extensions", "ext_material_phong_brdf_fields"); ?>.
+"x3d_extensions", "ext_material_phong_brdf_fields"); ?>.
 These properties are already available in MGF (with the exception of two
 exponents, <tt>reflSpecularExp</tt> and <tt>transSpecularExp</tt>,
 they have to be calculated from MGF's <tt>roughness</tt>)

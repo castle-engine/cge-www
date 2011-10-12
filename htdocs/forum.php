@@ -65,7 +65,7 @@ your 3D worlds, you can:
   <li><p>Show off your works on our <a href="<?php echo FORUM_URL; ?>">forum</a>,
     in any way you like (screenshot, link to model, youtube video etc.).
     If you use some of <?php echo a_href_page('our engine special VRML/X3D extensions
-    or rendering features', 'kambi_vrml_extensions'); ?>, you are strongly
+    or rendering features', 'x3d_extensions'); ?>, you are strongly
     encouraged to do so (Michalis loves to see how his work is useful for others :) !
     But also post about "normal" 3D models that simply look nice in our
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> or such.

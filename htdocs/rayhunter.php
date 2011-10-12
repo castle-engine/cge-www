@@ -501,7 +501,7 @@ and Monte Carlo path tracing.
     You can also specify octree propeties inside VRML/X3D file:
     use <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
     (see <?php echo a_href_page_hashlink('octree properties extension',
-    'kambi_vrml_extensions', 'section_ext_octree_properties'); ?>).
+    'x3d_extensions', 'section_ext_octree_properties'); ?>).
 
     <?php /* Niniejsze drzewo ósemkowe nie zawsze będzie absolutnie optymalne,
     ale zazwyczaj będzie naprawdę dobre i nie będzie zajmowało zbyt dużo
@@ -529,7 +529,7 @@ and Monte Carlo path tracing.
     <tt>SpotLight</tt> and <tt>PointLight</tt>. Also the headlight
     is used, configurable by <tt>NavigationInfo.headlight</tt>
     and <?php echo a_href_page_hashlink('KambiNavigationInfo.headlightNode',
-    'kambi_vrml_extensions', 'section_ext_headlight'); ?>.
+    'x3d_extensions', 'section_ext_headlight'); ?>.
 
     <p>For <tt>&lt;recursion-depth&gt;</tt> equal zero we use only
     <tt>diffuse</tt> material color. According to VRML 97 light model,
@@ -543,7 +543,7 @@ and Monte Carlo path tracing.
   <li><p><i>Mostly for <tt>classic</tt> ray-tracer :</i><br>
     <?php echo a_href_page_hashlink(
       "Use <tt>mirror</tt> field of <tt>Material</tt> node to create mirrors",
-      "kambi_vrml_extensions", "section_ext_material_mirror"); ?>.
+      "x3d_extensions", "section_ext_material_mirror"); ?>.
 
   <li><p><i>Only for <tt>path</tt> tracer :</i><br>
     We don't use point and directional lights,
@@ -555,7 +555,7 @@ and Monte Carlo path tracing.
     <p>Implemented BRDF is Phong's BRDF.
     See <?php echo a_href_page_hashlink(
      "fields describing physical properties (Phong's BRDF) for " .
-     "<tt>Material</tt>node", "kambi_vrml_extensions",
+     "<tt>Material</tt>node", "x3d_extensions",
      "section_ext_material_phong_brdf_fields"); ?>.
 
   <li><p>Some things not handled (yet): textures, interpolating

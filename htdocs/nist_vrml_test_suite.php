@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  require_once 'vrml_implementation_common.php';
+  require_once 'x3d_implementation_common.php';
 
   vrmlx3d_header("NIST conformance test suite results");
 ?>
@@ -71,7 +71,7 @@ function fail($count, $comment = '')
 
 $default_texture_mode_modulate_disclaimer = a_href_page_hashlink(
   'You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.',
-  'vrml_implementation_texturing', 'default_texture_mode_modulate');
+  'x3d_implementation_texturing', 'default_texture_mode_modulate');
 ?>
 
 <table class="nist_test_suite">

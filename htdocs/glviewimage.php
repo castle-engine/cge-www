@@ -83,7 +83,7 @@ is also very useful.</p>
     <i>Images-&gt;Next/Previous subimage in DDS</i>. Saving to DDS images
     is also supported. <?php echo a_href_page_hashlink(
     'Details about using DDS format for textures in our engine are here.',
-    'vrml_implementation_texturing', 'section_dds'); ?>
+    'x3d_implementation_texturing', 'section_dds'); ?>
 
   <li><b>RGBE</b>: simple HDR (high dynamic range) format.
     The format name is an acronym for <i>Red + Green + Blue + Exponent</i>,

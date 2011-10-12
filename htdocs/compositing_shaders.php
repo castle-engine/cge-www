@@ -1,9 +1,9 @@
 <?php
 require_once 'castle_engine_functions.php';
-require_once 'kambi_vrml_extensions_functions.php';
+require_once 'x3d_extensions_functions.php';
 
 castle_header('Compositing Shaders', NULL,
-  array('vrml_x3d', 'kambi_vrml_extensions', 'compositing_shaders'));
+  array('vrml_x3d', 'x3d_extensions', 'compositing_shaders'));
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
@@ -37,7 +37,7 @@ This allows you to create a myriad of effects using
 the OpenGL Shading Language (GLSL).
 Contrary to the traditional approach (using <tt>ComposedShader</tt> node,
 see <?php echo a_href_page(
-'shader component support', 'vrml_implementation_shaders'); ?>),
+'shader component support', 'x3d_implementation_shaders'); ?>),
 our system allows you to define effects easily, without the need
 to replicate existing functionality (like lighting and texturing operations),
 and your effects automatically cooperate with each other and with standard

@@ -19,7 +19,7 @@ array_push($news,
     prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
     VRML 2.0 lights are correctly handled,
     handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
-    <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
   <li>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
     released: most things mentioned above were actually implemented in the base
     engine units, also: x86-64 port.</li>
@@ -28,7 +28,7 @@ array_push($news,
   <li>" . news_a_href_page('Blender VRML stuff page added, with improved VRML 2.0
     exporter and kanim exporter', 'blender') . ".</li>
   <li>Updated version of " . news_a_href_page('VRML engine documentation',
-    'vrml_engine_doc') . " is available, with a
+    'engine_doc') . " is available, with a
     <a href=\"http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
     about shadows implementation.</a></li>
 </ul>",
@@ -102,7 +102,7 @@ array_push($news,
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
   <li><a
-    href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
 </ul>
 
 <p>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
@@ -135,7 +135,7 @@ relative_names, texture_test, house behind the glass).</p>
 exporter and kanim exporter', 'blender') . ".</p>
 
 <p>Updated version of " . news_a_href_page('VRML engine documentation',
-'vrml_engine_doc') . " is available, with a chapter about shadows
+'engine_doc') . " is available, with a chapter about shadows
 implementation.</p>
 "),
 
@@ -460,13 +460,13 @@ SourceForge.
   <div class="old_news_item"><p><span class="old_news_date">September 27, 2006:</span>
     <p>Final version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
-      'vrml_engine_doc') . ' is available now.</p></div>
+      'engine_doc') . ' is available now.</p></div>
 
   <div class="old_news_item"><p><span class="old_news_date">September 21, 2006:</span>
 
     <p>Newest version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
-      'vrml_engine_doc') . ' is available. Only the 7th chapter remains
+      'engine_doc') . ' is available. Only the 7th chapter remains
     undone. <em>Later update the same day: all chapters done!</em></p>
 
     <p>Units ' . news_a_href_page('sources', 'sources') . ' updated:
@@ -480,7 +480,7 @@ SourceForge.
 
     <p>First of all, a draft and unfinished version of
     ' . news_a_href_page("my master's thesis about my VRML engine",
-    'vrml_engine_doc') . ' is available.</p>
+    'engine_doc') . ' is available.</p>
 
     <p>' . news_a_href_page('view3dscene 2.0.1', 'view3dscene') . '
      released &mdash; small updates and fixes. New menu items
@@ -506,13 +506,13 @@ SourceForge.
     <b>VRML 2.0 (aka VRML 97) support is implemented now</b>.
     It\'s by no means complete yet, but it\'s definitely usable
     already &mdash; see ' . news_a_href_page('VRML implementation status',
-    'vrml_implementation_status') . ' for details and results of
+    'x3d_implementation_status') . ' for details and results of
     various test suites. Almost all of my
     ' . news_a_href_page("non-standard VRML extensions",
-      "kambi_vrml_extensions") . ' work in VRML 2.0 too, and actually
+      "x3d_extensions") . ' work in VRML 2.0 too, and actually
     you can even ' . news_a_href_page_hashlink(
       "mix VRML 1.0 and 2.0 features in your files",
-      "kambi_vrml_extensions", 'section_ext_mix_vrml_1_2') . '.
+      "x3d_extensions", 'section_ext_mix_vrml_1_2') . '.
 
     <ul>
       <li>' . news_a_href_page('view3dscene 2.0.0', 'view3dscene') . '
@@ -863,13 +863,13 @@ SourceForge.
         <ul>
           <li>' . news_a_href_page_hashlink(
             'Field <tt>separate</tt> for <tt>WWWInline</tt> node',
-            'kambi_vrml_extensions', 'section_ext_wwwinline_separate') . '.
+            'x3d_extensions', 'section_ext_wwwinline_separate') . '.
           <li>' . news_a_href_page_hashlink(
             '<tt>Fog</tt> node extensions to define volumetric fog',
-            'kambi_vrml_extensions', 'section_ext_fog_volumetric') . '
+            'x3d_extensions', 'section_ext_fog_volumetric') . '
           <li>' . news_a_href_page_hashlink(
             '<tt>fogImmune</tt> field for <tt>Material</tt> node',
-            'kambi_vrml_extensions', 'section_ext_fog_immune') . '
+            'x3d_extensions', 'section_ext_fog_immune') . '
         </ul>
 
         <p>Also head bobbing much better, and various other improvements.
@@ -911,9 +911,9 @@ SourceForge.
     <ul>
       <li>VRML 97 nodes
         ' . news_a_href_page_hashlink('NavigationInfo',
-        'kambi_vrml_extensions', 'section_ext_navigationinfo') . ' and
+        'x3d_extensions', 'section_ext_navigationinfo') . ' and
         ' . news_a_href_page_hashlink('WorldInfo',
-        'kambi_vrml_extensions', 'section_ext_worldinfo') . ' handling,
+        'x3d_extensions', 'section_ext_worldinfo') . ' handling,
         ' . news_a_href_page('kambi_vrml_test_suite',
         'kambi_vrml_test_suite') . ' has test VRMLs for this.
 
@@ -1085,7 +1085,7 @@ SourceForge.
     <ul>
       <li>
       ' . news_a_href_page("Specification of my extensions to VRML",
-        "kambi_vrml_extensions") . ',
+        "x3d_extensions") . ',
         ' . news_a_href_page(
         "standard command-line options understood by all my OpenGL programs",
         "opengl_options") . '
@@ -1205,7 +1205,7 @@ SourceForge.
 
         <p>Also ' . news_a_href_page_hashlink(
           'all VRML reading code can read VRML files compressed by gzip.',
-          'kambi_vrml_extensions', 'section_ext_gzip') . '
+          'x3d_extensions', 'section_ext_gzip') . '
 
         <p>' . news_a_href_page('view3dscene', 'view3dscene') . '
         updated to version 1.1.2,

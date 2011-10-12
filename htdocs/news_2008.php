@@ -56,8 +56,8 @@ castle_thumbs(array(
   <li>
     <p><b>Dynamic shadows support is greatly improved</b>, finally
     " . news_a_href_page('view3dscene', 'view3dscene') . " can render
-    with shadows, honoring our <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadows\">shadow's extensions</a>.
-    We also have new <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
+    with shadows, honoring our <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadows\">shadow's extensions</a>.
+    We also have new <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
     <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
@@ -73,7 +73,7 @@ castle_thumbs(array(
     <tt>X3DSequencerNode</tt>,
     <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt> implemented.
 
-    <p><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
+    <p><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
 
   <li><p>Bugfix for open file dialog under GTK 2.14 (like Ubuntu 8.10).
     Thanks to Graham Seed for reporting.
@@ -196,7 +196,7 @@ castle_thumbs(array(
     fixes were made, to make them more easily usable. Thanks to De-Panther for
     pushing me to implement this :)</p></li>
 
-  <li><p><b><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_script_compiled\">Script
+  <li><p><b><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_script_compiled\">Script
     protocol \"<tt>compiled:</tt>\"</a></b> is implemented, to easily link
     VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
 
@@ -244,7 +244,7 @@ is released and some other programs here get minor updates.</p>
 
 <ul>
   <li><p><b>X3D support</b> (both XML and classic encoding).
-    Our " . news_a_href_page('VRML implementation status', 'vrml_implementation_status') . "
+    Our " . news_a_href_page('VRML implementation status', 'x3d_implementation_status') . "
     page has detailed information about supported features.</p></li>
 
   <li><p><b>Events mechanism</b> (routes, exposed events, sensors, interpolators etc.)
@@ -260,10 +260,10 @@ is released and some other programs here get minor updates.</p>
 
     <p>Linear interpolators are also implemented.
     Some \"event utilities\" nodes are implemented
-    (including useful <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_avalon\"><tt>Logger</tt>
+    (including useful <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_avalon\"><tt>Logger</tt>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"http://castle-engine.sourceforge.net/vrml_implementation_shaders.php\">Routing
+    <a href=\"http://castle-engine.sourceforge.net/x3d_implementation_shaders.php\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
     for VRML 97) work too.
@@ -272,7 +272,7 @@ is released and some other programs here get minor updates.</p>
     New " . news_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
     has some simple demos of our events implementation.</p></li>
 
-  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_movie_from_image_sequence\">extension
+  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence\">extension
     to load movie from a sequence of images (with possible alpha
     channel)</a>, this is great for pre-rendered animations of flames, smoke etc.
     Normal movie formats are also handled if <a href=\"http://ffmpeg.mplayerhq.hu/\">ffmpeg</a>
@@ -295,12 +295,12 @@ is released and some other programs here get minor updates.</p>
   <li><p>Many other features, including
     <ul>
       <li><tt>Extrusion</tt> node handling,</li>
-      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
-      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
+      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
+      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
         to automatically replace nodes within inlined content</a>,</li>
-      <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#section_ext_time_origin_at_load\">extension
+      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_time_origin_at_load\">extension
         to force VRML time-origin to start at loading time</a>, because
-        <a href=\"http://castle-engine.sourceforge.net/vrml_time_origin_considered_uncomfortable.php\">standard
+        <a href=\"http://castle-engine.sourceforge.net/x3d_time_origin_considered_uncomfortable.php\">standard
         VRML time origin is uncomfortable in my opinion,</a></li>
       <li>new X3D Indexed Triangles/Quads primitives (thanks to completely
         reorganized mesh renderer code),</li>
@@ -369,7 +369,7 @@ web3d.org examples</a>.</p>"),
     (expressed in terms of VRML interpolators) to our ' .
     news_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .
     ' and it supports our ' .
-    news_a_href_page('extension nodes and fields', 'kambi_vrml_extensions') .
+    news_a_href_page('extension nodes and fields', 'x3d_extensions') .
     ' (run with <tt>-kambi</tt> command-line option, or use <i>"Start next time
     with kambi support"</i> menu item). Thousand thanks for
     Joerg "MUFTI" Scheurich!</p>
@@ -489,11 +489,11 @@ Below is only a shortcut of the most important changes
 (see " . news_a_href_page('changes_log', 'news') . " for a full list of changes) :</p>
 
 <ul>
-  <li><a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">Bump
+  <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_bump_mapping\">Bump
     mapping</a>. Various bump mapping methods are implemented,
     the most advanced being steep parallax mapping with self-shadowing.</li>
 
-  <li>Shaders support, including <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">specifying GLSL
+  <li>Shaders support, including <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_shaders\">specifying GLSL
     shaders in VRML</a>. Programmers may easily initialize
     GLSL and ARB assembly shaders.</li>
 
@@ -530,7 +530,7 @@ to bring them up-to-date with current engine state.</p>
 Many long-awaited graphic features implemented:</p>
 
 <ul>
-  <li><p><b>Bump mapping</b>: <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_bump_mapping\">VRML
+  <li><p><b>Bump mapping</b>: <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_bump_mapping\">VRML
     renderer allows bump mapping</a>. Various bump mapping methods
     are implemented (best method is auto-detected and used at runtime):
     dot by multitexturing (not normalized and normalized by cube map),
@@ -551,7 +551,7 @@ Many long-awaited graphic features implemented:</p>
   <li><p><b>GLSL shaders support:</b> engine supports easily using
     ARB vertex / fragment programs (assembly shaders) and&nbsp;GLSL.</p>
 
-    <p>You can also <a href=\"http://castle-engine.sourceforge.net/kambi_vrml_extensions.php#ext_shaders\">directly
+    <p>You can also <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_shaders\">directly
     specify GLSL shaders inside VRML file</a>, which is a great feature
     for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
 

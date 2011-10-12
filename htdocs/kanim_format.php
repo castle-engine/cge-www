@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  require_once 'vrml_implementation_common.php';
+  require_once 'x3d_implementation_common.php';
 
   vrmlx3d_header("Kanim file format");
 
@@ -118,7 +118,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                            // most of all, VRML/X3D, but also
                            // <?php echo a_href_page_hashlink(
                                 'other formats understood by my engine',
-                                'kambi_vrml_extensions',
+                                'x3d_extensions',
                                 'section_ext_inline_for_all'); ?>.
 
     time="0.0"             // This is a required attribute specyfying a
@@ -158,7 +158,7 @@ for all your needs):</p>
     <p>Use instead VRML/X3D interpolators, when background is fast updated.
     Note that you can use our
     <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
-    'vrml_implementation_interpolation'); ?> to animate sets of colors like
+    'x3d_implementation_interpolation'); ?> to animate sets of colors like
     <tt>skyColor</tt>, <tt>groundColor</tt>.
     See our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>

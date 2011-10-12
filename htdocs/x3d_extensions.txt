@@ -1,0 +1,280 @@
+# Specification of extensions from
+# http://castle-engine.sourceforge.net/x3d_extensions.php
+# in the format comfortable for white dune scripts.
+
+Appearance : X3DAppearanceNode {
+  ... all normal Appearance fields ...
+  MFNode     []            receiveShadows  []          # [X3DLightNode] list
+  SFBool     [in,out]      shadowCaster     TRUE
+  SFNode     [in,out]      normalMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
+  SFNode     [in,out]      heightMap        NULL        # only texture nodes (ImageTexture, MovieTexture, PixelTexture) allowed
+  SFFloat    [in,out]      heightMapScale   0.01        # must be > 0, meaningful only if heightMap specified
+  SFNode     [in,out]      blendMode        NULL        # [BlendMode]
+  MFNode     []            effects          []          # [Effect]
+}
+
+# Now we just add all new fields to the standard "Appearance" node,
+# no need to use "KambiAppearance".
+# Some reasons: we describe in shadow_maps_x3d paper
+# our propositions for Appearance (without introducing KambiAppearance,
+# as (in the future) these should not be specific to our engine),
+# also InstantReality already has Appearance.blendMode.
+#
+# You can however use KambiAppearance in your models, this allows you
+# to declare KambiAppearance by EXTERNPROTO and fallback on standard
+# Appearance.
+KambiAppearance : Appearance {
+  ... all Appearance fields (with our extensions, see above) ...
+}
+
+X3DLightNode : X3DChildNode {
+  ... all normal X3DLightNode fields ...
+  SFBool     []            shadows               FALSE
+  SFBool     [in,out]      kambiShadows          FALSE
+  SFBool     [in,out]      kambiShadowsMain      FALSE       # meaningfull only when kambiShadows = TRUE
+  SFFloat    [in,out]      projectionNear        1           # > 0
+  SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
+  SFVec3f    [in,out]      up                    0 1 0
+  SFNode     []            defaultShadowMap      NULL        # [GeneratedShadowMap]
+  MFNode     []            effects               []          # [Effect]
+}
+
+X3DTextureNode : X3DAppearanceChildNode {
+  ... all normal X3DTextureNode fields ...
+  MFNode     []            effects          []          # [Effect]
+}
+
+DirectionalLight : X3DLightNode {
+  ... all normal DirectionalLight fields ...
+  SFVec4f    [in,out]      projectionRectangle   -10 10 -10 10  # # left, right, bottom, top; must be left < right and bottom < top
+  SFVec3f    [in,out]      projectionLocation    0 0 0       # affected by node's transformation
+}
+
+SpotLight : X3DLightNode {
+  ... all normal SpotLight fields ...
+  SFFloat    [in,out]      projectionAngle       0
+}
+
+GeneratedShadowMap : X3DTextureNode {
+  SFNode     [in,out]      metadata         NULL                  # [X3DMetadataObject]
+  SFString   [in,out]      update           "NONE"                # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
+  SFInt32    []            size             128
+  SFNode     []            light            NULL                  # [X3DLightNode]
+  SFFloat    [in,out]      scale            1.1
+  SFFloat    [in,out]      bias             4.0
+  SFString   []            compareMode      "COMPARE_R_LEQUAL"    # ["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]
+}
+
+X3DViewpointNode : X3DBindableNode {
+  ... all normal X3DViewpointNode fields ...
+  SFMatrix4f [out]         cameraMatrix
+  SFMatrix4f [out]         cameraInverseMatrix
+  SFMatrix3f [out]         cameraRotationMatrix
+  SFMatrix3f [out]         cameraRotationInverseMatrix
+  SFBool     [in,out]      cameraMatrixSendAlsoOnOffscreenRendering  FALSE
+  MFVec3f    [in,out]      direction   []
+  MFVec3f    [in,out]      up          []
+  SFVec3f    [in,out]      gravityUp   0 1 0
+}
+
+Text3D : X3DGeometryNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  MFString   [in,out]      string      []
+  SFNode     [in,out]      fontStyle   NULL
+  MFFloat    [in,out]      length      []
+  SFFloat    [in,out]      maxExtent   0
+  SFFloat    [in,out]      depth       0.1         # must be >= 0
+  SFBool     [in,out]      solid       TRUE
+}
+
+ImageTexture : X3DTexture2DNode {
+  ... all normal ImageTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+MovieTexture : X3DTexture2DNode {
+  ... all normal MovieTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+PixelTexture : X3DTexture2DNode {
+  ... all normal PixelTexture fields ...
+  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+}
+
+KambiInline : Inline {
+  ... all normal Inline fields ...
+  MFString   [in,out]      replaceNames  []
+  MFNode     [in,out]      replaceNodes  []          # any VRML node is valid on this list
+}
+
+KambiNavigationInfo : NavigationInfo {
+  ... all normal NavigationInfo fields ...
+  SFBool     []            timeOriginAtLoad    FALSE
+  SFNode []            octreeRendering            NULL    # only KambiOctreeProperties node
+  SFNode []            octreeDynamicCollisions    NULL    # only KambiOctreeProperties node
+  SFNode []            octreeVisibleTriangles     NULL    # only KambiOctreeProperties node
+  SFNode []            octreeCollidableTriangles  NULL    # only KambiOctreeProperties node
+  SFFloat    [in,out]      headBobbing             0.1    # > 0, < 1
+  SFFloat    [in,out]      headBobbingDistance     20     # > 0
+  SFNode     [in,out]      headlightNode           NULL   # [X3DLightNode]
+}
+
+X3DComposedGeometryNode : X3DGeometryNode {
+  ... all normal X3DComposedGeometryNode fields ...
+  MFVec3f    [in,out]      radianceTransfer  []
+}
+
+X3DFogObject {
+  ... all normal X3DFogObject (Fog, LocalFog in spec) fields ...
+  SFBool   [in,out]      volumetric                    FALSE
+  SFVec3f  [in,out]      volumetricDirection           0 -1 0    # any non-zero vector
+  SFFloat  [in,out]      volumetricVisibilityStart     0
+}
+
+Material : X3DMaterialNode {
+  ... all normal Material fields ...
+  SFFloat    [in,out]      mirror      0.0         # [0.0; 1.0]
+  MFColor    [in,out]      reflSpecular          []          # specular reflectance
+  MFColor    [in,out]      reflDiffuse           []          # diffuse reflectance
+  MFColor    [in,out]      transSpecular         []          # specular transmittance
+  MFColor    [in,out]      transDiffuse          []          # diffuse transmittance
+  SFFloat    [in,out]      reflSpecularExp       1000000     # specular reflectance exponent
+  SFFloat    [in,out]      transSpecularExp      1000000     # specular transmittance exponent
+}
+
+KambiTriangulation : X3DChildNode {
+  SFNode   [in,out]      metadata         NULL   # [X3DMetadataObject]
+  SFInt32  [in,out]      quadricSlices    -1     # {-1} + [3, infinity)
+  SFInt32  [in,out]      quadricStacks    -1     # {-1} + [2, infinity)
+  SFInt32  [in,out]      rectDivisions    -1     # [-1, infinity)
+}
+
+KambiHeadLight : X3DChildNode {
+  SFNode     [in,out]      metadata              NULL        # [X3DMetadataObject]
+  SFFloat    [in,out]      ambientIntensity      0           # [0.0, 1.0]
+  SFVec3f    [in,out]      attenuation           1 0 0       # [0, infinity)
+  SFColor    [in,out]      color                 1 1 1       # [0, 1]
+  SFFloat    [in,out]      intensity             1           # [0, 1]
+  SFBool     [in,out]      spot                  FALSE
+  SFFloat    [in,out]      spotDropOffRate       0
+  SFFloat    [in,out]      spotCutOffAngle       0.785398
+}
+
+KambiOctreeProperties : X3DNode {
+  SFNode  [in,out]      metadata              NULL    # [X3DMetadataObject]
+  SFInt32 []            maxDepth              -1      # must be >= -1
+  SFInt32 []            leafCapacity          -1      # must be >= -1
+}
+
+X3DShapeNode : X3DChildNode, X3DBoundedObject {
+  ... all normal X3DShapeNode fields ...
+  SFNode []            octreeTriangles            NULL    # only KambiOctreeProperties node
+}
+
+Teapot : X3DGeometryNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFVec3f    []            size        3 3 3
+  SFBool     []            solid       TRUE
+  SFBool     []            manifold    FALSE
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
+RenderedTexture : X3DTextureNode {
+  SFNode     [in,out]      metadata              NULL             # [X3DMetadataObject]
+  MFInt32    [in,out]      dimensions            128 128 4 1 1
+  SFString   [in,out]      update                "NONE"           # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
+  SFNode     [in,out]      viewpoint             NULL             # [X3DViewpointNode] (VRML 1.0 camera nodes also allowed)
+  SFNode     []            textureProperties     NULL             # [TextureProperties]
+  SFBool     []            repeatS               TRUE
+  SFBool     []            repeatT               TRUE
+  SFBool     []            repeatR               TRUE
+  MFBool     [in,out]      depthMap              []
+}
+
+Logger : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFInt32    [in,out]      level       1
+  SFString   []            logFile     ""
+  SFBool     [in,out]      enabled     TRUE
+  XFAny      [in]          write
+}
+
+MultiGeneratedTextureCoordinate : X3DTextureCoordinateNode {
+  SFNode [in,out] metadata NULL [X3DMetadataObject]
+  MFNode [in,out] texCoord NULL [TextureCoordinateGenerator, ProjectedTextureCoordinate]
+}
+
+Box : X3DGeometryNode {
+  ... all normal Box fields ...
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
+Cone : X3DGeometryNode {
+  ... all normal Cone fields ...
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
+Cylinder : X3DGeometryNode {
+  ... all normal Cylinder fields ...
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
+Sphere : X3DGeometryNode {
+  ... all normal Sphere fields ...
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
+ProjectedTextureCoordinate : X3DTextureCoordinateNode {
+  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
+  SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
+}
+
+# See http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php
+ScreenEffect : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL      # [X3DMetadataObject]
+  SFBool     [in,out]      enabled     TRUE
+  SFBool     [in,out]      needsDepth  FALSE
+  MFNode     [in,out]      shaders     []        # [X3DShaderNode]
+}
+
+# See http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php
+ColorSetInterpolator : X3DInterpolatorNode {
+  ... all normal X3DInterpolatorNode fields ...
+  MFColor  [in,out]  keyValue           []
+  MFColor  [out]     value_changed
+}
+
+VectorInterpolator : X3DInterpolatorNode {
+  ... all normal X3DInterpolatorNode fields ...
+  MFFloat  [in,out]  keyValue           []
+  MFFloat  [out]     value_changed
+}
+
+# See http://castle-engine.sourceforge.net/compositing_shaders.php for Effect etc. docs
+
+Effect : X3DChildNode {
+  SFNode     [in,out]      metadata    NULL    # [X3DMetadataObject]
+  SFString   []            language    ""      # allowed values like ComposedShader.language
+  SFBool     [in,out]      enabled     TRUE
+  MFNode     []            parts       []      # [EffectPart]
+
+  # And any number of uniform variables, just like for ComposedShader node:
+  fieldType []       fieldName
+  fieldType [in]     fieldName
+  fieldType [out]    fieldName
+  fieldType [in,out] fieldName
+}
+
+EffectPart : X3DNode, X3DUrlObject {
+  # for XML encoding, default containerField: parts
+  SFNode   [in,out] metadata NULL       # [X3DMetadataObject]
+  MFString []       url      []         # (may be changed to [in,out] one day)
+  SFString []       type     "VERTEX"   # ["VERTEX"|"FRAGMENT"]
+}
+
+ShaderTexture : X3DTextureNode {
+  SFNode   [in,out] metadata        NULL        # [X3DMetadataObject]; defined in X3DNode
+  MFNode   []       effects         []          # [Effect]; defined in X3DTextureNode
+  SFString []       defaultTexCoord "BOUNDS2D"  # ["BOUNDS2D"|"BOUNDS3D"]
+}

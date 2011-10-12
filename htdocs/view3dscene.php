@@ -163,10 +163,10 @@ flawlessly :) So give it a try!
     triangulating non-convex faces, understanding camera nodes,
     WWWInline handling, text rendering and more. -->
 
-    See <?php echo a_href_page('VRML implementation status',
-      'vrml_implementation_status'); ?> for detailed list of supported
-    features. See also <?php echo a_href_page('Kambi extensions to VRML',
-    'kambi_vrml_extensions'); ?>, our <?php
+    See <?php echo a_href_page('VRML/X3D implementation status',
+      'x3d_implementation_status'); ?> for detailed list of supported
+    features. See also <?php echo a_href_page('VRML/X3D extensions',
+    'x3d_extensions'); ?>, <?php
       echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>,
     and finally <a href="http://web3d.org/x3d/specifications/">
     the official X3D specifications</a>.
@@ -339,7 +339,7 @@ flawlessly :) So give it a try!
 with the VRML/X3D world. When the cursor turns into a grabbing hand
 you know you can click or drag on this object. This is realized
 by the <?php echo a_href_page('VRML/X3D pointing-device sensors',
-'vrml_implementation_pointingdevicesensor'); ?>.</p>
+'x3d_implementation_pointingdevicesensor'); ?>.</p>
 
 <p>There are a lot of other keys that work independent of current navigation
 mode. You can see them all by exploring menus, and looking at
@@ -636,7 +636,7 @@ formats to VRML/X3D.
     The only slightly more involved conversion is done for NURBS nodes
     (<tt>NurbsCurve</tt>, <tt>NurbsSurface</tt> in VRML 2,
     <tt>NurbsPatchSurface</tt> in X3D, <tt>NurbsPositionInterpolator</tt>)
-    as <a href="http://castle-engine.sourceforge.net/vrml_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
+    as <a href="http://castle-engine.sourceforge.net/x3d_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
 </ul>
 
 <p>You can also change the X3D encoding (from classic to XML or the other way
@@ -927,7 +927,7 @@ is only useful for converting). More precisely:
     <p><i>Deprecated:</i> instead of using this option,
     consider adding/editing <?php echo a_href_page_hashlink(
     'a <tt>KambiTriangulation</tt> node in your scene',
-    'kambi_vrml_extensions', 'section_ext_kambi_triangulation'); ?>.
+    'x3d_extensions', 'section_ext_kambi_triangulation'); ?>.
 </dl>
 
 <p>As usual all

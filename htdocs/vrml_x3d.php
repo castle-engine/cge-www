@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  require_once 'vrml_implementation_common.php';
+  require_once 'x3d_implementation_common.php';
   vrmlx3d_header('What is VRML / X3D');
 
   echo castle_thumbs(array(
@@ -45,7 +45,7 @@ all versions of them. You probably want to use the newest one,
 X3D, whenever possible.</p>
 
 <p>Pages in this section describe our handling of VRML/X3D:
-<?php echo a_href_page('how we handle the stuff in official VRML/X3D specification', 'vrml_implementation_status'); ?> and
-<?php echo a_href_page('what new features we add to VRML/X3D', 'kambi_vrml_extensions'); ?>.
+<?php echo a_href_page('how we handle the stuff in official VRML/X3D specification', 'x3d_implementation_status'); ?> and
+<?php echo a_href_page('what new features we add to VRML/X3D', 'x3d_extensions'); ?>.
 
 <?php vrmlx3d_footer(); ?>

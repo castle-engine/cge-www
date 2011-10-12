@@ -162,7 +162,7 @@ able to create <?php echo a_href_page('VRML or X3D', 'vrml_x3d'); ?> files.</p>
 <p>VRML and X3D formats have official specifications
 and our engine is capable of handling most of their features
 (actually,
-<?php echo a_href_page('even more than that', 'kambi_vrml_extensions') ?>).
+<?php echo a_href_page('even more than that', 'x3d_extensions') ?>).
 So the engine is not tied to any particular modelling program.
 Use <?php echo a_href_page('view3dscene', 'view3dscene') ?>
  to view the various models outside of the game.</p>
@@ -707,7 +707,7 @@ when you're not interested in testing creatures
     frames etc.) should be composed from a number of 2-manifold parts.
     It's allowed to not make them perfectly 2-manifold, but then
     in some cases, some artifacts are unavoidable &mdash; see
-    <?php echo a_href_page("VRML engine documentation",'vrml_engine_doc'); ?>,
+    <?php echo a_href_page("engine documentation",'engine_doc'); ?>,
     chapter "Shadows" for description.
     To be manifold, edge must have exactly two neighboring faces,
     so that ideally the creature shape is a correct closed volume.
@@ -770,10 +770,10 @@ eye-candy features are:</p>
 <ul>
   <li><p><?php echo a_href_page(
     'Write shaders in GLSL, and connect them to objects in your VRML / X3D models',
-    'vrml_implementation_shaders'); ?>.</p></li>
+    'x3d_implementation_shaders'); ?>.</p></li>
 
   <li><p><?php echo a_href_page_hashlink('Bump mapping',
-    'kambi_vrml_extensions', 'section_ext_bump_mapping'); ?>.
+    'x3d_extensions', 'section_ext_bump_mapping'); ?>.
     See "The Fountain" level for example.</p></li>
 
   <li><p>You can make your level geometry cast dynamic shadows (on everything,
