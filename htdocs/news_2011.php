@@ -43,7 +43,7 @@ castle_thumbs(array(
         and <a href="https://sourceforge.net/p/castle-engine/wiki/">new wiki</a>,
         and a new Flattr button:</p>
 
-        <p>' . flattr_button(false, false) . '</p>
+        <p>' . flattr_button(false, false) . '
 
         <p>Please click this to donate, thank you :)</p>
 

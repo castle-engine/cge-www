@@ -173,7 +173,9 @@ You may also want to delete configuration file:</p>
 <b>Spoiler alert</b>: the first half of the movie shows levels you will see
 later in the game.</p>
 
+<?php if (!HTML_VALIDATION) { ?>
 <iframe width="425" height="349" src="http://www.youtube.com/embed/qpUTK3_r7Lc" frameborder="0" allowfullscreen></iframe>
+<?php } ?>
 </div>
 
 <div style="border: thin solid #D3D3D3; padding: 0.5em; margin-top: 1em;">
@@ -181,7 +183,9 @@ later in the game.</p>
 <b>Spoiler alert</b>: this is a complete walkthrough :)
 Watch if you get stuck, or if you don't want to play the full game!</p>
 
+<?php if (!HTML_VALIDATION) { ?>
 <iframe width="560" height="349" src="http://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
+<?php } ?>
 </div>
 
 <?php echo $toc->html_section(); ?>

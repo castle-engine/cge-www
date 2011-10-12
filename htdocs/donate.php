@@ -19,7 +19,7 @@ and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>
   <td>
-  <p><?php flattr_button(false); ?></p>
+  <p><?php flattr_button(false); ?>
 
   <p>You can donate through <a href="http://flattr.com/">Flattr</a>.
   Just click on a button above, everything will be explained.
@@ -42,8 +42,9 @@ and view3dscene, and our games :) Thanks!</p>
 
   <td>
   <p>
+  <?php if (!HTML_VALIDATION) { ?>
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----"><input type="image" src="https://www.paypalobjects.com/en_US/PL/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1"></form>
-  </p>
+  <?php } ?>
 
   <p>You can donate through <a href="https://www.paypal.com/">PayPal</a>.</p>
 

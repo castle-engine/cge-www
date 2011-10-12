@@ -16,7 +16,9 @@
   contains many hints.
   For me, what worked was to enable "Accept Third-Party Cookies" in FF. -->
 <br/><br/>
+<?php if (!HTML_VALIDATION) { ?>
 <g:plusone></g:plusone>
+<?php } ?>
 </div>
 
 <p><b>For developers:</b> <b>Castle Game Engine (previously "Kambi VRML game engine")</b>
