@@ -12,6 +12,12 @@ castle_thumbs(array(
   array('filename' => 'view_3d_model_advanced.png', 'titlealt' => '&quot;view_3d_model_advanced&quot; example from engine sources'),
 )) .
 '<ol>
+  <li><p><tt>--viewpoint</tt> command-line option was implemented for <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <tt>--screenshot</tt> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
+
+  <li><p>Shadow map generation improved: for shadow maps, we render model with shaders turned <i>off</i>. This is consistent with <i>Variance Shadow Maps</i> (that requires using custom shader, so user shaders are also ignored at shadow map capture). It avoids problems with shaders writing to <tt>gl_FragDepth</tt> and accidentally breaking shadow map content. Thanks to Victor Amat for pointing this out!</p></li>
+
+  <li><p>The quest to cleanup and improve our examples continues. A lot of them are simplified now (using new <tt>TCastleWindow</tt> that automatically provides a scene manager instance). Some previous examples were merged and extended into the new <tt>3d_rendering_processing/view_3d_model_advanced</tt> example.</p></li>
+
   <li><p>As announced, rename of our engine (<i>"Kambi VRML game engine"</i> -&gt; <i>"Castle Game Engine"</i>) will also bring renames to a lot of identifiers. Since we\'re breaking compatibility anyway, I took some time to really think about new proper names for various stuff (previous names were invented somewhat organically, often without consistency, often following the <i>implementation</i> approach instead of following the typical usage).</p>
 
     <p>I wrote a <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">document describing in details what renames were done, and what is the reasoning behind them</a>. This may be too much information for some of you, but I hope you appreciate this kind of transparency :) To upgrade your existing programs to new engine version, just do the same renames in your code &mdash; both Pascal sources and form resources (lfm), and all will work Ok :)</p>
@@ -30,12 +36,6 @@ castle_thumbs(array(
 
       <li><p>Control and window names simplified and made consistent: simple control or window is now <tt>TCastleWindow</tt> or <tt>TCastleControl</tt>. Descends from <tt>TCastleWindow/ControlXxx</tt>, adds <tt>SceneManager</tt> and easy <tt>Load</tt> method. For most programs/games with 3D world and 2D controls, just use this.</p></li>
     </ul>
-
-  <li><p><tt>--viewpoint</tt> command-line option was implemented for <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <tt>--screenshot</tt> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
-
-  <li><p>Shadow map generation improved: for shadow maps, we render model with shaders turned <i>off</i>. This is consistent with <i>Variance Shadow Maps</i> (that requires using custom shader, so user shaders are also ignored at shadow map capture). I avoids problems with shaders writing to <tt>gl_FragDepth</tt> and accidentally breaking shadow map content. Thanks to Victor Amat for pointing this out!</p></li>
-
-  <li><p>The quest to cleanup and improve our examples continues. A lot of them are simplified now (using new <tt>TCastleWindow</tt> that automatically provides a scene manager instance). Some previous examples merged and extended into new <tt>3d_rendering_processing/view_3d_model_advanced</tt> example.</p></li>
 </ol>
 '),
 
