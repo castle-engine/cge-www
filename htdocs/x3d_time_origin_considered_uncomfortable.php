@@ -81,7 +81,7 @@ is loaded".
     Beginning</i>", for testing.
 
     <p>When using my engine to develop your own games, you can
-    simply start VRML time from 0.0 (by <tt>TVRMLScene.ResetWorldTime(0.0))</tt>,
+    simply start VRML time from 0.0 (by <tt>TCastleSceneCore.ResetTime(0.0))</tt>,
     or to any other value you want. For example, setting it to some
     large but determined value, like exactly a million, allows
     you to work correctly with standard animations and at the same
