@@ -1,26 +1,44 @@
 <?php
 
-/* To next news:
-
-  - As announced, rename of our engine ("Kambi VRML game engine" -> "Castle Game Engine") will also bring renames of a lot of identifiers. Since we're breaking compatibility anyway, I took some time to really think about new proper names for various stuff (previous names were invented somewhat organically, often without consistency or following the *implementation* approach, instead of following the typical usage).
-
-    I wrote a document describing in details what renames were done, and what is the reasoning behind them. I hope you appreciate this kind of transparency :), Link to naming_engine_3.0.txt. To upgrade your existing programs to new engine version, just do the same renames in your code --- both Pascal sources and form resources (lfm), and all will work Ok :)
-
-    In short:
-
-    - Our official prefix for most units is now CastleXxx. No more KambiXxx, VRMLXxx, VRMLGLXxx units. Most of them become CastleXxx, with the exception of concepts defined in the X3D specification: X3DNodes, X3DFields, X3DLexer (many other castle units in fact use or depend on X3D stuff too; the whole engine is based on X3D nodes graph after all).
-    - Our official prefix for classes is now TCastleXxx, but preferably no prefix at all. All components get TCastle prefix (these are registered on component palette, so essentially have to live in global namespace with all other components, so prefixing them is a good idea). Most other classes have no prefix at all, not needed.
-      Generally no more TGLXxx, TKamGLXxx, TVRMLXxx, TVRMLGLXxx. They become TCastleXxx (if it's a component) or just TXxx.
-      Our most important class, TVRMLGLScene, is now called TCastleScene. This nicely removes the implementation details from it's name (the fact that it's rendered using OpenGL, and uses X3D scene graph inside). These implementation details were really excessive (for an identifier name), because everything in our engine uses OpenGL (and if other renderer will be made, it should be pluggable and will not change the name anyway), and this component can load 3D data in any format (even if internally everything is converted into X3D nodes graph).
-    - Control and window names simplified and made consistent: simple control or window is now TCastleWindow or TCastleControl. Descends from TCastleWindow/ControlXxx, adds SceneManager and easy Load method. For most programs/games with 3D world and 2D controls, just use this.
-
-
---viewpoint command-line option was implemented for <a>view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with --screenshot option. As requested  on <a href=">vrmlengine forum</a>.
-
-Shadow map generation improved: for shadow maps, we render model with shaders turned *off*. This is consistent with VSM (that require using custom shader, so user shaders are also ignored at shadow map capture). I avoids problems with shaders writing to gl_FragDepth and accidentaly breaking shadow map content. Thanks to Victor Amat for pointing this out!
-*/
-
 array_push($news,
+    array('title' => 'Development news: grand rename to "Castle Game Engine" finished, more',
+          'year' => 2011,
+          'month' => 10,
+          'day' => 13,
+          'short_description' => '',
+          'guid' => '2011-10-13-rename',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'view_3d_model_advanced.png', 'titlealt' => '&quot;view_3d_model_advanced&quot; example from engine sources'),
+)) .
+'<ol>
+  <li><p>As announced, rename of our engine (<i>"Kambi VRML game engine"</i> -&gt; <i>"Castle Game Engine"</i>) will also bring renames to a lot of identifiers. Since we\'re breaking compatibility anyway, I took some time to really think about new proper names for various stuff (previous names were invented somewhat organically, often without consistency, often following the <i>implementation</i> approach instead of following the typical usage).</p>
+
+    <p>I wrote a <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">document describing in details what renames were done, and what is the reasoning behind them</a>. This may be too much information for some of you, but I hope you appreciate this kind of transparency :) To upgrade your existing programs to new engine version, just do the same renames in your code &mdash; both Pascal sources and form resources (lfm), and all will work Ok :)</p>
+
+    <p>In short:</p>
+
+    <ul>
+      <li><p>Our official prefix for most units is now <tt>CastleXxx</tt>. No more <tt>KambiXxx</tt>, <tt>VRMLXxx</tt>, <tt>VRMLGLXxx</tt> units. Most of them become <tt>CastleXxx</tt>, with the exception of concepts defined in the X3D specification: <tt>X3DNodes</tt>, <tt>X3DFields</tt>, <tt>X3DLexer</tt> (many other castle units in fact use or depend on X3D stuff too; the whole engine is based on X3D nodes graph after all).</p></li>
+
+      <li><p>Our official prefix for classes is now <tt>TCastleXxx</tt>, but preferably no prefix at all. All components get <tt>TCastle</tt> prefix (these are registered on component palette, so essentially have to live in a global namespace with all other components, so prefixing them is a good idea). Most other classes have no prefix at all, not needed.</p>
+
+        <p>Generally no more <tt>TGLXxx</tt>, <tt>TKamGLXxx</tt>, <tt>TVRMLXxx</tt>, <tt>TVRMLGLXxx</tt>. They become <tt>TCastleXxx</tt> (if it\'s a component) or just <tt>TXxx</tt>.</p>
+
+        <p>Our most important class, <tt>TVRMLGLScene</tt>, is now called <tt>TCastleScene</tt>. This nicely removes the implementation details from it\'s name (the fact that it\'s rendered using OpenGL, and uses X3D scene graph inside). These implementation details were really excessive (for an identifier name), because everything in our engine uses OpenGL (and if other renderer will be made, it should be pluggable and will not change the name anyway), and this component can load 3D data in any format (even if internally everything is converted into X3D nodes graph).</p>
+      </li>
+
+      <li><p>Control and window names simplified and made consistent: simple control or window is now <tt>TCastleWindow</tt> or <tt>TCastleControl</tt>. Descends from <tt>TCastleWindow/ControlXxx</tt>, adds <tt>SceneManager</tt> and easy <tt>Load</tt> method. For most programs/games with 3D world and 2D controls, just use this.</p></li>
+    </ul>
+
+  <li><p><tt>--viewpoint</tt> command-line option was implemented for <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <tt>--screenshot</tt> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
+
+  <li><p>Shadow map generation improved: for shadow maps, we render model with shaders turned <i>off</i>. This is consistent with <i>Variance Shadow Maps</i> (that requires using custom shader, so user shaders are also ignored at shadow map capture). I avoids problems with shaders writing to <tt>gl_FragDepth</tt> and accidentally breaking shadow map content. Thanks to Victor Amat for pointing this out!</p></li>
+
+  <li><p>The quest to cleanup and improve our examples continues. A lot of them are simplified now (using new <tt>TCastleWindow</tt> that automatically provides a scene manager instance). Some previous examples merged and extended into new <tt>3d_rendering_processing/view_3d_model_advanced</tt> example.</p></li>
+</ol>
+'),
+
     array('title' => 'Rename "Kambi VRML game engine" to "Castle Game Engine", moving to SourceForge Allura platform, my slides from TPCG11',
           'year' => 2011,
           'month' => 9,
