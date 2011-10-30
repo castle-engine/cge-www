@@ -455,6 +455,10 @@ function echo_footer ()
    (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
    So I use my local piwik installation.
    Only one piwik.js should be included.
+
+   This Piwik code must be synched with
+   ../../papers/compositing_shaders_doc/xsl/html_chunks.xsl
+   ../../vrml_engine_doc/xsl/html_chunks.xsl
 */
 ?>
 
