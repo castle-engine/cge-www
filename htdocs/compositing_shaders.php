@@ -8,6 +8,7 @@ castle_header('Compositing Shaders', NULL,
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Examples', 'examples'),
+  new TocItem('Documentation', 'docs'),
   new TocItem('Reference of available plugs', 'plugs'),
   new TocItem('Vertex shader plugs', 'vertex_plugs', 1),
   new TocItem('Fragment shader plugs', 'fragment_plugs', 1),
@@ -43,34 +44,6 @@ to replicate existing functionality (like lighting and texturing operations),
 and your effects automatically cooperate with each other and with standard
 rendering features.</p>
 
-<p>More details will be available later on this page.
-My paper about this idea was accepted to the
-<a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>,
-and will be published here around September 2011.
-Also around September 2011: my Ph.D. thesis, on the same subject,
-will be available here.</p>
-
-<p><?php echo current_www_a_href_size(
-'Slides from my presentation (on TPCG11) about "compositing shaders" idea are here',
-'compositing_shaders_slides.pdf'); ?>, enjoy! There are also 
-<?php echo current_www_a_href_size(
-'slides in Polish (with roughly the same content) that I used for my talk on seminar on ii.uni.wroc.pl',
-'compositing_shaders_sem_dokt_polish.pdf'); ?>.</p>
-
-<p>If you're interested in more information,
-<?php echo michalis_mailto('send me a mail'); ?>.
-Also, investigate the examples mentioned below.</p>
-
-<!--
-We have prepared a paper
-describing our idea, and the introduced VRML/X3D extensions,
-in detail.
-It will be linked here later. For now, you can
-< ?php echo michalis_mailto('drop me a mail');  ?> if you're interested in it :)</p>
-
-No details for now, to not interfere with blind review process.
--->
-
 <?php echo $toc->html_section(); ?>
 
 <p>The examples are available inside
@@ -81,6 +54,20 @@ using our effects.</p>
 
 <p>You can open the example models with any of our engine tools, like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<ol>
+  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>. This is also my (Michalis Kamburelis) Ph.D. thesis :)</li>
+  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>. This has exactly the same content as above HTML version, it's better for printing.</li>
+  <li><?php echo current_www_a_href_size('Slides from my presentation (on TPCG11) about the compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
+  <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
+  <li>My paper about this idea was also accepted to the <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>. I don't have permission to redistribute it here publicly, but basically it's a shortcut of my Ph.D. thesis. Anyway, you can buy it from <a href="http://diglib.eg.org/EG/DL/LocalChapterEvents/TPCG/TPCG11">EG digital library (along with other papers from TPCG11 proceedings)</a>.</li>
+</ol>
+
+<p>Finally, if you're interested in more information,
+<?php echo michalis_mailto('send me a mail'); ?>.
+And be sure to investigate the examples mentioned above!</p>
 
 <?php echo $toc->html_section(); ?>
 
