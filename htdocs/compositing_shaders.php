@@ -59,7 +59,7 @@ using our effects.</p>
 
 <ol>
   <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>. This is also my (Michalis Kamburelis) Ph.D. thesis :)</li>
-  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>. This has exactly the same content as above HTML version, it's better for printing.</li>
+  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>. This has exactly the same content as above HTML version, it's better for printing.</li>
   <li><?php echo current_www_a_href_size('Slides from my presentation (on TPCG11) about the compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
   <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
   <li>My paper about this idea was also accepted to the <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>. I don't have permission to redistribute it here publicly, but basically it's a shortcut of my Ph.D. thesis. Anyway, you can buy it from <a href="http://diglib.eg.org/EG/DL/LocalChapterEvents/TPCG/TPCG11">EG digital library (along with other papers from TPCG11 proceedings)</a>.</li>
