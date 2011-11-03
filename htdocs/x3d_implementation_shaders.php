@@ -6,7 +6,7 @@
   );
 
   echo castle_thumbs(array(
-    array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot VRML model rendered with toon shading in GLSL'),
+    array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot X3D model rendered with toon shading in GLSL'),
     array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine. You can also '
@@ -83,7 +83,7 @@ shaders ComposedShader {
 
   <li><p><b>Passing values to GLSL shader uniform variables.</b></p>
 
-    <p>You can also set uniform variables for your shaders from VRML/X3D,
+    <p>You can set uniform variables for your shaders from VRML/X3D,
     just add lines like</p>
 
 <pre class="vrml_code">
@@ -96,7 +96,6 @@ inputOutput SFVec3f UniformVariableName 1 0 0
     to your shader:
 
 <pre class="vrml_code">
-# ......
 # somewhere within Appearance:
 shaders DEF MyShader ComposedShader {
   language "GLSL"
@@ -107,20 +106,25 @@ shaders DEF MyShader ComposedShader {
   inputOnly SFTime time
 }
 
-# ......
-# somewhere within grouping node (e.g. at top-level of VRML file)
+# somewhere within grouping node (e.g. at the top-level of VRML/X3D file) add:
 DEF MyTimer TimeSensor { loop TRUE }
 ROUTE MyTimer.time TO MyShader.time
+
+# Note that by default, TimeSensor.time values will be huge,
+# which will cause precision problems for shaders.
+# You can use our extension:
+KambiNavigationInfo { timeOriginAtLoad TRUE }
+# or use a different TimeSensor field to measure time.
 </pre>
 
-    <p>Setting uniform values this way, from VRML/X3D fields/events,
-    is supported for all required by specification types.
-    So you can use VRML/X3D vector/matrix fields to
-    set GLSL vectors/matrices, you can use VRML/X3D
-    multiple-value fields to set GLSL array types and such.</p>
+    <p>Many VRML/X3D field types may be passed to appropriate GLSL uniform
+    values. You can even set GLSL vectors and matrices.
+    You can use VRML/X3D multiple-value fields to set
+    GLSL array types.</p>
 
-    <p>TODO: <tt>SFImage</tt>, <tt>MFImage</tt> field types are
-    not supported yet.</p>
+    <p>TODO: we support all mappings between VRML/X3D and GLSL types
+    for uniform values (that are mentioned in X3D spec), 
+    except <tt>SFImage</tt> and <tt>MFImage</tt>.</p>
   </li>
 
   <li><p><b><a name="glsl_passing_uniform_textures">Passing textures to GLSL shader uniform variables.</a></b></p>
