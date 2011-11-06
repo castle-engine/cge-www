@@ -1,5 +1,13 @@
 <?php
 
+/* Next news:
+  My Ph.D. thesis, describing the "compositing shaders" idea, is published on http://castle-engine.sourceforge.net/compositing_shaders.php
+
+  Various small fixes and enhancements to compositing shaders implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like PLUG_light_scale (for light source) and PLUG_texture_color (for texture). Now you can also use there:
+  * plugs using other user-defined plugs. See new texture_effect.x3dv example.
+  * plugs using shape plugs (like PLUG_vertex_object_space). See new texture_coord_generate.x3dv.
+*/
+
 array_push($news,
     array('title' => 'Development news: grand rename to "Castle Game Engine" finished, more',
           'year' => 2011,
