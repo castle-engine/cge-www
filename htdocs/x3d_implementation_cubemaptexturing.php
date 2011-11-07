@@ -171,8 +171,8 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
     (each frame rendered uses textures generated in the previous frame).
     You can see recursive mirrors in our <?php
     echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>
-    (see <tt>x3d/cubemap_generated_recursive.x3dv</tt>
-    <tt>x3d/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
+    (see <tt>cube_environment_mapping/cubemap_generated_recursive.x3dv</tt>
+    <tt>cube_environment_mapping/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
 
     <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
     and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
