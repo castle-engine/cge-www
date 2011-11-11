@@ -61,8 +61,8 @@ Add inside the <tt>Appearance</tt> node code like</p>
 shaders ComposedShader {
   language "GLSL"
   parts [
-    ShaderPart { type "VERTEX" url "glsl_phong_shading.vs" }
-    ShaderPart { type "FRAGMENT" url "glsl_phong_shading.fs" }
+    ShaderPart { type "VERTEX"   url "my_shader.vs" }
+    ShaderPart { type "FRAGMENT" url "my_shader.fs" }
   ]
 }
 </pre>
