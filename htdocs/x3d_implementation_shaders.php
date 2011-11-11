@@ -29,7 +29,7 @@
       new TocItem('Passing textures to GLSL shader uniform variables', 'uniforms_tex', 1),
       new TocItem('Passing attributes to GLSL shader', 'attributes', 1),
       new TocItem('Geometry shaders', 'geometry', 1),
-      new TocItem('Geometry shaders for GLSL 1.50 not supported', 'geometry_old', 2),
+      new TocItem('Geometry shaders before GLSL 1.50 not supported', 'geometry_old', 2),
       new TocItem('TODOs', 'todos', 1),
     ));
   $toc->echo_numbers = true;
@@ -218,14 +218,16 @@ To use them, you simply set <tt>ShaderPart.type</tt> to <tt>"GEOMETRY"</tt>,
 and put code of your geometry shader inside <tt>ShaderPart.url</tt>.</p>
 
 <p><b>What is a geometry shader?</b>
-A single geometry shader is executed for each primitive, like a single triangle.
+A geometry shader is executed once for each primitive, like a single triangle.
 Geometry shader works <i>between</i> the vertex shader and fragment shader
-&mdash; it knows all the outputs from the vertex shader,
+&mdash; it knows all the outputs from the vertex shader.
+<!--
 and it generates inputs to the fragment shader.
 (More precisely, geometry shader generates inputs for the rasterizer,
 and the interpolated values will be given to the fragment shader.)
+-->
 Geometry shader can use the information about given primitive (vertex positions
-in clip space, and all vertex attributes) and can generate other primitives.
+from vertex shader &mdash; in any space, and all vertex attributes) and can generate other primitives.
 A single geometry shader may generate any number of primitives
 (separated by the <tt>EndPrimitive</tt> call), so you can easily "explode"
 a simple input primitive into a number of others
@@ -235,12 +237,16 @@ than input &mdash; for example, you can change triangles into
 points or the other way around.</p>
 
 <p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader.x3dv">Download
-an example X3D file with geometry shaders</a>.</p>
+an example X3D file with geometry shaders</a>.
+Another example of geometry shaders:
+<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader_fun_smoothing.x3dv">geometry_shader_fun_smoothing</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Our implementation of geometry shaders is directed only at geometry
 shaders as available in the OpenGL core 3.2 and later (GLSL version is 1.50 or later).</p>
+
+<!-- http://www.lighthouse3d.com/tutorials/glsl-core-tutorial/geometry-shader/ -->
 
 <p>Earlier OpenGL and GLSL versions had geometry shaders
 only available through extensions:
