@@ -207,6 +207,12 @@ showing how to pass elevation grid heights by the shader attributes.</p>
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+  echo castle_thumbs(array(
+    array('filename' => 'geometry_shader_fun_smoothing.png', 'titlealt' => 'Geometry shaders fun smoothing demo'),
+  ));
+?>
+
 <p><b>(This feature is in development now.
 You need view3dscene from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">snapshots</a>
 or <a href="http://castle-engine.sourceforge.net/engine.php#section_download_src">SVN sources</a>
