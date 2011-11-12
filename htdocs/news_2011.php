@@ -9,6 +9,7 @@
   fancy_light_spot_shape_enlightenment.png - Plug light_scale used to implement spot light with custom intensity
   cellular_texturing_0.png - Cellular procedural texture, using our ShaderTexture extension
   cellular_texturing_mirror_fun - Cellular procedural texture with mirrors, again using our ShaderTexture extension
+  cellular_texturing_sphere  - Cellular procedural texture, using our ShaderTexture extension
 
   Various new demos added to demo_models, like simple demos of <i>cellular texturing</i>, see <tt>demo_models/compositing_shaders/cellular_texturing*.x3dv</tt>.
 
