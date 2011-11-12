@@ -247,6 +247,17 @@ an example X3D file with geometry shaders</a>.
 Another example of geometry shaders:
 <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader_fun_smoothing.x3dv">geometry_shader_fun_smoothing</a>.</p>
 
+<p>We have also a more flexible approach to geometry shaders
+as part of our <?php echo a_href_page('compositing shaders', 'compositing_shaders'); ?>
+ extensions. The most important advantage is that you can implement
+only the geometry shader, and use the default vertex and fragment shader code
+(that will do the boring stuff like texturing, lighting etc.).
+Inside the geometry shader you have functions <tt>geometryVertexXxx</tt>
+to pass-through or blend input vertexes in any way you like.
+Everything is described in detail in our
+<?php echo a_href_page('compositing shaders documentation', 'compositing_shaders'); ?>,
+ in particular see the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>. Example X3D file: <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_effects.x3dv">geometry_shader_effects</a>.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p>Our implementation of geometry shaders is directed only at geometry
