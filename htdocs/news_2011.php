@@ -4,7 +4,9 @@
   My Ph.D. thesis, describing the "compositing shaders" idea, is published on http://castle-engine.sourceforge.net/compositing_shaders.php
 
   Geometry shaders are implemented: link to docs
-  image: geometry_shader_fun_smoothing.png
+  image: geometry_shader_fun_smoothing.png - Geometry shader performing a fun variant of smoothing/exploding a shape
+
+  fancy_light_spot_shape_enlightenment.png - Plug light_scale used to implement spot light with custom intensity
 
   Various small fixes and enhancements to compositing shaders implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like PLUG_light_scale (for light source) and PLUG_texture_color (for texture). Now you can also use there:
   * plugs using other user-defined plugs. See new texture_effect.x3dv example.
