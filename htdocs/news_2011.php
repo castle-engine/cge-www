@@ -7,11 +7,14 @@
   image: geometry_shader_fun_smoothing.png - Geometry shader performing a fun variant of smoothing/exploding a shape
 
   fancy_light_spot_shape_enlightenment.png - Plug light_scale used to implement spot light with custom intensity
+  cellular_texturing_0.png - Cellular procedural texture, using our ShaderTexture extension
+  cellular_texturing_mirror_fun - Cellular procedural texture with mirrors, again using our ShaderTexture extension
+
+  Various new demos added to demo_models, like simple demos of <i>cellular texturing</i>, see <tt>demo_models/compositing_shaders/cellular_texturing*.x3dv</tt>.
 
   Various small fixes and enhancements to compositing shaders implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like PLUG_light_scale (for light source) and PLUG_texture_color (for texture). Now you can also use there:
   * plugs using other user-defined plugs. See new texture_effect.x3dv example.
   * plugs using shape plugs (like PLUG_vertex_object_space). See new texture_coord_generate.x3dv.
-
 */
 
 array_push($news,
