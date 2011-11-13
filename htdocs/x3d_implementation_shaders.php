@@ -242,10 +242,14 @@ The type of the output primitive may be different
 than input &mdash; for example, you can change triangles into
 points or the other way around.</p>
 
-<p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader.x3dv">Download
-an example X3D file with geometry shaders</a>.
-Another example of geometry shaders:
-<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader_fun_smoothing.x3dv">geometry_shader_fun_smoothing</a>.</p>
+<p>Examples of geometry shaders with <tt>ComposedShader</tt>:</p>
+
+<ul>
+  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader.x3dv">Download
+    a basic example X3D file with geometry shaders</a></li>
+  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader_fun_smoothing.x3dv">Another
+    example of geometry shaders: geometry_shader_fun_smoothing</a>.</li>
+</ul>
 
 <p>We have also a more flexible approach to geometry shaders
 as part of our <?php echo a_href_page('compositing shaders', 'compositing_shaders'); ?>
@@ -256,7 +260,15 @@ Inside the geometry shader you have functions <tt>geometryVertexXxx</tt>
 to pass-through or blend input vertexes in any way you like.
 Everything is described in detail in our
 <?php echo a_href_page('compositing shaders documentation', 'compositing_shaders'); ?>,
- in particular see the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>. Example X3D file: <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_effects.x3dv">geometry_shader_effects</a>.</p>
+ in particular see the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>.</p>
+
+<p>Examples of geometry shaders with <tt>Effect</tt>:</p>
+
+<ul>
+  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_simple.x3dv">geometry_shader_simple</a></li>
+  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_effects.x3dv">geometry_shader_effects</a></li>
+  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_optional.x3dv">geometry_shader_optional</a></li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
