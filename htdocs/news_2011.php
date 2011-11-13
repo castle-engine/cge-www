@@ -1,10 +1,11 @@
 <?php
 
-/* Next news:
-  My Ph.D. thesis, describing the "compositing shaders" idea, is published on http://castle-engine.sourceforge.net/compositing_shaders.php
+/* Next news: "Development news: Geometry shaders, my Ph.D. thesis, cellular texturing"
 
   Geometry shaders are implemented: link to docs
   image: geometry_shader_fun_smoothing.png - Geometry shader performing a fun variant of smoothing/exploding a shape
+
+  My Ph.D. thesis, describing the "compositing shaders" idea, is published on http://castle-engine.sourceforge.net/compositing_shaders.php . Various improvements to the idea were implemented lately, most of all: extensions for geometry shaders (link).
 
   fancy_light_spot_shape_enlightenment.png - Plug light_scale used to implement spot light with custom intensity
   cellular_texturing_0.png - Cellular procedural texture, using our ShaderTexture extension
