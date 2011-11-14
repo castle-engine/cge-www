@@ -60,6 +60,14 @@ using our effects.</p>
   <li><?php echo current_www_a_href_size('Slides from my presentation (on TPCG11) about the compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
   <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
   <li>My paper about this idea was also accepted to the <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>. I don't have permission to redistribute it here publicly, but basically it's a shortcut of my Ph.D. thesis. Anyway, you can buy it from <a href="http://diglib.eg.org/EG/DL/LocalChapterEvents/TPCG/TPCG11">EG digital library (along with other papers from TPCG11 proceedings)</a>.</li>
+  <li>Of course, you can also get the sources of above documents:
+    <ul>
+      <li>My Ph.D. thesis sources (in DocBook) can be downloaded from SVN URL:<br/>
+        <tt>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders_doc/</tt></li>
+      <li>Slides and conference paper (in TeX) are alongside, on SVN URL:<br/>
+        <tt>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders/</tt></li>
+    </ul>
+  </li>
 </ol>
 
 <p>Finally, if you're interested in more information,
