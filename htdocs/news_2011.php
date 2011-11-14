@@ -33,10 +33,10 @@ castle_thumbs(array(
   <li><p>Various new demos added to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <tt>demo_models/compositing_shaders/cellular_texturing*.x3dv</tt>.</p>
   </li>
 
-  <li><p>Various small fixes and enhancements to <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like <tt>PLUG_light_scale</tt> (for light source) and <tt>PLUG_texture_color</tt> (for texture). Now you can also use there:</p>
+  <li><p>Various small fixes and enhancements to <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previously you could only use there texture/light-specific plugs, like <tt>PLUG_light_scale</tt> (for light source) and <tt>PLUG_texture_color</tt> (for texture). Now you can also use there:</p>
     <ul>
-      <li>plugs using other user-defined plugs. See new texture_effect.x3dv example.</li>
-      <li>plugs using shape plugs (like <tt>PLUG_vertex_object_space</tt>). See new texture_coord_generate.x3dv.</li>
+      <li>plugs using other user-defined plugs. See new <tt>texture_effect.x3dv</tt> example (in SVN of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>).</li>
+      <li>plugs using shape plugs (like <tt>PLUG_vertex_object_space</tt>). See new <tt>texture_coord_generate.x3dv</tt> (in SVN of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>).</li>
     </ul>
   </li>
 </ol>'),
