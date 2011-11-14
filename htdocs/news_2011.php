@@ -1,25 +1,46 @@
 <?php
 
-/* Next news: "Development news: Geometry shaders, my Ph.D. thesis, cellular texturing"
-
-  Geometry shaders are implemented: link to docs
-  image: geometry_shader_fun_smoothing.png - Geometry shader performing a fun variant of smoothing/exploding a shape
-
-  My Ph.D. thesis, describing the "compositing shaders" idea, is published on http://castle-engine.sourceforge.net/compositing_shaders.php . Various improvements to the idea were implemented lately, most of all: extensions for geometry shaders (link). This allows to write robust geometry shaders, that cooperate with renderer internal effects by using special geometryVertexXxx functions.
-
-  fancy_light_spot_shape_enlightenment.png - Plug light_scale used to implement spot light with custom intensity
-  cellular_texturing_0.png - Cellular procedural texture, using our ShaderTexture extension
-  cellular_texturing_mirror_fun - Cellular procedural texture with mirrors, again using our ShaderTexture extension
-  cellular_texturing_sphere  - Cellular procedural texture, using our ShaderTexture extension
-
-  Various new demos added to demo_models, like simple demos of <i>cellular texturing</i>, see <tt>demo_models/compositing_shaders/cellular_texturing*.x3dv</tt>.
-
-  Various small fixes and enhancements to compositing shaders implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like PLUG_light_scale (for light source) and PLUG_texture_color (for texture). Now you can also use there:
-  * plugs using other user-defined plugs. See new texture_effect.x3dv example.
-  * plugs using shape plugs (like PLUG_vertex_object_space). See new texture_coord_generate.x3dv.
-*/
-
 array_push($news,
+    array('title' => 'Development news: Geometry shaders, my Ph.D. thesis, cellular texturing',
+          'year' => 2011,
+          'month' => 11,
+          'day' => 14,
+          'short_description' => '',
+          'guid' => '2011-11-14-geometry-shaders-phd-cellular',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'geometry_shader_fun_smoothing.png', 'titlealt' => 'Geometry shader performing a fun variant of smoothing/exploding a shape'),
+  array('filename' => 'fancy_light_spot_shape_enlightenment.png', 'titlealt' => 'Plug light_scale used to implement spot light with custom intensity'),
+  array('filename' => 'cellular_texturing_0.png',  'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'
+  array('filename' => 'cellular_texturing_mirror_fun.png', 'titlealt' => 'Cellular procedural texture with mirrors, again using our ShaderTexture extension'),
+  array('filename' => 'cellular_texturing_sphere.png', 'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'),
+)) .
+'<ol>
+  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are implemented in our engine and view3dscene</a>.</p>
+
+    <p>Geometry shaders are executed between the vertex and fragment shader. They can change the primitive type (like triangles to points), explode a single primitive into many (maybe adding some intermediate vertexes), remove some primitives and more. We support geometry shaders following modern GLSL version &gt;= 1.50 (since OpenGL 3.2). See the <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">documentation</a> for more details and links to example X3D files.</p>
+
+    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="http://castle-engine.sourceforge.net/forum.php">forum</a>. Nice demos may be included in our <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>.</p>
+  </li>
+
+  <li><p><a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Michalis Ph.D. thesis, describing the "compositing shaders" idea, is published here :)</a>. There are HTML and PDF versions (45 pages for A4) with the same content.</p>
+
+    <p>Various improvements to the idea were implemented lately, most of all: extensions for <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">geometry shaders</a>. They are described in the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">Chapter 6. "Extensions for geometry shaders"</a>. This allows to write <i>robust geometry shaders</i>, that cooperate with renderer internal effects by using special <tt>geometryVertexXxx</tt> functions.</p>
+
+    <p>As always, comments and tests of our <i>compositing shaders</i> idea are most welcome!</p>
+  </li>
+
+  <li><p>Various new demos added to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <tt>demo_models/compositing_shaders/cellular_texturing*.x3dv</tt>.</p>
+  </li>
+
+  <li><p>Various small fixes and enhancements to <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previosuly you could only use there texture/light-specific plugs, like <tt>PLUG_light_scale</tt> (for light source) and <tt>PLUG_texture_color</tt> (for texture). Now you can also use there:</p>
+    <ul>
+      <li>plugs using other user-defined plugs. See new texture_effect.x3dv example.</li>
+      <li>plugs using shape plugs (like <tt>PLUG_vertex_object_space</tt>). See new texture_coord_generate.x3dv.</li>
+    </ul>
+  </li>
+</ol>'),
+
     array('title' => 'Development news: grand rename to "Castle Game Engine" finished, more',
           'year' => 2011,
           'month' => 10,
