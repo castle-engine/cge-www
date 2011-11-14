@@ -11,7 +11,7 @@ array_push($news,
 castle_thumbs(array(
   array('filename' => 'geometry_shader_fun_smoothing.png', 'titlealt' => 'Geometry shader performing a fun variant of smoothing/exploding a shape'),
   array('filename' => 'fancy_light_spot_shape_enlightenment.png', 'titlealt' => 'Plug light_scale used to implement spot light with custom intensity'),
-  array('filename' => 'cellular_texturing_0.png',  'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'
+  array('filename' => 'cellular_texturing_0.png',  'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'),
   array('filename' => 'cellular_texturing_mirror_fun.png', 'titlealt' => 'Cellular procedural texture with mirrors, again using our ShaderTexture extension'),
   array('filename' => 'cellular_texturing_sphere.png', 'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'),
 )) .
