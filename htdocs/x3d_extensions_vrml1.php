@@ -32,7 +32,7 @@ $toc->echo_numbers = true;
   X3D global light behavior will be used: light will affect everything,
   regardless of light node placement in node graph. For developers:
   this also indicates that light shines on other 3D objects,
-  outside of this scene, if you use <tt>TKamSceneManager.GlobalLights := true;</tt>.
+  outside of this scene, if you use <tt>TCastleSceneManager.GlobalLights := true;</tt>.
   Very useful to make your creatures, items and such lit by the level lights.
 
 <?php echo $toc->html_section(); ?>
