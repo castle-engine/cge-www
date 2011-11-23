@@ -121,7 +121,7 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
     <p>Examples include
     <a href="http://opengameart.org/content/shrine-shinto-japan">Shinto Shrine</a>
     (used for compositing shaders demo inside <tt>compositing_shaders/shinto_shrine/</tt>).
-    also a lot of textures, see <tt>compositing_shaders/textures/AUTHORS.txt</tt>.</p>
+    Also a lot of textures, see <tt>compositing_shaders/textures/AUTHORS.txt</tt>.</p>
   </li>
 
   <li><p><i>Orin Palmer</i> created plane model in 3DS, see <tt>3ds/p47d.3ds</tt>
