@@ -2,8 +2,8 @@
 
 /*
 Next news:
-- Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame). We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and alpha test textures for shadow maps.
-*/ 
+- Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame). We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and textures for shadow maps. Textures are send since they may be needed for alpha test (in the future, we may improve this to actually ignore other textures).
+*/
 
 array_push($news,
     array('title' => 'Development news: Geometry shaders, my Ph.D. thesis, cellular texturing',
