@@ -1,5 +1,10 @@
 <?php
 
+/*
+Next news:
+- Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame). We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and alpha test textures for shadow maps.
+*/ 
+
 array_push($news,
     array('title' => 'Development news: Geometry shaders, my Ph.D. thesis, cellular texturing',
           'year' => 2011,
