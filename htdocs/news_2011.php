@@ -9,6 +9,10 @@ Next news:
   - fixed camera game (rift). "Fixed camera" means you have a still 2D background + animated 3D models on top, like "Alone In The Dark", "Syberia", "Still Life" and many other adventure games.
   - we plan to add later an example fps_game, which shows the main purpose of the engine - full 3D games.
 - Saving viewpoint in some specific configurations (when look direction is close to +Z) fixed
+- <i>Variance Shadow Maps</i> improvements. They are quite usable now, if you have sufficiently good GPU (with good float texture support). Work fast, and honour alpha test textures (typically used for wired cages, tree leaves etc.). There are still some problems with VSM (why they aren't used by default):
+  - Unfortunately, on some older GPUs, they may exhibit really weird behaviour and uncover wild OpenGL bugs.
+  - In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
+  You're most welcome to test Variance Shadow Maps (for starters, just get demo_models, and open models inside shadow_maps subdirectory there with view3dscene. shadow_maps/sunny_street/sunny_street.x3dv is one test, projected_spotlight_* is the other). Turn on Variance Shadow Maps by menu item View->Shadow Maps->Variance Shadow Maps). Please report on forum the GPUs where they work / where they don't, this will help me get some idea where they could be enabled by default.
 */
 
 array_push($news,
