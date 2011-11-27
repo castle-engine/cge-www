@@ -3,6 +3,11 @@
 /*
 Next news:
 - Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame). We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and textures for shadow maps. Textures are send since they may be needed for alpha test (in the future, we may improve this to actually ignore other textures).
+- Fill Mode "Solid Wireframe" and "Normal with Silhouette" better (wireframe is now visible as white, not textured --- which was often hardly visible).
+- Engine sources got two new examples (converted from previous never-finished (but maintained for a long time) games elsewhere in the SVN; moving them to engine examples allows them to at least serve as examples, and be enjoyed by engine programmers):
+  - isometric game example (sandbox)
+  - fixed camera game (rift). "Fixed camera" means you have a still 2D background + animated 3D models on top, like "Alone In The Dark", "Syberia", "Still Life" and many other adventure games.
+  - we plan to add later an example fps_game, which shows the main purpose of the engine - full 3D games.
 */
 
 array_push($news,
