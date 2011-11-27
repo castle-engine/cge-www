@@ -30,8 +30,6 @@ move_all_programs ()
   mv lets_take_a_walk/lets_take_a_walk"$EXT" "$OUT_PATH"
   mv malfunction/malfunction"$EXT" "$OUT_PATH"
   mv rayhunter/rayhunter"$EXT" "$OUT_PATH"
-  mv rift/rift"$EXT" "$OUT_PATH"
-  mv sandbox/sandbox"$EXT" "$OUT_PATH"
   mv view3dscene/view3dscene"$EXT" "$OUT_PATH"
   mv view3dscene/tovrmlx3d"$EXT" "$OUT_PATH"
 }
