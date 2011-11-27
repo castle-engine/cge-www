@@ -8,6 +8,7 @@ Next news:
   - isometric game example (sandbox)
   - fixed camera game (rift). "Fixed camera" means you have a still 2D background + animated 3D models on top, like "Alone In The Dark", "Syberia", "Still Life" and many other adventure games.
   - we plan to add later an example fps_game, which shows the main purpose of the engine - full 3D games.
+- Saving viewpoint in some specific configurations (when look direction is close to +Z) fixed
 */
 
 array_push($news,
