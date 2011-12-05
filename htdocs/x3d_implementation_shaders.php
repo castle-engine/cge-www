@@ -30,6 +30,7 @@
       new TocItem('Passing attributes to GLSL shader', 'attributes', 1),
       new TocItem('Geometry shaders', 'geometry', 1),
       new TocItem('Geometry shaders before GLSL 1.50 not supported', 'geometry_old', 2),
+      new TocItem('Macro CASTLE_GEOMETRY_INPUT_SIZE', 'geometry_input_size', 2),
       new TocItem('TODOs', 'todos', 1),
     ));
   $toc->echo_numbers = true;
@@ -316,6 +317,42 @@ authors would have to provide two separate versions of their geometry shaders).<
 <p>So we just require new geometry shaders to conform to GLSL &gt;= 1.50
 syntax.
 On older GPUs, you will not be able to use geometry shaders at all.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Unfortunately, ATI graphic cards have problems with geometry shader inputs.
+When the input array may be indexed by a variale (not a constant),
+it has to be declared with an explicit size.
+Otherwise you get shader compilation errors
+<i>'[' : array must be redeclared with a size before being indexed with a variable</i>.
+The input size actually depends
+on the input primitive, so in general you have to write:</p>
+
+<pre class="vrml_code">
+in float my_variable[gl_in.length()];
+</pre>
+
+<p>Unfortunately, the above syntax does not work on NVidia,
+that does not know that <tt>gl_in.length()</tt> is constant.
+On the other hand, NVidia doesn't require input array declaration.
+So you have to write:</p>
+
+<pre class="vrml_code">
+in float my_variable[];
+</pre>
+
+<p>That's very cool, right? We know how to do it on ATI, but it doesn't
+work on NVidia. We know how to do it on NVidia, but it doesn't work on ATI.
+Welcome to the world of modern computer graphics :)</p>
+
+<p>To enable you to write simple and robust geometry shaders,
+our engine allows you to use a macro <tt>CASTLE_GEOMETRY_INPUT_SIZE</tt>
+that expands to appropriate text (or nothing) for current GPU.
+So you can just write:</p>
+
+<pre class="vrml_code">
+in float my_variable[CASTLE_GEOMETRY_INPUT_SIZE];
+</pre>
 
 <?php echo $toc->html_section(); ?>
 
