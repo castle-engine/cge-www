@@ -13,6 +13,7 @@ Next news:
   - Unfortunately, on some older GPUs, they may exhibit really weird behaviour and uncover wild OpenGL bugs.
   - In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
   You're most welcome to test Variance Shadow Maps (for starters, just get demo_models, and open models inside shadow_maps subdirectory there with view3dscene. shadow_maps/sunny_street/sunny_street.x3dv is one test, projected_spotlight_* is the other). Turn on Variance Shadow Maps by menu item View->Shadow Maps->Variance Shadow Maps). Please report on forum the GPUs where they work / where they don't, this will help me get some idea where they could be enabled by default.
+- Geometry shaders fixed on ATI graphic cards: see bugrep link, and see macro CASTLE_xxx link.
 */
 
 array_push($news,
