@@ -98,7 +98,7 @@ inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
 to your ComposedShader node. These uniforms may also be modified by
-VRML/X3D events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
+events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
 for example here's a simple way to pass the current time (in seconds)
 to your shader:
 
@@ -124,7 +124,7 @@ KambiNavigationInfo { timeOriginAtLoad TRUE }
 # or use a different TimeSensor field to measure time.
 </pre>
 
-<p>Many VRML/X3D field types may be passed to appropriate GLSL uniform
+<p>Many field types may be passed to appropriate GLSL uniform
 values. You can even set GLSL vectors and matrices.
 You can use VRML/X3D multiple-value fields to set
 GLSL array types.</p>
@@ -140,7 +140,7 @@ except <tt>SFImage</tt> and <tt>MFImage</tt>.</p>
 of textures in <tt>MFNode</tt> field) as a uniform field value.
 Engine will load and bind the texture and pass to GLSL uniform variable
 bound texture unit. This means that you can pass in a natural way
-VRML texture node to a GLSL <tt>sampler2D</tt>, <tt>sampler3D</tt>,
+texture node to a GLSL <tt>sampler2D</tt>, <tt>sampler3D</tt>,
 <tt>samplerCube</tt>, <tt>sampler2DShadow</tt> and such.</p>
 
 <pre class="vrml_code">
