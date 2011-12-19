@@ -48,10 +48,10 @@ parts (99% of usage) of given level are supported.</p>
       <th>Supported level</th></tr>
   <tr><td><?php echo a_href_page('Core'                            , 'x3d_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Time'                            , 'x3d_implementation_time'                ); ?>  </td><td><b>2 (all)</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>1</b> (+ all level 2 features except http: protocol)</td></tr>
+  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>1</b> (+ many level 2,3 features: full <tt>Anchor</tt>, <tt>Inline</tt>, <tt>IMPORT/EXPORT</tt>, URLs relative and absolute; missing from levels 2,3: http, <tt>LoadSensor</tt>)</td></tr>
   <tr><td><?php echo a_href_page('Grouping'                        , 'x3d_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'x3d_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry2D'                      , 'x3d_implementation_geometry2d'          ); ?>  </td><td></td></tr>
   <tr><td><?php echo a_href_page('Text'                            , 'x3d_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
@@ -64,11 +64,7 @@ parts (99% of usage) of given level are supported.</p>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'x3d_implementation_environmentalsensor' ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'x3d_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental effects'           , 'x3d_implementation_environmentaleffects'); ?>  </td><td><b>2</b> (and level 4, but without level 3)</td></tr>
-  <tr><td>Geospatial   </td><td>
-    As an exception, geospatial VRML 97 nodes
-    may not even be correctly parsed by our engine. They are parsed
-    according to X3D (there were some incompatible changes in X3D).
-    </td></tr>
+  <tr><td>Geospatial   </td><td>(We only parse geospatial X3D nodes; geospatial VRML 97 nodes are not even parsed)</td></tr>
   <tr><td><?php echo a_href_page('H-Anim'                          , 'x3d_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('NURBS'                           , 'x3d_implementation_nurbs'               ); ?>  </td><td><b>1</b> (practically: curves, surfaces, interpolators)</td></tr>
   <tr><td>DIS          </td><td></td></tr>
