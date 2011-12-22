@@ -38,7 +38,7 @@
     the shortest path on the unit sphere, with constant velocity.</p>
 
     <p>Interpolation of <tt>ColorInterpolator</tt> correctly interpolates
-    in HSV space.</p>
+    in HSV space (since view3dscene version 3.11.0, to be released soon).</p>
 
     <p><i>TODO</i>: Interpolation of <tt>NormalInterpolator</tt> simply interpolates
     3D vectors (and normalizes afterwards), instead of
