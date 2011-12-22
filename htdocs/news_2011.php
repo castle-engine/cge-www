@@ -14,6 +14,9 @@ Next news:
   - In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
   You're most welcome to test Variance Shadow Maps (for starters, just get demo_models, and open models inside shadow_maps subdirectory there with view3dscene. shadow_maps/sunny_street/sunny_street.x3dv is one test, projected_spotlight_* is the other). Turn on Variance Shadow Maps by menu item View->Shadow Maps->Variance Shadow Maps). Please report on forum the GPUs where they work / where they don't, this will help me get some idea where they could be enabled by default.
 - Geometry shaders fixed on ATI graphic cards: see bugrep link, and see macro CASTLE_xxx link.
+- some fixes to demo_models GLSL shaders to work with Gallium 3D on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.
+- ColorInterpolator and ColorSetInterpolator interpolate colors in HSV space now.
+
 */
 
 array_push($news,
