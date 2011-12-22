@@ -473,7 +473,7 @@ $toc->echo_numbers = true;
   for VSM, shadow maps are treated always as <tt>sampler2D</tt>, with the first
   two components being <tt>E(depth)</tt> and <tt>E(depth^2)</tt>.
   See <a href="http://www.punkuser.net/vsm/">the paper about Variance Shadow Maps</a>,
-  and see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/vrml/opengl/glsl/variance_shadow_map_common.fs">example GLSL shader code to handle them</a>.
+  and see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/x3d/opengl/glsl/variance_shadow_map_common.fs">example GLSL shader code to handle them</a>.
 
 <?php echo $toc->html_section(); ?>
 
