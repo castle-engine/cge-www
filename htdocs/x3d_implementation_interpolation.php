@@ -34,14 +34,13 @@
     <?php echo x3d_node_link('CoordinateInterpolator2D'); ?>,
     <?php echo x3d_node_link('NormalInterpolator'); ?></p>
 
-    <p>Interpolation of OrientationInterpolator correctly goes through
+    <p>Interpolation of <tt>OrientationInterpolator</tt> correctly goes through
     the shortest path on the unit sphere, with constant velocity.</p>
 
-    <p><i>TODO</i>: Interpolation of ColorInterpolator simply interpolates
-    3D vectors, so it interpolates in RGB space (while spec says to interpolate
-    in nice HSV space).</p>
+    <p>Interpolation of <tt>ColorInterpolator</tt> correctly interpolates
+    in HSV space.</p>
 
-    <p>Interpolation of NormalInterpolator simply interpolates
+    <p><i>TODO</i>: Interpolation of <tt>NormalInterpolator</tt> simply interpolates
     3D vectors (and normalizes afterwards), instead of
     a nice interpolation on the unit sphere.</p>
 </ul>
@@ -77,8 +76,8 @@ a set of <tt>singleValueChangedCount</tt> colors.</p>
 <p>This works and looks exactly like
 other interpolation nodes. It is similar to <tt>CoordinateInterpolator</tt>,
 but generates colors. It is similar to <tt>ColorInterpolator</tt>,
-but generates many values. Colors should be interpolated in HSV
-space (TODO although for now are not, in our implementation).</p>
+but generates many values. Colors are interpolated in HSV
+space.</p>
 
 <p>Useful to interpolate e.g. <tt>Background.skyColor</tt> values,
 or <tt>Color.color</tt> values.</p>
