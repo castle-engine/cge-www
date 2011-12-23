@@ -16,33 +16,37 @@ castle_thumbs(array(
   array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 1'),
   array('filename' => 'sandbox_1.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 2'),
 )) .
-'<p>Hi everyone,</p>
+'<p>Hi everyone, here\'s a summary of improvements done to the engine in last month.</p>
 
-<p>A summary of improvements to the engine in last month follows. Remember you can check all new features immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. Have fun!</p>
+<p>Remember you can check all new features of <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. To get new engine examples, you can download <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> from SVN. Have fun!</p>
 
 <ol>
-  <li>Engine sources got two new examples. They are converted from two unfinished (but maintained for a long time) games in the SVN (moving them to engine examples allows them to at least serve as examples, and be enjoyed by engine programmers).
+  <li>Two large examples added to engine sources:
     <ol>
       <li>isometric game example (sandbox).</li>
       <li>fixed camera game (rift). "Fixed camera" means you have a still 2D background + animated 3D models on top, like <i>"Alone In The Dark"</i>, <i>"Syberia"</i>, <i>"Still Life"</i> and many other adventure games.</li>
-      <li>we plan to add later an example fps_game, which shows the main purpose of the engine &mdash; full 3D games.</li>
     </ol>
+
+    <p>Both these examples were converted from an unfinished (but maintained for a long time) games in the SVN. <!-- (moving them to engine examples allows them to at least serve as examples, and be enjoyed by engine programmers). --> We also plan to add an example fps_game to engine 3.0.0 release, which will show the main purpose of the engine &mdash; full 3D games.</p>
   </li>
   <li><p>Shadow maps improvements:</p>
     <ul>
-      <li>Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame). We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and textures for shadow maps. Textures are send since they may be needed for alpha test (in the future, we may improve this to actually ignore other textures).</li>
-      <li>Various <i>Variance Shadow Maps</i> improvements. They are quite usable now, if you have sufficiently good GPU (with good float texture support). Work fast, and honor alpha test textures (typically used for wired cages, tree leaves etc.). There are still some problems with VSM (which is why they aren\'t used by default):
+      <li><p>Shadow maps generation optimized a lot. This speeds up greatly (2 times or more in our tests) scenes when shadow maps are dynamic (recreated every frame).</p>
+        <p>We now use a special mode for rendering shadow maps, that essentially only sends pure geometry and textures for shadow maps. Textures are send since they may be needed for alpha test (in the future, we may improve this to actually ignore other textures).</p></li>
+      <li><p>Many <i>Variance Shadow Maps</i> improvements. They are quite usable now, if you have sufficiently good GPU (with good float texture support). Work fast, and honor alpha test textures (typically used for wired cages, tree leaves etc.).</p>
+
+        <p>There are still some problems with VSM (which is why they aren\'t used by default):</p>
         <ul>
           <li>Unfortunately, on some older GPUs, they may exhibit really weird behavior and uncover wild OpenGL bugs.
           <li>In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
         </ul>
-        You\'re most welcome to test <i>Variance Shadow Maps</i> (for starters, just get <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. <tt>shadow_maps/sunny_street/sunny_street.x3dv</tt> is one test worth trying, <tt>projected_spotlight_*</tt> is the other. Turn on Variance Shadow Maps by menu item "View-&gt;Shadow Maps-&gt;Variance Shadow Maps). Please report on <a href="http://castle-engine.sourceforge.net/forum.php">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.
+        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. <tt>shadow_maps/sunny_street/sunny_street.x3dv</tt> is one test worth trying, <tt>projected_spotlight_*</tt> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="http://castle-engine.sourceforge.net/forum.php">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
       </li>
     </ul>
   </li>
-  <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now visible as white, not textured &mdash; which was often hardly visible.</li>
+  <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now always white. (Previously is was textured &mdash; which was hardly visible in many cases.)</li>
   <li>Saving viewpoint in some specific configurations (when look direction was close to +Z) fixed.</li>
-  <li>Geometry shaders fixed on ATI graphic cards (<a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (<a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
   <li>Fixes to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
   <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now.</li>
 </ol>
