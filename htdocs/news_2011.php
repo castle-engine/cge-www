@@ -44,11 +44,11 @@ castle_thumbs(array(
       </li>
     </ul>
   </li>
-  <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now always white. (Previously is was textured &mdash; which was hardly visible in many cases.)</li>
+  <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now always white. (Previously it was textured &mdash; which was hardly visible in many cases.)</li>
   <li>Saving viewpoint in some specific configurations (when look direction was close to +Z) fixed.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (<a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
   <li>Fixes to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now.</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <tt>base/castlecolors.pas</tt> unit.</li>
 </ol>
 '),
 
