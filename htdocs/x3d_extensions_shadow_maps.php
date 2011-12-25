@@ -427,12 +427,15 @@ $toc->echo_numbers = true;
   <p>Images on the right show the effects of various
   <tt>scale</tt> and <tt>bias</tt> values.
 
-  <p>For an OpenGL implementation
+  <p>For an OpenGL implementation<!-- of "classic" shadow maps,-->
   that offsets the geometry rendered into the shadow map,
   <tt>scale</tt> and <tt>bias</tt> are an obvious parameters (in this order)
   for the <tt>glPolygonOffset</tt> call.
   Other implementations are free to ignore these parameters, or derive
   from them values for their offset methods.
+  <!-- Not true now:
+  Our <i>Variance Shadow Maps</i> implementation simply ignores these offsets.
+  -->
 
   <p>Field <tt>compareMode</tt> allows to additionally do depth comparison
   on the texture. For texture coordinate <i>(s, t, r, q)</i>,
