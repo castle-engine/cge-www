@@ -1,5 +1,7 @@
 <?php /* -*- mode: php -*- */
-/* Common content for presenting news as an RSS feed and HTML pages. */
+/* PHP functions for handling news, and actual $news array.
+   This is a common file for everything that deals with displaying
+   news as an RSS feed and HTML content. */
 
 require_once 'castle_engine_functions.php';
 
@@ -38,78 +40,6 @@ function news_a_href_page_hashlink($title, $page_name, $anchor)
   return '<a href="' . CURRENT_URL . $page_name . '.php#' .
     $anchor . '">' . $title . '</a>';
 }
-
-/* --------------------------------------------------------------------------- */
-
-  /* An array of news entries.
-     It is in format accepted by rss_generator class, but also has some
-     extras for news_to_html:
-
-     - year, month, day fields (shown at some places,
-       and pubDate timestamp will be auto-generated based on them)
-
-     - short_description: HTML teaser description on the main page.
-       If empty, we will take teaser from the normal 'description',
-       up to the magic delimiter <!-- teaser ... -->.
-
-       "..." inside this comment will be the additional text present
-       only in the teaser. You should use this to close HTML elements
-       that should close now in teaser, but remain open in full version.
-
-       If this delimiter is not present, then teaser is just equal to
-       full description.
-
-     - guid will be used also for NEWS-ID, to have news.php?item=NEWS-ID page.
-       guid is optional --- we'll generate default guid based on date and title,
-       if not set. If you provide it, make sure it does not contain any special
-       characters for HTML or XML attributes or content.
-
-     - link: do not give it here.
-       We'll set link to the URL like xxx/news.php?id=xxx.
-
-     - description: HTML full description. (also used by rss_generator.)
-     - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
-
-     They must be ordered from the newest to the oldest.
-     While it doesn't matter for RSS (feed will be sorted anyway by news
-     reader), my HTML converting code depends on it (first feed is the "latest
-     update", and feeds are presented in given order on news page).
-  */
-
-  $news = array();
-  require_once 'news_2011.php';
-  require_once 'news_2010.php';
-  require_once 'news_2009.php';
-  require_once 'news_2008.php';
-  require_once 'news_2007.php';
-
-/* --------------------------------------------------------------------------- */
-
-foreach ($news as &$log_entry)
-{
-  $log_entry['pubDate'] = date_timestamp(
-    $log_entry['year'],
-    $log_entry['month'],
-    $log_entry['day'],
-    (isset($log_entry['hour'])   ? $log_entry['hour']   : 0),
-    (isset($log_entry['minute']) ? $log_entry['minute'] : 0));
-
-  if (!isset($log_entry['guid']))
-    $log_entry['guid'] =
-      $log_entry['year'] . '-' .
-      $log_entry['month'] . '-' .
-      $log_entry['day'] . '-' .
-      /* For safety and to make guid look nicer, remove special characters.
-         Not all these replacements are really necessary, only <> and &
-         to avoid breaking XML, and " to avoid breaking HTML.
-         guid is used in both RSS XML and in HTML. */
-      strtr(strtolower($log_entry['title']), ' &;,:*/()<>+"', '_____________');
-
-  $log_entry['id'] = $log_entry['guid'];
-
-  $log_entry['link'] = CURRENT_URL . 'news.php?id=' . $log_entry['id'];
-}
-unset($log_entry);
 
 define('TEASER_DELIMITER_BEGIN', '<!-- teaser ');
 define('TEASER_DELIMITER_END', '-->');
@@ -181,5 +111,133 @@ function last_news_to_html($full_description = true)
 
   return news_to_html($news[0], $full_description, /* link to self */ true);
 }
+
+function castle_news_date_short($news_item)
+{
+  return sprintf('%04d-%02d-%02d',
+    $news_item['year'],
+    $news_item['month'],
+    $news_item['day']);
+}
+
+function castle_sitemap_add_news()
+{
+  global $castle_sitemap, $news;
+  foreach ($news as $news_item)
+  {
+    $castle_sitemap['index']['sidebar'] = true;
+    $castle_sitemap['index']['sub']['news.php?id=' . $news_item['id']] =
+      array('title' =>  '(' . castle_news_date_short($news_item) . ') ' .
+        $news_item['title']);
+  }
+}
+
+/* Return news item from $id. Finds also previous and next news items
+   (NULL if current item is first or last). Returns all three items
+   as NULL if not found.
+
+   So to easily detect if the item was found, it's enough to just
+   check if returned $current === NULL.  */
+function castle_news_item_by_id($id, &$previous, &$current, &$next)
+{
+  global $news;
+
+  $previous = NULL;
+  $current = NULL;
+  $next = NULL;
+
+  foreach($news as $news_item)
+  {
+    $previous = $current;
+    $current = $next;
+    $next = $news_item;
+
+    if ($current !== NULL && $current['id'] == $id)
+      return;
+  }
+
+  /* one more step */
+  $previous = $current;
+  $current = $next;
+  $next = NULL;
+  if ($current !== NULL && $current['id'] == $id)
+    return;
+
+  $previous = NULL;
+  $current = NULL;
+  $next = NULL;
+}
+
+/* --------------------------------------------------------------------------- */
+
+/* An array of news entries.
+   It is in format accepted by rss_generator class, but also has some
+   extras for news_to_html:
+
+   - year, month, day fields (shown at some places,
+     and pubDate timestamp will be auto-generated based on them)
+
+   - short_description: HTML teaser description on the main page.
+     If empty, we will take teaser from the normal 'description',
+     up to the magic delimiter <!-- teaser ... -->.
+
+     "..." inside this comment will be the additional text present
+     only in the teaser. You should use this to close HTML elements
+     that should close now in teaser, but remain open in full version.
+
+     If this delimiter is not present, then teaser is just equal to
+     full description.
+
+   - guid will be used also for NEWS-ID, to have news.php?item=NEWS-ID page.
+     guid is optional --- we'll generate default guid based on date and title,
+     if not set. If you provide it, make sure it does not contain any special
+     characters for HTML or XML attributes or content.
+
+   - link: do not give it here.
+     We'll set link to the URL like xxx/news.php?id=xxx.
+
+   - description: HTML full description. (also used by rss_generator.)
+   - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
+
+   They must be ordered from the newest to the oldest.
+   While it doesn't matter for RSS (feed will be sorted anyway by news
+   reader), my HTML converting code depends on it (first feed is the "latest
+   update", and feeds are presented in given order on news page).
+*/
+
+$news = array();
+require_once 'news_2011.php';
+require_once 'news_2010.php';
+require_once 'news_2009.php';
+require_once 'news_2008.php';
+require_once 'news_2007.php';
+
+/* Post-process $news -------------------------------------------------------- */
+
+foreach ($news as &$log_entry)
+{
+  $log_entry['pubDate'] = date_timestamp(
+    $log_entry['year'],
+    $log_entry['month'],
+    $log_entry['day'],
+    (isset($log_entry['hour'])   ? $log_entry['hour']   : 0),
+    (isset($log_entry['minute']) ? $log_entry['minute'] : 0));
+
+  if (!isset($log_entry['guid']))
+    $log_entry['guid'] =
+      $log_entry['year'] . '-' .
+      $log_entry['month'] . '-' .
+      $log_entry['day'] . '-' .
+      /* For safety and to make guid look nicer, remove special characters.
+         Not all these replacements are really necessary, only <> and &
+         to avoid breaking XML, and " to avoid breaking HTML.
+         guid is used in both RSS XML and in HTML. */
+      strtr(strtolower($log_entry['title']), ' &;,:*/()<>+"', '_____________');
+
+  $log_entry['id'] = $log_entry['guid'];
+
+  $log_entry['link'] = CURRENT_URL . 'news.php?id=' . $log_entry['id'];
+}
+unset($log_entry);
 
 ?>
