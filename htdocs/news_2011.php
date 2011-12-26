@@ -1,5 +1,19 @@
 <?php
 
+/* Next news:
+- "Limit FPS" option, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not needlessly use battery life on laptops.
+
+  For users of view3dscene, this is configurable by "File -> Preferences -> Frames Per Second Limit ...".
+
+  For developers, this is configurable by TGLApplication.LimitFPS.
+
+- More fixes and workarounds to geometry shaders, esp. for modern GPUs using fglrx (ATI propriatary driver under Linux), see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a>.
+
+- "Edit -> H-Anim Joints Visualization" now asks for visualization size. Some H-Anim with VRML 97 fixes.
+
+- Compilation with FPC 2.6.0-rc1 tested.
+*/
+
 array_push($news,
     array('title' => 'Development news: fixed view and isometric games in engine examples, shadow maps improvements, color interpolation in HSV space',
           'year' => 2011,
