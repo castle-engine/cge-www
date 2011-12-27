@@ -663,9 +663,13 @@ case "$1" in
 
     ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"demo_models-"$GENERATED_VERSION_DEMO_MODELS".tar.gz
     mk_archive_pack "$ARCHIVE_FILE_NAME"
-    mk_archive_end
-
     echo 'Updated' "$ARCHIVE_FILE_NAME"
+
+    ARCHIVE_FILE_NAME="$FILE_RELEASES_PATH"demo_models-"$GENERATED_VERSION_DEMO_MODELS".zip
+    mk_archive_pack "$ARCHIVE_FILE_NAME"
+    echo 'Updated' "$ARCHIVE_FILE_NAME"
+
+    mk_archive_end
     ;;
 
   forest)

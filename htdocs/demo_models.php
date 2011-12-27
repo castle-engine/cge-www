@@ -40,8 +40,13 @@
       '">Download VRML/X3D demo models from it\'s WWW page</a>.</p>';
   } else
   {
-    echo sf_download("Download VRML/X3D demo models",
-      'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz');
+    ?>
+    <div class="download_title">Download VRML/X3D demo models:</div>
+    <ul>
+      <li><?php echo sf_download('As tar.gz archive', 'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
+      <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
+    </ul>
+    <?php
   }
 ?>
 </div>
