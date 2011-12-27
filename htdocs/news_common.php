@@ -125,8 +125,8 @@ function castle_sitemap_add_news()
   global $castle_sitemap, $news;
   foreach ($news as $news_item)
   {
-    $castle_sitemap['index']['sidebar'] = true;
-    $castle_sitemap['index']['sub']['news.php?id=' . $news_item['id']] =
+    $castle_sitemap['news']['sidebar'] = true;
+    $castle_sitemap['news']['sub']['news.php?id=' . $news_item['id']] =
       array('title' =>  '(' . castle_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }

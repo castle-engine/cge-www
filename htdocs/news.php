@@ -30,7 +30,7 @@ if (isset($_GET['id']))
 $page_basename = 'news.php?id=' . $item['id'];
 
 castle_header($item['title'] . ' | News', NULL,
-  array(MAIN_PAGE_BASENAME, $page_basename));
+  array('news', $page_basename));
 
 /* Calculate $older_newer_bar.
    Remember that naming "previous / next" in the array is a little reversed,
