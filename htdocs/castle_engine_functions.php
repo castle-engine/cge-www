@@ -236,7 +236,7 @@ function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
-  $menu_for_users = 6 * 2 + 1;
+  $menu_for_users = 7 * 2 + 1;
   $menu_for_developers = 2 * count($castle_sitemap) + 1 - $menu_for_users;
 
   /* It's a hack even to use a table cell for this.
