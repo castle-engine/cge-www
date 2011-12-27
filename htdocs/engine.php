@@ -68,10 +68,11 @@ information.</p>
 <?php echo $toc->html_section(); ?>
 
 <div class="download">
-<?php echo sf_download('Download "' .ENGINE_NAME. '" (version ' .
-  VERSION_CASTLE_GAME_ENGINE . ')',
-  ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE .
-  '-src.tar.gz'); ?>
+<div class="download_title">Download "<?php echo ENGINE_NAME; ?>" (version <?php echo VERSION_CASTLE_GAME_ENGINE; ?>)</div>
+<ul>
+  <li><?php echo sf_download('As tar.gz archive', ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
+  <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
+</ul>
 </div>
 
 <p>This archive contains the whole engine sources.
