@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_header("Engine overview for developers", NULL, array('engine'));
+  castle_header("Castle Game Engine - Downloads and docs for developers", NULL, array('engine'));
 
   $toc = new TableOfContents(
     array(
@@ -19,9 +19,15 @@
   );
   $toc->echo_numbers = true;
 
-  flattr_button();
+/*  flattr_button(); */
 
-  echo pretty_heading($page_title, VERSION_CASTLE_GAME_ENGINE);
+  echo '<img src="images/castle_game_engine_icon.png"
+    alt="Castle Game Engine icon"
+    style="float: right; clear: right; margin-top: 1em;" />';
+
+  echo pretty_heading('Castle Game Engine',
+    VERSION_CASTLE_GAME_ENGINE, 'Downloads and docs for developers<br/>');
+
   echo castle_thumbs(array(
     array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
     array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
