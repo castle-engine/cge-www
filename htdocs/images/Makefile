@@ -1,6 +1,6 @@
-# Makefile for making images in progs_demo/thumb_size/
-# and progs_demo/program_link_size/
-# from images in progs_demo/original_size/
+# Makefile for automatically making images
+# in thumb_size/ and other subdirectories
+# from images in original_size/ and others.
 #
 # Official targets:
 #   all (default target)
