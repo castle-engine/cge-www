@@ -400,7 +400,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array(),
   </div>';
 
   if (!empty($bonus_before_sidebar))
-    $bonus_before_sidebar = '<tr><td colspan="2">' . $bonus_before_sidebar . '</td></tr>';
+    $bonus_before_sidebar = '<tr><td class="layout content" colspan="2">' . $bonus_before_sidebar . '</td></tr>';
 
   if (empty($castle_sidebar))
     $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
