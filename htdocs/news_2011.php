@@ -19,6 +19,7 @@
 
 array_push($news,
     array('title' => 'Development news: fixed view and isometric games in engine examples, shadow maps improvements, color interpolation in HSV space',
+          'short_title' => 'Fixed view and isometric games in engine examples...',
           'year' => 2011,
           'month' => 12,
           'day' => 23,

@@ -105,11 +105,17 @@ function news_to_html($news_item, $full_description = true, $link_to_self = fals
     $description;
 }
 
-function last_news_to_html($full_description = true)
+function last_news_to_html()
 {
   global $news;
+  $item = $news[0];
 
-  return news_to_html($news[0], $full_description, /* link to self */ true);
+  if (!empty($item['short_title']))
+    $title = $item['short_title']; else
+    $title = $item['title'];
+
+  return '<a href="' . CURRENT_URL . 'news.php?item=' . $item['id'] . '">News: ' .
+    castle_news_date_long($item) . ':<br/>' . $title . '</a>';
 }
 
 function castle_news_date_short($news_item)

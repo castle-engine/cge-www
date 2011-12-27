@@ -36,8 +36,8 @@ castle_header('Castle Game Engine',
 </table>
 
 <div style="width: 100%; text-align: center;">
-<div style="display: inline-block; padding: 0em; margin: 0em 1em 0em 0em;">
-<b style="font-size: larger"><a href="news.php">News</a></b>
+<div style="display: inline-block; padding: 0em; margin: 0em 1em 0em 0em; width: 33%;">
+<b style="font-size: larger;"><?php echo last_news_to_html(); ?></b>
 </div>
 
 <div style="display: inline-block; padding: 0em; margin: 0em 1em 0em 1em;">
