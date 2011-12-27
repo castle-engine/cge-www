@@ -136,6 +136,19 @@ td.program_image_link {
   padding: 0.5em;
 }
 
+table.main_links {
+  width: 100%;
+}
+
+td.main_link {
+  background: #efdfae;
+  width: 33%;
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.5em;
+  vertical-align: top;
+}
+
 .program_image_link_title { font-size: larger; }
 
 a.screenshot       img { border: 2pt solid #EEE; }

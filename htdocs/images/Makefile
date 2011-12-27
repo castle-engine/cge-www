@@ -25,12 +25,16 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
   program_link_size/glplotter_screen_demo_1.png \
   program_link_size/rayhunter_graz_demo.png
 
+ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
+  main_link_size/castle_screen_demo_1.png \
+  main_link_size/castle_game_engine_icon.png
+
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 
 .PHONY: all clean info
 
-all: $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS)
+all: $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK)
 
 # ------------------------------------------------------------
 # making thumb_size
@@ -53,6 +57,12 @@ program_link_size/glplotter_screen_demo_1.png: original_size/glplotter_screen_de
 program_link_size/%: original_size/%
 	convert $< -geometry 300x300 $@
 
+# ------------------------------------------------------------
+# making main_link_size
+
+main_link_size/%: original_size/%
+	convert $< -geometry 256x256 $@
+
 # OS icons -------------------------------------------------------------------
 
 os_icons/%.png: os_icons_original_size/%.png
@@ -61,7 +71,7 @@ os_icons/%.png: os_icons_original_size/%.png
 # ------------------------------------------------------------
 
 clean:
-	rm -f $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS)
+	rm -f $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK)
 
 info:
 	@echo 'All original images:'

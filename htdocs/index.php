@@ -1,13 +1,39 @@
 <?php
-  require_once 'castle_engine_functions.php';
-  $main_page = true;
-  castle_header('Castle Game Engine',
-    'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
+require_once 'castle_engine_functions.php';
+require_once 'news_common.php';
+
+$main_page = true;
+
+castle_header('Castle Game Engine',
+  'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
 ?>
 
-<img src="images/castle_game_engine_icon.png"
-  alt="Castle Game Engine icon"
-  align="right"/>
+<table class="main_links" cellspacing="20">
+  <tr>
+    <td class="main_link">
+      <p><b>For players:</b></p>
+      <p><a href="castle.php"><img src="images/main_link_size/castle_screen_demo_1.png" alt="&quot;The Castle&quot;" /></a></p>
+      <p class="program_image_link_title"><a href="castle.php"><b>&quot;The Castle&quot;</b></a></p>
+      <p>First-person perspective game, in a dark fantasy setting.</p>
+    </td>
+
+    <td class="main_link">
+      <p><b>For 3D modelers:</b></p>
+      <p><a href="view3dscene.php"><img src="images/main_link_size/castle_sunset.png" alt="view3dscene" /></a></p>
+      <p class="program_image_link_title"><a href="view3dscene.php"><b>view3dscene</b></a></p>
+      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ, some others). Explore the virtual world, with collision-checking, gravity and interactive animations, <!--use embedded ray-tracer, --> and convert various models to VRML/X3D.</p>
+      <p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
+    </td>
+
+    <td class="main_link">
+      <p><b>For developers:</b></p>
+      <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
+      <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
+      <p>Open-source (LGPL) 3D game engine for <a href="http://www.freepascal.org/">FreePascal / Lazarus</a>. We have an&nbsp;excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data (although other 3D model formats are also supported).</p>
+      <p>The engine is where all the magic actually happens :)</p>
+    </td>
+  </tr>
+</table>
 
 <div style="float: right; margin: 1em;">
 <?php flattr_button(false); ?>
@@ -21,20 +47,6 @@
 <?php } ?>
 </div>
 
-<p><b>For developers:</b> <b>Castle Game Engine (previously "Kambi VRML game engine")</b>
-is a free/open-source 3D (game) engine.
-The engine is&nbsp;written in clean <a href="http://www.freepascal.org/">Object Pascal</a>
-code, and we have an&nbsp;excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data
-(although other 3D model formats are also supported).
-See here <?php echo a_href_page('for detailed documentation and&nbsp;downloads for developers', 'engine'); ?>.</p>
-
-<p><b>For normal human beings:</b> this page is a&nbsp;collection of&nbsp;various
-games and tools developed using our engine. <!--Most of them
-are somewhat related to 3D graphics.-->
-Two&nbsp;most important programs available here are
-<a href="view3dscene.php">view3dscene</a> 3D model viewer
-and&nbsp;<a href="castle.php">"The&nbsp;Castle"</a> game.</p>
-
 <p><b>Latest update:</b>
 
 <!-- To force engine icon separated from "latest update" frame on wide pages -->
@@ -43,10 +55,7 @@ and&nbsp;<a href="castle.php">"The&nbsp;Castle"</a> game.</p>
 <div class="latest_update_description" style="padding: 0px;">
 <div style="padding: 0.5em">
 <div class="rss_link"><a href="news_feed.php">RSS</a></div>
-<?php
-  require_once 'news_common.php';
-  echo last_news_to_html(false);
-?>
+<?php echo last_news_to_html(false); ?>
 </div>
 
 <table class="news_older_newer"><tr>
