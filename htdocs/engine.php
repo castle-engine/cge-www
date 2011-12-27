@@ -40,7 +40,7 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is an open-source (<a href="#section_license">LGPL / GPL</a>)
+<p>This is a free/open-source (<a href="#section_license">LGPL / GPL</a>)
 3D game engine. In short:
 
 <ul>
@@ -48,7 +48,7 @@
 
   <li><p>We have a lot of 3D graphic features. Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
 
-  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want).</p></li>
+  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
 </ul>
 
 <p>The <a href="#section_features">features section</a> below on this page
