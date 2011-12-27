@@ -35,16 +35,20 @@ castle_header('Castle Game Engine',
   </tr>
 </table>
 
-<div style="float: right; margin: 1em;">
+<div style="width: 100%; text-align: center">
+<div style="display: inline-block; padding: 0em; margin: 0em 1em 0em 0em;">
 <?php flattr_button(false); ?>
+</div>
+
+<div style="display: inline-block; padding: 0em; margin: 0em 0em 0em 1em;">
 <!-- If you have problems with +1 button,
   http://www.google.com/support/forum/p/Webmasters/thread?tid=04ed1149585fd12f&hl=en
   contains many hints.
   For me, what worked was to enable "Accept Third-Party Cookies" in FF. -->
-<br/><br/>
 <?php if (!HTML_VALIDATION) { ?>
 <g:plusone></g:plusone>
 <?php } ?>
+</div>
 </div>
 
 <p><b>Latest update:</b>
