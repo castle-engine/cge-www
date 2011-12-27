@@ -47,8 +47,40 @@ if ($next_item !== NULL || $previous_item !== NULL)
 }
 
 echo $older_newer_bar .
-  '<div class="news_item" style="clear: both">' . news_to_html($item) . '</div>' .
-  $older_newer_bar;
+  '<div class="castle_rss_link"><a href="news_feed.php">RSS</a></div>';
+
+if ($item === $news[0])
+  echo '<h2>Latest news:</h2>';
+
+echo '<div class="news_item">' . news_to_html($item) . '</div>';
+?>
+
+<table class="news_older_newer">
+  <tr><td class="news_newer"><b>Comments?</b>
+    Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.</td>
+  </tr>
+</table>
+
+<br/>
+
+<table class="news_older_newer">
+  <tr><td class="news_newer"><b>Watch engine development:</b>
+    To <i>really</i> watch the engine development closely, you can
+    <a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
+    <!-- not polled unfortunately:
+    <a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
+    cia.vc</a>.
+    -->
+    There is also <a href="https://www.ohloh.net/p/castle-engine">our
+    project page on Ohloh</a> (you're welcome to rate and click on
+    <i>"I use this"</i> button there!).</td>
+  </tr>
+</tr></table>
+
+<br/>
+
+<?php
+echo $older_newer_bar;
 
 castle_footer();
 ?>

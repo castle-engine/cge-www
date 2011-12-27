@@ -93,11 +93,11 @@ span.command_line_option {
   font-weight: bold;
 }
 
-div.latest_update_description {
+/* div.latest_update_description {
   margin-left: 3em;
   border: 1px solid gray;
   padding: 0.5em;
-}
+} */
 
 pre.vrml_code {
   border: 1px solid #aaaaaa;
@@ -294,6 +294,19 @@ div.news_item span.news_title { font-size: larger; }
 
 /* turn off normal link decoration inside news_title */
 span.news_title a { color: black; }
+
+.castle_rss_link {
+  float: right;
+  background: red;
+  padding: 0.3em;
+  border: thin outset black;
+  margin: 1em;
+}
+
+.castle_rss_link a {
+  color: white;
+  font-weight: bold
+}
 
 /* header ------------------------------------------------------------------- */
 

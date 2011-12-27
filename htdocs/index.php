@@ -51,41 +51,15 @@ castle_header('Castle Game Engine',
 </div>
 </div>
 
-<p><b>Latest update:</b>
-
-<!-- To force engine icon separated from "latest update" frame on wide pages -->
-<br clear="all" />
-
-<div class="latest_update_description" style="padding: 0px;">
-<div style="padding: 0.5em">
-<div class="rss_link"><a href="news_feed.php">RSS</a></div>
-<?php echo last_news_to_html(false); ?>
-</div>
-
-<table class="news_older_newer"><tr>
-  <td class="news_newer">Comments?
-  Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.</td>
-  <td class="news_older">
-  See also <?php echo
-  a_href_page('previous news &raquo;', 'news.php?id=' . $news[1]['id']) ?></td>
-</tr></table>
-
-</div>
-
-<p><b>Watch engine development</b>: To <i>really</i> watch the engine development
-closely, you can
-<a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
-<!-- not polled unfortunately:
-<a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
-cia.vc</a>.
--->
-There is also <a href="https://www.ohloh.net/p/castle-engine">our
-project page on Ohloh</a> (you're welcome to rate and click on
-<i>"I use this"</i> button there!).</p>
-
+<?php /*
 <p style="margin-bottom: 0.1em;"><i><b>Author:</b>
 <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
-(<?php echo michalis_mailto('email'); ?>).</i></p>
+(< ?php echo michalis_mailto('email'); ? >).</i></p>
+*/ ?>
+
+<!-- Some dumb separation from footer -->
+<br/>
+<br/>
 
 <?php
   castle_footer();
