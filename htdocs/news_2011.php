@@ -12,6 +12,9 @@
 - "Edit -> H-Anim Joints Visualization" now asks for visualization size. Some H-Anim with VRML 97 fixes.
 
 - Compilation with FPC 2.6.0-rc1 tested.
+
+- Main page reworked into three elegant panels directing people to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab "News".
+  add screenshots www_main_page_2011_12_before/after.
 */
 
 array_push($news,
