@@ -344,8 +344,7 @@ function echo_header_bonus ()
 /* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
-function castle_header($a_page_title, $meta_description = NULL, $path = array(),
-  $bonus_before_sidebar = '')
+function castle_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
@@ -399,15 +398,11 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array(),
     ' . _castle_header_menu($path[0]) . '
   </div>';
 
-  if (!empty($bonus_before_sidebar))
-    $bonus_before_sidebar = '<tr><td class="layout content" colspan="2">' . $bonus_before_sidebar . '</td></tr>';
-
   if (empty($castle_sidebar))
     $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
     $rendered .= '<table class="layout" cellspacing="0">
       <col class="content_column">
       <col class="sidebar_column">
-      ' . $bonus_before_sidebar . '
       <tr><td class="layout content">' . _castle_breadcrumbs($path);
 
   echo $rendered;
