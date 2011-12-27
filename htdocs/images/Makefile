@@ -7,7 +7,6 @@
 #   clean
 #   info (echoes some info, nothing is really done)
 
-
 # ALL_ORIGINAL is a space-separated list of original images.
 # ALL_MEDIUM is a space-separated list of target medium-sized images.
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
@@ -34,9 +33,13 @@ ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 
 .PHONY: all clean info
 
-all: $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK)
+ALL_TARGETS := $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK) \
+  castle_game_engine_icon.png \
+  main_link_size/castle_game_engine_icon.png
 
-# ------------------------------------------------------------
+all: $(ALL_TARGETS)
+
+# ----------------------------------------------------------------------------
 # making thumb_size
 
 thumb_size/glplotter_screen_demo%: \
@@ -46,7 +49,7 @@ thumb_size/glplotter_screen_demo%: \
 thumb_size/%: original_size/%
 	convert $< -geometry 200x150 $@
 
-# ------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # making program_link_size
 
 # glplotter_screen_demo_1.png requires scaling with emboss,
@@ -57,26 +60,45 @@ program_link_size/glplotter_screen_demo_1.png: original_size/glplotter_screen_de
 program_link_size/%: original_size/%
 	convert $< -geometry 300x300 $@
 
-# ------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # making main_link_size
 
 main_link_size/%: original_size/%
 	convert $< -geometry 256x256 $@
+
+# engine icon processing -----------------------------------------------------
+
+ENGINE_ICON := ../../logo/8_tentacles_moon_polish.svg
+
+# Generate PNG versions from SVG.
+# Note that for WWW engine icon, we generate non-transparent PNG file.
+# That's because IE on M$, well, you guessed it --- it can't reliably handle
+# PNG transparency. So non-transparent PNG is safer.
+
+castle_game_engine_icon.png: $(ENGINE_ICON)
+	inkscape --export-width=256 --export-height=256 \
+	  --export-background=#FFFFFF \
+	  --export-background-opacity=1.0 \
+	  $< --export-png=$@
+
+main_link_size/castle_game_engine_icon.png: $(ENGINE_ICON)
+	inkscape --export-width=256 --export-height=256 \
+	  --export-background=#efdfae \
+	  --export-background-opacity=1.0 \
+	  $< --export-png=$@
 
 # OS icons -------------------------------------------------------------------
 
 os_icons/%.png: os_icons_original_size/%.png
 	convert $< -geometry 64x64 $@
 
-# ------------------------------------------------------------
+# others ---------------------------------------------------------------------
 
 clean:
-	rm -f $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK)
+	rm -f $(ALL_TARGETS)
 
 info:
 	@echo 'All original images:'
 	@echo '  ' $(ALL_ORIGINAL)
-	@echo 'All medium size targets:'
-	@echo '  ' $(ALL_MEDIUM)
-	@echo 'All program_link size targets:'
-	@echo '  ' $(ALL_PROGRAM_LINK)
+	@echo 'All targets:'
+	@echo '  ' $(ALL_TARGETS)
