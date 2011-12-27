@@ -242,87 +242,43 @@ function is_page_available_locally($page_name)
   return is_file_available_locally($page_name . '.html');
 }
 
-  /* Global consts ====================================================== */
+/* Global consts ====================================================== */
 
-  /* :string = I just wasn't sure how to say "here are binaries" in english */
-  define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
-    'is required, just unpack these archives and run the program.');
+/* :string = I just wasn't sure how to say "here are binaries" in english */
+define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
+  'is required, just unpack these archives and run the program.');
 
-  /* stałe do specyfikowania języka, w zmiennej $page_lang i w parametrach
-     wielu funkcji. Kiedyś używałem tutaj stringów "en", "pl" - używanie
-     stałych intów ma tą zaletę że trudniej jest się pomylić (w razie czego
-     dostaniemy ewidentny błąd - nieznany identyfikator) oraz łatwiej
-     przetwarzać (to tylko inty, nie jakieś stringi). */
-  define('LANG_PL', 0);
-  define('LANG_EN', 1);
+/* Constants for languages, used for $page_lang parameter of common_header.
+   They are also suitable for HTML (e.g. as <html lang="..."> value). */
+define('LANG_PL', 'pl');
+define('LANG_EN', 'en');
 
-  /* This is a language for filenames without language suffix.
-     E.g. when this is LANG_EN, then page in Polish is 'view3dscene.pl.php',
-     page in Greek is 'view3dscene.gr.php' but page in English is
-     simply 'view3dscene.php' (NOT 'view3dscene.en.php').
+/* in normal circumstances this should always be 'index' */
+define('MAIN_PAGE_BASENAME', 'index');
 
-     This is particularly important because 'index.php' is the default
-     page loaded for CURRENT_URL,
-     so LANG_WITHOUT_FILENAME_SUFFIX is the default language seen
-     by everyone who visits my pages.
+/* Global variables =======================================================
 
-     This was Polish at first, now it's English. */
-  define('LANG_WITHOUT_FILENAME_SUFFIX', LANG_EN);
+   Żadna funkcja z tego pliku (poza common_header)
+   nie może być wywołana przed zainicjowaniem
+   wszystkich poniższych zmiennych (za wyjątkiem kilku wyjątków które będą
+   miały to wyraźnie stwierdzone w komentarzu; będzie wtedy wyraźnie określone
+   których zmiennych dana funkcja wymaga).
 
-  /* Stala tablica; przetłumacz moje stałe LANG_xxx na lang używany w HTMLu
-     (zresztą to nie jest specyficzne dla HTMLa, to jakiś bardziej ogólny
-     standard nazewnictwa języków). */
-  $lang_to_html_lang = array(LANG_PL => 'pl',
-                             LANG_EN => 'en');
+   Jest gwarantowane że wywołanie common_header zapewnia że wszystkie te
+   zmienne są zainicjowane, więc po wywołaniu common_header nie musisz się
+   już o nic martwić. */
 
-  /* in normal circumstances this should always be 'index' */
-  define('MAIN_PAGE_BASENAME', 'index');
+/* Poniższe zmienne są inicjowane w common_header, wcześniej należy je
+   traktować jako NIE zainicjowane (czyli nie nadające się do użycia). */
+$page_title = '';
+/* internal, used only in common_header/footer() */
+$s_quick_links = '';
 
-  /* Stala tablica; dla podanego basename (tzn. bez rozszerzenia (.php lub .html)
-     i suffixu jezyka (np. ".pl")) strony podaj na jakie jezyki strona jest
-     przetlumaczona. NIE bierze pod uwage IS_GEN_LOCAL, tzn. zaklada ze
-     wszystko co w ogole jest -- jest dostepne.
-     Kazdy element tej tablicy to tablica wartosci LANG_xxx.
-
-     Taka globalna tablica jakie jezyki sa dostepne jest przydatna do
-     a_href_page -- kiedy robimy link do jakiejs strony jest dobrze wiedziec
-     jakie jezyki sa dostepne (i ew. wymusic link ze strony po angielsku do
-     strony po polsku, bo docelowa strona w wersji angielskiej nie istnieje).
-
-     This should be used only by supported_page_langs function.
-     All other functions should use supported_page_langs.
-     (I could make this var local to supported_page_langs,
-     but it could cost some execution time). */
-  $pages_langs = array(
-    'jamy_i_nory' => array(LANG_PL),
-    'kno_status' => array(LANG_PL)
-  );
-
-  /* Global variables =======================================================
-
-     Żadna funkcja z tego pliku (poza common_header)
-     nie może być wywołana przed zainicjowaniem
-     wszystkich poniższych zmiennych (za wyjątkiem kilku wyjątków które będą
-     miały to wyraźnie stwierdzone w komentarzu; będzie wtedy wyraźnie określone
-     których zmiennych dana funkcja wymaga).
-
-     Jest gwarantowane że wywołanie common_header zapewnia że wszystkie te
-     zmienne są zainicjowane, więc po wywołaniu common_header nie musisz się
-     już o nic martwić. */
-
-  /* Poniższe zmienne są inicjowane w common_header, wcześniej należy je
-     traktować jako NIE zainicjowane (czyli nie nadające się do użycia). */
-  $page_title = '';
-  /* Język strony, po zainicjowaniu wartość to jedna ze stałych LANG_. */
-  $page_lang = -1;
-  /* internal, used only in common_header/footer() */
-  $s_quick_links = '';
-
-  /* Poniższe zmienne są zainicjowane na domyślne wartości z chwilą włączenia
-     tego pliku. Jeśli chcesz zmienić
-     ich wartości to musisz to zrobić ręcznie przed wywołaniem jakiejkolwiek
-     innej funkcji z tego pliku (także common_header). */
-  $main_page = false;
+/* Poniższe zmienne są zainicjowane na domyślne wartości z chwilą włączenia
+   tego pliku. Jeśli chcesz zmienić
+   ich wartości to musisz to zrobić ręcznie przed wywołaniem jakiejkolwiek
+   innej funkcji z tego pliku (także common_header). */
+$main_page = false;
 
 /* functions ======================================================= */
 
@@ -389,247 +345,84 @@ function current_www_a_href_size($link_title, $f_name)
     . (IS_GEN_LOCAL ? '': " (" . readable_file_size($f_name) . ")") . "</a>";
 }
 
-/* Returns $pages_langs[$page_basename] or just array(LANG_EN)
-   if there is no such key $pages_langs.
-   I.e. by default it's understood there page is available
-   only in English. */
-function supported_page_langs($page_basename)
-{
-  global $pages_langs;
+/* URL of desired page, i.e. page_name z doklejonym
+   rozszerzeniem i ew. poprzedzone CURRENT_URL (jeśli strona
+   generowana z IS_GEN_LOCAL odwołuje się do czegoś niedostępnego lokalnie).
 
-  return (array_key_exists($page_basename, $pages_langs) ?
-    $pages_langs[$page_basename] :
-    array(LANG_EN) );
+   $page_name: string, nie zawiera extension, basename strony.
+
+   Eventually, if $page_name already contains a .php extension, then we will
+   not add any new php/html extension at the end.
+   Remember that this disables local html generation,
+   and so generally should not be used, as it means that page_url
+   isn't of much use.
+
+   $hash_link, jeżeli różny od '', to będzie dopisany (i poprzedzony hashem)
+   do URLa strony.
+
+   Pod $url_comment zwraca komentarz do URLa w postaci "" (pusty string) lub
+   " <i>(komentarz)</i>" (zwróć uwagę na spację na początku),
+   np. " <i>(nie-lokalny link)</i>". Powinieneś gdzieś pokazać ten url_comment
+   użytkownikowi bo on zawiera generalnie ważne informacje. */
+function page_url($page_name, $hash_link, &$url_comment)
+{
+  /* init $url_comment to empty. Everywhere in this function we will
+     append things to $url_comment using
+       str_append_part_to1st($url_comment, ', ', $next_part) */
+  $url_comment = '';
+
+  $already_has_extension = strpos($page_name, '.php') !== FALSE;
+
+  $result = $page_name;
+
+  if (!is_page_available_locally($result))
+  {
+    if (!$already_has_extension)
+      $result = CURRENT_URL . $result . '.php';
+    str_append_part_to1st($url_comment, ', ', 'online docs');
+  } else
+  if (!$already_has_extension)
+  {
+    if (IS_GEN_PAGE_HREFS_TO_HTML)
+      $result .= '.html'; else
+      $result .= '.php';
+  }
+
+  if ($hash_link != '')
+    $result .= '#' . $hash_link;
+
+  if ($url_comment != '')
+    $url_comment = " <i>($url_comment)</i>";
+
+  return $result;
 }
 
-/* Call this only when global $page_lang variable is set.
-
-   For all "normal" pages, this should be automatically called by common_header.
-   You have to explicitly call this only in special circumstances, if you need
-   some functions defined by this but really don't want to include default HTML
-   header (e.g., this is used by our RSS feed generating code).
-
-   This *defines* some new functions (and constants) that really require
-   $page_lang variable to set *before they are even defined*.
-   What's the reason ? PAGE_LANG constant is needed as a default parameter
-   for a_href_page (and it's a really neat and useful trick that a_href_page
-   has this default parameter, I don't want to resign from it). */
-function common_set_page_functions()
+/* Simpler version of page_url. */
+function en_page_url($page_name, $hash_link = '')
 {
-  global $page_lang;
-  define('PAGE_LANG', $page_lang);
+  $url_comment = '';
+  return page_url($page_name, $hash_link, $url_comment);
+}
 
-  /* ============================================================
-     Define page_url and a_href_page* family of functions */
+/* Internal, aby zapewnić wspólną implementację dla a_href_page i
+   a_href_page_hashlink. */
+function a_href_page_core($link_title, $page_name, $hash_link)
+{
+  $page_url = page_url($page_name, $hash_link, $url_comment);
+  return "<a href=\"$page_url\">$link_title$url_comment</a>";
+}
 
-  function page_url($page_name, $hash_link, $target_page_lang, &$url_comment)
-  /* $page_name: string, nie zawiera extension, nie zawiera takze sufixu
-     jezyka (".pl" lub innych, jesli kiedys je dodam).
-     Czyli basename strony.
+/* Zwraca href do tej strony, coś w rodzaju <a href=$page_url>$link_title</a>,
+   gdzie $page_url = page_url($page_name, ''). */
+function a_href_page($link_title, $page_name)
+{
+  return a_href_page_core($link_title, $page_name, '');
+}
 
-     Eventually, if $page_name already contains a .php extension, then we will
-     not add any new language/php/html extension at the end.
-     Remember that this disables language switching and local html generation,
-     and so generally should not be used, as it means that page_url
-     isn't of much use.
-
-     $hash_link, jeżeli różny od '', to będzie dopisany (i poprzedzony hashem)
-     do URLa strony.
-
-     $target_page_lang: stała LANG_xxx, język docelowy strony.
-     Możesz tutaj podawać zmienną globalną $page_lang.
-     Jeżeli dana strona w danym języku nie istnieje (chwilowo sprawdzanie
-     istnienia strony nie bierze pod uwage IS_GEN_LOCAL, ale powinno)
-     to może wybrać arbitralnie inny język. Chwilowo "zmiana języka na inny"
-     jest łatwa do zdefiniowania bo mamy tylko dwa języki (en i pl) więc
-     jeśli jeden nie istnieje to bierzemy drugi. Zawsze przy takiej zmianie
-     języka (tzn. gdy dostajemy stronę w innym języku niż zażądany
-     $target_page_lang)
-     dostaniemy dodatkowo komentarz w url_comment (np. " (polish)" gdy
-     ze strony w języku LANG_EN zażądaliśmy innej strony po angielsku
-     ($target_page_lang = LANG_EN) ale dostaliśmy stronę po polsku
-     (np. dla 'glplottera' który nie ma wersji angielskiej)).
-
-     Innymi słowy, podając $target_page_lang NIE myśl o tym w jakim języku
-     dana strona jest dostępna. Myśl o tym w jakim języku CHCESZ dostać
-     stronę (a więc zazwyczaj w takim samym języku w jakim jest aktualna
-     strona). Jeżeli strona w języku jakiego chcesz jest niedostępna to
-     zostanie podana strona w języku dostępnym i odpowiednie ostrzeżenie
-     dostaniesz w $url_comment. Ma to m.in. tą zaletę że jeżeli kiedyś dodam
-     np. stronę glplottera po angielsku to wystarczy że uaktualnię tablicę
-     $pages_langs i wszystkie linki do glplottera ze stron angielskich
-     (które chwilowo są linkami do strony glplottera po poslku) automatycznie
-     zmienią się na linki do strony po angielsku.
-
-     Ta funkcja zwraca url zadanej strony, czyli page_name z doklejonym suffixem
-     jezyka i rozszerzeniem i ew. poprzedzone CURRENT_URL (jeśli strona
-     generowana z IS_GEN_LOCAL odwołuje się do czegoś niedostępnego lokalnie).
-
-     Pod $url_comment zwraca komentarz do URLa w postaci "" (pusty string) lub
-     " <i>(komentarz)</i>" (zwróć uwagę na spację na początku),
-     np. " <i>(nie-lokalny link)</i>". Powinieneś gdzieś pokazać ten url_comment
-     użytkownikowi bo on zawiera generalnie ważne informacje. */
-  {
-    global $page_lang, $lang_to_html_lang;
-
-    /* init $url_comment to empty. Everywhere in this function we will
-       append things to $url_comment using
-         str_append_part_to1st($url_comment, ', ', $next_part) */
-    $url_comment = '';
-
-    $already_has_extension = strpos($page_name, '.php') !== FALSE;
-
-    /* optionally change $target_page_lang */
-    if (!in_array($target_page_lang, supported_page_langs($page_name)))
-    {
-      /* tests:
-      exit("No such lang: $page_name, " . $lang_to_html_lang[$target_page_lang]);
-      */
-      switch ($target_page_lang)
-      {
-        case LANG_PL:
-          str_append_part_to1st($url_comment, ', ', 'po angielsku');
-          $target_page_lang = LANG_EN;
-          break;
-        case LANG_EN:
-          str_append_part_to1st($url_comment, ', ', 'in Polish');
-          $target_page_lang = LANG_PL;
-          break;
-      }
-    }
-
-    if ($target_page_lang == LANG_WITHOUT_FILENAME_SUFFIX)
-      $language_suffix = ''; else
-      $language_suffix = '.' . $lang_to_html_lang[$target_page_lang];
-
-    $result = $page_name;
-    if (!$already_has_extension)
-      $result .= $language_suffix;
-
-    if (!is_page_available_locally($result))
-    {
-      if (!$already_has_extension)
-        $result = CURRENT_URL . $result . '.php';
-      str_append_part_to1st($url_comment, ', ', 'online docs');
-    } else
-    if (!$already_has_extension)
-    {
-      if (IS_GEN_PAGE_HREFS_TO_HTML)
-        $result .= '.html'; else
-        $result .= '.php';
-    }
-
-    if ($hash_link != '')
-      $result .= '#' . $hash_link;
-
-    if ($url_comment != '')
-      $url_comment = " <i>($url_comment)</i>";
-
-    return $result;
-  }
-
-  /* Simpler version of page_url for websites that are only in English language. */
-  function en_page_url($page_name, $hash_link = '')
-  {
-    $url_comment = '';
-    return page_url($page_name, $hash_link, LANG_EN, $url_comment);
-  }
-
-  function a_href_page_core($link_title, $page_name, $hash_link,
-    $target_page_lang)
-  /* Internal, aby zapewnić wspólną implementację dla a_href_page i
-     a_href_page_hashlink */
-  {
-    $page_url = page_url($page_name, $hash_link, $target_page_lang, $url_comment);
-    return "<a href=\"$page_url\">$link_title$url_comment</a>";
-  }
-
-  function a_href_page($link_title, $page_name, $target_page_lang = PAGE_LANG)
-  /* Zwraca href do tej strony, coś w rodzaju <a href=$page_url>$link_title</a>,
-     gdzie $page_url = page_url($page_name, '', $target_page_lang). */
-  {
-    return a_href_page_core($link_title, $page_name, '', $target_page_lang);
-  }
-
-  function a_href_page_hashlink($link_title, $page_name, $hash_link,
-    $target_page_lang = PAGE_LANG)
-  /* Jak a_href_page ale page_url ma odpowiedni hash_link. */
-  {
-    return a_href_page_core($link_title, $page_name, $hash_link, $target_page_lang);
-  }
-
-  /* ============================================================
-     Define other constants and things that need a_href_page* */
-
-  switch ($page_lang)
-  {
-    case LANG_PL:
-      define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        'To jest wolne/otwarte oprogramowanie.  Możesz ' .
-        a_href_page('pobrać źródła programu (dla programistów)', 'engine') . '.');
-      break;
-    case LANG_EN:
-      define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-        'This is free/open-source software. Developers can ' .
-        a_href_page('download sources of this program', 'engine') .
-        '.');
-      break;
-  }
-
-  /* DEPENDS_ consts and funcs  ===================================== */
-
-  define('DEPENDS', 'Requirements');
-  define('DEPENDS_OPENGL',
-    '<a href="http://www.opengl.org/documentation/implementations/">OpenGL</a>
-    <!--
-    (on all modern OSes, OpenGL is probably already installed and working on
-    your system) -->');
-  define('DEPENDS_LIBPNG_AND_ZLIB',
-    '<a href="http://www.libpng.org/">Libpng</a>,
-     <a href="http://www.gzip.org/zlib/">Zlib</a>
-     (under Windows appropriate DLL files are already included
-     in program\'s archive, so you don\'t have to do anything)');
-  define('SUGGESTS_OPENAL',
-    a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-    ' is strongly suggested if you want to hear sound
-    (under Windows appropriate DLL files are already included
-    in program\'s archive, so you don\'t have to do anything)');
-  define('SUGGESTS_OPENAL_VORBISFILE',
-    a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-    ' and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
-    libraries are strongly suggested if you want to hear sound
-    (under Windows appropriate DLL files are already included
-    in program\'s archive, so you don\'t have to do anything)');
-  define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_1',
-    'Under Unices (Linux, FreeBSD, Mac OS X):
-    <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
-  define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
-    'Under Unix (Linux, FreeBSD, Mac OS X):
-    <a href="http://www.gtk.org/">GTK+</a> >= 2.6 and
-    <a href="http://gtkglext.sourceforge.net/">GtkGLExt</a> >= 1.0.6');
-    /* I also use some GTK >= 2.8 features, but since Mac OS X fink stable
-       includes only GTK 2.6, we work Ok with GTK 2.6 too. */
-  define('DEPENDS_MACOSX',
-    'Mac OS X users should look at the ' .
-    a_href_page('list of dependencies on Mac OS X', 'macosx_requirements') );
-
-  function depends_par($depends_array)
-  {
-    $result = '';
-    foreach($depends_array as $item)
-    {
-      if ($result != '') $result .= ', ';
-      $result .= $item;
-    }
-
-    $result = "<p><b>" . DEPENDS . ":</b> $result.";
-    return $result;
-  }
-
-  function depends_ul($depends_array)
-  {
-    return array_to_ul($depends_array);
-  }
+/* Jak a_href_page ale page_url ma odpowiedni hash_link. */
+function a_href_page_hashlink($link_title, $page_name, $hash_link)
+{
+  return a_href_page_core($link_title, $page_name, $hash_link);
 }
 
 function echo_kambi_common_css()
@@ -684,18 +477,14 @@ div.quick_links_bottom_line { text-align: <?php
    np. jej deklaracje <style>, <script> i inne (bede rozszerzal ta liste
    gdy znajde do tego powody).
 
-   $a_page_lang musi byc elementem supported_page_langs($page_basename)
-
    Sets global $page_basename, if not already set.
 */
-function common_header($a_page_title, $a_page_lang,
+function common_header($a_page_title, $page_lang,
   $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
 {
-  global $page_title, $page_lang, $s_quick_links, $main_page,
-    $lang_to_html_lang, $this_page_name, $page_basename;
+  global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename;
 
   $page_title = $a_page_title;
-  $page_lang = $a_page_lang;
 
   /* calculate $this_page_name */
   /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
@@ -708,31 +497,15 @@ function common_header($a_page_title, $a_page_lang,
     $this_page_name = $_SERVER['argv'][0];
   $this_page_name = basename($this_page_name);
 
-  /* calculate $page_basename (requires $page_lang and $this_page_name) */
+  /* calculate $page_basename (requires $this_page_name) */
   if (!isset($page_basename))
   {
     $page_basename = $this_page_name;
     $page_basename = basename($page_basename, '.php');
-    $page_basename = basename($page_basename, '.' . $lang_to_html_lang[$page_lang]);
   }
-
-  /* evaluate $supported_langs (requires $page_basename) */
-  $supported_langs = supported_page_langs($page_basename);
-  assert('in_array($a_page_lang, $supported_langs)');
-
-  common_set_page_functions();
 
   /* evaluate $s_quick_links */
   $s_quick_links = '';
-
-  $link_names = array(LANG_EN => 'English: this page in english',
-                      LANG_PL => 'Polish: ta strona po polsku');
-  foreach($supported_langs as $lang)
-  {
-    if ($lang != $page_lang)
-      $s_quick_links = str_append_part($s_quick_links, ' | ',
-        a_href_page($link_names[$lang], $page_basename, $lang));
-  }
 
   if (!IS_GEN_LOCAL)
   {
@@ -752,7 +525,7 @@ function common_header($a_page_title, $a_page_lang,
   "http://www.w3.org/TR/html4/loose.dtd">
 <?php // I use HTML 4.01 with deprecated things ?>
 
-<?php echo "<html lang=\"" .$lang_to_html_lang[$page_lang]. "\">\n"; ?>
+<?php echo "<html lang=\"" .$page_lang. "\">\n"; ?>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -766,21 +539,6 @@ function common_header($a_page_title, $a_page_lang,
   if (!is_null($meta_description))
   { echo "<meta name=\"Description\" content=\"$meta_description\">\n"; }
 
-  $link_names = array(LANG_EN => 'This page in english',
-                      LANG_PL => 'Ta strona po polsku');
-  foreach($supported_langs as $lang)
-  {
-    if ($lang != $page_lang) {
-      $page_url = page_url($page_basename, '', $lang, $url_comment);
-      echo "<link rel=\"Alternate\"
-                  type=\"text/html\"
-                  href=\"$page_url\"
-                  hreflang=\"" .$lang_to_html_lang[$lang]. "\"
-                  lang=\"" .$lang_to_html_lang[$lang]. "\"
-                  title=\"" .$link_names[$lang]. "$url_comment\">\n";
-    }
-  }
-
   if (! ($main_page || IS_GEN_LOCAL))
   {
     switch ($page_lang)
@@ -788,7 +546,7 @@ function common_header($a_page_title, $a_page_lang,
       case LANG_PL: $main_page_title = 'Strona główna'; break;
       case LANG_EN: $main_page_title = 'Main page'; break;
     }
-    $page_url = page_url(MAIN_PAGE_BASENAME, '', $page_lang, $url_comment);
+    $page_url = page_url(MAIN_PAGE_BASENAME, '', $url_comment);
     echo "<link rel=\"Start\"
                 type=\"text/html\"
                 href=\"$page_url\"

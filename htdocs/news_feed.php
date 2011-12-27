@@ -1,9 +1,5 @@
 <?php
   require_once 'castle_engine_functions.php';
-
-  $page_lang = LANG_EN;
-  common_set_page_functions();
-
   require_once 'kambi-php-lib/class_rss_generator.inc.php';
   require_once 'news_common.php';
 

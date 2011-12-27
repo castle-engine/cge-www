@@ -344,7 +344,8 @@ function echo_header_bonus ()
 /* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
-function castle_header($a_page_title, $meta_description = NULL, $path = array())
+function castle_header($a_page_title, $meta_description = NULL, $path = array(),
+  $bonus_before_sidebar = '')
 {
   common_header($a_page_title, LANG_EN, $meta_description);
 
@@ -398,11 +399,15 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     ' . _castle_header_menu($path[0]) . '
   </div>';
 
+  if (!empty($bonus_before_sidebar))
+    $bonus_before_sidebar = '<tr><td colspan="2">' . $bonus_before_sidebar . '</td></tr>';
+
   if (empty($castle_sidebar))
     $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
     $rendered .= '<table class="layout" cellspacing="0">
       <col class="content_column">
       <col class="sidebar_column">
+      ' . $bonus_before_sidebar . '
       <tr><td class="layout content">' . _castle_breadcrumbs($path);
 
   echo $rendered;
@@ -691,4 +696,66 @@ function flattr_button($align = true, $echo = true)
     echo $result; else
     return $result;
 }
+
+/* Constants and things that need a_href_page* */
+
+define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
+  'This is free/open-source software. Developers can ' .
+  a_href_page('download sources of this program', 'engine') . '.');
+
+/* DEPENDS_ consts and funcs */
+
+define('DEPENDS', 'Requirements');
+define('DEPENDS_OPENGL',
+  '<a href="http://www.opengl.org/documentation/implementations/">OpenGL</a>
+  <!--
+  (on all modern OSes, OpenGL is probably already installed and working on
+  your system) -->');
+define('DEPENDS_LIBPNG_AND_ZLIB',
+  '<a href="http://www.libpng.org/">Libpng</a>,
+   <a href="http://www.gzip.org/zlib/">Zlib</a>
+   (under Windows appropriate DLL files are already included
+   in program\'s archive, so you don\'t have to do anything)');
+define('SUGGESTS_OPENAL',
+  a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
+  ' is strongly suggested if you want to hear sound
+  (under Windows appropriate DLL files are already included
+  in program\'s archive, so you don\'t have to do anything)');
+define('SUGGESTS_OPENAL_VORBISFILE',
+  a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
+  ' and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
+  libraries are strongly suggested if you want to hear sound
+  (under Windows appropriate DLL files are already included
+  in program\'s archive, so you don\'t have to do anything)');
+define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_1',
+  'Under Unices (Linux, FreeBSD, Mac OS X):
+  <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
+define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
+  'Under Unix (Linux, FreeBSD, Mac OS X):
+  <a href="http://www.gtk.org/">GTK+</a> >= 2.6 and
+  <a href="http://gtkglext.sourceforge.net/">GtkGLExt</a> >= 1.0.6');
+  /* I also use some GTK >= 2.8 features, but since Mac OS X fink stable
+     includes only GTK 2.6, we work Ok with GTK 2.6 too. */
+define('DEPENDS_MACOSX',
+  'Mac OS X users should look at the ' .
+  a_href_page('list of dependencies on Mac OS X', 'macosx_requirements') );
+
+function depends_par($depends_array)
+{
+  $result = '';
+  foreach($depends_array as $item)
+  {
+    if ($result != '') $result .= ', ';
+    $result .= $item;
+  }
+
+  $result = "<p><b>" . DEPENDS . ":</b> $result.";
+  return $result;
+}
+
+function depends_ul($depends_array)
+{
+  return array_to_ul($depends_array);
+}
+
 ?>
