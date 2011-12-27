@@ -121,17 +121,17 @@ pascal_src_add_standard ()
   find ./ -type f -and -iname '*.sh' -and -exec chmod 755 '{}' ';'
 }
 
-# Packs archive and removes temp dir.
-# $1 = ARCHIVE_BASENAME
-#   Archive will be called
-#   "${ARCHIVE_PATH}""$ARCHIVE_BASENAME"-$VERSION-src.tar.gz
-#   Where $VERSION is extracted from generated_versions.sh, also using
-#   ARCHIVE_BASENAME.
-pascal_src_archive_end ()
+# Packs archive.
+# $1 is ARCHIVE_BASENAME. We'll place it in $ARCHIVE_PATH, add there $VERSION,
+# suffix '-src' and proper extension.
+# $2 is desired archive extension, determines compression (allowed values
+# like allowed extensions for mk_archive_pack).
+pascal_src_archive_pack ()
 {
   # parse options
   local ARCHIVE_BASENAME="$1"
-  shift 1
+  local ARCHIVE_EXT="$2"
+  shift 2
 
   # calculate $VERSION
   local VERSION_VARIABLE_NAME="GENERATED_VERSION_${ARCHIVE_BASENAME}"
@@ -139,18 +139,26 @@ pascal_src_archive_end ()
   # eval trick from http://tldp.org/LDP/abs/html/ivr.html
   eval VERSION=\$$VERSION_VARIABLE_NAME
 
-  local ARCHIVE_NAME="$ARCHIVE_BASENAME"-"$VERSION"-src.tar.gz
+  local ARCHIVE_NAME="$ARCHIVE_BASENAME"-"$VERSION"-src"$ARCHIVE_EXT"
   local ARCHIVE_FULLNAME="${ARCHIVE_PATH}""$ARCHIVE_NAME"
 
   # pack "$MK_ARCHIVE_TEMP_PATH" to "$ARCHIVE_FULLNAME"
 
   mk_archive_pack "$ARCHIVE_FULLNAME"
 
-  # finalize: remove "$MK_ARCHIVE_TEMP_PATH", echo acknowledge
-
-  mk_archive_end
-
   echo "Archive $ARCHIVE_FULLNAME updated"
+}
+
+# Packs archive to tar.gz and removes temp dir.
+# $1 = ARCHIVE_BASENAME, like for pascal_src_archive_pack.
+pascal_src_archive_end ()
+{
+  local ARCHIVE_BASENAME="$1"
+  shift 1
+
+  pascal_src_archive_pack "$ARCHIVE_BASENAME" .tar.gz
+  # finalize: remove archive
+  mk_archive_end
 }
 
 # main ------------------------------------------------------------
@@ -170,7 +178,9 @@ case "$1" in
     make clean html
     rm -Rf "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/doc/pasdoc/cache/
 
-    pascal_src_archive_end castle_game_engine
+    pascal_src_archive_pack castle_game_engine .tar.gz
+    pascal_src_archive_pack castle_game_engine .zip
+    mk_archive_end
     ;;
 
 # update sources of specific programs ----------------------------

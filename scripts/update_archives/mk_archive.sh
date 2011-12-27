@@ -64,8 +64,7 @@ mk_archive_begin ()
 # Packs everything within MK_ARCHIVE_TEMP_PATH to $1.
 # Filenames inside archive will be relative to MK_ARCHIVE_TEMP_PATH.
 # $1 must be absolute filename (i.e. with full path).
-# In the future archive extension should determine archive type,
-# for now always use '.tar.gz'.
+# $1 extension determines archive type, currently recognized are tar.gz and zip.
 mk_archive_pack ()
 {
   # parse options
