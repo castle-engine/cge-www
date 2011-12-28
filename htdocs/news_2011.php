@@ -15,6 +15,8 @@
 
 - Main page reworked into three elegant panels directing people to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab "News".
   add screenshots www_main_page_2011_12_before/after.
+
+- Engine sources and demo_models are now offered as zip archives too, to make it easier to unpack them on Windows.
 */
 
 array_push($news,
