@@ -27,9 +27,9 @@ castle_thumbs(array(
     <p>Developers will note large changes in the layout of <tt>kambi_vrml_game_engine</tt> archive (and SVN directory).</p>
 
     <ol>
-      <li>All "core" sources are moved to the <a href="' . sf_checkout_link(false, ENGINE_DIR_NAME . '/src/') . '"><tt>src/</tt> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
+      <li>All "core" sources are moved to the <a href="' . sf_checkout_link(false, 'castle_game_engine/src/') . '"><tt>src/</tt> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
 
-      <li><a href="' . sf_checkout_link(false, ENGINE_DIR_NAME . '/examples/') . '"><tt>examples/</tt> subdirectory</a> was moved to the top. I should have done this a long time ago.  If you want to look at VRML demos, now you just go to <tt>examples/vrml/</tt> subdirectory, which is hopefully obvious to new developers. (Previously, you had to dig into cryptically-named <tt>3dmodels.gl/examples/</tt>)
+      <li><a href="' . sf_checkout_link(false, 'castle_game_engine/examples/') . '"><tt>examples/</tt> subdirectory</a> was moved to the top. I should have done this a long time ago.  If you want to look at VRML demos, now you just go to <tt>examples/vrml/</tt> subdirectory, which is hopefully obvious to new developers. (Previously, you had to dig into cryptically-named <tt>3dmodels.gl/examples/</tt>)
 
       <!-- teaser </li></ol></li></ol> -->
 

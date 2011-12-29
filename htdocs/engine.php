@@ -61,17 +61,17 @@
 contains more exhaustive list of engine features, with links to detailed
 information.</p>
 
-<p>See also <?php echo a_href_page('demo movies of ' . ENGINE_NAME,
+<p>See also <?php echo a_href_page('demo movies of Castle Game Engine',
 'movies'); ?>.
 
 <?php echo $toc->html_section(); ?>
 <?php echo $toc->html_section(); ?>
 
 <div class="download">
-<div class="download_title">Download "<?php echo ENGINE_NAME; ?>" (version <?php echo VERSION_CASTLE_GAME_ENGINE; ?>)</div>
+<div class="download_title">Download "Castle Game Engine" (version <?php echo VERSION_CASTLE_GAME_ENGINE; ?>)</div>
 <ul>
-  <li><?php echo sf_download('As tar.gz archive', ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
-  <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', ENGINE_DIR_NAME. '-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
+  <li><?php echo sf_download('As tar.gz archive', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
+  <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
 </ul>
 </div>
 
@@ -79,7 +79,7 @@ information.</p>
 There are many simple example programs included
 (see <tt>examples/</tt> subdirectory).
 Compile everything with simple "<tt>make</tt>" inside the
-<tt><?php echo ENGINE_DIR_NAME; ?>/</tt> directory.
+<tt>castle_game_engine/</tt> directory.
 Compile examples <!-- (the ones that do not require Lazarus) --> by
 simple "<tt>make examples</tt>". Or you can compile and run from
 <a href="http://lazarus.freepascal.org/">Lazarus</a>.
@@ -135,7 +135,7 @@ you have appropriate libraries installed on your system.</p>
 
 <p>Alternatively, you can get the latest (bleeding-edge) sources from Subversion by:
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, ENGINE_DIR_NAME); ?></pre>
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
@@ -150,7 +150,7 @@ Then execute <tt>compile.sh</tt> scripts to compile the programs you want.
 function older_engine_version($older_version)
 {
   echo sf_download($older_version . ' version',
-    ENGINE_DIR_NAME. '-' . $older_version . '-src.tar.gz');
+    'castle_game_engine-' . $older_version . '-src.tar.gz');
 }
 ?>
 
@@ -262,7 +262,7 @@ book about the Subversion</a>.</p>
 <pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
 
 <p>Please note that the full <tt>trunk</tt> is quite large.
-It contains everything: the core engine sources (<tt><?php echo ENGINE_DIR_NAME; ?></tt> subdirectory),
+It contains everything: the core engine sources (<tt>castle_game_engine</tt> subdirectory),
 webpages stuff (in <tt>www</tt> subdirectory),
 <tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
 Often you want to download only specific subdirectories of it.</p>
@@ -406,7 +406,7 @@ so should be 100% stable.</p>
     the engine should be able to run on all modern OSes supported by FPC.</li>
 
   <li>There are <b>many example programs</b>, look in sources
-    <tt><?php echo ENGINE_DIR_NAME; ?>/examples/</tt> subdirectory.</li>
+    <tt>castle_game_engine/examples/</tt> subdirectory.</li>
 
   <li>There are ready window classes (<tt>TCastleWindow</tt>)
     and Lazarus components (<tt>TCastleControl</tt>) to make simple
@@ -466,11 +466,11 @@ As a special exception, the copyright holders of this library give you permissio
 
 <p>Important notes:</p>
 <ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt><?php echo ENGINE_LGPL_DEF; ?></tt> symbol defined in file <tt><?php echo ENGINE_DIR_NAME; ?>/base/<?php echo ENGINE_CONF_NAME; ?>.inc</tt>. Just put there <tt>{$define <?php echo ENGINE_LGPL_DEF; ?>}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define <?php echo ENGINE_LGPL_DEF; ?>}</tt>).</p>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>CASTLE_ENGINE_LGPL</tt> symbol defined in file <tt>castle_game_engine/base/castleconf.inc</tt>. Just put there <tt>{$define CASTLE_ENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define CASTLE_ENGINE_LGPL}</tt>).</p>
 
     <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
 
-  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt><?php echo ENGINE_DIR_NAME; ?></tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
+  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>castle_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
