@@ -75,7 +75,7 @@ echo '<div class="news_item">' . news_to_html($item) . '</div>';
     project page on Ohloh</a> (you're welcome to rate and click on
     <i>"I use this"</i> button there!).</td>
   </tr>
-</tr></table>
+</table>
 
 <br/>
 
