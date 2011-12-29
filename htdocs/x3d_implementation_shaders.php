@@ -214,34 +214,30 @@ showing how to pass elevation grid heights by the shader attributes.</p>
   ));
 ?>
 
-<p><b>(This feature is in development now.
-You need view3dscene from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">snapshots</a>
-or <a href="http://castle-engine.sourceforge.net/engine.php#section_download_src">SVN sources</a>
-to test this.)</b></p>
-
-<p>As an extension, we also have <i>geometry shaders</i>
+<p>We support <i>geometry shaders</i>
 (in addition to standard <i>vertex</i> and <i>fragment shaders</i>).
-To use them, you simply set <tt>ShaderPart.type</tt> to <tt>"GEOMETRY"</tt>,
+To use them, simply set <tt>ShaderPart.type</tt> to <tt>"GEOMETRY"</tt>,
 and put code of your geometry shader inside <tt>ShaderPart.url</tt>.</p>
 
 <p><b>What is a geometry shader?</b>
-A geometry shader is executed once for each primitive, like a single triangle.
+A geometry shader is executed once for each primitive, like once for each triangle.
 Geometry shader works <i>between</i> the vertex shader and fragment shader
-&mdash; it knows all the outputs from the vertex shader.
+&mdash; it knows all the outputs from the vertex shader,
+and is responsible for passing them to the rasterizer.
 <!--
 and it generates inputs to the fragment shader.
 (More precisely, geometry shader generates inputs for the rasterizer,
 and the interpolated values will be given to the fragment shader.)
 -->
-Geometry shader can use the information about given primitive (vertex positions
-from vertex shader &mdash; in any space, and all vertex attributes) and can generate other primitives.
+Geometry shader uses the information about given primitive: vertex positions
+from vertex shader, usually in eye or object space,
+and all vertex attributes.
 A single geometry shader may generate any number of primitives
 (separated by the <tt>EndPrimitive</tt> call), so you can easily "explode"
-a simple input primitive into a number of others
-(or delete some original primitives based on some criteria).
-The type of the output primitive may be different
-than input &mdash; for example, you can change triangles into
-points or the other way around.</p>
+a simple input primitive into a number of others.
+You can also delete some original primitives based on some criteria.
+The type of the primitive may be changed by the geometry shader
+&mdash; for example, triangles may be converted to points or the other way around.</p>
 
 <p>Examples of geometry shaders with <tt>ComposedShader</tt>:</p>
 

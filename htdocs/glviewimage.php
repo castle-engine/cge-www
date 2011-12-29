@@ -47,7 +47,8 @@ a very limited image editor.</p>
 <?php echo $toc->html_section(); ?>
 
 <p><tt>glViewImage</tt> was originally developed to test and demonstrate
-the power of image handling inside our VRML engine, but it became quite usable
+the power of image handling inside our <?php echo a_href_page(
+'Castle Game Engine', 'engine'); ?> , but it became quite usable
 utility on it's own. Viewed image can be quickly scaled and moved,
 you can browse images list, you can test how image looks when tiled
 (to test is it good for a texture or desktop wallpaper),
@@ -61,18 +62,14 @@ is also very useful.</p>
   <li><b>PNG</b>: Portable Network Graphic. Excellent open format for images,
     offering good lossless image compression
     and full alpha channel.
+  </li>
 
   <li><b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM (PBM, PGM, PPM)</b>:
     are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC
     fcl-image</a> library.
     This gives us full support for these formats, without any extra
     libraries necessary (fcl-image is compiled inside our programs).
-
-    <p>Temporary note: in stable (1.3.1) glViewImage, actually some of these
-    formats require still <a href="http://www.imagemagick.org/">ImageMagick</a>
-    on $PATH. You can use
-    <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>
-    (or wait for next release) to actually get fcl-image benefits.
+  </li>
 
   <li><b>DDS</b>: <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
     Draw Surface</a>. This image format may be used for advanced
@@ -84,13 +81,15 @@ is also very useful.</p>
     is also supported. <?php echo a_href_page_hashlink(
     'Details about using DDS format for textures in our engine are here.',
     'x3d_implementation_texturing', 'section_dds'); ?>
+  </li>
 
   <li><b>RGBE</b>: simple HDR (high dynamic range) format.
     The format name is an acronym for <i>Red + Green + Blue + Exponent</i>,
     it was developed by by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">Radiance</a>.
+  </li>
 
-  <li><b>BMP</b>: Windows Bitmap. Native support.
+  <li><b>BMP</b>: Windows Bitmap. Native support.</li>
 
   <!--li><b>PPM</b>: Portable Pixel Map. Simple uncompressed image format,
     supported by practically all graphic programs. Native support.
@@ -98,7 +97,7 @@ is also very useful.</p>
     and doesn't really matter for user.)
   -->
 
-  <li><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).
+  <li><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).</li>
 
   <li><p><b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
     To load and save these images, you need to install
@@ -106,6 +105,7 @@ is also very useful.</p>
     package, and make sure it's <tt>convert</tt> program is available on $PATH.
     Then our engine will recognize these image formats,
     and seamlessly load/save them (by running <tt>convert</tt> "under the hood").
+  </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
