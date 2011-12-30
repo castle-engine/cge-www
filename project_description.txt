@@ -4,6 +4,9 @@ Short project description, used on:
 
 Game engine focused on VRML and X3D formats. Processing and optimized OpenGL rendering of 3D models (in VRML/X3D and other formats), animation, collision detection, shadows, shaders, 3D sound. Written using ObjectPascal (compiled by FreePascal). Previously "Kambi VRML game engine".
 
+On http://cia.vc/stats/project/castle-engine we append:
+Unfortunately, cia.vc handling of our SVN repo is broken now, see http://code.google.com/p/cia-vc/issues/detail?id=50
+
 - https://sourceforge.net/projects/castle-engine/
   Summary: 3D game engine focused on X3D and beautiful graphic effects.
   Description: Game engine focused on X3D. Rendering and processing of 3D models in X3D, VRML, Collada and other formats. Latest graphic effects including shadows, shaders, mirrors. Animation, collision detection, 3D sound. Also home of view3dscene - our full-featured VRML/X3D browser. And also home of various games developed using the engine, like "The Castle".
