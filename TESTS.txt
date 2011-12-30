@@ -44,10 +44,10 @@ svn diff # check, fix or commit differences
 # - Compile and run from Lazarus lpi files non-LCL examples:
 #     view3dscene,
 #     castle,
-#     examples/vrml/simplest_vrml_browser
+#     examples/3d_rendering_processing/view_3d_model_advanced.lpr
 # - Compile and run from Lazarus lpi files LCL examples:
-#     lazarus/vrml_browser
-#     lazarus/vrml_with_2d_controls
+#     lazarus/model_3d_viewer
+#     lazarus/model_3d_with_2d_controls
 
 # Make sure Lazarus packages have all units included.
 
