@@ -1,6 +1,6 @@
 Scripts to automatically create release archives
 (binary, for various platforms, and source).
-It turned out *enormously* usefull to have this process automated :)
+It's *enormously* useful to have this process automated :)
 
 These are bash scripts (under Windows basic Cygwin environment is required;
 MinGW is probably also OK, although minor adjustments may be needed).
