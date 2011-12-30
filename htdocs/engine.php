@@ -178,9 +178,7 @@ notes near some programs below.
   function echo_src_archive_2($title, $internal_name, $engine_ver)
   {
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
-    if ($internal_name == 'castle')
-      $version = '0.9.3'; else
-      $version = constant($version_const_name);
+    $version = constant($version_const_name);
 
     echo '<li><p>' .
       sf_download('sources of '.$title,
@@ -210,20 +208,20 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '2.5.1');
-  echo_src_archive('castle', '2.5.1');
-  echo_src_archive('rayhunter', '2.1.0');
+  echo_src_archive('view3dscene', '3.0.0');
+  echo_src_archive('castle', '3.0.0');
+  echo_src_archive('rayhunter', '3.0.0');
 
-  echo_src_archive('lets_take_a_walk', '2.0.0');
-  echo_src_archive('malfunction', '2.0.3');
-  echo_src_archive('kambi_lines', '2.0.0');
+  echo_src_archive('lets_take_a_walk', '3.0.0');
+  echo_src_archive('malfunction', '3.0.0');
+  echo_src_archive('kambi_lines', '3.0.0');
 
-  echo_src_archive('glplotter', '2.0.0');
-  echo_src_archive('gen_function', '1.5.0');
+  echo_src_archive('glplotter', '3.0.0');
+  echo_src_archive('gen_function', '3.0.0');
 
-  echo_src_archive_2('glViewImage', 'glviewimage', '2.0.0');
-  echo_src_archive('bezier_curves', '2.0.0');
-  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '2.0.1');
+  echo_src_archive_2('glViewImage', 'glviewimage', '3.0.0');
+  echo_src_archive('bezier_curves', '3.0.0');
+  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '3.0.0');
 ?>
 </ul>
 
