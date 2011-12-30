@@ -24,10 +24,10 @@ castle_thumbs(array(
 )) .
 '<p>We\'re proud to release new <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a>, our VRML/X3D browser and viewer for other 3D models, and <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a>, our 3D game engine (used under the hood by view3dscene and other programs here).</p>
 
-<p>New features in <b><a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a></b> for users:</p>
+<p><b>New features in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a> for users</b>:</p>
 
 <ul>
-  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now a lot of features: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), many polygon lists, objects sharing, double-sided information, Collada 1.5 support. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
+  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), multiple polygon lists, objects sharing, double-sided information, 1.5 specification support. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
 
     <p>Test Collada models may be found e.g. in <a href="http://collada.org/owl/">COLLADA Test Model Bank</a>. <a href="http://www.blender.org/">Blender</a>, and other 3D modelers, include exporters to Collada.</p>
   </li>
@@ -35,48 +35,54 @@ castle_thumbs(array(
   <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes).</p>
   </li>
 
-  <li><p><i>"Limit FPS"</i> option implemented, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not needlessly use battery life on laptops.</p>
+  <li><p><i>"Limit FPS"</i> option implemented, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not exhaust battery life on laptops.</p>
 
-    <p>This is configurable by view3dscene menu item "File -> Preferences -> Frames Per Second Limit ...", default is 100. For developers, this is configurable by <tt>TGLApplication.LimitFPS</tt> property.</p>
+    <p>This is configurable by view3dscene menu item <i>"File -&gt; Preferences -&gt; Frames Per Second Limit ..."</i>. Default is 100. For developers, this is configurable by <tt>TGLApplication.LimitFPS</tt> property.</p>
   </li>
 
-  <li><p>Many improvements to our <i>"compositing shaders"</i> developed. This is a way to combine snippets of GLSL shader code into a final shader. It allows you to implement a myriad of graphic effects using GLSL in a comfortable manner, that cooperates with standard renderer shaders for standard lighting, texturing and such.</p>
+  <li><p>Many improvements to our <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders extensions</a>. This is a way to implement reusable effects using the GLSL (<i>OpenGL shading language</i>). Effects implemented this way seamlessly cooperate with each other and with standard renderer shaders (so you have standard lighting, texturing and such for free).</p>
 
     <p>My Ph.D. thesis, describing the whole idea, is also published on the page linked above :)</p>
   </li>
 
-  <li>Many optimizations to scene loading.</li>
+  <li>Optimizations to scene loading.</li>
 
   <li>More image formats supported out-of-the-box. We use excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a> to load and save various image formats now. This improves reading of some formats (PCX, JPG), and introduces some new formats (GIF, TGA, XPM, PSD). Complete list of image formats supported by our engine is on <a href="glviewimage.php">glViewImage</a> page.</li>
 
-  <li>New menu item to take a screenshot with transparent background, <i>Display -&gt; Screenshot To Image (Transparent Background)</i>.</li>
+  <li>New menu item to take a screenshot with transparent background: <i>Display -&gt; Screenshot To Image (Transparent Background)</i>.</li>
 
   <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to allow using it repeatedly, and to work with <tt>IndexedTriangleSet</tt>.</li>
 
   <li>Fixes and improvements to <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">shader rendering</a>.</li>
 
-  <li><p><tt>--viewpoint</tt> command-line option to choose a different viewpoint as the default (initial) one. Especially useful in combination with <tt>--screenshot</tt> option.</p></li>
+  <li><tt>--viewpoint</tt> command-line option to choose a different viewpoint as the default (initial) one. Especially useful in combination with <tt>--screenshot</tt> option.</li>
 
-  <li><p>Many improvements do shadow maps: generation fixed and optimized (for shadow maps, we render model with shaders and many fixed-function features, like lightig, turned <i>off</i>), <i>Variance Shadow Maps</i> improvements (they work quite stable now on newer GPUs)</p></li>
+  <li>Many improvements to shadow maps: generation fixed and optimized (for shadow maps, we render model with shaders and many fixed-function features, like lighting, turned <i>off</i>), <i>Variance Shadow Maps</i> improvements (they work quite stable now on newer GPUs).</li>
 
-  <li><a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <tt>shaders</tt> and <tt>compositing_shaders</tt> subdirectories.
-
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <tt>base/castlecolors.pas</tt> unit.</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now.</li>
 
   <li><i>"Edit -&gt; H-Anim Joints Visualization"</i> now asks for visualization size. Some H-Anim with VRML 97 fixes.</li>
+
+  <li><a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <tt>shaders</tt> and <tt>compositing_shaders</tt> subdirectories.
 </ul>
 
-<p>New features in <b><a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a></b> for developers:</p>
+<p>For engine 3.0.0, I have to admit that we didn\'t implement all planned features. Most importantly: easy AI, and engine tutorials, are postponed to next engine 3.1.0 release. However, we still have many <b>new features in <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a> for developers</b>:</p>
 
 <ul>
   <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
 
+  <li><p>Examples completely reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
+    <p>Isometric game (sandbox) and fixed camera game (rift) examples were added to engine sources.
+  </li>
+
   <li>FPC generics are used everywhere, for all our containers. For records, we use custom TGenericStructList class (as <a href="http://bugs.freepascal.org/view.php?id=15480">standard FGL doesn\'t work for records/vectors</a>).</li>
 
-  <li>A lot of engine identifiers are renamed and changed, to emphasize:
+  <li><p>A lot of engine identifiers are renamed and changed, to emphasize:</p>
+
     <ul>
       <li>We\'re focused on X3D since a long time, not outdated VRML.
       <li>A lot of engine code is just directed at rendering/processing of 3D models, not really tied to X3D.
+      <li>Advised window/control classes are now <tt>TCastleWindow</tt> and <tt>TCastleControl</tt>. They include ready <tt>SceneManager</tt> instance.
       <li>New engine name &mdash; castle, not kambi.
     </ul>
 
@@ -84,20 +90,17 @@ castle_thumbs(array(
   <li>Improvements to work with latest OpenGL &gt;= 3. We use standard OpenGL features, instead of extensions, when possible. We don\'t fully work in OpenGL 3.0 forward-compatible context <i>yet</i>, but we\'re close to it now.
   <li>Notifications (GLNotifications, these messages <i>"You picked up Potion Of Life"</i> etc. you see in FPS games) were reimplemented. There are now TUIControl descendants, so can be used just like our other 2D controls. They are also visible on the Lazarus component palette now.</li>
   <li>TBox3D and TQuaternion records remade into old-style object. Previous procedures Box3DXxx(Box, ...) have to be changed now to Box.Xxx(...). This results in nicer API, method names may be shorter and look cleaner.</li>
-  <li><p>Examples reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
-    <p>Isometric game (sandbox) and fixed camera game (rift) examples were added to engine sources.
-  </li>
   <!-- Compilation with FPC 2.6.0-rc1 tested. -->
 </ul>
 
 <p>Website improvements:</p>
 
 <ul>
-  <li>New <a href="https://sourceforge.net/p/castle-engine/">castle-engine project page on SourceForge</a> used new Allura platform, with <a href="https://sourceforge.net/p/castle-engine/discussion/">new forum</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/">new wiki</a> and <a href="https://sourceforge.net/p/castle-engine/tickets/">new tickets system (bug tracking)</a>.</li>
-  <li>Nice OS icons for download links (we use <a href="http://www.webdevstuff.com/95/free-operating-system-icons.html">CC icons from here</a>)</li>
-  <li>Added Google +1 button on the main page.</li>
+  <li>New <a href="https://sourceforge.net/p/castle-engine/">castle-engine project page on SourceForge</a> uses new Allura platform, with <a href="https://sourceforge.net/p/castle-engine/discussion/">new forum</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/">new wiki</a> and <a href="https://sourceforge.net/p/castle-engine/tickets/">new tickets system (bug tracking)</a>.</li>
   <li>Main page reworked into three elegant panels directing users to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab <a href="http://castle-engine.sourceforge.net/news.php">"News"</a>. See before/after images on the side of this news post.</li>
-  <li><a href="http://castle-engine.sourceforge.net/engine.php">Engine sources</a> and <a href="http://castle-engine.sourceforge.net/demo_models.php">demo_models</a> are now offered as zip archives too, to make it easier to unpack them on Windows.</li>
+  <li>Nice OS icons for download links.</li>
+  <li>Google +1 button on the main page.</li>
+  <li><a href="http://castle-engine.sourceforge.net/engine.php">Engine sources</a> and <a href="http://castle-engine.sourceforge.net/demo_models.php">demo_models</a> are now offered as zip archives too (in addition to tar.gz), to make it easier to unpack them on Windows.</li>
 </ul>
 
 <p>Other programs are released too, to give them small improvements and update their sources to be compatible with latest engine 3 API. In particular, <a href="http://castle-engine.sourceforge.net/glviewimage.php">glViewImage 1.4.0</a> is improved with new image formats support.
