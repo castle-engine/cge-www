@@ -1,4 +1,4 @@
-Here are the scripts to automatically create release archives
+Scripts to automatically create release archives
 (binary, for various platforms, and source).
 It turned out *enormously* usefull to have this process automated :)
 
