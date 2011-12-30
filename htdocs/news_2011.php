@@ -32,14 +32,13 @@ castle_thumbs(array(
     <p>Test Collada models may be found e.g. in <a href="http://collada.org/owl/">COLLADA Test Model Bank</a>. <a href="http://www.blender.org/">Blender</a>, and other 3D modelers, include exporters to Collada.</p>
   </li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes</a>).</p>
+  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes).</p>
   </li>
 
   <li><p><i>"Limit FPS"</i> option implemented, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not needlessly use battery life on laptops.</p>
 
     <p>This is configurable by view3dscene menu item "File -> Preferences -> Frames Per Second Limit ...", default is 100. For developers, this is configurable by <tt>TGLApplication.LimitFPS</tt> property.</p>
   </li>
-
 
   <li><p>Many improvements to our <i>"compositing shaders"</i> developed. This is a way to combine snippets of GLSL shader code into a final shader. It allows you to implement a myriad of graphic effects using GLSL in a comfortable manner, that cooperates with standard renderer shaders for standard lighting, texturing and such.</p>
 
