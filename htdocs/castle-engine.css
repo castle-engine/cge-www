@@ -121,13 +121,10 @@ dl.vrml_ver_differences > dt {
 table.program_image_links {
   width: 100%;
 }
-
 table.program_image_links_half {
   width: 50%;
 }
-
 td.program_image_link img { border: none; }
-
 td.program_image_link {
   background: #e8d59a;
   width: 50%;
@@ -139,7 +136,6 @@ td.program_image_link {
 table.main_links {
   width: 100%;
 }
-
 td.main_link {
   background: #efdfae;
   width: 33%;
@@ -148,6 +144,7 @@ td.main_link {
   padding: 0.5em;
   vertical-align: top;
 }
+td.main_link img { border: none; }
 
 .program_image_link_title { font-size: larger; }
 
@@ -376,6 +373,8 @@ div.header {
   position: absolute;
   right: 0%;
 }
+
+/* --------------------------------------------------------------------------- */
 
 table.donations { border-collapse: collapse; width: 80%;
   margin-left: auto;
