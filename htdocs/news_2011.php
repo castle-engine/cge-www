@@ -71,6 +71,10 @@ castle_thumbs(array(
 <ul>
   <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
 
+  <li><p>Note: This engine release <i>breaks compatibility</i> with earlier versions. Although there is no major change of the engine design (our scene manager design in engine 2.x was really good, and we want to push using it even further in engine 3.x). But there are a lot of renames around important units and classes. And some small things were redesigned more heavily.</p>
+    <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="http://castle-engine.sourceforge.net/forum.php">ask on our forum</a>.</p>
+  </li>
+
   <li><p>Examples completely reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
     <p>Isometric game (sandbox) and fixed camera game (rift) examples were added to engine sources.
   </li>
