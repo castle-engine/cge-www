@@ -1,24 +1,5 @@
 <?php
 
-/* Next news:
-- "Limit FPS" option, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not needlessly use battery life on laptops.
-
-  For users of view3dscene, this is configurable by "File -> Preferences -> Frames Per Second Limit ...".
-
-  For developers, this is configurable by TGLApplication.LimitFPS.
-
-- More fixes and workarounds to geometry shaders, esp. for modern GPUs using fglrx (ATI propriatary driver under Linux), see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a>.
-
-- "Edit -> H-Anim Joints Visualization" now asks for visualization size. Some H-Anim with VRML 97 fixes.
-
-- Compilation with FPC 2.6.0-rc1 tested.
-
-- Main page reworked into three elegant panels directing people to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab "News".
-  add screenshots www_main_page_2011_12_before/after.
-
-- Engine sources and demo_models are now offered as zip archives too, to make it easier to unpack them on Windows.
-*/
-
 array_push($news,
     array('title' => 'view3dscene 3.11.0, engine 3.0.0 releases',
 //          'short_title' =>
@@ -38,6 +19,8 @@ castle_thumbs(array(
   array('filename' => 'rift_1.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - game menu'),
   array('filename' => 'rift_2.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - inside game 1'),
   array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 1'),
+  array('filename' => 'www_main_page_2011_12_before.png', 'titlealt' => 'Front page before 2011-12-30'),
+  array('filename' => 'www_main_page_2011_12_after.png', 'titlealt' => 'Front page after 2011-12-30'),
 )) .
 '<p>We\'re proud to release new <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a>, our VRML/X3D browser and viewer for other 3D models, and <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a>, our 3D game engine (used under the hood by view3dscene and other programs here).</p>
 
@@ -49,8 +32,14 @@ castle_thumbs(array(
     <p>Test Collada models may be found e.g. in <a href="http://collada.org/owl/">COLLADA Test Model Bank</a>. <a href="http://www.blender.org/">Blender</a>, and other 3D modelers, include exporters to Collada.</p>
   </li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>.</p>
+  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes</a>).</p>
   </li>
+
+  <li><p><i>"Limit FPS"</i> option implemented, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not needlessly use battery life on laptops.</p>
+
+    <p>This is configurable by view3dscene menu item "File -> Preferences -> Frames Per Second Limit ...", default is 100. For developers, this is configurable by <tt>TGLApplication.LimitFPS</tt> property.</p>
+  </li>
+
 
   <li><p>Many improvements to our <i>"compositing shaders"</i> developed. This is a way to combine snippets of GLSL shader code into a final shader. It allows you to implement a myriad of graphic effects using GLSL in a comfortable manner, that cooperates with standard renderer shaders for standard lighting, texturing and such.</p>
 
@@ -74,6 +63,8 @@ castle_thumbs(array(
   <li><a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <tt>shaders</tt> and <tt>compositing_shaders</tt> subdirectories.
 
   <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <tt>base/castlecolors.pas</tt> unit.</li>
+
+  <li><i>"Edit -&gt; H-Anim Joints Visualization"</i> now asks for visualization size. Some H-Anim with VRML 97 fixes.</li>
 </ul>
 
 <p>New features in <b><a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a></b> for developers:</p>
@@ -97,6 +88,7 @@ castle_thumbs(array(
   <li><p>Examples reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
     <p>Isometric game (sandbox) and fixed camera game (rift) examples were added to engine sources.
   </li>
+  <!-- Compilation with FPC 2.6.0-rc1 tested. -->
 </ul>
 
 <p>Website improvements:</p>
@@ -105,6 +97,8 @@ castle_thumbs(array(
   <li>New <a href="https://sourceforge.net/p/castle-engine/">castle-engine project page on SourceForge</a> used new Allura platform, with <a href="https://sourceforge.net/p/castle-engine/discussion/">new forum</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/">new wiki</a> and <a href="https://sourceforge.net/p/castle-engine/tickets/">new tickets system (bug tracking)</a>.</li>
   <li>Nice OS icons for download links (we use <a href="http://www.webdevstuff.com/95/free-operating-system-icons.html">CC icons from here</a>)</li>
   <li>Added Google +1 button on the main page.</li>
+  <li>Main page reworked into three elegant panels directing users to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab <a href="http://castle-engine.sourceforge.net/news.php">"News"</a>. See before/after images on the side of this news post.</li>
+  <li><a href="http://castle-engine.sourceforge.net/engine.php">Engine sources</a> and <a href="http://castle-engine.sourceforge.net/demo_models.php">demo_models</a> are now offered as zip archives too, to make it easier to unpack them on Windows.</li>
 </ul>
 
 <p>Other programs are released too, to give them small improvements and update their sources to be compatible with latest engine 3 API. In particular, <a href="http://castle-engine.sourceforge.net/glviewimage.php">glViewImage 1.4.0</a> is improved with new image formats support.
