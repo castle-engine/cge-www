@@ -78,11 +78,7 @@ DOC_FILES_X3D='kanim_format.html
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
 MAKE="$KAMBI_GNU_MAKE"
 
-LINUX32_BINARY_PATH="$HOME"/rel/linux32/
-LINUX64_BINARY_PATH="$HOME"/rel/linux64/
-FREEBSD_BINARY_PATH=/freebsd/usr/home/michal/bin/
-MACOSX_BINARY_PATH="$HOME"/rel/macosx/
-WIN_BINARY_PATH="$HOME"/rel/win/
+EXEC_PATH="$HOME"/castle-engine-release/
 
 # Binaries packed are required to be compiled by this FPC version,
 # we will check it.
@@ -110,18 +106,23 @@ fi
 # Returns full, absolute filename of this executable file suitable for
 # current TARGET_OS and TARGET_ARCH.
 #
-# Uses global xxx_BINARY_PATH to know where executables are stored.
+# The executables must be under $EXEC_PATH directory, in subdirectory
+# suitable for given OS/architecture. Typically, before packing releases,
+# you will copy executables for all relevant OS/arch there.
 get_binary_full_file_name ()
 {
   local BINARY_BASENAME="$1"
   local ABORT_VERSION_CHECK="${2:-}"
 
-  case "$TARGET_OS"-"$TARGET_ARCH" in
-    linux-i386)     RESULT="${LINUX32_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='i386 - Linux'   ;;
-    linux-x86_64)   RESULT="${LINUX64_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='x86_64 - Linux' ;;
-    freebsd-i386)   RESULT="${FREEBSD_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='i386 - FreeBSD' ;;
-    macosx-i386)    RESULT="${MACOSX_BINARY_PATH}${BINARY_BASENAME}"  ; FPC_OS_ARCH='i386 - Darwin'  ;;
-    win-i386)       RESULT="${WIN_BINARY_PATH}${BINARY_BASENAME}".exe ; FPC_OS_ARCH='i386 - Win32'   ;;
+  local RESULT="${EXEC_PATH}${TARGET_OS}-${TARGET_ARCH}/${BINARY_BASENAME}"
+
+  local FPC_OS_ARCH
+  case "${TARGET_OS}-${TARGET_ARCH}" in
+    linux-i386)                              FPC_OS_ARCH='i386 - Linux'   ;;
+    linux-x86_64)                            FPC_OS_ARCH='x86_64 - Linux' ;;
+    freebsd-i386)                            FPC_OS_ARCH='i386 - FreeBSD' ;;
+    macosx-i386)                             FPC_OS_ARCH='i386 - Darwin'  ;;
+    win-i386)       RESULT="${RESULT}".exe ; FPC_OS_ARCH='i386 - Win32'   ;;
     *)
       echo 'get_binary_full_file_name: incorrect OS and/or architecture name '"$TARGET_OS"-"$TARGET_ARCH" > /dev/stderr
       exit 1
