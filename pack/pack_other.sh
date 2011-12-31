@@ -4,6 +4,7 @@ set -eu
 # Pack some miscellaneous things.
 
 . pack_utilities.sh
+. mk_offline_docs.sh
 
 case "$1" in
   demo_models)
@@ -13,12 +14,8 @@ case "$1" in
     dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
     make -C demo_models/shadow_maps/sunny_street/ clean
 
-    # Do "make clean" first, because current HTML files present there
-    # could be generated with different LOCALLY_AVAIL values.
-    $MAKE -C "$OFFLINE_DOCS_PATH" clean
-    $MAKE -C "$OFFLINE_DOCS_PATH" demo_models.html LOCALLY_AVAIL=
-    cp "$OFFLINE_DOCS_PATH"demo_models.html \
-      demo_models/README.html
+    mk_offline_docs demo_models/ demo_models.html
+    mv demo_models/demo_models.html demo_models/README.html
     cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css \
       demo_models/
     mkdir -p demo_models/images/

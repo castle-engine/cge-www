@@ -1,52 +1,50 @@
 #!/bin/bash
 set -eu
 
-cd ~/sources/castle-engine/trunk/www/scripts/offline_docs/
+. ~/sources/castle-engine/trunk/www/pack/mk_offline_docs.sh
 
 export CASTLE_ENGINE_HTDOCS_LOCAL_PATH=/home/michalis/sources/castle-engine/trunk/www/htdocs/
 
-HTMLS="x3d_extensions.html \
-x3d_extensions_shadow_maps.html \
-x3d_extensions_vrml1.html \
-x3d_extensions_screen_effects.html \
-x3d_implementation_cadgeometry.html \
-x3d_implementation_core.html \
-x3d_implementation_cubemaptexturing.html \
-x3d_implementation_environmentaleffects.html \
-x3d_implementation_environmentalsensor.html \
-x3d_implementation_eventutilities.html \
-x3d_implementation_geometry2d.html \
-x3d_implementation_geometry3d.html \
-x3d_implementation_grouping.html \
-x3d_implementation_hanim.html \
-x3d_implementation_interpolation.html \
-x3d_implementation_keydevicesensor.html \
-x3d_implementation_lighting.html \
-x3d_implementation_navigation.html \
-x3d_implementation_networking.html \
-x3d_implementation_nurbs.html \
-x3d_implementation_pointingdevicesensor.html \
-x3d_implementation_rendering.html \
-x3d_implementation_scripting.html \
-x3d_implementation_shaders.html \
-x3d_implementation_shape.html \
-x3d_implementation_sound.html \
-x3d_implementation_status.html \
-x3d_implementation_text.html \
-x3d_implementation_texturing3d.html \
-x3d_implementation_texturing.html \
-x3d_implementation_time.html \
-vrml_x3d.html \
-nist_vrml_test_suite.html \
-kanim_format.html \
-x3d_time_origin_considered_uncomfortable.html \
-castle_script.html \
-glviewimage.html"
-
-make clean $HTMLS LOCALLY_AVAIL="$HTMLS"
-
 OUTPUT=~/public_html/castle-engine-snapshots/docs/
-mv -f $HTMLS $OUTPUT
+
+mk_offline_docs "$OUTPUT" x3d_extensions.html \
+  x3d_extensions_shadow_maps.html \
+  x3d_extensions_vrml1.html \
+  x3d_extensions_screen_effects.html \
+  x3d_implementation_cadgeometry.html \
+  x3d_implementation_core.html \
+  x3d_implementation_cubemaptexturing.html \
+  x3d_implementation_environmentaleffects.html \
+  x3d_implementation_environmentalsensor.html \
+  x3d_implementation_eventutilities.html \
+  x3d_implementation_geometry2d.html \
+  x3d_implementation_geometry3d.html \
+  x3d_implementation_grouping.html \
+  x3d_implementation_hanim.html \
+  x3d_implementation_interpolation.html \
+  x3d_implementation_keydevicesensor.html \
+  x3d_implementation_lighting.html \
+  x3d_implementation_navigation.html \
+  x3d_implementation_networking.html \
+  x3d_implementation_nurbs.html \
+  x3d_implementation_pointingdevicesensor.html \
+  x3d_implementation_rendering.html \
+  x3d_implementation_scripting.html \
+  x3d_implementation_shaders.html \
+  x3d_implementation_shape.html \
+  x3d_implementation_sound.html \
+  x3d_implementation_status.html \
+  x3d_implementation_text.html \
+  x3d_implementation_texturing3d.html \
+  x3d_implementation_texturing.html \
+  x3d_implementation_time.html \
+  vrml_x3d.html \
+  nist_vrml_test_suite.html \
+  kanim_format.html \
+  x3d_time_origin_considered_uncomfortable.html \
+  castle_script.html \
+  glviewimage.html
+
 cp -f ~/sources/castle-engine/trunk/www/htdocs/shadow_maps_x3d.pdf $OUTPUT
 cp -f ~/sources/castle-engine/trunk/www/htdocs/castle-engine.css $OUTPUT
 mkdir -p $OUTPUT/images

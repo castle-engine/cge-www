@@ -22,6 +22,7 @@ set -eu
 # (this is used by pack_utilities.sh for calculating $FILE_RELEASES_PATH).
 
 . pack_utilities.sh
+. mk_offline_docs.sh
 
 # some useful consts ----------------------------------------------------------
 
@@ -211,11 +212,9 @@ binary_add_gpl2 ()
 
 # Add to archive documentation files inside 'documentation/' subdirectory
 # ('documentation/' subdirectory will be created if not exists).
-# Filenames ended by '.html' will be copied from OFFLINE_DOCS.
 #
-# Other filenames will be directly copied from $CASTLE_ENGINE_HTDOCS_LOCAL_PATH
-# (these other filenames may be given with some preceding path
-# relative to $CASTLE_ENGINE_HTDOCS_LOCAL_PATH).
+# Filenames ended by '.html' will be created from php files in htdocs/.
+# Other filenames will be directly copied from htdocs/, preserving subdirectories.
 #
 # Also, castle-engine.css and images/header*
 # will always be copied to documentation/.
@@ -255,20 +254,7 @@ binary_add_doc ()
     mkdir -p "$DOC_SUBDIR_NAME"
   fi
 
-  cd "$OFFLINE_DOCS_PATH"
-  # Trzeba najpierw zrobiæ make clean bo dotychczasowe le¿±ce tam HTMLe
-  # mog³y byæ wygenerowane z innymi LOCALLY_AVAIL
-  $MAKE clean
-  for DOC_FILE_NAME in $@; do
-    if `stringoper IsSuffix .html "$DOC_FILE_NAME"`; then
-      $MAKE "$DOC_FILE_NAME" LOCALLY_AVAIL="$*"
-      cp "$DOC_FILE_NAME" "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}"
-    else
-      THIS_DOC_FILE_SUBDIR="${DOC_SUBDIR_NAME}"`stringoper ExtractFilePath "${DOC_FILE_NAME}"`
-      mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
-      cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}${DOC_FILE_NAME}" "${BINARY_ARCHIVE_TEMP_PATH}${THIS_DOC_FILE_SUBDIR}"
-    fi
-  done
+  mk_offline_docs "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}" "$@"
 
   mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
   cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \

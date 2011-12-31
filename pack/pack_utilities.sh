@@ -12,7 +12,6 @@ FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
 
 WIN32_DLLS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../pack/win32_dlls/
-OFFLINE_DOCS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
 
 # Include version definitions for everything
 . generated_versions.sh

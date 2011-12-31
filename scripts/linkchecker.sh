@@ -16,11 +16,6 @@ do_linkchecker ()
 
 do_linkchecker http://127.0.0.1/~michalis/castle-engine/
 
-# Test also do offline docs have links ok
-
-cd offline_docs/
-make clean all
-
 # Ignore
 #   images/kambi_lines/
 #     It's Ok that they are missing: when actually generating kambi_lines,
