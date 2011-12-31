@@ -101,17 +101,8 @@ pascal_src_add_standard ()
     echo "Created directory $PROGRAM_SPECIFIC_DIR_NAME in the archive."
   done
 
-  # make sure all Pascal source filenames are lowercase
-  # (well, not *.dpr, *.lpr, *.pasprogram -- program sources do not need it,
-  # and do not want it (because name of program source file
-  # determines name of the executable, e.g. glViewImage)).
-
-  cd "$MK_ARCHIVE_TEMP_PATH"
-  fnameslwr -R '*.pas' '*.inc'
-
   # set right permissions (we're always packing to tar.gz, so we should
   # care about this)
-
   cd "$MK_ARCHIVE_TEMP_PATH"
   find ./ -type f -and -exec chmod 644 '{}' ';'
   find ./ -type d -and -exec chmod 755 '{}' ';'
