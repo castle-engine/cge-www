@@ -105,6 +105,8 @@ elif uname | grep --quiet -i cygwin; then
 fi
 
 # $1 is basename of executable.
+# $2, optional, if non-empty means "do not check this executable for $VERSION".
+#
 # Returns full, absolute filename of this executable file suitable for
 # current TARGET_OS and TARGET_ARCH.
 #
@@ -112,7 +114,7 @@ fi
 get_binary_full_file_name ()
 {
   local BINARY_BASENAME="$1"
-  shift 1
+  local ABORT_VERSION_CHECK="${2:-}"
 
   case "$TARGET_OS"-"$TARGET_ARCH" in
     linux-i386)     RESULT="${LINUX32_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='i386 - Linux'   ;;
@@ -134,11 +136,13 @@ get_binary_full_file_name ()
     exit 1
   fi
 
-  if grep --quiet "$VERSION" "$RESULT"; then
-    echo "Binary check Ok: ${RESULT} contains correct version number" > /dev/stderr
-  else
-    echo "Binary check failed: not found ${VERSION} inside file ${RESULT}" > /dev/stderr
-    exit 1
+  if [ -z "$ABORT_VERSION_CHECK" ]; then
+    if grep --quiet "$VERSION" "$RESULT"; then
+      echo "Binary check Ok: ${RESULT} contains correct version number" > /dev/stderr
+    else
+      echo "Binary check failed: not found ${VERSION} inside file ${RESULT}" > /dev/stderr
+      exit 1
+    fi
   fi
 
   echo -n "$RESULT"
@@ -349,7 +353,7 @@ update_full_program ()
   # parametry.
 
   # Calculate FULL_BINARY_NAME
-  FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME"`
+  local FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME"`
 
   # Calculate BINARY_NAME.
   # I calculate BINARY_NAME using FULL_BINARY_NAME
@@ -408,15 +412,17 @@ update_small_program ()
 
 # Add another executable.
 #
-# $1 - binary basename. Directory and extension will be automatically figured out,
-#      just like for other binaries added by update_small_program etc.
+# $1 is binary basename. Directory and extension will be automatically figured out,
+# just like for other binaries added by update_small_program etc.
+#
+# $2, optional, if non-empty means "do not check this executable for $VERSION".
 #
 # Call this only after binary_archive_begin (depends on some vars set).
 # Call this after binary_set_unix_permissions (otherwise
 # binary_set_unix_permissions will override our permissions with non-executable).
 binary_add_executable ()
 {
-  FULL_BINARY_NAME=`get_binary_full_file_name "$1"`
+  local FULL_BINARY_NAME=`get_binary_full_file_name "$@"`
   BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
   cp -f "$FULL_BINARY_NAME" "$BINARY_ARCHIVE_TEMP_PATH"
   chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"
@@ -474,7 +480,7 @@ case "$1" in
     update_small_program "$1" "$WIN_BINARY_PATH"
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_add_executable glinformation_glut
+    binary_add_executable glinformation_glut t
     ;;
 
   malfunction)
