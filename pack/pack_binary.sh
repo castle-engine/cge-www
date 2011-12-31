@@ -234,53 +234,24 @@ binary_add_gpl2 ()
 #
 # Filenames ended by '.html' will be created from php files in htdocs/.
 # Other filenames will be directly copied from htdocs/, preserving subdirectories.
-#
-# Also, castle-engine.css and images/header*
-# will always be copied to documentation/.
+# Also, some CSS and images files will be always added, see mk_offline_docs.
 #
 # This function ignores and modifies current dir.
 binary_add_doc ()
 {
-  # DOC_FILES to podkatalog w archiwum w którym umie¶ciæ dokumentacje.
-  # Moze byc stringiem pustym '', wtedy oznacza ¿e maj± byæ w g³ownym
-  # katalogu archiwum, albo postaci [dir/]*, tzn. wzglêdne okre¶lenie
-  # katalogu zakoñczone PathDelim, np. "doc/" lub "end-user/doc/".
-  #
-  # I finally decided to use everywhere documentation/.
-  # This is understandable to all users (as *not* every user groks
-  # the meaning of "doc" or "DOC", and long filenames don't hurt).
-  # Also it's good that all my programs use the same DOC_SUBDIR_NAME
-  # for consistency.
-  #
-  # Some time ago I used DOC/, I even used DOCUMENTATION/ for some time,
-  # reason: czesto (np. w przypadku malfunction i
-  # lets_take_a_walk) ten katalog laduje obok innych, malo waznych dla
-  # end usera katalogow (np. w przypadku malfunction obok katalogow
-  # images/, vrmls/ itd.). But this is a bad argument: uppercase doesn't
-  # mean "really important" for all users, and not all file managers
-  # (even under Unix) display uppercase filenames as the first files.
-  # And DOCUMENTATION/ looks ugly, while DOC/ is a shortcut not undertstandable
-  # to everyone. So the decision is to use lowercase documentation/.
-  # The distribution of programs like malfunction/lets_take_a_walk will
-  # be adjusted to have subdir like data/ instead of many subdirs like
-  # vrmls/, sounds/ etc. that clutter filelist for user.
-  # Later note: malfunction/lets_take_a_walk are already adjusted.
-  local DOC_SUBDIR_NAME='documentation/'
-
-  cd "$BINARY_ARCHIVE_TEMP_PATH"
-
-  if [ -n "$DOC_SUBDIR_NAME" ]; then
-    mkdir -p "$DOC_SUBDIR_NAME"
-  fi
-
-  mk_offline_docs "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}" "$@"
-
-  mkdir -p "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
-  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
-     "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
-    "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}images/"
-
-  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css "${BINARY_ARCHIVE_TEMP_PATH}${DOC_SUBDIR_NAME}"
+  # This used to be configurable, but now I think that 'documentation/'
+  # is always good.
+  # - '' empty rejected, it's better to separate docs.
+  # - 'DOCUMENTATION' uppercase (traditionally first under Unix)
+  #   rejected, because not every user understands "uppercase means important",
+  #   and also many file managers even under Unix actually ignore case.
+  #   It's better to make documentation noticeable by not having too many
+  #   dirs inside program directory, e.g. put everything internal inside
+  #   data/ subdir that is sibling to documentation/.
+  # - shortened to 'doc' or 'docs' rejected, longer name doesn't hurt.
+  local DOC_DIR="${BINARY_ARCHIVE_TEMP_PATH}"documentation/
+  mkdir -p "$DOC_DIR"
+  mk_offline_docs "$DOC_DIR" "$@"
 }
 
 binary_add_view3dscene_desktop ()

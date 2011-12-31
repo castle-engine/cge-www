@@ -16,12 +16,6 @@ case "$1" in
 
     mk_offline_docs demo_models/ demo_models.html
     mv demo_models/demo_models.html demo_models/README.html
-    cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css \
-      demo_models/
-    mkdir -p demo_models/images/
-    cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
-       "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
-       demo_models/images/
 
     find ./ -type f -and -exec chmod 644 '{}' ';'
     find ./ -type d -and -exec chmod 755 '{}' ';'

@@ -46,6 +46,3 @@ mk_offline_docs "$OUTPUT" x3d_extensions.html \
   glviewimage.html
 
 cp -f ~/sources/castle-engine/trunk/www/htdocs/shadow_maps_x3d.pdf $OUTPUT
-cp -f ~/sources/castle-engine/trunk/www/htdocs/castle-engine.css $OUTPUT
-mkdir -p $OUTPUT/images
-cp -f ~/sources/castle-engine/trunk/www/htdocs/images/header*.png $OUTPUT/images

@@ -9,6 +9,9 @@
 # The rest of the arguments are filenames to create, relative to htdocs/:
 # - *.html files will be created by running command-line php on our php sources.
 # - other files will be simply copied, preserving the subdirectory structure.
+#
+# We also always add to $OUTPUT some necessary files always used by our HTMLs:
+# some images/ and CSS files and possibly some more.
 mk_offline_docs ()
 {
   local OUTPUT_PATH="$1"
@@ -35,4 +38,10 @@ mk_offline_docs ()
       echo 'Offline docs:' "${OUTPUT_FILE}" ': created by copying'
     fi
   done
+
+  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"castle-engine.css "${OUTPUT_PATH}"
+  mkdir -p "${OUTPUT_PATH}"images/
+  cp "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header-pattern.png" \
+     "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}images/header_icon.png" \
+     "${OUTPUT_PATH}"images/
 }
