@@ -186,90 +186,60 @@ case "$1" in
 # update sources of specific programs ----------------------------
 
   rayhunter)
-    # Used units:
-    # 3dgraph/ 3dmodels/ base/ fonts/ images/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"rayhunter/
     pascal_src_archive_end rayhunter
     ;;
 
   lets_take_a_walk)
-    # Used units:
-    # 3dgraph/ 3dmodels/ 3dmodels.gl/ audio/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"lets_take_a_walk/
     pascal_src_archive_end lets_take_a_walk
     ;;
 
   view3dscene)
-    # Used units:
-    # 3dgraph/ 3dmodels/ 3dmodels.gl/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"view3dscene/
     pascal_src_archive_end view3dscene
     ;;
 
   glviewimage)
-    # Used units:
-    # 3dgraph/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"glviewimage/
     pascal_src_archive_end glviewimage
     ;;
 
   glplotter)
-    # Used units:
-    # 3dgraph/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"glplotter/
     pascal_src_archive_end glplotter
     ;;
 
   glinformation)
-    # Used units:
-    # 3dgraph/ base/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"glinformation/
     pascal_src_archive_end glinformation
     ;;
 
   gen_function)
-    # Used units:
-    # base/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"gen_function/
     pascal_src_archive_end gen_function
     ;;
 
   bezier_curves)
-    # Used units:
-    # 3dgraph/ 3dmodels/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"bezier_curves/
     pascal_src_archive_end bezier_curves
     ;;
 
   malfunction)
-    # Used units:
-    # 3dgraph/ 3dmodels/ 3dmodels.gl/ base/ fonts/ images/ opengl/
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"malfunction/
     pascal_src_archive_end malfunction
     ;;
 
   kambi_lines)
-    # Used units:
-    # 3dgraph/ base/ fonts/ images/ opengl/
-
     rm -f "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.hsc \
           "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.ini
 
@@ -290,20 +260,6 @@ case "$1" in
   #   pascal_src_add_standard "$CASTLE_ENGINE_PATH"rift/
   #   pascal_src_archive_end rift
   #   ;;
-
-  all_progs)
-    "$0" rayhunter
-    "$0" lets_take_a_walk
-    "$0" view3dscene
-    "$0" glviewimage
-    "$0" glplotter
-    "$0" glinformation
-    "$0" gen_function
-    "$0" bezier_curves
-    "$0" malfunction
-    "$0" kambi_lines
-    "$0" castle
-    ;;
 
   *)
     echo "update_pascal_src.sh: Invalid 1st param \"$1\""

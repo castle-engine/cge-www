@@ -605,25 +605,6 @@ case "$1" in
     binary_archive_end 't'
     ;;
 
-  all_fpc_programs)
-    "$0" view3dscene "$2"
-    "$0" rayhunter "$2"
-    "$0" glviewimage "$2"
-    "$0" glplotter "$2"
-    "$0" gen_function "$2"
-    "$0" glinformation "$2"
-    "$0" malfunction "$2"
-    "$0" kambi_lines "$2"
-    "$0" lets_take_a_walk "$2"
-    "$0" bezier_curves "$2"
-    "$0" castle "$2"
-    ;;
-
-  all_pascal_win_programs)     "$0" all_fpc_programs win ;;
-  all_pascal_linux_programs)   "$0" all_fpc_programs linux ;;
-  all_pascal_freebsd_programs) "$0" all_fpc_programs freebsd ;;
-  all_pascal_macosx_programs)  "$0" all_fpc_programs macosx ;;
-
   win32_dlls)
     mk_archive_begin
 
