@@ -23,6 +23,11 @@ mk_offline_docs ()
       SOURCE_PHP=`stringoper ChangeFileExt "$OUTPUT_FILE" .php`
       php -q "${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}${SOURCE_PHP}" --gen-local --locally-avail "$@" > "${OUTPUT_PATH}${OUTPUT_FILE}"
       echo 'Offline docs:' "${OUTPUT_FILE}" ': created by php'
+      # Sanity check
+      if [ `wc --bytes < "${OUTPUT_PATH}${OUTPUT_FILE}"` -lt 10 ]; then
+        echo 'Error: Offline doc file created has < 10 bytes, probably source php was just a redirect.'
+        exit 1
+      fi
     else
       OUTPUT_FILE_SUBDIR=`stringoper ExtractFilePath "${OUTPUT_FILE}"`
       mkdir -p "${OUTPUT_PATH}${OUTPUT_FILE_SUBDIR}"
