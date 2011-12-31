@@ -64,11 +64,13 @@ cp_omitting_old_and_private ()
 #   will create bar/ subdirectory inside the archive.
 #   Remarks:
 #   - Directories in the archive will be cleaned using
-#       dircleaner -f '*.exe' . clean.
+#       dircleaner . clean
+#     and
+#       make clean
 #     I.e. original directories will not be cleaned, only dirs in the archive.
 #     If you have anything that should be cleaned that dircleaner
-#     will not clean - you will have to clean this manually before
-#     executing pascal_src_add_standard
+#     will not clean --- you will have to clean this manually before/after
+#     executing pascal_src_add_standard, or add to Makefile "clean" command inside.
 #   - old/ and private/ subdirs in directory will not be copied to the
 #     archive.
 #   - Every *.pas and *.inc files will be made lowercase,
@@ -87,7 +89,8 @@ pascal_src_add_standard ()
     mkdir "$ARCHIVE_DIR"
     cd "$PROGRAM_SPECIFIC_DIR"
     cp_omitting_old_and_private . "$ARCHIVE_DIR"
-    dircleaner -f '*.exe' "$ARCHIVE_DIR" clean
+    dircleaner "$ARCHIVE_DIR" clean
+    make clean -C "$ARCHIVE_DIR"
 
     # Old: copy COPYING file to each dir in PROGRAM_SPECIFIC_DIR.
     # No longer done, it's better to just add these files to SVN archive.
@@ -234,9 +237,6 @@ case "$1" in
     ;;
 
   kambi_lines)
-    rm -f "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.hsc \
-          "$CASTLE_ENGINE_PATH"kambi_lines/KAMBI_LINES.ini
-
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"kambi_lines/
     pascal_src_archive_end kambi_lines
@@ -248,12 +248,6 @@ case "$1" in
     $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"castle clean clean_private clean_binaries
     pascal_src_archive_end castle
     ;;
-
-  # rift)
-  #   mk_archive_begin
-  #   pascal_src_add_standard "$CASTLE_ENGINE_PATH"rift/
-  #   pascal_src_archive_end rift
-  #   ;;
 
   *)
     echo "pack_pascal_src.sh: Invalid 1st param \"$1\""
