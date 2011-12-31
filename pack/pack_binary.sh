@@ -111,7 +111,7 @@ fi
 # Uses global xxx_BINARY_PATH to know where executables are stored.
 get_binary_full_file_name ()
 {
-  BINARY_BASENAME="$1"
+  local BINARY_BASENAME="$1"
   shift 1
 
   case "$TARGET_OS"-"$TARGET_ARCH" in
@@ -171,7 +171,7 @@ binary_archive_begin ()
   mkdir -p "$BINARY_ARCHIVE_TEMP_PATH"
 
   # Calculate $VERSION
-  VERSION_VARIABLE_NAME="GENERATED_VERSION_${ARCHIVE_BASE_BASENAME}"
+  local VERSION_VARIABLE_NAME="GENERATED_VERSION_${ARCHIVE_BASE_BASENAME}"
   VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
   # eval trick from http://tldp.org/LDP/abs/html/ivr.html
   eval VERSION=\$$VERSION_VARIABLE_NAME
@@ -341,7 +341,7 @@ update_full_program ()
 # Zawsze robimy czyszczenie przez `dircleaner . clean -d .svn'
 {
   # parse params
-  BINARY_BASENAME="$1"
+  local BINARY_BASENAME="$1"
   PROGRAM_PATH="`stringoper InclPathDelim \"$2\"`"
   PROGRAM_DATA_FILES="$3"
   CHECK_ARE_FILENAMES_LOWER="$4"
@@ -400,8 +400,8 @@ update_small_program ()
 #      (pod Unixami zawsze bêdzie brane $LINUX_BINARY_PATH lub
 #      $FREEBSD_BINARY_PATH lub $MACOSX_BINARY_PATH)
 {
-  BINARY_BASENAME="$1"
-  WIN32_BINARY_PATH="$2"
+  local BINARY_BASENAME="$1"
+  local WIN32_BINARY_PATH="$2"
 
   update_full_program "$BINARY_BASENAME" "$WIN32_BINARY_PATH" '' ''
 }
