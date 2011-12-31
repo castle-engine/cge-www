@@ -198,7 +198,7 @@ binary_archive_end ()
     linux|freebsd|macosx) ARCHIVE_NAME="$ARCHIVE_NAME".tar.gz ;;
     win)                  ARCHIVE_NAME="$ARCHIVE_NAME".zip ;;
     *)
-      echo "Invalid TARGET_OS for update_full_program: \"$TARGET_OS\""
+      echo "Invalid TARGET_OS for binary_add_exe_and_data: \"$TARGET_OS\""
       exit 1
       ;;
   esac
@@ -286,42 +286,42 @@ binary_set_unix_permissions ()
   esac
 }
 
-update_full_program ()
-# Call binary_archive_begin before this.
-# Call binary_archive_end after this.
+# Add primary executable (depending on OS/CPU)
+# and program data (cross-platform) to the archive.
+# Call this only between binary_archive_begin/end.
 #
-# Archiwum full dla kazdego OSa to
-#   binarka (specyficzna dla danego OSa)
-#   dane cross-platform (specyficzne dla danego programu)
+# $1 is basename of primary program executable. Full executable name
+# is deduced by get_binary_full_file_name.
 #
-# $1 to basename of binary - full binary names is deduced by
-#       get_binary_full_file_name
-# $2 to PROGRAM_PATH (ending or not with PathDelim) ktory bedzie katalogiem
-#       wzgledem ktorego zaraz beda rozwiazywane ponizsze definicje
-#       (to musi byc katalog absolutny, pod Windowsem ma to byc katalog w postaci
-#       Cygwinowej)
-# $3 to lista plikow (PROGRAM_DATA_FILES) ktore razem tworza dane programu ktore
-#       musza byc wlaczane do programu for all OSes.
-#       Moga to byc tylko nazwy plikow lub podkatalogow ktore znajduja sie w katalogu
-#       PROGRAM_PATH, np. 'vrmls/ images/ plik.dat'
-#       Znowu, mo¿e to byæ string pusty '' aby zaznaczyæ ¿e nie ma takich plików.
-# $4 jesli jest <> '' to przed skonstruowaniem archiwum bedzie wykonany check
-#       na wszystkich plikach PROGRAM_DATA_FILES postaci:
-#         areFilenamesLower $PROGRAM_DATA_FILES
-#       Jezeli areFilenamesLower sie nie powiedzie (czyli jakies pliki nie beda lower)
-#       to archiwum nie bedzie utworzone. Notka: jezeli check sie powiedzie
-#       to nie ma on zadnego wplywu na dalsze tworzenie archiwum, tzn. przekazanie
-#       tutaj wartosci 't' jest zupelnie nieobowiazkowe i zalezy od tego czy ten
-#       konkretny program tego chce.
+# $2 (optional) PROGRAM_PATH: absolute (doesn't have to end with PathDelim)
+# base directory for resolving PROGRAM_DATA_FILES names.
+# Under Windows, make sure to pass here Cygwin path.
+#
+# $3 (optional) to lista plikow (PROGRAM_DATA_FILES) ktore razem tworza dane programu ktore
+# musza byc wlaczane do programu for all OSes.
+# Moga to byc tylko nazwy plikow lub podkatalogow ktore znajduja sie w katalogu
+# PROGRAM_PATH, np. 'vrmls/ images/ plik.dat'
+# This parameter can be empty ('') or just not given at all, if no such files.
+#
+# $4 (optional) jesli jest <> '' to przed skonstruowaniem archiwum bedzie wykonany check
+# na wszystkich plikach PROGRAM_DATA_FILES postaci:
+#   areFilenamesLower $PROGRAM_DATA_FILES
+# Jezeli areFilenamesLower sie nie powiedzie (czyli jakies pliki nie beda lower)
+# to archiwum nie bedzie utworzone. Notka: jezeli check sie powiedzie
+# to nie ma on zadnego wplywu na dalsze tworzenie archiwum, tzn. przekazanie
+# tutaj wartosci 't' jest zupelnie nieobowiazkowe i zalezy od tego czy ten
+# konkretny program tego chce.
+#
 # Zawsze robimy czyszczenie przez `dircleaner . clean -d .svn'
+binary_add_exe_and_data ()
 {
   # parse params
   local BINARY_BASENAME="$1"
-  PROGRAM_PATH="`stringoper InclPathDelim \"$2\"`"
-  PROGRAM_DATA_FILES="$3"
-  CHECK_ARE_FILENAMES_LOWER="$4"
-  # za ta linia juz nie wolno nam uzywac pozycyjnych parametrow, tylko nazwane
-  # parametry.
+  set +u
+  local PROGRAM_PATH="$2"
+  local PROGRAM_DATA_FILES="$3"
+  local CHECK_ARE_FILENAMES_LOWER="$4"
+  set -u
 
   # Calculate FULL_BINARY_NAME
   local FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME"`
@@ -364,27 +364,10 @@ update_full_program ()
   fi
 }
 
-update_small_program ()
-# Robi update archiwum ma³ego programu. Archiwum tego programu to
-#   binarka specyficzna dla danego OSa
-#
-# Parametry:
-# $1 = BINARY_BASENAME, basename binarki (pod UNIXem filename binarki
-#      to bêdzie BINARY_BASENAME, pod Windowsem BINARY_BASENAME.exe)
-# $2 = ¦cie¿ka do binarki pod Windowsem.
-#      (pod Unixami zawsze bêdzie brane $LINUX_BINARY_PATH lub
-#      $FREEBSD_BINARY_PATH lub $MACOSX_BINARY_PATH)
-{
-  local BINARY_BASENAME="$1"
-  local WIN32_BINARY_PATH="$2"
-
-  update_full_program "$BINARY_BASENAME" "$WIN32_BINARY_PATH" '' ''
-}
-
 # Add another executable.
 #
 # $1 is binary basename. Directory and extension will be automatically figured out,
-# just like for other binaries added by update_small_program etc.
+# just like for other binaries added by binary_add_exe_and_data etc.
 #
 # $2, optional, if non-empty means "do not check this executable for $VERSION".
 #
@@ -406,7 +389,7 @@ binary_archive_begin "$2" "$3" "$1"
 case "$1" in
   view3dscene)
     binary_add_doc view3dscene.html openal.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
-    update_small_program view3dscene "$WIN_BINARY_PATH"
+    binary_add_exe_and_data view3dscene
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
     if [ "$TARGET_OS" = linux   ]; then binary_add_view3dscene_desktop; fi
@@ -417,7 +400,7 @@ case "$1" in
 
   rayhunter)
     binary_add_doc rayhunter.html common_options.html $DOC_FILES_X3D
-    update_small_program rayhunter "$WIN_BINARY_PATH"
+    binary_add_exe_and_data rayhunter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -425,7 +408,7 @@ case "$1" in
 
   glviewimage)
     binary_add_doc glviewimage.html $DOC_FILES_GL_PARAMS
-    update_small_program glViewImage "$WIN_BINARY_PATH"
+    binary_add_exe_and_data glViewImage
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -433,7 +416,7 @@ case "$1" in
 
   glplotter)
     binary_add_doc glplotter_and_gen_function.html $DOC_FILES_GL_PARAMS
-    update_small_program glplotter "$WIN_BINARY_PATH"
+    binary_add_exe_and_data glplotter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -441,14 +424,14 @@ case "$1" in
 
   gen_function)
     binary_add_doc glplotter_and_gen_function.html
-    update_small_program gen_function "$WIN_BINARY_PATH"
+    binary_add_exe_and_data gen_function
     binary_add_gpl2
     binary_set_unix_permissions
     ;;
 
   glinformation)
     binary_add_doc glinformation.html $DOC_FILES_GL_PARAMS
-    update_small_program "$1" "$WIN_BINARY_PATH"
+    binary_add_exe_and_data "$1"
     binary_add_gpl2
     binary_set_unix_permissions
     binary_add_executable glinformation_glut t
@@ -456,7 +439,7 @@ case "$1" in
 
   malfunction)
     binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
-    update_full_program malfunction \
+    binary_add_exe_and_data malfunction \
       "$CASTLE_ENGINE_PATH"malfunction/ \
       'data/' \
       't'
@@ -471,7 +454,7 @@ case "$1" in
       images/kambi_lines/ball_joker_1.png \
       images/kambi_lines/ball_red_white_1.png \
       images/kambi_lines/red_white_combo.png
-    update_full_program kambi_lines \
+    binary_add_exe_and_data kambi_lines \
       "$CASTLE_ENGINE_PATH"kambi_lines/ \
       'images/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
       't'
@@ -482,7 +465,7 @@ case "$1" in
 
   lets_take_a_walk)
     binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
-    update_full_program lets_take_a_walk \
+    binary_add_exe_and_data lets_take_a_walk \
       "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
       'data/' \
       't'
@@ -493,7 +476,7 @@ case "$1" in
 
   bezier_curves)
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
-    update_small_program bezier_curves  \
+    binary_add_exe_and_data bezier_curves  \
       "$CASTLE_ENGINE_PATH"bezier_curves/
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -504,7 +487,7 @@ case "$1" in
     binary_add_doc openal.html \
       opengl_options.html common_options.html \
       castle.html castle-advanced.html castle-development.html castle-credits.html
-    update_full_program castle \
+    binary_add_exe_and_data castle \
       "$CASTLE_ENGINE_PATH"castle/ \
       'data/ README.txt TODO.txt Makefile' \
       ''
@@ -520,7 +503,7 @@ case "$1" in
           '(' -type f -iname '*.el' ')' \
       ')' -exec rm -f '{}' ';'
 
-    # We call areFilenamesLower ourselves (not from update_full_program),
+    # We call areFilenamesLower ourselves (not from binary_add_exe_and_data),
     # because we have special ignore rules.
     areFilenamesLower -i Makefile -i Makefile.common -i README.txt \
       "$BINARY_ARCHIVE_TEMP_PATH"data/
