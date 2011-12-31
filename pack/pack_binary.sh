@@ -109,12 +109,12 @@ fi
 # The executables must be under $EXEC_PATH directory, in subdirectory
 # suitable for given OS/architecture. Typically, before packing releases,
 # you will copy executables for all relevant OS/arch there.
-get_binary_full_file_name ()
+get_exec_full_file_name ()
 {
-  local BINARY_BASENAME="$1"
+  local EXEC_BASENAME="$1"
   local ABORT_VERSION_CHECK="${2:-}"
 
-  local RESULT="${EXEC_PATH}${TARGET_OS}-${TARGET_ARCH}/${BINARY_BASENAME}"
+  local RESULT="${EXEC_PATH}${TARGET_OS}-${TARGET_ARCH}/${EXEC_BASENAME}"
 
   local FPC_OS_ARCH
   case "${TARGET_OS}-${TARGET_ARCH}" in
@@ -124,24 +124,24 @@ get_binary_full_file_name ()
     macosx-i386)                             FPC_OS_ARCH='i386 - Darwin'  ;;
     win-i386)       RESULT="${RESULT}".exe ; FPC_OS_ARCH='i386 - Win32'   ;;
     *)
-      echo 'get_binary_full_file_name: incorrect OS and/or architecture name '"$TARGET_OS"-"$TARGET_ARCH" > /dev/stderr
+      echo 'get_exec_full_file_name: incorrect OS and/or architecture name '"$TARGET_OS"-"$TARGET_ARCH" > /dev/stderr
       exit 1
       ;;
   esac
 
   local SEEK='FPC '"$REQUIRED_FPC_VERSION"' \[..../../..\] for '"$FPC_OS_ARCH"
   if grep --quiet "$SEEK" "$RESULT"; then
-    echo "Binary check Ok: ${RESULT} compiled with correct FPC version for correct OS/arch" > /dev/stderr
+    echo "Exec check Ok: ${RESULT} compiled with correct FPC version for correct OS/arch" > /dev/stderr
   else
-    echo "Binary check failed: not found ${SEEK} inside file ${RESULT}" > /dev/stderr
+    echo "Exec check failed: not found ${SEEK} inside file ${RESULT}" > /dev/stderr
     exit 1
   fi
 
   if [ -z "$ABORT_VERSION_CHECK" ]; then
     if grep --quiet "$VERSION" "$RESULT"; then
-      echo "Binary check Ok: ${RESULT} contains correct version number" > /dev/stderr
+      echo "Exec check Ok: ${RESULT} contains correct version number" > /dev/stderr
     else
-      echo "Binary check failed: not found ${VERSION} inside file ${RESULT}" > /dev/stderr
+      echo "Exec check failed: not found ${VERSION} inside file ${RESULT}" > /dev/stderr
       exit 1
     fi
   fi
@@ -199,7 +199,7 @@ binary_archive_end ()
     linux|freebsd|macosx) ARCHIVE_NAME="$ARCHIVE_NAME".tar.gz ;;
     win)                  ARCHIVE_NAME="$ARCHIVE_NAME".zip ;;
     *)
-      echo "Invalid TARGET_OS for binary_add_exe_and_data: \"$TARGET_OS\""
+      echo "Invalid TARGET_OS for binary_add_exec_and_data: \"$TARGET_OS\""
       exit 1
       ;;
   esac
@@ -215,7 +215,7 @@ binary_archive_end ()
 }
 
 # If $TARGET_OS is win then this adds DLL files for Win32 distribution
-# (adds them to archive root dir, where the binary should be).
+# (adds them to archive root dir, where the exec should be).
 # This function ignores and modifies current dir.
 binary_add_win32_dlls ()
 {
@@ -269,7 +269,7 @@ binary_add_view3dscene_desktop ()
 # This sets appropriate permissions: executable for binary and dirs,
 # normal for other files.
 #
-# Uses TARGET_OS and PRIMARY_BINARY, so call this when these are set.
+# Uses TARGET_OS and PRIMARY_EXEC, so call this when these are set.
 # Generally, you should call this only when all files are in place
 # in "$MK_ARCHIVE_TEMP_PATH", otherwise some files could be left with
 # wrong permissions.
@@ -282,7 +282,7 @@ binary_set_unix_permissions ()
       find ./ -type f -and -exec chmod 644 '{}' ';'
       find ./ -type d -and -exec chmod 755 '{}' ';'
       find ./ -type f -and -iname '*.sh' -and -exec chmod 755 '{}' ';'
-      chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${PRIMARY_BINARY}"
+      chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${PRIMARY_EXEC}"
       ;;
   esac
 }
@@ -292,7 +292,7 @@ binary_set_unix_permissions ()
 # Call this only between binary_archive_begin/end.
 #
 # $1 is basename of primary program executable. Full executable name
-# is deduced by get_binary_full_file_name.
+# is deduced by get_exec_full_file_name.
 #
 # $2 (optional) PROGRAM_PATH: absolute (doesn't have to end with PathDelim)
 # base directory for resolving PROGRAM_DATA_FILES names.
@@ -314,30 +314,30 @@ binary_set_unix_permissions ()
 # konkretny program tego chce.
 #
 # Zawsze robimy czyszczenie przez `dircleaner . clean -d .svn'
-binary_add_exe_and_data ()
+binary_add_exec_and_data ()
 {
   # parse params
-  local PRIMARY_BINARY_BASENAME="$1"
+  local PRIMARY_EXEC_BASENAME="$1"
   set +u
   local PROGRAM_PATH="$2"
   local PROGRAM_DATA_FILES="$3"
   local CHECK_ARE_FILENAMES_LOWER="$4"
   set -u
 
-  # Calculate FULL_PRIMARY_BINARY
-  local FULL_PRIMARY_BINARY=`get_binary_full_file_name "$PRIMARY_BINARY_BASENAME"`
+  # Calculate FULL_PRIMARY_EXEC
+  local FULL_PRIMARY_EXEC=`get_exec_full_file_name "$PRIMARY_EXEC_BASENAME"`
 
-  # Calculate PRIMARY_BINARY.
-  # I calculate PRIMARY_BINARY using FULL_PRIMARY_BINARY
-  # instead of using PRIMARY_BINARY_BASENAME. This way it's
-  # implemented inside get_binary_full_file_name whether
+  # Calculate PRIMARY_EXEC.
+  # I calculate PRIMARY_EXEC using FULL_PRIMARY_EXEC
+  # instead of using PRIMARY_EXEC_BASENAME. This way it's
+  # implemented inside get_exec_full_file_name whether
   # we need to add some suffix (like '.exe' under Windows)
-  PRIMARY_BINARY="`stringoper ExtractFileName \"$FULL_PRIMARY_BINARY\"`"
+  PRIMARY_EXEC="`stringoper ExtractFileName \"$FULL_PRIMARY_EXEC\"`"
 
   cd "$BINARY_ARCHIVE_TEMP_PATH"
 
   # Dodaj binarkê
-  cp -f "${FULL_PRIMARY_BINARY}" ./
+  cp -f "${FULL_PRIMARY_EXEC}" ./
 
   # Dodaj PROGRAM_DATA_FILES
   if [ -n "$PROGRAM_DATA_FILES" ]; then
@@ -368,7 +368,7 @@ binary_add_exe_and_data ()
 # Add another executable.
 #
 # $1 is binary basename. Directory and extension will be automatically figured out,
-# just like for other binaries added by binary_add_exe_and_data etc.
+# just like for other binaries added by binary_add_exec_and_data etc.
 #
 # $2, optional, if non-empty means "do not check this executable for $VERSION".
 #
@@ -377,7 +377,7 @@ binary_add_exe_and_data ()
 # binary_set_unix_permissions will override our permissions with non-executable).
 binary_add_executable ()
 {
-  local FULL_BINARY=`get_binary_full_file_name "$@"`
+  local FULL_BINARY=`get_exec_full_file_name "$@"`
   local BINARY="`stringoper ExtractFileName \"$FULL_BINARY\"`"
   cp -f "$FULL_BINARY" "$BINARY_ARCHIVE_TEMP_PATH"
   chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY}"
@@ -390,7 +390,7 @@ binary_archive_begin "$2" "$3" "$1"
 case "$1" in
   view3dscene)
     binary_add_doc view3dscene.html openal.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
-    binary_add_exe_and_data view3dscene
+    binary_add_exec_and_data view3dscene
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
     if [ "$TARGET_OS" = linux   ]; then binary_add_view3dscene_desktop; fi
@@ -401,7 +401,7 @@ case "$1" in
 
   rayhunter)
     binary_add_doc rayhunter.html common_options.html $DOC_FILES_X3D
-    binary_add_exe_and_data rayhunter
+    binary_add_exec_and_data rayhunter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -409,7 +409,7 @@ case "$1" in
 
   glviewimage)
     binary_add_doc glviewimage.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data glViewImage
+    binary_add_exec_and_data glViewImage
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -417,7 +417,7 @@ case "$1" in
 
   glplotter)
     binary_add_doc glplotter_and_gen_function.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data glplotter
+    binary_add_exec_and_data glplotter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
@@ -425,14 +425,14 @@ case "$1" in
 
   gen_function)
     binary_add_doc glplotter_and_gen_function.html
-    binary_add_exe_and_data gen_function
+    binary_add_exec_and_data gen_function
     binary_add_gpl2
     binary_set_unix_permissions
     ;;
 
   glinformation)
     binary_add_doc glinformation.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data "$1"
+    binary_add_exec_and_data "$1"
     binary_add_gpl2
     binary_set_unix_permissions
     binary_add_executable glinformation_glut t
@@ -440,7 +440,7 @@ case "$1" in
 
   malfunction)
     binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data malfunction \
+    binary_add_exec_and_data malfunction \
       "$CASTLE_ENGINE_PATH"malfunction/ \
       'data/' \
       't'
@@ -455,7 +455,7 @@ case "$1" in
       images/kambi_lines/ball_joker_1.png \
       images/kambi_lines/ball_red_white_1.png \
       images/kambi_lines/red_white_combo.png
-    binary_add_exe_and_data kambi_lines \
+    binary_add_exec_and_data kambi_lines \
       "$CASTLE_ENGINE_PATH"kambi_lines/ \
       'images/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
       't'
@@ -466,7 +466,7 @@ case "$1" in
 
   lets_take_a_walk)
     binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data lets_take_a_walk \
+    binary_add_exec_and_data lets_take_a_walk \
       "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
       'data/' \
       't'
@@ -477,7 +477,7 @@ case "$1" in
 
   bezier_curves)
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
-    binary_add_exe_and_data bezier_curves  \
+    binary_add_exec_and_data bezier_curves  \
       "$CASTLE_ENGINE_PATH"bezier_curves/
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -488,7 +488,7 @@ case "$1" in
     binary_add_doc openal.html \
       opengl_options.html common_options.html \
       castle.html castle-advanced.html castle-development.html castle-credits.html
-    binary_add_exe_and_data castle \
+    binary_add_exec_and_data castle \
       "$CASTLE_ENGINE_PATH"castle/ \
       'data/ README.txt TODO.txt Makefile' \
       ''
@@ -504,7 +504,7 @@ case "$1" in
           '(' -type f -iname '*.el' ')' \
       ')' -exec rm -f '{}' ';'
 
-    # We call areFilenamesLower ourselves (not from binary_add_exe_and_data),
+    # We call areFilenamesLower ourselves (not from binary_add_exec_and_data),
     # because we have special ignore rules.
     areFilenamesLower -i Makefile -i Makefile.common -i README.txt \
       "$BINARY_ARCHIVE_TEMP_PATH"data/
