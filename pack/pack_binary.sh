@@ -10,6 +10,11 @@ set -eu
 # Valid CPU (aka architecture) names:
 #   i386 x86_64
 #
+# Notes about CPU naming:
+# - Debian uses names Intel x86 (i386) / AMD64 (amd64)
+# - FPC uses i386 / x86_64
+# I follow FPC.
+#
 # OS compatibility:
 # - Under all Unixes: you can update all.
 # - Under Windows: you can only update Windows binaries

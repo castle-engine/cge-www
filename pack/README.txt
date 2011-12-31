@@ -5,12 +5,6 @@ It's *enormously* useful to have this process automated :)
 These are bash scripts (under Windows basic Cygwin environment is required;
 MinGW is probably also OK, although minor adjustments may be needed).
 
-Notes:
-- Architectures names (since I have 32 bit i386 and x86_64 now):
-  Debian calls Intel x86 (i386) / AMD64 (amd64)
-  FPC calls i386 / x86_64
-  I choose i386 / x86_64, seems better than amd64 name.
-
 Common things to do before calling ./pack_binary.sh
 on some program:
 
