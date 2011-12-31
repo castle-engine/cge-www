@@ -36,7 +36,7 @@ WIN32_DLLS_OPENAL='OpenAL32.dll wrap_oal.dll'
 WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
-DOC_FILES_VRML='kanim_format.html
+DOC_FILES_X3D='kanim_format.html
   castle_script.html
   demo_models.html
   compositing_shaders.html
@@ -418,7 +418,7 @@ case "$1" in
   view3dscene)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" view3dscene
-    binary_add_doc view3dscene.html openal_notes.html $DOC_FILES_GL_PARAMS $DOC_FILES_VRML
+    binary_add_doc view3dscene.html openal_notes.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
     update_small_program view3dscene "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
@@ -432,7 +432,7 @@ case "$1" in
   rayhunter)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
     binary_archive_begin "$2" "$3" rayhunter
-    binary_add_doc rayhunter.html common_options.html $DOC_FILES_VRML
+    binary_add_doc rayhunter.html common_options.html $DOC_FILES_X3D
     update_small_program rayhunter "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
