@@ -70,4 +70,4 @@ set -eu
 ./pack_pascal_src.sh malfunction
 
 ./pack_pascal_src.sh castle_game_engine
-./pack_binary.sh demo_models
+./pack_other.sh demo_models
