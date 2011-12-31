@@ -417,7 +417,6 @@ case "$1" in
     if [ "$TARGET_OS" = freebsd ]; then binary_add_view3dscene_desktop; fi
     binary_set_unix_permissions
     binary_add_executable tovrmlx3d
-    binary_archive_end
     ;;
 
   rayhunter)
@@ -426,7 +425,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   glviewimage)
@@ -435,7 +433,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   glplotter)
@@ -444,7 +441,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   gen_function)
@@ -452,7 +448,6 @@ case "$1" in
     update_small_program gen_function "$WIN_BINARY_PATH"
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   glinformation)
@@ -461,7 +456,6 @@ case "$1" in
     binary_add_gpl2
     binary_set_unix_permissions
     binary_add_executable glinformation_glut
-    binary_archive_end
     ;;
 
   malfunction)
@@ -473,7 +467,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   kambi_lines)
@@ -489,7 +482,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   lets_take_a_walk)
@@ -501,7 +493,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   bezier_curves)
@@ -511,7 +502,6 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end
     ;;
 
   castle)
