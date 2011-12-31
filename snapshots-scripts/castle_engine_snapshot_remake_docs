@@ -44,5 +44,3 @@ mk_offline_docs "$OUTPUT" x3d_extensions.html \
   x3d_time_origin_considered_uncomfortable.html \
   castle_script.html \
   glviewimage.html
-
-cp -f ~/sources/castle-engine/trunk/www/htdocs/shadow_maps_x3d.pdf $OUTPUT
