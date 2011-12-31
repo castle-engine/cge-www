@@ -22,7 +22,7 @@ Procedure to update WWW content:
 
 - Making a release:
   1. testing is described in TESTS.txt
-  2. compiling and packing releases is described in scripts/update_archives/README.txt
+  2. compiling and packing releases is described in pack/README.txt
 
 - When release is packed, it's nice to tag it in SVN:
 

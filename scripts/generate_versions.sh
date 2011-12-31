@@ -2,12 +2,12 @@
 set -eu
 
 # This script expects to be run within www/scripts/ directory
-# (it accesses htdocs/ and update_archives/ directories by relative paths).
+# (it accesses htdocs/ and pack/ directories by relative paths).
 
 TARGET_FILE=../htdocs/generated_versions.php
 TMP_TARGET_FILE="$TARGET_FILE".new
 
-SHELL_TARGET_FILE=./update_archives/generated_versions.sh
+SHELL_TARGET_FILE=../pack/generated_versions.sh
 TMP_SHELL_TARGET_FILE="$SHELL_TARGET_FILE".new
 
 # This adds a line for explicitly given PROGRAM_NAME ($1)

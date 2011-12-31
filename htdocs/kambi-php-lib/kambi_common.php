@@ -326,7 +326,7 @@ function pretty_heading($heading_text, $version_number = NULL, $subheading_text 
    faktyczny rozmiar $f_name bo w momencie generowania strony z IS_GEN_LOCAL
    plik $f_name jest wlasnie w trakcie uaktualniania. Tego rodzaju rekurecyjna
    zaleznosc (strona wymaga archiwum ktore wymaga strony) sprawia ze w praktyce
-   czesto musialbym wywolywac "update_archives" dwa razy pod rzad tylko po to
+   czesto musialbym wywolywac pack_binary.sh dwa razy pod rzad tylko po to
    aby za drugim razem dobrze zalapac rozmiary archiwum. A ciagle przeciez
    istnieje spora szansa ze rozmiary archiwow na moich stronach beda sie
    czesto zmieniac, wiec po co je umieszczac na stronie ?)
