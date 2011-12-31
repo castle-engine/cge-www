@@ -155,26 +155,17 @@ binary_archive_begin ()
 }
 
 # Call this at the end, to actually pack the archive.
-#
-# $1 = HAS_VERSION (if not '', then we'll get version number from
-#   generated_versions.sh. We'll use program name from $BINARY_BASENAME.
-#   We'll use this number in archive filename).
 binary_archive_end ()
 {
-  HAS_VERSION="$1"
-  shift 1
-
   # Calculate ARCHIVE_NAME
   ARCHIVE_NAME="${ARCHIVE_BASE_BASENAME}"
 
   # Add version number to ARCHIVE_NAME
-  if [ -n "$HAS_VERSION" ]; then
-    VERSION_VARIABLE_NAME="GENERATED_VERSION_${BINARY_BASENAME}"
-    VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
-    # eval trick from http://tldp.org/LDP/abs/html/ivr.html
-    eval VERSION=\$$VERSION_VARIABLE_NAME
-    ARCHIVE_NAME="$ARCHIVE_NAME"-"$VERSION"
-  fi
+  VERSION_VARIABLE_NAME="GENERATED_VERSION_${BINARY_BASENAME}"
+  VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
+  # eval trick from http://tldp.org/LDP/abs/html/ivr.html
+  eval VERSION=\$$VERSION_VARIABLE_NAME
+  ARCHIVE_NAME="$ARCHIVE_NAME"-"$VERSION"
 
   # Add OS and ARCH to ARCHIVE_NAME
   ARCHIVE_NAME="$ARCHIVE_NAME"-"$TARGET_OS"-"$TARGET_ARCH"
@@ -182,7 +173,7 @@ binary_archive_end ()
   # Add archive type suffix to ARCHIVE_NAME
   case "$TARGET_OS" in
     linux|freebsd|macosx) ARCHIVE_NAME="$ARCHIVE_NAME".tar.gz ;;
-    win)           ARCHIVE_NAME="$ARCHIVE_NAME".zip ;;
+    win)                  ARCHIVE_NAME="$ARCHIVE_NAME".zip ;;
     *)
       echo "Invalid TARGET_OS for update_full_program: \"$TARGET_OS\""
       exit 1
@@ -414,10 +405,10 @@ binary_add_executable ()
 
 # main part ------------------------------------------------------------
 
+binary_archive_begin "$2" "$3" "$1"
+
 case "$1" in
   view3dscene)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" view3dscene
     binary_add_doc view3dscene.html openal_notes.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
     update_small_program view3dscene "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
@@ -426,66 +417,54 @@ case "$1" in
     if [ "$TARGET_OS" = freebsd ]; then binary_add_view3dscene_desktop; fi
     binary_set_unix_permissions
     binary_add_executable tovrmlx3d
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   rayhunter)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" rayhunter
     binary_add_doc rayhunter.html common_options.html $DOC_FILES_X3D
     update_small_program rayhunter "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   glviewimage)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" glviewimage
     binary_add_doc glviewimage.html $DOC_FILES_GL_PARAMS
     update_small_program glViewImage "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   glplotter)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" glplotter
     binary_add_doc glplotter_and_gen_function.html $DOC_FILES_GL_PARAMS
     update_small_program glplotter "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   gen_function)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" gen_function
     binary_add_doc glplotter_and_gen_function.html
     update_small_program gen_function "$WIN_BINARY_PATH"
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   glinformation)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" "$1"
     binary_add_doc glinformation.html $DOC_FILES_GL_PARAMS
     update_small_program "$1" "$WIN_BINARY_PATH"
     binary_add_gpl2
     binary_set_unix_permissions
     binary_add_executable glinformation_glut
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   malfunction)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" malfunction
     binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
     update_full_program malfunction \
       "$CASTLE_ENGINE_PATH"malfunction/ \
@@ -494,12 +473,10 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   kambi_lines)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" kambi_lines
     binary_add_doc kambi_lines.html common_options.html \
       images/kambi_lines/ball_blue_yellow_1.png \
       images/kambi_lines/ball_joker_1.png \
@@ -512,12 +489,10 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   lets_take_a_walk)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" lets_take_a_walk
     binary_add_doc lets_take_a_walk.html openal_notes.html $DOC_FILES_GL_PARAMS
     update_full_program lets_take_a_walk \
       "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
@@ -526,37 +501,20 @@ case "$1" in
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
   bezier_curves)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" bezier_curves
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
     update_small_program bezier_curves  \
       "$CASTLE_ENGINE_PATH"bezier_curves/
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
+    binary_archive_end
     ;;
 
-  # sandbox)
-  #   # $2 is TARGET_OS, $3 is TARGET_ARCH
-  #   binary_archive_begin "$2" "$3" sandbox
-  #   update_full_program sandbox \
-  #     "$CASTLE_ENGINE_PATH"sandbox/ \
-  #     'README.txt tiles/ maps/' \
-  #     ''
-  #   binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
-  #   binary_add_gpl2
-  #   binary_set_unix_permissions
-  #   binary_archive_end ''
-  #   ;;
-
   castle)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" castle
     binary_add_doc openal_notes.html \
       opengl_options.html common_options.html \
       castle.html castle-advanced.html castle-development.html castle-credits.html
@@ -586,7 +544,6 @@ case "$1" in
 
     binary_add_gpl2
     binary_set_unix_permissions
-    binary_archive_end 't'
     ;;
 
   *)
@@ -594,3 +551,6 @@ case "$1" in
     exit 1
     ;;
 esac
+
+# end
+binary_archive_end
