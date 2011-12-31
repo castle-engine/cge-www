@@ -5,9 +5,9 @@ array_push($news,
 //          'short_title' =>
           'year' => 2011,
           'month' => 12,
-          'day' => 30,
+          'day' => 31,
           'short_description' => '',
-          'guid' => '2011-12-30-view3dscene-3.11.0-engine-3.0.0',
+          'guid' => '2011-12-31-view3dscene-3.11.0-engine-3.0.0',
           'description' =>
 castle_thumbs(array(
   array('filename' => 'collada_seymour.png', 'titlealt' => 'Collada Seymour model (from collada.org/owl)'),
