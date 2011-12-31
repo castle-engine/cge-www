@@ -25,7 +25,7 @@ mk_offline_docs ()
       echo 'Offline docs:' "${OUTPUT_FILE}" ': created by php'
       # Sanity check
       if [ `wc --bytes < "${OUTPUT_PATH}${OUTPUT_FILE}"` -lt 10 ]; then
-        echo 'Error: Offline doc file created has < 10 bytes, probably source php was just a redirect.'
+        echo 'Error: Offline doc file created has < 10 bytes, probably source php was just a redirect.' > /dev/stderr
         exit 1
       fi
     else
