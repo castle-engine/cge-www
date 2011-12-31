@@ -84,12 +84,16 @@ FREEBSD_BINARY_PATH=/freebsd/usr/home/michal/bin/
 MACOSX_BINARY_PATH="$HOME"/rel/macosx/
 WIN_BINARY_PATH="$HOME"/rel/win/
 
+# Binaries packed are required to be compiled by this FPC version,
+# we will check it.
+REQUIRED_FPC_VERSION=2.4.4
+
 # utils -----------------------------------------------------------------
 
 # Calculate "$SOURCE_OS", which is just like "$TARGET_OS" (the same set
 # of possible values), but indicates the OS where we are now *currently*
 # (as opposed to the OS for which we pack, indicated by $TARGET_OS).
-
+# Unused for now.
 if uname | grep --quiet -i linux; then
   SOURCE_OS=linux
 elif uname | grep --quiet -i freebsd; then
@@ -100,31 +104,44 @@ elif uname | grep --quiet -i cygwin; then
   SOURCE_OS=win
 fi
 
-# $1 is $BINARY_BASENAME = basename of binary.
-# $2 is the OS name (as in $TARGET_OS or $SOURCE_OS).
-# $3 is the architecture name (i386 or x86_64, see README.txt).
-# $4 is $PROGRAM_PATH (unused now).
-# This returns full file name:
-#   ${hardcoded *_BINARY_PATH} + $BINARY_BASENAME + (if OS = windows-like) .exe
+# $1 is basename of executable.
+# Returns full, absolute filename of this executable file suitable for
+# current TARGET_OS and TARGET_ARCH.
+#
+# Uses global xxx_BINARY_PATH to know where executables are stored.
 get_binary_full_file_name ()
 {
   BINARY_BASENAME="$1"
-  OS_NAME="$2"
-  ARCH_NAME="$3"
-  PROGRAM_PATH="$4"
-  shift 4
+  shift 1
 
-  case "$OS_NAME"-"$ARCH_NAME" in
-    linux-i386)     echo -n "${LINUX32_BINARY_PATH}${BINARY_BASENAME}" ;;
-    linux-x86_64)   echo -n "${LINUX64_BINARY_PATH}${BINARY_BASENAME}" ;;
-    freebsd-i386)   echo -n "${FREEBSD_BINARY_PATH}${BINARY_BASENAME}" ;;
-    macosx-i386)    echo -n "${MACOSX_BINARY_PATH}${BINARY_BASENAME}" ;;
-    win-i386)       echo -n "${WIN_BINARY_PATH}${BINARY_BASENAME}".exe ;;
+  case "$TARGET_OS"-"$TARGET_ARCH" in
+    linux-i386)     RESULT="${LINUX32_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='i386 - Linux'   ;;
+    linux-x86_64)   RESULT="${LINUX64_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='x86_64 - Linux' ;;
+    freebsd-i386)   RESULT="${FREEBSD_BINARY_PATH}${BINARY_BASENAME}" ; FPC_OS_ARCH='i386 - FreeBSD' ;;
+    macosx-i386)    RESULT="${MACOSX_BINARY_PATH}${BINARY_BASENAME}"  ; FPC_OS_ARCH='i386 - Darwin'  ;;
+    win-i386)       RESULT="${WIN_BINARY_PATH}${BINARY_BASENAME}".exe ; FPC_OS_ARCH='i386 - Win32'   ;;
     *)
-      echo 'get_binary_full_file_name: incorrect OS and/or architecture name '"$OS_NAME"-"$ARCH_NAME" > /dev/stderr
+      echo 'get_binary_full_file_name: incorrect OS and/or architecture name '"$TARGET_OS"-"$TARGET_ARCH" > /dev/stderr
       exit 1
       ;;
   esac
+
+  local SEEK='FPC '"$REQUIRED_FPC_VERSION"' \[..../../..\] for '"$FPC_OS_ARCH"
+  if grep --quiet "$SEEK" "$RESULT"; then
+    echo "Binary check Ok: ${RESULT} compiled with correct FPC version for correct OS/arch" > /dev/stderr
+  else
+    echo "Binary check failed: not found ${SEEK} inside file ${RESULT}" > /dev/stderr
+    exit 1
+  fi
+
+  if grep --quiet "$VERSION" "$RESULT"; then
+    echo "Binary check Ok: ${RESULT} contains correct version number" > /dev/stderr
+  else
+    echo "Binary check failed: not found ${VERSION} inside file ${RESULT}" > /dev/stderr
+    exit 1
+  fi
+
+  echo -n "$RESULT"
 }
 
 # funcs for updating archives with compiled programs ---------------------------
@@ -152,6 +169,12 @@ binary_archive_begin ()
   BINARY_ARCHIVE_TEMP_PATH="${MK_ARCHIVE_TEMP_PATH}${ARCHIVE_BASE_BASENAME}"
   BINARY_ARCHIVE_TEMP_PATH="`stringoper InclPathDelim \"$BINARY_ARCHIVE_TEMP_PATH\"`"
   mkdir -p "$BINARY_ARCHIVE_TEMP_PATH"
+
+  # Calculate $VERSION
+  VERSION_VARIABLE_NAME="GENERATED_VERSION_${ARCHIVE_BASE_BASENAME}"
+  VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
+  # eval trick from http://tldp.org/LDP/abs/html/ivr.html
+  eval VERSION=\$$VERSION_VARIABLE_NAME
 }
 
 # Call this at the end, to actually pack the archive.
@@ -161,10 +184,6 @@ binary_archive_end ()
   ARCHIVE_NAME="${ARCHIVE_BASE_BASENAME}"
 
   # Add version number to ARCHIVE_NAME
-  VERSION_VARIABLE_NAME="GENERATED_VERSION_${BINARY_BASENAME}"
-  VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
-  # eval trick from http://tldp.org/LDP/abs/html/ivr.html
-  eval VERSION=\$$VERSION_VARIABLE_NAME
   ARCHIVE_NAME="$ARCHIVE_NAME"-"$VERSION"
 
   # Add OS and ARCH to ARCHIVE_NAME
@@ -330,7 +349,7 @@ update_full_program ()
   # parametry.
 
   # Calculate FULL_BINARY_NAME
-  FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME" "$TARGET_OS" "$TARGET_ARCH" "$PROGRAM_PATH"`
+  FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME"`
 
   # Calculate BINARY_NAME.
   # I calculate BINARY_NAME using FULL_BINARY_NAME
@@ -397,7 +416,7 @@ update_small_program ()
 # binary_set_unix_permissions will override our permissions with non-executable).
 binary_add_executable ()
 {
-  FULL_BINARY_NAME=`get_binary_full_file_name "$1" "$TARGET_OS" "$TARGET_ARCH" "$WIN_BINARY_PATH"`
+  FULL_BINARY_NAME=`get_binary_full_file_name "$1"`
   BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
   cp -f "$FULL_BINARY_NAME" "$BINARY_ARCHIVE_TEMP_PATH"
   chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"

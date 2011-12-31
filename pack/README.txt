@@ -37,8 +37,7 @@ on some program:
 
 - Call ./pack_binary.sh with proper options
 
-  You can check generated archives again, by unpacking,
-  look into executable files for correct FPC version and OS/arch.
+  You can check generated archives again, by unpacking.
   Run documentation in browser.
 
 - Call ./pack_pascal_src.sh with proper options
