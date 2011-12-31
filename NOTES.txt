@@ -80,7 +80,7 @@ Procedure to update WWW content:
 
 - after important release, I may wish to announce it:
 
-  - sf news for castle-engine project (remove this probably, I don't enable "blog" on Allura)
+  - (Removed, I don't use "blog" on Allura: SF news for castle-engine project)
   - engine source code release means updating FPC contrib units info
     (see fpc_contrib_units_data.txt,
     http://www.freepascal.org/contrib/db.php3?category=Graphics).
