@@ -268,7 +268,7 @@ binary_add_view3dscene_desktop ()
 # This sets appropriate permissions: executable for binary and dirs,
 # normal for other files.
 #
-# Uses TARGET_OS and BINARY_NAME, so call this when these are set.
+# Uses TARGET_OS and PRIMARY_BINARY, so call this when these are set.
 # Generally, you should call this only when all files are in place
 # in "$MK_ARCHIVE_TEMP_PATH", otherwise some files could be left with
 # wrong permissions.
@@ -281,7 +281,7 @@ binary_set_unix_permissions ()
       find ./ -type f -and -exec chmod 644 '{}' ';'
       find ./ -type d -and -exec chmod 755 '{}' ';'
       find ./ -type f -and -iname '*.sh' -and -exec chmod 755 '{}' ';'
-      chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"
+      chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${PRIMARY_BINARY}"
       ;;
   esac
 }
@@ -316,27 +316,27 @@ binary_set_unix_permissions ()
 binary_add_exe_and_data ()
 {
   # parse params
-  local BINARY_BASENAME="$1"
+  local PRIMARY_BINARY_BASENAME="$1"
   set +u
   local PROGRAM_PATH="$2"
   local PROGRAM_DATA_FILES="$3"
   local CHECK_ARE_FILENAMES_LOWER="$4"
   set -u
 
-  # Calculate FULL_BINARY_NAME
-  local FULL_BINARY_NAME=`get_binary_full_file_name "$BINARY_BASENAME"`
+  # Calculate FULL_PRIMARY_BINARY
+  local FULL_PRIMARY_BINARY=`get_binary_full_file_name "$PRIMARY_BINARY_BASENAME"`
 
-  # Calculate BINARY_NAME.
-  # I calculate BINARY_NAME using FULL_BINARY_NAME
-  # instead of using BINARY_BASENAME. This way it's
+  # Calculate PRIMARY_BINARY.
+  # I calculate PRIMARY_BINARY using FULL_PRIMARY_BINARY
+  # instead of using PRIMARY_BINARY_BASENAME. This way it's
   # implemented inside get_binary_full_file_name whether
   # we need to add some suffix (like '.exe' under Windows)
-  BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
+  PRIMARY_BINARY="`stringoper ExtractFileName \"$FULL_PRIMARY_BINARY\"`"
 
   cd "$BINARY_ARCHIVE_TEMP_PATH"
 
   # Dodaj binarkê
-  cp -f "${FULL_BINARY_NAME}" ./
+  cp -f "${FULL_PRIMARY_BINARY}" ./
 
   # Dodaj PROGRAM_DATA_FILES
   if [ -n "$PROGRAM_DATA_FILES" ]; then
@@ -376,10 +376,10 @@ binary_add_exe_and_data ()
 # binary_set_unix_permissions will override our permissions with non-executable).
 binary_add_executable ()
 {
-  local FULL_BINARY_NAME=`get_binary_full_file_name "$@"`
-  BINARY_NAME="`stringoper ExtractFileName \"$FULL_BINARY_NAME\"`"
-  cp -f "$FULL_BINARY_NAME" "$BINARY_ARCHIVE_TEMP_PATH"
-  chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY_NAME}"
+  local FULL_BINARY=`get_binary_full_file_name "$@"`
+  local BINARY="`stringoper ExtractFileName \"$FULL_BINARY\"`"
+  cp -f "$FULL_BINARY" "$BINARY_ARCHIVE_TEMP_PATH"
+  chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${BINARY}"
 }
 
 # main part ------------------------------------------------------------
