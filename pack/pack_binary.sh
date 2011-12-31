@@ -409,7 +409,7 @@ binary_archive_begin "$2" "$3" "$1"
 
 case "$1" in
   view3dscene)
-    binary_add_doc view3dscene.html openal_notes.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
+    binary_add_doc view3dscene.html openal.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
     update_small_program view3dscene "$WIN_BINARY_PATH"
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
@@ -485,7 +485,7 @@ case "$1" in
     ;;
 
   lets_take_a_walk)
-    binary_add_doc lets_take_a_walk.html openal_notes.html $DOC_FILES_GL_PARAMS
+    binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
     update_full_program lets_take_a_walk \
       "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
       'data/' \
@@ -505,7 +505,7 @@ case "$1" in
     ;;
 
   castle)
-    binary_add_doc openal_notes.html \
+    binary_add_doc openal.html \
       opengl_options.html common_options.html \
       castle.html castle-advanced.html castle-development.html castle-credits.html
     update_full_program castle \
