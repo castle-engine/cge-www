@@ -9,19 +9,15 @@ set -eu
 #   linux freebsd macosx win
 # Valid CPU (aka architecture) names:
 #   i386 x86_64
-#
-# Notes about CPU naming:
-# - Debian uses names Intel x86 (i386) / AMD64 (amd64)
-# - FPC uses i386 / x86_64
-# I follow FPC.
+#   Notes about CPU naming:
+#   - Debian uses names Intel x86 (i386) / AMD64 (amd64)
+#   - FPC uses i386 / x86_64
+#   I follow FPC.
 #
 # OS compatibility:
 # - Under all Unixes: you can update all.
 # - Under Windows: you can only update Windows binaries
 #   (other OSes filesystems are not directly visible from Windows).
-#
-# This script requires a couple of environment variables defined to work:
-# CASTLE_ENGINE_HTDOCS_LOCAL_PATH, KAMBI_GNU_MAKE.
 #
 # This script should be run from it's containing dir
 # (this is used by pack_utilities.sh for calculating $FILE_RELEASES_PATH).
@@ -75,12 +71,12 @@ DOC_FILES_X3D='kanim_format.html
   x3d_time_origin_considered_uncomfortable.html
   vrml_x3d.html'
 
-# $MAKE is just a shortcut for $KAMBI_GNU_MAKE
-MAKE="$KAMBI_GNU_MAKE"
+# $MAKE is just a shortcut for $KAMBI_GNU_MAKE, or simply "make"
+MAKE="${KAMBI_GNU_MAKE:-make}"
 
 EXEC_PATH="$HOME"/castle-engine-release/
 
-# Binaries packed are required to be compiled by this FPC version,
+# Executables packed are required to be compiled by this FPC version,
 # we will check it.
 REQUIRED_FPC_VERSION=2.4.4
 
@@ -336,10 +332,10 @@ binary_add_exec_and_data ()
 
   cd "$BINARY_ARCHIVE_TEMP_PATH"
 
-  # Dodaj binarkê
+  # Add executable
   cp -f "${FULL_PRIMARY_EXEC}" ./
 
-  # Dodaj PROGRAM_DATA_FILES
+  # Add PROGRAM_DATA_FILES
   if [ -n "$PROGRAM_DATA_FILES" ]; then
     cd "$PROGRAM_PATH"
     cp -R $PROGRAM_DATA_FILES "${BINARY_ARCHIVE_TEMP_PATH}"
