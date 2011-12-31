@@ -11,7 +11,7 @@ Notes:
   FPC calls i386 / x86_64
   I choose i386 / x86_64, seems better than amd64 name.
 
-Common things to do before calling ./update_archives.sh
+Common things to do before calling ./pack_binary.sh
 on some program:
 
 - Make sure Version constant in the program's source code in updated.
@@ -39,15 +39,15 @@ on some program:
   - You should run generate_versions script to update
     generated_versions.php (this makes version number on WWW page)
     generated_versions.sh (this makes version number for binary and
-    source archives created by update_archives and update_pascal_src)
+    source archives created by pack_binary and pack_pascal_src)
 
-- Call ./update_archives.sh with proper options
+- Call ./pack_binary.sh with proper options
 
   You can check generated archives again, by unpacking,
   look into executable files for correct FPC version and OS/arch.
   Run documentation in browser.
 
-- Call ./update_pascal_src.sh with proper options
+- Call ./pack_pascal_src.sh with proper options
 
 After this, see SF update procedure on
 ../../NOTES.txt

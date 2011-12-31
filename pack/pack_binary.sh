@@ -1,12 +1,13 @@
 #!/bin/bash
 set -eu
 
-# Update various release archives (gz, zip or tar.gz).
+# Pack program binary release.
+#
 # Call like
-#   update_archives.sh package-name os-name cpu-name
+#   pack_binary.sh package-name os-name cpu-name
 # Valid OS names:
 #   linux freebsd macosx win
-# Valid CPU names:
+# Valid CPU (aka architecture) names:
 #   i386 x86_64
 #
 # OS compatibility:
@@ -81,7 +82,7 @@ WIN_BINARY_PATH="$HOME"/rel/win/
 FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
 
-WIN32_DLLS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/update_archives/win32_dlls/
+WIN32_DLLS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../pack/win32_dlls/
 
 OFFLINE_DOCS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
 
@@ -661,7 +662,7 @@ case "$1" in
     ;;
 
   *)
-    echo "update_archives.sh: Invalid 1st param \"$1\""
+    echo "pack_binary.sh: Invalid 1st param \"$1\""
     exit 1
     ;;
 esac

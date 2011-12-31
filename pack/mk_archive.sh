@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This script is intended to be sourced by other bash scripts.
-# It provides functions to create archives, by
+# Source this by other bash scripts. It provides functions
+# to create archives, by
 # - creating temporary archive directory
 # - copying/generating there various files
 # - packing (tar.gz'ing or ziping) it
@@ -14,7 +14,7 @@
 # All functions of this script ignore and may modify current dir,
 # unless otherwise noted.
 
-# Good advices how to use this: ------------------------------------------------
+# Use it like this: ------------------------------------------------
 #
 # Try to implement every target as a sequence of commands like
 #     mk_archive_begin
@@ -39,7 +39,7 @@
 # contents. This proved to be a good idea:
 #   1. We don't have to worry that our files will collide with some
 #      existing ones.
-#   2. We can remove our stuff easily be removing the whole temp directory.
+#   2. We can remove our stuff easily by removing the whole temp directory.
 #      We can also debug script (see what was before packing), just remove
 #      the final "rm -Rf ..." line.
 #   3. Under Unix, /tmp/ is usually under a file system that can preserve

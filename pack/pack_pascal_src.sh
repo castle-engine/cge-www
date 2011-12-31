@@ -262,7 +262,7 @@ case "$1" in
   #   ;;
 
   *)
-    echo "update_pascal_src.sh: Invalid 1st param \"$1\""
+    echo "pack_pascal_src.sh: Invalid 1st param \"$1\""
     exit 1
     ;;
 esac
