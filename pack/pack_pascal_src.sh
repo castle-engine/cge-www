@@ -1,23 +1,17 @@
 #!/bin/bash
 set -eu
 
-# Update archives with my Pascal sources in file_releases/.
+# Pack Pascal sources into file_releases/.
 # Castle Game Engine sources are expected to be inside $CASTLE_ENGINE_PATH.
 #
-# All archives are build as tar.gz.
-# Use this only from Linux, although any Unix should be Ok actually.
-# It also work under Windows (under Cygwin), although file permissions
+# Tested only on Linux, although any Unix should be Ok actually.
+# It also works under Windows (under Cygwin), although file permissions
 # inside tar.gz may be incorrect.
 #
 # This script should be run from it's containing dir
-# (this is used by us for calculating $ARCHIVE_PATH).
+# (this is used by pack_utilities.sh for calculating $FILE_RELEASES_PATH).
 
-. mk_archive.sh
-
-. generated_versions.sh
-
-ARCHIVE_PATH=`pwd`/file_releases/
-mkdir -p "$ARCHIVE_PATH"
+. pack_utilities.sh
 
 # funcs for updating Pascal sources ----------------------------------------
 
@@ -122,7 +116,7 @@ pascal_src_add_standard ()
 }
 
 # Packs archive.
-# $1 is ARCHIVE_BASENAME. We'll place it in $ARCHIVE_PATH, add there $VERSION,
+# $1 is ARCHIVE_BASENAME. We'll place it in $FILE_RELEASES_PATH, add there $VERSION,
 # suffix '-src' and proper extension.
 # $2 is desired archive extension, determines compression (allowed values
 # like allowed extensions for mk_archive_pack).
@@ -140,7 +134,7 @@ pascal_src_archive_pack ()
   eval VERSION=\$$VERSION_VARIABLE_NAME
 
   local ARCHIVE_NAME="$ARCHIVE_BASENAME"-"$VERSION"-src"$ARCHIVE_EXT"
-  local ARCHIVE_FULLNAME="${ARCHIVE_PATH}""$ARCHIVE_NAME"
+  local ARCHIVE_FULLNAME="${FILE_RELEASES_PATH}""$ARCHIVE_NAME"
 
   # pack "$MK_ARCHIVE_TEMP_PATH" to "$ARCHIVE_FULLNAME"
 

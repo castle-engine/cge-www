@@ -1,7 +1,24 @@
 #!/bin/bash
 
-# Source this by other bash scripts. It provides functions
-# to create archives, by
+# Source this by other pack_xxx scripts. It provides common functions
+# and variables.
+#
+# This calculates and initializes file_releases/ path relative to current directory.
+# So when sourcing this script, make sure the current directory is inside pack/.
+
+# Common variables for other pack_xxx scripts --------------------------------
+
+FILE_RELEASES_PATH=`pwd`/file_releases/
+mkdir -p "$FILE_RELEASES_PATH"
+
+WIN32_DLLS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../pack/win32_dlls/
+OFFLINE_DOCS_PATH="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}"../scripts/offline_docs/
+
+# Include version definitions for everything
+. generated_versions.sh
+
+# ----------------------------------------------------------------------------
+# Functions to create archives, by
 # - creating temporary archive directory
 # - copying/generating there various files
 # - packing (tar.gz'ing or ziping) it
