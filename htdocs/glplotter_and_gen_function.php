@@ -134,15 +134,16 @@ Whitespace at the beginning and end of the line is always ignored.
 It's seldom needed &mdash; glplotter can make a graph from function expression
 on it's own, see menu <i>"Functions"</i>.
 
-<p>TODO: Compiled binary not redistributed now, there was not enough interest
+<!--
+<p>Compiled binary not redistributed now, there was not enough interest
 in this program to recompile and test it for latest updates.
 You have to get the source code and compile it yourself for now,
 report if this is a problem.</p>
+-->
 
-<?php /*
+<?php
 echo_standard_program_download('gen_function', 'gen_function',
-  VERSION_GEN_FUNCTION, ...);
-*/
+  VERSION_GEN_FUNCTION);
 ?>
 
 <p>Call like:
