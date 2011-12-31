@@ -29,7 +29,6 @@ WIN32_DLLS_PNG_ZLIB='libpng12.dll zlib1.dll'
 WIN32_DLLS_OPENAL='OpenAL32.dll wrap_oal.dll'
 WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 
-# ot, taka pomocnicza sta³a
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
 DOC_FILES_VRML='kanim_format.html
   castle_script.html
@@ -73,7 +72,7 @@ DOC_FILES_VRML='kanim_format.html
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE
 MAKE="$KAMBI_GNU_MAKE"
 
-LINUX32_BINARY_PATH="$HOME"/bin/
+LINUX32_BINARY_PATH="$HOME"/rel/linux32/
 LINUX64_BINARY_PATH="$HOME"/rel/linux64/
 FREEBSD_BINARY_PATH=/freebsd/usr/home/michal/bin/
 MACOSX_BINARY_PATH="$HOME"/rel/macosx/
@@ -104,7 +103,7 @@ fi
 
 # $1 is $BINARY_BASENAME = basename of binary.
 # $2 is the OS name (as in $TARGET_OS or $SOURCE_OS).
-# $3 is the architecture name (i386 or x86_64, see README).
+# $3 is the architecture name (i386 or x86_64, see README.txt).
 # $4 is $PROGRAM_PATH (unused now).
 # This returns full file name:
 #   ${hardcoded *_BINARY_PATH} + $BINARY_BASENAME + (if OS = windows-like) .exe
@@ -558,18 +557,18 @@ case "$1" in
     binary_archive_end 't'
     ;;
 
-  sandbox)
-    # $2 is TARGET_OS, $3 is TARGET_ARCH
-    binary_archive_begin "$2" "$3" sandbox
-    update_full_program sandbox \
-      "$CASTLE_ENGINE_PATH"sandbox/ \
-      'README tiles/ maps/' \
-      ''
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
-    binary_add_gpl2
-    binary_set_unix_permissions
-    binary_archive_end ''
-    ;;
+  # sandbox)
+  #   # $2 is TARGET_OS, $3 is TARGET_ARCH
+  #   binary_archive_begin "$2" "$3" sandbox
+  #   update_full_program sandbox \
+  #     "$CASTLE_ENGINE_PATH"sandbox/ \
+  #     'README.txt tiles/ maps/' \
+  #     ''
+  #   binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
+  #   binary_add_gpl2
+  #   binary_set_unix_permissions
+  #   binary_archive_end ''
+  #   ;;
 
   castle)
     # $2 is TARGET_OS, $3 is TARGET_ARCH
@@ -579,7 +578,7 @@ case "$1" in
       castle.html castle-advanced.html castle-development.html castle-credits.html
     update_full_program castle \
       "$CASTLE_ENGINE_PATH"castle/ \
-      'data/ README TODO Makefile' \
+      'data/ README.txt TODO.txt Makefile' \
       ''
 
     $MAKE -C "$BINARY_ARCHIVE_TEMP_PATH" clean clean_private
@@ -595,7 +594,7 @@ case "$1" in
 
     # We call areFilenamesLower ourselves (not from update_full_program),
     # because we have special ignore rules.
-    areFilenamesLower -i Makefile -i Makefile.common -i README -i README.txt \
+    areFilenamesLower -i Makefile -i Makefile.common -i README.txt \
       "$BINARY_ARCHIVE_TEMP_PATH"data/
 
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL \

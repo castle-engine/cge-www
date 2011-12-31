@@ -285,11 +285,11 @@ case "$1" in
     pascal_src_archive_end castle
     ;;
 
-  rift)
-    mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"rift/
-    pascal_src_archive_end rift
-    ;;
+  # rift)
+  #   mk_archive_begin
+  #   pascal_src_add_standard "$CASTLE_ENGINE_PATH"rift/
+  #   pascal_src_archive_end rift
+  #   ;;
 
   all_progs)
     "$0" rayhunter
