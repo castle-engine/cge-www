@@ -87,8 +87,9 @@ Procedure to update WWW content:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
   - http://www.pascalgamedevelopment.com/
-    instructions on
-    http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums&p=51857#post51857
+    go to the 'Home' section of the site and create 'News' article
+    Make sure that when you are creating a new News "article" you are in the News section of the front page. If you are in the Articles section, it'll create an "article" instead.
+    (instructions on http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums ).
   - x3d-public mailing list
   - if new VRML extensions: remember to post to Joerg about them
   - http://www.lazarus.freepascal.org/
