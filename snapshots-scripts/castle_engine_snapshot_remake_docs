@@ -1,13 +1,12 @@
 #!/bin/bash
 set -eu
 
-. ~/sources/castle-engine/trunk/www/pack/mk_offline_docs.sh
+export CASTLE_ENGINE_PATH=/home/michalis/sources/castle-engine/trunk/
 
-export CASTLE_ENGINE_HTDOCS_LOCAL_PATH=/home/michalis/sources/castle-engine/trunk/www/htdocs/
+. "$CASTLE_ENGINE_PATH"www/pack/mk_offline_docs.sh
 
-OUTPUT=~/public_html/castle-engine-snapshots/docs/
-
-mk_offline_docs "$OUTPUT" x3d_extensions.html \
+mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
+  x3d_extensions.html \
   x3d_extensions_shadow_maps.html \
   x3d_extensions_vrml1.html \
   x3d_extensions_screen_effects.html \

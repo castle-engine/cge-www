@@ -2,7 +2,7 @@
 /* PHP functions common for castle-engine WWW pages. */
 
 /* Constants that should be defined before including kambi_common.php */
-define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_HTDOCS_LOCAL_PATH');
+define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
 define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);

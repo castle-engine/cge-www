@@ -202,7 +202,7 @@
 
   if (IS_GEN_LOCAL)
   {
-    $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
+    $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH) . 'www/htdocs/';
     chdir($dir) or exit("Cannot change directory to \"$dir\"");
   }
 

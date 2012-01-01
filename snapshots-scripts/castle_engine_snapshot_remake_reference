@@ -1,7 +1,9 @@
 #!/bin/bash
 set -eu
 
-cd ~/sources/castle-engine/trunk/castle_game_engine/doc/pasdoc/
+export CASTLE_ENGINE_PATH=/home/michalis/sources/castle-engine/trunk/
+
+cd "$CASTLE_ENGINE_PATH"castle_game_engine/doc/pasdoc/
 make clean
 make html
 
