@@ -80,13 +80,12 @@ Procedure to update WWW content:
 
 - after important release, I may wish to announce it:
 
-  - (Removed, I don't use "blog" on Allura: SF news for castle-engine project)
   - engine source code release means updating FPC contrib units info
     (see fpc_contrib_units_data.txt,
-    http://www.freepascal.org/contrib/db.php3?category=Graphics).
+    http://www.freepascal.org/contrib/contribs.html).
   - new release of view3dscene and/or castle go to freshmeat:
-    http://freshmeat.net/projects/view3dscene/
-    http://freshmeat.net/projects/castlegame/
+    http://freecode.com/projects/view3dscene/
+    http://freecode.com/projects/castlegame/
   - http://www.pascalgamedevelopment.com/
     instructions on
     http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums&p=51857#post51857
@@ -94,8 +93,7 @@ Procedure to update WWW content:
   - if new VRML extensions: remember to post to Joerg about them
   - http://www.lazarus.freepascal.org/
     Examples on:
-    http://www.lazarus.freepascal.org/index.php/topic,11716.0.html
-    http://www.lazarus.freepascal.org/index.php/topic,11165.0.html
+    http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
   - Post new topic on our forum, to encourage some discussion.
   - Post on facebook, google+, twitter.
 
