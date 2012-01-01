@@ -44,11 +44,11 @@ svn up > "$OUTPUT_LOG"
 
 ./clean_everything.sh >> "$OUTPUT_LOG"
 
-./compile_all_programs.sh unix  >> "$OUTPUT_LOG" 2>&1
+./compile_all_programs.sh  >> "$OUTPUT_LOG" 2>&1
 move_all_programs '' linux-i386
 
 export CASTLE_FPC_OPTIONS=-Twin32
-./compile_all_programs.sh windows >> "$OUTPUT_LOG" 2>&1
+./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
 move_all_programs '.exe' win-i386
 export CASTLE_FPC_OPTIONS=''
 

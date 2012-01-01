@@ -899,21 +899,13 @@ In particular
 Unpack them in such way that <tt>castle_game_engine/</tt>
 and <tt>castle/</tt> directories are together (siblings) under the same directory.
 
-<p>Then compile inside <tt>castle/</tt> directory by simple
-<pre>
-  make build-unix
-</pre>
-under Unixes (Linux, FreeBSD, Mac OS X) or
-<pre>
-  make build-windows
-</pre>
-under Windows. Note that you must use GNU make.
-Required compiler is
-<a href="http://www.freepascal.org/">FreePascal</a>
-(you can look at <?php echo a_href_page_hashlink(
-  'notes about FPC version required', 'engine', 'section_fpc_ver'); ?>
- &mdash; usually this is "latest stable FPC version").
- There is no Delphi support &mdash; I live in the open source world.
+<p>Compile by running <tt>make</tt> inside the <tt>castle/</tt> directory.
+Note that you must use GNU make.
+You must have <a href="http://www.freepascal.org/">FPC (Free Pascal Compiler)</a>
+installed (you can look at <?php echo a_href_page_hashlink(
+  'notes about FPC version required', 'engine', 'section_fpc_ver'); ?>,
+  in short: use latest stable FPC version).
+There is no Delphi support &mdash; I live in the open source world.
 
 <!--
 <div style="border: thin solid gray; margin-left: 3em; padding: 0.5em;">

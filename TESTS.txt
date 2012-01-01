@@ -3,7 +3,7 @@ this (on each platform) before release:
 
 # Basic compilation tests
 
-./compile_all_programs.sh unix|windows
+./compile_all_programs.sh
 ./compile_all_programs.sh lazarus
 cd castle_game_engine/
 make
