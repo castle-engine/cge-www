@@ -22,7 +22,7 @@ set -eu
 # to TARGET_DIR dir. I.e. after copying TARGET_DIR will mirror
 # some parts of current directory.
 # SOURCE_DIRS must contain a list of dirs inside current dir,
-# like '.' or './' or '3dgraph/ 3dmodels/'.
+# like '.' or './' or 'x3d/ opengl/'.
 #
 # While copying omits old/ and private/ and .svn/ subdirs.
 #

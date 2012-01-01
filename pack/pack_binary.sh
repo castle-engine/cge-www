@@ -82,20 +82,6 @@ REQUIRED_FPC_VERSION=2.4.4
 
 # utils -----------------------------------------------------------------
 
-# Calculate "$SOURCE_OS", which is just like "$TARGET_OS" (the same set
-# of possible values), but indicates the OS where we are now *currently*
-# (as opposed to the OS for which we pack, indicated by $TARGET_OS).
-# Unused for now.
-if uname | grep --quiet -i linux; then
-  SOURCE_OS=linux
-elif uname | grep --quiet -i freebsd; then
-  SOURCE_OS=freebsd
-elif uname | grep --quiet -i darwin; then
-  SOURCE_OS=macosx
-elif uname | grep --quiet -i cygwin; then
-  SOURCE_OS=win
-fi
-
 # $1 is basename of executable.
 # $2, optional, if non-empty means "do not check this executable for $VERSION".
 #
@@ -262,25 +248,21 @@ binary_add_view3dscene_desktop ()
   cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.xml        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
 }
 
-# This sets appropriate permissions: executable for binary and dirs,
-# normal for other files.
+# Sets appropriate permissions for files inside archove.
+# Executable for binary and dirs, normal for other files.
 #
-# Uses TARGET_OS and PRIMARY_EXEC, so call this when these are set.
+# Uses TARGET_OS and PRIMARY_EXEC, so only call this when these are set.
 # Generally, you should call this only when all files are in place
 # in "$MK_ARCHIVE_TEMP_PATH", otherwise some files could be left with
 # wrong permissions.
 binary_set_unix_permissions ()
 {
   cd "$MK_ARCHIVE_TEMP_PATH"
-  case "$TARGET_OS" in
-    linux|freebsd|macosx)
-      # set right permissions
-      find ./ -type f -and -exec chmod 644 '{}' ';'
-      find ./ -type d -and -exec chmod 755 '{}' ';'
-      find ./ -type f -and -iname '*.sh' -and -exec chmod 755 '{}' ';'
-      chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${PRIMARY_EXEC}"
-      ;;
-  esac
+  # set right permissions
+  find ./ -type f -and -exec chmod 644 '{}' ';'
+  find ./ -type d -and -exec chmod 755 '{}' ';'
+  find ./ -type f -and -iname '*.sh' -and -exec chmod 755 '{}' ';'
+  chmod 755 "$BINARY_ARCHIVE_TEMP_PATH""${PRIMARY_EXEC}"
 }
 
 # Add primary executable (depending on OS/CPU)
@@ -350,7 +332,7 @@ binary_add_exec_and_data ()
   fi
   dircleaner . clean -d .svn
 
-  # Sprawd¼ areFilenamesLower
+  # Check areFilenamesLower.
   # Do it after the dircleaner --- otherwise areFilenamesLower could complain
   # about files such like .../.svn/README.txt, that will be deleted by
   # dircleaner call.
