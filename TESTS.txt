@@ -1,7 +1,23 @@
-There are many automated tests of our engine, useful to run
-this (on each platform) before release:
+Automated and semi-automated tests of our engine and tools.
+The following tests/tasks should be done before release,
+to make sure that everything is in top-quality-shape before release:
 
+# ----------------------------------------------------------------------------
+# Cleanup repository
+
+# Test are there no files with accidental svn:executable attrib
+# (may happen if commiting from FAT filesystems on Unix):
+find . -executable -type f | grep -v ".sh$" | grep -v "~$"
+
+# Search and remove not needed empty dirs from SVN repo
+# (they sometimes are left, as I use git-svn, which leaves them in repo,
+# as git is unable to deal with directories):
+find-empty-dirs
+
+# ----------------------------------------------------------------------------
 # Basic compilation tests
+
+# Remember to switch to latest stable FPC version for this:
 
 ./compile_all_programs.sh
 ./compile_all_programs.sh lazarus
@@ -20,6 +36,7 @@ make examples-laz
 make
 # revert ../castle_game_engine/src/base/castleconf.inc
 
+# ----------------------------------------------------------------------------
 # FPCUnit tests
 
 cd tests/
@@ -31,6 +48,21 @@ make clean -C ..
 ./compile_console.sh # recompile all in debug mode for tests
 ./test_castle_game_engine -a
 
+# ----------------------------------------------------------------------------
+# Test that older FPC works too. For this, switch to oldest FPC promised to work
+# on http://castle-engine.sourceforge.net/engine.php#section_fpc_ver, and repeat
+# at least quick non-Lazarus tests:
+
+./compile_all_programs.sh
+cd castle_game_engine/
+make
+make examples
+make clean
+cd tests/
+./compile_console.sh
+./test_castle_game_engine -a
+
+# ----------------------------------------------------------------------------
 # Test view3dscene VRML/X3D loading/saving/rendering
 
 cd view3dscene/
@@ -39,6 +71,7 @@ svn diff # check, fix or commit differences
 # (You may also uncomment longer mk_screnshot tests in run_test_once.sh
 # and rerun run_tests.sh)
 
+# ----------------------------------------------------------------------------
 # Test Lazarus compilation:
 # - Recompile castle_game_engine packages
 # - Compile and run from Lazarus lpi files non-LCL examples:
@@ -72,18 +105,11 @@ svn diff # check, fix or commit differences
   #   ./window/unix/castleglx.ppu (required only for CastleWindow Xlib backend --- hm, maybe add?)
   #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to castle_base package later.)
 
-# Test are there no files with accidental svn:executable attrib
-# (may happen if commiting from FAT filesystems on Unix):
+# ----------------------------------------------------------------------------
+# Test fpmake compilation system.
+# Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.4/
 
-  find . -executable -type f | grep -v ".sh$" | grep -v "~$"
-
-# Test fpmake compilation system:
-  # remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.4/
-  fpc fpmake.pp
-  ./fpmake build -v
-  ./fpmake clean -v
-  ./fpmake build --nofpccfg --verbose
-
-# Finally, search and remove not needed empty dirs from SVN repo
-# (they sometimes are left, as I use git-svn, which leaves them in repo,
-# as git is unable to deal with directories): find-empty-dirs
+fpc fpmake.pp
+./fpmake build -v
+./fpmake clean -v
+./fpmake build --nofpccfg --verbose
