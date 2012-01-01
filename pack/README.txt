@@ -5,24 +5,12 @@ It's *enormously* useful to have this process automated :)
 These are bash scripts (under Windows basic Cygwin environment is required;
 MinGW is probably also OK, although minor adjustments may be needed).
 
-Common things to do before calling ./pack_binary.sh
-on some program:
+Procedure to release a program:
 
-- Make sure Version constant in the program's source code in updated.
+- Make sure Version constant in the program's source code is incremented.
 
-- Make sure you did `svn update' of program sources.
-  And make sure no local modifications remain - `svn status' should return empty.
-
-- Recompile the program with *release* settings:
-  - make sure you're using correct FPC version (fpc -l)
-  - cd ~/sources/castle-engine/trunk/ && ./clean_everything.sh
-  - compile program with release settings, and move executable where appropriate:
-    if using Emacs, open program's .lpr file, and compile with C-F10
-    if not, see kam-compile-release-command* at the bottom of .lpr file
-
-- If the program has version number:
-  - You should recompile program both for target OS (the OS for which you
-    want to pack) and the OS where you're going to call generate_versions.sh.
+- Call ../scripts/generate_versions.sh script.
+  - Before, you should recompile program for the current (source) OS.
     That's because generate_versions.sh actually calls program with --version
     to determine version number.
 
@@ -35,12 +23,25 @@ on some program:
     generated_versions.sh (this makes version number for binary and
     source archives created by pack_binary and pack_pascal_src)
 
-- Call ./pack_binary.sh with proper options
+- Make sure you did `svn update' of program sources.
+  And make sure no local modifications remain - `svn status' should return empty.
 
-  You can check generated archives again, by unpacking.
+- Recompile the program with *release* settings:
+  - make sure you're using correct FPC version (fpc -l).
+    This will be actually checked by pack_binary, so also make sure
+    that $REQUIRED_FPC_VERSION inside pack_binary.sh is Ok.
+  - cd ~/sources/castle-engine/trunk/ && ./clean_everything.sh
+  - compile program with release settings: see compile.sh scripts in program dirs
+  - move executable to $EXEC_PATH/os-architecture/ defined in pack_binary.sh
+
+- Call pack_binary.sh and pack_pascal_src.sh with proper options.
+  You may use do_everything_example.sh as a starting point.
+
+  Unpack and check resulting archives: unpack, and run.
   Run documentation in browser.
 
-- Call ./pack_pascal_src.sh with proper options
+  Look at archive size, compare with size for previous version ---
+  if any drastic change, investigate why (possibly it's as expected,
+  possibly we packed too little / too much).
 
-After this, see SF update procedure on
-../../NOTES.txt
+After doing this, follow SF update procedure on ../NOTES.txt .
