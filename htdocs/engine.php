@@ -369,8 +369,7 @@ so should be 100% stable.</p>
     context</b>. The intention of this unit is to be something like glut,
     but magnitudes better &mdash; using clean ObjectPascal, for start.
     Also it allows you to easily create <b>menu bars, open/save file and similar
-    dialogs</b> that are implemented using native controls (GTK (1.0 or 2.0, and yes,
-    GTK 2.0 version is perfectly stable and advised) or WinAPI).</li>
+    dialogs</b> that are implemented using native controls (GTK 2 or WinAPI).</li>
 
   <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
