@@ -240,11 +240,12 @@ which is an IDE (editor, debugger etc.) built around FPC.</p>
 <p><b>We always support and advice the latest stable release of FPC
 (currently 2.6.0).</b>.</p>
 
-<p>Last engine release was done when FPC 2.4.4 was stable.
-All the sources work with FPC 2.6.0 as well, but you need to fix
-the <tt>compile.sh</tt> scripts of programs: use <tt>${CASTLE_FPC_OPTIONS:-}</tt>
+<p><i>Note only for FPC 2.6.0:</i> if you use <tt>compile.sh</tt> scripts,
+you need to fix them: use <tt>${CASTLE_FPC_OPTIONS:-}</tt>
 instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes,
-to avoid <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000 bug</a>).</p>
+to avoid <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000 bug</a>).
+This isn't a problem for earlier FPC versions, or if you compile programs
+with Lazarus.
 
 <p>We also support a couple of older FPC releases.
 With new engine versions (later than 2.5.1), <b>FPC versions &gt;= 2.2.4
