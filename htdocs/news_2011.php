@@ -6,6 +6,8 @@ Notes about FPC 2.6.0: recently, FPC 2.6.0 was released. I tested, and it works 
 <p>The only small problem is <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000</a>, which is actually a bug in my compilation scripts. This concerns you only if you compile final programs (not just the engine), and only if you use scripts (as opposed to Lazarus) to do this. In such case, make sure you use <tt>${CASTLE_FPC_OPTIONS:-}</tt> instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes).
 
 Obsolete CastleWindow GTK 1 backend removed. Even it's compilation was broken since a long time. We use GTK 2 since many years.
+
+An Examine rotation with mouse was improved: dragging the mouse along the border of the window will now cause rotation around the Z axis. (More precisely, we interpolate between rotation around Z axis and traditional XY rotation, by looking at how close the mouse position is to the middle of the window.) This makes rotations with mouse much more flexible. This is called "virtual trackball" on <a href="http://audilab.bme.mcgill.ca/~funnell/graphics/graphics3dview.html">Robert J. Funnell's "3-D viewers" page</a>
 */
 
 array_push($news,
