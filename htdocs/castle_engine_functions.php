@@ -540,7 +540,7 @@ function echo_standard_program_download(
   $os_arch_caption = array(
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
-    'win-i386'     => ' Windows<br/>(32 bit)',
+    'win-i386'     => ' Windows<br/>(32 bit, works on 64-bit too)',
     'macosx-i386'  => ' Mac OS X<br/>(32 bit)',
   );
 
