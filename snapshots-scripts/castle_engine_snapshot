@@ -52,6 +52,11 @@ export CASTLE_FPC_OPTIONS=-Twin32
 move_all_programs '.exe' win-i386
 export CASTLE_FPC_OPTIONS=''
 
+export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
+./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
+move_all_programs '.exe' win-x86_64
+export CASTLE_FPC_OPTIONS=''
+
 echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
 echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTPUT_LOG"
 
