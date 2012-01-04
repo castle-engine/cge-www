@@ -1472,17 +1472,14 @@ end;
         <p>Note that for nice spot headlights, you will usually want to
         <?php echo a_href_page_hashlink('enable per-pixel lighting
         on everything by View-&gt;Shaders-&gt;Enable For Everything',
-        'x3d_implementation_lighting', 'section_per_pixel_lighting'); ?>
+        'x3d_implementation_lighting', 'section_per_pixel_lighting'); ?>.
         Otherwise the ugliness of default fixed-function Gouraud shading
         will be visible in case of spot lights (you will see how
         the spot shape "crawls" on the triangles,
         instead of staying in a nice circle).
-
-        <p>To visualize nicely <tt>SpotLight.beamWidth</tt>
-        you also may consider
-        <?php echo a_href_page_hashlink('enabling per-pixel lighting
-        on everything by View-&gt;Shaders-&gt;Enable For Everything',
-        'x3d_implementation_lighting', 'section_per_pixel_lighting'); ?>.
+        So to see the spot light cone perfectly, and also to see
+        <tt>SpotLight.beamWidth</tt> perfectly,
+        enable per-pixel shader lighting.
 
         <p>Note that instead of setting headlight to spot, you may also
         consider cheating: you can create a screen effect that simulates
@@ -1493,9 +1490,10 @@ end;
         but also potentially more efficient (for starters, you don't have
         to use per-pixel lighting on everything to make it nicely round).
 
-      <li><p>The <tt>"location"</tt> of the light (if you put here <tt>PointLight</tt>
-        or <tt>SpotLight</tt>) that you set will be ignored,
-        and instead will be reset on each frame to the player's location
+      <li><p>Your specified <tt>"location"</tt> of the light (if you put here <tt>PointLight</tt>
+        or <tt>SpotLight</tt>) will be ignored.
+        Instead we will synchronize light location in each frame
+        to the player's location
         (in world coordinates)<!--, TODO: modified by the
         headlightMove (default zero, see below)-->.
 
@@ -1503,10 +1501,10 @@ end;
         <!-- TODO: test. This is useful to visualize headlight location,
         together with headlightMove. -->
 
-      <li><p>Similarly, the <tt>"direction"</tt> of the light
+      <li><p>Similarly, your specified <tt>"direction"</tt> of the light
         (if this is <tt>DirectionalLight</tt> or <tt>SpotLight</tt>)
-        that you set will be ignored, and instead will be reset
-        on each frame to the player's normalized direction
+        will be ignored. Instead we will keep it synchronized
+        with the player's normalized direction
         (in world coordinates). You can ROUTE this direction to see it changing.
 
      <li><p>The <tt>"global"</tt> field doesn't matter.
