@@ -248,8 +248,7 @@ This isn't a problem for earlier FPC versions, or if you compile programs
 with Lazarus.
 
 <p>We also support a couple of older FPC releases.
-With new engine versions (later than 2.5.1), <b>FPC versions &gt;= 2.2.4
-are supported</b>.</p>
+Currently <b>FPC versions &gt;= 2.2.4 are supported</b>.</p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
