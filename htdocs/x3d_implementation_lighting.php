@@ -90,7 +90,7 @@ This is usually slower but also more beautiful than default
 automatically for shapes using
 <?php echo a_href_page('shadow maps', 'x3d_extensions_shadow_maps'); ?>
  or
-<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>
+<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>)
  requires a good graphic card with latest drivers.
 <!--This means that they work much better than previously (where
 sometimes I used simplified dumb shaders, and sometimes default
