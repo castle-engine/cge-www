@@ -11,7 +11,9 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Support', 'support'),
+      new TocItem('Demos', 'demos'),
+      new TocItem('Supported nodes', 'support'),
+      new TocItem('Supported image file formats', 'support_formats'),
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'multi_texturing_clarifications', 1),
       new TocItem('MultiTexture.source extensions', 'multi_texturing_source', 1),
@@ -26,7 +28,12 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Supported nodes:</p>
+<p>For demos and tests of these features,
+see the <tt>texturing_advanced</tt> and <tt>movie_texture</tt>
+subdirectories inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('ImageTexture'); ?>,
@@ -163,6 +170,13 @@
     <p><tt>minificationFilter</tt>, <tt>magnificationFilter</tt>,
     <tt>anisotropicDegree</tt> are supported. <i>TODO</i>: rest is not.
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>See <?php echo a_href_page("glViewImage", "glviewimage") ?> features
+for the full list of 2D image formats we can handle.
+See <a href="#section_dds">lower on this page for details about DDS format
+support</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -496,7 +510,13 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 
 <?php echo $toc->html_section(); ?>
 
-<a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">DirectDraw Surface (DDS) image format</a> is supported. A number of technical details about DDS implementation are below, but in short: we try to support all formats and all options of DDS in a standard way.
+<p><a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">DirectDraw
+Surface (DDS) image format</a> is supported. This format allows to store textures
+compressed for GPU (S3TC), storing mipmaps, cube maps, and volume (3D) textures.
+A number of technical details about DDS implementation are below, but in short:
+we try to support all formats and all options of DDS in a standard way.
+You may find example DDS images inside <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <tt>textures</tt> subdirectory for <tt>*.dds</tt> files). You can open them directly with our image viewer <?php echo a_href_page("glViewImage", "glviewimage") ?>.</p>
 
 <p>Implementation history:
 
