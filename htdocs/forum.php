@@ -143,4 +143,42 @@ your 3D worlds, you can:
   </li>
 </ul>
 
+<p><b>For Linux distros package maintainers:</b>:
+
+<ul>
+  <li><p>Please package <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    for your favourite Linux distribution :)
+    It's a great and stable VRML/X3D browser (and viewer for other 3D models,
+    like Collada and 3DS).
+    Some facts in favor of view3dscene, important for package maintainers:
+
+    <ul>
+      <li>Stable program, with <?php echo a_href_page('long development
+        history and regular releases', 'news'); ?>.
+      <li>Desktop integration files (SVG icon, .desktop file, MIME xml)
+        are already included in our archive.
+      <li>The <?php echo a_href_page_hashlink('dependencies of view3dscene',
+        'view3dscene', 'section_depends'); ?> are documented.
+        There's nothing weird there (<i>ffmpeg</i> and <i>ImageMagick</i> are only
+        light suggestions; <i>OpenAL</i> may also be a suggestion instead of
+        a recommendation; the rest is standard for any GTK program using OpenGL).
+      <li>Build-dependencies of view3dscene include
+        <a href="http://www.freepascal.org/">Free Pascal Compiler</a>,
+        but this should not be a problem &mdash; all major distros already
+        have fpc packaged.
+      <li><?php echo a_href_page('Complete sources of view3dscene are here',
+        'engine'); ?>, get both view3dscene and engine sources,
+        and unpack them to make <tt>view3dscene</tt> and
+        <tt>castle_game_engine</tt> siblings.
+      <li>The whole thing is GPL &gt;= 2 (most of the engine may also be used
+        under more permissive "LGPL with static-linking exception" &gt;= 2,
+        but this probably doesn't matter here).
+    </ul>
+
+    <p>Michalis uses <a href="http://www.debian.org/">Debian</a>,
+    and sometimes <a href="http://www.ubuntu.com/">Ubuntu</a>,
+    and would love to see his software available in your repositories :)
+  </li>
+</ul>
+
 <?php castle_footer(); ?>
