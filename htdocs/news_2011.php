@@ -25,6 +25,9 @@ Previously Anchor was ignored (hidden by TouchSensor), now it's treated like sib
 <li>Engine works fully under 64-bit Windows (Win64, Windows on x86_64). <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">Snapshots are build for win-x86_64</a> too. If there's interest (please report on forum) we may release binaries for this system on next view3dscene release. (I don't think it's terribly important, because our 32-bit binaries actually work on Win64 flawlessly too.)
 
 <li>To our "Helping in the engine development" added "For Linux distros package maintainers". Please help creating a view3dscene package for popular Linux distributions!
+
+<li>Work on next engine release brings improvements to next "The Castle" release:
+- shadow volumes enabled by default
 */
 
 array_push($news,
