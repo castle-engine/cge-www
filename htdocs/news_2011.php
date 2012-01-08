@@ -2,12 +2,17 @@
 
 /* Next news:
 
+<li>An Examine rotation with mouse was improved: dragging the mouse along the border of the window will now cause rotation around the Z axis. (More precisely, we interpolate between rotation around Z axis and traditional XY rotation, by looking at how close the mouse position is to the middle of the window.) This makes rotations with mouse much more flexible. This is called "virtual trackball" on <a href="http://audilab.bme.mcgill.ca/~funnell/graphics/graphics3dview.html">Robert J. Funnell's "3-D viewers" page</a>
+
+<li>We accept BitCoin donations too.
+
+<li>Work on next engine release brings improvements to next "The Castle" release:
+- shadow volumes enabled by default
+
 <li>Notes about FPC 2.6.0: recently, FPC 2.6.0 was released. I tested, and it works perfectly fine our engine 3.0.0.
   <p>The only small problem is <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000</a>, which is actually a bug in my compilation scripts. This concerns you only if you compile final programs (not just the engine), and only if you use scripts (as opposed to Lazarus) to do this. In such case, make sure you use <tt>${CASTLE_FPC_OPTIONS:-}</tt> instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes).
 
 <li>Obsolete CastleWindow GTK 1 backend removed. Even it's compilation was broken since a long time. We use GTK 2 since many years.
-
-<li>An Examine rotation with mouse was improved: dragging the mouse along the border of the window will now cause rotation around the Z axis. (More precisely, we interpolate between rotation around Z axis and traditional XY rotation, by looking at how close the mouse position is to the middle of the window.) This makes rotations with mouse much more flexible. This is called "virtual trackball" on <a href="http://audilab.bme.mcgill.ca/~funnell/graphics/graphics3dview.html">Robert J. Funnell's "3-D viewers" page</a>
 
 <li>Cooperating Anchor and other pointing-device sensor improved: in constructions like
 
@@ -25,9 +30,6 @@ Previously Anchor was ignored (hidden by TouchSensor), now it's treated like sib
 <li>Engine works fully under 64-bit Windows (Win64, Windows on x86_64). <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">Snapshots are build for win-x86_64</a> too. If there's interest (please report on forum) we may release binaries for this system on next view3dscene release. (I don't think it's terribly important, because our 32-bit binaries actually work on Win64 flawlessly too.)
 
 <li>To our "Helping in the engine development" added "For Linux distros package maintainers". Please help creating a view3dscene package for popular Linux distributions!
-
-<li>Work on next engine release brings improvements to next "The Castle" release:
-- shadow volumes enabled by default
 */
 
 array_push($news,
