@@ -53,6 +53,14 @@ and view3dscene, and our games :) Thanks!</p>
   or use your own PayPal account.</p>
   </td>
 
+  <tr><td colspan="3" style="width: 100%">
+  <!--div style="margin-left: 20%; margin-right: 20%"-->
+  <!-- img src="images/bitcoin_logo.png" alt="Bitcoin logo" style="float: left; margin-right: 1em" / -->
+  <p>You can also donate using <a href="http://www.bitcoin.org/">BitCoin</a>.
+  Simply donate to <tt>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</tt></p>
+  <!--/div-->
+  </td></tr>
+
 <?php /* Allura doesn't support donations,
   https://sourceforge.net/p/allura/tickets/2540/,
   so comment out section below:
