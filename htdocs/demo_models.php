@@ -77,9 +77,13 @@ message and (when possible) continue (omitting only the problematic part).</p>
 
 <p>Comments and contributions to these demos are most welcome.
 See <?php echo a_href_page('forum', 'forum'); ?> for ways to contact us.
-If you have some cool 3D model, or interesting, or difficult for our engine,
-or just something you want to show to somebody :),
-feel welcome to send it to Michalis!</p>
+If you have a cool 3D model, something interesting,
+or maybe just something difficult for our engine, please share it with us!
+<!--Posting a screenshot or a video of your model is most welcome.-->
+We love to see how you use our tools :)
+<!--
+To include your model in these demos, or to report a bug, you will of course
+have to actually send your 3D model source.--></p>
 
 <p>Feel free to expand, modify, redistribute these test files
 &mdash; they are covered by GNU GPL &gt;= 2 license.</p>
@@ -91,13 +95,13 @@ feel welcome to send it to Michalis!</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Most of the 3D models inside were created by Kambi (Michalis Kamburelis).
-Most the simple test models were simply manually crafted in a text editor.
+<p>Most of the 3D models here were created by Kambi (Michalis Kamburelis).
+Simple test models were simply manually crafted in a text editor.
 The more complicated meshes were created in
 <a href="http://www.blender3d.org/">Blender</a> (usually using our
 <?php echo a_href_page('modified Blender exporters', 'blender'); ?>),
 you will find the .blend source files inside.
-For the 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.
+For 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.
 Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 
 <p>Large/important contributions:</p>
