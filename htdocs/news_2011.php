@@ -40,6 +40,8 @@ Previously Anchor was ignored (hidden by TouchSensor), now it's treated like sib
 <li>New view3dscene menu item <i>Help -&gt; Visit view3dscene website</t>,
 new castle menu item <i>"Visir our website"</i>,
 and <a href="http://castle-engine.sourceforge.net/x3d_implementation_networking.php">Anchor node can now open URLs in a browser (for documents that are not recognized as 3D models)</a>.
+
+<li>Tear-off menus are removed from the engine and view3dscene. This means a little functionality lost if you used view3dscene on Unix (Linux, Mac OS X). Sadly, tear-off menus are deprecated in GTK 3.1, and they are in fact already buggy in existing GTK 2 versions. See <A href=">ticket #3</a> for links for references
 */
 
 array_push($news,
