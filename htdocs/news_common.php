@@ -212,6 +212,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
 */
 
 $news = array();
+require_once 'news_2012.php';
 require_once 'news_2011.php';
 require_once 'news_2010.php';
 require_once 'news_2009.php';

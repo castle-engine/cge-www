@@ -1,49 +1,5 @@
 <?php
 
-/* Next news:
-
-<li>An Examine rotation with mouse was improved: dragging the mouse along the border of the window will now cause rotation around the Z axis. (More precisely, we interpolate between rotation around Z axis and traditional XY rotation, by looking at how close the mouse position is to the middle of the window.) This makes rotations with mouse much more flexible. This is called "virtual trackball" on <a href="http://audilab.bme.mcgill.ca/~funnell/graphics/graphics3dview.html">Robert J. Funnell's "3-D viewers" page</a>
-
-<li>We accept BitCoin donations too.
-
-(img: new_scene_manager_demos.png)
-<li>T3DTransform class, to comfortably transform (translate, rotate around specified center, scale around specified center with specified scaleOrientation) is done.
-
-<li>Work on next engine release brings improvements to next "The Castle" release:
-- shadow volumes enabled by default
-- comfortable T3D.ReceiveShadowVolumes property
-- teleport, and spiders sliding down on cages level, are now done by T3DTransform descendants. This means that spiders sliding down cast shadows too.
-
-<li>Notes about FPC 2.6.0: recently, FPC 2.6.0 was released. I tested, and it works perfectly fine our engine 3.0.0.
-  <p>The only small problem is <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000</a>, which is actually a bug in my compilation scripts. This concerns you only if you compile final programs (not just the engine), and only if you use scripts (as opposed to Lazarus) to do this. In such case, make sure you use <tt>${CASTLE_FPC_OPTIONS:-}</tt> instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes).
-
-<li>Obsolete CastleWindow GTK 1 backend removed. Even it's compilation was broken since a long time. We use GTK 2 since many years.
-
-<li>Cooperating Anchor and other pointing-device sensor improved: in constructions like
-
-<pre>
-Anchor {
-  children [
-    TouchSensor { ... }
-    Shape { ... }
-  ]
-}
-</pre>
-
-Previously Anchor was ignored (hidden by TouchSensor), now it's treated like sibling to TouchSensor. So it can be activated, it's desciption is shown etc. Compatible with at least InstantReality.
-
-<li>Engine works fully under 64-bit Windows (Win64, Windows on x86_64). <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">Snapshots are build for win-x86_64</a> too. If there's interest (please report on forum) we may release binaries for this system on next view3dscene release. (I don't think it's terribly important, because our 32-bit binaries actually work on Win64 flawlessly too.)
-
-<li>To our "Helping in the engine development" added "For Linux distros package maintainers". Please help creating a view3dscene package for popular Linux distributions!
-
-(use img anchor_www.png)
-<li>New view3dscene menu item <i>Help -&gt; Visit view3dscene website</t>,
-new castle menu item <i>"Visir our website"</i>,
-and <a href="http://castle-engine.sourceforge.net/x3d_implementation_networking.php">Anchor node can now open URLs in a browser (for documents that are not recognized as 3D models)</a>.
-
-<li>Tear-off menus are removed from the engine and view3dscene. This means a little functionality lost if you used view3dscene on Unix (Linux, Mac OS X). Sadly, tear-off menus are deprecated in GTK 3.1, and they are in fact already buggy in existing GTK 2 versions. See <A href=">ticket #3</a> for links for references
-*/
-
 array_push($news,
     array('title' => 'view3dscene 3.11.0, engine 3.0.0 releases',
 //          'short_title' =>
