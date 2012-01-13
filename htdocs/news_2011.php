@@ -6,6 +6,7 @@
 
 <li>We accept BitCoin donations too.
 
+(img: new_scene_manager_demos.png)
 <li>T3DTransform class, to comfortably transform (translate, rotate around specified center, scale around specified center with specified scaleOrientation) is done.
 
 <li>Work on next engine release brings improvements to next "The Castle" release:
