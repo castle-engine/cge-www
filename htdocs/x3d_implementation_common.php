@@ -24,7 +24,7 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
   echo pretty_heading($x3d_component_name . ' component');
 
   global $x3d_component_url;
-  $x3d_component_url = 'http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/' .
+  $x3d_component_url = 'http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/' .
     $x3d_spec_page_url . '.html';
 
   echo '<div class="x3d_component_intro">
