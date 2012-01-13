@@ -38,7 +38,7 @@ packed with creatures, items and sounds.</p>
 
 <p>Also a couple of bonus levels are available, for fun and
 to show off some engine features. In particular, there's the classic DOOM E1M1
-level &mdash; I know you always wished to had a sword and a bow in DOOM :)
+level &mdash; I know you always wanted to have a sword and a bow in DOOM :)
 Enjoy !</p>
 
 <p><i>Requirements to run</i>: At least <i>512 MB
