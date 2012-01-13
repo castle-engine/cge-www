@@ -1,7 +1,7 @@
 <?php
 
 array_push($news,
-    array('title' => 'Development: virtual trackball rotation, visit website menus, lot\'s of other improvements',
+    array('title' => 'Development: virtual trackball, URLs, BitCoin, T3DTransform, Win64, and more',
 //          'short_title' =>
           'year' => 2012,
           'month' => 1,
