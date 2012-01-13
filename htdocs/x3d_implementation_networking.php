@@ -13,8 +13,13 @@
 <ul>
   <li><p><?php echo x3d_node_link('Anchor'); ?>
 
-    <p><i>TODO</i>: <tt>parameter</tt> field is ignored, everything else
-    is handled (according to X3D spec).</p></li>
+    <p>Files recognized as 3D models are loaded.
+    We jump to viewpoint in a 3D model (loaded or current), if specified.
+    Other documents (URLs not recognized as 3D models) are opened with
+    default WWW browser on your operating system.</p>
+
+    <p><i>TODO</i>: <tt>parameter</tt> field is ignored.</p>
+    </li>
 
   <li><p><?php echo x3d_node_link('Inline'); ?>, (VRML 97) <tt>InlineLoadControl</tt></p>
 
