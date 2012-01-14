@@ -271,8 +271,9 @@ others) are full of demos of our extensions.</p>
 
         <p>It's allowed for some part to not be perfectly 2-manifold, but then
         some rendering problems are unavoidable. See
-        <?php echo a_href_page("engine documentation",'engine_doc'); ?>,
-        chapter "Shadows" for description.
+        <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html">chapter "Shadow Volumes"</a>
+        (inside <?php echo a_href_page("engine documentation",'engine_doc'); ?>)
+        for description.
 
         <p>You can inspect whether your model is detected as a 2-manifold
         by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
