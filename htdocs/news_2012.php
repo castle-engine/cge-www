@@ -1,5 +1,14 @@
 <?php
 
+/* Next news:
+
+Examine rotation speed by keys limited, to not make wild rotations.
+
+"The Castle" code improvements (to move some stuff to engine core). User-visible:
+- You can now pick creatures to see their name and health status.
+  (Press "e" (interact key) to see info about creature or item under the screen middle.)
+*/
+
 array_push($news,
     array('title' => 'Development: virtual trackball, URLs, BitCoin, T3DTransform, Win64, and more',
 //          'short_title' =>
