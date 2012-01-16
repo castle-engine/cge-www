@@ -11,18 +11,24 @@
 see the <tt>event_utilities</tt> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
-<p>Supported nodes:</p>
+<p>A nice <a href="http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter09-EventUtilitiesScripting/X3dEventUtilityNodeEventDiagrams.pdf">reference
+sheet for the X3D event utility nodes is available here</a>, thanks to
+Don Brutzman!</p>
 
-<ul>
-  <li><p>All event utilities:
-    <?php echo x3d_node_link('BooleanFilter'); ?>,
-    <?php echo x3d_node_link('BooleanToggle'); ?>,
-    <?php echo x3d_node_link('BooleanTrigger'); ?>,
-    <?php echo x3d_node_link('IntegerTrigger'); ?>,
-    <?php echo x3d_node_link('TimeTrigger'); ?>,
-    <?php echo x3d_node_link('BooleanSequencer'); ?>,
-    <?php echo x3d_node_link('IntegerSequencer'); ?></p>
-</ul>
+<!--p>See also additional test of these nodes in
+<a href="http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter09-EventUtilitiesScripting/">X3D for Web Authors, Chapter 09 - Event Utilities Scripting</a>.
+(Beware that some of classic encoding </p-->
+
+<p>We support all nodes from this component:
+<?php echo x3d_node_link('BooleanFilter'); ?>,
+<?php echo x3d_node_link('BooleanToggle'); ?>,
+<?php echo x3d_node_link('BooleanTrigger'); ?>,
+<?php echo x3d_node_link('IntegerTrigger'); ?>,
+<?php echo x3d_node_link('TimeTrigger'); ?>,
+<?php echo x3d_node_link('BooleanSequencer'); ?>,
+<?php echo x3d_node_link('IntegerSequencer'); ?>.
+You may also want to look at related <?php echo a_href_page_hashlink(
+'<tt>Toggler</tt> node extension', 'x3d_extensions', 'section_ext_toggler'); ?>.</p>
 
 <?php
   x3d_status_footer();
