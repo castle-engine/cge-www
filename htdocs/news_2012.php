@@ -4,6 +4,8 @@
 
 Examine rotation speed by keys limited, to not make wild rotations.
 
+Developers: picking improvements with T3D hierarchy: unified "The Castle" style of picking (pressing the "e" button when looking at item, stateless interaction with 3D items, like in many FPS games) with VRML/X3D pointer sensors (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally is more powerful). Now it all goes through T3D.PointingDeviceActivate/Move, that can be overridden at each T3D.
+
 "The Castle" code improvements (to move some stuff to engine core). User-visible:
 - You can now pick creatures to see their name and health status.
   (Press "e" (interact key) to see info about creature or item under the screen middle.)
