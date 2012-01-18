@@ -9,6 +9,8 @@ Developers: picking improvements with T3D hierarchy: unified "The Castle" style 
 "The Castle" code improvements (to move some stuff to engine core). User-visible:
 - You can now pick creatures to see their name and health status.
   (Press "e" (interact key) to see info about creature or item under the screen middle.)
+  
+Developers: camera classes publish their input shortcuts, making it possible to customize them from Lazarus object inspector.
 */
 
 array_push($news,
