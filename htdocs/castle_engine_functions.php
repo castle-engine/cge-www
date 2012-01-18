@@ -402,6 +402,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
   $rendered = '
   <div class="header">
     <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
+    <div style="float: right; padding: 1em; background: black; border: thick inset black; margin-right: 0.5em; margin-top: 0.5em;"><a style="color: white; font-weight: bold;" href="https://www.eff.org/deeplinks/2012/01/how-pipa-and-sopa-violate-white-house-principles-supporting-free-speech">Stop PIPA and SOPA!</a></div>
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
     ' . _castle_header_menu($path[0]) . '
   </div>';
