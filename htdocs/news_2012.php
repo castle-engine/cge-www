@@ -10,7 +10,10 @@ Developers: picking improvements with T3D hierarchy: unified "The Castle" style 
 - You can now pick creatures to see their name and health status.
   (Press "e" (interact key) to see info about creature or item under the screen middle.)
   
-Developers: camera classes publish their input shortcuts, making it possible to customize them from Lazarus object inspector.
+Developers: camera classes improvements:
+- publish their input shortcuts, making it possible to customize them from Lazarus object inspector.
+- do not descend from TUIControl, you should only use cameras on SceneManager.Camera
+- TCastleSceneManager.DefaultVisibilityLimit, and looks more as Camera.CameraRadius.
 */
 
 array_push($news,
