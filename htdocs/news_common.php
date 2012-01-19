@@ -158,7 +158,9 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
     $current = $next;
     $next = $news_item;
 
-    if ($current !== NULL && $current['id'] == $id)
+    if ($current !== NULL &&
+        (   $current['id']              == $id ||
+          @($current['alternative_id']) == $id ) )
       return;
   }
 
@@ -204,6 +206,10 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
 
    - description: HTML full description. (also used by rss_generator.)
    - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
+   - alternative_id: if set, then it's an alternative id (may be used in URLs
+     like http://castle-engine.sourceforge.net/news.php?id=XXX).
+     Useful when original id is too long, but I don't want to change it
+     (as this would affect RSS readers that would see new id).
 
    They must be ordered from the newest to the oldest.
    While it doesn't matter for RSS (feed will be sorted anyway by news

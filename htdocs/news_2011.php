@@ -169,6 +169,7 @@ castle_thumbs(array(
           'day' => 14,
           'short_description' => '',
           'guid' => '2011-11-14-geometry-shaders-phd-cellular',
+          'alternative_id' => '2011-11-14-geometry-shaders',
           'description' =>
 castle_thumbs(array(
   array('filename' => 'geometry_shader_fun_smoothing.png', 'titlealt' => 'Geometry shader performing a fun variant of smoothing/exploding a shape'),
@@ -396,6 +397,7 @@ castle_thumbs(array(
           'month' => 7,
           'day' => 31,
           'short_description' => '',
+          'alternative_id' => '2011-7-31-collada',
           'description' =>
 castle_thumbs(array(
   array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
@@ -751,6 +753,7 @@ castle_thumbs(array(
           'month' => 3,
           'day' => 8,
           'short_description' => '',
+          'alternative_id' => '2011-3-8-shader-renderer',
           'description' =>
 castle_thumbs(array(
   array('filename' => 'metallic_shiny.png', 'titlealt' => 'Shiny dark metallic material under multiple lights, with per-pixel lighting.'),
