@@ -9,11 +9,14 @@ Developers: picking improvements with T3D hierarchy: unified "The Castle" style 
 "The Castle" code improvements (to move some stuff to engine core). User-visible:
 - You can now pick creatures to see their name and health status.
   (Press "e" (interact key) to see info about creature or item under the screen middle.)
-  
+
 Developers: camera classes improvements:
 - publish their input shortcuts, making it possible to customize them from Lazarus object inspector.
 - do not descend from TUIControl, you should only use cameras on SceneManager.Camera
 - TCastleSceneManager.DefaultVisibilityLimit, and looks more as Camera.CameraRadius.
+
+X3D 3.3 handling:
+- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle convertion actually done. You can now express angles in degress by simple declaration at the beginning of X3D file.
 */
 
 array_push($news,
