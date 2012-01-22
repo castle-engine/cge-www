@@ -21,12 +21,13 @@ X3D 3.3 handling:
   - creaseAngle
   - TextureTransform.rotation
   - Background.skyAngle,groundAngle
-  - Arc2D.startAngle,endAngle 
+  - Arc2D.startAngle,endAngle
   - ArcClose2D.startAngle,endAngle
 - MetadataBoolean node added.
 - GravityPhysicsModelNode renamed to ForcePhysicsModelNode (spec was mistakenly confusing these two names).
 - Missing SliderJoint.sliderForce
 - DISEntityTypeMapping has X3DUrlObject as ancestor
+- The only revelant stuff missing from X3D 3.3 now is the new, very exciting for me, "Volume rendering component". I would like to tackle it at some point, as it may be quite fun, impressive and useful. (But no deadline yet, so if you're really interested in seeing it implemented --- contact me, patches are welcome :)
 */
 
 array_push($news,
