@@ -24,6 +24,9 @@ X3D 3.3 handling:
   - Arc2D.startAngle,endAngle 
   - ArcClose2D.startAngle,endAngle
 - MetadataBoolean node added.
+- GravityPhysicsModelNode renamed to ForcePhysicsModelNode (spec was mistakenly confusing these two names).
+- Missing SliderJoint.sliderForce
+- DISEntityTypeMapping has X3DUrlObject as ancestor
 */
 
 array_push($news,
