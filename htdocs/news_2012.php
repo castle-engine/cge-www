@@ -16,7 +16,13 @@ Developers: camera classes improvements:
 - TCastleSceneManager.DefaultVisibilityLimit, and looks more as Camera.CameraRadius.
 
 X3D 3.3 handling:
-- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle convertion actually done. You can now express angles (in SFRotation, MFRotation, creaseAngle) in degress by simple declaration at the beginning of X3D file.
+- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle convertion actually done. You can now express angles in degress by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
+  - all SFRotation, MFRotation
+  - creaseAngle
+  - TextureTransform.rotation
+  - Background.skyAngle,groundAngle
+  - Arc2D.startAngle,endAngle 
+  - ArcClose2D.startAngle,endAngle
 - MetadataBoolean node added.
 */
 
