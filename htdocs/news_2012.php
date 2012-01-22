@@ -17,6 +17,7 @@ Developers: camera classes improvements:
 
 X3D 3.3 handling:
 - UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle convertion actually done. You can now express angles in degress by simple declaration at the beginning of X3D file.
+- MetadataBoolean node added.
 */
 
 array_push($news,
