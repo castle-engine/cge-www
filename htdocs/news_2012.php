@@ -28,6 +28,10 @@ X3D 3.3 handling:
 - Missing SliderJoint.sliderForce
 - DISEntityTypeMapping has X3DUrlObject as ancestor
 - The only revelant stuff missing from X3D 3.3 now is the new, very exciting for me, "Volume rendering component". I would like to tackle it at some point, as it may be quite fun, impressive and useful. (But no deadline yet, so if you're really interested in seeing it implemented --- contact me, patches are welcome :)
+
+In other news, as you probably seen at our header, our small website joined the protests against bad laws &mdash; pretending to be anti-piracy, in fact being about censorship and anti-privacy.
+<li><div style="float: right; padding: 1em; background: black; border: thick inset black; margin-right: 0.5em; margin-top: 0.5em;"><a style="color: white; font-weight: bold;" href="https://www.eff.org/deeplinks/2012/01/how-pipa-and-sopa-violate-white-house-principles-supporting-free-speech">Stop PIPA and SOPA</a> in USA.
+<li><div style="float: right; padding: 1em; background: black; border: thick inset black; margin-right: 0.5em; margin-top: 0.5em;"><a style="color: white; font-weight: bold;" href="http://panoptykon.org/">Stop ACTA (description in Polish)</a>.
 */
 
 array_push($news,
