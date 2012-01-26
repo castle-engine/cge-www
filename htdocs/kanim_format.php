@@ -73,7 +73,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // (default values are shown below).
                         // Some of it's attributes should be treated like a
                         // "hint for the renderer". General programs like
-                        // view3dscene and demo_animation may honour them,
+                        // view3dscene and demo_animation may honor them,
                         // but more specialized programs (like "The Castle"
                         // game) may ignore them, since "they know better".
 
@@ -117,11 +117,11 @@ of animation handling in our VRML engine documentation</a>.</p>
                            // animation frame. Any 3D file format is allowed here:
                            // most of all, VRML/X3D, but also
                            // <?php echo a_href_page_hashlink(
-                                'other formats understood by my engine',
-                                'x3d_extensions',
-                                'section_ext_inline_for_all'); ?>.
+                                'other formats understood by view3dscene and our engine',
+                                'view3dscene',
+                                'section_features'); ?>.
 
-    time="0.0"             // This is a required attribute specyfying a
+    time="0.0"             // This is a required attribute specifying a
                            // time of this frame. For now, all frames
                            // must be specified in the strictly increasing order
                            // of their "time".
@@ -148,7 +148,8 @@ for all your needs):</p>
   <li><p>Our collision detection uses the first (or both first and last)
     frame. Octrees are not updated between frames.
     So collision detection, mouse picking,
-    raytracer rendering are all done using octree for the 1st animation frame.</p>
+    ray-tracer look only at the 1st animation frame,
+    because our octree represents only this frame.</p>
 
     <p>Use instead VRML/X3D interpolators, when octree is properly managed.</p>
   </li>

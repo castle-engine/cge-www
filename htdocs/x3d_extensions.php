@@ -1129,16 +1129,19 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    Inline nodes (<tt>Inline</tt> and <tt>InlineLoadControl</tt> in VRML &gt;= 2.0
-    and <tt>WWWInline</tt> in VRML 1.0) allow you to include not only
-    other VRML files, but also other Collada, 3DS, MD3, Wavefront OBJ models.
-    Internally, all those formats are converted to VRML/X3D before
+    All inline nodes (<tt>Inline</tt> in X3D,
+    <tt>Inline</tt> and <tt>InlineLoadControl</tt> in VRML &gt;= 2.0
+    and <tt>WWWInline</tt> in VRML 1.0) allow you to include any 3D model
+    format understood by our engine.
+    So you can inline not only other VRML/X3D files,
+    but also Collada, 3DS, MD3, Wavefront OBJ models.
+    Internally, all those formats are converted to X3D before
     displaying anyway. If you want to precisely know how the conversion
-    to VRML/X3D goes, you can always do the explicit conversion to VRML/X3D
-    by using "<i>Save as VRML</i>"
-    <?php echo a_href_page("view3dscene", "view3dscene") ?> command.
+    to X3D goes, you can always try the explicit conversion
+    by "<i>File -&gt; Save as X3D</i>" menu option in
+    <?php echo a_href_page("view3dscene", "view3dscene") ?>.
 
-    <p>Also, you can freely mix VRML versions when including.
+    <p>Also, you can freely mix VRML/X3D versions when including.
     You're free to include VRML 1.0 file inside VRML 2.0 file, or X3D,
     or the other way around. Everything works.
 
