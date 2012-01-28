@@ -16,13 +16,15 @@ Developers: camera classes improvements:
 - TCastleSceneManager.DefaultVisibilityLimit, and looks more as Camera.CameraRadius.
 
 X3D 3.3 handling:
-- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle convertion actually done. You can now express angles in degress by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
-  - all SFRotation, MFRotation
-  - creaseAngle
-  - TextureTransform.rotation
-  - Background.skyAngle,groundAngle
-  - Arc2D.startAngle,endAngle
-  - ArcClose2D.startAngle,endAngle
+- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle and length convertion is actually done.
+  - For example, you can now express angles in degress by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
+    - all SFRotation, MFRotation
+    - creaseAngle
+    - TextureTransform.rotation
+    - Background.skyAngle,groundAngle
+    - Arc2D.startAngle,endAngle
+    - ArcClose2D.startAngle,endAngle
+  - Length conversion is also done. This is less useful IMHO --- you can equivalently wrap your model in a Transform with scale. Actually, that's exactly our implementation of "UNIT length" for now --- we simply add appropriate scale (calculated looking at length unit of inlined model (inner), and looking at length unit of inlining model (outer)).
 - MetadataBoolean node added.
 - GravityPhysicsModelNode renamed to ForcePhysicsModelNode (spec was mistakenly confusing these two names).
 - Missing SliderJoint.sliderForce
