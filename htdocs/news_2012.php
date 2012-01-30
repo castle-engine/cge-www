@@ -38,6 +38,8 @@ In other news, as you probably seen at our header, our small website joined the 
 sounds/index.xml file improvements: now you can add new sounds to the game (castle, and future castle2) merely by adding them to necessary XML files. No need to reference the sound from ObjectPascal code.
 
 kanim improvements: all castle animations are now normal kanim files, and can be browsed e.g. by view3dscene. castle2 will not use kanim.
+
+Add to news: a lot of T3D improvements. This unifies approach to collision detection for all 3D objects, to make checking for all collisions (player vs level+creatures+items, creature vs level+other creatures+player and such) go through exactly the same methods and look at the same methods (except where clearly justified and documented exceptions). Sounds like a mothfull... Ok, the idea is to move "castle 1" creatures AI to the engine, to make it trivial to use creature AI in your own games :) I want to allow both using existing AI (like our walk-attack state AI), and easy designing of your own AI for specific game needs.
 */
 
 array_push($news,
