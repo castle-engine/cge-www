@@ -40,7 +40,10 @@ sounds/index.xml file improvements: now you can add new sounds to the game (cast
 kanim improvements: all castle animations are now normal kanim files, and can be browsed e.g. by view3dscene. castle2 will not use kanim.
 
 Add to news: a lot of T3D improvements. This unifies approach to collision detection for all 3D objects, to make checking for all collisions (player vs level+creatures+items, creature vs level+other creatures+player and such) go through exactly the same methods and look at the same methods (except where clearly justified and documented exceptions). Sounds like a mothfull... Ok, the idea is to move "castle 1" creatures AI to the engine, to make it trivial to use creature AI in your own games :) I want to allow both using existing AI (like our walk-attack state AI), and easy designing of your own AI for specific game needs.
-- See new T3D.Pushable, T3DMoving, T3DLinearMoving classes.
+- New T3DMoving, T3DLinearMoving classes, along with T3D.Pushable: perfect for implementing elevators, moving platforms, and anything else than can move and push other players/creatures/items.
+- New T3DOrientm, to orient any 3D models to given position/direction/up.
+- Methods like MyHeight and MyMoveAllowed, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient, and use MyHeight and MyMoveAllowed to implement your own artificial intellgence. It's very easy now.
+- TCastleSceneManager.Player property, to guide camera (for 1st perspective view) and to be a target for hostile creatures (if you use default AI in CastleCreatures).
 */
 
 array_push($news,
