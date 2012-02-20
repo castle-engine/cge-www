@@ -16,15 +16,11 @@
 
 <?php echo pretty_heading($page_title); ?>
 
-<p>This page collects information about implementation status of
-VRML constructs, with respect to VRML 1.0, 2.0 (aka VRML 97) and 3.0 (aka X3D)
-specifications.
-It also collects some details about handling of some nodes.
-If you want to know what is supported <i>besides
-the things required by VRML specifications</i>,
-you should read the other page about
-<?php echo a_href_page('VRML extensions implemented',
-'x3d_extensions'); ?>.
+<p>Implementation status of X3D and VRML languages.
+Here we document what features of the VRML 1.0, VRML 2.0 (aka 97) and X3D 3.x
+specifications are implemented.
+See also <?php echo a_href_page('VRML / X3D extensions', 'x3d_extensions'); ?>
+ to know what is implemented <i>besides the things required by VRML/X3D specifications</i>.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
@@ -41,7 +37,7 @@ separate page with details about support (both VRML 97 and X3D features). </p>
 
 <p>A word "practically" below means that the component is not absolutely
 100% supported on given level, but most important
-parts (99% of usage) of given level are supported.</p>
+parts (99% of usage) of given level are covered.</p>
 
 <table class="thin_borders">
   <tr><th>Component<br/>(click for details)</th>
@@ -98,7 +94,7 @@ Environmental sensor 2
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>All nodes from all components</i> of X3D edition 2 specification are
+<p><i>All nodes from all components</i> of X3D 3.3 specification are
 included in the engine.
 The same goes for all the nodes from VRML 2.0 specification
 (it does have some nodes later removed in X3D).
@@ -133,18 +129,18 @@ component details, but it's so important that I mention it here.)</p>
 <p><i>No limits</i>:
 <a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
 VRML 97 and X3D specifications define various limits</a>
-that must be satisfied by VRML browsers to call themselves "conforming"
-to VRML specification. For example, only 500 children per Group
-have to be supported, only SFString with 30,000 characters have to be
-supported etc. My units generally don't have these limits
+that must be satisfied by conforming browsers.
+For example, only 500 children per Group
+need to be supported, only SFString with 30,000 characters has to be
+supported etc. Our engine generally doesn't have these limits
 (unless explicitly mentioned below). So any number of children in Group
 node is supported, SFString may be of any length etc.
-VRML authors are limited only by the amount of memory available
+VRML/X3D authors are limited only by the amount of memory available
 on user system, performance of OpenGL implementation etc.
 
 <?php echo $toc->html_section(); ?>
 
-<p>I consider VRML 1.0 status as "almost complete".
+<p>We consider VRML 1.0 status as "almost complete".
 All nodes and features are handled, with the exception of:
 
 <ul>
@@ -161,7 +157,7 @@ All nodes and features are handled, with the exception of:
     X3D <tt>OrthoViewpoint.fieldOfView</tt> and
     <tt>Viewpoint.fieldOfView</tt>. This means that they specify
     the angle/height along the <i>smaller</i> browser window size &mdash;
-    which is <i>usualy the height</i>, but <i>may be width</i> is you
+    which is <i>usualy the height</i>, but <i>may be width</i> if you
     resize the window to be taller and thinner.
 </ul>
 
@@ -230,7 +226,7 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
     VRML 2.0 and X3D replaced this by fantastic prototypes mechanism,
     which is basically an extra-powerful and elegant way of doing what
     VRML 1.0 tried to do with <tt>isA</tt> and <tt>fields</tt> feature
-    (and VRML prototypes are already handled 100% by our engine).
+    (and VRML/X3D prototypes are already handled 100% by our engine).
 
   <li><p>MFString field with strings not enclosed in double quotes will
     not be parsed correctly. Moreover, parsing SFStrings not enclosed
@@ -238,8 +234,8 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
     than as a nice solution. Really, it's a weird "feature" of
     VRML 1.0 (fortunately eliminated in VRML 97) to allow strings not enclosed
     in double quotes.
-    And I know about only <b>one</b> program that utilizes it (Blender)
-    and this program uses it only in SFString field (Texture2.filename).
+    And I know about only <b>one</b> program that did use it (exporter to VRML 1.0 in Blender versions &lt;= 2.4x)
+    and this program used it only in an SFString field (Texture2.filename).
     So I doubt I will ever fix this to MFString &mdash;
     I would consider it a waste of time, since it's really
     a VRML-1.0-specific totally useless and uncommon syntax feature.
@@ -250,7 +246,7 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
 
     <p>We will not implement it &mdash; too much complication
     (need to look for viewpoints in VRML 1.0 in inactive graph parts).
-    VRML &gt;= 2 simply allow many viewpoints in active graph parts,
+    VRML &gt;= 2 simply allows many viewpoints in active graph parts,
     you should use this.</p>
   </li>
 </ul>
