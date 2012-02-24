@@ -41,9 +41,12 @@ kanim improvements: all castle animations are now normal kanim files, and can be
 
 Add to news: a lot of T3D improvements. This unifies approach to collision detection for all 3D objects, to make checking for all collisions (player vs level+creatures+items, creature vs level+other creatures+player and such) go through exactly the same methods and look at the same methods (except where clearly justified and documented exceptions). Sounds like a mothfull... Ok, the idea is to move "castle 1" creatures AI to the engine, to make it trivial to use creature AI in your own games :) I want to allow both using existing AI (like our walk-attack state AI), and easy designing of your own AI for specific game needs.
 - New T3DMoving, T3DLinearMoving classes, along with T3D.Pushable: perfect for implementing elevators, moving platforms, and anything else than can move and push other players/creatures/items.
-- New T3DOrientm, to orient any 3D models to given position/direction/up.
-- Methods like MyHeight and MyMoveAllowed, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient, and use MyHeight and MyMoveAllowed to implement your own artificial intellgence. It's very easy now.
+- New T3DOrient, to orient any 3D models to given position/direction/up.
+- Since player descends from T3DOrient, it's now trivial to position 3D items relatively to player. Both castle weapons are now always displayed in 3D (both when attacking or not), simplifies a lot previous specialized code.
+- New T3DAlive, for keeping track of things that have life/maxlife and that can be hurt (with a possible knockback effect).
+- Methods like MyMove, MyHeight and MyMoveAllowed, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient (T3DAlive any many others descend from T3DOrient too), and use MyHeight and MyMoveAllowed to implement your own artificial intellgence. It's very easy now.
 - TCastleSceneManager.Player property, to guide camera (for 1st perspective view) and to be a target for hostile creatures (if you use default AI in CastleCreatures).
+- Both walk-attack and missile creatures get a uniform FallingDownSpeed (units per second) treatment now. Many other unifications and simplifications to creature, players, items handling.
 */
 
 array_push($news,
