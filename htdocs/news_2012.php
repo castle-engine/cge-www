@@ -47,6 +47,9 @@ Add to news: a lot of T3D improvements. This unifies approach to collision detec
 - Methods like MyMove, MyHeight and MyMoveAllowed, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient (T3DAlive any many others descend from T3DOrient too), and use MyHeight and MyMoveAllowed to implement your own artificial intellgence. It's very easy now.
 - TCastleSceneManager.Player property, to guide camera (for 1st perspective view) and to be a target for hostile creatures (if you use default AI in CastleCreatures).
 - Both walk-attack and missile creatures get a uniform FallingDownSpeed (units per second) treatment now. Many other unifications and simplifications to creature, players, items handling.
+
+- T3DResource class, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
+- XML files of creatures, items, and now more separate. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
 */
 
 array_push($news,
