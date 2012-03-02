@@ -255,10 +255,13 @@ to see how things work now &mdash; without exiting the game.
 <p>There are also some command-line debug options (but not too much &mdash;
 it's always more flexible to have things available at runtime instead
 of only at the start). Run the program with <tt>--help</tt>
-to get their list. <tt>--debug-no-creatures</tt> is one such useful option:
+to get their list.
+<?php /*
+<tt>--debug-no-creatures</tt> is one such useful option:
 it avoids this lengthy "Loading creatures" loading time, which is useful
 when you're not interested in testing creatures
 (e.g. when you only design new level geometry).
+*/ ?>
 
 <?php echo $toc->html_section(); ?>
 
