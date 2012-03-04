@@ -468,7 +468,7 @@ case "$1" in
       castle.html castle-advanced.html castle-development.html castle-credits.html
     binary_add_exec_and_data castle \
       "$CASTLE_ENGINE_PATH"castle/ \
-      'data/ README.txt TODO.txt Makefile' \
+      'data/ README.txt Makefile' \
       ''
 
     $MAKE -C "$BINARY_ARCHIVE_TEMP_PATH" clean clean_private
