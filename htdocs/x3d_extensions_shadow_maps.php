@@ -61,17 +61,21 @@ $toc->echo_numbers = true;
   ?>
 
   <p>One of the shadows algorithms implemented in our engine is
-  <i>shadow maps</i>. Shadow maps work completely orthogonal to shadow
-  volumes, which means that you can freely mix both shadow approaches
-  (volumes and maps) within a single scene.</p>
+  <i>shadow maps</i>.
 
-  <p><i>Most important TODOs:</i> While we did a lot of the shadow maps work,
-  there are still important pieces missing. Some of them wait for other work:
+  <p><i>Shadow maps</i> work completely orthogonal to <i>shadow
+  volumes</i> (see
+  <?php echo a_href_page_hashlink('shadow volumes docs', 'x3d_extensions',
+  'section_ext_shadows'); ?>), which means that you can freely mix
+  both shadow approaches within a single scene.
+  <i>Shadow maps</i>, described here, are usually more adviced: they are simpler to use
+  (in the simplest case, just add "<tt>shadows TRUE</tt>" to your light source,
+  and it just works with an abritrary 3D scene),
+  and have a better implementation (shadow maps from multiple light sources
+  cooperate perfectly thanks to the shaders pipeline).</p>
 
-  <ul>
-    <li><tt>PointLight</tt> sources do not cast shadow maps yet. (Easy to do, please report if you need it.)
-    <li>Shadows from many lights on a single receiver do not really work yet. (Waits for finishing the "pure shader pipeline".)
-  </ul>
+  <p><i>Most important TODO about shadow maps:</i> <tt>PointLight</tt>
+  sources do not cast shadow maps yet. (Easy to do, please report if you need it.)
 
 <?php echo $toc->html_section(); ?>
 
