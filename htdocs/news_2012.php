@@ -50,6 +50,10 @@ Add to news: a lot of T3D improvements. This unifies approach to collision detec
 
 - T3DResource class, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
 - XML files of creatures, items, and now more separate. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
+
+- http://www.roomarranger.com/ may use a 3D viewer based on our engine to visualize rooms and houses designs in 3D :) Jan Adames has prepared a specialized version of 3D viewer (based on example <tt>examples/lazarus/model_3d_viewer/</tt> in our engine sources) for this purpose. You can see the screenshots of it on the right :)
+img:room_arranger_viewer
+img:room_arranger_1
 */
 
 array_push($news,
