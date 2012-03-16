@@ -113,3 +113,10 @@ fpc fpmake.pp
 ./fpmake build -v
 ./fpmake clean -v
 ./fpmake build --nofpccfg --verbose
+
+# ----------------------------------------------------------------------------
+# Test compilation of known programs using my engine, as some
+# compatibility check:
+
+ra_castle (roomarranger)
+rrtankticks
