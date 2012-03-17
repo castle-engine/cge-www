@@ -56,6 +56,10 @@ img:room_arranger_viewer
 img:room_arranger_1
 
 - Updated <>our Blender X3D exporter</a> to be compatible to Blender 2.62 (and as close as possible to distributed original Blender exporter)
+
+- "Screenshot" button in model_3d_viewer (add screenshot of it), "Screenshot" button in view3dscene toolbar (add screenshot of it).
+  Screenshot in view3dscene doesn't capture GUI controls (like toolbar buttons) --- previously, it was inconsistent, e.g. "movie" screenshot was not capturing them but "single image" was capturing them. The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot's purpose is to capture *your scene* --- not any GUI cruft.
+
 */
 
 array_push($news,
