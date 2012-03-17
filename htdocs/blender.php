@@ -22,15 +22,19 @@ our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 We publish here some improvements / fixes / documentation for
 Blender's X3D exporter.</p>
 
-<h2>X3D exporter, for Blender 2.58</h2>
+<h2>X3D exporter, for Blender 2.62</h2>
 
 <ul>
   <li><p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
     Download the actual exporter.
 
     <p>Copy it over (overwrite) the original Blender exporter,
-    which is in <tt>&lt;blender-installation-dir&gt;/2.58/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
+    which is in <tt>&lt;blender-installation-dir&gt;/2.62/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
     <!--You will need to restart Blender (if currently running to load the new exporter.-->
+
+<?php /*
+  TODO: below should be fixed in 2.62, but make sure.
+  The default seems triangulate=off anyway now, so this is good.
 
     <p>Note that for 2.58 exporter, I advice to use <i>Triangulate=Off</i>.
     There are some problems with triangulation: it cannot preserve vertex sharing
@@ -40,6 +44,7 @@ Blender's X3D exporter.</p>
     but sometimes normals are still incorrect in my experience. I try to investigate
     and submit to Blender relevant patches or bugs, for now with official 2.58
     it's safer to just use <i>Triangulate=Off</i> in my experience.
+*/ ?>
 
   <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
     Detailed notes how the exporter (both original distributed in Blender

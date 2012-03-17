@@ -54,6 +54,8 @@ Add to news: a lot of T3D improvements. This unifies approach to collision detec
 - http://www.roomarranger.com/ may use a 3D viewer based on our engine to visualize rooms and houses designs in 3D :) Jan Adames has prepared a specialized version of 3D viewer (based on example <tt>examples/lazarus/model_3d_viewer/</tt> in our engine sources) for this purpose. You can see the screenshots of it on the right :)
 img:room_arranger_viewer
 img:room_arranger_1
+
+- Updated <>our Blender X3D exporter</a> to be compatible to Blender 2.62 (and as close as possible to distributed original Blender exporter)
 */
 
 array_push($news,
