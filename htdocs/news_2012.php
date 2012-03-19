@@ -60,6 +60,8 @@ img:room_arranger_1
 - "Screenshot" button in model_3d_viewer (add screenshot of it), "Screenshot" button in view3dscene toolbar (add screenshot of it).
   Screenshot in view3dscene doesn't capture GUI controls (like toolbar buttons) --- previously, it was inconsistent, e.g. "movie" screenshot was not capturing them but "single image" was capturing them. The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot's purpose is to capture *your scene* --- not any GUI cruft.
 
+- Victor Amat send us a nice 3D model of (from title), see screenshots in barna29_water_0.png, barna29_water_1.png, with nice water. Thanks!
+
 - VisibilitySensor is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv. (add screen visibility_sensor_test.png)
 */
 
