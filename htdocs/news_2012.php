@@ -61,6 +61,8 @@ img:room_arranger_1
   Screenshot in view3dscene doesn't capture GUI controls (like toolbar buttons) --- previously, it was inconsistent, e.g. "movie" screenshot was not capturing them but "single image" was capturing them. The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot's purpose is to capture *your scene* --- not any GUI cruft.
 
 - Victor Amat send us a nice 3D model of (from title), see screenshots in barna29_water_0.png, barna29_water_1.png, with nice water. Thanks!
+soft_shadow_poisson_sampling.png
+  And a nice soft shadows based on shadow maps. Quoting: it's basically an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side.
 
 - VisibilitySensor is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv. (add screen visibility_sensor_test.png)
 */
