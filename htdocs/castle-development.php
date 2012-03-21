@@ -154,6 +154,20 @@ with useful programs and collections of textures etc. see
 
 <?php echo $toc->html_section(); ?>
 
+<p><i>Note:</i> the description below is written for "any 3D game using
+our engine". For "The Castle 2" submissions, we actually require
+you to use:
+
+<ol>
+  <li>X3D as a final format (because this is most feature-rich
+    and handled perfectly with our engine),
+  <li>and you have to use some open-source modeller.
+    Preferably <a href="http://www.blender3d.org/">Blender</a>, but other
+    open-source are also fine. That's because many people may want to further
+    work on and improve your model &mdash; this isn't really possible
+    if you used a proprietary modeller.
+</ol>
+
 <p>The short 1-sentence introduction is: you can use any 3D modelling program
 able to create <?php echo a_href_page('VRML or X3D', 'vrml_x3d'); ?> files.</p>
 
