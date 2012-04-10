@@ -2,6 +2,14 @@
 
 /* Next news:
 
+Thanks to Jan Adamec, new developer on our engine, many improvements to navigation were implemented:
+- we support now 3D mouse devices (see http://www.3dconnexion.com/ ). Only under Windows for now (contributions for other OSes welcome, of course.)
+- navigation by dragging in Walk/Fly mode (similar to other VRML/X3D viewers) is implemented. Drag with left mouse button pressed to move forward, backward and rotate. Drag with right mouse button to move sideways (strafe) or up/down.
+- mouse wheel handling for cameras inside Lazarus control (just like in TCastleWindow).
+Great to have another developer in the engine!
+(add here image with pictograms of controls,
+ add here YT video from ja)
+
 Examine rotation speed by keys limited, to not make wild rotations.
 
 Developers: picking improvements with T3D hierarchy: unified "The Castle" style of picking (pressing the "e" button when looking at item, stateless interaction with 3D items, like in many FPS games) with VRML/X3D pointer sensors (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally is more powerful). Now it all goes through T3D.PointingDeviceActivate/Move, that can be overridden at each T3D.
