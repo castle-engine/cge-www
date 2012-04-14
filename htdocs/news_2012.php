@@ -6,9 +6,14 @@ Thanks to Jan Adamec, new developer on our engine, many improvements to navigati
 - we support now 3D mouse devices (see http://www.3dconnexion.com/ ). Only under Windows for now (contributions for other OSes welcome, of course.)
 - navigation by dragging in Walk/Fly mode (similar to other VRML/X3D viewers) is implemented. Drag with left mouse button pressed to move forward, backward and rotate. Drag with right mouse button to move sideways (strafe) or up/down.
 - mouse wheel handling for cameras inside Lazarus control (just like in TCastleWindow).
+- holding Shift makes you run (speed * 2).
 Great to have another developer in the engine!
 (add here image with pictograms of controls,
  add here YT video from ja)
+
+Another improvement by Jan Adamec:
+- Screen Space Ambient Occlusion. Available as comfortable view3dscene menu item "View -> Screen Effects -> Screen Space Ambient Occlusion" (for developers: TCastleAbstractViewport.ScreenSpaceAmbientOcclusion.) Works on arbitrary models out-of-the-box :)
+Link to my G+ post and screenshots.
 
 Examine rotation speed by keys limited, to not make wild rotations.
 
