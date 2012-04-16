@@ -91,11 +91,17 @@ inside <tt>ComposedShader</tt> nodes, see <?php echo a_href_page(
 "Programmable shaders component" specification</a> and of course
 the <a href="http://www.opengl.org/documentation/glsl/">GLSL documentation</a>.</p>
 
-<p>The shader inside <tt>ScreenEffect</tt> receives some special uniform
-variables. The most important is the <tt>"screen"</tt>, which is a texture
-rectangle (<tt>ARB_texture_rectangle</tt> in OpenGL terms)
-containing the screen colors. Your fragment shader is supposed to calculate
-<tt>gl_FragColor</tt> for a pixel using this <tt>"screen"</tt>.</p>
+<p>The shader inside <tt>ScreenEffect</tt> is always linked with a library
+of useful GLSL functions:.</p>
+
+<ul>
+  <li><tt>ivec2 screen_position()</tt> - position of the current pixel.
+    This pixel's color will be set by our <tt>gl_FragColor</tt> value at exit.</li>
+  <li><tt>int screen_x()</tt>, <tt>int screen_y()</tt> - x and y coordinates of current pixel position, for comfort.</li>
+  <li><tt>vec4 screen_get_color(ivec2 position)</tt> - get previous screen color at this pixel.</li>
+  <li><tt>float screen_get_depth(ivec2 position)</tt> - get previous depth at this pixel (only if <tt>needsDepth</tt> was <tt>TRUE</tt>).</li>
+  <li>uniform values <tt>int screen_width</tt>, <tt>int screen_height</tt> - screen size in pixels.</li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
@@ -106,11 +112,11 @@ ScreenEffect {
   shaders ComposedShader {
     language "GLSL"
     parts ShaderPart { type "FRAGMENT" url "data:text/plain,
-#extension GL_ARB_texture_rectangle : enable
-uniform sampler2DRect screen;
+ivec2 screen_position();
+vec4 screen_get_color(ivec2 position);
 void main (void)
 {
-  gl_FragColor = texture2DRect(screen, gl_TexCoord[0].st);
+  gl_FragColor = screen_get_color(screen_position());
 }
 " } } }
 </pre>
@@ -121,57 +127,61 @@ to colors, sampled positions and such. For example
 make colors two times smaller (darker) by just dividing by 2.0:</p>
 
 <pre class="vrml_code">
-#extension GL_ARB_texture_rectangle : enable
-uniform sampler2DRect screen;
+ivec2 screen_position();
+vec4 screen_get_color(ivec2 position);
 void main (void)
 {
-  gl_FragColor = texture2DRect(screen, gl_TexCoord[0].st) / 2.0;
+  gl_FragColor = screen_get_color(screen_position()) / 2.0;
 }
 </pre>
 
-<p>Or turn the screen upside-down by changing the 2nd coordinate
-<tt>gl_TexCoord[0].t</tt>:</p>
+<p>Or turn the screen upside-down by changing the 2nd texture coordinate:</p>
 
 <pre class="vrml_code">
-#extension GL_ARB_texture_rectangle : enable
-uniform sampler2DRect screen;
+ivec2 screen_position();
+vec4 screen_get_color(ivec2 position);
+int screen_x();
+int screen_y();
 uniform int screen_height;
 void main (void)
 {
-  gl_FragColor = texture2DRect(screen,
-    vec2(gl_TexCoord[0].s, float(screen_height) - gl_TexCoord[0].t));
+  gl_FragColor = screen_get_color(
+    ivec2(screen_x(), screen_height - screen_y()));
 }
 </pre>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Details about special uniform variables passed to the <tt>ScreenEffect</tt>
+<p>Details about special functions available in the <tt>ScreenEffect</tt>
 shader:</p>
 
 <ul>
-  <li><p>The uniform variable named <tt>"screen"</tt> contains
-    the current screen contents. It is
-    a <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>,
-    which means it should be declared in GLSL as <tt>sampler2DRect</tt>
-    and may be sampled e.g. by <tt>texture2DRect</tt>.</p>
+  <li><p><p>Internally, we pass the screen contents (color and, optionally,
+    depth buffer) as a <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>
+    or a <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">multi-sample texture</a>.
+    You should just use the comfortable functions <tt>screen_get_xxx</tt>
+    to read previous
+    screen contents, they will hide the differences for you, and your screen
+    effects will work for all multi-sampling (anti-aliasing) configurations.</p></li>
 
-    <p>Note that the texture rectangle coordinates are in range
-    <tt>[0..width, 0..height]</tt> (unlike normal OpenGL textures
-    that have coordinates in range <tt>[0..1, 0..1]</tt>).
+  <li><p>The texture coordinates for <tt>screen_get_xxx</tt>
+    are integers, in range <tt>[0..width - 1, 0..height - 1]</tt>.
     This is usually comfortable when writing screen effects shaders,
-    for example you know that <tt>(gl_TexCoord[0].s - 1.0)</tt> is
+    for example you know that <tt>(screen_x() - 1)</tt> is
     "one pixel to the left".</p>
 
-    <p>You can of course sample <tt>"screen"</tt> however you like.
-    The <tt>gl_TexCoord[0].st</tt> is the position that would
+    <p>You can of course sample the screen however you like.
+    The <tt>screen_position()</tt> (or, equivalent,
+    <tt>ivec2(screen_x(), screen_y())</tt>)
+    is the position that would
     normally be used for given pixel &mdash; you can use it,
     or calculate some other position depending on it,
     or even totally ignore it for special tricks.
-    Note that using <tt>gl_FragCoord.st</tt> as texture coordinate
+    Note that using <tt>gl_FragCoord.st</tt> as a texture coordinate
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
     when you use <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
-    with our engine. <tt>gl_TexCoord[0].st</tt>
+    with our engine. <tt>screen_position()</tt>
     will cooperate nicely with custom viewports.</p></li>
 
   <li><p>We also pass <tt>"screen_width"</tt>, <tt>"screen_height"</tt>
@@ -180,12 +190,8 @@ shader:</p>
     but it's not available on older GPUs/OpenGL versions.)</p>
 
   <li><p>If you set <tt>"needsDepth"</tt> to <tt>TRUE</tt> then we also pass
-    <tt>"screen_depth"</tt>, a rectangle texture containing depth buffer contents,
-    to the shader. You can define a uniform variable (<tt>sampler2DRect</tt> or
-    <tt>sampler2DRectShadow</tt>, the former is usually more useful for screen effects)
-    to handle this texture in your shader.
-    Remember to <b>always set "needsDepth" to TRUE if you want to use
-    the <tt>"screen_depth"</tt></b>.</p>
+    depth buffer contents to the shader.
+    You can query it using <tt>screen_get_depth</tt> function..</p>
 
     <p>You can query depth information at any pixel for various effects.
     Remember that you are not limited to querying the depth of the current
