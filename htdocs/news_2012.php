@@ -15,6 +15,8 @@ Another improvement by Jan Adamec:
 - Screen Space Ambient Occlusion. Available as comfortable view3dscene menu item "View -> Screen Effects -> Screen Space Ambient Occlusion" (for developers: TCastleAbstractViewport.ScreenSpaceAmbientOcclusion.) Works on arbitrary models out-of-the-box :)
 Link to my G+ post and screenshots.
 
+Screen effects cooperate now wit multi-sampling (anti-aliasing). Previously, any screen effect (like SSAO, or view3dscene effects, or effects in VRML/X3D files like demo_models/screen_effects/) was disabling AA.
+
 Examine rotation speed by keys limited, to not make wild rotations.
 
 Developers: picking improvements with T3D hierarchy: unified "The Castle" style of picking (pressing the "e" button when looking at item, stateless interaction with 3D items, like in many FPS games) with VRML/X3D pointer sensors (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally is more powerful). Now it all goes through T3D.PointingDeviceActivate/Move, that can be overridden at each T3D.
