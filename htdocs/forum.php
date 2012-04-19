@@ -102,8 +102,36 @@ your 3D worlds, you can:
     If you'd like to join, or just send some patches improving something,
     feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
 
-    <p>Some ideas for development are proposed on
-    <a href="https://fundry.com/project/91-castle-game-engine">Fundry page of our engine</a>.
+    <p>Some larger ideas for development:
+    <ul>
+      <li>
+        <p><b>Native look and feel, and easy installation, under Mac OS X</b></p>
+        <p>Currently, our programs (view3dscene, all games etc.) look a little out of place on Mac OS X, as we use GTK. They are also not easy to install (as we require user to manually install X server, and some stuff from fink, first). This feature is to implement nice Cocoa interface, that will look and work natively on Mac OS X, and will also remove the need to install anything through fink. <a href="http://castle-engine.sourceforge.net/macosx_requirements.php#section_help_wanted">The details how I imagine this implemented are here</a>.</p>
+      </li>
+
+      <li>
+        <p><b>Support Material.mirror field for OpenGL rendering</b></p>
+        <p>An easy way to make planar (on flat surfaces) mirrors. Just set Material.mirror field to something > 0 (setting it to 1.0 means it's a perfect mirror, setting it to 0.5 means that half of the visible color is coming from the mirrored image, and half from normal material color).</p>
+        <p>Disadvantages: This will require an additional rendering pass for such shape (so expect some slowdown for really large scenes). Also your shape will have to be mostly planar (we will derive a single plane equation by looking at your vertexes).</p>
+        <p>Advantages: The resulting mirror image looks perfect (there's no texture pixelation or anything), as the mirror is actually just a specially rendered view of a scene. The mirror always shows the current scene (there are no problems with dynamic scenes, as mirror is rendered each time).</p>
+        <p>This will be some counterpart to current way of making mirrors by RenderedTexture (on flat surfaces) or GeneratedCubeMap (on curvy surfaces).</p>
+      </li>
+
+      <li>
+        <p><b>Basic networking support</b></p>
+        <p>Basic integration with network: ability to load resources from http, and hopefully https, protocols. Probably will be implemented using <a href="http://lnet.wordpress.com/">lnet</a>, or <a href="http://www.ararat.cz/synapse/">synapse</a> (nice intro also on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>), or maybe some other library. It will be pluggable, so programmers of new games using our engine can even turn it off completeley (like when you make local games, and don't want a burden of linking with a networking library). For this basic support I don't promise a background downloading --- which means that you may have to wait for download to finish, or interrupt it. But you will not be able to interact with 3D world while a download is taking place. (Background downloading will of course be added one day too, but that's a larger feature that I want to deal with separately.)</p>
+      </li>
+
+      <li>
+        <p><b>Scripting in JavaScript</b></p>
+        <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
+      </li>
+
+      <li>
+        <p><b>Physics integration</b></p>
+        <p>Integrate our engine with a physics engine. Most probably Bullet, which will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually ODE. Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
+      </li>
+    </ul>
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.

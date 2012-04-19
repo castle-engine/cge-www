@@ -26,6 +26,8 @@ and view3dscene, and our games :) Thanks!</p>
   Click the button again to subscribe for a longer time.</p>
   </td>
 
+<?php /*
+
   <td>
   <script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
   <script type="text/javascript">
@@ -40,8 +42,9 @@ and view3dscene, and our games :) Thanks!</p>
   proposed by another user or developer.</p>
   </td>
 
-  <td>
-  <p>
+*/ ?>
+
+  <td style="padding-top: 1em">
   <?php if (!HTML_VALIDATION) { echo paypal_button(); } ?>
 
   <p>You can donate through <a href="https://www.paypal.com/">PayPal</a>.</p>
@@ -50,6 +53,7 @@ and view3dscene, and our games :) Thanks!</p>
   as much or as little as you like :) You can pay using your credit card,
   or use your own PayPal account.</p>
   </td>
+  </tr>
 
   <tr><td colspan="3" style="width: 100%">
   <!--div style="margin-left: 20%; margin-right: 20%"-->
@@ -84,6 +88,6 @@ and view3dscene, and our games :) Thanks!</p>
   <!-- Place here a list of subscribers gen by SF once it's sensible -->
   </td>
   */ ?>
-</tr></table>
+</table>
 
 <?php castle_footer(); ?>
