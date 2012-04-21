@@ -170,23 +170,22 @@ shader:</p>
     for example you know that <tt>(screen_x() - 1)</tt> is
     "one pixel to the left".</p>
 
-    <p>You can of course sample the screen however you like.
+    <p>You can of course sample the previous screen however you like.
     The <tt>screen_position()</tt> (or, equivalent,
     <tt>ivec2(screen_x(), screen_y())</tt>)
-    is the position that would
-    normally be used for given pixel &mdash; you can use it,
-    or calculate some other position depending on it,
-    or even totally ignore it for special tricks.
-    Note that using <tt>gl_FragCoord.st</tt> as a texture coordinate
+    is the position of current pixel, you can use it e.g. to query previous
+    color at this point, or query some other colors around this point
+    (e.g. to blur the image).
+    Note that using <tt>gl_FragCoord.st</tt> as a pixel position
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
     when you use <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <tt>screen_position()</tt>
     will cooperate nicely with custom viewports.</p></li>
 
-  <li><p>We also pass <tt>"screen_width"</tt>, <tt>"screen_height"</tt>
+  <li><p>We also pass uniform <tt>"screen_width"</tt>, <tt>"screen_height"</tt>
     integers to the shader. These give you the size of the screen.
-    (On new GPUs, you could get them with GLSL function <tt>textureSize</tt>,
+    (On new GPUs, you could also get them with GLSL function <tt>textureSize</tt>,
     but it's not available on older GPUs/OpenGL versions.)</p>
 
   <li><p>If you set <tt>"needsDepth"</tt> to <tt>TRUE</tt> then we also pass
