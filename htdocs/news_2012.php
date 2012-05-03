@@ -15,7 +15,10 @@ Another improvement by Jan Adamec:
 - Screen Space Ambient Occlusion. Available as comfortable view3dscene menu item "View -> Screen Effects -> Screen Space Ambient Occlusion" (for developers: TCastleAbstractViewport.ScreenSpaceAmbientOcclusion.) Works on arbitrary models out-of-the-box :)
 Link to my G+ post and screenshots.
 
-Screen effects cooperate now wit multi-sampling (anti-aliasing). Previously, any screen effect (like SSAO, or view3dscene effects, or effects in VRML/X3D files like demo_models/screen_effects/) was disabling AA.
+Screen effects cooperate now wit multi-sampling (anti-aliasing). Previously, any screen effect (like SSAO, or view3dscene effects, or effects in VRML/X3D files like demo_models/screen_effects/) was disabling AA. Now the GLSL code of every screen effect is linked with some helper screen_xxx functions. If you use them, your effects will work both with and without multi-sampling. The functions are documented in new <>Screen effects docs page</a>. All existing engine effects, like SSAO and other view3dscene effects in "View->Screen Effects", are already ported to use scene_xxx functions and cooperate with anti-aliasing.
+
+Triangulator fixes for complicated concave polygons. Various fixes to account for duplicated vertexes and (more general) colinear triangles inside. Previosuly, they could cause problems, with normal vectors of polygon and ears determined incorrectly, and allowing invalid non-empty ear triangles.
+http://www.youtube.com/watch?v=RMTXqTu4tKc
 
 Examine rotation speed by keys limited, to not make wild rotations.
 
@@ -80,6 +83,15 @@ soft_shadow_poisson_sampling.png
   And a nice soft shadows based on shadow maps. Quoting: it's basically an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side.
 
 - VisibilitySensor is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv. (add screen visibility_sensor_test.png)
+
+Fundry (crowdfunding for software) has shut down in March/April. It was one of the ways to <a href="donate.php">donate to our engine</a>, where you could donate to a development of particular feature (suggested by you or someone else). It's kind of sad, as a liked the idea very much (even if my particular project didn't yet earn anything this way). Fortunately, I found quite a few alternatives for crowdfunding specifically for FOSS projects:
+<ol>
+  <li>http://www.fossfactory.org/ ,
+  <li>https://elveos.org/en/ . But it seems the guys are looking for someone to take over the website, or to close it down... So it's probably not a good idea to jump on it now.
+  <li>http://gun.io/ .
+</ol>
+
+If you have any experience with these sites and would like to suggest some of them (or others), please share on our forum :)
 */
 
 array_push($news,
