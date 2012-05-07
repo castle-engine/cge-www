@@ -247,8 +247,9 @@ to avoid <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000 bug</
 This isn't a problem for earlier FPC versions, or if you compile programs
 with Lazarus.
 
-<p>We also support a couple of older FPC releases.
-Currently <b>FPC versions &gt;= 2.2.4 are supported</b>.</p>
+<p>We usually also support a couple of older FPC releases.
+Currently only <b>FPC versions &gt;= 2.6.0 are supported</b>
+(because of very useful "is nested" construct).</p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
