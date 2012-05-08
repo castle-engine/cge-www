@@ -63,8 +63,19 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       <li>Note that <tt>--camera-radius</tt> command-line option overrides
         whatever was specified by <tt>avatarSize[0]</tt>.
 
-      <li><tt>avatarSize[2]</tt> (tallest object over which you can move)
-        is ignored for now. Camera radius decides what you can climb.
+      <li><tt>avatarSize</tt> is honoured fully:
+        <ol>
+          <li>First value is the camera radius,
+          <li>2nd is the preferred height above the ground,
+          <li>3rd is the tallest object over which you can climb.
+            If this is missing (or it has value &lt;= 0) then there's no such
+            limit, and you can climb as long as you can move forward
+            (so you can climb the stairs with steps
+            almost as high as your own height minus the camera radius;
+            ignoring some other effects, like head bobbing,
+            you can say that avatarSize[2] is by default like
+            avatarSize[1] - avatarSize[0]).
+            See TWalkCamera.ClimbHeight docs for more details about this.
 
       <li><tt>speed</tt> is honored as appropriate, it sets
         the speed in meters/second. Speed = 0.0 is also correctly

@@ -20,6 +20,10 @@ Screen effects cooperate now wit multi-sampling (anti-aliasing). Previously, any
 Triangulator fixes for complicated concave polygons. Various fixes to account for duplicated vertexes and (more general) colinear triangles inside. Previosuly, they could cause problems, with normal vectors of polygon and ears determined incorrectly, and allowing invalid non-empty ear triangles.
 http://www.youtube.com/watch?v=RMTXqTu4tKc
 
+Memory and speed optimizations for scenes with many shapes (iteration by "is nested" callbacks instead of temporary lists, better opaque/transparent detection and more). Also, Lazarus package settings are now more suitable for production use (no assertions, no range/overflow checks, optimization level = 2).
+
+NavigationInfo.avatarSize[2] (height of the tallest object you can climb) is now correctly honoured. The demo model is inside <a demo_models> (open demo_models/navigation/avatar_climb_stairs.x3dv). (add screen avatar_climb_stairs)
+
 Examine rotation speed by keys limited, to not make wild rotations.
 
 Developers: picking improvements with T3D hierarchy: unified "The Castle" style of picking (pressing the "e" button when looking at item, stateless interaction with 3D items, like in many FPS games) with VRML/X3D pointer sensors (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally is more powerful). Now it all goes through T3D.PointingDeviceActivate/Move, that can be overridden at each T3D.
