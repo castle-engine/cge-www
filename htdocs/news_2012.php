@@ -1,107 +1,173 @@
 <?php
 
-/* Next news:
-
-Thanks to Jan Adamec, new developer on our engine, many improvements to navigation were implemented:
-- we support now 3D mouse devices (see http://www.3dconnexion.com/ ). Only under Windows for now (contributions for other OSes welcome, of course.)
-- navigation by dragging in Walk/Fly mode (similar to other VRML/X3D viewers) is implemented. Drag with left mouse button pressed to move forward, backward and rotate. Drag with right mouse button to move sideways (strafe) or up/down.
-- mouse wheel handling for cameras inside Lazarus control (just like in TCastleWindow).
-- holding Shift makes you run (speed * 2).
-Great to have another developer in the engine!
-(add here image with pictograms of controls,
- add here YT video from ja)
-
-Another improvement by Jan Adamec:
-- Screen Space Ambient Occlusion. Available as comfortable view3dscene menu item "View -> Screen Effects -> Screen Space Ambient Occlusion" (for developers: TCastleAbstractViewport.ScreenSpaceAmbientOcclusion.) Works on arbitrary models out-of-the-box :)
-Link to my G+ post and screenshots.
-
-Screen effects cooperate now wit multi-sampling (anti-aliasing). Previously, any screen effect (like SSAO, or view3dscene effects, or effects in VRML/X3D files like demo_models/screen_effects/) was disabling AA. Now the GLSL code of every screen effect is linked with some helper screen_xxx functions. If you use them, your effects will work both with and without multi-sampling. The functions are documented in new <>Screen effects docs page</a>. All existing engine effects, like SSAO and other view3dscene effects in "View->Screen Effects", are already ported to use scene_xxx functions and cooperate with anti-aliasing.
-
-Triangulator fixes for complicated concave polygons. Various fixes to account for duplicated vertexes and (more general) colinear triangles inside. Previosuly, they could cause problems, with normal vectors of polygon and ears determined incorrectly, and allowing invalid non-empty ear triangles.
-http://www.youtube.com/watch?v=RMTXqTu4tKc
-
-Memory and speed optimizations for scenes with many shapes (iteration by "is nested" callbacks instead of temporary lists, better opaque/transparent detection and more). Also, Lazarus package settings are now more suitable for production use (no assertions, no range/overflow checks, optimization level = 2).
-
-NavigationInfo.avatarSize[2] (height of the tallest object you can climb) is now correctly honoured. The demo model is inside <a demo_models> (open demo_models/navigation/avatar_climb_stairs.x3dv). (add screen avatar_climb_stairs)
-
-Examine rotation speed by keys limited, to not make wild rotations.
-
-Developers: picking improvements with T3D hierarchy: unified "The Castle" style of picking (pressing the "e" button when looking at item, stateless interaction with 3D items, like in many FPS games) with VRML/X3D pointer sensors (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally is more powerful). Now it all goes through T3D.PointingDeviceActivate/Move, that can be overridden at each T3D.
-
-"The Castle" code improvements (to move some stuff to engine core). User-visible:
-- You can now pick creatures to see their name and health status.
-  (Press "e" (interact key) to see info about creature or item under the screen middle.)
-
-Developers: camera classes improvements:
-- publish their input shortcuts, making it possible to customize them from Lazarus object inspector.
-- do not descend from TUIControl, you should only use cameras on SceneManager.Camera
-- TCastleSceneManager.DefaultVisibilityLimit, and looks more as Camera.CameraRadius.
-
-X3D 3.3 handling:
-- UNIT statement handled (in both classic and XML encoding), see demo_models/x3d/units*. Angle and length convertion is actually done.
-  - For example, you can now express angles in degress by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
-    - all SFRotation, MFRotation
-    - creaseAngle
-    - TextureTransform.rotation
-    - Background.skyAngle,groundAngle
-    - Arc2D.startAngle,endAngle
-    - ArcClose2D.startAngle,endAngle
-  - Length conversion is also done. This is less useful IMHO --- you can equivalently wrap your model in a Transform with scale. Actually, that's exactly our implementation of "UNIT length" for now --- we simply add appropriate scale (calculated looking at length unit of inlined model (inner), and looking at length unit of inlining model (outer)).
-- MetadataBoolean node added.
-- GravityPhysicsModelNode renamed to ForcePhysicsModelNode (spec was mistakenly confusing these two names).
-- Missing SliderJoint.sliderForce
-- DISEntityTypeMapping has X3DUrlObject as ancestor
-- The only revelant stuff missing from X3D 3.3 now is the new, very exciting for me, "Volume rendering component". I would like to tackle it at some point, as it may be quite fun, impressive and useful. (But no deadline yet, so if you're really interested in seeing it implemented --- contact me, patches are welcome :)
-
-In other news, as you probably seen at our header, our small website joined the protests against bad laws &mdash; pretending to be anti-piracy, in fact being about censorship and anti-privacy.
-<li><div style="float: right; padding: 1em; background: black; border: thick inset black; margin-right: 0.5em; margin-top: 0.5em;"><a style="color: white; font-weight: bold;" href="https://www.eff.org/deeplinks/2012/01/how-pipa-and-sopa-violate-white-house-principles-supporting-free-speech">Stop PIPA and SOPA</a> in USA.
-<li><div style="float: right; padding: 1em; background: black; border: thick inset black; margin-right: 0.5em; margin-top: 0.5em;"><a style="color: white; font-weight: bold;" href="http://panoptykon.org/">Stop ACTA (description in Polish)</a>, http://www.stopacta.info/.
-
-sounds/index.xml file improvements: now you can add new sounds to the game (castle, and future castle2) merely by adding them to necessary XML files. No need to reference the sound from ObjectPascal code.
-
-kanim improvements: all castle animations are now normal kanim files, and can be browsed e.g. by view3dscene. castle2 will not use kanim.
-
-Add to news: a lot of T3D improvements. This unifies approach to collision detection for all 3D objects, to make checking for all collisions (player vs level+creatures+items, creature vs level+other creatures+player and such) go through exactly the same methods and look at the same methods (except where clearly justified and documented exceptions). Sounds like a mothfull... Ok, the idea is to move "castle 1" creatures AI to the engine, to make it trivial to use creature AI in your own games :) I want to allow both using existing AI (like our walk-attack state AI), and easy designing of your own AI for specific game needs.
-- New T3DMoving, T3DLinearMoving classes, along with T3D.Pushable: perfect for implementing elevators, moving platforms, and anything else than can move and push other players/creatures/items.
-- New T3DOrient, to orient any 3D models to given position/direction/up.
-- Since player descends from T3DOrient, it's now trivial to position 3D items relatively to player. Both castle weapons are now always displayed in 3D (both when attacking or not), simplifies a lot previous specialized code.
-- New T3DAlive, for keeping track of things that have life/maxlife and that can be hurt (with a possible knockback effect).
-- Methods like MyMove, MyHeight and MyMoveAllowed, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient (T3DAlive any many others descend from T3DOrient too), and use MyHeight and MyMoveAllowed to implement your own artificial intellgence. It's very easy now.
-- TCastleSceneManager.Player property, to guide camera (for 1st perspective view) and to be a target for hostile creatures (if you use default AI in CastleCreatures).
-- Both walk-attack and missile creatures get a uniform FallingDownSpeed (units per second) treatment now. Many other unifications and simplifications to creature, players, items handling.
-
-- T3DResource class, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
-- XML files of creatures, items, and now more separate. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
-
-- http://www.roomarranger.com/ may use a 3D viewer based on our engine to visualize rooms and houses designs in 3D :) Jan Adames has prepared a specialized version of 3D viewer (based on example <tt>examples/lazarus/model_3d_viewer/</tt> in our engine sources) for this purpose. You can see the screenshots of it on the right :)
-img:room_arranger_viewer
-img:room_arranger_1
-
-- Updated <>our Blender X3D exporter</a> to be compatible to Blender 2.62 (and as close as possible to distributed original Blender exporter)
-
-- "Screenshot" button in model_3d_viewer (add screenshot of it), "Screenshot" button in view3dscene toolbar (add screenshot of it).
-  Screenshot in view3dscene doesn't capture GUI controls (like toolbar buttons) --- previously, it was inconsistent, e.g. "movie" screenshot was not capturing them but "single image" was capturing them. The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot's purpose is to capture *your scene* --- not any GUI cruft.
-
-- Victor Amat send us a nice 3D model of (from title), see screenshots in barna29_water_0.png, barna29_water_1.png, with nice water. Thanks!
-soft_shadow_poisson_sampling.png
-  And a nice soft shadows based on shadow maps. Quoting: it's basically an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side.
-
-- VisibilitySensor is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv. (add screen visibility_sensor_test.png)
-
-Fundry (crowdfunding for software) has shut down in March/April. It was one of the ways to <a href="donate.php">donate to our engine</a>, where you could donate to a development of particular feature (suggested by you or someone else). It's kind of sad, as a liked the idea very much (even if my particular project didn't yet earn anything this way). Fortunately, I found quite a few alternatives for crowdfunding specifically for FOSS projects:
-<ol>
-  <li>http://www.fossfactory.org/ ,
-  <li>https://elveos.org/en/ . But it seems the guys are looking for someone to take over the website, or to close it down... So it's probably not a good idea to jump on it now.
-  <li>http://gun.io/ .
-</ol>
-
-If you have any experience with these sites and would like to suggest some of them (or others), please share on our forum :)
-
-Our requirements for FPC version will be >= 2.6.0 for next release.
-I really like, and already use, "is nested" feature of latest FPC.
-*/
-
 array_push($news,
+    array('title' => 'Development: 3D mouse, drag to walk, SSAO, screen effects with anti-aliasing, triangulation, VisibilitySensor, X3D 3.3, collision detection unifications',
+//          'short_title' =>
+          'year' => 2012,
+          'month' => 5,
+          'day' => 12,
+          'short_description' => '',
+          'guid' => '2012-05-11-new-features',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'roomarranger_manor.png', 'titlealt' => 'Manor designed using RoomArranger, shown by view3dscene'),
+  array('filename' => 'room_arranger_1.png', 'titlealt' => 'House floor designed using RoomArranger, shown by view3dscene'),
+  array('filename' => 'room_arranger_viewer.png', 'titlealt' => 'First stages of RoomArranger viewer using our engine'),
+
+  array('filename' => 'model_3d_viewer.png', 'titlealt' => 'New GUI of examples/lazarus/model_3d_viewer, with screenshot and navigation types buttons, and engine logo'),
+  array('filename' => 'avatar_climb_stairs.png', 'titlealt' => 'Demo of avatarSize[2] (configure the tallest object that you can climb, e.g. which stairs you can climb on)'),
+
+  array('filename' => 'ssao_no_aa.png', 'titlealt' => 'SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
+  array('filename' => 'ssao_aa.png', 'titlealt' => 'SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
+
+  array('filename' => 'fountain_0_no_ssao.png', 'titlealt' => 'Fountain model; SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
+  array('filename' => 'fountain_1_ssao_near-far-hardcoded.png', 'titlealt' => 'Fountain model; SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
+
+  array('filename' => 'fountain_textures_0_no_ssao.png', 'titlealt' => 'Fountain model with textures; SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
+  array('filename' => 'fountain_textures_1_ssao.png', 'titlealt' => 'Fountain model with textures; SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
+
+  array('filename' => 'barna29_water_0.png', 'titlealt' => 'German Pavillion in the Universal Expo of Barcelona of 1929 (by Victor Amat)'),
+  array('filename' => 'barna29_water_1.png', 'titlealt' => 'German Pavillion in the Universal Expo of Barcelona of 1929 (by Victor Amat)'),
+  array('filename' => 'soft_shadow_poisson_sampling.png', 'titlealt' => 'Soft shadows, adapted from nVidia SDK 9, but using a PoissonDisk sampler (by Victor Amat)'),
+
+  array('filename' => 'visibility_sensor_test.png', 'titlealt' => 'VisibilitySensor demo'),
+
+)) .
+'<p>Hi everyone! We have a <i>lot</i> of news about new features and improvements is our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> done in the last months. I really have to start making these news posts more often, otherwise they get ridiculously long, well.. as long as this one :)</p>
+
+<p>Oh, and before we start: if you like seeing such long lists of new features, please consider <a href="' . CURRENT_URL . 'donate.php">donating</a>. I really appreciate it, especially as I plan to spend next year without a regular job, focusing mostly on the development of "Castle 2", a new great open-source game using our engine.</p>
+
+<ol>
+  <li><p>First of all, great news &mdash; <b>we have new developer working on our engine: Jan Adamec</b>. He\'s also the author of <a href="http://www.roomarranger.com/">Room Arranger</a>, a shareware program to design your room, apartment, house and more. The next version will use our engine as an internal viewer for generated VRML models :) Here\' a movie of our engine used to render a house model:</p>
+
+    <iframe width="420" height="315" src="http://www.youtube.com/embed/rsuF9f3tio8" frameborder="0" allowfullscreen></iframe>
+  </li>
+
+  <li><p>Thanks to Jan Adamec, we have a lot of new features and improvements to navigation in Walk/Fly modes:</p>
+
+    <ul>
+      <li><p>We <b>support <a href="http://www.3dconnexion.com/">3D mouse devices</a></b> in all our tools (like <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> and all engine examples, games etc.). Only under Windows for now &mdash; contributions for other OSes are welcome, of course.</p></li>
+
+      <li><p><b>Navigation by mouse dragging</b> is now possible in Walk/Fly modes (similar to other VRML/X3D viewers). Drag with left mouse button to move forward, backward or rotate. Drag with right mouse button to move sideways (strafe) or up/down.</p></li>
+
+      <li><p>Holding <b>Shift during movement allows to run</b> (speed increases * 2).</p>
+
+      <li><p><b>Mouse wheel handling for cameras inside Lazarus control</b> (just like in TCastleWindow).</p></li>
+    </ul>
+
+    <p>This nice screen summarizes most new controls used in Walk/Fly modes:
+    <img src="' . CURRENT_URL . 'images/original_size/navigation_controls.png" alt="Walk/Fly navigation controls" />
+  </li>
+
+  <li><p>Also thanks to Jan Adamec, we have <b>Screen Space Ambient Occlusion</b> implemented inside our engine. Available as comfortable <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu item "View -&gt; Screen Effects -&gt; Screen Space Ambient Occlusion" (for developers: <tt>TCastleAbstractViewport.ScreenSpaceAmbientOcclusion</tt>.) Works on arbitrary models out-of-the-box :) Uses <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">our screen effects framework</a>.</p></li>
+
+  <li><p><b>Screen effects cooperate now wit multi-sampling (anti-aliasing)</b>. Previously, any screen effect (like SSAO, or <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> effects, or effects in VRML/X3D files like <tt>demo_models/screen_effects/</tt> from <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>) was disabling AA. Now the GLSL code of every screen effect is linked with some helper <tt>screen_xxx</tt> functions. If you use them, your effects will work both with and without multi-sampling. The new functions are documented in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_extensions_screen_effects.html">future Screen Effects docs</a> (this will replace <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">the current Screen Effects docs</a> at the next release). All existing engine effects, like SSAO and other view3dscene effects in "View-&gt;Screen Effects", are already ported to use scene_xxx functions and cooperate with anti-aliasing.</p></li>
+
+  <li><p><b>Triangulator fixes for complicated concave polygons</b>. Various fixes to account for duplicated vertexes and (more general) collinear triangles inside. Previously, they could cause problems, with normal vectors of polygon and ears determined incorrectly, and allowing invalid non-empty ear triangles. The video below visualizes how our simple triangulation algorithm (by ear clipping) works:
+
+    <p><iframe width="420" height="315" src="http://www.youtube.com/embed/RMTXqTu4tKc" frameborder="0" allowfullscreen></iframe>
+
+  <li><p><b>Memory and speed optimizations</b> for scenes with many shapes (iteration by "is nested" callbacks instead of temporary lists, better opaque/transparent detection and more). Also, Lazarus package settings are now more suitable for production use (no assertions, no range/overflow checks, optimization level = 2).</p>
+
+    <p>This also causes an upgrade of our requirements for FPC version: we require now FPC &gt;= 2.6.0. It supports the <a href="http://wiki.freepascal.org/FPC_New_Features_2.6.0#Support_for_nested_procedure_variables">"is nested"</a> feature, which I like a lot &mdash; it allows to utilize callbacks in more places, making things like traversing various trees more optimized and at the same time comfortable.</p></li>
+
+  <li><p>The X3D feature to specify <b>height of the tallest object you can climb</b> inside <tt>NavigationInfo.avatarSize[2]</tt> field is now correctly supported. The demo model is inside <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (open <tt>demo_models/navigation/avatar_climb_stairs.x3dv</tt>; only in SVN for now, until next release).</p></li>
+
+  <li><p>The <b>speed of Examine rotation by keys is now capped at a maximum constant</b>, to prevent accidentally making wildly fast (and, as such, useless and confusing) rotations.</p></li>
+
+  <li><p>Developers: <b>picking improvements with T3D hierarchy</b>: unified <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> style of picking, common to FPS games (pressing the "e" button when looking at item, stateless interaction with 3D items) with <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">VRML/X3D pointer sensors</a> (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally more powerful). Now it all goes through <tt>T3D.PointingDeviceActivate/Move</tt>, that can be overridden at each T3D.</p>
+
+    <p>The user-visible benefit from this is that you can now pick creatures to see their name and health status. (Press "e" (interact key) to see info about creature or item under the screen middle.) The real benefit is that new games can use picking easily, for more purposes.</p>
+  </li>
+
+  <li><p>Developers: <b>camera classes improvements</b>: their input shortcuts are now published (making it possible to customize them from Lazarus object inspector), they do not descend from TUIControl (as you should only use cameras on <tt>SceneManager.Camera</tt>), TCastleSceneManager.DefaultVisibilityLimit, better <tt>Camera.Radius</tt> treatment.</p></li>
+
+  <li><p><b>X3D 3.3</b> handling. See <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/index.html">X3D 3.3 specification</a> for details.
+
+    <ul>
+      <li><p><tt>UNIT</tt> statement handled (in both classic and XML encoding), see <tt>demo_models/x3d/units*</tt>. Angle and length conversion is actually done.
+
+        <p>For example, you can now express angles in degrees by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
+
+        <ul>
+          <li>all SFRotation, MFRotation
+          <li>all creaseAngle
+          <li>TextureTransform.rotation
+          <li>Background.skyAngle,groundAngle
+          <li>Arc2D.startAngle,endAngle
+          <li>ArcClose2D.startAngle,endAngle
+        </ul>
+
+        <p>Length conversion is also possible. This is less useful IMHO &mdash; you can as well just wrap your model in a Transform with some scale. Actually, that\'s exactly our implementation of "UNIT length" for now &mdash; we simply add appropriate scale (calculated looking at length unit of inlined model (inner), and looking at length unit of inlining model (outer)).
+      </li>
+
+      <li><p><tt>MetadataBoolean</tt> node added.
+
+      <li><p><tt>GravityPhysicsModelNode</tt> renamed to <tt>ForcePhysicsModelNode</tt> (spec was mistakenly confusing these two names). (Only parsing.)
+
+      <li><p>Added <tt>SliderJoint.sliderForce</tt> (Only parsing.)
+
+      <li><p><tt>DISEntityTypeMapping</tt> has X3DUrlObject as ancestor (Only parsing.)
+
+      <li><p>The only relevant thing still missing from full X3D 3.3 implementation is the new, very exciting for me, <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/volume.html">Volume rendering component</a>. I would like to tackle it at some point, as it may be quite fun, impressive and useful. (But no deadline yet, so if you\'re really interested in seeing it implemented &mdash; contact me, patches are welcome :)
+    </ul>
+  </li>
+
+  <li><p>Developers: A lot of T3D class improvements to <b>unify collision detection for all 3D objects</b>, that is make checking for all collisions (player vs level+creatures+items, creature vs level+other creatures+player and such) go through exactly the same methods and look at the same properties (except where clearly justified and documented exceptions). If this sounds complicated: the idea is to move "Castle 1" creatures AI to the engine, to make it trivial to use creature AI in your own games :) I want to allow both using existing AI (like our walk-attack state AI), and easy designing of your own AI for specific game needs.
+
+    <ul>
+      <li>New <b>T3DMoving, T3DLinearMoving classes, and T3D.Pushable property</b>: perfect for implementing elevators, moving platforms, and anything else than can move and push other players/creatures/items.</li>
+      <li>New <b>T3DOrient</b>, to orient any 3D models to given position/direction/up. Good for things that have a sense of up and direction, like creatures and player avatar.
+      <li>Since player descends from T3DOrient, it\'s now trivial to <b>position 3D items relatively to player</b>. Both castle weapons are now always displayed in 3D (both when attacking or not), simplifies a lot previous specialized code.
+      <li>New <b>T3DAlive</b> class, for keeping track of things that have life/maxlife and that can be hurt (with a possible knockback effect).
+      <li>Methods like <b>MyMove, MyHeight and MyMoveAllowed</b>, to easily check your own collision vs the rest of the world. The idea is that you can trivially derive new classes from T3DTransform or T3DOrient (T3DAlive any many others descend from T3DOrient too), and use MyHeight and MyMoveAllowed to implement your own artificial intelligence. It\'s very easy now.
+      <li><b>TCastleSceneManager.Player</b> property, to guide camera (for 1st perspective view) and to be a target for hostile creatures (if you use default AI in CastleCreatures).
+      <li>Both walk-attack and missile creatures get a <b>uniform FallingDownSpeed</b> (units per second) property.
+      <li>Many other unifications and simplifications to creature, players, items handling.
+    </ul>
+  </li>
+
+  <li>Developers: a lot of <b>improvements to game data handling</b>, to make developing new games (like "Castle 2") more comfortable.
+
+    <ul>
+      <li>XML sounds/index.xml file improvements: now <b>you can add new sounds to the game (castle, and future castle2) merely by adding them to necessary XML files</b>. No need to reference the sound from ObjectPascal code.</li>
+      <li><a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim usage in "The Castle"</a> improved: <b>all castle animations are now separate kanim files</b>, and can be browsed e.g. by view3dscene. "Castle 2" will not use kanim at all.</li>
+      <li><b>T3DResource class</b>, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
+      <li><b>XML files of creatures, items, and now separate</b>. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
+    </ul>
+  </li>
+
+  <li><p>Various improvements to example <tt>examples/lazarus/model_3d_viewer/</tt>, based on Jan Adamec patches: <b>buttons to change navigation mode, to make a screenshot, and nice engine logo</b>.
+
+  <li><p><a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> also gets the <b>"Screenshot" button on the toolbar</b> (as it\'s probably quite often wanted feature).
+
+    <p><b>Making a screenshot in view3dscene doesn\'t capture GUI controls</b> (like toolbar buttons). Previously, it was inconsistent, e.g. "movie" screenshot was not capturing toolbar but "single image" was capturing them (unless it was initiated from command-line...). The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot\'s purpose is to capture <i>your scene</i> &mdash; not any GUI cruft.
+
+  <li><p><b><a href="http://castle-engine.sourceforge.net/blender.php">Our Blender X3D exporter</a> updated to be compatible to Blender 2.62</b> (and as close as possible to distributed original Blender exporter).
+
+  <li><p>Victor Amat send us some very nice 3D model of <b><a href="http://en.wikipedia.org/wiki/Barcelona_Pavilion">German Pavillion in the Universal Expo of Barcelona of 1929</a></b>, see the screenshots on the right, with very nice water and reflections.
+
+    <p>And, also from Victor Amat, a nice <b>soft shadows demo based on shadow maps</b>. It\'s an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side. Many thanks!
+
+  <li><p><b><tt>VisibilitySensor</tt> node</b> is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv in <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN.
+
+  <li><p>Website stuff:
+
+    <ol>
+      <li><p>As you may have seen at our header, our small website joined the protests against the bad legislations being pushed lately &mdash; pretending to be about anti-piracy, in fact being about censorship and anti-privacy. <a href="https://www.eff.org/deeplinks/2012/01/how-pipa-and-sopa-violate-white-house-principles-supporting-free-speech">Stop PIPA and SOPA</a> in USA, <a href="http://panoptykon.org/">Stop ACTA (in Polish)</a> (<a href="http://www.stopacta.info/">list of ACTA issues in English here</a>.)</p></li>
+      <li><i>Fundry</i> (crowdfunding for software) has shut down in March/April. It was one of the ways to <a href="' . CURRENT_URL . 'donate.php">donate to our engine</a>, where you could donate to a development of a particular feature (suggested by you or someone else). It\'s sad that the site bankrupted, as I liked the idea very much (even if my particular project didn\'t yet earn anything this way). Fortunately, I found quite a few alternatives for crowdfunding specifically for FOSS projects:
+        <ol>
+          <li><a href="http://www.fossfactory.org/">fossfactory.org</a>
+          <li><a href="https://elveos.org/en/">elveos.org</a> (it seems the guys are looking for someone to take over the website, or to close it down... So it\'s probably not a good idea to jump on it now.)
+          <li><a href="http://gun.io/">gun.io</a>
+        </ol>
+        <p>If you have any experience with these sites and would like to suggest some of them (or others), please share on our forum :)
+      </li>
+    </ol>
+  </li>
+</ol>
+'),
+
     array('title' => 'Development: virtual trackball, URLs, BitCoin, T3DTransform, Win64, and more',
 //          'short_title' =>
           'year' => 2012,
