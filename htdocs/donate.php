@@ -4,13 +4,13 @@
   echo pretty_heading($page_title);
 ?>
 
-<p>This seems like a good place to beg for donations :)
-So here goes: I'm developing this engine since a few years already,
+<p><?php /* This seems like a good place to beg for donations :)
+So here goes: */ ?> I'm developing this engine since a few years already,
 spending most of my daily (and nightly :) time on it.
 And I'm going to continue doing so, and you don't have to pay
 for any bugfix or a new feature or a new game getting released.</p>
 
-<p>That said, it would be absolutely great for me to gain some income,
+<p>It would be absolutely great for me to gain some income,
 and be able to ditch other boring jobs, and commit
 100% of my computer time to this engine. So please donate &mdash; even
 a very small amount will increase my happiness, which will in turn
