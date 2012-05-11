@@ -96,6 +96,9 @@ Fundry (crowdfunding for software) has shut down in March/April. It was one of t
 </ol>
 
 If you have any experience with these sites and would like to suggest some of them (or others), please share on our forum :)
+
+Our requirements for FPC version will be >= 2.6.0 for next release.
+I really like, and already use, "is nested" feature of latest FPC.
 */
 
 array_push($news,
