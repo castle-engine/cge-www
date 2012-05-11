@@ -20,11 +20,11 @@ castle_thumbs(array(
   array('filename' => 'ssao_no_aa.png', 'titlealt' => 'SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
   array('filename' => 'ssao_aa.png', 'titlealt' => 'SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
 
-  array('filename' => 'fountain_0_no_ssao.png', 'titlealt' => 'Fountain model; SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
-  array('filename' => 'fountain_1_ssao_near-far-hardcoded.png', 'titlealt' => 'Fountain model; SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
+  array('filename' => 'fountain_0_no_ssao.png', 'titlealt' => 'Fountain model; no SSAO'),
+  array('filename' => 'fountain_1_ssao_near-far-hardcoded.png', 'titlealt' => 'Fountain model; SSAO'),
 
-  array('filename' => 'fountain_textures_0_no_ssao.png', 'titlealt' => 'Fountain model with textures; SSAO (Screen-Space Ambient Occlusion) without Anti-Aliasing'),
-  array('filename' => 'fountain_textures_1_ssao.png', 'titlealt' => 'Fountain model with textures; SSAO (Screen-Space Ambient Occlusion) with Anti-Aliasing'),
+  array('filename' => 'fountain_textures_0_no_ssao.png', 'titlealt' => 'Fountain model with textures; no SSAO'),
+  array('filename' => 'fountain_textures_1_ssao.png', 'titlealt' => 'Fountain model with textures; SSAO'),
 
   array('filename' => 'barna29_water_0.png', 'titlealt' => 'German Pavillion in the Universal Expo of Barcelona of 1929 (by Victor Amat)'),
   array('filename' => 'barna29_water_1.png', 'titlealt' => 'German Pavillion in the Universal Expo of Barcelona of 1929 (by Victor Amat)'),
