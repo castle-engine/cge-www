@@ -13,6 +13,7 @@ castle_thumbs(array(
   array('filename' => 'roomarranger_manor.png', 'titlealt' => 'Manor designed using RoomArranger, shown by view3dscene'),
   array('filename' => 'room_arranger_1.png', 'titlealt' => 'House floor designed using RoomArranger, shown by view3dscene'),
   array('filename' => 'room_arranger_viewer.png', 'titlealt' => 'First stages of RoomArranger viewer using our engine'),
+  array('filename' => 'room_arranger_viewer_2.png', 'titlealt' => 'Final stages of RoomArranger viewer using our engine, with more controls and SSAO'),
 
   array('filename' => 'model_3d_viewer.png', 'titlealt' => 'New GUI of examples/lazarus/model_3d_viewer, with screenshot and navigation types buttons, and engine logo'),
   array('filename' => 'avatar_climb_stairs.png', 'titlealt' => 'Demo of avatarSize[2] (configure the tallest object that you can climb, e.g. which stairs you can climb on)'),
@@ -33,7 +34,7 @@ castle_thumbs(array(
   array('filename' => 'visibility_sensor_test.png', 'titlealt' => 'VisibilitySensor demo'),
 
 )) .
-'<p>Hi everyone! We have a <i>lot</i> of news about new features and improvements in our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. I really have to start making these news posts more often, otherwise they get ridiculously long, well.. as long as this one :)</p>
+'<p>Hi everyone! We have a <i>lot</i> of news about new features and improvements in our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. No new release yet, we just annouce what is available in SVN (and can be tested by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">downloading view3dscene from snapshots</a>). I really have to start making these news posts more often, otherwise they get ridiculously long, well.. as long as this one :)</p>
 
 <p>Oh, and before we start: if you like seeing the engine grow so much, please consider <a href="' . CURRENT_URL . 'donate.php">donating</a>. I really appreciate it, especially as I plan to spend next year without a regular job, focusing mostly on the development of "Castle 2", a new great open-source game using our engine.</p>
 
@@ -48,7 +49,12 @@ castle_thumbs(array(
   <li><p>Thanks to Jan Adamec, we have a lot of new features and improvements to navigation in Walk/Fly modes:</p>
 
     <ul>
-      <li><p>We <b>support <a href="http://www.3dconnexion.com/">3D mouse devices</a></b> in all our tools (like <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> and all engine examples, games etc.). Only under Windows for now &mdash; contributions for other OSes are welcome, of course.</p></li>
+      <li><p>We <b>support <a href="http://www.3dconnexion.com/">3D mouse devices</a></b> in all our tools (like <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> and all engine examples, games etc.). Only under Windows for now &mdash; contributions for other OSes are welcome, of course.</p>
+
+        <p>The video below shows how 3D mouse works in various navigation modes:</p>
+
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/lsUztfdike8" frameborder="0" allowfullscreen></iframe>
+      </li>
 
       <li><p><b>Navigation by mouse dragging</b> is now possible in Walk/Fly modes (similar to other VRML/X3D viewers). Drag with left mouse button to move forward, backward and rotate. Drag with right mouse button to move sideways (strafe) and fly up/down.</p></li>
 
