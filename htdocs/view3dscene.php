@@ -75,14 +75,14 @@ The documentation (this web page) is also included inside, for offline viewing
  contains a lot of interesting models,
 you can open them all with <tt>view3dscene</tt>.</p>
 
-<p>If you want to hear 3D sound, you should also install
+<p><i>For Linux:</i> Install also <a href="http://projects.gnome.org/gtkglext/">gtkglext</a>
+on your system using your package manager.
+If you want to hear 3D sound in some VRML/X3D worlds, install also
 <?php echo a_href_page('OpenAL', 'openal'); ?> and
 <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
-libraries.
-For Windows, they are already included in the zip file, so you don't
-have to do anything. For Linux, you should install them using your
-package manager. For Mac OS X, <?php echo a_href_page('OpenAL is already
-preinstalled and you can get VorbisFile from fink', 'macosx_requirements'); ?>.</p>
+libraries. <i>For Windows:</i> All useful libraries
+are already included in the archive, so you don't have to do anything.
+<?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.</p>
 
 <?php section(false); ?>
 
