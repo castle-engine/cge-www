@@ -1,5 +1,11 @@
 <?php
 
+/*
+
+Simple fractals demo using our engine utilities (TCastleWindow and such): https://github.com/michaliskambi/fractals-demo-cge . GPL >= 2, by Michalis. I setup this on github mostly to play with github :)
+
+*/
+
 array_push($news,
     array('title' => 'Development: 3D mouse, drag to walk, SSAO, screen effects with anti-aliasing, triangulation, X3D 3.3, soft shadows demo, VisibilitySensor, 3D world improvements for games',
 //          'short_title' =>
