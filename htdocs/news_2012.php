@@ -7,6 +7,10 @@ Simple fractals demo using our engine utilities (TCastleWindow and such): https:
 Room Arranger with SSAO demo scene:
 images/original_size/room_arranger_*_ssao.png
 
+For final release news, add these images as triangulation demo:
+images/original_size/polygon_0.png
+images/original_size/polygon_1.png
+
 */
 
 array_push($news,
