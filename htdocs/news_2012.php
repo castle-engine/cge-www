@@ -4,6 +4,9 @@
 
 Simple fractals demo using our engine utilities (TCastleWindow and such): https://github.com/michaliskambi/fractals-demo-cge . GPL >= 2, by Michalis. I setup this on github mostly to play with github :)
 
+Room Arranger with SSAO demo scene:
+images/original_size/room_arranger_*_ssao.png
+
 */
 
 array_push($news,
