@@ -43,7 +43,7 @@ formats.</p>
       new TocItem('Downloading and installing', 'install'),
       new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
       new TocItem('Features', 'features'),
-      new TocItem('Controlling program with keys &amp; mouse', 'keys'),
+      new TocItem('Navigation with keys &amp; mouse', 'navigation'),
       new TocItem('Command-line options', 'command_line_options'),
       new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
       new TocItem('Converting to VRML/X3D', 'converting', 1),
@@ -275,9 +275,27 @@ flawlessly :) So give it a try!
     separate images).
 </ul>
 
+<a name="section_keys"/> <!-- for old links -->
 <?php section(); ?>
 
-<p><b>Controls in <tt>Examine</tt> navigation mode :</b>
+<h3>All navigation modes:</h3>
+
+<ul>
+  <li><p><i>Left mouse button</i> is used for interacting
+    with the VRML/X3D world. When the cursor turns into a grabbing hand
+    you know you can click or drag on this 3D object. This uses
+    the <?php echo a_href_page('VRML/X3D pointing-device sensors',
+    'x3d_implementation_pointingdevicesensor'); ?>, and is fully configurable
+    by 3D world authors.</p>
+
+  <li><p><i>Ctrl + Right mouse click</i> picks a point,
+    selecting a triangle and it's containing shape.
+    The selected point / triangle / shape is then used for some
+    operations, like <i>"Help -&gt; Selected Object Information"</i>.
+</ul>
+
+<h3><tt>Examine</tt> navigation mode:</h3>
+
 <table border="1" class="key_list">
   <tr><th colspan="2">Mouse:</th></tr>
   <tr><td>Rotate</td> <td>Left mouse dragging</td>                           </tr>
@@ -292,20 +310,29 @@ flawlessly :) So give it a try!
   <tr><td>Restore default transformation</td>           <td>Home</td>   </tr>
 </table>
 
-<p><b>Controls in <tt>Walk / Fly</tt> navigation mode :</b><br>
+<h3><tt>Walk</tt> / <tt>Fly</tt> navigation modes:</h3>
+
+<img src="<?php echo CURRENT_URL; ?>images/original_size/navigation_controls.png" alt="Walk/Fly navigation controls" />
+
 <table border="1" class="key_list">
 
-  <tr><th colspan="2">Basic:</th></tr>
+  <tr><th colspan="2">Mouse:</th></tr>
+  <tr><td>Forward / backward</td>    <td>Drag up / down with left mouse button</td></tr>
+  <tr><td>Rotate</td>                <td>Drag left / right with left mouse button</td></tr>
+  <tr><td>Move (strafe) left / right</td>     <td>Drag left / right with right mouse button</td></tr>
+  <tr><td>Fly up / down</td>         <td>Drag up / down with right mouse button</td></tr>
+  <tr><td>Raise / bow your head</td> <td>Mouse wheel</td></tr>
 
+  <tr><th colspan="2">Keys:</th></tr>
   <tr><td>Forward / backward</td>    <td>Up / Down</td>            </tr>
   <tr><td>Rotate</td>                <td>Left / Right</td>         </tr>
-  <tr><td>Raise / bow your head</td> <td>PageUp / PageDown</td>    </tr>
-  <tr><td>Restore head raise to initial position (neutralize any effect of
-          PageUp / PageDown)</td>    <td>Home</td>                 </tr>
+  <tr><td>Move (strafe) left / right</td>     <td>Comma / Period</td>       </tr>
   <tr><td>Fly up / down</td>         <td>Insert / Delete</td>      </tr>
-  <tr><td>Move left / right</td>     <td>Comma / Period</td>       </tr>
   <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt style="background-color: transparent;">Walk</tt> mode)</td>
       <td>A / Z</td> </tr>
+  <tr><td>Raise / bow your head / look straight</td> <td>PageUp / PageDown / Home</td>    </tr>
+  <!--tr><td>Look straight (neutralize the effect of raise / bow head)</td>   <td>Home</td>  </tr-->
+  <tr><td>Run</td>                   <td>Shift</td>            </tr>
 
   <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
     (Ctrl+M) to comfortably look around
@@ -318,29 +345,26 @@ flawlessly :) So give it a try!
 
   <tr><th colspan="2">Additional controls:</th></tr>
 
-  <tr><td>Increase / decrease moving speed (has effect on keys
-        Up / Down, Insert / Delete, Comma / Period)</td> <td>+ / -</td></tr>
+  <tr><td>Increase / decrease moving speed <!-- (has effect on keys
+        Up / Down, Insert / Delete, Comma / Period) --></td> <td>+ / -</td></tr>
   <tr><td>Increase / decrease avatar height (preferred camera height above the ground)</td>
       <td>Ctrl + Insert/Delete</td></tr>
-  <tr><td>Rotate <i>slower</i> (useful when you want to set up camera
-         very precisely, e.g. to use this camera setting to render a scene
-         image using ray-tracer)</td>
+  <tr><td>Rotate <i>slower</i> (useful to precisely set the camera)</td>
+  <!-- when you want to set up camera
+       very precisely, e.g. to use this camera setting to render a scene
+       image using ray-tracer)-->
        <td>Ctrl + Left / Right</td> </tr>
   <tr><td>Raise / bow your head <i>slower</i></td>
       <td>Ctrl + PageUp / PageDown</td></tr>
-  <tr><td>Pick a point, selecting triangle and object</td>
-      <td>Right mouse click</td>  </tr>
 </table>
 
-<p><i>Left mouse button</i> is also universally used for interacting
-with the VRML/X3D world. When the cursor turns into a grabbing hand
-you know you can click or drag on this object. This is realized
-by the <?php echo a_href_page('VRML/X3D pointing-device sensors',
-'x3d_implementation_pointingdevicesensor'); ?>.</p>
+<p>We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,
+see <a href="http://www.youtube.com/watch?v=lsUztfdike8">the demo video about 3D mouse inside
+view3dscene</a>.</p>
 
-<p>There are a lot of other keys that work independent of current navigation
-mode. You can see them all by exploring menus, and looking at
-the key shortcuts.</p>
+<p>There are many more operations with key shortcuts, that work in all
+navigation modes.
+Just explore the <i>view3dscene</i> menu, and look at the key shortcuts.</p>
 
 <?php section(); ?>
 

@@ -71,7 +71,7 @@ span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
    <table border="1" class="key_list"> */
 table.key_list { width: 90%; }
 table.key_list th { background: #eeeee0; }
-table.key_list td { background: #ddddd0; }
+table.key_list td { background: #ddddd0; width: 50%; }
 
 /* Adapted from my pasdoc.css */
 table.thin_borders { border-collapse: collapse; }
