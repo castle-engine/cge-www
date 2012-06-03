@@ -11,6 +11,10 @@ For final release news, add these images as triangulation demo:
 images/original_size/polygon_0.png
 images/original_size/polygon_1.png
 
+Workaround for NVidia GLSL bugs on "const structures"
+Links to Gun.io and FOSS Factory from donate.php
+RenderedTexture.viewpoint fixed to send camera*Matrix events
+
 */
 
 array_push($news,

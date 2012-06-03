@@ -493,6 +493,14 @@ others) are full of demos of our extensions.</p>
   these events straight to the shaders, you usually need in shaders "actual
   camera" (which is not necessarily current viewpoint camera) matrices.</p>
 
+  <p>These events are usually generated only by the currently bound viewpoint node.
+  The only exception is when you use <tt>RenderedTexture</tt>
+  and set something in <tt>RenderedTexture.viewpoint</tt>:
+  in this case, <tt>RenderedTexture.viewpoint</tt> will generate appropriate
+  events (as long as you set <tt>cameraMatrixSendAlsoOnOffscreenRendering</tt>
+  to <tt>TRUE</tt>). Conceptually, <tt>RenderedTexture.viewpoint</tt>
+  is temporarily bound (although it doesn't send isBound/bindTime events).
+
 <?php echo $toc->html_section(); ?>
 
   <?php
