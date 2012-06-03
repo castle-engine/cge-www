@@ -1,9 +1,24 @@
 <?php
 /* PHP functions common for castle-engine WWW pages. */
 
+/* You can temporarily change this (but don't commit!) to true.
+   This removes *some* stuff that embeds online content on our webpages,
+   like Flattr and G+ widgets.
+   It also sets CURRENT_URL to '', which means that things that normally
+   refer using absolute URL will instead refer to local copy
+   (this concerns things like links to thumbnails in news items;
+   they use full absolute URLs, because they are
+   also used inside RSS feeds, which may be displayed on other servers).
+
+   Overall, this allows to browser our webpages locally
+   (through http://localhost/...) faster. */
+define('CASTLE_OFFLINE', false);
+
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
-define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
+if (CASTLE_OFFLINE)
+  define('CURRENT_URL', ''); else
+  define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
 define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
 
@@ -332,6 +347,7 @@ function echo_header_bonus ()
 
 <script type="text/javascript" src="castle-engine.js"></script>
 
+<?php if (!CASTLE_OFFLINE) { ?>
 <script type="text/javascript">
 /* <![CDATA[ */
     (function() {
@@ -343,8 +359,8 @@ function echo_header_bonus ()
     })();
 /* ]]> */
 </script>
-
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<?php } ?>
 
   <?php
 }
