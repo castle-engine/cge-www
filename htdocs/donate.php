@@ -5,13 +5,16 @@
 ?>
 
 <p><?php /* This seems like a good place to beg for donations :)
-So here goes: */ ?> I'm developing this engine since a few years already,
+So here goes: */ ?> Hi, I'm Michalis Kamburelis
+(<?php echo michalis_mailto('email'); ?>,
+<a href="https://plus.google.com/106323096891653345103">google+</a>).
+I'm developing this engine since a few years already,
 spending most of my daily (and nightly :) time on it.
 And I'm going to continue doing so, and you don't have to pay
 for any bugfix or a new feature or a new game getting released.</p>
 
 <p>It would be absolutely great for me to gain some income,
-and be able to ditch other boring jobs, and commit
+and be able to live without other jobs, and commit
 100% of my computer time to this engine. So please donate &mdash; even
 a very small amount will increase my happiness, which will in turn
 directly improve the awesomeness of our engine,
@@ -52,6 +55,31 @@ and view3dscene, and our games :) Thanks!</p>
   <p>The suggested amounts to donate are 5 / 10 / 20 USD, but feel free to donate
   as much or as little as you like :) You can pay using your credit card,
   or use your own PayPal account.</p>
+  </td>
+
+  <td>
+  <p>You can sponsor the development of a specific feature.
+  It can be a small bugfix or a large feature &mdash;
+  just propose anything that you actually want to see implemented.
+  If you want, you can pick one of our
+  <?php echo a_href_page_hashlink('larger planned features', 'forum',
+  'large_planned_features'); ?>.</p>
+
+  <ul>
+    <li><a href="http://www.fossfactory.org/">Add new project on FOSS Factory</a> or</li>
+    <li><a href="http://gun.io/">Add new project at Gun.io</a> or</li>
+    <li>Just<!--If you're sure that you want me to do the job,
+      you can just--> <?php echo michalis_mailto('send Michalis a mail'); ?>.</li>
+  </ul>
+
+  <p>The websites linked above
+  are easy to use, and the others get an opportunity to comment
+  on the project, co-sponsor it, maybe even just take the job themselves :)
+  Just post a project there, and
+  <?php echo michalis_mailto('drop me a mail about it'); ?>.
+  Besides our 3D engine, games and VRML/X3D
+  <a href="https://masterbranch.com/michalis.kamburelis">I'm also
+  familiar with other stuff</a>.</p>
   </td>
   </tr>
 

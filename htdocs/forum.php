@@ -102,7 +102,7 @@ your 3D worlds, you can:
     If you'd like to join, or just send some patches improving something,
     feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
 
-    <p>Some larger ideas for development:
+    <p><a name="large_planned_features">Some larger ideas for development</a>:
     <ul>
       <li>
         <p><b>Native look and feel, and easy installation, under Mac OS X</b></p>
