@@ -11,9 +11,15 @@ For final release news, add these images as triangulation demo:
 images/original_size/polygon_0.png
 images/original_size/polygon_1.png
 
-Workaround for NVidia GLSL bugs on "const structures"
+Workaround for NVidia GLSL bugs on "const in gl_XxxParameters".
 Links to Gun.io and FOSS Factory from donate.php
 RenderedTexture.viewpoint fixed to send camera*Matrix events
+Updated DLLs to latest versions.
+    http://gnuwin32.sourceforge.net/packages/zlib.htm (1.2.3, last change 20 July 2005)
+    http://gnuwin32.sourceforge.net/packages/libpng.htm (1.2.37, last change 4 June 2009)
+
+Also, Lazarus TOpenGLControl (an ancestor of our TCastleControl) has quite a few improvements in Lazarus SVN now: <a href="">MultiSampling</a> and <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a> properties.
+
 
 */
 
