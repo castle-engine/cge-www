@@ -20,6 +20,7 @@ Updated DLLs to latest versions.
 
 Also, Lazarus TOpenGLControl (an ancestor of our TCastleControl) has quite a few improvements in Lazarus SVN now: <a href="">MultiSampling</a> and <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a> properties.
 
+lets_take_a_walk is now among engine examples
 
 */
 
