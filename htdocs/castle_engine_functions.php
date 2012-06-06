@@ -12,7 +12,7 @@
 
    Overall, this allows to browser our webpages locally
    (through http://localhost/...) faster. */
-define('CASTLE_OFFLINE', false);
+define('CASTLE_OFFLINE', true);
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
