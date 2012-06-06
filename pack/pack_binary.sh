@@ -442,16 +442,17 @@ case "$1" in
     binary_set_unix_permissions
     ;;
 
-  lets_take_a_walk)
-    binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
-    binary_add_exec_and_data lets_take_a_walk \
-      "$CASTLE_ENGINE_PATH"lets_take_a_walk/ \
-      'data/' \
-      't'
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
-    binary_add_gpl2
-    binary_set_unix_permissions
-    ;;
+  # This target was not tested since moving lets_take_a_walk to examples/3d_sound_game
+  # lets_take_a_walk)
+  #   binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
+  #   binary_add_exec_and_data lets_take_a_walk \
+  #     "$CASTLE_ENGINE_PATH"castle_game_engine/examples/3d_sound_game/ \
+  #     'data/' \
+  #     't'
+  #   binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
+  #   binary_add_gpl2
+  #   binary_set_unix_permissions
+  #   ;;
 
   bezier_curves)
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS

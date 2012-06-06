@@ -27,7 +27,6 @@ move_all_programs ()
   mv glplotter/glplotter"$EXT" "$OUT_PATH"
   mv glviewimage/glViewImage"$EXT" "$OUT_PATH"
   mv kambi_lines/kambi_lines"$EXT" "$OUT_PATH"
-  mv lets_take_a_walk/lets_take_a_walk"$EXT" "$OUT_PATH"
   mv malfunction/malfunction"$EXT" "$OUT_PATH"
   mv rayhunter/rayhunter"$EXT" "$OUT_PATH"
   mv view3dscene/view3dscene"$EXT" "$OUT_PATH"

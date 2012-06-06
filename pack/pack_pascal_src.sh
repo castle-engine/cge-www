@@ -179,12 +179,6 @@ case "$1" in
     pascal_src_archive_end rayhunter
     ;;
 
-  lets_take_a_walk)
-    mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"lets_take_a_walk/
-    pascal_src_archive_end lets_take_a_walk
-    ;;
-
   view3dscene)
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"view3dscene/
