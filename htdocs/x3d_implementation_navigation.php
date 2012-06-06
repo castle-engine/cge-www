@@ -118,6 +118,11 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
     volumes are allowed (We use frustum with z-far in infinity then.)</p>
 
+    <p>As an extension, we support new navigation mode <tt>ARCHITECTURE</tt>.
+    This is similar to the Examine mode, with controls comfortable
+    for viewing models that have a sense of floor/ground in the XZ plane,
+    and vertical axis in +Y.
+
   <li><p><?php echo x3d_node_link('LOD'); ?>
 
     <p><i>Note:</i> We do not have any automatic LOD calculation implemented now,
