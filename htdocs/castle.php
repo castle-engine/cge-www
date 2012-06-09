@@ -160,7 +160,7 @@ See <?php echo a_href_page_hashlink('here for more info about compiling',
 You may also want to delete configuration file:</p>
 
 <table class="thin_borders">
-  <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><tt>$HOME/.castle.conf</tt>
+  <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><tt>$HOME/.config/castle/castle.conf</tt>
   <tr><td>Windows >= NT / 2000 / XP <td><tt>Documents and
     Settings\&lt;UserName&gt;\Application Data\castle.conf</tt>
   <tr><td>Windows 95 / 98 / ME <td><tt>&lt;program's directory&gt;\castle.conf</tt>
