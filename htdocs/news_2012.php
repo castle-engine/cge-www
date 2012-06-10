@@ -22,54 +22,56 @@ castle_thumbs(array(
 )) .
 '<p>Hi!</p>
 
-<p>First of all, we had a plan to release next shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (some more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And remember, if you would like to help: <a href="http://castle-engine.sourceforge.net/forum.php">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="http://castle-engine.sourceforge.net/donate.php">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
+<p>First of all, we had a plan to release new shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And if you would like to help: <a href="http://castle-engine.sourceforge.net/forum.php">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="http://castle-engine.sourceforge.net/donate.php">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
 
-<p>Various new features and important fixes done lately:</p>
+<p>New features done lately:</p>
 
-<ul>
-  <li><p>First of all, engine contains now the promised <tt>CastleCreatures</tt> unit (see inside <tt>src/game/</tt> subdirectory in SVN), that allows you to <b>easily create creatures with artificial intelligence</b>. (For details see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleCreatures.html">initial docs</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/game/castlecreatures.pas">castlecreatures.pas source</a>.) There are various ways to use it:</p>
+<ol>
+  <li><p>Engine contains now the promised <tt>CastleCreatures</tt> unit (see inside <tt>src/game/</tt> subdirectory in SVN), that allows you to <b>easily create creatures with artificial intelligence</b>. (For details see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleCreatures.html">initial docs</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/game/castlecreatures.pas">castlecreatures.pas source</a>.) There are various ways to use it:</p>
 
     <ol>
-      <li><p>For starters, you can just use the walk-attack-state intelligence, by the <tt>TWalkAttackCreatureKind</tt> class. Such creature tracks the player (remembers last seen player 3D position, walks/flies to it, possibly through sectors/waypoints &mdash; so it can pass through narrow doors in a labiryth or walk over a narrow bridge), attacks the player from the right distance (this can be either a melee attack, or shooting a missile &mdash; which adds a missile to the 3D world), eventually runs from player (when he\'s too close and/or our health is low).
+      <li><p>For starters, you can just use the walk-attack-state intelligence, by the <tt>TWalkAttackCreatureKind</tt> class. Such creature tracks the player (remembers last seen player 3D position, walks/flies to it, possibly through sectors/waypoints &mdash; so it can pass through narrow doors in a labyrinth or walk over a narrow bridge), attacks the player from the right distance (this can be either a melee attack, or shooting a missile &mdash; which adds a missile to the 3D world), eventually runs from the player (when he\'s too close and/or our health is low). For now, the player is always the main enemy, and there\'s no "creature vs creature" fighting, although it can be added easily in the future.</p>
 
-        <p>For basic usage, there\'s no need to even derive new descendants of it &mdash; all you need to do is to create a directory holding creature 3D data and <tt>index.xml</tt> describing it (for example, see various subdirectories of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/creatures/">castle/data/creatures/ in SVN</a>).</p>
+        <p>For basic usage, there\'s no need to even derive new classes. All you need to do is to create a directory holding creature 3D data and <tt>index.xml</tt> describing it (for example, see various subdirectories of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/creatures/">castle/data/creatures/ in SVN</a>).</p>
 
         <p>There are a lot of settings to achieve particular behavior, e.g. cowardly/brave, offensive/defensive, melee/ranged, etc.</p>
 
-        <p>There is also a "missile" intelligence (<tt>TMissileCreatureKind</tt>), that causes the creature to blindly go in given direction (possibly bend, to account for gravity, homing (auto-target) and such). On impact, missile may explode, hurting player and/or other creatures. Any kind of missile (that doesn\'t immediately hurt the enemy), like arrow or lighting bolt, is represented as such "missile creature", that may fly independently from whoever shot it.</p>
+        <p>There is also a "missile" intelligence (<tt>TMissileCreatureKind</tt>), that causes the creature to blindly go in given direction (possibly with gravity and/or homing (close-on-target) features). On impact, missile may explode, hurting player and/or other creatures. Any kind of missile, <!-- (that doesn\'t immediately hurt the enemy), --> like arrow or lighting bolt, is represented as such "missile creature", that flies independently of the shooter.</p>
       </li>
 
-      <li><p>You can also derive simple descendants of above classes, to customize their behavior. For example, <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> customizes walk-attack creature to give both ranged and melee attacks to the <i>Spider Queen</i>, to make <i>werewolves</i> howl from time to time, and such. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/source/gamecreatures.pas">castle1 GameCreatures.pas unit sources</a>. We plan to have a simple example FPS game in the engine to illustrate this nicer.</p></li>
+      <li><p>You can also derive simple descendants of above classes, to customize their behavior. For example, <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> customizes walk-attack creature to give both ranged and melee attacks to the <i>Spider Queen</i>, to make <i>werewolves</i> howl from time to time, and such. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/source/gamecreatures.pas">castle1 GameCreatures.pas unit sources</a>. We plan to add a simple FPS game to the engine examples, to illustrate this nicer.</p></li>
 
-      <li><p>Finally, nothing stops you from taking basic <tt>TCreatureKind</tt>, or even the more basic <tt>T3DAlive</tt> class, and add an intelligence there. Methods <tt>MyMove, MyMoveAllowed, MyHeight, MyLineOfSight</tt> allow you to add any kind of movement/intelligence to any 3D object.</p></li>
+      <li><p>Finally, nothing stops you from taking basic <tt>TCreatureKind</tt>, or even the more basic <tt>T3DAlive</tt> class, and add an intelligence there. Methods <tt>MyMove</tt>, <tt>MyMoveAllowed</tt>, <tt>MyHeight</tt>, <tt>MyLineOfSight</tt> allow you to add any kind of movement/intelligence to any 3D object. See <tt>Base3D</tt> unit and classes there.</p></li>
     </ol>
 
-    <p>We also have <tt>CastleResources</tt> (for reference-counted, heavy 3D resources) and other new units in the <tt>src/game/</tt> subdirectory.</p>
+    <p>We also have <tt>CastleResources</tt> unit (for reference-counted, heavy 3D resources) and other new units in the <tt>src/game/</tt> subdirectory.</p>
 
-    <p>This achieves the major goal for next engine version :) But there\'s still more work &mdash; we want to have there also (pickable) items, advanced player management, and advanced level loading. This is all already implemented in castle1 source, but we still need to generalize and clean up the code.</p>
+    <p>This achieves the major goal for the next engine version :) But there\'s still more work &mdash; we want to have there also (pickable) items, advanced player management, and advanced level loading. This is all already implemented in castle1 source, but we still need to generalize and clean up the code.</p>
   </li>
 
-  <li><p>Jan Adamec started implementatio of new camera navigation method, called <i>Architecture</i> now. The idea is to create a more constrained Examine mode, suitable for viewing models with a ground/floor, where you don\'t want to accidentally flip the model upside-down.</p></li>
+  <li><p>Jan Adamec started implementation of a new camera navigation method, called <i>Architecture</i> now. The idea is to create a more constrained Examine mode, suitable for viewing models with a ground/floor, where you don\'t want to accidentally flip the model upside-down.</p>
+
+    <p>The new navigation mode is already available on <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> header (take <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">view3dscene binary from snapshots</a>), it\'s also available for VRML/X3D models by <tt>NavigationInfo.type="ARCHITECTURE"</tt>. Remember it\'s a work in progress for now, the behavior will change.</p></li>
 
   <li><p>Some more screenshots of <a href="http://www.roomarranger.com/">Room Arranger scenes</a> with <i>Screen Space Ambient Occlusion</i>, and more screenshots of triangulating of non-trivial polygons, are visible on the side of this post. See <a href="http://castle-engine.sourceforge.net/news.php?item=2012-05-11-new-features">previous news</a> for details about these features.</p></li>
 
-  <li><p>Fractals demo using our engine (<tt>TCastleWindow</tt> and such) is available on github: <a href="https://github.com/michaliskambi/fractals-demo-cge">github.com/michaliskambi/fractals-demo-cge</a>. The code is GPL >= 2, by Michalis. I setup this mostly to play with github :), but also to show how you can distribute as open-source a game/utility using our engine &mdash; you can see at README.txt, Lazarus lpi, and compilation scripts there as an example.</p></li>
+  <li><p>Fractals demo using our engine (<tt>TCastleWindow</tt> and such) is available on github: <a href="https://github.com/michaliskambi/fractals-demo-cge">github.com/michaliskambi/fractals-demo-cge</a>. The code is GPL >= 2, by Michalis. Partially, I set this up to play with github :) But it also shows one way to distribute a code of a game/utility using our engine. You can look at README.txt, Lazarus lpi, and compilation scripts there as an example.</p></li>
 
   <li><p><a href="http://castle-engine.sourceforge.net/lets_take_a_walk.php">lets_take_a_walk, demo of 3D sounds inside our engine</a>, was refreshed (to use T3D classes) and added as another example to our engine sources (under <tt>castle_game_engine/examples/3d_sound_game/</tt>).</p></li>
 
   <li><p>Added comments about sponsoring, and links to <a href="http://www.fossfactory.org/">FOSS Factory</a> and <a href="http://gun.io/">Gun.io</a> to our <a href="http://castle-engine.sourceforge.net/donate.php">donations</a> page.</p></li>
 
-  <li><p><a href="http://www.lazarus.freepascal.org/">Lazarus</a> TOpenGLControl component got quite a few improvements in Lazarus SVN, thanks in part to the work on Michalis, Jan Adamec and Andrey Zubarev: <a href="http://bugs.freepascal.org/view.php?id=22026">MultiSampling support</a>, <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits support</a>, <a href="http://bugs.freepascal.org/view.php?id=18046">AUX buffers</a>. This is an ancestor of our <tt>TCastleControl</tt> component, so all these improvements are directly useful also inside our engine, if you use Lazarus components.</p></li>
+  <li><p><a href="http://www.lazarus.freepascal.org/">Lazarus</a> TOpenGLControl component got quite a few improvements in Lazarus SVN, thanks to the work of Michalis, Jan Adamec and Andrey Zubarev: <a href="http://bugs.freepascal.org/view.php?id=22026">MultiSampling</a>, <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a>, <a href="http://bugs.freepascal.org/view.php?id=18046">AUX buffers</a>. This is an ancestor of our <tt>TCastleControl</tt> component, so all these improvements are directly useful also inside our engine.</p></li>
 
   <li><p>Other small fixes/updates:</p>
 
-    <ol>
-      <li>Workaround for NVidia GLSL bugs on "const in gl_XxxParameters".
-      <li>RenderedTexture.viewpoint fixed to send <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_viewpoint_camera_matrix">camera*Matrix events</a>
-      <li>Updated Windows DLLs to latest versions from <a href="http://gnuwin32.sourceforge.net/">gnuwin32.sourceforge.net</a>: <a href="http://gnuwin32.sourceforge.net/packages/zlib.htm">zlib upgraded to 1.2.3 (last change 20 July 2005)</a>, <a href="http://gnuwin32.sourceforge.net/packages/libpng.htm">libpng upgraded to(1.2.37 (last change 4 June 2009)</a>.
-    </ol>
+    <ul>
+      <li>Workaround for NVidia GLSL bugs on "const in gl_XxxParameters".</li>
+      <li>RenderedTexture.viewpoint fixed to send <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_viewpoint_camera_matrix">camera*Matrix events</a>.</li>
+      <li>Updated Windows DLLs to latest versions from <a href="http://gnuwin32.sourceforge.net/">gnuwin32.sourceforge.net</a>: <a href="http://gnuwin32.sourceforge.net/packages/zlib.htm">zlib upgraded to 1.2.3 (last change 20 July 2005)</a>, <a href="http://gnuwin32.sourceforge.net/packages/libpng.htm">libpng upgraded to(1.2.37 (last change 4 June 2009)</a>.</li>
+    </ul>
   </li>
-</ul>
+</ol>
 '),
 
     array('title' => 'Development: 3D mouse, drag to walk, SSAO, screen effects with anti-aliasing, triangulation, X3D 3.3, soft shadows demo, VisibilitySensor, 3D world improvements for games',
