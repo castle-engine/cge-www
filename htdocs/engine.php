@@ -426,10 +426,10 @@ so should be 100% stable.</p>
     Of course, ultimately you can just use everything from our engine,
     nicely integrated &mdash; but the point is that you don't have to.</li>
 
-  <!-- <li>Evaluating mathematical expressions -->
-  <!-- li>Curves handling.</li -->
+  <!-- li>NURBS, Bezier curves and surfaces.</li -->
   <!--
-      <li>ParsingPars, unit to parse command-line options
+      <li>Parsing command-line options following modern Unix commands standards
+        (--long options, short options, arguments etc.)
 
       <li>VectorMath, unit with many vector-and-matrix operations,
         mainly for 3d graphics
@@ -437,8 +437,8 @@ so should be 100% stable.</p>
       <li>CastleScript, parsing and executing CastleScript programs
         and mathematical expressions
 
-      <li>TDynXxxArray classes, something like richer dynamic arrays,
-        done like "simulated" C++ templates
+      <li>Integrated logging. Integrated user preferences loading/saving.
+        Used throughout the engine components.
   -->
 </ul>
 
