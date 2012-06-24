@@ -259,7 +259,7 @@ others) are full of demos of our extensions.</p>
         <!-- this is somewhat copied and modified text from
              castle-development.php about creatures. -->
 
-        <p>For shadow volumes to work perfectly, all parts of the model
+        <p>For shadow volumes to work, all parts of the model
         that are shadow casters should sum to a number of 2-manifold parts.
         This means that every edge has exactly 2 (not more, not less)
         neighbor faces, so the whole shape is a closed volume.
@@ -269,11 +269,15 @@ others) are full of demos of our extensions.</p>
         (<tt>solid=TRUE</tt> in VRML/X3D), which
         is a good thing on it's own.</p>
 
-        <p>It's allowed for some part to not be perfectly 2-manifold, but then
-        some rendering problems are unavoidable. See
+        <p>In earlier engine/view3dscene versions, it was allowed
+        for some part of the model to not be perfectly 2-manifold.
+        But some rendering problems are unavoidable in this case. See
         <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html">chapter "Shadow Volumes"</a>
         (inside <?php echo a_href_page("engine documentation",'engine_doc'); ?>)
         for description.
+        Since <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+        3.12.0, your model must be perfectly 2-manifold to cast any shadows
+        for shadow volumes.
 
         <p>You can inspect whether your model is detected as a 2-manifold
         by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
@@ -299,8 +303,8 @@ others) are full of demos of our extensions.</p>
         be 2-manifold</i> and separately <i>all transparent shapes must
         be 2-manifold</i>. For example, it's Ok to have some transparent
         box cast shadows over the model. But it's not Ok to have a shadow casting
-        box composed for two separate VRML shapes: one shape defines
-        one box face as transparent, the other shape defines
+        box composed from two separate VRML/X3D shapes: one shape defining
+        one box face as transparent, the other shape defining
         the rest of box faces as opaque.
 
         <!--p>(For programmers: reasoning may be found in

@@ -1,5 +1,40 @@
 <?php
 
+/* Next news:
+
+- SoundEngine is now always TXmlSoundEngine, and some engine components
+  (like OnScreenMenu) use sounds out of the box.
+  You only have to initialize SoundEngine.SoundsXmlFileName at some point,
+  and create appropriate XML file and sound files.
+
+- New approach to saving user preferences, see CastleConfig,
+  used throughout the engine components.
+
+- Some problems specific to Intel GPU on Windows fixed.
+
+- For shadow volumes to work, your 3D models must now be perfect 2-manifold.
+  No border edges (view3dscene "Help -> Manifold Edges Information"
+  must say "0 border edges", and "View -> Fill Mode -> Silhouette And Border Edges"
+  must show no blue edges --- only yellow).
+  Allowing models with some border edges was a source of artifacts
+  on non-perfect-manifold scenes. And to avoid these artifacts,
+  some parts of the castle1 were using CastShadowVolumes = false by default,
+  effectively disallowing engine to automatically detect should shadow volumes
+  be used (are border edges 0).
+
+  I think it's cleaner to just require 2-manifold models (as they were
+  in practive required already for shadow volumes, it just wasn't enforced),
+  and do something safe (instead of weird rendering artifacts) for other models.
+
+  Yes, this may force you to change
+  your 3D models. Iif you really really miss old
+  non-perfect-manifold rendering, please report, we can make an option re-enable
+  it. But we would really like to encourage people to instead fix models
+  to be perfect manifolds. Remember you can mark some shapes as not shadow casters
+  (todo link) to avoid them being considered at all in the manifold/border edges
+  set. Only the shapes that sum into a 2-manifold should have shadowCaster = true.
+*/
+
 array_push($news,
     array('title' => 'Development: creature AI, start of architecture mode, fractals demo, more',
           'year' => 2012,
