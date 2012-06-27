@@ -10,7 +10,11 @@
 - New approach to saving user preferences, see CastleConfig,
   used throughout the engine components.
 
-- Some problems specific to Intel GPU on Windows fixed.
+- Problems with cube maps on Intel GPU on Windows workarounded:
+  for Intel HD 4000, generating cube maps is broken, so don't do it.
+  for other Intels, use glCopyTexSubImage instead of FBO to generate.
+  Also, glGenerateMipmap is either crashing or broken (makes black/random
+  contents) on this GPU, so don't use mipmaps for cube maps.
 
 - For shadow volumes to work, your 3D models must now be perfect 2-manifold.
   No border edges (view3dscene "Help -> Manifold Edges Information"
@@ -33,6 +37,13 @@
   to be perfect manifolds. Remember you can mark some shapes as not shadow casters
   (todo link) to avoid them being considered at all in the manifold/border edges
   set. Only the shapes that sum into a 2-manifold should have shadowCaster = true.
+
+- Shape.shading = DEFAULT / PHONG.
+  (add these to x3d_extensions)
+  "shading", SFString, with allowed values "DEFAULT", "PHONG" (and, potentially later, also "WIREFRAME", "FLAT", "GOURAUD"). By default it's equal to "DEFAULT". These names are not invented by me, they are the same names used for "Browser options" in X3D spec: http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/networking.html#t-BrowserProperties , with "DEFAULT" added.
+  The initial simple implementation honors only the two values:
+  - "DEFAULT" value, which means to use normal browser behavior, whatever that currently is (depends on "Shading -> Enable When Required", see x3d_implementation_lighting link).
+  - "PHONG" value, which means to force per-pixel calculation done by shader rendering (only for this particular shape).
 */
 
 array_push($news,
