@@ -44,6 +44,35 @@
   The initial simple implementation honors only the two values:
   - "DEFAULT" value, which means to use normal browser behavior, whatever that currently is (depends on "Shading -> Enable When Required", see x3d_implementation_lighting link).
   - "PHONG" value, which means to force per-pixel calculation done by shader rendering (only for this particular shape).
+
+- CastleTextureProperties, to assign footsteps sound and damage to textures
+  in games.
+
+- Shadow volumes cooperation with screen effects that read depth (like SSAO) fixed.
+  Problems were coming from the fact that on GPUs with packed depth+stencil
+  (pretty much all existing GPUs? I didn't see a GPU without it...)
+  you cannot just create depth texture and separate stencil buffer for FBO,
+  instead you have to create special texture that contains both depth+stencil.
+  And that's what we do now :)
+
+- Water with very nice caustics using my engine :) Model and shaders by Victor Amat.
+  (get description from yt, and embed yt video).
+  http://www.youtube.com/watch?v=1mUU8prDi9k
+  add also 2 screens from vamat to news.
+
+- <b>Lights editor</b> is available in <a>view3dscene</a>. Use the menu "Edit -> Lights Editor" to use it. It allows to interactively adjust a lot of lights settings. The scene is not paused &mdash; you can still trigger animations, walk around and generally do everything while you tweak lights settings. Remember to turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders->Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (And the above mentioned Shape.shading="PHONG" extension allows you to actually mark inside your X3D file that some shapes should use this look by default.)
+
+  A lot of light parameters can be adjusted by comfortable sliders. My main motication for implementing this was that light settings are usually hard to get perfect using an external modeller, like Blender, where light parameters do not precisely match the VRML/X3D concepts.
+
+  Basic shadows settings (by shadow maps or shadow volumes) are also configurable using this. In particular try out the "Shadows (Easy: Shadow Maps)" setting (not for PointLight), it just works on an arbitrary scene (<a href>see shadow maps for more detailed description of shadow maps</a>). I hope that this will also make our dynamic shadows algorithms more discoverable by people that possibly don't know that our engine allows this :)
+
+  This is a *much* cleaned up and improved lights editor that was previously available in our "The Castle" debug menu. In allowed us to make some nice light effects in "The Castle" levels, now it's available for arbitrary 3D models :) Of course you can save the edited VRML/X3D file back on disk by "File -> Save..." menu items from view3dscene.
+
+  add movie with lights editor fun:
+  fountain with shadow vols
+  rhine_shrine with shadow maps, switching which one works
+  street lights switching position,
+    turning on headlight, changing it too
 */
 
 array_push($news,
