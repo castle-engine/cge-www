@@ -429,7 +429,7 @@ so should be 100% stable.</p>
   <!-- li>NURBS, Bezier curves and surfaces.</li -->
   <!--
       <li>Parsing command-line options following modern Unix commands standards
-        (--long options, short options, arguments etc.)
+        (- -long options, short options, arguments etc.)
 
       <li>VectorMath, unit with many vector-and-matrix operations,
         mainly for 3d graphics

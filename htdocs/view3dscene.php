@@ -275,7 +275,7 @@ flawlessly :) So give it a try!
     separate images).
 </ul>
 
-<a name="section_keys"/> <!-- for old links -->
+<a name="section_keys"></a> <!-- for old links -->
 <?php section(); ?>
 
 <h3>All navigation modes:</h3>

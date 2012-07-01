@@ -29,6 +29,7 @@ for PHP_NAME in *.php; do
       | x3d_extensions_functions.php | openal_notes.php  \
       | kambi_vrml_test_suite.php | news_????.php | blender_stuff.php \
       | support.php | kambi_vrml_game_engine.php | kambi_script.php \
+      | castle_engine_externals.php \
       | kambi_vrml_extensions.php \
       | kambi_vrml_extensions_screen_effects.php \
       | kambi_vrml_extensions_shadow_maps.php \

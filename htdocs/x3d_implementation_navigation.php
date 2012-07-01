@@ -76,6 +76,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
             you can say that avatarSize[2] is by default like
             avatarSize[1] - avatarSize[0]).
             See TWalkCamera.ClimbHeight docs for more details about this.
+        </ol>
 
       <li><tt>speed</tt> is honored as appropriate, it sets
         the speed in meters/second. Speed = 0.0 is also correctly

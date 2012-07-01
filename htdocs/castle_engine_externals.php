@@ -48,10 +48,14 @@ function googleplus_button()
   return '<g:plusone size="tall"></g:plusone>';
 }
 
-/* Facebook ------------------------------------------------------------------ */
+/* Facebook ------------------------------------------------------------------
+
+   See http://developers.facebook.com/docs/reference/plugins/like/
+*/
 
 function facebook_header()
 {
+  if (HTML_VALIDATION) return '';
   return '
     <meta property="fb:admins" content="100000327755900" />
     <meta property="og:title" content="Castle Game Engine" />
@@ -64,7 +68,7 @@ function facebook_header()
 
 function facebook_body_begin()
 {
-  if (CASTLE_OFFLINE) return '';
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
   return '
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -79,7 +83,7 @@ function facebook_body_begin()
 
 function facebook_button()
 {
-  if (CASTLE_OFFLINE) return '';
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
   return '<div class="fb-like" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true"></div>';
 }
 
@@ -88,6 +92,7 @@ function facebook_button()
 function paypal_button($with_logos = true)
 {
   // Ok to show also when CASTLE_OFFLINE
+  if (HTML_VALIDATION) return '';
 
   return ($with_logos ?
     '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
