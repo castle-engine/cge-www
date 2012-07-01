@@ -44,7 +44,7 @@ castle_header('Castle Game Engine',
 <?php echo googleplus_button(); ?>
 </div>
 
-<div style="display: inline-block; padding: 0em; margin: 0em 0em 0em 1em;">
+<div style="display: inline-block; padding: 0em; margin: 0em 1em 0em 1em;">
 <?php echo facebook_button(); ?>
 </div>
 

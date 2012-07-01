@@ -351,6 +351,7 @@ function echo_header_bonus ()
 <?php
 echo flattr_header();
 echo googleplus_header();
+echo facebook_header();
 ?>
 
   <?php

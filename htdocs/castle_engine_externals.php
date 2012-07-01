@@ -50,6 +50,18 @@ function googleplus_button()
 
 /* Facebook ------------------------------------------------------------------ */
 
+function facebook_header()
+{
+  return '
+    <meta property="fb:admins" content="100000327755900" />
+    <meta property="og:title" content="Castle Game Engine" />
+    <meta property="og:type" content="game" />
+    <meta property="og:image" content="http://castle-engine.sourceforge.net/images/castle_game_engine_icon.png" />
+    <meta property="og:url" content="http://castle-engine.sourceforge.net/" />
+    <meta property="og:description" content="An open-source 3D game engine, developed in modern Object Pascal, with excellent support for VRML X3D and many graphic effects. Also hosting view3dscene, our browser for VRML/X3D, Collada and other 3D models." />
+  ';
+}
+
 function facebook_body_begin()
 {
   if (CASTLE_OFFLINE) return '';
