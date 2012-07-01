@@ -66,11 +66,13 @@
 
   Basic shadows settings (by shadow maps or shadow volumes) are also configurable using this. In particular try out the "Shadows (Easy: Shadow Maps)" setting (not for PointLight), it just works on an arbitrary scene (<a href>see shadow maps for more detailed description of shadow maps</a>). I hope that this will also make our dynamic shadows algorithms more discoverable by people that possibly don't know that our engine allows this :)
 
+  This is still a tool for tweaking lights, not for designing them from start &mdash; for starters, there's no option to add a new light, you can only change existing light sources (there's also no option to delete a light, although you can always disable light by setting "On" value to "No").
+
   This is a *much* cleaned up and improved lights editor that was previously available in our "The Castle" debug menu. In allowed us to make some nice light effects in "The Castle" levels, now it's available for arbitrary 3D models :) Of course you can save the edited VRML/X3D file back on disk by "File -> Save..." menu items from view3dscene.
 
   add movie with lights editor fun:
   fountain with shadow vols
-  rhine_shrine with shadow maps, switching which one works
+  shrine with shadow maps, switching which one works
   street lights switching position,
     turning on headlight, changing it too
 */
