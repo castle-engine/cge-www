@@ -19,7 +19,7 @@
   );
   $toc->echo_numbers = true;
 
-/*  flattr_button(); */
+/*  echo flattr_button(); */
 
   echo '<img src="images/castle_game_engine_icon.png"
     alt="Castle Game Engine icon"

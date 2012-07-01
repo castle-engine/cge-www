@@ -17,7 +17,7 @@
     echo $toc->html_section();
   }
 
-  flattr_button();
+  echo flattr_button();
 
   echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
   echo castle_thumbs(array(

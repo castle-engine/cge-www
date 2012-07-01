@@ -22,7 +22,7 @@ and view3dscene, and our games :) Thanks!</p>
 
 <table class="donations"><tr>
   <td>
-  <p><?php flattr_button(false); ?>
+  <p><?php echo flattr_button(false); ?>
 
   <p>You can donate through <a href="http://flattr.com/">Flattr</a>.
   Just click on a button above, everything will be explained.

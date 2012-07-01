@@ -3,7 +3,7 @@
 
   castle_header("The Castle", NULL, array('castle'));
 
-  flattr_button();
+  echo flattr_button();
 ?>
 
 <?php

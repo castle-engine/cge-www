@@ -3,7 +3,7 @@
 
 /* You can temporarily change this (but don't commit!) to true.
    This removes *some* stuff that embeds online content on our webpages,
-   like Flattr and G+ widgets.
+   see castle_engine_externals.php.
    It also sets CURRENT_URL to '', which means that things that normally
    refer using absolute URL will instead refer to local copy
    (this concerns things like links to thumbnails in news items;
@@ -27,6 +27,7 @@ define('KAMBI_NO_HOME_LINK', true);
 set_include_path('.:kambi-php-lib/');
 require_once 'kambi-php-lib/kambi_common.php';
 require_once 'generated_versions.php';
+require_once 'castle_engine_externals.php';
 
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
@@ -240,7 +241,7 @@ function _castle_sidebar($page, $pageinfo)
   $result .= '
     <div style="text-align: center; width: 200px; margin-right: auto; margin-left: auto; padding: 0.1em; border: medium outset #FFF;">
     <p><a href="http://castle-engine.sourceforge.net/donate.php">Donate</a></p>
-    <p>' . flattr_button(false, false) . '</p>
+    <p>' . flattr_button(false) . '</p>
     <p>' . paypal_button() . '</p>
     </div>';
 */
@@ -347,20 +348,10 @@ function echo_header_bonus ()
 
 <script type="text/javascript" src="castle-engine.js"></script>
 
-<?php if (!CASTLE_OFFLINE) { ?>
-<script type="text/javascript">
-/* <![CDATA[ */
-    (function() {
-        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-        t.parentNode.insertBefore(s, t);
-    })();
-/* ]]> */
-</script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<?php } ?>
+<?php
+echo flattr_header();
+echo googleplus_header();
+?>
 
   <?php
 }
@@ -371,6 +362,7 @@ function echo_header_bonus ()
 function castle_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
+  echo facebook_body_begin();
 
   global $castle_sidebar;
   global $castle_sitemap;
@@ -705,39 +697,6 @@ function default_program_thumbnail($prog_name)
   return castle_thumbs(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
   ));
-}
-
-function flattr_button($align = true, $echo = true)
-{
-  $result = '';
-  if ($align) $result .= '<div style="float: right; margin: 1em;">';
-  $result .= '
-    <a class="FlattrButton" style="display:none;" href="http://castle-engine.sourceforge.net/"></a>
-    <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
-    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>';
-  if ($align) $result .= '</div>';
-  if ($echo)
-    echo $result; else
-    return $result;
-}
-
-function paypal_button($with_logos = true)
-{
-  return ($with_logos ?
-    '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
-</form>
-' : '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
-</form>' );
 }
 
 /* Constants and things that need a_href_page* */
