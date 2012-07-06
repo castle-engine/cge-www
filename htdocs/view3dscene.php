@@ -809,12 +809,8 @@ is only useful for converting). More precisely:
 
     <ul>
       <li><p><tt>--scene-change-no-normals</tt> :
-        <p><b>Scene change:</b> For VRML 1.0,
-          all <tt>Normal</tt> and <tt>NormalBinding</tt>
-          nodes are deleted. Values of <tt>normalIndex</tt> field
-          in <tt>IndexedFaceSet</tt> and <tt>IndexedTriangleMesh</tt> nodes
-          are deleted.
-          For VRML &gt;= 2.0, all <tt>normal</tt> fields are set to <tt>NULL</tt>.
+        <p><b>Scene change:</b> Clear <tt>normal</tt> and <tt>normalIndex</tt> fields,
+          remove <tt>Normal</tt> and VRML 1.0 <tt>NormalBinding</tt> nodes.
         <p><b>Effect:</b> view3dscene will always calculate by itself
           normal vectors. Useful when you suspect that normals recorded
           in scene file are incorrect (incorrectly oriented, incorrectly
