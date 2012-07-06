@@ -363,7 +363,6 @@ echo facebook_header();
 function castle_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
-  echo facebook_body_begin();
 
   global $castle_sidebar;
   global $castle_sitemap;

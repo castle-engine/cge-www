@@ -66,10 +66,19 @@ function facebook_header()
   ';
 }
 
-function facebook_body_begin()
+function facebook_button()
 {
   if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
-  return '
+
+
+  /* Facebook docs say to put this somewhere at the beginning of <body>,
+     but that's actually bad for us, facebook may be slow...
+     And also we don't use facebook_button() on many pages.
+     So put this header at facebook_button(), when it is called for 1st time. */
+  global $castle_engine_was_facebook_button;
+  if (empty($castle_engine_was_facebook_button))
+  {
+    $header = '
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -79,12 +88,12 @@ function facebook_body_begin()
   fjs.parentNode.insertBefore(js, fjs);
 }(document, \'script\', \'facebook-jssdk\'));</script>
 ';
-}
+    $castle_engine_was_facebook_button = true;
+  } else
+    $header = '';
 
-function facebook_button()
-{
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
-  return '<div class="fb-like" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true"></div>';
+  return $header .
+    '<div class="fb-like" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true"></div>';
 }
 
 /* Paypal -------------------------------------------------------------------- */
