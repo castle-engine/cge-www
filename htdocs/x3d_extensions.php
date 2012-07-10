@@ -9,6 +9,7 @@ $toc = new TableOfContents(array(
   new TocItem('Introduction', 'introduction'),
   new TocItem('Extensions', 'extensions'),
 
+  new TocItem('Specify shading, force Phong shading for a shape (<tt>Shape.shading</tt> field)', 'ext_shading', 1),
   new TocItem('Screen effects (<tt>ScreenEffect</tt> node)', 'ext_screen_effects', 1),
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>Appearance</tt>)', 'ext_bump_mapping', 1),
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
@@ -133,6 +134,40 @@ in particular <tt>castle_extensions</tt> subdirectories (but also some
 others) are full of demos of our extensions.</p>
 
 <?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>We add a simple field to the <tt>Shape</tt> node
+(more precisely, to the abstract <tt>X3DShapeNode</tt>):</p>
+
+<?php echo node_begin("X3DShapeNode (e.g. Shape)");
+
+  echo
+  node_dots('all normal X3DShapeNode fields') .
+  node_field('SFString', '[in,out]', "shading", '"DEFAULT"', '["DEFAULT"|"PHONG"]') .
+  node_end();
+?>
+
+<p>For now this honors two values:</p>
+
+<ul>
+  <li><tt>DEFAULT</tt>: use normal browser behavior,
+    whatever that currently is (depends on <i>"Shading -&gt; Enable When Required"</i>
+    in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
+  </li>
+
+  <li><tt>PHONG</tt>: force per-pixel lighting calculation.
+    For our engine,
+    <?php echo a_href_page_hashlink('this means using modern shader rendering
+    for this particular shape',
+    'x3d_implementation_lighting', 'section_per_pixel_lighting'); ?>.
+  </li>
+</ul>
+
+<p>In the future, we plan to add other options to this field,
+like <tt>WIREFRAME</tt>, <tt>FLAT</tt>, <tt>GOURAUD</tt>.
+These names are not invented by us, they are the names used for <a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/networking.html#t-BrowserProperties">"Browser options" in X3D spec</a>
+(with <tt>DEFAULT</tt> added by us).</p>
 
 <?php echo $toc->html_section(); ?>
 

@@ -169,6 +169,7 @@ KambiOctreeProperties : X3DNode {
 
 X3DShapeNode : X3DChildNode, X3DBoundedObject {
   ... all normal X3DShapeNode fields ...
+  SFString [in,out]    shading                    "DEFAULT" # ["DEFAULT"|"PHONG"]
   SFNode []            octreeTriangles            NULL    # only KambiOctreeProperties node
 }
 

@@ -1,83 +1,112 @@
 <?php
 
 /* Next news:
-
-- SoundEngine is now always TXmlSoundEngine, and some engine components
-  (like OnScreenMenu) use sounds out of the box.
-  You only have to initialize SoundEngine.SoundsXmlFileName at some point,
-  and create appropriate XML file and sound files.
-
-- New approach to saving user preferences, see CastleConfig,
-  used throughout the engine components.
-
-- Problems with cube maps on Intel GPU on Windows workarounded:
-  for Intel HD 4000, generating cube maps is broken, so don't do it.
-  for other Intels, use glCopyTexSubImage instead of FBO to generate.
-  Also, glGenerateMipmap is either crashing or broken (makes black/random
-  contents) on this GPU, so don't use mipmaps for cube maps.
-
-- For shadow volumes to work, your 3D models must now be perfect 2-manifold.
-  No border edges (view3dscene "Help -> Manifold Edges Information"
-  must say "0 border edges", and "View -> Fill Mode -> Silhouette And Border Edges"
-  must show no blue edges --- only yellow).
-  Allowing models with some border edges was a source of artifacts
-  on non-perfect-manifold scenes. And to avoid these artifacts,
-  some parts of the castle1 were using CastShadowVolumes = false by default,
-  effectively disallowing engine to automatically detect should shadow volumes
-  be used (are border edges 0).
-
-  I think it's cleaner to just require 2-manifold models (as they were
-  in practive required already for shadow volumes, it just wasn't enforced),
-  and do something safe (instead of weird rendering artifacts) for other models.
-
-  Yes, this may force you to change
-  your 3D models. Iif you really really miss old
-  non-perfect-manifold rendering, please report, we can make an option re-enable
-  it. But we would really like to encourage people to instead fix models
-  to be perfect manifolds. Remember you can mark some shapes as not shadow casters
-  (todo link) to avoid them being considered at all in the manifold/border edges
-  set. Only the shapes that sum into a 2-manifold should have shadowCaster = true.
-
-- Shape.shading = DEFAULT / PHONG.
-  (add these to x3d_extensions)
-  "shading", SFString, with allowed values "DEFAULT", "PHONG" (and, potentially later, also "WIREFRAME", "FLAT", "GOURAUD"). By default it's equal to "DEFAULT". These names are not invented by me, they are the same names used for "Browser options" in X3D spec: http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/networking.html#t-BrowserProperties , with "DEFAULT" added.
-  The initial simple implementation honors only the two values:
-  - "DEFAULT" value, which means to use normal browser behavior, whatever that currently is (depends on "Shading -> Enable When Required", see x3d_implementation_lighting link).
-  - "PHONG" value, which means to force per-pixel calculation done by shader rendering (only for this particular shape).
-
-- CastleTextureProperties, to assign footsteps sound and damage to textures
-  in games.
-
-- Shadow volumes cooperation with screen effects that read depth (like SSAO) fixed.
-  Problems were coming from the fact that on GPUs with packed depth+stencil
-  (pretty much all existing GPUs? I didn't see a GPU without it...)
-  you cannot just create depth texture and separate stencil buffer for FBO,
-  instead you have to create special texture that contains both depth+stencil.
-  And that's what we do now :)
-
-- Water with very nice caustics using my engine :) Model and shaders by Victor Amat.
-  (get description from yt, and embed yt video).
-  http://www.youtube.com/watch?v=1mUU8prDi9k
-  add also 2 screens from vamat to news.
-
-- <b>Lights editor</b> is available in <a>view3dscene</a>. Use the menu "Edit -> Lights Editor" to use it. It allows to interactively adjust a lot of lights settings. The scene is not paused &mdash; you can still trigger animations, walk around and generally do everything while you tweak lights settings. Remember to turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders->Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (And the above mentioned Shape.shading="PHONG" extension allows you to actually mark inside your X3D file that some shapes should use this look by default.)
-
-  A lot of light parameters can be adjusted by comfortable sliders. My main motication for implementing this was that light settings are usually hard to get perfect using an external modeller, like Blender, where light parameters do not precisely match the VRML/X3D concepts.
-
-  Basic shadows settings (by shadow maps or shadow volumes) are also configurable using this. In particular try out the "Shadows (Easy: Shadow Maps)" setting (not for PointLight), it just works on an arbitrary scene (<a href>see shadow maps for more detailed description of shadow maps</a>). I hope that this will also make our dynamic shadows algorithms more discoverable by people that possibly don't know that our engine allows this :)
-
-  This is still a tool for tweaking lights, not for designing them from start &mdash; for starters, there's no option to add a new light, you can only change existing light sources (there's also no option to delete a light, although you can always disable light by setting "On" value to "No").
-
-  This is a *much* cleaned up and improved lights editor that was previously available in our "The Castle" debug menu. In allowed us to make some nice light effects in "The Castle" levels, now it's available for arbitrary 3D models :) Of course you can save the edited VRML/X3D file back on disk by "File -> Save..." menu items from view3dscene.
-
-  add movie with lights editor fun:
-  fountain with shadow vols
-  shrine with shadow maps, switching which one works
-  street lights switching position,
-    turning on headlight, changing it too
 */
 
 array_push($news,
+    array('title' => 'Development: water with caustics, lights editor, force Phong shading, shadow volumes improvements, more',
+          'year' => 2012,
+          'month' => 7,
+          'day' => 10,
+          'short_description' => '',
+          'guid' => '2012-07-10',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'lights_editor_fountain_0.png', 'titlealt' => 'Lights Editor in view3dscene - fountain, shadow volumes settings'),
+  array('filename' => 'lights_editor_fountain_1.png', 'titlealt' => 'Lights Editor in view3dscene - fountain, shadow volumes settings 2'),
+  array('filename' => 'lights_editor_rhan_shrine_0.png', 'titlealt' => 'Lights Editor in view3dscene - switching shadow maps settings'),
+  array('filename' => 'lights_editor_rhan_shrine_1.png', 'titlealt' => 'Lights Editor in view3dscene - switching shadow maps settings 2'),
+  array('filename' => 'lights_editor_light_street_lights_radius_0.png', 'titlealt' => 'Lights Editor in view3dscene - local lights'),
+  array('filename' => 'lights_editor_light_street_lights_radius_1.png', 'titlealt' => 'Lights Editor in view3dscene - headlight'),
+)) .
+'<p>Latest news from the development of our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>:</p>
+
+<ol>
+  <li>
+    <p>Let\'s start with something shiny :) Victor Amat send me a demo of <b>water with very nice caustics</b> using our shadows and shaders and other VRML/X3D features. Be sure to switch to HD and fullscreen, for best quality:</p>
+
+    <iframe width="640" height="480" src="http://www.youtube.com/embed/1mUU8prDi9k" frameborder="0" allowfullscreen></iframe>
+
+    <p>This model shows a German Pavillion in the Universal Expo of Barcelona of 1929. The video shows a quick walk around the model in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>, showing reflections and caustics visible above and under the water. We also show that all screen effects, like <i>Screen Space Ambient Occlusion</i>, work now with shadow volumes without problems :)</p>
+  </li>
+
+  <li>
+    <p><b>Lights editor</b> is available in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. Use the menu <i>"Edit -&gt; Lights Editor"</i> to bring it on. It allows to interactively adjust a lot of lights settings. The scene is not paused &mdash; you can still trigger animations, walk around and generally do everything while you tweak lights settings. Of course you can try it right now by using <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">view3dscene from snapshots</a>.</p>
+
+    <p>A lot of light parameters can be adjusted by comfortable sliders. My main motivation for implementing this was that light settings are usually hard to get perfect using an external modeller, like <a href="http://www.blender.org/">Blender</a>, where light parameters do not precisely match the VRML/X3D concepts.</p>
+
+    <p>Basic shadows settings (by <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> or <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadows">shadow volumes</a>) are also configurable using this. In particular try out the <i>"Shadows (Easy: Shadow Maps)"</i> setting (not for PointLight), it just works on an arbitrary scene. I hope that this will also make our dynamic shadows algorithms more discoverable :)</p>
+
+    <p>Note: turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders-&gt;Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (See also the <tt>Shape.shading="PHONG"</tt> extension below to mark inside your X3D file that some shapes should use this look by default.)</p>
+
+    <p>This is a tool for tweaking lights, not for designing them from the start. For starters, there\'s no option to add a new light, you can only change existing light sources (there\'s also no option to delete a light, although you can always disable light by setting "On" value to "No").</p>
+
+    <p>This is a <i>much</i> cleaned up and improved lights editor that was previously available in our <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> debug menu. It allowed us to make some nice light effects in "The Castle" levels, now it\'s available for arbitrary 3D models :) Of course you can save the edited VRML/X3D file back on disk by <i>"File -&gt; Save..."</i> menu items from view3dscene.</p>
+  </li>
+
+  <li><p>We have implemented a simple
+    <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shading">Shape.shading extension</a>,
+    allows you to <b>force Phong shading for a particular shape</b>.</p>
+  </li>
+
+  <li><p><b>Problems with cube maps on Intel GPU on Windows workarounded</b>:
+    for Intel HD 4000, generating cube maps is broken, so don\'t do it.
+    for other Intels, use glCopyTexSubImage instead of FBO to generate.
+    Also, glGenerateMipmap is either crashing or broken (makes black/random
+    contents) on this GPU, so don\'t use mipmaps for cube maps.</p></li>
+
+  <li><p>view3dscene menu item <i>"Display -&gt; Show Controls on Screenshots"</i>.</p></li>
+
+  <li><p><b>Shadow volumes cooperate now with screen effects that read depth</b>
+    (like SSAO).</p>
+
+    <p>Previous implementation had problems because on GPUs with packed depth+stencil
+    (pretty much all existing GPUs? I didn\'t see a GPU without it...)
+    you cannot just create depth texture and separate stencil buffer for FBO,
+    instead you have to create special texture that contains both depth+stencil.
+    And that\'s what we do now :)</p>
+  </li>
+
+  <li><p>For <b>shadow volumes to work, your 3D models must now be perfect 2-manifold</b>.
+    No border edges (view3dscene <i>"Help -&gt; Manifold Edges Information"</i>
+    must say <i>"0 border edges"</i>, and <i>"View -&gt; Fill Mode -&gt; Silhouette And Border Edges"</i>
+    must show no blue edges &mdash; only yellow).
+    Previously, allowing models with some border edges to be used as shadow volumes
+    casters was an endless source of artifacts.
+    And to avoid these artifacts,
+    some parts of the castle1 were using CastShadowVolumes = false by default,
+    effectively disallowing engine to automatically detect should shadow volumes
+    be used (are border edges 0).</p>
+
+    <p>I think it\'s cleaner to just require 2-manifold models (as they were
+    in practice required already for bug-free shadow volumes,
+    it just wasn\'t enforced by the engine),
+    and do something safe (instead of weird rendering artifacts) for other models.</p>
+
+    <p>Yes, this may force you to fix
+    your 3D models. If you really really miss old
+    non-perfect-manifold rendering, please report, we can make an option re-enable
+    it. But we would really like to encourage people to instead fix models
+    to be perfect manifolds. Remember that you can <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_shadow_caster">mark some shapes as not shadow casters</a>
+    to avoid considering them at all in the manifold/border edges
+    set. Only the shapes that sum into a 2-manifold should have <tt>shadowCaster = true</tt>.</p>
+  </li>
+
+  <li><p><b>Engine improvements</b> for programmers:</p>
+    <ul>
+      <li>SoundEngine is now always TXmlSoundEngine, and some engine components
+        (like OnScreenMenu) use sounds out of the box.
+        You only have to initialize SoundEngine.SoundsXmlFileName at some point,
+        and create appropriate XML file and sound files.</li>
+      <li>New approach to saving user preferences, see new CastleConfig unit,
+        used throughout the engine components.</li>
+      <li>New CastleTextureProperties unit, to assign footsteps
+        sound and damage to textures in games.</li>
+    </ul>
+  </li>
+</ol>
+'),
+
     array('title' => 'Development: creature AI, start of architecture mode, fractals demo, more',
           'year' => 2012,
           'month' => 6,
