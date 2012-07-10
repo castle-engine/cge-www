@@ -351,7 +351,11 @@ function echo_header_bonus ()
 <?php
 echo flattr_header();
 echo googleplus_header();
-echo facebook_header();
+
+/* Don't use facebook_header on other pages, as it makes all links
+   from FB (and G+?) lead to main page --- I actually don't want this. */
+global $main_page;
+if ($main_page) echo facebook_header();
 ?>
 
   <?php
