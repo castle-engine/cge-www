@@ -19,7 +19,7 @@ castle_thumbs(array(
   array('filename' => 'lights_editor_light_street_lights_radius_0.png', 'titlealt' => 'Lights Editor in view3dscene - local lights'),
   array('filename' => 'lights_editor_light_street_lights_radius_1.png', 'titlealt' => 'Lights Editor in view3dscene - headlight'),
 )) .
-'<p>Latest news from the development of our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>:</p>
+'<p>Hi! Here are the latest news from the development of our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>:</p>
 
 <ol>
   <li>
@@ -39,7 +39,7 @@ castle_thumbs(array(
 
     <p>Note: turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders-&gt;Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (See also the <tt>Shape.shading="PHONG"</tt> extension below to mark inside your X3D file that some shapes should use this look by default.)</p>
 
-    <p>This is a tool for tweaking lights, not for designing them from the start. For starters, there\'s no option to add a new light, you can only change existing light sources (there\'s also no option to delete a light, although you can always disable light by setting "On" value to "No").</p>
+    <p>This is a tool for tweaking lights, not for designing them from the start. There\'s no option to add a new light, you can only change existing light sources. There\'s also no option to delete a light, although you can always disable light by setting "On" value to "No".</p>
 
     <p>This is a <i>much</i> cleaned up and improved lights editor that was previously available in our <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> debug menu. It allowed us to make some nice light effects in "The Castle" levels, now it\'s available for arbitrary 3D models :) Of course you can save the edited VRML/X3D file back on disk by <i>"File -&gt; Save..."</i> menu items from view3dscene.</p>
   </li>
@@ -51,7 +51,7 @@ castle_thumbs(array(
 
   <li><p><b>Problems with cube maps on Intel GPU on Windows workarounded</b>:
     for Intel HD 4000, generating cube maps is broken, so don\'t do it.
-    for other Intels, use glCopyTexSubImage instead of FBO to generate.
+    For other models, use glCopyTexSubImage instead of FBO.
     Also, glGenerateMipmap is either crashing or broken (makes black/random
     contents) on this GPU, so don\'t use mipmaps for cube maps.</p></li>
 
@@ -70,7 +70,7 @@ castle_thumbs(array(
   <li><p>For <b>shadow volumes to work, your 3D models must now be perfect 2-manifold</b>.
     No border edges (view3dscene <i>"Help -&gt; Manifold Edges Information"</i>
     must say <i>"0 border edges"</i>, and <i>"View -&gt; Fill Mode -&gt; Silhouette And Border Edges"</i>
-    must show no blue edges &mdash; only yellow).
+    must show only yellow edges &mdash; no blue egdes).
     Previously, allowing models with some border edges to be used as shadow volumes
     casters was an endless source of artifacts.
     And to avoid these artifacts,
