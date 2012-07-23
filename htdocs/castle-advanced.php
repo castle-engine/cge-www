@@ -126,6 +126,7 @@ Other command-line options, not mentioned in this file before:
     In particular, <tt>castle --help</tt> will show full list
     of all available command-line options.</li>
 
+<?php /*
   <li><p><tt>--no-shadows</tt>
 
     <p>This disallows rendering of shadows in the game.
@@ -142,7 +143,7 @@ Other command-line options, not mentioned in this file before:
     but this command-line option will help.
     In other cases, just turning off menu option "Video options -> Shadows"
     is a sufficient way to speed up rendering.
-  </li>
+  </li> */ ?>
 </ul>
 
 <?php echo $toc->html_section(); ?>
