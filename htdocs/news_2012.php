@@ -1,6 +1,11 @@
 <?php
 
 /* Next news:
+new units in engine src/game/ since last news:
+    castleinputs.pas
+    castleitems.pas
+    castlelevel.pas
+    castleplayer.pas
 */
 
 array_push($news,
