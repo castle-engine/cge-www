@@ -574,12 +574,15 @@ core types (numbers, booleans) to string may be done by the
 <?php func_ref('string', 'string(...)'); ?> function.
 
 <p><?php func('writeln', 'writeln(my_string)'); ?> outputs a string.
-This is printed on the program's standard error output, or some other
-kind of console. (From code, it's configurable where this is printed,
-see <tt>Program.Environment.OutputProc</tt>. By default, it results
-in <tt>DataNonFatalError</tt>, that by default is simply ignored.
-Although my programs usually take care to do something more useful with it.)
-This should be used purely for debugging purposes.</p>
+How exactly it is displayed depends on the application:
+normal 3D browsers (like <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+display it on the console (standard error output),
+games (like <?php echo a_href_page('The Castle', 'castle'); ?>)
+display it as in-game notification.
+(As a developer, you can configure how this is handled,
+see <tt>OnScriptMessage</tt> in <tt>CastleScript</tt> unit.
+By default, it results in <tt>OnWarning</tt>, that by default is simply ignored.
+Although my programs usually take care to do something more useful with it.)</p>
 
 <p>Most array functions can also treat the string as an array of characters.
 We do not have a special type for a "character" &mdash; we just use a string with length 1.
@@ -598,6 +601,18 @@ character code to a 1-letter string with this character.
 guaranteed to work in the long run.</i> In the future, all Unicode character codes
 will be accepted here, and rendered if present in the font.
 Currently, our font rendering is limited to 256-character encodings.</p>
+
+<p><?php func('shortcut', 'shortcut(name)'); ?> is a function
+only available in games (technically: only in programs using <tt>CastleInputs</tt>
+unit). It returns a nice string describing the named key/mouse shortcut
+in the game. It's useful if you want to show a message describing some
+shortcut, for example <tt>writeln('Hint: you can open this door using the ' +
+shortcut('interact'))</tt>. Depending on user current key definitions,
+we will show something like <i>Hint: you can open this door using the key "e"</i>
+or <i>Hint: you can open this door using the mouse "left"</i>.
+See <tt>CastleInputs</tt> for available shortcut names, additionally
+games may define their own key shortcuts by creating new <tt>TInputConfiguration</tt>
+instances.</p>
 
 <p>A lot of string functions are trivial to add
 &mdash; report if you need some particular function.
