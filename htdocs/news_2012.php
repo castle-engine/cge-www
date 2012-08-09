@@ -6,6 +6,14 @@ new units in engine src/game/ since last news:
     castleitems.pas
     castlelevel.pas
     castleplayer.pas
+
+<li>In view3dscene information, show Blender object/mesh name.
+<li>lets_take_a_walk uses CastleLevel, as a first demo besides the castle1 game.
+<li>Handle beamWidth -> GL_SPOT_EXPONENT translation like Xj3D. This allows to at least influence drop off rate with beamWidth, and gives precise convertion VRML 1.0 dropOffRate -> VRML 2/X3D beamWidth.
+<li>CastleScript writeln() can be used in games to make notifications.
+  Also CastleScript shortcut() is now available, to show user the value of some key shortcut.
+  castle1 levels _final files converted to X3D. They now use ProximitySensor + CastleScript to show hints, instead of <area> in index.xml --- this is cleaner, more integrated with VRML/X3D.
+<li>view3dscene menu item "Remove placeholder nodes from "Castle Game Engine" levels" is a general way to remove some specially-named nodes (see castle-development for reference of most of them, see gamelevel.pas sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn't really prove useful.
 */
 
 array_push($news,
