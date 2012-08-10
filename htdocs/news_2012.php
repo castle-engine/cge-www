@@ -14,6 +14,8 @@ new units in engine src/game/ since last news:
   Also CastleScript shortcut() is now available, to show user the value of some key shortcut.
   castle1 levels _final files converted to X3D. They now use ProximitySensor + CastleScript to show hints, instead of <area> in index.xml --- this is cleaner, more integrated with VRML/X3D.
 <li>view3dscene menu item "Remove placeholder nodes from "Castle Game Engine" levels" is a general way to remove some specially-named nodes (see castle-development for reference of most of them, see gamelevel.pas sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn't really prove useful.
+
+<li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.
 */
 
 array_push($news,
