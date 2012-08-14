@@ -16,6 +16,9 @@ new units in engine src/game/ since last news:
 <li>view3dscene menu item "Remove placeholder nodes from "Castle Game Engine" levels" is a general way to remove some specially-named nodes (see castle-development for reference of most of them, see gamelevel.pas sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn't really prove useful.
 
 <li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.
+
+<li>Comfortable TCastleWindowBase.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindowBase.AntiAliasing instead of TCastleWindowBase.MultiSampling for a little higher-level approach for MSAA.
+<li>Our "thunder" effect (blinking light and some sound), used previously in "cages" level of castle1 and lets_take_a_walk, is now remade as pure X3D prototype. This means it's simpler, more configurable, and doesn't use a single line of ObjectPascal code :) See it's implementation here: thunder.x3dv, examples how it's used: base.wrl and cages_final.x3dv.
 */
 
 array_push($news,
