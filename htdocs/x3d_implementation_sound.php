@@ -55,9 +55,16 @@ Supported fields:</p>
     are attenuated just the same as the front sounds.
     We simply ignore direction, minBack and maxBack fields.</p></li>
 
-  <li><p>All sound nodes are treated like they would be in an active graph part.
-    In other words, a Sound node plays the same, regardless if it's an
-    active or inactive child of LOD / Switch child nodes.</li>
+  <li><p>It's unclear from the specification whether playing should be limited
+    only to the sounds in the active graph part
+    (the subset of children chosen in LOD / Switch and similar nodes).
+    To be on the safe side, always place your sounds in the active graph part,
+    although our implementation will <i>usually</i> also play sounds in the inactive
+    part (exceptions may happen for complicated situations with PROTOs).</li>
+
+    <!-- Exceptions because TAudioClipNode.BeforeTraverse
+      is not called, see thunder.x3dv for testcase, when it's necessary:
+      moving the Sound out of the PROTO 1st child makes sound not playing. -->
 
   <li><p>Sounds are not sorted exactly like the specification says.
     In short, we only look at your given "priority" field,
