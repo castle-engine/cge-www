@@ -56,6 +56,14 @@ echo '<div class="news_item">' . news_to_html($item) . '</div>';
 ?>
 
 <table class="news_older_newer">
+  <tr><td class="news_newer"><b>Google+?</b>
+    You can <a href="https://plus.google.com/101185352355602218697" rel="publisher">follow our engine / view3dscene news on Google+</a>.
+  </td></tr>
+</table>
+
+<br/>
+
+<table class="news_older_newer">
   <tr><td class="news_newer"><b>Comments?</b>
     Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.</td>
   </tr>
