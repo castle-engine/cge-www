@@ -1,27 +1,68 @@
 <?php
 
 /* Next news:
-new units in engine src/game/ since last news:
-    castleinputs.pas
-    castleitems.pas
-    castlelevel.pas
-    castleplayer.pas
-
-<li>In view3dscene information, show Blender object/mesh name.
-<li>lets_take_a_walk uses CastleLevel, as a first demo besides the castle1 game.
-<li>Handle beamWidth -> GL_SPOT_EXPONENT translation like Xj3D. This allows to at least influence drop off rate with beamWidth, and gives precise convertion VRML 1.0 dropOffRate -> VRML 2/X3D beamWidth.
-<li>CastleScript writeln() can be used in games to make notifications.
-  Also CastleScript shortcut() is now available, to show user the value of some key shortcut.
-  castle1 levels _final files converted to X3D. They now use ProximitySensor + CastleScript to show hints, instead of <area> in index.xml --- this is cleaner, more integrated with VRML/X3D.
-<li>view3dscene menu item "Remove placeholder nodes from "Castle Game Engine" levels" is a general way to remove some specially-named nodes (see castle-development for reference of most of them, see gamelevel.pas sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn't really prove useful.
-
-<li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.
-
-<li>Comfortable TCastleWindowBase.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindowBase.AntiAliasing instead of TCastleWindowBase.MultiSampling for a little higher-level approach for MSAA.
-<li>Our "thunder" effect (blinking light and some sound), used previously in "cages" level of castle1 and lets_take_a_walk, is now remade as pure X3D prototype. This means it's simpler, more configurable, and doesn't use a single line of ObjectPascal code :) See it's implementation here: thunder.x3dv, examples how it's used: base.wrl and cages_final.x3dv.
 */
 
 array_push($news,
+    array('title' => 'Development: new engine: levels, items, player, tutorial, class diagram, more',
+          'year' => 2012,
+          'month' => 8,
+          'day' => 16,
+          'short_description' => '',
+          'guid' => '2012-08-16',
+          'description' =>
+castle_thumbs(array(
+  array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/1mUU8prDi9k" frameborder="0" allowfullscreen></iframe>' : '')),
+  array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/rsuF9f3tio8" frameborder="0" allowfullscreen></iframe>' : '')),
+  array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/lsUztfdike8" frameborder="0" allowfullscreen></iframe>' : '')),
+)) .
+'<p>The work on the next <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a> version continues :) Looking at the size of the improvements, next version will deserve the new major number 4.0.0 (even though last version was 3.0.0). We have almost finished new engine features planned for the next version, and we have a lot of new documentation. <!-- (as the point of next engine version is to be better documented for developers). -->
+
+<ol>
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_classes_diagram.txt">Diagram (as a text file...) of the most important "Castle Game Engine" classes</a> is available.</p>
+
+    <p>I may try to squeeze this into a real image (maybe just the important boxes, and add the text on a normal HTML page). If you have experience with some diagram-drawing tools (like <a href="https://live.gnome.org/Dia/">Dia</a> or other open-source tool) I would appreciate contributions here (<a href="http://castle-engine.sourceforge.net/forum.php">send them through forum or e-mail to Michalis</a>).</p>
+  </li>
+
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">"Castle Game Engine" draft tutorial is getting larger and larger (15 chapters now)</a>.</p></li>
+
+  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">Short documentation for index.xml files used by "Castle Game Engine" to define levels, creatures and items is also available</a>. Tutorial and classes diagram describe in details how these index.xml files work. People interested in creating MODs for your games will appreciate them, as they allow to add levels, creatures and items by simply adding subdirectories to game data.</p></li>
+</ol>
+
+<p>New engine units since last news:</p>
+
+<ol>
+  <li>New <tt>CastleLevel</tt> unit to find game levels (<tt>index.xml</tt> files), load them, scanning 3D level file for placeholders defining initial creatures/items, and integrating with player.</li>
+  <li>New <tt>CastlePlayer</tt> unit to manage a central player object, with an inventory, footsteps sound, swimming and so on. This unit will probably shrink a little in the future, as most of it\'s functionality should also be available for creatures.</li>
+  <li>New <tt>CastleItems</tt> unit to define items (things that you can use in a game, like a sword or a life potion or a key). Item is a <tt>TItem</tt> instance, that refers to a corresponding <tt>TItemKind</tt> instance, referenced by <tt>TItem.Kind</tt>. This is similar to how you define creatures (see <a href="http://castle-engine.sourceforge.net/news.php?id=2012-06-10">previous news post about <tt>CastleCreatures</tt> unit</a>), in that we have a separate class for an item and for item kind. A little complication here is that <tt>TItem</tt> is not a 3D object (it cannot be directly added to the level), instead you have to use <tt>TItem.PutOnLevel</tt> to get <tt>TItemOnLevel</tt> instance.</li>
+  <li>New <tt>CastleInputs</tt> unit, centralized keymap handling, detecting key conflicts and such.</li>
+</ol>
+
+<!--
+The engine draft tutorial, see DRAFT.engine_tutorial.txt, is also being extended. To finish next engine version, we still want to
+<ul>
+  <li>polish various things in the above units, and
+  <li>finish the draft tutorial on DRAFT.engine_tutorial.txt, and
+  <li>also make a nice diagram explaining most important engine classes. The text is ready on DRAFT.engine_classes_diagram.txt.
+  <li>make a simple example fps_game. For now, you can look at examples/3d_sound_game/ and castle1 sources in SVN for examples how to use new units.
+</ul>
+-->
+
+<p>Other changes, noticeable in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> or next <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> data:</p>
+
+<ol>
+  <li>In <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> <i>"Help -&gt; Selected Object Information"</i>, show Blender object/mesh name.</li>
+  <li>Handle beamWidth --&gt; GL_SPOT_EXPONENT translation similar to Xj3D: OpenGL spot exponent is <i>0.5 / max(beamWidth, epsilon)</i> (unless <i>beamWidth &gt;= cutOffAngle</i>, then spot exponent is always zero). This allows to at least influence drop off rate with <tt>beamWidth</tt>, and gives precise conversion from VRML 1.0 <tt>dropOffRate</tt> -&gt; VRML 2/X3D <tt>beamWidth</tt>. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/chapter_opengl_rendering.xml">engine internals doc about OpenGL rendering (sorry, just DocBook source now)</a> for details.</li>
+  <li><a href="http://castle-engine.sourceforge.net/castle_script.php">CastleScript</a> <tt>writeln()</tt> can be used in games to make notifications. Also CastleScript <tt>shortcut()</tt> is now available, to show user the value of some key shortcut. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/castle_script.html">CastleScript SVN docs</a> for details. This allows <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> levels (and future Castle2) levels to make notifications using more standard X3D mechanisms: they now use <tt>ProximitySensor</tt> + CastleScript to show hints, instead of our custom &lt;area&gt; invention. See e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages level X3D source</a> to see how it looks like.</li>
+  <li>Our "thunder" effect (blinking light and some sound), used previously in "cages" level of castle1 and lets_take_a_walk, is now remade as pure X3D prototype. This means it\'s simpler, more configurable, and doesn\'t use a single line of ObjectPascal code :) See it\'s implementation here: <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/thunder.x3dv">thunder.x3dv</a>, examples how it\'s used are at the bottom of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/3d_sound_game/data/levels/base/base.x3dv">base.wrl</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages_final.x3dv</a>.</li>
+  <li><tt>examples/3d_sound_game/lets_take_a_walk</tt> uses <tt>CastleLevel</tt>, as a first demo (besides the castle1 game).</li>
+  <li>New <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu item <i>"Remove placeholder nodes from "Castle Game Engine" levels"</i>, a general way to remove some specially-named nodes (see <a href="http://castle-engine.sourceforge.net/castle-development.php">castle development doc</a> for reference of most of them, see sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn\'t really prove useful.</li>
+  <li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.</li>
+  <li>Comfortable TCastleWindowBase.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindowBase.AntiAliasing instead of TCastleWindowBase.MultiSampling for a little higher-level approach for MSAA.</li>
+</ol>
+
+<p>Oh, and since I just don\'t have any interesting screenshots for this news item (mostly code changes, interesting for developers...), the side of this news post contains just some best movies from the previous news in this year, possible thanks to Jan Adamec (RoomArranger, 3D mouse, SSAO) and Victor Amat (water with caustics). Thanks again!</p>
+'),
     array('title' => 'Development: water with caustics, lights editor, force Phong shading, shadow volumes improvements, more',
           'year' => 2012,
           'month' => 7,
@@ -88,7 +129,7 @@ castle_thumbs(array(
   <li><p>For <b>shadow volumes to work, your 3D models must now be perfect 2-manifold</b>.
     No border edges (view3dscene <i>"Help -&gt; Manifold Edges Information"</i>
     must say <i>"0 border edges"</i>, and <i>"View -&gt; Fill Mode -&gt; Silhouette And Border Edges"</i>
-    must show only yellow edges &mdash; no blue egdes).
+    must show only yellow edges &mdash; no blue edges).
     Previously, allowing models with some border edges to be used as shadow volumes
     casters was an endless source of artifacts.
     And to avoid these artifacts,
@@ -347,7 +388,7 @@ castle_thumbs(array(
       <li>XML sounds/index.xml file improvements: now <b>you can add new sounds to the game (castle, and future castle2) merely by adding them to necessary XML files</b>. No need to reference the sound from ObjectPascal code.</li>
       <li><a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim usage in "The Castle"</a> improved: <b>all castle animations are now separate kanim files</b>, and can be browsed e.g. by <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. "Castle 2" will not use kanim at all.</li>
       <li><b>T3DResource class</b>, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
-      <li><b>XML files for each creature, item and level and now separate</b>. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
+      <li><b>XML files for each creature, item and level and now separate</b>. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
     </ul>
   </li>
 
