@@ -295,17 +295,27 @@ when you're not interested in testing creatures
     <p>Note that "Hello world" was done in VRML 1.0. For a sample
     level done in pure VRML 2.0, look at "Fountain" level.</p></li>
 
-  <li><p>To place items and creatures on the level you place
-    a special "stub" objects on the level. Every stub object will be removed
+  <li><p>To place items and creatures (collectively called "3D resources")
+    on the level you place a special "placeholder" objects on the level.
+    Every placeholder object will be removed
     when the level is loaded (so you can use any shape for it &mdash;
-    I usually use wire cubes). Stub object position and name will
+    I usually use wire cubes). Placeholder object position and name will
     determine the actual item/creature position, kind and quantity
-    (quantity in case of items).
-    Name format for items is
-    <tt>Item&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;</tt>.
-    Name format for creatures is
-    <tt>Crea&lt;creature-kind-name&gt;_&lt;ignored&gt;</tt>.
-    See lower in this file for more details.</p></li>
+    (in case of items) or initial life (in case of creatures).
+    Name of the placeholder is
+    <tt>Res&lt;resource-name&gt;[&lt;resource-number&gt;][_&lt;ignored&gt;]</tt>:
+    <ul>
+      <li><tt>Res</tt> is just a shortcut for "Resource".
+      <li><tt>&lt;resource-name&gt;</tt> is one of the resource names,
+        see available names in <tt>resource.xml</tt> files inside <tt>creatures/</tt>
+        and <tt>items/</tt> subdirectories.
+      <li><tt>&lt;resource-number&gt;</tt> (optional) is an integer
+        specifying item quantity (default 1 if not given) or initial creature
+        life (default is taken from <tt>resource.xml</tt> file, specific
+        to this creature).
+      <li>Anything after underscore is ignored. You can use this to make
+        object name unique, e.g. all Blender objects must be unique.
+    </ul>
 
   <li><p>When loading level, we search for node named <tt>LevelBox</tt>.</p>
 
@@ -552,11 +562,11 @@ when you're not interested in testing creatures
   <li><p>Item should be oriented such that:
 
     <p>Z = 0 plane is the base plane of the item. It will be aligned with the base
-    (i.e. lowest Z) of "stub" object placed on the level.
+    (i.e. lowest Z) of "placeholder" object placed on the level.
 
     <p>X = 0 and Y = 0 is the line around which object will rotate
     when shown on the level. It will be aligned with the X, Y middle
-    of "stub" object placed on the level.
+    of "placeholder" object placed on the level.
 
     <p>I had an idea to just automatically take item's bounding box,
     it's middle X, Y and lowest Z and automatically adjust to this.
@@ -566,13 +576,13 @@ when you're not interested in testing creatures
     it on level, so set this to look good. Sensible default
     is size around 1.0.
 
-  <li><p>About the "stub" objects on the level:
+  <li><p>About the "placeholder" objects on the level:
 
-    <p>You can place items on the level by placing a "stub" object
+    <p>You can place items on the level by placing a "placeholder" object
     on the level with appropriate name.
 
     <p>When loading, I search for shape nodes that have a parent node
-    named like "Item&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
+    named like "Res&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
     Where "&lt;item-kind-name&gt;" is "LifePotion" or "Sword" or any
     other TItemKind.VRMLNodeName value (see CastleItems unit),
     "&lt;quantity&gt;" is, well, the integer quantity
@@ -586,11 +596,11 @@ when you're not interested in testing creatures
     for "&lt;item-kind-name&gt;" and components are generally "glued"
     without any "_" or "-" or " " between.
 
-    <p>Such "stub" object is removed from the actual level and
+    <p>Such "placeholder" object is removed from the actual level and
     instead I insert into level an item. Item position is determined
-    by stub lowest Z and middle X,Y line (see above).
+    by placeholder lowest Z and middle X,Y line (see above).
 
-    <p>You can easily insert such "stub" with Blender &mdash; just insert
+    <p>You can easily insert such "placeholder" with Blender &mdash; just insert
     any shape (I usually insert Cube, and set it's rendering to
     "wireframe" in Blender), and then edit Blender's mesh name
     as appropriate.
@@ -666,9 +676,8 @@ when you're not interested in testing creatures
         height: 2. So creatures have generally height around 2.
 
       <li>Like with items, initial creatures positions can be set
-        by placing a "stubs" on the level. Name of stub object is like
-        "<tt>Crea&lt;creature-kind-name&gt;&lt;creature-life&gt;_&lt;ignored&gt;</tt>".
-        Creature position is determined by stub lowest Z and
+        by placing a "placeholder" on the level.
+        Creature position is determined by placeholder lowest Z and
         middle X,Y line.
 
         <p>If <tt>&lt;creature-life&gt;</tt> part is not present, the default
@@ -690,7 +699,7 @@ when you're not interested in testing creatures
         and you're able to freely set both their position and direction
         then. This should be extended: 1. new VRML / X3D nodes specially for
         "The Castle" that express creatures on the level (as alternative
-        to creatures "stub boxes", or maybe inside such stub boxes ?)
+        to creatures "placeholder boxes", or maybe inside such placeholder boxes ?)
         2. debug menu command to dump current creatures to such VRML / X3D nodes,
         so that you can paste them to level <tt>xxx_final.wrl</tt> file.
 
