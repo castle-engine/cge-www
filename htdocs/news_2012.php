@@ -1,7 +1,10 @@
 <?php
 
 /* Next news:
-index.xml renamed to level.xml, resource.xml. This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).
+game API improvements:
+- index.xml renamed to level.xml, resource.xml. This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).
+- placeholder 3D objects are now named ResXxx, not CreaXxx or ItemXxx
+- sound engine units and classes simpler, no AL prefix everywhere.
 */
 
 array_push($news,
