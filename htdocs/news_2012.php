@@ -9,6 +9,12 @@ game API improvements:
   Pushable to CollidesWithMoving (it means that doors/elevators push or avoid crushing this object)
   ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we consistently use the term "World" to refer to your 3D world)
   TItem to TInventoryItem, and some Items properties renamed to Inventory. TItem is too generic, and in ObjectPascal "Items" has too generic meaning (many generic lists have "Items" properties referring to their contents; our "Inventory" is a list TInventoryItem, which are things that can be used by player)
+- Fix a lot of code to honour the "up" world vector to be +Y as well as +Z (gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at T3DOrient.DefaultOrientation, see engine tutorial "which way is up" section).
+- Render debug AI info when RenderDebug3D (formerly RenderDebugBoundingVolumes): AlternativeTarget and LastSeenPlayer, very useful to see how AI "thinks".
+  - red: Last seen player position. You often don't see it, because you're actually standing on it. But it can be seen when you dodge behind a corner or such, and you look at your previous position.
+  - blue: Alternative walk target. Used when creature cannot seem to reach it's normal target (usually, you, the red axis). It the way to the normal target (directly, or using waypoints if you're in different map sector) seems to be blocked, then we pick a random "alternative walk target" in the hope that walking there will make the creature unstuck.
+    Of course, this should usually be the last resort. If your creatures seem to be blocked too often, it's probably means that you should divide your level into more sectors and use more waypoints to "guide" the creatures. Unless you want them to be dumb.
+    (screenshort tower with red and blue markers)
 */
 
 array_push($news,
