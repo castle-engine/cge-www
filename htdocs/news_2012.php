@@ -5,6 +5,10 @@ game API improvements:
 - index.xml renamed to level.xml, resource.xml. This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).
 - placeholder 3D objects are now named ResXxx, not CreaXxx or ItemXxx
 - sound engine units and classes simpler, no AL prefix everywhere.
+- renames around 3D stuff:
+  Pushable to CollidesWithMoving (it means that doors/elevators push or avoid crushing this object)
+  ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we consistently use the term "World" to refer to your 3D world)
+  TItem to TInventoryItem, and some Items properties renamed to Inventory. TItem is too generic, and in ObjectPascal "Items" has too generic meaning (many generic lists have "Items" properties referring to their contents; our "Inventory" is a list TInventoryItem, which are things that can be used by player)
 */
 
 array_push($news,

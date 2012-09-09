@@ -353,7 +353,6 @@ when you're not interested in testing creatures
     While all things in my general units are flexible
     and allow any up vector to be used, I made in "The Castle" a couple
     of assumptions that really need +Z to be up.
-    (like <tt>TItemOnLevel.PlayerCollision</tt>).
 
   <li><p>Typical VRML / X3D nodes that I write "by hand"
     (in <tt>level_final.wrl</tt> file) are:
