@@ -15,6 +15,7 @@ game API improvements:
   - blue: Alternative walk target. Used when creature cannot seem to reach it's normal target (usually, you, the red axis). It the way to the normal target (directly, or using waypoints if you're in different map sector) seems to be blocked, then we pick a random "alternative walk target" in the hope that walking there will make the creature unstuck.
     Of course, this should usually be the last resort. If your creatures seem to be blocked too often, it's probably means that you should divide your level into more sectors and use more waypoints to "guide" the creatures. Unless you want them to be dumb.
     (screenshort tower with red and blue markers)
+- Limit amount of logging by default. Our InitializeLog (--debug-log options of various programs) was producig way too much information by default in recent versions, to the point where important thing were diffucult to spot. Now by default it's shorter, showing only seldom happening things or important warnings.
 */
 
 array_push($news,
