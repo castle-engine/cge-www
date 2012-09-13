@@ -46,7 +46,20 @@ if ($next_item !== NULL || $previous_item !== NULL)
   $older_newer_bar .= '</tr></table>';
 }
 
+function castle_news_bar($contents)
+{
+  return '<table class="news_older_newer"> <tr><td class="news_newer">' .
+    $contents . '</td></tr> </table>';
+}
+
 echo $older_newer_bar .
+  '<br/>' .
+  castle_news_bar('
+    <b>Comments?</b>
+    Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . '.<br/><br/>
+    <b>Google+?</b>
+    You can <a href="https://plus.google.com/101185352355602218697" rel="publisher">follow our engine / view3dscene news on Google+</a>.
+  ') .
   '<div class="castle_rss_link"><a href="news_feed.php">RSS</a></div>';
 
 if ($item === $news[0])
@@ -55,24 +68,7 @@ if ($item === $news[0])
 echo '<div class="news_item">' . news_to_html($item) . '</div>';
 ?>
 
-<table class="news_older_newer">
-  <tr><td class="news_newer"><b>Google+?</b>
-    You can <a href="https://plus.google.com/101185352355602218697" rel="publisher">follow our engine / view3dscene news on Google+</a>.
-  </td></tr>
-</table>
-
-<br/>
-
-<table class="news_older_newer">
-  <tr><td class="news_newer"><b>Comments?</b>
-    Go to our <?php echo FORUM_LINK; ?> or <?php echo MAILING_LIST_LINK; ?>.</td>
-  </tr>
-</table>
-
-<br/>
-
-<table class="news_older_newer">
-  <tr><td class="news_newer"><b>Watch engine development:</b>
+<?php echo castle_news_bar('<b>Watch engine development:</b>
     To <i>really</i> watch the engine development closely, you can
     <a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
     <!-- not polled unfortunately:
@@ -80,10 +76,9 @@ echo '<div class="news_item">' . news_to_html($item) . '</div>';
     cia.vc</a>.
     -->
     There is also <a href="https://www.ohloh.net/p/castle-engine">our
-    project page on Ohloh</a> (you're welcome to rate and click on
-    <i>"I use this"</i> button there!).</td>
-  </tr>
-</table>
+    project page on Ohloh</a> (you\'re welcome to rate and click on
+    <i>"I use this"</i> button there!).');
+?>
 
 <br/>
 
