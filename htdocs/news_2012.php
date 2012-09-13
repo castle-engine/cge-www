@@ -16,6 +16,9 @@ game API improvements:
     Of course, this should usually be the last resort. If your creatures seem to be blocked too often, it's probably means that you should divide your level into more sectors and use more waypoints to "guide" the creatures. Unless you want them to be dumb.
     (screenshort tower with red and blue markers)
 - Limit amount of logging by default. Our InitializeLog (--debug-log options of various programs) was producig way too much information by default in recent versions, to the point where important thing were diffucult to spot. Now by default it's shorter, showing only seldom happening things or important warnings.
+- Renames around T3D.[My]MoveAllowed methods to make them nice and consistent:
+  - MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
+  - Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).
 */
 
 array_push($news,
