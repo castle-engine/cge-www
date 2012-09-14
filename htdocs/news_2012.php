@@ -19,7 +19,16 @@ game API improvements:
 - Renames around T3D.[My]MoveAllowed methods to make them nice and consistent:
   - MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
   - Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).
-- CastleLevel LoadLevel interface much simpler (just use SceneManager.LoadLevel('my_level_name') now), and much more docs around TGameSceneManager and TLevelAvailable. Ugly MenuBackground removed, it's not needed in CastleLevel unit.
+- CastleLevel improvements:
+  - LoadLevel interface much simpler (just use SceneManager.LoadLevel('my_level_name') now),
+  - much more docs around TGameSceneManager and TLevelAvailable.
+  - Ugly MenuBackground removed, it's not needed in CastleLevel unit.
+  - Oh, and TCastleWindow.SceneManager and TCastleControl.SceneManager is now of TGameSceneManager class. So if you use TCastleWindow / TCastleControl, you can use the levels system designed in CastleLevel really trivially:
+<pre>
+  LevelsAvailable.LoadFromFiles;
+  Window.SceneManager.LoadLevel('my_level_name');
+</pre>
+Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and level.xml file with name="my_level_name". You already have all the code you need :) See castle_game_engine/examples/3d_sound_game/ for a serious working example of this.
 */
 
 array_push($news,
