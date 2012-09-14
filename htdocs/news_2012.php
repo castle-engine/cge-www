@@ -19,6 +19,7 @@ game API improvements:
 - Renames around T3D.[My]MoveAllowed methods to make them nice and consistent:
   - MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
   - Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).
+- CastleLevel LoadLevel interface much simpler (just use SceneManager.LoadLevel('my_level_name') now), and much more docs around TGameSceneManager and TLevelAvailable. Ugly MenuBackground removed, it's not needed in CastleLevel unit.
 */
 
 array_push($news,
