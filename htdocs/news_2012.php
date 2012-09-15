@@ -12,8 +12,8 @@ array_push($news,
           'guid' => '2012-09-15',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropping when standing still and looking around --- it\'s good that they arrange in a nice ring.'),
-  array('filename' => 'castle_items_tower_screen_0', 'titlealt' => 'Testing many items dropping on level.'),
+  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropped when standing still and looking around --- it\'s good that they arrange in a nice ring.'),
+  array('filename' => 'castle_items_tower_screen_0', 'titlealt' => 'Testing many items dropped on level.'),
   array('filename' => 'alien_invasion_castle_screen_0', 'titlealt' => 'Testing behavior (AI) of a group of creatures.'),
   array('filename' => 'alien_invasion_castle_screen_1', 'titlealt' => 'Testing behavior (AI) of a group of creatures, with debug bounding volume visualization.'),
   array('filename' => 'alien_invasion_castle_screen_2', 'titlealt' => 'Getting shot with a fireball.'),
