@@ -1,41 +1,83 @@
 <?php
 
 /* Next news:
-game API improvements:
-- index.xml renamed to level.xml, resource.xml. This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).
-- placeholder 3D objects are now named ResXxx, not CreaXxx or ItemXxx
-- sound engine units and classes simpler, no AL prefix everywhere.
-- renames around 3D stuff:
-  Pushable to CollidesWithMoving (it means that doors/elevators push or avoid crushing this object)
-  ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we consistently use the term "World" to refer to your 3D world)
-  TItem to TInventoryItem, and some Items properties renamed to Inventory. TItem is too generic, and in ObjectPascal "Items" has too generic meaning (many generic lists have "Items" properties referring to their contents; our "Inventory" is a list TInventoryItem, which are things that can be used by player)
-- Fix a lot of code to honour the "up" world vector to be +Y as well as +Z (gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at T3DOrient.DefaultOrientation, see engine tutorial "which way is up" section).
-- Render debug AI info when RenderDebug3D (formerly RenderDebugBoundingVolumes): AlternativeTarget and LastSeenPlayer, very useful to see how AI "thinks".
-  - red: Last seen player position. You often don't see it, because you're actually standing on it. But it can be seen when you dodge behind a corner or such, and you look at your previous position.
-  - blue: Alternative walk target. Used when creature cannot seem to reach it's normal target (usually, you, the red axis). It the way to the normal target (directly, or using waypoints if you're in different map sector) seems to be blocked, then we pick a random "alternative walk target" in the hope that walking there will make the creature unstuck.
-    Of course, this should usually be the last resort. If your creatures seem to be blocked too often, it's probably means that you should divide your level into more sectors and use more waypoints to "guide" the creatures. Unless you want them to be dumb.
-    (screenshort tower with red and blue markers)
-- Limit amount of logging by default. Our InitializeLog (--debug-log options of various programs) was producig way too much information by default in recent versions, to the point where important thing were diffucult to spot. Now by default it's shorter, showing only seldom happening things or important warnings.
-- Renames around T3D.[My]MoveAllowed methods to make them nice and consistent:
-  - MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
-  - Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).
-- CastleLevel improvements:
-  - LoadLevel interface much simpler (just use SceneManager.LoadLevel('my_level_name') now),
-  - much more docs around TGameSceneManager and TLevelAvailable.
-  - Ugly MenuBackground removed, it's not needed in CastleLevel unit.
-  - Oh, and TCastleWindow.SceneManager and TCastleControl.SceneManager is now of TGameSceneManager class. So if you use TCastleWindow / TCastleControl, you can use the levels system designed in CastleLevel really trivially:
-<pre>
-  LevelsAvailable.LoadFromFiles;
-  Window.SceneManager.LoadLevel('my_level_name');
-</pre>
-Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and level.xml file with name="my_level_name". You already have all the code you need :) See castle_game_engine/examples/3d_sound_game/ for a serious working example of this.
-- Much cleanup in CastleInputs. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.
-- Placeholders documented (see TGameSceneManager.LoadLevel). All start with Cas prefix, like "CasRes" (resources), "CasMoveLimit" (limit movement; previously "LevelBox"), "CasWater" (see TGameSceneManager.Water), "CasSector...", "CasWaypoint..." (see TCastleSceneManager.CreateSectors).
-- sound fixes (AudioClip X3D node wasn't always releasing reference when it should).
-- TCastleSceneManager automatically handles now key combinations related to player inventory.
 */
 
 array_push($news,
+    array('title' => 'Development: engine 4.0.0 - almost there: levels, items, player improvements',
+          'year' => 2012,
+          'month' => 9,
+          'day' => 15,
+          'short_description' => '',
+          'guid' => '2012-09-15',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropping when standing still and looking around --- it\'s good that they arrange in a nice ring.'),
+  array('filename' => 'castle_items_tower_screen_0', 'titlealt' => 'Testing many items dropping on level.'),
+  array('filename' => 'alien_invasion_castle_screen_0', 'titlealt' => 'Testing behavior (AI) of a group of creatures.'),
+  array('filename' => 'alien_invasion_castle_screen_1', 'titlealt' => 'Testing behavior (AI) of a group of creatures, with debug bounding volume visualization.'),
+  array('filename' => 'alien_invasion_castle_screen_2', 'titlealt' => 'Getting shot with a fireball.'),
+  array('filename' => 'alien_invasion_castle_screen_3', 'titlealt' => 'Blackout (well, redout) after getting shot with a fireball.'),
+  array('filename' => 'castle_screen_items_gravity.png', 'titlealt' => 'Dropping items, testing gravity on items.'),
+  array('filename' => 'castle_screen_debug_alt_target.png', 'titlealt' => 'The blue crosses show the &quot;random position&quot; that creatures use when they cannot seem to reach the target (player) directly.'),
+)) .
+'<p>Work on the new <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a> 4.0.0 version continues :) Many improvements for the programmers that want to develop their own games using our engine:</p>
+
+<ol>
+  <li><p>Many improvements to
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a>,
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_classes_diagram.txt">classes diagram</a> and
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
+    It\'s still a lot of raw, unformatted text, but the content pretty much covers now everything I want, and it describes the latest engine workings in SVN.</p>
+
+  <li><p>Previous <tt>index.xml</tt> are now named <tt>level.xml</tt> (for levels), or <tt>resource.xml</tt> (for creatures, items, and other heavy 3D stuff that may be shared by levels). This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).</p></li>
+
+  <li><p>Placeholder 3D objects have now consistent naming. See TGameSceneManager.LoadLevel docs (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">in engine SVN reference</a>) for full reference. Resources (creatures and items) and are now named <tt>CasRes...</tt>, movement limit is named <tt>CasMoveLimit</tt> (previously "LevelBox"; see TCastleSceneManager.MoveLimit for docs), water volume is <tt>CasWater</tt> (see TGameSceneManager.Water for docs), sectors and waypoints are "CasSector...", "CasWaypoint..." (for creature AI; see TCastleSceneManager.CreateSectors).</p></li>
+
+  <li><p>Sound: engine units and classes simpler, no AL prefix everywhere. Also fixes to AudioClip X3D node (it wasn\'t always releasing reference when it should, causing crashes in special situations).</p></li>
+
+  <li><p>Many renames in the new API. We want to get the new engine API as good as possible, before it\'s released and breaking compatibility will not be as easy.</p>
+    <ul>
+      <li>T3D.Pushable to T3D.CollidesWithMoving (it means that doors/elevators push or avoid crushing this object)
+      <li>ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we try to consistently use the term "World" to refer to your 3D world)
+      <li>TItem to TInventoryItem, and some Items properties renamed to Inventory. TItem was too generic, and in ObjectPascal "Items" has too generic meaning (many generic lists have "Items" properties referring to their contents; our "Inventory" is a now list TInventoryItem, which are things that can be used by player).
+      <li>MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
+      <li>Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).
+    </ul>
+  </li>
+
+  <li><p>Fix a lot of code to honour the "up" world vector to be +Y as well as +Z. Gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at T3DOrient.DefaultOrientation, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a> section <i>Which way is up</i>.</p></li>
+
+  <li><p>An easy way to debug AI information, to see how AI "thinks". Just set global boolean RenderDebug3D (formerly RenderDebugBoundingVolumes) to true, and you will see:
+    <ul>
+      <li>Yellow axis is the middle (eyes) for each creature and items. They determine line of sight, and help with some other collision decisions when "legs" position would be uncomfortable.</li>
+      <li>Red axis, for each creature, is the last seen player position. You often don\'t see it, because you\'re actually standing on it. But it can be seen when you dodge behind a corner or such, and you look at your previous position.</li>
+      <li>Blue axis, for each creature, is the alternative walk target. Used when creature cannot seem to reach it\'s normal target (usually, you, the red axis). Basically, when straight line and sectors/waypoints fail, the creature wanders randomly hoping to get on the right track (or at least to avoid player shooting them easy).
+        <p>Of course, this is the last resort. If your creatures seem to be blocked too often, it\'s probably means that you should divide your level into more sectors and use more waypoints to "guide" the creatures. Unless you want your creatures to be dumb, of course, which is quite sensible for many games.
+    </ul>
+  </li>
+
+  <li><p>Limit amount of logging by default. Our InitializeLog (see CastleLog unit docs, try <tt>--debug-log</tt> options of various programs) was producing way too much information by default in recent versions, to the point where important things were difficult to spot. Now by default it\'s shorter, showing only seldom happening things or important warnings.</p></li>
+
+  <li><p>CastleLevels improvements:</p>
+    <ul>
+      <li>LoadLevel interface much simpler (just use SceneManager.LoadLevel(\'my_level_name\')).
+      <li>Much more docs around TGameSceneManager and TLevelAvailable.
+      <li>Ugly MenuBackground parameter removed, it\'s not needed at all.
+      <li>Oh, and TCastleWindow.SceneManager and TCastleControl.SceneManager is now of TGameSceneManager class. So if you use TCastleWindow / TCastleControl, you can use the levels system designed in CastleLevel really trivially:
+<pre class="sourcecode">
+  LevelsAvailable.LoadFromFiles;
+  Window.SceneManager.LoadLevel(\'my_level_name\');
+</pre>
+       <p>Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and level.xml file with name="my_level_name". You already have all the code you need :) See <tt>castle_game_engine/examples/3d_sound_game/</tt> for a larger working example using this.</p>
+     </ul>
+   </li>
+
+  <li><p>Much cleanup in CastleInputs. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.</p></li>
+
+  <li><p>TCastleSceneManager automatically handles now key combinations related to player inventory.</p></li>
+</ol>'),
+
     array('title' => 'Development: new engine: levels, items, player, tutorial, class diagram, more',
           'year' => 2012,
           'month' => 8,
