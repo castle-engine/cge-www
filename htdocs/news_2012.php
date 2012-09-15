@@ -29,6 +29,9 @@ game API improvements:
   Window.SceneManager.LoadLevel('my_level_name');
 </pre>
 Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and level.xml file with name="my_level_name". You already have all the code you need :) See castle_game_engine/examples/3d_sound_game/ for a serious working example of this.
+- Much cleanup in CastleInputs. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.
+- Placeholders documented (see TGameSceneManager.LoadLevel). All start with Cas prefix, like "CasRes" (resources), "CasMoveLimit" (limit movement; previously "LevelBox"), "CasWater" (see TGameSceneManager.Water), "CasSector...", "CasWaypoint..." (see TCastleSceneManager.CreateSectors).
+- sound fixes (AudioClip X3D node wasn't always releasing reference when it should).
 */
 
 array_push($news,
