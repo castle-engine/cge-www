@@ -32,16 +32,16 @@ castle_thumbs(array(
 
   <li><p>Previous <tt>index.xml</tt> are now named <tt>level.xml</tt> (for levels), or <tt>resource.xml</tt> (for creatures, items, and other heavy 3D stuff that may be shared by levels). This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).</p></li>
 
-  <li><p>Placeholder 3D objects have now consistent naming. "Placeholders" are 3D objects that have special meaning when you load your level through TGameSceneManager.LoadLevel &mdash; objects with some special names are removed from normal level geometry, and they indicate... well, various things. See TGameSceneManager.LoadLevel docs (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">in engine SVN reference</a>) for full reference. Short:</p>
+  <li><p>Placeholder 3D objects have now consistent naming. "Placeholders" are 3D objects that have special meaning when you load your level through TGameSceneManager.LoadLevel &mdash; objects with some special names are removed from normal level geometry, and they indicate... well, various things. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleLevels.TGameSceneManager.html#LoadLevel">TGameSceneManager.LoadLevel docs</a> (from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">engine SVN reference</a>) for full reference. Short:</p>
     <ul>
       <li>Resources (creatures and items initial positions) placeholders and are now named <tt>CasRes...</tt>.</li>
-      <li>Movement limit box is named <tt>CasMoveLimit</tt> (previously "LevelBox"; see TCastleceneManager.MoveLimit for docs).</li>
-      <li>Water volume is <tt>CasWater</tt> (see TGameSceneManager.Water for docs).</li>
-      <li>Sectors and waypoints are <tt>CasSector...</tt>, <tt>CasWaypoint...</tt> (for creature AI; see TCastleSceneManager.CreateSectors).</li>
+      <li>Movement limit box is named <tt>CasMoveLimit</tt> (previously "LevelBox"; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#MoveLimit">TCastleceneManager.MoveLimit</a> for docs).</li>
+      <li>Water volume is <tt>CasWater</tt> (see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#Water">TCastleSceneManager.Water</a> docs).</li>
+      <li>Sectors and waypoints are <tt>CasSector...</tt>, <tt>CasWaypoint...</tt> (for creature AI; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#CreateSectors">TCastleSceneManager.CreateSectors</a>).</li>
     </ul>
   </li>
 
-  <li><p>Fix a lot of code to honour the "up" world vector to be +Y as well as +Z. Gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at T3DOrient.DefaultOrientation, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a> section <i>Which way is up</i>.</p></li>
+  <li><p>Fix a lot of code to honour the "up" world vector to be +Y as well as +Z. Gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DOrient.html#DefaultOrientation">T3DOrient.DefaultOrientation</a>. See also  <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a> section <i>Which way is up</i>. And see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.html#TOrientationType">TOrientationType</a> type values.</p></li>
 
   <li><p>CastleLevels improvements:</p>
     <ul>
@@ -72,7 +72,7 @@ castle_thumbs(array(
 
   <li><p>Limit amount of logging by default. Our InitializeLog (see CastleLog unit docs, try <tt>--debug-log</tt> options of various programs) was producing way too much information by default, and important things were difficult to spot. Now by default it\'s shorter, showing only seldom happening things or important warnings.</p></li>
 
-  <li><p>Much cleanup in CastleInputs. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented, see CastleInputs unit docs.</p></li>
+  <li><p>Much cleanup in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleInputs.html">CastleInputs unit</a>. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.</p></li>
 
   <li><p>TCastleSceneManager automatically handles now key combinations related to player inventory.</p></li>
 
