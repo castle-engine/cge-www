@@ -32,6 +32,7 @@ Congratulations, you just wrote a game :) All that remains is to prepare a game 
 - Much cleanup in CastleInputs. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.
 - Placeholders documented (see TGameSceneManager.LoadLevel). All start with Cas prefix, like "CasRes" (resources), "CasMoveLimit" (limit movement; previously "LevelBox"), "CasWater" (see TGameSceneManager.Water), "CasSector...", "CasWaypoint..." (see TCastleSceneManager.CreateSectors).
 - sound fixes (AudioClip X3D node wasn't always releasing reference when it should).
+- TCastleSceneManager automatically handles now key combinations related to player inventory.
 */
 
 array_push($news,
