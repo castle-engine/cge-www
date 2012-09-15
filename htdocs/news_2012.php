@@ -13,11 +13,11 @@ array_push($news,
           'description' =>
 castle_thumbs(array(
   array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropped when standing still and looking around --- it\'s good that they arrange in a nice ring.'),
-  array('filename' => 'castle_items_tower_screen_0', 'titlealt' => 'Testing many items dropped on level.'),
-  array('filename' => 'alien_invasion_castle_screen_0', 'titlealt' => 'Testing behavior (AI) of a group of creatures.'),
-  array('filename' => 'alien_invasion_castle_screen_1', 'titlealt' => 'Testing behavior (AI) of a group of creatures, with debug bounding volume visualization.'),
-  array('filename' => 'alien_invasion_castle_screen_2', 'titlealt' => 'Getting shot with a fireball.'),
-  array('filename' => 'alien_invasion_castle_screen_3', 'titlealt' => 'Blackout (well, redout) after getting shot with a fireball.'),
+  array('filename' => 'castle_items_tower_screen_0.png', 'titlealt' => 'Testing many items dropped on level.'),
+  array('filename' => 'alien_invasion_castle_screen_0.png', 'titlealt' => 'Testing behavior (AI) of a group of creatures.'),
+  array('filename' => 'alien_invasion_castle_screen_1.png', 'titlealt' => 'Testing behavior (AI) of a group of creatures, with debug bounding volume visualization.'),
+  array('filename' => 'alien_invasion_castle_screen_2.png', 'titlealt' => 'Getting shot with a fireball.'),
+  array('filename' => 'alien_invasion_castle_screen_3.png', 'titlealt' => 'Blackout (well, redout) after getting shot with a fireball.'),
   array('filename' => 'castle_screen_items_gravity.png', 'titlealt' => 'Dropping items, testing gravity on items.'),
   array('filename' => 'castle_screen_debug_alt_target.png', 'titlealt' => 'The blue crosses show the &quot;random position&quot; that creatures use when they cannot seem to reach the target (player) directly.'),
 )) .
