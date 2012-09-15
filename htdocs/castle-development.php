@@ -303,9 +303,9 @@ when you're not interested in testing creatures
     determine the actual item/creature position, kind and quantity
     (in case of items) or initial life (in case of creatures).
     Name of the placeholder is
-    <tt>Res&lt;resource-name&gt;[&lt;resource-number&gt;][_&lt;ignored&gt;]</tt>:
+    <tt>CasRes&lt;resource-name&gt;[&lt;resource-number&gt;][_&lt;ignored&gt;]</tt>:
     <ul>
-      <li><tt>Res</tt> is just a shortcut for "Resource".
+      <li><tt>CasRes</tt> is just a shortcut for "<b>Cas</b>tle Game Engine <b>Res</b>ource".
       <li><tt>&lt;resource-name&gt;</tt> is one of the resource names,
         see available names in <tt>resource.xml</tt> files inside <tt>creatures/</tt>
         and <tt>items/</tt> subdirectories.
@@ -317,37 +317,24 @@ when you're not interested in testing creatures
         object name unique, e.g. all Blender objects must be unique.
     </ul>
 
-  <li><p>When loading level, we search for node named <tt>LevelBox</tt>.</p>
+  <li><p>When loading level, we search for Blender object named <tt>CasMoveLimit</tt>.
+    Our code is adapted to standard VRML/X3D exporters from Blender such that
+    we know how the name is stored inside VRML/X3D and we can retrieve it.
 
-    <p>In VRML 1.0, such node should be a parent of some shape
-    (e.g. <tt>IndexedFaceSet</tt>) node.
-    In VRML 2.0 / X3D, such node should be within <tt>Shape</tt> node that
-    has parent named <tt>ME_LevelBox</tt>.
-    What this means in practice, is that in Blender you can simply
-    name the Blender's mesh <tt>LevelBox</tt> and it will be correctly
-    recognized by our engine if you export to VRML / X3D using
-    standard Blender exporters.
-
-    <p>When such node is found, we calculate it's BoundingBox and remove
-    it from the scene. Calculated BoundingBox becomes Level.LevelBox
-    value. And Level.LevelBox is used to limit allowed player positions.
+    <p>Such object (if found) is removed from level 3D model,
+    and it's bounding box is used to limit allowed player positions.
     This can be used to disallow player to move to the very edge of
     the level.
 
-    <p>Usually you will add <tt>LevelBox</tt> node using Blender, you can also
+    <p>Usually you will add <tt>CasMoveLimit</tt> object using Blender, you can also
     use <?php echo a_href_page('view3dscene', 'view3dscene') ?> &mdash;
     see command 'Console -&gt; Print scene bounding box'.
 
-  <li><p>Similar to <tt>LevelBox</tt>, I do identical trick to calculate
-    water boxes. Just place a mesh with name 'WaterBox'.
+  <li><p>Blender object named <tt>CasWater</tt> indicates water volume.
     At some point this will be extended (when I'll need it) to
-    include every 'WaterBox_&lt;ignored&gt;', so that you will be able to
-    define water by a sum of boxes.
-
-    <p>On some particular levels I use similar trick with <tt>XxxBox</tt>
-    for other other purposes too.
-    For example "Castle Hall" level has <tt>HintButtonBox</tt> to indicate
-    where to show "<i>Hint: press this button by the "p" key</i>".
+    include every 'CasWater[_&lt;ignored&gt;]', so that you will be able to
+    define water by a sum of shapes. Right now, it's only a single shape,
+    and we look only at it's bounding box.
 
   <li><p>Levels must be oriented such that +Z is "up".
     While all things in my general units are flexible
@@ -433,28 +420,11 @@ when you're not interested in testing creatures
   <li><p>Sectors and waypoints (aka portals) for the level:
 
     <ul>
-      <li><p>Shapes placed under the name Sector&lt;index&gt;_&lt;ignored&gt;
-        are removed from the real level in TLevel constructor.
-        The geometry of given sector is understood to be the sum
-        of all Sector&lt;index&gt; boxes.
-
-        <p>Also VisibleSectors for each sector are coded in CastleLevel.pas unit.
-
-        <p>For programmers: in cases when the sum of bounding boxes
-        is not flexible enough to define a geometry,
-        you can define any kind of geometry in Pascal code,
-        by overriding TSceneSector.IsPointInside.
-        In the future, treatment of the shape inside Sector&lt;index&gt;_&lt;ignored&gt;
-        may change, so that any kind of closed shape will be allowed there
-        and it will be stored and used precisely (not only as it's bounding box).
-
-        <p>Remember that sectors are numbered starting from 0.
-
-      <li><p>Shapes placed under the name Waypoint&lt;index&gt;_&lt;ignored&gt;
-        are also removed from the real level in TLevel constructor.
-        Middle point of bounding box of such shape determines
-        waypoint's Posiiton.
-        Remember that waypoints are numbered starting from 0.
+      <li><p>Objects named CasSector&lt;index&gt;[_&lt;ignored&gt;]
+        define sectors.
+        Objects named CasWaypoint[_&lt;ignored&gt;]
+        define sectors.
+        See API TCastleSceneManager.CreateSectors for details now.
 
       <li><p>Sectors of waypoints (and reverse property, Waypoints
         of sectors) are automatically calculated, by looking for waypoints
@@ -535,7 +505,7 @@ when you're not interested in testing creatures
     <p>If you don't mind a little programming, you may want to create
     new <tt>TLevel</tt> descendant in the program and use it for your level,
     this allows for many tricks.
-    See existing level implementations in CastleLevelSpecific unit
+    See existing level implementations in GameLevelSpecific unit
     for examples what can be achieved.
     You may even want to move your new level class
     to a completely separate unit file if you want.
@@ -549,7 +519,7 @@ when you're not interested in testing creatures
     see notes about shadows for creatures.</p>
 
     <p>It's expected that at some point it will be possible to add such
-    level objects only by editing <tt>levels/index.xml</tt> file, with no need
+    level objects only by editing <tt>level.xml</tt> file, with no need
     to modify game sources.</p></li>
 </ul>
 
@@ -581,7 +551,7 @@ when you're not interested in testing creatures
     on the level with appropriate name.
 
     <p>When loading, I search for shape nodes that have a parent node
-    named like "Res&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
+    named like "CasRes&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
     Where "&lt;item-kind-name&gt;" is "LifePotion" or "Sword" or any
     other TItemKind.VRMLNodeName value (see CastleItems unit),
     "&lt;quantity&gt;" is, well, the integer quantity
