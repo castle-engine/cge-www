@@ -46,14 +46,15 @@ castle_thumbs(array(
   <li><p>CastleLevels improvements:</p>
     <ul>
       <li>LoadLevel interface much simpler.
-      <li>Much more docs around TGameSceneManager and TLevelAvailable.
+      <li>Much more docs around TGameSceneManager and TLevelInfo.
       <li>Ugly MenuBackground parameter removed, it\'s not needed at all.
       <li>Oh, and TCastleWindow.SceneManager and TCastleControl.SceneManager is now of TGameSceneManager class. So if you use TCastleWindow / TCastleControl, you can use the levels system designed in CastleLevels really trivially:
 <pre class="sourcecode">
-  LevelsAvailable.LoadFromFiles;
+  Levels.LoadFromFiles;
   Window.SceneManager.LoadLevel(\'my_level_name\');
 </pre>
         <p>Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and <tt>level.xml</tt> file with <tt>name="my_level_name"</tt>. You already have all the code you need :) See <tt>castle_game_engine/examples/3d_sound_game/</tt> for a larger working example using this.</p>
+        <p>(Update: 2012-09-16: the very next day after writing this, the API changed a little again; the example above was adapted.)</p>
       </li>
     </ul>
   </li>
@@ -79,7 +80,7 @@ castle_thumbs(array(
   <li><p>Many renames in the new API. We want to get the new engine API as good as possible, before it\'s released and breaking compatibility will not be as easy.</p>
     <ul>
       <li>T3D.Pushable to T3D.CollidesWithMoving (it means that doors/elevators push or avoid crushing this object)
-      <li>ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we try to consistently use the term "World" to refer to your 3D world, and reserve the word "level" for levels recognized by CastleLevels.TLevelAvailable)
+      <li>ItemOnLevel, PutOnLevel etc. to ItemOnWorld, PutOnWorld etc. (we try to consistently use the term "World" to refer to your 3D world, and reserve the word "level" for levels recognized by CastleLevels.TLevelInfo)
       <li>TItem to TInventoryItem, and some Items properties renamed to Inventory. TItem was too generic, and in ObjectPascal "Items" has too generic meaning (many generic lists have "Items" properties referring to their contents; our "Inventory" is a now a list of TInventoryItem, which are things that can be used by player).
       <li>MoveAllowed, Height renamed to MoveCollision, HeightCollision, consistent with SegmentCollision, BoxCollision and such. These check collision of <i>other things with current 3D object</i> (current T3D instance).
       <li>Rename MyMoveAllowed, MyHeight to just MoveAllowed, Height etc. These check collision of point belonging to <i>current 3D object with everything else</i> (with the whole World, except current 3D object).

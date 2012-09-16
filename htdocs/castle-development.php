@@ -484,11 +484,12 @@ when you're not interested in testing creatures
   </li>
 
   <li><p>If you made a completely new level, you want to add it to the game.
-    That's easy: just add new <tt>&lt;level&gt;</tt> element to
-    <tt>data/levels/index.xml</tt> file. Now the level is known to the program.
+    That's easy: just add a subdirectory with <tt>level.xml</tt> file inside
+    the game data.
+    See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
     You can switch to the level by debug menu "Change to level" command
     (or even you can start "new game" from this level, if you set it's
-    <tt>default_available_for_new_game</tt> to <tt>true</tt>).
+    <tt>default_played</tt> to <tt>true</tt>).
 
     <!--
       You can add somewhere the call to LevelFinished(TYourLevel.Create),
@@ -501,26 +502,13 @@ when you're not interested in testing creatures
     either as part of normal game story of through debug command
     "Change to level"). This feature may be removed in the future when
     real "Save game" / "Load game" feature will be implemented.
-
-    <p>If you don't mind a little programming, you may want to create
-    new <tt>TLevel</tt> descendant in the program and use it for your level,
-    this allows for many tricks.
-    See existing level implementations in GameLevelSpecific unit
-    for examples what can be achieved.
-    You may even want to move your new level class
-    to a completely separate unit file if you want.
   </li>
 
-  <li><p>With a little programming, you can add various dynamic parts
-    to your level. I call these things "level objects".
-    For example, this is used to make the moving cart (gate level), button
-    (castle hall level), exit gate (cages level), elevator (tower level),
-    doors (doom level)... and many more. Level objects can also cast shadows,
-    see notes about shadows for creatures.</p>
-
-    <p>It's expected that at some point it will be possible to add such
-    level objects only by editing <tt>level.xml</tt> file, with no need
-    to modify game sources.</p></li>
+  <li><p>With a little programming, you can add your own level logic.
+    This allows to implement in ObjectPascal special behaviors on the level.
+    You can also add other full-featured 3D objects and animations to the level
+    (although the level itself may also contain animated things).</p>
+  </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
