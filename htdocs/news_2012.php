@@ -1,6 +1,35 @@
 <?php
 
 /* Next news:
+Large press / release callbacks and virtual methods rearrangement: all presses (KeyDown, MouseDown, MouseWheel) now go to a single Press method (with TInputPressRelease value). Likewise, all releases (KeyUp, MouseUp (we didn't implement mouse wheel releases yet)) go to Release. Same goes for callbacks, now you have OnPress and OnRelease.
+
+This makes a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on TInputShortcut, where you can customize whether it's key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single TInputPressRelease value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.
+
+If you want to add some key/mouse shortcut to your game, you can now do it easily:
+
+Create it, like
+
+  Input_UseLifePotion := TInputShortcut.Create(nil, 'Use life potion', 'life_potion_use', igItems);
+  Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
+
+Then use it in TCastleWindow.OnPress or TCastleControl.OnPress callback, or in an overridden TInputListener.Press method (TInputListener is an ancestor for many things, like TCamera, TUIControl, TCastleSceneManager) like
+
+procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
+begin
+  if Input.IsEvent(Event) then ...
+end;
+
+The keymap management in CastleInputs unit cooperates with it nicely. For example you can check which shortcut matches by InputsAll.SeekMatchingShortcut. You can get an input from user by CastleMessages.MessageKeyMouse. This is great for games where you want to allow user to customize inputs. See GameControlsMenu in castle1 source for a working example of it, with TCastleOnScreenMenu integration.
+
+You can of course still hardcode the particular keys/mouse buttons etc., if you want. It's still simple as the TInputPressRelease is a pretty trivial structure, it has EventType field, and even helpers like IsKey. So you can do
+
+procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
+begin
+  if Input.IsKey(CharEscape) then ...
+
+  if Input.IsMouseButton(mbLeft) then ...
+end;
+
 */
 
 array_push($news,
