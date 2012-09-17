@@ -31,6 +31,10 @@ begin
 end;
 
 <li>Unit CastleGameCache. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it's hard to imagine why you would need it now :)
+
+<li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
+(use screenshot control_lazarus_shared_resources.png)
+
 */
 
 array_push($news,
