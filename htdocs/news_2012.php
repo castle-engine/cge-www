@@ -30,6 +30,7 @@ begin
   if Input.IsMouseButton(mbLeft) then ...
 end;
 
+<li>Unit CastleGameCache. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it's hard to imagine why you would need it now :)
 */
 
 array_push($news,
