@@ -35,6 +35,9 @@ end;
 <li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
 (use screenshot control_lazarus_shared_resources.png)
 
+<li>Generic unit name Shape renamed CastleShape.
+
+<li>Placeholders managament nicer, you can easily configure which 3D modeler was used to generate level, and how to detect model names for it. By default we follow Blender VRML/X3D exporters, by you can configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel. Nothing else depends on 3D modeler exporter strategy, only the placeholders in TGameSceneManager.LoadLevel need it.
 */
 
 array_push($news,
