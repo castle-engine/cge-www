@@ -38,6 +38,8 @@ end;
 <li>Generic unit name Shape renamed CastleShape.
 
 <li>Placeholders managament nicer, you can easily configure which 3D modeler was used to generate level, and how to detect model names for it. By default we follow Blender VRML/X3D exporters, by you can configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel. Nothing else depends on 3D modeler exporter strategy, only the placeholders in TGameSceneManager.LoadLevel need it.
+
+You can registed own callbacks by ModelerShapeNameMap and docs of TModelerShapeName.
 */
 
 array_push($news,
