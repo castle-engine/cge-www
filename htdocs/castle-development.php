@@ -375,18 +375,13 @@ when you're not interested in testing creatures
         "Print current camera node (Ctrl+C)" feature.
       </li>
 
-      <li><tt>Light</tt> nodes, that are "global" (will shine
+      <li><tt>Light</tt> nodes that are "global" (will shine
         on other objects (like enemies) that are not part of the level
-        object).
-
-        <p>(Also, while Blender exporters can export Blender lights to VRML,
-        it doesn't allow me to use all features of VRML lights.)
-
-        <p>Since version 0.5.7 you can also edit the lights from the game
-        &mdash; see "Debug options" menu for "Edit lights" command.
-        So you have to add appropriate nodes to xxx_final.wrl
-        file by hand, and then you can just run the game and configure lights
-        properties from the game.
+        mesh). While Blender X3D exporter can create X3D lights
+        from Blender lights, it doesn't allow me to use all features
+        of X3D lights. So you can configure lights by hand,
+        or by using <?php echo a_href_page('view3dscene', 'view3dscene') ?>
+        <i>Edit -&gt; Lights Editor</i> feature.
       </li>
     </ul>
 
@@ -420,58 +415,47 @@ when you're not interested in testing creatures
   <li><p>Sectors and waypoints (aka portals) for the level:
 
     <ul>
-      <li><p>Objects named CasSector&lt;index&gt;[_&lt;ignored&gt;]
+      <li><p>Placeholders named CasSector&lt;index&gt;[_&lt;ignored&gt;]
         define sectors.
-        Objects named CasWaypoint[_&lt;ignored&gt;]
-        define sectors.
-        See API TCastleSceneManager.CreateSectors for details now.
+        Placeholders named CasWaypoint[_&lt;ignored&gt;] define sectors.
+        See TGameSceneManager.LoadLevel API docs for details.
 
       <li><p>Sectors of waypoints (and reverse property, Waypoints
-        of sectors) are automatically calculated, by looking for waypoints
-        that have a Position that falls inside Sector's BoundingBoxes
-        enlarged by margin 0.5.
+        of sectors) are automatically calculated, by looking how waypoints
+        bounding boxes collide with sectors.
+        This is the only moment when waypoint's bounding volume are considered,
+        for all other purposes waypoints are simply points.
+        So you place boxes that indicate waypoints
+        between two neighboring sectors, such that the bounding box
+        of the waypoint is partially inside both sectors.
 
-        <p>Note that sectors' BoundingBoxes need <i>not</i> be strictly separated.
-        When object (like player or creature) is within two sectors,
-        it's arbitrarily assigned to any allowed sector.
-        And for the rendering optimization, such sectors would work fine.
-        However, for monster AI, sectors should not have any common
-        large non-zero volume.
-
-        <p>So in practice, each sector should usually place
-        waypoint's Position at it's border. Sectors may overlap but only
-        for a minimal distance (otherwise awkward movement may happen
-        when creature is in the common part).
+        <p>Sectors boxes need <i>not</i> be strictly separated.
+        When 3D object, like player or creature, is within two sectors,
+        it's arbitrarily assigned to any of the possible sectors.
+        However, for creature AI, this may cause some awkward movement
+        (when the creature goes to a waypoint, instead of directly to the target),
+        so try to set sectors that don't overlap (much).
 
       <li><p>You don't have to cover whole level with sectors.
-        If some object (like player or creature) is not within any defined
-        sector, it's considered to be inside the "implicit whole sector",
-        that is a little special. It's geometry is considered
-        infinte (every 3D point belongs to it, if it doesn't belong to any
-        of the explicitly defined scetors). VisibleSectors
-        is treated like filled with values "true" (so all other sectors
-        are assumed to be visible).
+        If creature (or it's target) is not inside any sector, then
+        the move direction is simply set to go to the target directly.
 
-        For programmers: SectorWithPoint returns nil when no sector found,
-        and this indicates such "implicit whole sector".
-        FindWay accepts SectorBegin and SectorEnd as nil
-        (and always returns then false).
+      <li><p>Sectors and waypoints are used for creature AI.
+        Each sector occupies some space in 3D (like a room).
+        Each waypoint indicates a place where you can move
+        from one sector to another (like a narrow door between two rooms).
+        Sectors create a graph, with waypoints indicating the graph
+        connections.
+        If the creature is in a different sector then it's target,
+        it walks through appropriate waypoints.
 
-      <li><p>Sectors and waypoints are used for 2 things:
 
-        <ol>
-          <li>To speed up rendering: When player's Position is within
-            a given sector (not nil), we have to render only the sectors
-            for which VisibleSectors is true.
-            TODO: right now it's not used to speed up rendering,
-            and VisibleSectors is ignored.
+        <p>We may also use sectors to speed up rendering in the future.
+        For now, it doesn't seem needed &mdash; frustum culling,
+        and hardware occlusion query optimize the rendering set good enough,
+        without any difficult configuration.
 
-          <li>To make creature moving AI more intelligent:
-            If a creature wants to move from SectionBegin to SectorEnd,
-            and SectionBegin &lt;&gt; SectorEnd (and none of them is nil),
-            creature knows that it must pass through appropriate waypoints.
-        </ol>
-
+<!--
         It's assumed that there will not be too many sectors on the level
         (100 sectors is <i>really</i> around maximum. 10-20 is reasonable.)
         So sectors are <i>not</i> (at least right now) stored in any "intelligent"
@@ -479,6 +463,7 @@ when you're not interested in testing creatures
         the simplest search on the graph to find a satisfiable path
         (no A* algorithm or anything; it's simply not needed for the kind of
         sectors layouts that I will typically use).
+-->
       </li>
     </ul>
   </li>

@@ -37,9 +37,11 @@ end;
 
 <li>Generic unit name Shape renamed CastleShape.
 
-<li>Placeholders managament nicer, you can easily configure which 3D modeler was used to generate level, and how to detect model names for it. By default we follow Blender VRML/X3D exporters, by you can configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel. Nothing else depends on 3D modeler exporter strategy, only the placeholders in TGameSceneManager.LoadLevel need it.
+<li>Placeholders are nicer. You can indicate in level.xml how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
 
-You can registed own callbacks by ModelerShapeNameMap and docs of TModelerShapeName.
+You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderName.
+
+<li>Magic "margin" parameter around sectors removed. We now just look at waypoint's bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
 */
 
 array_push($news,
