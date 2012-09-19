@@ -54,6 +54,8 @@
 
   <li><p>We have a lot of 3D graphic features. Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
 
+  <li><p>We have a comfortable and extensible implementation of scene manager and 3D objects. You have a ready implementation of levels, creatures (with AI), items, players and other things typical to 3D games. You can extend it in many ways. You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from T3D and adding to TCastleSceneManager.Items directly.
+
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (Linux, Mac OS X, Windows, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
 </ul>
 
@@ -300,6 +302,19 @@ so should be 100% stable.</p>
     and 3D content from all file formats can be mixed (for 3D editing tools
     and such).</li>
 
+  <li>We allow you to use <b>any 3D modeler</b> to design your 3D data.
+    <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
+    In part, that's because VRML and X3D are open and popular 3D
+    formats, and decent exporters for them exist in practically every 3D
+    authoring tool. For detecting "placeholders"
+    (see TGameSceneManager.LoadLevel API docs, it's an optional feature
+    that allows you to easily place  creatures and many other stuff
+    on your level using 3D modeler), you can configure detection method
+    by "placeholders" attribute in level.xml file (see
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>)
+    and even implement your own (see CastleShape.PlaceholderNames and
+    TPlaceholderName API docs).
+
   <li><b>Saving</b> the current state of VRML/X3D node graph
     to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
     You can even use it to make your own 3D modeller on top of our engine.
@@ -317,6 +332,16 @@ so should be 100% stable.</p>
 
   <li><b>Scene manager</b> for centralized 3D world handling,
     with <b>custom viewports</b> possible.</li>
+
+  <li><b>Extensible system of 3D objects</b>. You have <b>ready,
+    comfortable management of creatures, items, levels and players</b>.
+    You can extend it by deriving descendants of engine classes
+    in CastleCreatures or CastleItems in CastleLevels units.
+    Or you can make your own management of 3D objects, by deriving descendants
+    of T3D and other classes in Base3D unit, and adding them
+    to TCastleSceneManager.Items as you see fit.
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">Engine tutorial</a>
+    contains detailed information about this.
 
   <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
     switching, silhouette detection etc.) and <b>shadow maps</b>.
