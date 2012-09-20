@@ -30,18 +30,22 @@ begin
   if Input.IsMouseButton(mbLeft) then ...
 end;
 
-<li>Unit CastleGameCache. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it's hard to imagine why you would need it now :)
+<li>Unit CastleGameCache removed. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it's hard to imagine why you would need it now :)
 
 <li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
 (use screenshot control_lazarus_shared_resources.png)
 
-<li>Generic unit name Shape renamed CastleShape.
+<li>Generic unit name Shape renamed to CastleShape.
 
 <li>Placeholders are nicer. You can indicate in level.xml how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
 
 You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderName.
 
 <li>Magic "margin" parameter around sectors removed. We now just look at waypoint's bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
+
+<li>Extracting direction (for initial direction creature is facing) from placeholder. See placeholder_default_direction in README_about_index_xml_files docs.
+
+<li>TPlayer.RenderOnTop feature.
 */
 
 array_push($news,
