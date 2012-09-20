@@ -533,10 +533,14 @@ when you're not interested in testing creatures
     to make object names in your model unique,
     which is obviously desirable).
 
+<!--
+(new Blender allows longer names.
+
     <p>Some reasoning about convention above: Blender's names
     have quite limited length, that's why CamelCase is used
     for "&lt;item-kind-name&gt;" and components are generally "glued"
     without any "_" or "-" or " " between.
+-->
 
     <p>Such "placeholder" object is removed from the actual level and
     instead I insert into level an item. Item position is determined
@@ -547,58 +551,45 @@ when you're not interested in testing creatures
     "wireframe" in Blender), and then edit Blender's mesh name
     as appropriate.
 
-  <li><p>Prepare appropriate 2d image of item (to be shown in inventory slots etc.).
+  <li><p>Prepare appropriate 2D image of item (to be shown in inventory slots
+    and such).
+    <!--
     (Once I tried just automatically rendering models inside inventory slots
     but this doesn't look good enough). You can do it however you like.
+    -->
+    For example, you can do this by opening
+    the model in <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
+    setting your camera as desired and taking a screenshot
+    (see "Display -> Screenshot ..." menu options).
+    Or use "Display -> Raytrace".
+    It's a very good idea to store the screenshot camera for the future
+    (in case we need to redo the image later),
+    by using "Console -> Print Current Camera (Viewpoint)..."
+    and adding it to your 3D model file.
 
-    <p>One way to do it is to use my raytracer, called
-    <?php echo a_href_page('rayhunter', 'rayhunter') ?> :
-    set up appropriate light and camera settings and then just render
-    item's model to the image. <tt>data/items/sword/image.png</tt>
-    is done like this.
+    <p><?php echo a_href_page('"The Castle"', 'castle') ?> game
+    requires all item images to have a size 95 x 95, but that is a specific
+    requirement of this game (because of how it displays the inventory).
+    Each game has it's own way to display the inventory, so these requirements
+    may be different for other games.
 
-    <p>Another is to open a model with
-    <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
-    set your camera however you like and make a screenshot.
-    Then you can edit it in whatever program you like
-    (like GIMP) to suit your needs.
+    <p>This image filename should be referenced by the <tt>image="xxx"</tt>
+    attribute in the root element of item <tt>resource.xml</tt> file.
 
-    <p>Note that all items' images must be of equal size.
-    See <tt>data/items/Makefile.common</tt> for
-    IMAGE_WIDTH and IMAGE_HEIGHT constants.
+  <li><p>For an item that can be equipped as a weapon, you also have
+    to prepare two scenes showing the weapon in "ready" state (equipped)
+    and "attack" (attack animation). Both of these 3D objects may be static
+    or animated (through precalculated animation or (TODO) VRML/X3D events).
+    You will almost always want to make the "attack" model animated,
+    but you can also make the "ready" model animated (e.g. to show some fire
+    flickering on the weapon or such; just don't overdo it, as such animations
+    can become distracting from the player).
 
-    <p>Traditionally this image is stored inside
-    <tt>data/items/your_item/image.png</tt> image.
-    You may also provide <tt>data/items/your_item/image.wrl</tt>
-    3D file, that includes item's model file and sets camera to
-    the same viewport you used to render the image.
-    This is essential for people that may later want to modify your model
-    and remake the image.
-
-  <li><p>If this is a weapon, then additionally you want to prepare what I call
-    a ScreenImage of this weapon &mdash; this will be displayed on player's
-    screen when it's equipped. See e.g. <tt>equipped.png</tt> images for
-    sword or bow items.
-
-    <p>Once again, you can do this image however you like.
-    I used rayhunter to render screen for sword.
-    In the future the need for this image will be removed &mdash;
-    I'll render weapon's
-    3D model in the game (probably using the 1st attack animation frame).
-
-    <p>You must also prepare an animation of "swinging" the weapon.
-    See e.g. <tt>attack_*.wrl</tt> files for sword or bow items.
-
-  <li><p>Finally, to really add the item to the game add 1 line to
-    CastleItems units in DoInitialization call creating your
-    TItemKind instance.
-
-  <li><p>For some items you may be able to just reuse some existing TItemKind
-    class, for others you will want to derive new class from TItemKind
-    and override there things you want.
-
-  <li>For simple customizations you can set various item
-    parameters by editing <tt>data/items/kinds.xml</tt> file.
+  <li><p>Finally, to really add the item to the game add it's <tt>resource.xml</tt>
+    file. See README_about_index_xml_files.txt for more documentation
+    about what is possible there. New item can be automatically placed
+    on a level, using placeholders named "CasRes" + item name.
+    There is no need to modify the game executable.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -659,24 +650,21 @@ when you're not interested in testing creatures
   </li>
 
   <li><p>When you want to use this creature on particular level(s),
-    you should add it to <tt>required_resources</tt> in <tt>levels/index.xml</tt>
+    you should add it to <tt>prepare_resources</tt> in <tt>level.xml</tt>
     file. Alternatively, if the creature should be always loaded
     when the player is present (for example, special creature <tt>Arrow</tt>
     should be always loaded, as the player may come to any level with a bow
-    and shoot some arrows), then it can be added to <tt>required_resources</tt> in
-    <tt>player.xml</tt>.</p></li>
+    and shoot some arrows), then it should have <tt>always_prepare</tt> in
+    it's <tt>resource.xml</tt>.</p></li>
 
   <li><p>For testing various animations of creatures (and adjusting their time
     parameters) you can use <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 
-  <li><p>For shadows to work fast, creature model (all animation
-    frames etc.) should be composed from a number of 2-manifold parts.
-    It's allowed to not make them perfectly 2-manifold, but then
-    in some cases, some artifacts are unavoidable &mdash; see
-    <?php echo a_href_page("engine documentation",'engine_doc'); ?>,
-    chapter "Shadows" for description.
-    To be manifold, edge must have exactly two neighboring faces,
-    so that ideally the creature shape is a correct closed volume.
+  <li><p>If you want to use <?php echo a_href_page_hashlink('shadow volumes', 'x3d_extensions',
+    'section_ext_shadows'); ?>, and you want the creature to cast shadows
+    by shadow volumes, the creature model must be a correct 2-manifold.
+    This means that every edge must have exactly two neighboring faces,
+    so that the shape is a correct closed volume.
     Also, faces must be oriented consistently (e.g. CCW outside).
     This requirement is usually quite naturally satisfiable for creature
     models, and consistent ordering allows you to use backface culling which
@@ -690,32 +678,11 @@ when you're not interested in testing creatures
     manifold silhouette edges are displayed yellow and border edges
     (you want to get rid of them) are blue.</p>
 
-    <p>You can also check it when running "the castle" itself:
-    run with <tt>--debug-log</tt> parameter (possibly redirecting
-    stdout to a file then). Look there for lines that indicate loading
-    of your creature, e.g. for <tt>Alien</tt> creature:</p>
-
-<pre>
-Animation info: Alien.Stand animation: 1 scenes * 4276 triangles
-Bump mapping: ...
-Shadows: Shadows casters triangles ...
-Shadows: Edges: 6414 manifold, 0 border
-</pre>
-
-    <p>... the "<tt>Edges:</tt>" line tells you that Alien is a perfect manifold
-    (0 border edges). So shadows will be fast.</p>
-
     <p>In Blender, you can easily detect why the mesh is not
     manifold by <i>Select non-manifold</i> command (in edit mode).
     Also, remember that faces must be ordered consistently CCW
     &mdash; I think that in some cases <i>Recalculate normals outside</i>
     may be needed to reorder them properly.
-
-    <p>This whole issue doesn't concern creatures with
-    <tt>casts_shadow="False"</tt> in <tt>creatures/kinds.xml</tt> file.
-    But remember that the default value of <tt>casts_shadow</tt> is
-    <tt>"True"</tt> &mdash; to encourage you to make all creatures cast a shadow.
-    Let's show these beatiful shadows to players!
 
   <li><p>Notes for animations: beware. Animations are done with a method
     that essentially makes their rendering very fast (rendering each
@@ -745,8 +712,6 @@ eye-candy features are:</p>
   <li><p>You can make your level geometry cast dynamic shadows (on everything,
     including itself). Just make it 2-manifold (see above notes about creatures
     for instructions how to check this).
-
-    <p>See "The Fountain" level for example.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
