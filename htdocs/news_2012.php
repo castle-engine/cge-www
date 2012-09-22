@@ -46,6 +46,8 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Extracting direction (for initial direction creature is facing) from placeholder. See placeholder_default_direction in README_about_index_xml_files docs.
 
 <li>TPlayer.RenderOnTop feature.
+
+<li>Make cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
 */
 
 array_push($news,

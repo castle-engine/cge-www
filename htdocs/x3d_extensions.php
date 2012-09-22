@@ -20,7 +20,7 @@ $toc = new TableOfContents(array(
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds', 1),
   new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
-  new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and such)', 'ext_alpha_channel_detection', 1),
+  new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and other textures)', 'ext_alpha_channel_detection', 1),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 1),
   new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 1),
@@ -672,9 +672,9 @@ EXTERNPROTO Text3D [
     Internally, we have a simple and very nice algorithm that detects whether texture's
     alpha channel qualifies as simple yes-no or full range, see
     <a href="<?php echo CURRENT_URL; ?>apidoc/html/Images.TImage.html#AlphaChannelType">TImage.AlphaChannelType reference</a>
-    (default tolerance values used by VRML renderer are 5 and 0.01).
+    (default tolerance values used by X3D renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
-    'kambi_vrml_game_engine'); ?> (see <tt>examples/images/detect_alpha_simple_yes_no.lpr</tt>
+    'engine'); ?> (see <tt>examples/images_videos/detect_alpha_simple_yes_no.lpr</tt>
     file) if you want to use this algorithm yourself.
     You can also see the results for your textures if you run view3dscene
     with <tt>--debug-log</tt> option.
@@ -684,14 +684,15 @@ EXTERNPROTO Text3D [
     but you still want to use simpler rendering by alpha_test.
 
     <p>So we add new field to all texture nodes
-    (<tt>ImageTexture</tt>, <tt>MovieTexture</tt>, also <tt>Texture2</tt>
-    in VRML 1.0 and all future 3D texture nodes in X3D):
+    (everything descending from <tt>X3DTextureNode</tt>,
+    like <tt>ImageTexture</tt>, <tt>MovieTexture</tt>; also <tt>Texture2</tt>
+    in VRML 1.0):
 
     <?php
-      echo node_begin('TextureNode');
+      echo node_begin('X3DTextureNode');
       $node_format_fd_name_pad = 10;
       echo
-      node_dots('all normal TextureNode fields') .
+      node_dots('all normal X3DTextureNode fields') .
       node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"') .
       node_end();
     ?>

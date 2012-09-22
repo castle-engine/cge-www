@@ -87,18 +87,8 @@ Text3D : X3DGeometryNode {
   SFBool     [in,out]      solid       TRUE
 }
 
-ImageTexture : X3DTexture2DNode {
-  ... all normal ImageTexture fields ...
-  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
-}
-
-MovieTexture : X3DTexture2DNode {
-  ... all normal MovieTexture fields ...
-  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
-}
-
-PixelTexture : X3DTexture2DNode {
-  ... all normal PixelTexture fields ...
+X3DTexture2DNode : X3DAppearanceChildNode {
+  ... all normal X3DTexture2DNode fields ...
   SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
 }
 
