@@ -48,6 +48,10 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>TPlayer.RenderOnTop feature.
 
 <li>Make cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
+
+--
+for final 4.0.0 release?
+lights_editor_shadow_maps.png Lights Editor playing with shadow maps
 */
 
 array_push($news,
