@@ -49,6 +49,7 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 
 <li>Make cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
 
+<li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
