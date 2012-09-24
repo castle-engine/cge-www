@@ -50,6 +50,8 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Make cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
 
 <li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
+
+<li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player<->Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it's quite cool.
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
