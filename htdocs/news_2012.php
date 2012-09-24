@@ -35,7 +35,7 @@ end;
 <li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
 (use screenshot control_lazarus_shared_resources.png)
 
-<li>Generic unit name Shape renamed to CastleShapes, Images to CastleImages.
+<li>Generic unit name Shape renamed to CastleShapes, Images to CastleImages, Triangle to X3DTriangles. New unit CastleTriangles extracted from VectorMath (to make a huge VectorMath unit at least a little slimmer).
 
 <li>Placeholders are nicer. You can indicate in level.xml how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
 
