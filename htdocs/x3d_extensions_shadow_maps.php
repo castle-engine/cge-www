@@ -104,17 +104,24 @@ $toc->echo_numbers = true;
   <tt>receiveShadows</tt> field. Read on to know more details.</p>
 
   <p>This is the simplest extension to enable shadows.
-  TODO: In the future, this (<tt>shadows</tt> on light) and
-  <tt>receiveShadows</tt> (see below) should be suitable for any shadows implementation,
-  not only shadow maps. We plan to use it for shadow volumes in the future too
+
+  <p>TODO: In the future, this field (<tt>shadows</tt> on light) and
+  <tt>receiveShadows</tt> field (see below) should be suitable for
+  other shadows implementations too
+  We plan to use it for shadow volumes in the future too
   (removing old <tt>kambiShadowsMain</tt> extensions and such),
   and maybe ray-tracer too. <tt>shadowCaster</tt> (see below) already works
   for all our shadows implementations.</p>
 
-  <p>Authors should note that browsers may use internal shaders to produce nice
-  shading for shadow receivers. Custom author shaders may be ignored.
-  If you want to apply your own shaders over shadow receivers, you have to
-  use the lower-level nodes described below instead of this.</p>
+  <p>If you use <?php echo a_href_page('X3D shader nodes, like <tt>ComposedShader</tt> and related nodes',
+  'x3d_implementation_shaders') ?>, be aware that your custom shaders
+  may be ignored. Browsers have to use internal shaders to produce nice
+  shading for shadow receivers. Use instead
+  <?php echo a_href_page('our compositing shaders extensions for X3D, like <tt>Effect</tt> and related nodes',
+  'compositing_shaders') ?> to write shader code that can cooperate
+  with other effects (like shadow maps, and much more).
+  Or (less adviced)
+  use the lower-level nodes described below to activate shadow maps more manuallly.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -450,7 +457,8 @@ $toc->echo_numbers = true;
   value for standard shadow mapping, it generates 1 (true) when
   <i>r/q <= texture(s/q, t/q)</i>, and 0 (false) otherwise. Recall from
   the shadow maps algorithm that, theoretically, assuming infinite shadow map
-  resolution and such, <i>r/q</i> should never be smaller than the texture value.
+  resolution and such, <i>r/q</i> should never be smaller than the texture value
+  (it can only be equal or larger).
 
   <p>When the <tt>compareMode</tt> is set to <tt>NONE</tt>,
   the comparison is not done, and depth texture values are returned directly.
