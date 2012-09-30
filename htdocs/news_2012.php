@@ -52,6 +52,8 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
 
 <li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player<->Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it's quite cool.
+
+<li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you're really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
