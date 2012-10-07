@@ -54,6 +54,16 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player<->Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it's quite cool.
 
 <li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you're really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
+
+<li>New properties and method to control some previously difficult/impossible to customize engine parts:
+  <ul>
+    <li>OnMoveAllowed callback, to control how the algorithm described at TCastleSceneManager.MoveLimit works --- allows to limit the working of gravity and/or movement to some 3D space.
+    <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games.  If need, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their T3D.PointingDeviceActivate, like before.
+    <li>TItemOnWorld.AutoPick property, to control automatic picking of items by player, and TItemOnWorld.ExtractItem method to implement picking yourself.
+    <li>TItemOnWorld.RotationSpeed property, to control the speed of rotation of items (set to 0 to disable rotating).
+    <li>TInventoryItem.Stack method to override, to affect how items stacking works.
+    <li>TPlayer.Flying and TPlayer.FlyingTimeOut, a simpler and more flexible properties to control player flying (replace previous TPlayer.FlyingMode and friends).
+
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
