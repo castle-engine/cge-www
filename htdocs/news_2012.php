@@ -67,6 +67,7 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>New nicer properties to control middle point used for collisions (see T3D.Middle, T3DCustomTransform.MiddlePoint, T3DCustomTransform.PreferredHeight). Unified gravity on items and creatures, with new comfortable properties (see T3DCustomTransform.Gravity, T3DCustomTransform.FallSpeed, T3DCustomTransform.GrowSpeed). More configurable from resource.xml file (middle_height, fall_speed, grow_speed, direction_fall_speed --- see README_about_index_xml_files.txt).
 
 <li>Our Blender exporter updated for Blender 2.64a.
+  KAnim exporter added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we need it.
 
 --
 for final 4.0.0 release?

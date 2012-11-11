@@ -59,6 +59,29 @@ Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
 
+<h2>KAnim exporter, for Blender 2.64a</h2>
+
+<p>Export Blender animation to
+<?php echo a_href_page("KAnim (Castle Game Engine animations) format",
+  'kanim_format'); ?>:</p>
+
+<ul>
+  <li><p><?php echo_svn_blender_file('blender25_x3d/export_kanim.py') ?>:
+    Download the KAnim exporter.</p>
+
+    <p>Install it like every other Blender addon:</p>
+    <ol>
+      <li>Use comfortable <i>File -&gt;
+        User Preferences (opens new window) -&gt; Addons (tab)
+        -&gt; Install Addon... (button at the bottom)</i>.
+        Or just copy the file directly to the
+        <tt>scripts/addons/</tt> directory.
+      <li>Enable it, by clicking the checkbox at <i>"Import-Export:Export KAnim"</i>
+        in the Addons window.
+    </ol>
+  </li>
+</ul>
+
 <h2>VRML 97 (2.0) and KAnim exporters, for Blender 2.4x</h2>
 
 <p>(Please note that I don't use exporters below anymore,
