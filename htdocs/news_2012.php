@@ -69,6 +69,14 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Our Blender exporter updated for Blender 2.64a.
   KAnim exporter added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we need it.
 
+<li>More creature behavior easily available by using standard CastleCreatures, fully configurable by creature resource.xml:
+- Making short-range attack, see TWalkAttackCreatureKind.AttackXxx properties and <attack> element in resource.xml
+- Firing a missile, see TWalkAttackCreatureKind.FireMissileXxx properties and <fire_missile> element in resource.xml. As much as possible, <fire_missile> properties are similar to <attack>, so it's consistent to think about.
+  What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that <attack> is "short-range attack" and <fire_missile> is "firing a missile", in reality it's more like <attack> is "1st configurable attack-like action" and <fire_missile> is "2nd configurable attack-like action".
+  You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it's possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
+- Remove dead creature corpses from level.
+
+
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
