@@ -80,9 +80,17 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
   <li>A weapon can also immediately shoot (like a pistol)
   <li>ammo is configurable both for missile firing (arrows to fire) and immediate shooting (bullets for a pistol)
 
-<li>Add die animations, and RemoveDead configurable, to Still and Missile creatures.
+<li>Add die animations, and RemoveDead configurable, to Still and Missile creatures. Die animation allows to make exploding animations for missiles and still (unmoving, unintelligent) creatures.
+  RemoveDead allows to keep the corpse on the level, with special twists for missiles. You can allow this way your missiles, like arrows, to be let "stuck" to the wall. (This mechanism should be better and more intelligent in the future, as part of whole "decal" system. For now, at least it kind of works.)
+
+  missile_stuck_in_wall_0.png
+  missile_stuck_in_wall_1.png
+  missile_stuck_in_wall_2.png
+  missile_stuck_in_wall_4.png
+  missile_stuck_in_wall_7.png
 
 <li>ReceiveShadowVolumes, default true, configurable for every item and creature (receive_shadow_volumes in resource.xml)
+
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
