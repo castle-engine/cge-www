@@ -81,6 +81,8 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
   <li>ammo is configurable both for missile firing (arrows to fire) and immediate shooting (bullets for a pistol)
 
 <li>Add die animations, and RemoveDead configurable, to Still and Missile creatures.
+
+<li>ReceiveShadowVolumes, default true, configurable for every item and creature (receive_shadow_volumes in resource.xml)
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
