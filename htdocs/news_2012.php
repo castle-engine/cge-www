@@ -75,11 +75,12 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
   What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that <attack> is "short-range attack" and <fire_missile> is "firing a missile", in reality it's more like <attack> is "1st configurable attack-like action" and <fire_missile> is "2nd configurable attack-like action".
   You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it's possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
 - Remove dead creature corpses from level.
-<li>More item weapon behavior easily available: 
+<li>More item weapon behavior easily available:
   <li>you can now define short-range attack and missile firing (with ammo or not) fully inside TItemWeaponKind (and related resource.xml file), no need for a single line of code.
   <li>A weapon can also immediately shoot (like a pistol)
   <li>ammo is configurable both for missile firing (arrows to fire) and immediate shooting (bullets for a pistol)
 
+<li>Add die animations, and RemoveDead configurable, to Still and Missile creatures.
 --
 for final 4.0.0 release?
 lights_editor_shadow_maps.png Lights Editor playing with shadow maps
