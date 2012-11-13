@@ -89,7 +89,14 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
   missile_stuck_in_wall_4.png
   missile_stuck_in_wall_7.png
 
-<li>ReceiveShadowVolumes, default true, configurable for every item and creature (receive_shadow_volumes in resource.xml)
+<li>CastShadowVolumes and ReceiveShadowVolumes, default true, configurable for every item and creature (cast_shadow_volumes and receive_shadow_volumes in resource.xml). It was already possible to confifgure code, but now it's easier --- just a boolean flag, and resource.xml variable.
+
+<li>New tool in engine example programs: resource_animations. Demonstrates how to define creature/item animations in resource.xml files, from KAnim and/or X3D files. Can be also used to view/debug any 3D resource from resource.xml files, e.g. you can try it on castle1 creatures and items, and view their animations. See DRAFT.modeling_tutorial.txt for notes about how to design your creatures/items.
+
+  resource_animations_0
+  resource_animations_1
+  resource_animations_2
+  resource_animations_3
 
 --
 for final 4.0.0 release?
