@@ -73,7 +73,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // (default values are shown below).
                         // Some of it's attributes should be treated like a
                         // "hint for the renderer". General programs like
-                        // view3dscene and demo_animation may honor them,
+                        // view3dscene may honor them,
                         // but more specialized programs (like "The Castle"
                         // game) may ignore them, since "they know better".
 
@@ -100,10 +100,14 @@ of animation handling in our VRML engine documentation</a>.</p>
   loop="false"          // Should the animation loop ? This is a hint for
                         // the renderer, and may be ignored. Allowed values
                         // are "false" and "true", not case-sensitive.
+                        // When this animation is used for creature/item in game,
+                        // this is <b>ignored</b>.
 
   backwards="false"     // Should the animation go backwards after going
                         // forward ? Allowed values
                         // are "false" and "true", not case-sensitive.
+                        // When this animation is used for creature/item in game,
+                        // this is <b>not ignored</b>.
 &gt;
 
   // A number of &lt;frame&gt; nodes should follow. At least one is required.
