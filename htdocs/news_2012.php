@@ -1,15 +1,35 @@
 <?php
 
-/* Next news:
-Large press / release callbacks and virtual methods rearrangement: all presses (KeyDown, MouseDown, MouseWheel) now go to a single Press method (with TInputPressRelease value). Likewise, all releases (KeyUp, MouseUp (we didn't implement mouse wheel releases yet)) go to Release. Same goes for callbacks, now you have OnPress and OnRelease.
+array_push($news,
+    array('title' => 'Development: engine 4.0.0 - still almost there: a lot of creatures, items and player improvements',
+          'year' => 2012,
+          'month' => 11,
+          'day' => 14,
+          'short_description' => '',
+          'guid' => '2012-11-14',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights Editor playing with shadow maps'),
+  array('filename' => 'control_lazarus_shared_resources.png', 'titlealt' => 'Lazarus form with 2 castle controls sharing textures'),
+  array('filename' => 'resource_animations_1.png', 'titlealt' => 'resource_animations: Knight default idle animation'),
+  array('filename' => 'resource_animations_2.png', 'titlealt' => 'resource_animations: Knight attack animation'),
+  array('filename' => 'resource_animations_3.png', 'titlealt' => 'resource_animations: Spider Queen (castle1 creature)'),
+  array('filename' => 'resource_animations_4.png', 'titlealt' => 'resource_animations: Sword (an item, with animations Attack and Ready shown with respect to player)'),
+  array('filename' => 'missile_stuck_in_wall_0.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+  array('filename' => 'missile_stuck_in_wall_1.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+  array('filename' => 'missile_stuck_in_wall_2.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+  array('filename' => 'missile_stuck_in_wall_4.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+  array('filename' => 'missile_stuck_in_wall_7.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+)) .
+'Large press / release callbacks and virtual methods rearrangement: all presses (KeyDown, MouseDown, MouseWheel) now go to a single Press method (with TInputPressRelease value). Likewise, all releases (KeyUp, MouseUp (we didn\'t implement mouse wheel releases yet)) go to Release. Same goes for callbacks, now you have OnPress and OnRelease.
 
-This makes a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on TInputShortcut, where you can customize whether it's key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single TInputPressRelease value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.
+This makes a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on TInputShortcut, where you can customize whether it\'s key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single TInputPressRelease value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.
 
 If you want to add some key/mouse shortcut to your game, you can now do it easily:
 
 Create it, like
 
-  Input_UseLifePotion := TInputShortcut.Create(nil, 'Use life potion', 'life_potion_use', igItems);
+  Input_UseLifePotion := TInputShortcut.Create(nil, \'Use life potion\', \'life_potion_use\', igItems);
   Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
 
 Then use it in TCastleWindow.OnPress or TCastleControl.OnPress callback, or in an overridden TInputListener.Press method (TInputListener is an ancestor for many things, like TCamera, TUIControl, TCastleSceneManager) like
@@ -21,7 +41,7 @@ end;
 
 The keymap management in CastleInputs unit cooperates with it nicely. For example you can check which shortcut matches by InputsAll.SeekMatchingShortcut. You can get an input from user by CastleMessages.MessageKeyMouse. This is great for games where you want to allow user to customize inputs. See GameControlsMenu in castle1 source for a working example of it, with TCastleOnScreenMenu integration.
 
-You can of course still hardcode the particular keys/mouse buttons etc., if you want. It's still simple as the TInputPressRelease is a pretty trivial structure, it has EventType field, and even helpers like IsKey. So you can do
+You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the TInputPressRelease is a pretty trivial structure, it has EventType field, and even helpers like IsKey. So you can do
 
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
 begin
@@ -30,10 +50,9 @@ begin
   if Input.IsMouseButton(mbLeft) then ...
 end;
 
-<li>Unit CastleGameCache removed. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it's hard to imagine why you would need it now :)
+<li>Unit CastleGameCache removed. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it\'s hard to imagine why you would need it now :)
 
 <li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
-(use screenshot control_lazarus_shared_resources.png)
 
 <li>Generic unit name Shape renamed to CastleShapes, Images to CastleImages, Triangle to X3DTriangles. New unit CastleTriangles extracted from VectorMath (to make a huge VectorMath unit at least a little slimmer).
 
@@ -41,7 +60,7 @@ end;
 
 You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderName.
 
-<li>Magic "margin" parameter around sectors removed. We now just look at waypoint's bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
+<li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
 
 <li>Extracting direction (for initial direction creature is facing) from placeholder. See placeholder_default_direction in README_about_index_xml_files docs.
 
@@ -51,29 +70,29 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 
 <li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
 
-<li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player<->Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it's quite cool.
+<li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player&lt;-&gt;Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it\'s quite cool.
 
-<li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you're really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
+<li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you\'re really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
 
 <li>New properties and method to control some previously difficult/impossible to customize engine parts:
   <ul>
-    <li>OnMoveAllowed callback, to control how the algorithm described at TCastleSceneManager.MoveLimit works --- allows to limit the working of gravity and/or movement to some 3D space.
+    <li>OnMoveAllowed callback, to control how the algorithm described at TCastleSceneManager.MoveLimit works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
     <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games.  If need, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their T3D.PointingDeviceActivate, like before.
     <li>TItemOnWorld.AutoPick property, to control automatic picking of items by player, and TItemOnWorld.ExtractItem method to implement picking yourself.
     <li>TItemOnWorld.RotationSpeed property, to control the speed of rotation of items (set to 0 to disable rotating).
     <li>TInventoryItem.Stack method to override, to affect how items stacking works.
     <li>TPlayer.Flying and TPlayer.FlyingTimeOut, a simpler and more flexible properties to control player flying (replace previous TPlayer.FlyingMode and friends).
 
-<li>New nicer properties to control middle point used for collisions (see T3D.Middle, T3DCustomTransform.MiddlePoint, T3DCustomTransform.PreferredHeight). Unified gravity on items and creatures, with new comfortable properties (see T3DCustomTransform.Gravity, T3DCustomTransform.FallSpeed, T3DCustomTransform.GrowSpeed). More configurable from resource.xml file (middle_height, fall_speed, grow_speed, direction_fall_speed --- see README_about_index_xml_files.txt).
+<li>New nicer properties to control middle point used for collisions (see T3D.Middle, T3DCustomTransform.MiddlePoint, T3DCustomTransform.PreferredHeight). Unified gravity on items and creatures, with new comfortable properties (see T3DCustomTransform.Gravity, T3DCustomTransform.FallSpeed, T3DCustomTransform.GrowSpeed). More configurable from resource.xml file (middle_height, fall_speed, grow_speed, direction_fall_speed &mdash; see README_about_index_xml_files.txt).
 
 <li>Our Blender exporter updated for Blender 2.64a.
   KAnim exporter added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we need it.
 
 <li>More creature behavior easily available by using standard CastleCreatures, fully configurable by creature resource.xml:
-- Making short-range attack, see TWalkAttackCreatureKind.AttackXxx properties and <attack> element in resource.xml
-- Firing a missile, see TWalkAttackCreatureKind.FireMissileXxx properties and <fire_missile> element in resource.xml. As much as possible, <fire_missile> properties are similar to <attack>, so it's consistent to think about.
-  What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that <attack> is "short-range attack" and <fire_missile> is "firing a missile", in reality it's more like <attack> is "1st configurable attack-like action" and <fire_missile> is "2nd configurable attack-like action".
-  You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it's possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
+- Making short-range attack, see TWalkAttackCreatureKind.AttackXxx properties and &lt;attack&gt; element in resource.xml
+- Firing a missile, see TWalkAttackCreatureKind.FireMissileXxx properties and &lt;fire_missile&gt; element in resource.xml. As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about.
+  What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that &lt;attack&gt; is "short-range attack" and &lt;fire_missile&gt; is "firing a missile", in reality it\'s more like &lt;attack&gt; is "1st configurable attack-like action" and &lt;fire_missile&gt; is "2nd configurable attack-like action".
+  You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it\'s possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
 - Remove dead creature corpses from level.
 <li>More item weapon behavior easily available:
   <li>you can now define short-range attack and missile firing (with ammo or not) fully inside TItemWeaponKind (and related resource.xml file), no need for a single line of code.
@@ -83,27 +102,13 @@ You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderNa
 <li>Add die animations, and RemoveDead configurable, to Still and Missile creatures. Die animation allows to make exploding animations for missiles and still (unmoving, unintelligent) creatures.
   RemoveDead allows to keep the corpse on the level, with special twists for missiles. You can allow this way your missiles, like arrows, to be let "stuck" to the wall. (This mechanism should be better and more intelligent in the future, as part of whole "decal" system. For now, at least it kind of works.)
 
-  missile_stuck_in_wall_0.png
-  missile_stuck_in_wall_1.png
-  missile_stuck_in_wall_2.png
-  missile_stuck_in_wall_4.png
-  missile_stuck_in_wall_7.png
+<li>CastShadowVolumes and ReceiveShadowVolumes, default true, configurable for every item and creature (cast_shadow_volumes and receive_shadow_volumes in resource.xml). It was already possible to confifgure code, but now it\'s easier &mdash; just a boolean flag, and resource.xml variable.
 
-<li>CastShadowVolumes and ReceiveShadowVolumes, default true, configurable for every item and creature (cast_shadow_volumes and receive_shadow_volumes in resource.xml). It was already possible to confifgure code, but now it's easier --- just a boolean flag, and resource.xml variable.
+<li><p>New tool in engine example programs: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from KAnim and/or X3D files. Can be also used to view/debug any 3D resource from resource.xml files, e.g. you can try it on castle1 creatures and items, and view their animations. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.modeling_tutorial.txt">DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later)</a> for notes about how to design your creatures/items.</p>
 
-<li>New tool in engine example programs: resource_animations. Demonstrates how to define creature/item animations in resource.xml files, from KAnim and/or X3D files. Can be also used to view/debug any 3D resource from resource.xml files, e.g. you can try it on castle1 creatures and items, and view their animations. See DRAFT.modeling_tutorial.txt for notes about how to design your creatures/items.
+  <p>(<a href="http://opengameart.org/content/animated-knight">The knight animated model comes from opengameart.org</a>.)</li>
+'),
 
-  resource_animations_0
-  resource_animations_1
-  resource_animations_2
-  resource_animations_3
-
---
-for final 4.0.0 release?
-lights_editor_shadow_maps.png Lights Editor playing with shadow maps
-*/
-
-array_push($news,
     array('title' => 'Development: engine 4.0.0 - almost there: levels, items, player improvements',
           'year' => 2012,
           'month' => 9,
@@ -112,7 +117,7 @@ array_push($news,
           'guid' => '2012-09-15',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropped when standing still and looking around --- it\'s good that they arrange in a nice ring.'),
+  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level. These items were dropped when standing still and looking around &mdash; it\'s good that they arrange in a nice ring.'),
   array('filename' => 'castle_items_tower_screen_0.png', 'titlealt' => 'Testing many items dropped on level.'),
   array('filename' => 'alien_invasion_castle_screen_0.png', 'titlealt' => 'Testing behavior (AI) of a group of creatures.'),
   array('filename' => 'alien_invasion_castle_screen_1.png', 'titlealt' => 'Testing behavior (AI) of a group of creatures, with debug bounding volume visualization.'),
