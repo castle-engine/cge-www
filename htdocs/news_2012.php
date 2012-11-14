@@ -21,92 +21,111 @@ castle_thumbs(array(
   array('filename' => 'missile_stuck_in_wall_4.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
   array('filename' => 'missile_stuck_in_wall_7.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
 )) .
-'Large press / release callbacks and virtual methods rearrangement: all presses (KeyDown, MouseDown, MouseWheel) now go to a single Press method (with TInputPressRelease value). Likewise, all releases (KeyUp, MouseUp (we didn\'t implement mouse wheel releases yet)) go to Release. Same goes for callbacks, now you have OnPress and OnRelease.
+'<p>Sorry, still no new release... But, as always, we have many new features to announce for the upcoming <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a> 4.0.0 :).</p>
 
-This makes a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on TInputShortcut, where you can customize whether it\'s key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single TInputPressRelease value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.
+<iframe width="560" height="315" src="http://www.youtube.com/embed/kQbeA83LS-k" frameborder="0" allowfullscreen></iframe>
 
-If you want to add some key/mouse shortcut to your game, you can now do it easily:
+<ol>
+  <li><p><b>Creatures/items</b> (commonly called "resources" in many places) <b>improvements</b>:</p>
+    <ol>
+      <li><p>New tool in engine example programs: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from KAnim and/or X3D files. Can be also used to view/debug any 3D resource from resource.xml files, e.g. you can try it on castle1 creatures and items, and view their animations. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.modeling_tutorial.txt">DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later)</a> for notes about how to design your creatures/items.</p>
+        <p>(<a href="http://opengameart.org/content/animated-knight">The knight animated model comes from opengameart.org</a>.)</p>
+      </li>
+      <li>Making short-range creature attack is trivial, see TWalkAttackCreatureKind.AttackXxx properties and &lt;attack&gt; element in resource.xml
+      <li>Firing a missile is trivial, see TWalkAttackCreatureKind.FireMissileXxx properties and &lt;fire_missile&gt; element in resource.xml. As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about.
+        <p>What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that &lt;attack&gt; is "short-range attack" and &lt;fire_missile&gt; is "firing a missile", in reality it\'s more like &lt;attack&gt; is "1st configurable attack-like action" and &lt;fire_missile&gt; is "2nd configurable attack-like action".
+        <p>You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it\'s possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
+      <li>Removing dead creature corpses from level is trivial, see RemoveDead property and remove_dead in resource.xml.
+      <li>More item weapon behavior easily available:
+        <ol>
+          <li>you can now define short-range attack and missile firing (with ammo or not) fully inside TItemWeaponKind (and related resource.xml file), no need for a single line of code.
+          <li>A weapon can also immediately shoot (like a pistol)
+          <li>ammo is configurable both for missile firing (arrows to fire) and immediate shooting (bullets for a pistol)
+        </ol>
+      <li>Add die animations, and RemoveDead configurable, to Still and Missile creatures. Die animation allows to make exploding animations for missiles and still (unmoving, unintelligent) creatures.
+        <p>RemoveDead allows to keep the corpse on the level, with special twists for missiles. You can allow this way your missiles, like arrows, to be let "stuck" to the wall. (This mechanism should be better and more intelligent in the future, as part of whole "decal" system. For now, at least it kind of works.)
+      <li>CastShadowVolumes and ReceiveShadowVolumes, default true, configurable for every item and creature (cast_shadow_volumes and receive_shadow_volumes in resource.xml). It was already possible to confifgure code, but now it\'s easier &mdash; just a boolean flag, and resource.xml variable.
+      <li>TItemOnWorld.AutoPick property, to control automatic picking of items by player, and TItemOnWorld.ExtractItem method to implement picking yourself.
+      <li>TItemOnWorld.RotationSpeed property, to control the speed of rotation of items (set to 0 to disable rotating).
+      <li>TInventoryItem.Stack method to override, to affect how items stacking works.
+      <li>New nicer properties to control middle point used for collisions (see T3D.Middle, T3DCustomTransform.MiddlePoint, T3DCustomTransform.PreferredHeight). Unified gravity on items and creatures, with new comfortable properties (see T3DCustomTransform.Gravity, T3DCustomTransform.FallSpeed, T3DCustomTransform.GrowSpeed). More configurable from resource.xml file (middle_height, fall_speed, grow_speed, direction_fall_speed &mdash; see README_about_index_xml_files.txt).
+      <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games.  If need, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their T3D.PointingDeviceActivate, like before.
+    </ol>
+  </li>
 
-Create it, like
+  <li><p>Our <a href="http://castle-engine.sourceforge.net/blender.php"><b>Blender X3D exporter</b></a> updated for Blender 2.64a.</p>
+    <p>Also, <a href="http://castle-engine.sourceforge.net/blender.php"><b>KAnim exporter</b> for Blender</a> added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we still need it.</p></li>
 
-  Input_UseLifePotion := TInputShortcut.Create(nil, \'Use life potion\', \'life_potion_use\', igItems);
-  Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
+  <li><p><b>Levels improvements</b>:</p>
+    <ol>
+      <li><p>Placeholders are nicer. You can indicate in level.xml how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.</p>
+        <p>You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderName.</p>
+      </li>
+      <li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
+      <li>Extracting direction (for initial direction creature is facing) from placeholder. See placeholder_default_direction in README_about_index_xml_files docs.
+      <li>TCastleSceneManager.OnMoveAllowed callback, to control how the algorithm described at TCastleSceneManager.MoveLimit works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
+    </ol>
+  </li>
 
-Then use it in TCastleWindow.OnPress or TCastleControl.OnPress callback, or in an overridden TInputListener.Press method (TInputListener is an ancestor for many things, like TCamera, TUIControl, TCastleSceneManager) like
+  <li><p><b>Player improvements</b>:</p>
+    <ol>
+      <li>TPlayer.RenderOnTop feature.
+      <li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player&lt;-&gt;Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it\'s quite cool.
+      <li>TPlayer.Flying and TPlayer.FlyingTimeOut, a simpler and more flexible properties to control player flying (replace previous TPlayer.FlyingMode and friends).
+    </ol>
+  </li>
 
+  <li><p><b>Image API improvements</b>:</p>
+    <ol>
+      <li>Cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
+      <li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
+      <li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you\'re really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
+    </ol>
+  </li>
+
+  <li><p><b>Other changes</b>:</p>
+    <ol>
+      <li>Unit CastleGameCache removed. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it\'s hard to imagine why you would need it now :)
+      <li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
+      <li>Generic unit name Shape renamed to CastleShapes, Images to CastleImages, Triangle to X3DTriangles. New unit CastleTriangles extracted from VectorMath (to make a huge VectorMath unit at least a little slimmer).
+      <li><p>Large press / release callbacks and virtual methods rearrangement: all presses (KeyDown, MouseDown, MouseWheel) now go to a single Press method (with TInputPressRelease value). Likewise, all releases (KeyUp, MouseUp (we didn\'t implement mouse wheel releases yet)) go to Release. Same goes for callbacks, now you have OnPress and OnRelease.</p>
+
+        <p>This makes a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on TInputShortcut, where you can customize whether it\'s key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single TInputPressRelease value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.</p>
+
+        <p>If you want to add some key/mouse shortcut to your game, you can now do it easily:</p>
+
+        <p>Create it, like this:</p>
+
+<pre class="sourcecode">
+Input_UseLifePotion := TInputShortcut.Create(nil, \'Use life potion\', \'life_potion_use\', igItems);
+Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
+</pre>
+
+        <p>Then use it in TCastleWindow.OnPress or TCastleControl.OnPress callback, or in an overridden TInputListener.Press method (TInputListener is an ancestor for many things, like TCamera, TUIControl, TCastleSceneManager) like</p>
+
+<pre class="sourcecode">
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
 begin
   if Input.IsEvent(Event) then ...
 end;
+</pre>
 
-The keymap management in CastleInputs unit cooperates with it nicely. For example you can check which shortcut matches by InputsAll.SeekMatchingShortcut. You can get an input from user by CastleMessages.MessageKeyMouse. This is great for games where you want to allow user to customize inputs. See GameControlsMenu in castle1 source for a working example of it, with TCastleOnScreenMenu integration.
+        <p>The keymap management in CastleInputs unit cooperates with it nicely. For example you can check which shortcut matches by InputsAll.SeekMatchingShortcut. You can get an input from user by CastleMessages.MessageKeyMouse. This is great for games where you want to allow user to customize inputs. See GameControlsMenu in castle1 source for a working example of it, with TCastleOnScreenMenu integration.</p>
 
-You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the TInputPressRelease is a pretty trivial structure, it has EventType field, and even helpers like IsKey. So you can do
+        <p>You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the TInputPressRelease is a pretty trivial structure, it has EventType field, and even helpers like IsKey. So you can do</p>
 
+<pre class="sourcecode">
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
 begin
   if Input.IsKey(CharEscape) then ...
 
   if Input.IsMouseButton(mbLeft) then ...
 end;
-
-<li>Unit CastleGameCache removed. We automatically use the global GLContextCache now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by TCastleScene.CreateCustomCache and TCastlePrecalculatedAnimation.CreateCustomCache &mdash; but, aside from debugging, it\'s hard to imagine why you would need it now :)
-
-<li>OpenGL resources are automatically shared between two or more TCastleControl controls. Also Idle fixes for multiple TCastleControl in a single application.
-
-<li>Generic unit name Shape renamed to CastleShapes, Images to CastleImages, Triangle to X3DTriangles. New unit CastleTriangles extracted from VectorMath (to make a huge VectorMath unit at least a little slimmer).
-
-<li>Placeholders are nicer. You can indicate in level.xml how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is *only* for TGameSceneManager.LoadLevel placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
-
-You can registed own callbacks, see PlaceholdersNames and docs of TPlaceholderName.
-
-<li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See castle-development.php for notes about sectors/waypoints for user, and see TGameSceneManager.LoadLevel for developer docs.
-
-<li>Extracting direction (for initial direction creature is facing) from placeholder. See placeholder_default_direction in README_about_index_xml_files docs.
-
-<li>TPlayer.RenderOnTop feature.
-
-<li>Make cleanups around AlphaChannel detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a>
-
-<li>Introducing TGLImage class in GLImages unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.
-
-<li>Every T3DOrient instance has automatically a synchronized T3DOrient.Camera instance underneath. This makes Player&lt;-&gt;Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in Tremulous, it\'s quite cool.
-
-<li>ForbiddenConvs parameter to LoadImage removed, along with TImageLoadConversions and friends. They were complicated, and not really useful in practice. (If you\'re really paranoid about convertions, you can use LoadImage to any class and make convertions yourself, honoring any order/limits as you desire.)
-
-<li>New properties and method to control some previously difficult/impossible to customize engine parts:
-  <ul>
-    <li>OnMoveAllowed callback, to control how the algorithm described at TCastleSceneManager.MoveLimit works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
-    <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games.  If need, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their T3D.PointingDeviceActivate, like before.
-    <li>TItemOnWorld.AutoPick property, to control automatic picking of items by player, and TItemOnWorld.ExtractItem method to implement picking yourself.
-    <li>TItemOnWorld.RotationSpeed property, to control the speed of rotation of items (set to 0 to disable rotating).
-    <li>TInventoryItem.Stack method to override, to affect how items stacking works.
-    <li>TPlayer.Flying and TPlayer.FlyingTimeOut, a simpler and more flexible properties to control player flying (replace previous TPlayer.FlyingMode and friends).
-
-<li>New nicer properties to control middle point used for collisions (see T3D.Middle, T3DCustomTransform.MiddlePoint, T3DCustomTransform.PreferredHeight). Unified gravity on items and creatures, with new comfortable properties (see T3DCustomTransform.Gravity, T3DCustomTransform.FallSpeed, T3DCustomTransform.GrowSpeed). More configurable from resource.xml file (middle_height, fall_speed, grow_speed, direction_fall_speed &mdash; see README_about_index_xml_files.txt).
-
-<li>Our Blender exporter updated for Blender 2.64a.
-  KAnim exporter added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we need it.
-
-<li>More creature behavior easily available by using standard CastleCreatures, fully configurable by creature resource.xml:
-- Making short-range attack, see TWalkAttackCreatureKind.AttackXxx properties and &lt;attack&gt; element in resource.xml
-- Firing a missile, see TWalkAttackCreatureKind.FireMissileXxx properties and &lt;fire_missile&gt; element in resource.xml. As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about.
-  What actually happens is configurable by overriding methods at TWalkAttackCreature.Attack and TWalkAttackCreature.FireMissile. So, while you can think that &lt;attack&gt; is "short-range attack" and &lt;fire_missile&gt; is "firing a missile", in reality it\'s more like &lt;attack&gt; is "1st configurable attack-like action" and &lt;fire_missile&gt; is "2nd configurable attack-like action".
-  You still have extra state for special purposes in TWalkAttackCreature called wasCustom1, so it\'s possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.
-- Remove dead creature corpses from level.
-<li>More item weapon behavior easily available:
-  <li>you can now define short-range attack and missile firing (with ammo or not) fully inside TItemWeaponKind (and related resource.xml file), no need for a single line of code.
-  <li>A weapon can also immediately shoot (like a pistol)
-  <li>ammo is configurable both for missile firing (arrows to fire) and immediate shooting (bullets for a pistol)
-
-<li>Add die animations, and RemoveDead configurable, to Still and Missile creatures. Die animation allows to make exploding animations for missiles and still (unmoving, unintelligent) creatures.
-  RemoveDead allows to keep the corpse on the level, with special twists for missiles. You can allow this way your missiles, like arrows, to be let "stuck" to the wall. (This mechanism should be better and more intelligent in the future, as part of whole "decal" system. For now, at least it kind of works.)
-
-<li>CastShadowVolumes and ReceiveShadowVolumes, default true, configurable for every item and creature (cast_shadow_volumes and receive_shadow_volumes in resource.xml). It was already possible to confifgure code, but now it\'s easier &mdash; just a boolean flag, and resource.xml variable.
-
-<li><p>New tool in engine example programs: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from KAnim and/or X3D files. Can be also used to view/debug any 3D resource from resource.xml files, e.g. you can try it on castle1 creatures and items, and view their animations. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.modeling_tutorial.txt">DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later)</a> for notes about how to design your creatures/items.</p>
-
-  <p>(<a href="http://opengameart.org/content/animated-knight">The knight animated model comes from opengameart.org</a>.)</li>
+</pre>
+      </li>
+    </ol>
+  </li>
+</ol>
 '),
 
     array('title' => 'Development: engine 4.0.0 - almost there: levels, items, player improvements',
