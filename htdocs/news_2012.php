@@ -1,5 +1,11 @@
 <?php
 
+/* For next:
+- caustics committed to demo_models/water/caustics/
+- Memory optimization for models with many nodes (esp. using heavily prototypes), by about 10%, and another 10% possible if you define CONSERVE_TRIANGLE_MEMORY symbol.
+- Creature enemy is now configurable by overriding TWalkAttackCreature.Enemy method. The default implementation chooses the cental player as the enemy (if the player is not dead yet).
+*/
+
 array_push($news,
     array('title' => 'Development: engine 4.0.0 - still almost there: a lot of creatures, items and player improvements',
           'year' => 2012,
