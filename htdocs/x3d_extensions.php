@@ -902,7 +902,7 @@ Shape {
       echo
       node_dots('all normal NavigationInfo fields, and KambiNavigationInfo fields documented previously') .
       node_field('SFFloat', '[in,out]', 'headBobbing', '0.02') .
-      node_field('SFFloat', '[in,out]', 'headBobbingTime', '0.4') .
+      node_field('SFFloat', '[in,out]', 'headBobbingTime', '0.5') .
       node_end();
     ?>
 
