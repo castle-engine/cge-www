@@ -4,6 +4,11 @@
 - caustics committed to demo_models/water/caustics/
 - Memory optimization for models with many nodes (esp. using heavily prototypes), by about 10%, and another 10% possible if you define CONSERVE_TRIANGLE_MEMORY symbol.
 - Creature enemy is now configurable by overriding TWalkAttackCreature.Enemy method. The default implementation chooses the cental player as the enemy (if the player is not dead yet).
+- New methods to define creature/items (all resources) animations are available:
+  You can load animation from kanim, or from multiple VRML/X3D files (one VRML/X3D for each animation), or from a single VRML/X3D file (in which case the file will have to contain different TimeSensor to activate each animation).
+  Description how it works is inside DRAFT.modeling_tutorial.txt,
+  and example of all 3 methods to define animations are inside castle_game_engine/examples/resource_animations/
+  in sources.
 */
 
 array_push($news,
