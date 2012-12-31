@@ -9,6 +9,7 @@
   Description how it works is inside DRAFT.modeling_tutorial.txt,
   and example of all 3 methods to define animations are inside castle_game_engine/examples/resource_animations/
   in sources.
+- player.xml usage: it must be now done explicitly by Player.LoadFromFile (we try to never load the file from some hardcoded location without you requesting it; previous implementation was always loading data/player.xml in TPlayer constructor). You can give your own location of player.xml. All player properties have now sensible defaults, so is simple cases there's no need to use it at all.
 */
 
 array_push($news,
