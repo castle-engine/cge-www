@@ -300,7 +300,10 @@ when you're not interested in testing creatures
     Every placeholder object will be removed
     when the level is loaded (so you can use any shape for it &mdash;
     I usually use wire cubes). Placeholder object position and name will
-    determine the actual item/creature position, kind and quantity
+    determine the actual item/creature position, resource (this refers
+    to a resource defined by resource.xml file, which in turn defines
+    the ObjectPascal class (determining the behavior of creature/item)
+    and a lot of properties) and quantity
     (in case of items) or initial life (in case of creatures).
     Name of the placeholder is
     <tt>CasRes&lt;resource-name&gt;[&lt;resource-number&gt;][_&lt;ignored&gt;]</tt>:
@@ -523,10 +526,10 @@ when you're not interested in testing creatures
     <p>You can place items on the level by placing a "placeholder" object
     on the level with appropriate name.
 
-    <p>When loading, I search for shape nodes that have a parent node
-    named like "CasRes&lt;item-kind-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
-    Where "&lt;item-kind-name&gt;" is "LifePotion" or "Sword" or any
-    other TItemKind.VRMLNodeName value (see CastleItems unit),
+    <p>When loading, we search for shape nodes that have a parent node
+    named like "CasRes&lt;item-resource-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
+    Where "&lt;item-resource-name&gt;" is "LifePotion" or "Sword" or any
+    other TItemResource.Name value (see CastleItems unit),
     "&lt;quantity&gt;" is, well, the integer quantity
     ("1" is assumed if "&lt;quantity&gt;" is omitted), and "&lt;ignored&gt;"
     is just anything that will be ignored (you can use this
@@ -538,7 +541,7 @@ when you're not interested in testing creatures
 
     <p>Some reasoning about convention above: Blender's names
     have quite limited length, that's why CamelCase is used
-    for "&lt;item-kind-name&gt;" and components are generally "glued"
+    for "&lt;item-resource-name&gt;" and components are generally "glued"
     without any "_" or "-" or " " between.
 -->
 
@@ -614,38 +617,22 @@ when you're not interested in testing creatures
         middle X,Y line.
 
         <p>If <tt>&lt;creature-life&gt;</tt> part is not present, the default
-        MaxLife value (taken from creatures <tt>kinds.xml</tt> file,
+        MaxLife value (taken from this creature's <tt>resource.xml</tt> file,
         attribute <tt>default_max_life</tt>) will be used.
         You can also use this feature to place already dead corpses on the level
         (e.g. the Doom E1M1 level uses this):
         just specify <tt>&lt;creature-life&gt;</tt> as 0 (zero).
 
         <p>Initial creature looking direction
-        is determined by ... TODO: right now starting creature direction
-        just points into player starting position.
-        This is more-or-less sensible, usually.
-        But it's meant to be comfortably configurable in scene file in the future.
-        <i>Plan to fix this:</i> It's already possible to add a creature
-        in game, using debug menu <i>Add creature</i> commands.
-        Together with debug menu command <i>Time stop for creatures</i>,
-        this allows you quite easily and comfortably place creatures on the level,
-        and you're able to freely set both their position and direction
-        then. This should be extended: 1. new VRML / X3D nodes specially for
-        "The Castle" that express creatures on the level (as alternative
-        to creatures "placeholder boxes", or maybe inside such placeholder boxes ?)
-        2. debug menu command to dump current creatures to such VRML / X3D nodes,
-        so that you can paste them to level <tt>xxx_final.wrl</tt> file.
+        is determined by the transformation of the placeholder object.
+        See placeholder_default_direction in README_about_index_xml_files.txt
+        for details.
 
-      <li>To really add the creature to the game add 1 line to
-        CastleCreatures unit in DoInitialization call creating your
-        TCreatureKind instance.
-
-      <li>For some creatures you may be able to just reuse some existing TCreatureKind
-        and TCreature descendants, for others you will want to derive
-        your own descendants.
+      <li>For more customizations, see developers documentation
+        about CastleCreatures unit.
 
       <li>For simple customizations you can set various creature
-        parameters by editing <tt>data/creatures/kinds.xml</tt> file.
+        parameters by editing <tt>data/creatures/xxx/resource.xml</tt> file.
     </ul>
   </li>
 
