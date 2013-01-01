@@ -12,6 +12,7 @@
 - player.xml usage: it must be now done explicitly by Player.LoadFromFile (we try to never load the file from some hardcoded location without you requesting it; previous implementation was always loading data/player.xml in TPlayer constructor). You can give your own location of player.xml. All player properties have now sensible defaults, so is simple cases there's no need to use it at all.
 - Many DefaultXxx global constants moved to constants inside classes, to not pollute namespaces with a lot of constants that are usually useful only as default value for corresponding property Xxx.
 - All creature/items "kinds" renamed to "resources". Previously, terms "kinds" and "resources" were used to refer to the same thing, which could create confusion. Now it's simple: resource.xml file refers to the resource class (maybe it's creature resource, maybe item resource and so on), and creates resource instance. TCreatureResource is derived from T3DResource (as TCreature derives from T3D). TItemResource is derived from T3DResource, like TItemOnLevel derives from T3D.
+- Renamed ProgressUnit to CastleProgress, and old CastleProgress to CastleWindowProgress. Hopefully new names are more sensible.
 */
 
 array_push($news,
