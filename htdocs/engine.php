@@ -123,19 +123,43 @@ or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
 &mdash; you will find that everything just works,
 not requiring a single line of ObjectPascal code.</p>
 
-<p><i>Under Windows you will need some DLLs</i>
-to successfully run some of the programs.
-I collected all DLLs needed by my programs
-<?php echo current_www_a_href_size('in this archive',
-  'miscella/win32_dlls.zip'); ?>, so just download
-this and put in program's exe directory (or somewhere on $PATH).
-These DLLs are already included in binary archives of my programs,
-but are not included in source archives (since they are only usable
-for Windows users). In general, for all OSes, see section
-"Requirements" in the documentation of programs and make sure that
-you have appropriate libraries installed on your system.</p>
+<p><b>Remember to install required libraries</b>:
+programs developed using our engine (engine examples and normal programs)
+may use a couple of libraries.
+The full list of libraries is at the "Requirements" section at the documentation
+of each program, and the <?php echo a_href_page('engine reference',
+ 'reference') ?> also lists the libraries in the introduction section.
+In short, you will most likely want to have <i>libpng, zlib, OpenAL, and vorbisfile</i>.</p>
 
-<p>Alternatively, you can get the latest (bleeding-edge) sources from Subversion by:
+<ul>
+  <li><i>On Linux and FreeBSD</i> you should install these libraries
+    using your favourite package manager.
+    Remember to install <tt>-dev</tt> versions of these libraries too
+    (if you're under Debian or similar distribution) to be able to compile
+    programs that link to these libraries.
+
+  <li><i>On Windows</i> (32-bit) you can
+    find all the necessary DLL files
+    <?php echo current_www_a_href_size('in this archive',
+    'miscella/win32_dlls.zip'); ?>. Download
+    this and copy all DLLs to program's exe directory (or put them somewhere on $PATH).
+    <!--
+    These DLLs are already included in binary archives of my programs,
+    but are not included in source archives (since they are only useful for Windows).
+    -->
+
+  <li><i>On Mac OS X</i>: <?php echo a_href_page('Mac OS X requirements are listed here',
+    'macosx_requirements'); ?>.
+</ul>
+
+<!--
+In general, for all OSes, see section
+ in the documentation of programs and make sure that
+you have appropriate libraries installed on your system.
+-->
+
+<p>Instead of downloading the archive, you can also get the latest
+(bleeding-edge) engine sources from Subversion by:</p>
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
