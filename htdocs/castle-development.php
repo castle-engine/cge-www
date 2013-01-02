@@ -318,6 +318,9 @@ when you're not interested in testing creatures
         to this creature).
       <li>Anything after underscore is ignored. You can use this to make
         object name unique, e.g. all Blender objects must be unique.
+        Note that Blender exporter changes the "dot" inside object names
+        to an underscore when exporting, so everything in Blender object name
+        after dot is ignored too.
     </ul>
 
   <li><p>When loading level, we search for Blender object named <tt>CasMoveLimit</tt>.
