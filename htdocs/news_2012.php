@@ -15,6 +15,12 @@
   - All creature/items "kinds" renamed to "resources". Previously, terms "kinds" and "resources" were used to refer to the same thing, which could create confusion. Now it's simple: resource.xml file refers to the resource class (maybe it's creature resource, maybe item resource and so on), and creates resource instance. TCreatureResource is derived from T3DResource (as TCreature derives from T3D). TItemResource is derived from T3DResource, like TItemOnLevel derives from T3D.
   - Renamed ProgressUnit to CastleProgress, and old CastleProgress to CastleWindowProgress. CastleProgress is a generic progress, CastleWindowProgress is progress specific to CastleWindow.
   - Renamed KeysMouse to CastleKeysMouse, and it's types/constants are no longer aliased in CastleWindow.
+- Many improvements to our RenderDebug3D and RenderDebugCaptions mechinisms:
+  - respect Orientation (work with games with either +Y or +Z up)
+  - sphere is displayed better
+  - caption is multiline and contains "enemy distance" info
+
+add 3 screens debug_xxx
 */
 
 array_push($news,
