@@ -19,6 +19,12 @@
   - respect Orientation (work with games with either +Y or +Z up)
   - sphere is displayed better
   - caption is multiline and contains "enemy distance" info
+- Many improvements to CastleWindowProgress : Opacity property, configurable colors, using UIFontSmall when necessary, fixed to work with non-standard glViewport (like after typical TCastleViewport usage)
+- fps_game:
+  A nice simple demo of a fully-working 3D game.
+  Levels, creatures, player, buttons, notifications, custom viewport, a *lot* of comments.
+  More to come: items, inventory, trivial health bar, hurt/die redout.
+- "Home" key in Examine mode goes to initial viewpoint (configurable by VRML/X3D Viewpoint or SetInitialView in code), instead of always going to viewpoint with +Y up. This should be universally more useful and more natural than previous behavior.
 
 add 3 screens debug_xxx
 */
