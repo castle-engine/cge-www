@@ -26,7 +26,15 @@
     noise -> CastleNoise
     Triangulator -> CastleTriangulate
     NormalsCalculator -> CastleNormals
-  - VideosCache unit removed, it's functionality is merged into Videos now
+  - Removed units:
+    VideosCache (merged into Videos),
+    Rectangles (merged to OnScreenMenu),
+    BezierCurve (merged to Curve),
+    NormalizationCubeMap (moved to bump_mapping example dir, not useful for engine).
+  - castlerecentfiles -> CastleWindowRecentFiles
+    recentfiles -> CastleRecentFiles
+    lclrecentfiles -> CastleLCLRecentFiles
+  
 - Many improvements to our RenderDebug3D and RenderDebugCaptions mechinisms:
   - respect Orientation (work with games with either +Y or +Z up)
   - sphere is displayed better
