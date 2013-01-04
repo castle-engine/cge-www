@@ -36,6 +36,14 @@
   Levels, creatures, player, buttons, notifications, custom viewport, a *lot* of comments.
   More to come: items, inventory, trivial health bar, hurt/die redout.
 - "Home" key in Examine mode goes to initial viewpoint (configurable by VRML/X3D Viewpoint or SetInitialView in code), instead of always going to viewpoint with +Y up. This should be universally more useful and more natural than previous behavior.
+- Fonts:
+  - Huge refactoring of font units and types.
+   * We now have 4 units: CastleOutlineFonts, CastleBitmapFonts, CastleGLOutlineFonts, CastleGLBitmapFonts.
+   * TBitmapFont and TOutlineFont are classes, with Data field and some methods. This way utilities into CastleOutlineFonts become methods.
+  - font2pascal utility added, this is a very old Windows-only utility to convert
+    fonts into our bitmap/outline font structures.
+    It awaits eagerly to be reimplemented using freetype, contributions for this
+    are most welcome!
 
 add 3 screens debug_xxx
 */
