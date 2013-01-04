@@ -52,7 +52,7 @@ so if something gets broken &mdash; that's totally not me :)</p>
     but it's generally useful.</li>
 
   <li>My font2pascal was used to generate font,
-    see bfnt_bitstreamverasans_m10_unit.pas and mk_fonts.sh</li>
+    see castlebitmapfont_bvsans_m10.pas and mk_fonts.sh</li>
 
   <li><a href="http://www.freepascal.org/">FreePascal</a> is a compiler
     that made this all possible.</li>
