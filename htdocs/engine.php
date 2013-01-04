@@ -480,7 +480,7 @@ so should be 100% stable.</p>
       <li>Parsing command-line options following modern Unix commands standards
         (- -long options, short options, arguments etc.)
 
-      <li>VectorMath, unit with many vector-and-matrix operations,
+      <li>CastleVectors, unit with many vector-and-matrix operations,
         mainly for 3d graphics
 
       <li>CastleScript, parsing and executing CastleScript programs

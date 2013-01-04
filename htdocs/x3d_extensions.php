@@ -1424,7 +1424,7 @@ end;
     and one that uses <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt>
     fields.
 
-     <!-- funkcje X3DFields.CamDirUp2Orient i VectorMath.RotatePointAroundAxis -->
+     <!-- funkcje X3DFields.CamDirUp2Orient i CastleVectors.RotatePointAroundAxis -->
 
 <?php echo $toc->html_section(); ?>
 
