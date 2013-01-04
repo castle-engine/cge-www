@@ -26,6 +26,7 @@
     noise -> CastleNoise
     Triangulator -> CastleTriangulate
     NormalsCalculator -> CastleNormals
+  - VideosCache unit removed, it's functionality is merged into Videos now
 - Many improvements to our RenderDebug3D and RenderDebugCaptions mechinisms:
   - respect Orientation (work with games with either +Y or +Z up)
   - sphere is displayed better
