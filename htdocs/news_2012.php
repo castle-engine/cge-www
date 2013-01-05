@@ -13,28 +13,14 @@
 - Some final code renames/refactoring to make it better:
   - Many DefaultXxx global constants moved to constants inside classes, to not pollute namespaces with a lot of constants that are usually useful only as default value for corresponding property Xxx.
   - All creature/items "kinds" renamed to "resources". Previously, terms "kinds" and "resources" were used to refer to the same thing, which could create confusion. Now it's simple: resource.xml file refers to the resource class (maybe it's creature resource, maybe item resource and so on), and creates resource instance. TCreatureResource is derived from T3DResource (as TCreature derives from T3D). TItemResource is derived from T3DResource, like TItemOnLevel derives from T3D.
-  - Renamed ProgressUnit to CastleProgress, and old CastleProgress to CastleWindowProgress. CastleProgress is a generic progress, CastleWindowProgress is progress specific to CastleWindow.
-  - Renamed KeysMouse to CastleKeysMouse, and it's types/constants are no longer aliased in CastleWindow.
-  - Some old units had really inconsistent naming, now it should be cleaner.
-    ConvexHullUnit -> CastleConvexHull
-    RenderingCameraUnit -> CastleRenderingCamera
-    VectorMath -> CastleVectors
-    Font2PascalUnit -> CastleFont2Pascal
-    base3d.pas -> castle3d.pas
-    boxes3d.pas -> castleboxes.pas
-    frustum.pas -> castlefrustum.pas
-    noise -> CastleNoise
-    Triangulator -> CastleTriangulate
-    NormalsCalculator -> CastleNormals
-  - Removed units:
+  - A lot of unit renames, to bring all units to CastleXxx names. I admit it was a mistake trying to have non-prefixed names in 3.0.0, since many unit names had to be prefixed with Castle anyway, and this created inconsistent naming &mdash; some units had Castle prefix, some not. Now all of them have it (Ok, with one exception: the X3DXxx units).
+    <p>It means that when upgrading your project, you'll have to do appropriate renames in the "uses" clause of your units. Compiler will tell you where :) I also prepared a list of renames in <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_4.0.txt">doc/naming_engine_4.0.txt</a> file.
+  - CastleKeysMouse (formerly KeysMouse) types are no longer aliased in CastleWindow unit. This was unmaintainable, and wasn't available in Lazarus CastleControl. Simply add CastleKeysMouse to your uses clause if you use any identifier from it.
+  - Cleanup: removed units:
     VideosCache (merged into Videos),
     Rectangles (merged to OnScreenMenu),
     BezierCurve (merged to Curve),
     NormalizationCubeMap (moved to bump_mapping example dir, not useful for engine).
-  - castlerecentfiles -> CastleWindowRecentFiles
-    recentfiles -> CastleRecentFiles
-    lclrecentfiles -> CastleLCLRecentFiles
-  
 - Many improvements to our RenderDebug3D and RenderDebugCaptions mechinisms:
   - respect Orientation (work with games with either +Y or +Z up)
   - sphere is displayed better
