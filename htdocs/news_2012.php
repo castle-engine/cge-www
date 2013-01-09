@@ -42,6 +42,7 @@
 - Fixes to viewports for ATI on Linux (one bug of Mesa, one bug of fglrx, see BuggyDepth32 and BuggySwapNonStandardViewport in CastleGLVersion).
 - Examine camera has ExclusiveEvents = true, consistent with other TUIControl.
 - CastleLog output stream is configurable.
+- CastleImages supports resizing images with bilinear interpolation. TCastleImage.Resize and TCastleImage.MakeResized take Interpolation parameter, may be riNearest or riBilinear. Default is still riNearest, so fast (and ugly) like before. CastleWindowProgress, when it needs to scale progress background image, requests riBilinear interpolation. glViewImage allows to test both resizing methods.
 
 add 3 screens debug_xxx
 show fps_game_screen_1.png (items and creatures)
