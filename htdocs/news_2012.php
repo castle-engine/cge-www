@@ -38,6 +38,9 @@
     fonts into our bitmap/outline font structures.
     It awaits eagerly to be reimplemented using freetype, contributions for this
     are most welcome!
+- Fixes to viewports for ATI on Linux (one bug of Mesa, one bug of fglrx, see BuggyDepth32 and BuggySwapNonStandardViewport in CastleGLVersion).
+- Examine camera has ExclusiveEvents = true, consistent with other TUIControl.
+- CastleLog output stream is configurable.
 
 add 3 screens debug_xxx
 show fps_game_screen_1.png (items and creatures)
