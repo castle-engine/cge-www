@@ -628,7 +628,7 @@ when you're not interested in testing creatures
 
         <p>Initial creature looking direction
         is determined by the transformation of the placeholder object.
-        See placeholder_default_direction in README_about_index_xml_files.txt
+        See <tt>placeholder_reference_direction</tt> in README_about_index_xml_files.txt
         for details.
 
       <li>For more customizations, see developers documentation
