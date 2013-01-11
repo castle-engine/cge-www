@@ -29,6 +29,7 @@
 - fps_game:
   A nice simple demo of a fully-working 3D game.
   Levels, creatures (knight, intelligent WalkAttack AI), player, buttons, notifications, custom viewport, items (medkit, can be used and stored in inventory), display inventory, health, fadeout (when player is hurt or dies), a *lot* of comments.
+  P.S. Various game data (knight, textures, sounds) are from opengameart.org, countless thanks to it's many contributors. Details what is from where are inside AUTHORS.txt files in sources. I only modelled level and items.
 - TItem.Picked method to configure what happens when you pick item. Example in fps_game shows how to make an item that is consumed on pickup (aka "powerup").
 - "Home" key in Examine mode goes to initial viewpoint (configurable by VRML/X3D Viewpoint or SetInitialView in code), instead of always going to viewpoint with +Y up. This should be universally more useful and more natural than previous behavior.
 - Fonts:
