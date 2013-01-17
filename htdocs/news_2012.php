@@ -51,6 +51,9 @@ and a *lot* of comments.
 - Examine camera has ExclusiveEvents = true, consistent with other TUIControl.
 - CastleLog output stream is configurable.
 - CastleImages supports resizing images with bilinear interpolation. TCastleImage.Resize and TCastleImage.MakeResized take Interpolation parameter, may be riNearest or riBilinear. Default is still riNearest, so fast (and ugly) like before. CastleWindowProgress, when it needs to scale progress background image, requests riBilinear interpolation. glViewImage allows to test both resizing methods.
+- TextureProperties mechanism was enhanced into MaterialProperties, that can describe much more things. In the future, we can add there more stuff about material/texture that cannot be comfortably expressed in Blender, but that is conceptually tied to material/texture.
+  For now, the main addition is that you can define bump mapping by normal_map properties there. Our custom hack in Blender exporter (to detect _normalmap) will possibly be removed at some point (as it has no future, it's dirty and will not be applied to upstream exporter).
+
 
 add 2 screens debug_xxx
 fps_game_screen_*
