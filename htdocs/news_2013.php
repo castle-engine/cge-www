@@ -2,6 +2,7 @@
 
 /* Next news:
 - kambiShadows, kambiShadowsMain fields renamed to shadowVolumes, shadowVolumesMain ---- much more sensible names. But the old names will remain to be available, for compatibility (probably for a long time).
+  TCastleAbstractViewport.ShadowVolumes is true by default now.
 */
 
 array_push($news,
