@@ -413,9 +413,8 @@ These names are not invented by us, they are the names used for <a href="http://
     shadows look good &mdash; which usually means "dark, but
     not absolutely unrealistically black".
 
-    <p>In <?php echo a_href_page('"The Castle"', 'castle'); ?>
-    you can experiment with this using <i>Edit lights</i> inside
-    debug menu.</p>
+    <p>In <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    you can experiment with this using <i>Edit -> Lights Editor</i>.</p>
 
     <p>If no "main" light is found
     (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>)
