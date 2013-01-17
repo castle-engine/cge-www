@@ -109,7 +109,7 @@ $toc->echo_numbers = true;
   <tt>receiveShadows</tt> field (see below) should be suitable for
   other shadows implementations too
   We plan to use it for shadow volumes in the future too
-  (removing old <tt>kambiShadowsMain</tt> extensions and such),
+  (removing old <tt>shadowVolumesMain</tt> extensions and such),
   and maybe ray-tracer too. <tt>shadowCaster</tt> (see below) already works
   for all our shadows implementations.</p>
 

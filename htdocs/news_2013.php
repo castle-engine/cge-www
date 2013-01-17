@@ -1,5 +1,9 @@
 <?php
 
+/* Next news:
+- kambiShadows, kambiShadowsMain fields renamed to shadowVolumes, shadowVolumesMain ---- much more sensible names. But the old names will remain to be available, for compatibility (probably for a long time).
+*/
+
 array_push($news,
     array('title' => 'Development: engine 4.0.0 release in a few days, many improvements this month',
           'year' => 2013,

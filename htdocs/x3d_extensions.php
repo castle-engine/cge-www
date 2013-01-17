@@ -14,7 +14,7 @@ $toc = new TableOfContents(array(
   new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>Appearance</tt>)', 'ext_bump_mapping', 1),
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
   new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
-  new TocItem('Specify what lights cast shadows for shadow volumes (fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> for light nodes)', 'ext_shadows_light', 2),
+  new TocItem('Specify what lights cast shadows for shadow volumes (fields <tt>shadowVolumes</tt> and <tt>shadowVolumesMain</tt> for light nodes)', 'ext_shadows_light', 2),
   new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere.texCoord</tt>)', 'ext_tex_coord', 1),
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
@@ -282,7 +282,7 @@ These names are not invented by us, they are the names used for <a href="http://
     <ul>
       <li><p>To see the shadows, it is necessary to choose
         one light in the scene (probably the brightest, main light)
-        and set it's fields <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt>
+        and set it's fields <tt>shadowVolumes</tt> and <tt>shadowVolumesMain</tt>
         both to <tt>TRUE</tt>. That's it. Everything by default
         is a shadow caster.</p></li>
 
@@ -360,9 +360,9 @@ These names are not invented by us, they are the names used for <a href="http://
       $node_format_fd_inout_pad = 8;
       echo
       node_dots('all normal *Light fields') .
-      node_field('SFBool', '[in,out]', 'kambiShadows' , 'FALSE') .
-      node_field('SFBool', '[in,out]', 'kambiShadowsMain' , 'FALSE',
-        'meaningful only when kambiShadows = TRUE') .
+      node_field('SFBool', '[in,out]', 'shadowVolumes' , 'FALSE') .
+      node_field('SFBool', '[in,out]', 'shadowVolumesMain' , 'FALSE',
+        'meaningful only when shadowVolumes = TRUE') .
       node_end();
     ?>
 
@@ -377,8 +377,8 @@ These names are not invented by us, they are the names used for <a href="http://
         dominant, most intensive light on the scene.
 
         <p>This is taken as the first light node with
-        <tt>kambiShadowsMain</tt> and <tt>kambiShadows</tt> = <tt>TRUE</tt>.
-        Usually you will set <tt>kambiShadowsMain</tt> to <tt>TRUE</tt>
+        <tt>shadowVolumesMain</tt> and <tt>shadowVolumes</tt> = <tt>TRUE</tt>.
+        Usually you will set <tt>shadowVolumesMain</tt> to <tt>TRUE</tt>
         on only one light node.</li>
 
       <li><p>There are other lights that don't determine <b>where</b>
@@ -390,9 +390,9 @@ These names are not invented by us, they are the names used for <a href="http://
         in this group. Otherwise, the scene could be so light,
         that shadows do not look "dark enough".
 
-        <p>All lights with <tt>kambiShadows</tt> = <tt>TRUE</tt> are
+        <p>All lights with <tt>shadowVolumes</tt> = <tt>TRUE</tt> are
         in this group. (As you see, the main light has to have
-        <tt>kambiShadows</tt> = <tt>TRUE</tt> also, so the main light
+        <tt>shadowVolumes</tt> = <tt>TRUE</tt> also, so the main light
         is always turned off where the shadow is).</li>
 
       <li>Other lights that light everything. These just
@@ -400,15 +400,15 @@ These names are not invented by us, they are the names used for <a href="http://
         (actually, according to VRML light scope rules).
         Usually only the dark lights should be in this group.
 
-        <p>These are lights with <tt>kambiShadows</tt> = <tt>FALSE</tt>
+        <p>These are lights with <tt>shadowVolumes</tt> = <tt>FALSE</tt>
         (default).</li>
     </ol>
 
     <p>Usually you have to experiment a little to make the shadows look
     good. This involves determining which light should be the main light
-    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>),
+    (<tt>shadowVolumesMain</tt> = <tt>shadowVolumes</tt> = <tt>TRUE</tt>),
     and which lights should be just turned off inside the shadow
-    (only <tt>kambiShadows</tt> = <tt>TRUE</tt>).
+    (only <tt>shadowVolumes</tt> = <tt>TRUE</tt>).
     This system tries to be flexible, to allow you to make
     shadows look good &mdash; which usually means "dark, but
     not absolutely unrealistically black".
@@ -417,7 +417,7 @@ These names are not invented by us, they are the names used for <a href="http://
     you can experiment with this using <i>Edit -> Lights Editor</i>.</p>
 
     <p>If no "main" light is found
-    (<tt>kambiShadowsMain</tt> = <tt>kambiShadows</tt> = <tt>TRUE</tt>)
+    (<tt>shadowVolumesMain</tt> = <tt>shadowVolumes</tt> = <tt>TRUE</tt>)
     then shadows are turned off on this model.</p>
 
     <p><i>Trick:</i> note that you can set the main light
@@ -425,16 +425,16 @@ These names are not invented by us, they are the names used for <a href="http://
     &mdash; this light will determine the shadows position (it will
     be treated as light source when calculating shadow placement),
     but will actually not make the scene lighter (be sure to set
-    for some other lights <tt>kambiShadows</tt> = <tt>TRUE</tt> then).
+    for some other lights <tt>shadowVolumes</tt> = <tt>TRUE</tt> then).
     This is a useful trick when there is no comfortable main light on the scene,
     so you want to add it, but you don't want to make the scene
     actually brighter.</p>
 
     <p><i>To be deprecated some day: currently
-    <tt>kambiShadows</tt> and <tt>kambiShadowsMain</tt> are the only
+    <tt>shadowVolumes</tt> and <tt>shadowVolumesMain</tt> are the only
     way to get shadow volumes. However, we plan in the future to instead
     make our <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
-    usable also for shadow volumes. The <tt>kambiShadows*</tt> will become
+    usable also for shadow volumes. The <tt>shadowVolumes*</tt> will become
     deprecated then.</i></p>
 
 <?php echo $toc->html_section(); ?>

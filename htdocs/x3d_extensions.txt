@@ -30,8 +30,8 @@ KambiAppearance : Appearance {
 X3DLightNode : X3DChildNode {
   ... all normal X3DLightNode fields ...
   SFBool     []            shadows               FALSE
-  SFBool     [in,out]      kambiShadows          FALSE
-  SFBool     [in,out]      kambiShadowsMain      FALSE       # meaningfull only when kambiShadows = TRUE
+  SFBool     [in,out]      shadowVolumes         FALSE
+  SFBool     [in,out]      shadowVolumesMain     FALSE       # meaningfull only when shadowVolumes = TRUE
   SFFloat    [in,out]      projectionNear        1           # > 0
   SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
   SFVec3f    [in,out]      up                    0 1 0
