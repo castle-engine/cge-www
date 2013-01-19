@@ -6,11 +6,15 @@ set -eu
 # a full build with newest sources),
 # then move resulting binaries to ~/public_html/castle-engine-snapshots/ subdir.
 
-# log messages and dates in english
-export LANG=C
+# ----------------------------------------------------------------------------
 
-# Make sure you have dircleaner, fpc etc. on $PATH
-export PATH=/home/michalis/bin:/usr/local/bin:"${PATH}"
+do_svn_update ()
+{
+  cd ~/sources/castle-engine/trunk/
+  svn up > "$OUTPUT_LOG"
+}
+
+# ----------------------------------------------------------------------------
 
 move_all_programs ()
 {
@@ -33,56 +37,54 @@ move_all_programs ()
   mv view3dscene/tovrmlx3d"$EXT" "$OUT_PATH"
 }
 
-OUTPUT_PATH=~/public_html/castle-engine-snapshots/`date +%F`/
-mkdir -p "$OUTPUT_PATH"
+do_compile_snapshot_programs ()
+{
+  cd ~/sources/castle-engine/trunk/
+  ./clean_everything.sh >> "$OUTPUT_LOG"
 
-OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
+  ./compile_all_programs.sh  >> "$OUTPUT_LOG" 2>&1
+  move_all_programs '' linux-i386
 
-cd ~/sources/castle-engine/trunk/
-svn up > "$OUTPUT_LOG"
+  export CASTLE_FPC_OPTIONS=-Twin32
+  ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
+  move_all_programs '.exe' win-i386
+  export CASTLE_FPC_OPTIONS=''
 
-./clean_everything.sh >> "$OUTPUT_LOG"
+  export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
+  ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
+  move_all_programs '.exe' win-x86_64
+  export CASTLE_FPC_OPTIONS=''
 
-./compile_all_programs.sh  >> "$OUTPUT_LOG" 2>&1
-move_all_programs '' linux-i386
+  echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
+  echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTPUT_LOG"
 
-export CASTLE_FPC_OPTIONS=-Twin32
-./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
-move_all_programs '.exe' win-i386
-export CASTLE_FPC_OPTIONS=''
+  # Clean old snapshots, to conserve disk space.
+  # Keep only snapshots from last couple of days.
+  cd ~/public_html/castle-engine-snapshots/
+  set +e
+  find . -mindepth 1 -maxdepth 1 \
+    -type d -and \
+    -name '????-??-??' -and \
+    '(' -not -iname `date +%F` ')' -and \
+    '(' -not -iname `date --date='-1 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-2 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-3 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-4 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-5 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-6 day' +%F` ')' -and \
+    '(' -not -iname `date --date='-7 day' +%F` ')' -and \
+    -exec rm -Rf '{}' ';'
+  set -e
 
-export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
-./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
-move_all_programs '.exe' win-x86_64
-export CASTLE_FPC_OPTIONS=''
+  # Create "latest" link, comfortable for users.
+  rm -f ~/public_html/castle-engine-snapshots/latest
+  ln -s `date +%F` ~/public_html/castle-engine-snapshots/latest
 
-echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
-echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTPUT_LOG"
+  # This will be redone at the end, but make sure now it's done --- in case something fails later
+  public_html_setup_permissions.sh
+}
 
-# Clean old snapshots, to conserve disk space.
-# Keep only snapshots from last couple of days.
-cd ~/public_html/castle-engine-snapshots/
-set +e
-find . -mindepth 1 -maxdepth 1 \
-  -type d -and \
-  -name '????-??-??' -and \
-  '(' -not -iname `date +%F` ')' -and \
-  '(' -not -iname `date --date='-1 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-2 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-3 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-4 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-5 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-6 day' +%F` ')' -and \
-  '(' -not -iname `date --date='-7 day' +%F` ')' -and \
-  -exec rm -Rf '{}' ';'
-set -e
-
-# Create "latest" link, comfortable for users.
-rm -f ~/public_html/castle-engine-snapshots/latest
-ln -s `date +%F` ~/public_html/castle-engine-snapshots/latest
-
-# This will be redone at the end, but make sure now it's done --- in case something fails later
-public_html_setup_permissions.sh
+# ----------------------------------------------------------------------------
 
 # Not done anymore, compositing_shaders is finished now,
 # final PDF version is in SVN.
@@ -94,49 +96,126 @@ public_html_setup_permissions.sh
 # make       >> "$OUTPUT_LOG" 2>&1
 # mv -f compositing_shaders.pdf ~/public_html/
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Runing tovrmlx3d tests:'                                            >> "$OUTPUT_LOG"
+# ----------------------------------------------------------------------------
 
-cd ~/sources/castle-engine/trunk/view3dscene/
-./compile.sh                                                              >> "$OUTPUT_LOG" 2>&1
-./run_tests.sh > /tmp/view3dscene_run_tests_output.txt 2>&1
-diff -u /tmp/view3dscene_run_tests_output.txt run_tests_valid_output.txt  >> "$OUTPUT_LOG"
-rm -f /tmp/view3dscene_run_tests_output.txt
+do_tovrmlx3d_tests ()
+{
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Runing tovrmlx3d tests:'                                            >> "$OUTPUT_LOG"
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
+  cd ~/sources/castle-engine/trunk/view3dscene/
+  ./compile.sh                                                              >> "$OUTPUT_LOG" 2>&1
+  ./run_tests.sh > /tmp/view3dscene_run_tests_output.txt 2>&1
+  diff -u /tmp/view3dscene_run_tests_output.txt run_tests_valid_output.txt  >> "$OUTPUT_LOG"
+  rm -f /tmp/view3dscene_run_tests_output.txt
+}
 
-cd  ~/sources/castle-engine/trunk/castle_game_engine/
-make clean             >> "$OUTPUT_LOG" 2>&1
-# make examples-laz first, to avoid creating .ppu colliding with Lazarus.
-make examples-laz      >> "$OUTPUT_LOG" 2>&1
-make                   >> "$OUTPUT_LOG" 2>&1
-make examples          >> "$OUTPUT_LOG" 2>&1
+# ----------------------------------------------------------------------------
 
-echo '---------------------------------------------------------------'   >> "$OUTPUT_LOG"
-echo 'Runing tests (auto-tests, with engine in -dRELEASE mode):'         >> "$OUTPUT_LOG"
+do_engine_compile ()
+{
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Runing tests (clean and compile everything with examples):'         >> "$OUTPUT_LOG"
 
-cd tests/
-make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
-make       -C  ../                       >> "$OUTPUT_LOG" 2>&1
-./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
-./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
+  cd  ~/sources/castle-engine/trunk/castle_game_engine/
+  make clean             >> "$OUTPUT_LOG" 2>&1
+  # make examples-laz first, to avoid creating .ppu colliding with Lazarus.
+  make examples-laz      >> "$OUTPUT_LOG" 2>&1
+  make                   >> "$OUTPUT_LOG" 2>&1
+  make examples          >> "$OUTPUT_LOG" 2>&1
+}
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'            >> "$OUTPUT_LOG"
+# ----------------------------------------------------------------------------
 
-make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
-# let engine be compiled by compile_console.sh, in debug mode
-./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
-./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
+do_test_castle_window ()
+{
+  cd  ~/sources/castle-engine/trunk/view3dscene/
+  export CASTLE_FPC_OPTIONS="$1"
+  # view3dscene/compile.sh already does "make clean-window", so we can be sure
+  # that new -dCASTLE_WINDOW_xxx will be taken into account.
+  ./compile.sh
+  export CASTLE_FPC_OPTIONS=''
+}
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Making docs:'                                                       >> "$OUTPUT_LOG"
-~/bin/castle_engine_snapshot_remake_docs >> "$OUTPUT_LOG" 2>&1
+do_castlewindow_backends_compile ()
+{
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Check CastleWindow backends compilation:'                           >> "$OUTPUT_LOG"
 
-echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
-echo 'Making reference using PasDoc:'                                     >> "$OUTPUT_LOG"
-~/bin/castle_engine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
+  cd  ~/sources/castle-engine/trunk/
+  ./clean_everything.sh
+
+  do_test_castle_window '-dCASTLE_WINDOW_GTK_2'
+  do_test_castle_window '-dCASTLE_WINDOW_XLIB'
+  do_test_castle_window '-dCASTLE_WINDOW_GLUT'
+  do_test_castle_window '-dCASTLE_WINDOW_TEMPLATE'
+
+  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_WINAPI'
+  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_GTK_2'
+  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_GLUT'
+  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_TEMPLATE'
+
+  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_WINAPI'
+  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_GTK_2'
+  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_GLUT'
+  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_TEMPLATE'
+}
+
+# ----------------------------------------------------------------------------
+
+do_engine_tests ()
+{
+  echo '---------------------------------------------------------------'   >> "$OUTPUT_LOG"
+  echo 'Runing tests (auto-tests, with engine in -dRELEASE mode):'         >> "$OUTPUT_LOG"
+
+  cd  ~/sources/castle-engine/trunk/castle_game_engine/tests/
+  make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
+  make       -C  ../                       >> "$OUTPUT_LOG" 2>&1
+  ./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
+  ./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
+
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'            >> "$OUTPUT_LOG"
+
+  make clean -C  ../                       >> "$OUTPUT_LOG" 2>&1
+  # let engine be compiled by compile_console.sh, in debug mode
+  ./compile_console.sh -dNO_WINDOW_SYSTEM  >> "$OUTPUT_LOG" 2>&1
+  ./test_castle_game_engine -a             >> "$OUTPUT_LOG" 2>&1
+}
+
+# ----------------------------------------------------------------------------
+
+do_docs ()
+{
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Making docs:'                                                       >> "$OUTPUT_LOG"
+  ~/bin/castle_engine_snapshot_remake_docs >> "$OUTPUT_LOG" 2>&1
+
+  echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
+  echo 'Making reference using PasDoc:'                                     >> "$OUTPUT_LOG"
+  ~/bin/castle_engine_snapshot_remake_reference >> "$OUTPUT_LOG" 2>&1
+}
+
+# main code ------------------------------------------------------------------
+
+# log messages and dates in english
+export LANG=C
+
+# Make sure you have dircleaner, fpc etc. on $PATH
+export PATH=/home/michalis/bin:/usr/local/bin:"${PATH}"
+
+# prepare output path and log file
+OUTPUT_PATH=~/public_html/castle-engine-snapshots/`date +%F`/
+mkdir -p "$OUTPUT_PATH"
+OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
+
+do_svn_update
+do_compile_snapshot_programs
+do_tovrmlx3d_tests
+do_engine_compile
+do_castlewindow_backends_compile
+do_engine_tests
+do_docs
 
 echo '---------------------------------------------------------------'    >> "$OUTPUT_LOG"
 echo 'Setting www-data permissions:'                                      >> "$OUTPUT_LOG"
