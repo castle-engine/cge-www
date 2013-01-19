@@ -133,7 +133,7 @@ do_test_castle_window ()
   export CASTLE_FPC_OPTIONS="$1"
   # view3dscene/compile.sh already does "make clean-window", so we can be sure
   # that new -dCASTLE_WINDOW_xxx will be taken into account.
-  ./compile.sh
+  ./compile.sh  >> "$OUTPUT_LOG" 2>&1
   export CASTLE_FPC_OPTIONS=''
 }
 
@@ -143,7 +143,7 @@ do_castlewindow_backends_compile ()
   echo 'Check CastleWindow backends compilation:'                           >> "$OUTPUT_LOG"
 
   cd  ~/sources/castle-engine/trunk/
-  ./clean_everything.sh
+  ./clean_everything.sh  >> "$OUTPUT_LOG" 2>&1
 
   do_test_castle_window '-dCASTLE_WINDOW_GTK_2'
   do_test_castle_window '-dCASTLE_WINDOW_XLIB'
