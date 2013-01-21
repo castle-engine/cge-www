@@ -65,6 +65,10 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
      Sidebar follows the items defined in 'sub'.
 
    - sub: optional array of pages under this page.
+
+   - url: target URL (ready to be used as HTML attribute, i.e. already escaped).
+     Optional, if not present we will generate proper link to internal page
+     using the key as page basename.
 */
 global $castle_sitemap;
 $castle_sitemap = array(
@@ -122,7 +126,7 @@ $castle_sitemap = array(
     'sub' => array(
       'reference' => array('title' => 'Reference'),
       'engine_doc' => array('title' => 'Documentation'),
-      'movies' => array('title' => 'Demo movies'),
+      'movies' => array('title' => 'Movies on YouTube', 'url' => 'http://www.youtube.com/user/michaliskambi'),
     ),
   ),
 
@@ -191,7 +195,7 @@ $castle_sitemap = array(
 
    Return a formatted link to given page.
    $page is the page basename (like for a_href_page), or a basename(hash)anchor.
-   $pageinfo must contain 'title'.
+   $pageinfo must contain 'title', may contain 'url'.
 
    Looks at global $page_basename, to avoid turning current page name
    into a link. */
@@ -204,6 +208,8 @@ function _castle_sidebar_link($page, $pageinfo)
     /* If it's the current page, don't make a link to it */
     if ($pagelink[0] == $page_basename)
       return $pageinfo['title']; else
+    if (isset($pageinfo['url']))
+      return '<a href="' . $pageinfo['url'] .'">' . $pageinfo['title'] . '</a>'; else
       return a_href_page($pageinfo['title'], $pagelink[0]);
   } else
   if (count($pagelink) == 2)
@@ -276,7 +282,11 @@ function _castle_header_menu($current_page)
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
-    $result .= '<td class="lower"><a href="'.en_page_url($menu_item_page).'"';
+    $result .= '<td class="lower"><a href="';
+    if (isset($menu_item['url']))
+      $result .= $menu_item['url']; else
+      $result .= en_page_url($menu_item_page);
+    $result .= '"';
     if (isset($menu_item['hint']))
       $result .= ' title="' . $menu_item['hint'] . '"';
     if ($menu_item_page == $current_page)

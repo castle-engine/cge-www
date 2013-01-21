@@ -411,9 +411,7 @@ web3d.org examples</a>.</p>"),
         faster by alpha_test). Moreover, <tt>MovieTexture</tt> node is now
         handled (movie can be read from image sequences, like <tt>image%d.png</tt>,
         and from normal movie formats thanks to <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>).
-        As a demo, see the flames animation on the right.
-        (You can also <a href="http://castle-engine.sourceforge.net/movies/fireplace_demo.avi">download
-        AVI version with perfect quality</a>.)</p>
+        As a demo, see the flames animation on the right.</p>
 
       <li><p>Flames movie above was not only played in our ' .
         news_a_href_page('view3dscene', 'view3dscene') . ', it was also

@@ -10,8 +10,7 @@
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot X3D model rendered with toon shading in GLSL'),
     array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
     array('html' =>
-      '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine. You can also '
-      . current_www_a_href_size('get AVI version with much better quality', 'movies/2.avi')
+      '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine.'
       . (!HTML_VALIDATION ?
       '<object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/ag-d-JGvHfQ&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="200" height="167"></embed></object>'
       : '')

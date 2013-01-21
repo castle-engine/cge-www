@@ -709,8 +709,7 @@ EXTERNPROTO Text3D [
   echo castle_thumbs(array(
     array('filename' => 'fireplace_movie_texture_demo.png', 'titlealt' => 'Fireplace demo screenshot'),
     array('html' =>
-      '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated. You can also '
-      . current_www_a_href_size('get AVI version with much better quality', 'movies/fireplace_demo.avi')
+      '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated.'
       . (!HTML_VALIDATION ?
       '<object class="youtube_thumbnail_video"><param name="movie" value="http://www.youtube.com/v/V-EJvVbi1DQ"> </param> <embed src="http://www.youtube.com/v/V-EJvVbi1DQ" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>'
       : '')

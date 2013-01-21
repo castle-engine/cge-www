@@ -63,8 +63,8 @@
 contains more exhaustive list of engine features, with links to detailed
 information.</p>
 
-<p>See also <?php echo a_href_page('demo movies of Castle Game Engine',
-'movies'); ?>.
+<p>Many <a href="http://www.youtube.com/user/michaliskambi">demo movies about
+Castle Game Engine are available in Michalis Kamburelis YouTube channel</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 <?php echo $toc->html_section(); ?>
