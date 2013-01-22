@@ -42,6 +42,11 @@ downloaded below.</p>
     information about minimal FPC version', 'engine', 'section_fpc_ver'); ?>
     (in short: use latest stable FPC version).
 
+  <li><p><b>Install required libraries</b>. See
+    <?php echo a_href_page_hashlink('engine download page', 'engine',
+    'section_download_src'); ?> for the list of libraries we use,
+    and see download page of each particular program.
+
   <li><p><b>Optionally install required program data</b>. In most cases you don't
     have to do anything &mdash; as programs below either don't have any data,
     or they use smart function (<a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ProgramDataPath">ProgramDataPath</a>)
@@ -52,18 +57,13 @@ downloaded below.</p>
     or <tt>/usr/local/share/xxx</tt> or <tt>/usr/share/xxx</tt>.
     You can do this easily by executing <tt>make install</tt> inside program
     directory.
-
-  <li><p><b>Install required libraries</b>. See
-    <?php echo a_href_page_hashlink('engine download page', 'engine',
-    'section_download_src'); ?> for the list of libraries we use,
-    and see download page of each particular program.
-
-  <li><p>The sources below contain everything you need.
-    Source code (units, program files), scripts, also game data sources
-    (GIMP *.xcf files, Blender *.blend files and so on).
-    Everything is open source,
-    <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a> &gt;= 2.
 </ol>
+
+<p>The sources below contain everything you need.
+Source code (units, program files), scripts, also game data sources
+(GIMP *.xcf files, Blender *.blend files and so on).
+Everything is open source,
+<a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a> &gt;= 2.
 
 <?php
 function older_engine_version($older_version)
