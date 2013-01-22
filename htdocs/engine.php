@@ -11,7 +11,6 @@
       new TocItem('Features', 'features'),
       new TocItem('Documentation', 'docs'),
       new TocItem('License', 'license'),
-      new TocItem('Automatic tests', 'tests')
     )
   );
   $toc->echo_numbers = true;
@@ -398,33 +397,6 @@ As a special exception, the copyright holders of this library give you permissio
 
   <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>castle_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<?php echo castle_thumbs(array(
-  array('filename' => 'test_castle_game_engine_screen_demo.png', 'titlealt' => 'test_castle_game_engine')
-));
-?>
-
-<p>I'm managing a suite of automatic tests,
-in the spirit of <a href="http://www.extremeprogramming.org/">Extreme Programming</a>.
-On 2005-04-25 I converted my tests to use
-<a href="http://camelos.sourceforge.net/fpcUnit.html">fpcunit</a>
-(this is a close FPC analogy to <a href="http://www.junit.org/">JUnit for Java</a>)
-and it's <a href="http://www.lazarus.freepascal.org/">Lazarus</a> GUI runner.</p>
-
-<p>The tests are included in the engine sources,
-see the subdirectory <tt>tests/</tt>. You can open and run them
-from Lazarus to see a result in a nice GUI window.</p>
-
-<p>You can also compile and run a console version, that doesn't require
-Lazarus (LCL), only pure FPC is needed:</p>
-
-<pre class="terminal">
-cd tests/
-./compile_console.sh
-./test_castle_game_engine -a
-</pre>
 
 <?php
   castle_footer();
