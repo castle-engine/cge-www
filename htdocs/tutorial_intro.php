@@ -1,6 +1,6 @@
 <?php
   require_once 'tutorial_common.php';
-  tutorial_header('Introduction');
+  tutorial_header('Tutorial introduction');
 ?>
 
 This tutorial shows how to make a simple 3D first-person game using our <i>Castle Game Engine</i>. We'll explain the basics of our engine, show you some simple programs and mention the most important classes.
