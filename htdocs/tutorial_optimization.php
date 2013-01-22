@@ -1,4 +1,7 @@
-Optimization and profiling
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Optimization and profiling');
+?>
 
 One you have a large game, with many large 3D models, you will probably start to wonder about the speed and memory usage.
 
@@ -62,3 +65,7 @@ You can ajust the parameters how the octree is created. You can do it in VRML/X3
 ----- Profiling
 
 You can use any FPC tools to profile your code, for memory and speed. There's a small document about it in engine sources, see castle_game_engine/doc/profiling_howto.txt . See also wiki http://wiki.lazarus.freepascal.org/Profiling .
+
+<?php
+  tutorial_footer();
+?>

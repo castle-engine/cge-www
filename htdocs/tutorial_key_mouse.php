@@ -1,4 +1,7 @@
-(TODO: new chapter number) Key/mouse shortcuts
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Key / mouse shortcuts');
+?>
 
 We have global controls in global variables: InputPlayer_Xxx and Input_Interact and more. They are gather inside CastleInputs.InputsAll global map. Thanks to this global map, you can let user to configure game controls, you can detect key conflicts and handle them however you like, etc.
 
@@ -9,3 +12,7 @@ Every key/mouse shortcut is a TInputShortcut. They are configurable, you can cha
 The state of keys on the global keymap (CastleInputs.InputsAll) is automatically saved/loaded to the config file, if you use Config.Save/Load mentioned in chapter "User preferences".
 
 You can also create new TInputShortcut descendants, global (added to InputsAll, saved to config file and such) or local. See CastleInputs unit API docs. You can easily handle them by overriding TUIControl.Press or TCastleControl.EventPress or TCastleWindow.EventPress methods, or assigning TCastleControl.OnPress or TCastleWindow.OnPress callbacks. You will find then useful methods TInputShortcut.IsEvent(TInputPressRelease) (to detect press/release of input) and TInputShortcut.IsPressed(IUIContainer) (to detect holding (keeping pressed) of input).
+
+<?php
+  tutorial_footer();
+?>

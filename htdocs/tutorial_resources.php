@@ -1,3 +1,8 @@
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Creatures and items');
+?>
+
 Thanks to using TGameSceneManager and LoadLevel, you actually don't need to do much. We have a nice default handling of creatures and items suitable for 3D games in CastleCreatures and CastleItems units.
 
 Creatures/items are XML files named resource.xml with the <resource> root node. See for now castle1 daya for examples how such file looks like, e.g. castle/data/creatures/alien/resource.xml . See http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt for more details about the properties you can set in resource.xml files. See also DRAFT.modeling_tutorial.txt about modeling and exporting creature animations.
@@ -21,3 +26,6 @@ Items are automatically pickable by player, player backpack is automatically man
 
 CastleCreatures unit (see inside src/game/ in sources) allows you to easily create creatures with artificial intelligence.
 
+<?php
+  tutorial_footer();
+?>

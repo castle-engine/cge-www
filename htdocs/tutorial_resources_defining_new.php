@@ -1,3 +1,8 @@
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Extending existing creatures / items classes');
+?>
+
 You can also derive simple descendants of CastleCreatures classes, to customize their behavior. For example, "The Castle" customizes walk-attack creature to give both ranged and melee attacks to the Spider Queen, to make werewolves howl from time to time, and such. See castle1 GameCreatures.pas unit sources. We plan to add a simple FPS game to the engine examples, to illustrate this nicer.
 
   You can start your customizations from full-features classes, like TWalkAttackCreatureResource and TWalkAttackCreature. Or you can take the basic TCreatureResource and TCreature, and extend them to your liking.
@@ -181,3 +186,6 @@ You can also derive simple descendants of CastleCreatures classes, to customize 
     definitions. Castle3D contains a lot of classes to make it easy
     to create your own, dynamic 3D objects.
 
+<?php
+  tutorial_footer();
+?>

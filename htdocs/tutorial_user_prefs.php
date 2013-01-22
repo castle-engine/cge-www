@@ -1,4 +1,7 @@
-15. User preferences
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('User preferences');
+?>
 
 Easy: Use CastleConfig. Various engine components automatically register that they can load/save user preferences. So
 
@@ -25,3 +28,7 @@ Config.Load;
 { save config to file }
 Config.Save;
 ]]
+
+<?php
+  tutorial_footer();
+?>

@@ -1,3 +1,8 @@
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Define other 3D objects');
+?>
+
 6.3. (After creatures and items section, section "More stuff in your 3D world?")
 
   Our creature and items classes in CastleCreatures and CastleItems units are not magic, they do not get any special treatment from the scene manager. Instead, they just extend the base 3D classes in Castle3D unit. There are ready classes to represent 3D things, that can move, can collide with other 3D stuff and such. If you find that our creatures/items design is not enough for you, or maybe you want to have in your 3D world something that doesn't really fit the creature/item definition, you can always derive new classes from the Castle3D classes. Like T3DAlive, T3DOrient, T3DTransform. Methods Move, MoveAllowed, Height, LineOfSight allow you to add any kind of movement/intelligence to any 3D object.
@@ -98,3 +103,7 @@ var
   ManaPotionInstance1.Add(ManaPotionType);
   SceneManager.Items.Add(ManaPotionInstance1);
 ]]
+
+<?php
+  tutorial_footer();
+?>

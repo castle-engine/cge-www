@@ -1,4 +1,7 @@
-9. Sound
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Sound');
+?>
 
 As with many other operations, you can add and control sounds to your game either by Pascal code, or by editing your data files. This gives flexibility both to a programmer and the content designer. It's your choice which approach you use &mdash; usually it's better to keep as much as possible in data files, and use code only when necessary for non-trivial situations.
 
@@ -88,3 +91,7 @@ For more advanced uses, you can use the return value of PlaySound or Sound or So
 Various engine components already want to use some sounds. To make it actually happen, you need to create file like <tt>data/sounds/index.xml</tt> described above, and define there sounds with a predefined names.
 
 See "Common sounds" section in CastleSoundEngine unit sources for a current list of predefined sound names.
+
+<?php
+  tutorial_footer();
+?>

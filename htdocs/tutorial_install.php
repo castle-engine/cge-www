@@ -1,4 +1,7 @@
--Download and install the engine, try the demos
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Download and install the engine, try the demos');
+?>
 
 If you haven't done it yet, download the engine source code with examples from ....
 
@@ -13,3 +16,7 @@ Let's quickly open and run some demos, to make sure that everything works. I sug
 Make sure you have installed the necessary libraries first, or some of the demos will not work. The required libraries (.so under Unix, .dll under Windows) are mentioned in the <a href="http://castle-engine.sourceforge.net/apidoc/html/introduction.html#SectionLibraries">Requirements -&gt; Libraries</a> section of our reference introduction. Under Windows, you will usually want to grab http://castle-engine.sourceforge.net/miscella/win32_dlls.zip and place them somewhere on your $PATH, or just place them in every directory with .exe files that you compile with our engine.
 
 Now we'll start creating our own game from scratch.
+
+<?php
+  tutorial_footer();
+?>

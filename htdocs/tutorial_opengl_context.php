@@ -1,4 +1,7 @@
-2. Creating OpenGL context --- a window (TCastleWindow) or a Lazarus component (TCastleControl)
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('OpenGL context', 'Creating a window (TCastleWindow) or a Lazarus component (TCastleControl)');
+?>
 
 First of all, you need to initialize a rectangular area on the screen that will be able to display 3D content. This is called OpenGL context. There are two ways of doing this:
 
@@ -53,3 +56,7 @@ How you deal with focus really depends on your application:
   - You may want to create a special key shortcut to quickly shift focus to your control (calling Control.SetFocus).
   - You may want to draw some visual indication, like a border around TCastleControl, when it's focused. Actually, our TCastleControl may contain inside our own controls (TUIControl class), so you may want the draw TUIControl that is focused (see examples/3d_rendering_processing/multiple_viewports.lpr for simple example that shows which viewport is active, having 4 viewports within a single OpenGL context).
   - Finally, if you really want, you can also use standard Lazarus features like TForm.KeyPreview and TForm.OnKeyDown / OnKeyUp to capture some keys at form level and pass them directly to chosen control.
+
+<?php
+  tutorial_footer();
+?>

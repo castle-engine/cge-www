@@ -1,4 +1,7 @@
-4. Load a 3D model (simple approach to loading a game level or such)
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Simple loading of 3D models');
+?>
 
 We will now load a 3D model from file. This is also a one approach to load a simple game level, although you will learn a more advanced way later.
 
@@ -33,3 +36,7 @@ end.
 At the beginning we create a new instance of TCastleScene, and load it's contents from a file. Scene.Spatial determines what spatial structures (octrees for now) are created, the value [ssRendering, ssDynamicCollisions] is the most flexible one (it allows to speed up the rendering by frustum culling, detect collisions between player and level, and it adapts to a dynamic level that may have some animated parts). Scene.ProcessEvents activates animating VRML/X3D models (you can remove it if you know your level is, and always will be, static).
 
 The level is added to the scene manager. The level is also set as the "MainScene" of scene manager, this means that some central settings (like initial camera position, initial headlight status and such) can be obtained from this scene.
+
+<?php
+  tutorial_footer();
+?>

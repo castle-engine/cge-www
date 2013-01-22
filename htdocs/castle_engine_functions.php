@@ -140,7 +140,7 @@ $castle_sitemap = array(
             ),
           ),
           'tutorial_up' => array('title' => 'Which way is up?'),
-          'tutorial_3d' => array('title' => 'Defining other 3D things'),
+          'tutorial_3d_custom' => array('title' => 'Define other 3D objects'),
           'tutorial_player_2d_controls' => array('title' => 'Display 2D controls: player HUD'),
           'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),
           'tutorial_notifications' => array('title' => 'Notifications'),
@@ -359,6 +359,10 @@ function _castle_breadcrumbs($path)
     while ($path_item_num < count($path) - 1)
     {
       $path_item = $path[$path_item_num];
+
+      if (!isset($path_itemsub[$path_item]))
+        throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+
       $path_itemtitle = $path_itemsub[$path_item]['title'];
       if (isset($path_itemsub[$path_item]['sub']))
         $path_itemsub = $path_itemsub[$path_item]['sub']; else

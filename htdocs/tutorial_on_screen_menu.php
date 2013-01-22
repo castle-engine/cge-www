@@ -1,3 +1,8 @@
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('On-screen menu');
+?>
+
 Our TCastleWindow or TCastleControl have a list of 2D controls visible of the screen. By default, the only thing present there is a scene manager (since scene manager acts as a 2D viewport through which you see the 3D world; that's right --- the 3D stuff is "within" the 2D stuff). This way the scene manager (it's viewport) is visible on the window, which in turn means that all the 3D stuff we will add next is visible too.
 
 You can add your own 2D controls using the Window.Controls.Add call. There are many predefined GUI controls available in our engine, look for TUIControl descendants, for example in CastleControls unit. You can also derive your own controls with ease.
@@ -76,3 +81,7 @@ In addition to previous point, you may want to change the menu TCastleOnScreenMe
 An alternative method to achieve (part) of 2nd choice is to set background level camera's Input := []. This also blocks user from moving in the scene (although it doesn't make input passed to menu regardless of mouse position).
 
 If you want to place a static 2D image under menu, you can use TCastleImageControl underneath, instead of 3D scene.
+
+<?php
+  tutorial_footer();
+?>

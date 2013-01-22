@@ -1,4 +1,7 @@
-8. Display custom 2D controls: your own player HUD
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Display 2D controls: player HUD');
+?>
 
 You will often want to draw a 2D controls on your screen, for example to display player life or inventory (the engine does manage the player's inventory automatically for you, in TPlayer.Inventory; however, it's not displayed automatically, since various games have wildly different needs). You can do it by defining a new TUIControl descendant, where you can draw anything you want in overridden Draw method. You can use the ready UIFont instance to draw a 2D font on the screen. A simple example:
 
@@ -95,3 +98,7 @@ more impressive player's life indicator and inventory and other things on the sc
 You can use any 2D engine controls like this, just add them to Window.Controls.
 See CastleControls unit for some standard buttons and panels and images.
 But for a specific game you will probably want a specialized UI, done like the example above.
+
+<?php
+  tutorial_footer();
+?>

@@ -1,4 +1,8 @@
-Sidenote: Which way is up?
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Which way is up?');
+?>
+
 There are various conventions for which vector is "up" in 3D world and, consequently, which vector corresponds to the "direction" the creature/player is facing.
 
 Quick guide:
@@ -34,3 +38,7 @@ The notion of direction/up is used by our engine in two places:
 2. Oriented 3D things, like creatures, player, and items (and anything else derived from T3DOrient class) are always oriented such that their local direction/up is matching the vectors defined by T3DOrient.Orientation property. Although the publicly visible properties like TCreature.Up are automatically set to be *usually* equal to the World.GravityUp (in case of flying creatures, it may actually be different sometimes). But you still have to set the T3DOrient.Orientation yourself, to make the local creature model correctly match these vectors. You want to set it such that typical up of your creatures changes into World.GravityUp (that is, creature's up remains untransformed).
 
 Usually, you want to just set T3DOrient.DefaultOrientation, and then it will be used for all your models.
+
+<?php
+  tutorial_footer();
+?>

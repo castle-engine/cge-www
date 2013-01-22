@@ -1,8 +1,13 @@
+<?php
+  require_once 'tutorial_common.php';
+  tutorial_header('Player');
+?>
 
-
-For a good measture, it will also be handy later to have a central Player object. This is used for various things:
+For a full-featured game it is good to have a central Player object. This is used for various things:
 - It will make camera automatically tied to the Player, making it a first-person perspective game. (More camera approach, like third-person view, will be available later.)
 - By default player is also a central enemy of all hostile creatures created using CastleCreatures unit. This is configurable (by overriding TCastleCreature.Enemy).
+
+Note that the Player instance is not necessary for basic 3D navigation (the only thing really necessary is camera, automatically created and placed in TCastleAbstractViewport.Camera). But for games, it's usually most comfortable to create and use it.
 
 To load a Player do this:
 
@@ -31,3 +36,7 @@ There is an alternative way to place things relative to player view: use X3D Pro
 \---
 
 ((TODO: describe player.xml somewhere later.)
+
+<?php
+  tutorial_footer();
+?>
