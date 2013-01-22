@@ -88,7 +88,6 @@ $castle_sitemap = array(
     'sidebar' => true,
     'sub' => array(
       'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
-      'castle-development' => array('title' => 'Development'),
       'castle-credits'     => array('title' => 'Credits'),
     ),
   ),
@@ -153,6 +152,14 @@ $castle_sitemap = array(
           'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'tutorial_optimization' => array('title' => 'Optimization and profiling'),
         ),
+      ),
+      'creating_data_intro' => array('title' => 'Creating game data',
+        'sub' => array(
+          'creating_data_intro' => array('title' => 'Introduction'),
+          'creating_data_levels' => array('title' => 'Levels'),
+          'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
+          'creating_data_sound' => array('title' => 'Sound'),
+        )
       ),
       'reference' => array('title' => 'Reference'),
       'engine_doc' => array('title' => 'Internals Documentation'),

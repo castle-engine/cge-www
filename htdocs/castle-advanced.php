@@ -10,9 +10,11 @@
       new TocItem('Sound notes', 'sound'),
       new TocItem('Other command-line options', 'command_line'),
       new TocItem('Details about items in the game', 'items_details'),
-      new TocItem('Version numbers', 'versioning')
+      new TocItem('Version numbers', 'versioning'),
+      new TocItem('Debug menu, debug options', 'debug_menu_options'),
     )
   );
+  $toc->echo_numbers = true;
 ?>
 
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash;
@@ -24,9 +26,6 @@ If all you want is just to run the game, then <i>don't read this page</i>.
 You don't need this. This page explains some details that may be needed
 for advanced users and developers to understand how the game works,
 but normal users will not find here anything useful.
-Developers that want to help actually extend and modify the game
-should read this, and additionally the page about
-<?php echo a_href_page('"The Castle" development', 'castle-development') ?>.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
@@ -181,6 +180,35 @@ The last version uploaded for PGD competition was 0.6.1.
 
 <p>Now, after PGD competition ended, I continue development
 using <?php echo a_href_page('my normal versioning scheme', 'versioning') ?>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you want to modify game content heavily, I advice to get
+familiar with our <i>debug menu</i>. The debug menu contains
+many useful commands that will make your life much easier. By default,
+debug menu is activated by backquote key (the one with tilde, the same
+key used to bring console in many FPS games).
+
+<p>Using the debug menu
+you can turn on some special features useful for designers/debugging
+(e.g. to see bounding volumes of objects) or turn off normal game features
+that may be annoying when designing (e.g. stop time for creatures).
+
+<p>You can also request a reload of particular creature/item/level VRML/XML
+etc. files. This is extremely useful when you changed some data file
+and you would like to quickly reload just this one file,
+to see how things work now &mdash; without exiting the game.
+
+<p>There are also some command-line debug options (but not too much &mdash;
+it's always more flexible to have things available at runtime instead
+of only at the start). Run the program with <tt>--help</tt>
+to get their list.
+<?php /*
+<tt>--debug-no-creatures</tt> is one such useful option:
+it avoids this lengthy "Loading creatures" loading time, which is useful
+when you're not interested in testing creatures
+(e.g. when you only design new level geometry).
+*/ ?>
 
 <?php
   castle_footer();

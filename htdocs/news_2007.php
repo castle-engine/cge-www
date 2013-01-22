@@ -548,8 +548,7 @@ SourceForge.
         released &mdash; in 0.6.5 sky on the "Gate" level
         was not visible, fixed now. Also suppport for designing levels
         in VRML 2.0 added, but not finished yet, see TODO item on
-        ' . news_a_href_page('"The Castle" &mdash; development',
-        'castle-development') . ' page.
+        "The Castle" &mdash; development page.
       <li>' . news_a_href_page('glViewImage 1.2.0', 'glviewimage') . '
         released,
         ' . news_a_href_page('glplotter 1.1.5', 'glplotter_and_gen_function') . ' released,

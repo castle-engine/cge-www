@@ -61,17 +61,16 @@ wait only once for "Loading creatures").
 */
 ?>
 
-<p><i>History and plans:</i> This game was initially developed for
+<p><i>History and plans:</i> This game is a little old now,
+and it doesn't really use the capabilities of latest
+<?php echo a_href_page('Castle Game Engine', 'engine'); ?> versions.
+This game was initially developed for
 <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
-competition. It was at the beginning of 2006, in the time where
+competition. It was at the beginning of 2006, at a time when
 <?php echo a_href_page('our engine', 'engine'); ?>
- didn't even have a version number yet :) (So, it was before 1.0.0 engine release.)
-A new game, that actually uses the current capabilities of our engine
-(thousand things were developed since 2006 &mdash; new graphic effects,
-new ways to be interactive / animated etc.) is planned.
-For some ambitious future plans about this game, see
-<?php echo a_href_page_hashlink('my goals for this game',
-'castle-development', 'section_goals'); ?>.
+ didn't even have a version number yet :) <!-- (So, before 1.0.0 engine release.) -->
+A new game, that actually uses the current capabilities
+of our engine (we developed a lot of new features since 2006...), is planned.
 
 <?php echo $toc->html_section(); ?>
 
