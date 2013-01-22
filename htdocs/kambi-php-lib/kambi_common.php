@@ -464,6 +464,33 @@ div.quick_links_bottom_line { text-align: <?php
 <?php
 }
 
+/* Sets global $page_basename and $this_page_name, if not already set.
+   It is Ok (harmless) to call this more than once during page request
+   (useful, since we call it from common_header but "Castle Game Engine"
+   also wants to call it earlier). */
+function kambi_bootstrap()
+{
+  global $this_page_name, $page_basename;
+
+  /* calculate $this_page_name */
+  /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
+     dostaję dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceń (do --gen-local):
+     pod Linuxem dostaję $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
+     dostaję $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
+     Więc pod Windowsem biorę je z $_SERVER['argv'][0]. */
+  $this_page_name = $_SERVER['PHP_SELF'];
+  if ($this_page_name == '')
+    $this_page_name = $_SERVER['argv'][0];
+  $this_page_name = basename($this_page_name);
+
+  /* calculate $page_basename (requires $this_page_name) */
+  if (!isset($page_basename))
+  {
+    $page_basename = $this_page_name;
+    $page_basename = basename($page_basename, '.php');
+  }
+}
+
 /* header ============================================================ */
 
 /* $meta_description :string/NULL = krótki opis strony,
@@ -486,25 +513,9 @@ function common_header($a_page_title, $page_lang,
 
   $page_title = $a_page_title;
 
-  /* calculate $this_page_name */
-  /* Poprzez Apache'a (na moim Linuxie, moim Windowsie, i na camelot.homedns.org)
-     dostaję dobre $_SERVER['PHP_SELF']. Uruchomiony z linii poleceń (do --gen-local):
-     pod Linuxem dostaję $_SERVER['PHP_SELF'], pod Windowsem nie (pod Windowsem
-     dostaję $_SERVER['PHP_SELF'] ustawione na '' (ale ustawione, tzn. nie jest NULL).
-     Więc pod Windowsem biorę je z $_SERVER['argv'][0]. */
-  $this_page_name = $_SERVER['PHP_SELF'];
-  if ($this_page_name == '')
-    $this_page_name = $_SERVER['argv'][0];
-  $this_page_name = basename($this_page_name);
+  kambi_bootstrap();
 
-  /* calculate $page_basename (requires $this_page_name) */
-  if (!isset($page_basename))
-  {
-    $page_basename = $this_page_name;
-    $page_basename = basename($page_basename, '.php');
-  }
-
-  /* evaluate $s_quick_links */
+  /* calculate $s_quick_links */
   $s_quick_links = '';
 
   if (!IS_GEN_LOCAL)

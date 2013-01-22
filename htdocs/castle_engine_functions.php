@@ -114,6 +114,7 @@ $castle_sitemap = array(
       'openal' => array('title' => 'OpenAL (3D sound)'),
       'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
       'versioning' => array('title' => 'Versioning scheme of programs'),
+      'all_programs_sources' => array('title' => 'All Programs Sources'),
     ),
   ),
 
@@ -219,6 +220,16 @@ $castle_sitemap = array(
 
   'blender' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
+
+function _castle_bootstrap()
+{
+  kambi_bootstrap();
+  _castle_sitemap_tutorial_correct();
+}
+
+/* Call this immediately, to modify $castle_sitemap even before calling
+   castle_header. */
+_castle_bootstrap();
 
 /* Internal for _castle_sidebar* usage.
 
@@ -404,6 +415,44 @@ if ($main_page) echo facebook_header();
   <?php
 }
 
+/* Update global $castle_sitemap to add chapter numbers to tutorial pages.
+   Also set global $castle_tutorial with information specifically about
+   tutorial pages. */
+function _castle_sitemap_tutorial_correct()
+{
+  global $castle_tutorial;
+  global $castle_sitemap;
+
+  $castle_tutorial = array();
+  $chapter_number = 1;
+  foreach ($castle_sitemap['engine']['sub']['tutorial_intro']['sub'] as
+    $tutorial_chapter_basename => &$tutorial_chapter)
+  {
+    $castle_tutorial[$tutorial_chapter_basename] = $tutorial_chapter;
+    $castle_tutorial[$tutorial_chapter_basename]['number'] = $chapter_number . '. ';
+    $tutorial_chapter['title'] = $castle_tutorial[$tutorial_chapter_basename]['number'] .
+      $tutorial_chapter['title'];
+
+    if (isset($tutorial_chapter['sub']))
+    {
+      $subchapter_number = 1;
+      foreach ($tutorial_chapter['sub'] as
+        $tutorial_subchapter_basename => &$tutorial_subchapter)
+      {
+        $castle_tutorial[$tutorial_subchapter_basename] = $tutorial_subchapter;
+        $castle_tutorial[$tutorial_subchapter_basename]['number'] =
+          $chapter_number . '.' . $subchapter_number . '. ';
+        $tutorial_subchapter['title'] =
+          $castle_tutorial[$tutorial_subchapter_basename]['number'] .
+          $tutorial_subchapter['title'];
+        $subchapter_number++;
+      }
+    }
+
+    $chapter_number++;
+  }
+}
+
 /* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
    if not already there. */
@@ -439,6 +488,10 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     } else
     {
       $sidebarroot_page = $path[$sidebarroot_num];
+
+      if (!isset($sidebarroot_sub[$sidebarroot_page]))
+        throw new ErrorException('No page named ' . $sidebarroot_page . ' at current level of castle_sitemap');
+
       $sidebarroot_info = $sidebarroot_sub[$sidebarroot_page];
       $sidebarroot_sidebar =
         isset($sidebarroot_info['sidebar']) &&
