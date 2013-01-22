@@ -1,0 +1,33 @@
+
+
+For a good measture, it will also be handy later to have a central Player object. This is used for various things:
+- It will make camera automatically tied to the Player, making it a first-person perspective game. (More camera approach, like third-person view, will be available later.)
+- By default player is also a central enemy of all hostile creatures created using CastleCreatures unit. This is configurable (by overriding TCastleCreature.Enemy).
+
+To load a Player do this:
+
+[[
+var
+  Player: TPlayer;
+...
+  Player := TPlayer.Create(SceneManager);
+  SceneManager.Items.Add(Player);
+  SceneManager.Player := Player;
+]]
+
+It's best to do this (assign SceneManager.Player) before SceneManager.LoadLevel, this way Player.Camera is automatically configured as SceneManager.Camera and it follows level's properties like PreferredHeight (from level's NavigationInfo.avatarSize).
+
+Player is a descendant of T3DList, which means that you can add additional 3D objects as it's children, like Player.Add(Some3DObject). These 3D objects will always be rendered relative the the player, so they will move along with the player. This is an easy way to add 3D weapon models and similar things to your display. In fact, we do it automatically for TCastlePlayer.EquippedWeapon 3D model. But you can also add/remove additional 3D objects this way.
+
+As an additional feature, all 3D objects that are children of player will always be rendered on top of other 3D world. This means that even if you 3D weapon model is large (like a long sword pointing out from camera), it will never go "inside the wall". You can turn this feature on/off by TCastlePlayer.RenderOnTop property.
+
+Aside from special TCastlePlayer.RenderOnTop behavior, the 3D objects that are children of player are rendered and processed as all other 3D stuff. For example, they can animate (by using TCastlePrecalculatedAnimation or by using TCastleScene with <tt>TCastleScene.ProcessEvents := true</tt>).
+
+Note that the player 3D objects <b>do not</b> make the player collision sphere (aka camera radius) larger. If you want to make the collision sphere larger, you can do it by placing a NavigationInfo node in every level 3D file, and adjusting the 1st item of avatarSize field &mdash; it determines the camera radius.
+
+/---
+ Some box "Advanced":
+There is an alternative way to place things relative to player view: use X3D ProximitySensor node. See demo_models/sensors_environmental/follow_camera_by_proximity_sensor.x3dv for a simple example how to code it in X3D. This allows you to place the 3D things that are relative to player inside a larger X3D file, together e.g. with normal level geometry (which may be an advantage or disadvantage, depending what you want). The disadvantage is that we do not implement layers in X3D now, so such geometry will overlap with 3D level geometry (unless it will always fit within camera radius).
+\---
+
+((TODO: describe player.xml somewhere later.)
