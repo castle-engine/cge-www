@@ -1,10 +1,10 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_header("Engine Internals Documentation", NULL, array('engine'));
+  castle_header("Engine internals documentation", NULL, array('engine'));
 ?>
 
-<?php echo pretty_heading('Engine Internals Documentation', NULL,
+<?php echo pretty_heading('Engine internals documentation', NULL,
   'Overview of the engine and VRML, with some information about engine internals'); ?>
 
 <p>Most of this documentation was originally written as my master's thesis,

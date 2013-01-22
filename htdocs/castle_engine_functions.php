@@ -163,7 +163,7 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'Reference'),
-      'engine_doc' => array('title' => 'Internals Documentation'),
+      'engine_doc' => array('title' => 'Internals documentation'),
       'movies' => array('title' => 'Movies on YouTube', 'url' => 'http://www.youtube.com/user/michaliskambi'),
     ),
   ),
