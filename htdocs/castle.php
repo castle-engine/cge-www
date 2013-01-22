@@ -85,13 +85,7 @@ For some ambitious future plans about this game, see
 the list of changes since last release.</p>
 
 <p>This is free software, so if you're interested you're also welcome to
-<?php echo a_href_page_hashlink('download game sources', 'engine',
-'section_download_src'); ?> (from this page, grab engine sources + castle sources).
-The castle sources contain all the Pascal sources, Blender models,
-Makefiles, GIMP xcf files, etc. needed to develop the game.
-To compile, you will also need to download engine sources.
-See <?php echo a_href_page_hashlink('here for more info about compiling',
-'castle-development', 'section_compiling'); ?>.
+<?php echo a_href_page('download game sources', 'all_programs_sources'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

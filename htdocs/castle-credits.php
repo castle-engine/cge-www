@@ -46,13 +46,8 @@ so if something gets broken &mdash; that's totally not me :)</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><?php echo a_href_page('My "Castle Game Engine"', 'engine'); ?>.
-    You can treat this engine as part of this game
-    (I'm actually extending it while developing this game...),
-    but it's generally useful.</li>
-
-  <li>My font2pascal was used to generate font,
-    see castlebitmapfont_bvsans_m10.pas and mk_fonts.sh</li>
+  <li><?php echo a_href_page('Castle Game Engine', 'engine'); ?>
+    is the basis of this game.</li>
 
   <li><a href="http://www.freepascal.org/">FreePascal</a> is a compiler
     that made this all possible.</li>
@@ -200,11 +195,8 @@ I and II Music" as compiled by Paul Burdette</a>.
   content that was originally developed by Doom authors, and they own it.
 
   <p>If you want to redistribute my game as a pure open-source, you
-  can simply remove these <tt>doom/</tt> subdirectories.
-  You can also remove <tt>doom_e1m1</tt> entry inside
-  <tt>data/levels/index.xml</tt>,
-  so that the game doesn't crash when user tries to enter non-existing
-  doom level.
+  can simply remove these <tt>doom/</tt> subdirectories. The DOOM level
+  will then disappear from the "New Game" menu.
 
   <p><b>For Id Software</b>: hopefully if any lawyer working for Id Software
   will ever spot this page, he will understand that the "Doom level" in my game is

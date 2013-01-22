@@ -26,7 +26,7 @@ just a demo of what I can achieve with my VRML + OpenGL + OpenAL code
 (read: 3d graphic and spatial audio fun). Just download it, gasp in awe,
 and have fun for a couple of minutes. Programmers may have fun
 for a little longer investigating program's
-<?php echo a_href_page('sources', 'engine'); ?>.
+<?php echo a_href_page('sources', 'all_programs_sources'); ?>.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
@@ -77,8 +77,8 @@ you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
 
 <p>Press F1 in the game to get help.
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
- Sources of lets_take_a_walk live as an example inside
+<p>This is free/open-source software.
+Sources of <tt>lets_take_a_walk</tt> live as an example inside
 engine sources, in <tt>castle_game_engine/examples/3d_sound_game/</tt>.</p>
 
 <?php echo $toc->html_section(); ?>

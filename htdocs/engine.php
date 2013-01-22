@@ -6,11 +6,8 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Introduction', 'intro'),
-      new TocItem('Download', 'download_src'),
-      new TocItem('Engine', 'engine_src', 1),
-      new TocItem("Other programs' sources", 'program_sources', 1),
-      new TocItem('FPC (Free Pascal Compiler) versions', 'fpc_ver', 1),
-      new TocItem("Getting bleeding-edge (development) version from Subversion (SVN)", 'svn', 1),
+      new TocItem('Download engine', 'download_src'),
+      new TocItem('FPC (Free Pascal Compiler) version required', 'fpc_ver'),
       new TocItem('Features', 'features'),
       new TocItem('Documentation', 'docs'),
       new TocItem('License', 'license'),
@@ -66,7 +63,6 @@ information.</p>
 <p>Many <a href="http://www.youtube.com/user/michaliskambi">demo movies about
 Castle Game Engine are available in Michalis Kamburelis YouTube channel</a>.</p>
 
-<?php echo $toc->html_section(); ?>
 <?php echo $toc->html_section(); ?>
 
 <div class="download">
@@ -165,99 +161,6 @@ you have appropriate libraries installed on your system.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Below are sources for specific programs.
-Each of them contains program-specific modules, main program file
-and script <tt>compile.sh</tt> to simply compile whole program using FPC.
-Download those that you are interested in and unpack them into
-the same directory where you unpacked the core engine sources.
-Then execute <tt>compile.sh</tt> scripts to compile the programs you want.
-
-<?php
-function older_engine_version($older_version)
-{
-  echo sf_download($older_version . ' version',
-    'castle_game_engine-' . $older_version . '-src.tar.gz');
-}
-?>
-
-<!--
-<p>Note about compatibility: Sometimes I happen to break backwards
-compatibility in the engine API. The sources in SVN are always
-updated, and should be totally compatible.
-But if you download tar.gz sources below, you may find that they
-are not compatible with current engine version... that's why
-they are notes like <i>compatible with engine XXX version</i>
-notes near some programs below.
--->
-
-<ul>
-<?php
-  function echo_src_svnonly($name)
-  {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal small">' .
-        sf_checkout_link(true, $name) . '</tt></li>
-      ';
-  }
-
-  /* Internal name is both the basename of the archive and
-     the subdirectory name within SVN repository. */
-  function echo_src_archive_2($title, $internal_name, $engine_ver)
-  {
-    $version_const_name = 'VERSION_' . strtoupper($internal_name);
-    $version = constant($version_const_name);
-
-    echo '<li><p>' .
-      sf_download('sources of '.$title,
-        $internal_name . '-' . $version . '-src.tar.gz');
-
-    if ($engine_ver == VERSION_CASTLE_GAME_ENGINE)
-    {
-      echo '<br/>These tar.gz sources are compatible with latest engine ';
-      older_engine_version($engine_ver);
-      echo '.';
-    } else
-    {
-      echo '<br/>These tar.gz sources were tested with engine ';
-      older_engine_version($engine_ver);
-      echo ', use SVN to get sources compatible with latest engine version.';
-    }
-
-    echo
-      '<p>Download from Subversion by:</p><pre class="terminal small">' .
-        sf_checkout_link(true, $internal_name) . '</pre></li>
-      ';
-  }
-
-  function echo_src_archive($title_and_internal_name, $engine_ver)
-  {
-    echo_src_archive_2($title_and_internal_name, $title_and_internal_name,
-      $engine_ver);
-  }
-
-  echo_src_archive('view3dscene', '3.0.0');
-  echo_src_archive('castle', '3.0.0');
-  echo_src_archive('rayhunter', '3.0.0');
-
-  //echo_src_archive('lets_take_a_walk', '3.0.0');
-  echo_src_archive('malfunction', '3.0.0');
-  echo_src_archive('kambi_lines', '3.0.0');
-
-  echo_src_archive('glplotter', '3.0.0');
-  echo_src_archive('gen_function', '3.0.0');
-
-  echo_src_archive_2('glViewImage', 'glviewimage', '3.0.0');
-  echo_src_archive('bezier_curves', '3.0.0');
-  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '3.0.0');
-?>
-</ul>
-
-<p>Note: archives above do not contain user documentation for
-these programs. For now you can just go to the page of appropriate
-program and read documentation there (if you downloaded binary
-version of program you will also have documentation there).
-
-<?php echo $toc->html_section(); ?>
-
 <p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
 (FPC)</a> to use our engine. You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
@@ -279,36 +182,6 @@ Currently only <b>FPC versions &gt;= 2.6.0 are supported</b>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
-
-<?php echo $toc->html_section(); ?>
-
-<p>You can get all the sources from our Subversion repository.
-If you don't know about Subversion, see
-<a href="http://subversion.tigris.org/">Subversion main site</a> and
-<a href="http://svnbook.red-bean.com/">the <i>excellent</i>
-book about the Subversion</a>.</p>
-
-<p>To download full sources for all projects, do</p>
-
-<pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
-
-<p>Please note that the full <tt>trunk</tt> is quite large.
-It contains everything: the core engine sources (<tt>castle_game_engine</tt> subdirectory),
-webpages stuff (in <tt>www</tt> subdirectory),
-<tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
-Often you want to download only specific subdirectories of it.</p>
-
-<p>You can also <a href="https://sourceforge.net/p/castle-engine/code/">browse
-the SVN repository</a>.</p>
-
-<p>Code from SVN is always the bleeding-edge current
-version of the work. That said, usually it's quite stable (I have a personal
-policy to try to commit only code that is compileable and somewhat tested).
-So feel free to peek, and please report eventual bugs you spot.
-You can also download the code from one of
-<tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</tt>
-subdirectories, these contain frozen code from specific versions of my programs,
-so should be 100% stable.</p>
 
 <?php echo $toc->html_section(); ?>
 

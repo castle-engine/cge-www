@@ -194,13 +194,12 @@ your 3D worlds, you can:
         <a href="http://www.freepascal.org/">Free Pascal Compiler</a>,
         but this should not be a problem &mdash; all major distros already
         have fpc packaged.
-      <li><?php echo a_href_page('Complete sources of view3dscene are here',
-        'engine'); ?>, get both view3dscene and engine sources,
-        and unpack them to make <tt>view3dscene</tt> and
-        <tt>castle_game_engine</tt> siblings.
+      <li><?php echo a_href_page('Sources of view3dscene are here',
+        'all_programs_sources'); ?>, get both view3dscene and engine sources,
+        and follow instructions on that page to compile.
       <li>The whole thing is GPL &gt;= 2 (most of the engine may also be used
         under more permissive "LGPL with static-linking exception" &gt;= 2,
-        but this probably doesn't matter here).
+        but this probably doesn't matter for you).
     </ul>
 
     <p>Michalis uses <a href="http://www.debian.org/">Debian</a>,

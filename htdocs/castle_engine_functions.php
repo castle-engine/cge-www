@@ -750,7 +750,7 @@ function default_program_thumbnail($prog_name)
 
 define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
   'This is free/open-source software. Developers can ' .
-  a_href_page('download sources of this program', 'engine') . '.');
+  a_href_page('download sources of this program', 'all_programs_sources') . '.');
 
 /* DEPENDS_ consts and funcs */
 

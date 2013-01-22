@@ -580,7 +580,7 @@ of a scene, at it's default camera, just call</p>
 
     <ol>
       <li><?php echo a_href_page('Download the sources of
-        castle_game_engine and view3dscene', 'engine'); ?>.
+        castle_game_engine and view3dscene', 'all_programs_sources'); ?>.
         Unpack them, such that <tt>castle_game_engine/</tt> and <tt>view3dscene/</tt>
         directories are siblings.
       <li>In the terminal, do <pre class="bordered_code">

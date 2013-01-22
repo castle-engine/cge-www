@@ -15,7 +15,6 @@
       new TocItem('Creatures', 'creatures', 1),
       new TocItem('Advanced effects', 'effects', 1),
       new TocItem('Creating sounds', 'creating_sounds'),
-      new TocItem('Compiling', 'compiling'),
       new TocItem('Game goals', 'goals'),
     )
   );
@@ -808,61 +807,6 @@ In particular
     <pre>  sox input.wav -c 1 output.wav</pre>
     See also <tt>data/sounds/scripts/example_make_mono.sh</tt>
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p><?php echo a_href_page_hashlink('Download game sources', 'engine',
-'section_download_src'); ?>. From this page, grab both
-<i>Castle Game Engine</i> sources and <i>castle</i> sources.
-Unpack them in such way that <tt>castle_game_engine/</tt>
-and <tt>castle/</tt> directories are together (siblings) under the same directory.
-
-<p>Compile by running <tt>make</tt> inside the <tt>castle/</tt> directory.
-Note that you must use GNU make.
-You must have <a href="http://www.freepascal.org/">FPC (Free Pascal Compiler)</a>
-installed (you can look at <?php echo a_href_page_hashlink(
-  'notes about FPC version required', 'engine', 'section_fpc_ver'); ?>,
-  in short: use latest stable FPC version).
-There is no Delphi support &mdash; I live in the open source world.
-
-<!--
-<div style="border: thin solid gray; margin-left: 3em; padding: 0.5em;">
-<p><i>Old notes for compiling with FPC &lt;= 2.0.4 :</i>
-
-<p>Sometimes FPC 2.0.4 fails with <tt>Fatal: Internal error 200310221</tt>.
-This is a bug in FPC 2.0.4, fixed since a long time in trunk 2.1.1 and later.
-I don't know the exact cause of it, but it has
-something to do with FPC 2.0.4 inability to handle unit dependencies in
-"The Castle" (no, there are no circular interface dependencies, but still there is
-something that confuses FPC 2.0.4). The workaround was usually to do
-<tt>make clean</tt> before each compilation (so that each FPC run starts
-from a "clean" state and has to recompile all castle units), fortunately
-FPC is so fast that this wasn't a big problem. Sometimes also retrying the
-compilation (i.e. without <tt>make clean</tt>) pushed it to "move forward".</p>
-
-<p>Best workaround is of course to upgrade to FPC 2.2.0.
-I don't plan to keep FPC 2.0.4 compilation supported much longer,
-now that stable FPC 2.2.0 is released.</p></div>
--->
-
-<p>Before you run the compiled executable, make sure that it's properly
-installed: Unix users can make a symlink
-<tt>$HOME/.castle.data</tt> (you can easily
-make this symlink by <tt>make install</tt>), unless you know you will
-always run the game with current directory = castle directory.
-And on all OSes make sure that you have the appropriate libraries
-installed. Windows developers may be comfortable with simply copying
-appropriate DLL files from precompiled version of the game,
-or download and use <?php echo current_www_a_href_size('these DLLs',
-  'miscella/win32_dlls.zip'); ?>.</p>
-
-<p>In the game sources archive I include all the sources needed to compile
-the game. Also everything needed to tweak with various parts of the game
-(e.g. GIMP *.xcf files, that are the "source" version of *.png images,
-and Blender's *.blend files that are the "source" version of some *.wrl files).
-
-<p>Everything is open source,
-<a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a>.
 
 <?php echo $toc->html_section(); ?>
 
