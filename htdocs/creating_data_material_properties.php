@@ -8,7 +8,8 @@ echo pretty_heading('Material properties configuration');
 
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 
 <properties>
   <property
@@ -25,8 +26,7 @@ TODO: fill default values below, link all attributes to appropriate properties.
   <property
     texture_base_name="test_texture_2"
     normal_map="test_normal_map.png" />
-</properties>
-
+</properties>'); ?>
 
 <?php
 castle_footer();

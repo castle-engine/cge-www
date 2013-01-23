@@ -7,8 +7,7 @@ echo pretty_heading('Levels');
 ------------------------------------------------------------------------------
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?php
-echo xml_highlight(
+<?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <level
@@ -29,8 +28,7 @@ echo xml_highlight(
   <prepare_resources>
     <resource name="TestCreature" />
   </prepare_resources>
-</level>');
-?>
+</level>'); ?>
 
 ------------------------------------------------------------------------------
 Specifically about level.xml:

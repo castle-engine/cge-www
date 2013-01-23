@@ -8,7 +8,8 @@ echo pretty_heading('Player configuration');
 
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 
 <player
   knockback_speed="1.2"
@@ -42,7 +43,7 @@ TODO: fill default values below, link all attributes to appropriate properties.
       const="9.1"
       random="2.3" />
   </drown>
-</player>
+</player>'); ?>
 
 <?php
 castle_footer();

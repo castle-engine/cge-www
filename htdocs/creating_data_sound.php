@@ -9,7 +9,8 @@ TODO: sound XML file describe
 
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 
 <sounds>
   <sound
@@ -27,7 +28,7 @@ TODO: fill default values below, link all attributes to appropriate properties.
   <sound name="test_sound_6" />
   <sound name="test_sound_7" />
   <sound name="test_sound_8" />
-</sounds>
+</sounds>'); ?>
 
 ------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified

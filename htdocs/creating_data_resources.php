@@ -7,7 +7,8 @@ echo pretty_heading('Resources (creatures and items)');
 ------------------------------------------------------------------------------
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 
 <resource
   name="TestCreature"
@@ -83,8 +84,7 @@ TODO: fill default values below, link all attributes to appropriate properties.
 
   <visibility
     angle="5.6" />
-</resource>
-
+</resource>'); ?>
 
 ------------------------------------------------------------------------------
 Specifically about resource.xml:
