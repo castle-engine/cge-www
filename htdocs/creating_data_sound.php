@@ -4,6 +4,35 @@ castle_header('Sound | Creating Game Data', NULL, array('engine', 'creating_data
 echo pretty_heading('Sound');
 ?>
 
+------------------------------------------------------------------------------
+TODO: sound XML file describe
+
+TODO: fill default values below, link all attributes to appropriate properties.
+
+<?xml version="1.0"?>
+
+<sounds>
+  <sound
+    name="player_sudden_pain"
+    file_name="test_name.wav"
+    default_importance="player"
+    gain="1"
+    min_gain="0.8"
+    max_gain="1" />
+  <sound name="test_sound_1" />
+  <sound name="test_sound_2" />
+  <sound name="test_sound_3" />
+  <sound name="test_sound_4" />
+  <sound name="test_sound_5" />
+  <sound name="test_sound_6" />
+  <sound name="test_sound_7" />
+  <sound name="test_sound_8" />
+</sounds>
+
+------------------------------------------------------------------------------
+TODO: old castle-development text, to be simplified
+
+
 <p>Notes about sound files:
 
 <ul>

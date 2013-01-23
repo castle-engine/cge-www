@@ -5,6 +5,147 @@ echo pretty_heading('Levels');
 ?>
 
 ------------------------------------------------------------------------------
+TODO: fill default values below, link all attributes to appropriate properties.
+
+<?xml version="1.0"?>
+
+<level
+  name="my_level"
+  type="Level"
+  scene="scene.x3d"
+  title="My Level"
+  number="123"
+  demo="True"
+  title_hint="Title Hint"
+  default_played="True"
+  placeholders="blender"
+  loading_image="loading_image.png"
+  loading_image_bar_y_position="1.2"
+  placeholder_reference_direction="1 2 3"
+  music_sound="test_sound_2">
+
+  <prepare_resources>
+    <resource name="TestCreature" />
+  </prepare_resources>
+</level>
+
+------------------------------------------------------------------------------
+Specifically about level.xml:
+
+- Defines a level.
+  The root element is <level>.
+
+- name: the unique level name, used in scripts and such.
+  It must be unique among all levels.
+
+  For all (current and future) uses it should be a valid VRML/X3D
+  and ObjectPascal identifier, so stick to only (English) letters,
+  underscores and digits (and don't start with digit).
+
+- title: nice, human-readable (with spaces, non-English letters etc.)
+  level title that is displayed for users.
+
+- scene: URL to the 3D file containing the level scene.
+
+- type: (optional, default just generic "Level")
+  Use specific ObjectPascal class to implement this level behavior.
+  Default value is "Level", which means that the level will be
+  handled with vanilla TLevelLogic implementation.
+  Many advanced tricks are possible by implementing in the game code
+  a descendant class of TLevelLogic that does something special,
+  you can then register it by "LevelLogicClasses['My'] := TMyLogic;",
+  and then type="My" is allowed in level.xml file.
+  See castle1 GameLevelSpecific unit for examples.
+
+- default_played: (optional, default "false")
+  Should the level be initially considered "played".
+  This sets TLevelInfo.DefaultPlayed property, which in turn
+  (if nothing is stored in user preferences file about it) sets
+  TLevelInfo.Played. How is this useful, depends on a particular game:
+  some games may decide to show in the "New Game" menu levels with Played=true.
+  Some games may ignore it.
+
+- loading_image (optional, default empty): filename of image file to display
+  while loading the level (under the progress bar).
+
+- loading_image_bar_y_position (optional, default 0.5):
+  indicates vertical position of progress bar when loading level,
+  used only if loading_image is defined.
+  Between 0 and 1, default value 0.5 means "middle of the screen".
+  Should be synchronized with loading_bg image, to look right.
+
+- placeholders: You can place placeholders in the level 3D model,
+  to create various things:
+  - creatures/items (commonly called "resources",
+    as they refer to T3DResource) by placeholders named "CasRes...",
+  - water volume by placeholder "CasWater",
+  - move limit by placeholder "CasMoveLimit",
+  - sectors/waypoints (to make creature AI smarter)
+    by placeholders "CasSector..." and "CasWaypoint..."
+  - see TGameSceneManager.LoadLevel docs for full list.
+  - and possibly more, as every level type may allow additional placeholders,
+    you can handle them in a descendant of TLevelLogic by overriding
+    TLevelLogic.Placeholder.
+
+  The "placeholders" attribute in level.xml determines how we derive
+  "placeholder name" from a VRML/X3D shape.
+  - "x3dshape" (default) means that the placeholder name comes from
+    VRML 2.0/X3D Shape node name (set using "DEF" in VRML/X3D).
+  - "blender" means that the placeholder name is detected following
+    standard Blender VRML/X3D exporters behavior.
+    This allows you to set the placeholder name easily in Blender,
+    just set the Blender object name.
+  - and possibly more, see CastleShape.PlaceholderNames.
+    You can define and register your own functions there, to handle
+    other 3D modelers, like 3DSMax or Maya or anything else
+    (and you're welcome to contribute them to include them in engine code,
+    of course!).
+
+- placeholder_reference_direction (optional, default "1 0 0"):
+  Some placeholders (currently, only creatures) may be used to determine
+  initial direction of the resource. For example, the direction
+  the creature is initially facing.
+  This direction is calculated as the transformation
+  of given placeholder applied to this 3D vector.
+
+  The correct value may depend on the exporter you used to create 3D models,
+  and on the exporter settings (how and if it rotates the model when exporting,
+  and is this rotation recorded in placeholder transformation
+  or applied directly to mesh coordinates). It may also depend on personal
+  preference, as it determines how you set resources in your 3D modelling tool
+  (like Blender).
+
+  Fortunately, the default value (+X vector) is suitable for at least
+  2 common situations:
+
+  - If your exporter rotates the world to turn +Z up into +Y up.
+    (This is the case of default Blender X3D exporter with default settings.)
+  - If your exporter doesn't rotate the world.
+    (You can configure Blender exporter to behave like this.
+    You may also then configure engine to use +Z as up vector for everything,
+    see "Which way is up?" notes in DRAFT.engine_tutorial.txt.)
+
+  In Blender it's useful to enable the "Display -> Wire" option for placeholder
+  objects, then Blender will show arrows inside the placeholder.
+  +X of the arrow determines the default direction understood by our engine.
+
+- See TLevelInfo properties documentation if in doubt.
+
+- Every TLevelLogic class (you indicate it with "type", see above)
+  may use additional attributes from level.xml file:
+
+  TLevelLogic constructor gets DOMElement: TDOMElement parameter,
+  which is an XML tree of level.xml file. You can read it
+  however you want. We use standard FPC DOM unit and classes,
+  and add a handful of simple comfortable routines in CastleXMLUtils unit,
+  for example you can use
+
+    if not DOMGetBooleanAttribute(DOMElement, 'my_attribute', MyAttribute) then
+      MyAttribute := false; // default value, if not specified in level.xml
+
+  to read a boolean attribute "my_attribute".
+
+------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified
 
 Levels

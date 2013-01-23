@@ -5,6 +5,182 @@ echo pretty_heading('Resources (creatures and items)');
 ?>
 
 ------------------------------------------------------------------------------
+TODO: fill default values below, link all attributes to appropriate properties.
+
+<?xml version="1.0"?>
+
+<resource
+  name="TestCreature"
+  type="WalkAttack"
+  knockback_speed="1.2"
+  knockback_distance="3.4"
+  flying="True"
+  sound_die_tied_to_creature="True"
+  default_max_life="5.6"
+  radius="7.8"
+  middle_height="6.7"
+  sound_sudden_pain="test_sound_6"
+  sound_die="test_sound_7"
+  move_speed="1.2"
+  min_life_loss_to_hurt="3.4"
+  chance_to_hurt="0.56"
+  max_height_acceptable_to_fall="5.6"
+  random_walk_distance="7.8"
+  remove_dead="True"
+  preferred_distance="9.1"
+  always_prepared="True"
+  fall_speed="1.2"
+  grow_speed="3.4"
+  receive_shadow_volumes="False"
+  cast_shadow_volumes="False">
+
+  <model file_name="main.x3d">
+    <idle         file_name="idle.x3d"         time_sensor="TimeSensorIdle" />
+    <idle_to_walk file_name="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
+    <walk         file_name="walk.x3d"         time_sensor="TimeSensorWalk" />
+    <fire_missile file_name="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
+    <attack       file_name="attack.x3d"       time_sensor="TimeSensorAttack" />
+    <die          file_name="die.x3d"          time_sensor="TimeSensorDie" />
+    <die_back     file_name="die_back.x3d"     time_sensor="TimeSensorDieBack" />
+    <hurt         file_name="hurt.x3d"         time_sensor="TimeSensorHurt" />
+  </model>
+
+  <attack
+    knockback_distance="4.5"
+    time="7.8"
+    max_distance="9.1"
+    max_angle="2.3"
+    min_delay="4.5"
+    sound_hit="test_sound_6"
+    sound_start="test_sound_7" >
+    <damage
+      const="9.1"
+      random="2.3" />
+  </attack>
+
+  <fire_missile
+    time="1.2"
+    max_distance="3.4"
+    max_angle="5.6"
+    min_delay="7.8"
+    sound="test_sound_8"
+    name="TestMissileCreature"
+    height="0.12" />
+
+  <fall>
+    <sound
+      min_height="7.8"
+      name="test_sound_5" />
+    <damage
+      min_height="1.2"
+      scale_min="3.4"
+      scale_max="5.6" />
+  </fall>
+
+  <run_away
+    life="1.2"
+    distance="3.4" />
+
+  <visibility
+    angle="5.6" />
+</resource>
+
+
+------------------------------------------------------------------------------
+Specifically about resource.xml:
+
+- Defines a creature or an item resource. The system is extensible,
+  so it can actually define other 3D resources that are part of the world
+  in your games.
+
+  The root element is <resource>.
+
+- name: the unique object name to indicate initial position of this creature in
+  the level 3D file. IOW, this determines Blender object name
+  to choose this creature type. It must be unique among all resources
+  (creature and items resources). For all (current and future) uses it should
+  be a valid VRML/X3D and ObjectPascal identifier, and also we reserve
+  underscores and digits for some tricks.
+  So stick to only (English) letters.
+
+- type: determines the exact class (ObjectPascal implementation)
+  used to instantiate this creature resource.
+  It doesn't have to be unique. E.g. creature type "Missile"
+  or generic item type "Item" are used by many resources.
+
+  The type determines the behavior that is coded in ObjectPascal
+  --- like creature artificial intelligence and whether item can be equipped.
+
+- The type also determines other available attributes of this resource.
+  For example, only creature type "WalkAttack" (or it's descendants,
+  like "Alien") have the "attack_animation" attribute.
+
+  For the documentation and default values of properties that you can
+  set on a creature or item, see T3DResource descendants in the engine:
+  TCreatureResource (and descendants) for creatures,
+  TItemResource (and descendants) for items.
+  They have lot's of properties, and almost all their properties
+  can be set by appopriate XML attribute.
+
+- radius: (default 0.0) Radius used for collision detection with this creature.
+  If you don't set radius in resource.xml file (or set it to default value 0.0),
+  we will calculate a sensible default radius based on the bounding box
+  of the creature.
+
+- middle_height: (default 0.5) Position of eyes of the creature,
+  used for various collision detection routines.
+  See T3DCustomTransform.MiddleHeight documentation.
+
+  Game developers can use the Castle3D.RenderDebug3D variable to easily
+  visualize the bounding sphere (and other things) around resources.
+  The bounding sphere is centered around the point derived from "middle_height"
+  setting and with given (or automatically calculated) "radius".
+
+- flying: False or True to indicate if creature / item is affected by gravity.
+
+  Missile creatures (resources with type="Missile",
+  indicating TMissileCreatureResource implementation,
+  or other type indicating your custom class descending from TMissileCreatureResource)
+  are an exception here: they ignore this setting.
+  Missiles have special approach to gravity (see direction_fall_speed)
+  and are not affected by normal gravity settings.
+
+- fall_speed: the speed (in units per second) of falling down because of gravity.
+  Default is 10 (see CastleResources.DefaultFallSpeed constant).
+
+  Note that the gravity direction is controlled by your level 3D model,
+  see "Which way is up" section in the engine tutorial.
+
+  Currently, falling down of creatures and items just uses this constant speed.
+  In the future, we plan to add properties to control mass and air friction
+  and perform more physically-correct simulation of falling down.
+
+  This has no effect for resources (creatures or items) with flying="True".
+  This also has no effect for missile creatures (their flying="Xxx" is ignored,
+  as documented above).
+
+- grow_speed: the speed (in units per second) of growing.
+  Default is 5 (see CastleResources.DefaultGrowSpeed constant).
+
+  The "growing" is used to allow non-flying creatures to climb stairs.
+  The creature can move whenever a sphere (see "middle_height" and "radius"
+  settings mentioned above) can move. This means that part of the bounding
+  box (part of the T3DCustomTransform.PreferredHeight) may temporarily
+  "sink" into the ground. The growing, controlled by this property,
+  allows the creature to go up.
+
+- direction_fall_speed: (default 0) The gravity of missiles.
+  This works by gradually changing the missile direction to point downward
+  (in the same direction where gravity pulls).
+
+  (Only for missiles, that is: resources with type="Missile",
+  indicating TMissileCreatureResource implementation,
+  or other type indicating your custom class descending from TMissileCreatureResource.)
+
+- <model> element describes 3D models and animations of the creature/items.
+  More information about it on DRAFT.modeling_tutorial.txt.
+
+------------------------------------------------------------------------------
 Orientation:
 
 <p>Resources models (creatures, items and such) should be modelled around 0,0,0 point. In case of resources using gravity, they will be placed on the ground relative to the 0 height. In other words, if you want your model to float slightly above the ground, just move it higher above the 0 level. For resources flying (not using gravity), this doesn't matter, basically you can place 0,0,0 wherever you like. See <a>MiddleHeight</a> API documentation for precise details.
@@ -42,6 +218,9 @@ Example:
     <stand file_name="stand.kanim"/>
     <walk file_name="walk.kanim"/>
   </model>
+
+This is probably the most comfortable approach to export animations from Blender to our engine. <b>For now</b> --- in the future we hope to extend Blender X3D exporter to store whole animation inside a single X3D file.
+
 
 To describe above three cases in more precise manner:
 
