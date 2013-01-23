@@ -146,6 +146,11 @@ Specifically about level.xml:
 
   to read a boolean attribute "my_attribute".
 
+- prepare_resources: list resources to prepare at level load.
+  Note that some resources are always prepared (see
+  T3DResource.AlwaysPrepare), so there's no need to list them here.
+  By default, all items (but not creatures) are prepared.
+
 ------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified
 
