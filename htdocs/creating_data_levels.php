@@ -7,7 +7,9 @@ echo pretty_heading('Levels');
 ------------------------------------------------------------------------------
 TODO: fill default values below, link all attributes to appropriate properties.
 
-<?xml version="1.0"?>
+<?php
+echo xml_highlight(
+'<?xml version="1.0"?>
 
 <level
   name="my_level"
@@ -15,7 +17,7 @@ TODO: fill default values below, link all attributes to appropriate properties.
   scene="scene.x3d"
   title="My Level"
   number="123"
-  demo="True"
+  [[CastleLevels.TLevelInfo.html#Demo|demo]]="True"
   title_hint="Title Hint"
   default_played="True"
   placeholders="blender"
@@ -27,7 +29,8 @@ TODO: fill default values below, link all attributes to appropriate properties.
   <prepare_resources>
     <resource name="TestCreature" />
   </prepare_resources>
-</level>
+</level>');
+?>
 
 ------------------------------------------------------------------------------
 Specifically about level.xml:

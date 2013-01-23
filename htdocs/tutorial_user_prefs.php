@@ -5,8 +5,8 @@
 
 Easy: Use CastleConfig. Various engine components automatically register that they can load/save user preferences. So
 
-[[
-{ make sure you have created all stuff that registers user preferences first }
+<?php echo pascal_highlight(
+'{ make sure you have created all stuff that registers user preferences first }
 SoundEngine; // if you want to save sound config
 RecentMenu := TCastleRecentFiles.Create(nil); // if you use "recent files" menu
 
@@ -14,7 +14,7 @@ RecentMenu := TCastleRecentFiles.Create(nil); // if you use "recent files" menu
 
 function MyGetApplicationName: string;
 begin
-  Result := 'glplotter';
+  Result := \'my_game_name\';
 end;
 
 ...
@@ -26,8 +26,7 @@ Config.Load;
 ... { do your program }
 
 { save config to file }
-Config.Save;
-]]
+Config.Save;'); ?>
 
 <?php
   tutorial_footer();

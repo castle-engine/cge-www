@@ -7,11 +7,10 @@ Easy: Use CastleLog unit, call InitializeLog, and you have your log. Log by defa
 
 A lot of engine components will immediately use the log, if you initialized it. To use it yourself, in the simplest cases just do
 
-[[
-WritelnLog('Category', 'My Log Message');
-]]
+<?php echo pascal_highlight(
+'WritelnLog(\'My Category\', \'My Log Message\');'); ?>
 
-('Category' is useful to easily spot your messages later. There are no hard rules about it, i.e. you're free to just invent your own category names here, like 'Creatures' or 'Rendering'.)
+('My Category' is useful to easily spot your messages later. There are no hard rules about it, i.e. you're free to just invent your own category names here, like 'Creatures' or 'Rendering'.)
 
 <?php
   tutorial_footer();

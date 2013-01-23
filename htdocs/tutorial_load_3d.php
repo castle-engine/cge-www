@@ -15,13 +15,13 @@ Or copy more interesting 3D model from castle_game_engine/examples/vrml/models/:
 
 To load a 3D model, change your code to this:
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   Window: TCastleWindow;
   Scene: TCastleScene;
 begin
   Scene := TCastleScene.Create(Application);
-  Scene.Load('my_scene.x3d');
+  Scene.Load(\'my_scene.x3d\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
@@ -30,8 +30,7 @@ begin
   Window.SceneManager.MainScene := Scene;
 
   Window.OpenAndRun;
-end.
-]]
+end.'); ?>
 
 At the beginning we create a new instance of TCastleScene, and load it's contents from a file. Scene.Spatial determines what spatial structures (octrees for now) are created, the value [ssRendering, ssDynamicCollisions] is the most flexible one (it allows to speed up the rendering by frustum culling, detect collisions between player and level, and it adapts to a dynamic level that may have some animated parts). Scene.ProcessEvents activates animating VRML/X3D models (you can remove it if you know your level is, and always will be, static).
 

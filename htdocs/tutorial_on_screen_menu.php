@@ -34,8 +34,8 @@ you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by SceneManager.Paused property.
 Like this:
 
-[[
-...
+<?php echo pascal_highlight(
+'...
 { global / static variables }
 var
   GameMenu: TCastleOnScreeMenu;
@@ -56,8 +56,7 @@ repeat
   Application.ProcessMessage(true, true);
 until GameMenuClosed;
 Window.Controls.Remove(GameMenu);
-SceneManager.Paused := false;
-]]
+SceneManager.Paused := false;'); ?>
 
 As the scene manager handles a lot of stuff automatically,
 processing events and calling Idle methods of all 3D objects periodically.

@@ -27,14 +27,14 @@ Our engine allows you to do this in a flexible way. We have many 3D objects that
 
 So you can create an instance of TCastleScene where you load an item, like potion. Then you create as many as you like instances of T3DTransform, where you add your potion as a children. Additionally, at T3DTransform, you can setup the transformation (like translation) of your item.
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   PotionType: TCastleScene;
   PotionInstance1, PotionInstance2: T3DTransform;
 
 { ... somewhere in begin...end block ... }
   PotionType := TCastleScene.Create(Application);
-  PotionType.Load('my_scene.x3d');
+  PotionType.Load(\'my_scene.x3d\');
   PotionType.ProcessEvents := true; // if the item model has interactive/animated parts by VRML/X3D events
 
   PotionInstance1 := T3DTransform.Create(Application);
@@ -45,13 +45,12 @@ var
   PotionInstance2 := T3DTransform.Create(Application);
   PotionInstance2.Translation := Vector3Single(4, 5, 6);
   PotionInstance2.Add(PotionType);
-  SceneManager.Items.Add(PotionInstance2);
-]]
+  SceneManager.Items.Add(PotionInstance2);'); ?>
 
 For more advanced uses, you may want to create your own class for TPotionType (descending from TCastleScene, and adding additional information, for example is this a "life potion", "mana potion", "cure potion" etc. --- we assume these potions have different 3D models, but also share some common parameters and so they want to be treated under a common class TPotionType). Also, you may want to create your own class for TPotionInstance (descending from T3DTransform, and adding additional information like "how much percent of this potion is used up (drink)"). No surprises here, you can do all this by following standard ObjectPascal syntax and conventions, example:
 
-[[
-type
+<?php echo pascal_highlight(
+'type
   TPotionEffect = (peLife, peMana, peCurePoison);
 
   { A potion properties and 3D model. }
@@ -65,7 +64,7 @@ type
     of class TPotionType (you can use "(Items[0] as TPotionType)" to get it,
     you can introduce a method here to get it comfortably).
     When it is visible on a level (that is, added to SceneManager items
-    graph), the Translation determines it's position on a level. }
+    graph), the Translation determines it\'s position on a level. }
   TPotionInstance = class(T3DTransform)
     PercentUsed: Integer;
   end;
@@ -79,11 +78,11 @@ var
 
 { ... somewhere in begin...end block ... }
   LifePotionType := TPotionType.Create(Application);
-  LifePotionType.Load('life_potion.x3d');
+  LifePotionType.Load(\'life_potion.x3d\');
   LifePotionType.Effect := peLife;
 
   ManaPotionType := TPotionType.Create(Application);
-  ManaPotionType.Load('mana_potion.x3d');
+  ManaPotionType.Load(\'mana_potion.x3d\');
   LifePotionType.Effect := peMana;
 
   LifePotionInstance1 := TPotionInstance.Create(Application);
@@ -101,8 +100,7 @@ var
   ManaPotionInstance1 := TPotionInstance.Create(Application);
   ManaPotionInstance1.Translation := Vector3Single(4, 5, 6);
   ManaPotionInstance1.Add(ManaPotionType);
-  SceneManager.Items.Add(ManaPotionInstance1);
-]]
+  SceneManager.Items.Add(ManaPotionInstance1);'); ?>
 
 <?php
   tutorial_footer();

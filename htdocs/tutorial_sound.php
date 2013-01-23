@@ -11,11 +11,9 @@ First, get a sample sound file and place it within your game data. You can use t
 
 To add a looping sound to your VRML/X3D file, just open xxx.x3dv and paste there this:
 
-[[
-Sound {
+<pre class="sourcecode">Sound {
   source AudioClip { url "sample.wav" loop TRUE }
-}
-]]
+}</pre>
 
 Remember that URL "sample.wav" is specified relative to the location of your xxx.x3dv file. In the simplest case, just place both xxx.x3dv and sample.wav in the same directory, and you're fine.
 
@@ -23,13 +21,12 @@ Remember that URL "sample.wav" is specified relative to the location of your xxx
 
 To play a sound from a code, add this code:
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   Buffer: TSoundBuffer;
-...
-Buffer := SoundEngine.LoadBuffer('sample.wav');
-SoundEngine.PlaySound(Buffer, ...); // see PlaySound reference for parameters
-]]
+  ...
+  Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
+  SoundEngine.PlaySound(Buffer, ...); // see PlaySound reference for parameters'); ?>
 
 You can free the buffer once the sound has stopped. It's not important for simple programs, as we will take care to always free it before closing OpenAL context.
 
@@ -37,46 +34,41 @@ You can free the buffer once the sound has stopped. It's not important for simpl
 
 Larger games may find it comfortable to define a repository of sounds in an XML file, conventionally named data/sounds/index.xml. See TXmlSoundEngine docs and castle1 game data for example. Assuming your <tt>data/sounds/index.xml</tt> looks like this:
 
-[[
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 <sounds>
   <sound name="sample" file_name="sample.wav" />
-  <!-- Actually, you can omit the file_name, it's the same
+  <!-- Actually, you can omit the file_name, it\'s the same
     as name with .wav extension.
     Also, you can add a lot of interesting attributes here, like
     default_importance, gain, min_gain, max_gain --- see TODO. -->
-</sounds>
-]]
+</sounds>'); ?>
 
 Then you can initialize it inside your game code like this:
 
-[[
-SoundEngine.SoundsFileName := ProgramDataPath + 'data' +
-  PathDelim + 'sounds' + PathDelim + 'index.xml';
-]]
+<?php echo pascal_highlight(
+'SoundEngine.SoundsFileName := ProgramDataPath + \'data\' +
+  PathDelim + \'sounds\' + PathDelim + \'index.xml\';'); ?>
 
 Ater this, you can refer to your sound names from files like resource.xml, TODO: add example. TODO: move section about "sounds repo" up, to the beginning, before other ways to get sound.
 
 This allows to play sounds like this from ObjectPascal code:
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   SoundType: TSoundType;
-...
-SoundType := SoundEngine.SoundFromName('sample');
-SoundEngine.Sound3D(SoundType, Vector3Single(1, 2, 3), false { looping });
-SoundEngine.Sound(SoundType, false { looping }); // non-3D sound
-]]
+  ...
+  SoundType := SoundEngine.SoundFromName(\'sample\');
+  SoundEngine.Sound3D(SoundType, Vector3Single(1, 2, 3), false { looping });
+  SoundEngine.Sound(SoundType, false { looping }); // non-3D sound'); ?>
 
 The SoundEngine.Sound3D and SoundEngine.Sound are a little simpler to use than SoundEngine.PlaySound, they have fewer parameters. That is because the default sound properties (it's individual gain, importance (priority), actual filename and other stuff) is already recorded in the data/sounds/index.xml file. That's one advantage of using the sounds repository: all your sounds properties are centrally stored in the data/sounds/index.xml file.
 
 You can also refer to your sound names from VRML/X3D AudioClip node, using the "sounds-repository" protocol:
 
-[[
-Sound {
+<pre class="sourcecode">Sound {
   source AudioClip { url "sounds-repository:sample" loop TRUE }
-}
-]]
+}</pre>
 
 --- Level music
 

@@ -15,14 +15,13 @@ The left column of this tutorial will follow this way. We'll still be using Laza
 
 Place this source code in your program file (lpr).
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   Window: TCastleWindow;
 begin
   Window := TCastleWindow.Create(Application);
   Window.OpenAndRun;
-end.
-]]
+end.'); ?>
 
 Press "Run" and behold, a window! (without any contents drawn, so you will probably see the underlying screen contents underneath).
 
@@ -42,9 +41,8 @@ Note about key handling (applies only to TCastleControl): Like every proper Laza
 
 In the simplest case, just call
 
-[[
-Control.SetFocus;
-]]
+<?php echo pascal_highlight(
+'Control.SetFocus;'); ?>
 
 whenever you want.
 

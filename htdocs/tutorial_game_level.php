@@ -9,16 +9,15 @@ It is also integrated with CastleLevels definition of what a "level" is: namely,
 
 The TGameSceneManager class allows you to define levels by using simple XML files. For each level, you create a file named "level.xml", with contents like this:
 
-[[
-<?xml version="1.0"?>
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
 <level
   name="pits"
   type="Level"
   scene="pits.x3dv"
   title="The Pits of Azeroth"
   placeholders="blender"
-/>
-]]
+/>'); ?>
 
 - "name" is a unique internal name for the level, it will come in handy soon.
 - "type" identifies the ObjectPascal class handling the level logic --- type "Level" is always available, for advanced games you can also create and use your own level logic types.
@@ -30,8 +29,7 @@ See http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/REA
 
 Traditionally, I place each level in a subdirectory of data/levels/, along with it's associated 3D models. So I have a structure like this:
 
-[[
-data/
+<pre class="sourcecode">data/
   levels/
     pits/
       level.xml
@@ -42,19 +40,17 @@ data/
     mountains/
       level.xml
       mountains.x3dv
-    ...
-]]
+    ...</pre>
 
 Although this convention proved comfortable, it's not forced at all. The 3D models files may live in other directories than level.xml files, as "scene" field may contain a relative filename (in future, it should be possible to use there any absolute or relative URL; for now, only filenames are allowed). And level.xml files may be scattered throughout your directory as you wish. And what is "data directory" is configurable (by Levels.LoadFromFiles optional parameter, by default we use ProgramDataPath). It's only important that the XML files have names "level.xml".
 
 You can now start a game by scanning all levels information from level.xml files, and then loading your desired level by referring to it's "name" field:
 
-[[
-  Levels.LoadFromFiles;
-  SceneManager.LoadLevel('pits'); // refer to name="pits" in level.xml
-  // the 2nd line is a shortcut for
-  // SceneManager.LoadLevel(Levels.FindName('pits'));
-]]
+<?php echo pascal_highlight(
+'Levels.LoadFromFiles;
+SceneManager.LoadLevel(\'pits\'); // refer to name="pits" in level.xml
+// the 2nd line is a shortcut for
+// SceneManager.LoadLevel(Levels.FindName(\'pits\'));'); ?>
 
 The LoadLevel will clear all SceneManager.Items (except Player, more about this in a second). Then it will load new 3D model with a level (adding it to SceneManager.Items and setting as SceneManager.MainScene, just as we did manually in previous chapter), and do some more interesting stuff that we'll learn later.
 

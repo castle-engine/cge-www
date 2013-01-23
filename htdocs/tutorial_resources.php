@@ -14,9 +14,8 @@ The common properties about creatures, items and levels resource.xml and level.x
 
 There really isn't much code here. Just add
 
-[[
-  Resources.LoadFromFiles;
-]]
+<?php echo pascal_highlight(
+'Resources.LoadFromFiles;'); ?>
 
 call somewhere before loading the level. This will cause all information about the creatures and items automatically loaded. Necessary creatures and items will be nicely prepared for each level if you use the <resources> section the levels level.xml files. Some resources may also be prepared always (see T3DResource.AlwaysPrepare).
 

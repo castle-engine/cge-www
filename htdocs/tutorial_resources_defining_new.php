@@ -76,55 +76,50 @@ Everything is designed to give you a lot of properties to set (most of them are 
       This way you can imagine creating a couple of resource.xml files
       that define a couple of resource instances:
 
-      [[
-      <resource
-        name="WerewolfRookie"
-        type="Werewolf"
-        default_max_life="10.0"
-        sound_howling="werewolf_rookie_howling">
-        <model>...</model>
-      </resource>
-      ]]
+<?php echo xml_highlight(
+'<resource
+  name="WerewolfRookie"
+  type="Werewolf"
+  default_max_life="10.0"
+  sound_howling="werewolf_rookie_howling">
+  <model>...</model>
+</resource>'); ?>
 
-      [[
-      <resource
-        name="WerewolfBoss"
-        type="Werewolf"
-        default_max_life="1000000.0"
-        sound_howling="werewolf_boss_howling">
-        <model>...</model>
-      </resource>
-      ]]
+<?php echo xml_highlight(
+'<resource
+  name="WerewolfBoss"
+  type="Werewolf"
+  default_max_life="1000000.0"
+  sound_howling="werewolf_boss_howling">
+  <model>...</model>
+</resource>'); ?>
 
-      [[
-      <resource
-        name="SmallLifePotion"
-        type="Potion"
-        regenerate_stat="Life"
-        regenerate_amount="10.0">
-        <model>...</model>
-      </resource>
-      ]]
+<?php echo xml_highlight(
+'<resource
+  name="SmallLifePotion"
+  type="Potion"
+  regenerate_stat="Life"
+  regenerate_amount="10.0">
+  <model>...</model>
+</resource>'); ?>
 
-      [[
-      <resource
-        name="LargeLifePotion"
-        type="Potion"
-        regenerate_stat="Life"
-        regenerate_amount="50.0">
-        <model>...</model>
-      </resource>
-      ]]
+<?php echo xml_highlight(
+'<resource
+  name="LargeLifePotion"
+  type="Potion"
+  regenerate_stat="Life"
+  regenerate_amount="50.0">
+  <model>...</model>
+</resource>'); ?>
 
-      [[
-      <resource
-        name="ManaPotion"
-        type="Potion"
-        regenerate_stat="Mana"
-        regenerate_amount="10.0">
-        <model>...</model>
-      </resource>
-      ]]
+<?php echo xml_highlight(
+'<resource
+  name="ManaPotion"
+  type="Potion"
+  regenerate_stat="Mana"
+  regenerate_amount="10.0">
+  <model>...</model>
+</resource>'); ?>
 
       As you can see in the above examples, you can use the same
       resource class in many ways. Pratically speaking, you only need to create
@@ -139,12 +134,11 @@ Everything is designed to give you a lot of properties to set (most of them are 
       with instances of appropriate classes. You can find them by name,
       e.g.
 
-      [[
-      var
-        WerewolfRookie: TWerewolfResource;
-      ...
-        WerewolfRookie := Resources.FindName('WerewolfRookie') as TWerewolfResource
-      ]]
+<?php echo pascal_highlight(
+'var
+  WerewolfRookie: TWerewolfResource;
+  ...
+  WerewolfRookie := Resources.FindName(\'WerewolfRookie\') as TWerewolfResource;'); ?>
 
       Defining new property in a resource class usually means
       defining a normal ObjectPascal property and overriding T3DResource.LoadFromFile
@@ -173,31 +167,31 @@ Everything is designed to give you a lot of properties to set (most of them are 
       TCreatureResource.CreateCreature and TItemResource.CreateItem methods,
       which you can use to create creature/item occurence by code:
 
-      [[
-      type
-        TWerewolfResource = class(TWalkAttackCreatureResource)
-        public
-          function CreatureClass: TCreatureClass; override;
-          ...
-        end;
+<?php echo pascal_highlight(
+'type
+  TWerewolfResource = class(TWalkAttackCreatureResource)
+  public
+    function CreatureClass: TCreatureClass; override;
+    ...
+  end;
 
-        TWerewolf = class(TWalkAttackCreature)
-          ...
-        end;
+  TWerewolf = class(TWalkAttackCreature)
+    ...
+  end;
 
-      function TWerewolfResource.CreatureClass: TCreatureClass;
-      begin
-        Result := TWerewolf;
-      end;
+function TWerewolfResource.CreatureClass: TCreatureClass;
+begin
+  Result := TWerewolf;
+end;
 
-      ...
-      { and if you want to create werewolves programmatically
-        (not just by placing "placeholders" on level 3D model) then do this: }
-      for I := 1 to 100 do
-        WerewolfRookie.CreateCreature(SceneManager.Items,
-          Vector3Single(1, 2, 3) { position }
-          Vector3Single(1, 0, 0) { direction });
-    ]]
+...
+{ and if you want to create werewolves programmatically
+  (not just by placing "placeholders" on level 3D model) then do this: }
+for I := 1 to 100 do
+  WerewolfRookie.CreateCreature(SceneManager.Items,
+    Vector3Single(1, 2, 3) { position }
+    Vector3Single(1, 0, 0) { direction });'); ?>
+
 
     There are many possible classes to override. Overriding
     the more specialized (finished) classes, like TWalkAttackCreature*,

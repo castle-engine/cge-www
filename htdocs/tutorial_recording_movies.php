@@ -9,8 +9,8 @@ However, we support recording a predefined animation in VRML/X3D (meaning: it pl
 
 Do it like this:
 
-[[
-in a loop:
+<?php echo pascal_highlight(
+'// in a loop:
 begin
   SceneManager.MainScene.IncreaseTime(FrameTime);
   SceneManager.Camera.Idle(FrameTime, true, DummyBooleanInitializedToTrue);
@@ -22,10 +22,9 @@ begin
       Various options possible, view3dscene for now just saves a sequence
       of images to temporary location and later processes them by ffmpeg
       to produce a full movie. }
-    SaveImage(Image, Format('screenshot_name_%4d.png', [FrameNumber]));
+    SaveImage(Image, Format(\'screenshot_name_%4d.png\', [FrameNumber]));
   finally FreeAndNil(Image) end;
-end;
-]]
+end;'); ?>
 
 IOW, you manually force the current time of the scene/camera to increase as much as you want before each screenshot. This makes it work 100% reliably, without any worries how fast you can process captured images.
 

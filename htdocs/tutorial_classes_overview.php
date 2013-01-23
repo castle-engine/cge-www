@@ -119,12 +119,13 @@ http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/ .
        SceneManager.MainScene.
        You can also use the TGameSceneManager.LoadLevel()
        method, usually like this:
-       [[
-         Levels.LoadFromFiles(...);
-         SceneManager.LoadLevel('myLevelName');
-         // the 2nd line is a shortcut for
-         // SceneManager.LoadLevel(Levels.FindName('myLevelName'));
-       ]]
+
+<?php echo pascal_highlight(
+'Levels.LoadFromFiles(...);
+SceneManager.LoadLevel(\'myLevelName\');
+// the 2nd line is a shortcut for
+// SceneManager.LoadLevel(Levels.FindName(\'myLevelName\'));'); ?>
+
        This will create TCastleScene, update SceneManager.Items,
        set SceneManager.MainScene, and do some other stuff helpful for typical
        3D games, like handle placeholders --- see TGameSceneManager.LoadLevel
@@ -148,20 +149,22 @@ Possible descendants:
 
  Optionally: If you need to have the instances
  available in ObjectPascal code, you can get them like
- [[
- var
-   Sword: TItemWeaponResource;
- ...
-   Sword := Resources.FindName('Sword') as TItemWeaponResource;
- ]]
+
+<?php echo pascal_highlight(
+'var
+  Sword: TItemWeaponResource;
+...
+  Sword := Resources.FindName(\'Sword\') as TItemWeaponResource;'); ?>
+
  You refer to each creature/item resource by it's unique name, so in this example
  you expect that some index.xml will have name="Sword" inside.
 
  Optionally: you can define your own descendants of T3DResource classes.
  To make them recognized, call
- [[
-   RegisterResourceClass(TItemMeleeWeaponResource, 'MeleeWeapon');
- ]]
+
+<?php echo pascal_highlight(
+'RegisterResourceClass(TItemMeleeWeaponResource, \'MeleeWeapon\');'); ?>
+
  before doing Resources.LoadFromFiles. This allows you to use
  type="MeleeWeapon" in index.xml files for items.
  Many items may use the same type.
@@ -197,14 +200,15 @@ Special descendants of T3D:
 
     From code, you can also create creatures dynamically, by calling
     Resource.CreateCreature. For example
-    [[
-    var
-      Alien: TCreatureResource;
-    ...
-      Alien := Resources.FindName('Alien') as TCreatureResource;
-    ...
-      Alien.CreateCreature(...);
-    ]]
+
+<?php echo pascal_highlight(
+'var
+  Alien: TCreatureResource;
+...
+  Alien := Resources.FindName(\'Alien\') as TCreatureResource;
+...
+  Alien.CreateCreature(...);'); ?>
+
    )
    This is a good way to dynamically make creatures spawn in the 3D world
    (e.g. maybe you make an ambush, or maybe you want to create a "rush"

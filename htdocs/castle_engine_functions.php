@@ -22,12 +22,16 @@ if (CASTLE_OFFLINE)
 define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
 
+define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
+//define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
+
 /* This set_include_path is needed on SourceForge, otherwise
    includes from within kambi-php-lib sometimes fail. */
-set_include_path('.:kambi-php-lib/');
+set_include_path('.:kambi-php-lib/:geshi/');
 require_once 'kambi-php-lib/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
+require_once 'geshi.php';
 
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
@@ -403,6 +407,14 @@ function _castle_breadcrumbs($path)
 
 function echo_header_bonus ()
 {
+  global $geshi;
+  $geshi = new GeSHi();
+  $geshi->enable_classes();
+  $geshi->set_overall_class('sourcecode');
+  /* looks like we need to set_language before get_stylesheet,
+     otherwise not everything necessary is output. */
+  $geshi->set_language('delphi');
+
   ?>
 
 <link rel="alternate" type="application/rss+xml"
@@ -412,6 +424,11 @@ function echo_header_bonus ()
 <link type="text/css" rel="stylesheet" media="all"  href="castle-engine.css">
 
 <script type="text/javascript" src="castle-engine.js"></script>
+
+<style type="text/css"><!--
+<?php echo $geshi->get_stylesheet(false); ?>
+ -->
+</style>
 
 <?php
 echo flattr_header();
@@ -889,6 +906,34 @@ function depends_par($depends_array)
 function depends_ul($depends_array)
 {
   return array_to_ul($depends_array);
+}
+
+/* Highlight XML code, detecting [[xxx|yyy]] as links to API doc.
+
+   We do not use geshi for this now, since as far as I know we cannot do this
+   with geshi (geshi's "keyword URLs" are too weak for what we want,
+   we want various XML attributes (sometimes named the same, but under different
+   elements) to lead to different URL). */
+function xml_highlight($source)
+{
+  // $geshi = new GeSHi($source, 'xml');
+  // return $geshi->parse_code();
+
+  $source = str_replace('&', '&amp;', $source);
+  $source = str_replace('<', '&lt;', $source);
+  $source = str_replace('>', '&gt;', $source);
+  $source = '<pre class="xml sourcecode">' . $source . '</pre>';
+  $source = preg_replace('/\\[\\[(.+)\\|(.+)\\]\\]/',
+    '<a href="' . CASTLE_REFERENCE_URL . '\\1">\\2</a>', $source);
+  return $source;
+}
+
+function pascal_highlight($source)
+{
+  global $geshi;
+  $geshi->set_source($source);
+  $geshi->set_language('delphi');
+  return $geshi->parse_code();
 }
 
 ?>

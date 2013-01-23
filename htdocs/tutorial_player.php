@@ -11,14 +11,13 @@ Note that the Player instance is not necessary for basic 3D navigation (the only
 
 To load a Player do this:
 
-[[
-var
+<?php echo pascal_highlight(
+'var
   Player: TPlayer;
 ...
   Player := TPlayer.Create(SceneManager);
   SceneManager.Items.Add(Player);
-  SceneManager.Player := Player;
-]]
+  SceneManager.Player := Player;'); ?>
 
 It's best to do this (assign SceneManager.Player) before SceneManager.LoadLevel, this way Player.Camera is automatically configured as SceneManager.Camera and it follows level's properties like PreferredHeight (from level's NavigationInfo.avatarSize).
 
