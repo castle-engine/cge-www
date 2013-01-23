@@ -324,6 +324,12 @@ you have appropriate libraries installed on your system.
     by GLSL).
     The portability of our engine is of course in large part thanks to the great
     <a href="http://www.freepascal.org">Free Pascal Compiler</a>.
+
+    <!--
+    All Unix flavors may work out of the box.
+    On big-endian processors
+    (most not-x86 processors), some image loading code probably needs to be adjusted.
+    -->
   </li>
 
   <li>There are <b>many example programs</b>, look in sources
