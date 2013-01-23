@@ -421,9 +421,12 @@ function echo_header_bonus ()
   title="Castle Game Engine - News Feed"
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
-<link type="text/css" rel="stylesheet" media="all"  href="castle-engine.css">
+<link type="text/css" rel="stylesheet" media="all" href="castle-engine.css">
+<link type="text/css" rel="stylesheet" href="colorbox/example3/colorbox.css">
 
 <script type="text/javascript" src="castle-engine.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="colorbox/jquery.colorbox-min.js"></script>
 
 <style type="text/css"><!--
 <?php echo $geshi->get_stylesheet(false); ?>
@@ -579,6 +582,12 @@ function castle_footer()
   if (empty($castle_sidebar))
     echo '</div>'; else
     echo '</td><td class="layout">' .$castle_sidebar. '</td></tr></table>';
+
+  ?>
+<script type="text/javascript">
+  jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
+</script>
+  <?php
 
   common_footer();
 }
@@ -818,10 +827,12 @@ function castle_thumbs($images, $columns=1, $align='right')
         $linktarget = $image['linktarget']; else
         $linktarget = CURRENT_URL . 'images/original_size/' . $image['filename'];
       $result .= '
-          <a href="' . $linktarget . '" class="screenshot">
-            <img align="right" src="' . CURRENT_URL . 'images/thumb_size/' . $image['filename'] . '"
+          <a href="' . $linktarget . '"
+             class="screenshot"
+             title="' . $image['titlealt'] . '"><img
+            align="right"
+            src="' . CURRENT_URL . 'images/thumb_size/' . $image['filename'] . '"
             alt="' . $image['titlealt'] . '"
-            title="' . $image['titlealt'] . '"
           /></a>';
     }
     $result .= '</td>';
