@@ -3,7 +3,7 @@
   tutorial_header('Extending existing creatures / items classes');
 ?>
 
-You can also derive simple descendants of CastleCreatures classes, to customize their behavior. For example, "The Castle" customizes walk-attack creature to give both ranged and melee attacks to the Spider Queen, to make werewolves howl from time to time, and such. See castle1 GameCreatures.pas unit sources. We plan to add a simple FPS game to the engine examples, to illustrate this nicer.
+You can derive descendants of CastleCreatures and CastleItems classes, to customize the behavior of creatures and items. For example, "The Castle" customizes walk-attack creature to give both ranged and melee attacks to the Spider Queen, to make werewolves howl from time to time, and such. See castle1 GameCreatures.pas unit sources. See fps_game for an example that customizes what happens when using a medkit item.
 
   You can start your customizations from full-features classes, like TWalkAttackCreatureResource and TWalkAttackCreature. Or you can take the basic TCreatureResource and TCreature, and extend them to your liking.
 
@@ -14,7 +14,34 @@ You can also derive simple descendants of CastleCreatures classes, to customize 
   * [TCreatureResource], [TCreature]
   * And see the class hierarchy descending from TCreatureResource and TCreature in [class hierarchy diagram]
 
-  Everything is designed to give you a lot of properties to set (most of them are also settable by resource.xml files mentioned above) and a lot of methods to override. See not only the TCreature* classes, but also see above T3D classes in Castle3D unit, for various things that you can override and use.
+<p><b>Why are there two classes (TXxxResource annd TXxx) for everything?</b>
+
+    A "resource" is an information shared by all creatures/items of given type.
+    For example you can have two instances of TCreatureResource: Werewolf
+    and Knight. (Actually, they would have to be instances of one of
+    the TCreatureResource descendants, like TWalkAttackCreatureResource,
+    as TCreatureResource is abstract.) Using them you can create and place
+    on your your level milions of actual werewolves and knights
+    (instances of TWalkAttackCreature).
+    Every werewolf on the level will have potentially different life and
+    state (attacking, walking), but all werewolves will share the same
+    resource, so e.g. all werewolves will use the same dying animation
+    (TWalkAttackCreatureResource.DieAnimation) and dying sound
+    (TCreatureResource.SoundDie).
+
+    An example with items: you can have two instances of class TItemResource:
+    Sword and LifePotion. (Actually, TItemWeaponResource, which is a descendant
+    of TItemResource, sounds like a better candidate for the Sword.)
+    Using them, you can create milions of actual swords and life potions,
+    and place them of your level (as well as in inventories of creatures
+    able to carry items). Every life potion (TInventoryItem instance)
+    may keep some individual information (for example, how much of the potion
+    is already used/drunk), but all life potions will share the same
+    TItemResource instance, so e.g. they all will be displayed using the same model
+    on 3D level (TItemResource.BaseAnimation) and the same image in 2D inventory
+    (TItemResource.Image).
+
+Everything is designed to give you a lot of properties to set (most of them are also settable by resource.xml files mentioned above) and a lot of methods to override. See not only the TCreature* classes, but also see above T3D classes in Castle3D unit, for various things that you can override and use.
 
     You can code new creatures/items behaviors by deriving new classes
     from our existing classes in CastleCreatures / CastleItems / Castle3D units.
