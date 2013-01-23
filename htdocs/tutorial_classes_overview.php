@@ -53,7 +53,7 @@ http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/ .
     and TCastleControl already contain a TCastleSceneManager instance,
     automatically created and available inside their Controls list
     and inside SceneManager property. You can use TCastleWindowCustom /
-    TCastleControlCustom to avoid this automatic scene manager ---
+    TCastleControlCustom to avoid this automatic scene manager &mdash;
     useful if you want to use your custom descendant of TCastleSceneManager.)
 
    A detailed look at
@@ -101,7 +101,7 @@ http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/ .
        *All actual rendering is always eventually done by TCastleScene.*
        (Although all T3D classes have the possibility to render something
        by overriding the Render method, but this feature is simply
-       not used for now by existing engine classes --- TCastleScene rendering
+       not used for now by existing engine classes &mdash; TCastleScene rendering
        is so versatile that we use it for everything.)
        So everything else than TCastleScene is just for organizing your 3D data.
 
@@ -109,9 +109,9 @@ http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/ .
        more about them later.)
    -> MainScene property refers to one (or none) instance of TCastleScene,
       that should also be present in Items. This is used to detect initial
-      background, initial viewpoint, initial navigation mode etc. ---
+      background, initial viewpoint, initial navigation mode etc. &mdash;
       concepts that have naturally only a single value for the entire 3D world.
-      In VRML/X3D, these correspond to a "bindable nodes" --- of course they
+      In VRML/X3D, these correspond to a "bindable nodes" &mdash; of course they
       can change during the lifetime of the world, but at a given time
       only one value is active.
       (How to use: To load a game level, you can simply create
@@ -128,7 +128,7 @@ SceneManager.LoadLevel(\'myLevelName\');
 
        This will create TCastleScene, update SceneManager.Items,
        set SceneManager.MainScene, and do some other stuff helpful for typical
-       3D games, like handle placeholders --- see TGameSceneManager.LoadLevel
+       3D games, like handle placeholders &mdash; see TGameSceneManager.LoadLevel
        docs.)
 
 Global Resources list, that contains instances of

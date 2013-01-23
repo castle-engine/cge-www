@@ -78,7 +78,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // game) may ignore them, since "they know better".
 
   scenes_per_time="30"  // Suggested number of scenes per time to be generated.
-                        // This is a hint for the renderer --- by default it's
+                        // This is a hint for the renderer &mdash; by default it's
                         // 30, but it may be ignored. Larger values make
                         // animation smoother, but also much more memory consuming.
                         // Special value 0 is allowed here, and means
@@ -93,7 +93,7 @@ of animation handling in our VRML engine documentation</a>.</p>
                         // two adjacent frames. You can set this even to literal
                         // "0.0", but this may cause a lot of memory to be wasted
                         // when loading large animation. It's better to set
-                        // this to some very small value --- so small that you're
+                        // this to some very small value &mdash; so small that you're
                         // sure that user will not notice such small move
                         // anyway.
 

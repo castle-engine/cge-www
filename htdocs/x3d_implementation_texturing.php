@@ -68,7 +68,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>I didn't decide it lightly (noone likes
     to deliberately contradict the specification...), but I think this case
-    is justified --- <tt>MODULATE</tt> behavior is much more useful and usually
+    is justified &mdash; <tt>MODULATE</tt> behavior is much more useful and usually
     desired, IMO. Feel welcome to send me emails and argument against this.
     After all, I'm trying to fit the needs of most people with default
     behavior. If many people think that specification is right and I'm dumb,

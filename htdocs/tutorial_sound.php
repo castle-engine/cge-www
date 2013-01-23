@@ -41,7 +41,7 @@ Larger games may find it comfortable to define a repository of sounds in an XML 
   <!-- Actually, you can omit the file_name, it\'s the same
     as name with .wav extension.
     Also, you can add a lot of interesting attributes here, like
-    default_importance, gain, min_gain, max_gain --- see TODO. -->
+    default_importance, gain, min_gain, max_gain &mdash; see TODO. -->
 </sounds>'); ?>
 
 Then you can initialize it inside your game code like this:

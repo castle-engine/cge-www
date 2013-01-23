@@ -47,7 +47,7 @@ So you can create an instance of TCastleScene where you load an item, like potio
   PotionInstance2.Add(PotionType);
   SceneManager.Items.Add(PotionInstance2);'); ?>
 
-For more advanced uses, you may want to create your own class for TPotionType (descending from TCastleScene, and adding additional information, for example is this a "life potion", "mana potion", "cure potion" etc. --- we assume these potions have different 3D models, but also share some common parameters and so they want to be treated under a common class TPotionType). Also, you may want to create your own class for TPotionInstance (descending from T3DTransform, and adding additional information like "how much percent of this potion is used up (drink)"). No surprises here, you can do all this by following standard ObjectPascal syntax and conventions, example:
+For more advanced uses, you may want to create your own class for TPotionType (descending from TCastleScene, and adding additional information, for example is this a "life potion", "mana potion", "cure potion" etc. &mdash; we assume these potions have different 3D models, but also share some common parameters and so they want to be treated under a common class TPotionType). Also, you may want to create your own class for TPotionInstance (descending from T3DTransform, and adding additional information like "how much percent of this potion is used up (drink)"). No surprises here, you can do all this by following standard ObjectPascal syntax and conventions, example:
 
 <?php echo pascal_highlight(
 'type

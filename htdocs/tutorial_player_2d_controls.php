@@ -81,7 +81,7 @@ end;'); ?>
 
   Note that Player.FadeOutIntensity will be 0 when there is no pain, which cooperates
   nicely with GLFadeRectangle definition that will do nothing when 4th parameter is 0.
-  That is why we carelessly always call GLFadeRectangle --- when player is not dead,
+  That is why we carelessly always call GLFadeRectangle &mdash; when player is not dead,
   and is not in pain (Player.FadeOutIntensity = 0) then nothing will actually happen.
 
 - CastleGLUtils, and many other modules, provide many other helpers.

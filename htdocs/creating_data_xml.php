@@ -41,7 +41,7 @@ Notes specifically about level.xml and resource.xml files:
   you can also use add to your game some debug command
   to reload XML configuration of various things during the game.
   (Most, but not absolutely all, settings can be changed even while
-  the game is running; exceptions are things that are "heavy" ---
+  the game is running; exceptions are things that are "heavy" &mdash;
   e.g. changing animation filename may require restarting the level.)
 
 <?php

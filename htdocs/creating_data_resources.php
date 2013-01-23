@@ -109,7 +109,7 @@ Specifically about resource.xml:
   or generic item type "Item" are used by many resources.
 
   The type determines the behavior that is coded in ObjectPascal
-  --- like creature artificial intelligence and whether item can be equipped.
+  &mdash; like creature artificial intelligence and whether item can be equipped.
 
 - The type also determines other available attributes of this resource.
   For example, only creature type "WalkAttack" (or it's descendants,
@@ -219,12 +219,12 @@ Example:
     <walk file_name="walk.kanim"/>
   </model>
 
-This is probably the most comfortable approach to export animations from Blender to our engine. <b>For now</b> --- in the future we hope to extend Blender X3D exporter to store whole animation inside a single X3D file.
+This is probably the most comfortable approach to export animations from Blender to our engine. <b>For now</b> &mdash; in the future we hope to extend Blender X3D exporter to store whole animation inside a single X3D file.
 
 
 To describe above three cases in more precise manner:
 
-- (Case 3. above) When animation state, like <stand> or <walk>, doesn't have a time_sensor attribute --- then it must have file_name attribute, and we use precalculated animation, TCastlePrecalculatedAnimation, to play it. Suitable for kanim and X3D animations. Suitable also when the model is just a still 3D model, as then TCastlePrecalculatedAnimation simply renders it.
+- (Case 3. above) When animation state, like <stand> or <walk>, doesn't have a time_sensor attribute &mdash; then it must have file_name attribute, and we use precalculated animation, TCastlePrecalculatedAnimation, to play it. Suitable for kanim and X3D animations. Suitable also when the model is just a still 3D model, as then TCastlePrecalculatedAnimation simply renders it.
 
 - (Case 2. above) Otherwise, if an animation state like <stand> or <walk> has both time_sensor and file_name, then we load it to a TCastleScene and use appropriate TimeSensor to play the animation.
 
@@ -232,7 +232,7 @@ To describe above three cases in more precise manner:
 
 In some situations, we have to know the animation duration (for example, to know when <attack> animation ends and we should get back to <stand> or <walk> state).
 - For TCastlePrecalculatedAnimation, the animation always starts from the local time 0, goes to the last time (time of last <frame> in kanim file). Then it eventually goes backward, it backwards="true" in kanim file. So we know the duration by looking at frames time and backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin else 0).
-  So using backwards="true" in kanim works, useful for some animations when you do some gesture and then go back to original position by reversing this gesture --- e.g. dog-like creature biting.
+  So using backwards="true" in kanim works, useful for some animations when you do some gesture and then go back to original position by reversing this gesture &mdash; e.g. dog-like creature biting.
 - For TCastleScene and TimeSensor: in this case, X3D TimeSensor.cycleInterval gives us animation duration.
 
 The looping is done automatically for animations that require it (like walk). So using loop attribute in kanim file, or loop field for TimeSensor is not necessary (it's ignored).

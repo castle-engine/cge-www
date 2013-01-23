@@ -3,19 +3,60 @@
   tutorial_header('Download and install the engine, try the demos');
 ?>
 
-If you haven't done it yet, download the engine source code with examples from ....
+<p>If you haven't done it yet, <?php echo a_href_page('download the
+engine source code with examples', 'engine'); ?>.</p>
 
-The example program that shows most of the features presented in this tutorial is examples/fps_game/ . I suggest looking at it's source code for a complete implementation that uses all the code snippets shown in this tutorial.
+<p>The example program that shows most of the features presented in
+this tutorial is inside <tt>examples/fps_game/</tt> .
+I suggest looking at it's source
+code for a complete implementation that uses all the code snippets
+shown in this tutorial.</p>
 
-Run Lazarus, and open packages in the castle_game_engine/packages/ subdirectory. Open and compile all three packages (castle_base.lpk, castle_components.lpk, castle_window.lpk), to test that things compile OK. Then install the package <i>castle_components</i>. (Do not install castle_window --- you don't want to have this installed in Lazarus. You can install castle_base explicitly, but there's no need to: installing castle_components will also install castle_base automatically.)
+<ul>
+  <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a>:</b>
+    Run Lazarus,
+    and open packages in the <tt>castle_game_engine/packages/</tt>
+    subdirectory. Open and compile all three packages (<tt>castle_base.lpk</tt>,
+    <tt>castle_components.lpk</tt>, <tt>castle_window.lpk</tt>), to test that things compile
+    OK. Then install the package <tt>castle_components</tt>. (Do not install
+    <tt>castle_window</tt> &mdash; you don't want to have this installed in
+    Lazarus. You can install <tt>castle_base</tt> explicitly, but there's no need
+    to: installing <tt>castle_components</tt> will also install <tt>castle_base</tt>
+    automatically.)</p>
 
-Once packages are successfully installed, Lazarus restarts, and you should see "Castle" tab of components at the top (screenshot). Sorry, we don't have icons for our components yet, so it looks a little boring. Mouse over the icons to see component names.
+    <p>Once packages are successfully installed, Lazarus restarts, and you
+    should see <i>"Castle"</i> tab of components at the top (TODO: screenshot). Sorry,
+    we don't have icons for our components yet, so it looks a little
+    boring. Mouse over the icons to see component names.</p>
+  </li>
 
-Let's quickly open and run some demos, to make sure that everything works. I suggest running ... (some LCL demo) and ... (some CastleWindow demo).
+  <li><p><b>Alternatively, our engine can be used without Lazarus and LCL
+    (Lazarus Component Library)</b>. Many of the example programs
+    use our own <tt>CastleWindow</tt> unit to communicate with window manager,
+    and they do not depend on Lazarus LCL.
+    You can use command-line <tt>xxx_compile.sh</tt> scripts (or just call
+    <tt>make examples</tt>) to compile them using FPC.
 
-Make sure you have installed the necessary libraries first, or some of the demos will not work. The required libraries (.so under Unix, .dll under Windows) are mentioned in the <a href="http://castle-engine.sourceforge.net/apidoc/html/introduction.html#SectionLibraries">Requirements -&gt; Libraries</a> section of our reference introduction. Under Windows, you will usually want to grab http://castle-engine.sourceforge.net/miscella/win32_dlls.zip and place them somewhere on your $PATH, or just place them in every directory with .exe files that you compile with our engine.
+    <p>You will not be able to compile components and examples using LCL
+    of course (things inside <tt>src/components/</tt> and <tt>examples/lazarus/</tt>).
+  </li>
+</ul>
 
-Now we'll start creating our own game from scratch.
+<p>Let's quickly open and run some demos, to make sure that everything
+works. I suggest running at least
+<tt>examples/lazarus/model_3d_viewer/</tt> (demo using Lazarus LCL) and
+<tt>examples/fps_game/</tt> (demo using our CastleWindow unit).</p>
+
+<p>Make sure you have installed the necessary libraries first, or some of
+the demos will not work. The required libraries (.so under Unix, .dll
+under Windows) are mentioned in the <a
+href="http://castle-engine.sourceforge.net/apidoc/html/introduction.html#SectionLibraries">Requirements
+-&gt; Libraries</a> section of our reference introduction. Under
+Windows, you will usually want to grab <a href="http://castle-engine.sourceforge.net/miscella/win32_dlls.zip">Windows DLLs</a>  and place
+them somewhere on your $PATH, or just place them in every directory
+with .exe files that you compile with our engine.</p>
+
+<p>Now we'll start creating our own game from scratch.</p>
 
 <?php
   tutorial_footer();

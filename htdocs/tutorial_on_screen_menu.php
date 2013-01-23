@@ -3,7 +3,7 @@
   tutorial_header('On-screen menu');
 ?>
 
-Our TCastleWindow or TCastleControl have a list of 2D controls visible of the screen. By default, the only thing present there is a scene manager (since scene manager acts as a 2D viewport through which you see the 3D world; that's right --- the 3D stuff is "within" the 2D stuff). This way the scene manager (it's viewport) is visible on the window, which in turn means that all the 3D stuff we will add next is visible too.
+Our TCastleWindow or TCastleControl have a list of 2D controls visible of the screen. By default, the only thing present there is a scene manager (since scene manager acts as a 2D viewport through which you see the 3D world; that's right &mdash; the 3D stuff is "within" the 2D stuff). This way the scene manager (it's viewport) is visible on the window, which in turn means that all the 3D stuff we will add next is visible too.
 
 You can add your own 2D controls using the Window.Controls.Add call. There are many predefined GUI controls available in our engine, look for TUIControl descendants, for example in CastleControls unit. You can also derive your own controls with ease.
 
