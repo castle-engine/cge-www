@@ -9,7 +9,7 @@ function _tutorial_bar()
 
   $this_info = $castle_tutorial[$page_basename];
 
-  $result .= '<table class="news_older_newer"><tr>';
+  $result = '<table class="news_older_newer"><tr>';
   if ($this_info['previous'] !== NULL)
   {
     $previous_info = $castle_tutorial[$this_info['previous']];
