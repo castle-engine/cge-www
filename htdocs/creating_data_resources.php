@@ -342,10 +342,6 @@ Items
 
   <li><p>Prepare appropriate 2D image of item (to be shown in inventory slots
     and such).
-    <!--
-    (Once I tried just automatically rendering models inside inventory slots
-    but this doesn't look good enough). You can do it however you like.
-    -->
     For example, you can do this by opening
     the model in <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
     setting your camera as desired and taking a screenshot
@@ -356,41 +352,17 @@ Items
     by using "Console -> Print Current Camera (Viewpoint)..."
     and adding it to your 3D model file.
 
-    <p><?php echo a_href_page('"The Castle"', 'castle') ?> game
-    requires all item images to have a size 95 x 95, but that is a specific
-    requirement of this game (because of how it displays the inventory).
-    Each game has it's own way to display the inventory, so these requirements
-    may be different for other games.
-
     <p>This image filename should be referenced by the <tt>image="xxx"</tt>
     attribute in the root element of item <tt>resource.xml</tt> file.
 
   <li><p>For an item that can be equipped as a weapon, you also have
     to prepare two scenes showing the weapon in "ready" state (equipped)
     and "attack" (attack animation). Both of these 3D objects may be static
-    or animated (through precalculated animation or (TODO) VRML/X3D events).
+    or animated.
     You will almost always want to make the "attack" model animated,
     but you can also make the "ready" model animated (e.g. to show some fire
     flickering on the weapon or such; just don't overdo it, as such animations
     can become distracting from the player).
-
-  <li><p>Finally, to really add the item to the game add it's <tt>resource.xml</tt>
-    file. See README_about_index_xml_files.txt for more documentation
-    about what is possible there. New item can be automatically placed
-    on a level, using placeholders named "CasRes" + item name.
-    There is no need to modify the game executable.
-</ul>
-
-------------------------------------------------------------------------------
-
-<ul>
-  <li><p>Many notes about items apply also to creatures:
-
-    <ul>
-      <li>Like with items, initial creatures positions can be set
-        by placing a "placeholder" on the level.
-        Creature position is determined by placeholder lowest Z and
-        middle X,Y line.
 
         <p>If <tt>&lt;creature-life&gt;</tt> part is not present, the default
         MaxLife value (taken from this creature's <tt>resource.xml</tt> file,
@@ -404,14 +376,6 @@ Items
         See <tt>placeholder_reference_direction</tt> in README_about_index_xml_files.txt
         for details.
 
-      <li>For more customizations, see developers documentation
-        about CastleCreatures unit.
-
-      <li>For simple customizations you can set various creature
-        parameters by editing <tt>data/creatures/xxx/resource.xml</tt> file.
-    </ul>
-  </li>
-
   <li><p>When you want to use this creature on particular level(s),
     you should add it to <tt>prepare_resources</tt> in <tt>level.xml</tt>
     file. Alternatively, if the creature should be always loaded
@@ -419,9 +383,6 @@ Items
     should be always loaded, as the player may come to any level with a bow
     and shoot some arrows), then it should have <tt>always_prepare</tt> in
     it's <tt>resource.xml</tt>.</p></li>
-
-  <li><p>For testing various animations of creatures (and adjusting their time
-    parameters) you can use <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 
   <li><p>If you want to use <?php echo a_href_page_hashlink('shadow volumes', 'x3d_extensions',
     'section_ext_shadows'); ?>, and you want the creature to cast shadows
@@ -446,15 +407,6 @@ Items
     Also, remember that faces must be ordered consistently CCW
     &mdash; I think that in some cases <i>Recalculate normals outside</i>
     may be needed to reorder them properly.
-
-  <li><p>Notes for animations: beware. Animations are done with a method
-    that essentially makes their rendering very fast (rendering each
-    animation frame should be as fast as if it was a still scene).
-    However it costs much in terms of memory consumption (and in
-    "Loading creatures" time). So be sure to test how much memory is consumed
-    by the game after your new animation is loaded. (using system monitors
-    or such).</p>
-  </li>
 </ul>
 
 <?php
