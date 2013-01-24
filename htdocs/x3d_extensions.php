@@ -670,7 +670,7 @@ EXTERNPROTO Text3D [
     (done by blending in OpenGL, just like partially transparent materials).
     Internally, we have a simple and very nice algorithm that detects whether texture's
     alpha channel qualifies as simple yes-no or full range, see
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/Images.TImage.html#AlphaChannel">TImage.AlphaChannel reference</a>
+    <?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>
     (default tolerance values used by X3D renderer are 5 and 0.01).
     There is also a special program in <?php echo a_href_page('engine sources',
     'engine'); ?> (see <tt>examples/images_videos/detect_alpha_simple_yes_no.lpr</tt>
@@ -915,12 +915,12 @@ Shape {
     This must always be &lt; 1. For sensible effects, this should
     be something rather close to 0.
 
-    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbing">Developers: see also TWalkCamera.HeadBobbing property.</a>)</small></p>
+    <small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbing property.', 'CastleCameras.TWalkCamera.html#HeadBobbing'); ?>)</small></p>
 
     <p>The field <tt>headBobbingTime</tt> determines how much time passes
     to make full head bobbing sequence (camera swing up and then down back to original height).
 
-    <small>(<a href="<?php echo CURRENT_URL; ?>apidoc/html/Cameras.TWalkCamera.html#HeadBobbingTime">Developers: see also TWalkCamera.HeadBobbingTime property.</a>)</small></p>
+    <small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbingTime property.', 'CastleCameras.TWalkCamera.html#HeadBobbingTime'); ?>)</small></p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1730,11 +1730,7 @@ end;
     <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
     chapter "octrees"</a> you can
     also take a look at the (source code and docs) of the
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/CastleSceneCore.TCastleSceneCore.html#Spatial">TCastleSceneCore.Spatial</a> property
-    and units
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/Triangle.html">Triangle</a>,
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/TriangleOctree.html">TriangleOctree</a> and
-    <a href="<?php echo CURRENT_URL; ?>apidoc/html/ShapeOctree.html">ShapeOctree</a>.<p>
+    <?php api_link('TCastleSceneCore.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?> property.
 
     <p>A new node:
 
