@@ -141,7 +141,7 @@ $castle_sitemap = array(
           'tutorial_resources' => array('title' => 'Creatures and items',
             'sub' => array(
               'tutorial_resources_using_existing' => array('title' => 'Using existing creatures/items classes'),
-              'tutorial_resources_defining_new' => array('title' => 'Extending existing creatures/items classes'),
+              'tutorial_resources_extending' => array('title' => 'Extending existing creatures/items classes'),
             ),
           ),
           'tutorial_up' => array('title' => 'Which way is up?'),

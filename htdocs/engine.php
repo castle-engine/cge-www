@@ -222,7 +222,7 @@ you have appropriate libraries installed on your system.
     <?php api_link('CastleLevels', 'CastleLevels.html'); ?>.
     Or you can make your own management of 3D objects, by deriving descendants
     of base <?php api_link('T3D', 'Castle3D.T3D.html'); ?> and other classes.
-    <?php echo a_href_page('Engine tutorial', 'tutorial_resources_defining_new'); ?>
+    <?php echo a_href_page('Engine tutorial', 'tutorial_resources_extending'); ?>
     contains detailed information about this.
 
   <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
