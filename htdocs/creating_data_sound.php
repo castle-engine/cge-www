@@ -32,30 +32,48 @@ See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
   <sound name="test_sound_3" />
 </sounds>'); ?>
 
-------------------------------------------------------------------------------
-TODO: old castle-development text, to be simplified
-
-
-<p>Notes about sound files:
+<h2>Some notes about sound files</h2>
 
 <ul>
-  <li><p>Sound file formats: currently our engine can play WAV
-    and OggVorbis files. Short sounds should be stored as WAV,
+  <li><p>Right now we support OggVorbis and (uncompressed) WAV files.
+    <!--
+    Short sounds should be stored as WAV,
     long sounds (like level music) may be stored as OggVorbis files.
+    -->
 
-  <li><p>Do not make your sounds more silent
-    just because you're recording some "silent" thing.
-    For example, <tt>mouse_squeek.wav</tt> should be as loud
-    as <tt>plane_engines_starting.wav</tt>. The fact that mouse squeek
-    is in reality much more quiet than plane engine doesn't matter here.
-    You should always make your sound files with maximum quality,
-    and this means that they should use all the available sound range.
+  <li><p>A general advice when creating sounds is to keep them
+    <i>normalized</i>, which means "as loud as possible".
+    It doesn't matter if you record a mouse squeak
+    or a plane engine, the sound file should be equally loud.
+    This allows to have best quality sound.
 
-  <li><p>Music: as of 2006-04-25, music is done and it's great.
-    To create a music I just need a sound file that can be nicely
-    played in a loop.
+    <p>Scale the sound by changing the <tt>gain</tt> property
+    in sound configuration.
 
-  <li>Special notes for creating footsteps sound:
+  <li><p>If sound is supposed to be spatialized (i.e. played
+    by <?php api_link('Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?> method), make sure it is mono.
+    Some OpenAL implementations never spatialize stereo sounds.
+
+<!--
+    <p>You can use any editor you like to convert your sounds to mono.
+    I like this sox command-line:
+    <pre>  sox input.wav -c 1 output.wav</pre>
+    See also <tt>data/sounds/scripts/example_make_mono.sh</tt>
+-->
+
+  <li><p>Specifically when making footsteps sound: synchronize it's duration
+    with the <?php api_link('HeadBobbingTime', 'CastleCameras.TWalkCamera.html#HeadBobbingTime'); ?>,
+    which you can set for example using
+    <?php echo a_href_page('player XML configuration file', 'creating_data_player'); ?>
+    (if your game loads it). By default it's 0.5, which means your footsteps
+    sound should be around half-second long. Or you can record 2 footsteps
+    and make it 1-second long.
+
+    <p>The important thing is to synchronize these times, to make them
+    feel right in the game &mdash; visuals (head bobbing) should match
+    what you hear (footsteps sound).
+
+<!--
     <ul>
       <li>Don't make the footsteps sound too long.
         Preferably you should put there only 2 footsteps. Reason ?
@@ -64,21 +82,7 @@ TODO: old castle-development text, to be simplified
         immediately stopped &mdash; it's just played until the end.
         Yes, this is desired, as it makes better effect than suddenly
         stopping all the sounds.
-
-      <li>These 2 footsteps should take about 1 second. This is the amount
-        of time that "feels good" with head bobbing.
-        (See the <tt>data/player.xml</tt> file, <tt>head_bobbing_time = 0.5</tt>
-        there means that 1 footstep = 0.5 of the second for head bobbing.)
-    </ul>
-
-  <li><p>Remember that if sounds are supposed to be spatialized (i.e. played
-    by Sound3d procedures), then you must make them mono (never stereo!).
-    That's because Windows OpenAL will never spatialize stereo sounds.
-
-    <p>You can use any editor you like to convert your sounds to mono.
-    I like this sox command-line:
-    <pre>  sox input.wav -c 1 output.wav</pre>
-    See also <tt>data/sounds/scripts/example_make_mono.sh</tt>
+-->
 </ul>
 
 <?php
