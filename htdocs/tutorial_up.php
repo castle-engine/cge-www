@@ -7,7 +7,7 @@ tutorial_header('Which way is up?');
 and, consequently, which vector corresponds to the "direction" the
 creature/player is facing.
 
-<p>Quick guide for Blender:
+<h2>Quick guide for <a href="http://www.blender.org/">Blender</a></h2>
 
 <ul>
   <li><p>If you want to follow "+Y is up" convention (easier,
@@ -18,11 +18,11 @@ creature/player is facing.
         rotate the model, i.e. change +Z to +Y. This is actually the
         default for X3D exporter since some time.
 
-      <li>Make sure your Viewpoint indicates +Y as up vector. This is
+      <li>Make sure your <tt>Viewpoint</tt> indicates +Y as up vector. This is
         actually the default VRML/X3D value.
 
-      <li>Leave T3DOrient.DefaultOrientation at default
-        otUpYDirectionMinusZ.
+      <li>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at default
+        <tt>otUpYDirectionMinusZ</tt>.
     </ol>
   </li>
 
@@ -30,24 +30,25 @@ creature/player is facing.
 
     <ol>
       <li>When exporting from Blender (levels, creatures etc.), always
-        select to *not* rotate the model, i.e. keep Blender's coordinate
-        system.
+        select to <i>not</i> rotate the model, i.e. keep Blender's original
+        coordinate system.
 
-      <li>Make sure you use view3dscene (or other VRML/X3D editor) to
-        generate a Viewpoint in your level that makes gravity working in Z
+      <li>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
+        generate a <tt>Viewpoint</tt> in your level that makes gravity working in Z
         axis.
 
-      <li>Set T3DOrient.DefaultOrientation := otUpZDirectionX.
+      <li>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <tt>otUpZDirectionX</tt>.
     </ol>
   </li>
 </ul>
 
-<p>Detailed discussion about what the issue: There are two common
-conventions:</p>
+<h2>Detailed discussion about the issue</h2>
+
+<p>There are two common conventions:</p>
 
 <ol>
-  <li>Most 3D modeling software, like Blender, prefers the up direction
-    to be +Z, and direction to be -Y. This is usually sensible when you
+  <li>Most 3D modeling software, like <a href="http://www.blender.org/">Blender</a>, prefers the up direction
+    to be +Z, and direction to be +X. This is usually sensible when you
     think about a flat level, with XY representing the map view, and
     additional Z adding the height.
 
@@ -64,7 +65,7 @@ any 3D vector as "up", and pick anything orthogonal to it as
 <p>Our engine supports various such conventions, we do not force you to
 follow any particular one. To make things work smoothly, you want to
 keep the same conventions throughout your process &mdash; be wary of
-this when creating T3DOrient instances in the engine, when exporting
+this when creating <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?> instances in the engine, when exporting
 3D models from Blender, when setting viewpoint (with gravity) in
 whatever way etc.</p>
 
@@ -84,13 +85,14 @@ feature, and instead decide to work with VRML/X3D files where +Z is
 
 <p>VRML/X3D is flexible in this regard: although the default is to have
 up in +Y, the specification says that up is +Y transformed by the
-Viewpoint node transformation, and we honour it. In short, this means
+<tt>Viewpoint</tt> node transformation, and we honour it. In short, this means
 that gravity is configurable in VRML/X3D file. You can setup your
-camera in view3dscene, use "Navigation -> Walk and Fly settings ->
-Change Up Vector", input any vector you want (like "0 0 1"), then use
-"Console -> Print Current Camera..." option, and copy-paste the
+camera in <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
+use <i>"Navigation -> Walk and Fly settings ->
+Change Up Vector"</i>, input any vector you want (like "0 0 1"), then use
+<i>"Console -> Print Current Camera..."</i> option, and copy-paste the
 generated code from the console to your VRML/X3D file. This will set a
-Viewpoint with desired up vector, which will be correctly used by our
+<tt>Viewpoint</tt> with desired up vector, which will be correctly used by our
 engine (and other good VRML/X3D browsers actually) for gravity.</p>
 
 <p>The notion of direction/up is used by our engine in two places:</p>
@@ -98,29 +100,33 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 <ol>
   <li><p>Gravity pulls things (player, items, creatures...) down in the -up
     vector. We automatically detect this based on the gravity vector of
-    the Viewpoint inside your TCastleSceneManager.MainScene (you usually
+    the <tt>Viewpoint</tt> inside your <?php api_link('TCastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
+    (you usually
     want to set this to your level 3D model). This means that we follow
     VRML/X3D specification, and gravity vector is derived from the 3D
-    model of your level. You can use e.g. view3dscene to generate
-    Viewpoint node with a desired gravity vector. You can read this vector
-    by looking at TCastleSceneManager.GravityUp,
-    TCastleSceneManager.Camera.GravityUp, and World.GravityUp (from any
-    T3D code), these are always equal.
+    model of your level. You can use e.g. <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    to generate
+    <tt>Viewpoint</tt> node with a desired gravity vector. You can read this vector
+    by looking at <tt>TCastleSceneManager.GravityUp</tt>,
+    <tt>TCastleSceneManager.Camera.GravityUp</tt>, and
+    <tt>World.GravityUp</tt> (from any
+    <tt>T3D</tt> code), these are always equal.
 
   <li><p>Oriented 3D things, like creatures, player, and items (and anything
-    else derived from T3DOrient class) are always oriented such that their
+    else derived from <tt>T3DOrient</tt> class) are always oriented such that their
     local direction/up is matching the vectors defined by
-    T3DOrient.Orientation property. Although the publicly visible
-    properties like TCreature.Up are automatically set to be *usually*
-    equal to the World.GravityUp (in case of flying creatures, it may
+    <tt>T3DOrient.Orientation</tt> property. Although the publicly visible
+    properties like <tt>TCreature.Up</tt> are automatically set to be <i>usually</i>
+    equal to the <tt>World.GravityUp</tt> (in case of flying creatures, it may
     actually be different sometimes). But you still have to set the
-    T3DOrient.Orientation yourself, to make the local creature model
+    <tt>T3DOrient.Orientation</tt> yourself, to make the local creature model
     correctly match these vectors. You want to set it such that typical up
-    of your creatures changes into World.GravityUp (that is, creature's up
+    of your creatures changes into <tt>World.GravityUp</tt> (that is, creature's up
     remains untransformed).
 </ol>
 
-<p>Usually, you want to just set T3DOrient.DefaultOrientation, and then
+<p>Usually, you want to just set
+<?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?>, and then
 it will be used for all your models.
 
 <?php
