@@ -6,31 +6,32 @@ creating_data_header('3D models');
 <p>Our engine was designed from the start to use <?php echo
 a_href_page('standard model formats X3D and VRML', 'vrml_x3d');
 ?>. This means that in principle you can use <b>any 3D modeler</b> to
-make models for our games, as almost everything can export to X3D or
+make models for your games, as almost everything can export to X3D or
 VRML (and when that's not enough, we also support many Collada, 3DS,
 Wavefront OBJ and other 3D formats). We consciously do not try to
 implement any 3D editor for our engine &mdash; it's a wasted effort,
-just look how magnificent e.g. <a>Blender</a> is, and how it's
+just look how magnificent e.g. <a href="http://www.blender.org/">Blender</a> is, and how it's
 constantly improving. We want to use these tools, not reinvent them.
 
 <p>So, the basic guide to creating 3D data for our engine is actually
-trivial: grab <a>Blender</a> (or any other 3D modeller of choice), and
-export to X3D. You can try opening your models in <a>view3dscene</a>
-to see which features get exported correctly. In case of Blender, <a
+trivial: grab <a href="http://www.blender.org/">Blender</a> (or any other 3D modeller of choice), and
+export to X3D. You can try opening your models in
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ to see which features get exported correctly. In case of Blender, <a
 href="http://castle-engine.sourceforge.net/blender_stuff.php">you can
-see our custom Blender X3D exporter (although standard Blender X3D
-exporter is also fine since some time), and notes how does it
+use our custom Blender X3D exporter (although standard Blender X3D
+exporter is also fine since some time), and see notes how does it
 work</a>.
 
 <p>You may encounter some features that are not exported from your 3D
 modeller in a satisfactory way. Fortunately, that's when the strength
 or VRML/X3D appears: you can use <tt>Inline</tt> to inlude one 3D file
-within another, and you can simple write some X3D content by
+within another, and you can simply write some X3D content by
 hand. That's good for adding scripts to 3D data, and generally adding
-stuff that is uncomfortable/impossible to design in your 3D modeller
-(like Blender). See <tt>examples/fps_game/</tt> data for comments,
+stuff that is uncomfortable/impossible to design in your 3D modeller.
+See <tt>examples/fps_game/</tt> data for comments,
 especially the level file
-<a>examples/fps_game/data/example_level/example_level_final.x3dv</a>.
+<tt>examples/fps_game/data/example_level/example_level_final.x3dv</tt>.
 
 <p>Orientation: see <?php echo a_href_page('Which way is up?', 'tutorial_up'); ?>
  chapter of the

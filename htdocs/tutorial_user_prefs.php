@@ -3,11 +3,12 @@ require_once 'castle_engine_functions.php';
 tutorial_header('User preferences');
 ?>
 
-<p>Easy: Use CastleConfig. Various engine components automatically
-register that they can load/save user preferences. So</p>
+<p>That's easy: Use <?php api_link('CastleConfig', 'CastleConfig.html'); ?>.
+Various engine components automatically register their callbacks there,
+so they can load/save user preferences. The code:</p>
 
 <?php echo pascal_highlight(
-'{ make sure application name is correct if you want by setting OnGetApplicationName, like this : }
+'{ Optionally make sure application name is correct by setting OnGetApplicationName: }
 
 function MyGetApplicationName: string;
 begin

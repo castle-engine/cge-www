@@ -4,7 +4,8 @@ tutorial_header('Player');
 ?>
 
 <p>For a full-featured game it is good to have a central player
-object, assigned to <?php api_link('SceneManager.Player', 'CastleSceneManager.TCastleSceneManager.html#Player'); ?>.
+object, an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
+assigned to <?php api_link('SceneManager.Player', 'CastleSceneManager.TCastleSceneManager.html#Player'); ?>.
 This is used for various things:
 
 <ol>

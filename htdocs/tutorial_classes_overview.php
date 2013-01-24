@@ -154,10 +154,10 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         So everything else than <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
         is just for organizing your 3D data.
 
-        <p>Except: usage of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
+        <p>Exceptions to the above: usage of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
         <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>,
         <?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> is a little special,
-        more about them later.)
+        more about them later.
       </dd>
     </dl>
 

@@ -4,10 +4,10 @@ tutorial_header('Sound');
 ?>
 
 <p>As with many other operations, you can add and control sounds to your
-game either by Pascal code, or by editing your data files. This gives
+game either by ObjectPascal code, or by editing your data files. This gives
 flexibility both to a programmer and the content designer. It's your
 choice which approach you use &mdash; usually it's better to keep as
-much as possible in data files, and use code only when necessary for
+much as possible in data files, and use ObjectPascal only when necessary for
 non-trivial situations.</p>
 
 <h2>Loading and playing sound inside VRML/X3D</h2>
@@ -19,27 +19,35 @@ or in <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>
 or on websites like <a href="http://opengameart.org/">OpenGameArt.org</a>.
 </p>
 
-<p>To add a looping sound to your VRML/X3D file, just open xxx.x3dv and
-paste there this:</p>
+<p>To add a looping sound to your VRML/X3D file in classic encoding
+(<tt>xxx.x3dv</tt> files) add this:</p>
 
 <pre class="sourcecode">Sound {
   source AudioClip { url "sample.wav" loop TRUE }
 }</pre>
 
-<p>Remember that URL "sample.wav" is specified relative to the location
-of your xxx.x3dv file. In the simplest case, just place both xxx.x3dv
-and sample.wav in the same directory, and you're fine.</p>
+<p>Remember that URL <tt>"sample.wav"</tt> is specified relative to the location
+of your <tt>xxx.x3dv</tt> file. In the simplest case, just place both <tt>xxx.x3dv</tt>
+and <tt>sample.wav</tt> in the same directory, and you're fine.</p>
 
 <h2>Loading and playing sound inside ObjectPascal code</h2>
 
-<p>To play a sound from a code, add this code:</p>
+<p>To play a sound using direct code, do this:</p>
 
 <?php echo pascal_highlight(
-'var
+'uses ..., CastleSoundEngine;
+
+...
+var
   Buffer: TSoundBuffer;
-  ...
+
+...
   Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
-  SoundEngine.PlaySound(Buffer, ...); // see PlaySound reference for parameters'); ?>
+  SoundEngine.PlaySound(Buffer, ...);'); ?>
+
+<p>See
+<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>
+ docs for the description of parameters.
 
 <p>You can free the buffer once the sound has stopped. It's not important
 for simple programs, as we will take care to always free it before
@@ -55,17 +63,15 @@ looking like this:</p>
 '<?xml version="1.0"?>
 <sounds>
   <sound name="sample" file_name="sample.wav" />
-  <!-- Actually, you can omit the file_name, it\'s the same
-    as name with .wav extension.
-    Also, you can add a lot of interesting attributes here, like
-    default_importance, gain, min_gain, max_gain &mdash; see TODO. -->
+  <!-- Actually, you can omit the file_name, by default it\'s the same
+    as sound name with .wav extension. -->
 </sounds>'); ?>
 
 <p>See
 <?php echo a_href_page('creating game sounds guide', 'creating_data_sound'); ?>
  for detailed specification about sound XML files.
 See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'); ?> docs
- and <tt>fps_game</tt> for example.
+ and <tt>examples/fps_game/</tt> for example.
 You have to initialize the sound repository inside your game code like this:</p>
 
 <?php echo pascal_highlight(
@@ -89,13 +95,18 @@ See <?php echo a_href_page('creating game data guide', 'creating_data_intro'); ?
   SoundEngine.Sound3D(SoundType, Vector3Single(1, 2, 3), false { looping });
   SoundEngine.Sound(SoundType, false { looping }); // non-3D sound'); ?>
 
-<p>The SoundEngine.Sound3D and SoundEngine.Sound are a little simpler to
-use than SoundEngine.PlaySound, they have fewer parameters. That is
+<p>The
+<?php api_link('SoundEngine.Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?>
+ and
+<?php api_link('SoundEngine.Sound', 'CastleSoundEngine.TRepoSoundEngine.html#Sound'); ?>
+ are a little easier to use than
+<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
+ they have fewer parameters. That is
 because the default sound properties (it's individual gain, importance
 (priority), actual filename and other stuff) is already recorded in
-the data/sounds/index.xml file. That's one advantage of using the
+the sounds XML file. That's one advantage of using the
 sounds repository: all your sounds properties are centrally stored in
-the data/sounds/index.xml file.</p>
+the sounds XML file.</p>
 
 <!--
 <p>You can also refer to your sound names from VRML/X3D AudioClip node,
@@ -120,23 +131,36 @@ defined in <tt>data/sounds/index.xml</tt>.
 
 <h2>More</h2>
 
-<p>For more advanced uses, you can use the return value of PlaySound or
-Sound or Sound3D: it's either nil (if no OpenAL resources available to
+<p>For more advanced uses, you can use the return value of
+<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
+<?php api_link('SoundEngine.Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?> or
+<?php api_link('SoundEngine.Sound', 'CastleSoundEngine.TRepoSoundEngine.html#Sound'); ?>.
+It's either <tt>nil</tt> (if no OpenAL resources were available to
 play this sound, and it's priority doesn't allow overriding other
-sounds) or it's a TSound instance. If you have TSound instance, you
-can use it's TSound.OnRelease event to be notified when source stops
-playing. You can also use other TSound methods, e.g. update
-TSound.Position, TSound.Gain and such. You can stop playing the sound
-by TSound.Release.</p>
+sounds) or it's a
+<?php api_link('TSound', 'CastleSoundAllocator.TSound.html'); ?>
+ instance. If you have
+ <?php api_link('TSound', 'CastleSoundAllocator.TSound.html'); ?>
+ instance, you can save it to a variable and use for various purposes.
+ For example you can update sound parameters during the game,
+ e.g. changing
+ <?php api_link('TSound.Position', 'CastleSoundAllocator.TSound.html#Position'); ?>,
+ <?php api_link('TSound.Gain', 'CastleSoundAllocator.TSound.html#Gain'); ?>
+ and such.
+ You can use it's <?php api_link('TSound.OnRelease', 'CastleSoundAllocator.TSound.html#OnRelease'); ?>
+ event to be notified when source stops
+playing. You can stop playing the sound
+by <?php api_link('TSound.Release', 'CastleSoundAllocator.TSound.html#Release'); ?>.</p>
 
 <h2>Predefined sounds</h2>
 
 <p>Some engine components already define some sound names. To make them
-defined, just use the appropriate names in your
-<tt>data/sounds/index.xml</tt> file described above.
+defined, just use the appropriate names in your sounds XML file described above.
+They will be automatically found and played by engine components.
 
-<p>See "Common sounds" section in CastleSoundEngine unit sources for a
-current list of predefined sound names.
+<p>See <i>"Common sounds"</i> section in
+<?php api_link('CastleSoundEngine', 'CastleSoundEngine.html'); ?>
+ unit sources for a current list of predefined sound names.
 
 <?php
 tutorial_footer();
