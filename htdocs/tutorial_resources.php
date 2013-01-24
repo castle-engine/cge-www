@@ -12,13 +12,33 @@ and items suitable for 3D games in ready, in
 <?php api_link('CastleItems', 'CastleItems.html'); ?> units.</p>
 
 <p>Creatures/items are defined by files named <tt>resource.xml</tt>
-in the game data. See <tt>fps_game</tt> data for an example how such file looks
+in the game data. Their contents looks like this:</p>
+
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
+
+<resource
+  name="MyCreatureName"
+  type="WalkAttack">
+  <model>
+    <idle         file_name="idle.kanim"   />
+    <walk         file_name="walk.kanim"   />
+    <attack       file_name="attack.kanim" />
+    <die          file_name="die.kanim"    />
+    <hurt         file_name="hurt.kanim"   />
+  </model>
+</resource>'); ?>
+
+<p>The <ttt>file_name</tt> properties refer to actual 3D models
+defining creature animations.
+See <tt>examples/fps_game/</tt> data for a real example how such file looks
 like. And see <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>
  for a complete
 documentation of <tt>resource.xml</tt> files, and how to create and export
 creature/item animations.</p>
 
-<p>The common properties about creatures and items specified in <tt>resource.xml</tt>
+<p>The most important properties
+about creatures and items specified in <tt>resource.xml</tt>
 files are:</p>
 
 <ul>
