@@ -399,3 +399,27 @@ div.quote {
   background: #FFD;
   border: dotted 1px black;
 }
+
+/* books (tutorial and such) ------------------------------------------------- */
+
+.book-header {
+  width: 100%;
+  border: thin solid #ffeaa9;
+  background: #fff4d2;
+  padding: 0.3em;
+}
+
+.book-header .book-previous {
+  text-align: left;
+  float: left;
+  width: 40%;
+}
+.book-header .book-next {
+  text-align: right;
+  float: right;
+  width: 40%;
+}
+.book-header .book-title {
+  text-align: center;
+  font-weight: bold;
+}

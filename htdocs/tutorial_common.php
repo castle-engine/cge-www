@@ -9,20 +9,29 @@ function _tutorial_bar()
 
   $this_info = $castle_tutorial[$page_basename];
 
-  $result = '<table class="news_older_newer"><tr>';
+  $result = '<div class="book-header">
+    <div class="book-previous">';
   if ($this_info['previous'] !== NULL)
   {
     $previous_info = $castle_tutorial[$this_info['previous']];
-    $result .= '<td class="news_newer">' . a_href_page('Previous: ' .
-      $previous_info['number'] . $previous_info['title'], $this_info['previous']) . '</td>';
-  }
+    $result .= a_href_page('Previous: ' .
+      $previous_info['number'] . $previous_info['title'], $this_info['previous']);
+  } else
+    $result .= '&nbsp;';
+
+  $result .= '</div> <div class="book-next">';
+
   if ($this_info['next'] !== NULL)
   {
     $next_info = $castle_tutorial[$this_info['next']];
-    $result .= '<td class="news_older">' . a_href_page('Next: ' .
-      $next_info['number'] . $next_info['title'], $this_info['next']) . '</td>';
-  }
-  $result .= '</tr></table>';
+    $result .= a_href_page('Next: ' .
+      $next_info['number'] . $next_info['title'], $this_info['next']);
+  } else
+    $result .= '&nbsp;';
+
+  $result .= '</div>
+    <div class="book-title">Tutorial</div> <div style="clear:both"></div>
+  </div>';
 
   return $result;
 }
