@@ -1,10 +1,24 @@
 <?php
 require_once 'castle_engine_functions.php';
 creating_data_header('Resources (creatures and items)');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Resource file (resource.xml)', 'resource_xml'),
+    new TocItem('Resource type', 'resource_type'),
+    new TocItem('Orientation of resource 3D model above the ground', 'orientation'),
+    new TocItem('Animations of resources', 'animations'),
+  )
+);
 ?>
 
-<p>Below is a sample <tt>resource.xml</tt> file,
+<?php echo $toc->html_toc(); ?>
+<?php echo $toc->html_section(); ?>
+
+<p><tt>resource.xml</tt> files define the properties of resources: creatures and items.
+Below is a sample <tt>resource.xml</tt> file,
 with links to documentation for every attribute.
+
 <ul>
   <li>(Almost) every attribute is optional, so in practice
     there's no need to specify them all in your <tt>resource.xml</tt> files.
@@ -98,229 +112,184 @@ with links to documentation for every attribute.
     [[CastleCreatures.TWalkAttackCreatureResource.html#VisibilityAngle|angle]]="2.094395102" />
 </resource>'); ?>
 
-------------------------------------------------------------------------------
-Specifically about resource.xml:
+<?php echo $toc->html_section(); ?>
 
-- Defines a creature or an item resource. The system is extensible,
-  so it can actually define other 3D resources that are part of the world
-  in your games.
+<p>The <tt>type</tt> attribute determines the exact class (ObjectPascal
+implementation) used to instantiate this resource.
+You can use the same type many types of course,
+for example you can define many creatures of type <tt>WalkAttack</tt>
+or <tt>Missile</tt> and many items of type <tt>Item</tt>.
 
-  The root element is <resource>.
+<p>This type determines the behavior that is coded in ObjectPascal
+&mdash; like creature artificial intelligence, whether item can be equipped,
+what happens when item is used and so on.
 
-- name: the unique object name to indicate initial position of this creature in
-  the level 3D file. IOW, this determines Blender object name
-  to choose this creature type. It must be unique among all resources
-  (creature and items resources). For all (current and future) uses it should
-  be a valid VRML/X3D and ObjectPascal identifier, and also we reserve
-  underscores and digits for some tricks.
-  So stick to only (English) letters.
+<p>The type also determines available attributes and animations of this resource.
+For example, only creature type <tt>WalkAttack</tt> (or it's descendants)
+have the <tt>&lt;attack&gt;</tt> animation. See the properties of resource
+classes to know what is available:
 
-- type: determines the exact class (ObjectPascal implementation)
-  used to instantiate this creature resource.
-  It doesn't have to be unique. E.g. creature type "Missile"
-  or generic item type "Item" are used by many resources.
+<ul>
+  <li><?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?>
+    <ul>
+      <li><?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?>
+        <ul>
+          <li><?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
+          <li><?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?>
+          <li><?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?>
+        </ul>
+      <li><?php api_link('TItemResource', 'CastleItems.TItemResource.html'); ?>
+        <ul>
+          <li><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?>
+        </ul>
+    </ul>
+</ul>
 
-  The type determines the behavior that is coded in ObjectPascal
-  &mdash; like creature artificial intelligence and whether item can be equipped.
-
-- The type also determines other available attributes of this resource.
-  For example, only creature type "WalkAttack" (or it's descendants,
-  like "Alien") have the "attack_animation" attribute.
-
-  For the documentation and default values of properties that you can
-  set on a creature or item, see T3DResource descendants in the engine:
-  TCreatureResource (and descendants) for creatures,
-  TItemResource (and descendants) for items.
-  They have lot's of properties, and almost all their properties
-  can be set by appopriate XML attribute.
-
-- radius: (default 0.0) Radius used for collision detection with this creature.
-  If you don't set radius in resource.xml file (or set it to default value 0.0),
-  we will calculate a sensible default radius based on the bounding box
-  of the creature.
-
-- middle_height: (default 0.5) Position of eyes of the creature,
-  used for various collision detection routines.
-  See T3DCustomTransform.MiddleHeight documentation.
-
-  Game developers can use the Castle3D.RenderDebug3D variable to easily
-  visualize the bounding sphere (and other things) around resources.
-  The bounding sphere is centered around the point derived from "middle_height"
-  setting and with given (or automatically calculated) "radius".
-
-- flying: False or True to indicate if creature / item is affected by gravity.
-
-  Missile creatures (resources with type="Missile",
-  indicating TMissileCreatureResource implementation,
-  or other type indicating your custom class descending from TMissileCreatureResource)
-  are an exception here: they ignore this setting.
-  Missiles have special approach to gravity (see direction_fall_speed)
-  and are not affected by normal gravity settings.
-
-- fall_speed: the speed (in units per second) of falling down because of gravity.
-  Default is 10 (see CastleResources.DefaultFallSpeed constant).
-
-  Note that the gravity direction is controlled by your level 3D model,
-  see "Which way is up" section in the engine tutorial.
-
-  Currently, falling down of creatures and items just uses this constant speed.
-  In the future, we plan to add properties to control mass and air friction
-  and perform more physically-correct simulation of falling down.
-
-  This has no effect for resources (creatures or items) with flying="True".
-  This also has no effect for missile creatures (their flying="Xxx" is ignored,
-  as documented above).
-
-- grow_speed: the speed (in units per second) of growing.
-  Default is 5 (see CastleResources.DefaultGrowSpeed constant).
-
-  The "growing" is used to allow non-flying creatures to climb stairs.
-  The creature can move whenever a sphere (see "middle_height" and "radius"
-  settings mentioned above) can move. This means that part of the bounding
-  box (part of the T3DCustomTransform.PreferredHeight) may temporarily
-  "sink" into the ground. The growing, controlled by this property,
-  allows the creature to go up.
-
-- direction_fall_speed: (default 0) The gravity of missiles.
-  This works by gradually changing the missile direction to point downward
-  (in the same direction where gravity pulls).
-
-  (Only for missiles, that is: resources with type="Missile",
-  indicating TMissileCreatureResource implementation,
-  or other type indicating your custom class descending from TMissileCreatureResource.)
-
-- <model> element describes 3D models and animations of the creature/items.
-  More information about it on DRAFT.modeling_tutorial.txt.
-
-------------------------------------------------------------------------------
-Orientation:
+<?php echo $toc->html_section(); ?>
 
 <p>Resources models (creatures, items and such) should be modelled
-around 0,0,0 point. In case of resources using gravity, they will be
-placed on the ground relative to the 0 height. In other words, if you
-want your model to float slightly above the ground, just move it
-higher above the 0 level. For resources flying (not using gravity),
-this doesn't matter, basically you can place 0,0,0 wherever you
-like. See <a>MiddleHeight</a> API documentation for precise details.
+around 0,0,0 point. In case of resources using gravity (items and non-flying
+creatures), they will be placed on the ground relative to the 0 level
+of their model. In other words, if you
+want your model to float slightly above the ground, you can just move it
+higher above the 0 level. If the model is slightly below 0 level, it will sink
+into the ground. This is usually the most comfortable approach.
 
-------------------------------------------------------------------------------
-3D resources, like creatures and items, display various 3D
+<p>For flying resources (not using gravity),
+this doesn't matter, basically you can place 0,0,0 wherever you
+like. See <?php api_link('T3DCustomTransform.MiddleHeight', 'Castle3D.T3DCustomTransform.html#MiddleHeight'); ?>
+ for precise details.
+
+<?php echo $toc->html_section(); ?>
+
+<p>3D resources, like creatures and items, display various 3D
 animations. Depending on the creature state, like standing / attacking
 / dying, we may want to display different animation of the given
-creature instance. We define these animations using the <model>
-element of creature/item resource.xml file. (As a developer, you can
-also create T3DResourceAnimation class in T3DResource descendants, to
-load more animations in this manner, and use these animations however
-you like.)
+creature instance. We define these animations using the <tt>&lt;model&gt;</tt>
+element of creature/item <tt>resource.xml</tt> file.
 
--> At this point, I highly advice you compile and run the
-   resource_animations example program from the engine sources. It's
-   inside castle_game_engine/examples/resource_animations/. The data/
-   subdirectory shows examples of how you can define <model>,
-   discussed below. It is also a great program to test your own
-   creatures/items animations (before using in the actual game), you
-   can load their resource.xml using the "Add resource..." button and
-   directly play loaded animations.
+<p>As a developer, you can
+also create <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceAnimation.html'); ?>
+ instance adding it to a
+<?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?> descendant,
+ this way you can add new animations for your own/extended resources.
+At this point, I highly advice you compile and run the
+<tt>examples/resource_animations</tt> example program from the engine sources.
+The <tt>data/</tt> subdirectory of it shows examples of how you can define <tt>&lt;model&gt;</tt>,
+discussed below. It is also a great program to test your own
+creatures/items animations (before using in the actual game), you
+can load their <tt>resource.xml</tt> using the <i>"Add resource..."</i> button and
+directly play loaded animations.
 
-There are three approaches, and which one to choose depends on what 3D
+<p>There are three approaches to indicate animations
+in <tt>&lt;model&gt;</tt> element in <tt>resource.xml</tt> file.
+Which one to choose depends on what 3D
 modeler / exporter you use to design your models:
 
-1. The best way (best for memory and loading time, which is really
-important in these situations) is to use a single X3D model, with many
-X3D TimeSensors representing different animations. You declare it in
-resource.xml file like this:
+<ol>
+  <li><p>The best way (best for memory and loading time, which is really
+    important in these situations) is to use a single X3D model, with many
+    X3D TimeSensors representing different animations. You declare it in
+    resource.xml file like this:
 
-  <model file_name="model.x3d">
-    <stand time_sensor="TimeSensorStand"/>
-    <walk time_sensor="TimeSensorWalk"/>
-  </model>
+<?php echo xml_highlight(
+'<model file_name="model.x3d">
+  <stand time_sensor="TimeSensorStand"/>
+  <walk time_sensor="TimeSensorWalk"/>
+</model>'); ?>
 
-This is nice if your 3D modeler / exporter can record multiple
-animations inside a single X3D file, and each animation is controlled
-by a different X3D TimeSensor node. This is the most natural way to
-record multiple animations in a single X3D file. We will detect
-animation length from the TimeSensor.cycleInterval, and we'll simulate
-sending appropriate time and fraction_changed from this TimeSensor to
-activate the desired moment of the desired animation.
+    <p>This is nice if your 3D modeler / exporter can record multiple
+    animations inside a single X3D file, and each animation is controlled
+    by a different X3D TimeSensor node. This is the most natural way to
+    record multiple animations in a single X3D file. We will detect
+    animation length from the TimeSensor.cycleInterval, and we'll simulate
+    sending appropriate time and fraction_changed from this TimeSensor to
+    activate the desired moment of the desired animation.
 
-Unfortunately, I don't know of any open-source 3D modeler / exporter
-right now that can nicely produce such multiple animations in a single
-X3D file. I plan to extend Blender X3D exporter to allow this in the
-future.
+    <p>Unfortunately, I don't know of any open-source 3D modeler / exporter
+    right now that can nicely produce such multiple animations in a single
+    X3D file. I plan to extend Blender X3D exporter to allow this in the
+    future.
 
-2. You can also use a separate X3D model for each animation state, like this:
+  <li><p>You can also use a separate X3D model for each animation state, like this:
 
-  <model>
-    <stand file_name="stand.x3d" time_sensor="MainTimeSensor"/>
-    <walk file_name="walk.x3d" time_sensor="MainTimeSensor"/>
-  </model>
+<?php echo xml_highlight(
+'<model>
+  <stand file_name="stand.x3d" time_sensor="MainTimeSensor"/>
+  <walk file_name="walk.x3d" time_sensor="MainTimeSensor"/>
+</model>'); ?>
 
-3. You can also use a precalculation animation for each animation,
-from <a href=>kanim</a> or MD3 (Quake 3 engine format) file. This is
-useful if your 3D modeler / exporter cannot produce animated X3D files
-at all, but it can export to kanim (see <a href=">our Blender to kanim
-exporter</a> or MD3. In the worst case, you can also just export a
-couple of still frames and write the xxx.kanim file in a text editor,
-because the kanim format is a trivial XML file that just describes a
-transition between a couple of still 3D models. Internally, we'll use
-TCastlePrecalculatedAnimation for each animation state.
+  <li><p>You can also use a precalculation animation for each animation,
+    from <?php echo a_href_page('KAnim', 'kanim_format'); ?> or MD3 (Quake 3 engine format) file. This is
+    useful if your 3D modeler / exporter cannot produce animated X3D files
+    at all, but it can export to kanim (see <?php echo a_href_page('our Blender to KAnim
+    exporter', 'blender'); ?>) or MD3. In the worst case, you can also just export a
+    couple of still frames and write the xxx.kanim file in a text editor,
+    because the kanim format is a trivial XML file that just describes a
+    transition between a couple of still 3D models. Internally, we'll use
+    TCastlePrecalculatedAnimation for each animation state.
 
-Example:
+    <p>Example:
 
-  <model>
-    <stand file_name="stand.kanim"/>
-    <walk file_name="walk.kanim"/>
-  </model>
+<?php echo xml_highlight(
+'<model>
+  <stand file_name="stand.kanim"/>
+  <walk file_name="walk.kanim"/>
+</model>'); ?>
 
-This is probably the most comfortable approach to export animations
-from Blender to our engine. <b>For now</b> &mdash; in the future we
-hope to extend Blender X3D exporter to store whole animation inside a
-single X3D file.
+    <p>This is probably the most comfortable approach to export animations
+    from Blender to our engine. <b>For now</b> &mdash; in the future we
+    hope to extend Blender X3D exporter to store whole animation inside a
+    single X3D file.
+</ol>
 
+<p>To describe above three cases in more precise manner for developers:</p>
 
-To describe above three cases in more precise manner:
+<ul>
+  <li><p>(Case 3. above) When animation state, like <tt>&lt;stand&gt;</tt> or <tt>&lt;walk&gt;</tt>,
+    doesn't have a time_sensor attribute &mdash; then it must have
+    file_name attribute, and we use precalculated animation,
+    TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
+    X3D animations. Suitable also when the model is just a still 3D
+    model, as then TCastlePrecalculatedAnimation simply renders it.
 
-- (Case 3. above) When animation state, like <stand> or <walk>,
-  doesn't have a time_sensor attribute &mdash; then it must have
-  file_name attribute, and we use precalculated animation,
-  TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
-  X3D animations. Suitable also when the model is just a still 3D
-  model, as then TCastlePrecalculatedAnimation simply renders it.
+  <li><p>(Case 2. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
+    <tt>&lt;walk&gt;</tt> has both time_sensor and file_name, then we load it to a
+    TCastleScene and use appropriate TimeSensor to play the animation.
 
-- (Case 2. above) Otherwise, if an animation state like <stand> or
-  <walk> has both time_sensor and file_name, then we load it to a
-  TCastleScene and use appropriate TimeSensor to play the animation.
+  <li><p>(Case 1. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
+    <tt>&lt;walk&gt;</tt> has only time_sensor, then we use a 3D model defined at
+    <tt>&lt;model&gt;</tt> element to choose and play appropriate animation. This also
+    means using TCastleScene and appropriate TimeSensor to play it, but
+    now it's a single TCastleScene potentially shared by various
+    animations.
+</ul>
 
-- (Case 1. above) Otherwise, if an animation state like <stand> or
-  <walk> has only time_sensor, then we use a 3D model defined at
-  <model> element to choose and play appropriate animation. This also
-  means using TCastleScene and appropriate TimeSensor to play it, but
-  now it's a single TCastleScene potentially shared by various
-  animations.
+<p>In some situations, we have to know the animation duration (for
+example, to know when <tt>&lt;attack&gt;</tt> animation ends and we should get back
+to <tt>&lt;stand&gt;</tt> or <tt>&lt;walk&gt;</tt> state).
 
-In some situations, we have to know the animation duration (for
-example, to know when <attack> animation ends and we should get back
-to <stand> or <walk> state).
+<ul>
+  <li><p>For TCastlePrecalculatedAnimation, the animation always starts from
+    the local time 0, goes to the last time (time of last <tt>&lt;frame&gt;</tt> in
+    kanim file). Then it eventually goes backward, it backwards="true"
+    in kanim file. So we know the duration by looking at frames time and
+    backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin
+    else 0).
 
-- For TCastlePrecalculatedAnimation, the animation always starts from
-  the local time 0, goes to the last time (time of last <frame> in
-  kanim file). Then it eventually goes backward, it backwards="true"
-  in kanim file. So we know the duration by looking at frames time and
-  backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin
-  else 0).
+    <p>So using backwards="true" in KAnim works, useful for some animations
+    when you do some gesture and then go back to original position by
+    reversing this gesture &mdash; e.g. dog-like creature biting.
 
-  So using backwards="true" in kanim works, useful for some animations
-  when you do some gesture and then go back to original position by
-  reversing this gesture &mdash; e.g. dog-like creature biting.
+  <li><p>For TCastleScene and TimeSensor: in this case, X3D
+    TimeSensor.cycleInterval gives us animation duration.
+</ul>
 
-- For TCastleScene and TimeSensor: in this case, X3D
-  TimeSensor.cycleInterval gives us animation duration.
-
-The looping is done automatically for animations that require it (like
+<p>The looping is done automatically for animations that require it (like
 walk). So using loop attribute in kanim file, or loop field for
 TimeSensor is not necessary (it's ignored).
 
-Design notes about X3D TimeSensor usage: All creatures of a given kind
+<p><i>Design notes about X3D TimeSensor usage</i>: All creatures of a given kind
 must share the same resources. E.g. imagine you have a creature type
 "werewolf" (defined by a resource.xml file with name="Werewolf"
 inside, resulting in TCastleResource instance with
@@ -331,6 +300,7 @@ directly sending their time/fraction_changed, instead of just
 activating them by TimeSensor.startTime: in the latter case, all
 werewolves visible on the level would be forced to be in the same
 state (and moment) of the animation.
+
 ------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified
 
