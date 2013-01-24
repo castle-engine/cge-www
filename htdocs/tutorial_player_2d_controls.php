@@ -113,7 +113,7 @@ end;'); ?>
     <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
     like <?php api_link('GLFadeRectangle', 'CastleGLUtils.html#GLFadeRectangle'); ?>.
     This allows you to draw
-    a rectangle represending fade out (when player is in pain).
+    a rectangle representing fade out (when player is in pain).
     And <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
     instance already has properties
     <?php api_link('Player.FadeOutColor', 'CastlePlayer.TPlayer.html#FadeOutColor'); ?>,

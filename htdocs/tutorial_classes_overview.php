@@ -277,7 +277,7 @@ SceneManager.LoadLevel(\'myLevelName\');
     created for you,
     replacing the placeholder objects in 3D file. Just add in Blender 3D object
     (with any mesh, geometry doesn't matter, I usually use wireframe cubes)
-    and name it <tt>CasRes</tt> + resource name, like <tt>CasResAlien</tt>.
+    and name it <tt>CasRes</tt> + resource name, like <tt>CasResKnight</tt>.
     <tt>CasRes</tt> is short for <i>Castle Game Engine Resource</i>.
 
     <p>From code, you can also create creatures dynamically, by calling

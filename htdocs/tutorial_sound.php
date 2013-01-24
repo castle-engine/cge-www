@@ -78,7 +78,7 @@ You have to initialize the sound repository inside your game code like this:</p>
 'SoundEngine.SoundsFileName := ProgramDataPath + \'data\' +
   PathDelim + \'sounds\' + PathDelim + \'index.xml\';'); ?>
 
-<p>Ater this, you can refer to your sound names from files like
+<p>After this, you can refer to your sound names from files like
 <tt>resource.xml</tt> (for creatures/items sounds)
 or <tt>material_properties.xml</tt>  (for footsteps)
 or <tt>level.xml</tt> (for level music).

@@ -45,7 +45,7 @@ if you haven't already. Some of the important creature/item classes:
     </ul>
 </ul>
 
-<h2>Why are there two classes (TXxxResource annd TXxx) for everything?</h2>
+<h2>Why are there two classes (TXxxResource and TXxx) for everything?</h2>
 
 <p>A "resource" is an information shared by all creatures/items of given type.
 
@@ -54,7 +54,7 @@ if you haven't already. Some of the important creature/item classes:
     and <tt>Knight</tt>. (Actually, they would probably be instances of
     <tt>TWalkAttackCreatureResource</tt>,
     as <tt>TCreatureResource</tt> is abstract.) Using them you can create and place
-    on your your level milions of actual werewolves and knights
+    on your your level millions of actual werewolves and knights
     (instances of <tt>TWalkAttackCreature</tt>).
     Every werewolf on the level will have potentially different life (fully healed
     vs almost dead) and state (attacking, walking, dying and such), but all werewolves will share the same
@@ -65,7 +65,7 @@ if you haven't already. Some of the important creature/item classes:
   <li><p>A similar example for items: you can have two instances of class <tt>TItemResource</tt>:
     <tt>Sword</tt> and <tt>LifePotion</tt>. (Actually, <tt>TItemWeaponResource</tt>, which is a descendant
     of <tt>TItemResource</tt>, sounds like a better candidate for the <tt>Sword</tt>.)
-    Using them, you can create milions of actual swords and life potions,
+    Using them, you can create millions of actual swords and life potions,
     and place them of your level (as well as in inventories of creatures/players).
     Every life potion (<tt>TInventoryItem</tt> instance)
     may keep some individual information (for example, how much of the potion
@@ -170,7 +170,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
 </resource>'); ?>
 
     <p>As you can see in the above examples, you can use the same
-    resource class in many ways. Pratically speaking, you only need to create
+    resource class in many ways. Practically speaking, you only need to create
     a new resource class (like <tt>TWerewolfResource</tt>) when you really need
     to introduce a new behavior that needs to be implemented using ObjectPascal.
     Otherwise, if what you want can be achieved by tweaking the value
@@ -195,7 +195,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
     to load the value of this property. See existing units
     like <tt>CastleCreatures</tt> and <tt>CastleItems</tt> for a lot of examples.
 
-  <li><p>The second class will be used to represent a single occurence
+  <li><p>The second class will be used to represent a single occurrence
     of this creature/item in the 3D world. This has a reference
     to the appropriate resource (for shared information)
     and can have it's own properties, specific to this current instance.
@@ -212,7 +212,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
     resource class to implement the behavior you need).
     These are used by
     <tt>TCreatureResource.CreateCreature</tt> and <tt>TItemResource.CreateItem</tt> methods,
-    which you can use to create creature/item occurence by code:
+    which you can use to create creature/item occurrence by code:
 
 <?php echo pascal_highlight(
 'type

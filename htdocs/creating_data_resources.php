@@ -147,7 +147,7 @@ classes to know what is available:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Resources models (creatures, items and such) should be modelled
+<p>Resources models (creatures, items and such) should be modeled
 around 0,0,0 point. In case of resources using gravity (items and non-flying
 creatures), they will be placed on the ground relative to the 0 level
 of their model. In other words, if you
@@ -219,7 +219,7 @@ modeler / exporter you use to design your models:
   <walk file_name="walk.x3d" time_sensor="MainTimeSensor"/>
 </model>'); ?>
 
-  <li><p>You can also use a precalculation animation for each animation,
+  <li><p>You can also use a precalculated animation for each animation,
     from <?php echo a_href_page('KAnim', 'kanim_format'); ?> or MD3 (Quake 3 engine format) file. This is
     useful if your 3D modeler / exporter cannot produce animated X3D files
     at all, but it can export to kanim (see <?php echo a_href_page('our Blender to KAnim

@@ -25,7 +25,7 @@ work</a>.
 
 <p>You may encounter some features that are not exported from your 3D
 modeller in a satisfactory way. Fortunately, that's when the strength
-or VRML/X3D appears: you can use <tt>Inline</tt> to inlude one 3D file
+or VRML/X3D appears: you can use <tt>Inline</tt> to include one 3D file
 within another, and you can simply write some X3D content by
 hand. That's good for adding scripts to 3D data, and generally adding
 stuff that is uncomfortable/impossible to design in your 3D modeller.

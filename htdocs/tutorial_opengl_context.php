@@ -135,7 +135,7 @@ end.'); ?>
         (if any) are unfocusable, like <tt>TSpeedButton</tt>.</p></li>
 
       <li><p>If you want to use other focusable controls, it's really up to you
-        how to present it to user. In princible, you don't have to do
+        how to present it to user. In principle, you don't have to do
         anything, focus works, and it can be switched into/out of
         <tt>TCastleControl</tt> by the Tab key or clicking with mouse on other
         controls.</p>

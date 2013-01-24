@@ -58,7 +58,7 @@ that you have smoother animation.
 number of frames per second that we managed to render. Caveats:</b>
 
 <ul>
-  <li><p>Make sure to turn off "<i>limit FPS</i>" feautre, to get maximum number
+  <li><p>Make sure to turn off "<i>limit FPS</i>" feature, to get maximum number
     available. Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
     "Preferences -&gt; Frames Per Second" menu
     item, or (in your own programs) change
@@ -148,7 +148,7 @@ also more GPU friendly)).</p>
 <p>The general advice is to compromise:</p>
 
 <ol>
-  <li><p>Do not make too many too trivial shapes. Do not make milions of
+  <li><p>Do not make too many too trivial shapes. Do not make millions of
     shapes with only a few vertexes &mdash; each shape will be provided
     in a separate VBO to OpenGL, which isn't very efficient.
 
@@ -178,14 +178,14 @@ collisions with complicated objects. See
 inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
 It's really trivial
 in X3D, and we support in 100% &mdash; I just wish there was a way to
-easily set it from 3D modellers like Blender. Hopefully we'll get
+easily set it from 3D modelers like Blender. Hopefully we'll get
 better X3D exporter one day. Until them, you can hack X3D source, it's
 quite easy actually. And thanks to using X3D Inline node, you can keep
 your auto-generated X3D content separated from hand-written X3D code
 &mdash; that's the reason for xxx_final.x3dv and xxx.x3d pairs of
 files around the demo models.
 
-<p>You can ajust the parameters how the octree is created. You can
+<p>You can adjust the parameters how the octree is created. You can
 <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_octree_properties">set octree
 parameters in VRML/X3D file</a> or by ObjectPascal code.
 But in practice I usually find that the default values are optimal,
