@@ -12,36 +12,36 @@ with links to documentation for every attribute.</p>
 '<?xml version="1.0"?>
 
 <player
-  [[Castle3D.T3DAlive.html#KnockBackSpeed|knockback_speed]]="1.2"
-  [[CastleCameras.TWalkCamera.html#HeadBobbingTime|head_bobbing_time]]="9.1"
-  [[CastlePlayer.TPlayer.html#HeadBobbing|head_bobbing]]="2.3"
-  [[CastlePlayer.TPlayer.html#SickProjectionSpeed|sick_projection_speed]]="4.5">
+  [[Castle3D.T3DAlive.html#KnockBackSpeed|knockback_speed]]="20.0"
+  [[CastleCameras.TWalkCamera.html#HeadBobbingTime|head_bobbing_time]]="0.5"
+  [[CastlePlayer.TPlayer.html#HeadBobbing|head_bobbing]]="0.02"
+  [[CastlePlayer.TPlayer.html#SickProjectionSpeed|sick_projection_speed]]="2.0">
 
   <jump
-    [[CastleCameras.TWalkCamera.html#JumpMaxHeight|max_height]]="3.4"
-    [[CastleCameras.TWalkCamera.html#JumpHorizontalSpeedMultiply|horizontal_speed_multiply]]="5.6"
-    [[CastleCameras.TWalkCamera.html#JumpTime|time]]="7.8" />
+    [[CastleCameras.TWalkCamera.html#JumpMaxHeight|max_height]]="1.0"
+    [[CastleCameras.TWalkCamera.html#JumpHorizontalSpeedMultiply|horizontal_speed_multiply]]="2.0"
+    [[CastleCameras.TWalkCamera.html#JumpTime|time]]="0.125" />
 
   <fall>
     <sound
-      [[CastlePlayer.TPlayer.html#FallMinHeightToSound|min_height]]="6.7"
-      [[CastlePlayer.TPlayer.html#FallSound|name]]="test_sound_1" />
+      [[CastlePlayer.TPlayer.html#FallMinHeightToSound|min_height]]="4.0"
+      [[CastlePlayer.TPlayer.html#FallSound|name]]="player_fall" />
 
     <damage
-      [[CastlePlayer.TPlayer.html#FallMinHeightToDamage|min_height]]="8.9"
-      [[CastlePlayer.TPlayer.html#FallDamageScaleMin|scale_min]]="1.2"
-      [[CastlePlayer.TPlayer.html#FallDamageScaleMax|scale_max]]="3.4" />
+      [[CastlePlayer.TPlayer.html#FallMinHeightToDamage|min_height]]="5.0"
+      [[CastlePlayer.TPlayer.html#FallDamageScaleMin|scale_min]]="0.8"
+      [[CastlePlayer.TPlayer.html#FallDamageScaleMax|scale_max]]="1.2" />
   </fall>
 
   <swim
-    [[CastlePlayer.TPlayer.html#SwimBreath|breath]]="5.6"
-    [[CastlePlayer.TPlayer.html#SwimSoundPause|sound_pause]]="6.7" />
+    [[CastlePlayer.TPlayer.html#SwimBreath|breath]]="30.0"
+    [[CastlePlayer.TPlayer.html#SwimSoundPause|sound_pause]]="5.0" />
 
   <drown
-    [[CastlePlayer.TPlayer.html#DrownPause|pause]]="7.8">
+    [[CastlePlayer.TPlayer.html#DrownPause|pause]]="5.0">
     <damage
-      [[CastlePlayer.TPlayer.html#DrownDamageConst|const]]="9.1"
-      [[CastlePlayer.TPlayer.html#DrownDamageRandom|random]]="2.3" />
+      [[CastlePlayer.TPlayer.html#DrownDamageConst|const]]="5.0"
+      [[CastlePlayer.TPlayer.html#DrownDamageRandom|random]]="10.0" />
   </drown>
 </player>'); ?>
 

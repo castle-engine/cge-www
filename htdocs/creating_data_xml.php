@@ -23,9 +23,9 @@ data in our engine.
         allow using URLs there.
 
       <li><p>Note about attributes that specify sound names: the default value
-        is always empty string, meaning "no sound assigned". Sound name is
+        is usually an empty string, meaning "no sound assigned". Sound name is
         always optional. You should use there a sound name defined in
-        <a>sounds XML file</a>.
+        <?php echo a_href_page('sounds XML file', 'creating_data_sound'); ?>.
     </ul>
 
   <li><p>Note that the attributes shown here are not exhaustive: you can

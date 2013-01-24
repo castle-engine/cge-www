@@ -32,12 +32,12 @@ with links to documentation for every attribute.</p>
 
   <property
     [[CastleMaterialProperties.TMaterialProperty.html#TextureBaseName|texture_base_name]]="test_texture"
-    [[CastleMaterialProperties.TMaterialProperty.html#FootstepsSound|footsteps_sound]]="test_sound_4">
+    [[CastleMaterialProperties.TMaterialProperty.html#FootstepsSound|footsteps_sound]]="">
     <[[CastleMaterialProperties.TMaterialProperty.html#Toxic|toxic]]>
       <damage
-        [[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageConst|const]]="1.2"
-	[[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageRandom|random]]="3.4"
-	[[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageTime|time]]="5.6" />
+        [[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageConst|const]]="0.0"
+        [[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageRandom|random]]="0.0"
+        [[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageTime|time]]="0.0" />
     </toxic>
   </property>
 

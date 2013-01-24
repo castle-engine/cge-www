@@ -12,19 +12,19 @@ See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
 '<?xml version="1.0"?>
 
 <level
-  [[CastleLevels.TLevelInfo.html#Name|name]]="my_level"
+  [[CastleLevels.TLevelInfo.html#Name|name]]="required_level_name"
   [[CastleLevels.TLevelInfo.html#LogicClass|type]]="Level"
-  [[CastleLevels.TLevelInfo.html#SceneFileName|scene]]="scene.x3d"
-  [[CastleLevels.TLevelInfo.html#Title|title]]="My Level"
-  [[CastleLevels.TLevelInfo.html#Number|number]]="123"
-  [[CastleLevels.TLevelInfo.html#Demo|demo]]="True"
-  [[CastleLevels.TLevelInfo.html#TitleHint|title_hint]]="Title Hint"
-  [[CastleLevels.TLevelInfo.html#DefaultPlayed|default_played]]="True"
-  [[CastleLevels.TLevelInfo.html#PlaceholderName|placeholders]]="blender"
-  [[CastleLevels.TLevelInfo.html#LoadingImage|loading_image]]="loading_image.png"
-  [[CastleLevels.TLevelInfo.html#LoadingImageBarYPosition|loading_image_bar_y_position]]="1.2"
-  [[CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection|placeholder_reference_direction]]="1 2 3"
-  [[CastleLevels.TLevelInfo.html#MusicSound|music_sound]]="test_sound_2">
+  [[CastleLevels.TLevelInfo.html#SceneFileName|scene]]="required_scene_file_name.x3d"
+  [[CastleLevels.TLevelInfo.html#Title|title]]="Required Level Title"
+  [[CastleLevels.TLevelInfo.html#Number|number]]="0"
+  [[CastleLevels.TLevelInfo.html#Demo|demo]]="False"
+  [[CastleLevels.TLevelInfo.html#TitleHint|title_hint]]=""
+  [[CastleLevels.TLevelInfo.html#DefaultPlayed|default_played]]="False"
+  [[CastleLevels.TLevelInfo.html#PlaceholderName|placeholders]]="x3dshape"
+  [[CastleLevels.TLevelInfo.html#LoadingImage|loading_image]]=""
+  [[CastleLevels.TLevelInfo.html#LoadingImageBarYPosition|loading_image_bar_y_position]]="0.5"
+  [[CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection|placeholder_reference_direction]]="1 0 0"
+  [[CastleLevels.TLevelInfo.html#MusicSound|music_sound]]="">
 
   <!--
     prepare_resources is an optional element.

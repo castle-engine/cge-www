@@ -13,30 +13,33 @@ See
 '<?xml version="1.0"?>
 
 <resource
-  [[CastleResources.T3DResource.html#Name|name]]="TestCreature"
+  [[CastleResources.T3DResource.html#Name|name]]="RequiredCreatureName"
   type="WalkAttack"
-  [[CastleCreatures.TCreatureResource.html#KnockBackSpeed|knockback_speed]]="1.2"
-  [[CastleCreatures.TCreatureResource.html#KnockBackDistance|knockback_distance]]="3.4"
-  [[CastleCreatures.TCreatureResource.html#Flying|flying]]="True"
+  [[CastleCreatures.TCreatureResource.html#KnockBackSpeed|knockback_speed]]="1.0"
+  [[CastleCreatures.TCreatureResource.html#KnockBackDistance|knockback_distance]]="4.0"
+  [[CastleCreatures.TCreatureResource.html#Flying|flying]]="False"
   [[CastleCreatures.TCreatureResource.html#SoundDieTiedToCreature|sound_die_tied_to_creature]]="True"
-  [[CastleCreatures.TCreatureResource.html#DefaultMaxLife|default_max_life]]="5.6"
-  [[CastleCreatures.TCreatureResource.html#Radius|radius]]="7.8"
-  [[CastleCreatures.TCreatureResource.html#MiddleHeight|middle_height]]="6.7"
-  [[CastleCreatures.TCreatureResource.html#SoundSuddenPain|sound_sudden_pain]]="test_sound_6"
-  [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]="test_sound_7"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.2"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="3.4"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="0.56"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#MaxHeightAcceptableToFall|max_height_acceptable_to_fall]]="5.6"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#RandomWalkDistance|random_walk_distance]]="7.8"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#RemoveDead|remove_dead]]="True"
-  [[CastleCreatures.TWalkAttackCreatureResource.html#PreferredDistance|preferred_distance]]="9.1"
-  [[CastleResources.T3DResource.html#AlwaysPrepared|always_prepared]]="True"
-  [[CastleResources.T3DResource.html#FallSpeed|fall_speed]]="1.2"
-  [[CastleResources.T3DResource.html#GrowSpeed|grow_speed]]="3.4"
-  [[CastleResources.T3DResource.html#ReceiveShadowVolumes|receive_shadow_volumes]]="False"
-  [[CastleResources.T3DResource.html#CastShadowVolumes|cast_shadow_volumes]]="False">
+  [[CastleCreatures.TCreatureResource.html#DefaultMaxLife|default_max_life]]="100.0"
+  [[CastleCreatures.TCreatureResource.html#Radius|radius]]="0.0"
+  [[CastleCreatures.TCreatureResource.html#MiddleHeight|middle_height]]="0.5"
+  [[CastleCreatures.TCreatureResource.html#SoundSuddenPain|sound_sudden_pain]]=""
+  [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]=""
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.0"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="0.0"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="1.0"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MaxHeightAcceptableToFall|max_height_acceptable_to_fall]]="1.5"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#RandomWalkDistance|random_walk_distance]]="10.0"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#RemoveDead|remove_dead]]="False"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#PreferredDistance|preferred_distance]]="2.0"
+  [[CastleResources.T3DResource.html#AlwaysPrepared|always_prepared]]="False"
+  [[CastleResources.T3DResource.html#FallSpeed|fall_speed]]="10.0"
+  [[CastleResources.T3DResource.html#GrowSpeed|grow_speed]]="5.0"
+  [[CastleResources.T3DResource.html#ReceiveShadowVolumes|receive_shadow_volumes]]="True"
+  [[CastleResources.T3DResource.html#CastShadowVolumes|cast_shadow_volumes]]="True">
 
+  <!-- See lower on this page for explanation how to export animations
+       and define <model> element. Below we only show all possible attributes,
+       in practice you will not want to set them all. -->
   <model file_name="main.x3d">
     <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         file_name="idle.x3d"         time_sensor="TimeSensorIdle" />
     <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] file_name="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
@@ -49,43 +52,43 @@ See
   </model>
 
   <attack
-    [[CastleCreatures.TCreatureResource.html#AttackKnockbackDistance|knockback_distance]]="4.5"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackTime|time]]="7.8"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxDistance|max_distance]]="9.1"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxAngle|max_angle]]="2.3"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMinDelay|min_delay]]="4.5"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundHit|sound_hit]]="test_sound_6"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundStart|sound_start]]="test_sound_7" >
+    [[CastleCreatures.TCreatureResource.html#AttackKnockbackDistance|knockback_distance]]="0.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackTime|time]]="0.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxDistance|max_distance]]="2.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxAngle|max_angle]]="0.523598776"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMinDelay|min_delay]]="2.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundHit|sound_hit]]=""
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundStart|sound_start]]="" >
     <damage
-      [[CastleCreatures.TCreatureResource.html#AttackDamageConst|const]]="9.1"
-      [[CastleCreatures.TCreatureResource.html#AttackDamageRandom|random]]="2.3" />
+      [[CastleCreatures.TCreatureResource.html#AttackDamageConst|const]]="0.0"
+      [[CastleCreatures.TCreatureResource.html#AttackDamageRandom|random]]="0.0" />
   </attack>
 
   <fire_missile
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileTime|time]]="1.2"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxDistance|max_distance]]="3.4"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxAngle|max_angle]]="5.6"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMinDelay|min_delay]]="7.8"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileSound|sound]]="test_sound_8"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileName|name]]="TestMissileCreature"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileHeight|height]]="0.12" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileTime|time]]="0.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxDistance|max_distance]]="30.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxAngle|max_angle]]="0.523598776"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMinDelay|min_delay]]="2.0"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileSound|sound]]=""
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileName|name]]=""
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileHeight|height]]="0.5" />
 
   <fall>
     <sound
-      [[CastleCreatures.TCreatureResource.html#FallMinHeightToSound|min_height]]="7.8"
-      [[CastleCreatures.TCreatureResource.html#FallSound|name]]="test_sound_5" />
+      [[CastleCreatures.TCreatureResource.html#FallMinHeightToSound|min_height]]="1.0"
+      [[CastleCreatures.TCreatureResource.html#FallSound|name]]="creature_fall" />
     <damage
-      [[CastleCreatures.TCreatureResource.html#FallMinHeightToDamage|min_height]]="1.2"
-      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMin|scale_min]]="3.4"
-      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMax|scale_max]]="5.6" />
+      [[CastleCreatures.TCreatureResource.html#FallMinHeightToDamage|min_height]]="5.0"
+      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMin|scale_min]]="0.8"
+      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMax|scale_max]]="1.2" />
   </fall>
 
   <run_away
-    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayLife|life]]="1.2"
-    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayDistance|distance]]="3.4" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayLife|life]]="0.3"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayDistance|distance]]="10.0" />
 
   <visibility
-    [[CastleCreatures.TWalkAttackCreatureResource.html#VisibilityAngle|angle]]="5.6" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#VisibilityAngle|angle]]="2.094395102" />
 </resource>'); ?>
 
 ------------------------------------------------------------------------------
