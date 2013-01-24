@@ -36,7 +36,8 @@ begin
   Window.SceneManager.Items.Add(Scene);
   Window.SceneManager.MainScene := Scene;
 
-  Window.OpenAndRun;
+  Window.Open;
+  Application.Run;
 end.'); ?>
 
 <p>At the beginning we create a new instance of TCastleScene, and load

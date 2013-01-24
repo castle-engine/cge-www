@@ -74,7 +74,10 @@ level.xml files, and then loading your desired level by referring to
 it's "name" field:</p>
 
 <?php echo pascal_highlight(
-'Levels.LoadFromFiles;
+'uses ..., CastleLevels;
+
+...
+Levels.LoadFromFiles;
 SceneManager.LoadLevel(\'pits\'); // refer to name="pits" in level.xml
 // the 2nd line is a shortcut for
 // SceneManager.LoadLevel(Levels.FindName(\'pits\'));'); ?>
@@ -92,6 +95,43 @@ new subdirectory into the data/levels/, and if it will contain proper
 level.xml file, it will be automatically recognized. A similar scheme
 will be used for creatures/items in the following chapter. Your game
 data is immediately friendly to MODders.</p>
+
+<p>Note that you have to initialize OpenGL context before
+calling <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
+That's because loading level wants to prepare resources for OpenGL rendering.
+
+<ol>
+  <li><p>If you use
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
+    make sure that
+    <?php api_link('Open method', 'CastleWindow.TCastleWindowBase.html#Open'); ?>
+    was already called.
+    By the way, you can also initialize progress interface, to see nice progress
+    bar when loading. Like this:
+
+    <?php echo pascal_highlight(
+'uses ..., CastleProgress, CastleWindowProgress;
+
+...
+Window.Open; // this goes before preparing level
+
+{ initialize progress bar to use our window }
+Progress.UserInterface := WindowProgressInterface;
+WindowProgressInterface.Window := Window;
+
+Levels.LoadFromFiles;
+SceneManager.LoadLevel(\'pits\');
+
+Application.Run; // this goes after preparing level (and everything else)'); ?>
+
+  <li><p>If you use Lazarus
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+    make sure you call
+    <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+    from
+    <?php api_link('OnGLContextOpen event', 'CastleControl.TCastleControlBase.html#OnGLContextOpen'); ?>
+    event (or something that occurs even later).
+</ol>
 
 <?php
 tutorial_footer();
