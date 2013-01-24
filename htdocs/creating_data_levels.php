@@ -26,8 +26,18 @@ See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
   [[CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection|placeholder_reference_direction]]="1 2 3"
   [[CastleLevels.TLevelInfo.html#MusicSound|music_sound]]="test_sound_2">
 
+  <!--
+    prepare_resources is an optional element.
+    It should contain a list of resources (creatures;
+    no need to list items, as they are prepared always) used by the level.
+    Every <resource> element should refer to the resource name,
+    that is you should have resource.xml file with name="TestCreature"
+    in your data.
+  -->
+
   <prepare_resources>
     <resource name="TestCreature" />
+    <!-- And more <resource> elements... -->
   </prepare_resources>
 </level>'); ?>
 
