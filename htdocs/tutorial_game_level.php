@@ -39,9 +39,9 @@ with contents like this:</p>
   <li>"placeholders" says how to detect placeholders (for creatures and other things) in your 3D level model. This is optional, but highly useful.
 </ul>
 
-<p>See <?php a_href_page('creating levels information',
-'creating_data_levels'); ?> for more details about the <tt>level.xml</tt>
-files.</p>
+<p>See <?php echo a_href_page('creating levels',
+'creating_data_levels'); ?> for more details about what you can define
+using <tt>level.xml</tt> files.</p>
 
 <p>Traditionally, I place each level in a subdirectory of <tt>data/levels/</tt>,
 along with it's associated 3D models. So I have a structure like this:</p>

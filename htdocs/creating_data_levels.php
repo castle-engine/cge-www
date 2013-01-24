@@ -3,26 +3,28 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Levels');
 ?>
 
-------------------------------------------------------------------------------
-TODO: fill default values below, link all attributes to appropriate properties.
+<p>Below is a sample <tt>level.xml</tt> configuration,
+with links to documentation for every attribute.
+See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
+ for information how to initialize levels from such files.</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <level
-  name="my_level"
-  type="Level"
-  scene="scene.x3d"
-  title="My Level"
-  number="123"
+  [[CastleLevels.TLevelInfo.html#Name|name]]="my_level"
+  [[CastleLevels.TLevelInfo.html#LogicClass|type]]="Level"
+  [[CastleLevels.TLevelInfo.html#SceneFileName|scene]]="scene.x3d"
+  [[CastleLevels.TLevelInfo.html#Title|title]]="My Level"
+  [[CastleLevels.TLevelInfo.html#Number|number]]="123"
   [[CastleLevels.TLevelInfo.html#Demo|demo]]="True"
-  title_hint="Title Hint"
-  default_played="True"
-  placeholders="blender"
-  loading_image="loading_image.png"
-  loading_image_bar_y_position="1.2"
-  placeholder_reference_direction="1 2 3"
-  music_sound="test_sound_2">
+  [[CastleLevels.TLevelInfo.html#TitleHint|title_hint]]="Title Hint"
+  [[CastleLevels.TLevelInfo.html#DefaultPlayed|default_played]]="True"
+  [[CastleLevels.TLevelInfo.html#PlaceholderName|placeholders]]="blender"
+  [[CastleLevels.TLevelInfo.html#LoadingImage|loading_image]]="loading_image.png"
+  [[CastleLevels.TLevelInfo.html#LoadingImageBarYPosition|loading_image_bar_y_position]]="1.2"
+  [[CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection|placeholder_reference_direction]]="1 2 3"
+  [[CastleLevels.TLevelInfo.html#MusicSound|music_sound]]="test_sound_2">
 
   <prepare_resources>
     <resource name="TestCreature" />

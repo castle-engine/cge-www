@@ -3,86 +3,89 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Resources (creatures and items)');
 ?>
 
-------------------------------------------------------------------------------
-TODO: fill default values below, link all attributes to appropriate properties.
+<p>Below is a sample <tt>resource.xml</tt> file,
+with links to documentation for every attribute.
+See
+<?php echo a_href_page('tutorial about resources', 'tutorial_resources'); ?>
+ for information how to initialize resources (creatures and items) from such files.</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <resource
-  name="TestCreature"
+  [[CastleResources.T3DResource.html#Name|name]]="TestCreature"
   type="WalkAttack"
-  knockback_speed="1.2"
-  knockback_distance="3.4"
-  flying="True"
-  sound_die_tied_to_creature="True"
-  default_max_life="5.6"
-  radius="7.8"
-  middle_height="6.7"
-  sound_sudden_pain="test_sound_6"
-  sound_die="test_sound_7"
-  move_speed="1.2"
-  min_life_loss_to_hurt="3.4"
-  chance_to_hurt="0.56"
-  max_height_acceptable_to_fall="5.6"
-  random_walk_distance="7.8"
-  remove_dead="True"
-  preferred_distance="9.1"
-  always_prepared="True"
-  fall_speed="1.2"
-  grow_speed="3.4"
-  receive_shadow_volumes="False"
-  cast_shadow_volumes="False">
+  [[CastleCreatures.TCreatureResource.html#KnockBackSpeed|knockback_speed]]="1.2"
+  [[CastleCreatures.TCreatureResource.html#KnockBackDistance|knockback_distance]]="3.4"
+  [[CastleCreatures.TCreatureResource.html#Flying|flying]]="True"
+  [[CastleCreatures.TCreatureResource.html#SoundDieTiedToCreature|sound_die_tied_to_creature]]="True"
+  [[CastleCreatures.TCreatureResource.html#DefaultMaxLife|default_max_life]]="5.6"
+  [[CastleCreatures.TCreatureResource.html#Radius|radius]]="7.8"
+  [[CastleCreatures.TCreatureResource.html#MiddleHeight|middle_height]]="6.7"
+  [[CastleCreatures.TCreatureResource.html#SoundSuddenPain|sound_sudden_pain]]="test_sound_6"
+  [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]="test_sound_7"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.2"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="3.4"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="0.56"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#MaxHeightAcceptableToFall|max_height_acceptable_to_fall]]="5.6"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#RandomWalkDistance|random_walk_distance]]="7.8"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#RemoveDead|remove_dead]]="True"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#PreferredDistance|preferred_distance]]="9.1"
+  [[CastleResources.T3DResource.html#AlwaysPrepared|always_prepared]]="True"
+  [[CastleResources.T3DResource.html#FallSpeed|fall_speed]]="1.2"
+  [[CastleResources.T3DResource.html#GrowSpeed|grow_speed]]="3.4"
+  [[CastleResources.T3DResource.html#ReceiveShadowVolumes|receive_shadow_volumes]]="False"
+  [[CastleResources.T3DResource.html#CastShadowVolumes|cast_shadow_volumes]]="False">
 
   <model file_name="main.x3d">
-    <idle         file_name="idle.x3d"         time_sensor="TimeSensorIdle" />
-    <idle_to_walk file_name="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
-    <walk         file_name="walk.x3d"         time_sensor="TimeSensorWalk" />
-    <fire_missile file_name="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
-    <attack       file_name="attack.x3d"       time_sensor="TimeSensorAttack" />
-    <die          file_name="die.x3d"          time_sensor="TimeSensorDie" />
-    <die_back     file_name="die_back.x3d"     time_sensor="TimeSensorDieBack" />
-    <hurt         file_name="hurt.x3d"         time_sensor="TimeSensorHurt" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         file_name="idle.x3d"         time_sensor="TimeSensorIdle" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] file_name="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         file_name="walk.x3d"         time_sensor="TimeSensorWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] file_name="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       file_name="attack.x3d"       time_sensor="TimeSensorAttack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          file_name="die.x3d"          time_sensor="TimeSensorDie" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     file_name="die_back.x3d"     time_sensor="TimeSensorDieBack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         file_name="hurt.x3d"         time_sensor="TimeSensorHurt" />
   </model>
 
   <attack
-    knockback_distance="4.5"
-    time="7.8"
-    max_distance="9.1"
-    max_angle="2.3"
-    min_delay="4.5"
-    sound_hit="test_sound_6"
-    sound_start="test_sound_7" >
+    [[CastleCreatures.TCreatureResource.html#AttackKnockbackDistance|knockback_distance]]="4.5"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackTime|time]]="7.8"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxDistance|max_distance]]="9.1"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMaxAngle|max_angle]]="2.3"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackMinDelay|min_delay]]="4.5"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundHit|sound_hit]]="test_sound_6"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#AttackSoundStart|sound_start]]="test_sound_7" >
     <damage
-      const="9.1"
-      random="2.3" />
+      [[CastleCreatures.TCreatureResource.html#AttackDamageConst|const]]="9.1"
+      [[CastleCreatures.TCreatureResource.html#AttackDamageRandom|random]]="2.3" />
   </attack>
 
   <fire_missile
-    time="1.2"
-    max_distance="3.4"
-    max_angle="5.6"
-    min_delay="7.8"
-    sound="test_sound_8"
-    name="TestMissileCreature"
-    height="0.12" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileTime|time]]="1.2"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxDistance|max_distance]]="3.4"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMaxAngle|max_angle]]="5.6"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileMinDelay|min_delay]]="7.8"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileSound|sound]]="test_sound_8"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileName|name]]="TestMissileCreature"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileHeight|height]]="0.12" />
 
   <fall>
     <sound
-      min_height="7.8"
-      name="test_sound_5" />
+      [[CastleCreatures.TCreatureResource.html#FallMinHeightToSound|min_height]]="7.8"
+      [[CastleCreatures.TCreatureResource.html#FallSound|name]]="test_sound_5" />
     <damage
-      min_height="1.2"
-      scale_min="3.4"
-      scale_max="5.6" />
+      [[CastleCreatures.TCreatureResource.html#FallMinHeightToDamage|min_height]]="1.2"
+      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMin|scale_min]]="3.4"
+      [[CastleCreatures.TCreatureResource.html#FallDamageScaleMax|scale_max]]="5.6" />
   </fall>
 
   <run_away
-    life="1.2"
-    distance="3.4" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayLife|life]]="1.2"
+    [[CastleCreatures.TWalkAttackCreatureResource.html#RunAwayDistance|distance]]="3.4" />
 
   <visibility
-    angle="5.6" />
+    [[CastleCreatures.TWalkAttackCreatureResource.html#VisibilityAngle|angle]]="5.6" />
 </resource>'); ?>
 
 ------------------------------------------------------------------------------
@@ -299,7 +302,7 @@ to <stand> or <walk> state).
   So using backwards="true" in kanim works, useful for some animations
   when you do some gesture and then go back to original position by
   reversing this gesture &mdash; e.g. dog-like creature biting.
-  
+
 - For TCastleScene and TimeSensor: in this case, X3D
   TimeSensor.cycleInterval gives us animation duration.
 

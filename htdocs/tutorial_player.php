@@ -76,10 +76,13 @@ not implement layers in X3D now, so such geometry will overlap with 3D
 level geometry (unless it will always fit within camera radius).
 </p>
 
-<p>You can also load <tt>player.xml</tt> file by <tt>TPlayer.LoadFromFile</tt>
-to load various player properties from an XML configuration file.
-See <?php echo a_href_page('creating player', 'creating_data_player'); ?>
- for details.</p>
+<p><!--Although you can directly adjust player properties using code,-->
+Sometimes it's nice to give content creators a way to modify player
+behavior without touching the game source code.
+To allow this you can load player configuration by
+<?php api_link('TPlayer.LoadFromFile', 'CastlePlayer.TPlayer.html#LoadFromFile'); ?>
+ method. See <?php echo a_href_page('creating player data', 'creating_data_player'); ?>
+ for a sample and documentation how player configuration file looks like.</p>
 
 <?php
 tutorial_footer();

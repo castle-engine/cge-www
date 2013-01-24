@@ -3,44 +3,45 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Player configuration');
 ?>
 
-<p>TODO: get description of TPlayer.LoadFromFile
-
-TODO: fill default values below, link all attributes to appropriate properties.
+<p>You can load an XML file configuring various player properties.
+See <?php echo a_href_page('tutorial about Player', 'tutorial_player'); ?>.
+Below is a sample <tt>player.xml</tt> file
+with links to documentation for every attribute.</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <player
-  knockback_speed="1.2"
-  head_bobbing_time="9.1"
-  head_bobbing="2.3"
-  sick_projection_speed="4.5">
+  [[Castle3D.T3DAlive.html#KnockBackSpeed|knockback_speed]]="1.2"
+  [[CastleCameras.TWalkCamera.html#HeadBobbingTime|head_bobbing_time]]="9.1"
+  [[CastlePlayer.TPlayer.html#HeadBobbing|head_bobbing]]="2.3"
+  [[CastlePlayer.TPlayer.html#SickProjectionSpeed|sick_projection_speed]]="4.5">
 
   <jump
-    max_height="3.4"
-    horizontal_speed_multiply="5.6"
-    time="7.8" />
+    [[CastleCameras.TWalkCamera.html#JumpMaxHeight|max_height]]="3.4"
+    [[CastleCameras.TWalkCamera.html#JumpHorizontalSpeedMultiply|horizontal_speed_multiply]]="5.6"
+    [[CastleCameras.TWalkCamera.html#JumpTime|time]]="7.8" />
 
   <fall>
     <sound
-      min_height="6.7"
-      name="test_sound_1" />
+      [[CastlePlayer.TPlayer.html#FallMinHeightToSound|min_height]]="6.7"
+      [[CastlePlayer.TPlayer.html#FallSound|name]]="test_sound_1" />
 
     <damage
-      min_height="8.9"
-      scale_min="1.2"
-      scale_max="3.4" />
+      [[CastlePlayer.TPlayer.html#FallMinHeightToDamage|min_height]]="8.9"
+      [[CastlePlayer.TPlayer.html#FallDamageScaleMin|scale_min]]="1.2"
+      [[CastlePlayer.TPlayer.html#FallDamageScaleMax|scale_max]]="3.4" />
   </fall>
 
   <swim
-    breath="5.6"
-    sound_pause="6.7" />
+    [[CastlePlayer.TPlayer.html#SwimBreath|breath]]="5.6"
+    [[CastlePlayer.TPlayer.html#SwimSoundPause|sound_pause]]="6.7" />
 
   <drown
-    pause="7.8">
+    [[CastlePlayer.TPlayer.html#DrownPause|pause]]="7.8">
     <damage
-      const="9.1"
-      random="2.3" />
+      [[CastlePlayer.TPlayer.html#DrownDamageConst|const]]="9.1"
+      [[CastlePlayer.TPlayer.html#DrownDamageRandom|random]]="2.3" />
   </drown>
 </player>'); ?>
 

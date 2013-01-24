@@ -3,28 +3,49 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Material properties configuration');
 ?>
 
-<p>TODO: get description of CastleMaterialProperties.pas
+<p>You can configure material properties using an XML file.
+This is useful to configure behavior that is naturally dependent on
+a given material or texture. Right now this allows to define things
+like footsteps, toxic ground (hurts player), and bump mapping.
+See <?php api_link('TMaterialProperty', 'CastleMaterialProperties.TMaterialProperty.html'); ?> docs.
+</p>
 
-TODO: fill default values below, link all attributes to appropriate properties.
+<p>In code, you have to load this file like this:
+
+<?php echo pascal_highlight(
+'uses ..., CastleMaterialProperties;
+
+...
+MaterialProperties.FileName := ProgramDataPath + \'data\' + PathDelim + \'material_properties.xml\';'); ?>
+
+<p>Below is a sample <tt>material_properties.xml</tt> file
+with links to documentation for every attribute.</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <properties>
+  <!--
+    Contains a list of <property> elements.
+    Only the "texture_base_name" attribute is required, and it must be unique.
+  -->
+
   <property
-    texture_base_name="test_texture"
-    footsteps_sound="test_sound_4">
-    <toxic>
+    [[CastleMaterialProperties.TMaterialProperty.html#TextureBaseName|texture_base_name]]="test_texture"
+    [[CastleMaterialProperties.TMaterialProperty.html#FootstepsSound|footsteps_sound]]="test_sound_4">
+    <[[CastleMaterialProperties.TMaterialProperty.html#Toxic|toxic]]>
       <damage
-        const="1.2"
-	random="3.4"
-	time="5.6" />
+        [[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageConst|const]]="1.2"
+	[[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageRandom|random]]="3.4"
+	[[CastleMaterialProperties.TMaterialProperty.html#ToxicDamageTime|time]]="5.6" />
     </toxic>
   </property>
 
   <property
-    texture_base_name="test_texture_2"
-    normal_map="test_normal_map.png" />
+    [[CastleMaterialProperties.TMaterialProperty.html#TextureBaseName|texture_base_name]]="test_texture_2"
+    [[CastleMaterialProperties.TMaterialProperty.html#NormalMap|normal_map]]="test_normal_map.png" />
+
+  <!-- And more <property> elements... -->
 </properties>'); ?>
 
 <?php

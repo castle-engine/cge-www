@@ -3,30 +3,33 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Sound');
 ?>
 
-------------------------------------------------------------------------------
-TODO: sound XML file describe
-
-TODO: fill default values below, link all attributes to appropriate properties.
+<p>Below is a sample sound configuration,
+with links to documentation for every attribute.
+See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
+ for information how to initialize sound repository from such XML configuration.
+</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <sounds>
+  <!--
+    Contains a list of <sound> elements.
+    Only the "name" attribute is required, and all names must be unique.
+  -->
+
   <sound
-    name="player_sudden_pain"
-    file_name="test_name.wav"
-    default_importance="player"
-    gain="1"
-    min_gain="0.8"
-    max_gain="1" />
+    [[CastleSoundEngine.TSoundInfo.html#Name|name]]="player_sudden_pain"
+    [[CastleSoundEngine.TSoundInfo.html#FileName|file_name]]="test_name.wav"
+    [[CastleSoundEngine.TSoundInfo.html#DefaultImportance|default_importance]]="player"
+    [[CastleSoundEngine.TSoundInfo.html#Gain|gain]]="1"
+    [[CastleSoundEngine.TSoundInfo.html#MinGain|min_gain]]="0.8"
+    [[CastleSoundEngine.TSoundInfo.html#MaxGain|max_gain]]="1" />
+
+  <!-- And more <sound> elements... -->
   <sound name="test_sound_1" />
   <sound name="test_sound_2" />
   <sound name="test_sound_3" />
-  <sound name="test_sound_4" />
-  <sound name="test_sound_5" />
-  <sound name="test_sound_6" />
-  <sound name="test_sound_7" />
-  <sound name="test_sound_8" />
 </sounds>'); ?>
 
 ------------------------------------------------------------------------------

@@ -47,10 +47,9 @@ closing OpenAL context.</p>
 
 <h2>Sounds repository</h2>
 
-<p>Larger games may find it comfortable to define a repository of sounds
-in an XML file, conventionally named <tt>data/sounds/index.xml</tt>. See
-TRepoSoundEngine docs and fps_game for example. Assuming your
-<tt>data/sounds/index.xml</tt> looks like this:</p>
+<p>Larger games may find it comfortable to define a repository of sounds.
+You do it by creating an XML file, for example named <tt>sounds.xml</tt>,
+looking like this:</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
@@ -62,7 +61,12 @@ TRepoSoundEngine docs and fps_game for example. Assuming your
     default_importance, gain, min_gain, max_gain &mdash; see TODO. -->
 </sounds>'); ?>
 
-Then you can initialize it inside your game code like this:
+<p>See
+<?php echo a_href_page('creating game sounds guide', 'creating_data_sound'); ?>
+ for detailed specification about sound XML files.
+See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'); ?> docs
+ and <tt>fps_game</tt> for example.
+You have to initialize the sound repository inside your game code like this:</p>
 
 <?php echo pascal_highlight(
 'SoundEngine.SoundsFileName := ProgramDataPath + \'data\' +
