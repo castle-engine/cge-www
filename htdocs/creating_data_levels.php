@@ -29,7 +29,8 @@ See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
   <!--
     prepare_resources is an optional element.
     It should contain a list of resources (creatures;
-    no need to list items, as they are prepared always) used by the level.
+    no need to list items, as they are always prepared (by default),
+    see T3DResource.AlwaysPrepare) used by the level.
     Every <resource> element should refer to the resource name,
     that is you should have resource.xml file with name="TestCreature"
     in your data.
@@ -41,138 +42,50 @@ See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
   </prepare_resources>
 </level>'); ?>
 
-------------------------------------------------------------------------------
-Specifically about level.xml:
+<h2>Placeholders</h2>
 
-- Defines a level.
-  The root element is <level>.
+<p>A major feature of loading level through
+<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+ is that you can put "placeholders" on your level 3D model.
+These are special 3D shapes that will be recognized by the engine to indicate:
 
-- name: the unique level name, used in scripts and such.
-  It must be unique among all levels.
-
-  For all (current and future) uses it should be a valid VRML/X3D
-  and ObjectPascal identifier, so stick to only (English) letters,
-  underscores and digits (and don't start with digit).
-
-- title: nice, human-readable (with spaces, non-English letters etc.)
-  level title that is displayed for users.
-
-- scene: URL to the 3D file containing the level scene.
-
-- type: (optional, default just generic "Level")
-  Use specific ObjectPascal class to implement this level behavior.
-  Default value is "Level", which means that the level will be
-  handled with vanilla TLevelLogic implementation.
-  Many advanced tricks are possible by implementing in the game code
-  a descendant class of TLevelLogic that does something special,
-  you can then register it by "LevelLogicClasses['My'] := TMyLogic;",
-  and then type="My" is allowed in level.xml file.
-  See castle1 GameLevelSpecific unit for examples.
-
-- default_played: (optional, default "false")
-  Should the level be initially considered "played".
-  This sets TLevelInfo.DefaultPlayed property, which in turn
-  (if nothing is stored in user preferences file about it) sets
-  TLevelInfo.Played. How is this useful, depends on a particular game:
-  some games may decide to show in the "New Game" menu levels with Played=true.
-  Some games may ignore it.
-
-- loading_image (optional, default empty): filename of image file to display
-  while loading the level (under the progress bar).
-
-- loading_image_bar_y_position (optional, default 0.5):
-  indicates vertical position of progress bar when loading level,
-  used only if loading_image is defined.
-  Between 0 and 1, default value 0.5 means "middle of the screen".
-  Should be synchronized with loading_bg image, to look right.
-
-- placeholders: You can place placeholders in the level 3D model,
-  to create various things:
-  - creatures/items (commonly called "resources",
-    as they refer to T3DResource) by placeholders named "CasRes...",
-  - water volume by placeholder "CasWater",
-  - move limit by placeholder "CasMoveLimit",
-  - sectors/waypoints (to make creature AI smarter)
+<ul>
+  <li>initial creatures / items positions by placeholders named "CasRes...",
+  <li>water volume by placeholder "CasWater",
+  <li>move limit by placeholder "CasMoveLimit",
+  <li>sectors/waypoints (to make creature AI smarter)
     by placeholders "CasSector..." and "CasWaypoint..."
-  - see TGameSceneManager.LoadLevel docs for full list.
-  - and possibly more, as every level type may allow additional placeholders,
-    you can handle them in a descendant of TLevelLogic by overriding
-    TLevelLogic.Placeholder.
+  <li>see <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> documentation for full list.
+  <li>and possibly your <?php api_link('TLevelLogic', 'CastleLevels.TLevelLogic.html'); ?>
+    will define even more placeholders
+    (by overriding <?php api_link('TLevelLogic.Placeholder', 'CastleLevels.TLevelLogic.html#Placeholder'); ?>,
+    and using your logic as <?php api_link('LogicClass', 'CastleLevels.TLevelInfo.html#LogicClass'); ?>.
+</ul>
 
-  The "placeholders" attribute in level.xml determines how we derive
-  "placeholder name" from a VRML/X3D shape.
-  - "x3dshape" (default) means that the placeholder name comes from
+<p>The "placeholders" attribute in level.xml determines how we derive
+"placeholder name" from a VRML/X3D shape.</p>
+
+<ol>
+  <li><tt>"x3dshape"</tt> (default) means that the placeholder name comes from
     VRML 2.0/X3D Shape node name (set using "DEF" in VRML/X3D).
-  - "blender" means that the placeholder name is detected following
+
+  <li><tt>"blender"</tt> means that the placeholder name is detected following
     standard Blender VRML/X3D exporters behavior.
     This allows you to set the placeholder name easily in Blender,
     just set the Blender object name.
-  - and possibly more, see CastleShape.PlaceholderNames.
+
+  <li>and possibly more, see <?php api_link('PlaceholderNames', 'CastleShapes.html#PlaceholderNames'); ?>
+    list.
     You can define and register your own functions there, to handle
-    other 3D modelers, like 3DSMax or Maya or anything else
+    other 3D modelers, like <i>3ds Max</i> or <i>Maya</i> or anything else
     (and you're welcome to contribute them to include them in engine code,
     of course!).
-
-- placeholder_reference_direction (optional, default "1 0 0"):
-  Some placeholders (currently, only creatures) may be used to determine
-  initial direction of the resource. For example, the direction
-  the creature is initially facing.
-  This direction is calculated as the transformation
-  of given placeholder applied to this 3D vector.
-
-  The correct value may depend on the exporter you used to create 3D models,
-  and on the exporter settings (how and if it rotates the model when exporting,
-  and is this rotation recorded in placeholder transformation
-  or applied directly to mesh coordinates). It may also depend on personal
-  preference, as it determines how you set resources in your 3D modelling tool
-  (like Blender).
-
-  Fortunately, the default value (+X vector) is suitable for at least
-  2 common situations:
-
-  - If your exporter rotates the world to turn +Z up into +Y up.
-    (This is the case of default Blender X3D exporter with default settings.)
-  - If your exporter doesn't rotate the world.
-    (You can configure Blender exporter to behave like this.
-    You may also then configure engine to use +Z as up vector for everything,
-    see "Which way is up?" notes in DRAFT.engine_tutorial.txt.)
-
-  In Blender it's useful to enable the "Display -> Wire" option for placeholder
-  objects, then Blender will show arrows inside the placeholder.
-  +X of the arrow determines the default direction understood by our engine.
-
-- See TLevelInfo properties documentation if in doubt.
-
-- Every TLevelLogic class (you indicate it with "type", see above)
-  may use additional attributes from level.xml file:
-
-  TLevelLogic constructor gets DOMElement: TDOMElement parameter,
-  which is an XML tree of level.xml file. You can read it
-  however you want. We use standard FPC DOM unit and classes,
-  and add a handful of simple comfortable routines in CastleXMLUtils unit,
-  for example you can use
-
-    if not DOMGetBooleanAttribute(DOMElement, 'my_attribute', MyAttribute) then
-      MyAttribute := false; // default value, if not specified in level.xml
-
-  to read a boolean attribute "my_attribute".
-
-- prepare_resources: list resources to prepare at level load.
-  Note that some resources are always prepared (see
-  T3DResource.AlwaysPrepare), so there's no need to list them here.
-  By default, all items (but not creatures) are prepared.
+</ol>
 
 ------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified
 
-Levels
-
 <ul>
-  <li><p>Basically, create a 3D model of the level,
-    and add appropriate <tt>level.xml</tt> file describing it.
-    The <tt>level.xml</tt> file will be automatically found in game data.
-    </p>
-
   <li><p>To place items and creatures (collectively called "3D resources")
     on the level you place a special "placeholder" objects on the level.
     Every placeholder object will be removed
@@ -274,33 +187,6 @@ Levels
 -->
       </li>
     </ul>
-  </li>
-
-  <li><p>If you made a completely new level, you want to add it to the game.
-    That's easy: just add a subdirectory with <tt>level.xml</tt> file inside
-    the game data.
-    See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
-    You can switch to the level by debug menu "Change to level" command
-    (or even you can start "new game" from this level, if you set it's
-    <tt>default_played</tt> to <tt>true</tt>).
-
-    <!--
-      You can add somewhere the call to LevelFinished(TYourLevel.Create),
-      so that player is in some situation transferred from other level
-      to your level.
-    -->
-
-    <p>Note that when starting "New Game" player can choose to start
-    from any level that he (she ? :) previously visited ("visited"
-    either as part of normal game story of through debug command
-    "Change to level"). This feature may be removed in the future when
-    real "Save game" / "Load game" feature will be implemented.
-  </li>
-
-  <li><p>With a little programming, you can add your own level logic.
-    This allows to implement in ObjectPascal special behaviors on the level.
-    You can also add other full-featured 3D objects and animations to the level
-    (although the level itself may also contain animated things).</p>
   </li>
 </ul>
 ------------------------------------------------------------------------------

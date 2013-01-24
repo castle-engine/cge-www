@@ -5,8 +5,8 @@ tutorial_header('Loading game level');
 
 <p>Instead of loading level like above, there is a slightly more
 comfortable and feature-rich way to load a level for a game: call the
-TGameSceneManager.LoadLevel method. Under the hood,
-TGameSceneManager.LoadLevel does eberything mentioned above &mdash; the
+<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> method. Under the hood,
+<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> does eberything mentioned above &mdash; the
 new 3D model is loaded, and added to the SceneManager.Items, and set
 as SceneManager.MainScene. But it also does some additional work, like
 detecting a "placeholders" in your 3D model, which should be replaced
@@ -79,7 +79,7 @@ SceneManager.LoadLevel(\'pits\'); // refer to name="pits" in level.xml
 // the 2nd line is a shortcut for
 // SceneManager.LoadLevel(Levels.FindName(\'pits\'));'); ?>
 
-<p>The LoadLevel will clear all SceneManager.Items (except Player,
+<p>The <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> will clear all SceneManager.Items (except Player,
 more about this in a second). Then it will load new 3D model with a
 level (adding it to SceneManager.Items and setting as
 SceneManager.MainScene, just as we did manually in previous chapter),
