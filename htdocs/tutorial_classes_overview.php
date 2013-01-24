@@ -262,15 +262,6 @@ SceneManager.LoadLevel(\'myLevelName\');
 <dl>
   <dt><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?></dt>
   <dd>
-    <p>Note that every <?php api_link('T3D', 'Castle3D.T3D.html'); ?> object knows
-    <?php api_link('World', 'Castle3D.T3D.html#World'); ?>
-    so it knows how to move and collide
-    within the 3D world. That's how AI is implemented.
-    See <?php api_link('T3D.Move', 'Castle3D.T3D.html#Move'); ?>,
-    <?php api_link('T3D.MoveAllowed', 'Castle3D.T3D.html#MoveAllowed'); ?>,
-    <?php api_link('T3D.Height', 'Castle3D.T3D.html#Height'); ?> and
-    <?php api_link('T3D.LineOfSight', 'Castle3D.T3D.html#LineOfSight'); ?> methods.
-
     <p>Creature has <?php api_link('Resource', 'CastleCreatures.TCreature.html#Resource'); ?> property that refers to
     <?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?>.
 
