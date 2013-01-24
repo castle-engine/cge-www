@@ -5,9 +5,16 @@ creating_data_header('Resources (creatures and items)');
 
 <p>Below is a sample <tt>resource.xml</tt> file,
 with links to documentation for every attribute.
-See
-<?php echo a_href_page('tutorial about resources', 'tutorial_resources'); ?>
- for information how to initialize resources (creatures and items) from such files.</p>
+<ul>
+  <li>(Almost) every attribute is optional, so in practice
+    there's no need to specify them all in your <tt>resource.xml</tt> files.
+  <li>Note that sample below shows properties for resource of type <tt>WalkAttack</tt>
+    (indicating <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
+    class), there are other resource types (for creatures and items)
+    with a little different properties.
+  <li>See <?php echo a_href_page('tutorial about resources', 'tutorial_resources'); ?>
+    for information how to initialize resources (creatures and items) from such files.
+</ul>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>

@@ -4,9 +4,16 @@ creating_data_header('Player configuration');
 ?>
 
 <p>You can load an XML file configuring various player properties.
-See <?php echo a_href_page('tutorial about Player', 'tutorial_player'); ?>.
 Below is a sample <tt>player.xml</tt> file
-with links to documentation for every attribute.</p>
+with links to documentation for every attribute.
+
+<ul>
+  <li><i>Every</i> attribute is optional, so in practice
+    there's no need to specify them all in your files. Use only the ones
+    where you need to change the defaults.
+  <li>See <?php echo a_href_page('tutorial about player', 'tutorial_player'); ?>
+    for notes how to use this from your game code.
+</ul>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>

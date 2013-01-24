@@ -3,10 +3,15 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Levels');
 ?>
 
-<p>Below is a sample <tt>level.xml</tt> configuration,
+<p>Below is a sample <tt>level.xml</tt> content,
 with links to documentation for every attribute.
-See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
- for information how to initialize levels from such files.</p>
+
+<ul>
+  <li>(Almost) every attribute is optional, so in practice
+    there's no need to specify them all in your <tt>level.xml</tt> files.
+  <li>See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
+    for information how to initialize levels from such files.
+</ul>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
