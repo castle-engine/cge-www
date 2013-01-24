@@ -10,7 +10,7 @@
    they use full absolute URLs, because they are
    also used inside RSS feeds, which may be displayed on other servers).
 
-   Overall, this allows to browser our webpages locally
+   Overall, this allows to browse our webpages locally
    (through http://localhost/...) faster. */
 define('CASTLE_OFFLINE', false);
 
