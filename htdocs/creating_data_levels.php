@@ -71,7 +71,7 @@ These are 3D shapes with special names that will be recognized by the engine:
     <!--
     Position is determined
     by placeholder lowest Z and middle X,Y line (when GravityUp is +Z).
-    --->
+    -->
 
     <p>The resource name refers to
     <?php api_link('T3DResource.Name', 'CastleResources.T3DResource.html#Name'); ?>,

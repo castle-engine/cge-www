@@ -29,7 +29,7 @@ in the game data. Their contents looks like this:</p>
   </model>
 </resource>'); ?>
 
-<p>The <ttt>file_name</tt> properties refer to actual 3D models
+<p>The <tt>file_name</tt> properties refer to actual 3D models
 defining creature animations.
 See <tt>examples/fps_game/</tt> data for a real example how such file looks
 like. And see <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>

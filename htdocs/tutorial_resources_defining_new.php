@@ -3,7 +3,8 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Extending existing creatures / items classes');
 ?>
 
-<p>You can derive descendants of CastleCreatures and CastleItems classes,
+<p>You can derive descendants of <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
+<?php api_link('CastleItems', 'CastleItems.html'); ?> classes,
 to customize the behavior of creatures and items. For example, "The
 Castle" customizes walk-attack creature to give both ranged and melee
 attacks to the Spider Queen, to make werewolves howl from time to
@@ -12,20 +13,35 @@ fps_game for an example that customizes what happens when using a
 medkit item.
 
 <p>You can start your customizations from full-features classes, like
-TWalkAttackCreatureResource and TWalkAttackCreature. Or you can take
-the basic TCreatureResource and TCreature, and extend them to your
-liking.
+ <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?> and
+ <?php api_link('TWalkAttackCreature', 'CastleCreatures.TWalkAttackCreature.html'); ?>.
+Or you can take the basic
+ <?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?> and
+ <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>,
+and extend them to your liking.
 
-<p>This is a good moment to browse the API reference of mentioned CastleCreatures classes, if you haven't already. See
+<p>This is a good moment to browse the classes inside
+<?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
+<?php api_link('CastleItems', 'CastleItems.html'); ?> unit,
+if you haven't already. Some of the important creature/item classes:
 
 <ul>
-  <li>[TWalkAttackCreatureResource], [TWalkAttackCreature]
-  <li>[TMissileCreatureResource], [TMissileCreature]
-  <li>[TStillCreatureResource], [TStillCreature]
-  <li>[TCreatureResource], [TCreature]
-  <li>[TItemResource], TInventoryItem
-  <li>[TItemWeaponResource], TItemWeapon
-  <li>And see the class hierarchy descending from TCreatureResource and TCreature in [class hierarchy diagram]
+  <li><?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?> working with
+      <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>
+    <ul>
+      <li><?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?> working with
+          <?php api_link('TWalkAttackCreature', 'CastleCreatures.TWalkAttackCreature.html'); ?>
+      <li><?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?> working with
+          <?php api_link('TMissileCreature', 'CastleCreatures.TMissileCreature.html'); ?>
+      <li><?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?> working with
+          <?php api_link('TStillCreature', 'CastleCreatures.TStillCreature.html'); ?>
+    </ul>
+  <li><?php api_link('TItemResource', 'CastleItems.TItemResource.html'); ?> working with
+      <?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>
+    <ul>
+      <li><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?> working with
+          <?php api_link('TItemWeapon', 'CastleItems.TItemWeapon.html'); ?>
+    </ul>
 </ul>
 
 <h2>Why are there two classes (TXxxResource annd TXxx) for everything?</h2>

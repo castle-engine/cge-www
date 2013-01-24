@@ -296,7 +296,7 @@ SceneManager.LoadLevel(\'myLevelName\');
     (e.g. maybe you make an ambush, or maybe you want to create a "rush"
     when monsters attack in waves, or maybe you want to make a crowd...).
     Make sure that all necessary creatures are declared in level's index.xml
-    file under <resources>, to prepare creatures at level loading
+    file under <tt>&lt;prepare_resources&gt;</tt>, to prepare creatures at level loading
     (you don't want to cause a sudden delay in the middle of the game).
     T3DResource and <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> methods will then take care of loading resources
     when necessary.
