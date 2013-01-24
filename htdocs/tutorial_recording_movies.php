@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Recording movies');
+require_once 'castle_engine_functions.php';
+tutorial_header('Recording movies');
 ?>
 
 <p>Note that our engine doesn't support yet recording movies during
@@ -54,5 +54,5 @@ is a float, so actually it honors fractions of seconds as well. So
 something like 1/25 to get 25 frames per second is Ok.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

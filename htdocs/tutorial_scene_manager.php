@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Scene manager', '3D world information');
+require_once 'castle_engine_functions.php';
+tutorial_header('Scene manager', '3D world information');
 ?>
 
 <p>Actually, this step of the tutorial is already done for you: scene
@@ -29,5 +29,5 @@ window/control, so the work is done for you. If more advanced
 scenarios, you may want to create and manage scene manager yourself.</p>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

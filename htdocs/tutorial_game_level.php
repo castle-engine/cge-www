@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Loading game level');
+require_once 'castle_engine_functions.php';
+tutorial_header('Loading game level');
 ?>
 
 <p>Instead of loading level like above, there is a slightly more
@@ -94,5 +94,5 @@ will be used for creatures/items in the following chapter. Your game
 data is immediately friendly to MODders.</p>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

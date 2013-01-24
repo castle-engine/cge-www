@@ -420,6 +420,8 @@ div.quote {
   width: 40%;
 }
 .book-header .book-title {
+  margin-left: 40%;
+  margin-right: 40%;
   text-align: center;
   font-weight: bold;
 }

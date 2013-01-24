@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('OpenGL context', 'Creating a window (TCastleWindow) or a Lazarus component (TCastleControl)');
+require_once 'castle_engine_functions.php';
+tutorial_header('OpenGL context', 'Creating a window (TCastleWindow) or a Lazarus component (TCastleControl)');
 ?>
 
 <p>First of all, you need to initialize a rectangular area on the screen
@@ -146,5 +146,5 @@ end.'); ?>
 </ol>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Using existing creatures / items classes');
+require_once 'castle_engine_functions.php';
+tutorial_header('Using existing creatures / items classes');
 ?>
 
 <p>For starters, you can just use the existing creature classes on
@@ -37,5 +37,5 @@ still show some looping animation, but there is no fancy logic behind
 it).
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

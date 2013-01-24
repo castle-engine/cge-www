@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Display 2D controls: player HUD');
+require_once 'castle_engine_functions.php';
+tutorial_header('Display 2D controls: player HUD');
 ?>
 
 <p>You will often want to draw a 2D controls on your screen, for example
@@ -105,5 +105,5 @@ See CastleControls unit for some standard buttons and panels and images.
 But for a specific game you will probably want a specialized UI, done like the example above.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Sound | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Sound');
+creating_data_header('Sound');
 ?>
 
 ------------------------------------------------------------------------------
@@ -80,5 +79,5 @@ TODO: old castle-development text, to be simplified
 </ul>
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>

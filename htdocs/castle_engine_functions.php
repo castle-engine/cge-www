@@ -31,6 +31,7 @@ set_include_path('.:kambi-php-lib/:geshi/');
 require_once 'kambi-php-lib/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
+require_once 'castle_engine_books.php';
 require_once 'geshi.php';
 
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
@@ -239,7 +240,11 @@ $castle_sitemap = array(
 function _castle_bootstrap()
 {
   kambi_bootstrap();
-  _castle_sitemap_tutorial_correct();
+  global $castle_sitemap;
+  castle_sitemap_book_correct('tutorial',
+    $castle_sitemap['engine']['sub']['tutorial_intro']['sub']);
+  castle_sitemap_book_correct('creating_data',
+    $castle_sitemap['engine']['sub']['creating_data_intro']['sub']);
 }
 
 /* Call this immediately, to modify $castle_sitemap even before calling
@@ -444,64 +449,6 @@ if ($main_page) echo facebook_header();
 ?>
 
   <?php
-}
-
-/* Update global $castle_sitemap to add chapter numbers to tutorial pages.
-
-   Also set global $castle_tutorial.
-   $castle_tutorial will contain informationspecific about tutorial pages.
-   It will be a flat (with chapters and subchapters on a single level)
-   array with tutorial pages, with every item key=>value just like
-   in $castle_sitemap, with additional fields:
-   - number: HTML-safe string with number of this chapter/subchapter.
-   - previous/next: strings naming previous/next page, or NULL if none.
-*/
-function _castle_sitemap_tutorial_correct()
-{
-  global $castle_tutorial;
-  global $castle_sitemap;
-
-  $castle_tutorial = array();
-  $chapter_number = 1;
-  $previous_basename = NULL;
-  foreach ($castle_sitemap['engine']['sub']['tutorial_intro']['sub'] as
-    $tutorial_chapter_basename => &$tutorial_chapter)
-  {
-    $castle_tutorial[$tutorial_chapter_basename] = $tutorial_chapter +
-      array('number' => $chapter_number . '. ',
-            'previous' => $previous_basename,
-            'next' => NULL);
-    $tutorial_chapter['title'] =
-      $castle_tutorial[$tutorial_chapter_basename]['number'] .
-      $tutorial_chapter['title'];
-    $previous_basename = $tutorial_chapter_basename;
-
-    if (isset($tutorial_chapter['sub']))
-    {
-      $subchapter_number = 1;
-      foreach ($tutorial_chapter['sub'] as
-        $tutorial_subchapter_basename => &$tutorial_subchapter)
-      {
-        $castle_tutorial[$tutorial_subchapter_basename] = $tutorial_subchapter +
-          array('number' => $chapter_number . '.' . $subchapter_number . '. ',
-                'previous' => $previous_basename,
-                'next' => NULL);
-        $tutorial_subchapter['title'] =
-          $castle_tutorial[$tutorial_subchapter_basename]['number'] .
-          $tutorial_subchapter['title'];
-        $previous_basename = $tutorial_subchapter_basename;
-
-        $subchapter_number++;
-      }
-    }
-
-    $chapter_number++;
-  }
-
-  /* iterate over $castle_tutorial to calculate 'next' links */
-  foreach ($castle_tutorial as $tutorial_page_basename => &$tutorial_page)
-    if ($tutorial_page['previous'] !== NULL)
-      $castle_tutorial[$tutorial_page['previous']]['next'] = $tutorial_page_basename;
 }
 
 /* $path is a list of page names, a path in the tree of $castle_sitemap,

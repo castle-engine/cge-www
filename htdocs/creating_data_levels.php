@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Levels | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Levels');
+creating_data_header('Levels');
 ?>
 
 ------------------------------------------------------------------------------
@@ -295,5 +294,5 @@ Levels
 ------------------------------------------------------------------------------
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>

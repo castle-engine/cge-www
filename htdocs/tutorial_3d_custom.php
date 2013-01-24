@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Define other 3D objects');
+require_once 'castle_engine_functions.php';
+tutorial_header('Define other 3D objects');
 ?>
 
 <p>Our creature and items classes in CastleCreatures and CastleItems
@@ -148,5 +148,5 @@ var
   SceneManager.Items.Add(ManaPotionInstance1);'); ?>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

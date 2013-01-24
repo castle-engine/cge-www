@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Which way is up?');
+require_once 'castle_engine_functions.php';
+tutorial_header('Which way is up?');
 ?>
 
 <p>There are various conventions for which vector is "up" in 3D world
@@ -124,5 +124,5 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 it will be used for all your models.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

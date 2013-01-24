@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Introduction | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Introduction to Creating Game Data', NULL, 'for games using Castle Game Engine');
+creating_data_header('Introduction to Creating Game Data', 'for games using Castle Game Engine');
 ?>
 
 TODO: list chapters below
@@ -52,5 +51,5 @@ standard convention in VRML/X3D), and our engine will automatically
 pick it up correctly.
 
 <?php
-  castle_footer();
+creating_data_footer();
 ?>

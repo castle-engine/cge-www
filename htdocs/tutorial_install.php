@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Download and install the engine, try the demos');
+require_once 'castle_engine_functions.php';
+tutorial_header('Download and install the engine, try the demos');
 ?>
 
 <p>If you haven't done it yet, <?php echo a_href_page('download the
@@ -59,5 +59,5 @@ with .exe files that you compile with our engine.</p>
 <p>Now we'll start creating our own game from scratch.</p>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

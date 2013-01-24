@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Key / mouse shortcuts');
+require_once 'castle_engine_functions.php';
+tutorial_header('Key / mouse shortcuts');
 ?>
 
 <p>We have global controls in global variables: InputPlayer_Xxx and

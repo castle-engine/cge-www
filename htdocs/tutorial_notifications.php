@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Notifications');
+require_once 'castle_engine_functions.php';
+tutorial_header('Notifications');
 ?>
 
 <p>You can also show on-screen notifications by TCastleNotifications
@@ -36,5 +36,5 @@ example).
 -->
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Tutorial introduction');
+require_once 'castle_engine_functions.php';
+tutorial_header('Tutorial introduction');
 ?>
 
 TODO: list chapters below

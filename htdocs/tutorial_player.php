@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Player');
+require_once 'castle_engine_functions.php';
+tutorial_header('Player');
 ?>
 
 <p>For a full-featured game it is good to have a central Player
@@ -82,5 +82,5 @@ See <?php echo a_href_page('creating player', 'creating_data_player'); ?>
  for details.</p>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

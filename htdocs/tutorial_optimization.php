@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Optimization and profiling');
+require_once 'castle_engine_functions.php';
+tutorial_header('Optimization and profiling');
 ?>
 
 <p>One you have a large game, with many large 3D models, you will
@@ -182,5 +182,5 @@ castle_game_engine/doc/profiling_howto.txt . See also wiki
 http://wiki.lazarus.freepascal.org/Profiling .
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

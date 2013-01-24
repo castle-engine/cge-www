@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Player configuration | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Player configuration');
+creating_data_header('Player configuration');
 ?>
 
 <p>TODO: get description of TPlayer.LoadFromFile
@@ -46,5 +45,5 @@ TODO: fill default values below, link all attributes to appropriate properties.
 </player>'); ?>
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>

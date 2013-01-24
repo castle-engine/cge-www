@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Material properties configuration | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Material properties configuration');
+creating_data_header('Material properties configuration');
 ?>
 
 <p>TODO: get description of CastleMaterialProperties.pas
@@ -29,5 +28,5 @@ TODO: fill default values below, link all attributes to appropriate properties.
 </properties>'); ?>
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>

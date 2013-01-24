@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Classes overview (cheatsheet)');
+require_once 'castle_engine_functions.php';
+tutorial_header('Classes overview (cheatsheet)');
 ?>
 
 <p>This final tutorial page summarizes information about
@@ -249,5 +249,5 @@ Special descendants of T3D:
     to make it a central player (connected with central camera etc.).)
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

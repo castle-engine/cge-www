@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Logging');
+require_once 'castle_engine_functions.php';
+tutorial_header('Logging');
 ?>
 
 <p>Easy: Use CastleLog unit, call InitializeLog, and you have your
@@ -28,5 +28,5 @@ no hard rules about it, i.e. you're free to just invent your own
 category names here, like <tt>'Creatures'</tt> or <tt>'Rendering'</tt>.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

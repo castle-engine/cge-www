@@ -1,7 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Resources (creatures and items) | Creating Game Data', NULL, array('engine', 'creating_data_intro'));
-echo pretty_heading('Resources (creatures and items)');
+creating_data_header('Resources (creatures and items)');
 ?>
 
 ------------------------------------------------------------------------------
@@ -476,5 +475,5 @@ Items
 </ul>
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Extending existing creatures / items classes');
+require_once 'castle_engine_functions.php';
+tutorial_header('Extending existing creatures / items classes');
 ?>
 
 <p>You can derive descendants of CastleCreatures and CastleItems classes,
@@ -230,5 +230,5 @@ for I := 1 to 100 do
 </ol>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

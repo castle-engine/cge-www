@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Sound');
+require_once 'castle_engine_functions.php';
+tutorial_header('Sound');
 ?>
 
 <p>As with many other operations, you can add and control sounds to your
@@ -135,5 +135,5 @@ defined, just use the appropriate names in your
 current list of predefined sound names.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

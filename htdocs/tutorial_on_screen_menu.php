@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('On-screen menu');
+require_once 'castle_engine_functions.php';
+tutorial_header('On-screen menu');
 ?>
 
 <p>Our TCastleWindow or TCastleControl have a list of 2D controls visible
@@ -118,5 +118,5 @@ regardless of mouse position).
 TCastleImageControl underneath, instead of 3D scene.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

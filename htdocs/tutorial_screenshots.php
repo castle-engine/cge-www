@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Screenshots');
+require_once 'castle_engine_functions.php';
+tutorial_header('Screenshots');
 ?>
 
 <p>Making a screenshot is very easy:
@@ -29,5 +29,5 @@ Still, we use the excellent FPC FpImage library to load/save some
 image formats underneath.
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>

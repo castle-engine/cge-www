@@ -1,6 +1,6 @@
 <?php
-  require_once 'tutorial_common.php';
-  tutorial_header('Simple loading of 3D models');
+require_once 'castle_engine_functions.php';
+tutorial_header('Simple loading of 3D models');
 ?>
 
 <p>We will now load a 3D model from file using the <tt>TCastleScene</tt> class.
@@ -54,5 +54,5 @@ can remove it if you know your level is, and always will be, static).</p>
 be obtained from this scene.</p>
 
 <?php
-  tutorial_footer();
+tutorial_footer();
 ?>
