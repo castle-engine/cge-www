@@ -162,6 +162,7 @@ $castle_sitemap = array(
       'creating_data_intro' => array('title' => 'Creating game data',
         'sub' => array(
           'creating_data_intro' => array('title' => 'Introduction'),
+          'creating_data_3d' => array('title' => '3D models'),
           'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
           'creating_data_levels' => array('title' => 'Levels'),
           'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
