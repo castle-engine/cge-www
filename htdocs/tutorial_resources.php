@@ -7,11 +7,11 @@ tutorial_header('Creatures and items');
 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>, the system
 to load creatures and items (together called <i>3D resources</i>)
 is actually ready to use. A nice default handling of creatures
-and items suitable for 3D games in ready, in
+and items suitable for 3D games is ready, in
 <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
 <?php api_link('CastleItems', 'CastleItems.html'); ?> units.</p>
 
-<p>Creatures/items are defined by files named <tt>resource.xml</tt>
+<p>Creatures and items are defined by files named <tt>resource.xml</tt>
 in the game data. Their contents looks like this:</p>
 
 <?php echo xml_highlight(
@@ -45,7 +45,7 @@ files are:</p>
   <li><tt>name</tt>: this is a unique internal name of the
     resource (creature or item). It can be used as a placeholder name
     to place initial creatures/items on the level using 3D modeller
-    (like Blender).
+    (like <a href="http://www.blender.org/">Blender</a>).
 
   <li><tt>type</tt>: refers to ObjectPascal class handling the actual behavior of
     this resource. Engine already defines various basic creatures/items behavior,
@@ -55,11 +55,18 @@ files are:</p>
 <p>There really isn't much code here. Just add</p>
 
 <?php echo pascal_highlight(
-'Resources.LoadFromFiles;'); ?>
+'uses ..., CastleResources;
 
-<p>somewhere before loading the level. This will cause all
+...
+Resources.LoadFromFiles;'); ?>
+
+<p>to your program. This will cause all
 information about the creatures and items automatically
-loaded. Remember to also list necessary creatures in <tt>level.xml</tt>
+loaded.
+You usually want to do it
+before loading the level, this way loading the level will be able
+to automatically add initial creatures/items from placeholders.
+It is best to also list necessary creatures in <tt>level.xml</tt>
 file in <tt>&lt;prepare_resources&gt;</tt> element,
 to have them prepared (list there both the initial creatures
 and the creatures you will spawn by code during the game).
