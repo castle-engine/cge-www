@@ -32,7 +32,8 @@ stuff that is uncomfortable/impossible to design in your 3D modeller
 especially the level file
 <a>examples/fps_game/data/example_level/example_level_final.x3dv</a>.
 
-<p>Orientation: see <a href="">Which way is up?</a> section of the
+<p>Orientation: see <?php echo a_href_page('Which way is up?', 'tutorial_up'); ?>
+ chapter of the
 tutorial for in-depth discussion how you should orient your model. In
 short, use standard orientation of your 3D modeller, and the developer
 can make the engine adjust to it. If you use Blender, just use
