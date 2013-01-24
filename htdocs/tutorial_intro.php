@@ -3,6 +3,8 @@
   tutorial_header('Tutorial introduction');
 ?>
 
+TODO: list chapters below
+
 <p>This tutorial shows how to make a simple 3D first-person game using
 our <?php echo a_href_page('Castle Game Engine', 'engine'); ?>. We'll
 explain the basics of our engine, show you some simple programs and

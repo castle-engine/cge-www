@@ -35,8 +35,8 @@ function tutorial_header($a_page_title, $subheading_text = '')
   $a_page_title = $number . $a_page_title;
 
   castle_header($a_page_title . ' | Castle Game Engine Tutorial', NULL, array('engine', 'tutorial_intro'));
-  echo pretty_heading($a_page_title, NULL, $subheading_text);
   echo _tutorial_bar();
+  echo pretty_heading($a_page_title, NULL, $subheading_text);
 }
 
 function tutorial_footer()

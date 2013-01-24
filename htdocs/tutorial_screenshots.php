@@ -3,7 +3,7 @@
   tutorial_header('Screenshots');
 ?>
 
-Making a screenshot is very easy:
+<p>Making a screenshot is very easy:
 
 <?php echo pascal_highlight(
 'var
@@ -15,9 +15,18 @@ begin
   finally FreeAndNil(Image) end;
 end;'); ?>
 
-TRGBImage, and it's ancestor TCastleImage and many other similar classes, is defined in the unit Images. This provides various image loading, saving and processing utilities to our engine. By having our own image handling unit, we can store images in the format best suitable for 3D graphics libraries, like OpenGL (for example, our class TS3TCImage to handle S3TC compressed images is tightly integrated there; we also handle there 3D textures).
+<p>TRGBImage, and it's ancestor TCastleImage and many other similar
+classes, is defined in the unit CastleImages. This unit provides various image
+loading, saving and processing utilities to our engine.
 
-Still, we use the excellent FPC FpImage library to load/save some image formats underneath. So we do not implement everything from stratch here, we *are* using FpImage loading/saving features.
+<p>Note: we have our own image handling unit,
+to store images in the format best
+suitable for 3D graphics libraries, like OpenGL.
+This gives us some capabilities not found in common image libraries,
+for example we handle S3TC compressed images (class TS3TCImage),
+3D textures, float textures.
+Still, we use the excellent FPC FpImage library to load/save some
+image formats underneath.
 
 <?php
   tutorial_footer();

@@ -183,25 +183,58 @@ Specifically about resource.xml:
 ------------------------------------------------------------------------------
 Orientation:
 
-<p>Resources models (creatures, items and such) should be modelled around 0,0,0 point. In case of resources using gravity, they will be placed on the ground relative to the 0 height. In other words, if you want your model to float slightly above the ground, just move it higher above the 0 level. For resources flying (not using gravity), this doesn't matter, basically you can place 0,0,0 wherever you like. See <a>MiddleHeight</a> API documentation for precise details.
+<p>Resources models (creatures, items and such) should be modelled
+around 0,0,0 point. In case of resources using gravity, they will be
+placed on the ground relative to the 0 height. In other words, if you
+want your model to float slightly above the ground, just move it
+higher above the 0 level. For resources flying (not using gravity),
+this doesn't matter, basically you can place 0,0,0 wherever you
+like. See <a>MiddleHeight</a> API documentation for precise details.
 
 ------------------------------------------------------------------------------
-3D resources, like creatures and items, display various 3D animations. Depending on the creature state, like standing / attacking / dying, we may want to display different animation of the given creature instance. We define these animations using the <model> element of creature/item resource.xml file. (As a developer, you can also create T3DResourceAnimation class in T3DResource descendants, to load more animations in this manner, and use these animations however you like.)
+3D resources, like creatures and items, display various 3D
+animations. Depending on the creature state, like standing / attacking
+/ dying, we may want to display different animation of the given
+creature instance. We define these animations using the <model>
+element of creature/item resource.xml file. (As a developer, you can
+also create T3DResourceAnimation class in T3DResource descendants, to
+load more animations in this manner, and use these animations however
+you like.)
 
--> At this point, I highly advice you compile and run the resource_animations example program from the engine sources. It's inside castle_game_engine/examples/resource_animations/. The data/ subdirectory shows examples of how you can define <model>, discussed below. It is also a great program to test your own creatures/items animations (before using in the actual game), you can load their resource.xml using the "Add resource..." button and directly play loaded animations.
+-> At this point, I highly advice you compile and run the
+   resource_animations example program from the engine sources. It's
+   inside castle_game_engine/examples/resource_animations/. The data/
+   subdirectory shows examples of how you can define <model>,
+   discussed below. It is also a great program to test your own
+   creatures/items animations (before using in the actual game), you
+   can load their resource.xml using the "Add resource..." button and
+   directly play loaded animations.
 
-There are three approaches, and which one to choose depends on what 3D modeler / exporter you use to design your models:
+There are three approaches, and which one to choose depends on what 3D
+modeler / exporter you use to design your models:
 
-1. The best way (best for memory and loading time, which is really important in these situations) is to use a single X3D model, with many X3D TimeSensors representing different animations. You declare it in resource.xml file like this:
+1. The best way (best for memory and loading time, which is really
+important in these situations) is to use a single X3D model, with many
+X3D TimeSensors representing different animations. You declare it in
+resource.xml file like this:
 
   <model file_name="model.x3d">
     <stand time_sensor="TimeSensorStand"/>
     <walk time_sensor="TimeSensorWalk"/>
   </model>
 
-This is nice if your 3D modeler / exporter can record multiple animations inside a single X3D file, and each animation is controlled by a different X3D TimeSensor node. This is the most natural way to record multiple animations in a single X3D file. We will detect animation length from the TimeSensor.cycleInterval, and we'll simulate sending appropriate time and fraction_changed from this TimeSensor to activate the desired moment of the desired animation.
+This is nice if your 3D modeler / exporter can record multiple
+animations inside a single X3D file, and each animation is controlled
+by a different X3D TimeSensor node. This is the most natural way to
+record multiple animations in a single X3D file. We will detect
+animation length from the TimeSensor.cycleInterval, and we'll simulate
+sending appropriate time and fraction_changed from this TimeSensor to
+activate the desired moment of the desired animation.
 
-Unfortunately, I don't know of any open-source 3D modeler / exporter right now that can nicely produce such multiple animations in a single X3D file. I plan to extend Blender X3D exporter to allow this in the future.
+Unfortunately, I don't know of any open-source 3D modeler / exporter
+right now that can nicely produce such multiple animations in a single
+X3D file. I plan to extend Blender X3D exporter to allow this in the
+future.
 
 2. You can also use a separate X3D model for each animation state, like this:
 
@@ -210,7 +243,15 @@ Unfortunately, I don't know of any open-source 3D modeler / exporter right now t
     <walk file_name="walk.x3d" time_sensor="MainTimeSensor"/>
   </model>
 
-3. You can also use a precalculation animation for each animation, from <a href=>kanim</a> or MD3 (Quake 3 engine format) file. This is useful if your 3D modeler / exporter cannot produce animated X3D files at all, but it can export to kanim (see <a href=">our Blender to kanim exporter</a> or MD3. In the worst case, you can also just export a couple of still frames and write the xxx.kanim file in a text editor, because the kanim format is a trivial XML file that just describes a transition between a couple of still 3D models. Internally, we'll use TCastlePrecalculatedAnimation for each animation state.
+3. You can also use a precalculation animation for each animation,
+from <a href=>kanim</a> or MD3 (Quake 3 engine format) file. This is
+useful if your 3D modeler / exporter cannot produce animated X3D files
+at all, but it can export to kanim (see <a href=">our Blender to kanim
+exporter</a> or MD3. In the worst case, you can also just export a
+couple of still frames and write the xxx.kanim file in a text editor,
+because the kanim format is a trivial XML file that just describes a
+transition between a couple of still 3D models. Internally, we'll use
+TCastlePrecalculatedAnimation for each animation state.
 
 Example:
 
@@ -219,25 +260,65 @@ Example:
     <walk file_name="walk.kanim"/>
   </model>
 
-This is probably the most comfortable approach to export animations from Blender to our engine. <b>For now</b> &mdash; in the future we hope to extend Blender X3D exporter to store whole animation inside a single X3D file.
+This is probably the most comfortable approach to export animations
+from Blender to our engine. <b>For now</b> &mdash; in the future we
+hope to extend Blender X3D exporter to store whole animation inside a
+single X3D file.
 
 
 To describe above three cases in more precise manner:
 
-- (Case 3. above) When animation state, like <stand> or <walk>, doesn't have a time_sensor attribute &mdash; then it must have file_name attribute, and we use precalculated animation, TCastlePrecalculatedAnimation, to play it. Suitable for kanim and X3D animations. Suitable also when the model is just a still 3D model, as then TCastlePrecalculatedAnimation simply renders it.
+- (Case 3. above) When animation state, like <stand> or <walk>,
+  doesn't have a time_sensor attribute &mdash; then it must have
+  file_name attribute, and we use precalculated animation,
+  TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
+  X3D animations. Suitable also when the model is just a still 3D
+  model, as then TCastlePrecalculatedAnimation simply renders it.
 
-- (Case 2. above) Otherwise, if an animation state like <stand> or <walk> has both time_sensor and file_name, then we load it to a TCastleScene and use appropriate TimeSensor to play the animation.
+- (Case 2. above) Otherwise, if an animation state like <stand> or
+  <walk> has both time_sensor and file_name, then we load it to a
+  TCastleScene and use appropriate TimeSensor to play the animation.
 
-- (Case 1. above) Otherwise, if an animation state like <stand> or <walk> has only time_sensor, then we use a 3D model defined at <model> element to choose and play appropriate animation. This also means using TCastleScene and appropriate TimeSensor to play it, but now it's a single TCastleScene potentially shared by various animations.
+- (Case 1. above) Otherwise, if an animation state like <stand> or
+  <walk> has only time_sensor, then we use a 3D model defined at
+  <model> element to choose and play appropriate animation. This also
+  means using TCastleScene and appropriate TimeSensor to play it, but
+  now it's a single TCastleScene potentially shared by various
+  animations.
 
-In some situations, we have to know the animation duration (for example, to know when <attack> animation ends and we should get back to <stand> or <walk> state).
-- For TCastlePrecalculatedAnimation, the animation always starts from the local time 0, goes to the last time (time of last <frame> in kanim file). Then it eventually goes backward, it backwards="true" in kanim file. So we know the duration by looking at frames time and backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin else 0).
-  So using backwards="true" in kanim works, useful for some animations when you do some gesture and then go back to original position by reversing this gesture &mdash; e.g. dog-like creature biting.
-- For TCastleScene and TimeSensor: in this case, X3D TimeSensor.cycleInterval gives us animation duration.
+In some situations, we have to know the animation duration (for
+example, to know when <attack> animation ends and we should get back
+to <stand> or <walk> state).
 
-The looping is done automatically for animations that require it (like walk). So using loop attribute in kanim file, or loop field for TimeSensor is not necessary (it's ignored).
+- For TCastlePrecalculatedAnimation, the animation always starts from
+  the local time 0, goes to the last time (time of last <frame> in
+  kanim file). Then it eventually goes backward, it backwards="true"
+  in kanim file. So we know the duration by looking at frames time and
+  backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin
+  else 0).
 
-Design notes about X3D TimeSensor usage: All creatures of a given kind must share the same resources. E.g. imagine you have a creature type "werewolf" (defined by a resource.xml file with name="Werewolf" inside, resulting in TCastleResource instance with TCastleResource.Name="Werewolf"). You can instantiate this creature many times on the level, and all visible werewolves will actually use the same resource underneath. That is why we use TimeSensors by directly sending their time/fraction_changed, instead of just activating them by TimeSensor.startTime: in the latter case, all werewolves visible on the level would be forced to be in the same state (and moment) of the animation.
+  So using backwards="true" in kanim works, useful for some animations
+  when you do some gesture and then go back to original position by
+  reversing this gesture &mdash; e.g. dog-like creature biting.
+  
+- For TCastleScene and TimeSensor: in this case, X3D
+  TimeSensor.cycleInterval gives us animation duration.
+
+The looping is done automatically for animations that require it (like
+walk). So using loop attribute in kanim file, or loop field for
+TimeSensor is not necessary (it's ignored).
+
+Design notes about X3D TimeSensor usage: All creatures of a given kind
+must share the same resources. E.g. imagine you have a creature type
+"werewolf" (defined by a resource.xml file with name="Werewolf"
+inside, resulting in TCastleResource instance with
+TCastleResource.Name="Werewolf"). You can instantiate this creature
+many times on the level, and all visible werewolves will actually use
+the same resource underneath. That is why we use TimeSensors by
+directly sending their time/fraction_changed, instead of just
+activating them by TimeSensor.startTime: in the latter case, all
+werewolves visible on the level would be forced to be in the same
+state (and moment) of the animation.
 ------------------------------------------------------------------------------
 TODO: old castle-development text, to be simplified
 

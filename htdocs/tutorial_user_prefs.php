@@ -3,14 +3,11 @@
   tutorial_header('User preferences');
 ?>
 
-Easy: Use CastleConfig. Various engine components automatically register that they can load/save user preferences. So
+<p>Easy: Use CastleConfig. Various engine components automatically
+register that they can load/save user preferences. So</p>
 
 <?php echo pascal_highlight(
-'{ make sure you have created all stuff that registers user preferences first }
-SoundEngine; // if you want to save sound config
-RecentMenu := TCastleRecentFiles.Create(nil); // if you use "recent files" menu
-
-{ make sure application name is correct if you want by setting OnGetApplicationName, like this : }
+'{ make sure application name is correct if you want by setting OnGetApplicationName, like this : }
 
 function MyGetApplicationName: string;
 begin
@@ -18,7 +15,11 @@ begin
 end;
 
 ...
-  OnGetApplicationName := @MyGetApplicationName;
+OnGetApplicationName := @MyGetApplicationName;
+
+{ make sure you have created all stuff that registers user preferences first }
+SoundEngine; // if you want to save sound config
+RecentMenu := TCastleRecentFiles.Create(nil); // if you use "recent files" menu
 
 { load config from file }
 Config.Load;
