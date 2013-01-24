@@ -301,80 +301,7 @@ activating them by TimeSensor.startTime: in the latter case, all
 werewolves visible on the level would be forced to be in the same
 state (and moment) of the animation.
 
-------------------------------------------------------------------------------
-TODO: old castle-development text, to be simplified
-
-Items
-
-<ul>
-  <li><p>About the "placeholder" objects on the level:
-
-    <p>You can place items on the level by placing a "placeholder" object
-    on the level with appropriate name.
-
-    <p>When loading, we search for shape nodes that have a parent node
-    named like "CasRes&lt;item-resource-name&gt;&lt;quantity&gt;_&lt;ignored&gt;".
-    Where "&lt;item-resource-name&gt;" is "LifePotion" or "Sword" or any
-    other TItemResource.Name value (see CastleItems unit),
-    "&lt;quantity&gt;" is, well, the integer quantity
-    ("1" is assumed if "&lt;quantity&gt;" is omitted), and "&lt;ignored&gt;"
-    is just anything that will be ignored (you can use this
-    to make object names in your model unique,
-    which is obviously desirable).
-
 <!--
-(new Blender allows longer names.
-
-    <p>Some reasoning about convention above: Blender's names
-    have quite limited length, that's why CamelCase is used
-    for "&lt;item-resource-name&gt;" and components are generally "glued"
-    without any "_" or "-" or " " between.
--->
-
-    <p>Such "placeholder" object is removed from the actual level and
-    instead I insert into level an item. Item position is determined
-    by placeholder lowest Z and middle X,Y line (see above).
-
-    <p>You can easily insert such "placeholder" with Blender &mdash; just insert
-    any shape (I usually insert Cube, and set it's rendering to
-    "wireframe" in Blender), and then edit Blender's mesh name
-    as appropriate.
-
-  <li><p>Prepare appropriate 2D image of item (to be shown in inventory slots
-    and such).
-    For example, you can do this by opening
-    the model in <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
-    setting your camera as desired and taking a screenshot
-    (see "Display -> Screenshot ..." menu options).
-    Or use "Display -> Raytrace".
-    It's a very good idea to store the screenshot camera for the future
-    (in case we need to redo the image later),
-    by using "Console -> Print Current Camera (Viewpoint)..."
-    and adding it to your 3D model file.
-
-    <p>This image filename should be referenced by the <tt>image="xxx"</tt>
-    attribute in the root element of item <tt>resource.xml</tt> file.
-
-  <li><p>For an item that can be equipped as a weapon, you also have
-    to prepare two scenes showing the weapon in "ready" state (equipped)
-    and "attack" (attack animation). Both of these 3D objects may be static
-    or animated.
-    You will almost always want to make the "attack" model animated,
-    but you can also make the "ready" model animated (e.g. to show some fire
-    flickering on the weapon or such; just don't overdo it, as such animations
-    can become distracting from the player).
-
-        <p>If <tt>&lt;creature-life&gt;</tt> part is not present, the default
-        MaxLife value (taken from this creature's <tt>resource.xml</tt> file,
-        attribute <tt>default_max_life</tt>) will be used.
-        You can also use this feature to place already dead corpses on the level
-        (e.g. the Doom E1M1 level uses this):
-        just specify <tt>&lt;creature-life&gt;</tt> as 0 (zero).
-
-        <p>Initial creature looking direction
-        is determined by the transformation of the placeholder object.
-        See <tt>placeholder_reference_direction</tt> in README_about_index_xml_files.txt
-        for details.
 
   <li><p>When you want to use this creature on particular level(s),
     you should add it to <tt>prepare_resources</tt> in <tt>level.xml</tt>
@@ -408,6 +335,8 @@ Items
     &mdash; I think that in some cases <i>Recalculate normals outside</i>
     may be needed to reorder them properly.
 </ul>
+
+-->
 
 <?php
 creating_data_footer();

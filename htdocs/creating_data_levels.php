@@ -1,7 +1,17 @@
 <?php
 require_once 'castle_engine_functions.php';
 creating_data_header('Levels');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Level file (level.xml)', 'level_xml'),
+    new TocItem('Placeholders', 'placeholders'),
+  )
+);
 ?>
+
+<?php echo $toc->html_toc(); ?>
+<?php echo $toc->html_section(); ?>
 
 <p>Below is a sample <tt>level.xml</tt> content,
 with links to documentation for every attribute.
@@ -47,16 +57,21 @@ with links to documentation for every attribute.
   </prepare_resources>
 </level>'); ?>
 
-<h2>Placeholders</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>A major feature of loading level through
 <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
  is that you can put "placeholders" on your level 3D model.
-These are special 3D shapes that will be recognized by the engine to indicate:
+These are 3D shapes with special names that will be recognized by the engine:
 
 <ul>
   <li><p>Initial <b>creatures / items</b> are indicated by placeholders named <tt>CasRes</tt>
     + resource name. <tt>CasRes</tt> is short for <i>Castle Game Engine Resource</i>.
+
+    <!--
+    Position is determined
+    by placeholder lowest Z and middle X,Y line (when GravityUp is +Z).
+    --->
 
     <p>The resource name refers to
     <?php api_link('T3DResource.Name', 'CastleResources.T3DResource.html#Name'); ?>,
@@ -69,6 +84,12 @@ These are special 3D shapes that will be recognized by the engine to indicate:
         By default (if not explicitly specified),
         the initial creature life is taken from <tt>default_max_life</tt>
         given in <tt>resource.xml</tt>.
+        It is possible to place a creature corpse on the level this way,
+        by specifying life as 0.
+        Initial creature looking direction
+        is determined by the transformation of the placeholder object,
+        see <?php api_link('PlaceholderReferenceDirection', 'CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection'); ?>,
+        in short: look at where local +X of the placeholder is pointing.
 
       <li>To place an item on the level, name your placeholder
         <tt>CasRes&lt;resource-name&gt;[&lt;optional-item-quantity&gt;][_&lt;ignored&gt;]</tt>.
