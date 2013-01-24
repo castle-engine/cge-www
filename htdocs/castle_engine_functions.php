@@ -25,6 +25,11 @@ define('KAMBI_NO_HOME_LINK', true);
 define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
 //define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
 
+function reference_link()
+{
+  return CASTLE_REFERENCE_URL . 'index.html';
+}
+
 /* This set_include_path is needed on SourceForge, otherwise
    includes from within kambi-php-lib sometimes fail. */
 set_include_path('.:kambi-php-lib/:geshi/');
@@ -171,7 +176,7 @@ $castle_sitemap = array(
           'creating_data_sound' => array('title' => 'Sound'),
         )
       ),
-      'reference' => array('title' => 'Reference'),
+      'reference' => array('title' => 'Reference', 'url' => reference_link()),
       'engine_doc' => array('title' => 'Internals documentation'),
       'movies' => array('title' => 'Movies on YouTube', 'url' => 'http://www.youtube.com/user/michaliskambi'),
     ),
