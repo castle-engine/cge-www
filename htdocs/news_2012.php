@@ -30,7 +30,7 @@ castle_thumbs(array(
 <ol>
   <li><p><b>Creatures/items</b> (commonly called "resources" in many places) <b>improvements</b>:</p>
     <ol>
-      <li><p>New example program: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from <a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim</a> and/or X3D animations. Can be also used to preview animations from any <tt>resource.xml</tt> files, e.g. you can try it on <a href="http://castle-engine.sourceforge.net/castle.php">castle1</a> creatures and items. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.modeling_tutorial.txt">DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later)</a> for notes about how to design your creatures/items.</p>
+      <li><p>New example program: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from <a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim</a> and/or X3D animations. Can be also used to preview animations from any <tt>resource.xml</tt> files, e.g. you can try it on <a href="http://castle-engine.sourceforge.net/castle.php">castle1</a> creatures and items. See DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later) for notes about how to design your creatures/items.</p>
         <p>(<a href="http://opengameart.org/content/animated-knight">The knight animated model comes from opengameart.org</a>.)</p>
       </li>
       <li><p>Defining short-range creature attack and/or firing a missile are trivial now. See <tt>TWalkAttackCreatureKind.AttackXxx</tt> and <tt>TWalkAttackCreatureKind.FireMissileXxx</tt> properties, and <tt>&lt;fire_missile&gt;</tt> and <tt>&lt;attack&gt;</tt> elements in <tt>resource.xml</tt>. <!-- As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about. --></p>
@@ -51,7 +51,7 @@ castle_thumbs(array(
       <li><tt>TItemOnWorld.AutoPick</tt> property, to control automatic picking of items by player, and <tt>TItemOnWorld.ExtractItem</tt> method to implement picking yourself.</li>
       <li><tt>TItemOnWorld.RotationSpeed</tt> property, to control the speed of rotation of items (set to 0 to disable rotating).</li>
       <li><tt>TInventoryItem.Stack</tt> method to override, to affect how items stacking works.</li>
-      <li>New nice properties to control middle point used for collisions (see <tt>T3D.Middle</tt>, <tt>T3DCustomTransform.MiddlePoint</tt>, <tt>T3DCustomTransform.PreferredHeight</tt>). Unified gravity on items and creatures, with new comfortable properties (see <tt>T3DCustomTransform.Gravity</tt>, <tt>T3DCustomTransform.FallSpeed</tt>, <tt>T3DCustomTransform.GrowSpeed</tt>). More configurable from <tt>resource.xml</tt> file (<tt>middle_height</tt>, <tt>fall_speed</tt>, <tt>grow_speed</tt>, <tt>direction_fall_speed</tt> &mdash; see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">README_about_index_xml_files.txt</a>).
+      <li>New nice properties to control middle point used for collisions (see <tt>T3D.Middle</tt>, <tt>T3DCustomTransform.MiddlePoint</tt>, <tt>T3DCustomTransform.PreferredHeight</tt>). Unified gravity on items and creatures, with new comfortable properties (see <tt>T3DCustomTransform.Gravity</tt>, <tt>T3DCustomTransform.FallSpeed</tt>, <tt>T3DCustomTransform.GrowSpeed</tt>). More configurable from <tt>resource.xml</tt> file (<tt>middle_height</tt>, <tt>fall_speed</tt>, <tt>grow_speed</tt>, <tt>direction_fall_speed</tt> &mdash; see <a href="http://castle-engine.sourceforge.net/creating_data_resources.php">creating_data_resources</a>).
       <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games. If needed, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their <tt>T3D.PointingDeviceActivate</tt>, like before.
     </ol>
   </li>
@@ -61,11 +61,11 @@ castle_thumbs(array(
 
   <li><p><b>Levels improvements</b>:</p>
     <ol>
-      <li><p>Placeholders are nicer. You can indicate in <tt>level.xml</tt> how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is <i>only</i> for <tt>TGameSceneManager.LoadLevel</tt> placeholders, nothing else. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.</p>
+      <li><p>Placeholders are nicer. You can indicate in <tt>level.xml</tt> how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is <i>only</i> for <tt>TGameSceneManager.LoadLevel</tt> placeholders, nothing else. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">level.xml and resource.xml files documentation</a>.</p>
         <p>You can register own callbacks, see <tt>PlaceholdersNames</tt> and docs of <tt>TPlaceholderName</tt>.</p>
       </li>
       <li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">notes about sectors/waypoints for user</a>, and see <tt>TGameSceneManager.LoadLevel</tt> for developer docs.</li>
-      <li>Extracting direction (for initial direction that the creature is facing) from placeholder. See <tt>placeholder_default_direction</tt> in <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">README_about_index_xml_files docs</a>.
+      <li>Extracting direction (for initial direction that the creature is facing) from placeholder. See <tt>placeholder_default_direction</tt> in <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">creating_data_levels docs</a>.
       <li><tt>TCastleSceneManager.OnMoveAllowed</tt> callback, to control how the algorithm described at <tt>TCastleSceneManager.MoveLimit</tt> works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
     </ol>
   </li>
@@ -152,9 +152,9 @@ castle_thumbs(array(
 
 <ol>
   <li><p>Many improvements to
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a>,
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_classes_diagram.txt">classes diagram</a> and
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>.
+    <a href="http://castle-engine.sourceforge.net/tutorial_intro.php">engine tutorial</a>,
+    <a href="http://castle-engine.sourceforge.net/tutorial_classes_overview.php">classes diagram</a> and
+    <a href="http://castle-engine.sourceforge.net/creating_data_intro.php">level.xml and resource.xml files documentation</a>.
     It\'s still a lot of raw, unformatted text, but the content pretty much covers now everything I want, and it describes the latest engine workings in SVN.</p>
 
   <li><p>Previous <tt>index.xml</tt> are now named <tt>level.xml</tt> (for levels), or <tt>resource.xml</tt> (for creatures, items, and other heavy 3D stuff that may be shared by levels). This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).</p></li>
@@ -168,7 +168,7 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p>Fix a lot of code to honour the "up" world vector to be +Y as well as +Z. Gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DOrient.html#DefaultOrientation">T3DOrient.DefaultOrientation</a>. See also  <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">engine tutorial</a> section <i>Which way is up</i>. And see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.html#TOrientationType">TOrientationType</a> type values.</p></li>
+  <li><p>Fix a lot of code to honour the "up" world vector to be +Y as well as +Z. Gravity is decided looking at Viewpoint gravity in VRML/X3D, and creature orientation is decided looking at <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DOrient.html#DefaultOrientation">T3DOrient.DefaultOrientation</a>. See also engine tutorial section <i>Which way is up</i>. And see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.html#TOrientationType">TOrientationType</a> type values.</p></li>
 
   <li><p>CastleLevels improvements:</p>
     <ul>
@@ -230,14 +230,14 @@ castle_thumbs(array(
 '<p>The work on the next <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a> version continues :) Looking at the size of the improvements, next version will deserve the new major number 4.0.0 (even though last version was 3.0.0). We have almost finished new engine features planned for the next version, and we have a lot of new documentation. <!-- (as the point of next engine version is to be better documented for developers). -->
 
 <ol>
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_classes_diagram.txt">Diagram (as a text file...) of the most important "Castle Game Engine" classes</a> is available.</p>
+  <li><p>Diagram (as a text file...) of the most important "Castle Game Engine" classes is available.</p>
 
     <p>I may try to squeeze this into a real image (maybe just the important boxes, and add the text on a normal HTML page). If you have experience with some diagram-drawing tools (like <a href="https://live.gnome.org/Dia/">Dia</a> or other open-source tool) I would appreciate contributions here (<a href="http://castle-engine.sourceforge.net/forum.php">send them through forum or e-mail to Michalis</a>).</p>
   </li>
 
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">"Castle Game Engine" draft tutorial is getting larger and larger (15 chapters now)</a>.</p></li>
+  <li><p>"Castle Game Engine" draft tutorial is getting larger and larger (15 chapters now).</p></li>
 
-  <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">Short documentation for index.xml files used by "Castle Game Engine" to define levels, creatures and items is also available</a>. Tutorial and classes diagram describe in details how these index.xml files work. People interested in creating MODs for your games will appreciate them, as they allow to add levels, creatures and items by simply adding subdirectories to game data.</p></li>
+  <li><p>Short documentation for index.xml files used by "Castle Game Engine" to define levels, creatures and items is also available. Tutorial and classes diagram describe in details how these index.xml files work. People interested in creating MODs for your games will appreciate them, as they allow to add levels, creatures and items by simply adding subdirectories to game data.</p></li>
 </ol>
 
 <p>New engine units since last news:</p>
@@ -599,7 +599,7 @@ castle_thumbs(array(
       <li>XML sounds/index.xml file improvements: now <b>you can add new sounds to the game (castle, and future castle2) merely by adding them to necessary XML files</b>. No need to reference the sound from ObjectPascal code.</li>
       <li><a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim usage in "The Castle"</a> improved: <b>all castle animations are now separate kanim files</b>, and can be browsed e.g. by <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. "Castle 2" will not use kanim at all.</li>
       <li><b>T3DResource class</b>, which can be loaded with reference-counting. This is a much generalized and reworked previous castle TObjectKind class.
-      <li><b>XML files for each creature, item and level and now separate</b>. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">documentation of index.xml files</a> in castle data.
+      <li><b>XML files for each creature, item and level and now separate</b>. The idea is to allow you to add things such as a new creature, new item, and new level to the game data without the need to recompile or to edit any central "index" file. You just add some subdirectories with index.xml files inside, and the game automatically picks them up. See documentation of index.xml files in castle data.
     </ul>
   </li>
 

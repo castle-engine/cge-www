@@ -191,14 +191,10 @@ you have appropriate libraries installed on your system.
     <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
     In part, that's because VRML and X3D are open and popular 3D
     formats, and decent exporters for them exist in practically every 3D
-    authoring tool. For detecting "placeholders"
-    (see TGameSceneManager.LoadLevel API docs, it's an optional feature
-    that allows you to easily place  creatures and many other stuff
-    on your level using 3D modeler), you can configure detection method
-    by "placeholders" attribute in level.xml file (see
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/README_about_index_xml_files.txt">level.xml and resource.xml files documentation</a>)
-    and even implement your own (see CastleShape.PlaceholderNames and
-    TPlaceholderName API docs).
+    authoring tool. For detecting "placeholders" on levels
+    (see
+    <?php echo a_href_page('creating levels documentation', 'creating_data_levels'); ?>),
+    you can configure detection method.
 
   <li><b>Saving</b> the current state of VRML/X3D node graph
     to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
@@ -220,12 +216,13 @@ you have appropriate libraries installed on your system.
 
   <li><b>Extensible system of 3D objects</b>. You have <b>ready,
     comfortable management of creatures, items, levels and players</b>.
-    You can extend it by deriving descendants of engine classes
-    in CastleCreatures or CastleItems in CastleLevels units.
+    You can extend it by deriving descendants of engine classes in
+    <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> or
+    <?php api_link('CastleItems', 'CastleItems.html'); ?> or
+    <?php api_link('CastleLevels', 'CastleLevels.html'); ?>.
     Or you can make your own management of 3D objects, by deriving descendants
-    of T3D and other classes in Base3D unit, and adding them
-    to TCastleSceneManager.Items as you see fit.
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/DRAFT.engine_tutorial.txt">Engine tutorial</a>
+    of base <?php api_link('T3D', 'Castle3D.T3D.html'); ?> and other classes.
+    <?php echo a_href_page('Engine tutorial', 'tutorial_resources_defining_new'); ?>
     contains detailed information about this.
 
   <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass

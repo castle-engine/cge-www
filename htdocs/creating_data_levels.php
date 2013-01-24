@@ -180,7 +180,8 @@ These are 3D shapes with special names that will be recognized by the engine:
     just set the Blender object name.
 
   <li>and possibly more, see <?php api_link('PlaceholderNames', 'CastleShapes.html#PlaceholderNames'); ?>
-    list.
+    list and
+    <?php api_link('TPlaceholderName', 'CastleShapes.html#TPlaceholderName'); ?> docs.
     You can define and register your own functions there, to handle
     other 3D modelers, like <i>3ds Max</i> or <i>Maya</i> or anything else
     (and you're welcome to contribute them to include them in engine code,
@@ -190,13 +191,3 @@ These are 3D shapes with special names that will be recognized by the engine:
 <?php
 creating_data_footer();
 ?>
-
-
-
-
-
-
-
-
-
-
