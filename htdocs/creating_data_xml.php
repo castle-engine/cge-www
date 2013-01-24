@@ -75,5 +75,5 @@ data in our engine.
 </ol>
 
 <?php
-castle_footer();
+creating_data_footer();
 ?>
