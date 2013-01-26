@@ -34,7 +34,7 @@ castle_thumbs(array(
 
     <p>There are a couple new examples in engine sources. First of all, <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comments in the source code and data files.</p>
 
-    <iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>
+    ' . (!HTML_VALIDATION ? '<iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>' : '') . '
 
     <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'tutorial_intro.php">new tutorial</a>.</p>
     <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
