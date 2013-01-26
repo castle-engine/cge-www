@@ -67,7 +67,7 @@ castle_thumbs(array(
     <p><i>For developers upgrading from engine 3 version</i>: all of our unit names are now prefixed with <tt>CastleXxx</tt>, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_4.0.txt">doc/naming_engine_4.0.txt</a> document. So you will almost definitely need to fix your "uses" clauses. Aside from that, the engine is quite compatible with previous version. <!-- (as the basis for controls and scene manager and 3D objects was already there; now it\'s just used much more extensively). --> Of course please <a href="' . CURRENT_URL . 'forum.php">ask of the forum</a> if you have any questions about upgrading code from engine 3 to 4 (or about anything else, for that matter :)</p>
 </ol>
 
-<p>We also release a <b>new 3.12.0 version of <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-7 are actually in the engine, instantly available for all the games/applications using our engine. But most users will probably observe them in <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> for the 1st time.</p>
+<p>We also release a <b>new 3.12.0 version of <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-8 are actually in the engine, instantly available for all the games/applications using our engine. But most users will probably observe them in <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> for the 1st time.</p>
 
 <ol>
   <li>Navigating in <i>Walk / Fly</i> modes by mouse dragging.</li>
@@ -77,8 +77,8 @@ castle_thumbs(array(
   <li>UNIT statement from X3D 3.3 is implemented.</li>
   <li>VisibilitySensor node is supported.</li>
   <li>Many fixes to triangulating concave polygons.</li>
-  <li>New <i>"Edit -> Lights Editor"</i> feature.</li>
   <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shading">X3D extension to force Phong shading</a>.</li>
+  <li>New <i>"Edit -> Lights Editor"</i> feature.</li>
 </ol>
 
 <p>Many thanks go to Jan Adamec for implementing the 1-3 features above (and more)! Our engine is used as VRML viewer for shareware <a href="http://www.roomarranger.com/">Room Arranger</a>.</p>
