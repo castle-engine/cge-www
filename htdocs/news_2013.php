@@ -12,7 +12,7 @@ array_push($news,
           'guid' => 'release-4.0.0',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'fps_game_screen_19.png', 'titlealt' => 'FPS game screen'),
+//  array('filename' => 'fps_game_screen_19.png', 'titlealt' => 'FPS game screen'),
   array('filename' => 'fps_game_screen_18.png', 'titlealt' => 'FPS game screen'),
   array('filename' => 'fps_game_screen_17.png', 'titlealt' => 'FPS game screen'),
   array('filename' => 'control_lazarus_shared_resources.png', 'titlealt' => 'Lazarus form with 2 castle controls sharing textures'),
