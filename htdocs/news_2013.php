@@ -1,28 +1,80 @@
 <?php
 
 /* Next news:
-- kambiShadows, kambiShadowsMain fields renamed to shadowVolumes, shadowVolumesMain &mdash; much more sensible names. But the old names will remain to be available, for compatibility (probably for a long time).
-  TCastleAbstractViewport.ShadowVolumes is true by default now.
-
-New versions released:
-    
-+  define('VERSION_CASTLE', '1.0.0');
-+  define('VERSION_MALFUNCTION', '1.2.8');
-+  define('VERSION_KAMBI_LINES', '1.1.7');
-+  define('VERSION_VIEW3DSCENE', '3.12.0');
-+  define('VERSION_RAYHUNTER', '1.3.4');
-+  define('VERSION_GLVIEWIMAGE', '1.4.1');
-+  define('VERSION_GLPLOTTER', '1.2.5');
-+  define('VERSION_BEZIER_CURVES', '1.1.9');
-+  define('VERSION_GLINFORMATION', '1.2.2');
-+  define('VERSION_GLINFORMATION_GLUT', '1.2.2');
-+  define('VERSION_GEN_FUNCTION', '1.0.5');
-+  define('VERSION_CASTLE_GAME_ENGINE', '4.0.0');
-+  define('VERSION_DEMO_MODELS', '3.2.0');
-  
 */
 
 array_push($news,
+    array('title' => 'Engine 4.0.0 release! And view3dscene 3.12.0, and castle 1.0.0...',
+          'year' => 2013,
+          'month' => 1,
+          'day' => 26,
+          'short_description' => '',
+          'guid' => '2013-01-26',
+          'description' =>
+castle_thumbs(array(
+//  choose best screens
+)) .
+'<p>We proudly present the long-awaited <a>Castle Game Engine</a> 4.0.0 release! This is the greatest release of our engine <i>ever</i> for ObjectPascal developers interested in making their own games:
+
+<ol>
+  <li><p>We introduce a <b>high-level game API, to construct a fully-working 3D game really easy</b>. This includes units to manage levels, creatures (with smart AI), items, player, with inventory, management of 3D resources, integration with 3D sound, management of game data (you can use XML files to define a lot of things without touching game code), and so on.</p>
+
+    <p>Of course, we use <a>VRML/X3D</a> for all the 3D models, so everything is instantly animated and interactive, and using our 3D features like shadows, mirrors, shaders and such. See <a>demo models</a> for some demo scenes.
+
+    <p>The new example program in engine sources: <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comment in source code and data files.</p>
+
+    <iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>
+
+    <p>The whole engine is also very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can derive new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also create easily your own viewports, scene managers, 2D controls and much more. <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
+
+    <!--
+    <p>Another new example program is the <tt>examples/resource_animations</tt> to view creature/item animations. This is accompanied by <http://castle-engine.sourceforge.net/creating_data_resources.php>creating data guide about resources</a>, that explains new methods to define 3D animations.
+    -->
+
+  <li><p>We have <b>a lot documentation</b> to show you how to use the engine:
+
+    <ul>
+      <li><a href="http://castle-engine.sourceforge.net/tutorial_intro.php">Tutorial</a> This introduces most concepts of the engine nicely and gradually.</li>
+      <li><a href="http://castle-engine.sourceforge.net/tutorial_classes_overview.php">Classes overview (cheatsheet)</a> - a quick ride through most important engine concepts</li>
+      <li><a href="http://castle-engine.sourceforge.net/creating_data_intro.php">Guide to creating game data</a> - how to create your 3D models using any 3D modeling software, how to write various configuration files like resource.xml and level.x</li>
+      <li><a href="http://castle-engine.sourceforge.net/apidoc/html/index.html">As always, there is also complete API reference</a>
+    </ul>
+
+  <li><p>The full list of changes is definitely too large to fit into a normal news item. I usually tried to list all the important changes in a release annoucement, but there\'s just too many of it this time :) The whole engine src/game/ code is new, and there are countless changes in all the rest of the engine to make it better, more integrated and so on. See the news.php from last year to read full description.
+
+    <p>This was probably the longest wait between releases of our engine, but I hope it was worth it :)
+</ol>
+
+<p>We also release a <b>new version of <a>view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-3 are actually fully available in the engine, for all games/applications using our engine. But most users will probably observe them in view3dscene for the 1st time:
+
+<ul>
+  <li>Navigating in Walk/Fly by mouse dragging</li>
+  <li>Using 3D mouse devices</li>
+  <li>Screen-space ambient occlusion (see menu View -> Screen Effects)
+  <li>New "Edit -> Lights Editor" feature.</li>
+</ul>
+
+Many thanks go to Jan Adamec for implementing the 1-3 features above (and many more).
+
+<p>All the programs and data on our pages here were updated to use/show new <a>engine 4.0.0</a> version:
+CASTLE 1.0.0
+MALFUNCTION 1.2.8
+KAMBI_LINES 1.1.7
+VIEW3DSCENE 3.12.0
+RAYHUNTER 1.3.4
+GLVIEWIMAGE 1.4.1
+GLPLOTTER 1.2.5
+BEZIER_CURVES 1.1.9
+GLINFORMATION 1.2.2
+GLINFORMATION_GLUT 1.2.2
+GEN_FUNCTION 1.0.5
+DEMO_MODELS 3.2.0
+
+<!--
+- kambiShadows, kambiShadowsMain fields renamed to shadowVolumes, shadowVolumesMain &mdash; much more sensible names. But the old names will remain to be available, for compatibility (probably for a long time). TCastleAbstractViewport.ShadowVolumes is true by default now.
+-->
+'),
+
     array('title' => 'Development: engine 4.0.0 release in a few days, many improvements this month',
           'year' => 2013,
           'month' => 1,
