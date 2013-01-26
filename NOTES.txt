@@ -96,6 +96,8 @@ Procedure to update WWW content:
     Examples on:
     http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
   - Post new topic on our forum, to encourage some discussion.
+    Possibly resign from it? Posting on our g+ page is easier,
+    and there are also instant comments.
   - Post on facebook, google+, twitter.
 
   - really large new features may cause updates of project description.
@@ -113,3 +115,8 @@ Procedure to update WWW content:
       As well as submitting to web3d.org list of progs.
     - Some day:
       announce on game engines list http://www.devmaster.net/engines/
+
+  - An incredibly large release may be announced on fpc-pascal and lazarus
+    mailing lists, but let's not abuse it (I did it only for 4.0.0 release
+    when it was justified, as a large release and focused on devs).
+    These lists aren't normally for announcements from external projects.
