@@ -101,7 +101,7 @@ get_exec_full_file_name ()
   local FPC_OS_ARCH
   case "${TARGET_OS}-${TARGET_ARCH}" in
     linux-i386)                              FPC_OS_ARCH='i386 - Linux'   ;;
-    linux-x86_64)                            FPC_OS_ARCH='x86_64 - Linux' ;;
+    linux-x86_64)                            FPC_OS_ARCH='x86_64 - Linux' ; REQUIRED_FPC_VERSION='2.6.0-7' ;;
     freebsd-i386)                            FPC_OS_ARCH='i386 - FreeBSD' ;;
     macosx-i386)                             FPC_OS_ARCH='i386 - Darwin'  ;;
     win-i386)       RESULT="${RESULT}".exe ; FPC_OS_ARCH='i386 - Win32'   ;;
@@ -466,7 +466,7 @@ case "$1" in
   castle)
     binary_add_doc openal.html \
       opengl_options.html common_options.html \
-      castle.html castle-advanced.html castle-development.html castle-credits.html
+      castle.html castle-advanced.html castle-credits.html
     binary_add_exec_and_data castle \
       "$CASTLE_ENGINE_PATH"castle/ \
       'data/ README.txt Makefile' \
