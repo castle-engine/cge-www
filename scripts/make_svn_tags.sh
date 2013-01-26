@@ -27,7 +27,7 @@ do_svn_tag glinformation
 do_svn_tag glviewimage
 do_svn_tag gen_function
 do_svn_tag kambi_lines
-do_svn_tag lets_take_a_walk
+# do_svn_tag lets_take_a_walk
 do_svn_tag rayhunter
 do_svn_tag view3dscene
 do_svn_tag malfunction
