@@ -45,11 +45,11 @@ set -eu
 ./pack_binary.sh kambi_lines linux x86_64
 ./pack_pascal_src.sh kambi_lines
 
-./pack_binary.sh lets_take_a_walk macosx i386
-./pack_binary.sh lets_take_a_walk linux i386
-./pack_binary.sh lets_take_a_walk win i386
-./pack_binary.sh lets_take_a_walk linux x86_64
-./pack_pascal_src.sh lets_take_a_walk
+# ./pack_binary.sh lets_take_a_walk macosx i386
+# ./pack_binary.sh lets_take_a_walk linux i386
+# ./pack_binary.sh lets_take_a_walk win i386
+# ./pack_binary.sh lets_take_a_walk linux x86_64
+# ./pack_pascal_src.sh lets_take_a_walk
 
 ./pack_binary.sh rayhunter macosx i386
 ./pack_binary.sh rayhunter linux i386
