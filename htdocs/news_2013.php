@@ -30,13 +30,13 @@ castle_thumbs(array(
 <ol>
   <li><p>We introduce a <b>high-level game API, to construct a fully-working 3D game really easy</b>. This includes integrated units to manage levels, creatures (with smart AI), items, player, with inventory, management of 3D resources, easy 3D sound, flexible game data layout (you can use XML files to define a lot of things without touching game code), and so on.</p>
 
-    <p>Of course, we use <a href="' . CURRENT_URL . 'vrml_x3d.php">VRML/X3D</a> for all the 3D models, so everything may be animated and interactive, and may use features like shadows, mirrors, shaders and such. See <a href="' . CURRENT_URL . 'demo_models.php">our demo 3D models</a> (in particular, check new <tt>water/caustics/</tt> demo inside, by Victor Amat, <a href="http://youtu.be/1mUU8prDi9k">movie showing it is here</a>).</p>
+    <p>Of course, we use <a href="' . CURRENT_URL . 'vrml_x3d.php">VRML/X3D</a> for all the 3D models, so everything may be animated and be interactive, and may use features like shadows, mirrors, shaders and such. See <a href="' . CURRENT_URL . 'demo_models.php">our demo 3D models</a> (in particular, check new <tt>water/caustics/</tt> demo inside, by Victor Amat, <a href="http://youtu.be/1mUU8prDi9k">movie showing it is here</a>).</p>
 
     <p>There are a couple new examples in engine sources. First of all, <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comments in the source code and data files.</p>
 
     <iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>
 
-    <p>The whole engine is also very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can derive new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'tutorial_intro.php">new tutorial</a>.</p>
+    <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'tutorial_intro.php">new tutorial</a>.</p>
     <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
 
     <!--
