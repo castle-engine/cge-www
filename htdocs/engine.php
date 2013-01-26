@@ -71,6 +71,7 @@ Castle Game Engine are available in Michalis Kamburelis YouTube channel</a>.</p>
   <li><?php echo sf_download('As tar.gz archive', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
   <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
 </ul>
+<?php echo download_donate_footer(); ?>
 </div>
 
 <p>This archive contains the whole engine sources.

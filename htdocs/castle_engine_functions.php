@@ -632,6 +632,14 @@ function sf_download($title, $file_name)
     '/' . $file_name . '">' . $title. '</a>';
 }
 
+function download_donate_footer()
+{
+  return '
+    <hr/>
+      <div style="float: left">' . paypal_button(false) . '</div>
+      <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>';
+}
+
 /* This echoes a list to download for all platforms where I compile
    my programs. Each item looks like
      < ?php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
@@ -715,10 +723,7 @@ function echo_standard_program_download(
     echo "</tr></table>\n";
   }
 
-  echo '
-    <hr/>
-      <div style="float: left">' . paypal_button(false) . '</div>
-      <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>
+  echo download_donate_footer() . '
   </div>';
   /* <!-- This helps Michalis to spend more time on developing our engine, our tools and games :) Details about how you can donate are here</a>.<--> */
 }
