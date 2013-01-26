@@ -4,71 +4,93 @@
 */
 
 array_push($news,
-    array('title' => 'Engine 4.0.0 release! And view3dscene 3.12.0, and castle 1.0.0...',
+    array('title' => 'Castle Game Engine 4.0.0 release! And view3dscene 3.12.0, and castle 1.0.0, and more',
           'year' => 2013,
           'month' => 1,
           'day' => 26,
           'short_description' => '',
-          'guid' => '2013-01-26',
+          'guid' => 'release-4.0.0',
           'description' =>
 castle_thumbs(array(
-//  choose best screens
+  array('filename' => 'fps_game_screen_19.png', 'titlealt' => 'FPS game screen'),
+  array('filename' => 'fps_game_screen_18.png', 'titlealt' => 'FPS game screen'),
+  array('filename' => 'fps_game_screen_17.png', 'titlealt' => 'FPS game screen'),
+  array('filename' => 'control_lazarus_shared_resources.png', 'titlealt' => 'Lazarus form with 2 castle controls sharing textures'),
+  array('filename' => 'resource_animations_1.png', 'titlealt' => 'resource_animations: Knight default idle animation'),
+  array('filename' => 'missile_stuck_in_wall_4.png', 'titlealt' => 'Missile (arrow) stuck in a wall'),
+  array('filename' => 'castle_items_tower_screen_2_ring.png', 'titlealt' => 'Testing dropping items on level'),
+  array('filename' => 'barna29_water_0.png', 'titlealt' => 'German Pavillion in the Universal Expo of Barcelona of 1929 (by Victor Amat)'),
+  array('filename' => 'room_arranger_3_ssao.png', 'titlealt' => 'Room Arranger with SSAO demo, shown by view3dscene'),
+  array('filename' => 'room_arranger_viewer_2.png', 'titlealt' => 'Final stages of RoomArranger viewer using our engine, with more controls and SSAO'),
+  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights Editor playing with shadow maps'),
+  array('filename' => 'lights_editor_fountain_0.png', 'titlealt' => 'Lights Editor in view3dscene - fountain, shadow volumes settings'),
 )) .
-'<p>We proudly present the long-awaited <a>Castle Game Engine</a> 4.0.0 release! This is the greatest release of our engine <i>ever</i> for ObjectPascal developers interested in making their own games:
+'<p>We proudly present the <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> 4.0.0 release! This is the greatest release of our engine <i>ever</i> for <a href="http://www.freepascal.org/">ObjectPascal</a> developers interested in making their own games:</p>
 
 <ol>
-  <li><p>We introduce a <b>high-level game API, to construct a fully-working 3D game really easy</b>. This includes units to manage levels, creatures (with smart AI), items, player, with inventory, management of 3D resources, integration with 3D sound, management of game data (you can use XML files to define a lot of things without touching game code), and so on.</p>
+  <li><p>We introduce a <b>high-level game API, to construct a fully-working 3D game really easy</b>. This includes integrated units to manage levels, creatures (with smart AI), items, player, with inventory, management of 3D resources, easy 3D sound, flexible game data layout (you can use XML files to define a lot of things without touching game code), and so on.</p>
 
-    <p>Of course, we use <a>VRML/X3D</a> for all the 3D models, so everything is instantly animated and interactive, and using our 3D features like shadows, mirrors, shaders and such. See <a>demo models</a> for some demo scenes.
+    <p>Of course, we use <a href="' . CURRENT_URL . 'vrml_x3d.php">VRML/X3D</a> for all the 3D models, so everything may be animated and interactive, and may use features like shadows, mirrors, shaders and such. See <a href="' . CURRENT_URL . 'demo_models.php">our demo 3D models</a> (in particular, check new <tt>water/caustics/</tt> demo inside, by Victor Amat, <a href="http://youtu.be/1mUU8prDi9k">movie showing it is here</a>).</p>
 
-    <p>The new example program in engine sources: <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comment in source code and data files.</p>
+    <p>There are a couple new examples in engine sources. First of all, <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comments in the source code and data files.</p>
 
     <iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>
 
-    <p>The whole engine is also very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can derive new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also create easily your own viewports, scene managers, 2D controls and much more. <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
+    <p>The whole engine is also very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can derive new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'tutorial_intro.php">new tutorial</a>.</p>
+    <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
 
     <!--
-    <p>Another new example program is the <tt>examples/resource_animations</tt> to view creature/item animations. This is accompanied by <http://castle-engine.sourceforge.net/creating_data_resources.php>creating data guide about resources</a>, that explains new methods to define 3D animations.
+    <p>Another new example program is the <tt>examples/resource_animations</tt> to view creature/item animations. This is accompanied by <a href="' . CURRENT_URL . 'creating_data_resources.php">creating data guide about resources</a>, that explains new methods to define 3D animations.</p>
     -->
+  </li>
 
-  <li><p>We have <b>a lot documentation</b> to show you how to use the engine:
+  <li><p>We have <b>a lot of new documentation</b> to show you how to use the engine:</p>
 
     <ul>
-      <li><a href="http://castle-engine.sourceforge.net/tutorial_intro.php">Tutorial</a> This introduces most concepts of the engine nicely and gradually.</li>
-      <li><a href="http://castle-engine.sourceforge.net/tutorial_classes_overview.php">Classes overview (cheatsheet)</a> - a quick ride through most important engine concepts</li>
-      <li><a href="http://castle-engine.sourceforge.net/creating_data_intro.php">Guide to creating game data</a> - how to create your 3D models using any 3D modeling software, how to write various configuration files like resource.xml and level.x</li>
-      <li><a href="http://castle-engine.sourceforge.net/apidoc/html/index.html">As always, there is also complete API reference</a>
+      <li><a href="' . CURRENT_URL . 'tutorial_intro.php">Tutorial</a> - introduces most concepts of the engine, with example code snippets.</li>
+      <li><a href="' . CURRENT_URL . 'tutorial_classes_overview.php">Classes overview (cheatsheet)</a> - a quick ride through most important engine classes and ideas.</li>
+      <li><a href="' . CURRENT_URL . 'creating_data_intro.php">Guide to creating game data</a> - how to create your 3D models using any 3D modeling software (like open-source <a href="http://www.blender.org/">Blender</a>), and how to write various configuration files like <tt>resource.xml</tt> and <tt>level.xml</tt>.</li>
+      <li><a href="' . CURRENT_URL . 'apidoc/html/index.html">As always, there is also a complete API reference.</a></li>
     </ul>
 
-  <li><p>The full list of changes is definitely too large to fit into a normal news item. I usually tried to list all the important changes in a release annoucement, but there\'s just too many of it this time :) The whole engine src/game/ code is new, and there are countless changes in all the rest of the engine to make it better, more integrated and so on. See the news.php from last year to read full description.
+  <li><p>The full list of changes is definitely too large to fit into a normal news item. In the past I usually tried to list all the important changes in a release announcement, but there\'s just too many things this time :) New engine units include
+    <a href="' . CURRENT_URL . 'apidoc/html/CastleCreatures.html">CastleCreatures</a>,
+    <a href="' . CURRENT_URL . 'apidoc/html/CastleItems.html">CastleItems</a>,
+    <a href="' . CURRENT_URL . 'apidoc/html/CastleLevels.html">CastleLevels</a>,
+    <a href="' . CURRENT_URL . 'apidoc/html/CastlePlayer.html">CastlePlayer</a>,
+    <a href="' . CURRENT_URL . 'apidoc/html/CastleMaterialProperties.html">CastleMaterialProperties</a>,
+    <a href="' . CURRENT_URL . 'apidoc/html/CastleResources.html">CastleResources</a>.
+    There are also countless changes in the rest of the engine to make it better and more integrated. See the <a href="' . CURRENT_URL . 'news.php">news</a> from the whole 2012 for a complete list of details.</p>
 
-    <p>This was probably the longest wait between releases of our engine, but I hope it was worth it :)
+    <!--p>This was probably the longest delay between releases of our engine, but I hope it was worth it :)</p-->
+
+    <p><i>For developers upgrading from engine 3 version</i>: all of our unit names are now prefixed with <tt>CastleXxx</tt>, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_4.0.txt">doc/naming_engine_4.0.txt</a> document. So you will almost definitely need to fix your "uses" clauses. Aside from that, the engine is quite compatible with previous version. <!-- (as the basis for controls and scene manager and 3D objects was already there; now it\'s just used much more extensively). --> Of course please <a href="' . CURRENT_URL . 'forum.php">ask of the forum</a> if you have any questions about upgrading code from engine 3 to 4 (or about anything else, for that matter :)</p>
 </ol>
 
-<p>We also release a <b>new version of <a>view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-3 are actually fully available in the engine, for all games/applications using our engine. But most users will probably observe them in view3dscene for the 1st time:
+<p>We also release a <b>new 3.12.0 version of <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-3 are actually in the engine, instantly available for all the games/applications using our engine. But most users will probably observe them in <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> for the 1st time.</p>
 
-<ul>
-  <li>Navigating in Walk/Fly by mouse dragging</li>
-  <li>Using 3D mouse devices</li>
-  <li>Screen-space ambient occlusion (see menu View -> Screen Effects)
-  <li>New "Edit -> Lights Editor" feature.</li>
-</ul>
+<ol>
+  <li>Navigating in <i>Walk / Fly</i> modes by mouse dragging.</li>
+  <li><a href="http://youtu.be/lsUztfdike8">Using 3D mouse devices</a>.</li>
+  <li>Screen-space ambient occlusion (see menu <i>"View -> Screen Effects"</i> menu item, developers: try the ultra-simple <a href="' . CURRENT_URL . 'apidoc/html/CastleSceneManager.TCastleAbstractViewport.html#ScreenSpaceAmbientOcclusion">TCastleAbstractViewport.ScreenSpaceAmbientOcclusion</a> boolean property).</li>
+  <li>New <i>"Edit -> Lights Editor"</i> feature.</li>
+</ol>
 
-Many thanks go to Jan Adamec for implementing the 1-3 features above (and many more).
+<p>Many thanks go to Jan Adamec for implementing the 1-3 features above (and more)! Our engine is used as VRML viewer for shareware <a href="http://www.roomarranger.com/">Room Arranger</a>.</p>
 
-<p>All the programs and data on our pages here were updated to use/show new <a>engine 4.0.0</a> version:
-CASTLE 1.0.0
-MALFUNCTION 1.2.8
-KAMBI_LINES 1.1.7
-VIEW3DSCENE 3.12.0
-RAYHUNTER 1.3.4
-GLVIEWIMAGE 1.4.1
-GLPLOTTER 1.2.5
-BEZIER_CURVES 1.1.9
-GLINFORMATION 1.2.2
-GLINFORMATION_GLUT 1.2.2
-GEN_FUNCTION 1.0.5
-DEMO_MODELS 3.2.0
+<p>All the other programs and data on our pages were updated to use/show new <a href="http://castle-engine.sourceforge.net/engine.php">engine 4.0.0 version</a>:
+  <a href="' . CURRENT_URL . 'castle.php">The Castle 1.0.0 (finally!)</a>,
+  <a href="' . CURRENT_URL . 'malfunction.php">malfunction 1.2.8</a>,
+  <a href="' . CURRENT_URL . 'kambi_lines.php">kambi_lines 1.1.7</a>,
+  <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene 3.12.0</a>,
+  <a href="' . CURRENT_URL . 'rayhunter.php">rayhunter 1.3.4</a>,
+  <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage 1.4.1</a>,
+  <a href="' . CURRENT_URL . 'glplotter_and_gen_function.php">glplotter 1.2.5</a>,
+  <a href="' . CURRENT_URL . 'bezier_curves.php">bezier_curves 1.1.9</a>,
+  <a href="' . CURRENT_URL . 'glinformation.php">glinformation 1.2.2</a>,
+  <a href="' . CURRENT_URL . 'glplotter_and_gen_function.php">gen_function 1.0.5</a>,
+  <a href="' . CURRENT_URL . 'demo_models.php">demo models 3.2.0</a>.
+</p>
 
 <!--
 - kambiShadows, kambiShadowsMain fields renamed to shadowVolumes, shadowVolumesMain &mdash; much more sensible names. But the old names will remain to be available, for compatibility (probably for a long time). TCastleAbstractViewport.ShadowVolumes is true by default now.
