@@ -78,6 +78,7 @@ castle_thumbs(array(
   <li>VisibilitySensor node is supported.</li>
   <li>Many fixes to triangulating concave polygons.</li>
   <li>New <i>"Edit -> Lights Editor"</i> feature.</li>
+  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shading">X3D extension to force Phong shading</a>.</li>
 </ol>
 
 <p>Many thanks go to Jan Adamec for implementing the 1-3 features above (and more)! Our engine is used as VRML viewer for shareware <a href="http://www.roomarranger.com/">Room Arranger</a>.</p>
