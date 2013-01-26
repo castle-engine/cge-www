@@ -33,8 +33,14 @@ make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
 # define CASTLE_ENGINE_LGPL in ../castle_game_engine/src/base/castleconf.inc
+make clean
 make
 # revert ../castle_game_engine/src/base/castleconf.inc
+
+# define CONSERVE_TRIANGLE_MEMORY in ../castle_game_engine/src/x3d/octreeconf.inc
+make clean
+make
+# revert ../castle_game_engine/src/x3d/octreeconf.inc
 
 # ----------------------------------------------------------------------------
 # FPCUnit tests
