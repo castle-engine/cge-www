@@ -30,7 +30,7 @@ castle_thumbs(array(
 <ol>
   <li><p>We introduce a <b>high-level game API, to construct a fully-working 3D game really easy</b>. This includes integrated units to manage levels, creatures (with smart AI), items, player, with inventory, management of 3D resources, easy 3D sound, flexible game data layout (you can use XML files to define a lot of things without touching game code), and so on.</p>
 
-    <p>Of course, we use <a href="' . CURRENT_URL . 'vrml_x3d.php">VRML/X3D</a> for all the 3D models, so everything may be animated and be interactive, and may use features like shadows, mirrors, shaders and such. See <a href="' . CURRENT_URL . 'demo_models.php">our demo 3D models</a> (in particular, check new <tt>water/caustics/</tt> demo inside, by Victor Amat, <a href="http://youtu.be/1mUU8prDi9k">movie showing it is here</a>).</p>
+    <p>Of course, we use <a href="' . CURRENT_URL . 'vrml_x3d.php">VRML/X3D</a> for all the 3D models, so everything can be animated and interactive, and may use features like shadows, mirrors, shaders and such. See <a href="' . CURRENT_URL . 'demo_models.php">our demo 3D models</a> (in particular, check new <tt>water/caustics/</tt> demo inside, by Victor Amat, <a href="http://youtu.be/1mUU8prDi9k">movie showing it is here</a>).</p>
 
     <p>There are a couple new examples in engine sources. First of all, <tt>examples/fps_game/</tt> is a must-see: it shows a complete working FPS game, with a lot of comments in the source code and data files.</p>
 
@@ -60,7 +60,7 @@ castle_thumbs(array(
     <a href="' . CURRENT_URL . 'apidoc/html/CastlePlayer.html">CastlePlayer</a>,
     <a href="' . CURRENT_URL . 'apidoc/html/CastleMaterialProperties.html">CastleMaterialProperties</a>,
     <a href="' . CURRENT_URL . 'apidoc/html/CastleResources.html">CastleResources</a>.
-    There are also countless changes in the rest of the engine to make it better and more integrated. See the <a href="' . CURRENT_URL . 'news.php">news</a> from the whole 2012 for a complete list of details.</p>
+    There are also countless changes in the rest of the engine to make it better and more integrated. See the <a href="' . CURRENT_URL . 'news.php">news</a> from the whole 2012 year for a complete list of details.</p>
 
     <!--p>This was probably the longest delay between releases of our engine, but I hope it was worth it :)</p-->
 
