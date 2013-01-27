@@ -64,13 +64,14 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
     <p><i>How to use</i>: Just create, or drop on form, instances of these class.
     Then call <tt>Window.Controls.Add(...)</tt>.
-    Oh, except you usually don't have to create 1st
-    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>:
+
+    <p>Except you usually don't have to create 1st
+    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance:
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     and <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     already contain a <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance,
-    automatically created and available inside their Controls list
-    and inside SceneManager property. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?>  /
+    automatically created and available inside their <tt>Controls</tt> list
+    and inside their <tt>SceneManager</tt> property. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?>  /
     <?php api_link('TCastleControlCustom', 'CastleControl.TCastleControlCustom.html'); ?>
     to avoid this automatic scene manager &mdash;
     useful if you want to use your custom descendant of
@@ -100,7 +101,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <p><i>How to use</i>: you can create camera instance (or drop on form),
         and then assign to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> (or <?php api_link('TCastleViewport.Camera', 'CastleSceneManager.TCastleViewport.html#Camera'); ?>).
         You can also not do anything, and let the automatic creation of camera
-        happen at the nearest rendering (more precisely, at ApplyProjection)
+        happen at the nearest rendering (more precisely, at <tt>ApplyProjection</tt>)
         it will create a camera using
         <?php api_link('TCastleSceneManager.CreateDefaultCamera', 'CastleSceneManager.TCastleSceneManager.html#CreateDefaultCamera'); ?>
         and assign it to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>
@@ -117,26 +118,29 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <p>Important descendants:
         <ul>
           <li><?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> (3D model, with rendering, collisions and everything)
+          <li><?php api_link('TCastlePrecalculatedAnimation', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html'); ?>
+            (<?php api_link('TCastlePrecalculatedAnimation.Scenes', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html#Scenes'); ?>
+            keeps a list of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>.)
           <li><?php api_link('T3DList', 'Castle3D.T3DList.html'); ?> (list of T3D instances)
-          <li><?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>
-          <li><?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>
             <ul>
-              <li><?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> (special, usage described in more detail later)
-              <li><?php api_link('T3DAlive', 'Castle3D.T3DAlive.html'); ?>
+              <li><?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>
+              <li><?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>
                 <ul>
-                  <li><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?> (special, usage described in more detail later)
-                  <li><?php api_link('T3DAliveWithInventory', 'CastleItems.T3DAliveWithInventory.html'); ?>
+                  <li><?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> (special, usage described in more detail later)
+                  <li><?php api_link('T3DAlive', 'Castle3D.T3DAlive.html'); ?>
                     <ul>
-                      <li><?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> (special, usage described in more detail later)
+                      <li><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?> (special, usage described in more detail later)
+                      <li><?php api_link('T3DAliveWithInventory', 'CastleItems.T3DAliveWithInventory.html'); ?>
+                        <ul>
+                          <li><?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> (special, usage described in more detail later)
+                        </ul>
                     </ul>
                 </ul>
             </ul>
-          <li><?php api_link('TCastlePrecalculatedAnimation', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html'); ?>
-            (<?php api_link('TCastlePrecalculatedAnimation.Scenes', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html#Scenes'); ?>
-            keeps a list of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> )
         </ul>
 
-        <p><i>How to use</i>: you can create it (or drop on form). And then add to
+        <p><i>How to use</i>: you can create (or drop on form) instances
+        of these classes, as usual. After creation you usually add them to
         <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
         (or to some another list e.g.
         you can add <tt>List1</tt>: <?php api_link('T3DList', 'Castle3D.T3DList.html'); ?> to
@@ -146,13 +150,15 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         It's your decision how (and if at all) you need to build a hierarchy
         of 3D objects using lists and transformations. Maybe it's enough to
         just load your whole 3D model as a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>?
-        <i>All actual rendering is always eventually done by TCastleScene.</i>
-        (Although all <?php api_link('T3D', 'Castle3D.T3D.html'); ?> classes have the possibility to render something
-        by overriding the <?php api_link('T3D.Render', 'Castle3D.T3D.html#Render'); ?> method, but this feature is simply
-        not used for now by existing engine classes &mdash; <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> rendering
-        is so versatile that we use it for everything.)
-        So everything else than <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
-        is just for organizing your 3D data.
+
+        <p>Note that <i>most of the actual rendering is eventually done by TCastleScene.</i>
+        Although all <?php api_link('T3D', 'Castle3D.T3D.html'); ?> classes have the possibility to render something
+        by overriding the <?php api_link('T3D.Render', 'Castle3D.T3D.html#Render'); ?> method, but this feature is
+        not used (much) by existing engine classes.
+        That's because <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> rendering
+        is so versatile that we use it for everything.
+        So treat everything other than <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+        as just a way to organize (group, transform) your 3D data.
 
         <p>Exceptions to the above: usage of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
         <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>,
@@ -168,9 +174,10 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <dt><?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?></dt>
 
       <dd><p>The main scene is used to detect initial
-        background, initial viewpoint, initial navigation mode etc. &mdash;
-        concepts that have naturally only a single value for the entire 3D world.
-        In VRML/X3D, these correspond to a "bindable nodes" &mdash; of course they
+        background, initial viewpoint, initial navigation mode and so on &mdash;
+        information that naturally has only a single value for the entire 3D world.
+        In <?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?>, these concepts are 
+        called "bindable nodes" &mdash; of course they
         can change during the lifetime of the world, but at a given time
         only one value is active.
 
