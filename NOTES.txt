@@ -86,10 +86,17 @@ Procedure to update WWW content:
   - new release of view3dscene and/or castle go to freshmeat:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
+
   - http://www.pascalgamedevelopment.com/
     go to the 'Home' section of the site and create 'News' article
     Make sure that when you are creating a new News "article" you are in the News section of the front page. If you are in the Articles section, it'll create an "article" instead.
     (instructions on http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums ).
+
+    Create also a forum post in "Your projects", like on
+    http://www.pascalgamedevelopment.com/showthread.php?15067-Castle-Game-Engine-4-0-0-released
+    This might make it easier to discuss (suggested on
+    http://www.lazarus.freepascal.org/index.php/topic,19686.0.html).
+
   - x3d-public mailing list
   - if new VRML extensions: remember to post to Joerg about them
   - http://www.lazarus.freepascal.org/
