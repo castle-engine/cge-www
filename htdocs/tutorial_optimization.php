@@ -3,7 +3,7 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Optimization and profiling');
 ?>
 
-<p>One you have a large game, with many large 3D models, you will
+<p>Once you have a large game, with many large 3D models, you will
 probably start to wonder about the speed and memory usage.</p>
 
 <h2>Watch <i>Frames Per Second</i></h2>
