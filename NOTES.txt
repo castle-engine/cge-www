@@ -83,6 +83,14 @@ Procedure to update WWW content:
   - engine source code release means updating FPC contrib units info
     (see fpc_contrib_units_data.txt,
     http://www.freepascal.org/contrib/contribs.html).
+
+    We have to wait until they fix it:
+    http://bugs.freepascal.org/view.php?id=20994
+    http://bugs.freepascal.org/view.php?id=23768
+    http://bugs.freepascal.org/view.php?id=23769
+
+    Possible short description to use: An open-source cross-platform 3D game engine. Using VRML/X3D as the main 3D model format, other formats are also supported (Collada, 3DS and so on). Rendering is done using OpenGL, many eye-candy graphic features are available like shadows, bump mapping, mirrors, shaders, screen effects. 3D sound is well integrated and trivial to use (using OpenAL under the hood). The engine has a nice object-oriented API to easily make 3D games with creatures, items, levels, players and so on, everything can also be easily extended to any 3D or 2D game types.
+
   - new release of view3dscene and/or castle go to freshmeat:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
