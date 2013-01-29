@@ -93,6 +93,8 @@ Procedure to update WWW content:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
 
+    Maybe make a page on freshmeat specifically about our engine?
+
   - http://www.pascalgamedevelopment.com/
     go to the 'Home' section of the site and create 'News' article
     Make sure that when you are creating a new News "article" you are in the News section of the front page. If you are in the Articles section, it'll create an "article" instead.
@@ -122,12 +124,11 @@ Procedure to update WWW content:
       http://wiki.lazarus.freepascal.org/Components_and_Code_examples#Packages_for_FPC.2FLazarus_.28not_hosted_here.29
       http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Castle_Game_Engine
 
-  - Maybe:
-    - http://www.web3d.org/news/submit/
-      ... but it's pretty much ignored, giving up on this.
-      As well as submitting to web3d.org list of progs.
-    - Some day:
-      announce on game engines list http://www.devmaster.net/engines/
+  - http://www.web3d.org/news/submit/
+    ... but it's pretty much ignored, giving up on this.
+    As well as submitting to web3d.org list of progs.
+
+  - Update http://www.devmaster.net/engines/
 
   - An incredibly large release may be announced on fpc-pascal and lazarus
     mailing lists, but let's not abuse it (I did it only for 4.0.0 release
