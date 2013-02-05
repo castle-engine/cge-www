@@ -31,20 +31,24 @@ Procedure to update WWW content:
 - Release on SourceForge.
 
   New FRS (http://p.sf.net/sourceforge/FRS):
+  - Move older versions to subdirs in old_versions
+    (Do it first, to avoid showing on SF project summary "last changes list"
+    these moves as "latest actions")
   - Upload to
     sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
-    Follow dirnames as default: program_name/version_number/.
+    Under diname: program_name/
   - Only for view3dscene: On https://sourceforge.net/projects/castle-engine/files/
     mark new view3dscene released files as default downloads for given OS.
     This is only for default download on given OS, we suggest here
     view3dscene as our "default package".
 
-  After release, download and compare are the files the same.
+  After release:
+  - download and compare are the files the same.
 
-- if you modified castle_game_engine, you may want to update apidoc/
-
-  Also update $engine_ver in htdocs/all_programs_sources.php, to reflect
-  with what engine ver each sources were tested.
+- if you modified castle_game_engine:
+  - update apidoc/
+  - update $engine_ver in htdocs/all_programs_sources.php, to reflect
+    with what engine ver each sources were tested.
 
 - good practice after large changes is to check
   linkchecker.sh and validate_html.sh
