@@ -1,6 +1,10 @@
 <?php
 
 /* Next news:
+* There was a silent 4.0.1 release to fix compilation of CastleGLWindowsFonts unit, and do other minor fixes/improvements around font-related units and examples.
+* Improvements to 2D rendering (as it happens, they also mostly revolve around bitmap fonts):
+  - use SetWindowPos instead of glRasterPos almost everywhere (cleaner, better for future strict OpenGL >= 3, and avoids crashes with Mesa 9 --- at least with "OpenGL renderer string: Gallium 0.4 on AMD RV710" and "OpenGL version string: 2.1 Mesa 9.0.2" (on Ubuntu 12.10)).
+  - use PrintAndMove instead of Print, it's much more optimal.
 */
 
 array_push($news,
