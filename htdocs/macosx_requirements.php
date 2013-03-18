@@ -107,11 +107,13 @@ However, most of our existing programs already rely on <tt>CastleWindow</tt>.
 <?php echo $toc->html_section(); ?>
 
 <p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> uses a standard OS console
-for some stuff (e.g. for <i>Console -&gt; Print camera...</i>). You will not see this
-console if you run the program using the bundle (by double-clicking on the view3dscene
-program in Finder, or in dock...). To see the console, run view3dscene from terminal.
+for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will not see this
+console if you run the program using the bundle (by double-clicking on the app
+in Finder, or in dock...).
 
-<pre>
+<p>To see the console, run view3dscene from terminal:
+
+<pre class="bordered_code">
 cd directory-where-you-installed-view3dscene/
 ./view3dscene.app/Contents/MacOS/view3dscene
 </pre>
@@ -179,7 +181,7 @@ some additional software:
 
 <p>For libs installed by fink, you may have to add them to your libs
 path by command like
-<pre>
+<pre class="bordered_code">
   export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 </pre>
 before executing programs. (you can add this to your <tt>.bashrc</tt>
