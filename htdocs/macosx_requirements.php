@@ -6,6 +6,7 @@
     array(
       new TocItem('Mac OS X Carbon applications (new)', 'carbon'),
         new TocItem('Developers: Technical details', 'carbon_details', 1),
+        new TocItem('Console', 'console', 1),
       new TocItem('Mac OS X GTK2 applications (old)', 'gtk'),
         new TocItem('Dependencies to install', 'requirements', 1),
         new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
@@ -102,6 +103,18 @@ However, most of our existing programs already rely on <tt>CastleWindow</tt>.
     CASTLE_WINDOW_LCL is probably already better than CASTLE_WINDOW_GTK,
     thanks to not needing difficult dependencies (GTK etc. from fink).
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> uses a standard OS console
+for some stuff (e.g. for <i>Console -&gt; Print camera...</i>). You will not see this
+console if you run the program using the bundle (by double-clicking on the view3dscene
+program in Finder, or in dock...). To see the console, run view3dscene from terminal.
+
+<pre>
+cd directory-where-you-installed-view3dscene/
+./view3dscene.app/Contents/MacOS/view3dscene
+</pre>
 
 <?php echo $toc->html_section(); ?>
 
