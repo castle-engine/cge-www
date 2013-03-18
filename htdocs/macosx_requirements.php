@@ -4,9 +4,12 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('What do you need to use my programs on Mac OS X now', 'requirements_now'),
-      new TocItem('Developers: additional stuff to install/configure', 'developers_libs'),
-      new TocItem('Developers: help wanted for making more native Mac OS X port', 'help_wanted'),
+      new TocItem('Mac OS X Carbon applications (new)', 'carbon'),
+        new TocItem('Developers: Technical details', 'carbon_details', 1),
+      new TocItem('Mac OS X GTK2 applications (old)', 'gtk'),
+        new TocItem('Dependencies to install', 'requirements', 1),
+        new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
+      new TocItem('Developers: help wanted', 'help_wanted'),
     )
   );
   $toc->echo_numbers = true;
@@ -16,6 +19,91 @@
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Since <?php echo a_href_page('engine', 'engine'); ?> version 4.1.0
+(<?php echo a_href_page('view3dscene', 'view3dscene'); ?> 3.13.0),
+our applications have a native look on Mac OS X, and do not need
+any extra dependencies (like X11 and GTK).
+
+<?php echo $toc->html_section(); ?>
+
+<p>We did it by using the LCL backend of <tt>CastleWindow</tt>. This uses
+<a href="http://www.lazarus.freepascal.org/">Lazarus</a> LCL under the hood,
+wrapping Lazarus <tt>TForm</tt> and <tt>TOpenGLControl</tt> inside a
+<tt>TCastleWindow</tt>.
+Although it still has some issues (see below), it gives us native look
+and a lot of stuff "for free".
+
+<p>Of course, as always, you can also use Lazarus
+forms directly with our <tt>TCastleControl</tt> &mdash; this was always possible,
+and gives you the same native look through <a href="http://www.lazarus.freepascal.org/">Lazarus</a>.
+However, most of our existing programs already rely on <tt>CastleWindow</tt>.
+
+<p>On Mac OS X, the default LCL widgetset is
+<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.</p>
+
+<ul>
+  <li><p>Good: native look, application has a normal menu bar,
+    shows native dialog boxes (to open/save file, choose color and such)
+    and generally looks and feels like every other Mac OS application.
+
+  <li><p>Good: no extra dependencies, Carbon is already part of every
+    Mac OS X installation. (No dependencies on X11, GTK, GTKGlExt etc.)
+
+  <li><p>Bad: Unfortunately, Carbon is deprecated by Apple
+    (although there are many applications using it, including Lazarus IDE itself).
+    It is available only for 32-bit applications.
+
+    <p>In time, this will be resolved in LCL when
+    <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>
+    widgetset will be more complete.
+    Right now, <a href="http://wiki.freepascal.org/Roadmap#Status_of_features_on_each_widgetset">Carbon
+    implementation is just more complete than Cocoa in LCL</a>,
+    see also <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Choice_of_Lazarus_LCL_widgetsets">Choice of Lazarus LCL widgetsets
+    (for Mac OS X)</a>.
+
+    <p>It may also be resolved on our side if we ever make direct
+    <tt>CastleWindow</tt> backend based on Cocoa (without using Lazarus LCL):
+    <ul>
+      <li>It's a matter of creating and implementing a file
+        <tt>castle_game_engine/src/window/castlewindow_cocoa.inc</tt>,
+        based on
+        <tt>castle_game_engine/src/window/castlewindow_backend_template.inc</tt>.
+        See <?php echo a_href_page('engine sources', 'engine'); ?>.
+        See at other "backends" (like GTK, WinAPI, Xlib, LCL)
+        for examples how to implement such thing, everything is inside
+        <tt>src/window/</tt> dir.
+      <li>Alternatively, send Michalis a simple and clear example of FPC program
+	using Cocoa that 1. creates and shows a window
+	2. with menu bar 3. and with OpenGL context area covering the window.
+	I should be able to port such example to my "CastleWindow" then.
+      <li>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
+        for pointers.
+	If you're a developer familiar with Mac OS X
+	native toolkit and
+	<a href="http://www.freepascal.org/">FreePascal</a>, your help
+	will be much appreciated.
+    </ul>
+
+  <li><p>Bad: There are issues with LCL event loop. Some of them
+    (not being able to get Idle events continously) are in bare LCL,
+    some of them (the need to call Application.Run, not just loop
+    using Application.ProcessMessages) specific to LCL-Carbon.
+    TODO: Idle issues (may be observed when using mouse look or
+    dragging with mouse) may be workarounded on our side.
+
+    <p>For this reason, if you make normal game (that doesn't need
+    any menu or dialog boxes) you may still consider using
+    CASTLE_WINDOW_X11 backend instead of CASTLE_WINDOW_LCL &mdash;
+    the X11 is pretty easy to install on Mac OS X.
+    For normal tools (that need menu and dialog boxes)
+    CASTLE_WINDOW_LCL is probably already better than CASTLE_WINDOW_GTK,
+    thanks to not needing difficult dependencies (GTK etc. from fink).
+</ul>
+
+<?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -107,68 +195,34 @@ you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The current way my engine and programs (view3dscene, castle etc.)
-work on Mac OS X is admittedly a simple and straightforward port from Linux.
-It doesn't look natively (like other normal Mac OS X programs),
-it requires some uncommon libraries (not only X11, but also GTK and GtkGLExt
-from fink) and so on. If you're a developer familiar with Mac OS X
-native toolkit and
-<a href="http://www.freepascal.org/">FreePascal</a> &mdash; you're most
-welcome to help.</p>
-
-<p><i>Mac OS X native toolkit</i> as far as I know means
-<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a>
-or <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>.
-<a href="http://lists.lazarus.freepascal.org/pipermail/lazarus/2010-December/058470.html">This thread on Lazarus mailing list</a> (these are people actually making native Mac OS X stuff using FPC, so they know what they are talking about :) suggests the <i>Cocoa</i> is the right choice.</p>
-
 <p>The plan:</p>
 
 <ol>
-  <li><p><i>Port our <tt>CastleWindow</tt> unit to native Mac OS X toolkit</i>.
-    This is the main work, it will make dependencies on X11, GTK, GtkGLExt
-    disappear and will provide a native look.</p>
-
-    <p>It's a matter of creating and implementing a file like
-    <tt>castle_game_engine/src/window/castlewindow_(cocoa|carbon).inc</tt>,
-    based on
-    <tt>castle_game_engine/src/window/castlewindow_backend_template.inc</tt>.
-    See <?php echo a_href_page('engine sources', 'engine'); ?>.
-    See at other "backends" (currently GTK, WinAPI, Xlib, Glut are available)
-    for examples how to implement such thing, everything is inside
-    <tt>src/window/</tt> dir.</p>
-
-    <p>Alternatively, send me a simple and clear example of FPC program
-    using Carbon/Cocoa that 1. creates and shows a window
-    2. with menu bar 3. and with OpenGL context area covering the window.
-    I should be able to port such example to my "CastleWindow" then.</p>
-
-    <p>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
-    for pointers</p></li>
-
   <li><p><i>Make "Mac OS X bundle"</i> (it's basically a directory pretending
     to be an application). You can find view3dscene SVG icon in the sources.</p>
 
     <p>Actually, this step is already somewhat done at least for view3dscene.
     A script <tt>create_macosx_bundle.sh</tt> will make a nice view3dscene.app,
-    that you should be able to execute. Unfortunately, it doesn't really work yet,
-    and probably would be awkward anyway as our window is part of X server.
-    But anyway, once above step is done, finishing the "bundle" work is probably trivial.</p>
+    that you should be able to execute. Unfortunately, it doesn't really work yet.
+
+    <p>You can also just try using Lazarus bundle creator.
     </li>
 
   <li><p>Optionally, <i>add libpng and vorbisfile libraries to the bundle</i>.
     We will still be able to link to them dynamically, as far as I know.
     libpng is required for PNG reading (unless new Mac OS X already includes it?).
     vorbisfile is required for OggVorbis playing (used by some castle
-    music tracks, used by view3dscene <tt>Sound</tt> demos).</p></li>
+    music tracks, used by view3dscene <tt>Sound</tt> demos).</p>
+
+    <p>See
+    <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries">Mac OS X Libraries on FPC wiki</a>
+    for instructions how to include library inside a bundle.</p>
+    </li>
 
   <li><p>Finally, prepare a script to pack a nice .dmg (instead of current
     .tar.gz) distribution (of view3dscene, or castle &mdash; doesn't matter,
     I'll adjust it to be more general).</p></li>
 </ol>
-
-<p>Fame, fortune, and eternal gratitude from Michalis and all Mac OS X
-users of our programs will be your reward :) At such moments,
-I wish I had a kingdom and three daughters.</p>
 
 <?php
   castle_footer();

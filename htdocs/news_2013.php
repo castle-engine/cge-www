@@ -6,6 +6,7 @@
   - use SetWindowPos instead of glRasterPos almost everywhere (cleaner, better for future strict OpenGL >= 3, and avoids crashes with Mesa 9 --- at least with "OpenGL renderer string: Gallium 0.4 on AMD RV710" and "OpenGL version string: 2.1 Mesa 9.0.2" (on Ubuntu 12.10)).
   - use PrintAndMove instead of Print, it's much more optimal.
 * Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supprting it. By "support" I mean that you can see new options now in view3dscene Preferences->Anti-Aliasing, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.
+* Mac OS X with native look! See macosx_requirements.php. If you have Mac OS X, please test our new releases.
 */
 
 array_push($news,
