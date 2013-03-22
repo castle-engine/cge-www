@@ -236,7 +236,12 @@ you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
 
   <li><p>Finally, prepare a script to pack a nice .dmg (instead of current
     .tar.gz) distribution (of view3dscene, or castle &mdash; doesn't matter,
-    I'll adjust it to be more general).</p></li>
+    I'll adjust it to be more general).</p>
+    
+    <p>See http://el-tramo.be/guides/fancy-dmg/
+    Note: we do not need .pkg (package manager),
+    http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X
+    </li>
 </ol>
 
 <?php
