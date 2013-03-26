@@ -19,6 +19,9 @@ view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Sounds/Aud
 http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/_pages/page08.html
 http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/_pages/page01.html
 test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.).
+
+  Not only in VRML/X3D everything is an url. Also inside level.xml and resource.xml. For example, you could distribute now a level.xml file that contains URLs to levels on your server, downloaded each time.
+  (TODO: make scene etc. in level.xml really URLs)
 */
 
 array_push($news,
