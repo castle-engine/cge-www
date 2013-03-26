@@ -13,11 +13,12 @@
 <pre>
 view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/single-url.x3dv
 view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/256jpg.x3d
+view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Sounds/AudioClip/default_looptrue.x3dv
 </pre>
 (see
 http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/_pages/page08.html
 http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/_pages/page01.html
-test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models etc.).
+test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.).
 */
 
 array_push($news,
