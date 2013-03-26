@@ -7,6 +7,17 @@
   - use PrintAndMove instead of Print, it's much more optimal.
 * Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supprting it. By "support" I mean that you can see new options now in view3dscene Preferences->Anti-Aliasing, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.
 * Mac OS X with native look! See macosx_requirements.php. If you have Mac OS X, please test our new releases.
+* Download resources from the network. http URLs work everywhere where previously only filenames (or data URIs) were allowed.
+  This is still a little non-user-friendly, as the downloading is blocking (the process waits for the download to finish, instead of letting your enjoy the game and download in the background; there isn't even any nice way to cancel the download, or even notification about it, except for --debug-log message). For this reason, it is disabled by default: you have to explicitly allow it by "Preferences->Download Resources From Network" (in case: CastleDownload.EnableNetwork variable).
+  For test, try e.g. these command-lines:
+<pre>
+view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/single-url.x3dv
+view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/256jpg.x3d
+</pre>
+(see
+http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/_pages/page08.html
+http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/_pages/page01.html
+test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models etc.).
 */
 
 array_push($news,
