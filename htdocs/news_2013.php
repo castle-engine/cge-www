@@ -18,10 +18,11 @@ view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Sounds/Aud
 (see
 http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/_pages/page08.html
 http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/_pages/page01.html
-test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.).
+test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.). You can also use VRML/X3D Anchors to jump to any URL (for example, you can jump from a local file to a model available through http).
 
   Not only in VRML/X3D everything is an url. Also inside level.xml and resource.xml. For example, you could distribute now a level.xml file that contains URLs to levels on your server, downloaded each time.
   (TODO: make scene etc. in level.xml really URLs)
+* Our message boxes inside CastleWindow support OS clipboard (Ctrl + X, Ctrl + C, Ctrl + V). Especially useful to copy/paste URLs between view3dscene Ctrl+L ("Open URL" menu item, like in WWW browsers) and other programs. For developers: use Clipboard.AsText property.
 */
 
 array_push($news,
