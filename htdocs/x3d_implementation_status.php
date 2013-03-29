@@ -6,10 +6,10 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('X3D and VRML 2.0 status', 'x3d'),
+      new TocItem('X3D and VRML 2.0', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('General notes', 'x3d_general', 1),
-      new TocItem('VRML 1.0 status', 'vrml_1'),
+      new TocItem('VRML 1.0', 'vrml_1'),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -117,15 +117,6 @@ on <?php echo a_href_page('VRML/X3D extensions', 'x3d_extensions'); ?>.
 
 <p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
 
-<p><i>TODO</i> for all nodes with url fields: for now all URLs
-are interpreted as local file names (absolute or relative).
-So if a VRML file is available on WWW, you should first download it
-(any WWW browser can of course download it and automatically open view3dscene
-for you), remembering to download also any texture/background files
-used.
-(Conceptually, this lack should be mentioned in <tt>Networking</tt>
-component details, but it's so important that I mention it here.)</p>
-
 <p><i>No limits</i>:
 <a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
 VRML 97 and X3D specifications define various limits</a>
@@ -140,18 +131,29 @@ on user system, performance of OpenGL implementation etc.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We consider VRML 1.0 status as "almost complete".
-All nodes and features are handled, with the exception of:
+<p>We consider VRML 1.0 implementation as <i>practically complete</i>.
+
+<p>Some tiny bits of VRML 1.0 remain not implemented.
+Implementing them is just too much work for too little gain
+(you should rather upgrade your models to VRML 2.0 or X3D).
+<!--
+Feel free to send feature requests (or patches :) related to these features
+anyway &mdash; if there is demand, we can surely implement them.
+-->
+
+<p>Not implemented VRML 1.0 features:
 
 <ul>
-  <li><p>Handling URLs in fields <tt>WWWInline.name</tt> and
-    <tt>Texture2.filename</tt>. As for now, only local file names are
-    allowed there.
-    <!-- Relative paths are resolved with respect to the path of originating
-         VRML file. -->
-
   <li><p><tt>AsciiText.width</tt> is ignored.
 
+  <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
+    <tt>Anchor</tt> instead, implementing old VRML 1.0 anchor is not worth
+    the trouble and would unnecessarily obfuscate the code).
+</ul>
+
+<p>Notes about other VRML 1.0 features limitations/internal workings:
+
+<ul>
   <li><p><tt>OrthographicCamera.height</tt> and
     <tt>PerspectiveCamera.heightAngle</tt> fields work like
     X3D <tt>OrthoViewpoint.fieldOfView</tt> and
@@ -159,12 +161,7 @@ All nodes and features are handled, with the exception of:
     the angle/height along the <i>smaller</i> browser window size &mdash;
     which is <i>usualy the height</i>, but <i>may be width</i> if you
     resize the window to be taller and thinner.
-</ul>
 
-<p><b>VRML 1.0 features that will probably never be implemented,
-as they are replaced with much better mechanisms in newer VRML versions:</b>
-
-<ul>
   <li><p><tt>AsciiText</tt> node's triangles and vertexes are not counted
     when writing triangles and vertexes counts of the scene.
     This is actually somewhat Ok, as later VRML specs say explicitly that
@@ -172,12 +169,8 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
     (so they do not have triangles/vertexes for collision detection,
     only for rendering).
 
-  <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
-    <tt>Anchor</tt> instead, implementing old VRML 1.0 anchor is not worth
-    the trouble and would unnecessarily obfuscate the code).
-
-  <li><p>I'm always rendering the nearest (first) child of VRML 1.0 <tt>LOD</tt>
-    node. Therefore I'm potentially losing some optimization if the scene
+  <li><p>We're always rendering the nearest (first) child of VRML 1.0 <tt>LOD</tt>
+    node. Therefore we're potentially losing some optimization if the scene
     has reasonably designed <tt>LOD</tt> nodes.</p>
 
     <p>Reason: this is caused by possible "leaking" of properties
@@ -197,7 +190,7 @@ as they are replaced with much better mechanisms in newer VRML versions:</b>
     changing is optimized and instantly fast in VRML &gt;= 2.0. So just
     upgrade to VRML 2.0 (aka 97) or X3D if you need these features.
 
-  <li><p>Camera <tt>focalDistance</tt> is also ignored, but this
+  <li><p>Camera <tt>focalDistance</tt> is ignored. This
     is allowed by specification. And honestly VRML 1.0 specification
     is so ambiguous about this feature (<i>browser should adjust
     flying speed to reach that point in a reasonable amount of time</i>,
