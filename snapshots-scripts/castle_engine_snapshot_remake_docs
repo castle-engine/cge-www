@@ -42,4 +42,5 @@ mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
   kanim_format.html \
   x3d_time_origin_considered_uncomfortable.html \
   castle_script.html \
-  glviewimage.html
+  glviewimage.html \
+  macosx_requirements.html
