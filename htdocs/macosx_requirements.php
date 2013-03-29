@@ -37,6 +37,12 @@ wrapping Lazarus <tt>TForm</tt> and <tt>TOpenGLControl</tt> inside a
 Although it still has some issues (see below), it gives us native look
 and a lot of stuff "for free".
 
+<p>Developers: When compiling programs under Mac OS X,
+remember to add <i>castle_components</i> Lazarus package
+to the requirements of the <i>castle_window</i> package.
+This is a necessary manual step, as Lazarus packages do not have (yet)
+any mechanism to express a package dependency that is OS-specific.
+
 <p>Of course, as always, you can also use Lazarus
 forms directly with our <tt>TCastleControl</tt> &mdash; this was always possible,
 and gives you the same native look through <a href="http://www.lazarus.freepascal.org/">Lazarus</a>.
@@ -237,7 +243,7 @@ you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
   <li><p>Finally, prepare a script to pack a nice .dmg (instead of current
     .tar.gz) distribution (of view3dscene, or castle &mdash; doesn't matter,
     I'll adjust it to be more general).</p>
-    
+
     <p>See http://el-tramo.be/guides/fancy-dmg/
     Note: we do not need .pkg (package manager),
     http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X
