@@ -34,7 +34,7 @@ our VRML/X3D browser, and just try it in action.
 Download also <?php echo a_href_page("our demo 3D models", "demo_models"); ?>
  to open them with view3dscene.
 
-<p>Only once you tried view3dscene, this page is intended to serve
+<p>Only once you tried view3dscene, this page may serve
 as a detailed map (with lots of technical details and links to even more
 technical details), about what and how is implemented.
 
