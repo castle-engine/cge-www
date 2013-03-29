@@ -11,6 +11,17 @@
 <p>Supported:</p>
 
 <ul>
+  <li><p>URLs everywhere are supported. <tt>file</tt>, <tt>http</tt>, and
+    <tt>data</tt> URIs are loaded, as well as special protocols for scripting
+    languages. Absolute as well as relative URLs are handled, of course.
+
+    <p>For network support (<tt>http</tt>) in
+    <?php echo a_href_page("view3dscene", "view3dscene") ?>
+    remember to enable first
+    <i>Preferences -&gt; Download Resources From Network</i> option
+    (in your own programs using <i>Castle Game Engine</i>:
+    see variable <tt>CastleDownload.EnableNetwork</tt>).
+
   <li><p><?php echo x3d_node_link('Anchor'); ?>
 
     <p>Files recognized as 3D models are loaded.

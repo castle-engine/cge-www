@@ -6,6 +6,7 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Try our view3dscene!', 'try'),
       new TocItem('X3D and VRML 2.0', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('General notes', 'x3d_general', 1),
@@ -16,14 +17,26 @@
 
 <?php echo pretty_heading($page_title); ?>
 
-<p>Implementation status of X3D and VRML languages.
-Here we document what features of the VRML 1.0, VRML 2.0 (aka 97) and X3D 3.x
-specifications are implemented.
+<!--p>Features of the VRML 1.0, VRML 2.0 (aka 97) and X3D
+specifications that are implemented.
 See also <?php echo a_href_page('VRML / X3D extensions', 'x3d_extensions'); ?>
  to know what is implemented <i>besides the things required by VRML/X3D specifications</i>.
+-->
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>First of all, please don't read this page :) I mean, it's completely
+free and easy to <?php echo a_href_page("download view3dscene", "view3dscene") ?>,
+our VRML/X3D browser, and just try it in action.
+Download also <?php echo a_href_page("our demo 3D models", "demo_models"); ?>
+ to open them with view3dscene.
+
+<p>Only once you tried view3dscene, this page is intended to serve
+as a detailed map (with lots of technical details and links to even more
+technical details), about what and how is implemented.
 
 <?php echo $toc->html_section(); ?>
 
@@ -44,7 +57,7 @@ parts (99% of usage) of given level are covered.</p>
       <th>Supported level</th></tr>
   <tr><td><?php echo a_href_page('Core'                            , 'x3d_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Time'                            , 'x3d_implementation_time'                ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>1</b> (+ many level 2,3 features: full <tt>Anchor</tt>, <tt>Inline</tt>, <tt>IMPORT/EXPORT</tt>, URLs relative and absolute; missing from levels 2,3: http, <tt>LoadSensor</tt>)</td></tr>
+  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>2</b> (+ many level 3 features: full <tt>Inline</tt>, <tt>IMPORT/EXPORT</tt> support; missing is <tt>LoadSensor</tt>)</td></tr>
   <tr><td><?php echo a_href_page('Grouping'                        , 'x3d_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
@@ -78,19 +91,17 @@ parts (99% of usage) of given level are covered.</p>
   <tr><td>Particle systems         </td><td></td></tr>
 </table>
 
-<?php /*
-Profiles:
-- interchange: according to table, done!
-- to interactive, missing
-networking level 2
-- to immersive, missing
-networking level 3
-Shape level 2
-Geometry2D 1
-Sound 1
-Environmental sensor 2
-*/
-?>
+<p>We practically support <i>Interchange</i> and <i>Interactive</i>
+profiles, and miss only small bits (Networking level 3, Geometry2D level 1)
+from <i>Immersive</i>. But bear in mind some limitations:
+
+<ul>
+  <li>Although we have scripting, but we do not support yet the most
+    popular scripting language: ECMAScript.
+  <li>Although we have networking support, but for now it is a little
+    user-unfriendly, that's why you have to explicitly enable it by
+    <i>Preferences -&gt; Download Resources From Network</i>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
