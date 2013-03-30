@@ -152,8 +152,8 @@ also more GPU friendly)).</p>
     shapes with only a few vertexes &mdash; each shape will be provided
     in a separate VBO to OpenGL, which isn't very efficient.
 
-  <li><p>Also, do make too few shapes. Each shape is be provided in it's
-    entirely to OpenGL (splitting it on the fly would cause unacceptable
+  <li><p>Do not make too few shapes. Each shape is passed as a whole
+    to OpenGL (splitting shape on the fly would cause unacceptable
     slowdown), and shapes may be culled using frustum culling or
     occlusion queries. By using only a few very large shapes, you make
     this culling worthless.
@@ -162,6 +162,9 @@ also more GPU friendly)).</p>
 <p>A rule of thumb is to keep your number of shapes in a scene between
 100 and 1000. But that's really just a rule of thumb, different level
 designs will definitely have different considerations.
+
+<p>The engine allows you to easily define custom culling methods
+or use hardware occlusion query (see examples and docs).
 
 <h2>Optimizing collisions</h2>
 
