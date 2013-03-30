@@ -1,6 +1,6 @@
 <?php
   require_once "castle_engine_functions.php";
-  castle_header("Dependencies of my programs on Mac OS X", NULL, array('all_programs'));
+  castle_header("Dependencies of our programs on Mac OS X", NULL, array('all_programs'));
 
   $toc = new TableOfContents(
     array(
@@ -40,13 +40,15 @@ and a lot of stuff "for free".
 <p>Developers: When compiling programs under Mac OS X,
 remember to add <i>castle_components</i> Lazarus package
 to the requirements of the <i>castle_window</i> package.
-This is a necessary manual step, as Lazarus packages do not have (yet)
-any mechanism to express a package dependency that is OS-specific.
+This is a necessary manual step, as Lazarus does not allow (yet)
+to define a package requirement that is specific to given OS.
 
-<p>Of course, as always, you can also use Lazarus
-forms directly with our <tt>TCastleControl</tt> &mdash; this was always possible,
+<p>This change allows <tt>CastleWindow</tt>-based programs,
+like <?php echo a_href_page("view3dscene", "view3dscene") ?>,
+to have native look on Mac OS X.
+Of course in your own programs you can also use Lazarus
+forms directly (with our <tt>TCastleControl</tt>) &mdash; this was always possible,
 and gives you the same native look through <a href="http://www.lazarus.freepascal.org/">Lazarus</a>.
-However, most of our existing programs already rely on <tt>CastleWindow</tt>.
 
 <p>On Mac OS X, the default LCL widgetset is
 <a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.</p>
@@ -54,7 +56,10 @@ However, most of our existing programs already rely on <tt>CastleWindow</tt>.
 <ul>
   <li><p>Good: native look, application has a normal menu bar,
     shows native dialog boxes (to open/save file, choose color and such)
-    and generally looks and feels like every other Mac OS application.
+    and generally looks and feels like every other Mac OS X application.
+    Lazarus compiles it into a <i>bundle</i> like <tt>view3dscene.app</tt>
+    that can be easily installed by dragging to your <i>Applications</i>
+    directory.
 
   <li><p>Good: no extra dependencies, Carbon is already part of every
     Mac OS X installation. (No dependencies on X11, GTK, GTKGlExt etc.)
@@ -97,7 +102,7 @@ However, most of our existing programs already rely on <tt>CastleWindow</tt>.
   <li><p>Bad: There are issues with LCL event loop. Some of them
     (not being able to get Idle events continously) are in bare LCL,
     some of them (the need to call Application.Run, not just loop
-    using Application.ProcessMessages) specific to LCL-Carbon.
+    using Application.ProcessMessages) are specific to LCL-Carbon.
     TODO: Idle issues (may be observed when using mouse look or
     dragging with mouse) may be workarounded on our side.
 
@@ -117,7 +122,7 @@ for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will
 console if you run the program using the bundle (by double-clicking on the app
 in Finder, or in dock...).
 
-<p>To see the console, run view3dscene from terminal:
+<p>To see the console output, run view3dscene from terminal:
 
 <pre class="bordered_code">
 cd directory-where-you-installed-view3dscene/
@@ -173,7 +178,7 @@ some additional software:
 
   <li><p><b>vorbisfile</b> (may be installed by
     <a href="http://www.finkproject.org/">fink</a>).
-    Without this, all my programs will still work fine, you just will not
+    Without this, all our programs will still work fine, but you will not
     hear OggVorbis music.</p></li>
 
   <li><p><b>For Mac OS X older than Tiger (that is, 10.3 or older):
@@ -181,7 +186,7 @@ some additional software:
     Creative, see download links from
     <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">openal.org downloads</a>.
     For Mac OS X since Tiger, OpenAL comes already preinstalled.
-    Even without OpenAL installed, all my programs will still work fine,
+    Even without OpenAL installed, all our programs will still work fine,
     you just will not get any sound.</p>
 </ul>
 
