@@ -1,21 +1,35 @@
 <?php
 require_once 'castle_engine_functions.php';
 tutorial_header('Optimization and profiling');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
+      new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
+    new TocItem('Preparing your 3D models to render fast', 'models'),
+    new TocItem('Optimizing collisions', 'collisions'),
+    new TocItem('Memory', 'memory'),
+    new TocItem('Profiling', 'profiling'),
+  )
+);
 ?>
 
 <p>Once you have a large game, with many large 3D models, you will
 probably start to wonder about the speed and memory usage.</p>
 
-<h2>Watch <i>Frames Per Second</i></h2>
+<?php echo $toc->html_toc(); ?>
+<?php echo $toc->html_section(); ?>
 
-<p>You have the speed, as the number of <i>Frames Per Second</i>, stored
-in the <tt>TCastleControl.Fps</tt> or <tt>TCastleWindow.Fps</tt> object
-as <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>
- instance. See especially
+<p>The main thing that measures your game speed is the <i>Frames Per Second</i>.
+Engine automatically keeps track of this for you.
+Use the <tt>TCastleControl.Fps</tt> or <tt>TCastleWindow.Fps</tt>
+to get an instance of
+ <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>,
+and inside you have two important numbers:
  <?php api_link('TFramesPerSecond.FrameTime', 'CastleTimeUtils.TFramesPerSecond.html#FrameTime'); ?> and
  <?php api_link('TFramesPerSecond.RealTime', 'CastleTimeUtils.TFramesPerSecond.html#RealTime'); ?>.
 We will explain the
-difference between <tt>FrameTime</tt> and <tt>RealTime</tt> in a second.</p>
+difference between <tt>FrameTime</tt> and <tt>RealTime</tt> shortly.</p>
 
 <p>How to show them? However you like:</p>
 
@@ -38,16 +52,7 @@ difference between <tt>FrameTime</tt> and <tt>RealTime</tt> in a second.</p>
     in earlier chapter', 'tutorial_player_2d_controls'); ?>).
 </ul>
 
-<p>We do not have any engine-specific tool to measure memory usage or
-detect memory problems, as there are plenty of them available with
-FPC+Lazarus already. To simply see the memory usage, just use process
-monitor that comes with your OS. To detect memory leaks, be sure to
-use FPC <tt>HeapTrc.pas</tt> (compile with <tt>-gl -gh</tt>). See also Lazarus units
-like <tt>LeakInfo</tt>. Finally, you can use full-blown memory profilers like
-valgrind's massif with FPC code (see section "Profiling" lower in this
-tutorial).
-
-<h2>How to interpret <i>Frames Per Second</i> values?</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>There are two FPS values available: <i>frame time</i> and <i>real time</i>.
 <i>Frame time</i> is usually the larger one.
@@ -88,12 +93,14 @@ number of frames per second that we managed to render. Caveats:</b>
     thing changed &mdash; nothing else.
 </ul>
 
-<p>Use <i>"frame time"</i>... with caution. It's useful to compare it with <i>"real
-time"</i>, with <tt>LimitFPS</tt> feature turned off:
-it may then tell you whether the
+<p><b><i>"Frame time"</i> measures how much frames we
+would get, if we ignore the time spent outside <tt>OnDraw</tt> events.</b>
+Use <i>"frame time"</i>... with caution. But it's often
+useful to compare it with <i>"real
+time"</i> (with <tt>LimitFPS</tt> feature turned off),
+as it may then tell you whether the
 bottleneck is in rendering or outside of rendering (like collision
-detection and creature AI). <b><i>"Frame time"</i> measures how much frames we
-would get, if we ignore the time spent outside <tt>OnDraw</tt> events. Caveats</b>:
+detection and creature AI). Caveats</b>:
 
 <ul>
   <li><p>Modern GPUs work in parallel to the CPU. So <i>"how much time CPU spent
@@ -129,7 +136,7 @@ time"</i> will be close to <i>"real time"</i>. If the gap is large, it may mean
 that you have a bottleneck in non-rendering code (like collision
 detection and creature AI).
 
-<h2>Preparing your 3D models to render fast</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>The less vertexes and faces you can have, the better.
 Also, the simpler models (no shadows etc.), the better. That's fairly
@@ -166,10 +173,11 @@ designs will definitely have different considerations.
 <p>The engine allows you to easily define custom culling methods
 or use hardware occlusion query (see examples and docs).
 
-<h2>Optimizing collisions</h2>
+<?php echo $toc->html_section(); ?>
 
-<p>We use an octree based on 3D model triangles for a precise collisions
-detection with a level. For other objects, we use bounding volumes
+<p>We build an octree (looking at exact triangles in your 3D model)
+for precise collision detection with a level.
+For other objects, we use bounding volumes
 like boxes and spheres. This means that the number of shapes doesn't
 matter much for collision speed. However, number of triangles still
 matters for level.
@@ -180,7 +188,7 @@ collisions with complicated objects. See
 <tt>demo_models/vrml_2/collisions_final.wrl</tt>
 inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
 It's really trivial
-in X3D, and we support in 100% &mdash; I just wish there was a way to
+in X3D, and we support it 100% &mdash; I just wish there was a way to
 easily set it from 3D modelers like Blender. Hopefully we'll get
 better X3D exporter one day. Until them, you can hack X3D source, it's
 quite easy actually. And thanks to using X3D Inline node, you can keep
@@ -191,10 +199,23 @@ files around the demo models.
 <p>You can adjust the parameters how the octree is created. You can
 <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_octree_properties">set octree
 parameters in VRML/X3D file</a> or by ObjectPascal code.
-But in practice I usually find that the default values are optimal,
+Although in practice I usually find that the default values are really good.
+<!--found that the default values are optimal
 for a wide range of scenes.
+-->
 
-<h2>Profiling</h2>
+<?php echo $toc->html_section(); ?>
+
+<p>We do not have any engine-specific tool to measure memory usage or
+detect memory problems, as there are plenty of them available with
+FPC+Lazarus already. To simply see the memory usage, just use process
+monitor that comes with your OS. To detect memory leaks, be sure to
+use FPC <tt>HeapTrc.pas</tt> (compile with <tt>-gl -gh</tt>). See also Lazarus units
+like <tt>LeakInfo</tt>. Finally, you can use full-blown memory profilers like
+valgrind's massif with FPC code (see section "Profiling" lower in this
+tutorial).
+
+<?php echo $toc->html_section(); ?>
 
 <p>You can use any FPC tools to profile your code, for memory and
 speed. There's a small document about it in engine sources, see
