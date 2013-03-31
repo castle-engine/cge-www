@@ -23,6 +23,7 @@ test pages) and note that view3dscene automatically downloads the model, as well
   Not only in VRML/X3D everything is an url. Also inside level.xml and resource.xml. For example, you could distribute now a level.xml file that contains URLs to levels on your server, downloaded each time.
   (TODO: make scene etc. in level.xml really URLs)
   Also data: URI handling is now more uniform.
+  Also the engine uses now MIME types more, instead of merely file extensions. This makes us work with http transfers, and also improved cooperation with data: URIs.
 * Our message boxes inside CastleWindow support OS clipboard (Ctrl + X, Ctrl + C, Ctrl + V). Especially useful to copy/paste URLs between view3dscene Ctrl+L ("Open URL" menu item, like in WWW browsers) and other programs. For developers: use Clipboard.AsText property.
 */
 
