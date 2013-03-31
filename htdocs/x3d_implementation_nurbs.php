@@ -39,6 +39,10 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>
 
+<p><?php echo x3d_node_link('NurbsTrimmedSurface'); ?>
+ has only partial support: it is rendered just like <tt>NurbsPatchSurface</tt>,
+ignoring <tt>trimmingContour</tt>.</p>
+
 <?php echo $toc->html_section(); ?>
 
 <p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p>
