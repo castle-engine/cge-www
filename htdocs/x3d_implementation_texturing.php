@@ -502,7 +502,7 @@ without any answer so far.)</p>
     in which case it describes behavior for both RGB and alpha channel.
     This string may also contain two mode names,
     separated by a comma or slash (like <tt>"MODULATE / REPLACE"</tt>),
-    in which case a separate bevahior is specified for RGB channels and
+    in which case a separate behavior is specified for RGB channels and
     for alpha channel.
 
     <p>The table in section above
@@ -767,7 +767,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <tt
     DXT3 / DXT5 are always treated like a texture with full range
     alpha channel (so they will be rendered with blending).</p>
 
-    <p>Both normal (2D) textures and cube maps may be compressed. (There is no compression possible for 3D textures &mdash; neighter DDS format allows it, nor do common graphic cards.)</p></li>
+    <p>Both normal (2D) textures and cube maps may be compressed. (There is no compression possible for 3D textures &mdash; neither DDS format allows it, nor do common graphic cards.)</p></li>
 
   <li><p>Float textures are for now not supported, so our DDS reader also
     doesn't support them.</p></li>
