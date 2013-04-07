@@ -14,6 +14,7 @@
       new TocItem('Demos', 'demos'),
       new TocItem('Supported nodes', 'support'),
       new TocItem('Supported image file formats', 'support_formats'),
+      new TocItem('RGB texture color by default modulates material color', 'default_texture_mode'),
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'multi_texturing_clarifications', 1),
       new TocItem('MultiTexture.source extensions', 'multi_texturing_source', 1),
@@ -54,30 +55,6 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     extension description', 'x3d_extensions',
     'section_ext_alpha_channel_detection'); ?> for details.
     The bottom line is: everything will magically work fast and look perfect.
-
-    <p><a name="default_texture_mode_modulate"></a><b>Note
-    about REPLACE vs MODULATE modes</b>: VRML 2 / X3D specifications
-    say that RGB textures should <tt>REPLACE</tt> the color (as opposed
-    to <tt>MODULATE</tt> the color from lighting calculations, material etc.).
-    The problem with that is that this makes RGB textures nearly useless
-    in typical 3D world (when you usually expect textured surfaces to be
-    properly lit, regardless of RGB or grayscale format).
-    That's why the default engine behavior contradicts the specification:
-    it's <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
-    like a grayscale texture.</p>
-
-    <p>I didn't decide it lightly (noone likes
-    to deliberately contradict the specification...), but I think this case
-    is justified &mdash; <tt>MODULATE</tt> behavior is much more useful and usually
-    desired, IMO. Feel welcome to send me emails and argument against this.
-    After all, I'm trying to fit the needs of most people with default
-    behavior. If many people think that specification is right and I'm dumb,
-    and the default behavior should follow the spec and be <tt>REPLACE</tt>,
-    I'll obey :)</p>
-
-    <p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
-    GL_REPLACE</i> to change this (from code, use
-    <tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).</p>
 
   <li><p><?php echo x3d_node_link('MovieTexture'); ?>
 
@@ -177,6 +154,85 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 for the full list of 2D image formats we can handle.
 See <a href="#section_dds">lower on this page for details about DDS format
 support</a>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>VRML 2 / X3D specifications
+say that RGB textures should by default <tt>REPLACE</tt> the material color (as opposed
+to <tt>MODULATE</tt>).
+This is when no multi-texturing is used.
+This is said by the specification at tables
+<i>"Table 17.2 — Unlit colour and alpha mapping"</i> and
+<i>"Table 17.3 — Lit colour and alpha mapping"</i>: note that RGB and RGBA texture
+colors are not multiplied by color from <tt>Material.diffuseColor</tt>
+or <tt>Color</tt> nodes.
+Also spec about Color nodes (11.4.2 Color, 11.4.3 ColorRGBA) says explicitly
+that <i>"RGB or RGBA textures take precedence over colours; specifying both
+an RGB or RGBA texture and a Color* node for geometric shape will
+result in the Color* node being ignored."</i>.
+
+<p>Problems with the specification text:
+
+<ol>
+  <li>It makes <tt>Material.diffuseColor</tt> and <tt>Color</tt>
+    useless with RGB textures, which is a shame. GPUs do not have such limitations.
+  <li>It is inconsistent with <tt>MultiTexture</tt> behavior,
+    when the modulate mode is the default &mdash; regardless if we have
+    RGB or grayscale texture.
+  <li>In case of our current implementation,
+    the texture color is mixed with the whole resulting lighting calculation.
+    Using the "replace" mode by default would mean that shapes are unlit
+    when you use RGB textures.
+</ol>
+
+<p>That's why our default engine behavior contradicts the specification:
+it's always <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
+like a grayscale texture.
+
+<p>To test this in your own browser, load the test file
+<tt>lights_materials/material_color_mixed_with_texture_color.x3dv</tt>
+from <?php
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
+
+<p>Results on other browsers:
+<ul>
+  <li><p><i>FreeWRL 1.22.13</i> seems to never mix texture color with <tt>Material.diffuseColor</tt>
+    (for both RGB (correct) and grayscale (incorrect) textures),
+    and always mixes texture color with <tt>Color</tt> node
+    (for both RGB (incorrect) and grayscale (correct) textures).
+
+  <li><p><i>InstantPlayer 2.2.0</i> doesn't mix texture color with <tt>Material.diffuseColor</tt>
+    for RGB textures (correct) and does mix with grayscale textures (correct).
+    However, it always mixes texture color with <tt>Color</tt>
+    (for both RGB (incorrect) and grayscale (correct) textures).
+
+  <li><p>In contrast, <i>view3dscene and our engine</i> always mixes the
+    <tt>Material.diffuseColor</tt> (or <tt>Color</tt> node, if given) with texture color,
+    regardless if the texture is grayscale or RGB.
+    This makes us contradict the X3D spec in cases of RGB textures.
+</ul>
+
+<p>As you can see, noone seems to follow the spec 100% here.
+And that's understandable, because the spec behavior is a little useless.
+
+<?php /*
+
+<p>I didn't decide it lightly (noone likes
+to deliberately contradict the specification...), but I think this case
+is justified &mdash; <tt>MODULATE</tt> behavior is much more useful and usually
+desired, IMO. Feel welcome to send me emails and argument against this.
+After all, I'm trying to fit the needs of most people with default
+behavior. If many people think that specification is right and I'm dumb,
+and the default behavior should follow the spec and be <tt>REPLACE</tt>,
+I'll obey :)</p>
+
+*/ ?>
+
+<p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
+GL_REPLACE</i> to change this (from code, use
+<tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).
+But note that this doesn't give you spec-complaint behavior,
+as the shapes with RGB textures in this case will become simply unlit.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -543,6 +599,123 @@ without any answer so far.)</p>
   <li><p><tt>MODULATEINVCOLOR_ADDALPHA</tt> refers
     to non-existing mode
     <tt>MODULATECOLOR_ADDALPHA</tt> (that doesn't invert the color).
+
+  <li><p>The definition of <tt>source="DIFFUSE"</tt>
+    and <tt>source="SPECULAR"</tt> doesn't play nicely with lighting.
+
+    <p>Reading the definitions of
+    <tt>source="DIFFUSE"</tt>
+    and <tt>source="SPECULAR"</tt>
+     it would seem that X3D specification
+    forces the Gouraud shading (calculate lighting at each vertex,
+    not pixel). Which is unacceptable, and I'm absolutely sure that all X3D
+    browsers ignore it. Most browsers, including ours,
+    allow to choose Gouraud shading or Phong shading.
+    The default shading depends on hardware capabilities, user settings,
+    and maybe other X3D features (like our extensions to
+    <?php echo a_href_page_hashlink('force Phong shading', 'x3d_extensions',
+    'section_ext_shading'); ?>
+    or <?php echo a_href_page_hashlink('use bump mapping', 'x3d_extensions',
+    'section_ext_bump_mapping'); ?>).
+    In any case, the shading definitely should <b>not</b> depend on whether
+    we use multi-texturing or not.
+
+    <p>Also, reading their descriptions it would seem that texture is applied
+    <b>after</b> performing lighting calculation. Which contradicts
+    the lighting equations in
+    X3D spec <i>"17.2.2.4 Lighting equations"</i>,
+    that clearly say that textures affect the diffuse color which is then
+    used for lighting.
+
+    <p><i>Our proposed solution:</i>
+
+    <ol>
+      <li><p>At the very least, just change description of these source values
+        to not talk about Gouraud shading.
+        Just say for <tt>source="DIFFUSE"</tt>,
+        <i>"The texture argument is the interpolated material diffuse color."</i>.
+        And analogously for specular.
+        <b>Do not talk about Gouraud shading here</b>, because
+        1. you do not want to force Gouraud shading and
+        2. according to X3D lighting spec, the texture color calculation
+        should happen before the shading.
+
+      <li><p>Moreover, speaking about diffuse or specular colors
+        at this point doesn't really make much sense.
+        According to
+        lighting equations from X3D spec <i>"17.2.2.4 Lighting equations"</i>,
+        the texture color only changes (replaces or modulates) the material diffuse
+        color, which is then used inside lighting equations.
+
+        <p>This means that <tt>source="SPECULAR"</tt> doesn't make much
+        practical sense. Why use the specular color inside diffuse factor
+        calculation?
+
+        <p>It would be best to remove <tt>source="DIFFUSE"</tt>
+        and <tt>source="SPECULAR"</tt> and add <tt>source="MATERIAL"</tt>,
+        with the meaning <i>This is the Material diffuse color
+        (eventually replaced with the <tt>Color</tt> or <tt>ColorRGBA</tt>
+        node). The result of multi-texturing is the calculated diffuse color
+        used as <tt>I<sub>rgb</sub></tt> and <tt>A</tt> parameters inside
+        lighting equations. This color is then used for subsequent
+        lighting calculations (is multiplied by diffuse factor,
+        summed with specular, multiplied by light color and summed for all lights,
+        and so on)."</i>
+      </li>
+
+      <li><p>In all of this, there is also a recurring problem
+        of X3D lighting specification.
+
+        <p>The implementations that use Gouraud shading (for example,
+        OpenGL fixed-function implementations) do not really
+        implement the X3D lighting equations.
+        It's not possible, really.
+        Textures have to be mixed <b>after</b> lighting calculation
+        in case of Gouraud shading.
+        Which means that we have to calculate non-textured source color,
+        with lighting (with all diffuse and specular and all lights already summed),
+        and only then it can be used for textures.
+
+        <p>This is actually a problem of X3D lighting specification,
+        for which we have no simple solution (it would require changing
+        the lighting equations). Anyway, it makes the
+        <tt>source="MATERIAL"</tt> sound more sensible than
+        <tt>source="DIFFUSE"</tt> and <tt>source="SPECULAR"</tt>:
+        in cases of these implementations, the source <i>must</i> already
+        include both diffuse and specular.
+
+      <li><p><i>Our current implementation</i>: Currently our implementation
+        always mixes the textures <b>after</b> lighting calculation.
+        Just like described above for Gouraud shading.
+        We do it also in case of Phong shading for now (for consistency),
+        although the Phong shading may be fixed one day.
+
+        <p>We treat both <tt>source="DIFFUSE"</tt>
+        and <tt>source="SPECULAR"</tt> as equal, and actually they just
+        mean "the result of lighting equations (for non-textured appearance)".
+    </ol>
+  </li>
+
+  <li><p>The default mode is always modulate, for both RGB and grayscale textures.
+    This is inconsistent with single-texturing (using normal
+    <tt>ImageTexture</tt> instead of <tt>MultiImageTexture</tt>),
+    when the default mode is to <i>modulate</i> for grayscale textures,
+    but <i>replace</i> for RGB textures. This means that you cannot blindly
+    change <tt>ImageTexture</tt> node into a <tt>MultiImageTexture</tt> node
+    (with a single <tt>ImageTexture</tt> inside): because the default mode
+    (possibly) changed.
+
+    <p><i>Our solution:</i> In this case, I propose to change the
+    specification parts related to single-texturing (<tt>ImageTexture</tt>),
+    and leave existing multi-texturing spec unchanged.
+    That is, always <i>modulate</i> by default (regardless if texture
+    is RGB or grayscale).
+
+    <p>See <a href="#section_default_texture_mode">RGB texture color by default
+    modulates material color</a> for a more detailed description of this problem.
+    Existing browsers already disagree on this. Changing the spec to say
+    <i>"we always modulate by default"</i> would greatly simplify the situation.
+  </li>
 </ol>
 
 <?php echo $toc->html_section(); ?>
