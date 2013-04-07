@@ -83,6 +83,10 @@ This is usually slower but also more beautiful than default
     </p></li>
 </ul>
 
+<p>Note that you can use
+<?php echo a_href_page_hashlink('our extension to force Phong shading on particular
+shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
+
 <?php echo $toc->html_section(); ?>
 
 <p>Using shader pipeline (forced on everything by
@@ -90,7 +94,9 @@ This is usually slower but also more beautiful than default
 automatically for shapes using
 <?php echo a_href_page('shadow maps', 'x3d_extensions_shadow_maps'); ?>
  or
-<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>)
+<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>
+ or
+ <?php echo a_href_page_hashlink('requesting Phong shading', 'x3d_extensions', 'section_ext_shading'); ?>)
  requires a good graphic card with latest drivers.
 <!--This means that they work much better than previously (where
 sometimes I used simplified dumb shaders, and sometimes default
@@ -111,7 +117,7 @@ latest drivers from</p>
 above sites.
 On Linux and Mac OS X, it should be enough to make sure you use the
 latest version of your system, with all updates applied. On Linux,
-you <i>may</i> need to install the proprietary drivers to squeeze best
+you <i>may</i> need to install the proprietary OpenGL drivers to squeeze best
 performance from your NVidia/Radeon GPU. (Although latest <a
 href="http://www.mesa3d.org/">Mesa</a> may also be quite capable
 of handling simpler stuff, even with shaders.)</p>
