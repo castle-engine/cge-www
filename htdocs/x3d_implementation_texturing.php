@@ -769,8 +769,12 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <tt
 
     <p>Both normal (2D) textures and cube maps may be compressed. (There is no compression possible for 3D textures &mdash; neither DDS format allows it, nor do common graphic cards.)</p></li>
 
-  <li><p>Float textures are for now not supported, so our DDS reader also
-    doesn't support them.</p></li>
+  <li><p>Reading float textures from DDS is for now not supported.
+    Our engine supports float textures (see TRGBFloatImage class),
+    but DDS reader doesn't support them yet. Please submit a feature request
+    (<?php echo a_href_page('through forum or ticket system', 'forum'); ?>),
+    preferably with some test images, if you need them.
+    </p></li>
 </ol>
 
 <p>If DDS file includes mipmaps, and mipmaps are required for texture minification filter, we will use DDS mipmaps (instead of generating mipmaps automatically). Works for all 2D, 3D, cubemap DDS files.</p>
