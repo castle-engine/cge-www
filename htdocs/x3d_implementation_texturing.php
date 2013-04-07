@@ -17,7 +17,7 @@
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
       new TocItem('Precise and corrected MultiTexture.mode specification (aka "how do we handle it")', 'multi_texturing_clarifications', 1),
       new TocItem('MultiTexture.source extensions', 'multi_texturing_source', 1),
-      new TocItem('Problems with existing X3D MultiTexture.mode specification', 'multi_texturing_spec_problems', 1),
+      new TocItem('Problems with existing X3D MultiTexture specification', 'multi_texturing_spec_problems', 1),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds'),
     ));
   $toc->echo_numbers = true;
@@ -373,36 +373,42 @@ MultiTexture {
 
 <?php echo $toc->html_section(); ?>
 
-<p>Unfortunately, X3D specification is awfully ambiguous
-when talking about multi-texturing modes.
-Below is my list of spotted problems, and an explanation how we handle it in our
-engine (for a short summary, modes table in section above should also
-be informative).
-I tried to make my implementation following common-sense,
-hopefully it will be somewhat compatible to other implementations
-and at the same time comfortable to users.
+<p>X3D specification about multi-texturing has a couple of problems.
+Below is a list of spotted problems, and an explanation how we handle it in our
+engine (<?php echo a_href_page("Castle Game Engine", "engine"); ?>
+ and <?php echo a_href_page("view3dscene", "view3dscene") ?>).
+For a short summary, modes table in section above (<i>Precise
+and corrected MultiTexture.mode specification</i>) should also be useful.
+You probably want to read this along with
+<a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/texturing.html#MultiTexture">MultiTexture
+specification in X3D 3.2</a>
+(or
+<a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/texturing.html#MultiTexture">MultiTexture
+specification in X3D 3.3</a>, there weren't any important changes since X3D 3.2).
 
-<p>Please report if any other VRML/X3D browser treats it differently,
-although it doesn't necessarily mean that I will fix to be compatible
-(I know that Octaga seems to revert the order of textures, for starters,
-which seems to contradict the spec... No wonder people get this messed
-up, since specification is so poor at this point.)</p>
+<p>Please report if any other X3D browser treats it differently.
+Unfortunately, existing browsers already show incompatibilities around
+multi-texturing (for example, Octaga seems to revert the order of textures
+compared to all other browsers).
+Our implementation tries to follow common sense (do what is useful for authors and maps
+naturally on GPUs) and majority of existing implementations.
+</p>
 
-<p>(And if you have any power over the spec, please fix issues mentioned
-below in the next version.
-<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=775">It
-seems I'm not the only one confused by specs</a>.
-<a href="http://www.web3d.org/message_boards/viewtopic.php?f=1&amp;t=1387">I
-posted on forum asking for input about this</a>, without any answer so far.)</p>
+<p>(If you have any power over the X3D spec, please fix issues mentioned
+below. I posted about this on Web3d forums (no longer accessible) and x3d-public
+mailing list and to "X3D specification comment form",
+without any answer so far.)</p>
+
+<p>Specification problems and our solutions:</p>
 
 <ol>
   <li><p><i>The mode field may contain an additional blending mode
     for the alpha channel.</i> &mdash; this is the most troublesome
-    part of the specification. It contradicts most of the remaining
-    specification for MultiTexture node &mdash; other parts clearly
+    sentence of the <tt>MultiTexture</tt> specification. It contradicts most of the remaining
+    specification for <tt>MultiTexture</tt> node. Other spec parts clearly
     suggest that exactly one mode string corresponds to one texture unit,
     for example 1. it's mentioned explicitly that
-    if the mode.length is less than texture.length,
+    if the <tt>mode.length</tt> is less than <tt>texture.length</tt>,
     remaining modes should be assumed as "modulate" 2. many modes
     are clearly used over both RGB and Alpha channels, and they
     specify results for both RGB and Alpha channels.</p>
@@ -412,31 +418,42 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 
     <p>What did the authors meant by the word <b>may</b>
     in the sentence "may contain an additional blending mode"?
-    Expecting two mode strings for one texture unit
-    clearly contradicts the spec, expecting only 1 mode means that
-    no mode specific for alpha channel is available.
-    Doing some smart detection when to expect the next mode to be
-    for alpha channel seems very risky &mdash; since the specification
-    says absolutely nothing about it. Should I expect separate
-    mode for alpha channel only when
-    the texture in current unit has some alpha channel?
-    This isn't as sensible on the 2nd look, since operating on alpha channel
-    in multi-texturing makes sense even if current texture unit
-    doesn't provide any (after all, alpha may come from previous unit,
-    or constant).</p>
 
-    <p>Not to mention that some modes are clearly not possible for
-    alpha channel.</p>
+    <ul>
+      <li>Expecting two mode strings for one texture unit
+        clearly contradicts the spec.
+      <li>Expecting a single mode string for one texture unit means that
+        no mode specific for alpha channel is available.
+      <li>Smart detection when to expect the next mode to be
+        for alpha channel (for example expect the additional mode for alpha channel
+        only when texture image has alpha channel) is also a bad idea.
+        First, because the specification
+        says absolutely nothing about it.
+        Second, because operating on alpha channel
+        makes sense even if the image in the current texture unit
+        doesn't have alpha channel (because alpha may come from previous
+        texture unit, or from a constant).</p>
+    </ul>
 
-    <p><i>Our interpretation:</i> One string inside the mode field
-    always describes behavior for both RGB and alpha channel.
-    So <i>one string inside mode field always corresponds to one
-    texture unit, Ok?</i>.
+    <p>Also, some modes are clearly not possible (or sensible) for
+    the alpha channel alone. For example, it doesn't make much sense to apply
+    modes like <tt>DOTPRODUCT3</tt> or <tt>BLEND*</tt> only to
+    the alpha channel.</p>
 
-    <p>To allow different modes for RGB and alpha channel,
-    you should just write two mode names inside one string, and separate
-    them by a comma or slash. Like <tt>"MODULATE / REPLACE"</tt>.
-    See the modes table in previous section for a list of all possible values.</p>
+    <p><i>Our interpretation: a single string inside mode field
+    <b>always</b> corresponds to exactly <b>one</b> texture unit</i>.
+    This string may be a simple name of the mode (like <tt>"MODULATE"</tt>),
+    in which case it describes behavior for both RGB and alpha channel.
+    This string may also contain two mode names,
+    separated by a comma or slash (like <tt>"MODULATE / REPLACE"</tt>),
+    in which case a separate bevahior is specified for RGB channels and
+    for alpha channel.
+
+    <p>The table in section above
+    (<i>Precise and corrected MultiTexture.mode specification</i>)
+    contains the exact equations for all the modes,
+    when used for both RGB and alpha or when used for only RGB
+    or only alpha.
 
   <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
     is specified as "Arg2", which makes no sense. Arg2 comes
@@ -454,42 +471,62 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
 
     <p><i>Our interpretation:</i> "REPLACE" copies the "Arg1" (that is,
     current texture unit values). IOW, it's equivalent to "SELECTARG1".
-    To make it absolutely clear, it would also help if the spec
+
+    <p>To make it absolutely clear, it would also help if the spec
     would clearly say something along
-    the lines "Arg1 is the current texture unit, Arg2 is what is determined
-    by the source field (by default, it's previous tex unit (or mat color
-    for 1st unit))".</p>
+    the lines <i>"Arg1 is the current texture unit, Arg2 is what is determined
+    by the source field (by default, it's previous texture unit (or material color
+    for 1st texture unit))"</i>. This would also make it clear what is the indented
+    order of texture units (and would clarify that Octaga "reversed order"
+    is incorrect &mdash; everyone else does it correctly).
+    </p>
 
-  <li><p>The meaning of "ADDSIGNED" and "ADDSIGNED2X" is unsure.
+  <li><p>The meaning of <tt>ADDSIGNED</tt> and <tt>ADDSIGNED2X</tt> modes is not clear.
     Spec doesn't give the exact equation, and from the wording description
-    it's not clear whether the -0.5 bias is applied to the sum,
-    or each component.</p>
+    it's not clear whether the -0.5 bias is applied to the sum
+    (<tt>Arg1 + Arg2 - 0.5</tt>),
+    or each component
+    (<tt>Arg1 - 0.5 + Arg2 - 0.5 = Arg1 + Arg2 - 1.0</tt>).
+    The first interpretation seems more reasonable,
+    and it follows OpenGL <tt>GL_ADD_SIGNED</tt> behavior.</p>
 
-    <p>Note that no interpretation results in the output
-    range of values in -0.5 ... 0.5, so it's not clear what is the "effective"
-    range they talk about in "ADDSIGNED" spec.</p>
+    <p>Neither interpretation results in the output
+    range of values in -0.5 ... 0.5.
+    The claim <i>making the effective range of values from −0.5 through 0.5</i>
+    (at the <tt>ADDSIGNED</tt> value in table 18.3) doesn't seem to make
+    any sense, regardless how you try to interpret it.</p>
 
     <p><i>Our interpretation:</i> I interpret it
     as "-0.5 bias is added to the sum",
-    this follows OpenGL GL_ADD_SIGNED constant, so I guess this
+    this follows OpenGL <tt>GL_ADD_SIGNED</tt> constant, so I guess this
     was the intention of the spec.</p>
 
-  <li><p>Although some modes say explicitly what happens with
-    alpha channel, some do not. This is especially visible with
-    "subtract" mode, that will subtract alphas making resulting
-    alpha = 0 for the most common situation when both textures
-    have alpha = 1.</p>
+  <li><p>Some modes say explicitly what happens with
+    alpha channel, but some do not. This is especially troublesome
+    in case of the "subtract" mode, that will subtract alphas making resulting
+    alpha = 0 (invisible) for the most common situation when both textures
+    have alpha = 1 (opaque).</p>
 
-    <p><i>Our interpretation:</i>  I interpret this all as operating on all
-    RGBA channels the same way. Comparing with Octaga, results
-    for "subtract" seem equal this way: with default alphas = 1,
+    <p><i>Our interpretation:</i>  See point 1.
+    If you specify a simple mode name,
+    then it applies to <i>both</i> RGB and alpha channels.
+    Comparing with Octaga, our results
+    for "subtract" are equal this way: with default alphas = 1,
     result gets alpha = 0.</p>
 
-    <p>If you don't like this behavior, you can specify
-    separate mode names for RGB and alpha channel, separating them by a slash.
-    For example, <tt>"SUBTRACT / MODULATE"</tt> will subtract RGB but modulate alpha.</p>
+    <p>This interpretation is consistent.
+    In most cases, it also matches "what the author expects".
+    The one exception is the "subtract" operation,
+    when you usually do not want to subtract alphas &mdash;
+    authors should just remember that <i>usually</i>
+    they want subtract only RGB, using mode like
+    <tt>"SUBTRACT / MODULATE"</tt>.
 
-  <li><p>It's not specified what channels are inverted by function="COMPLEMENT"
+    <p>The table in section above
+    (<i>Precise and corrected MultiTexture.mode specification</i>)
+    makes it clear how to use each mode for only RGB, or only alpha, or both.
+
+  <li><p>It's not specified what channels are inverted by <tt>function="COMPLEMENT"</tt>
     value. Only RGB seems most sensible (that's what would seem
     usually useful), but it's not written explicitly.
 
@@ -497,14 +534,14 @@ posted on forum asking for input about this</a>, without any answer so far.)</p>
     that is not invert alpha channel. Although for now "function" field
     is not handled.
 
-  <li><p>Oh, by the way: the paragraphs for <tt>MultiTextureTransform</tt>
+  <li><p>The paragraphs for <tt>MultiTextureTransform</tt>
     (<i>texture coordinates for channel 0 are replicated...</i>)
     and <tt>MultiTextureCoordinate</tt>
     (<i>identity matrices are assumed...</i>) should be swapped in
-    the spec :)
+    the spec.
 
-  <li><p>Another note: <tt>MODULATEINVCOLOR_ADDALPHA</tt> mentions
-    that another mode, somehow forgotten, should exist:
+  <li><p><tt>MODULATEINVCOLOR_ADDALPHA</tt> refers
+    to non-existing mode
     <tt>MODULATECOLOR_ADDALPHA</tt> (that doesn't invert the color).
 </ol>
 
