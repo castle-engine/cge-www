@@ -31,11 +31,6 @@ e.g. is your graphic card able to provide 16-bit stencil buffer.</p>
   -s / --stencil-bits STENCIL-BUFFER-BIT-SIZE
   -a / --alpha-bits ALPHA-CHANNEL-BIT-SIZE
   -d / --depth-bits DEPTH-BUFFER-BIT-SIZE
-  --accum-red-bits ACCUM-RED
-  --accum-green-bits ACCUM-GREEN
-  --accum-blue-bits ACCUM-BLUE
-  --accum-alpha-bits ACCUM-ALPHA
-  --accum-bits ACCUM-RED ACCUM-GREEN ACCUM-BLUE ACCUM-ALPHA
   --multi-sampling SAMPLES
     (1 means "no multisampling")
   --single
