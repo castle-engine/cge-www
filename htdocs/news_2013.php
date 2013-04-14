@@ -24,7 +24,9 @@ test pages) and note that view3dscene automatically downloads the model, as well
   (TODO: make scene etc. in level.xml really URLs)
   Also data: URI handling is now more uniform.
   Also the engine uses now MIME types more, instead of merely file extensions. This makes us work with http transfers, and also improved cooperation with data: URIs.
-* Our message boxes inside CastleWindow support OS clipboard (Ctrl + X, Ctrl + C, Ctrl + V). Especially useful to copy/paste URLs between view3dscene Ctrl+L ("Open URL" menu item, like in WWW browsers) and other programs. For developers: use Clipboard.AsText property.
+* Our message boxes inside CastleWindow support OS clipboard (Ctrl + X, Ctrl + C, Ctrl + V). Especially useful to copy/paste URLs between view3dscene Ctrl+L ("Open URL" menu item, like in WWW browsers) and other programs. For developers: use Clipboard.AsText property. Implemented for CastleWindow WinAPI, GTK, LCL backends.
+* Rename our event Idle to Update.
+  This reflects our implementation and usage of this event clearer. This event is for continous tasks, called even when the application is not "idle" (when application is processing something, like mouse moves). Our Update event doesn't correspond 100% to normal (as used by LCL or GTK) meaning of "idle" (which is also evidenced by code if TCastleWindow LCL and GTK backends, that cannot simply use LCL/GTK "idle" concepts to implement our Update).
 */
 
 array_push($news,
