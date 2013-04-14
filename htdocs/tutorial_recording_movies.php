@@ -25,7 +25,7 @@ per second.
 '// in a loop:
 begin
   SceneManager.MainScene.IncreaseTime(FrameTime);
-  SceneManager.Camera.Idle(FrameTime, true, DummyBooleanInitializedToTrue);
+  SceneManager.Camera.Update(FrameTime, true, DummyBooleanInitializedToTrue);
 
   { capture and save screen as before, like: }
   Image := Control.SaveScreen;
@@ -48,11 +48,11 @@ can remove the <tt>"MainScene.IncreaseTime"</tt> call, if you know that your
 scene stays static (or you want to force it to look like static), and
 want to animate only camera. Or the other way around, if your camera
 is static (or you want to force it to be static) but you have an
-animation in VRML/X3D, you can remove the <tt>"Camera.Idle"</tt> line.
+animation in VRML/X3D, you can remove the <tt>"Camera.Update"</tt> line.
 
 <p><tt>FrameTime</tt> is a constant saying how many seconds passed between frames.
 Both <tt>TCastleSceneCore.IncreseTime</tt> and
-<tt>TCamera.Idle</tt> take it's time argument in seconds. Don't worry, this
+<tt>TCamera.Update</tt> take it's time argument in seconds. Don't worry, this
 is a float, so actually it honors fractions of seconds as well.
 So something like <tt>FrameTime := 1/25</tt> to get 25 frames per second will work
 perfectly Ok.

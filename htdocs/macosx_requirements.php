@@ -100,10 +100,10 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
     </ul>
 
   <li><p>Bad: There are issues with LCL event loop. Some of them
-    (not being able to get Idle events continously) are in bare LCL,
+    (not being able to get Update events continously) are in bare LCL,
     some of them (the need to call Application.Run, not just loop
     using Application.ProcessMessages) are specific to LCL-Carbon.
-    TODO: Idle issues (may be observed when using mouse look or
+    TODO: Update issues (may be observed when using mouse look or
     dragging with mouse) may be workarounded on our side.
 
     <p>For this reason, if you make normal game (that doesn't need

@@ -107,7 +107,7 @@ Window.Controls.Remove(GameMenu);
 SceneManager.Paused := false;'); ?>
 
 <p>As the scene manager handles a lot of stuff automatically,
-processing events and calling Idle methods of all 3D objects periodically,
+processing events and calling Update methods of all 3D objects periodically,
 pausing it effectively pauses your whole 3D world, while still allowing
 it to be displayed as a background under the on-screen menu.
 Alternatively you could also hide the 3D world entirely,
