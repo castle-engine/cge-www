@@ -104,7 +104,9 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
     some of them (the need to call Application.Run, not just loop
     using Application.ProcessMessages) are specific to LCL-Carbon.
     The former (Update issues when using mouse look or
-    dragging with mouse) are actually workarounded on our side now.
+    dragging with mouse) is somewhat workarounded on our side now
+    (to not "stutter" when using mouse look), but the problem is still
+    noticeable (mouse look under other TCastleWindow backends is much smoother).
 
     <p>For this reason, if you make normal game (that doesn't need
     any menu or dialog boxes) you may still consider using
