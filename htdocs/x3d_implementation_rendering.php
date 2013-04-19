@@ -32,8 +32,9 @@
 
     <p><?php echo x3d_node_link('PointSet'); ?>
 
-    <p><i>TODO</i>: missing is only the implementation of new X3D fields
-    <tt>attrib</tt> and <tt>fogCoord</tt>.
+    <p>Support includes the implementation of new X3D fields
+    <tt>attrib</tt> (per-vertex attributes for shaders)
+    and <tt>fogCoord</tt> (per-vertex fog depth).
 
     <p><i>TODO</i>: for <tt>TriangleFanSet</tt> and <tt>TriangleStripSet</tt>,
     a special constraint is present: if you will use colors
