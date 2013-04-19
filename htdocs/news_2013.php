@@ -55,11 +55,11 @@ array_push($news,
     </ul>
   -->
 
-  <li><p>Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supprting it. <!--By "support" I mean that you can see new options now in view3dscene <i>Preferences->Anti-Aliasing</i>, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.-->
+  <li><p>Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supporting it. <!--By "support" I mean that you can see new options now in view3dscene <i>Preferences->Anti-Aliasing</i>, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.-->
 
   <li><p>Renamed our event <tt>Idle</tt> to <tt>Update</tt>.
 
-    <p>This reflects our implementation and usage of this event clearer. This event is for continous tasks, called even when the application is not "idle" (when application is processing something, like mouse moves). Our <tt>Update</tt> event doesn\'t correspond 100% to normal (as used by LCL or GTK) meaning of "idle" (which is also evidenced by code if TCastleWindow LCL and GTK backends, that cannot simply use LCL/GTK "idle" concepts to implement our Update).
+    <p>This reflects our implementation and usage of this event clearer. This event is for continuous tasks, called even when the application is not "idle" (when application is processing something, like mouse moves). Our <tt>Update</tt> event doesn\'t correspond 100% to normal (as used by LCL or GTK) meaning of "idle" (which is also evidenced by code if TCastleWindow LCL and GTK backends, that cannot simply use LCL/GTK "idle" concepts to implement our Update).
 
   <li><tt>TCastleControl.AggressiveUpdate*</tt> are removed. The (simplified and improved) version of this mechanism is now always "on" and automatically makes mouse look work better. It\'s still not perfect (it seems LCL event loop is just too slow to process events during mouse look fast enough), but it\'s better now. If you want perfectly smooth mouse look, you should still consider TCastleWindow instead of TCastleControl.
 </ol>
