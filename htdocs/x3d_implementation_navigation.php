@@ -35,55 +35,76 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Viewpoint'); ?></p>
+  <li><p><?php echo x3d_node_link('Viewpoint'); ?>,
+    <?php echo x3d_node_link('OrthoViewpoint'); ?>.
 
-    <p><i>Note</i>: view3dscene displays also nice menu allowing you to jump
-    to any defined viewpoint, displaying viewpoints descriptions.
+    <p>Supported.
 
-    <p>Animating viewpoint's position and orientation
-    (directly or by it's transformations) also works perfectly.</p>
+    <p><?php echo a_href_page("view3dscene", "view3dscene") ?>
+    displays a nice menu allowing you to jump
+    to any defined viewpoint, showing viewpoints' descriptions.
+    Animating viewpoint's position and orientation
+    (directly or by animating it's parent transformation) also works perfectly.</p>
 
-  <li><p><?php echo x3d_node_link('OrthoViewpoint'); ?>
+    <p>TODO: fields not implemented yet: <tt>jump</tt>, <tt>retainUserOffsets</tt>, <tt>centerOfRotation</tt>.
 
-    <p>TODO: Although it's handled, some fields are ignored for now:
-    jump, retainUserOffsets, centerOfRotation.
+    <ul>
+      <li><p>Support for <tt>centerOfRotation</tt> already exists in the engine
+        (<tt>TExamineCamera.CenterOfRotation</tt>),
+        so it should be easy to finish it (copy X3D <tt>Viewpoint.centerOfRotation</tt>
+        to <tt>TExamineCamera.CenterOfRotation</tt>).
+        But we may have to treat centerOfRotation = 0,0,0
+        as special value meaning "middle of the box", otherwise many models will
+        have weird navigation because they lack correct centerOfRotation value
+        (and the default is just zero).
+
+        <p>Suggestions and reports how does this work in other VRML/X3D browsers
+        are welcome.
+
+      <li><p>Support for <tt>jump</tt> and <tt>retainUserOffsets</tt> is probably easy, but someone
+        has to actually understand the X3D specification about them,
+        and explain how they are related to each other (and to
+        <tt>NavigationInfo.transitionType</tt>).
+        Suggestions and testcases and reports how do they work in other
+        VRML/X3D browsers are welcome.
+    </ul>
 
   <li><p><?php echo x3d_node_link('NavigationInfo'); ?></p>
 
-    <p>Nice transitions between viewpoints are supported,
-    honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields,
-    and making <tt>transitionComplete</tt> event.</p>
+    <p>Supported.
 
-    <p>Binding different <tt>NavigationInfo</tt> nodes,
-    and changing their exposed fields by events, of course works.</p>
-
-    <p>Various details about how we handle NavigationInfo node in
-    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
     <ul>
-      <li>Note that <tt>--camera-radius</tt> command-line option overrides
-        whatever was specified by <tt>avatarSize[0]</tt>.
-
-      <li><tt>avatarSize</tt> is honoured fully:
+      <li><p><tt>avatarSize</tt> is honoured fully:
         <ol>
-          <li>First value is the camera radius,
-          <li>2nd is the preferred height above the ground,
-          <li>3rd is the tallest object over which you can climb.
-            If this is missing (or it has value &lt;= 0) then there's no such
-            limit, and you can climb as long as you can move forward
-            (so you can climb the stairs with steps
-            almost as high as your own height minus the camera radius;
-            ignoring some other effects, like head bobbing,
+          <li><p>First <tt>avatarSize</tt> item is the camera radius.
+            If you use <?php echo a_href_page('view3dscene','view3dscene'); ?>,
+            note that <tt>--camera-radius</tt> command-line option overrides
+            this value.
+
+          <li><p>2nd <tt>avatarSize</tt> item is the preferred height
+            above the ground.
+
+          <li><p>3rd <tt>avatarSize</tt> item
+            is the tallest object over which you can climb.
+
+            <p>If this is missing (or it has value &lt;= 0) then there's no such
+            limit, and you can climb as long as you can move forward.
+            So you can climb the stairs with steps
+            almost as high as your own height minus the camera radius.
+            Simplifying (ignoring other effects, like head bobbing),
             you can say that avatarSize[2] is by default like
             avatarSize[1] - avatarSize[0]).
-            See TWalkCamera.ClimbHeight docs for more details about this.
+
+            <p>See TWalkCamera.ClimbHeight API docs for more details about this.
         </ol>
 
-      <li><tt>speed</tt> is honored as appropriate, it sets
+      <li><p><tt>speed</tt> field is supported, it sets
         the speed in meters/second. Speed = 0.0 is also correctly
         honored (user will not be able to move in Walk/Fly modes,
         only to rotate).
 
-      <li>navigation types fully supported are: <tt>EXAMINE</tt>, <tt>WALK</tt>,
+      <li><tt>type</tt> field is supported.
+        Navigation types fully supported are: <tt>EXAMINE</tt>, <tt>WALK</tt>,
         <tt>FLY</tt>, <tt>NONE</tt>.
 
         Inside the engine, the navigation paradigm is actually a little
@@ -97,10 +118,24 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         not around the <i>gravity</i> up vector,
         -->
 
-      <li>The presence of navigation type
-        <tt>ANY</tt> is not important for now (view3dscene always
-        shows controls to change navigation settings).
+        <p>As an extension, we also support new navigation mode <tt>ARCHITECTURE</tt>.
+        This is similar to the Examine mode, with controls comfortable
+        for viewing models that have a sense of floor/ground in the XZ plane,
+        and vertical axis in +Y. Implementation is not finished yet.
+
+        <p>The presence of navigation type
+        <tt>ANY</tt> is ignored by
+        <?php echo a_href_page('view3dscene','view3dscene'); ?>.
+        We always show controls to change navigation settings, hiding them
+        feels harmful to user.
+
+      <li><p>Nice transitions between viewpoints are supported,
+        honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields,
+        and (since view3dscene 3.13.0) making <tt>transitionComplete</tt> event.</p>
     </ul>
+
+    <p>Binding different <tt>NavigationInfo</tt> nodes,
+    and changing their exposed fields by events, of course works.</p>
 
     <p>When no <tt>NavigationInfo</tt> node is present in the scene:
     <ul>
@@ -118,11 +153,6 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p><i>TODO</i>: <tt>visibilityLimit</tt> may be ignored if shadow
     volumes are allowed (We use frustum with z-far in infinity then.)</p>
-
-    <p>As an extension, we support new navigation mode <tt>ARCHITECTURE</tt>.
-    This is similar to the Examine mode, with controls comfortable
-    for viewing models that have a sense of floor/ground in the XZ plane,
-    and vertical axis in +Y.
 
   <li><p><?php echo x3d_node_link('LOD'); ?>
 
