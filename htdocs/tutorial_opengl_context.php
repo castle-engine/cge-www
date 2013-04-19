@@ -15,8 +15,13 @@ context. There are two ways of doing this:
   <li><p><b>You can use our own <?php api_link('CastleWindow', 'CastleWindow.html'); ?>  unit</b>, that defines window class
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>.
     This gives you the best OpenGL capabilities, avoids some problems
-    with Lazarus application loop,
-    and is usually best for 3D games.</p>
+    with Lazarus application loop (for example, mouse look is smooth),
+    and is usually best for 3D games.
+    <!-- This way you don't get native-looking
+    controls (only menu bar and simple dialogs), but you can use OpenGL controls
+    (<?php api_link('CastleControls', 'CastleControls.html'); ?> unit),
+    which is usually OK for games. -->
+    </p>
 
     <p>You can develop such programs using Lazarus, or any other text
     editor. The only real requirement is having a
