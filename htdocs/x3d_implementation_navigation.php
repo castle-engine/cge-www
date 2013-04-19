@@ -51,8 +51,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   <li><p><?php echo x3d_node_link('NavigationInfo'); ?></p>
 
     <p>Nice transitions between viewpoints are supported,
-    honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields.
-    TODO: <tt>transitionComplete</tt> event is not generated for now.</p>
+    honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields,
+    and making <tt>transitionComplete</tt> event.</p>
 
     <p>Binding different <tt>NavigationInfo</tt> nodes,
     and changing their exposed fields by events, of course works.</p>

@@ -1,6 +1,7 @@
 <?php
 
 /* Next news:
+* NavigationInfo.transitionComplete support. Demo model in demo_models/navigation/transition_multiple_viewpoints.x3dv shows how to use it make an animated transition between a couple of viewpoints.
 */
 
 array_push($news,
