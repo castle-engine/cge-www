@@ -80,7 +80,7 @@ parts (99% of usage) of given level are covered.</p>
   <tr><td><?php echo a_href_page('Scripting'                       , 'x3d_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>
   <tr><td><?php echo a_href_page('Event utilities'                 , 'x3d_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Programmable shaders'            , 'x3d_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (GLSL language)</td></tr>
-  <tr><td><?php echo a_href_page('CAD geometry'                    , 'x3d_implementation_cadgeometry'         ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><?php echo a_href_page('CAD geometry'                    , 'x3d_implementation_cadgeometry'         ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Texturing3D'                     , 'x3d_implementation_texturing3d'         ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Cube map environmental texturing', 'x3d_implementation_cubemaptexturing'    ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td>Layering                 </td><td></td></tr>
