@@ -1,37 +1,70 @@
 <?php
 
 /* Next news:
-* There was a silent 4.0.1 release to fix compilation of CastleGLWindowsFonts unit, and do other minor fixes/improvements around font-related units and examples.
-* Improvements to 2D rendering (as it happens, they also mostly revolve around bitmap fonts):
-  - use SetWindowPos instead of glRasterPos almost everywhere (cleaner, better for future strict OpenGL >= 3, and avoids crashes with Mesa 9 --- at least with "OpenGL renderer string: Gallium 0.4 on AMD RV710" and "OpenGL version string: 2.1 Mesa 9.0.2" (on Ubuntu 12.10)).
-  - use PrintAndMove instead of Print, it's much more optimal.
-* Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supprting it. By "support" I mean that you can see new options now in view3dscene Preferences->Anti-Aliasing, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.
-* Mac OS X with native look! See macosx_requirements.php. If you have Mac OS X, please test our new releases.
-* Download resources from the network. http URLs work everywhere where previously only filenames (or data URIs) were allowed.
-  This is still a little non-user-friendly, as the downloading is blocking (the process waits for the download to finish, instead of letting your enjoy the game and download in the background; there isn't even any nice way to cancel the download, or even notification about it, except for --debug-log message). For this reason, it is disabled by default: you have to explicitly allow it by "Preferences->Download Resources From Network" (in code: CastleDownload.EnableNetwork variable).
-  For test, try e.g. these command-lines:
-<pre>
-view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/single-url.x3dv
-view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/256jpg.x3d
-view3dscene http://www.web3d.org/x3d/content/examples/ConformanceNist/Sounds/AudioClip/default_looptrue.x3dv
-</pre>
-(see
-http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/_pages/page08.html
-http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/_pages/page01.html
-test pages) and note that view3dscene automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.). You can also use VRML/X3D Anchors to jump to any URL (for example, you can jump from a local file to a model available through http).
-
-  Not only in VRML/X3D everything is an url. Also inside level.xml and resource.xml. For example, you could distribute now a level.xml file that contains URLs to levels on your server, downloaded each time.
-  (TODO: make scene etc. in level.xml really URLs)
-  Also data: URI handling is now more uniform.
-  Also the engine uses now MIME types more, instead of merely file extensions. This makes us work with http transfers, and also improved cooperation with data: URIs.
-* Our message boxes inside CastleWindow support OS clipboard (Ctrl + X, Ctrl + C, Ctrl + V). Especially useful to copy/paste URLs between view3dscene Ctrl+L ("Open URL" menu item, like in WWW browsers) and other programs. For developers: use Clipboard.AsText property. Implemented for CastleWindow WinAPI, GTK, LCL backends.
-* Rename our event Idle to Update.
-  This reflects our implementation and usage of this event clearer. This event is for continous tasks, called even when the application is not "idle" (when application is processing something, like mouse moves). Our Update event doesn't correspond 100% to normal (as used by LCL or GTK) meaning of "idle" (which is also evidenced by code if TCastleWindow LCL and GTK backends, that cannot simply use LCL/GTK "idle" concepts to implement our Update).
-* TCastleControl.AggressiveUpdate and TCastleControl.AggressiveUpdateDelay is removed, this mechanism now is always "on" and automatically makes mouse look work better. It's still not perfect (it seems LCL event loop is just too slow to process events during mouse look smooth enough, TCastleWindow still does a better job), but it's better now.
-* CAD level 2 support (CADXxx nodes).
 */
 
 array_push($news,
+    array('title' => 'Development: better Mac OS X support, networking, CAD level 2, more',
+          'year' => 2013,
+          'month' => 4,
+          'day' => 19,
+          'short_description' => '',
+          'guid' => 'devel-2013-04-19',
+          'description' =>
+'<p>Hello everyone!</p>
+
+<ol>
+  <li><p>There is a contest for best open-source project on Polish portal <a href="http://www.spinacz.edu.pl/">http://www.spinacz.edu.pl/</a>. Please take a moment to <a href="http://www.spinacz.edu.pl/projects/project/castle-game-engine-proj64/">vote for our Castle Game Engine</a>!</p></li>
+
+  <li><p>Our engine was submitted to devmaster.net, with lots of information and screenshots. <a href="http://devmaster.net/devdb/engines/castle-game-engine">You\'re welcome to review and rate us there!</a></p></li>
+
+  <li><p>We also want to remind that <a href="https://plus.google.com/101185352355602218697">we have a Google+ page about our Castle Game Engine</a>, you can follow it to see (a little more frequent) news about our engine development.</p></li>
+</ol>
+
+<p>New engine features in development:</p>
+
+<ol>
+  <li><p><b>Mac OS X with native look</b>. This is already much more user-friendly than our previous GTK-based releases for Mac OS X. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/macosx_requirements.html">development details</a>. Hopefully, this will allow us to release next <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> as normal Mac OS X application, that will be trivial to install for Mac OS X users.</p></li>
+
+  <li><p><b>Network (http) support.</b> Most "FileName" parameters and properties are now URLs. You can use protocols like <tt>file:</tt> and <tt>http:</tt> and <tt>data:</tt> everywhere, and of course http will be automatically downloaded. Try <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">view3dscene from snapshots</a>, enable <i>"Preferences-&gt;Download Resources From Network"</i> and then use menu item (Ctrl+L) to load URL, or pass URL on the command-line.</p>
+
+    <p>This is a little user-unfriendly, as the downloading is blocking (the process waits for the download to finish, instead of letting you enjoy the game and download in the background; there isn\'t even any nice way to cancel the download, or even notification about it, except for --debug-log message). For this reason, it is disabled by default: you have to explicitly allow it by <i>"Preferences->Download Resources From Network"</i> (in code: <tt>CastleDownload.EnableNetwork</tt> variable).</p>
+
+    <p>For some test scenes on the Internet, try e.g.
+      <a href="http://www.web3d.org/x3d/content/examples/ConformanceNist/SpecialGroups/Inline/single-url.x3dv">Inline demo</a> or
+      <a href="http://www.web3d.org/x3d/content/examples/ConformanceNist/Appearance/ImageTexture/256jpg.x3d">Texture demo</a> or
+      <a href="http://www.web3d.org/x3d/content/examples/ConformanceNist/Sounds/AudioClip/default_looptrue.x3dv">AudioClip demo</a>.
+      (from <a href="http://www.web3d.org/x3d/content/examples/ConformanceNist/">ConformanceNist X3D Examples Archive</a>). Or see our demo models through http, by browsing through <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/">SVN http link</a>.
+
+    <p><a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> automatically downloads the model, as well as all linked resources (textures, inline models, sounds, scripts etc.). You can also use VRML/X3D Anchors to jump to any URL (for example, you can jump from a local file to a model available through http). Also <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data: URI handling</a> is now more uniform. Also the engine uses now MIME types more, instead of merely file extensions. This makes us work with http transfers, and improves cooperation with data: URIs.
+
+    <p>In a game, you could also use URLs inside files like <tt>level.xml</tt> and <tt>resource.xml</tt>. For example, you could distribute now a level.xml file that contains URLs to levels on your server, downloaded each time.
+
+  <li><p><b>Clipboard</b> (Ctrl+C, Ctrl+V, Ctrl+X in message boxes, especially handy to copy/paste URLs). For developers: use <tt>Clipboard.AsText</tt> property. Implemented for CastleWindow WinAPI, GTK, LCL backends.
+
+  <li><p><b>CAD level 2 support (CADXxx nodes)</b>.</p></li>
+
+  <!--li><p>There was a silent 4.0.1 release to fix compilation of CastleGLWindowsFonts unit, and do other minor fixes/improvements around font-related units and examples.-->
+
+  <li><p>Improvements to 2D rendering. <!-- (as it happens, they also mostly revolve around bitmap fonts). --> They also workaround crashes on some Mesa 9 drivers.
+
+  <!--
+    <ul>
+      <li>use SetWindowPos instead of glRasterPos almost everywhere (cleaner, better for future strict OpenGL >= 3, and avoids crashes with Mesa 9 &mdash; at least with "OpenGL renderer string: Gallium 0.4 on AMD RV710" and "OpenGL version string: 2.1 Mesa 9.0.2" (on Ubuntu 12.10)).
+      <li>use PrintAndMove instead of Print, it\'s much more optimal.
+    </ul>
+  -->
+
+  <li><p>Support for 8 and 16 samples for anti-aliasing, there are (at least NVidia) GPUs supprting it. <!--By "support" I mean that you can see new options now in view3dscene <i>Preferences->Anti-Aliasing</i>, and that TCastleWindow.AntiAliasing allows this, and that our screen effects library cooperates with them (so make screen effects combined with anti-aliasing work). Everything else (like basic TCastleWindow.MultiSampling and TCastleControl.MultiSampling) was already working.-->
+
+  <li><p>Renamed our event <tt>Idle</tt> to <tt>Update</tt>.
+
+    <p>This reflects our implementation and usage of this event clearer. This event is for continous tasks, called even when the application is not "idle" (when application is processing something, like mouse moves). Our <tt>Update</tt> event doesn\'t correspond 100% to normal (as used by LCL or GTK) meaning of "idle" (which is also evidenced by code if TCastleWindow LCL and GTK backends, that cannot simply use LCL/GTK "idle" concepts to implement our Update).
+
+  <li><tt>TCastleControl.AggressiveUpdate*</tt> are removed. The (simplified and improved) version of this mechanism is now always "on" and automatically makes mouse look work better. It\'s still not perfect (it seems LCL event loop is just too slow to process events during mouse look fast enough), but it\'s better now. If you want perfectly smooth mouse look, you should still consider TCastleWindow instead of TCastleControl.
+</ol>
+'),
+
     array('title' => 'Castle Game Engine 4.0.0 release! And view3dscene 3.12.0, and castle 1.0.0, and more',
           'year' => 2013,
           'month' => 1,
