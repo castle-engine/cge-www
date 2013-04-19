@@ -11,6 +11,12 @@ array_push($news,
           'short_description' => '',
           'guid' => 'devel-2013-04-19',
           'description' =>
+castle_thumbs(array(
+  array('filename' => 'view3dscene_macosx_1.png', 'titlealt' => 'view3dscene on Mac OS X, with nice icon, menu bar, file dialog'),
+  array('filename' => 'view3dscene_macosx_2.png', 'titlealt' => 'view3dscene on Mac OS X, with nice icon, menu'),
+  array('filename' => 'view3dscene_url.png', 'titlealt' => 'Model with textures loaded from network, URL dialog'),
+  array('filename' => 'cad.png', 'titlealt' => 'CAD example model from http://www.web3d.org/wiki/index.php/X3DOM_CAD#X3D_Models'),
+)) .
 '<p>Hello everyone!</p>
 
 <ol>
