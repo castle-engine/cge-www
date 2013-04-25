@@ -717,21 +717,22 @@ EXTERNPROTO Text3D [
   ));
 ?>
 
-    <p>For <tt>MovieTexture</tt> nodes, you can use an URL like
-    <tt>image%d.png</tt> to load movie from a sequence of images.
-    This will load all successive images, substituting counter
-    in place of <tt>%d</tt>, starting from 1.
+    <p>Inside <tt>MovieTexture</tt> nodes, you can use an URL like
+    <tt>@counter(1).png</tt> to load movie from a sequence of images.
+    This will load a series of images,
+    substituting <tt>@counter(1)</tt> with successive numbers starting from 1.
 
-    <p>You can specify a number between <tt>%</tt> and <tt>d</tt>,
-    like <tt>%4d</tt>, to pad counter with zeros. For example, normal
-    <tt>%d.png</tt> results in names like 1.png, 2.png, ..., 9.png, 10.png...
-    But <tt>%4d.png</tt> results in names like 0001.png,
+    <p>The paramter inside <tt>@counter(&lt;padding&gt;)</tt> macro specifies the padding.
+    The number be padded with zeros to have at least the required length.
+    For example, <tt>@counter(1).png</tt>
+    results in names like 1.png, 2.png, ..., 9.png, 10.png...
+    While <tt>@counter(4).png</tt> results in names like 0001.png,
     0002.png, ..., 0009.png, 0010.png, ...
 
-    <p>Such movie will always be considered to run at the speed of 25 frames
-    per second.
+    <p>A movie loaded from image sequence will always run at the speed of
+    25 frames per second.
 
-    <p>A simple image filename (without <tt>%d</tt> pattern) is also accepted
+    <p>A simple image filename (without <tt>@counter(&lt;padding&gt;)</tt> macro) is also accepted
     as a movie URL. This just loads a trivial movie, that consists of one
     frame and is always still...
 

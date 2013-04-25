@@ -1,7 +1,17 @@
 <?php
 
 /* Next news:
-* NavigationInfo.transitionComplete support. Demo model in demo_models/navigation/transition_multiple_viewpoints.x3dv shows how to use it make an animated transition between a couple of viewpoints.
+* <li><p>NavigationInfo.transitionComplete support. Demo model in demo_models/navigation/transition_multiple_viewpoints.x3dv shows how to use it make an animated transition between a couple of viewpoints.
+
+* <li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL is now <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
+
+    <p>For loading, you <i>have</i> to use new syntax with <tt>@counter()</tt>, you have to update your VRML/X3D models, old syntax will unfortunately not work (reasons below). For saving, the old syntax <tt>%d</tt> will continue to work for some time (along the new <tt>@counter()</tt> syntax).
+
+    <p>The reason for this is that <tt>MovieTexture.url</tt> is now correctly treated as an URL, and this means that percent character <tt>%</tt> need to be escaped to <tt>%25</tt>. Inside URL the sequence <tt>%4d</tt> has to mean letter <tt>M</tt> (ASCII code 77, which is 4d in hexadecimal). So there is unfortunately no way to avoid breaking compatibility &mdash; we want to correctly support URLs, which implies that <tt>%4d</tt> must be interpreted as letter "M", not as a magic counter.
+
+    <p>Looking back, it was an unfortunate choice to use percent character to indicate images sequence, since percent is special inside URIs. It was done for consistency with <tt>ffmpeg</tt>, that supports things like <tt>image%4d.png</tt> on the command-line (but <b>not</b> when using URLs; for example, <tt>ffplay /home/image%4d.png</tt> works, but <tt>ffplay file:///home/image%4d.png</tt> does not work, neither does <tt>ffplay file:///home/image%254d.png</tt>). So, one can say that it was <tt>ffmpeg</tt> that made a bad choice, but then <tt>ffmpeg</tt> did it for consistency with common string formatting functions (C sprintf, ObjectPascal Format)...
+
+    <p>Comments about this change are of course welcome, through <a>forum</a> or any other means. Right now, I just don't see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions. Thanks for your understanding :)
 */
 
 array_push($news,

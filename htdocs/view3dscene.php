@@ -458,40 +458,38 @@ of a scene, at it's default camera, just call</p>
         must be installed and available on $PATH for this to work.
 
       <li><p><tt>FILE-NAME</tt> may also be a pattern to generate
-        names of images to save, like <tt>image%d.png</tt>.
+        names of images to save, like <tt>@counter(4).png</tt>.
         Details about using filename patterns are below (although you
         can probably already guess how it works :) ).
     </ol>
 
   <li><p>All filenames for both screenshot options may specify a pattern
     instead of an actual filename. A pattern is simply a filename
-    with sequence <tt>%d</tt> inside, when capturing <tt>%d</tt>
-    will be replaced by current screenshot number.
+    with macro <tt>@counter(&lt;padding&gt;)</tt> inside, when capturing <tt>@counter(4)</tt>
+    will be replaced by the current screenshot number (padded with zeros to 4 digits).
     For capturing a series of images
     by <tt>--screenshot-range</tt> it's even required to specify
-    a pattern (since capturing
+    a pattern with <tt>@counter(&lt;padding&gt;)</tt> (since capturing
     a number of images to a single image file has no point...). But
     it's also allowed in all other cases, even a movie filename
-    may also be a pattern with <tt>%d</tt> sequence,
+    may also be a pattern with <tt>@counter(&lt;padding&gt;)</tt> sequence,
     in case you want to use multiple <tt>--screenshot-range</tt>
     options to get multiple auto-named movies.
 
-    <p>The precise description how <tt>%d</tt> works:
+    <p>The precise description how <tt>@counter(&lt;padding&gt;)</tt> works:
     All <tt>--screenshot</tt>
     and <tt>--screenshot-range</tt> options are processed in order.
-    When a filename with pattern <tt>%d</tt> is found, we replace all
-    <tt>%d</tt> occurrences in this filename with current counter value
+    When a filename with pattern <tt>@counter(&lt;padding&gt;)</tt> is found, we replace all
+    <tt>@counter(&lt;padding&gt;)</tt> occurrences in this filename with current counter value
     and increment the counter. For <tt>--screenshot-range</tt> with
     an image pattern, we do this for every single frame.
     The counter starts at 1.
 
-    <p>You can specify a number between <tt>%</tt> and <tt>d</tt>,
-    like <tt>%4d</tt>, to pad counter with zeros. For example, normal
-    <tt>%d</tt> results in names like 1, 2, ..., 9, 10... But <tt>%4d</tt>
+    <p>The parameter of <tt>@counter(&lt;padding&gt;)</tt>
+    is the padding.
+    For example, <tt>@counter(1)</tt> results in names like
+    1, 2, ..., 9, 10... while <tt>@counter(4)</tt>
     results in names like 0001, 0002, ..., 0009, 0010, ...
-
-    <p>To allow you do specify literal <tt>%</tt> character in filename
-    reliably, you can write it twice: <tt>%%</tt>.
 </ul>
 
 <p><b>Examples</b>:
@@ -512,7 +510,7 @@ of a scene, at it's default camera, just call</p>
   view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
 </pre>
 
-    <p>To get this as a sequence of images, just use <tt>output%d.png</tt>
+    <p>To get this as a sequence of images, just use <tt>output@counter(4).png</tt>
     instead of <tt>output.avi</tt>.
   </li>
 
@@ -520,8 +518,8 @@ of a scene, at it's default camera, just call</p>
 
 <pre>
   view3dscene my_model.kanim \
-    --screenshot-range 0 0.04 50 output%d.avi \
-    --screenshot-range 10 0.04 50 output%d.avi
+    --screenshot-range 0 0.04 50 output@counter(1).avi \
+    --screenshot-range 10 0.04 50 output@counter(1).avi
 </pre>
 
     <p>This generates two files: <tt>output1.avi</tt> with 2 second animation
