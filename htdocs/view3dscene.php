@@ -970,8 +970,8 @@ and make sure it's available on $PATH.
   <li><i>Mac OS X</i> users can install <tt>ffmpeg</tt> using
     <a href="http://www.finkproject.org/">fink</a> (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),
   <li>finally <i>Windows</i> users may try these
-    <a href="http://ffmpeg.arrozcru.org/builds/">unofficial FFmpeg Win32 Builds</a>
-    (<a href="http://ffmpeg.arrozcru.org/">see here for more information about
+    <a href="http://ffmpeg.zeranoe.com/builds/">FFmpeg Windows Builds</a>
+    (<a href="http://ffmpeg.zeranoe.com/">see here for more information about
     ffmpeg on Windows</a>). Remember to add bin/ directory to your $PATH after unpacking.
 </ul>
 
