@@ -1,6 +1,7 @@
 <?php
 
 /* Next news:
+images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/examples/Basic/ChemicalMarkupLanguage/index.html
 <li><p>NavigationInfo.transitionComplete support. Demo model in demo_models/navigation/transition_multiple_viewpoints.x3dv shows how to use it make an animated transition between a couple of viewpoints.
 
 <li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL is now <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
