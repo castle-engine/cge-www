@@ -15,6 +15,8 @@ images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/ex
   <p>Comments about this change are of course welcome, through <a>forum</a> or any other means. Right now, I just don't see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions. Thanks for your understanding :)
 
 <li><p>There is a progress bar showing the process the downloading. The download is still blocking, but at least now you see what's going on :)
+
+<li><p>Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
 */
 
 array_push($news,
