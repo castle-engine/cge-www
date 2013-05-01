@@ -156,6 +156,7 @@ $castle_sitemap = array(
           'tutorial_notifications' => array('title' => 'Notifications'),
           'tutorial_sound' => array('title' => 'Sound'),
           'tutorial_screenshots' => array('title' => 'Screenshots'),
+          'tutorial_network' => array('title' => 'Network and downloading'),
           'tutorial_recording_movies' => array('title' => 'Recording movies'),
           'tutorial_log' => array('title' => 'Logging'),
           'tutorial_user_prefs' => array('title' => 'User preferences'),

@@ -29,7 +29,7 @@ with links to documentation for every attribute.
 <level
   [[CastleLevels.TLevelInfo.html#Name|name]]="required_level_name"
   [[CastleLevels.TLevelInfo.html#LogicClass|type]]="Level"
-  [[CastleLevels.TLevelInfo.html#SceneFileName|scene]]="required_scene_file_name.x3d"
+  [[CastleLevels.TLevelInfo.html#SceneURL|scene]]="required_scene_file_name_or_url.x3d"
   [[CastleLevels.TLevelInfo.html#Title|title]]="Required Level Title"
   [[CastleLevels.TLevelInfo.html#Number|number]]="0"
   [[CastleLevels.TLevelInfo.html#Demo|demo]]="False"

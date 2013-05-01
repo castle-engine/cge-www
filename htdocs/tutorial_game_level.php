@@ -40,7 +40,7 @@ using <tt>level.xml</tt> files. In short, the most important attributes are:</p>
 <ul>
   <li><tt>"name"</tt> is a unique internal name for the level, it will come in handy soon.
   <li><tt>"type"</tt> identifies the ObjectPascal class handling the level logic. Type <tt>"Level"</tt> is always available, for advanced games you can also create and use your own level logic types.
-  <li><tt>"scene"</tt> is a filename of the 3D model containing the level.
+  <li><tt>"scene"</tt> is an URL or a filename of the 3D model containing the level. Usually it's a simple filename, but you could as well use here an <tt>http:</tt> URL to <?php echo a_href_page('download the actual 3D data from the Internet', 'tutorial_network'); ?>.
   <li><tt>"title"</tt> is just used for some logging and messages. Depending on your game, you may also find this title useful for other purposes, e.g. show the user a list of levels available to start. But this is up to you. The engine itself doesn't really make much use of the title. There are other optional properties, like "demo" or "number" that you may use.
   <li><tt>"placeholders"</tt> says how to detect placeholders (for creatures and other things) in your 3D level model. This is optional, but highly useful. It should reflect the modeler/exporter used to create this level 3D model.
 </ul>
