@@ -15,11 +15,11 @@ data in our engine.
     some cases where attribute is required, these are marked clearly.
 
     <ul>
-      <li><p>Note about attributes that specify filenames: the default value is
-        always empty string (although sometimes filename is just required,
-        e.g. <tt>"scene"</tt> inside <tt>level.xml</tt>). Filenames specified there are
-        always relative to the XML file directory. In the future, we will
-        allow using URLs there.
+      <li><p>Note about attributes that specify URLs: the default value is
+        always empty string (although sometimes URL is just required,
+        e.g. <tt>"scene"</tt> inside <tt>level.xml</tt>). Relative URLs 
+        are always relative to the XML file. In simple cases, you just use
+        filenames there, and place your data files along the XML files.
 
       <li><p>Note about attributes that specify sound names: the default value
         is usually an empty string, meaning "no sound assigned". Sound name is
