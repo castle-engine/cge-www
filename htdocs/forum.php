@@ -98,6 +98,9 @@ your 3D worlds, you can:
   <li><p>Use our <?php echo a_href_page('engine', 'engine'); ?>
     to make your next game, of course! :) And make it great :)
 
+  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
+    to our wiki</a> useful tips or tutorials about using our engine.
+
   <li><p>Many areas of the engine could use the help of an interested developer.
     If you'd like to join, or just send some patches improving something,
     feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
@@ -105,8 +108,21 @@ your 3D worlds, you can:
     <p><a name="large_planned_features">Some larger ideas for development</a>:
     <ul>
       <li>
-        <p><b>Native look and feel, and easy installation, under Mac OS X</b></p>
-        <p>Currently, our programs (view3dscene, all games etc.) look a little out of place on Mac OS X, as we use GTK. They are also not easy to install (as we require user to manually install X server, and some stuff from fink, first). This feature is to implement nice Cocoa interface, that will look and work natively on Mac OS X, and will also remove the need to install anything through fink. <a href="http://castle-engine.sourceforge.net/macosx_requirements.php#section_help_wanted">The details how I imagine this implemented are here</a>.</p>
+        <p><b>Use Cocoa under Mac OS X</b></p>
+
+        <p>We already have a native look and feel, and easy installation,
+        under Mac OS X, see
+        <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news</a>
+        and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/macosx_requirements.html">docs for Mac OS X situation in SVN</a>.
+        Our programs no longer have to use X11 and GTK under Mac OS X.
+        Still, current solution is not optimal:
+        we use LCL with Carbon under the hood. Carbon is deprecated and only
+        32-bit (Cocoa should be used instead), and depending on LCL has it's
+        own problems (mouse look is not smooth with LCL message loop).
+
+        <p>The proposed task is to implement nice Cocoa backend
+        in <tt>CastleWindow</tt> unit. Contributions are welcome.
+        This is an easy and rewarding task for a developer interested in Mac OS X.
       </li>
 
       <li>
@@ -118,9 +134,54 @@ your 3D worlds, you can:
       </li>
 
       <li>
-        <p><b>Basic networking support</b></p>
-        <p>Basic integration with network: ability to load resources from http, and hopefully https, protocols. Probably will be implemented using <a href="http://lnet.wordpress.com/">lnet</a>, or <a href="http://www.ararat.cz/synapse/">synapse</a> (nice intro also on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>), or maybe some other library. It will be pluggable, so programmers of new games using our engine can even turn it off completeley (like when you make local games, and don't want a burden of linking with a networking library). For this basic support I don't promise a background downloading &mdash; which means that you may have to wait for download to finish, or interrupt it. But you will not be able to interact with 3D world while a download is taking place. (Background downloading will of course be added one day too, but that's a larger feature that I want to deal with separately.)</p>
-      </li>
+        <p><b>Advanced networking support</b></p>
+        <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <tt>file</tt> and <tt>data</tt> and <tt>http</tt> URLs.
+
+        <p>Things missing are listed below (some of them may done by adding
+        integration with <a href="http://lnet.wordpress.com/">LNet</a> or
+        <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
+        intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>).
+
+        <ol>
+          <li><p>Support for <tt>https</tt>. By sending patches to add it to
+            FpHttpClient. Or by using LNet or Synapse (they both include https
+            support).
+
+          <li><p>Support for <tt>ftp</tt>. By using LNet or Synapse, unless
+            something ready in FPC appears in the meantime.
+            Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
+
+          <li><p>Support for HTTP basic authentication. This can be done in our
+            CastleDownload unit. Although it would be cleaner to implement it
+            at FpHttpClient level, see
+            <a href="http://bugs.freepascal.org/view.php?id=24335">this
+            proposal</a>.
+            Or maybe just use LNet or Synapse, I'm sure they have some support
+            for it.
+
+          <li><p>Ability to cancel the ongoing download.
+            Add a "cancel" button to CastleWindowProgress for this.
+            See the task below (background downloading) for ideas how to do it.
+
+          <li><p>Ability to download resources in the background,
+            while the game is running.
+
+            <p>There is a question how to do it: 1. use <tt>TThread</tt>
+            for downloads, maybe even a couple of threads.
+            (This way we can use blocking API, like existing FpHttpClient
+            or Synapse, of couse LNet can also be used).
+            2. Or continously query the sockets
+            (I think LNet allows such model?).
+
+            <p>Probably using separate thread is simpler in this case,
+            the synchronization is not difficult here as the thread needs only
+            to report when it finished work, and there needs to be a way to stop
+            the thread.
+            Make sure it is possible to reliably break a thread that hangs waiting
+            for socket data.
+
+          <li><p>Support X3D <tt>LoadSensor</tt> node.
+      </ol>
 
       <li>
         <p><b>Scripting in JavaScript</b></p>
@@ -132,14 +193,6 @@ your 3D worlds, you can:
         <p>Integrate our engine with a physics engine. Most probably Bullet, which will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually ODE. Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
       </li>
     </ul>
-
-  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
-    to our wiki</a> useful tips or tutorials about using our engine.
-
-  <li><p><?php echo a_href_page_hashlink('Help to port our <tt>CastleWindow</tt> unit
-    to Cocoa (Mac OS X)', 'macosx_requirements', 'help_wanted'); ?>.
-    This is an easy and rewarding task for a developer interested in Mac OS X,
-    it will make our programs look more native and friendly on Mac OS X.
 </ul>
 
 <p><b>For <a href="http://www.blender.org/">Blender</a> experts</b>:
@@ -171,7 +224,7 @@ your 3D worlds, you can:
   </li>
 </ul>
 
-<p><b>For Linux distros package maintainers:</b>:
+<p><b>For Linux distros package maintainers</b>:
 
 <ul>
   <li><p>Please package <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
