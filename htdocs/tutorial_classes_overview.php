@@ -55,7 +55,13 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <?php api_link('TCastleSceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
         to <tt>false</tt>, and using only
         <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
-        for viewports)
+        for viewports).
+        <ul>
+          <li><?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>
+            (a descendant of
+            <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>,
+            adds comfortable methods to load 3D levels with placeholders)
+        </ul>
       <li><?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
         (refers to
         <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
@@ -69,13 +75,14 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance:
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     and <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
-    already contain a <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance,
+    already contain a <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?> instance,
     automatically created and available inside their <tt>Controls</tt> list
     and inside their <tt>SceneManager</tt> property. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?>  /
     <?php api_link('TCastleControlCustom', 'CastleControl.TCastleControlCustom.html'); ?>
     to avoid this automatic scene manager &mdash;
-    useful if you want to use your custom descendant of
-    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
+    useful if you want to use your custom descendant (that overrides some virtual methods) of
+    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
+    or <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>.
 
   <dt>3D world knowledge: <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?></dt>
 
@@ -100,9 +107,9 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
         <p><i>How to use</i>: you can create camera instance (or drop on form),
         and then assign to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> (or <?php api_link('TCastleViewport.Camera', 'CastleSceneManager.TCastleViewport.html#Camera'); ?>).
-        You can also not do anything, and let the automatic creation of camera
-        happen at the nearest rendering (more precisely, at <tt>ApplyProjection</tt>)
-        it will create a camera using
+        You can also do nothing, and let the automatic creation of camera
+        happen at the nearest rendering (more precisely, at <tt>ApplyProjection</tt>).
+        It will create a camera using
         <?php api_link('TCastleSceneManager.CreateDefaultCamera', 'CastleSceneManager.TCastleSceneManager.html#CreateDefaultCamera'); ?>
         and assign it to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>
         property.
@@ -176,7 +183,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <dd><p>The main scene is used to detect initial
         background, initial viewpoint, initial navigation mode and so on &mdash;
         information that naturally has only a single value for the entire 3D world.
-        In <?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?>, these concepts are 
+        In <?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?>, these concepts are
         called "bindable nodes" &mdash; of course they
         can change during the lifetime of the world, but at a given time
         only one value is active.
