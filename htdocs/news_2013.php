@@ -21,6 +21,8 @@ images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/ex
 <li><p>Thanks to Abou Al Montacir we may have packages with Castle Game Engine in Debian! Most of this software was developed by Michalis using Debian, so having my software in Debian repository would feel really great for me. See here for our forum thread : https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/ and here is the Debian bug marking ITP (Intend To Package): http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408 (you can subscribe to it if you want to watch/chime in).
 
 <li><p>For developers, new chapter of our tutorial describing network support is on tutorial_network.php
+
+<li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in ShaderPart node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It's fixed now of course.
 */
 
 array_push($news,
