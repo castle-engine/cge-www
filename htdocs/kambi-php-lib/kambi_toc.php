@@ -20,6 +20,8 @@
 */
 
 class TocItem {
+  /* HTML used to display section name.
+     *May* contain inline HTML, but no links (this is already inside a link). */
   var $display_name;
   var $anchor_name;
   var $nesting;

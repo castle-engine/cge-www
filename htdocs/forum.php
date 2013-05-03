@@ -35,10 +35,24 @@ remember to attach to your bug report output of the
 
 <h2>Helping in the engine development</h2>
 
+<?php
+$toc = new TableOfContents(
+  array(
+    new TocItem('For everyone', 'everyone'),
+    new TocItem('For 3D worlds creators', 'creators'),
+    new TocItem('For ObjectPascal developers', 'developers'),
+    new TocItem('For Blender experts', 'blender'),
+    new TocItem('For Linux distros package maintainers', 'distros'),
+  ));
+$toc->echo_numbers = true;
+?>
+
+<?php echo $toc->html_toc(); ?>
+
 <p>If you'd like to help in the development of our engine, here are some
 proposed tasks:</p>
 
-<p><b>For everyone</b>:
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <!--li>First of all, don't hesitate to post questions and suggestions
@@ -58,8 +72,9 @@ proposed tasks:</p>
     -->
 </ul>
 
-<p><b>For 3D worlds creators</b>: if you use our tools to create or browse
-your 3D worlds, you can:
+<?php echo $toc->html_section(); ?>
+
+<p>If you use our tools to create or browse your 3D worlds, you can:
 
 <ul>
   <li><p>Show off your works on our <a href="<?php echo FORUM_URL; ?>">forum</a>,
@@ -92,7 +107,9 @@ your 3D worlds, you can:
     or in the <a href="<?php echo TICKETS_TRACKER_URL; ?>">tickets tracker</a>.
 </ul>
 
-<p><b>For ObjectPascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers</b>:
+<?php echo $toc->html_section(); ?>
+
+<p>For ObjectPascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:
 
 <ul>
   <li><p>Use our <?php echo a_href_page('engine', 'engine'); ?>
@@ -103,10 +120,36 @@ your 3D worlds, you can:
 
   <li><p>Many areas of the engine could use the help of an interested developer.
     If you'd like to join, or just send some patches improving something,
-    feel welcome to post to our <a href="<?php echo FORUM_URL; ?>">forum</a>.
+    please contact us, for example through <a href="<?php echo FORUM_URL; ?>">forum</a>.
 
-    <p><a name="large_planned_features">Some larger ideas for development</a>:
+    <p><a name="large_planned_features">Below are some ideas for development.</a>
+    Some of them are quite large and non-trivial, although they may be easy
+    if you have an expertise in a particular area (or you're willing to gain
+    such expertise :).
+
     <ul>
+      <li>
+        <p><b>Scripting in JavaScript</b></p>
+        <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
+      </li>
+
+      <li>
+        <p><b>Physics integration</b></p>
+        <p>Integrate our engine with a physics engine. Most probably Bullet, which will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually ODE. Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
+      </li>
+
+      <li>
+        <p><b>Android port</b></p>
+        <p>Our 3D renderer uses a clean and modern OpenGL, using VBOs and shaders. Some of the 2D control bits have to be still ported to modern OpenGL, but that's a very easy task. Use it to make a modern renderer running on Android. FPC has various ways to develop for Android.</p>
+
+        <p>Same about <b>iOS</b> (iPhone, iPad etc.) port.</p>
+      </li>
+
+      <li>
+        <p><b>WWW browser plugin</b></p>
+        <p>Most probably using <a href="https://developer.mozilla.org/en-US/docs/Plugins">NPAPI, the cross-browser API for plugins</a>. Our CastleWindow code will become handy for this, as it can deal with WinAPI / XWindows window handle (this is what we get from plugin to initialize our plugin viewport).</p>
+      </li>
+
       <li>
         <p><b>Use Cocoa under Mac OS X</b></p>
 
@@ -181,21 +224,49 @@ your 3D worlds, you can:
             for socket data.
 
           <li><p>Support X3D <tt>LoadSensor</tt> node.
+
+          <li><p>Caching on disk of downloaded data.
+            Just like WWW browsers, we should be able to cache
+            resources downloaded from the Internet.
+            <ul>
+              <li>Store each resource under a filename in cache directory.
+              <li>For starters, you can use config directory for cache,
+                but that is not adviced long-term, a careful function
+                should be implemented to use good cache directory suitable
+                for each OS (using ProgramDataPath is <i>not</i> good,
+                as it may not be writeable by user account; using the same
+                directory as for config files may not be adviced,
+                e.g. to allow users to backup config without backuping cache;
+                browse freedesktop.org, LSB,
+                Microsoft, Apple specs for good standard ways to calculate
+                a cache directory on Unix, Windows, Mac OS X).
+              <li>Probably it's best to store a resource under a filename
+                calculated by MD5 hash on the URL.
+              <li>For starters, you can just make the max cache life
+                a configurable variable for user.
+                Long-term: Like WWW browsers, we should honor various HTTP headers that
+                say when/how long cache can be considered valid,
+                when we should at least check with server if something changed,
+                when we should just reload the file every time.
+              <li>Regardless of above, a way to reload file forcibly disregarding
+                the cache should be available (like Ctrl+Shift+R in WWW browsers).
+              <li>A setting to control max cache size on disk, with some reasonable
+                default (look at WWW browsers default settings) should be available.
+            </ul>
+
+            <p>Note: don't worry about caching in memory, we have this already,
+            for all URLs (local files, data URIs, network resources).
       </ol>
-
-      <li>
-        <p><b>Scripting in JavaScript</b></p>
-        <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
-      </li>
-
-      <li>
-        <p><b>Physics integration</b></p>
-        <p>Integrate our engine with a physics engine. Most probably Bullet, which will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually ODE. Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
-      </li>
     </ul>
+
+    <p>I'm sure you can find other ideas for development.
+    Is there something you miss from our game engine?
+    Is there a particular feature you miss from 3D formats (X3D, Collada etc.)
+    support?
+    Some useful tool, or maybe a useful example?
 </ul>
 
-<p><b>For <a href="http://www.blender.org/">Blender</a> experts</b>:
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>I think that success of our engine is tightly coupled with
@@ -224,7 +295,7 @@ your 3D worlds, you can:
   </li>
 </ul>
 
-<p><b>For Linux distros package maintainers</b>:
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>Please package <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
