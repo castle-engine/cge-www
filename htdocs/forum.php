@@ -193,15 +193,15 @@ If you don't have time to work on them, but you badly need them, consider also
     intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>).
 
     <ol>
-      <li><p>Support for <tt>https</tt>. By sending patches to add it to
+      <li><p><b>Support for <tt>https</tt></b>. By sending patches to add it to
         FpHttpClient. Or by using LNet or Synapse (they both include https
         support).
 
-      <li><p>Support for <tt>ftp</tt>. By using LNet or Synapse, unless
+      <li><p><b>Support for <tt>ftp</tt></b>. By using LNet or Synapse, unless
         something ready in FPC appears in the meantime.
         Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
 
-      <li><p>Support for HTTP basic authentication. This can be done in our
+      <li><p><b>Support for HTTP basic authentication</b>. This can be done in our
         CastleDownload unit. Although it would be cleaner to implement it
         at FpHttpClient level, see
         <a href="http://bugs.freepascal.org/view.php?id=24335">this
@@ -209,30 +209,63 @@ If you don't have time to work on them, but you badly need them, consider also
         Or maybe just use LNet or Synapse, I'm sure they have some support
         for it.
 
-      <li><p>Ability to cancel the ongoing download.
+      <li><p><b>Ability to cancel the ongoing download</b>.
         Add a "cancel" button to CastleWindowProgress for this.
         See the task below (background downloading) for ideas how to do it.
 
-      <li><p>Ability to download resources in the background,
-        while the game is running.
+      <li><p><b>Ability to download resources in the background</b>,
+        while the game is running. Technically this is connected to the previous
+        point: being able to reliably cancel the download.
 
-        <p>There is a question how to do it: 1. use <tt>TThread</tt>
-        for downloads, maybe even a couple of threads.
-        (This way we can use blocking API, like existing FpHttpClient
-        or Synapse, of couse LNet can also be used).
-        2. Or continously query the sockets
-        (I think LNet allows such model?).
+        <p>There is a question how to do it.
+        We can use <tt>TThread</tt> for downloads,
+        maybe even a couple of threads each for a separate download.
+        We can use API that doesn't block (like LNet or Sockets,
+        with Timeout > 0).
+        We can do both.
 
-        <p>Probably using separate thread is simpler in this case,
-        the synchronization is not difficult here as the thread needs only
-        to report when it finished work, and there needs to be a way to stop
-        the thread.
-        Make sure it is possible to reliably break a thread that hangs waiting
-        for socket data.
+        <p>Using separate thread(s) for download seems like a good idea,
+        the synchronization is not difficult as the thread needs only
+        to report when it finished work.
 
-      <li><p>Support X3D <tt>LoadSensor</tt> node.
+        <p>The difficult part is reliably breaking the download.
+        Using something like <tt>TThread.Terminate</tt> will not do anything
+        good while the thread is hanging waiting for socket data
+        (<tt>TThread.Terminate</tt> is a graceful way to close the thread,
+        it only works as often as the thread explicitly checks
+        <tt>TThread.Terminated</tt>). Hacks like <tt>Windows.TerminateThread</tt>
+        are 1. OS-specific 2. very dirty,
+        as <tt>TThread.Execute</tt> has no change to release allocated memory
+        and such.
+        The bottom line: <i>merely using TThread does <b>not</b> give
+        you a reliable and clean way to break the thread execution at any time</i>.
 
-      <li><p>Caching on disk of downloaded data.
+        <p>This suggests that you <i>have</i> to use non-blocking
+        API (so LNet or Sockets is the way to go,
+        FpHttpClient and Synapse are useless for this)
+        if you want to reliably break the download.
+        Using it inside a separate thread may still be a good idea,
+        to not hang the main event loop to process downloaded data.
+        So the correct answer seems <i>use LNet/Sockets (not
+        FpHttpClient/Synapse), with non-blocking API, within a TThread;
+        thanks to non-blocking API you can guarantee checking
+        <tt>TThread.Terminated</tt> at regular intervals</i>.
+
+        <p>I'm no expert in threads and networking, so if anyone has
+        any comments about this (including just comfirming my analysis)
+        please let me (Michalis) know :)
+
+        <!--
+        http://wiki.freepascal.org/Example_of_multi-threaded_application:_array_of_threads
+        http://www.freepascal.org/docs-html/rtl/classes/tthread.html
+        http://stackoverflow.com/questions/4044855/how-to-kill-a-thread-in-delphi
+        http://stackoverflow.com/questions/1089482/a-proper-way-of-destroying-a-tthread-object
+        http://stackoverflow.com/questions/3788743/correct-thread-destroy
+        -->
+
+      <li><p><b>Support X3D <tt>LoadSensor</tt> node</b>.
+
+      <li><p><b>Caching on disk of downloaded data</b>.
         Just like WWW browsers, we should be able to cache
         resources downloaded from the Internet.
         <ul>
