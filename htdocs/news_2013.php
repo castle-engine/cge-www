@@ -18,6 +18,8 @@ images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/ex
 
 <li><p>Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
 
+  <p>There is a demo http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), etc.
+
 <li><p>Thanks to Abou Al Montacir we may have packages with Castle Game Engine in Debian! Most of this software was developed by Michalis using Debian, so having my software in Debian repository would feel really great for me. See here for our forum thread : https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/ and here is the Debian bug marking ITP (Intend To Package): http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408 (you can subscribe to it if you want to watch/chime in).
 
 <li><p>For developers, new chapter of our tutorial describing network support is on tutorial_network.php
