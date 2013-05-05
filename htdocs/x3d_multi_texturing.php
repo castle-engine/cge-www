@@ -541,9 +541,7 @@ it's always <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
 like a grayscale texture.
 
 <p>To test this in your own browser, load the test file
-<tt>lights_materials/material_color_mixed_with_texture_color.x3dv</tt>
-from <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
+<tt>material_color_mixed_with_texture_color.x3dv</tt>.
 
 <p>Results on other browsers:
 <ul>
