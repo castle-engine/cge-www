@@ -210,8 +210,7 @@ $castle_sitemap = array(
           'x3d_implementation_lighting'             => array('title' => 'Lighting'                        ),
           'x3d_implementation_texturing'            => array('title' => 'Texturing',
             'sub' => array(
-              'x3d_implementation_texturing#section_multi_texturing' => array('title' => 'Clarifications to X3D multi-texturing'),
-              'x3d_implementation_texturing#section_dds'             => array('title' => 'DDS (DirectDraw Surface)'),
+              'x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
             ),
           ),
           'x3d_implementation_interpolation'        => array('title' => 'Interpolation'                   ),
