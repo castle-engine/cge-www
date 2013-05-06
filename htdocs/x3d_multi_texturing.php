@@ -22,13 +22,19 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Test X3D files are available in SVN repository under
-<tt><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/">http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/</a></tt> . You can browse this by WWW browser or do <tt>svn checkout</tt> on this URL.
-<a href="TODO">You can also download zip with all the test files</a>.
+<p>X3D multi-texturing tests are available in SVN repository under
+<tt><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/">http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/</a></tt> .
+You can browse this by WWW browser or do <tt>svn checkout</tt> on this URL.
+<a href="TODO">You can also download zip with all multi-texturing test files</a>.
 For ease of browsing / downloading, everything there is self-contained,
 i.e. these test files do not refer to any files outside.
 
-<p>Files in <i>X3D classic (VRML) encoding</i> contain many comments,
+<p>All tests are also listed below, roughly in the order basic -&gt; advanced.
+Click on the image to view reference rendering
+(matches <?php echo a_href_page("view3dscene", "view3dscene") ?>
+ from snapshots result, as our view3dscene implements all proposed specification
+fixes). Download X3D in classic or XML version and open with X3D browser of your
+choice. Files in <i>X3D classic (VRML) encoding</i> contain many comments,
 read them to know what the test is about!
 
 <table class="x3dtests">
