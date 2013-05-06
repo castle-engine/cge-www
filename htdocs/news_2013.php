@@ -24,7 +24,11 @@ images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/ex
 
 <li><p>For developers, new chapter of our tutorial describing network support is on tutorial_network.php
 
+<li><p>MultiTexture.function support (forces shader pipeline rendering for given shape; there's no way to reasonably implement this using fixed-function pipeline). Demo in demo_models/multi_texturing/functions.x3dv
+
 <li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in ShaderPart node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It's fixed now of course.
+
+<li><p>x3d_multi_texturing.php documenting efforts and tests to fix X3D multitexturing spec.
 */
 
 array_push($news,

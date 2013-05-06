@@ -92,6 +92,16 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       <?php echo x3d_node_link('MultiTextureCoordinate'); ?>,
       <?php echo x3d_node_link('MultiTextureTransform'); ?>
 
+    <p>Support for all fields (unless mentioned below).
+
+    <p>Note that using <tt>MultiTexture.function</tt>
+    forces shader pipeline for given shape (so it will not work on really
+    old GPUs).
+    There is no way to reasonably do this using OpenGL fixed-function pipeline,
+    as corresponding OpenGL settings
+    (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
+    are done, while X3D spec requires <tt>function</tt> to act afterwards.
+
     <p><i>TODO</i>: modes
     <tt>MODULATEALPHA_ADDCOLOR</tt>,
     <tt>MODULATEINVALPHA_ADDCOLOR</tt>,
@@ -107,16 +117,6 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     diffuse / specular sources &mdash; please report if you do,
     otherwise there's no way this can be fixed (note that engine's
     multi-texturing must work without shaders too).</p>
-
-    <p><i>TODO</i>: <tt>function</tt> field is not supported for now.
-    It's somewhat uncomfortable, corresponding OpenGL settings
-    (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
-    are done, while X3D spec requires <tt>function</tt> to act afterwards.
-    To implement it generally, I'd have to use 1 more texture unit than
-    requested (if the last texture unit will use any non-default function).</p>
-
-    <p>See <a href="#section_multi_texturing">clarifications to X3D multi-texturing specification</a>
-    for more details about multi-texture handling.
   </li>
 
   <li><?php echo x3d_node_link('TextureCoordinateGenerator'); ?>
