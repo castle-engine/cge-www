@@ -399,6 +399,18 @@ without any answer so far.)
     Existing browsers already disagree on this. Changing the spec to say
     <i>"we always modulate by default"</i> would greatly simplify the situation.
   </li>
+
+  <li><p>It would be useful to clarify what happens with grayscale texture
+    images and images without alpha channel. Following the GPU behaviors
+    (and common sense), we propose to add such statement to X3D specification:
+
+    <p><i>For the purpose of multitexturing calculations,</i>
+    <ol>
+      <li><i>Grayscale texture is equivalent to an RGB texture
+        with all color components (red, green, blue) equal.</i>
+      <li><i>Texture without an alpha channel is equivalent to a texture with
+        alpha channel filled with value 1.0 (completely opaque).</i>
+    </ol>
 </ol>
 
 <?php echo $toc->html_section(); ?>
