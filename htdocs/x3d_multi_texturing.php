@@ -272,8 +272,6 @@ without any answer so far.)
     usually useful), but it's not written explicitly.
 
     <p><i>Proposed clarification:</i> Only RGB.
-    (Implementation notes: but for now, "function" field
-    is not handled.)
 
   <li><p>The paragraphs for <tt>MultiTextureTransform</tt>
     (<i>texture coordinates for channel 0 are replicated...</i>)
