@@ -142,7 +142,7 @@ without any answer so far.)
 
 <ol>
   <li><p><i>The mode field may contain an additional blending mode
-    for the alpha channel.</i> &mdash; this is the most troublesome
+    for the alpha channel.</i> This is the most troublesome
     sentence of the <tt>MultiTexture</tt> specification. It contradicts most of the remaining
     specification for <tt>MultiTexture</tt> node. Other spec parts clearly
     suggest that exactly one mode string corresponds to one texture unit,
@@ -179,7 +179,7 @@ without any answer so far.)
     modes like <tt>DOTPRODUCT3</tt> or <tt>BLEND*</tt> only to
     the alpha channel.
 
-    <p><i>Our interpretation: a single string inside mode field
+    <p><i>Proposed clarification: a single string inside mode field
     <b>always</b> corresponds to exactly <b>one</b> texture unit</i>.
     This string may be a simple name of the mode (like <tt>"MODULATE"</tt>),
     in which case it describes behavior for both RGB and alpha channel.
@@ -188,8 +188,8 @@ without any answer so far.)
     in which case a separate behavior is specified for RGB channels and
     for alpha channel.
 
-    <p>The table in section above
-    (<i>Precise and corrected MultiTexture.mode specification</i>)
+    <p>The table in section
+    <a href="#section_proposed_mode">Proposed improved MultiTexture.mode specification</a>
     contains the exact equations for all the modes,
     when used for both RGB and alpha or when used for only RGB
     or only alpha.
@@ -208,15 +208,16 @@ without any answer so far.)
     more about this in previous point) clearly shows that
     "REPLACE" takes from 1st argument.
 
-    <p><i>Our interpretation:</i> "REPLACE" copies the "Arg1" (that is,
+    <p><i>Proposed clarification:</i> "REPLACE" copies the "Arg1" (that is,
     current texture unit values). IOW, it's equivalent to "SELECTARG1".
 
     <p>To make it absolutely clear, it would also help if the spec
     would clearly say something along
     the lines <i>"Arg1 is the current texture unit, Arg2 is what is determined
     by the source field (by default, it's previous texture unit (or material color
-    for 1st texture unit))"</i>. This would also make it clear what is the indented
-    order of texture units (and would clarify that Octaga "reversed order"
+    for 1st texture unit))"</i>. This would also make it clear what is the
+    order of calculation for texture units
+    (and would clarify that Octaga "reversed order"
     is incorrect &mdash; everyone else does it correctly).
 
   <li><p>The meaning of <tt>ADDSIGNED</tt> and <tt>ADDSIGNED2X</tt> modes is not clear.
@@ -234,7 +235,7 @@ without any answer so far.)
     (at the <tt>ADDSIGNED</tt> value in table 18.3) doesn't seem to make
     any sense, regardless how you try to interpret it.
 
-    <p><i>Our interpretation:</i> I interpret it
+    <p><i>Proposed clarification:</i> I interpret it
     as "-0.5 bias is added to the sum",
     this follows OpenGL <tt>GL_ADD_SIGNED</tt> constant, so I guess this
     was the intention of the spec.
@@ -245,7 +246,7 @@ without any answer so far.)
     alpha = 0 (invisible) for the most common situation when both textures
     have alpha = 1 (opaque).
 
-    <p><i>Our interpretation:</i>  See point 1.
+    <p><i>Proposed clarification:</i>  See point 1.
     If you specify a simple mode name,
     then it applies to <i>both</i> RGB and alpha channels.
     Comparing with Octaga, our results
@@ -268,9 +269,9 @@ without any answer so far.)
     value. Only RGB seems most sensible (that's what would seem
     usually useful), but it's not written explicitly.
 
-    <p><i>Our interpretation:</i> I plan to treat it as "only RGB",
-    that is not invert alpha channel. Although for now "function" field
-    is not handled.
+    <p><i>Proposed clarification:</i> Only RGB.
+    (Implementation notes: but for now, "function" field
+    is not handled.)
 
   <li><p>The paragraphs for <tt>MultiTextureTransform</tt>
     (<i>texture coordinates for channel 0 are replicated...</i>)
@@ -309,7 +310,7 @@ without any answer so far.)
     that clearly say that textures affect the diffuse color which is then
     used for lighting.
 
-    <p><i>Our proposed solution:</i>
+    <p><i>Proposed solution:</i>
 
     <ol>
       <li><p>At the very least, just change description of these source values
@@ -387,7 +388,7 @@ without any answer so far.)
     (with a single <tt>ImageTexture</tt> inside): because the default mode
     (possibly) changed.
 
-    <p><i>Our solution:</i> In this case, I propose to change the
+    <p><i>Proposed solution:</i> In this case, I propose to change the
     specification parts related to single-texturing (<tt>ImageTexture</tt>),
     and leave existing multi-texturing spec unchanged.
     That is, always <i>modulate</i> by default (regardless if texture
@@ -659,13 +660,13 @@ behavior. If many people think that specification is right and I'm dumb,
 and the default behavior should follow the spec and be <tt>REPLACE</tt>,
 I'll obey :)
 
-*/ ?>
-
 <p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
 GL_REPLACE</i> to change this (from code, use
 <tt>Scene.Attributes.TextureModeRGB := GL_REPLACE;</tt>).
 But note that this doesn't give you spec-complaint behavior,
 as the shapes with RGB textures in this case will become simply unlit.
+
+*/ ?>
 
 <?php
   castle_footer();
