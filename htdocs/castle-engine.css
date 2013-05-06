@@ -200,6 +200,22 @@ table.specification td {
   /* white-space:nowrap; */
 }
 
+table.x3dtests {
+  border-collapse: collapse;
+}
+table.x3dtests td {
+  border: thin solid #888;
+  padding:8px;
+}
+table.x3dtests td.x3dtests-links {
+  padding:0px;
+  /* white-space: nowrap; */
+}
+table.x3dtests td.x3dtests-links ul {
+  padding: 0 0 0 1em;
+  margin: 0;
+  font-size: smaller;
+}
 table.layout { margin: 0px; padding: 0px; border: 0px; width: 100%; }
 /* Don't set padding/margin here,
    sidebar_column and content_column want different padding/margin. */
