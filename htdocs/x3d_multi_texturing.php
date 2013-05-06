@@ -67,6 +67,8 @@ tests_row('modes_modulate_add_order',
    (compare 3rd and 4th box).');
 tests_row('primitives',
   'Test <tt>MultiTexture</tt> on primitives (<tt>Box</tt>, <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>).');
+tests_row('functions',
+  'Test <tt>MultiTexture.function</tt>.');
 tests_row('transform_and_coordinates_faces',
   'Test various <tt>MultiTextureTransform</tt> and <tt>MultiTextureCoordinate</tt> values.');
 tests_row('transform_and_coordinates_quads',
