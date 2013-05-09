@@ -50,7 +50,7 @@ function tests_row($name, $description, $test_results)
       <a href=\"${tests_url}${name}_screen.png\"
          class=\"screenshot\"
          title=\"${name}\">
-        <img src=\"${tests_url}${name}_screen.png\"
+        <img src=\"${tests_url}${name}_screen_thumb.png\"
              style=\"width: 200px; height: 160px;\" />
       </a>
     </td>
