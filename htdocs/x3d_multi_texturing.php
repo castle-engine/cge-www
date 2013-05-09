@@ -379,11 +379,19 @@ without any answer so far.)
     (<i>Precise and corrected MultiTexture.mode specification</i>)
     makes it clear how to use each mode for only RGB, or only alpha, or both.
 
-  <li><p>It's not specified what channels are inverted by <tt>function="COMPLEMENT"</tt>
-    value. Only RGB seems most sensible (that's what would seem
-    usually useful), but it's not written explicitly.
+  <li><p>It's not specified what channels are inverted by
+    the <tt>function="COMPLEMENT"</tt> value. Well, obviously RGB are inverted,
+    but is alpha channel inverted too?
 
-    <p><i>Proposed clarification:</i> Only RGB.
+    <p>Tests show that view3dscene, Instant Player, BS Contact do it on RGB
+    (not alpha).
+    Octaga does it on RGBA (it negates alpha channel too).
+    Other tested browsers do not support this operation.
+
+    <p><i>Proposed clarification:</i> <tt>function="COMPLEMENT"</tt>
+    works only on RGB, does not touch alpha channel.
+    This seems more suitable for usual cases, and follows the majority
+    of implementations.
 
   <li><p>The paragraphs for <tt>MultiTextureTransform</tt>
     (<i>texture coordinates for channel 0 are replicated...</i>)
