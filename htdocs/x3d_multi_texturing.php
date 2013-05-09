@@ -5,6 +5,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Tests', 'tests'),
+      new TocItem('Details about browsers tested', 'tests_details', 1),
       new TocItem('Problems and proposed solutions', 'problems_solutions'),
       new TocItem('Proposed improved MultiTexture.mode specification', 'proposed_mode'),
       new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
@@ -40,7 +41,7 @@ read them to know what the test is about!
 <table class="x3dtests">
 <?php
 $test_number = 1;
-function tests_row($name, $description)
+function tests_row($name, $description, $test_results)
 {
   global $tests_url;
   global $test_number;
@@ -60,44 +61,125 @@ function tests_row($name, $description)
       </ul>
     </td>
     <td><i>${test_number}. ${name}:</i><br/><br/>${description}</td>
+  </tr>
+  <tr class=\"x3dtests-results\">
+    <td colspan=\"3\">
+      <div class=\"x3dtests-results-header\">Test results:</div>";
+
+  if (isset($test_results['special'])) {
+    echo '<p style="padding: 0.25em">' . $test_results['special'] . '</p>';
+  } else {
+    echo "
+      <ul>
+        <li><i>FreeWRL</i>: ${test_results['freewrl']}
+        <li><i>BS Contact</i> (<a href=\"https://raw.github.com/wildpeaks/x3d-multi-texture/master/BS%20Contact/${name}.png\">Screen</a>) ${test_results['bscontact']}
+        <li><i>Instant Player</i> (<a href=\"https://raw.github.com/wildpeaks/x3d-multi-texture/master/Instant%20Player/${name}.png\">Screen</a>) ${test_results['instantplayer']}
+        <li><i>Octaga Player</i>: (<a href=\"https://raw.github.com/wildpeaks/x3d-multi-texture/master/Octaga%20Player/${name}.png\">Screen</a>) ${test_results['octaga']}
+      </ul>";
+  }
+
+  echo "
+    </td>
   </tr>";
   $test_number++;
 }
 tests_row('modes_and_sources',
-  'Test various values for <tt>MultiTexture.mode</tt> and <tt>MultiTexture.source</tt>.');
+  'Test various values for <tt>MultiTexture.mode</tt> and <tt>MultiTexture.source</tt>.',
+  array(
+    'freewrl' => 'Incorrect. MultiTexture.source seems ignored by FreeWRL. MultiTexture.mode = SUBTRACT is weird (not sure what is does). MultiTexture.mode = SELECTARG2 seems equal to MultiTexture.mode = SELECTARG1. Other MultiTexture.mode values seem Ok.',
+    'bscontact' => 'Incorrect MultiTexture.mode = SUBTRACT column (all the other columns are correct, so BS Contact is closest to reference/view3dscene). Looks like BS Contact subtracts only RGB channel, does not touch alpha. This contradicts our proposed clarifications. The X3D spec is ambigous about this, see problem 4.',
+    'instantplayer' => 'Incorrect, many problems. MultiTexture.source does something weird (not sure why it changes the result like that). Various MultiTexture.mode values incorrectly handled. Note MultiTexture.mode = SUBTRACT is correct (subtract alpha 1-1 makes invisible surface).',
+    'octaga' => 'Incorrect, many problems.',
+  ));
 tests_row('modes_blend',
-  'Test of <tt>MultiTexture</tt> special modes <tt>"BLENDxxx"</tt>.');
+  'Test of <tt>MultiTexture</tt> special modes <tt>"BLENDxxx"</tt>.',
+  array(
+    'freewrl' => 'All incorrect. Not sure how FreeWRL interprets MultiTexture.mode = BLENDxxx, it doesn\'t seem to follow spec or match reference images.',
+    'bscontact' => 'Ok.',
+    'instantplayer' => 'All incorrect.',
+    'octaga' => 'Incorrect 2nd, 3rd and 4th quads. So only BLENDDIFFUSEALPHA is correct.',
+  ));
 tests_row('modes_modulate_add_order',
   'Test of multitexturing <tt>MODULATE</tt> and <tt>ADD</tt> modes used together.
    Shows that <tt>A * B + C &lt;&gt; A * C + B</tt>
-   (compare 3rd and 4th box).');
+   (compare 3rd and 4th box).
+
+   <p><small>Note that whether the 1st and 2nd cube should be yellowish or not is a separate question, related to the <a href="#section_default_texture_mode">default mode when using single-texturing (see below on this page, and test 9)</a>. For this test, we accepted the test as "Ok" regardless if the 1st and 2nd cubes are yellowish or not. Only 3rd and 4th cubes of this test were taken into account when judging if test passed/failed.</small></p>',
+  array(
+    'freewrl' => 'Ok.',
+    'bscontact' => 'Possibly incorrect? 3rd cube should look <i>a little</i> different than 4th, but it <i>seems</i> exactly the same (unless it is just a lighting playing tricks).',
+    'instantplayer' => 'Incorrect (3rd and 4th cube). Not really sure what is happening there, why the effet is like it is.',
+    'octaga' => 'Ok.',
+  ));
 tests_row('primitives',
-  'Test <tt>MultiTexture</tt> on primitives (<tt>Box</tt>, <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>).');
+  'Test <tt>MultiTexture</tt> on primitives (<tt>Box</tt>, <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>).',
+  array(
+    'freewrl' => 'Ok.',
+    'bscontact' => 'Incorrect. Texture transformation is not applied, but at least two textures are mixed Ok.',
+    'instantplayer' => 'Incorrect. Multi-texturing is not used (squirrel textue is not mixed with brick texture). But texture transformation for squirrel is applied.',
+    'octaga' => 'Ok.',
+  ));
 tests_row('functions',
-  'Test <tt>MultiTexture.function</tt>.');
+  'Test <tt>MultiTexture.function</tt>.',
+  array(
+    'freewrl' => 'All incorrect. It seems FreeWRL doesn\'t handle MultiTexture.function.',
+    'bscontact' => 'Incorrect: 2nd and 3rd cube invalid. It looks like BS Contact supports MultiTexture.function (COMPLEMENT and ALPHAREPLICATE), but the COMPLEMENT support is buggy.',
+    'instantplayer' => 'Incorrect 2nd and 3rd, it doesn\'t seem to apply MultiTexture.function at the right place. This is actually similar to BS Contact, but definitely contradicts the spec.',
+    'octaga' => 'Incorrect. Looks like COMPLEMENT negates the alpha as well, which may be caused by specification problem 5.',
+  ));
 tests_row('transform_and_coordinates_faces',
-  'Test various <tt>MultiTextureTransform</tt> and <tt>MultiTextureCoordinate</tt> values.');
+  'Test various <tt>MultiTextureTransform</tt> and <tt>MultiTextureCoordinate</tt> values.',
+  array(
+    'freewrl' => 'Incorrect, various problems. It seems FreeWRL doesn\'t honor the multi-texture transformation properly, it also makes warnings "not enough textures in MultiTextureTransform...." instead of following the spec that says when identity matrices are assumed for transformation. Possibly caused by spec problem 6. below.',
+    'bscontact' => 'Incorrect, various problems (but *different* than e.g. FreeWRL problems).',
+    'instantplayer' => 'Incorrect, various problems, but *different* than BS Contact and FreeWRL.',
+    'octaga' => 'Incorrect, various problems.',
+  ));
 tests_row('transform_and_coordinates_quads',
   'Test <tt>MultiTexture</tt> together with <tt>IndexedQuadSet</tt> from CAD component.
    Very similar to <tt>transform_and_coordinates_faces.x3dv</tt>
    (in fact the result should look <b>exactly</b> the same) but now uses
-   <tt>IndexedQuadSet</tt> instead of <tt>IndexedFaceSet</tt>.');
+   <tt>IndexedQuadSet</tt> instead of <tt>IndexedFaceSet</tt>.',
+  array(
+    'freewrl' => 'FreeWRL doesn\'t support CADGeometry component. Results are incorrect (you see nothing), but that\'s somewhat acceptable since the console warns that CADGeometry level support is 0 (none) in FreeWRL.',
+    'bscontact' => 'BS Contact doesn\'t seem to support CADGeometry component.',
+    'instantplayer' => 'Incorrect. Result equal to 6. That\'s good, this means that CADGeometry quads correctly work with multi-texturing. But, since results of test 6. were not correct, results for test 7. show exactly the same problems.',
+    'octaga' => 'Incorrect. Equal to 6. Which is good, it means CADGeometry quads work with multi-texturing. But, since result 6. was incorrect, this is incorrect too.',
+  ));
 tests_row('image_with_movie_multi_texture',
-  'Test <tt>ImageTexture</tt> and <tt>MovieTexture</tt> mixing using <tt>MultiTexture</tt>.');
+  'Test <tt>ImageTexture</tt> and <tt>MovieTexture</tt> mixing using <tt>MultiTexture</tt>.',
+  array(
+    'freewrl' => 'Incorrect. FreeWRL doesn\'t seem to support MovieTexture (although it doesn\'t complain when we request Texturing component at level 3, so it <i>should</i> support MovieTexture). Also makes warnings "not enough textures in MultiTextureTransform....", so probably would also exhibit problems from test 6.',
+    'bscontact' => 'Incorrect. MovieTexture support is weird (movie seems played in a separate window instead of as a texture). Also, transformation of squirrel texture is wrong.',
+    'instantplayer' => 'Incorrect. MovieTexture does not seem supported, at least for multi-texturing.',
+    'octaga' => 'Incorrect. MovieTexture not supported? At least for multi-texturing.',
+  ));
 tests_row('material_color_mixed_with_texture_color',
   'This is not a <tt>MultiTexture</tt> test, but it tests a feature related
    to some multi-texturing problems: how various X3D browsers mix (single)
    texture with <tt>Material.diffuseColor</tt> and <tt>Color</tt> node.
    See <a href="#section_default_texture_mode">lower on this page for details
-   why this is tested</a>.');
+   why this is tested</a>.',
+  array(
+    'freewrl' => 'FreeWRL seems to never mix texture color with Material.diffuseColor (for both RGB (correct) and grayscale (incorrect) textures), and always mixes texture color with Color node (for both RGB (incorrect) and grayscale (correct) textures). So it is incorrect according to existing X3D spec, it is also incorrect according to proposed #section_default_texture_mode"always modulate" change.',
+    'bscontact' => 'RGB texture replaces Material.diffiseColor (correct). Grayscale texture is <i>replaced by</i> Material.diffuseColor (incorrect and weird). RGB texture modulates with Color node (incorrect according to spec). Grayscale texture modulates Color node (correct).',
+    'instantplayer' => 'Equal to BS Contact result for this test, which means incorrect (but at least, this time, consistent with BS Contact).',
+    'octaga' => 'RGB texture overrides Material.diffuseColor (correct). Grayscale texture is overridden by Material.diffuseColor (incorrect and weird, seems to match BS Contact). RGB texture overrides Color node (correct; this is the only browser that does this correctly, I think). Grayscale texture modules with Color node (correct).',
+  ));
 tests_row('subtract_and_force_alpha',
   'Test <tt>MultiTexture</tt> with separate modes and sources for RGB/alpha,
    see below for our proposal to allow separate RGB/alpha specification
-   for modes and sources (problem 1.), and <a href="#section_proposed_mode">proposed extended MultiTexture.mode table</a>.');
+   for modes and sources (problem 1.), and <a href="#section_proposed_mode">proposed extended MultiTexture.mode table</a>.',
+  array(
+    'special' => 'Testing this is not fair. All VRML/X3D browsers except view3dscene fail on this, because this tests a proposed (not yet part of X3D spec) extension to specify separate modes and sources for RGB/Alpha (and clear some of the confusion around modes spec along the way). See <a href="#section_proposed_mode">lower on this page about proposed separate MultiTexture.mode</a> and <a href="#section_proposed_source">lower on this page about proposed separate MultiTexture.source</a>',
+  ));
 tests_row('subtract_rgb_various_sources',
   'One more test of <tt>MultiTexture</tt> with separate modes and sources for RGB/alpha.
    Similar to "subtract" column of <tt>modes_and_sources</tt>,
-   but showing what happens when we subtract only RGB.');
+   but showing what happens when we subtract only RGB.',
+  array(
+    'special' => 'Testing this is not fair. See previous test for more comments.',
+  ));
 ?>
 </table>
 
@@ -112,6 +194,23 @@ generated from classic encoding by <tt>tovrmlx3d</tt> (a tool
 distributed with <?php echo a_href_page("view3dscene", "view3dscene") ?>).
 The reference images were also generated by view3dscene
 (using <tt>--screenshot</tt> option to make screenshots in batch mode).
+
+<?php echo $toc->html_section(); ?>
+
+<p>Tested on:
+
+<ul>
+  <li>FreeWRL 1.22.13 (on Debian testing 32-bit, NVidia GeForce GPU)
+  <li>BS Contact 8.101
+  <li>Instant Player 2.1.0
+  <li>Octaga Player 4.0.3
+  <li>view3dscene (version from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">snapshots</a> &mdash; essentially soon-to-be view3dscene 3.13.0) (on Debian testing 32-bit, NVidia GeForce GPU). view3dscene is Michalis' own browser, so the implementation 100% matches the reference images and all proposed clarifications/solutions mentioned on this page.
+</ul>
+
+<p>Screenshots obtained from BS Contact, Instant Player, Octaga Player
+are available <a href="https://github.com/wildpeaks/x3d-multi-texture/archive/master.zip">as a zip file</a>
+or <a href="https://github.com/wildpeaks/x3d-multi-texture">or just browse/clone the GIT repository</a>.
+Many, many thanks to Cecile Muller for testing!
 
 <?php echo $toc->html_section(); ?>
 

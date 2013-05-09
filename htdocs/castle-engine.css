@@ -216,6 +216,10 @@ table.x3dtests td.x3dtests-links ul {
   margin: 0;
   font-size: smaller;
 }
+table.x3dtests tr.x3dtests-results td {
+  font-size: smaller;
+  padding: 0.1em;
+}
 table.layout { margin: 0px; padding: 0px; border: 0px; width: 100%; }
 /* Don't set padding/margin here,
    sidebar_column and content_column want different padding/margin. */
