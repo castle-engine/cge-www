@@ -159,11 +159,18 @@ tests_row('material_color_mixed_with_texture_color',
    to some multi-texturing problems: how various X3D browsers mix (single)
    texture with <tt>Material.diffuseColor</tt> and <tt>Color</tt> node.
    See <a href="#section_default_texture_mode">lower on this page for details
-   why this is tested</a>.',
+   why this is tested</a>.
+
+   <p><small>The reference of this test (and view3dscene result) follows our
+   proposition to <i>always</i> modulate by default. This contradicts
+   the specification, although we argue (see link above) that in this case
+   the specification 1. proposes a behavior that is not very useful and
+   2. is already implemented inconsistently.</small></p>
+   ',
   array(
     'freewrl' => 'FreeWRL seems to never mix texture color with Material.diffuseColor (for both RGB (correct) and grayscale (incorrect) textures), and always mixes texture color with Color node (for both RGB (incorrect) and grayscale (correct) textures). So it is incorrect according to existing X3D spec, it is also incorrect according to proposed #section_default_texture_mode"always modulate" change.',
     'bscontact' => 'RGB texture replaces Material.diffiseColor (correct). Grayscale texture is <i>replaced by</i> Material.diffuseColor (incorrect and weird). RGB texture modulates with Color node (incorrect according to spec). Grayscale texture modulates Color node (correct).',
-    'instantplayer' => 'Equal to BS Contact result for this test, which means incorrect (but at least, this time, consistent with BS Contact).',
+    'instantplayer' => '2.1.0: Equal to BS Contact result for this test, which means incorrect (but at least, this time, consistent with BS Contact). 2.2.0: it seems it changed to be better (but still not exactly spec-complaing): InstantPlayer 2.2.0 doesn\'t mix texture color with <tt>Material.diffuseColor</tt> for RGB textures (correct) and does mix with grayscale textures (correct). However, it always mixes texture color with <tt>Color</tt> (for both RGB (incorrect) and grayscale (correct) textures). ',
     'octaga' => 'RGB texture overrides Material.diffuseColor (correct). Grayscale texture is overridden by Material.diffuseColor (incorrect and weird, seems to match BS Contact). RGB texture overrides Color node (correct; this is the only browser that does this correctly, I think). Grayscale texture modules with Color node (correct).',
   ));
 tests_row('subtract_and_force_alpha',
@@ -738,33 +745,15 @@ result in the Color* node being ignored."</i>.
     when you use RGB textures.
 </ol>
 
-<p>That's why our default engine behavior contradicts the specification:
-it's always <tt>MODULATE</tt>, making an RGB texture modulated by lighting just
-like a grayscale texture.
+<p>A separate problem is that browsers are already
+inconsistent in the implementation of this rule, see test results.
+That's understandable, because the spec behavior is a little useless.
 
-<p>To test this in your own browser, load the test file
-<tt>material_color_mixed_with_texture_color.x3dv</tt>.
-
-<p>Results on other browsers:
-<ul>
-  <li><p><i>FreeWRL 1.22.13</i> seems to never mix texture color with <tt>Material.diffuseColor</tt>
-    (for both RGB (correct) and grayscale (incorrect) textures),
-    and always mixes texture color with <tt>Color</tt> node
-    (for both RGB (incorrect) and grayscale (correct) textures).
-
-  <li><p><i>InstantPlayer 2.2.0</i> doesn't mix texture color with <tt>Material.diffuseColor</tt>
-    for RGB textures (correct) and does mix with grayscale textures (correct).
-    However, it always mixes texture color with <tt>Color</tt>
-    (for both RGB (incorrect) and grayscale (correct) textures).
-
-  <li><p>In contrast, <i>view3dscene and our engine</i> always mixes the
-    <tt>Material.diffuseColor</tt> (or <tt>Color</tt> node, if given) with texture color,
-    regardless if the texture is grayscale or RGB.
-    This makes us contradict the X3D spec in cases of RGB textures.
-</ul>
-
-<p>As you can see, noone seems to follow the spec 100% here.
-And that's understandable, because the spec behavior is a little useless.
+<p>That's why we propose to change the specification:
+simply always <tt>MODULATE</tt> (component-wise multiply on RGBA channels).
+In other words, treat a grayscale texture exactly like an RGB texture
+with all color components (red, green, blue) equal.
+Our engine and view3dscene already implement this behavior.
 
 <?php /*
 
