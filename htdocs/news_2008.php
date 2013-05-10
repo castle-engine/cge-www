@@ -108,6 +108,11 @@ $ ./radiance_transfer_compile.sh
 $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
 </pre>
 
+<p>Usually, instead of using these commands, you should just go and download
+the <a href=\"http://castle-engine.sourceforge.net/engine.php\">latest
+Castle Game Engine release</a> and compile/run the radiance_transfer
+example there.
+
 <p>Inside that directory there are also other models ready to test with
 PRT. There's also <tt>precompute_radiance_transfer</tt> to process
 any 3D model (readable by my engine &mdash; VRML, X3D, 3DS, Wavefront,
