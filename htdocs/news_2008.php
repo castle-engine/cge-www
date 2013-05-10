@@ -102,8 +102,8 @@ castle_thumbs(array(
 <p>The full source code is available, naturally. Simple instructions:</p>
 
 <pre>
-$ svn checkout http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/
-$ cd kambi_vrml_game_engine/examples/vrml/radiance_transfer
+$ svn checkout http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/
+$ cd castle_game_engine/examples/radiance_transfer
 $ ./radiance_transfer_compile.sh
 $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
 </pre>
