@@ -97,7 +97,7 @@ castle_thumbs(array(
 
 <p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
 
-<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/examples/vrml/radiance_transfer/README\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
+<p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/radiance_transfer/README.txt\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
 
 <p>The full source code is available, naturally. Simple instructions:</p>
 
@@ -108,10 +108,11 @@ $ ./radiance_transfer_compile.sh
 $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
 </pre>
 
-<p>Usually, instead of using these commands, you should just go and download
+<p>(Update in 2013: Usually, instead of using these commands,
+you should just go and download
 the <a href=\"http://castle-engine.sourceforge.net/engine.php\">latest
-Castle Game Engine release</a> and compile/run the radiance_transfer
-example there.
+Castle Game Engine release</a> and compile / run the radiance_transfer
+example there.)
 
 <p>Inside that directory there are also other models ready to test with
 PRT. There's also <tt>precompute_radiance_transfer</tt> to process
@@ -549,6 +550,12 @@ Many long-awaited graphic features implemented:</p>
     it demonstrates emboss, dot and all other bump mapping
     methods built in VRML engine. Also my notes about emboss and dot
     (by multitexturing) bump mapping methods may be interesting.</p>
+
+    <p>(Update in 2013: bump_mapping demo is no longer available,
+    the whole bump mapping support is now integrated in Castle Game Engine,
+    can be tested using many of it's demos, e.g. try
+    " . news_a_href_page('view3dscene', 'view3dscene') . "  on
+    " . news_a_href_page('demo models', 'demo_models') . ".)
   </li>
 
   <li><p><b>GLSL shaders support:</b> engine supports easily using
