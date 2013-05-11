@@ -173,7 +173,19 @@ or at the AudioClip node?</i>
 </pre>
 
     <p>and independently start/stop playing sounds S1 and S2.
-    The downside would be that you cannot play audio tracks from MovieTexture.
+
+    <p>The downside would be that playing audio tracks from <tt>MovieTexture</tt>
+    is ugly, and probably should not be allowed by the specification.
+    When both <tt>MovieTexture</tt>
+    and <tt>Sound</tt> would be of <tt>X3DTimeDependentNode</tt>,
+    it would be unclear which node controls the playing in case of this:
+
+<pre class="vrml_code">
+  Sound DEF S1 { source DEF M1 MoveTexture { url "movie.avi" } }
+</pre>
+
+    <p>Probably, the idea of playing sounds from <tt>MovieTexture</tt>
+    should be just dropped in this case, otherwise it gets messy.
 </ol>
 
 <p>Personally, Michalis would choose the option 2. (But it's too late for that now,
