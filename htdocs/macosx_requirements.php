@@ -37,11 +37,15 @@ wrapping Lazarus <tt>TForm</tt> and <tt>TOpenGLControl</tt> inside a
 Although it still has some issues (see below), it gives us native look
 and a lot of stuff "for free".
 
-<p>Developers: When compiling programs under Mac OS X,
-remember to add <i>castle_components</i> Lazarus package
-to the requirements of the <i>castle_window</i> package.
-This is a necessary manual step, as Lazarus does not allow (yet)
-to define a package requirement that is specific to given OS.
+<p>Developers: If you want to use these features,
+you have to load an alternative version of <tt>castle_window.lpk</tt> package from
+<tt>castle_game_engine/packages/alternative_castle_window_based_on_lcl/castle_window.lpk</tt>
+in engine sources.
+This will give you <tt>CastleWindow</tt> unit that uses LCL and requires
+the <i>castle_components</i> package.
+Do not use the standard
+<tt>castle_game_engine/packages/castle_window.lpk</tt>, it doesn't depend on LCL or
+<i>castle_components</i>.
 
 <p>This change allows <tt>CastleWindow</tt>-based programs,
 like <?php echo a_href_page("view3dscene", "view3dscene") ?>,
@@ -154,8 +158,9 @@ some additional software:
     we automatically use display name <tt>:0</tt> under Mac OS X.
     This way we attach to the running X server, even if you execute us from some
     other application.
-    <i>For programs released before 2011-01-10: you should explicitly start
-    with command-line option <tt>--display=:0</tt>, or always run us from X11 xterm.</i></p></li>
+    <i>You can also explicitly start
+    with command-line option <tt>--display=:0</tt>, or always run us from X11 xterm,
+    to use given X display.</i></p></li>
 
   <li><p><b>libpng</b> (may be installed by
     <a href="http://www.finkproject.org/">fink</a>),
