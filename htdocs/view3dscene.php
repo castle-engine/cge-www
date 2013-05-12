@@ -440,22 +440,27 @@ of a scene, at it's default camera, just call</p>
 
     <p>The <tt>FILE-NAME</tt> is either
     <ol>
-      <li><p>A movie filename. This must have
-        a recognized movie extension, currently this means
+      <li><p>A movie filename. This must have a recognized movie MIME type
+        (for local files, MIME type is just recognized from extension),
+        this includes:
 
-<pre>
-  .avi
-  .mpg
-  .dvd
-  .ogg
-  .mov
-  .swf
-</pre>
+        <ul>
+          <!-- Based on FfmpegVideoMimeType and URIMimeType implementations -->
+          <li>video/x-msvideo (.avi)
+          <li>video/mpeg (.mpeg, .mpg, .mpe)
+          <li>video/ogg (.ogv)
+          <li>video/quicktime (.mov)
+          <li>video/x-flv (.flv)
+          <li>application/x-shockwave-flash (.swf, .swfl)
+          <li>video/mp4 (.mp4)
+        </ul>
 
-        <p>Availability of all these video formats may depend on installed ffmpeg
-        codecs. If in doubt, avi seems to be most reliable and plays everywhere.
-        If I missed some possible movie file extension, please report.
-        <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+        <p>Please report if we miss some MIME type (and file extension)
+        above, it's trivially easy to add all formats supported by ffmpeg.
+        Availability of all these video formats may depend on installed ffmpeg
+        codecs.
+
+        <p><a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
         must be installed and available on $PATH for this to work.
 
       <li><p><tt>FILE-NAME</tt> may also be a pattern to generate
