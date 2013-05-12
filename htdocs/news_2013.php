@@ -1,7 +1,7 @@
 <?php
 
 array_push($news,
-    array('title' => 'Development: transitionComplete, Debian packages, data URI, MultiTexture tests, more',
+    array('title' => 'Development: transitionComplete, Debian packages, network tutorial, data URI, MultiTexture tests, more',
           'year' => 2013,
           'month' => 5,
           'day' => 12,
