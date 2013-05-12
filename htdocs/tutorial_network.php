@@ -68,11 +68,11 @@ a filename, if that's all you want to load).</p>
     <tt>file:</tt> protocol.
 
     <ul>
-      <li><p>Use this to convert a FileName to URL.
-        We need to use ExpandFileName to make it an absolute filename.
+      <li><p>Use this to convert a FileName (relative or absolute)
+      to an absolute URL.
 
 <?php echo pascal_highlight(
-'URL := FilenameToURISafe(ExpandFileName(FileName));'); ?>
+'URL := FilenameToURISafe(FileName);'); ?>
 
       <li>Use this to convert something that may be a FileName or URL to an URL.
       This is safer than <tt>FilenameToURISafe(...)</tt>, in that it will
