@@ -118,6 +118,10 @@ a filename, if that's all you want to load).</p>
     <tt>castle_game_engine/examples/tools/</tt>)
     that can turn any file
     into a data URI, and you can use such data URI everywhere where we expect URL.
+
+    <p>Demos of using data URI are inside <?php
+    echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
+    see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 </ul>
 
 <p>If you want to handle network and URLs in your own code,

@@ -131,7 +131,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
       <li><p>Nice transitions between viewpoints are supported,
         honouring <tt>transitionType</tt> and <tt>transitionTime</tt> fields,
-        and (since view3dscene 3.13.0) making <tt>transitionComplete</tt> event.</p>
+        and (since view3dscene 3.13.0) making <tt>transitionComplete</tt> event.
+        See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/navigation/transition_multiple_viewpoints.x3dv">demo model navigation/transition_multiple_viewpoints.x3dv showing how to use it to make an animated transition between a couple of viewpoints</a>.
+        </p>
     </ul>
 
     <p>Binding different <tt>NavigationInfo</tt> nodes,

@@ -1,37 +1,53 @@
 <?php
 
-/* Next news:
-images: caffeine_x3d.png Caffeine model from http://www.web3d.org/x3d/content/examples/Basic/ChemicalMarkupLanguage/index.html
-<li><p>NavigationInfo.transitionComplete support. Demo model in demo_models/navigation/transition_multiple_viewpoints.x3dv shows how to use it make an animated transition between a couple of viewpoints.
-
-<li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL is now <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
-
-  <p>For loading, you <i>have</i> to use new syntax with <tt>@counter()</tt>, you have to update your VRML/X3D models, old syntax will unfortunately not work (reasons below). For saving, the old syntax <tt>%d</tt> will continue to work for some time (along the new <tt>@counter()</tt> syntax).
-
-  <p>The reason for this is that <tt>MovieTexture.url</tt> is now correctly treated as an URL, and this means that percent character <tt>%</tt> need to be escaped to <tt>%25</tt>. Inside URL the sequence <tt>%4d</tt> has to mean letter <tt>M</tt> (ASCII code 77, which is 4d in hexadecimal). So there is unfortunately no way to avoid breaking compatibility &mdash; we want to correctly support URLs, which implies that <tt>%4d</tt> must be interpreted as letter "M", not as a magic counter.
-
-  <p>Looking back, it was an unfortunate choice to use percent character to indicate images sequence, since percent is special inside URIs. It was done for consistency with <tt>ffmpeg</tt>, that supports things like <tt>image%4d.png</tt> on the command-line (but <b>not</b> when using URLs; for example, <tt>ffplay /home/image%4d.png</tt> works, but <tt>ffplay file:///home/image%4d.png</tt> does not work, neither does <tt>ffplay file:///home/image%254d.png</tt>). So, one can say that it was <tt>ffmpeg</tt> that made a bad choice, but then <tt>ffmpeg</tt> did it for consistency with common string formatting functions (C sprintf, ObjectPascal Format)...
-
-  <p>Comments about this change are of course welcome, through <a>forum</a> or any other means. Right now, I just don't see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions. Thanks for your understanding :)
-
-<li><p>There is a progress bar showing the process the downloading. The download is still blocking, but at least now you see what's going on :)
-
-<li><p>Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
-
-  <p>There is a demo http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), etc.
-
-<li><p>Thanks to Abou Al Montacir we may have packages with Castle Game Engine in Debian! Most of this software was developed by Michalis using Debian, so having my software in Debian repository would feel really great for me. See here for our forum thread : https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/ and here is the Debian bug marking ITP (Intend To Package): http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408 (you can subscribe to it if you want to watch/chime in).
-
-<li><p>For developers, new chapter of our tutorial describing network support is on tutorial_network.php
-
-<li><p>MultiTexture.function support (forces shader pipeline rendering for given shape; there's no way to reasonably implement this using fixed-function pipeline). Demo in demo_models/multi_texturing/functions.x3dv
-
-<li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in ShaderPart node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It's fixed now of course.
-
-<li><p>x3d_multi_texturing.php documenting efforts and tests to fix X3D multitexturing spec.
-*/
-
 array_push($news,
+    array('title' => 'Development: transitionComplete, Debian packages, data URI, MultiTexture tests, more',
+          'year' => 2013,
+          'month' => 5,
+          'day' => 12,
+          'short_description' => '',
+          'guid' => 'devel-2013-05-12',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'caffeine_x3d.png', 'titlealt' => 'Caffeine model from http://www.web3d.org/x3d/content/examples/Basic/ChemicalMarkupLanguage/index.html'),
+  array('filename' => 'data_uri_0.png', 'titlealt' => 'data URI demo. All the textures, movies, sounds, scripts, linked 3D models here are embedded using data URI.'),
+  array('filename' => 'functions_screen.png', 'titlealt' => 'MultiTexture.function test'),
+  array('filename' => 'modes_and_sources_screen.png', 'titlealt' => 'MultiTexture.mode and source test'),
+  array('filename' => 'modes_blend_screen.png', 'titlealt' => 'MultiTexture blending modes test'),
+  array('filename' => 'fireplace_final_0.png', 'titlealt' => 'Fireplace model, with fire rendered as animated image sequence'),
+)) .
+'<p>Various new features developed for next <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>:
+
+<ol>
+  <li><p><tt>NavigationInfo.transitionComplete</tt> support. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/navigation/transition_multiple_viewpoints.x3dv">Demo model transition_multiple_viewpoints.x3dv</a> shows how to use it to make an animated transition between a couple of viewpoints.
+
+  <li><p>Thanks to <i>Abou Al Montacir</i> we will have packages with <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> in <a href="http://www.debian.org/">Debian</a>! Most of this software was developed by Michalis using Debian, so having my software in the Debian repository would feel really great for me :) <a href="https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/">See here for our forum thread</a>, and here is the Debian bug marking ITP (Intent To Package) for engine: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408">#706408</a> and for view3dscene: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707932">#707932</a>.
+
+  <li><p>For developers, <a href="http://castle-engine.sourceforge.net/tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
+
+  <li><p>Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
+
+    <p>There is a demo <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">data_uri.x3dv</a> showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), scripts etc.
+
+  <li><p><tt>MultiTexture.function</tt> support (forces shader pipeline rendering for given shape; there\'s no way to reasonably implement this using fixed-function pipeline). <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/functions.x3dv">Demo in functions.x3dv</a>.
+
+  <li><p><a href="http://castle-engine.sourceforge.net/x3d_multi_texturing.php">A set of X3D multi-texturing tests</a> is available, testing support of view3dscene and other VRML / X3D browsers for multi-texture features. This is part of my ongoing effort to improve X3D MultiTexturing specification.
+
+  <li><p>There is a progress bar showing the process the downloading. The download is still blocking, but at least now you see what\'s going on :)
+
+  <li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL will be <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
+
+    <p>For loading, you will <i>have</i> to use new syntax with <tt>@counter(&lt;padding&gt;)</tt> with new view3dscene / Castle Game Engine versions. You will have to update your VRML/X3D models, old syntax will unfortunately not work anymore (reasons below). For saving, the old syntax <tt>%d</tt> will continue to work for some time (along the new <tt>@counter(&lt;padding&gt;)</tt> syntax, and you\'re encouraged to upgrade to new syntax).
+
+    <p>The reason for this is that <tt>MovieTexture.url</tt> is now correctly treated as an URL, and this means that percent character <tt>%</tt> needs to be escaped to <tt>%25</tt>. Inside URL the sequence <tt>%4d</tt> has to mean letter <tt>M</tt> (ASCII code 77, which is 4d in hexadecimal). So there is unfortunately no way to avoid breaking compatibility &mdash; we want to correctly support URLs, which implies that <tt>%4d</tt> must be interpreted as letter "M", not as a magic counter.
+
+    <p>Looking back, it was an unfortunate choice to use percent character to indicate images sequence, since percent is special inside URIs. It was done for consistency with <tt>ffmpeg</tt>, that supports things like <tt>image%4d.png</tt> on the command-line (but <b>not</b> when using URLs; for example, <tt>ffplay /home/image%4d.png</tt> works, but <tt>ffplay file:///home/image%4d.png</tt> does not work, neither does <tt>ffplay file:///home/image%254d.png</tt>). So, one can say that it was <tt>ffmpeg</tt> that made a bad choice, but then <tt>ffmpeg</tt> did it for consistency with common string formatting functions (C sprintf, ObjectPascal Format)...
+
+    <p>Comments about this change are of course welcome, through <a href="http://castle-engine.sourceforge.net/forum.php">forum</a> or any other means. Right now, I just don\'t see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions.
+
+  <li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in <tt>ShaderPart</tt> node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It\'s fixed now of course.
+</ol>'),
+
     array('title' => 'Development: better Mac OS X support, networking, CAD level 2, more',
           'year' => 2013,
           'month' => 4,
