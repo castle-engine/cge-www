@@ -4,10 +4,10 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Mac OS X Carbon applications (new)', 'carbon'),
+      new TocItem('Mac OS X applications using Carbon (native look)', 'carbon'),
         new TocItem('Developers: Technical details', 'carbon_details', 1),
         new TocItem('Console', 'console', 1),
-      new TocItem('Mac OS X GTK2 applications (old)', 'gtk'),
+      new TocItem('Mac OS X applications using X Windows (and optionally GTK2)', 'gtk'),
         new TocItem('Dependencies to install', 'requirements', 1),
         new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
       new TocItem('Developers: help wanted', 'help_wanted'),
@@ -25,7 +25,7 @@
 
 <p>Since <?php echo a_href_page('engine', 'engine'); ?> version 4.1.0
 (<?php echo a_href_page('view3dscene', 'view3dscene'); ?> 3.13.0),
-our applications have a native look on Mac OS X, and do not need
+our applications can have a native look on Mac OS X (Carbon), and do not need
 any extra dependencies (like X11 and GTK).
 
 <?php echo $toc->html_section(); ?>
@@ -38,14 +38,16 @@ Although it still has some issues (see below), it gives us native look
 and a lot of stuff "for free".
 
 <p>Developers: If you want to use these features,
-you have to load an alternative version of <tt>castle_window.lpk</tt> package from
-<tt>castle_game_engine/packages/alternative_castle_window_based_on_lcl/castle_window.lpk</tt>
-in engine sources.
+you have to use the package <tt>alternative_castle_window_based_on_lcl.lpk</tt>
+instead of <tt>castle_window.lpk</tt>.
 This will give you <tt>CastleWindow</tt> unit that uses LCL and requires
 the <i>castle_components</i> package.
-Do not use the standard
-<tt>castle_game_engine/packages/castle_window.lpk</tt>, it doesn't depend on LCL or
-<i>castle_components</i>.
+If you open an existing source code,
+like view3dscene, you will have to change the dependencies in Lazarus <i>Project inspector</i>
+to use <tt>alternative_castle_window_based_on_lcl</tt> instead of <tt>castle_window</tt>.
+We hope to make it easier in the future by using the <i>"Provides"</i> option of Lazarus packages,
+but right now it doesn't do what we want &mdash; it can not "pull" extra depencies
+present in alternative package but not present in original.
 
 <p>This change allows <tt>CastleWindow</tt>-based programs,
 like <?php echo a_href_page("view3dscene", "view3dscene") ?>,
