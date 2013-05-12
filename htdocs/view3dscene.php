@@ -45,9 +45,10 @@ formats.</p>
       new TocItem('Features', 'features'),
       new TocItem('Navigation with keys &amp; mouse', 'navigation'),
       new TocItem('Command-line options', 'command_line_options'),
-      new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
-      new TocItem('Converting to VRML/X3D', 'converting', 1),
-      new TocItem('Other options', 'other_options', 1),
+        new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
+        new TocItem('Converting to VRML/X3D', 'converting', 1),
+        new TocItem('Other options', 'other_options', 1),
+        new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
       new TocItem('Freshmeat entry', 'freshmeat'),
     )
@@ -784,7 +785,17 @@ is only useful for converting). More precisely:
 
   <p>In interactive mode, remember that you don't need this option &mdash; instead you can use comfortable <i>Navigation -&gt; Viewpoints</i> menu.</p>
   </dd>
+</dl>
 
+<p>As usual all
+<?php echo a_href_page("standard options understood by OpenGL programs", "opengl_options") ?>,
+<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal'); ?>,
+<?php echo a_href_page('standard options understood by all my programs','common_options'); ?>
+ are also allowed. Run with command-line <tt>--help</tt> to get full list.
+
+<?php section(false); ?>
+
+<dl class="params_list">
   <dt>--scene-change-no-normals<br>
       --scene-change-no-solid-objects<br>
       --scene-change-no-convex-faces
@@ -867,22 +878,6 @@ is only useful for converting). More precisely:
     doing it from command-line probably not (you better fix your exporter).
     Please report if you have a good reason to keep this working.
 
-  <dt>--navigation EXAMINE|WALK|FLY|NONE...
-  <dd><p>Set initial navigation type. Default is <tt>EXAMINE</tt>.
-    This can be overridden in particular VRML/X3D scene by using the
-    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
-    node. Valid values for this option are the navigation type names
-    for VRML/X3D <tt>NavigationInfo.type</tt>, see link above.</p>
-
-    <p>You can always change navigation mode later, while the program is running:
-    use the menu <i>Navigation</i>.</p>
-
-    <p><i>Deprecated:</i> instead of using this option,
-    consider adding/editing a <tt>NavigationInfo</tt> node in your scene.
-    Editing your scene (or creating a VRML/X3D file that includes the original
-    scene, by <tt>Inline</tt> node, and only adds some customization)
-    is much more flexible.
-
   <dt>--camera-radius &lt;float&gt;
   <dd><p>When you move in the scene with collision
     detection, the "user" is treated as a colliding sphere with given radius.
@@ -898,6 +893,22 @@ is only useful for converting). More precisely:
     <p><i>Deprecated:</i> instead of using this option,
     consider adding/editing a <tt>NavigationInfo</tt> node in your scene
     (camera radius is taken from the first float on <tt>NavigationInfo.avatarSize</tt>).
+    Editing your scene (or creating a VRML/X3D file that includes the original
+    scene, by <tt>Inline</tt> node, and only adds some customization)
+    is much more flexible.
+
+  <dt>--navigation EXAMINE|WALK|FLY|NONE...
+  <dd><p>Set initial navigation type. Default is <tt>EXAMINE</tt>.
+    This can be overridden in particular VRML/X3D scene by using the
+    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
+    node. Valid values for this option are the navigation type names
+    for VRML/X3D <tt>NavigationInfo.type</tt>, see link above.</p>
+
+    <p>You can always change navigation mode later, while the program is running:
+    use the menu <i>Navigation</i>.</p>
+
+    <p><i>Deprecated:</i> instead of using this option,
+    consider adding/editing a <tt>NavigationInfo</tt> node in your scene.
     Editing your scene (or creating a VRML/X3D file that includes the original
     scene, by <tt>Inline</tt> node, and only adds some customization)
     is much more flexible.
@@ -942,12 +953,6 @@ is only useful for converting). More precisely:
     'a <tt>KambiTriangulation</tt> node in your scene',
     'x3d_extensions', 'section_ext_kambi_triangulation'); ?>.
 </dl>
-
-<p>As usual all
-<?php echo a_href_page("standard options understood by OpenGL programs", "opengl_options") ?>,
-<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal'); ?>,
-<?php echo a_href_page('standard options understood by all my programs','common_options'); ?>
- are allowed. Run with command-line <tt>--help</tt> to get full list.
 
 <?php section(); ?>
 
