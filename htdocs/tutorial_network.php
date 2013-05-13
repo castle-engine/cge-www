@@ -35,7 +35,7 @@ a filename, if that's all you want to load).</p>
 
     <p>For example, your game level data may be actually downloaded from the
     network when loading level. To do this,
-    <tt>level.xml</tt> mat use an http protocol when referring to
+    <tt>level.xml</tt> may use an http protocol when referring to
     a <tt>scene</tt>. Like this:
 
 <?php echo xml_highlight(
@@ -50,7 +50,7 @@ a filename, if that's all you want to load).</p>
 
     and the scene with all associated resources will be downloaded.
 
-    <p>Inside 3D models (VRML/X3D an such files), you can use network resources,
+    <p>Inside 3D models (like X3D, VRML and others), you can use network resources,
     for example you can <tt>Inline</tt> them (add a 3D model from another file),
     you can make <tt>Anchor</tt> to them,
     you can refer to textures and sounds and scripts and everything else
