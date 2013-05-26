@@ -16,7 +16,7 @@ See <?php api_link('TMaterialProperty', 'CastleMaterialProperties.TMaterialPrope
 'uses ..., CastleMaterialProperties;
 
 ...
-MaterialProperties.FileName := ProgramDataPath + \'data\' + PathDelim + \'material_properties.xml\';'); ?>
+MaterialProperties.URL := ProgramDataPath + \'data\' + PathDelim + \'material_properties.xml\';'); ?>
 
 <p>Below is a sample <tt>material_properties.xml</tt> file
 with links to documentation for every attribute.</p>
