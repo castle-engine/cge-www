@@ -189,7 +189,7 @@ with the same size as the first displayed image.
 <?php echo $toc->html_section(); ?>
 
 <p>Resulting image format is determined by filename extension, unknown
-extension will result in BMP format.
+extension will result in error.
 
 <p>Image loaded and displayed by glViewImage is internally always stored
 in format comfortable for OpenGL. This includes many formats, but not RGBE.

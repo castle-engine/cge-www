@@ -6,7 +6,7 @@ tutorial_header('Network and downloading');
 <i>This page describes upcoming Castle Game Engine 4.1.0 capabilities,
 not available yet in the last stable engine version.</i>
 
-<p>All loading methods in our engine take URL as the parameter,
+<p>All methods in our engine take URL as the parameter,
 not just a FileName (although in almost all cases you can also pass
 a filename, if that's all you want to load).</p>
 
