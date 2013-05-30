@@ -270,16 +270,17 @@ If you don't have time to work on them, but you badly need them, consider also
         resources downloaded from the Internet.
         <ul>
           <li>Store each resource under a filename in cache directory.
-          <li>For starters, you can use config directory for cache,
-            but that is not adviced long-term, a careful function
-            should be implemented to use good cache directory suitable
-            for each OS (using ProgramDataPath is <i>not</i> good,
-            as it may not be writeable by user account; using the same
+          <li>Add a function like ApplicationCache, similar existing ApplicationData
+            and ApplicationConfig, to detect cache directory.
+            For starters, it can be ApplicationConfig (it cannot be
+            ApplicationData, as ApplicationData may be read-only).
+            Long-term, it should be something else (using the same
             directory as for config files may not be adviced,
-            e.g. to allow users to backup config without backuping cache;
-            browse freedesktop.org, LSB,
-            Microsoft, Apple specs for good standard ways to calculate
-            a cache directory on Unix, Windows, Mac OS X).
+            e.g. to allow users to backup config without backuping cache).
+            See standards suitable for each OS (for Linux, and generally Unix
+            (but not Mac OS X) see <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a>;
+            specific Microsoft, Apple specs may be available
+            for Windows and Mac OS X).
           <li>Probably it's best to store a resource under a filename
             calculated by MD5 hash on the URL.
           <li>For starters, you can just make the max cache life

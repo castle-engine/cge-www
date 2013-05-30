@@ -68,7 +68,7 @@ should be possible to use there any absolute or relative URL; for now,
 only filenames are allowed). And <tt>level.xml</tt> files may be scattered
 throughout your directory as you wish. And what is "data directory" is
 configurable (by <?php api_link('Levels.LoadFromFiles', 'CastleLevels.TLevelInfoList.html#LoadFromFiles'); ?> optional parameter, by default
-we use <?php api_link('ProgramDataPath', 'CastleFilesUtils.html#ProgramDataPath'); ?>). It's only important that the XML files are named
+we use <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>). It's only important that the XML files are named
 <tt>level.xml</tt>.</p>
 
 <p>You can now start a game by scanning all levels information from

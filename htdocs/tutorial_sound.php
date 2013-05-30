@@ -75,8 +75,7 @@ See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'
 You have to initialize the sound repository inside your game code like this:</p>
 
 <?php echo pascal_highlight(
-'SoundEngine.RepositoryURL := ProgramDataPath + \'data\' +
-  PathDelim + \'sounds\' + PathDelim + \'index.xml\';'); ?>
+'SoundEngine.RepositoryURL := ApplicationData(\'data/sounds/index.xml\');'); ?>
 
 <p>After this, you can refer to your sound names from files like
 <tt>resource.xml</tt> (for creatures/items sounds)

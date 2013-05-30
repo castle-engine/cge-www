@@ -1,5 +1,10 @@
 <?php
 
+/* Next:
+- New ApplicationData, ApplicationConfig functions returning config/data paths as URLs. Use them instead of deprecated ProgramDataPath, UserConfigFile / UserConfigPath. Also, new ApplicationData on Unix tries first the $HOME/.local/share/<app-name> location, matching closer <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a> and many other programs.
+- New ScanForFiles, and a lot of other routines, take URL.
+*/
+
 array_push($news,
     array('title' => 'Development: transitionComplete, Debian packages, network tutorial, data URI, MultiTexture tests, more',
           'year' => 2013,

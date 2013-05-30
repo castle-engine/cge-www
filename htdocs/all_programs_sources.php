@@ -49,7 +49,7 @@ downloaded below.</p>
 
   <li><p><b>Optionally install required program data</b>. In most cases you don't
     have to do anything &mdash; as programs below either don't have any data,
-    or they use smart function (<a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ProgramDataPath">ProgramDataPath</a>)
+    or they use smart function (<a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ApplicationData">ApplicationData</a>)
     to detect data directory. It will automatically
     use current directory, if the data is there.
 

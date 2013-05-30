@@ -56,7 +56,7 @@ data in our engine.
     and
     <?php api_link('Resources.LoadFromFiles', 'CastleResources.T3DResourceList.html#LoadFromFiles'); ?>
     calls, by default it's the result of
-    <?php api_link('ProgramDataPath', 'CastleFilesUtils.html#ProgramDataPath'); ?>
+    <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
     function.
 
   <li><p>Each <tt>level.xml</tt> / <tt>resource.xml</tt>
