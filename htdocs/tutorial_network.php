@@ -102,6 +102,14 @@ a filename, if that's all you want to load).</p>
     See <tt>castle_game_engine/doc/uri_filename.txt</tt> in sources
     for more internal comments.
 
+    <p>If you read/write filenames from/to <a href="http://www.lazarus.freepascal.org/">Lazarus</a> classes,
+    for example if you use Lazarus <tt>TOpenDialog.FileName</tt> or
+    <tt>TSaveDialog.FileName</tt>, use the UTF-8 variants instead:
+    <?php api_link('URIToFilenameSafeUTF8', 'CastleLCLUtils.html#URIToFilenameSafeUTF8'); ?> and
+    <?php api_link('FilenameToURISafeUTF8', 'CastleLCLUtils.html#FilenameToURISafeUTF8'); ?>.
+    That is because Lazarus uses UTF-8 for all strings (as opposed to FPC RTL
+    that uses system encoding).
+
   <li><p><tt>data</tt> protocol.
 
     <p>We can always load resources from <tt>data</tt> URIs.
