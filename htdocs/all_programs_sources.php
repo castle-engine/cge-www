@@ -53,7 +53,7 @@ downloaded below.</p>
     to detect data directory. It will automatically
     use current directory, if the data is there.
 
-    <p>But you can also move/symlink data to <tt>$HOME/.xxx.data</tt>
+    <p>But you can also move/symlink data to <tt>$HOME/.local/share/xxx</tt>
     or <tt>/usr/local/share/xxx</tt> or <tt>/usr/share/xxx</tt>.
     You can do this easily by executing <tt>make install</tt> inside program
     directory.

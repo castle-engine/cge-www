@@ -109,11 +109,11 @@ the list of changes since last release.</p>
     Run the game by running the binary, like <tt>./castle</tt>.</p>
 
     <p>If you don't want to always run the binary from the game's
-    directory, you can also extract the game (or make a symlink to extracted dir)
-    to <tt>$HOME/.castle.data/</tt>, or <tt>/usr/local/share/castle/</tt>,
-    or <tt>/usr/share/castle/</tt>. You can then
-    move or symlink the binary <tt>castle</tt> to any place
-    you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
+    directory, you can also put the game binary anywhere on $PATH
+    (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>)
+    and extract the <tt>data</tt> to
+    to <tt>$HOME/.local/share/castle/</tt>, or <tt>/usr/local/share/castle/</tt>,
+    or <tt>/usr/share/castle/</tt>.</p>
 
   <li>
     <p><b>Mac OS X:</b></p>

@@ -40,13 +40,6 @@ or something like that. The truth is that
 Run the game binary (<tt>./malfunction</tt> on Unix,
 <tt>malfunction.exe</tt> on Windows).</p>
 
-<p>On Unix, if you don't want to always run the binary from the game's
-directory, you can extract the game (or make a symlink to extracted dir)
-to <tt>$HOME/.malfunction.data/</tt>, or <tt>/usr/local/share/malfunction/</tt>,
-or <tt>/usr/share/malfunction/</tt>. You can then
-move or symlink the binary <tt>malfunction</tt> to any place
-you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
-
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
 <p>When you run the game, first thing to do is

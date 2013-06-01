@@ -68,13 +68,6 @@ appropriate DLLs are already is the archive.
 Run the game binary (<tt>./lets_take_a_walk</tt> on Unix,
 <tt>lets_take_a_walk.exe</tt> on Windows).</p>
 
-<p>On Unix, if you don't want to always run the binary from the game's
-directory, you can extract the game (or make a symlink to extracted dir)
-to <tt>$HOME/.lets_take_a_walk.data/</tt>, or <tt>/usr/local/share/lets_take_a_walk/</tt>,
-or <tt>/usr/share/lets_take_a_walk/</tt>. You can then
-move or symlink the binary <tt>lets_take_a_walk</tt> to any place
-you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
-
 <p>Press F1 in the game to get help.
 
 <p>This is free/open-source software.

@@ -34,13 +34,6 @@
 Run the game binary (<tt>./kambi_lines</tt> on Unix,
 <tt>kambi_lines.exe</tt> on Windows).</p>
 
-<p>On Unix, if you don't want to always run the binary from the game's
-directory, you can extract the game (or make a symlink to extracted dir)
-to <tt>$HOME/.kambi_lines.data/</tt>, or <tt>/usr/local/share/kambi_lines/</tt>,
-or <tt>/usr/share/kambi_lines/</tt>. You can then
-move or symlink the binary <tt>kambi_lines</tt> to any place
-you like (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>).</p>
-
 <p>You can run the program with <tt>--fullscreen</tt> command-line option,
 the game will then change screen resolution to 640x480 and run in fullscreen
 mode (this is what original DOS "Color Lines" were doing).
