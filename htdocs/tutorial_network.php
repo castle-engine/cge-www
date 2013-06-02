@@ -7,8 +7,45 @@ tutorial_header('Network and downloading');
 not available yet in the last stable engine version.</i>
 
 <p>All methods in our engine take URL as the parameter,
-not just a FileName (although in almost all cases you can also pass
-a filename, if that's all you want to load).</p>
+not just a FileName. Although in almost all cases you can also pass
+a filename (absolute or relative to the current directory),
+if that's all you're interested in.
+
+<p>All loading and saving routines (for 3D models, images, sounds, and all
+other resources) automatically deal with URLs. To actually load network
+URLs (like http) you only need to set
+<?php api_link('CastleDownload.EnableNetwork', 'CastleDownload.html#EnableNetwork'); ?>
+ to <tt>true</tt>.
+
+<p>To directly load or save files (as ObjectPascal <tt>TStream</tt>)
+in your own code:
+
+<ul>
+  <li><p>To load, use our simple
+    <?php api_link('Download', 'CastleDownload.html#Download'); ?> function.
+    It automatically handles all the details for you,
+    including downloading from network (if <tt>EnableNetwork</tt>),
+    and returns you a <tt>TStream</tt> that contains the resource indicated
+    by the URL. There is an example in the engine code
+    <tt>examples/tools/castle_download</tt> that uses this to implement a simple
+    command-line downloading tool (like <tt>wget</tt>).
+
+    <p>Details about supported URL protocols are below.
+
+  <li><p>To save, use trivial
+    <?php api_link('URLSaveStream', 'CastleDownload.html#URLSaveStream'); ?>
+    function. Right now, it can only save to a local file,
+    so it merely translates a URL to local filename and creates a <tt>TFileStream</tt>
+    for you. Still, it's a good idea to use it, to uniformly deal with
+    URLs throughout your application.
+</ul>
+
+<p>If you want to read or write text files from an URL, you may
+also find useful classes
+<?php api_link('TTextReader', 'CastleClassUtils.TTextReader.html'); ?> and
+<?php api_link('TTextWriter', 'CastleClassUtils.TTextWriter.html'); ?>.
+
+<h2>Supported protocols</h2>
 
 <ul>
   <li><p>Support for network protocols: <tt>http</tt>.
@@ -132,16 +169,37 @@ a filename, if that's all you want to load).</p>
     see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 </ul>
 
-<p>If you want to handle network and URLs in your own code,
-use the trivial
-<?php api_link('Download', 'CastleDownload.html#Download'); ?> function.
-It automatically handles all the details for you,
-including downloading from network (if <tt>EnableNetwork</tt>),
-and returns you a <tt>TStream</tt> that contains the resource indicated
-by the URL. You could use it to trivally easy add network (and other URLs)
-support to your application. There is an example in the engine code
-<tt>examples/tools/castle_download</tt> that uses this to implement a simple
-command-line downloading tool (like <tt>wget</tt>).
+<h2>Notes about terminology: URI vs URL</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
+is a more general term. URI uniquely identifies a resource but does not
+necessarily tell us how to load (download) or save (upload) it.
+We have many routines in <?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
+ unit that process URIs (strings), they use the more general term <tt>URI</tt>.
+They complement standard FPC <tt>URIParser</tt> routines.
+
+<p><a href="http://en.wikipedia.org/wiki/Uniform_resource_locator">URL</a>
+is a specific type of URI that also tells you how to load or save the resource.
+For example <tt>http</tt> and <tt>file</tt> protocols define URLs.
+Most of our routines that load or save use the term <tt>URL</tt>.
+
+<p>Things get a little more cloudy when you realize there's also
+<a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI scheme</a>.
+It's not precisely an URL (it's not an address of a resource),
+but you <i>can</i> load it (since the URI itself contains the resource).
+And we support it fully (our
+<?php api_link('Download', 'CastleDownload.html#Download'); ?> method
+loads it automatically). Admittedly, this means that our loading routines
+should rather use the term <i>URL or data URI</i>, but that's just long
+and (for those who don't use data URI) confusing, so for simplicity we
+just keep (over-)using the term <i>URL</i>. Also, other standards (like CSS
+and X3D and VRML) allow placing <i>data URIs</i> inside fields called <tt>url</tt>.
+
+<p>If you enjoy reading about Internet terminology,
+note that we use in our engine also
+<a href="http://en.wikipedia.org/wiki/Uniform_resource_name">URNs</a>
+(another subtype of URI). They are used by X3D external prototypes,
+see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <?php
 tutorial_footer();
