@@ -117,7 +117,7 @@ of animation handling in our VRML engine documentation</a>.</p>
   &lt;frame
 
     file_name="file_1.wrl" // This is a required attribute, and specifies
-                           // the filename from which to load this
+                           // the URL from which to load this
                            // animation frame. Any 3D file format is allowed here:
                            // most of all, VRML/X3D, but also
                            // <?php echo a_href_page_hashlink(

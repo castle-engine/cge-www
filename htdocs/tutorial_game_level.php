@@ -62,10 +62,9 @@ along with it's associated 3D models. So I have a structure like this:</p>
     ...</pre>
 
 <p>Although this convention proved comfortable, it's not forced at
-all. The 3D models files may live in other directories than <tt>level.xml</tt>
-files, as <tt>"scene"</tt> field may contain a relative filename (in future, it
-should be possible to use there any absolute or relative URL; for now,
-only filenames are allowed). And <tt>level.xml</tt> files may be scattered
+all. The 3D model files may live in other directories than <tt>level.xml</tt>
+files, and <tt>"scene"</tt> field is actually a relative URL to get them.
+And <tt>level.xml</tt> files may be scattered
 throughout your directory as you wish. And what is "data directory" is
 configurable (by <?php api_link('Levels.LoadFromFiles', 'CastleLevels.TLevelInfoList.html#LoadFromFiles'); ?> optional parameter, by default
 we use <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>). It's only important that the XML files are named

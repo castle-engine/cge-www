@@ -102,7 +102,7 @@ See <?php echo a_href_page('creating game data guide', 'creating_data_intro'); ?
 <?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
  they have fewer parameters. That is
 because the default sound properties (it's individual gain, importance
-(priority), actual filename and other stuff) is already recorded in
+(priority), URL and other stuff) is already recorded in
 the sounds XML file. That's one advantage of using the
 sounds repository: all your sounds properties are centrally stored in
 the sounds XML file.</p>

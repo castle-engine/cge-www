@@ -17,7 +17,7 @@ data in our engine.
     <ul>
       <li><p>Note about attributes that specify URLs: the default value is
         always empty string (although sometimes URL is just required,
-        e.g. <tt>"scene"</tt> inside <tt>level.xml</tt>). Relative URLs 
+        e.g. <tt>"scene"</tt> inside <tt>level.xml</tt>). Relative URLs
         are always relative to the XML file. In simple cases, you just use
         filenames there, and place your data files along the XML files.
 
@@ -60,7 +60,7 @@ data in our engine.
     function.
 
   <li><p>Each <tt>level.xml</tt> / <tt>resource.xml</tt>
-    file may contain relative filenames for
+    file may contain relative URLs for
     3D models and images related to this resource.
     The idea is that the XML file is kept together with the data of particular
     creature, item etc.
@@ -76,7 +76,7 @@ data in our engine.
     to reload XML configuration of various things during the game.
     (Most, but not absolutely all, settings can be changed even while
     the game is running; exceptions are things that are "heavy" &mdash;
-    e.g. changing animation filename may require restarting the level.)
+    e.g. changing animation URL may require restarting the level.)
 </ol>
 
 <?php
