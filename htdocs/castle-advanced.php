@@ -60,37 +60,20 @@ memory-eater) you can
 <?php echo $toc->html_section(); ?>
 
 <p>The game prefers to be run in resolution 800x600.
-
-<p>But there is a command-line option <tt>--screen-size</tt> that you
-can use to change desired screen size. You can specify any screen sizes
-(not necessarily matching some usual fullscreen sizes, so even something crazy
-like <tt>--screen-size 600x700</tt> works). But beware that, while the
-game works and is perfectly playable in any resolution, some 2D graphics and
-menus really look best only in default 800x600 resolution.
-
-<!--
-<p>Reasoning: My practice shows that it's simply too difficult to really make
-a game that looks perfect on any resolution, because any 2D graphics
-is highly tied to resolution it was prepared for. Scaling 2D graphics,
-even using really good algorithms, never results in optimal look.
-My game is 3D, but still there are elements displayed in 2D,
-so this still matters.
--->
-
-<p>If your current screen resolution is 800x600 (or whatever you
-requested by <tt>--screen-size</tt>), the game will
-happily run in fullscreen. Otherwise the game will try to resize
-your screen first (on exit, the screen size will
-be restored to previous size). If this resizing will fail
-(for whatever reason, e.g. you have poor graphics driver),
-it will run in windowed mode.
-
-<p>You can pass command-line option <tt>--no-screen-change</tt> (short form: <tt>-n</tt>)
-to disable the automatic screen resizing. Then the game will
-run in fullscreen mode only if your current screen size is appropriate,
-otherwise it will run in windowed mode.
-You can also set this from the main menu:
+If possible, it will resize your screen to this.
+If you don't want to change your screen resolution,
+you can disable it from the main menu:
 "Video options -> Allow screen settings change on startup".
+
+<p>You can use <?php echo a_href_page("standard options
+understood by our OpenGL programs", "opengl_options") ?>
+ like <tt>--geometry</tt> and <tt>--fullscreen</tt>
+to force windowed or fullscreen mode with desired size.
+For example run like this:
+
+<pre class="sourcecode">
+castle --geometry 800x600
+</pre>
 
 <?php echo $toc->html_section(); ?>
 
