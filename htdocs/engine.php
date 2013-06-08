@@ -127,7 +127,8 @@ The full list of libraries is at the "Requirements" section at the documentation
 of each program, and the
 <a href="<?php echo reference_link(); ?>">reference</a>
 also lists the libraries in the introduction section.
-In short, you will most likely want to have <i>libpng, zlib, OpenAL, and vorbisfile</i>.</p>
+In short, you will most likely want to have <i>libpng, zlib, gtkglext,
+OpenAL, and vorbisfile</i>.</p>
 
 <ul>
   <li><i>On Linux and FreeBSD</i> you should install these libraries
