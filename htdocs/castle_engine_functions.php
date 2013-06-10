@@ -562,7 +562,7 @@ function echo_footer ()
     <td><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a></td>
 
     <td><?php echo PAGE_COPYRIGHT; ?><br/>
-      <small>Oh, and we use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+      <small>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
       Like every other frickin' website on the Internet.
       Blink twice if you understand.</small>
     </td>
