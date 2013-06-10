@@ -445,3 +445,7 @@ div.quote {
   text-align: center;
   font-weight: bold;
 }
+
+.footer-table td {
+  vertical-align: top;
+}

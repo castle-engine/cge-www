@@ -557,17 +557,23 @@ function echo_footer ()
 
   ?>
 
-  <table><tr>
+  <table class="footer-table"><tr>
 
     <td><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a></td>
 
-    <td><?php echo PAGE_COPYRIGHT; ?></td>
+    <td><?php echo PAGE_COPYRIGHT; ?><br/>
+      <small>Oh, and we use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+      Like every other frickin' website on the Internet.
+      Blink twice if you understand.</small>
+    </td>
 
     <?php if (!IS_GEN_LOCAL) { ?>
       <td> <a href="http://validator.w3.org/check/referer"> <img border="0" src="images/valid-html401.png" alt="Valid HTML 4.01!" height="31" width="88"></a> <?php // style="padding-bottom: 3%" ?> </td>
     <?php } ?>
 
   </tr></table>
+
+
 
   <?php
 
