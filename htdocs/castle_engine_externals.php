@@ -39,7 +39,8 @@ function flattr_button($align = true)
 function googleplus_header()
 {
   if (CASTLE_OFFLINE) return '';
-  return '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>';
+  return '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<link href="https://plus.google.com/101185352355602218697" rel="publisher" />';
 }
 
 function googleplus_badge()
@@ -48,7 +49,7 @@ function googleplus_badge()
   /* Instead of +1 button, it's better to use a "badge",
      https://developers.google.com/+/web/badge/ .
      This allos Google to link our normal page back to our G+ page. */
-  return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697" rel="author"></div>';
+  return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697"></div>';
   //return '<g:plusone size="tall"></g:plusone>';
 }
 
