@@ -86,7 +86,7 @@ end.'); ?>
     Both approaches make sense, really, and it's your
     choice. You should choose Lazarus method (<tt>TCastleControl</tt>) if you want
     to integrate game context with normal GUI (Lazarus forms, controls) or
-    if you're just more comfortable with dropping components of a Lazarus
+    if you're just more comfortable with dropping components on a Lazarus
     form. If you want best OpenGL features, or if you're just more
     comfortable working outside of Lazarus (like with custom editor and
     only calling FPC through command-line) then probably you want to choose
