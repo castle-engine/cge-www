@@ -15,7 +15,7 @@ $toc = new TableOfContents(array(
   new TocItem('Shadow maps extensions', 'ext_shadow_maps', 1),
   new TocItem('Shadow volumes extensions', 'ext_shadows', 1),
   new TocItem('Specify what lights cast shadows for shadow volumes (fields <tt>shadowVolumes</tt> and <tt>shadowVolumesMain</tt> for light nodes)', 'ext_shadows_light', 2),
-  new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere.texCoord</tt>)', 'ext_tex_coord', 1),
+  new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere/Extrusion.texCoord</tt>)', 'ext_tex_coord', 1),
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds', 1),
@@ -456,7 +456,7 @@ These names are not invented by us, they are the names used for <a href="http://
   (as it would allow <tt>TextureCoordinate</tt> as children).</p>
 
   <?php
-    echo node_begin('Box / Cone / Cylinder / Sphere');
+    echo node_begin('Box / Cone / Cylinder / Sphere / Extrusion');
     echo
     node_dots('') .
     node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]') .

@@ -216,6 +216,11 @@ Sphere : X3DGeometryNode {
   SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
 }
 
+Extrusion : X3DGeometryNode {
+  ... all normal Cone fields ...
+  SFNode     [in,out]      texCoord    NULL        # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+
 ProjectedTextureCoordinate : X3DTextureCoordinateNode {
   SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
