@@ -62,8 +62,8 @@ looking like this:</p>
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 <sounds>
-  <sound name="sample" file_name="sample.wav" />
-  <!-- Actually, you can omit the file_name, by default it\'s the same
+  <sound name="sample" url="sample.wav" />
+  <!-- Actually, you can omit the url, by default it\'s the same
     as sound name with .wav extension. -->
 </sounds>'); ?>
 

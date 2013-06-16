@@ -116,27 +116,29 @@ of animation handling in our VRML engine documentation</a>.</p>
 
   &lt;frame
 
-    file_name="file_1.wrl" // This is a required attribute, and specifies
-                           // the URL from which to load this
-                           // animation frame. Any 3D file format is allowed here:
-                           // most of all, VRML/X3D, but also
-                           // <?php echo a_href_page_hashlink(
-                                'other formats understood by view3dscene and our engine',
-                                'view3dscene',
-                                'section_features'); ?>.
+    url="file_1.wrl" // This is a required attribute, and specifies
+                     // the URL from which to load this
+                     // animation frame. Any 3D file format is allowed here:
+                     // most of all, VRML/X3D, but also
+                     // <?php echo a_href_page_hashlink(
+                          'other formats understood by view3dscene and our engine',
+                          'view3dscene',
+                          'section_features'); ?>.
+                     // There is also a deprecated attribute "file_name"
+                     // that means the same as "url".
 
-    time="0.0"             // This is a required attribute specifying a
-                           // time of this frame. For now, all frames
-                           // must be specified in the strictly increasing order
-                           // of their "time".
-                           // This is understood to be in seconds.
+    time="0.0"       // This is a required attribute specifying a
+                     // time of this frame. For now, all frames
+                     // must be specified in the strictly increasing order
+                     // of their "time".
+                     // This is understood to be in seconds.
   /&gt;
 
   // For example, assume that the second &lt;frame&gt; node follows.
   // So this defines an animation that changes from
   // file_1.wrl and file_2.wrl in exactly 1 second.
 
-  &lt;frame file_name="file_2.wrl" time="1.0" /&gt;
+  &lt;frame url="file_2.wrl" time="1.0" /&gt;
 
 &lt;/animation&gt;
 </pre>

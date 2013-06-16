@@ -61,15 +61,15 @@ with links to documentation for every attribute.
   <!-- See lower on this page for explanation how to export animations
        and define <model> element. Below we only show all possible attributes,
        in practice you will not want to set them all. -->
-  <model file_name="main.x3d">
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         file_name="idle.x3d"         time_sensor="TimeSensorIdle" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] file_name="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         file_name="walk.x3d"         time_sensor="TimeSensorWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] file_name="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       file_name="attack.x3d"       time_sensor="TimeSensorAttack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          file_name="die.x3d"          time_sensor="TimeSensorDie" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     file_name="die_back.x3d"     time_sensor="TimeSensorDieBack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         file_name="hurt.x3d"         time_sensor="TimeSensorHurt" />
+  <model url="main.x3d">
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.x3d"         time_sensor="TimeSensorIdle" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.x3d"         time_sensor="TimeSensorWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] url="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       url="attack.x3d"       time_sensor="TimeSensorAttack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          url="die.x3d"          time_sensor="TimeSensorDie" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     url="die_back.x3d"     time_sensor="TimeSensorDieBack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         url="hurt.x3d"         time_sensor="TimeSensorHurt" />
   </model>
 
   <attack
@@ -193,7 +193,7 @@ modeler / exporter you use to design your models:
     resource.xml file like this:
 
 <?php echo xml_highlight(
-'<model file_name="model.x3d">
+'<model url="model.x3d">
   <stand time_sensor="TimeSensorStand"/>
   <walk time_sensor="TimeSensorWalk"/>
 </model>'); ?>
@@ -215,8 +215,8 @@ modeler / exporter you use to design your models:
 
 <?php echo xml_highlight(
 '<model>
-  <stand file_name="stand.x3d" time_sensor="MainTimeSensor"/>
-  <walk file_name="walk.x3d" time_sensor="MainTimeSensor"/>
+  <stand url="stand.x3d" time_sensor="MainTimeSensor"/>
+  <walk url="walk.x3d" time_sensor="MainTimeSensor"/>
 </model>'); ?>
 
   <li><p>You can also use a precalculated animation for each animation,
@@ -233,8 +233,8 @@ modeler / exporter you use to design your models:
 
 <?php echo xml_highlight(
 '<model>
-  <stand file_name="stand.kanim"/>
-  <walk file_name="walk.kanim"/>
+  <stand url="stand.kanim"/>
+  <walk url="walk.kanim"/>
 </model>'); ?>
 
     <p>This is probably the most comfortable approach to export animations
@@ -247,21 +247,21 @@ modeler / exporter you use to design your models:
 
 <ul>
   <li><p>(Case 3. above) When animation state, like <tt>&lt;stand&gt;</tt> or <tt>&lt;walk&gt;</tt>,
-    doesn't have a time_sensor attribute &mdash; then it must have
-    file_name attribute, and we use precalculated animation,
+    doesn't have a <tt>time_sensor</tt> attribute &mdash; then it must have
+    <tt>url</tt> attribute, and we use precalculated animation,
     TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
     X3D animations. Suitable also when the model is just a still 3D
     model, as then TCastlePrecalculatedAnimation simply renders it.
 
   <li><p>(Case 2. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
-    <tt>&lt;walk&gt;</tt> has both time_sensor and file_name, then we load it to a
+    <tt>&lt;walk&gt;</tt> has both <tt>time_sensor</tt> and <tt>url</tt>, then we load it to a
     TCastleScene and use appropriate TimeSensor to play the animation.
 
   <li><p>(Case 1. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
-    <tt>&lt;walk&gt;</tt> has only time_sensor, then we use a 3D model defined at
+    <tt>&lt;walk&gt;</tt> has only <tt>time_sensor</tt>, then we use a 3D model defined at
     <tt>&lt;model&gt;</tt> element to choose and play appropriate animation. This also
-    means using TCastleScene and appropriate TimeSensor to play it, but
-    now it's a single TCastleScene potentially shared by various
+    means using TCastleScene and appropriate TimeSensor to play it,
+    but this time it's a single TCastleScene potentially shared by various
     animations.
 </ul>
 

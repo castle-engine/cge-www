@@ -20,7 +20,7 @@ See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
 
   <sound
     [[CastleSoundEngine.TSoundInfo.html#Name|name]]="player_sudden_pain"
-    [[CastleSoundEngine.TSoundInfo.html#FileName|file_name]]=""
+    [[CastleSoundEngine.TSoundInfo.html#URL|url]]=""
     [[CastleSoundEngine.TSoundInfo.html#DefaultImportance|default_importance]]="max"
     [[CastleSoundEngine.TSoundInfo.html#Gain|gain]]="1.0"
     [[CastleSoundEngine.TSoundInfo.html#MinGain|min_gain]]="0.0"

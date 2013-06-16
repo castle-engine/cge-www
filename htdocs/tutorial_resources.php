@@ -21,15 +21,15 @@ in the game data. Their contents looks like this:</p>
   name="MyCreatureName"
   type="WalkAttack">
   <model>
-    <idle         file_name="idle.kanim"   />
-    <walk         file_name="walk.kanim"   />
-    <attack       file_name="attack.kanim" />
-    <die          file_name="die.kanim"    />
-    <hurt         file_name="hurt.kanim"   />
+    <idle         url="idle.kanim"   />
+    <walk         url="walk.kanim"   />
+    <attack       url="attack.kanim" />
+    <die          url="die.kanim"    />
+    <hurt         url="hurt.kanim"   />
   </model>
 </resource>'); ?>
 
-<p>The <tt>file_name</tt> properties refer to actual 3D models
+<p>The <tt>url</tt> properties refer to actual 3D models
 defining creature animations.
 See <tt>examples/fps_game/</tt> data for a real example how such file looks
 like. And see <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>
