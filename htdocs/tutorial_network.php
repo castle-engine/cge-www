@@ -169,6 +169,27 @@ also find useful classes
     see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 </ul>
 
+<h2>Dialog windows</h2>
+
+<p>If you use
+<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
+it gives you a ready
+<?php api_link('TCastleWindowBase.FileDialog', 'CastleWindow.TCastleWindowBase.html#FileDialog'); ?>
+ that takes and returns URLs.
+
+<p>If you use Lazarus with
+<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+we advise to use our dialog componets:
+<?php api_link('TCastleOpenDialog', 'CastleDialogs.TCastleOpenDialog.html'); ?>,
+<?php api_link('TCastleSaveDialog', 'CastleDialogs.TCastleSaveDialog.html'); ?>,
+<?php api_link('TCastleOpen3DDialog', 'CastleDialogs.TCastleOpen3DDialog.html'); ?>,
+<?php api_link('TCastleOpenPictureDialog', 'CastleDialogs.TCastleOpenPictureDialog.html'); ?>,
+<?php api_link('TCastleSavePictureDialog', 'CastleDialogs.TCastleSavePictureDialog.html'); ?>.
+You can also continue using standard Lazarus dialog components.
+Our routines (almost) always handle a filename instead of an URL,
+or you can explicitly convert between filenames and URLs using functions
+mentioned earlier.
+
 <h2>Notes about terminology: URI vs URL</h2>
 
 <p><a href="http://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
