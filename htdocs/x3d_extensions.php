@@ -664,14 +664,23 @@ EXTERNPROTO Text3D [
     ));
     ?>
 
-    <p>Alpha channel of your textures
-    is fully supported, both a simple yes-no transparency (done
-    by alpha_test in OpenGL) and full range transparency
-    (done by blending in OpenGL, just like partially transparent materials).
-    Internally, we have a simple and very nice algorithm that detects whether texture's
-    alpha channel qualifies as simple yes-no or full range, see
-    <?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>
-    (default tolerance values used by X3D renderer are 5 and 0.01).
+    <p>Our engine detects the alpha channel type of every texture
+    automatically. There are three possible situations:
+
+    <ol>
+      <li>The texture has no alpha channel (it is always opaque), or
+      <li>the texture has simple yes-no alpha channel
+        (transparency rendered using alpha testing), or
+      <li>the texture has full range alpha channel
+        (transparency rendered by blending,
+        just like partially transparent materials).
+    </ol>
+
+    <p>The difference between yes-no and full range alpha channel
+    is detected by analyzing alpha channel values.
+    Developers: see
+    <?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>,
+    default tolerance values used by X3D renderer are 5 and 0.01.
     There is also a special program in <?php echo a_href_page('engine sources',
     'engine'); ?> (see <tt>examples/images_videos/detect_alpha_simple_yes_no.lpr</tt>
     file) if you want to use this algorithm yourself.
@@ -680,9 +689,19 @@ EXTERNPROTO Text3D [
 
     <p>Sometimes you want to override results of this automatic detection.
     For example, maybe your texture has some pixels using full range alpha
-    but you still want to use simpler rendering by alpha_test.
+    but you still want to use simpler rendering by alpha testing
+    (that doesn't require sorting, and works nicely with shadow maps).
 
-    <p>So we add new field to all texture nodes
+    <p>If you modify the texture contents at runtime (for example by scripts,
+    like <tt>demo_models/castle_script/edit_texture.x3dv</tt>
+    in <?php echo a_href_page('demo models','demo_models'); ?>)
+    you should also be aware that alpha channel detection happens only once.
+    It is not repeated later, as this would be 1. slow 2. could cause
+    weird rendering changes. In this case you may also want to force
+    a specific alpha channel treatment, if initial texture contents
+    are opaque but you want to later modify it's alpha channel.
+
+    <p>To enable this we add new field to all texture nodes
     (everything descending from <tt>X3DTextureNode</tt>,
     like <tt>ImageTexture</tt>, <tt>MovieTexture</tt>; also <tt>Texture2</tt>
     in VRML 1.0):
@@ -692,16 +711,13 @@ EXTERNPROTO Text3D [
       $node_format_fd_name_pad = 10;
       echo
       node_dots('all normal X3DTextureNode fields') .
-      node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"') .
+      node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "NONE", "SIMPLE_YES_NO" or "FULL_RANGE"') .
       node_end();
     ?>
 
     <p>Value <tt>AUTO</tt> means that automatic detection is used, this
-    is the default. Value <tt>SIMPLE_YES_NO</tt> means that alpha channel,
-    if present, will always be treated like a simple yes/no channel (only fully
-    opaque or fully transparent pixels). <tt>FULL_RANGE</tt> means that
-    we will always consider alpha channel as full range, and always render
-    it using blending.
+    is the default. Other values force the specific alpha channel treatment
+    and rendering, regardless of initial texture contents.
 
 <?php echo $toc->html_section(); ?>
 
