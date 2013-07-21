@@ -114,13 +114,23 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
     (to not "stutter" when using mouse look), but the problem is still
     noticeable (mouse look under other TCastleWindow backends is much smoother).
 
-    <p>For this reason, if you make normal game (that doesn't need
-    any menu or dialog boxes) you may still consider using
-    CASTLE_WINDOW_X11 backend instead of CASTLE_WINDOW_LCL &mdash;
-    the X11 is pretty easy to install on Mac OS X.
-    For normal tools (that need menu and dialog boxes)
-    CASTLE_WINDOW_LCL is probably already better than CASTLE_WINDOW_GTK,
-    thanks to not needing difficult dependencies (GTK etc. from fink).
+    <p>For the above reasons:
+    <ul>
+      <li><b>If you make normal game (that doesn't need
+        any menu or dialog boxes)</b> consider using
+        the (default) CASTLE_WINDOW_XLIB backend on Mac OS X.
+        Using X11 (Xlib) is not a problem on Mac OS X.
+        And this way you get a perfect speed and smoothly working event loop
+        (with smooth mouse look).
+
+      <li>Only <b>if you make tool-like program (that needs menu and dialog
+        boxes)</b> then CASTLE_WINDOW_LCL is a good choice.
+        It will look perfectly native. Although at the cost of not perfect mouse look.
+        Alternatively, you can use CASTLE_WINDOW_GTK_2 on Mac OS X,
+        that has both nice menu/dialogs and a smooth mouse look,
+        but it requires installation of some special libraries
+        (GTK etc. from fink).
+    </ul>
 </ul>
 
 <?php echo $toc->html_section(); ?>
