@@ -10,7 +10,7 @@
       new TocItem('Mac OS X applications using X Windows (and optionally GTK2)', 'gtk'),
         new TocItem('Dependencies to install', 'requirements', 1),
         new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
-      new TocItem('Developers: help wanted', 'help_wanted'),
+      new TocItem('Developers: creating Mac OS X applications', 'creating_apps'),
     )
   );
   $toc->echo_numbers = true;
@@ -240,17 +240,27 @@ you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The plan:</p>
+<p>A bunch of information about packaging your programs for Mac OS X follows.
+
+<!--
+Note that our engine doesn't force you to do anything special to distribute
+your programs &mdash; you get a normal (Unix) binary that you can use however you like.
+
+use any packaging, the rules below
+are just general rules for all Mac OS X programs.
+make any constraints here.
+You compile and package your program as usual, using FPC or Lazarus,
+and  that you package however you like.</p>
+-->
 
 <ol>
-  <li><p><i>Make "Mac OS X bundle"</i> (it's basically a directory pretending
-    to be an application). You can find view3dscene SVG icon in the sources.</p>
+  <li><p><i>Make "Mac OS X bundle"</i>. It's basically a directory pretending
+    to be an application.
 
-    <p>Actually, this step is already somewhat done at least for view3dscene.
-    A script <tt>create_macosx_bundle.sh</tt> will make a nice view3dscene.app,
-    that you should be able to execute. Unfortunately, it doesn't really work yet.
-
-    <p>You can also just try using Lazarus bundle creator.
+    <p>You can use Lazarus to create Mac OS X bundle.
+    Or you can use our script (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/scripts/create_macosx_bundle.sh">script
+    create_macosx_bundle.sh in our SVN repository</a>), example usage is
+    inside view3dscene sources.</p>
     </li>
 
   <li><p>Optionally, <i>add libpng and vorbisfile libraries to the bundle</i>.
