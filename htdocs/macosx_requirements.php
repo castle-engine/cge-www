@@ -263,24 +263,25 @@ and  that you package however you like.</p>
     inside view3dscene sources.</p>
     </li>
 
-  <li><p>Optionally, <i>add libpng and vorbisfile libraries to the bundle</i>.
-    We will still be able to link to them dynamically, as far as I know.
-    libpng is required for PNG reading (unless new Mac OS X already includes it?).
-    vorbisfile is required for OggVorbis playing (used by some castle
-    music tracks, used by view3dscene <tt>Sound</tt> demos).</p>
+  <li><p>Optionally, <i>add libraries (like libpng and vorbisfile) to the bundle</i>.
+    If you link to them dynamically (e.g. using our <tt>TDynLib.Load</tt>),
+    you should load them from a path relative to <tt>BundlePath</tt>, like
+    <tt>BundlePath + 'Contents/MacOS/libpng.dylib'</tt>.
 
     <p>See
     <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries">Mac OS X Libraries on FPC wiki</a>
-    for instructions how to include library inside a bundle.</p>
+    for general instructions how to include library inside a bundle.</p>
     </li>
 
-  <li><p>Finally, prepare a script to pack a nice .dmg (instead of current
-    .tar.gz) distribution (of view3dscene, or castle &mdash; doesn't matter,
-    I'll adjust it to be more general).</p>
+  <li><p>Pack into a nice .dmg file.
+    See <a href="http://el-tramo.be/guides/fancy-dmg/">Building Fancy DMG Images on Mac OS X</a>
+    for nice description how to make the directories inside dmg look pretty,
+    so you can visually suggest user to drag your application in the <i>Applications</i>
+    folder.
 
-    <p>See http://el-tramo.be/guides/fancy-dmg/
-    Note: we do not need .pkg (package manager),
-    http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X
+    <p>Alternative method of distribution Mac OS X applications is the
+    <a href="http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X">package manager (.pkg)</a>.
+    For normal applications (like games) the simpler .dmg is a better choice.
     </li>
 </ol>
 
