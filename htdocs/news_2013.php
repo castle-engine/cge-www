@@ -3,8 +3,11 @@
 /* Next:
 - CastleWindow LCL backend pracatically finished. In particular, it works flawless to create native Mac OS X apps now.
 - Mac OS X bundle creation, view3dscene assigned to proper file types on Mac OS X, accepts drag-and-drop of files on window.
-- Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle.
+- Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle. It also contains desktop and icon for freedesktops (GNOME, KDE, Xfce, some more).
 - Jan Adamec has started work on iOS port, you can see his results on ios_tests/ and (movie). And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
+
+TODO: package view3dscene and glViewImage with bundle inside dmg.
+TODO: package glViewImage under Linux with desktop/ scripts, like view3dscene.
 */
 
 array_push($news,
