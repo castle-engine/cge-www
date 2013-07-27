@@ -1,5 +1,11 @@
 <?php
 
+/* Next:
+- CastleWindow LCL backend pracatically finished. In particular, it works flawless to create native Mac OS X apps now.
+- Mac OS X bundle creation, view3dscene assigned to proper file types on Mac OS X, accepts drag-and-drop of files on window.
+- Jan Adamec has started work on iOS port, you can see his results on ios_tests/ and (movie). And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
+*/
+
 array_push($news,
     array('title' => 'Development: transitionComplete, Debian packages, network tutorial, data URI, MultiTexture tests, more',
           'year' => 2013,
