@@ -301,14 +301,13 @@ flawlessly :) So give it a try!
   <tr><th colspan="2">Mouse:</th></tr>
   <tr><td>Rotate</td> <td>Left mouse dragging</td>                           </tr>
   <tr><td>Move</td>   <td>Middle mouse dragging (or Left mouse + Shift)</td> </tr>
-  <tr><td>Zoom</td>   <td>Right mouse dragging (or Left mouse + Ctrl)</td>   </tr>
+  <tr><td>Zoom</td>   <td>Right mouse dragging (or Left mouse + Ctrl; or scroll wheel)</td>   </tr>
 
   <tr><th colspan="2">Keys:</th></tr>
-  <tr><td>Rotate</td>        <td>Arrows / PageUp / PageDown</td>        </tr>
+  <tr><td>Rotate</td>        <td>Arrows</td>        </tr>
   <tr><td>Stop rotating</td> <td>Space</td>                             </tr>
-  <tr><td>Move</td>          <td>Ctrl + Arrows / PageUp / PageDown</td> </tr>
+  <tr><td>Move</td>          <td>Ctrl + Arrows</td> </tr>
   <tr><td>Scale</td>         <td>+ / -</td>                             </tr>
-  <tr><td>Restore default transformation</td>           <td>Home</td>   </tr>
 </table>
 
 <h3><tt>Walk</tt> / <tt>Fly</tt> navigation modes:</h3>
@@ -331,8 +330,6 @@ flawlessly :) So give it a try!
   <tr><td>Fly up / down</td>         <td>Insert / Delete</td>      </tr>
   <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt style="background-color: transparent;">Walk</tt> mode)</td>
       <td>A / Z</td> </tr>
-  <tr><td>Raise / bow your head / look straight</td> <td>PageUp / PageDown / Home</td>    </tr>
-  <!--tr><td>Look straight (neutralize the effect of raise / bow head)</td>   <td>Home</td>  </tr-->
   <tr><td>Run</td>                   <td>Shift</td>            </tr>
 
   <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
@@ -355,8 +352,6 @@ flawlessly :) So give it a try!
        very precisely, e.g. to use this camera setting to render a scene
        image using ray-tracer)-->
        <td>Ctrl + Left / Right</td> </tr>
-  <tr><td>Raise / bow your head <i>slower</i></td>
-      <td>Ctrl + PageUp / PageDown</td></tr>
 </table>
 
 <p>We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,

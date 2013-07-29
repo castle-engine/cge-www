@@ -6,6 +6,39 @@
 - Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle. It also contains desktop and icon for freedesktops (GNOME, KDE, Xfce, some more).
 - Jan Adamec has started work on iOS port, you can see his results on ios_tests/ and (movie). And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
 
+view3dscene interprets Home / PageUp / PageDown / End keys to switch to initial / next / previous / last viewpoint. This is consistent with other VRML / X3D browsers behavior, follows recommended X3D shortcuts (see http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/behaviours.html#SelectFromMulitpleViewpoints ), and it makes moving through viewpoints easier, using just a keyboard. Thanks for Don Brutzman for bringing this to my attention :)
+
+Also, in all programs (view3dscene and others created by Castle Game Engine) the Home / PageUp / PageDown keys loose their old meaning (they were used to raise/bow/straighten head in Walk, or rotate/reset in 3rd axis in Examine). "End" key was unused previously, so no problem here. I think that nowadays, people don't need keys to perform these actions, as rotating with mouse (like mouse look or mouse dragging or scroll wheel) is more intuitive and more discoverable. (If you disagree, please let me know, we can restore the PageUp/PageDown behavior for programs that don't need viewpoint switching, if people think it's useful.)
+
+If you would like to restore the previous behavior just for your application, you can of course do it, since all the inputs of cameras remain configurable. Like this:
+
+------------------------------------------------------------------------------
+var
+  Camera: TUniversalCamera;
+
+....
+{ Make sure to create a camera, if none was created yet
+  (SceneManager.Camera is autocreated at first render).
+  The default CreateDefaultCamera always creates
+  a TUniversalCamera descendant, so the cast below is safe,
+  unless you do something non-standard with cameras otherwise. }
+if SceneManager.Camera = nil then
+  SceneManager.Camera := SceneManager.CreateDefaultCamera;
+Camera := SceneManager.Camera as TUniversalCamera;
+
+{ Assign old Home/PageDown/PageUp meanings to Examine and Walk cameras. }
+Camera.Examime.Input_Home.Assign(K_Home);
+Camera.Examime.Inputs_Move[2, false].Assign(K_PageDown);
+Camera.Examime.Inputs_Move[2, true ].Assign(K_PageUp);
+Camera.Examime.Inputs_Rotate[2, false].Assign(K_PageDown);
+Camera.Examime.Inputs_Rotate[2, true ].Assign(K_PageUp);
+Camera.Walk.Input_GravityUp .Assign(K_Home);
+Camera.Walk.Input_UpRotate  .Assign(K_PageUp);
+Camera.Walk.Input_DownRotate.Assign(K_PageDown);
+------------------------------------------------------------------------------
+
+
+
 TODO: package view3dscene and glViewImage with bundle inside dmg.
 TODO: package glViewImage under Linux with desktop/ scripts, like view3dscene.
 */
