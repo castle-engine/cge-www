@@ -123,6 +123,10 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
         And this way you get a perfect speed and smoothly working event loop
         (with smooth mouse look).
 
+        <p>Although full-screen is ugly on Xlib,
+        there's no way to hide dock over fullscreen application in this situation...
+        Easiest solution in this case is to keep your game windowed on Mac OS X.
+
       <li>Only <b>if you make tool-like program (that needs menu and dialog
         boxes)</b> then CASTLE_WINDOW_LCL is a good choice.
         It will look perfectly native. Although at the cost of not perfect mouse look.
