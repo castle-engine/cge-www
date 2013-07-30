@@ -36,11 +36,7 @@ Camera.Walk.Input_GravityUp .Assign(K_Home);
 Camera.Walk.Input_UpRotate  .Assign(K_PageUp);
 Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 ------------------------------------------------------------------------------
-
-
-
-TODO: package view3dscene and glViewImage with bundle inside dmg.
-TODO: package glViewImage under Linux with desktop/ scripts, like view3dscene.
+- Nice flashing messages when swithing viewpoints. Together with Home/PageUp/PageDown/End combo, this makes switching viewpoints by keyboard very comfortable.
 */
 
 array_push($news,
