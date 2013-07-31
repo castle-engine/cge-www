@@ -1,7 +1,7 @@
 <?php
 
 /* Next:
-- CastleWindow LCL backend pracatically finished. In particular, it works flawless to create native Mac OS X apps now.
+- CastleWindow LCL backend practically finished. In particular, it works flawless to create native Mac OS X apps now.
 - Mac OS X bundle creation, view3dscene assigned to proper file types on Mac OS X, accepts drag-and-drop of files on window.
 - Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle. It also contains desktop and icon for freedesktops (GNOME, KDE, Xfce, some more).
 - Jan Adamec has started work on iOS port, you can see his results on ios_tests/ and (movie). And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
@@ -40,6 +40,8 @@ Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 
 <li>FullScreen switching much improved: you can now freely change TCastleWindowBase.FullScreen property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don't cover the window. Added TMenuItemToggleFullScreen for comfort.
 <li>Possibility to comfortably add modifiers (ctrl, shift, alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
+<li>Nicer Update API, with simple HandleInput parameter.
+<li>You can now load <a>material_properties.xml</a> file in view3dscene, will be used to enhance all subsequent materials.
 */
 
 array_push($news,
