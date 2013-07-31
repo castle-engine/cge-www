@@ -37,6 +37,9 @@ Camera.Walk.Input_UpRotate  .Assign(K_PageUp);
 Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 ------------------------------------------------------------------------------
 - Nice flashing messages when swithing viewpoints. Together with Home/PageUp/PageDown/End combo, this makes switching viewpoints by keyboard very comfortable.
+
+<li>FullScreen switching much improved: you can now freely change TCastleWindowBase.FullScreen property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don't cover the window. Added TMenuItemToggleFullScreen for comfort.
+<li>Possibility to comfortably add modifiers (ctrl, shift, alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
 */
 
 array_push($news,
