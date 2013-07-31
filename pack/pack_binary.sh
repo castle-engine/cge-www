@@ -78,7 +78,7 @@ EXEC_PATH="$HOME"/castle-engine-release/
 
 # Executables packed are required to be compiled by this FPC version,
 # we will check it.
-REQUIRED_FPC_VERSION=2.6.0
+REQUIRED_FPC_VERSION=2.6.2
 
 # utils -----------------------------------------------------------------
 
@@ -237,15 +237,30 @@ binary_add_doc ()
   mk_offline_docs "$DOC_DIR" "$@"
 }
 
-binary_add_view3dscene_desktop ()
+cp-if-exists ()
 {
-  mkdir "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/install.sh             "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/install_thumbnailer.sh "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.desktop    "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.png        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.svg        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-  cp "$CASTLE_ENGINE_PATH"view3dscene/desktop/view3dscene.xml        "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+  if [ -f "$1" ]; then
+    cp "$@"
+    echo 'Found freedesktop.org file: '"$1"
+  fi
+}
+
+# Add some files inside desktop/ subdirectory.
+# Only for OSes that support freedesktop.org (GNOME, KDE etc.) stuff.
+binary_add_freedesktop ()
+{
+  local EXEC_BASENAME="$1"
+  case "$TARGET_OS" in
+    linux|freebsd)
+      mkdir "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/install.sh                 "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/install_thumbnailer.sh     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".desktop "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".png     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".svg     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".xml     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      ;;
+  esac
 }
 
 # Sets appropriate permissions for files inside archove.
@@ -371,8 +386,7 @@ case "$1" in
     binary_add_exec_and_data view3dscene
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
-    if [ "$TARGET_OS" = linux   ]; then binary_add_view3dscene_desktop; fi
-    if [ "$TARGET_OS" = freebsd ]; then binary_add_view3dscene_desktop; fi
+    binary_add_freedesktop view3dscene
     binary_set_unix_permissions
     binary_add_executable tovrmlx3d
     ;;
@@ -390,6 +404,7 @@ case "$1" in
     binary_add_exec_and_data glViewImage
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
+    binary_add_freedesktop glViewImage
     binary_set_unix_permissions
     ;;
 
