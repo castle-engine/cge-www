@@ -27,7 +27,7 @@
     fog input distance or fog output intensity).</p>
 </ul>
 
-<p><i>TODO</i>: LocalFog not supported. TextureBackground not supported (waits on Background rendering rewrite &mdash; our <tt>Background</tt> rendering is quite specialized to VRML 97 background case, and it doesn't use our texture cache. This prevents from adapting it easily to use normal texture nodes.).</p>
+<p><i>TODO</i>: TextureBackground not supported (waits on Background rendering rewrite &mdash; our <tt>Background</tt> rendering is quite specialized to VRML 97 background case, and it doesn't use our texture cache. This prevents from adapting it easily to use normal texture nodes.).</p>
 
 <?php
   x3d_status_footer();

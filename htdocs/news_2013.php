@@ -41,7 +41,7 @@ Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 <li>FullScreen switching much improved: you can now freely change TCastleWindowBase.FullScreen property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don't cover the window. Added TMenuItemToggleFullScreen for comfort.
 <li>Possibility to comfortably add modifiers (ctrl, shift, alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
 <li>Nicer Update API, with simple HandleInput parameter.
-<li>You can now load <a>material_properties.xml</a> file in view3dscene, will be used to enhance all subsequent materials.
+<li>You can now load <a>material_properties.xml</a> file in view3dscene, will be used to enhance all subsequent materials. You can also specify alpha_channel (see <>) in material properties. I expect to enhance this in the next release, so that you can add there also stuff like TextureProperties (for anisotropic filtering and more, right now you have to edit VRML/X3D to add it, which is not always comfortable when exporting VRML/X3D e.g. from Blender).
 */
 
 array_push($news,
