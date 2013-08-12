@@ -37,7 +37,7 @@ case "$1" in
     cp "$WIN32_DLLS_PATH"* "$MK_ARCHIVE_TEMP_PATH"
     dircleaner "$MK_ARCHIVE_TEMP_PATH" clean
 
-    ARCHIVE_FILE_NAME="${CASTLE_ENGINE_HTDOCS_LOCAL_PATH}miscella/win32_dlls.zip"
+    ARCHIVE_FILE_NAME="${CASTLE_ENGINE_PATH}www/htdocs/miscella/win32_dlls.zip"
     mk_archive_pack "$ARCHIVE_FILE_NAME"
     echo 'Updated '"$ARCHIVE_FILE_NAME"
 
@@ -48,7 +48,7 @@ case "$1" in
     cd /mnt/fat/3dmodels/blender/forest/
     FOREST_ARCHIVE=forest.tar.gz
     make "$FOREST_ARCHIVE"
-    cp "$FOREST_ARCHIVE" "$CASTLE_ENGINE_HTDOCS_LOCAL_PATH"miscella/
+    cp "$FOREST_ARCHIVE" "${CASTLE_ENGINE_PATH}www/htdocs/miscella/"
     echo "Updated $FOREST_ARCHIVE"
     ;;
 
