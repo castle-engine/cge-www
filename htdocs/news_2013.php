@@ -1,6 +1,10 @@
 <?php
 
 /* Next:
+The Castle Game Engine 4.1.0 is released!
+
+Along with the engine, we also release our tool view3dscene 3.13.0, glViewImage 1.5.0, castle game 1.0.1, demo models 3.3.0.
+
 - CastleWindow LCL backend practically finished. In particular, it works flawless to create native Mac OS X apps now.
 - Mac OS X bundle creation, view3dscene assigned to proper file types on Mac OS X, accepts drag-and-drop of files on window.
 - Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle. It also contains desktop and icon for freedesktops (GNOME, KDE, Xfce, some more).

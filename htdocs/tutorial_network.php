@@ -3,9 +3,6 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Network and downloading');
 ?>
 
-<i>This page describes upcoming Castle Game Engine 4.1.0 capabilities,
-not available yet in the last stable engine version.</i>
-
 <p>All methods in our engine take URL as the parameter,
 not just a FileName. Although in almost all cases you can also pass
 a filename (absolute or relative to the current directory),

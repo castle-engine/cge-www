@@ -373,7 +373,7 @@ you have appropriate libraries installed on your system.
 <a href="http://www.freepascal.org/">freepascal.org</a>)
 release of FPC (currently 2.6.2).</b>
 Usually, we also support a couple of older FPC releases.
-Currently (for engine 4.0.1) <b>FPC versions &gt;= 2.6.0 are supported</b>.
+Currently (for engine 4.1.0) <b>FPC versions &gt;= 2.6.0 are supported</b>.
 
 <!--
 <p><i>Note only for FPC 2.6.0:</i> if you use <tt>compile.sh</tt> scripts,
