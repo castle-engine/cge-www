@@ -655,7 +655,7 @@ function download_donate_footer()
    (i.e. $prog_version = '' causes also the dash '-' before version
    to disappear, since this is what you usually want). */
 function echo_standard_program_download(
-  $prog_nice_name, $prog_archive_basename, $prog_version)
+  $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false)
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
 
@@ -669,6 +669,8 @@ function echo_standard_program_download(
   if ($prog_version != '')
     $nice_name_start .= ' (' . $prog_version . ')';
   */
+  
+  $macosx_arch = $macosx_dmg ? 'macosx' : 'macosx-i386';
 
   /* Hardcode $os_arch_list for now.
      It used to be configurable, but it was more trouble than it was worth. */
@@ -676,27 +678,27 @@ function echo_standard_program_download(
     'linux-i386',
     'linux-x86_64',
     'win-i386',
-    'macosx-i386');
+    $macosx_arch);
 
   $os_arch_caption = array(
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
     'win-i386'     => ' Windows<br/>(32 bit, works on 64-bit too)',
-    'macosx-i386'  => ' Mac OS X<br/>(32 bit)',
+    $macosx_arch   => ' Mac OS X<br/>(32 bit)',
   );
 
   $os_arch_extension = array(
     'linux-i386'   => '.tar.gz',
     'linux-x86_64' => '.tar.gz',
     'win-i386'     => '.zip',
-    'macosx-i386'  => '.tar.gz',
+    $macosx_arch   => $macosx_dmg ? '.dmg' : '.tar.gz',
   );
 
   $os_arch_icon = array(
     'linux-i386'   => 'linux32',
     'linux-x86_64' => 'linux64',
     'win-i386'     => 'win',
-    'macosx-i386'  => 'macosx'
+    $macosx_arch   => 'macosx'
   );
 
   echo '<div class="download">';

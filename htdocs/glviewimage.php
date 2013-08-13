@@ -39,7 +39,7 @@ a very limited image editor.</p>
 ?>
 
 <?php echo_standard_program_download('glViewImage', 'glviewimage',
-  VERSION_GLVIEWIMAGE); ?>
+  VERSION_GLVIEWIMAGE, true); ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>

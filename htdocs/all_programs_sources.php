@@ -129,8 +129,8 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '4.0.1');
-  echo_src_archive('castle', '4.0.1');
+  echo_src_archive('view3dscene', '4.1.0');
+  echo_src_archive('castle', '4.1.0');
   echo_src_archive('rayhunter', '4.0.1');
 
   //echo_src_archive('lets_take_a_walk', '3.0.0');
@@ -140,7 +140,7 @@ notes near some programs below.
   echo_src_archive('glplotter', '4.0.1');
   echo_src_archive('gen_function', '4.0.1');
 
-  echo_src_archive_2('glViewImage', 'glviewimage', '4.0.1');
+  echo_src_archive_2('glViewImage', 'glviewimage', '4.1.0');
   echo_src_archive('bezier_curves', '4.0.1');
   echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', '4.0.1');
 ?>
