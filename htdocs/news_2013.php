@@ -46,6 +46,7 @@ Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 <li>Possibility to comfortably add modifiers (ctrl, shift, alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
 <li>Nicer Update API, with simple HandleInput parameter.
 <li>You can now load <a>material_properties.xml</a> file in view3dscene, will be used to enhance all subsequent materials. You can also specify alpha_channel (see <>) in material properties. I expect to enhance this in the next release, so that you can add there also stuff like TextureProperties (for anisotropic filtering and more, right now you have to edit VRML/X3D to add it, which is not always comfortable when exporting VRML/X3D e.g. from Blender).
+<li>ApplictionData on Mac OS X can use data from bundle Contents/Resources/data . See also useful BundlePath function.
 */
 
 array_push($news,
