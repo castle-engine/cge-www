@@ -60,7 +60,7 @@ Larger is better, of course: it means
 that you have smoother animation.
 
 <p><b>Use "<i>real time</i>" to measure your overall game speed. This is the actual
-number of frames per second that we managed to render. Caveats:</b>
+number of frames per second that we managed to render.</b> Caveats:
 
 <ul>
   <li><p>Make sure to turn off "<i>limit FPS</i>" feature, to get maximum number
@@ -100,7 +100,7 @@ useful to compare it with <i>"real
 time"</i> (with <tt>LimitFPS</tt> feature turned off),
 as it may then tell you whether the
 bottleneck is in rendering or outside of rendering (like collision
-detection and creature AI). Caveats</b>:
+detection and creature AI). Caveats:
 
 <ul>
   <li><p>Modern GPUs work in parallel to the CPU. So <i>"how much time CPU spent

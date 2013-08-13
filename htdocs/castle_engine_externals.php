@@ -40,7 +40,7 @@ function googleplus_header()
 {
   if (CASTLE_OFFLINE) return '';
   return '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<link href="https://plus.google.com/101185352355602218697" rel="publisher" />';
+<link href="https://plus.google.com/101185352355602218697" rel="publisher">';
 }
 
 function googleplus_badge()
