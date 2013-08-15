@@ -59,14 +59,9 @@ using <tt>glPushAttrib</tt> / <tt>glPopAttrib</tt>).
 But we give you a lot of helpers:
 
 <ul>
-  <li><p><?php api_link('SetWindowPos', 'CastleGLUtils.html#SetWindowPos'); ?>
-    (from <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit)
-    sets the raster position in screen coordinates (used for subsequent
-    bitmap font and 2D image drawing).
-
-    <p>Our projection has (0,0) in lower-left corner (as is standard
+  <li><p>Our projection has (0,0) in lower-left corner (as is standard
     for 2D OpenGL). You can look at the size, in pixels,
-    of the current 
+    of the current
     <!--2D control in
     <?php api_link('TUIControl.Width', 'CastleUIControls.TUIControl.html#Width'); ?> x
     <?php api_link('TUIControl.Height', 'CastleUIControls.TUIControl.html#Height'); ?>,
@@ -76,6 +71,14 @@ But we give you a lot of helpers:
     The container size is also available as container properties, like
     <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
     <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>.
+
+  <p><?php api_link('SetWindowPos', 'CastleGLUtils.html#SetWindowPos'); ?>
+    (from <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit)
+    sets the raster position in screen coordinates (used for subsequent
+    bitmap font drawing).
+    It is also automatically modified by <tt>TGLBitmapFont.PrintAndMove</tt>,
+    which allows you to render text in parts, by multiple
+    <tt>TGLBitmapFont.PrintAndMove</tt> calls.
 
   <li><p>You have ready global bitmap fonts
     <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
@@ -104,10 +107,7 @@ UIFont.Print(Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));')
 
 <?php echo pascal_highlight(
 'for I := 0 to Player.Inventory.Count - 1 do
-begin
-  SetWindowPos(I * 100, 0);
-  Player.Inventory[I].Resource.GLImage.Draw;
-end;'); ?>
+  Player.Inventory[I].Resource.GLImage.Draw(I * 100, 0);'); ?>
 
   <li><p>For simple screen fade effects, you have procedures inside
     <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
