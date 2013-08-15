@@ -72,14 +72,6 @@ But we give you a lot of helpers:
     <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
     <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>.
 
-  <p><?php api_link('SetWindowPos', 'CastleGLUtils.html#SetWindowPos'); ?>
-    (from <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit)
-    sets the raster position in screen coordinates (used for subsequent
-    bitmap font drawing).
-    It is also automatically modified by <tt>TGLBitmapFont.PrintAndMove</tt>,
-    which allows you to render text in parts, by multiple
-    <tt>TGLBitmapFont.PrintAndMove</tt> calls.
-
   <li><p>You have ready global bitmap fonts
     <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
     <?php api_link('UIFontSmall', 'CastleControls.html#UIFontSmall'); ?>
@@ -92,8 +84,8 @@ But we give you a lot of helpers:
     For example, you can show player's health like this:
 
 <?php echo pascal_highlight(
-'SetWindowPos(10, 10);
-UIFont.Print(Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
+'UIFont.Print(10, 10,
+  Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
 
   <li><p>Every inventory item has already loaded image (defined in <tt>resource.xml</tt>),
     as <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>
