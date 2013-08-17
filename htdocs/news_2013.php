@@ -1,22 +1,56 @@
 <?php
 
-/* Next:
-The Castle Game Engine 4.1.0 is released!
+array_push($news,
+    array('title' => 'Castle Game Engine 4.1.1, view3dscene 3.13.0 release and more',
+          'year' => 2013,
+          'month' => 8,
+          'day' => 17,
+          'short_description' => '',
+          'guid' => 'release-411',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'view3dscene_macosx_1.png', 'titlealt' => 'view3dscene on Mac OS X, with nice icon, menu bar, file dialog'),
+  array('filename' => 'view3dscene_macosx_2.png', 'titlealt' => 'view3dscene on Mac OS X, with nice icon, menu'),
+  array('filename' => 'caffeine_x3d.png', 'titlealt' => 'Caffeine model from http://www.web3d.org/x3d/content/examples/Basic/ChemicalMarkupLanguage/index.html'),
+  array('filename' => 'data_uri_0.png', 'titlealt' => 'data URI demo. All the textures, movies, sounds, scripts, linked 3D models here are embedded using data URI.'),
+  array('filename' => 'functions_screen.png', 'titlealt' => 'MultiTexture.function test'),
+  array('filename' => 'view3dscene_url.png', 'titlealt' => 'Model with textures loaded from network, URL dialog'),
+  array('filename' => 'cad.png', 'titlealt' => 'CAD example model from http://www.web3d.org/wiki/index.php/X3DOM_CAD#X3D_Models'),
+)) .
+'<p>New 4.1.1 version of <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> is released! Along with it, as usual, we release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.13.0, our VRML/X3D browser, and update a couple of other tools/games.</p>
 
-Along with the engine, we also release our tool view3dscene 3.13.0, glViewImage 1.5.0, castle game 1.0.1, demo models 3.3.0.
+<p><b>Major new user-visible features (in Castle Game Engine and view3dscene):</b></p>
 
-- CastleWindow LCL backend practically finished. In particular, it works flawless to create native Mac OS X apps now.
-- Mac OS X bundle creation, view3dscene assigned to proper file types on Mac OS X, accepts drag-and-drop of files on window.
-- Also glViewImage, our handy image viewer, supporting some uncommon formats like DDS, is now nicely integrated with Mac OS X: wrapped in a trivially-installable Mac OS X bundle and associates with all images types it can handle. It also contains desktop and icon for freedesktops (GNOME, KDE, Xfce, some more).
-- Jan Adamec has started work on iOS port, you can see his results on ios_tests/ and (movie). And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
+<ol>
+  <li><b>Mac OS X with native look</b>. Our Mac OS X programs now have a native look, with typical Mac OS X theme and menu and dialogs. They are nicely packaged in a dmg file, with a Mac OS X "bundle" inside that you can drag to your Applications folder.<br/>
+    This concerns both <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> and <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage</a> (our handy image viewer, supporting some uncommon formats like DDS).
+  <li><b>Network (http) support.</b> We can download everything from the Internet, everything is correctly treated as URL, we also use MIME-types more. For developers, <a href="' . CURRENT_URL . 'tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
+  <li><b>More complete data URI support</b>. Really everything can now use data URI to embed data inside a single VRML/X3D file. There is a demo <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">data_uri.x3dv</a> showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), scripts etc.<br/>
+    Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI from any file.
+  <li><b>X3D CAD level 2 support (CADXxx nodes)</b>.
+  <li><tt>MultiTexture.function</tt> support.
+  <li><tt>NavigationInfo.transitionComplete</tt> support. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/navigation/transition_multiple_viewpoints.x3dv">Demo model transition_multiple_viewpoints.x3dv</a> shows how to use it to make an animated transition between a couple of viewpoints.
+  <li><b>Clipboard</b> (Ctrl+C, Ctrl+V, Ctrl+X in message boxes, especially handy to copy/paste URLs). For developers: use <tt>Clipboard.AsText</tt> property.
+  <li>Support for 8 and 16 samples for anti-aliasing.
+  <li>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL will be <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>. See previous news for a more in-depth explanation why this change is necessary.
+  <li>view3dscene interprets <i>Home</i> / <i>PageUp</i> / <i>PageDown</i> / <i>End</i> keys to switch to initial / next / previous / last viewpoint. This is consistent with other VRML / X3D browsers behavior and follows <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/behaviours.html#SelectFromMulitpleViewpoints">recommended X3D shortcuts</a>, and it makes moving through viewpoints easier, using just a keyboard. Thanks for Don Brutzman for bringing this to my attention :)
+  <li>Nice flashing messages when within viewpoints. Together with Home/PageUp/PageDown/End combo, this makes switching viewpoints by keyboard very comfortable.
+  <li>FullScreen switching much improved: you can now freely change TCastleWindowBase.FullScreen property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don\'t cover the window. Added TMenuItemToggleFullScreen for comfort.
+  <li>You can now load <a href="' . CURRENT_URL . 'creating_data_material_properties.php">material_properties.xml files</a> in view3dscene, will be used to enhance all subsequent materials. You can also specify alpha_channel (see <a href="' . CURRENT_URL . 'x3d_extensions.php#section_ext_alpha_channel_detection">alphaChannel extension</a>) in material properties. I expect to enhance this in the next release, so that you can add there also stuff like <tt>TextureProperties</tt> (for anisotropic filtering and more, right now you have to edit VRML/X3D to add it, which is not always comfortable when exporting VRML/X3D e.g. from Blender).
+</ol>
 
-view3dscene interprets Home / PageUp / PageDown / End keys to switch to initial / next / previous / last viewpoint. This is consistent with other VRML / X3D browsers behavior, follows recommended X3D shortcuts (see http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/behaviours.html#SelectFromMulitpleViewpoints ), and it makes moving through viewpoints easier, using just a keyboard. Thanks for Don Brutzman for bringing this to my attention :)
+<p><b>New engine features, visible to developers:</b></p>
 
-Also, in all programs (view3dscene and others created by Castle Game Engine) the Home / PageUp / PageDown keys loose their old meaning (they were used to raise/bow/straighten head in Walk, or rotate/reset in 3rd axis in Examine). "End" key was unused previously, so no problem here. I think that nowadays, people don't need keys to perform these actions, as rotating with mouse (like mouse look or mouse dragging or scroll wheel) is more intuitive and more discoverable. (If you disagree, please let me know, we can restore the PageUp/PageDown behavior for programs that don't need viewpoint switching, if people think it's useful.)
+<ol>
+  <li>CastleWindow LCL backend. This was used to create native Mac OS X apps now.
+  <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ApplicationData">ApplictionData</a> and <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ApplicationConfig">ApplicationConfig</a> to get data/config dirs as URLs. On Mac OS X <tt>ApplictionData</tt> can use data from bundle <tt>Contents/Resources/data</tt> . See also useful <tt>CastleFilesUtils.BundlePath</tt> function.
+  <li>Nicer <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleUIControls.TInputListener.html#Update">TInputListener.Update</a> API, with simple HandleInput parameter. It used to be called <tt>Idle</tt>, but we renamed it to <tt>Update</tt>, since this describes its behavior correctly.
+  <li><p>Improvements to 2D rendering. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLUtils.html#SetWindowPos">SetWindowPos</a>, this will also be portable to next engine compatible with GLES20 (Android, iOS).
+  <li><tt>TCastleControl.AggressiveUpdate*</tt> are removed. The (simplified and improved) version of this mechanism is now always "on" and automatically makes mouse look work better. (Still not perfect, though. Lazarus event loop still causes problems with mouse look. Use our <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.html">CastleWindow</a> for smooth mouse look.)
+  <li>In all programs (view3dscene and others created by Castle Game Engine) the Home / PageUp / PageDown keys loose their old meaning (they were used to raise/bow/straighten head in Walk, or rotate/reset in 3rd axis in Examine). I think that nowadays, people don\'t need keys to perform these actions, as rotating with mouse (like mouse look or mouse dragging or scroll wheel) is more intuitive and more discoverable. This way these keys are free to use for viewpoint navigation.
+    <p>If you would like to restore the previous behavior just for your application, you can of course do it, since all the inputs of cameras remain configurable. Like this:
 
-If you would like to restore the previous behavior just for your application, you can of course do it, since all the inputs of cameras remain configurable. Like this:
-
-------------------------------------------------------------------------------
+<pre class="sourcecode">
 var
   Camera: TUniversalCamera;
 
@@ -39,17 +73,16 @@ Camera.Examime.Inputs_Rotate[2, true ].Assign(K_PageUp);
 Camera.Walk.Input_GravityUp .Assign(K_Home);
 Camera.Walk.Input_UpRotate  .Assign(K_PageUp);
 Camera.Walk.Input_DownRotate.Assign(K_PageDown);
-------------------------------------------------------------------------------
-- Nice flashing messages when swithing viewpoints. Together with Home/PageUp/PageDown/End combo, this makes switching viewpoints by keyboard very comfortable.
+</pre>
 
-<li>FullScreen switching much improved: you can now freely change TCastleWindowBase.FullScreen property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don't cover the window. Added TMenuItemToggleFullScreen for comfort.
-<li>Possibility to comfortably add modifiers (ctrl, shift, alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
-<li>Nicer Update API, with simple HandleInput parameter.
-<li>You can now load <a>material_properties.xml</a> file in view3dscene, will be used to enhance all subsequent materials. You can also specify alpha_channel (see <>) in material properties. I expect to enhance this in the next release, so that you can add there also stuff like TextureProperties (for anisotropic filtering and more, right now you have to edit VRML/X3D to add it, which is not always comfortable when exporting VRML/X3D e.g. from Blender).
-<li>ApplictionData on Mac OS X can use data from bundle Contents/Resources/data . See also useful BundlePath function.
-*/
+  <li>Possibility to comfortably add modifiers (Ctrl, Shift, Alt) to menu item shortcuts. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach with TMenuItem.Modifiers is much more flexible.
+</ol>
 
-array_push($news,
+<p>Along with the <a href="' . CURRENT_URL . 'engine.php">engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, we also release <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage 1.5.0</a>, <a href="' . CURRENT_URL . 'castle.php">castle game 1.0.1</a>, <a href="' . CURRENT_URL . 'demo_models.php">demo models 3.3.0</a>.
+
+<p><b>Future</b>: Jan Adamec has started work on iOS port, you can see his results in ios_tests/ directory inside SVN. And Michalis started work on porting engine renderer to GLES20. If all goes well, this will result in next engine release (4.2.0) being able to use GLES20 on mobile devices like iOS and Android :)
+'),
+
     array('title' => 'Development: transitionComplete, Debian packages, network tutorial, data URI, MultiTexture tests, more',
           'year' => 2013,
           'month' => 5,
