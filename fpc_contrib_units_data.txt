@@ -1,7 +1,7 @@
 Name: Castle Game Engine
 Author: Michalis Kamburelis
-Version: 4.0.0
-Download URL: http://downloads.sourceforge.net/castle-engine/castle_game_engine-4.0.0-src.tar.gz
+Version: 4.1.1
+Download URL: http://downloads.sourceforge.net/castle-engine/castle_game_engine-4.1.1-src.tar.gz
 Homepage URL: http://castle-engine.sourceforge.net/engine.php
 E-mail: michalis.kambi@gmail.com
 Supported OSes: Linux, Mac OS X, Win, others
