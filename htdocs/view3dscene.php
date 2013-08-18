@@ -230,7 +230,7 @@ flawlessly :) So give it a try!
     are available in view3dscene. Special minimized binary
     <tt>tovrmlx3d</tt> (useful to install on servers without GUI libraries
     available) is also included in view3dscene archive.
-  <li>A wealth of Kambi engine's rendering features are available,
+  <li>A wealth of Castle Game Engine's rendering features are available,
     like GLSL shaders, bump mapping and shadows.
   <li>Built-in ray-tracer
     (that is also available as a separate command-line program,
