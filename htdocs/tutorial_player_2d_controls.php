@@ -127,6 +127,42 @@ But we give you a lot of helpers:
     That is why we carelessly always call <tt>GLFadeRectangle</tt> &mdash; when player is not dead,
     and is not in pain (<tt>Player.FadeOutIntensity</tt> = 0) then nothing will actually happen.
 
+  <li><p>Use the <tt>Theme</tt> global variable
+    (instance of <?php api_link('TCastleTheme', 'CastleControls.TCastleTheme.html'); ?>)
+    to draw using a predefined set of images. For example,
+    image type <tt>tiActiveFrame</tt> is a general-purpose frame that you can
+    use to mark a specific region on the screen. You draw it like this:
+
+<?php echo pascal_highlight(
+'Theme.Draw(Rectangle(10, 10, 100, 100), tiActiveFrame);'); ?>
+
+    <p>You can change all the theme images. You can change them to one
+    of the predefined images in <tt>CastleControlsImages</tt> unit.
+    Like this:
+
+<?php echo pascal_highlight(
+'Theme.Images[tiActiveFrame] := FrameYellow;
+Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
+
+    <p>Or you can change them to one of your own images. Like this:
+
+<?php echo pascal_highlight(
+'Theme.Images[tiActiveFrame] := LoadImage(ApplicationData(\'frame.png\'), []);
+Theme.OwnsImages[tiActiveFrame] := true;
+Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
+
+    <p>If the set of predefined images in <tt>Theme</tt> is too limiting,
+    then use <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
+    directly, see below.
+
+  <li><p><?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
+    has methods <tt>Draw</tt> and <tt>Draw3x3</tt> to draw the image,
+    intelligently stretching it, optionally preserving unstretched corners.
+    We advice to draw most of your GUI using such images.
+    This way the look of your game is defined by a set of images,
+    that can be easily changed by artists.
+
+
   <li><p><?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?>,
     and many other units, provide many other helpers.
 </ul>

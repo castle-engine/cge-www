@@ -2,6 +2,10 @@
 
 /* Next news
 model_3d_with_2d_controls_round_tooltip.png
+fps_game_fancy_item_box.png
+fps_game_fancy_item_box_2.png
+view3dscene_tooltip_rounded.png
+view3dscene_message_buttons.png
 
 post about
   http://packages.qa.debian.org/c/castle-game-engine.html
