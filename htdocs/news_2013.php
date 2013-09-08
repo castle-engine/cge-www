@@ -1,5 +1,29 @@
 <?php
 
+/* Next news
+model_3d_with_2d_controls_round_tooltip.png
+
+post about
+  http://packages.qa.debian.org/c/castle-game-engine.html
+
+TGLImage much improved:
+- Uses a new way to render 2D images, using npot textures (suitable for modern OpenGL like GLES2, better with anti-aliasing).
+- The TGLImage.Draw is now much more powerful, allows you to easily display image stretched. There is also TGLImage.Draw3x3. These functions are the basis for implementing 2D GUI, e.g. TGLImage.Draw3x3 is used for all TCastleButton states, which makes it also easier to theme (e.g. it's now possible to make rounded corners without any fuss, just make transparent corners in the texture).
+- TGLImage drawing automatically uses alpha test or alpha blending, depending on alpha value in the loaded image. You can always change TGLImage.Alpha to explicitly force specific alpha treatment.
+- Our 2D theme, TCastleTheme, is now a configurable collection of images (we have nice defaults, but you can adjust the images and their corners configuration).
+
+MessageXxx interface much improved.
+- It's now wholy drawn using images, so it's much more configurable.
+- MessageXxx get normal buttons at the bottom (descendants of our normal buttons TCastleButton), so it's natural to handle them with mouse.
+- Theme for slider and frame much better (somewhat based on GTK 2 theme "clearlooks", esp. the scrollbar).
+
+Because of move to new TGLImage and upcoming changes for font rendering and the rest of GLES2 changes, some small compatibility breakage may happen between engine 4.1.0 and 4.2.0. This concerns if you do direct OpenGL calls or use low-level tricks from CastleGLUtils. Things to take into account to have a smooth upgrade:
+- Always use SetWindowPos, never directly use glRasterPos* family of functions. In general, forget about raster position --- this concept is gone in GLES2 and modern OpenGL. Use only SetWindowPos to affect initial text position for TGLBitmapFont and TGLImage, this works in both engine 4.1.0 and in future 4.2.0. It is only for 2D, and is not affected by modelview matrix state.
+  Since 4.2.0, it will be adviced to use even better TGLBitmapFont.Print(X,Y,string) and TGLImage.Draw(X,Y) instead of SetWindowPos. But SetWindowPos will also work, to allow you to already write code in existing 4.1.0 API that will also work in engine >= 4.2.0.
+- If you hope to keep your code portable to GLES2, of course be sure to avoid removed API. Things like immediate mode rendering should not be used (use only VBO; usually, you should just use our TCastleScene for rendering all 3D). Push/pop of matrices and attributes is also not available.
+
+*/
+
 array_push($news,
     array('title' => 'Castle Game Engine 4.1.1, view3dscene 3.13.0 release and more',
           'year' => 2013,
