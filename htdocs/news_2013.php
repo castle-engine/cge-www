@@ -6,6 +6,8 @@ fps_game_fancy_item_box.png
 fps_game_fancy_item_box_2.png
 view3dscene_tooltip_rounded.png
 view3dscene_message_buttons.png
+castle_scrollbar.png
+view3dscene_scrollbar.png
 
 post about
   http://packages.qa.debian.org/c/castle-game-engine.html
