@@ -35,6 +35,11 @@ Because of move to new TGLImage and upcoming changes for font rendering and the 
   Since 4.2.0, it will be adviced to use even better TGLBitmapFont.Print(X,Y,string) and TGLImage.Draw(X,Y) instead of SetWindowPos. But SetWindowPos will also work, to allow you to already write code in existing 4.1.0 API that will also work in engine >= 4.2.0.
 - If you hope to keep your code portable to GLES2, of course be sure to avoid removed API. Things like immediate mode rendering should not be used (use only VBO; usually, you should just use our TCastleScene for rendering all 3D). Push/pop of matrices and attributes is also not available.
 
+Font API much improved.
+- The adviced call is now Print that takes explicit X, Y and Color. Other versions are deprecated, as they lead to messy code --- it's not nice to manage global state in WindowPos, it's not nice to manage global color in CurrentColor.
+- All font drawing can apply also blending for text (just pass text color alpha < 1).
+- We also consistently use TVector4Byte for color. Not TVector3Byte (as we like having alpha available). Not float versions (as for colors, you sometimes like to compare them precisely). Color constants as 4Byte have simpler names inside CastleColors, just "Yellow" instead of "Yellow4Byte". For clarity, we define a type TCastleColor that is equal just TVector4Byte.
+
 */
 
 array_push($news,

@@ -84,7 +84,7 @@ But we give you a lot of helpers:
     For example, you can show player's health like this:
 
 <?php echo pascal_highlight(
-'UIFont.Print(10, 10,
+'UIFont.Print(10, 10, Yellow,
   Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
 
   <li><p>Every inventory item has already loaded image (defined in <tt>resource.xml</tt>),
