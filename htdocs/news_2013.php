@@ -17,6 +17,8 @@ TGLImage much improved:
 - TGLImage drawing automatically uses alpha test or alpha blending, depending on alpha value in the loaded image. You can always change TGLImage.Alpha to explicitly force specific alpha treatment.
 - Our 2D theme, TCastleTheme, is now a configurable collection of images (we have nice defaults, but you can adjust the images and their corners configuration).
 
+tutorial_player_2d_controls.php contains some comments and examples about new TGLImage and Theme.Draw usage.
+
 MessageXxx interface much improved.
 - It's now wholy drawn using images, so it's much more configurable.
 - MessageXxx get normal buttons at the bottom (descendants of our normal buttons TCastleButton), so it's natural to handle them with mouse.
