@@ -17,6 +17,10 @@ MessageXxx interface much improved.
 - MessageXxx get normal buttons at the bottom (descendants of our normal buttons TCastleButton), so it's natural to handle them with mouse.
 - Theme for slider and frame much better (somewhat based on GTK 2 theme "clearlooks", esp. the scrollbar).
 
+TCastleLabel added (like previous Font.PrintStringsBox, but now nicely wrapped in class).
+
+TCastleDialog added (to make modal or non-modal dialog boxes, with scrollbars, buttons etc).
+
 Because of move to new TGLImage and upcoming changes for font rendering and the rest of GLES2 changes, some small compatibility breakage may happen between engine 4.1.0 and 4.2.0. This concerns if you do direct OpenGL calls or use low-level tricks from CastleGLUtils. Things to take into account to have a smooth upgrade:
 - Always use SetWindowPos, never directly use glRasterPos* family of functions. In general, forget about raster position --- this concept is gone in GLES2 and modern OpenGL. Use only SetWindowPos to affect initial text position for TGLBitmapFont and TGLImage, this works in both engine 4.1.0 and in future 4.2.0. It is only for 2D, and is not affected by modelview matrix state.
   Since 4.2.0, it will be adviced to use even better TGLBitmapFont.Print(X,Y,string) and TGLImage.Draw(X,Y) instead of SetWindowPos. But SetWindowPos will also work, to allow you to already write code in existing 4.1.0 API that will also work in engine >= 4.2.0.
