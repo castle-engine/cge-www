@@ -12,7 +12,8 @@ post about
 
 TGLImage much improved:
 - Uses a new way to render 2D images, using npot textures (suitable for modern OpenGL like GLES2, better with anti-aliasing).
-- The TGLImage.Draw is now much more powerful, allows you to easily display image stretched. There is also TGLImage.Draw3x3. These functions are the basis for implementing 2D GUI, e.g. TGLImage.Draw3x3 is used for all TCastleButton states, which makes it also easier to theme (e.g. it's now possible to make rounded corners without any fuss, just make transparent corners in the texture).
+- The TGLImage.Draw is now much more powerful, allows you to easily display image stretched (if ScalingPossible, OpenGL bilinear filtering will stretch it nicely).
+- There is also TGLImage.Draw3x3. These functions are the basis for implementing 2D GUI, e.g. TGLImage.Draw3x3 is used for all TCastleButton states, which makes it also easier to theme (e.g. it's now possible to make rounded corners without any fuss, just make transparent corners in the texture). All CastleControls now draw the controls using TGLImage.
 - TGLImage drawing automatically uses alpha test or alpha blending, depending on alpha value in the loaded image. You can always change TGLImage.Alpha to explicitly force specific alpha treatment.
 - Our 2D theme, TCastleTheme, is now a configurable collection of images (we have nice defaults, but you can adjust the images and their corners configuration).
 
