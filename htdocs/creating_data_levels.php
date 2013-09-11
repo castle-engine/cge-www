@@ -37,7 +37,7 @@ with links to documentation for every attribute.
   [[CastleLevels.TLevelInfo.html#DefaultPlayed|default_played]]="False"
   [[CastleLevels.TLevelInfo.html#PlaceholderName|placeholders]]="x3dshape"
   [[CastleLevels.TLevelInfo.html#LoadingImage|loading_image]]=""
-  [[CastleLevels.TLevelInfo.html#LoadingImageBarYPosition|loading_image_bar_y_position]]="0.5"
+  [[CastleLevels.TLevelInfo.html#LoadingBarYPosition|loading_bar_y_position]]="0.5"
   [[CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection|placeholder_reference_direction]]="1 0 0"
   [[CastleLevels.TLevelInfo.html#MusicSound|music_sound]]="">
 
