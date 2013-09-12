@@ -40,7 +40,26 @@ Because of move to new TGLImage and upcoming changes for font rendering and the 
 Font API much improved.
 - The adviced call is now Print that takes explicit X, Y and Color. Other versions are deprecated, as they lead to messy code --- it's not nice to manage global state in WindowPos, it's not nice to manage global color in CurrentColor.
 - All font drawing can apply also blending for text (just pass text color alpha < 1).
-- We also consistently use TVector4Byte for color. Not TVector3Byte (as we like having alpha available). Not float versions (as for colors, you sometimes like to compare them precisely). Color constants as 4Byte have simpler names inside CastleColors, just "Yellow" instead of "Yellow4Byte". For clarity, we define a type TCastleColor that is equal just TVector4Byte.
+
+We also consistently use TVector4Single for color, it's even aliased as TCastleColor.
+Not TVector3Single (as we like having alpha available).
+Not byte versions (reasons:
+  1. Sometimes you want colors with components > 1. E.g. for physically-correct
+     rendering. Or for some shaders --- it's Ok to pass values > 1 to some
+     inputs in some cases, and depend on OpenGL capping the result.
+  2. Float-based values can be naturally interpolated.
+  3. Easier to express constants. Using magic value 255 feels bad,
+     and using High(Byte) is too verbose.
+
+  The only advantage of using byte-based colors is that this is what you
+  get from RGB 32-bit color images, and you can compare it for exact
+  equality. But this isn't universal anyway (there are images with float colors,
+  like RGBE). When dealing with TRGBImage or TRGBAlphaImage you can always
+  use byte-based colors and eventually convert using Vector4Single()
+  and Vector4Byte() both ways (in practice 8-bit and 16-bit values will be
+  expressed precisely as Single too).
+).
+Color constants as TVector4Single have simple names inside CastleColors, just "Yellow" instead of "Yellow4Single".
 
 Some X3D nodes API improvements:
 - Comfortable TAbstractGeometryNode.Solid, TAbstractGeometryNode.Convex.
