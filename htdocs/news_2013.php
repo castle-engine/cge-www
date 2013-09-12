@@ -42,6 +42,8 @@ Font API much improved.
 - All font drawing can apply also blending for text (just pass text color alpha < 1).
 - We also consistently use TVector4Byte for color. Not TVector3Byte (as we like having alpha available). Not float versions (as for colors, you sometimes like to compare them precisely). Color constants as 4Byte have simpler names inside CastleColors, just "Yellow" instead of "Yellow4Byte". For clarity, we define a type TCastleColor that is equal just TVector4Byte.
 
+Some X3D nodes API improvements:
+- Comfortable TAbstractGeometryNode.Solid, TAbstractGeometryNode.Convex.
 */
 
 array_push($news,
