@@ -22,15 +22,23 @@ our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 We publish here some improvements / fixes / documentation for
 Blender's X3D exporter.</p>
 
-<h2>X3D exporter, for Blender 2.64a</h2>
+<h2>X3D exporter, for Blender 2.68a</h2>
 
 <ul>
   <li><p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
     Download the actual exporter.
 
     <p>Copy it over (overwrite) the original Blender exporter,
-    which is in <tt>&lt;blender-installation-dir&gt;/2.64/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
+    which is in <tt>&lt;blender-installation-dir&gt;/2.68/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
     <!--You will need to restart Blender (if currently running to load the new exporter.-->
+
+    <p><i>Note</i>: as of Blender 2.68, our custom exporter doesn't serve much
+    purpose. All the past bugfixes have been applied to the
+    Blender standard X3D exporter. The only feature our exporter script
+    has over the standard exporter is the magic treatment of images named
+    <tt>xxx_normalmap</tt>, and we don't really advice using this
+    (better use <?php echo a_href_page('material_properties.xml',
+    'creating_data_material_properties'); ?>).
 
 <?php /*
   TODO: below should be fixed in 2.62, but make sure.
@@ -59,7 +67,7 @@ Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
 
-<h2>KAnim exporter, for Blender 2.64a</h2>
+<h2>KAnim exporter, for Blender 2.68a</h2>
 
 <p>Export Blender animation to
 <?php echo a_href_page("KAnim (Castle Game Engine animations) format",

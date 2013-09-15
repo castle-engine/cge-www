@@ -8,6 +8,7 @@ view3dscene_tooltip_rounded.png
 view3dscene_message_buttons.png
 castle_scrollbar.png
 view3dscene_scrollbar.png
+octopus_animation.png - Octopus exported from Blender to KAnim.
 
 post about
   http://packages.qa.debian.org/c/castle-game-engine.html
@@ -63,6 +64,8 @@ Color constants as TVector4Single have simple names inside CastleColors, just "Y
 
 Some X3D nodes API improvements:
 - Comfortable TAbstractGeometryNode.Solid, TAbstractGeometryNode.Convex.
+
+X3D and Kanim exporters updated to work with latest Blender 2.68a, see http://castle-engine.sourceforge.net/blender.php .
 */
 
 array_push($news,
