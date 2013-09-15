@@ -121,9 +121,8 @@ But we give you a lot of helpers:
 
 <?php echo pascal_highlight(
 'if Player.Dead then
-  GLFadeRectangle(0, 0, ContainerWidth, ContainerHeight, Red3Single, 1.0) else
-  GLFadeRectangle(0, 0, ContainerWidth, ContainerHeight,
-    Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
+  GLFadeRectangle(ContainerRect, Red, 1.0) else
+  GLFadeRectangle(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
 
     <p>Note that <tt>Player.FadeOutIntensity</tt> will be 0 when there is no pain, which cooperates
     nicely with <tt>GLFadeRectangle</tt> definition that will do nothing when 4th parameter is 0.
