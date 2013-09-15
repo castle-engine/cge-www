@@ -43,4 +43,36 @@ mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
   x3d_time_origin_considered_uncomfortable.html \
   castle_script.html \
   glviewimage.html \
-  macosx_requirements.html
+  macosx_requirements.html \
+  creating_data_3d.html \
+  creating_data_intro.html \
+  creating_data_levels.html \
+  creating_data_material_properties.html \
+  creating_data_player.html \
+  creating_data_resources.html \
+  creating_data_sound.html \
+  creating_data_xml.html \
+  tutorial_3d_custom.html \
+  tutorial_classes_overview.html \
+  tutorial_game_level.html \
+  tutorial_install.html \
+  tutorial_intro.html \
+  tutorial_key_mouse.html \
+  tutorial_load_3d.html \
+  tutorial_log.html \
+  tutorial_network.html \
+  tutorial_notifications.html \
+  tutorial_on_screen_menu.html \
+  tutorial_opengl_context.html \
+  tutorial_optimization.html \
+  tutorial_player_2d_controls.html \
+  tutorial_player.html \
+  tutorial_recording_movies.html \
+  tutorial_resources_extending.html \
+  tutorial_resources.html \
+  tutorial_resources_using_existing.html \
+  tutorial_scene_manager.html \
+  tutorial_screenshots.html \
+  tutorial_sound.html \
+  tutorial_up.html \
+  tutorial_user_prefs.html
