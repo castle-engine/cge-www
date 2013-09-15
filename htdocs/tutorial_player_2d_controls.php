@@ -60,17 +60,20 @@ But we give you a lot of helpers:
 
 <ul>
   <li><p>Our projection has (0,0) in lower-left corner (as is standard
-    for 2D OpenGL). You can look at the size, in pixels,
-    of the current
+    for 2D OpenGL). You can look at the size, in pixels, of the current
     <!--2D control in
     <?php api_link('TUIControl.Width', 'CastleUIControls.TUIControl.html#Width'); ?> x
     <?php api_link('TUIControl.Height', 'CastleUIControls.TUIControl.html#Height'); ?>,
-    and the size of the current--> OpenGL screen in
+    and the size of the current--> OpenGL container (window, control) in
     <?php api_link('TUIControl.ContainerWidth', 'CastleUIControls.TUIControl.html#ContainerWidth'); ?> x
-    <?php api_link('TUIControl.ContainerHeight', 'CastleUIControls.TUIControl.html#ContainerHeight'); ?>.
+    <?php api_link('TUIControl.ContainerHeight', 'CastleUIControls.TUIControl.html#ContainerHeight'); ?>
+    or (as a rectangle) as
+    <?php api_link('TUIControl.ContainerRect', 'CastleUIControls.TUIControl.html#ContainerRect'); ?>.
     The container size is also available as container properties, like
     <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
-    <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>.
+    <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>
+    or (as a rectangle)
+    <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowBase.html#Rect'); ?>.
 
   <li><p>You have ready global bitmap fonts
     <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
