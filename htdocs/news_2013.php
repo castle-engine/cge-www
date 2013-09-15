@@ -28,29 +28,27 @@ castle_thumbs(array(
 <ol>
   <li><p>Great news for <a href="http://www.debian.org/">Debian</a> users: <a href="http://packages.debian.org/jessie/fp-units-castle-game-engine">Castle Game Engine package is available inside official Debian repositories</a>. Version 4.0.1 is already available in the <i>testing</i> release, and <a href="http://packages.qa.debian.org/c/castle-game-engine.html">version 4.1.1 is in <i>unstable</i> (on the way to testing)</a>. Installing Castle Game Engine in Debian, with documentation and Lazarus integration, is now as trivial as installing standard FPC units :)</li>
 
-  <li><p>On the side of this post you see some screenshots from <i>"Orcs and Volcanoes"</i>, a game Michalis did 2 weekends ago at <a href="http://tensquaregames.com/">tensquaregames.com</a> "gamejam" :) This is a roguelike with pixelart graphics, with some 3D twists and real-time action. For a weekend project (literally 36 hours of programming, no sleep) I think the result is quite cool, the game actually works and is playable :)
-
-    <p>Of course, it uses our Castle Game Engine for everything.
+  <li><p>On the side of this post you see screenshots from <i>"Orcs and Volcanoes"</i>, a game Michalis did 2 weekends ago at <a href="http://tensquaregames.com/">Ten Square Games</a> "gamejam" :) This is a roguelike with pixelart graphics, with some 3D twists and real-time action. For a weekend project (literally 36 hours of programming, no sleep) I think the result is quite cool, the game actually works and is playable :) Of course, it uses our engine for everything.
 
     <p>Almost all graphics from the <i>"Badass Heroes"</i> game. Used with permission, but they are not freely redistributable, so I can\'t share the game publicly... Anyway, feast your eyes on the screenshots :)
 
   <li><p>A lot of engine API improvements done in the recent weeks, in particular around 2D controls and images. Most of that is caused by the desire to port complete engine to OpenGL ES, and have Android/iOS version.
 
-    <p>The nice side-effect is that the API is now generally much better and more flexible. Frankly, if you want to make a pure 2D game, Castle Game Engine is now an excellent choice :) Drawing 2D images and animations is now very flexible. Details:
+    <p>The nice side-effect is that the 2D API is now generally much better. Frankly, if you want to make a pure 2D game, Castle Game Engine is now an excellent choice :) Drawing 2D images and animations is now very flexible. Details:
 
     <p><b><tt>TGLImage</tt> (our class to render images as 2D, for GUI and 2D games) much improved</b>:
     <ul>
       <li>Renders 2D images as npot textures underneath (suitable for modern OpenGL and GLES, better with anti-aliasing).
-      <li>TGLImage.Draw can display image stretched (if ScalingPossible, OpenGL bilinear filtering will stretch it nicely).
-      <li>TGLImage.Draw3x3 can display image stretched intelligently, preserving corners. These functions are the basis for implementing 2D GUI, e.g. TGLImage.Draw3x3 is used for all TCastleButton states, which makes it also easier to theme (e.g. it\'s now possible to make rounded corners without any fuss, just make transparent corners in the texture). All CastleControls now draw the controls using TGLImage.
-      <li>TGLImage drawing automatically uses alpha test or alpha blending, depending on alpha channel in the loaded image. You can always change TGLImage.Alpha to explicitly force specific alpha treatment. You can also change <tt>TCastleImageControl.AlphaChannel</tt>.
-      <li>Our 2D theme, TCastleTheme, is now a configurable collection of images (we have nice default images).
+      <li><tt>TGLImage.Draw</tt> can display image stretched (if ScalingPossible, OpenGL bilinear filtering will stretch it nicely).
+      <li><tt>TGLImage.Draw3x3</tt> can display image stretched intelligently, preserving corners and sides. These functions are the basis for implementing 2D GUI, e.g. <tt>TGLImage.Draw3x3</tt> is used for all <tt>TCastleButton</tt> states, which makes it also easier to theme (e.g. it\'s now possible to make rounded corners without any fuss, just make transparent corners in the texture). All <tt>CastleControls</tt> are now drawn using <tt>TGLImage</tt>.
+      <li><tt>TGLImage</tt> drawing automatically uses alpha test or alpha blending, depending on alpha channel in the loaded image. You can always change <tt>TGLImage.Alpha</tt> to explicitly force specific alpha treatment. You can also change <tt>TCastleImageControl.AlphaChannel</tt>.
+      <li><tt>TCastleTheme</tt> is now a configurable collection of images (with nice defaults).
     </ul>
 
     <p><a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/tutorial_player_2d_controls.html">Tutorial about 2D controls (SVN version)</a>
-    contains various examples about new TGLImage and Theme.Draw usage.
+    contains various examples about new <tt>TGLImage</tt> and <tt>Theme.Draw</tt> usage.
 
-    <p><b>Dialog boxes (through <tt>MessageXxx</tt> procedures) improved</b>:
+    <p><b>Dialog boxes (<tt>CastleMessages</tt> unit) improved</b>:
     <ul>
       <li>Drawn using images, so much more configurable.
       <li>Normal buttons at the bottom (descendants of our TCastleButton), so it\'s natural to handle them with mouse.
@@ -59,30 +57,30 @@ castle_thumbs(array(
 
     <p><b>More 2D controls</b>:
     <ul>
-      <li>TCastleLabel (like previous Font.PrintStringsBox, but now nicely wrapped in a class).
-      <li>TCastleDialog (to make modal or non-modal dialog boxes, with scrollbars, buttons etc).
-      <li>TCastleProgressBar (allows to display progress bar as TUIControl, regardless if you use CastleWindow or CastleControl).
+      <li><tt>TCastleLabel</tt> (like <tt>Font.PrintStringsBox</tt>, but nicely wrapped in a class).
+      <li><tt>TCastleDialog</tt> (to make modal or non-modal dialog boxes, with scrollbars, buttons etc).
+      <li><tt>TCastleProgressBar</tt> (display progress bar as <tt>TUIControl</tt>, regardless if you use <tt>CastleWindow</tt> or <tt>CastleControl</tt>).
     </ul>
 
     <p>Because of the move to new TGLImage API and the rest of GLES2 changes, small compatibility breakage may happen at 4.2.0 release. This concerns you if you do direct OpenGL calls or use low-level tricks from CastleGLUtils. <b>Things to take into account to have a smooth upgrade to 4.2.0</b>:
     <ul>
-      <li>Always use SetWindowPos, never directly use glRasterPos* family of functions. In general, forget about raster position &mdash; this concept is gone in GLES2 and modern OpenGL. Use only SetWindowPos to affect initial text position for TGLBitmapFont and TGLImage, this works in both engine 4.1.0 and in future 4.2.0. It is only for 2D, and is not affected by modelview matrix state.
-      <li>Since 4.2.0, it will be advised to use even better TGLBitmapFont.Print(X,Y,Color,string) and TGLImage.Draw(X,Y) instead of SetWindowPos. But SetWindowPos will also work, to allow you to write code in the existing 4.1.1 API that will also work in engine &gt;= 4.2.0.
-      <li>If you hope to keep your code portable to GLES2, of course be sure to avoid removed API. Things like immediate mode rendering should not be used (use only VBO; usually, you should just use our TCastleScene for rendering all 3D, and TGLImage or TGLVideo2D for all 2D). Push/pop of matrices and attributes is also not available.
+      <li>Always use <tt>SetWindowPos</tt>, never directly use <tt>glRasterPos*</tt> functions. In general, forget about raster position &mdash; this concept is gone in GLES2 and modern OpenGL. Use only <tt>SetWindowPos</tt> to affect initial text position for <tt>TGLBitmapFont</tt> and <tt>TGLImage</tt>, this works in both engine 4.1.1 and in SVN (future 4.2.0). It is only for 2D, and is not affected by modelview matrix state.
+      <li>Since 4.2.0, it will be advised to use cleaner <tt>TGLBitmapFont.Print(X,Y,Color,string)</tt> and <tt>TGLImage.Draw(X,Y)</tt> instead of <tt>SetWindowPos</tt>. But <tt>SetWindowPos</tt> will also work, to allow you to write code in the existing 4.1.1 API that will also work smoothly in engine &gt;= 4.2.0.
+      <li>If you hope to keep your code portable to GLES2, of course be sure to avoid old OpenGL API. Immediate mode rendering cannot be used (use only VBO; usually, you should just use our <tt>TCastleScene</tt> for rendering all 3D, and <tt>TGLImage</tt> or <tt>TGLVideo2D</tt> for all 2D). <!--Push/pop of matrices and attributes is also not available.-->
     </ul>
 
     <p><b>Font API improved</b>:
     <ul>
-      <li>The advised call is now Print that takes explicit X, Y and Color. Other versions are deprecated, as they lead to messy code &mdash; it\'s not nice to manage global state in WindowPos, it\'s not nice to manage global color in CurrentColor.
-      <li>All font drawing can apply also blending for text (just pass text color alpha < 1).
+      <li>The advised font drawing call is now <tt>Print(X,Y,Color)</tt>. Other versions are deprecated, as they lead to messy code &mdash; it\'s not nice to manage global state in <tt>WindowPos</tt>, it\'s not nice to manage global color in <tt>CurrentColor</tt>.
+      <li>All font drawing can use blending for text (just pass text color with alpha < 1).
     </ul>
 
-    <p><b>Consistent <tt>TCastleColor</tt> usage</b>. We now consistently use TVector4Single for color, it\'s even aliased as TCastleColor.
+    <p><b>Consistent <tt>TCastleColor</tt> usage</b>. We now consistently use <tt>TVector4Single</tt> type to express a color, it\'s even aliased as <tt>TCastleColor</tt>.
     <ul>
       <li>We do not use TVector3Single (as we like having alpha available).
-      <li>We do not use byte versions, except for image operations. There are numerous arguments in favor of using float-based color values (instead of byte-based): it allows for components &gt; 1 (useful for physically-correct rendering and some shaders inputs), is natural to smoothly interpolate, is easier to express constants.
+      <li>We do not use byte versions. There are numerous arguments in favor of using float-based color values (instead of byte-based): it allows for components &gt; 1 (useful for physically-correct rendering and some shaders inputs), it is natural to smoothly interpolate (you can also use functions in <tt>CastleColors</tt> to interpolate in HSV space), it is easier to express constants.
 
-        <p>The only advantage of using byte-based colors is that this is what you get from RGB 32-bit color images, and you can compare it for exact equality. But this isn\'t universal anyway (there are images with float colors, like RGBE). When dealing with TRGBImage or TRGBAlphaImage you can always use byte-based colors and eventually convert using Vector4Single() and Vector4Byte() both ways (in practice 8-bit and 16-bit values will be expressed precisely as Single too).
+        <p>The only advantage of using byte-based colors is that this is what you get from RGB 32-bit color images, and you can compare it for exact equality. But this isn\'t universal anyway (there are images with float colors, like RGBE). When dealing with <tt>TRGBImage</tt> or <tt>TRGBAlphaImage</tt> you can still use byte-based colors and eventually convert using Vector4Single() and Vector4Byte() both ways (in practice 8-bit and 16-bit values will be expressed precisely as Single too).
       <li>Color constants as TVector4Single have simple names inside CastleColors, just "Yellow" instead of "Yellow4Single".
     </ul>
   </li>
