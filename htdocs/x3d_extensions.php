@@ -734,21 +734,28 @@ EXTERNPROTO Text3D [
 ?>
 
     <p>Inside <tt>MovieTexture</tt> nodes, you can use an URL like
-    <tt>@counter(1).png</tt> to load movie from a sequence of images.
-    This will load a series of images,
-    substituting <tt>@counter(1)</tt> with successive numbers starting from 1.
+    <tt>my_animation_@counter(1).png</tt> to load movie from a sequence of images.
+    This will load a series of images.
+    We will substitute <tt>@counter(&lt;padding&gt;)</tt>
+    with successive numbers starting from 0 or 1 (if filename
+    <tt>my_animation_0.png</tt> exists,
+    we use it; otherwise we start from <tt>my_animation_1.png</tt>).
 
-    <p>The paramter inside <tt>@counter(&lt;padding&gt;)</tt> macro specifies the padding.
-    The number be padded with zeros to have at least the required length.
+    <p>The paramter inside <tt>@counter(&lt;padding&gt;)</tt>
+    macro specifies the padding.
+    The number will be padded with zeros to have at least the required length.
     For example, <tt>@counter(1).png</tt>
     results in names like 1.png, 2.png, ..., 9.png, 10.png...
     While <tt>@counter(4).png</tt> results in names like 0001.png,
     0002.png, ..., 0009.png, 0010.png, ...
 
     <p>A movie loaded from image sequence will always run at the speed of
-    25 frames per second.
+    25 frames per second. (Developers: if you use a class like
+    <tt>TGLVideo2D</tt> to play movies, you can customize
+    the <tt>TGLVideo2D.FramesPerSecond</tt> property.)
 
-    <p>A simple image filename (without <tt>@counter(&lt;padding&gt;)</tt> macro) is also accepted
+    <p>A simple image filename (without <tt>@counter(&lt;padding&gt;)</tt>
+    macro) is also accepted
     as a movie URL. This just loads a trivial movie, that consists of one
     frame and is always still...
 
