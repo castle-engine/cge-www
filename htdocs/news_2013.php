@@ -1,5 +1,9 @@
 <?php
 
+/* Next news:
+- gles-123 screenshots
+*/
+
 array_push($news,
     array('title' => 'Development: great API for 2D games and UI, our engine in Debian, on the road to OpenGL ES, Orcs and Volcanoes game screenshots',
           'year' => 2013,
