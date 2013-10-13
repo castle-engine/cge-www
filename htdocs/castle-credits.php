@@ -85,6 +85,19 @@ under various "free" licenses. Unfortunately, not 100% of them are really
 FOSS compatible, but we're working on it.
 See <tt>castle/data/AUTHORS.txt</tt> for details.
 
+<p>The larger data collections used:
+
+<ul>
+  <li>Many textures from public domain <i>Golgotha</i> textures.
+    They were hosted on various websites on the Internet,
+    currently you can get (most) of them from
+    <a href="http://opengameart.org/content/golgotha-textures">opengameart.org Golgotha useful textures collection</a>.
+  <li>Many tileable textures with excellent quality from
+    <a href="http://www.lemog.fr/lemog_textures/index.php">Lemog tileable textures</a>.
+  <li>Many public domain sounds and music from
+    <a href="http://www.flashkit.com/">Flash Kit</a>.
+</ul>
+
 <?php echo $toc->html_section(); ?>
 
 <p>Inside the game I added, as a joke/experiment/tribute,
@@ -106,7 +119,8 @@ I and II Music" as compiled by Paul Burdette</a>.
 
   <p><b>For distro packagers</b>: remember that the Doom level and it's resources
   (i.e. most of the things inside directories <tt>data/levels/doom/e1m1/</tt>,
-  <tt>data/textures/doom/</tt> and <tt>data/sounds/doom/</tt>)
+  <tt>data/textures/doom/</tt>, <tt>data/sounds/doom/</tt> and
+  <tt>data/skies/doom/</tt>)
   are not open-source, are not
   covered by GNU GPL license, are not under my (Michalis Kamburelis)
   copyright etc. Legally, I guess that they are a heavily processed version of the
