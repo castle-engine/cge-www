@@ -26,11 +26,11 @@
 <p><tt>CastleScript</tt> (previously "KambiScript")
 is a simple scripting language used in
 our <i>Castle Game Engine</i>. You can use it in VRML/X3D <tt>Script</tt>
-nodes. Also it's syntax of mathematical expressions is usable
+nodes. Also it's syntax of mathematical expressions is used
 throughout our engine, for example <?php echo a_href_page(
 'glplotter and gen_function',
 'glplotter_and_gen_function'); ?> (which are completely
-not related to VRML) use this syntax to define function expressions.</p>
+not related to X3D) use this syntax to define function expressions.</p>
 
 <p>The language is deliberately very simple. It's a scripting language,
 with features inspired by many other languages, and by author's laziness.
@@ -39,42 +39,42 @@ constructs to the grammar,
 instead you have built-in functions like
 <?php func_ref('if', 'if(condition, then_code, else_code)'); ?>.
 <b>This language doesn't try to compete with other scripting languages</b>
-(like <i>ECMAScript</i>, commonly used in VRML scripting).
+(like <i>ECMAScript</i>, commonly used in VRML/X3D scripting).
 It's not suitable for larger programs
 (for starters, you cannot define your own types).<!-- ; you also cannot
 currently call user-defined functions (you can only call built-in functions;
-user-defined functions are only automatically called when VRML Script
+user-defined functions are only automatically called when X3D Script
 receives an event); also you cannot declare your own local variables
-(but you can use VRML Script initializeOnly fields for this purpose)-->
+(but you can use X3D Script initializeOnly fields for this purpose)-->
 Also it's specific to our engine, and probably always will be.</p>
 
 <p>That said, the language is powerful enough for many uses.
-You can process all VRML field types with it, including strings,
-vectors, matrices and even images. Also arrays (VRML MFXxx fields) are covered.
+You can process all X3D field types with it, including strings,
+vectors, matrices and even images. Also arrays (MFXxx fields) are covered.
 There are many built-in functions and operators, heavily overloaded
 for all types where they apply (for example, you can add numbers,
 vectors, matrices or strings).
 It's an integral part of our engine, without the need for any external libraries.
-And do note that our engine doesn't support (yet) ECMAScript for VRML script
+And do note that our engine doesn't support (yet) ECMAScript for X3D scripting
 at all, so this is the only way to do scripting for now (without
 writing and compiling any ObjectPascal code).</p>
 
 <p>Programmers may also be interested that language implementation is flexible,
 you can extend it easily from ObjectPascal (adding new data-types and
-built-in functions), for many uses (not necessarily related with VRML).
+built-in functions), for many uses (not necessarily related with X3D).
 The language is completely safe (that is, there's no possibility for
 malicious script author to do something harmful)
 simply because the language is a closed data-processing language
-(the only I/O routines,
+(the only I/O routines are
 <?php func_ref('image_load', 'image_load(url)'); ?> and
-<?php func_ref('writeln', 'writeln(string)'); ?>,
+<?php func_ref('writeln', 'writeln(string)'); ?>, and they
 expose functionality that is possible anyway with
-pure non-scripted VRML).</p>
+pure non-scripted X3D).</p>
 
 <?php
   $toc = new TableOfContents(
     array(
-      new TocItem('Writing scripts inside VRML Script URLs', 'script_urls'),
+      new TocItem('Writing scripts inside X3D Script URLs', 'script_urls'),
       new TocItem('Examples', 'examples'),
       new TocItem('Syntax', 'syntax'),
       new TocItem('Types and constants', 'types_constants', 1),
@@ -91,7 +91,7 @@ pure non-scripted VRML).</p>
       new TocItem('Rotation functions', 'functions_rotation', 2),
       new TocItem('Matrix functions', 'functions_matrix', 1),
       new TocItem('Image functions', 'functions_image', 1),
-      new TocItem('VRML node functions', 'functions_node', 1),
+      new TocItem('X3D node functions', 'functions_node', 1),
       new TocItem('Precise grammar', 'precise_grammar')
     )
   );
@@ -107,7 +107,7 @@ are understood to contain program in CastleScript language.
 URLs to external files with extension <tt>.castlescript</tt> point
 to whole files in CastleScript language.
 (Deprecated: also <tt>kambiscript:</tt> as a protocol and
-<tt>.castlescript</tt> as extension are recognized.) Like</p>
+<tt>.kambiscript</tt> as an extension are recognized.) Like</p>
 
 <pre class="sourcecode">
 Script {
@@ -136,7 +136,7 @@ Script {
   or( sin(x) &gt; cos(x), sin(x) &gt; 0 )
 </pre>
 
-<p>Some example of simple program for VRML script node:</p>
+<p>Some example of simple program for X3D script node:</p>
 
 <pre class="sourcecode">
 Script {
@@ -187,17 +187,17 @@ function input(value, timestamp)
 <ul>
   <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/ball_game.x3dv">ball_game.x3dv</a>
     &mdash; a small X3D game, with whole game logic implemented in CastleScript
-    (key handling by KeySensor node). Can be played in any VRML browser
+    (key handling by KeySensor node). Can be played in any X3D browser
     supporting CastleScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
-    or any of the example VRML browser components in engine sources.
+    or any of the example X3D browser components in engine sources.
 
   <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/edit_texture.x3dv">edit_texture.x3dv</a>
     &mdash; a toy image editor. Again, it's a pure X3D file (you can
-    open it and use with any VRML browser supporting CastleScript).
+    open it and use with any X3D browser supporting CastleScript).
     Uses CastleScript to implement various simple image editing
     functions. It's a toy, not to be treated as a serious image editor
     of course (there is no possibility to save created image for starter,
-    since CastleScript doesn't allow to save files from VRML for safety reasons.)
+    since CastleScript doesn't allow to save files from X3D for safety reasons.)
     But it shows that even image processing is quite easy with CastleScript.
 
   <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/particles.x3dv">particles.x3dv</a>
@@ -228,7 +228,7 @@ at runtime. Four core types are available:</p>
     <?php func_ref('int', 'int(...)'); ?> allows
     you to convert other core types into integer.</p>
 
-    <p>We use 64-bit signed integers (although for VRML long/int32
+    <p>We use 64-bit signed integers (although for X3D long/int32
     fields, they will have to fit within 32-bit.)</p>
 
     <p>Specifically for comfortable processing of
@@ -252,7 +252,7 @@ at runtime. Four core types are available:</p>
   <li><p><i>Booleans.</i> Two obvious constants are available, <tt>false</tt>
     and <tt>true</tt> (case is ignored, as usual in CastleScript,
     so you can also write uppercase
-    <tt>FALSE</tt> or <tt>TRUE</tt> like in classic VRML).
+    <tt>FALSE</tt> or <tt>TRUE</tt> like in classic encoding).
     Built-in function
     <?php func_ref('bool', 'bool(...)'); ?> allows
     you to convert other core types into boolean.</p></li>
@@ -262,8 +262,8 @@ at runtime. Four core types are available:</p>
     apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
     Apostrophe was chosen not only because, y'know, it's Pascalish :),
     but also because it makes embedding CastleScript code within
-    VRML string easier (no need to escape quotes by backslashes).
-    You can make actual newlines within the string, like in VRML.
+    VRML/X3D string easier (no need to escape quotes by backslashes).
+    You can make actual newlines within the string, like in VRML/X3D.
     For example:
 <pre class="sourcecode">
 Script {
@@ -302,8 +302,8 @@ function): in this case, result is always implicitly converted to float,
 like it would be embedded within <tt>float(...)</tt> call.
 </p>
 
-<p>When using CastleScript inside VRML scripts, internally you have
-all the VRML field types available (which means that
+<p>When using CastleScript inside X3D scripts, internally you have
+all the X3D field types available (which means that
 vec2f, vec3f, vec4f, matrix, image and others are included).
 There is no special syntax for reading/writing other types, instead
 you have many functions to construct and set them.
@@ -314,7 +314,7 @@ and setter for particular component <?php func_ref('vector_set', 'vector_set(vec
 Even images have functions to create and modify them, which means
 that you can use CastleScript to perform basic image creation and processing.</p>
 
-<p>Also array types are internally available, for VRML multiple-value
+<p>Also array types are internally available, for X3D multiple-value
 (MFXxx) types. Again no special syntax is available (sorry, no bracket parenthesis),
 but there are functions to construct array
 <?php func_ref('array', 'array(item1, item2, ...)'); ?>,
@@ -323,7 +323,7 @@ set component <?php func_ref('array_set', 'array_set(array, index, component_val
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>Program</i> is just a set of functions. VRML engine will take care
+<p><i>Program</i> is just a set of functions. The engine will take care
 to call function <tt>xxx</tt> when input event of the same name will arrive.</p>
 
 <p><i>Expressions and instructions</i> are the same thing within
@@ -339,7 +339,7 @@ mean exactly the same thing.</p>
 <p><i>Function</i> starts from the <tt>function</tt> keyword,
 then function name (identifier),
 then list of 0 or more parameters (identifiers separated by commas),
-always within parenthesis. For functions within VRML Script nodes:
+always within parenthesis. For functions within X3D Script nodes:
 <tt>initialize</tt> and <tt>shutdown</tt> must take exactly
 one parameter (timestamp of the event: SFTime), functions called
 by incoming events must take exactly two parameters (value send to the event,
@@ -364,7 +364,7 @@ used if necessary to group instructions.</p>
 the assignment operator <tt>:=</tt> (Pascal-like),
 followed by an expression to calculate value to assign.
 
-<p>For VRML scripts, you are allowed to assign to output events
+<p>For X3D scripts, you are allowed to assign to output events
 and to fields (exposed or not). Events sending behavior follows ECMAScript
 standard:</p>
 
@@ -506,7 +506,7 @@ if it's still true then execute <tt>loop_code</tt> again, ... you get the idea.<
 <p><?php func('for', 'for(counter, begin_value, end_value, loop_code)'); ?> performs
 a for loop. <tt>counter</tt> must be an assignable integer variable
 (note that for now you cannot declare new variables for CastleScript;
-you usually need to overuse <tt>initializeOnly</tt> field of VRML script
+you usually need to overuse <tt>initializeOnly</tt> field of X3D script
 node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
 be integer values, will be calculated once at the beginning of the loop.
 We will assign to <tt>counter</tt> variable integer values
@@ -621,7 +621,7 @@ instances.</p>
 
 <p><?php func('array', 'array(item1, item2, ...)'); ?>
  constructs an array. At least one argument is required.
-All arguments must have the same type (VRML multiple-value fields
+All arguments must have the same type (X3D multiple-value fields
 can't have mixed types).</p>
 
 <p>Note that parameter-less <tt>array()</tt> call is not allowed,
@@ -634,10 +634,10 @@ array empty.</p>
 or double- precision. This contrasts with singleton values, which are always stored
 in the best precision possible. Having explicit single-
 or double- precision arrays is better for storage and allows faster
-copying between VRML fields. Normal <tt>array</tt> with float parameters will create
-an array of single-precision values (that is, VRML <tt>MFFloat</tt>).
+copying between X3D fields. Normal <tt>array</tt> with float parameters will create
+an array of single-precision values (that is, X3D <tt>MFFloat</tt>).
 You have to call <?php func('array_d', 'array_d'); ?> to request double-precision storage
-(suitable for VRML <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
+(suitable for X3D <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
 
 <p><?php func('array_get_count', 'array_get_count(my_array)'); ?> and
 <?php func('array_set_count', 'array_set_count(my_array, new_count)'); ?> get and set array count.
@@ -663,7 +663,7 @@ this may be comfortable sometimes.</p>
 
 <p><?php func('vector', 'vector(x, y), vector(x, y, z), vector(x, y, z, w)'); ?>
  create a single-precision vectors (called <tt>SFVec2f</tt>,
-<tt>SFVec3f</tt>, <tt>SFVec4f</tt> in VRML).
+<tt>SFVec3f</tt>, <tt>SFVec4f</tt> in X3D).
 Suffix <tt>_d</tt> means that you want double-precision vectors:
 <?php func('vector_d', 'vector_d(x, y), vector_d(x, y, z), vector_d(x, y, z, w)'); ?>.</p>
 
@@ -698,9 +698,9 @@ account human eye sensitivity).
 
 <?php echo $toc->html_section(); ?>
 
-<p>VRML/X3D rotations (<tt>SFRotation</tt>, or an element of
+<p>Rotations (X3D <tt>SFRotation</tt>, or an element of
 <tt>MFRotation</tt> array) are, in CastleScript, just 4-value single-precision
-vectors. First three items are rotation axis (should be always normalized,
+vectors. First three scalars are rotation axis (should be always normalized,
 VRML/X3D require this), 4th item is the rotation angle (in radians).
 So you can operate on rotations from CastleScript using all normal functions
 on vectors.</p>
@@ -749,7 +749,7 @@ for a simple X3D Script using above rotation functions.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>3x3 and 4x4 matrices are supported. Single- and double- precision.
-VRML calls these matrix types <tt>SFMatrix3f</tt>, <tt>SFMatrix4f</tt>,
+X3D calls these matrix types <tt>SFMatrix3f</tt>, <tt>SFMatrix4f</tt>,
 <tt>SFMatrix3d</tt>, <tt>SFMatrix4d</tt>.
 Matrix is treated similar to an array of vectors (array of columns).</p>
 
@@ -778,7 +778,7 @@ compare matrix using normal operators.</p>
 
 <p><?php func('image', 'image(width, height, components)'); ?> creates
 a new image. <tt>components</tt> is the number of image components,
-like in VRML <tt>SFImage</tt> field:
+like in X3D <tt>SFImage</tt> field:
 
 <ul>
   <li>1 component is grayscale image,
@@ -794,8 +794,8 @@ This is for the sake of speed.</p>
 <p><?php func('image_load', 'image_load(url)'); ?> loads
 an image from file. This is quite powerful utility, allowing you
 to load textures at any time from a script. (It's not a security
-problem, since you can do the same from normal VRML nodes like <tt>ImageTexture</tt>.)
-URL may be relative to VRML file containing the Script node.</p>
+problem, since you can do the same from normal X3D nodes like <tt>ImageTexture</tt>.)
+URL may be relative to X3D file containing the Script node.</p>
 
 <p><?php func('image_width', 'image_width(my_image)'); ?>,
 <?php func('image_height', 'image_height(my_image)'); ?>,
@@ -855,7 +855,7 @@ see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_
 
 <?php echo $toc->html_section(); ?>
 
-<p>None for now. Currently, you cannot process VRML nodes directly by
+<p>None for now. Currently, you cannot process X3D nodes directly by
 CastleScript. Whether it will ever be allowed in CastleScript, depends
 on the "success" of CastleScript &mdash; if you write your own scripts
 in CastleScript and feel that you need this, please report. Michalis
@@ -949,9 +949,9 @@ characters as it can for a single token.</p>
 
 <p>Case sensitivity: language is not case-sensitive.
 That said, in the future in may be partially case-sensitive,
-in places where you specify field/event names of VRML
-since <i>whole VRML is case-sensitive</i>. So always specify
-VRML field/event names with matching case.
+in places where you specify field/event names of X3D
+since <i>whole X3D is case-sensitive</i>. So always specify
+X3D field/event names with matching case.
 
 <!--
 (wszystko jest na wartosciach rzeczywistych;
