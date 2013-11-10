@@ -164,6 +164,9 @@ Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
     This way the look of your game is defined by a set of images,
     that can be easily changed by artists.
 
+  <li><p><?php api_link('DrawRectangle', 'CastleGLUtils.DrawRectangle.html'); ?>
+    allows to easily draw 2D rectangle filled with color.
+    Blending is automatically used if you pass color with alpha &lt; 1.
 
   <li><p><?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?>,
     and many other units, provide many other helpers.
