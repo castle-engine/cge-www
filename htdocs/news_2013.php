@@ -2,6 +2,9 @@
 
 /* Next news:
 - gles-123 screenshots
+- Background rewrite, TextureBackground, possibility to MovieTexture as background
+- GLES : whole engine compiles, also view3dscene and castle1 and most examples.
+- Context resource sharing (so that many windows/controls with context work Ok, sharing textures and fonts etc.) implemented for CastleWindow Xlib+GLX and GTK  ackend too.
 */
 
 array_push($news,
