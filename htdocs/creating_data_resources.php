@@ -52,6 +52,7 @@ with links to documentation for every attribute.
   [[CastleCreatures.TWalkAttackCreatureResource.html#RandomWalkDistance|random_walk_distance]]="10.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#RemoveDead|remove_dead]]="False"
   [[CastleCreatures.TWalkAttackCreatureResource.html#PreferredDistance|preferred_distance]]="2.0"
+  [[CastleCreatures.TWalkAttackCreatureResource.html#SmellDistance|smell_distance]]="0.0"
   [[CastleResources.T3DResource.html#AlwaysPrepared|always_prepared]]="False"
   [[CastleResources.T3DResource.html#FallSpeed|fall_speed]]="10.0"
   [[CastleResources.T3DResource.html#GrowSpeed|grow_speed]]="5.0"
