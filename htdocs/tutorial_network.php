@@ -164,6 +164,23 @@ also find useful classes
     <p>Demos of using data URI are inside <?php
     echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
     see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
+
+  <li><p><tt>assets</tt> protocol (Android only).
+
+    <p>Used to access Android asset files from the Android application.
+    Asset files live inside your application's .apk file, together with
+    your compiled game.
+    Typically you just copy/place the asset files to the
+    <tt>assets/</tt> subdirectory of your Android project,
+    and then build the .apk using normal Android tools.
+    For example, file placed in <tt>.../assets/my_texture.png</tt>
+    can be accessed (from the Android app) using the URL
+    <tt>assets:/my_texture.png</tt>.
+
+    <p>Usage of <tt>assets:/</tt> protocol to access Anroid assets by URLs is
+    consistent <a href="http://qt-project.org/doc/qt-5.1/qtdoc/platform-notes-android.html#assets-file-system">at least with Qt</a>.
+    See also <a href="http://developer.android.com/tools/projects/index.html">Android
+    docs for more information about assets and project layout</a>.
 </ul>
 
 <h2>Dialog windows</h2>
