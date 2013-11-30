@@ -5,6 +5,10 @@
 - Background rewrite, TextureBackground, possibility to MovieTexture as background
 - GLES : whole engine compiles, also view3dscene and castle1 and most examples.
 - Context resource sharing (so that many windows/controls with context work Ok, sharing textures and fonts etc.) implemented for CastleWindow Xlib+GLX and GTK  ackend too.
+- GL ES renderer: light ambient, color per vertex (including Background colors).
+- Support for png and gz without any external libraries, by using FpRead/WritePng and PasZlib (where suitable).
+- Support for Android applications, through Android NativeAcivity and EGL. Integrated with Android: using Android's log facility, using Android's assets (URLs like assets:/my_texture.png are supported, ApplicationData returns assets:/).
+- CastleEnumeratedFiles API much changed and renamed to FindFiles. It supports searching for files inside Android assets now, so you can look for level.xml / resource.xml files inside assets just like with local games.
 */
 
 array_push($news,
