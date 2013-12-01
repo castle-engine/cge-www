@@ -84,9 +84,9 @@ up as a cross-compiler to Android+Arm.
 
 <h2>License</h2>
 
-<p>The game code and data are licensed on GNU GPL (version &gt; 2).
-Except some game data that is licensed on various Creative Commons
-versions, see AUTHORS.txt files in the source code for details.
+<p>The game code and some of the data are licensed on GNU GPL (version &gt;= 2).
+The rest of the game data is licensed on Creative Commons (various
+versions, see AUTHORS.txt files in the source code for details).
 The underlying Castle Game Engine is licensed on more permissive
 <a href="http://castle-engine.sourceforge.net/engine.php#section_license">GNU
 LGPL with static linking exception</a>.
