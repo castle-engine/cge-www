@@ -48,9 +48,8 @@ automatically propose to install it.
       '">Download the game from it\'s WWW page</a>.</p>';
   } else
   {
-    ?>
-    <?php echo sf_download('Download "Darkest Before the Dawn" apk for Android', 'darkest_before_dawn-' . VERSION_DARKEST_BEFORE_DAWN . '.apk'); ?>
-    <?php
+    echo sf_download('Download "Darkest Before the Dawn" apk for Android',
+      'DarkestBeforeDawn-release.apk');
   }
 ?>
 </div>
