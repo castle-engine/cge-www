@@ -53,6 +53,12 @@ function googleplus_badge()
   //return '<g:plusone size="tall"></g:plusone>';
 }
 
+function googleplus_button()
+{
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  return '<g:plusone size="tall"></g:plusone>';
+}
+
 /* Facebook ------------------------------------------------------------------
 
    See http://developers.facebook.com/docs/reference/plugins/like/
