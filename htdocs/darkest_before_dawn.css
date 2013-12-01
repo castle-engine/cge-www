@@ -1,0 +1,16 @@
+div.header { display: none; }
+
+body { background: #111; color: #DDD; }
+a { color: #AAF; }
+a.screenshot img {
+  border: 2pt solid #333;
+}
+div.download { background: #866; }
+div.download a { color: black; }
+
+pre.terminal { background: #333; }
+tt { background: #333; }
+
+h2 { color: #BBD; }
+
+div.download { padding: 1.5em; }

@@ -104,6 +104,7 @@ $castle_sitemap = array(
 
   'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'All Programs',
     'sub' => array(
+      'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
       'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
       'malfunction' => array('title' => 'malfunction'),
       'kambi_lines' => array('title' => 'kambi_lines'),
@@ -435,6 +436,10 @@ function echo_header_bonus ()
 <link type="text/css" rel="stylesheet" media="all" href="castle-engine.css">
 <link type="text/css" rel="stylesheet" href="colorbox/example3/colorbox.css">
 
+<?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
+  <link type="text/css" rel="stylesheet" media="all" href="<?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
+<?php } ?>
+
 <script type="text/javascript" src="castle-engine.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="colorbox/jquery.colorbox-min.js"></script>
@@ -669,7 +674,7 @@ function echo_standard_program_download(
   if ($prog_version != '')
     $nice_name_start .= ' (' . $prog_version . ')';
   */
-  
+
   $macosx_arch = $macosx_dmg ? 'macosx' : 'macosx-i386';
 
   /* Hardcode $os_arch_list for now.
