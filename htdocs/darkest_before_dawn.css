@@ -5,8 +5,9 @@ a { color: #AAF; }
 a.screenshot img {
   border: 2pt solid #333;
 }
-div.download { background: #866; }
+div.download { background: #866; color: black; }
 div.download a { color: black; }
+div.download table a { color: black; border: thin dashed black; }
 
 pre.terminal { background: #333; }
 tt { background: #333; }

@@ -46,6 +46,17 @@ automatically propose to install it.
 <a href="https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.darkestbeforedawn">Install "Darkest Before the Dawn" for Android through Google Play</a>
 </div>
 
+<br>
+
+<div class="download" style="margin-top: 1em">
+  Or download a standalone version:
+    <table><tbody><tr>
+      <td style="padding-left: 0"><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-linux-i386.tar.gz"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
+      <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-win32.zip"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
+    </tr></tbody></table>
+  </div>
+</div>
+
 <div style="margin-top: 2em;">
 <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
 <?php echo googleplus_button(); ?>
