@@ -31,27 +31,19 @@ by Michalis Kamburelis during the
 of November 2013. It is the first game made using
 <?php echo a_href_page('Castle Game Engine', 'engine'); ?> specifically
 for Android (although it can be compiled as a normal, standalone
-game for Linux, Windows, Mac OS X etc. too).
+game for Linux, Windows etc. too).
 
+<!--
 <p>The game is available as an .apk file for Android.
 On your Android device, make sure to enable installation of applications
 from <i>Unknown sources</i> (in <i>Settings -> Security</i>,
 <a href="http://developer.android.com/distribute/open.html#unknown-sources">like shown here</a>).
 Then just download the apk file, and Android should
 automatically propose to install it.
+-->
 
 <div class="download">
-<?php
-  if (IS_GEN_LOCAL)
-  {
-    echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '">Download the game from it\'s WWW page</a>.</p>';
-  } else
-  {
-    echo sf_download('Download "Darkest Before the Dawn" apk for Android',
-      'DarkestBeforeDawn-release.apk');
-  }
-?>
+<a href="https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.darkestbeforedawn">Install "Darkest Before the Dawn" for Android through Google Play</a>
 </div>
 
 <div style="margin-top: 2em;">
