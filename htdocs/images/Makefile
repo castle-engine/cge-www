@@ -22,11 +22,13 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
   program_link_size/kambi_lines_screen_demo.png \
   program_link_size/glviewimage_dds.png \
   program_link_size/glplotter_screen_demo_1.png \
-  program_link_size/rayhunter_graz_demo.png
+  program_link_size/rayhunter_graz_demo.png \
+  program_link_size/darkest_before_dawn_2.png
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \
-  main_link_size/castle_game_engine_icon.png
+  main_link_size/castle_game_engine_icon.png \
+  main_link_size/darkest_before_dawn_2.png
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))

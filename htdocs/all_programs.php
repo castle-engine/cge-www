@@ -53,7 +53,7 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
 <?php echo a_href_page('download sources of all these programs',
 'all_programs_sources'); ?>.)</p>
 
-<?php echo main_list_item("Programs: Main tools"); ?>
+<?php echo main_list_item("Tools"); ?>
 
 <?php program_image_links_table_begin_half(); ?>
   <tr>
@@ -67,40 +67,40 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
   </tr>
 </table>
 
-<?php echo main_list_item("Programs: Finished games"); ?>
-
-<p>Some of the games below are large and definitely playable,
-like <a href="castle.php">"The Castle"</a>.
-Some others are just small toys, demos of our engine.
-I consider them all <i>finished</i> &mdash; I like them very much,
-and I keep them in working and compilable state, but that's it.</p>
+<?php echo main_list_item("Games"); ?>
 
 <?php program_image_links_table_begin(); ?>
   <tr>
+    <?php program_image_link('Darkest Before the Dawn',
+      'Small scary 3D game, for Android and standalone.',
+      "darkest_before_dawn_2.png", 'darkest_before_dawn'); ?>
+
     <?php program_image_link('&quot;The Castle&quot;',
       'First-person perspective game, in a dark fantasy setting.',
       "castle_screen_demo_1.png", 'castle'); ?>
+   </tr>
 
+   <tr>
     <?php program_image_link('lets_take_a_walk',
       "Small 3d game-like toy, demonstrating OpenGL integrated with OpenALs
       spatial sound.",
       'lets_take_a_walk_screen_demo.png',
       'lets_take_a_walk'); ?>
-   </tr>
 
-   <tr>
     <?php program_image_link('malfunction',
       'Small 3D space-shooter. This was the first game made by me that used VRML models.',
       'malfunction_screen_demo.png',
       'malfunction'); ?>
+   </tr>
 
+   <tr>
      <?php program_image_link('kambi_lines',
        'Arrange colored balls in lines. Quickly.',
        'kambi_lines_screen_demo.png', 'kambi_lines'); ?>
    </tr>
 </table>
 
-<?php echo main_list_item("Programs: Other tools"); ?>
+<?php echo main_list_item("(Less Important) Tools"); ?>
 
 <?php program_image_links_table_begin(); ?>
   <tr>
