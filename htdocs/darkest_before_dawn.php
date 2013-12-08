@@ -5,7 +5,7 @@
   castle_header("Darkest Before the Dawn", NULL,
     array('all_programs', 'darkest_before_dawn'));
 
-  define('VERSION_DARKEST_BEFORE_DAWN', '1.0.0');
+  define('VERSION_DARKEST_BEFORE_DAWN', '1.1.0');
 
   /* echo '<div style="float: right; width: 400px;">'; */
   /* echo googleplus_button(); */
