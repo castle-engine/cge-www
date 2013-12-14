@@ -1,7 +1,14 @@
 <?php
 
 /* Next news:
+    array('title' => 'Development: Android and iOS working, and new game "Darkest Before the Dawn" release!',
 - gles-123 screenshots
+- Changed default TWalkCamera keys to be equal to TPlayer keys, in particular to honour common AWSD combo. This way:
+  - You can move using AWSD by default (e.g. in view3dscene).
+  - Space / c make jump / crouch. Also, we no longer have separate inputs for jump / crouch (when gravity works) or flying up / down (when gravity doesn't work).
+  - This avoids switching the meaning or left/right arrows in mouse look mode in view3dscene.
+  This makes keys in all our programs and games more consistent, and just better --- everyone knows AWSD, while previous shortcuts for strafing (comma and dot) were uncommon.
+  new_walk_shortcuts.png
 - Background rewrite, TextureBackground, possibility to MovieTexture as background
 - GLES : whole engine compiles, also view3dscene and castle1 and most examples.
 - Context resource sharing (so that many windows/controls with context work Ok, sharing textures and fonts etc.) implemented for CastleWindow Xlib+GLX and GTK  ackend too.

@@ -324,29 +324,22 @@ flawlessly :) So give it a try!
   <tr><td>Raise / bow your head</td> <td>Mouse wheel</td></tr>
 
   <tr><th colspan="2">Keys:</th></tr>
-  <tr><td>Forward / backward</td>    <td>Up / Down</td>            </tr>
-  <tr><td>Rotate</td>                <td>Left / Right</td>         </tr>
-  <tr><td>Move (strafe) left / right</td>     <td>Comma / Period</td>       </tr>
-  <tr><td>Fly up / down</td>         <td>Insert / Delete</td>      </tr>
-  <tr><td>Jump / crouch (only when <i>Gravity</i> works, in <tt style="background-color: transparent;">Walk</tt> mode)</td>
-      <td>A / Z</td> </tr>
-  <tr><td>Run</td>                   <td>Shift</td>            </tr>
+  <tr><td>Forward / backward</td>                <td>W / S or Up / Down</td> </tr>
+  <tr><td>Rotate</td>                            <td>Left / Right</td>       </tr>
+  <tr><td>Move (strafe) left / right</td>        <td>A / D</td>              </tr>
+  <tr><td>Jump / Crouch (or fly up / down)</td>  <td>Space / C</td>          </tr>
+  <tr><td>Run</td>                               <td>Shift</td>              </tr>
 
   <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
-    (Ctrl+M) to comfortably look around
-    by moving the mouse.</b> In the "Mouse Look" mode, the keys for strafe and rotations swap their
-    meaning:
-    <ul style="margin: 0;">
-      <li>Left / Right keys move left / right</li>
-      <li>Comma / Period rotate</li>
-    </ul></td></tr>
+    (Ctrl+M) to look around by moving the mouse.</b><br>
+    It is usually comfortable to combine it with movement using AWSD keys.</td></tr>
 
   <tr><th colspan="2">Additional controls:</th></tr>
 
   <tr><td>Increase / decrease moving speed <!-- (has effect on keys
         Up / Down, Insert / Delete, Comma / Period) --></td> <td>+ / -</td></tr>
   <tr><td>Increase / decrease avatar height (preferred camera height above the ground)</td>
-      <td>Ctrl + Insert/Delete</td></tr>
+      <td>Ctrl + Insert / Delete</td></tr>
   <tr><td>Rotate <i>slower</i> (useful to precisely set the camera)</td>
   <!-- when you want to set up camera
        very precisely, e.g. to use this camera setting to render a scene
