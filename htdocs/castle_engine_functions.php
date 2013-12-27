@@ -163,6 +163,7 @@ $castle_sitemap = array(
           'tutorial_user_prefs' => array('title' => 'User preferences'),
           'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'tutorial_optimization' => array('title' => 'Optimization and profiling'),
+          'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
           'tutorial_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
         ),
       ),

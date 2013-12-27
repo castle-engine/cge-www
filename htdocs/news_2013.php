@@ -17,6 +17,7 @@
 - Support for Android applications, through Android NativeAcivity and EGL. Integrated with Android: using Android's log facility, using Android's assets (URLs like assets:/my_texture.png are supported, ApplicationData returns assets:/).
 - CastleEnumeratedFiles API much changed and renamed to FindFiles. It supports searching for files inside Android assets now, so you can look for level.xml / resource.xml files inside assets just like with local games.
 - --hide-menu option for view3dscene. Especially useful for fullscreen presentations, where you may want to hide all UI.
+- tutorial_transformation_hierarchy.php docs
 */
 
 array_push($news,
