@@ -593,6 +593,7 @@ function echo_footer ()
    This Piwik code must be synched with
    ../../papers/compositing_shaders_doc/xsl/html_piwik.xsl
    ../../vrml_engine_doc/xsl/html_piwik.xsl
+   ../../castle_game_engine/doc/pasdoc/footer.html
 */
 ?>
 
