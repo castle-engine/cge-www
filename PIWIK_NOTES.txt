@@ -19,3 +19,12 @@ chown -R kambi:apache piwik/
 # See bottom of http://piwik.org/docs/installation/: only tmp/ needs to be writeable by Apache
 chmod -R u=rwX,g=rX,o= piwik/
 chmod -R g+w           piwik/tmp/
+
+# Now visit Piwik WWW to perform upgrade.
+
+# Sometimes to may need to temporarily enable installer to write to config file,
+# hacky way:
+cd piwik/config/
+chmod g+w config.ini.php .
+# and revert:
+chmod g-w config.ini.php .
