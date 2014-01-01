@@ -588,30 +588,35 @@ function echo_footer ()
        isset($_SERVER["HTTP_HOST"]) &&
        ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net') )
   {
-/* The hosted app piwik is broken, see
-   https://sourceforge.net/apps/trac/sourceforge/ticket/17978
-   (and many dups, like https://sourceforge.net/apps/trac/sourceforge/ticket/18121 ).
-   So I use my local piwik installation.
-   Only one piwik.js should be included.
-
+/* Note: only one piwik.js should be included,
+   so don't report to multiple Piwik installations.
    This Piwik code must be synched with
-   ../../papers/compositing_shaders_doc/xsl/html_chunks.xsl
-   ../../vrml_engine_doc/xsl/html_chunks.xsl
+   ../../papers/compositing_shaders_doc/xsl/html_piwik.xsl
+   ../../vrml_engine_doc/xsl/html_piwik.xsl
 */
 ?>
 
 <!-- Piwik -->
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://castle-engine.sourceforge.net/piwik/" : "http://castle-engine.sourceforge.net/piwik/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="http://castle-engine.sourceforge.net/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://michalis.ii.uni.wroc.pl/piwik-castle-engine/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+
+<noscript>
+<!-- Piwik Image Tracker -->
+<img src="http://michalis.ii.uni.wroc.pl/piwik-castle-engine/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+<!-- End Piwik -->
+</noscript>
 
 <?php
   }
