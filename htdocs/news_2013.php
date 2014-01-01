@@ -1,25 +1,5 @@
 <?php
 
-/* Next news:
-    array('title' => 'Development: Android and iOS working, and new game "Darkest Before the Dawn" release!',
-- gles-123 screenshots
-- Changed default TWalkCamera keys to be equal to TPlayer keys, in particular to honour common AWSD combo. This way:
-  - You can move using AWSD by default (e.g. in view3dscene).
-  - Space / c make jump / crouch. Also, we no longer have separate inputs for jump / crouch (when gravity works) or flying up / down (when gravity doesn't work).
-  - This avoids switching the meaning or left/right arrows in mouse look mode in view3dscene.
-  This makes keys in all our programs and games more consistent, and just better --- everyone knows AWSD, while previous shortcuts for strafing (comma and dot) were uncommon.
-  new_walk_shortcuts.png
-- Background rewrite, TextureBackground, possibility to MovieTexture as background
-- GLES : whole engine compiles, also view3dscene and castle1 and most examples.
-- Context resource sharing (so that many windows/controls with context work Ok, sharing textures and fonts etc.) implemented for CastleWindow Xlib+GLX and GTK  ackend too.
-- GL ES renderer: light ambient, color per vertex (including Background colors).
-- Support for png and gz without any external libraries, by using FpRead/WritePng and PasZlib (where suitable).
-- Support for Android applications, through Android NativeAcivity and EGL. Integrated with Android: using Android's log facility, using Android's assets (URLs like assets:/my_texture.png are supported, ApplicationData returns assets:/).
-- CastleEnumeratedFiles API much changed and renamed to FindFiles. It supports searching for files inside Android assets now, so you can look for level.xml / resource.xml files inside assets just like with local games.
-- --hide-menu option for view3dscene. Especially useful for fullscreen presentations, where you may want to hide all UI.
-- tutorial_transformation_hierarchy.php docs
-*/
-
 array_push($news,
     array('title' => 'Development: great API for 2D games and UI, our engine in Debian, on the road to OpenGL ES, Orcs and Volcanoes game screenshots',
           'year' => 2013,
@@ -107,7 +87,7 @@ castle_thumbs(array(
 
   <li><p>Comfortable TAbstractGeometryNode.Solid, TAbstractGeometryNode.Convex.
 
-  <li><p><a href="http://castle-engine.sourceforge.net/blender.php">X3D and Kanim exporters for Blender</a> updated to work with latest Blender 2.68a.
+  <li><p><a href="' . CURRENT_URL . 'blender.php">X3D and Kanim exporters for Blender</a> updated to work with latest Blender 2.68a.
 </ol>
 '),
 
@@ -137,26 +117,26 @@ castle_thumbs(array(
   <li><b>Network (http) support.</b> We can download everything from the Internet, everything is correctly treated as URL, we also use MIME-types more. For developers <a href="' . CURRENT_URL . 'tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
   <li><b>More complete data URI support</b>. Absolutely everything can now use data URI to embed data inside a single VRML/X3D file. There is a demo <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">data_uri.x3dv</a> showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), scripts etc.<br/>
     Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI from any file.
-  <li><b>Clipboard</b> (Ctrl+C, Ctrl+V, Ctrl+X in message boxes, especially handy to copy/paste URLs). For developers: use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleClipboard.html#AsText">Clipboard.AsText</a> property.
+  <li><b>Clipboard</b> (Ctrl+C, Ctrl+V, Ctrl+X in message boxes, especially handy to copy/paste URLs). For developers: use <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.TCastleClipboard.html#AsText">Clipboard.AsText</a> property.
   <li>view3dscene interprets <i>Home</i> / <i>PageUp</i> / <i>PageDown</i> / <i>End</i> keys to switch to initial / next / previous / last viewpoint. This is consistent with other VRML / X3D browsers behavior and follows <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/behaviours.html#SelectFromMulitpleViewpoints">recommended X3D shortcuts</a>, and it makes moving through viewpoints easier, using just a keyboard. Thanks to Don Brutzman for bringing this to my attention :)
   <li>Nice message on status when switching viewpoints. Together with Home/PageUp/PageDown/End combo, this makes switching viewpoints by keyboard very comfortable.
   <li><b>X3D CAD level 2 support (CADXxx nodes)</b>.
   <li><tt>MultiTexture.function</tt> support. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/functions.x3dv">Demo model</a>.
   <li><tt>NavigationInfo.transitionComplete</tt> support. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/navigation/transition_multiple_viewpoints.x3dv">Demo model transition_multiple_viewpoints.x3dv</a> shows how to use it to make an animated transition between a couple of viewpoints.
   <li>Support for 8 and 16 samples for anti-aliasing.
-  <li>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL is <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>. See previous news for explanation why this change is necessary.
-  <li>FullScreen switching much improved: you can now freely change <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleWindowBase.html#FullScreen">TCastleWindowBase.FullScreen</a> property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don\'t cover the window. Added <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TMenuItemToggleFullScreen.html">TMenuItemToggleFullScreen</a> for comfort.
+  <li>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="' . CURRENT_URL . 'x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL is <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>. See previous news for explanation why this change is necessary.
+  <li>FullScreen switching much improved: you can now freely change <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.TCastleWindowBase.html#FullScreen">TCastleWindowBase.FullScreen</a> property at runtime. For backends that handle it (GTK, LCL) the switch may happen by resizing the window, instead of recreating it, which means it avoids (sometimes time-consuming) reinitialization of OpenGL resources. On Mac OS X, fullscreen mode hides the dock and menu, so they don\'t cover the window. Added <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.TMenuItemToggleFullScreen.html">TMenuItemToggleFullScreen</a> for comfort.
   <li>You can now load <a href="' . CURRENT_URL . 'creating_data_material_properties.php">material_properties.xml files</a> in view3dscene, will be used to enhance all subsequent materials. You can also specify alpha_channel (see <a href="' . CURRENT_URL . 'x3d_extensions.php#section_ext_alpha_channel_detection">alphaChannel extension</a>) in material properties. I expect to enhance this in the next release, so that you can add there also stuff like <tt>TextureProperties</tt> (for anisotropic filtering and more, right now you have to edit VRML/X3D to add it, which is not always comfortable when exporting VRML/X3D e.g. from Blender).
 </ol>
 
 <p><b>Other new engine features, visible only to developers:</b></p>
 
 <ol>
-  <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.html">CastleWindow</a> LCL backend. This was used to create native Mac OS X apps now, see <a href="http://castle-engine.sourceforge.net/macosx_requirements.php">Mac OS X notes</a>.
-  <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ApplicationData">ApplicationData</a> and <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFilesUtils.html#ApplicationConfig">ApplicationConfig</a> to get data/config dirs as URLs. On Mac OS X <tt>ApplicationData</tt> can use data from bundle <tt>Contents/Resources/data</tt> . See also useful <tt>CastleFilesUtils.BundlePath</tt> function.
-  <li>Nicer <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleUIControls.TInputListener.html#Update">TInputListener.Update</a> API, with simple HandleInput parameter. It used to be called <tt>Idle</tt>, but we renamed it to <tt>Update</tt>, since this describes its behavior correctly.
-  <li>Various improvements to 2D rendering and API. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLUtils.html#SetWindowPos">SetWindowPos</a>, this will also be portable to next engine compatible with GLES20 (Android, iOS).
-  <li><tt>TCastleControl.AggressiveUpdate*</tt> are removed. The (simplified and improved) version of this mechanism is now always "on" and automatically makes mouse look work better. (Still not perfect, though. Lazarus event loop still causes problems with mouse look. Use our <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.html">CastleWindow</a> for smooth mouse look.)
+  <li><a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.html">CastleWindow</a> LCL backend. This was used to create native Mac OS X apps now, see <a href="' . CURRENT_URL . 'macosx_requirements.php">Mac OS X notes</a>.
+  <li><a href="' . CURRENT_URL . 'apidoc/html/CastleFilesUtils.html#ApplicationData">ApplicationData</a> and <a href="' . CURRENT_URL . 'apidoc/html/CastleFilesUtils.html#ApplicationConfig">ApplicationConfig</a> to get data/config dirs as URLs. On Mac OS X <tt>ApplicationData</tt> can use data from bundle <tt>Contents/Resources/data</tt> . See also useful <tt>CastleFilesUtils.BundlePath</tt> function.
+  <li>Nicer <a href="' . CURRENT_URL . 'apidoc/html/CastleUIControls.TInputListener.html#Update">TInputListener.Update</a> API, with simple HandleInput parameter. It used to be called <tt>Idle</tt>, but we renamed it to <tt>Update</tt>, since this describes its behavior correctly.
+  <li>Various improvements to 2D rendering and API. Use <a href="' . CURRENT_URL . 'apidoc/html/CastleGLUtils.html#SetWindowPos">SetWindowPos</a>, this will also be portable to next engine compatible with GLES20 (Android, iOS).
+  <li><tt>TCastleControl.AggressiveUpdate*</tt> are removed. The (simplified and improved) version of this mechanism is now always "on" and automatically makes mouse look work better. (Still not perfect, though. Lazarus event loop still causes problems with mouse look. Use our <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.html">CastleWindow</a> for smooth mouse look.)
   <li>In all programs (view3dscene and others created by Castle Game Engine) the Home / PageUp / PageDown keys loose their old meaning (they were used to raise/bow/straighten head in Walk, or rotate/reset in 3rd axis in Examine). I think that nowadays, people don\'t need keys to perform these actions, as rotating with mouse (like mouse look or mouse dragging or scroll wheel) is more intuitive and more discoverable. This way these keys are free to use for viewpoint navigation.
     <p>If you would like to restore the previous behavior just for your application, you can of course do it, since all the inputs of cameras remain configurable. Like this:
 
@@ -185,7 +165,7 @@ Camera.Walk.Input_UpRotate  .Assign(K_PageUp);
 Camera.Walk.Input_DownRotate.Assign(K_PageDown);
 </pre>
 
-  <li>Comfortably add modifiers (Ctrl, Shift, Alt) to menu item shortcuts by <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TMenuItem.html#Modifiers">TMenuItem.Modifiers</a>. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach is much more flexible.
+  <li>Comfortably add modifiers (Ctrl, Shift, Alt) to menu item shortcuts by <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.TMenuItem.html#Modifiers">TMenuItem.Modifiers</a>. Previously it was somewhat-possible (by using CharKey like CtrlA..CtrlZ or uppercase letter, which requests Ctrl or Shift modifier). New approach is much more flexible.
 </ol>
 
 <p>Along with the <a href="' . CURRENT_URL . 'engine.php">engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, we also release <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage 1.5.0</a>, <a href="' . CURRENT_URL . 'castle.php">castle game 1.0.1</a>, <a href="' . CURRENT_URL . 'demo_models.php">demo models 3.3.0</a>.
@@ -215,7 +195,7 @@ castle_thumbs(array(
 
   <li><p>Thanks to <i>Abou Al Montacir</i> we will have packages with <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> in <a href="http://www.debian.org/">Debian</a>! Most of this software was developed by Michalis using Debian, so having my software in the Debian repository would feel really great for me :) <a href="https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/">See here for our forum thread</a>, and here is the Debian bug marking ITP (Intent To Package) for engine: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408">#706408</a> and for view3dscene: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707932">#707932</a>.
 
-  <li><p>For developers, <a href="http://castle-engine.sourceforge.net/tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
+  <li><p>For developers, <a href="' . CURRENT_URL . 'tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
 
   <li><p>Engine examples contain a simple tool <tt>examples/tools/to_data_uri.lpr</tt> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
 
@@ -223,11 +203,11 @@ castle_thumbs(array(
 
   <li><p><tt>MultiTexture.function</tt> support (forces shader pipeline rendering for given shape; there\'s no way to reasonably implement this using fixed-function pipeline). <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/functions.x3dv">Demo in functions.x3dv</a>.
 
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_multi_texturing.php">A set of X3D multi-texturing tests</a> is available, testing support of view3dscene and other VRML / X3D browsers for multi-texture features. This is part of my ongoing effort to improve X3D MultiTexturing specification.
+  <li><p><a href="' . CURRENT_URL . 'x3d_multi_texturing.php">A set of X3D multi-texturing tests</a> is available, testing support of view3dscene and other VRML / X3D browsers for multi-texture features. This is part of my ongoing effort to improve X3D MultiTexturing specification.
 
   <li><p>There is a progress bar showing the process the downloading. The download is still blocking, but at least now you see what\'s going on :)
 
-  <li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL will be <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
+  <li><p>If you load or save image sequences using the syntax <tt>image%d.png</tt>, for example inside our extension <a href="' . CURRENT_URL . 'x3d_extensions.php#section_ext_movie_from_image_sequence">Movies for MovieTexture can be loaded from images sequence</a>: the new syntax to indicate counter inside the URL will be <tt>@counter(4)</tt>, where 4 is the padding. For example <tt>image%d.png</tt> has to be changed to <tt>image@counter(1).png</tt> and <tt>image%4d.png</tt> has to be changed to <tt>image@counter(4).png</tt>.
 
     <p>For loading, you will <i>have</i> to use new syntax with <tt>@counter(&lt;padding&gt;)</tt> with new view3dscene / Castle Game Engine versions. You will have to update your VRML/X3D models, old syntax will unfortunately not work anymore (reasons below). For saving, the old syntax <tt>%d</tt> will continue to work for some time (along the new <tt>@counter(&lt;padding&gt;)</tt> syntax, and you\'re encouraged to upgrade to new syntax).
 
@@ -235,7 +215,7 @@ castle_thumbs(array(
 
     <p>Looking back, it was an unfortunate choice to use percent character to indicate images sequence, since percent is special inside URIs. It was done for consistency with <tt>ffmpeg</tt>, that supports things like <tt>image%4d.png</tt> on the command-line (but <b>not</b> when using URLs; for example, <tt>ffplay /home/image%4d.png</tt> works, but <tt>ffplay file:///home/image%4d.png</tt> does not work, neither does <tt>ffplay file:///home/image%254d.png</tt>). So, one can say that it was <tt>ffmpeg</tt> that made a bad choice, but then <tt>ffmpeg</tt> did it for consistency with common string formatting functions (C sprintf, ObjectPascal Format)...
 
-    <p>Comments about this change are of course welcome, through <a href="http://castle-engine.sourceforge.net/forum.php">forum</a> or any other means. Right now, I just don\'t see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions.
+    <p>Comments about this change are of course welcome, through <a href="' . CURRENT_URL . 'forum.php">forum</a> or any other means. Right now, I just don\'t see a way to avoid breaking compatibility. We made a bad decision to use <tt>%d</tt> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions.
 
   <li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in <tt>ShaderPart</tt> node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It\'s fixed now of course.
 </ol>'),
@@ -380,13 +360,13 @@ castle_thumbs(array(
   <li>UNIT statement from X3D 3.3 is implemented.</li>
   <li>VisibilitySensor node is supported.</li>
   <li>Many fixes to triangulating concave polygons.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shading">X3D extension to force Phong shading</a>.</li>
+  <li><a href="' . CURRENT_URL . 'x3d_extensions.php#section_ext_shading">X3D extension to force Phong shading</a>.</li>
   <li>New <i>"Edit -> Lights Editor"</i> feature.</li>
 </ol>
 
 <p>Many thanks go to Jan Adamec for implementing the 1-3 features above (and more)! Our engine is used as VRML viewer for shareware <a href="http://www.roomarranger.com/">Room Arranger</a>.</p>
 
-<p>All the other programs and data on our pages were updated to use/show new <a href="http://castle-engine.sourceforge.net/engine.php">engine 4.0.0 version</a>:
+<p>All the other programs and data on our pages were updated to use/show new <a href="' . CURRENT_URL . 'engine.php">engine 4.0.0 version</a>:
   <a href="' . CURRENT_URL . 'castle.php">The Castle 1.0.0 (finally!)</a>,
   <a href="' . CURRENT_URL . 'malfunction.php">malfunction 1.2.8</a>,
   <a href="' . CURRENT_URL . 'kambi_lines.php">kambi_lines 1.1.7</a>,
@@ -446,10 +426,10 @@ castle_thumbs(array(
   <li><p><b>Improvements to game logic:</b></p>
     <ul>
       <li>Creature enemy is now configurable by overriding <tt>TWalkAttackCreature.Enemy</tt> method. The default implementation chooses the central player as the enemy (if the player is not dead yet), but you can override it to implement something more sophisticated (like creature vs creature fighting, teams etc. &mdash; not everything is tested there yet, but it all should be doable now, so go wild :).</li>
-      <li>New methods to define creature/items (all resources) animations are available. You can load animation from <a href="http://castle-engine.sourceforge.net/kanim_format.php">kanim</a>, or from multiple VRML/X3D files (one VRML/X3D for each animation), or from a single VRML/X3D file (in which case the file will have to contain different TimeSensor to activate each animation). Description how it works is inside DRAFT.modeling_tutorial.txt for now. Example of all 3 methods to define animations are inside <tt>castle_game_engine/examples/resource_animations/</tt> in sources.</li>
+      <li>New methods to define creature/items (all resources) animations are available. You can load animation from <a href="' . CURRENT_URL . 'kanim_format.php">kanim</a>, or from multiple VRML/X3D files (one VRML/X3D for each animation), or from a single VRML/X3D file (in which case the file will have to contain different TimeSensor to activate each animation). Description how it works is inside DRAFT.modeling_tutorial.txt for now. Example of all 3 methods to define animations are inside <tt>castle_game_engine/examples/resource_animations/</tt> in sources.</li>
       <li>Many improvements to our <tt>RenderDebug3D</tt> and <tt>RenderDebugCaptions</tt> mechanisms (you can see them e.g. in fps_game demo): respect Orientation (work with games with either +Y or +Z up), sphere is displayed better,  caption is multi-line and contains "enemy distance" info.</li>
       <li><tt>TItem.Picked</tt> method can be overridden to configure what happens when you pick item. Example code in fps_game shows how to make an item that is consumed on pickup (aka "power-up").</li>
-      <li><tt>TextureProperties</tt> mechanism was enhanced into <tt>MaterialProperties</tt>, that can describe much more things. In the future, we can add there more stuff about material/texture that cannot be comfortably expressed in Blender, but that is conceptually tied to material/texture. For now, the main addition is that you can define bump mapping by normal_map properties there. The hack in <a href="http://castle-engine.sourceforge.net/blender.php">our Blender exporter</a> (to autodetect xxx_normalmap textures) will possibly be removed at some point (as it has no future, it\'s dirty).</li>
+      <li><tt>TextureProperties</tt> mechanism was enhanced into <tt>MaterialProperties</tt>, that can describe much more things. In the future, we can add there more stuff about material/texture that cannot be comfortably expressed in Blender, but that is conceptually tied to material/texture. For now, the main addition is that you can define bump mapping by normal_map properties there. The hack in <a href="' . CURRENT_URL . 'blender.php">our Blender exporter</a> (to autodetect xxx_normalmap textures) will possibly be removed at some point (as it has no future, it\'s dirty).</li>
       <li><tt>player.xml</tt> must be now loaded explicitly by <tt>Player.LoadFromFile</tt> (we try to never load the file from some hardcoded location without you requesting it). <!--; previous implementation was always loading <tt>data/player.xml</tt> in <tt>TPlayer</tt> constructor). You can give your own location of <tt>player.xml</tt>. --> Also, all player properties have now sensible defaults, so in simple cases there\'s no need to use this file at all.</li>
     </ul>
   </li>
@@ -467,7 +447,7 @@ castle_thumbs(array(
 
   <li><p><b>Other engine improvements:</b></p>
     <ul>
-      <li><tt>CastleImages</tt> supports resizing images with bilinear interpolation. <tt>TCastleImage.Resize</tt> and <tt>TCastleImage.MakeResized</tt> take <tt>Interpolation</tt> parameter, <tt>riNearest</tt> or <tt>riBilinear</tt>. Default is still <tt>riNearest</tt>, so fast (and ugly) like before. <tt>CastleWindowProgress</tt>, when it needs to scale progress background image, requests <tt>riBilinear</tt> interpolation. <a href="http://castle-engine.sourceforge.net/glviewimage.php">glViewImage</a> allows to test both resizing methods.</li>
+      <li><tt>CastleImages</tt> supports resizing images with bilinear interpolation. <tt>TCastleImage.Resize</tt> and <tt>TCastleImage.MakeResized</tt> take <tt>Interpolation</tt> parameter, <tt>riNearest</tt> or <tt>riBilinear</tt>. Default is still <tt>riNearest</tt>, so fast (and ugly) like before. <tt>CastleWindowProgress</tt>, when it needs to scale progress background image, requests <tt>riBilinear</tt> interpolation. <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage</a> allows to test both resizing methods.</li>
       <li>Fonts: Huge refactoring of font units and types.
         <ul>
           <li>We now have 4 units: <tt>CastleOutlineFonts</tt>, <tt>CastleBitmapFonts</tt>, <tt>CastleGLOutlineFonts</tt>, <tt>CastleGLBitmapFonts</tt>.
@@ -484,6 +464,6 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p><b>The caustics demo</b> (you seen a movie of this <a href="http://castle-engine.sourceforge.net/news.php?id=2012-07-10">in earlier news</a>) is now committed to our <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>. Many thanks to Victor Amat! I hope to use these ideas to make such water available out-of-the-box for all games using our engine (right now you will have to adjust shaders for your specific case).</p></li>
+  <li><p><b>The caustics demo</b> (you seen a movie of this <a href="' . CURRENT_URL . 'news.php?id=2012-07-10">in earlier news</a>) is now committed to our <a href="' . CURRENT_URL . 'demo_models.php">demo models</a>. Many thanks to Victor Amat! I hope to use these ideas to make such water available out-of-the-box for all games using our engine (right now you will have to adjust shaders for your specific case).</p></li>
 </ol>')
 );
