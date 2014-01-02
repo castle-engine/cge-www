@@ -743,6 +743,9 @@ is only useful for converting). More precisely:
 <?php section(false); ?>
 
 <dl class="params_list">
+  <dt>--hide-menu
+  <dd><p>Hide the top menubar. Useful for full-screen presentations.
+
   <dt>--anti-alias AMOUNT</dt>
   <dd><p>Use full-screen anti-aliasing. You can also configure it from
     the menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>.
