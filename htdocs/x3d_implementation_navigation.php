@@ -118,7 +118,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         not around the <i>gravity</i> up vector,
         -->
 
-        <p>As an extension, we also support new navigation mode <tt>ARCHITECTURE</tt>.
+        <p>As an extension, we also support new navigation mode <tt>TURNTABLE</tt>.
         This is similar to the Examine mode, with controls comfortable
         for viewing models that have a sense of floor/ground in the XZ plane,
         and vertical axis in +Y. Implementation is not finished yet.

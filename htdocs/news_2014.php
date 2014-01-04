@@ -1,5 +1,10 @@
 <?php
 
+/* Next news:
+<li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
+<li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
+*/
+
 array_push($news,
     array('title' => 'Development: Android and iOS, new game release "Darkest Before the Dawn", more',
           'year' => 2014,
