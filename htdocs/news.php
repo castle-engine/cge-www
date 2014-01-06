@@ -9,12 +9,14 @@ require_once 'news_common.php';
    (which actually searches sitemap and renders sidebar). */
 castle_sitemap_add_news();
 
-/* calculate $previous_item, $item, $next_item */
-if (isset($_GET['id']))
+/* Calculate $previous_item, $item, $next_item.
+   For compatibility with old links, we handle also ?item=xxx like ?id=xxx. */
+if (isset($_GET['id']) || isset($_GET['item']))
 {
-  castle_news_item_by_id($_GET['id'], $previous_item, $item, $next_item);
+  $news_id = isset($_GET['id']) ? $_GET['id'] : $_GET['item'];
+  castle_news_item_by_id($news_id, $previous_item, $item, $next_item);
   if ($item === NULL)
-    die('Invalid news item "' . $_GET['id'] . '"');
+    die('Invalid news item "' . $news_id . '"');
 } else
 {
   /* By default, if someone uses just "news.php" URL,
