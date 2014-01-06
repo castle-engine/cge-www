@@ -146,13 +146,6 @@ If you don't have time to work on them, but you badly need them, consider also
   </li>
 
   <li>
-    <p><b>Android port</b></p>
-    <p>Our 3D renderer uses a clean and modern OpenGL, using VBOs and shaders. Some of the 2D control bits have to be still ported to modern OpenGL, but that's a very easy task. Use it to make a modern renderer running on Android. FPC has various ways to develop for Android.</p>
-
-    <p>Same about <b>iOS</b> (iPhone, iPad etc.) port.</p>
-  </li>
-
-  <li>
     <p><b>WWW browser plugin</b></p>
     <p>Most probably using <a href="https://developer.mozilla.org/en-US/docs/Plugins">NPAPI, the cross-browser API for plugins</a>. Our CastleWindow code will become handy for this, as it can deal with WinAPI / XWindows window handle (this is what we get from plugin to initialize our plugin viewport).</p>
   </li>
