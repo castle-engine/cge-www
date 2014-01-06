@@ -1,6 +1,8 @@
 <?php
 
 /* Next news:
+font_from_image_screen_0.png
+<li>New example examples/fonts/font_from_image.lpr showing how to use a font painted as an image.
 <li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
 <li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
 */
