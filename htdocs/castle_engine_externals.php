@@ -95,7 +95,7 @@ function facebook_button()
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/pl_PL/all.js#xfbml=1";
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, \'script\', \'facebook-jssdk\'));</script>
 ';
@@ -104,7 +104,7 @@ function facebook_button()
     $header = '';
 
   return $header .
-    '<div class="fb-like" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true"></div>';
+    '<div class="fb-like" data-href="http://castle-engine.sourceforge.net/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
 }
 
 /* Paypal -------------------------------------------------------------------- */
