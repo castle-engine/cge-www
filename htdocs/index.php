@@ -31,7 +31,7 @@ castle_header('Castle Game Engine',
       <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
       <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
       <p><!--The engine is where all the magic actually happens :)-->
-      Open-source (LGPL) 3D game engine for <a href="http://www.freepascal.org/">FreePascal / Lazarus</a>. Excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data format, other 3D formats also supported. Many advanced graphic effects.</p>
+      Open-source (LGPL) 3D and 2D game engine for <a href="http://www.freepascal.org/">FreePascal / Lazarus</a>. Excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data format, other 3D formats also supported. Many advanced graphic effects.</p>
     </td>
   </tr>
 
