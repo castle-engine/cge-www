@@ -2,6 +2,24 @@
 
 /* Next news:
 font_from_image_screen_0.png
+compare_anti_aliasing.png
+font_from_texture.png
+
+<li>We have a new font loading and rendering method :)
+
+We now use the FreeType library (and FreeType FPC unit) for loading fonts, which allows us to load at runtime a ttf font, and use it with any size, and with or without anti-aliasing. For rendering, we convert this font into a texture, and we render text by rendering a quad for each letter. This makes the font rendering modern (no display lists, just a single texture), and working with GLSL and OpenGLES20 (Android, iOS), and suitable both for anti-aliased and non-aliased text (resulting in alpha blending or alpha testing).
+
+It is also possible to convert ttf font to a Pascal code, to easily embed the fonts inside Pascal program, and avoid the need for FreeType library at runtime (which also avoids the needs to worry about linking with FreeType). The program do it is texturefont2pascal (see castle_game_engine/examples/fonts/).
+
+Important font classes are called now TTextureFont and (abstract) TCastleFont. TTextureFont is either loaded from ttf or from prepared data (when TTextureFontData was converted to a Pascal code). There is also new TSimpleTextureFont to draw a colorful text from glyphs in an image, like the ones by http://opengameart.org/users/asalga .
+
+For a simplest example, to change the standard UIFont (used by default by various 2D controls) to a custom ttf font (file "MyFontFile.ttf" within your game data) you would do this:
+
+  UIFont := TTextureFont.Create(ApplicationData('MyFontFile.ttf'), { size } 20, { antialiasing? } true);
+
+Check out new example castle_game_engine/examples/fonts/font_from_texture.lpr  :)
+
+<li>We also have new property TGLImage.Color, to easily color the rendered images. Useful for fonts, but also useful for general image rendering.﻿
 <li>New example examples/fonts/font_from_image.lpr showing how to use a font painted as an image.
 <li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
 <li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
