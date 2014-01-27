@@ -23,6 +23,7 @@ Check out new example castle_game_engine/examples/fonts/font_from_texture.lpr  :
 <li>New example examples/fonts/font_from_image.lpr showing how to use a font painted as an image.
 <li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
 <li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
+<li>The DrawStyle, OnDrawStyle, Draw, OnDraw renamed to RenderStyle and Render. This makes a small compatibility break, you will have to adjust your code if you used to override TUIControl.Draw. New names are cleaner and safer: there is no more a "dsNone" value, instead RenderStyle (both on TUIControl and TCastleWindow and TCastleControl) is now by default rs2D.
 */
 
 array_push($news,

@@ -15,7 +15,7 @@ since various games have wildly different needs.
 <p>You can do it by defining a new
 <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
  descendant, where you can draw anything you want in overridden
-<?php api_link('TUIControl.Draw', 'CastleUIControls.TUIControl.html#Draw'); ?>
+<?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
  method. A simple example:
 
 <?php echo pascal_highlight(
@@ -24,16 +24,10 @@ since various games have wildly different needs.
 type
   TGame2DControls = class(TUIControl)
   public
-    procedure Draw; override;
-    function DrawStyle: TUIControlDrawStyle; override;
+    procedure Render; override;
   end;
 
-function TGame2DControls.DrawStyle: TUIControlDrawStyle;
-begin
-  Result := ds2D;
-end;
-
-procedure TGame2DControls.Draw;
+procedure TGame2DControls.Render;
 var
   Player: TPlayer;
 begin
@@ -49,11 +43,11 @@ var
   Controls2D := TGame2DControls.Create(Application);
   Window.Controls.Add(Controls2D);'); ?>
 
-<p>Inside <tt>TGame2DControls.Draw</tt> you have the full knowledge about the world,
+<p>Inside <tt>TGame2DControls.Render</tt> you have the full knowledge about the world,
 about the <tt>Player</tt> and <tt>Player</tt>'s inventory.
 And you can draw them however you like. Basically, you can use
 direct OpenGL commands (with some care taken, see
-<?php api_link('TUIControl.Draw', 'CastleUIControls.TUIControl.html#Draw'); ?>
+<?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
  docs about what you can change carelessly; the rest should be secured
 using <tt>glPushAttrib</tt> / <tt>glPopAttrib</tt>).
 But we give you a lot of helpers:
