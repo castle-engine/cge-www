@@ -24,6 +24,8 @@ Check out new example castle_game_engine/examples/fonts/font_from_texture.lpr  :
 <li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
 <li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
 <li>The DrawStyle, OnDrawStyle, Draw, OnDraw renamed to RenderStyle and Render. We made some effort to keep compatibility (e.g. the old TUIControl.Draw method still exists and can be overridden, new TUIControl.Render simply calls it) but you're adviced to convert to new names anyway. New names are cleaner and safer: there is no more a "dsNone" value, instead RenderStyle (both on TUIControl and TCastleWindow and TCastleControl) is now by default rs2D.
+<li>Android supports now Application.ProcessMessages correctly. This means that you can use modal functions, that inside run the message loop and return only when some state finished --- for example, various modal boxes of CastleMessages like MessageOK and MessageYesNo. The android_demo contains a demo of it.
+  Note that not all backends guarantee the support for Application.ProcessMessages. For now, the LIBRARY backend (used on iOS) doesn't support Application.ProcessMessages, so modal functions are not possible (instead, you have to implement your own state machine e.g. using controls like TCastleDialog underneath).
 */
 
 array_push($news,
