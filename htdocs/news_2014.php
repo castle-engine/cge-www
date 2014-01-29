@@ -19,6 +19,8 @@ For a simplest example, to change the standard UIFont (used by default by variou
 
 Check out new example castle_game_engine/examples/fonts/font_from_texture.lpr  :)
 
+Also, font lifetime is no longer limited to the OpenGL context. This means that you can create and use TCastleFont or TTextureFont instances more freely, e.g. create them once at the application initialization (no need to repeat it in every OnOpen), and measure text (e.g. calling TextWidth) at any time.
+
 <li>We also have new property TGLImage.Color, to easily color the rendered images. Useful for fonts, but also useful for general image rendering.﻿
 <li>New example examples/fonts/font_from_image.lpr showing how to use a font painted as an image.
 <li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->

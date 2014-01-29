@@ -289,8 +289,13 @@ you have appropriate libraries installed on your system.
     <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
     RGBE format (Radiance HDR format).</li>
 
-  <li>Handling of <b>fonts</b>, including rendering them with OpenGL,
-    as bitmap or outline (3D) fonts.</li>
+  <li>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
+    using <i>FreeType</i> library, and render them at any size, with anti-aliasing
+    or not. Fonts can also be embedded inside a Pascal source code,
+    which allows us to provide default fonts (available as-is),
+    and to use fonts even when <i>FreeType</i> library is not available.
+    You can also use colorful fonts from a texture.
+    We also support outline (3D) fonts.</li>
 
   <li>Comfortable <b>3D sound engine</b>,
     using <?php echo a_href_page('OpenAL', 'openal'); ?>,
@@ -299,8 +304,11 @@ you have appropriate libraries installed on your system.
     Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'x3d_implementation_sound'); ?>, so content creators
     can define sound sources themselves.</li>
 
-  <li>Basic <b>2D controls rendered through OpenGL</b>
-    (buttons, panels, tooltips, menus etc.) are available.
+  <li><b>2D controls</b>
+    (buttons, panels, tooltips, on-screen menus etc.) are available.
+    Customizing their look is very easy.
+    Also creating your own 2D controls, using smartly stretched images and text,
+    is very easy.
     Good for games, where making a custom-looking GUI (that fits with
     your game theme) is important.</li>
 
