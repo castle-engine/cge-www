@@ -117,8 +117,8 @@ That's because loading level wants to prepare resources for OpenGL rendering.
 Window.Open; // this goes before preparing level
 
 { initialize progress bar to use our window }
+Application.MainWindow := Window;
 Progress.UserInterface := WindowProgressInterface;
-WindowProgressInterface.Window := Window;
 
 Levels.LoadFromFiles;
 SceneManager.LoadLevel(\'pits\');
