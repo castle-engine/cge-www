@@ -31,9 +31,8 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
   <dd><p><i>How to use</i>: Just create, or drop on Lazarus form,
     an instance of this class.
-    Advanced: you can also make your own class implementing
-    <?php api_link('IUIContainer', 'CastleUIControls.IUIContainer.html'); ?>
-    interface.
+    Advanced: you can also make your own class providing a non-abstract
+    <?php api_link('TUIContainer', 'CastleUIControls.TUIContainer.html'); ?>.
 
     <p>Properties: a <tt>Controls</tt> list, that contains instances of
     <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>.
