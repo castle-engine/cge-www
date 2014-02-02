@@ -157,7 +157,8 @@ shader:</p>
 
 <ul>
   <li><p><p>Internally, we pass the screen contents (color and, optionally,
-    depth buffer) as a <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>
+    depth buffer) as a texture (normal npot texture, before OpenGLES
+    we also used <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>)
     or a <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">multi-sample texture</a>.
     You should just use the comfortable functions <tt>screen_get_xxx</tt>
     to read previous
