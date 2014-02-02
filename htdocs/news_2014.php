@@ -4,6 +4,9 @@
 font_from_image_screen_0.png
 compare_anti_aliasing.png
 font_from_texture.png
+android_cubemap
+android_progress_bar
+android_message
 
 <li>We have a new font loading and rendering method :)
 
@@ -31,6 +34,11 @@ Also, font lifetime is no longer limited to the OpenGL context. This means that 
   A lot of other small improvements around Android backend happened.
 <li>New class TUIContainer makes it easier to create and use containers (like the ones provided by TCastleWindow and TCastleControl). Various small fixes and improvements come as a result of that. You may need to adjust your window callbacks to take "Container: TUIContainer" parameter (although we added compatibility alias TCastleWindowBase = TUIContainer to make it possible to still compile old code; but remember that now TUIContainer and TCastleWindowCustom are totally separate classes). The only window classes now are TCastleWindowCustom and TCastleWindow, and the only control classes now are TCastleControlCustom and TCastleControl (the non-Custom versions have comfortable ready SceneManager).
   This also cleaner reflects that the basis for all engine rendering (2D and 3D) is now TUIControl. So all container providers (TCastleWindowCustom, TCastleControlCustom) give you Controls list with the same behaviour.
+<li>OpenGLES (Android, iOS) renderer improvements:
+  <ol>
+    <li>Most of the texture generation modes work now. This includes the default generation of texture coordinates when they are not specified. (Which is equivalent to using TextureCoordinateGenerator with modes "BOUNDS2D", "BOUNDS3D", "BOUNDS", http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds ). And it includes "COORD" (testcase: demo_models/texturing_advanced/tex_coord_generator_coord.x3dv ), "COORD-EYE", "SPHERE" (testcase: demo_models/texturing_advanced/tex_coord_generator_spherical_mapping.x3dv ).
+      And it includes modes for cubemaps in camera-space (CAMERASPACENORMAL and CAMERASPACEREFLECTIONVECTOR) and world-space (many models in demo_models/cube_environment_mapping/ ). Generating cubemaps at runtime, for mirrors, was already working. So we can fully use cubemaps for mirrors on OpenGLES, just like on desktop OpenGL.
+    <li>TextureTransform and friends (TextureTransform3D, TextureTransformMatrix3D) work on OpenGLES too.
 */
 
 array_push($news,
