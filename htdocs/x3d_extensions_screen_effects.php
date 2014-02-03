@@ -100,7 +100,8 @@ of useful GLSL functions:.</p>
   <li><tt>int screen_x()</tt>, <tt>int screen_y()</tt> - x and y coordinates of current pixel position, for comfort.</li>
   <li><tt>vec4 screen_get_color(ivec2 position)</tt> - get previous screen color at this pixel.</li>
   <li><tt>float screen_get_depth(ivec2 position)</tt> - get previous depth at this pixel (only if <tt>needsDepth</tt> was <tt>TRUE</tt>).</li>
-  <li>uniform values <tt>int screen_width</tt>, <tt>int screen_height</tt> - screen size in pixels.</li>
+  <li>uniform values <tt>int screen_width</tt>, <tt>int screen_height</tt> - screen size in pixels.<br>
+    Note: <i>do not</i> define these uniform variables in your shader code. Or you will get "repeated declaration" GLSL errors. That is because on OpenGLES (Android, iOS), we have to actually "glue" the common screen effect code at the beginning of your code, and it already defines these uniform variables. (And we do it the same for desktop OpenGL, for consistency.)</li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -142,7 +143,6 @@ ivec2 screen_position();
 vec4 screen_get_color(ivec2 position);
 int screen_x();
 int screen_y();
-uniform int screen_height;
 void main (void)
 {
   gl_FragColor = screen_get_color(
