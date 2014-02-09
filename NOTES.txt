@@ -138,3 +138,6 @@ Procedure to update WWW content:
     mailing lists, but let's not abuse it (I did it only for 4.0.0 release
     when it was justified, as a large release and focused on devs).
     These lists aren't normally for announcements from external projects.
+
+  - watch http://planet.objpas.org/ and http://planetdev.freegamedev.net/ ,
+    they aggregate our news feed
