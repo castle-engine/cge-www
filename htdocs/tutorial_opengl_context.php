@@ -35,12 +35,19 @@ context. There are two ways of doing this:
     project.-->
 
     <p><b>Create new project using Lazarus "New Project" menu item.
-    Choose "Custom Application".</b></p>
+    Choose "Custom Application" (or "Project-&gt;Simple Program").
+    Using "Project->Project Inspector" window add a "New Requirement"
+    and choose <tt>castle_base</tt> package.
+    Then add another requirement and choose <tt>castle_window</tt>
+    package. (You should have <tt>castle_xxx</tt> packages compiled
+    in a previous step).</b></p>
 
     <p>Place this source code in your program file (lpr).</p>
 
 <?php echo pascal_highlight(
-'uses CastleWindow;
+'{$mode objfpc}{$H+} // you can also set ObjFpc and long strings in project compiler options
+
+uses CastleWindow;
 var
   Window: TCastleWindow;
 begin
