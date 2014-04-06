@@ -39,6 +39,71 @@ Also, font lifetime is no longer limited to the OpenGL context. This means that 
     <li>Most of the texture generation modes work now. This includes the default generation of texture coordinates when they are not specified. (Which is equivalent to using TextureCoordinateGenerator with modes "BOUNDS2D", "BOUNDS3D", "BOUNDS", http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds ). And it includes "COORD" (testcase: demo_models/texturing_advanced/tex_coord_generator_coord.x3dv ), "COORD-EYE", "SPHERE" (testcase: demo_models/texturing_advanced/tex_coord_generator_spherical_mapping.x3dv ).
       And it includes modes for cubemaps in camera-space (CAMERASPACENORMAL and CAMERASPACEREFLECTIONVECTOR) and world-space (many models in demo_models/cube_environment_mapping/ ). Generating cubemaps at runtime, for mirrors, was already working. So we can fully use cubemaps for mirrors on OpenGLES, just like on desktop OpenGL.
     <li>TextureTransform and friends (TextureTransform3D, TextureTransformMatrix3D) work on OpenGLES too.
+
+------------------------------------------------------------------------------
+g+ paste:
+
+<li>(g+)
+Screen effects, including Screen Space Ambient Occlusion, work on OpenGLES now too :)
+
+- All screen effects predefined in view3dscene, including the ones using depth textures, work.
+- ScreenSpaceAmbientOcclusion (built inside our SceneManager) works, although it's somewhat slow (but correct!) on my device.
+- All custom screen effects, defined in VRML/X3D, work --- see demos in demo_models/screen_effects/ from http://castle-engine.sourceforge.net/demo_models.php .
+- android_demo example (in castle_game_engine/examples/android/android_demo/ in SVN) contains a simple screen effect, to test that it works.
+
+Also generating depth textures for other purposes, like in demo demo_models/rendered_texture/rendered_texture.x3dv , works on OpenGLES :)﻿
+
+<li>(g+)
+Screenshots from "Little Things", a tiny game done by Michalis during last weekend's TSG gamejam ( https://www.facebook.com/tsgcompo ). It was the best weekend ever, as it always happens during TSG compo! :)
+
+The game was done using our Castle Game Engine ( http://castle-engine.sourceforge.net/ ). Of course open-source (code and data are available in SVN on http://svn.code.sf.net/p/castle-engine/code/trunk/little_things/ ). The binaries (for Windows, Linux) will be uploaded soon, for now you can just compile it yourself :)﻿
+
+Hi :) Many news from last month's developments:
+
+* Fog works on OpenGLES (Android, iOS) now. This includes simple linear/exponential fog using Fog node in VRML/X3D, and FogCoordinate, and volumetric fog (see http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_fog_volumetric) .
+
+* * We have created an extensive documentation about developing for Android https://sourceforge.net/p/castle-engine/wiki/Android%20development/ and iOS https://sourceforge.net/p/castle-engine/wiki/iOS%20Development/ . They contain detailed instructions how to install everything necessary, how to compile, where are the examples... The Android docs contain also a section about "Debugging running application (on an Android device) using ndk-gdb" --- yes, it works flawlessly :) Finally, there's also a document summarizing currently missing features from OpenGLES renderer https://sourceforge.net/p/castle-engine/wiki/OpengLES,%20Android%20and%20iOS%20TODOs/ .
+
+* Many improvements to the Android done, in particular everything is now ready for the fact that the we may loose OpenGL context at any time (as it can happen on Android). In new "Darkest Before the Dawn" http://castle-engine.sourceforge.net/darkest_before_dawn.php version you will be able to switch from/to the application at any time, even during the loading progress (so we can loose OpenGL context during preparing of OpenGL resources; they'll be prepared later on-demand in this case), and things will just work.
+
+* Saving / restoring of the activity state is now done. We simply save/load the XML data from CastleConfig, so you just use Config.GetValue, Config.SetValue, Config.SetDeleteValue to save your state. Just like on standalone, but on Android we just load/save config automatically. See https://sourceforge.net/p/castle-engine/wiki/Android%20development/#saving-state .
+
+* Multi-touch is implemented :)
+
+Note: it does break compatibility. I initially implemented multi-touch keeping backwards compatibility, but then I decided to fix the issue with mouse/touch Y coordinate (99% of the engine considers "0 is bottom", mouse Y was considering "0 is top"; this inconsistency is now fixed, with mouse Y=0 meaning "bottom" everywhere). This means that compatibility break is unavoidable, otherwise we would have a real confusion which is which.
+
+1. There is an example program in castle_game_engine/examples/android/drawing_toy/ where you can draw on the screen, with each finger index drawing with a different color. Try drawing with 2-5 fingers simultaneously :) It's pretty fun, and allows you to test the multi-touch support on Android :)
+
+2. TCastleTouchControl now uses multi-touch. Cameras drag, and capture mechanism in TCastleUIContainer, were also updated to fully work with multi-touch.
+
+3. API:
+3.1. Press/Release:
+
+TInputPressRelease structure (which is a parameter for OnPress/OnRelease events) has a new field FingerIndex. On devices with a single normal mouse (no touch), like on desktops, FingerIndex is always 0.
+
+Notes:
+- If hardware configurations that have both mouse and touch devices, or that have many mouse devices, will ever become popular, we can support them. Each mouse just reserves one FindexIndex value. (You can e.g. connect usb mouse to Android, so it actually already works on Android, although in that case Android hides it from us completely, mouse connected to Android usb simply simulates touch.)
+
+- TInputPressRelease.MouseButton field is independent from TInputPressRelease.FingerIndex. For a single mouse, FingerIndex is always 0. For a touch, MouseButton is always mbLeft. We do not try to "merge" these 2 fields into one, as it would not be useful --- UIs do not generally react to pressing a second finger the same as pressing a right mouse button.
+
+Internally (in castlewindow_library.inc) the DoMouseDown/Up and LibraryMouseDown/Up get now extra FingerIndex parameter.
+
+3.2. Motions:
+
+TUIControl has new method Motion, and TCastleWindow/TCastleControl have new callback OnMotion. They get a parameter TInputMotion, that contains new and old position, a FingerIndex, and Pressed describing which buttons are pressed (for mouse, this corresponds to actual buttons pressed, may be [] if none; for touch device, it is always [mbLeft]; this way you can just detect any dragging by Pressed <> []). Using a structure TInputMotion, and a generic name, will hopefully make it forward-compatible, like current OnPress and OnRelease.
+
+The old MouseMove/OnMouseMove symbols are now removed. Since we change the API anyway (Y goes up, position is floats...), keeping compatibility for them was too much hassle.
+
+3.3. Current state:
+
+TCastleWindow and TCastleControl have a list of Touches, listing current state of the touches. It's length varies (can be zero if not touching). Right now, the state of touch is just it's position in 2D and FingerIndex, but we may extend it in the future. See comments at CastleUIControls.TTouch type.
+
+You can use MousePosition to get position of touch with FingerIndex = 0, if any (will return zeros if no such touch). Consistently, the state of mbLeft in MousePressed says whether the touch with FingerIndex = 0 currently exists. The effect is that code that looks only at MousePosition/MousePressed will somewhat work with touch devices, treating them as a device with a mouse with a single (mbLeft) button (that mysteriously doesn't report move events when button is not pressed).
+
+Oh, and the touch positions are floats, not ints, to support devices with sub-pixel precision.
+
+Oh, and the touch position has Y going from bottom to top, just like our 2D drawing routines. No more the need to invert MouseY.﻿
+
 */
 
 array_push($news,
