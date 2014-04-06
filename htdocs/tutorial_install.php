@@ -63,6 +63,13 @@ Windows, you will usually want to grab <a href="http://castle-engine.sourceforge
 them somewhere on your $PATH, or just place them in every directory
 with .exe files that you compile with our engine.</p>
 
+<p>If you are interested in developing for Android or iOS, you will want
+to later read also
+<ul>
+  <li><a href="http://sourceforge.net/p/castle-engine/wiki/Android%20development/">Developing for Android</a>
+  <li><a href="http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">Developing for iOS (iPhone, iPad)</a>
+</ul>
+
 <p>Now we'll start creating our own game from scratch.</p>
 
 <?php

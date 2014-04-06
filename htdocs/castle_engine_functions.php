@@ -180,6 +180,8 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'Reference', 'url' => reference_link()),
+      'android' => array('title' => 'Android', 'url' => 'http://sourceforge.net/p/castle-engine/wiki/Android%20development/'),
+      'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/'),
       'engine_doc' => array('title' => 'Internals documentation'),
       'movies' => array('title' => 'Movies on YouTube', 'url' => 'http://www.youtube.com/user/michaliskambi'),
     ),
