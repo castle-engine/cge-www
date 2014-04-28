@@ -78,7 +78,7 @@ version_call gen_function
 
 version_fpmake castle_game_engine ../../castle_game_engine/fpmake.pp
 
-version_explicit demo_models 3.3.0
+version_explicit demo_models 3.4.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 
