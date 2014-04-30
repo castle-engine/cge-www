@@ -129,7 +129,7 @@ notes near some programs below.
       $engine_ver);
   }
 
-  echo_src_archive('view3dscene', '4.1.1');
+  echo_src_archive('view3dscene', '5.0.0');
   echo_src_archive('castle', '4.1.1');
   echo_src_archive('rayhunter', '4.0.1');
 
