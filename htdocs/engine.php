@@ -386,11 +386,12 @@ you have appropriate libraries installed on your system.
   <li>Engine can be used to develop <b>natively-looking tools, not just OpenGL games</b>,
     since our OpenGL controls integrate with any GUI library (Lazarus LCL, GTK,
     WinAPI, Carbon...).
-    So you're not limited to a single-window-with-OpenGL games.
-    You can embed the engine in a "normal" GUI program without any trouble.
+    You can embed the engine in a normal GUI program.
+    You can use multiple OpenGL controls and windows visualizing (the same
+    or different) game world.
     There are also various classes for processing 3D data
     without any rendering (like TCastleSceneCore), these are of course useful too
-    (e.g. to write ray-tracers or other collision detection fun).
+    (e.g. to write ray-tracers).
 </ul>
 
 <?php echo $toc->html_section(); ?>
