@@ -53,20 +53,6 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
 <?php echo a_href_page('download sources of all these programs',
 'all_programs_sources'); ?>.)</p>
 
-<?php echo main_list_item("Tools"); ?>
-
-<?php program_image_links_table_begin_half(); ?>
-  <tr>
-    <?php program_image_link('view3dscene',
-      'VRML / X3D browser, and a viewer for other 3D model formats
-      (Collada, 3DS, MD3, Wavefront OBJ, some others).
-      Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
-      Convert various models to VRML/X3D.',
-      "view3dscene_2.0.0_screen_demo.png",
-      'view3dscene'); ?>
-  </tr>
-</table>
-
 <?php echo main_list_item("Games"); ?>
 
 <?php program_image_links_table_begin(); ?>
@@ -100,20 +86,28 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
    </tr>
 </table>
 
-<?php echo main_list_item("(Less Important) Tools"); ?>
+<?php echo main_list_item("Tools"); ?>
 
 <?php program_image_links_table_begin(); ?>
   <tr>
+    <?php program_image_link('view3dscene',
+      'VRML / X3D browser, and a viewer for other 3D model formats
+      (Collada, 3DS, MD3, Wavefront OBJ, some others).
+      Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
+      Convert various models to VRML/X3D.',
+      "view3dscene_2.0.0_screen_demo.png",
+      'view3dscene'); ?>
+
     <?php program_image_link('glViewImage',
       'Image viewer, handles many image formats (including some exotic ones: DDS, RGBE).',
       "glviewimage_dds.png", 'glviewimage'); ?>
-
-    <?php program_image_link('glplotter',
-      'Plotting graphs (e.g. of functions).',
-      "glplotter_screen_demo_1.png", 'glplotter_and_gen_function'); ?>
   </tr>
 
   <tr>
+    <?php program_image_link('glplotter',
+      'Plotting graphs (e.g. of functions).',
+      "glplotter_screen_demo_1.png", 'glplotter_and_gen_function'); ?>
+
     <?php program_image_link("rayhunter",
       "Command-line simple ray-tracer (classic deterministic ray-tracer and basic Monte Carlo path tracer).<br/>Handles VRML/X3D and other 3D model formats.<br/>" .
       a_href_page("See also it's gallery.","raytr_gallery"),

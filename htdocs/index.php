@@ -22,7 +22,7 @@ castle_header('Castle Game Engine',
       <p><b>For 3D modelers:</b></p>
       <p><a href="view3dscene.php"><img src="images/main_link_size/castle_sunset.png" alt="view3dscene" /></a></p>
       <p class="program_image_link_title"><a href="view3dscene.php"><b>view3dscene</b></a></p>
-      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ, others). Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert various models to VRML/X3D.</p>
+      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ, others). <!-- Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.--> <!--use embedded ray-tracer, --> Convert various models to VRML/X3D.</p>
       <p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
     </td>
 
@@ -36,10 +36,14 @@ castle_header('Castle Game Engine',
   </tr>
 
   <tr>
+    <!-- <td class="main_link"> -->
+    <!--   <p><a href="castle.php"><img src="images/main_link_size/castle_screen_demo_1.png" alt="&quot;The Castle&quot;" /></a></p> -->
+    <!--   <p class="program_image_link_title"><a href="castle.php"><b>&quot;The Castle&quot;</b></a></p> -->
+    <!--   <p>First-person perspective game, in a dark fantasy setting.</p> -->
+    <!-- </td> -->
     <td class="main_link">
-      <p><a href="castle.php"><img src="images/main_link_size/castle_screen_demo_1.png" alt="&quot;The Castle&quot;" /></a></p>
-      <p class="program_image_link_title"><a href="castle.php"><b>&quot;The Castle&quot;</b></a></p>
-      <p>First-person perspective game, in a dark fantasy setting.</p>
+      <p class="program_image_link_title"><a href="all_programs.php"><b>More games</b></a></p>
+      <p>... and other tools using our engine.</p>
     </td>
   </tr>
 </table>
