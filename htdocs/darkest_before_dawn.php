@@ -15,9 +15,9 @@
 
   echo pretty_heading('Darkest Before the Dawn', VERSION_DARKEST_BEFORE_DAWN);
   echo castle_thumbs(array(
-    array('filename' => 'darkest_before_dawn_1.png'),
-    array('filename' => 'darkest_before_dawn_2.png'),
-    array('filename' => 'darkest_before_dawn_ui.png'),
+    array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Darkest Before the Dawn - game screen 1'),
+    array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Darkest Before the Dawn - game screen 2'),
+    array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => 'Darkest Before the Dawn - title screen'),
     /* array('html' => */
     /*   '<div class="social_button">' . googleplus_button() . '</div>' . */
     /*   '<div class="social_button">' . facebook_button() . '</div>' . */
