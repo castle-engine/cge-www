@@ -22,7 +22,7 @@ castle_header('Castle Game Engine',
       <p><b>For 3D modelers:</b></p>
       <p><a href="view3dscene.php"><img src="images/main_link_size/castle_sunset.png" alt="view3dscene" /></a></p>
       <p class="program_image_link_title"><a href="view3dscene.php"><b>view3dscene</b></a></p>
-      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ, others). <!-- Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.--> <!--use embedded ray-tracer, --> Convert various models to VRML/X3D.</p>
+      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ...). Explore the virtual world with collisions, gravity, animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert models to VRML/X3D.</p>
       <p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
     </td>
 
