@@ -382,6 +382,15 @@ you have appropriate libraries installed on your system.
       <li>Integrated logging. Integrated user preferences loading/saving.
         Used throughout the engine components.
   -->
+
+  <li>Engine can be used to develop <b>natively-looking tools, not just OpenGL games</b>,
+    since our OpenGL controls integrate with any GUI library (Lazarus LCL, GTK,
+    WinAPI, Carbon...).
+    So you're not limited to a single-window-with-OpenGL games.
+    You can embed the engine in a "normal" GUI program without any trouble.
+    There are also various classes for processing 3D data
+    without any rendering (like TCastleSceneCore), these are of course useful too
+    (e.g. to write ray-tracers or other collision detection fun).
 </ul>
 
 <?php echo $toc->html_section(); ?>
