@@ -9,11 +9,11 @@ set -eu
 # ./pack_binary.sh bezier_curves linux x86_64
 # ./pack_pascal_src.sh bezier_curves
 
-./pack_binary.sh castle macosx i386
-./pack_binary.sh castle linux i386
-./pack_binary.sh castle win i386
-./pack_binary.sh castle linux x86_64
-./pack_pascal_src.sh castle
+# ./pack_binary.sh castle macosx i386
+# ./pack_binary.sh castle linux i386
+# ./pack_binary.sh castle win i386
+# ./pack_binary.sh castle linux x86_64
+# ./pack_pascal_src.sh castle
 
 # ./pack_binary.sh glplotter macosx i386
 # ./pack_binary.sh glplotter linux i386
@@ -27,11 +27,11 @@ set -eu
 # ./pack_binary.sh glinformation linux x86_64
 # ./pack_pascal_src.sh glinformation
 
-./pack_binary.sh glviewimage macosx i386
-./pack_binary.sh glviewimage linux i386
-./pack_binary.sh glviewimage win i386
-./pack_binary.sh glviewimage linux x86_64
-./pack_pascal_src.sh glviewimage
+# ./pack_binary.sh glviewimage macosx i386
+# ./pack_binary.sh glviewimage linux i386
+# ./pack_binary.sh glviewimage win i386
+# ./pack_binary.sh glviewimage linux x86_64
+# ./pack_pascal_src.sh glviewimage
 
 # ./pack_binary.sh gen_function macosx i386
 # ./pack_binary.sh gen_function linux i386
@@ -57,7 +57,7 @@ set -eu
 # ./pack_binary.sh rayhunter linux x86_64
 # ./pack_pascal_src.sh rayhunter
 
-./pack_binary.sh view3dscene macosx i386
+#./pack_binary.sh view3dscene macosx i386
 ./pack_binary.sh view3dscene linux i386
 ./pack_binary.sh view3dscene win i386
 ./pack_binary.sh view3dscene linux x86_64
