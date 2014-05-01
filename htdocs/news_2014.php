@@ -1,124 +1,150 @@
 <?php
 
-/* Next news:
-font_from_image_screen_0.png
-compare_anti_aliasing.png
-font_from_texture.png
-font_from_image_screen_0.png
-android_cubemap_1
-android_progress_bar
-android_message
-
-darkest_before_dawn_ui.png
-
-little_things_screen_0.png
-little_things_screen_10.png
-little_things_screen_2.png
-little_things_screen_4.png
-little_things_screen_5.png
-little_things_screen_7.png
-little_things_screen_8.png
-
-
-<li>We have a new font loading and rendering method :)
-
-We now use the FreeType library (and FreeType FPC unit) for loading fonts, which allows us to load at runtime a ttf font, and use it with any size, and with or without anti-aliasing. For rendering, we convert this font into a texture, and we render text by rendering a quad for each letter. This makes the font rendering modern (no display lists, just a single texture), and working with GLSL and OpenGLES20 (Android, iOS), and suitable both for anti-aliased and non-aliased text (resulting in alpha blending or alpha testing).
-
-It is also possible to convert ttf font to a Pascal code, to easily embed the fonts inside Pascal program, and avoid the need for FreeType library at runtime (which also avoids the needs to worry about linking with FreeType). The program do it is texturefont2pascal (see castle_game_engine/examples/fonts/).
-
-Important font classes are called now TTextureFont and (abstract) TCastleFont. TTextureFont is either loaded from ttf or from prepared data (when TTextureFontData was converted to a Pascal code). There is also new TSimpleTextureFont to draw a colorful text from glyphs in an image, like the ones by http://opengameart.org/users/asalga .
-
-For a simplest example, to change the standard UIFont (used by default by various 2D controls) to a custom ttf font (file "MyFontFile.ttf" within your game data) you would do this:
-
-  UIFont := TTextureFont.Create(ApplicationData('MyFontFile.ttf'), { size } 20, { antialiasing? } true);
-
-Check out new example castle_game_engine/examples/fonts/font_from_texture.lpr  :)
-
-Also, font lifetime is no longer limited to the OpenGL context. This means that you can create and use TCastleFont or TTextureFont instances more freely, e.g. create them once at the application initialization (no need to repeat it in every OnOpen), and measure text (e.g. calling TextWidth) at any time.
-
-<li>We also have new property TGLImage.Color, to easily color the rendered images. Useful for fonts, but also useful for general image rendering.﻿
-<li>New example examples/fonts/font_from_image.lpr showing how to use a font painted as an image.
-<li>The <a href=Send method of X3D events</a> is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
-<li>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
-<li>The DrawStyle, OnDrawStyle, Draw, OnDraw renamed to RenderStyle and Render. We made some effort to keep compatibility (e.g. the old TUIControl.Draw method still exists and can be overridden, new TUIControl.Render simply calls it) but you're adviced to convert to new names anyway. New names are cleaner and safer: there is no more a "dsNone" value, instead RenderStyle (both on TUIControl and TCastleWindow and TCastleControl) is now by default rs2D.
-<li>Android supports now Application.ProcessMessages correctly. This means that you can use modal functions, that inside run the message loop and return only when some state finished --- for example, various modal boxes of CastleMessages like MessageOK and MessageYesNo. The android_demo contains a demo of it.
-  Note that not all backends guarantee the support for Application.ProcessMessages. For now, the LIBRARY backend (used on iOS) doesn't support Application.ProcessMessages, so modal functions are not possible (instead, you have to implement your own state machine e.g. using controls like TCastleDialog underneath).
-  A lot of other small improvements around Android backend happened.
-<li>New class TUIContainer makes it easier to create and use containers (like the ones provided by TCastleWindow and TCastleControl). Various small fixes and improvements come as a result of that. You may need to adjust your window callbacks to take "Container: TUIContainer" parameter (although we added compatibility alias TCastleWindowBase = TUIContainer to make it possible to still compile old code; but remember that now TUIContainer and TCastleWindowCustom are totally separate classes). The only window classes now are TCastleWindowCustom and TCastleWindow, and the only control classes now are TCastleControlCustom and TCastleControl (the non-Custom versions have comfortable ready SceneManager).
-  This also cleaner reflects that the basis for all engine rendering (2D and 3D) is now TUIControl. So all container providers (TCastleWindowCustom, TCastleControlCustom) give you Controls list with the same behaviour.
-<li>OpenGLES (Android, iOS) renderer improvements:
-  <ol>
-    <li>Most of the texture generation modes work now. This includes the default generation of texture coordinates when they are not specified. (Which is equivalent to using TextureCoordinateGenerator with modes "BOUNDS2D", "BOUNDS3D", "BOUNDS", http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds ). And it includes "COORD" (testcase: demo_models/texturing_advanced/tex_coord_generator_coord.x3dv ), "COORD-EYE", "SPHERE" (testcase: demo_models/texturing_advanced/tex_coord_generator_spherical_mapping.x3dv ).
-      And it includes modes for cubemaps in camera-space (CAMERASPACENORMAL and CAMERASPACEREFLECTIONVECTOR) and world-space (many models in demo_models/cube_environment_mapping/ ). Generating cubemaps at runtime, for mirrors, was already working. So we can fully use cubemaps for mirrors on OpenGLES, just like on desktop OpenGL.
-    <li>TextureTransform and friends (TextureTransform3D, TextureTransformMatrix3D) work on OpenGLES too.
-
-------------------------------------------------------------------------------
-g+ paste:
-
-<li>(g+)
-Screen effects, including Screen Space Ambient Occlusion, work on OpenGLES now too :)
-
-- All screen effects predefined in view3dscene, including the ones using depth textures, work.
-- ScreenSpaceAmbientOcclusion (built inside our SceneManager) works, although it's somewhat slow (but correct!) on my device.
-- All custom screen effects, defined in VRML/X3D, work --- see demos in demo_models/screen_effects/ from http://castle-engine.sourceforge.net/demo_models.php .
-- android_demo example (in castle_game_engine/examples/android/android_demo/ in SVN) contains a simple screen effect, to test that it works.
-
-Also generating depth textures for other purposes, like in demo demo_models/rendered_texture/rendered_texture.x3dv , works on OpenGLES :)﻿
-
-<li>(g+)
-Screenshots from "Little Things", a tiny game done by Michalis during last weekend's TSG gamejam ( https://www.facebook.com/tsgcompo ). It was the best weekend ever, as it always happens during TSG compo! :)
-
-The game was done using our Castle Game Engine ( http://castle-engine.sourceforge.net/ ). Of course open-source (code and data are available in SVN on http://svn.code.sf.net/p/castle-engine/code/trunk/little_things/ ). The binaries (for Windows, Linux) will be uploaded soon, for now you can just compile it yourself :)﻿
-
-Hi :) Many news from last month's developments:
-
-* Fog works on OpenGLES (Android, iOS) now. This includes simple linear/exponential fog using Fog node in VRML/X3D, and FogCoordinate, and volumetric fog (see http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_fog_volumetric) .
-
-* * We have created an extensive documentation about developing for Android https://sourceforge.net/p/castle-engine/wiki/Android%20development/ and iOS https://sourceforge.net/p/castle-engine/wiki/iOS%20Development/ . They contain detailed instructions how to install everything necessary, how to compile, where are the examples... The Android docs contain also a section about "Debugging running application (on an Android device) using ndk-gdb" --- yes, it works flawlessly :) Finally, there's also a document summarizing currently missing features from OpenGLES renderer https://sourceforge.net/p/castle-engine/wiki/OpengLES,%20Android%20and%20iOS%20TODOs/ .
-
-* Many improvements to the Android done, in particular everything is now ready for the fact that the we may loose OpenGL context at any time (as it can happen on Android). In new "Darkest Before the Dawn" http://castle-engine.sourceforge.net/darkest_before_dawn.php version you will be able to switch from/to the application at any time, even during the loading progress (so we can loose OpenGL context during preparing of OpenGL resources; they'll be prepared later on-demand in this case), and things will just work.
-
-* Saving / restoring of the activity state is now done. We simply save/load the XML data from CastleConfig, so you just use Config.GetValue, Config.SetValue, Config.SetDeleteValue to save your state. Just like on standalone, but on Android we just load/save config automatically. See https://sourceforge.net/p/castle-engine/wiki/Android%20development/#saving-state .
-
-* Multi-touch is implemented :)
-
-Note: it does break compatibility. I initially implemented multi-touch keeping backwards compatibility, but then I decided to fix the issue with mouse/touch Y coordinate (99% of the engine considers "0 is bottom", mouse Y was considering "0 is top"; this inconsistency is now fixed, with mouse Y=0 meaning "bottom" everywhere). This means that compatibility break is unavoidable, otherwise we would have a real confusion which is which.
-
-1. There is an example program in castle_game_engine/examples/android/drawing_toy/ where you can draw on the screen, with each finger index drawing with a different color. Try drawing with 2-5 fingers simultaneously :) It's pretty fun, and allows you to test the multi-touch support on Android :)
-
-2. TCastleTouchControl now uses multi-touch. Cameras drag, and capture mechanism in TCastleUIContainer, were also updated to fully work with multi-touch.
-
-3. API:
-3.1. Press/Release:
-
-TInputPressRelease structure (which is a parameter for OnPress/OnRelease events) has a new field FingerIndex. On devices with a single normal mouse (no touch), like on desktops, FingerIndex is always 0.
-
-Notes:
-- If hardware configurations that have both mouse and touch devices, or that have many mouse devices, will ever become popular, we can support them. Each mouse just reserves one FindexIndex value. (You can e.g. connect usb mouse to Android, so it actually already works on Android, although in that case Android hides it from us completely, mouse connected to Android usb simply simulates touch.)
-
-- TInputPressRelease.MouseButton field is independent from TInputPressRelease.FingerIndex. For a single mouse, FingerIndex is always 0. For a touch, MouseButton is always mbLeft. We do not try to "merge" these 2 fields into one, as it would not be useful --- UIs do not generally react to pressing a second finger the same as pressing a right mouse button.
-
-Internally (in castlewindow_library.inc) the DoMouseDown/Up and LibraryMouseDown/Up get now extra FingerIndex parameter.
-
-3.2. Motions:
-
-TUIControl has new method Motion, and TCastleWindow/TCastleControl have new callback OnMotion. They get a parameter TInputMotion, that contains new and old position, a FingerIndex, and Pressed describing which buttons are pressed (for mouse, this corresponds to actual buttons pressed, may be [] if none; for touch device, it is always [mbLeft]; this way you can just detect any dragging by Pressed <> []). Using a structure TInputMotion, and a generic name, will hopefully make it forward-compatible, like current OnPress and OnRelease.
-
-The old MouseMove/OnMouseMove symbols are now removed. Since we change the API anyway (Y goes up, position is floats...), keeping compatibility for them was too much hassle.
-
-3.3. Current state:
-
-TCastleWindow and TCastleControl have a list of Touches, listing current state of the touches. It's length varies (can be zero if not touching). Right now, the state of touch is just it's position in 2D and FingerIndex, but we may extend it in the future. See comments at CastleUIControls.TTouch type.
-
-You can use MousePosition to get position of touch with FingerIndex = 0, if any (will return zeros if no such touch). Consistently, the state of mbLeft in MousePressed says whether the touch with FingerIndex = 0 currently exists. The effect is that code that looks only at MousePosition/MousePressed will somewhat work with touch devices, treating them as a device with a mouse with a single (mbLeft) button (that mysteriously doesn't report move events when button is not pressed).
-
-Oh, and the touch positions are floats, not ints, to support devices with sub-pixel precision.
-
-Oh, and the touch position has Y going from bottom to top, just like our 2D drawing routines. No more the need to invert MouseY.﻿
-
-*/
-
 array_push($news,
+    array('title' => 'Castle Game Engine 5.0.0 release (Android, iOS, more), view3dscene 3.14.0 release',
+          'year' => 2014,
+          'month' => 5,
+          'day' => 1,
+          'short_description' => '',
+          'guid' => '2014-05-01',
+          'description' =>
+castle_thumbs(array(
+  array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
+  array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
+  array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => '&quot;Darkest Before the Dawn&quot; - title screen'),
+
+  array('filename' => 'font_from_image_screen_0.png', 'titlealt' => 'Font from colorful image'),
+  array('filename' => 'font_from_texture.png', 'titlealt' => 'Font from image and ttf files'),
+  array('filename' => 'compare_anti_aliasing.png', 'titlealt' => 'Compare font with and without antialiasing'),
+
+  array('filename' => 'android_cubemap_1.png', 'titlealt' => 'Cubemap reflections on Android'),
+  array('filename' => 'android_progress_bar.png', 'titlealt' => 'Loading progress bar on Android'),
+  array('filename' => 'android_message.png', 'titlealt' => 'Modal message box on Android'),
+
+  array('filename' => 'little_things_screen_0.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_10.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_2.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_4.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_5.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_7.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+  array('filename' => 'little_things_screen_8.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+
+
+  array('filename' => 'new_walk_shortcuts.png', 'titlealt' => 'Tooltip with summary of new view3dscene AWSD controls'),
+
+  array('filename' => 'orcs_and_volcanoes_screen-intro.png', 'titlealt' => 'Orcs and Volcanoes - intro screen'),
+  array('filename' => 'orcs_and_volcanoes_08.png', 'titlealt' => 'Orcs and Volcanoes'),
+  array('filename' => 'orcs_and_volcanoes_04.png', 'titlealt' => 'Orcs and Volcanoes'),
+
+  array('filename' => 'fps_game_fancy_item_box_2.png', 'titlealt' => 'Custom image under selected item, 2.'),
+  array('filename' => 'view3dscene_tooltip_rounded.png', 'titlealt' => 'view3dscene tooltips with rounded corners.'),
+  array('filename' => 'view3dscene_message_buttons.png', 'titlealt' => 'Message dialog with nice buttons.'),
+  array('filename' => 'castle_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
+  array('filename' => 'view3dscene_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
+)) .
+'<p>We\'re proud to announce the release of <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> version 5.0.0 :)
+
+<p>We also release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.14.0, our 3D model browser (packed with many graphic effects) and converter. And, for fun, checkout also a new 1.2.0 release of <a href="' . CURRENT_URL . 'darkest_before_dawn.php">Darkest Before the Dawn</a>, a small scary game for Android, Linux and Windows &mdash; of course done using our engine.
+
+<p><b>Major new features of this release:</b></p>
+
+<ol>
+  <li><p><b>Android support</b></p>
+
+    <p>Using OpenGLES 2.0 and NativeActivity underneath. Works on any Android &gt;= 2.3 with OpenGL ES 2.0. Most of the normal 2D and 3D rendering features are working under Android, including fun stuff like shader effects, screen effects (with depth, like SSAO), multi-texturing, cubemaps, fog... The integration with Android is very comfortable &mdash; although the code is compiled in a library (controlled by the main activity) you still have normal message loop (so you can use modal functions like from <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleMessages.html">CastleMessages</a> unit). Logging is also integrated with Android logging. Reading from Android assets (files packed inside Android apk) is immediately available, just use URL like <tt>assets:/my_texture.png</tt>. Multi-touch is fully supported.</p>
+
+    <p>More information about using the Android port on the <a href="https://sourceforge.net/p/castle-engine/wiki/Android%20development/">Android development</a> wiki page.</p>
+
+  <li><p><b>iOS (iPhone, iPad) support</b></p>
+
+    <p>Like on Android, rendering is done using OpenGLES 2.0, and most of the normal rendering features just work :) The engine is wrapped in a library controlled by the main iOS application.</p>
+
+    <p>More information about using the iOS port is on <a href="https://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">iOS development</a> wiki page.</p>
+
+  <li><p><b>Comfortable API for 2D rendering</b></p>
+
+    <p>Our 2D rendering functions and components were reworked, to provide much more flexible (and also simpler) API for game developers. Making a 2D game, or just adding 2D HUD on top of your 3D game, is now a breeze :) This includes a couple of new features:
+
+    <ul>
+      <li><p><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html">TGLImage</a> is now the main class to draw images in 2D. It renders 2D images as non-power-of-two textures underneath, which makes it suitable for modern OpenGL and GLES, and better for anti-aliasing. The <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html#Draw">Draw</a> method can stretch the image, and the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html#Draw3x3">Draw3x3</a> method can even intelligently stretch the image while preserving constant-size corners. It also automatically uses alpha channel (for alpha test or alpha blending, you can also force specific treatment using <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html#Alpha">TGLImage.Alpha</a> property). Property <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html#Color">TGLImage.Color</a> allows to easily color the rendered image. <a href="http://castle-engine.sourceforge.net/tutorial_player_2d_controls.php">Tutorial chapter about 2D controls contains various usage examples</a>.
+
+      <li><p>All <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleControls.html">CastleControls</a> components use now <tt>TGLImage</tt> for all of their rendering. They use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleControls.TCastleTheme.html">TCastleTheme</a> (as <tt>Theme</tt> global instance) to get their images, this way you can easily change the look of all controls defined in <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleControls.html">CastleControls</a>.
+
+      <li><p>Dialog boxes in <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleMessages.html">CastleMessages</a> unit are also using <tt>TGLImage</tt> for the rendering. They also use normal buttons at the bottom, so they are clickable and generally look and behave like normal dialog windows with normal buttons :) Same thing for the progress bar.
+
+      <li><p>We consistently use <tt>TCastleColor</tt> (alias for <tt>TVector4Single</tt>) for all the color properties. The alpha value of the color is honored everywhere.
+
+      <li><p>Image and text drawing routines discourage now from using global state, like "current color" or "current raster position". You should use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.TGLImage.html#Draw">TGLImage.Draw</a> versions that take explicit draw position, and <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFonts.TCastleFont.html#Print">TCastleFont.Print</a> versions that take explicit draw position and color.
+    </ul>
+
+  <li><p><b>Modern font loading and rendering</b></p>
+
+     <p>We now use the FreeType library for loading fonts, which allows us to load at runtime a font from a ttf file, and use it with any size, with or without anti-aliasing. This makes the font rendering modern (no display lists, just a single texture), and working with GLSL and OpenGLES20 (Android, iOS), and suitable both for anti-aliased and non-anti-aliased text (resulting in alpha blending or alpha testing).
+
+     <p>It is also possible to convert ttf font to a Pascal code, to easily embed the fonts inside Pascal program, and avoid the need for FreeType library at runtime (which also avoids the needs to worry about linking with FreeType on Android/iOS). The program do it is texturefont2pascal (see <tt>castle_game_engine/examples/fonts/</tt>).
+
+     <p>Important font classes are called now <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFonts.TTextureFont.html">TTextureFont</a> and (abstract) <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFonts.TCastleFont.html">TCastleFont</a>. TTextureFont is either loaded from ttf or from prepared data (when TTextureFontData was converted to a Pascal code). There is also new <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleFonts.TSimpleTextureFont.html">TSimpleTextureFont</a> to draw a colorful text from glyphs in an image.
+
+     <p>Check out new example <tt>castle_game_engine/examples/fonts/font_from_texture.lpr</tt> for usage examples.
+</ol>
+
+<p>By the way, on the side of this post, you can see screenshots from three games using our engine done in weekend "gamejams" (<a href="https://www.facebook.com/tsgcompo">see Ten Square Games COMPO</a>). There is <i>"Orcs and Volcanoes"</i>, roguelike with pixelart graphics, with some 3D twists and real-time action. There\'s <a href="' . CURRENT_URL . 'darkest_before_dawn.php">"Darkest Before the Dawn"</a>, a scary 3D game for Android. And there\'s <i>"Little Things"</i>, a sweet colorful tiny game about a brave boy (you can get and compile it from our SVN, just checkout <tt>http://svn.code.sf.net/p/castle-engine/code/trunk/little_things/</tt>).
+
+<p><b>The rest of new engine and view3dscene features:</b></p>
+
+<ul>
+  <li><p><b>Engine can be compiled and used as a shared library</b> (<tt>castleengine.dll</tt> on Windows, <tt>libcastleengine.so</tt> on Linux), <b>with API accessible from C or C++</b>. We provide a C header in <tt>src/library/castlelib.h</tt> for this purpose. See code in <tt>src/library/</tt> and tests in <tt>examples/library/</tt> .
+
+  <li><p><b>You can already develop cross-target games (for Android, iOS, or standalone  normal OSes like Linux or Windows) using the engine</b>. This means that a single source code can be used to compile multiple versions of the game. Some more plans for Android/iOS:
+
+    <ul>
+      <li>We plan to make a "build tool" for the engine to auto-generate the necessary files for the compilation on given target (although it\'s unsure if this will be ready for next release). See <a href="https://sourceforge.net/p/castle-engine/wiki/Planned%3A%20build%20tool/">Planned: build tool wiki page</a>, and drop a comment if you\'re interested!
+      <li>List of <a href="https://sourceforge.net/p/castle-engine/wiki/OpengLES%2C%20Android%20and%20iOS%20TODOs/">missing features on Android and iOS is documented here</a>. Help in implementing them is very much welcome :)
+    </ul>
+
+  <li><p><b>The default TWalkCamera inputs are now equal to TPlayer inputs, in particular they honour common AWSD combo.</b></p>
+
+  <li><p><b><a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/enveffects.html#TextureBackground">TextureBackground</a> support</b>, making it possible to use MovieTexture as skybox sides. The rendering of Background and TextureBackground uses new simplified code, that can utilize our texture cache and works on OpenGLES too.
+
+  <li><p><b>Context resource sharing</b> (so that many windows/controls work OK, sharing textures and fonts and such) implemented for CastleWindow Xlib+GLX and GTK backends.</p>
+
+  <li><p>Support for png and gz formats without any external libraries (using FpRead/WritePng and PasZlib underneath). This is particularly useful for Android and iOS, where linking with external libraries is not so easy.
+
+  <li><p>CastleEnumerateFiles API much changed and renamed to CastleFindFiles. It supports searching for files inside Android assets too (although, unfortunately, not recursive &mdash; because of NDK API limitations).
+
+  <li><p>Font lifetime is no longer limited to the OpenGL context. This means that you can create and use TCastleFont or TTextureFont instances more freely, e.g. create them once at the application initialization (no need to repeat it in every OnOpen), and measure text (e.g. calling TextWidth) at any time.
+
+  <li><p>The <tt>Send</tt> method of X3D events (like <a href="http://castle-engine.sourceforge.net/apidoc/html/X3DFields.TSFFloatEvent.html#Send">TSFFloatEvent.Send</a>) is now safer to use. Now all EventXxx properties have a specialized type, like TSFBoolEvent or TSFStringEvent, and you can only call Send with proper parameters. <!-- (Previously all events were of TX3DEvent class, and Send() was overloaded for all types. This made mistakes in values possible to detect only at runtime, by catching EInvalidCast errors. Now they are catched at compile time.) -->
+
+  <li><p>The ARCHITECTURE mode was renamed to TURNTABLE, following InstantReality mode that has a similar purpose.
+
+  <li><p>The DrawStyle, OnDrawStyle, Draw, OnDraw renamed to RenderStyle and Render.
+
+  <li><p>New class TUIContainer makes it easier to create and use containers (like the ones provided by TCastleWindow and TCastleControl). Various small fixes and improvements come as a result of that. You may need to adjust your window callbacks to take "Container: TUIContainer" parameter (although we added compatibility alias TCastleWindowBase = TUIContainer to make it possible to still compile old code; but remember that now TUIContainer and TCastleWindowCustom are totally separate classes). This also cleaner reflects that the basis for all engine rendering (2D and 3D) is now TUIControl. So all container providers (TCastleWindowCustom, TCastleControlCustom) give you Controls list with the same behaviour.
+
+  <li><p>The Android docs contain also a section about <a href="https://sourceforge.net/p/castle-engine/wiki/Android%20development/#debugging-running-application-on-an-android-device-using-ndk-gdb">"Debugging running application (on an Android device) using ndk-gdb"</a> &mdash; yes, it works flawlessly :)
+
+  <li><p><b>Multi-touch is implemented :)</b>
+
+    <ol>
+      <li>There is an example program in <tt>castle_game_engine/examples/android/drawing_toy/</tt> where you can draw on the screen, with each finger index drawing with a different color. Try drawing with 2-5 fingers simultaneously :) It\'s pretty fun, and allows you to test the multi-touch support on Android :)
+
+      <li>Multi-touch API changes:
+        <ol>
+          <li><b>Press/Release</b>: <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleKeysMouse.TInputPressRelease.html">TInputPressRelease</a> structure (which is a parameter for OnPress/OnRelease events) has a new field FingerIndex. On devices with a single normal mouse (no touch), like on desktops, FingerIndex is always 0.
+          <li><b>Motions</b>: TUIControl has new method <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleUIControls.TInputListener.html#Motion">Motion</a>, and TCastleWindow/TCastleControl have new callback <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleWindowCustom.html#OnMotion">OnMotion</a>. They get a parameter <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleKeysMouse.TInputMotion.html">TInputMotion</a>, that contains new and old position, a FingerIndex, and Pressed describing which buttons are pressed (for mouse, this corresponds to actual buttons pressed, may be [] if none; for touch device, it is always [mbLeft]; this way you can just detect any dragging by Pressed <> []).
+          <li><b>Current state</b>: TCastleWindow and TCastleControl have a list of <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleWindowCustom.html#Touches">Touches</a>, listing current state of the touches. It\'s length varies (can be zero if not touching). Right now, the state of touch is just it\'s position in 2D and FingerIndex, but we may extend it in the future. See comments at <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleUIControls.TTouch.html">CastleUIControls.TTouch</a> type.
+          <li>You can use MousePosition to get position of touch with FingerIndex = 0, if any (will return zeros if no such touch). Consistently, the state of mbLeft in MousePressed says whether the touch with FingerIndex = 0 currently exists. The effect is that code that looks only at MousePosition/MousePressed will somewhat work with touch devices, treating them as a device with a mouse with a single (mbLeft) button (that mysteriously doesn\'t report move events when button is not pressed).
+          <li>The mouse/touch positions are changed to floats (not ints), to support devices with sub-pixel precision.
+          <li>The mouse/touch position has Y going from bottom to top, just like our 2D drawing routines. No more the need to invert MouseY.
+        </ol>
+    </ol>
+  </li>
+</ul>
+
+<p>Have fun using the engine! We hope to see some nice games in the nearest future :) And visit our <a href="https://sourceforge.net/p/castle-engine/discussion/">forums</a> if you have any questions!
+'),
+
     array('title' => 'Development: Android and iOS, new game release "Darkest Before the Dawn", more',
           'year' => 2014,
           'month' => 1,
