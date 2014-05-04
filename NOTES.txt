@@ -102,6 +102,7 @@ Procedure to update WWW content:
     go to the 'Home' section of the site and create 'News' article
     Make sure that when you are creating a new News "article" you are in the News section of the front page. If you are in the Articles section, it'll create an "article" instead.
     (instructions on http://www.pascalgamedevelopment.com/showthread.php?6406-Posting-News-on-the-front-page-not-the-Forums ).
+    When you've got something ready for publishing you can make a publish request in the site feedback section of the forums (using the thread prefix options).
 
     Create also a forum post in "Your projects", like on
     http://www.pascalgamedevelopment.com/showthread.php?15067-Castle-Game-Engine-4-0-0-released
