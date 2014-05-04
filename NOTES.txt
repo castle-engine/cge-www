@@ -93,11 +93,10 @@ Procedure to update WWW content:
     http://bugs.freepascal.org/view.php?id=23768
     http://bugs.freepascal.org/view.php?id=23769
 
-  - new release of view3dscene and/or castle go to freshmeat:
+  - new release of some programs/engine may be announced on freshmeat:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
-
-    Maybe make a page on freshmeat specifically about our engine?
+    http://freecode.com/projects/castle-game-engine
 
   - http://www.pascalgamedevelopment.com/
     go to the 'Home' section of the site and create 'News' article
