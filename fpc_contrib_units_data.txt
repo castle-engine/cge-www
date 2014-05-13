@@ -1,14 +1,9 @@
 Name: Castle Game Engine
-Author: Michalis Kamburelis
 Version: 5.0.0
-Download URL: http://downloads.sourceforge.net/castle-engine/castle_game_engine-5.0.0-src.tar.gz
-Homepage URL: http://castle-engine.sourceforge.net/engine.php
+Category: graphics
+Author: Michalis Kamburelis
 E-mail: michalis.kambi@gmail.com
-Supported OSes: Linux, Mac OS X, Win, others
-(I wanted to write:
-Tested on Linux, Mac OS X, Windows, Android, iOS, others. Works probably on many other modern OSes, in particular any Unix, supported by FPC.
-.. but field on form has limit on length).
-description:An open-source cross-platform 3D and 2D game engine. Features include:
+Description:An open-source cross-platform 3D and 2D game engine. Features include:
 <ul>
   <li>Optimized OpenGL rendering of models in X3D, VRML 2.0 (97) and VRML 1.0 formats. Including support for advanced VRML/X3D features like prototypes and events (user can interact with the 3D world).</li>
   <li>Collada, 3DS, MD3, Wavefront OBJ file formats are also supported. They are internally converted into the VRML/X3D nodes graph, which means that they get all the optimizations for rendering, and 3D content from all file formats can be mixed (for 3D editing tools and such).</li>
@@ -36,8 +31,11 @@ description:An open-source cross-platform 3D and 2D game engine. Features includ
   <li>Engine components are independent when possible. For example, you can only take model loading and processing code, and write the rendering yourself. Or you can use our OpenGL rendering, but still initialize OpenGL context yourself (no requirement to do it by our CastleWindow unit). And so on. Of course, ultimately you can just use everything from our engine, nicely integrated - but the point is that you don't have to.</li>
   <li>Android, iOS support.</li>
 </ul>
-Category: graphics
-
-(user and password from fpc community, michalis.kambi@gmail.com and see revelation).
+Download: http://downloads.sf.net/castle-engine/castle_game_engine-5.0.0-src.tar.gz
+Homepage: http://castle-engine.sourceforge.net/engine.php
+Supported OSes: Unix, Win, Android, iOS...
+(I wanted to write:
+Tested on Linux, Mac OS X, Windows, Android, iOS, others. Works probably on many other modern OSes, in particular any Unix, supported by FPC.
+.. but field on form has limit on length).
 ------------------------------------------------------------------------------
 Possible short description to use: An open-source cross-platform 3D game engine. Using VRML/X3D as the main 3D model format, other formats are also supported (Collada, 3DS and so on). Rendering is done using OpenGL, many eye-candy graphic features are available like shadows, bump mapping, mirrors, shaders, screen effects. 3D sound is well integrated and trivial to use (using OpenAL under the hood). The engine has a nice object-oriented API to easily make 3D games with creatures, items, levels, players and so on, everything can also be easily extended to any 3D or 2D game types.
