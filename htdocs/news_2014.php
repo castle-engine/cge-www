@@ -1,5 +1,7 @@
 <?php
 
+// Resize3x3
+
 array_push($news,
     array('title' => 'Castle Game Engine 5.0.0 release (Android, iOS, more), view3dscene 3.14.0 release',
           'year' => 2014,
