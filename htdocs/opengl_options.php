@@ -4,23 +4,23 @@
     array('all_programs'));
 ?>
 
-<h2>Standard command-line options for OpenGL programs</h2>
+<h2>Standard command-line options (for programs with a graphical interface)</h2>
 
-<p>All <!-- or almost all --> OpenGL programs that you can find on my pages
-accept some set of standard command-line options:
+<p>Most of the programs using <?php echo a_href_page('Castle Game Engine',
+'engine'); ?> accept the command-line options listed below. <small>(Developers: <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleWindowCustom.html#ParseParameters">use this in your own programs</a>).</small>
 
 <dl class="command_line_options_list">
   <dt>--fullscreen</dt>
 
-  <dd><p>Start program in fullscreen mode.
+  <dd><p>Start in fullscreen mode.
 
-    <p>Note that you can change fullscreen mode at runtime with most
-    of my programs &mdash; standard key shortcut is <tt>Ctrl+F</tt>.
+    <p>For some programs, you can also switch between fullscreen and windowed
+    mode at runtime. Standard key shortcut for this is <tt>F11</tt>.
   </dd>
 
   <dt>--fullscreen-custom WIDTHxHEIGHT</dt>
 
-  <dd><p>Start program in fullscreen mode with screen resolution changed
+  <dd><p>Start in fullscreen mode with screen resolution changed
     to WIDTH x HEIGHT.
 
     <p>If given WIDTH x HEIGHT resolution is not available then error message
@@ -29,7 +29,7 @@ accept some set of standard command-line options:
 
   <dt>--geometry WIDTHxHEIGHT&lt;sign&gt;XOFF&lt;sign&gt;YOFF</dt>
 
-  <dd><p>Start program in window with given WIDTH and HEIGHT
+  <dd><p>Start in window mode with given WIDTH and HEIGHT
     positioned at (XOFF, YOFF).
 
     <p>&lt;sign&gt; is either "<tt>+</tt>" or "<tt>-</tt>".
@@ -60,22 +60,12 @@ accept some set of standard command-line options:
     (by dragging window border and such).</dd>
 
   <dt>--display DISPLAY-NAME</dt>
-
-  <dd><p>Set the XWindows display to use.
-
-    <p>Be warned that I experienced unstable behavior
-    of X server (i.e. hangs, up to hanging my <i>both</i> displays)
-    and SIGFPE errors at (random?) points when running some of my programs.
-    Some of my (and others) programs seem to run perfectly fine on another
-    display, some fail. This is related to OpenGL &mdash;
-    most probably NVidia drivers problems.
-    In other words: if you want to use this option, go on,
-    but don't be surprised if something will not work smoothly.
-  </dd>
+  <dd><p><i>(Only on platforms using X Windows, in practice: Unix)</i>
+    <br>Set the XWindows display to use.</dd>
 </dl>
 
 <p>See also <?php echo a_href_page(
-"general notes about options understood by my programs", "common_options"); ?>.
+"general notes about options understood by our programs", "common_options"); ?>.
 
 <?php
   castle_footer();
