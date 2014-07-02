@@ -57,29 +57,29 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
 
 <?php program_image_links_table_begin(); ?>
   <tr>
+    <?php program_image_link('Mountains Of Fire',
+      '3D game with split-screen view where human and worm cooperate to survive. For single player or 2 players.',
+      "mountains_of_fire_screen_1.png", 'mountains_of_fire'); ?>
     <?php program_image_link('Darkest Before the Dawn',
-      'Small scary 3D game, for Android and standalone.',
+      'Scary 3D game, for Android and standalone.',
       "darkest_before_dawn_2.png", 'darkest_before_dawn'); ?>
+   </tr>
 
+   <tr>
     <?php program_image_link('&quot;The Castle&quot;',
       'First-person perspective game, in a dark fantasy setting.',
       "castle_screen_demo_1.png", 'castle'); ?>
-   </tr>
-
-   <tr>
     <?php program_image_link('lets_take_a_walk',
-      "Small 3d game-like toy, demonstrating OpenGL integrated with OpenALs
-      spatial sound.",
+      "Small 3D toy, demonstrating rendering integrated with 3D sound using Castle Game Engine.",
       'lets_take_a_walk_screen_demo.png',
       'lets_take_a_walk'); ?>
-
-    <?php program_image_link('malfunction',
-      'Small 3D space-shooter. This was the first game made by me that used VRML models.',
-      'malfunction_screen_demo.png',
-      'malfunction'); ?>
    </tr>
 
    <tr>
+    <?php program_image_link('malfunction',
+      'Small 3D space-shooter. One of the first games made using (an ancient version of) Castle Game Engine, with VRML models.',
+      'malfunction_screen_demo.png',
+      'malfunction'); ?>
      <?php program_image_link('kambi_lines',
        'Arrange colored balls in lines. Quickly.',
        'kambi_lines_screen_demo.png', 'kambi_lines'); ?>

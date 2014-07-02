@@ -23,7 +23,8 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
   program_link_size/glviewimage_dds.png \
   program_link_size/glplotter_screen_demo_1.png \
   program_link_size/rayhunter_graz_demo.png \
-  program_link_size/darkest_before_dawn_2.png
+  program_link_size/darkest_before_dawn_2.png \
+  program_link_size/mountains_of_fire_screen_1.png
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \

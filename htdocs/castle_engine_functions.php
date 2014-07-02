@@ -104,6 +104,7 @@ $castle_sitemap = array(
 
   'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'All Programs',
     'sub' => array(
+      'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
       'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
       'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
       'malfunction' => array('title' => 'malfunction'),

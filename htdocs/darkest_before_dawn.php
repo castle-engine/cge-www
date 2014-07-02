@@ -1,5 +1,5 @@
 <?php
-  define('CASTLE_ENGINE_CUSTOM_CSS', 'darkest_before_dawn.css');
+  define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
 
   require_once 'castle_engine_functions.php';
   castle_header("Darkest Before the Dawn", NULL,
