@@ -58,9 +58,8 @@ echo a_href_page_hashlink('engine download', 'engine', 'section_download_src'); 
 href="http://castle-engine.sourceforge.net/apidoc/html/introduction.html#SectionLibraries">Requirements
 -&gt; Libraries</a> section of our reference introduction.
 -->
-Under
-Windows, you will usually want to grab <a href="http://castle-engine.sourceforge.net/miscella/win32_dlls.zip">Windows DLLs</a>  and place
-them somewhere on your $PATH, or just place them in every directory
+Under Windows, you will usually want to grab the necessary DLLs from: <a href="http://castle-engine.sourceforge.net/miscella/win32_dlls.zip">here (32-bit libraries zipped)</a>  or <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/external_libraries/i386-win32/">here (directory with 32-bit libraries)</a> or <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/external_libraries/x86_64-win64/">here (directory with 64-bit libraries)</a>. Then place dll files
+somewhere on your $PATH, or just place them in every directory
 with .exe files that you compile with our engine.</p>
 
 <p>If you are interested in developing for Android or iOS, you will want

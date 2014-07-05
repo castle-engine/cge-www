@@ -11,7 +11,7 @@
 FILE_RELEASES_PATH=`pwd`/file_releases/
 mkdir -p "$FILE_RELEASES_PATH"
 
-WIN32_DLLS_PATH="${CASTLE_ENGINE_PATH}www/pack/win32_dlls/"
+WIN32_DLLS_PATH="${CASTLE_ENGINE_PATH}external_libraries/i386-win32/"
 
 # Include version definitions for everything
 . generated_versions.sh

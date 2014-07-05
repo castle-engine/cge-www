@@ -136,8 +136,6 @@ echo pretty_heading($page_title, NULL, 'developed using our engine');
   <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
   <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
   <li><?php echo a_href_page('OpenAL notes', 'openal'); ?>
-  <li><?php echo current_www_a_href_size('All Windows DLLs used by programs here',
-    'miscella/win32_dlls.zip'); ?>
   <li><?php echo a_href_page('Dependencies on Mac OS X', 'macosx_requirements'); ?>
   <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
 </ul>
