@@ -16,6 +16,21 @@ do_svn_update ()
 
 # ----------------------------------------------------------------------------
 
+do_compile_tool ()
+{
+  echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
+  echo 'Compiling castle-engine tool'                                    >> "$OUTPUT_LOG"
+
+  cd ~/sources/castle-engine/trunk/
+  ./clean_everything.sh >> "$OUTPUT_LOG"
+
+  cd castle_game_engine/tools/
+  ./castle-engine_compile.sh >> "$OUTPUT_LOG"
+  mv -f castle-engine ~/bin/
+}
+
+# ----------------------------------------------------------------------------
+
 move_all_programs ()
 {
   EXT="$1"
@@ -39,6 +54,9 @@ move_all_programs ()
 
 do_compile_snapshot_programs ()
 {
+  echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
+  echo 'Compiling all programs'                                          >> "$OUTPUT_LOG"
+
   cd ~/sources/castle-engine/trunk/
   ./clean_everything.sh >> "$OUTPUT_LOG"
 
@@ -213,6 +231,7 @@ mkdir -p "$OUTPUT_PATH"
 OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
 
 do_svn_update
+do_compile_tool
 do_compile_snapshot_programs
 do_tovrmlx3d_tests
 do_engine_compile
