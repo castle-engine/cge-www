@@ -22,10 +22,10 @@ do_compile_tool ()
   echo 'Compiling castle-engine tool'                                    >> "$OUTPUT_LOG"
 
   cd ~/sources/castle-engine/trunk/
-  ./clean_everything.sh >> "$OUTPUT_LOG"
+  ./clean_everything.sh >> "$OUTPUT_LOG" 2>&1
 
   cd castle_game_engine/tools/
-  ./castle-engine_compile.sh >> "$OUTPUT_LOG"
+  ./castle-engine_compile.sh >> "$OUTPUT_LOG" 2>&1
   mv -f castle-engine ~/bin/
 }
 
@@ -58,7 +58,7 @@ do_compile_snapshot_programs ()
   echo 'Compiling all programs'                                          >> "$OUTPUT_LOG"
 
   cd ~/sources/castle-engine/trunk/
-  ./clean_everything.sh >> "$OUTPUT_LOG"
+  ./clean_everything.sh >> "$OUTPUT_LOG" 2>&1
 
   ./compile_all_programs.sh  >> "$OUTPUT_LOG" 2>&1
   move_all_programs '' linux-i386
