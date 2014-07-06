@@ -457,55 +457,10 @@ case "$1" in
     binary_set_unix_permissions
     ;;
 
-  # This target was not tested since moving lets_take_a_walk to examples/3d_sound_game
-  # lets_take_a_walk)
-  #   binary_add_doc lets_take_a_walk.html openal.html $DOC_FILES_GL_PARAMS
-  #   binary_add_exec_and_data lets_take_a_walk \
-  #     "$CASTLE_ENGINE_PATH"castle_game_engine/examples/3d_sound_game/ \
-  #     'data/' \
-  #     't'
-  #   binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL
-  #   binary_add_gpl2
-  #   binary_set_unix_permissions
-  #   ;;
-
   bezier_curves)
     binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
-    binary_add_exec_and_data bezier_curves  \
-      "$CASTLE_ENGINE_PATH"bezier_curves/
+    binary_add_exec_and_data bezier_curves
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
-    binary_add_gpl2
-    binary_set_unix_permissions
-    ;;
-
-  castle)
-    binary_add_doc openal.html \
-      opengl_options.html common_options.html \
-      castle.html castle-advanced.html castle-credits.html
-    binary_add_exec_and_data castle \
-      "$CASTLE_ENGINE_PATH"castle/ \
-      'data/ README.txt Makefile' \
-      ''
-
-    $MAKE -C "$BINARY_ARCHIVE_TEMP_PATH" clean clean_private
-
-    # Clean some things that should be only in sources
-    find "$BINARY_ARCHIVE_TEMP_PATH" \
-      '(' '(' -type f -iname '*.blend' ')' -or \
-          '(' -type f -iname 'Makefile' ')' -or \
-          '(' -type f -iname '*.xcf' ')' -or \
-          '(' -type f -iname '*.sh' ')' -or \
-          '(' -type f -iname '*.el' ')' \
-      ')' -exec rm -f '{}' ';'
-
-    # We call areFilenamesLower ourselves (not from binary_add_exec_and_data),
-    # because we have special ignore rules.
-    areFilenamesLower -i Makefile -i Makefile.common -i README.txt \
-      "$BINARY_ARCHIVE_TEMP_PATH"data/
-
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL \
-      $WIN32_DLLS_OGGVORBIS
-
     binary_add_gpl2
     binary_set_unix_permissions
     ;;
