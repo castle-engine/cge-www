@@ -46,11 +46,13 @@ do_compile_snapshot_programs ()
   move_all_programs '' linux-i386
 
   export CASTLE_FPC_OPTIONS=-Twin32
+  export CASTLE_ENGINE_TOOL_OPTIONS=--os=win32
   ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
   move_all_programs '.exe' win-i386
   export CASTLE_FPC_OPTIONS=''
 
   export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
+  export CASTLE_ENGINE_TOOL_OPTIONS='--os=win32 --cpu=x86_64'
   ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
   move_all_programs '.exe' win-x86_64
   export CASTLE_FPC_OPTIONS=''
