@@ -22,7 +22,7 @@ our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 We publish here some improvements / fixes / documentation for
 Blender's X3D exporter.</p>
 
-<h2>X3D exporter, for Blender 2.68a</h2>
+<h2>X3D exporter, for Blender &gt;= 2.68a</h2>
 
 <ul>
   <li><p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
@@ -67,7 +67,7 @@ Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
 
-<h2>KAnim exporter, for Blender 2.68a</h2>
+<h2>KAnim exporter, for Blender &gt;= 2.68a</h2>
 
 <p>Export Blender animation to
 <?php echo a_href_page("KAnim (Castle Game Engine animations) format",
