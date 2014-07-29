@@ -5,8 +5,6 @@
   castle_header("Mountains Of Fire", NULL,
     array('all_programs', 'mountains_of_fire'));
 
-  define('VERSION_MOUNTAINS_OF_FIRE', '1.0.0');
-
   /* echo '<div style="float: right; width: 400px;">'; */
   /* echo googleplus_button(); */
   /* echo facebook_button(); */
@@ -17,10 +15,10 @@
   echo castle_thumbs(array(
     array('filename' => 'mountains_of_fire_screen_0.png', 'titlealt' => 'Mountains Of Fire - game screen 1'),
     array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - game screen 2'),
-    array('filename' => 'mountains_of_fire_screen_2.png', 'titlealt' => 'Mountains Of Fire - game screen 3'),
+//    array('filename' => 'mountains_of_fire_screen_2.png', 'titlealt' => 'Mountains Of Fire - game screen 3'),
     array('filename' => 'mountains_of_fire_screen_3.png', 'titlealt' => 'Mountains Of Fire - game screen 4'),
     array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => 'Mountains Of Fire - game screen 5'),
-    array('filename' => 'mountains_of_fire_screen_5.png', 'titlealt' => 'Mountains Of Fire - game screen 6'),
+//    array('filename' => 'mountains_of_fire_screen_5.png', 'titlealt' => 'Mountains Of Fire - game screen 6'),
   ));
 ?>
 
@@ -40,12 +38,12 @@ The controls were designed to be reachable by a single player.
 <p>The game was developed during the weekend gamejam (<a href="https://www.facebook.com/tsgcompo">TSG compo</a>)
 on 21-22nd of June 2014.
 
-<div class="download">
-<a href="http://michalis.ii.uni.wroc.pl/~michalis/tsgcompo4/mountains_of_fire-linux-i386.tar.gz">Linux 32-bit</a>
-</div>
 
 <div class="download">
-<a href="http://michalis.ii.uni.wroc.pl/~michalis/tsgcompo4/mountains_of_fire-win32.zip">Windows 32-bit (works on 64-bit too)</a>
+  <table><tbody><tr>
+    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-linux-i386.tar.gz"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
+    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-win32-i386.zip"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
+  </tr></tbody></table>
 </div>
 
 <div style="margin-top: 2em;">

@@ -62,19 +62,18 @@ version_call castle
 version_call lets_take_a_walk
 version_call malfunction
 version_call kambi_lines
-
 version_call view3dscene
 version_call rayhunter
-
 version_call glViewImage
 version_call glplotter
 version_call bezier_curves
 version_call glinformation
+version_call gen_function
+version_call mountains_of_fire
+
 # glinformation_glut doesn't accept --version, but it should be considered
 # to have the same version as glinformation.
 version_explicit glinformation_glut `glinformation --version`
-
-version_call gen_function
 
 version_fpmake castle_game_engine ../../castle_game_engine/fpmake.pp
 
