@@ -37,8 +37,6 @@ The controls were designed to be reachable by a single player.
 
 <p>The game is open-source, completely free to download and play.
 Try it now!
-Based on an open-source
-<a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>.
 
 <?php
   $toc = new TableOfContents(
@@ -150,7 +148,7 @@ and can be downloaded like this:
 
 <p>See the <tt>README.txt</tt> for compilation instructions.
 For a standalone compilation all you need is the
-<a href="http://castle-engine.sourceforge.net/engine.php">engine</a>
+<a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.
 
 <?php echo $toc->html_section(); ?>
