@@ -35,6 +35,11 @@ The game can be played by two players, or by a single player controlling
 both human and sandworm simultaneously.
 The controls were designed to be reachable by a single player.
 
+<p>The game is open-source, completely free to download and play.
+Try it now!
+Based on an open-source
+<a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>.
+
 <?php
   $toc = new TableOfContents(
     array(
