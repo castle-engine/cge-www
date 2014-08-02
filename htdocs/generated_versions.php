@@ -10,7 +10,7 @@
   define('VERSION_BEZIER_CURVES', '1.1.9');
   define('VERSION_GLINFORMATION', '1.2.2');
   define('VERSION_GEN_FUNCTION', '1.0.5');
-  define('VERSION_MOUNTAINS_OF_FIRE', '1.0.1');
+  define('VERSION_MOUNTAINS_OF_FIRE', '1.1.0');
   define('VERSION_GLINFORMATION_GLUT', '1.2.2');
   define('VERSION_CASTLE_GAME_ENGINE', '5.0.0');
   define('VERSION_DEMO_MODELS', '3.4.0');
