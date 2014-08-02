@@ -13,9 +13,12 @@ castle_header('Castle Game Engine',
   <tr>
     <td class="main_link">
       <p><b>For players:</b></p>
-      <p><a href="darkest_before_dawn.php"><img src="images/main_link_size/darkest_before_dawn_2.png" alt="Darkest Before the Dawn" /></a></p>
-      <p class="program_image_link_title"><a href="darkest_before_dawn.php"><b>Darkest Before the Dawn</b></a></p>
-      <p>Small scary 3D game, for Android and standalone (Linux, Windows).</p>
+      <p><a href="mountains_of_fire.php"><img src="images/main_link_size/mountains_of_fire_screen_1.png" alt="Mountains Of Fire" /></a></p>
+      <p class="program_image_link_title"><a href="mountains_of_fire.php"><b>Mountains Of Fire</b></a></p>
+      <p>3D game with split-screen view where human and worm cooperate to survive. For single player or 2 players.</p>
+      <!-- <p><a href="darkest_before_dawn.php"><img src="images/main_link_size/darkest_before_dawn_2.png" alt="Darkest Before the Dawn" /></a></p> -->
+      <!-- <p class="program_image_link_title"><a href="darkest_before_dawn.php"><b>Darkest Before the Dawn</b></a></p> -->
+      <!-- <p>Small scary 3D game, for Android and standalone (Linux, Windows).</p> -->
     </td>
 
     <td class="main_link" rowspan="2">
@@ -36,12 +39,12 @@ castle_header('Castle Game Engine',
   </tr>
 
   <tr>
+    <td class="main_link">
     <!-- <td class="main_link"> -->
     <!--   <p><a href="castle.php"><img src="images/main_link_size/castle_screen_demo_1.png" alt="&quot;The Castle&quot;" /></a></p> -->
     <!--   <p class="program_image_link_title"><a href="castle.php"><b>&quot;The Castle&quot;</b></a></p> -->
     <!--   <p>First-person perspective game, in a dark fantasy setting.</p> -->
     <!-- </td> -->
-    <td class="main_link">
       <p class="program_image_link_title"><a href="all_programs.php"><b>More games</b></a></p>
       <p>... and other tools using our engine.</p>
     </td>
