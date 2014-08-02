@@ -146,6 +146,9 @@ and can be downloaded like this:
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'mountains_of_fire'); ?></pre>
 
+<p>The exact source code for version <?php echo VERSION_MOUNTAINS_OF_FIRE; ?>
+ is also available as a tar.gz archive: <a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-src.tar.gz">download "Mountains Of Fire" <?php echo VERSION_MOUNTAINS_OF_FIRE; ?> sources</a>.
+
 <p>See the <tt>README.txt</tt> for compilation instructions.
 For a standalone compilation all you need is the
 <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>
