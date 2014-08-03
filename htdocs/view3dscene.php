@@ -208,6 +208,10 @@ flawlessly :) So give it a try!
     geometry (with texture coords, normal vectors), materials
     (colors, opacity, texture filenames).</p>
 
+  <li><p><b>Spine JSON animations</b>.
+    <a href="http://esotericsoftware.com/">Spine</a> is a powerful program
+    for 2D game animations.</p>
+
   <li><p><b><a href="http://local.wasp.uwa.edu.au/~pbourke/dataformats/geo/">Videoscape
     GEO</a></b> (<tt>.geo</tt> extension).
     Very basic support for this very old 3D format.
