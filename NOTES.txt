@@ -136,3 +136,7 @@ Procedure to update WWW content:
 
   - watch http://planet.objpas.org/ and http://planetdev.freegamedev.net/ ,
     they aggregate our news feed
+
+  https://plus.google.com/communities/114860965042324270757
+  
+  http://freshcode.club/
