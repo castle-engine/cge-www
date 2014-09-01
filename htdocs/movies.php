@@ -8,7 +8,7 @@
 <p>Various videos about our engine are at</p>
 
 <p style="font-size: larger; font-weight: bold">
-<a href="http://www.youtube.com/user/michaliskambi">Michalis Kamburelis YouTube channel</a>
+<a href="https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw">Castle Game Engine YouTube channel</a>
 </p>
 
 <p>You can download AVI versions with (slightly) better quality
@@ -16,10 +16,10 @@ for some videos below.
 For newer videos, just switch YouTube to "HD quality".
 
 <ol>
-  <li><?php echo current_www_a_href_size('Demo movie from "The Castle" game (AVI)', 'movies/1.avi'); ?> (<a href="http://www.youtube.com/watch?v=qpUTK3_r7Lc">on YouTube here</a>)</li>
-  <li><?php echo current_www_a_href_size('Demo movie showing GLSL shaders and steep parallax mapping', 'movies/2.avi'); ?> (<a href="http://www.youtube.com/watch?v=ag-d-JGvHfQ">on YouTube here</a>)</li>
-  <li><?php echo current_www_a_href_size('Demo movie from "The Rift"', 'movies/3.avi'); ?> (<a href="http://www.youtube.com/watch?v=daIrz3ehN_I">on YouTube here</a>)</li>
-  <li><?php echo current_www_a_href_size('Flames', 'movies/fireplace_demo.avi'); ?> (<a href="http://www.youtube.com/watch?v=V-EJvVbi1DQ">on YouTube here</a>)</li>
+  <li><?php echo current_www_a_href_size('Demo movie from "The Castle" game (AVI)', 'movies/1.avi'); ?> (<a href="https://www.youtube.com/watch?v=2XgQHo4DrGk">on YouTube here</a>)</li>
+  <li><?php echo current_www_a_href_size('Demo movie showing GLSL shaders and steep parallax mapping', 'movies/2.avi'); ?> (<a href="https://www.youtube.com/watch?v=fG1owuqwcmc">on YouTube here</a>)</li>
+  <li><?php echo current_www_a_href_size('Demo movie from "The Rift"', 'movies/3.avi'); ?> (<a href="https://www.youtube.com/watch?v=KlZSjzjpnVA">on YouTube here</a>)</li>
+  <li><?php echo current_www_a_href_size('Flames', 'movies/fireplace_demo.avi'); ?> (<a href="https://www.youtube.com/watch?v=6ecZInTrfak">on YouTube here</a>)</li>
 </ol>
 
 <p>Software that I use to create videos:

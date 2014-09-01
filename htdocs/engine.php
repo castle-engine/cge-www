@@ -62,8 +62,8 @@
 contains more exhaustive list of engine features, with links to detailed
 information.</p>
 
-<p>Many <a href="http://www.youtube.com/user/michaliskambi">demo movies about
-Castle Game Engine are available in Michalis Kamburelis YouTube channel</a>.</p>
+<p>Many <a href="https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw">demo movies
+are available on Castle Game Engine YouTube channel</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 

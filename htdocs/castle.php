@@ -167,7 +167,7 @@ You may also want to delete configuration file:</p>
 later in the game.</p>
 
 <?php if (!HTML_VALIDATION) { ?>
-<iframe width="425" height="349" src="http://www.youtube.com/embed/qpUTK3_r7Lc" frameborder="0" allowfullscreen></iframe>
+<iframe width="425" height="349" src="http://www.youtube.com/embed/2XgQHo4DrGk" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
 </div>
 
