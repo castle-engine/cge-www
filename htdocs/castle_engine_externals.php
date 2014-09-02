@@ -39,17 +39,20 @@ function flattr_button($align = true)
 function googleplus_header()
 {
   if (CASTLE_OFFLINE) return '';
-  return '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<link href="https://plus.google.com/101185352355602218697" rel="publisher">';
+  return '<script src="https://apis.google.com/js/platform.js" async defer></script>';
 }
 
-function googleplus_badge()
+function googleplus_badge($large = false)
 {
   if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
   /* Instead of +1 button, it's better to use a "badge",
      https://developers.google.com/+/web/badge/ .
      This allos Google to link our normal page back to our G+ page. */
-  return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697"></div>';
+  if ($large) {
+    return '<div class="g-page" data-href="//plus.google.com/u/0/101185352355602218697" data-rel="publisher"></div>';
+  } else {
+    return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697"></div>';
+  }
   //return '<g:plusone size="tall"></g:plusone>';
 }
 
@@ -130,4 +133,25 @@ function paypal_button($with_logos = true)
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
 </form>' );
+}
+
+/* Twitter ------------------------------------------------------------------- */
+
+function twitter_widget()
+{
+?>
+<a class="twitter-timeline" href="https://twitter.com/castleengine" data-widget-id="506585522525859840">Tweety na temat @castleengine</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<?php
+}
+
+/* YouTube ------------------------------------------------------------------- */
+
+function youtube_subscribe()
+{
+  /* Using https://developers.google.com/youtube/youtube_subscribe_button */
+?>
+<script src="https://apis.google.com/js/platform.js"></script>
+<div class="g-ytsubscribe" data-channelid="UCq9jJ5ivIXC5VEWiUAfxBxw" data-layout="full" data-count="default"></div>
+<?php
 }

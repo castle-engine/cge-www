@@ -54,22 +54,30 @@ function castle_news_bar($contents)
     $contents . '</td></tr> </table>';
 }
 
-echo $older_newer_bar .
-  '<div class="castle_rss_link"><a href="news_feed.php">RSS</a></div>';
-
-if ($item === $news[0])
-  echo '<h2>Latest news:</h2>';
-
-echo '<div class="news_item">' . news_to_html($item) . '</div>';
 ?>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
+<?php echo googleplus_badge(); ?>
+</div>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
+<?php echo facebook_button(); ?>
+</div>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;">
+<div><?php echo twitter_widget(); ?></div>
+</div>
 
 <?php
   echo castle_news_bar('
-    <b>Comments?</b>
-    Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . '.<br/><br/>
+    <b>Follow us:</b>
+    Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
+    <a href="https://www.facebook.com/castleengine">Facebook</a> or
+    <a href="https://twitter.com/castleengine">Twitter</a> to get latest news about
+    the engine development.<br/><br/>
 
-    <b>Google+?</b>
-    You can <a href="https://plus.google.com/101185352355602218697" rel="publisher">follow our engine / view3dscene news on Google+</a>.<br/><br/>
+    <b>Comments?</b>
+    Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . ' or any social site mentioned above.<br/><br/>
 
     <b>Watch engine development:</b>
     To <i>really</i> watch the engine development closely, you can
@@ -86,7 +94,5 @@ echo '<div class="news_item">' . news_to_html($item) . '</div>';
 <br/>
 
 <?php
-echo $older_newer_bar;
-
 castle_footer();
 ?>
