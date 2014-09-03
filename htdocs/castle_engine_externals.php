@@ -84,15 +84,13 @@ function facebook_button()
 {
   if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
 
-
   /* Facebook docs say to put this somewhere at the beginning of <body>,
      but that's actually bad for us, facebook may be slow...
      And also we don't use facebook_button() on many pages.
-     So put this header at facebook_button(), when it is called for 1st time. */
-  global $castle_engine_was_facebook_button;
-  if (empty($castle_engine_was_facebook_button))
-  {
-    $header = '
+     So put this header at facebook_button(), when it is called for 1st time.
+     We assume you do echo this on a single page more than once. */
+
+  $header = '
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -102,9 +100,6 @@ function facebook_button()
   fjs.parentNode.insertBefore(js, fjs);
 }(document, \'script\', \'facebook-jssdk\'));</script>
 ';
-    $castle_engine_was_facebook_button = true;
-  } else
-    $header = '';
 
   return $header .
 //    '<div class="fb-like" data-href="http://castle-engine.sourceforge.net/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
