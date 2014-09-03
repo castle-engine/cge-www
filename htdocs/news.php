@@ -54,45 +54,35 @@ function castle_news_bar($contents)
     $contents . '</td></tr> </table>';
 }
 
-?>
+echo $older_newer_bar .
+  '<div class="castle_rss_link"><a href="news_feed.php">RSS</a></div>';
+if ($item === $news[0])
+  echo '<h2>Latest news:</h2>';
+echo '<div class="news_item">' . news_to_html($item) . '</div>';
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
-<?php echo googleplus_badge(); ?>
-</div>
+echo castle_news_bar('
+  <b>Follow us:</b>
+  Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
+  <a href="https://www.facebook.com/castleengine">Facebook</a> or
+  <a href="https://twitter.com/castleengine">Twitter</a> to get latest news about
+  the engine development.<br/><br/>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
-<?php echo facebook_button(); ?>
-</div>
+  <b>Comments?</b>
+  Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . ' or any social site mentioned above.<br/><br/>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;">
-<div><?php echo twitter_widget(); ?></div>
-</div>
+  <b>Watch engine development:</b>
+  To <i>really</i> watch the engine development closely, you can
+  <a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
+  <!-- not polled unfortunately:
+  <a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
+  cia.vc</a>.
+  -->
+  There is also <a href="https://www.ohloh.net/p/castle-engine">our
+  project page on Ohloh</a> (please rate and click on
+  <i>"I use this"</i> button there!).');
 
-<?php
-  echo castle_news_bar('
-    <b>Follow us:</b>
-    Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
-    <a href="https://www.facebook.com/castleengine">Facebook</a> or
-    <a href="https://twitter.com/castleengine">Twitter</a> to get latest news about
-    the engine development.<br/><br/>
+echo '<br/>';
 
-    <b>Comments?</b>
-    Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . ' or any social site mentioned above.<br/><br/>
+echo $older_newer_bar;
 
-    <b>Watch engine development:</b>
-    To <i>really</i> watch the engine development closely, you can
-    <a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
-    <!-- not polled unfortunately:
-    <a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
-    cia.vc</a>.
-    -->
-    There is also <a href="https://www.ohloh.net/p/castle-engine">our
-    project page on Ohloh</a> (please rate and click on
-    <i>"I use this"</i> button there!).');
-?>
-
-<br/>
-
-<?php
 castle_footer();
-?>

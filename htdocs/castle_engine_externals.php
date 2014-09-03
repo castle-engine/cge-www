@@ -139,10 +139,10 @@ function paypal_button($with_logos = true)
 
 function twitter_widget()
 {
-?>
+  return '
 <a class="twitter-timeline" href="https://twitter.com/castleengine" data-widget-id="506585522525859840">Tweety na temat @castleengine</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<?php
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+';
 }
 
 /* YouTube ------------------------------------------------------------------- */
@@ -150,8 +150,8 @@ function twitter_widget()
 function youtube_subscribe()
 {
   /* Using https://developers.google.com/youtube/youtube_subscribe_button */
-?>
+  return '
 <script src="https://apis.google.com/js/platform.js"></script>
 <div class="g-ytsubscribe" data-channelid="UCq9jJ5ivIXC5VEWiUAfxBxw" data-layout="full" data-count="default"></div>
-<?php
+';
 }

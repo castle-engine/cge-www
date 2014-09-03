@@ -3,6 +3,25 @@
 // Resize3x3
 
 array_push($news,
+    array('title' => 'Castle Game Engine on Google+, Facebook, Twitter',
+          'year' => 2014,
+          'month' => 9,
+          'day' => 1,
+          'short_description' => '',
+          'guid' => '2014-09-01',
+          'description' =>
+'<div class="bottom-widget" style="display: inline-block; vertical-align: top">
+' . googleplus_badge() . '
+</div>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top">
+' . facebook_button() . '
+</div>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top">
+' . twitter_widget() . '
+</div>'),
+
     array('title' => 'Castle Game Engine 5.0.0 release (Android, iOS, more), view3dscene 3.14.0 release',
           'year' => 2014,
           'month' => 5,
