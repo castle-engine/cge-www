@@ -11,7 +11,7 @@ array_push($news,
           'guid' => '2014-09-01',
           'description' =>
 '<div class="bottom-widget" style="display: inline-block; vertical-align: top">
-' . googleplus_badge() . '
+' . googleplus_badge(true) . '
 </div>
 
 <div class="bottom-widget" style="display: inline-block; vertical-align: top">
