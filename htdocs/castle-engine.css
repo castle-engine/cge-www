@@ -449,3 +449,43 @@ div.quote {
 .footer-table td {
   vertical-align: top;
 }
+
+/* google search box --------------------------------------------------------- */
+
+.google-search-container {
+  position: relative; /* to position gsc-search-button vs this */
+  width: 50%;
+  max-width: 400px;
+  float: right;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+}
+
+.google-search-container .gsc-search-button {
+  position: absolute;
+  right: 0;
+  top: -1px;
+}
+
+.gsc-search-box-tools .gsc-search-box .gsc-input {
+  padding-right: 0px !important;
+}
+
+.cse .gsc-control-cse, .gsc-control-cse {
+  padding: 0 !important;
+}
+.form.gsc-search-box {
+  margin: 0 !important;
+}
+.gsc-control-cse {
+  background-color: transparent !important;
+  border-style: none !important;
+}
+
+.gsc-control-cse, .gsc-control-cse .gsc-table-result {
+  font-size: normal !important;
+}
+
+.google-search-results-container .gsc-expansionArea {
+  border-bottom: thin solid #aaaaaa;
+}

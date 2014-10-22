@@ -62,6 +62,43 @@ function googleplus_button()
   return '<g:plusone size="tall"></g:plusone>';
 }
 
+function google_custom_search_box()
+{
+  // https://developers.google.com/custom-search/docs/element
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+
+  return <<<EOD
+<div class="google-search-container">
+<script>
+  (function() {
+    var cx = '012479576662529301542:be-myf53lua';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div class="gcse-search" data-enableAutoComplete="true"></div>
+</div>
+EOD;
+}
+
+/*
+function google_custom_search_results()
+{
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+
+  return <<<EOD
+<div class="google-search-results-container">
+  <div class="gcse-searchresults" data-refinementStyle="link"></div>
+</div>
+EOD;
+}
+*/
+
 /* Facebook ------------------------------------------------------------------
 
    See http://developers.facebook.com/docs/reference/plugins/like/

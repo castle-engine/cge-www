@@ -523,6 +523,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
   $rendered = '
   <div class="header">
     <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
+    ' . google_custom_search_box() . '
     <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
     ' . _castle_header_menu($path[0]) . '
   </div>';
@@ -533,6 +534,8 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
       <col class="content_column">
       <col class="sidebar_column">
       <tr><td class="layout content">' . _castle_breadcrumbs($path);
+
+//  $rendered .= google_custom_search_results();
 
   echo $rendered;
 }
