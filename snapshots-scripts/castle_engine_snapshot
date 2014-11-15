@@ -10,7 +10,7 @@ set -eu
 
 do_svn_update ()
 {
-  cd ~/sources/castle-engine/trunk/
+  cd "${CASTLE_ENGINE_PATH}"
   svn up > "$OUTPUT_LOG"
 }
 
@@ -229,6 +229,9 @@ export PATH=/home/michalis/bin:/usr/local/bin:"${PATH}"
 OUTPUT_PATH=~/public_html/castle-engine-snapshots/`date +%F`/
 mkdir -p "$OUTPUT_PATH"
 OUTPUT_LOG="$OUTPUT_PATH"compilation_output.log
+
+# castle-engine (used to compile some stuff) uses this, also some "cd" commands may use it
+export CASTLE_ENGINE_PATH="${HOME}/sources/castle-engine/trunk/"
 
 do_svn_update
 do_compile_tool
