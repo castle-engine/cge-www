@@ -52,6 +52,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     a lot of triangles!).<br/>
     <i>TODO</i>: unfortunately, for now these triangles also participate
     in collision detection, while spec says that text shouldn't collide.
+
+    <p><i>TODO</i>: Only the horizontal justification is implemented now.
+    The 2nd value of <tt>justify</tt> field is ignored for now.
 </ul>
 
 <p>TODO: <tt>Text</tt> and <tt>Text3D</tt> are rendered
