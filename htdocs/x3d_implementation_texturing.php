@@ -23,6 +23,8 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
+<p>See also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to texturing','x3d_implementation_texturing_extensions'); ?>.
+
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,

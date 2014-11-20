@@ -30,7 +30,29 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
     <p class="paragraph_last">See also <a href="' . $x3d_component_url .
-    '">X3D specification of ' . $x3d_component_name . ' component</a>.</p></div>';
+    '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
+}
+
+function x3d_extensions_header($x3d_component_name, $base_component_page,
+  $x3d_spec_page_url, $component_intro)
+{
+  $base_component_page = 'x3d_implementation_' . $base_component_page;
+  castle_header($x3d_component_name .
+    ' component - extensions - Castle Game Engine',
+    'Castle Game Engine (and view3dscene) extensions',
+    array('vrml_x3d', 'x3d_implementation_status', $base_component_page));
+
+  echo pretty_heading($x3d_component_name . ' component - extensions');
+
+  global $x3d_component_url;
+  $x3d_component_url = 'http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/' .
+    $x3d_spec_page_url . '.html';
+
+  echo '<div class="x3d_component_intro">
+    <p class="paragraph_first">' . $component_intro . '</p>
+    <p class="paragraph_last">See also ' . a_href_page('documentaton of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
+      ' and <a href="' . $x3d_component_url .
+    '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
 }
 
 function x3d_status_footer()

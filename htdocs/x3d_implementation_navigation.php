@@ -26,6 +26,8 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
+<p>See also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to navigation','x3d_implementation_navigation_extensions'); ?>.
+
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,

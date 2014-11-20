@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("VRML / X3D implementation status");
+  vrmlx3d_header("Components");
 
   $toc = new TableOfContents(
     array(
@@ -28,13 +28,15 @@ See also <?php echo a_href_page('VRML / X3D extensions', 'x3d_extensions'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>First of all, please don't read this page :) I mean, it's completely
-free and easy to <?php echo a_href_page("download view3dscene", "view3dscene") ?>,
-our VRML/X3D browser, and just try it in action.
+<p>This is a summary of X3D components supported by
+<i>Castle Game Engine</i> and
+<?php echo a_href_page("view3dscene", "view3dscene") ?>.
+Remember that it's completely <b>free and easy to <?php echo a_href_page("download view3dscene", "view3dscene") ?>,
+our VRML/X3D browser, and just try it all in action</b>.
 Download also <?php echo a_href_page("our demo 3D models", "demo_models"); ?>
  to open them with view3dscene.
 
-<p>Only once you tried view3dscene, this page may serve
+<p>Once you tried view3dscene or our game engine, this page may serve
 as a detailed map (with lots of technical details and links to even more
 technical details), about what and how is implemented.
 
