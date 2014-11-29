@@ -125,7 +125,7 @@ do_tovrmlx3d_tests ()
 
   cd ~/sources/castle-engine/trunk/view3dscene/
   ./compile.sh                                                              >> "$OUTPUT_LOG" 2>&1
-  ./run_tests.sh > /tmp/view3dscene_run_tests_output.txt 2>&1
+  ./run_tests.sh /tmp/view3dscene_run_tests_output.txt /tmp/view3dscene_run_tests_output_verbose.txt
   diff -u /tmp/view3dscene_run_tests_output.txt run_tests_valid_output.txt  >> "$OUTPUT_LOG"
   rm -f /tmp/view3dscene_run_tests_output.txt
 }
