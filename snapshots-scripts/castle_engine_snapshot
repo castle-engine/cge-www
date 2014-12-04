@@ -68,12 +68,14 @@ do_compile_snapshot_programs ()
   ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
   move_all_programs '.exe' win-i386
   export CASTLE_FPC_OPTIONS=''
+  export CASTLE_ENGINE_TOOL_OPTIONS=''
 
   export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
   export CASTLE_ENGINE_TOOL_OPTIONS='--os=win64 --cpu=x86_64'
   ./compile_all_programs.sh >> "$OUTPUT_LOG" 2>&1
   move_all_programs '.exe' win-x86_64
   export CASTLE_FPC_OPTIONS=''
+  export CASTLE_ENGINE_TOOL_OPTIONS=''
 
   echo '---------------------------------------------------------------' >> "$OUTPUT_LOG"
   echo 'Compiled OK, moving to the "latest" symlink.'                    >> "$OUTPUT_LOG"
@@ -149,12 +151,13 @@ do_engine_compile ()
 
 do_test_castle_window ()
 {
-  cd  ~/sources/castle-engine/trunk/view3dscene/
-  export CASTLE_FPC_OPTIONS="$1"
-  # view3dscene/compile.sh already does "make clean-window", so we can be sure
-  # that new -dCASTLE_WINDOW_xxx will be taken into account.
-  ./compile.sh  >> "$OUTPUT_LOG" 2>&1
-  export CASTLE_FPC_OPTIONS=''
+  cd  ~/sources/castle-engine/trunk/castle_game_engine/
+  # Clean so we can be sure# that new -dCASTLE_WINDOW_xxx will be taken into account.
+  make clean-window
+
+  # note that we compile directly, not using compile.sh, since compile.sh
+  # now uses castle-engine that does not allow passing -dXXX
+  fpc -dRELEASE "$1" @castle-fpc.cfg ../view3dscene/view3dscene.lpr  >> "$OUTPUT_LOG" 2>&1
 }
 
 do_castlewindow_backends_compile ()
