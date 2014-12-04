@@ -157,7 +157,7 @@ do_test_castle_window ()
 
   # note that we compile directly, not using compile.sh, since compile.sh
   # now uses castle-engine that does not allow passing -dXXX
-  fpc -dRELEASE "$1" @castle-fpc.cfg ../view3dscene/view3dscene.lpr  >> "$OUTPUT_LOG" 2>&1
+  fpc -dRELEASE "$@" @castle-fpc.cfg ../view3dscene/view3dscene.lpr  >> "$OUTPUT_LOG" 2>&1
 }
 
 do_castlewindow_backends_compile ()
@@ -168,21 +168,21 @@ do_castlewindow_backends_compile ()
   cd  ~/sources/castle-engine/trunk/
   ./clean_everything.sh  >> "$OUTPUT_LOG" 2>&1
 
-  do_test_castle_window '-dCASTLE_WINDOW_GTK_2'
-  do_test_castle_window '-dCASTLE_WINDOW_XLIB'
-  do_test_castle_window '-dCASTLE_WINDOW_GLUT'
-  do_test_castle_window '-dCASTLE_WINDOW_TEMPLATE'
+  do_test_castle_window -dCASTLE_WINDOW_GTK_2
+  do_test_castle_window -dCASTLE_WINDOW_XLIB
+  do_test_castle_window -dCASTLE_WINDOW_GLUT
+  do_test_castle_window -dCASTLE_WINDOW_TEMPLATE
 
-  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_WINAPI'
-  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_GTK_2'
-  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_GLUT'
-  do_test_castle_window '-Twin32 -dCASTLE_WINDOW_TEMPLATE'
+  do_test_castle_window -Twin32 -dCASTLE_WINDOW_WINAPI
+  do_test_castle_window -Twin32 -dCASTLE_WINDOW_GTK_2
+  do_test_castle_window -Twin32 -dCASTLE_WINDOW_GLUT
+  do_test_castle_window -Twin32 -dCASTLE_WINDOW_TEMPLATE
 
-  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_WINAPI'
+  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_WINAPI
   # GTK2 units not available for win64?
-  # do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_GTK_2'
-  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_GLUT'
-  do_test_castle_window '-Twin64 -Px86_64 -dCASTLE_WINDOW_TEMPLATE'
+  # do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_GTK_2
+  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_GLUT
+  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_TEMPLATE
 }
 
 # ----------------------------------------------------------------------------
