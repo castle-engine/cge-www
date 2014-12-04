@@ -12,7 +12,7 @@ export CASTLE_BINARY_PATH="${HOME}/bin/"
 # Make sure you have dircleaner, fpc etc. on $PATH
 export PATH="${CASTLE_BINARY_PATH}":/usr/local/bin:"${PATH}"
 
-export CASTLE_SNAPSHOTS_PATH="${HOME}/public_html/castle-engine-snapshots"
+export CASTLE_SNAPSHOTS_PATH="${HOME}/public_html/castle-engine-snapshots/"
 
 # prepare output path and log file
 export OUTPUT_PATH="${CASTLE_SNAPSHOTS_PATH}"`date +%F`/
