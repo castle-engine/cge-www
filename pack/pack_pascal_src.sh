@@ -89,7 +89,7 @@ pascal_src_add_standard ()
     mkdir "$ARCHIVE_DIR"
     cd "$PROGRAM_SPECIFIC_DIR"
     cp_omitting_old_and_private . "$ARCHIVE_DIR"
-    dircleaner "$ARCHIVE_DIR" clean
+    dircleaner "$ARCHIVE_DIR" clean -f AndroidAntProperties.txt
     make clean -C "$ARCHIVE_DIR"
 
     # Old: copy COPYING file to each dir in PROGRAM_SPECIFIC_DIR.
