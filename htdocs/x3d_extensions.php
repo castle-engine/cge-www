@@ -19,11 +19,11 @@ $toc = new TableOfContents(array(
   new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix', 1),
   new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace', 1),
   new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds', 1),
-  new TocItem('3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
+  new TocItem('DEPRECATED: 3D text (node <tt>Text3D</tt>)', 'ext_text3d', 1),
   new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and other textures)', 'ext_alpha_channel_detection', 1),
   new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
   new TocItem('Automatic processing of inlined content (node <tt>KambiInline</tt>)', 'ext_kambi_inline', 1),
-  new TocItem('Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 1),
+  new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load', 1),
   new TocItem('Control head bobbing (<tt>KambiNavigationInfo.headBobbing*</tt> fields)', 'ext_head_bobbing', 1),
   new TocItem('Executing compiled-in code on Script events (<tt>compiled:</tt> Script protocol)', 'ext_script_compiled', 1),
   new TocItem('CastleScript (<tt>castlescript:</tt> Script protocol)', 'ext_castlescript', 1),
@@ -33,7 +33,7 @@ $toc = new TableOfContents(array(
   new TocItem('Inline nodes allow to include 3D models in other handled formats (Collada, 3DS, MD3, Wavefront OBJ, others) and any VRML/X3D version', 'ext_inline_for_all', 1),
   new TocItem('Specify triangulation (node <tt>KambiTriangulation</tt>)', 'ext_kambi_triangulation', 1),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
-  new TocItem('Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 1),
+  new TocItem('DEPRECATED: Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient', 1),
   new TocItem('Mirror material (field <tt>mirror</tt> for <tt>Material</tt> node)', 'ext_material_mirror', 1),
   new TocItem('Customize headlight (<tt>KambiNavigationInfo.headlightNode</tt>)', 'ext_headlight', 1),
   new TocItem('Fields describing physical properties (Phong\'s BRDF) for <tt>Material</tt> node', 'ext_material_phong_brdf_fields', 1),
@@ -375,6 +375,18 @@ These names are not invented by us, they are the names used for <a href="http://
   "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
+
+    <p><i>Since version 5.1.0 of Castle Game Engine (corresponding
+    to version 3.15.0 of view3dscene), this node is deprecated,
+    and it is rendered only as a flat <tt>Text</tt> node.
+    <!--
+    Our new text rendering method (using texture) offered new features
+    and optimizations, but unfortunately it's impossible to render
+    true 3D text using it.
+    -->
+    If you need 3D text, use a 3D modelling software, like
+    <a href="http://www.blender.org/">Blender</a>, to create 3D mesh
+    for text.</i></p>
 
     <p>We add new node:
 

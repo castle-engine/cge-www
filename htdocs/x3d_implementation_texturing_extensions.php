@@ -8,7 +8,7 @@
     array(
       new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>Appearance</tt>)', 'ext_bump_mapping'),
       new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture'),
-      new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere/Extrusion.texCoord</tt>)', 'ext_tex_coord'),
+      new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere/Extrusion/Text.texCoord</tt>)', 'ext_tex_coord'),
       new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace'),
       new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds'),
       new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and other textures)', 'ext_alpha_channel_detection'),
@@ -225,7 +225,7 @@ For a similar reason you cannot use <tt>MultiTextureCoordinate</tt>
 (as it would allow <tt>TextureCoordinate</tt> as children).</p>
 
 <?php
-  echo node_begin('Box / Cone / Cylinder / Sphere / Extrusion');
+  echo node_begin('Box / Cone / Cylinder / Sphere / Extrusion / Text');
   echo
   node_dots('') .
   node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]') .
