@@ -210,7 +210,11 @@ $castle_sitemap = array(
           'x3d_implementation_shape'                => array('title' => 'Shape'                           ),
           'x3d_implementation_geometry3d'           => array('title' => 'Geometry3D'                      ),
           'x3d_implementation_geometry2d'           => array('title' => 'Geometry2D'                      ),
-          'x3d_implementation_text'                 => array('title' => 'Text'                            ),
+          'x3d_implementation_text'                 => array('title' => 'Text',
+            'sub' => array(
+              'x3d_implementation_text_extensions' => array('title' => 'Extensions'),
+            ),
+          ),
           'x3d_implementation_sound'                => array('title' => 'Sound'                           ),
           'x3d_implementation_lighting'             => array('title' => 'Lighting'                        ),
           'x3d_implementation_texturing'            => array('title' => 'Texturing',

@@ -40,7 +40,7 @@ $toc = new TableOfContents(array(
   new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties', 1),
   new TocItem('Interpolate sets of colors (node <tt>ColorSetInterpolator</tt>)', 'ext_color_set_interpolator', 1),
 
-  new TocItem('Extensions compatible with Avalon / instant-reality', 'ext_avalon', 1),
+  new TocItem('Extensions compatible with <i>InstantPlayer</i> (<i>InstantReality</i> ', 'ext_avalon', 1),
 
   new TocItem('Blending factors (node <tt>BlendMode</tt> and field <tt>Appearance.blendMode</tt>)', 'ext_blending', 2),
   new TocItem('Transform by explicit 4x4 matrix (<tt>MatrixTransform</tt> node)', 'ext_matrix_transform', 2),
@@ -70,20 +70,21 @@ $toc->echo_numbers = true;
 <p><b>Compatibility</b> notes:</p>
 
 <ul>
-  <li><p>Other VRML/X3D browsers may not handle these extensions. But many VRML 2.0 / X3D extensions may be preceded by appropriate <tt>EXTERNPROTO</tt> statements, this will allow other VRML 2.0 / X3D implementations to at least gracefully omit them.</p>
+  <li>
+    <p>Some of our extensions can be declared using VRML / X3D external prototypes (<tt>EXTERNPROTO</tt>) concept. This allows other VRML / X3D browsers to at least effectively parse them. Moreover, an <tt>EXTERNPROTO</tt> may specify a fallback URL (<a href="http://castle-engine.sourceforge.net/fallback_prototypes.wrl">http://castle-engine.sourceforge.net/fallback_prototypes.wrl</a> for VRML 2.0 and <a href="http://castle-engine.sourceforge.net/fallback_prototypes.x3dv">http://castle-engine.sourceforge.net/fallback_prototypes.x3dv</a> for X3D). Such fallback URL may point to an alternative implementation, and will allow other VRML / X3D browsers to even partially handle our extensions.</p>
 
-    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even things inside <tt>castle_extensions/</tt> should be partially handled by other VRML browsers.</p>
+    <?php /*
+    <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <tt>isA</tt> and <tt>fields</tt>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
+    */ ?>
+
+    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <tt>EXTERNPROTO</tt> mechanism whenever possible, so that even demos of our extensions (mostly inside <tt>castle_extensions/</tt> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
 
     <p>Our extensions are identified by URN like "<tt>urn:castle-engine.sourceforge.net:node:KambiTriangulation</tt>". For compatibility, also deprecated "<tt>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</tt>" is recognized.</p>
-
-    <p>Our extensions' external prototypes may specify a fallback URL <a href="http://castle-engine.sourceforge.net/fallback_prototypes.wrl">http://castle-engine.sourceforge.net/fallback_prototypes.wrl</a> for VRML 2.0. For X3D, analogous URL is <a href="http://castle-engine.sourceforge.net/fallback_prototypes.x3dv">http://castle-engine.sourceforge.net/fallback_prototypes.x3dv</a>. Such fallback URL will allow other VRML browsers to partially handle our extensions. For example, see <tt>EXTERNPROTO</tt> example for <a href="#section_ext_text3d">Text3D</a> &mdash; browsers that don't handle Text3D node directly should use our fallback URL and render Text3D like normal 2D text node.</p>
-
-    <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <tt>isA</tt> and <tt>fields</tt>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
   </li>
 
   <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
 
-  <li><p>Some extensions are <a href="#section_ext_avalon">designed for compatibility with Avalon (instant-reality, InstantPlayer)</a>.</p></li>
+  <li><p>Some extensions are <a href="#section_ext_avalon">designed for compatibility with InstantPlayer</a>.</p></li>
 </ul>
 
 <!--
@@ -376,79 +377,8 @@ These names are not invented by us, they are the names used for <a href="http://
 
 <?php echo $toc->html_section(); ?>
 
-    <p><i>Since version 5.1.0 of Castle Game Engine (corresponding
-    to version 3.15.0 of view3dscene), this node is deprecated,
-    and it is rendered only as a flat <tt>Text</tt> node.
-    <!--
-    Our new text rendering method (using texture) offered new features
-    and optimizations, but unfortunately it's impossible to render
-    true 3D text using it.
-    -->
-    If you need 3D text, use a 3D modelling software, like
-    <a href="http://www.blender.org/">Blender</a>, to create 3D mesh
-    for text.</i></p>
-
-    <p>We add new node:
-
-    <?php
-      echo node_begin('Text3D : X3DGeometryNode');
-      echo
-      node_field('MFString', '[in,out]', 'string', '[]') .
-      node_field('SFNode', '[in,out]', 'fontStyle', 'NULL') .
-      node_field('MFFloat', '[in,out]', 'length', '[]') .
-      node_field('SFFloat', '[in,out]', 'maxExtent', '0') .
-      node_field('SFFloat', '[in,out]', 'depth', '0.1', 'must be &gt;= 0') .
-      node_field('SFBool', '[in,out]', 'solid', 'TRUE') .
-      node_end();
-    ?>
-
-    <p>This renders the text, pretty much like <tt>Text</tt> node from
-    VRML 97 (see VRML 97 specification about <tt>string</tt>, <tt>fontStyle</tt>,
-    <tt>length</tt>, <tt>maxExtent</tt> fields). But the text is 3D:
-    it's "pushed" by the amount <tt>depth</tt> into negative Z. The normal
-    text is on Z = 0, the 3D text had front cap on Z = 0, back cap on Z = -Depth,
-    and of course the extrusion (sides).</p>
-
-    <p>Also, it's natural to apply backface culling to such text, so we have
-    a <tt>solid</tt> field. When true (default), then backface culling is done.
-    This may provide much speedup, unless camera is able to enter
-    "inside" the text geometry (in which case solid should be set to <tt>FALSE</tt>).</p>
-
-    <p>If <tt>depth</tt> is zero, then normal 2D text is rendered.
-    However, backface culling may still be applied (if <tt>solid</tt> is true)
-    &mdash; so this node also allows you to make 2D text that's supposed to be
-    visible from only front side.</p>
-
-    <p>See our <?php echo a_href_page('VRML/X3D demo models',
-    'demo_models'); ?>, file <tt>text/text_depth.wrl</tt> for example use of this.</p>
-
-    <p>Compatibility:
-    <ul>
-      <li>You should specify external prototype before using this node:
-
-        <pre>
-EXTERNPROTO Text3D [
-  exposedField MFString string
-  exposedField SFNode fontStyle
-  exposedField MFFloat length
-  exposedField SFFloat maxExtent
-  exposedField SFFloat depth
-  exposedField SFBool solid
-] [ "urn:castle-engine.sourceforge.net:node:Text3D",
-    "http://castle-engine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
-</pre>
-
-        <p>This way other VRML browsers should be able to
-        render Text3D node like normal 2D Text.</p></li>
-
-      <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
-        node from Parallel Graphics</a>. At the beginning I implemented this
-        extension differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
-        for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
-        these Parallel Graphics <tt>Text3D</tt> definition, so I decided
-        to make my version compatible.</li>
-    </ul>
-
+  <p><?php echo a_href_page('<tt>Text3D</tt> docs are at the
+  "Text component - extensions" page', 'x3d_implementation_text_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1135,12 +1065,12 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p>We handle some Avalon / instant-reality extensions.
+    <p>We handle some InstantPlayer extensions.
     See <a href="http://instant-reality.com/">instant-reality</a>
     and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
-    specifications of Avalon extensions</a>.
+    specifications of InstantPlayer extensions</a>.
 
-    <p>Please note that I implemented this all looking at Avalon
+    <p>Please note that I implemented this all looking at InstantPlayer
     specifications, which are quite terse. Please report
     any incompatibilities.
 
@@ -1155,11 +1085,11 @@ end;
     <p>We add new field to <tt>Appearance</tt> node: <tt>blendMode</tt> (SFNode,
     NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
     node to specify blending mode done for partially-transparent objects.
-    BlendMode node is not X3D standard, but it's specified by Avalon:
+    BlendMode node is not X3D standard, but it's specified by InstantPlayer:
     <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
     BlendNode specification</a>.
 
-    <p>From Avalon spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
+    <p>From InstantPlayer spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
     <tt>destFactor</tt>, <tt>color</tt>, <tt>colorTransparency</tt>.
     Note that some values require newer
     OpenGL versions, we will eventually fallback on browser-specific blending
@@ -1216,7 +1146,7 @@ end;
     <p>Logger, extremely useful debugger when playing with
     VRML / X3D routes and events. This is based on,
     and should be quite compatible,
-    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">Avalon <tt>Logger</tt> node</a>.
+    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">InstantPlayer <tt>Logger</tt> node</a>.
     (Except our interpretation of <tt>logFile</tt>, which is probably
     quite different, see below.)</p>
 
@@ -1238,7 +1168,7 @@ end;
 
     <p>The idea is simple: whatever is sent to <tt>write</tt>
     input event is logged on the console. <tt>write</tt> event has special type,
-    called <tt>XFAny</tt> (also following Avalon) that allows to receive <i>any</i>
+    called <tt>XFAny</tt> (also following InstantPlayer) that allows to receive <i>any</i>
     VRML field type.</p>
 
     <p>Other properties allow to control logging better.
@@ -1264,7 +1194,7 @@ end;
     is predictable, and should never overwrite your data.
 
     <p>These security measures were added by my implementation &mdash;
-    Avalon spec simply says that <tt>logFile</tt> is the name of the file,
+    InstantPlayer spec simply says that <tt>logFile</tt> is the name of the file,
     I don't know how they handled security problems with logFile.
 
 <?php echo $toc->html_section(); ?>
@@ -1279,8 +1209,8 @@ end;
     shaders and such.
 
     <p><i>Compatibility with
-    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">Avalon Teapot</a></i>:
-    we support <tt>size</tt> and <tt>solid</tt> fields from Avalon.
+    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">InstantPlayer Teapot</a></i>:
+    we support <tt>size</tt> and <tt>solid</tt> fields from InstantPlayer.
     The geometry orientation and dimensions is the same (although our actual mesh
     tries to be a little better :) ).
     Fields <tt>texCoord</tt> and <tt>manifold</tt> are our own (Kambi engine)
@@ -1333,7 +1263,7 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">Avalon Plane node</a>.
+    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">InstantPlayer Plane node</a>.
     You should instead use <tt>Rectangle2D</tt> node from X3D 3.2 when possible,
     this is implemented only for compatibility.</p>
 
