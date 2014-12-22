@@ -46,7 +46,7 @@ received the negation of the new value stored.</p>
 <p>The input events <tt>"toggle"</tt>, <tt>"set"</tt> and <tt>"reset"</tt>
 provide altenative ways to change the stored boolean value.
 They accept any VRML/X3D type/value as input
-(this is called <tt>XFAny</tt> by Avalon), and the value send
+(this is called <tt>XFAny</tt> by InstantPlayer), and the value send
 is actually completely ignored.
 <tt>"toggle"</tt> always toggles (negates) the stored value,
 <tt>"set"</tt> changes the stored value to <tt>TRUE</tt>,
