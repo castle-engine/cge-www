@@ -41,6 +41,9 @@ Each one has it's benefits and drawbacks:
   <li><p>With alpha testing, the text casts correct shadows using shadow maps.</p></li>
 </ol>
 
+<p>This is available for all <tt>FontStyle</tt> node versions
+(VRML 1.0 and VRML 2.0 / X3D).
+
 <?php echo $toc->html_section(); ?>
 
 <p><i>Since version 5.1.0 of Castle Game Engine (corresponding
