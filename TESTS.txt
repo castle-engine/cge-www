@@ -77,6 +77,12 @@ svn diff # check, fix or commit differences
 # (You may also uncomment longer mk_screnshot tests in run_test_once.sh
 # and rerun run_tests.sh)
 
+# Use $define OpenGLES in base/castleconf.inc, check OpenGLES desktop rendering
+# works on some sample models from view3dscene.
+
+# Fake some BuggyXxx vars to be true, in particular BuggyVbo being true,
+# and check rendering works.
+
 # ----------------------------------------------------------------------------
 # Test Lazarus compilation:
 # - Recompile castle_game_engine packages
