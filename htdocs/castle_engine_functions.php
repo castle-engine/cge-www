@@ -145,6 +145,7 @@ $castle_sitemap = array(
           'tutorial_load_3d' => array('title' => 'Simple loading of 3D models'),
           'tutorial_game_level' => array('title' => 'Loading game level'),
           'tutorial_player' => array('title' => 'Player'),
+          'tutorial_mobile' => array('title' => 'Developing mobile (and cross-platform) games'),
           'tutorial_resources' => array('title' => 'Creatures and items',
             'sub' => array(
               'tutorial_resources_using_existing' => array('title' => 'Using existing creatures/items classes'),
