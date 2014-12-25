@@ -27,7 +27,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <?php echo x3d_node_link('FontStyle'); ?>
 
     <p>Most important properties
-    (size, spacing, justify, family, style) are handled fully.
+    (size, spacing, justify (including 2nd justify for vertical),
+    family, style) are handled fully.
 
     <p><i>TODO</i>: But some properties are ignored for now:
     <ul>
@@ -52,16 +53,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     a lot of triangles!).<br/>
     <i>TODO</i>: unfortunately, for now these triangles also participate
     in collision detection, while spec says that text shouldn't collide.
-
-    <p><i>TODO</i>: Only the horizontal justification is implemented now.
-    The 2nd value of <tt>justify</tt> field is ignored for now.
 </ul>
-
-<p>TODO: <tt>Text</tt> and <tt>Text3D</tt> are rendered
-without vertex arrays and vertex buffers (they may be slower than normal
-nodes), and they don't support multi-texturing yet.
-This also means that bump mapping doesn't work on them,
-and that they cannot be used as shadow maps receivers.</p>
 
 <?php
   x3d_status_footer();
