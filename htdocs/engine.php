@@ -398,16 +398,7 @@ you have appropriate libraries installed on your system.
 <a href="http://www.freepascal.org/">freepascal.org</a>)
 release of FPC (currently 2.6.4).</b>
 Usually, we also support a couple of older FPC releases.
-Currently (for engine 4.2.0) <b>FPC versions &gt;= 2.6.0 are supported</b>.
-
-<!--
-<p><i>Note only for FPC 2.6.0:</i> if you use <tt>compile.sh</tt> scripts,
-you need to fix them: use <tt>${CASTLE_FPC_OPTIONS:-}</tt>
-instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes,
-to avoid <a href="http://bugs.freepascal.org/view.php?id=21000">FPC #21000 bug</a>).
-This isn't a problem for earlier FPC versions, or if you compile programs
-with Lazarus.
--->
+Currently (for engine 5.1.0) <b>FPC versions &gt;= 2.6.2 are supported</b>.
 
 <p>You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
@@ -416,7 +407,7 @@ with a visual classes library (LCL).
 Our engine components can be used together with Lazarus forms
 (although we also have an alternative window classes, independent from
 Lazarus LCL).
-<b>Any Lazarus version based on FPC &gt;= 2.6.0 is supported now.</b></p>
+<b>Any Lazarus version based on FPC &gt;= 2.6.2 is supported now.</b></p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
