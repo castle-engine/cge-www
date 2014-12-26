@@ -35,22 +35,14 @@ version_call ()
   shift 1
 
   PROGRAM_NAME=`stringoper ExtractFileName $PROGRAM_BINARY`
-
   PROGRAM_VERSION=`$PROGRAM_BINARY --version`
-
   version_explicit "$PROGRAM_NAME" "$PROGRAM_VERSION"
 }
 
-# Extract version information from fpmake.pp
-version_fpmake ()
+# Extract version calling castle-engine for castle_game_engine
+version_engine ()
 {
-  PROGRAM_NAME="$1"
-  FPMAKE="$2"
-  shift 2
-
-  PROGRAM_VERSION=`grep 'P.Version' "$FPMAKE" | sed -e "s|    P.Version := '\\(.\\+\\)';|\\1|"`
-
-  version_explicit "$PROGRAM_NAME" "$PROGRAM_VERSION"
+  version_explicit 'castle_game_engine' `castle-engine --version`
 }
 
 
@@ -75,7 +67,7 @@ version_call mountains_of_fire
 # to have the same version as glinformation.
 version_explicit glinformation_glut `glinformation --version`
 
-version_fpmake castle_game_engine ../../castle_game_engine/fpmake.pp
+version_engine
 
 version_explicit demo_models 3.4.0
 

@@ -9,11 +9,20 @@ Procedure to release a program:
 
 - Make sure Version constant in the program's source code is incremented.
 
-  For the engine, remember to also update version numbers in
-  castle_game_engine/packages/*.lpk (to match with castle_game_engine/fpmake.pp
-  version).
-  
-  Make sure also CastleEngineManifest.xml <version value="..."/> is updated.
+  Make sure also CastleEngineManifest.xml <version value="..."/> is updated
+  for a program.
+
+  For the engine, update version numbers in these files:
+  - all castle_game_engine/packages/*.lpk
+  - castle_game_engine/fpmake.pp
+  - castle_game_engine/tools/CastleEngineManifest.xml
+    castle_game_engine/tools/castle-engine.lpr
+    (and recompile castle-engine tool:
+         cd ~/sources/castle-engine/trunk/castle_game_engine/tools
+         ./castle-engine_compile.sh
+         mv -f castle-engine ~/bin/
+         castle-engine -v # check
+    ).
 
 - Call ../scripts/generate_versions.sh script.
   - Before, you should recompile program for the current (source) OS.
