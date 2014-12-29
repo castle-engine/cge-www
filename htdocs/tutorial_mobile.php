@@ -51,7 +51,9 @@ platform-independent main game unit (traditionally called just <tt>game.pas</tt>
 in our example projects) and maintain a very small platform-specific
 game program/library files.
 
-<p>Examples of this approach can be found
+<p>See the skeleton project in engine examples <tt>castle_game_engine/examples/portable_game_skeleton/</tt>
+for a skeleton code using this approach. Feel free to use it as a start of your
+projects. Other examples of this approach can be found
 in most new projects/examples of our engine. For example see
 <tt>castle_game_engine/examples/2d_spine_game/</tt> code.
 Or <a href="http://castle-engine.sourceforge.net/darkest_before_dawn.php">Darkest Before the Dawn</a>
@@ -92,34 +94,38 @@ unit Game;
 
 interface
 
-uses CastleWindowTouch, ...;
+uses CastleWindowTouch;
 
 var
   Window: TCastleWindowTouch;
 
 implementation
 
-uses SysUtils, CastleWindow, CastleScene, CastleControls, ...;
+uses SysUtils, CastleWindow, CastleScene, CastleControls,
+  CastleFilesUtils, CastleSceneCore, CastleKeysMouse;
 
 var
-  SampleImage: TCastleImageControl;
-  SampleScene: TCastleScene;
+  ExampleImage: TCastleImageControl;
+  ExampleScene: TCastleScene;
 
 { routines ------------------------------------------------------------------- }
 
 { One-time initialization of resources. }
 procedure ApplicationInitialize;
 begin
-  Image := TCastleImageControl.Create(Window);
-  Image.URL := ApplicationData(\'sample_texture.png\');
-  Window.Controls.InsertFront(Image);
+  { This is just an example of creating a simple 2D control
+    (TCastleImageControl) and 3D object (TCastleScene). }
 
-  Scene := TCastleScene.Create(Application);
-  Scene.Load(\'my_scene.x3d\');
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
-  Window.SceneManager.Items.Add(Scene);
-  Window.SceneManager.MainScene := Scene;
+  ExampleImage := TCastleImageControl.Create(Window);
+  ExampleImage.URL := ApplicationData(\'example_texture.png\');
+  Window.Controls.InsertFront(ExampleImage);
+
+  ExampleScene := TCastleScene.Create(Application);
+  ExampleScene.Load(ApplicationData(\'example_scene.x3dv\'));
+  ExampleScene.Spatial := [ssRendering, ssDynamicCollisions];
+  ExampleScene.ProcessEvents := true;
+  Window.SceneManager.Items.Add(ExampleScene);
+  Window.SceneManager.MainScene := ExampleScene;
 end;
 
 procedure WindowResize(Container: TUIContainer);
@@ -177,7 +183,8 @@ end.'); ?>
 
   <li>Merely use the Game unit from .lpr files that are specific to platform.
 
-    <p>Android .lpr file should define a library, and may be as simple as this:
+    <p>Android .lpr file (like <tt>my_fantastic_game_android.lpr</tt>)
+    should define a library, and may be as simple as this:
 
 <?php echo pascal_highlight(
 '{$mode objfpc}{$H+}
@@ -186,13 +193,14 @@ uses CastleAndroidNativeAppGlue, Game;
 exports ANativeActivity_onCreate;
 end.'); ?>
 
-    <p>Desktop .lpr file should define a program that opens the window
+    <p>Desktop .lpr file (like <tt>my_fantastic_game_standalone.lpr</tt>)
+    should define a program that opens the window
     and runs the application. It may be as simple as this:
 
 <?php echo pascal_highlight(
 '{$mode objfpc}{$H+}
 program my_fantastic_game_standalone;
-uses CastleWindow, CastleConfig, Game;
+uses CastleWindow, Game;
 begin
   Window.OpenAndRun;
 end.'); ?>
