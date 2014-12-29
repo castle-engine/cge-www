@@ -71,11 +71,12 @@ source code (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/dark
    for example Android activity is not started at this point yet).
 
    <p>Actual game initialization (loading images, resources, setting up player
-   and such) should happen in the callback implementing <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>,
-   and the game initialization that requires OpenGL context
-   (like <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>)
-   should happen in <?php api_link('Window.OnOpen', 'CastleWindow.TCastleWindowCustom.html#OnOpen'); ?>
-   callback.
+   and such) should happen in the callback implementing <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>.
+   At that point you know that your program is ready to load resources
+   (e.g. Android activity really started). Also, you know that the first
+   OpenGL context is just created, so you can freely use things that require
+   OpenGL context, and show loading progress,
+   like <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
 
    <p>The unit should expose the <tt>Window</tt> instance,
    that will be used by platform-specific program/library code.
@@ -106,7 +107,7 @@ var
 
 { routines ------------------------------------------------------------------- }
 
-{ One-time initialization of resources, independent of OpenGL context. }
+{ One-time initialization of resources. }
 procedure ApplicationInitialize;
 begin
   Image := TCastleImageControl.Create(Window);
@@ -119,27 +120,6 @@ begin
   Scene.ProcessEvents := true;
   Window.SceneManager.Items.Add(Scene);
   Window.SceneManager.MainScene := Scene;
-end;
-
-procedure WindowOpen(Container: TUIContainer);
-begin
-  { OpenGL context is created, initialize things that require OpenGL
-    context. Often you do not need to use this callback (engine components will
-    automatically create/release OpenGL resource when necessary),
-    but sometimes it may be handy (e.g. SceneManager.LoadLevel must be
-    done when OpenGL context is active, it will also show a progress bar
-    on OpenGL context).
-
-    You could also always derive new classes from TUIControl or it\'s descendants,
-    and override their GLContextOpen / GLContextClose methods to react to
-    context being open/closed.
-
-    WindowOpen is always *after* ApplicationInitialize.
-    In normal circumstances, for a standalone game, the WindowOpen will
-    happen only once. But for other targets, it may be necessary to close/reopen
-    the OpenGL context many times, e.g. on mobile platforms it\'s normal
-    that application may "loose" the OpenGL context and it may need
-    to recreate OpenGL resources when it wakes up. }
 end;
 
 procedure WindowResize(Container: TUIContainer);
@@ -214,7 +194,6 @@ end.'); ?>
 program my_fantastic_game_standalone;
 uses CastleWindow, CastleConfig, Game;
 begin
-  Application.Initialize;
   Window.OpenAndRun;
 end.'); ?>
 
