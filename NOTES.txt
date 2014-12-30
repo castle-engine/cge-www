@@ -37,6 +37,18 @@ Procedure to update WWW content:
   - Upload to
     sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
     Under diname: program_name/
+    scp can be used, like this:
+
+    for F in /home/michalis/sources/castle-engine/trunk/www/pack/file_releases/view3dscene-3.15.0-*; do
+      scp "$F" kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/view3dscene/
+    done
+    scp ~/castle-engine-release/view3dscene-3.15.0-macosx.dmg kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/view3dscene/
+    for F in /home/michalis/sources/castle-engine/trunk/www/pack/file_releases/castle_game_engine-5.1.1-src.*; do
+      scp "$F" kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/castle_game_engine/
+    done
+
+    (following https://sourceforge.net/p/forge/documentation/SCP/)
+
   - Only for view3dscene: On https://sourceforge.net/projects/castle-engine/files/
     mark new view3dscene released files as default downloads for given OS.
     This is only for default download on given OS, we suggest here
@@ -138,5 +150,5 @@ Procedure to update WWW content:
     they aggregate our news feed
 
   https://plus.google.com/communities/114860965042324270757
-  
+
   http://freshcode.club/
