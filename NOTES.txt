@@ -120,6 +120,7 @@ Procedure to update WWW content:
   - if new VRML extensions: remember to post to Joerg about them
   - http://www.lazarus.freepascal.org/
     Examples on:
+    http://forum.lazarus.freepascal.org/index.php/topic,15653.0.html
     http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
   - Post new topic on our forum, to encourage some discussion.
     Possibly resign from it? Posting on our g+ page is easier,
