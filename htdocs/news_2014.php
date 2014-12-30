@@ -1,16 +1,89 @@
 <?php
 
-// Resize3x3
-
 array_push($news,
-    array('title' => 'Castle Game Engine on Google+, Facebook, Twitter',
+    array('title' => 'Castle Game Engine 5.1.1 release (Spine, build tool, more), view3dscene 3.15.0 release',
           'year' => 2014,
-          'month' => 9,
-          'day' => 1,
+          'month' => 12,
+          'day' => 30,
           'short_description' => '',
-          'guid' => '2014-09-01',
+          'guid' => '2014-12-30',
           'description' =>
-'<div class="bottom-widget" style="display: inline-block; vertical-align: top">
+castle_thumbs(array(
+  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => 'Mountains Of Fire - game screen 5'),
+  array('filename' => 'goblins-ffd_0.png', 'titlealt' => 'Spine animation with female skin'),
+  array('filename' => 'android1.png', 'titlealt' => ''),
+  array('filename' => 'android_emulator.png', 'titlealt' => ''),
+  array('filename' => 'android_little_things.png', 'titlealt' => ''),
+  array('filename' => 'android_tasty_reflections.png', 'titlealt' => ''),
+  array('filename' => 'android_text.png', 'titlealt' => ''),
+  array('filename' => 'hotel_nuclear_screen_5.png', 'titlealt' => ''),
+  array('filename' => 'named_animation_knight.png', 'titlealt' => ''),
+  array('filename' => 'play_named_animation_fixed.png', 'titlealt' => ''),
+  array('filename' => 'primitives_3.png', 'titlealt' => ''),
+  array('filename' => 'spine_spinosaurus_0.png', 'titlealt' => ''),
+  array('filename' => 'sunny_street_final_0.png', 'titlealt' => ''),
+  array('filename' => 'venice_named_animation.png', 'titlealt' => ''),
+)) .
+'<p>We proudly present, after 7 months of work, the next official release of our engine:)
+
+<div class="download">
+<a href="' . CURRENT_URL . 'engine.php">Go to Castle Game Engine 5.1.1 sources and documentation!</a>
+</div>
+
+<p>As usual, we also release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.15.0, our 3D/2D model browser and converter.
+
+<p>New features of the engine and view3dscene:</p>
+
+<ol>
+  <li>Extensive support for <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> 2D models and animations. <a href="http://esotericsoftware.com/">Spine</a> is a great program to design 2D skeletal (but not only) animations for games. It can be used to design animated characters, backgrounds, GUIs... Our engine and view3dscene can now effortlessly load and play Spine JSON format.
+  <li>New <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool of Castle Game Engine</a>, able to easily compile and package programs developed using our engine. Especially useful for Android, where it hides a lot of complications related to creating Android apk from your code.
+  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_text.php">X3D Text node</a> gets a new implementation, very fast, portable to OpenGLES (Android/iOS), and easy to use (shares tools and classes with 2D text rendering).
+  <li>Text can now handle international text (in UTF-8). <tt>texturefont2pascal</tt> can read font with extra international characters.
+  <li>Many improvements for 2D games. Besides Spine support, there\'s also a comfortable <a href="http://castle-engine.sourceforge.net/apidoc/html/Castle2DSceneManager.T2DSceneManager.html">T2DSceneManager</a> and <a href="http://castle-engine.sourceforge.net/apidoc/html/Castle2DSceneManager.T2DScene.html">T2DScene</a>. See <tt>castle_game_engine/examples/2d_spine_game/</tt> for example of use.
+  <li>Many improvements for Android. See <a href="http://castle-engine.sourceforge.net/tutorial_mobile.php">new tutorial page about developing mobile games</a>.<!-- This includes <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindow.TCastleApplication.html#OnInitialize">Application.OnInitialize</a> improvements (it now happens when GL context is ready, so you can really initialize your whole game there, with progress bar), fixes to <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleWindowTouch.TCastleWindowTouch.html#AutomaticTouchInterface">AutomaticTouchInterface</a> (it was not cooperating with our progress bar tricks previously). --> Also Android emulator is working now with our programs.
+  <li>New X3D extensions (used by our Spine loader, but may also be useful for other purposes too):
+    <ul>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_navigation_extensions.php#section_ext_blending_sort">NavigationInfo.blendingSort</a>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation_extensions.php#section_cubic_bezier_interpolator">CubicBezierXxx interpolators</a>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_texturing_extensions.php#section_texture_properties_gui_texture">TextureProperties.guiTexture </a>
+      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_eventutilities_extensions.php#section_forceContinousValue_Changed">X3DSequencerNode.forceContinousValue_Changed</a>
+    </ul>
+  <li>High-quality image scaling, using interpolation modes like Mitchell, Blackman, Lanczos, Gaussian. See <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleImages.TCastleImage.html#MakeResized">TCastleImage.MakeResized</a> and <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleImages.html#TResizeNiceInterpolation">TResizeNiceInterpolation</a>. The implementation uses excellent fcl-image library underneath.
+  <li>Named animations: Our engine detects named animations by looking at X3D TimeSensor node names. Name starting with "Animation_xxx" indicates an animation, with name "xxx". Some converters (right now, our Spine to X3D conversion) follow this convention, so our engine immediately "knows" the Spine animation names and can play them. The benefits:
+    <ul>
+      <li>view3dscene displays a user-friendly menu in <i>"Animation->Named Animations->..."</i> to run animation by name.</li>
+      <li>TCastleScene offers a simple API for programmers to browse and run animation by name, see <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleSceneCore.TCastleSceneCore.html#PlayAnimation">TCastleScene.PlayAnimation</a>.
+    </ul>
+</ol>
+
+<p>Also be sure to install on your Android device a demo of Castle Game Engine + Spine. It\'s completely free of course, and the source code is one of the examples in Castle Game Engine sources.
+
+<div>
+<a href="https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.castlespine">
+  <img alt="Android app on Google Play"
+       src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
+</a>
+</div>
+
+<p><i>"Dragon Spine"</i> is also <a href="https://sourceforge.net/projects/castle-engine/files/castle_spine/">available for Windows or Linux</a>. You can also <a href="https://www.youtube.com/watch?v=AuI4zgmT-YQ">watch the video!</a>.
+
+<div class="download">
+<a href="' . CURRENT_URL . 'view3dscene.php">Download view3dscene</a>
+</div>
+
+<p>Check out also some games using <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a>:
+
+<ul>
+  <li><a href="https://www.facebook.com/Venicethegame">Venice &mdash; new 2D adventure game with superb graphics and storyline, in the making!</a>
+  <li><a href="http://castle-engine.sourceforge.net/mountains_of_fire.php">Mountains Of Fire &mdash; split-screen cooperative survival game</a>
+  <li><a href="https://github.com/michaliskambi/frogger3d">Frogger 3D (initial version done during 1-hour gamejam by Michalis!:)</a>
+</ul>
+
+<hr/>
+
+<p><b>Comment and watch Castle Game Engine on Google+, Facebook, Twitter:</b></p>
+
+<div class="bottom-widget" style="display: inline-block; vertical-align: top">
 ' . googleplus_badge(true) . '
 </div>
 
@@ -49,7 +122,6 @@ castle_thumbs(array(
   array('filename' => 'little_things_screen_5.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
   array('filename' => 'little_things_screen_7.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
   array('filename' => 'little_things_screen_8.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-
 
   array('filename' => 'new_walk_shortcuts.png', 'titlealt' => 'Tooltip with summary of new view3dscene AWSD controls'),
 
