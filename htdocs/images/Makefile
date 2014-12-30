@@ -72,7 +72,7 @@ main_link_size/%: original_size/%
 
 # engine icon processing -----------------------------------------------------
 
-ENGINE_ICON := ../../logo/8_tentacles_moon_polish.svg
+ENGINE_ICON := ../../../castle_game_engine/doc/logo/castle_game_engine_icon.svg
 
 # Generate PNG versions from SVG.
 # Note that for WWW engine icon, we generate non-transparent PNG file.
