@@ -69,7 +69,7 @@ version_explicit glinformation_glut `glinformation --version`
 
 version_engine
 
-version_explicit demo_models 3.4.0
+version_explicit demo_models 3.5.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 
