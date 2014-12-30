@@ -32,7 +32,7 @@ castle_thumbs(array(
 
 <p>As usual, we also release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.15.0, our 3D/2D model browser and converter.
 
-<p>New features of the engine and view3dscene:</p>
+<p><b>New features of the engine and view3dscene:</b></p>
 
 <ol>
   <li>Extensive support for <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> 2D models and animations. <a href="http://esotericsoftware.com/">Spine</a> is a great program to design 2D skeletal (but not only) animations for games. It can be used to design animated characters, backgrounds, GUIs... Our engine and view3dscene can now effortlessly load and play Spine JSON format.
@@ -57,7 +57,7 @@ castle_thumbs(array(
     </ul>
 </ol>
 
-<p>Also be sure to install on your Android device a demo of Castle Game Engine + Spine. It\'s completely free of course, and the source code is one of the examples in Castle Game Engine sources.
+<p><b>Also be sure to install on your Android device a demo of Castle Game Engine + Spine</b>. It\'s completely free of course, and the source code is one of the examples in Castle Game Engine sources.
 
 <div>
 <a href="https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.castlespine">
@@ -68,11 +68,11 @@ castle_thumbs(array(
 
 <p><i>"Dragon Spine"</i> is also <a href="https://sourceforge.net/projects/castle-engine/files/castle_spine/">available for Windows or Linux</a>. You can also <a href="https://www.youtube.com/watch?v=AuI4zgmT-YQ">watch the video!</a>.
 
-<div class="download">
-<a href="' . CURRENT_URL . 'view3dscene.php">Download view3dscene</a>
-</div>
+<!-- <div class="download"> -->
+<!-- <a href="' . CURRENT_URL . 'view3dscene.php">Download view3dscene</a> -->
+<!-- </div> -->
 
-<p>Check out also some games using <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a>:
+<p><b>Check out also some games using <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a></b>:
 
 <ul>
   <li><a href="https://www.facebook.com/Venicethegame">Venice &mdash; new 2D adventure game with superb graphics and storyline, in the making!</a>
