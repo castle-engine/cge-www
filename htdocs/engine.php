@@ -47,13 +47,13 @@
 3D game engine. In short:
 
 <ul>
-  <li><p>Our main 3D scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a 3D scene format that can also express <b>interactive world features, scripting</b> etc.). Even if you don't know VRML/X3D, the whole engine is designed as a <b>general-purpose 3D engine</b>, and other 3D model formats are supported as well (<b>Collada, Wavefront, MD3</b> and others).</p></li>
+  <li><p>We support a wide range of formats for 3D and 2D data. Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a scene format that can also express <b>interactive world features, scripting</b> etc.). But VRML/X3D is just our "scene graph" format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, Wavefront OBJ, MD3, <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a></b> and many others.</p></li>
 
   <li><p>We have a lot of 3D graphic features. <b>Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects</b>, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
 
   <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games. You can extend it in many ways. You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from T3D and adding to TCastleSceneManager.Items directly.
 
-  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls).
+  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> which is very cool for creating 2D animations.
 
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (<b>Linux, Windows, Mac OS X, Android, iOS</b>, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
 </ul>
@@ -186,7 +186,7 @@ you have appropriate libraries installed on your system.
     Including support for advanced VRML/X3D features like prototypes and
     events (user can interact with the 3D world).</li>
 
-  <li><b>Collada, 3DS, MD3, Wavefront OBJ</b> file formats are also supported.
+  <li><b>Collada, 3DS, MD3, Wavefront OBJ, Spine</b> file formats are also supported.
     They are internally converted into the VRML/X3D nodes graph,
     which means that they get all the optimizations for rendering,
     and 3D content from all file formats can be mixed (for 3D editing tools
@@ -295,7 +295,7 @@ you have appropriate libraries installed on your system.
     which allows us to provide default fonts (available as-is),
     and to use fonts even when <i>FreeType</i> library is not available.
     You can also use colorful fonts from a texture.
-    We also support outline (3D) fonts.</li>
+    Font rendering can allow international characters in UTF-8.</li>
 
   <li>Comfortable <b>3D sound engine</b>,
     using <?php echo a_href_page('OpenAL', 'openal'); ?>,

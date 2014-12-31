@@ -100,10 +100,15 @@ Procedure to update WWW content:
     (see fpc_contrib_units_data.txt,
     http://www.freepascal.org/contrib/contribs.html).
 
-  - new release of some programs/engine may be announced on freshmeat:
+  - new release of some programs/engine may be announced on freshcode:
+
+    http://freshcode.club/projects/view3dscene
+    http://freshcode.club/projects/castle-engine
+
+    (Old: our projects are also on freshmeat, but it's dead now:
     http://freecode.com/projects/view3dscene/
     http://freecode.com/projects/castlegame/
-    http://freecode.com/projects/castle-game-engine
+    http://freecode.com/projects/castle-game-engine)
 
   - http://www.pascalgamedevelopment.com/
     go to the 'Home' section of the site and create 'News' article
@@ -127,6 +132,11 @@ Procedure to update WWW content:
     and there are also instant comments.
   - Post on facebook, google+, twitter.
 
+  - Post to community on g+:
+    https://plus.google.com/communities/114860965042324270757
+    As Castle Game Engine:
+    https://plus.google.com/b/101185352355602218697/communities/114860965042324270757
+
   - really large new features may cause updates of project description.
     Change project_description.txt text, and see there for a list of places
     where it's used.
@@ -149,7 +159,3 @@ Procedure to update WWW content:
 
   - watch http://planet.objpas.org/ and http://planetdev.freegamedev.net/ ,
     they aggregate our news feed
-
-  https://plus.google.com/communities/114860965042324270757
-
-  http://freshcode.club/
