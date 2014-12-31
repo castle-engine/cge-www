@@ -347,6 +347,10 @@ you have appropriate libraries installed on your system.
     -->
   </li>
 
+  <li><a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">Build tool</a>
+    is available to easily compile and package our programs for various platforms,
+    including creating Android apk packages.</li>
+
   <li>There are <b>many example programs</b>, look in sources
     <tt>castle_game_engine/examples/</tt> subdirectory.</li>
 
