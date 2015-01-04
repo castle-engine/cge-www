@@ -5,11 +5,12 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Introduction', 'intro'),
-      new TocItem('Download', 'download_src'),
+      new TocItem('Download and usage', 'download_src'),
       new TocItem('Documentation', 'docs'),
+      new TocItem('Other useful downloads', 'other_downloads'),
       new TocItem('Features', 'features'),
       new TocItem('FPC (Free Pascal Compiler) version required', 'fpc_ver'),
+      new TocItem('Bleeding edge (SVN) sources', 'svn'),
       new TocItem('License', 'license'),
     )
   );
@@ -38,32 +39,16 @@
 ));
 ?>
 
+<p><i>Castle Game Engine</i> is an open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+3D/2D game engine for ObjectPascal. We support of lot of 3D and 2D formats for your games
+(<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
+<a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>...),
+we're portable to a lot of platforms (Linux, Windows, Mac OS X, Android, iOS...),
+we provide optimized rendering with a lot of graphic effects,
+and we have a great API for managing your game world (including high-level classes like ready-to-use creature AI).
+
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>This is a free/open-source (<a href="#section_license">LGPL / GPL</a>)
-3D game engine. In short:
-
-<ul>
-  <li><p>We support a wide range of formats for 3D and 2D data. Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a scene format that can also express <b>interactive world features, scripting</b> etc.). But VRML/X3D is just our "scene graph" format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, Wavefront OBJ, MD3, <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a></b> and many others.</p></li>
-
-  <li><p>We have a lot of 3D graphic features. <b>Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects</b>, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
-
-  <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games. You can extend it in many ways. You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from T3D and adding to TCastleSceneManager.Items directly.
-
-  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> which is very cool for creating 2D animations.
-
-  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (<b>Linux, Windows, Mac OS X, Android, iOS</b>, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
-</ul>
-
-<p>The <a href="#section_features">features section</a> below on this page
-contains more exhaustive list of engine features, with links to detailed
-information.</p>
-
-<p>Many <a href="https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw">demo movies
-are available on Castle Game Engine YouTube channel</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -76,18 +61,41 @@ are available on Castle Game Engine YouTube channel</a>.</p>
 <?php echo download_donate_footer(); ?>
 </div>
 
-<p>This archive contains the whole engine sources.
-There are many simple example programs included
-(see <tt>examples/</tt> subdirectory).
-Compile everything with simple "<tt>make</tt>" inside the
-<tt>castle_game_engine/</tt> directory.
-Compile examples <!-- (the ones that do not require Lazarus) --> by
-simple "<tt>make examples</tt>". Or you can compile and run from
-<a href="http://lazarus.freepascal.org/">Lazarus</a>.
+<p>This download contains all the engine sources,
+including the sources for many example programs and engine tools.
 
-<p>For more details about compiling the engine and examples
-see the "Introduction" page in our
-<a href="<?php echo reference_link(); ?>">reference</a>.
+<p><b>Shortest possible usage instructions:</b>
+
+<ul>
+  <li><p><b>For <a href="http://lazarus.freepascal.org/">Lazarus</a></b>:
+    install the package <tt>castle_game_engine/packages/castle_components.lpk</tt>.
+    It will also automatically install the package <tt>castle_base</tt>,
+    as a dependency.
+    Then, open and compile (but do not install) the package
+    <tt>castle_game_engine/packages/castle_window.lpk</tt>.
+
+    <p>Then just compile and run from Lazarus any example you want
+    (in <tt>examples</tt> subdirectory), just open the <tt>xxx.lpi</tt>
+    project file and compile/run as any other program.
+
+  <li><p><b>For command-line FPC</b>:
+    Compile the engine with simple "<tt>make</tt>" inside the
+    <tt>castle_game_engine/</tt> directory
+    (uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>).
+    Compile examples <!-- (the ones that do not require Lazarus) -->
+    by simple "<tt>make examples</tt>".
+    Or execute <tt>xxx_compile.sh</tt> scripts to compile particular
+    examples.
+
+    <p>To develop your own programs, you can either add
+    the engine unit output path to your <tt>fpc.cfg</tt> file,
+    or you can compile your own projects using our
+    <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+    <!--
+    If you know what you're doing, we also provide <tt>castle-fpc.cfg</tt> config
+    in the engine sources,
+    -->
+</ul>
 
 <!--
 The explanations that actually the engine
@@ -104,31 +112,15 @@ The main way for
 initializing OpenGL for games is by CastleWindow unit that doesn't depend on
 any Lazarus units. -->
 
-<p>An important strength of our engine is that you can express a lot
-of stuff inside your data, that is inside
-<?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?> models.
-So many features of our engine
-(<?php echo a_href_page('shaders','x3d_implementation_shaders'); ?>,
- <?php echo a_href_page('screen effects', 'x3d_extensions_screen_effects'); ?>,
- <?php echo a_href_page('mirrors', 'x3d_implementation_cubemaptexturing'); ?>
- and many many more) don't have any special ObjectPascal examples,
-because they are simply not needed. For simple uses, you just define what you
-need inside VRML/X3D file (of course, for advanced usage you can do a lot more
-with ObjectPascal code, and you can always build/modify VRML/X3D graph
-by ObjectPascal code).
-So <i>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></i>
- and try opening them with any engine example program (like <tt>scene_manager_basic.lpr</tt>,
-or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
-&mdash; you will find that everything just works,
-not requiring a single line of ObjectPascal code.</p>
-
 <p><b>Remember to install required libraries</b>:
 programs developed using our engine (engine examples and normal programs)
 may use a couple of libraries.
+<!--
 The full list of libraries is at the "Requirements" section at the documentation
 of each program, and the
 <a href="<?php echo reference_link(); ?>">reference</a>
 also lists the libraries in the introduction section.
+-->
 In short, you will most likely want to have <i>libpng, zlib, gtkglext,
 OpenAL, and vorbisfile</i>.</p>
 
@@ -155,30 +147,58 @@ In general, for all OSes, see section
 you have appropriate libraries installed on your system.
 -->
 
-<p>Instead of downloading the archive, you can also get the latest
-(bleeding-edge) engine sources from Subversion by:</p>
-
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
-
 <?php echo $toc->html_section(); ?>
 
 <ul>
   <li><?php echo a_href_page('Tutorial', 'tutorial_intro') ?></li>
   <li><?php echo a_href_page('Classes overview (cheatsheet)', 'tutorial_classes_overview') ?></li>
   <li><?php echo a_href_page('Guide to creating game data', 'creating_data_intro') ?></li>
-  <li><a href="<?php echo reference_link(); ?>">API reference (generated by pasdoc)</a>
-  <li>Mobile development:
-    <ul>
-      <li><a href="http://sourceforge.net/p/castle-engine/wiki/Android%20development/">Android</a>
-      <li><a href="http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">iOS (iPhone, iPad)</a>
-      <li><a href="http://sourceforge.net/p/castle-engine/wiki/OpengLES,%20Android%20and%20iOS%20TODOs/">Features supported on desktops but (currently) missing from OpenGLES renderer</a>
-    </ul>
-  <li><?php echo a_href_page("Engine Internals", 'engine_doc'); ?></li>
+  <li><a href="<?php echo reference_link(); ?>">API reference</a>
+  <li>Mobile development (Android, iOS): the <?php echo a_href_page('tutorial page about mobile development',
+    'tutorial_mobile') ?> contains all the information</li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Exhaustive list of our engine features:</p>
+<p><b>Our model viewer <?php echo a_href_page('view3dscene', 'view3dscene'); ?></b>
+ allows to test your models before loading them to your games.
+
+<p>An important strength of our engine is that you can express a lot
+of stuff inside your data, that is inside
+<?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?> models.
+So many features of our engine
+(<?php echo a_href_page('shaders','x3d_implementation_shaders'); ?>,
+ <?php echo a_href_page('screen effects', 'x3d_extensions_screen_effects'); ?>,
+ <?php echo a_href_page('mirrors', 'x3d_implementation_cubemaptexturing'); ?>
+ and many many more) don't have any special ObjectPascal examples,
+because they are simply not needed. For simple uses, you just define what you
+need inside VRML/X3D file (of course, for advanced usage you can do a lot more
+with ObjectPascal code, and you can always build/modify VRML/X3D graph
+by ObjectPascal code).
+So <b>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></b>
+ and try opening them with any engine example program (like <tt>scene_manager_basic.lpr</tt>,
+or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+&mdash; you will find that everything just works,
+not requiring a single line of ObjectPascal code.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<ul>
+  <li><p>We support a wide range of formats for 3D and 2D data. Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard (you'll find you can export to it from virtually any 3D modeler), and a lot of our strength comes from it (it's a scene format that can also express <b>interactive world features, scripting</b> etc.). But VRML/X3D is just our "scene graph" format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, Wavefront OBJ, MD3, <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a></b> and many others.</p></li>
+
+  <li><p>We have a lot of 3D graphic features. <b>Shaders, shadows, bump mapping, mirrors, custom viewports, screen-space effects</b>, and much more. Just look at the screenshots on this page&nbsp;:)</p></li>
+
+  <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games. You can extend it in many ways. You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from T3D and adding to TCastleSceneManager.Items directly.
+
+  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> which is very cool for creating 2D animations.
+
+  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler, and the engine is cross-platform as well (<b>Linux, Windows, Mac OS X, Android, iOS</b>, and more). We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
+</ul>
+
+<p>Many <a href="https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw">demo movies
+are available on Castle Game Engine YouTube channel</a>.</p>
+
+<p>Exhaustive list of engine features:</p>
 
 <ul>
   <li><b>Optimized OpenGL and OpenGLES2 rendering</b> of models in
@@ -432,6 +452,13 @@ When our engine/view3dscene will be officially included in distros,
 I would make the point 1. more influencial, and make everything possible
 to hang on to FPC releases available in distros.
 -->
+
+<?php echo $toc->html_section(); ?>
+
+<p>Instead of downloading the archive, you can also get the latest
+(bleeding-edge) engine sources from Subversion by:</p>
+
+<pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 
