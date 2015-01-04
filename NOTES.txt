@@ -151,6 +151,7 @@ Procedure to update WWW content:
     As well as submitting to web3d.org list of progs.
 
   - Update http://www.devmaster.net/engines/
+    update devmaster page about view3dscene
 
   - An incredibly large release may be announced on fpc-pascal and lazarus
     mailing lists, but let's not abuse it (I did it only for 4.0.0 release
