@@ -145,6 +145,8 @@ Procedure to update WWW content:
       http://wiki.freepascal.org/Castle_Game_Engine
       http://wiki.lazarus.freepascal.org/Components_and_Code_examples#Packages_for_FPC.2FLazarus_.28not_hosted_here.29
       http://wiki.lazarus.freepascal.org/Projects_using_Lazarus#Castle_Game_Engine
+      http://wiki.freepascal.org/Developing_with_Graphics
+      http://wiki.freepascal.org/Graphics_libraries
 
   - http://www.web3d.org/news/submit/
     ... but it's pretty much ignored, giving up on this.
