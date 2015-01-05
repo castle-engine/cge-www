@@ -92,47 +92,6 @@ $castle_sitemap = array(
        since it may be time-consuming (requires reading large $news table). */
   ),
 
-  'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
-
-  'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
-    'sidebar' => true,
-    'sub' => array(
-      'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
-      'castle-credits'     => array('title' => 'Credits'),
-    ),
-  ),
-
-  'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'All Programs',
-    'sub' => array(
-      'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
-      'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
-      'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
-      'malfunction' => array('title' => 'malfunction'),
-      'kambi_lines' => array('title' => 'kambi_lines'),
-      'glviewimage' => array('title' => 'glViewImage'),
-      'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
-      'rayhunter' => array('title' => 'rayhunter',
-        'sub' => array(
-          'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
-        ),
-      ),
-      'bezier_curves' => array('title' => 'bezier_curves'),
-      'glinformation' => array('title' => 'glinformation'),
-      'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
-
-      'common_options' => array('title' => 'Standard command-line options'),
-      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
-      'openal' => array('title' => 'OpenAL (3D sound)'),
-      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
-      'versioning' => array('title' => 'Versioning scheme of programs'),
-      'all_programs_sources' => array('title' => 'All Programs Sources'),
-    ),
-  ),
-
-  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
-
-  'donate' => array('title' => 'Donate'),
-
   'engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
     'sidebar' => true,
     'sub' => array(
@@ -263,6 +222,46 @@ $castle_sitemap = array(
     ),
   ),
 
+  'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
+
+  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
+
+  'donate' => array('title' => 'Donate'),
+
+  'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'Games and Tools',
+    'sub' => array(
+      'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
+      'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
+      'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
+        'sidebar' => true,
+        'sub' => array(
+          'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
+          'castle-credits'     => array('title' => 'Credits'),
+        ),
+      ),
+      'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
+      'malfunction' => array('title' => 'malfunction'),
+      'kambi_lines' => array('title' => 'kambi_lines'),
+      'glviewimage' => array('title' => 'glViewImage'),
+      'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
+      'rayhunter' => array('title' => 'rayhunter',
+        'sub' => array(
+          'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
+        ),
+      ),
+      'bezier_curves' => array('title' => 'bezier_curves'),
+      'glinformation' => array('title' => 'glinformation'),
+      'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
+
+      'common_options' => array('title' => 'Standard command-line options'),
+      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
+      'openal' => array('title' => 'OpenAL (3D sound)'),
+      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
+      'versioning' => array('title' => 'Versioning scheme of programs'),
+      'all_programs_sources' => array('title' => 'All Programs Sources'),
+    ),
+  ),
+
   'blender' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
 
@@ -350,8 +349,8 @@ function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
-  $menu_for_users = 7 * 2 + 1;
-  $menu_for_developers = 2 * count($castle_sitemap) + 1 - $menu_for_users;
+//  $menu_for_users = 6 * 2 + 1;
+//  $menu_for_developers = 2 * count($castle_sitemap) + 1 - $menu_for_users;
 
   /* It's a hack even to use a table cell for this.
      It's even bigger hack to insert empty <div> here, but it's required
@@ -362,11 +361,13 @@ function _castle_header_menu($current_page)
   $td_separator = '<td class="lower_separator"><div>&nbsp;</div></td>';
 
   $result = '
-    <table class="header_menu">
-      <tr>
-        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
-        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
-      </tr>
+    <table class="header_menu">';
+//  $result .= '
+//      <tr>
+//        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
+//        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
+//      </tr>';
+  $result .= '
       <tr>' . $td_separator;
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)

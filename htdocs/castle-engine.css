@@ -336,7 +336,7 @@ div.header {
 
 .header_title {
   font-size: xx-large; font-weight: bold;
-  padding: 0.2em 0.4em 0em 0.4em;
+  padding: 0.2em 0.4em;
 }
 .header_title a { text-decoration: none; color: #fffba9; }
 

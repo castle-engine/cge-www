@@ -1,7 +1,7 @@
 <?php
   require_once "castle_engine_functions.php";
 
-  castle_header("The Castle &mdash; additional notes", NULL, array('castle'));
+  castle_header("The Castle &mdash; additional notes", NULL, array('all_programs', 'castle'));
 
   $toc = new TableOfContents(
     array(

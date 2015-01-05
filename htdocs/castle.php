@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_header("The Castle", NULL, array('castle'));
+  castle_header("The Castle", NULL, array('all_programs', 'castle'));
 
   echo flattr_button();
 ?>
