@@ -1082,20 +1082,33 @@ end;
     ));
     ?>
 
-    <p>We add new field to <tt>Appearance</tt> node: <tt>blendMode</tt> (SFNode,
-    NULL by default, inputOutput). It's allowed to put there <tt>BlendMode</tt>
-    node to specify blending mode done for partially-transparent objects.
-    BlendMode node is not X3D standard, but it's specified by InstantPlayer:
-    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
-    BlendNode specification</a>.
+    <p>Use the <tt>BlendMode</tt> to specify how partially-transparent objects
+    are displayed on top of other geometry.
+    Place this node as the <tt>Appearance.blendMode</tt> value.
+    The exact specification of <tt>BlendMode</tt> possibilities:
 
-    <p>From InstantPlayer spec, our engine supports a subset of fields: <tt>srcFactor</tt>,
-    <tt>destFactor</tt>, <tt>color</tt>, <tt>colorTransparency</tt>.
-    Note that some values require newer
-    OpenGL versions, we will eventually fallback on browser-specific blending
-    modes (you can set them explicitly in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
+    <?php
+      echo node_begin('Appearance');
+      echo
+      node_dots('all normal Appearance fields') .
+      node_field('SFNode', '[in,out]', 'blendMode' , 'NULL', '[BlendMode]') .
+      node_end();
+    ?>
 
-    <p>For example:
+    <?php echo node_begin("BlendMode");
+
+      echo
+      node_field('SFString', '[in,out]', "srcFactor", "&quot;src_alpha&quot;", "[none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
+      node_field('SFString', '[in,out]', "destFactor", "&quot;one_minus_src_alpha&quot;", "[none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
+      node_field('SFColor', '[in,out]', "color", "1 1 1", "") .
+      node_field('SFFloat', '[in,out]', "colorTransparency", "0", "") .
+      node_end();
+    ?>
+
+    <p>An example in classic VRML/X3D encoding of
+    using this to achieve non-standard destFactor="one"
+    (this sometimes makes scene too bright, but it does not require sorting
+    of transparent objects):
 
 <pre class="vrml_code">
   appearance Appearance {
@@ -1103,16 +1116,16 @@ end;
       transparency 0.5
     }
     blendMode BlendMode {
-      srcFactor "src_alpha" # actually this srcFactor is the default
+      srcFactor "src_alpha" # this srcFactor is the default actually
       destFactor "one"
     }
   }
 </pre>
 
-    <p>Example above sets blending to an often-desired equation where the order of rendering
-    doesn't matter. It's very useful for models with complex 3D partially-transparent objects,
-    otherwise traditional approach (src_alpha and one_minus_src_alpha) may cause rendering
-    artifacts.
+    <p>BlendMode is compatible with InstantPlayer:
+    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
+    BlendMode specification of InstantPlayer</a>. We support a subset
+    of InstantPlayer fields.
 
 <?php echo $toc->html_section(); ?>
 
