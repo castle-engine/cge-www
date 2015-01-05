@@ -49,9 +49,12 @@ function program_image_links_table_begin_half()
 echo pretty_heading($page_title, NULL, 'developed using our engine');
 ?>
 
-<p>(For developers: remember you can
-<?php echo a_href_page('download sources of all these programs',
-'all_programs_sources'); ?>.)</p>
+<a href="http://michaliskambi.itch.io/">You can also download some of these
+games from Michalis Kamburelis itch.io profile</a>.
+
+<p>Developers: remember you can
+<?php echo a_href_page('also download sources of all these programs',
+'all_programs_sources'); ?>.</p>
 
 <?php echo main_list_item("Games"); ?>
 
