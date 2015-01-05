@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('All Programs');
+castle_header('Games and Tools');
 
 /* Some functions ----------------------------------------------------------- */
 
