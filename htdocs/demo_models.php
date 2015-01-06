@@ -32,20 +32,22 @@
 
 <?php echo $toc->html_section(); ?>
 
-<div class="download">
+<div class="download jumbotron">
 <?php
   if (IS_GEN_LOCAL)
   {
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '">Download VRML/X3D demo models from it\'s WWW page</a>.</p>';
+      '" class="btn btn-primary btn-lg">Download VRML/X3D demo models from it\'s WWW page</a>.</p>';
   } else
   {
     ?>
     <div class="download_title">Download VRML/X3D demo models:</div>
-    <ul>
-      <li><?php echo sf_download('As tar.gz archive', 'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
-      <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
-    </ul>
+    <span style="padding-right: 1em;">
+      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As tar.gz archive', 'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
+    </span>
+    <span style="padding-left: 1em;">
+      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As zip archive<br>(easier to unpack<br>on Windows)', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
+    </span>
     <?php echo download_donate_footer(); ?>
     <?php
   }

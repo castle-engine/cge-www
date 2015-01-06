@@ -21,7 +21,6 @@
       new TocItem('Installing', 'install', 1),
       new TocItem('Uninstalling', 'uninstall', 1),
       new TocItem('Movies', 'movies'),
-      new TocItem('Freshmeat entry', 'freshmeat'),
     ));
   $toc->echo_numbers = true;
 
@@ -41,6 +40,7 @@ to show off some engine features. In particular, there's the classic DOOM E1M1
 level &mdash; I know you always wanted to have a sword and a bow in DOOM :)
 Enjoy !</p>
 
+<?php /*
 <p><i>Requirements to run</i>: At least <i>512 MB
 RAM</i> is recommended.<!--, although on some graphic cards even 256 MB may be enough (commented out: not on much, and sometimes 1GB is better....) -->
 Fast and stable OpenGL is also needed
@@ -50,6 +50,8 @@ The game was tested with various graphic cards and OpenGL implementations:
 from ATI and open-source ones,
 <a href="http://www.mesa3d.org/">Mesa</a> OpenGL
 also works (although pure software Mesa will usually be too slow).
+*/
+?>
 
 <?php
 /* Not so useful, on good graphic cards loading goes fast anyway.
@@ -61,7 +63,8 @@ wait only once for "Loading creatures").
 */
 ?>
 
-<p><i>History and plans:</i> This game is a little old now,
+<?php
+/* <p><i>History and plans:</i> This game is a little old now,
 and it doesn't really use the capabilities of latest
 <?php echo a_href_page('Castle Game Engine', 'engine'); ?> versions.
 This game was initially developed for
@@ -71,6 +74,8 @@ competition. It was at the beginning of 2006, at a time when
  didn't even have a version number yet :) <!-- (So, before 1.0.0 engine release.) -->
 A new game, that actually uses the current capabilities
 of our engine (we developed a lot of new features since 2006...), is planned.
+*/
+?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -180,14 +185,6 @@ Watch if you get stuck, or if you don't want to play the full game!</p>
 <iframe width="560" height="349" src="http://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
 </div>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Here's a link to
-<a href="http://freshmeat.net/projects/castlegame/">"The Castle"
-entry on freshmeat</a>. You can use this e.g. to subscribe to new
-releases, so that you will be automatically notified about new
-releases of "The Castle".</p>
 
 <?php
   castle_footer();

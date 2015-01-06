@@ -5,6 +5,10 @@
 /* .content { margin: 0px; padding: 0.4em; } */
 /* Bootstrap takes care of above now */
 
+/* Necessary to separate thumbnails and "Older/newer" buttons
+   from top navigation bar */
+.content { padding-top: 15px; }
+
 object.movie_thumbnail {
   width: 200px;
   height: 167px;
@@ -123,42 +127,26 @@ dl.vrml_ver_differences > dt {
   font-style: italic;
 }
 
-table.program_image_links {
-  width: 100%;
-  border-spacing: 20px;
-  border-collapse: separate;
-}
-table.program_image_links_half {
-  width: 50%;
-  border-spacing: 20px;
-  border-collapse: separate;
-}
-td.program_image_link img { border: none; }
-td.program_image_link {
+.program_image_link img { border: none; }
+.program_image_link {
   background: #e8d59a;
-  width: 50%;
   border: 1px solid black;
   text-align: center;
   padding: 0.5em;
+  width: 100%;
+  margin: 20px 0;
+  height: 380px;
 }
 
-table.main_links {
-  width: 100%;
-  /* Like old cellspacing on <table>, see
-     http://stackoverflow.com/questions/339923/set-cellpadding-and-cellspacing-in-css
-  */
-  border-spacing: 20px;
-  border-collapse: separate;
-}
-td.main_link {
+.main_link {
   background: #efdfae;
-  width: 33%;
   border: 1px solid black;
   text-align: center;
   padding: 0.5em;
-  vertical-align: top;
+  width: 100%;
+  margin: 20px 0;
 }
-td.main_link img { border: none; }
+.main_link img { border: none; }
 
 .program_image_link_title { font-size: larger; }
 
@@ -183,17 +171,13 @@ a.screenshot:hover img { border: 2pt solid #888; }
 
 div.download {
   display: inline-block;
-  background: #fdff8c url(images/download_box_bg.png) no-repeat;
-  border: medium outset black;
-  padding: 0.5em;
 }
 
 .download_title { font-weight: bold; margin-bottom: 1em; }
 
 div.download table td { text-align: center;
   padding-left: 1em; padding-right: 1em; }
-div.download table a { display: block; text-decoration: none; color: black;
-  border: thin dashed #CCC; }
+div.download table a { display: block; text-decoration: none; }
 div.download table a img { border: 0px none; }
 
 /* Table like X3D specification, used for multi-texturing clarifications
@@ -312,16 +296,6 @@ div.x3d_component_intro p.paragraph_last { margin-bottom: 0px; }
 div.x3d_component_intro p.paragraph_first code { font-weight: bold; }
 
 /* news --------------------------------------------------------------------- */
-
-table.news_older_newer {
-  width: 100%;
-  border: thin solid #ffeaa9;
-  background: #fff4d2;
-  padding: 0.3em;
-}
-
-td.news_newer { text-align: left; }
-td.news_older { text-align: right; }
 
 span.old_news_date { font-weight: bold; }
 div.old_news_item { border-bottom: medium groove #555; }

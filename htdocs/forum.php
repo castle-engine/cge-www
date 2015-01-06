@@ -5,10 +5,8 @@
   echo pretty_heading($page_title, NULL, 'Ask for help, report bugs, discuss features');
 ?>
 
-<div style="text-align: center;">
-<div style="width: 80%; border: thin outset black; background: #ffff91; display: inline-block; padding: 0.5em;">
-
-<div style="font-weight: bold; font-size: large"><a href="<?php echo FORUM_URL; ?>">Go to our forum</a>.</div>
+<div class="jumbotron">
+<a class="btn btn-primary btn-lg" href="<?php echo FORUM_URL; ?>">Go to our forum</a>
 
 <div  style="margin-top: 1em;">You can post on the forum without registering.
 You can also login to your <a href="https://sourceforge.net/">SourceForge</a>
@@ -16,7 +14,6 @@ account, and then you are already considered "logged in" on this forum too.
 <!-- (This forum is <a href="https://sourceforge.net/apps/trac/sourceforge/wiki/Hosted%20Apps">hosted by SourceForge</a>.) -->
 Any questions related to our VRML/X3D engine and related programs (like
 view3dscene or castle) are welcome. Create a new topic, and go!</div>
-</div>
 </div>
 
 <p>Alternatively, if you prefer to send questions through email,

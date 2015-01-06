@@ -40,18 +40,12 @@ castle_header($item['title'] . ' | News', NULL,
 $older_newer_bar = '';
 if ($next_item !== NULL || $previous_item !== NULL)
 {
-  $older_newer_bar .= '<table class="news_older_newer"><tr>';
+  $older_newer_bar .= '<div class="btn-group btn-group-justified" role="group">';
   if ($previous_item !== NULL)
-    $older_newer_bar .= '<td class="news_newer"><a title="' . htmlspecialchars($previous_item['title']) . '" href="news.php?id=' . $previous_item['id'] . '">&laquo; Newer</a></td>';
+    $older_newer_bar .= '<a title="' . htmlspecialchars($previous_item['title']) . '" href="news.php?id=' . $previous_item['id'] . '" class="btn btn-default">&laquo; Newer</a>';
   if ($next_item !== NULL)
-    $older_newer_bar .= '<td class="news_older"><a title="' . htmlspecialchars($next_item['title']) . '" href="news.php?id=' . $next_item['id'] . '">Older &raquo;</a></td>';
-  $older_newer_bar .= '</tr></table>';
-}
-
-function castle_news_bar($contents)
-{
-  return '<table class="news_older_newer"> <tr><td class="news_newer">' .
-    $contents . '</td></tr> </table>';
+    $older_newer_bar .= '<a title="' . htmlspecialchars($next_item['title']) . '" href="news.php?id=' . $next_item['id'] . '" class="btn btn-default">Older &raquo;</a>';
+  $older_newer_bar .= '</div>';
 }
 
 echo $older_newer_bar .
@@ -60,7 +54,7 @@ if ($item === $news[0])
   echo '<h2>Latest news:</h2>';
 echo '<div class="news_item">' . news_to_html($item) . '</div>';
 
-echo castle_news_bar('
+echo '<div class="panel-footer">
   <b>Follow us:</b>
   Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
   <a href="https://www.facebook.com/castleengine">Facebook</a> or
@@ -79,7 +73,8 @@ echo castle_news_bar('
   -->
   There is also <a href="https://www.ohloh.net/p/castle-engine">our
   project page on Ohloh</a> (please rate and click on
-  <i>"I use this"</i> button there!).');
+  <i>"I use this"</i> button there!).
+</div>';
 
 echo '<br/>';
 

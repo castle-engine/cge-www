@@ -52,12 +52,14 @@ and we have a great API for managing your game world (including high-level class
 
 <?php echo $toc->html_section(); ?>
 
-<div class="download">
-<div class="download_title">Download "Castle Game Engine" (version <?php echo VERSION_CASTLE_GAME_ENGINE; ?>)</div>
-<ul>
-  <li><?php echo sf_download('As tar.gz archive', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
-  <li><?php echo sf_download('As zip archive (easier to unpack on Windows)', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
-</ul>
+<div class="download jumbotron">
+<div class="download_title">Download "Castle Game Engine":</div>
+<span style="padding-right: 1em;">
+  <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As tar.gz archive', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.tar.gz'); ?>
+</span>
+<span style="padding-left: 1em;">
+  <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As zip archive<br>(easier to unpack<br>on Windows)', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
+</span>
 <?php echo download_donate_footer(); ?>
 </div>
 

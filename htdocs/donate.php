@@ -11,11 +11,17 @@ So here goes: */ ?> Hi, I'm Michalis Kamburelis
 I'm developing this engine since a few years already,
 spending most of my daily (and nightly :) time on it.
 And I'm going to continue doing so, and you don't have to pay
-for any bugfix or a new feature or a new game getting released.</p>
+for any bugfix or a new feature or a new game getting released!
+
+<!--
+</p>
 
 <p>It would be absolutely great for me to gain some income,
 and be able to live without other jobs, and commit
-100% of my computer time to this engine. So please donate &mdash; even
+100% of my computer time to this engine. So 
+-->
+
+Please donate &mdash; even
 a very small amount will increase my happiness, which will in turn
 directly improve the awesomeness of our engine,
 and view3dscene, and our games :) Thanks!</p>

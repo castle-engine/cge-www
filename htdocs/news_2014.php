@@ -26,8 +26,8 @@ castle_thumbs(array(
 )) .
 '<p>We proudly present, after 7 months of work, the next official release of our engine:)
 
-<div class="download">
-<a href="' . CURRENT_URL . 'engine.php">Go to Castle Game Engine 5.1.1 sources and documentation!</a>
+<div class="download jumbotron">
+<a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Go to Castle Game Engine 5.1.1 sources and documentation!</a>
 </div>
 
 <p>As usual, we also release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.15.0, our 3D/2D model browser and converter.

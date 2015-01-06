@@ -46,7 +46,6 @@ formats.</p>
         new TocItem('Other options', 'other_options', 1),
         new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
-      new TocItem('Freshmeat entry', 'freshmeat'),
     )
   );
   $toc->echo_numbers = true;
@@ -977,14 +976,6 @@ and make sure it's available on $PATH.
 package must be available on $PATH for some miscellaneous image formats to work.
 See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
  for a list of image formats handled.
-
-<?php section(); ?>
-
-<p>Here's a link to
-<a href="http://freshmeat.net/projects/view3dscene/">view3dscene
-entry on freshmeat</a>. You can use this e.g. to subscribe to new
-releases, so that you will be automatically notified about new
-releases of view3dscene.</p>
 
 <?php
   castle_footer();

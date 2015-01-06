@@ -580,18 +580,15 @@ function echo_footer ()
 
   ?>
 
-  <table class="footer-table"><tr>
+  <div class="panel-footer">
+    <p><?php echo PAGE_COPYRIGHT; ?>
 
-    <td><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a></td>
+    <p><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
 
-    <td><?php echo PAGE_COPYRIGHT; ?><br/>
-      <small>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
-      Like every other frickin' website on the Internet.
-      Blink twice if you understand.</small>
-    </td>
-  </tr></table>
-
-
+    <p><small>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+    Like every other frickin' website on the Internet.
+    Blink twice if you understand.</small>
+  </div>
 
   <?php
 
@@ -658,7 +655,7 @@ function sf_checkout_link($prefix_command, $path)
 /* Makes a link to a download from SourceForge file release system. */
 function sf_download($title, $file_name)
 {
-  return '<a href="http://downloads.sourceforge.net/' . SF_UNIX_NAME .
+  return '<a class="btn btn-primary btn-lg" href="http://downloads.sourceforge.net/' . SF_UNIX_NAME .
     '/' . $file_name . '">' . $title. '</a>';
 }
 
@@ -725,7 +722,7 @@ function echo_standard_program_download(
     $macosx_arch   => 'macosx'
   );
 
-  echo '<div class="download">';
+  echo '<div class="download jumbotron">';
 
   if (IS_GEN_LOCAL)
   {
@@ -735,7 +732,7 @@ function echo_standard_program_download(
        in the locally generated page (since it changes to often).
        Instead, we can place a link to the WWW page. */
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
+      '" class="btn btn-primary btn-lg">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
   } else
   {
     echo '<div class="download_title">' . $nice_name_start . ':</div>

@@ -54,10 +54,10 @@ Try it now!
 
 <?php echo $toc->html_section(); ?>
 
-<div class="download">
+<div class="download jumbotron">
   <table><tbody><tr>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-linux-i386.tar.gz"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-win32-i386.zip"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
+    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-linux-i386.tar.gz" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
+    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-win32-i386.zip" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
   </tr></tbody></table>
 </div>
 

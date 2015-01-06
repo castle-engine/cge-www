@@ -298,13 +298,10 @@ $main_page = false;
 function pretty_heading($heading_text, $version_number = NULL, $subheading_text = '')
 {
   $result = "<h1>$heading_text";
-
-  if ($subheading_text != '')
-    $result .= '<br/><span style="font-size: medium">' . $subheading_text . '</span>';
-
   if (!is_null($version_number))
-    $result .= " <span class=\"version_number\">(version&nbsp;$version_number)</span>";
-
+    $result .= " <span class=\"label label-default version_number\">$version_number</span>";
+  if ($subheading_text != '')
+    $result .= '<br><small>' . $subheading_text . '</small>';
   $result .= "</h1>";
 
   return $result;
@@ -441,7 +438,6 @@ function echo_kambi_common_css()
 body { background: white; font-family: sans-serif; }
 
 dt { font-weight: bold; }
-div.page_footer { }
 span.page_copyright { font-size: smaller }
 
 span.version_number { font-size: small }
@@ -615,10 +611,6 @@ and you are free to modify and further distribute it on terms of
 
 ?>
 
-<hr>
-
-<div class="page_footer">
-
 <?php
   if ( (!defined('KAMBI_NO_HOME_LINK')) &&
       (!$main_page) &&
@@ -628,8 +620,6 @@ and you are free to modify and further distribute it on terms of
 
   echo_footer();
 ?>
-
-</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
