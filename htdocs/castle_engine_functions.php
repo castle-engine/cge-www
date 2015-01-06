@@ -92,7 +92,9 @@ $castle_sitemap = array(
        since it may be time-consuming (requires reading large $news table). */
   ),
 
-  'engine' => array('hint' => 'Sources and documentation for developers', 'title' => 'Engine overview for developers', 'title-for-header-menu' => 'Engine',
+  'features' => array('title' => 'Features', 'title-for-header-menu' => 'Features'),
+
+  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Engine download and documentation', 'title-for-header-menu' => 'Download and documentation',
     'sidebar' => true,
     'sub' => array(
       'tutorial_intro' => array('title' => 'Tutorial',
