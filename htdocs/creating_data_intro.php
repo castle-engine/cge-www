@@ -6,7 +6,7 @@ creating_data_header('Introduction to Creating Game Data', 'for games using Cast
 <p>This guide discusses various aspects of preparing game data for use
 in <?php echo a_href_page('Castle Game Engine', 'engine'); ?>. We'll talk about how to make the 3D
 stuff (levels, creatures, items &mdash; everything), and also how to
-write various helper data files (<tt>level.xml</tt>, <tt>resource.xml</tt> and such)
+write various helper data files (<code>level.xml</code>, <code>resource.xml</code> and such)
 that are read by our engine.
 
 <p>Contents:

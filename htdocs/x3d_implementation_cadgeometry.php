@@ -24,10 +24,10 @@
     <p>All these nodes are specialized grouping nodes.
     Additionally, various parts and groups may be assigned names (not displayed
     by view3dscene anywhere right now).
-    <tt>CADPart</tt> additionally transforms the children (just like <tt>Transform</tt>
+    <code>CADPart</code> additionally transforms the children (just like <code>Transform</code>
     node).
-    <tt>CADLayer</tt> may additionally hide a subset of it's
-    children by the <tt>CADLayer.visible</tt> field.
+    <code>CADLayer</code> may additionally hide a subset of it's
+    children by the <code>CADLayer.visible</code> field.
 </ul>
 
 <?php

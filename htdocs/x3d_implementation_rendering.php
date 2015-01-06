@@ -19,7 +19,7 @@
 
     <p><?php echo x3d_node_link('IndexedTriangleSet'); ?>,
     <?php echo x3d_node_link('TriangleSet'); ?>,
-    (also analogous <tt>IndexedQuadSet</tt>, <tt>QuadSet</tt>
+    (also analogous <code>IndexedQuadSet</code>, <code>QuadSet</code>
     from <?php echo a_href_page('CAD geometry', 'x3d_implementation_cadgeometry'); ?> component).
 
     <p><?php echo x3d_node_link('IndexedTriangleFanSet'); ?>,
@@ -33,10 +33,10 @@
     <p><?php echo x3d_node_link('PointSet'); ?>
 
     <p>Support includes the implementation of new X3D fields
-    <tt>attrib</tt> (per-vertex attributes for shaders)
-    and <tt>fogCoord</tt> (per-vertex fog depth).
+    <code>attrib</code> (per-vertex attributes for shaders)
+    and <code>fogCoord</code> (per-vertex fog depth).
 
-    <p><i>TODO</i>: for <tt>TriangleFanSet</tt> and <tt>TriangleStripSet</tt>,
+    <p><i>TODO</i>: for <code>TriangleFanSet</code> and <code>TriangleStripSet</code>,
     a special constraint is present: if you will use colors
     (colors are always per-vertex on these primitives,
     according to X3D spec) and request generation of per-face normals
@@ -64,18 +64,18 @@ Shape {
     per-vertex colors, and at the same time the same vertex may require
     different normals on a different faces. So to render this correctly one has
     to decompose triangle fans and strips into separate triangles
-    (like to <tt>IndexedTriangleSet</tt>) which means that rendering is
+    (like to <code>IndexedTriangleSet</code>) which means that rendering is
     non-optimal.
 
     <p>Ideas how to implement this without sacrificing rendering time
     are welcome. Eventually, a fallback to internally convert fans and strips
-    to <tt>IndexedTriangleSet</tt> in such special case will be
+    to <code>IndexedTriangleSet</code> in such special case will be
     implemented some day.
 
     <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
     for triangle/quad sets when appearance specify a texture but no
-    <tt>texCoord</tt> is given.
-    Our engine currently takes the <tt>IndexedFaceSet</tt> approach for
+    <code>texCoord</code> is given.
+    Our engine currently takes the <code>IndexedFaceSet</code> approach for
     automatic generation of texture coords in this case, let me know
     if this is wrong for whatever reason.
 
@@ -93,7 +93,7 @@ Shape {
     picking, bounding volumes etc.</p>
 
     <p>TODO: clip planes don't work on background nodes
-    (<tt>X3DBackgroundNode</tt>) yet.</p>
+    (<code>X3DBackgroundNode</code>) yet.</p>
 </ul>
 
 <?php

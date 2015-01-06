@@ -18,7 +18,7 @@ See <?php api_link('TMaterialProperty', 'CastleMaterialProperties.TMaterialPrope
 ...
 MaterialProperties.URL := ApplicationData(\'data/material_properties.xml\');'); ?>
 
-<p>Below is a sample <tt>material_properties.xml</tt> file
+<p>Below is a sample <code>material_properties.xml</code> file
 with links to documentation for every attribute.</p>
 
 <?php echo xml_highlight(

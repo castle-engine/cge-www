@@ -6,7 +6,7 @@
 
 <p>We don't implement much of this component for now.
 And honestly I don't see much need for it: 2D objects are just a special
-case of 3D objects, so you can use nodes e.g. from <tt>Geometry3D</tt>
+case of 3D objects, so you can use nodes e.g. from <code>Geometry3D</code>
 component to render 2D shapes as well.</p>
 
 <p>Supported nodes:</p>

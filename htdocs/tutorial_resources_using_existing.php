@@ -7,7 +7,7 @@ tutorial_header('Using existing creatures / items classes');
 <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
 <?php api_link('CastleItems', 'CastleItems.html'); ?> units.
 There is no ObjectPascal code you need to write &mdash; simply create
-<tt>resource.xml</tt> files describing your creatures/items
+<code>resource.xml</code> files describing your creatures/items
 and referencing their 3D models/animations.
 See <?php echo a_href_page('creating resources guide', 'creating_data_resources'); ?>.
 To add initial creatures/items on the level, place on the level 3D model
@@ -20,8 +20,8 @@ see <?php echo a_href_page('creating levels guide', 'creating_data_levels'); ?>.
 a little code will be necessary.
 
 <p>First, let's create (spawn) a new creature at an arbitrary position.
-This assumes we have a creature named <tt>Knight</tt>, that is there
-must be a <tt>resource.xml</tt> file with <tt>name="Knight"</tt>.
+This assumes we have a creature named <code>Knight</code>, that is there
+must be a <code>resource.xml</code> file with <code>name="Knight"</code>.
 
 <?php echo pascal_highlight(
 'uses ..., CastleVectors, CastleCreatures;
@@ -120,7 +120,7 @@ end;'); ?>
 
   <dt><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?></dt>
 
-  <dd><p>Weapon that can be equipped. Very configurable in <tt>resource.xml</tt>
+  <dd><p>Weapon that can be equipped. Very configurable in <code>resource.xml</code>
     file, can make a melee attack, or immediately shoot,
     or fire a missile (the last case means that we create new creature
     of <?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?>

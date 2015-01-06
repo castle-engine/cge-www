@@ -34,7 +34,7 @@
   ));
 ?>
 
-<p><tt>rayhunter</tt> is a command-line program that takes
+<p><code>rayhunter</code> is a command-line program that takes
 a 3D model (like a VRML, X3D or Collada file) and renders an image that
 would be visible from given camera looking at given scene.
 Two ray-tracing algorithms
@@ -63,7 +63,7 @@ and Monte Carlo path tracing.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Basic syntax to call <tt>rayhunter</tt> is
+<p>Basic syntax to call <code>rayhunter</code> is
 
 <p style="font-family: monospace">
   rayhunter classic &lt;recursion-depth&gt;
@@ -79,11 +79,11 @@ and Monte Carlo path tracing.
 
 <p>
 <ul>
-  <li><p>First option, <tt>classic</tt> or <tt>path</tt>,
+  <li><p>First option, <code>classic</code> or <code>path</code>,
     says which ray-tracing algorithm to use.
 
     <dl>
-      <dt><tt>classic</tt></dt>
+      <dt><code>classic</code></dt>
 
       <dd><p>This is normal Whitted-style deterministic ray-tracer.
         All normal VRML lights are handled (point, spot, directional,
@@ -92,40 +92,40 @@ and Monte Carlo path tracing.
         Algorithm sends one primary ray for each pixel.
         Ray-tracing is recursive, where the ray casts on some
         surface we check rays to light sources and eventually
-        we recursively check refracted ray (when <tt>Material</tt>
-        has <tt>transparency</tt> &gt; 0) and reflected ray
-        (when <tt>Material</tt> has <tt>mirror</tt> &gt; 0).
+        we recursively check refracted ray (when <code>Material</code>
+        has <code>transparency</code> &gt; 0) and reflected ray
+        (when <code>Material</code> has <code>mirror</code> &gt; 0).
         Wikipedia has <a href="http://en.wikipedia.org/wiki/Ray-tracing">
         a nice article about ray-tracing</a> that describes
         Whitted-style ray-tracing.</dd>
 
-      <dt><tt>path</tt></dt>
+      <dt><code>path</code></dt>
 
       <dd><p>This is path tracer. Every surface with non-zero
-        <tt>emissiveColor</tt> is a light emitter. For each
+        <code>emissiveColor</code> is a light emitter. For each
         pixel many random paths are checked and final pixel color
         is the average color from all paths.
 
-        <p>Actually <tt>rayhunter</tt> for every pixel
-        checks <tt>&lt;primary-samples-count&gt;</tt> of primary
+        <p>Actually <code>rayhunter</code> for every pixel
+        checks <code>&lt;primary-samples-count&gt;</code> of primary
         rays, and then each primary ray that hits something splits into
-        <tt>&lt;non-primary-samples-count&gt;</tt>.
-        So in total we check <tt>&lt;primary-samples-count&gt;</tt> *
-        <tt>&lt;non-primary-samples-count&gt;</tt> paths.
+        <code>&lt;non-primary-samples-count&gt;</code>.
+        So in total we check <code>&lt;primary-samples-count&gt;</code> *
+        <code>&lt;non-primary-samples-count&gt;</code> paths.
         This is a sensible optimization, because usually there
-        is no need to take many <tt>&lt;primary-samples-count&gt;</tt>,
+        is no need to take many <code>&lt;primary-samples-count&gt;</code>,
         since all primary rays hit more-or-less the same thing,
         since they have very similar direction.
 
-        <p><tt>&lt;non-primary-samples-count&gt;</tt> is
+        <p><code>&lt;non-primary-samples-count&gt;</code> is
         set using the 3rd required command-line option,
-        and <tt>&lt;primary-samples-count&gt;</tt> is set
-        using optional option <tt>--primary-samples-count</tt>
+        and <code>&lt;primary-samples-count&gt;</code> is set
+        using optional option <code>--primary-samples-count</code>
         (by default it's 1).
       </dd>
     </dl>
 
-  <li><p><tt>&lt;recursion-depth&gt;</tt>
+  <li><p><code>&lt;recursion-depth&gt;</code>
 
     <p>This is interpreted differently by different ray-tracing algorithms:
     <ul>
@@ -147,7 +147,7 @@ and Monte Carlo path tracing.
         (Of course, some paths may still be shorter than this
         minimal length, because the ray will not hit anything in the scene.)
         E.g. if you will set this to 3, and Russian-roulette parameter
-        (see <tt>--r-roul-continue</tt> option) will be 0.5
+        (see <code>--r-roul-continue</code> option) will be 0.5
         (the default value), then 1/2 of all paths will have length 3,
         1/4 of all paths will have length 4,
         1/8 of all paths will have length 5 etc.
@@ -165,20 +165,20 @@ and Monte Carlo path tracing.
         about path termination (expect a lot of noise on the image!).
     </ul>
 
-  <li><p><tt>&lt;non-primary-samples-count&gt;</tt>
+  <li><p><code>&lt;non-primary-samples-count&gt;</code>
 
     <p>Only for <i>path tracer</i>. Together with
-    <tt>&lt;primary-samples-count&gt;</tt>, this specifies
+    <code>&lt;primary-samples-count&gt;</code>, this specifies
     how many paths will be checked at each pixel.
     Various scenes may require different numbers here to look
     nice &mdash; you can start with 10, then 100, then even 1000.
     But beware &mdash; this value directly affects rendering speed.
 
-  <li><p><tt>&lt;image-width&gt; &lt;image-height&gt;</tt>
+  <li><p><code>&lt;image-width&gt; &lt;image-height&gt;</code>
 
     <p>Width and height of resulting image.
 
-  <li><p><tt>&lt;input-filename&gt;</tt>
+  <li><p><code>&lt;input-filename&gt;</code>
 
     <p>3d model filename.
 
@@ -188,7 +188,7 @@ and Monte Carlo path tracing.
     we also read Collada and 3DS lights, for all other formats: only
     the headlight will shine over the scene.
 
-    <p><tt>-</tt> (single dash) as a filename means stdin.
+    <p><code>-</code> (single dash) as a filename means stdin.
 
     <!--p><b>Notes about rendering 3DS models:</b>
     There is no good specification how lights in 3DS files should
@@ -200,22 +200,22 @@ and Monte Carlo path tracing.
     to be interpreted then post to
     < ?php echo MAILING_LIST_LINK; ? -->
 
-  <li><p><tt>&lt;output-filename&gt;</tt>
+  <li><p><code>&lt;output-filename&gt;</code>
 
     <p>Filename where to write final image. Image format will
     be automatically derived from filename extension,
     known image formats and extensions are
     <ul>
-      <li><tt>rgbe</tt> (or <tt>pic</tt>)
-      <li><tt>png</tt>
-      <li><tt>jpg</tt> (or <tt>jpeg</tt>)
-      <li><tt>ppm</tt>
-      <li><tt>bmp</tt>
+      <li><code>rgbe</code> (or <code>pic</code>)
+      <li><code>png</code>
+      <li><code>jpg</code> (or <code>jpeg</code>)
+      <li><code>ppm</code>
+      <li><code>bmp</code>
     </ul>
 
-    <p>If you will use <tt>--write-partial-image</tt> features
+    <p>If you will use <code>--write-partial-image</code> features
     (see below), then partial images will be also written to this file.
-    Moreover, if you will use <tt>--first-row</tt> features (see below),
+    Moreover, if you will use <code>--first-row</code> features (see below),
     then initial image contents will be read from this file.
 
     <p><b>Notes about RGBE format:</b>
@@ -252,47 +252,47 @@ and Monte Carlo path tracing.
   </dt>
 
   <dd><p>These options set camera position, looking direction and up vector.
-    <tt>--camera-up-z</tt> is shortcut for <tt>--camera-up 0 0 1</tt>.
+    <code>--camera-up-z</code> is shortcut for <code>--camera-up 0 0 1</code>.
 
     <p>Initial camera settings are determined by
 
     <ol>
       <li>These command-line parameters.
 
-      <li>First <tt>*Camera</tt> or <tt>*Viewpoint</tt> node in VRML file.
+      <li>First <code>*Camera</code> or <code>*Viewpoint</code> node in VRML file.
         Remember that placement of camera node in VRML file is important --
         camera's properties are modified by current transformation
         of camera node.
 
       <li>Default values (default VRML 1.0 perspective camera) :
         <ul>
-          <li><tt>camera-pos = 0 0 1</tt>,
-          <li><tt>camera-dir = 0 0 -1</tt>,
-          <li><tt>camera-up = 0 1 0</tt>,
+          <li><code>camera-pos = 0 0 1</code>,
+          <li><code>camera-dir = 0 0 -1</code>,
+          <li><code>camera-up = 0 1 0</code>,
         </ul>
     </ol>
 
     <p>Things above are given in descending priority.
-    E.g. if you will use <tt>--camera-pos 1 2 3</tt> parameter then
-    starting camera position will be always <tt>1 2 3</tt>.
-    If you don't use <tt>--camera-pos</tt> parameter then program will try to find
+    E.g. if you will use <code>--camera-pos 1 2 3</code> parameter then
+    starting camera position will be always <code>1 2 3</code>.
+    If you don't use <code>--camera-pos</code> parameter then program will try to find
     camera node in VRML file. If such node is present &mdash; we will use camera
     position specified there. If not &mdash; we will use default camera position
-    (i.e. <tt>0 0 1</tt>).
+    (i.e. <code>0 0 1</code>).
 
     <p>Notes:
     <ul>
-      <li>If <tt>camera-dir</tt> and <tt>camera-up</tt>
+      <li>If <code>camera-dir</code> and <code>camera-up</code>
         will not be orthogonal
         <!--
         (bez względu na to jaką metodą zostały uzyskane - z parametru,
         z wartości zapisanej w VRMLu czy z wartości domyślnej)
         -->
-        vector <tt>up</tt> will be corrected.
-        <tt>camera-dir</tt> and <tt>camera-up</tt> vectors must not be
+        vector <code>up</code> will be corrected.
+        <code>camera-dir</code> and <code>camera-up</code> vectors must not be
         parallel. In particular, they must not be zero-vectors.
-        Lengths of <tt>camera-dir</tt> and <tt>camera-up</tt> are not important,
-        <tt>dir</tt> vector is always scaled based on <tt>camera-radius</tt> when
+        Lengths of <code>camera-dir</code> and <code>camera-up</code> are not important,
+        <code>dir</code> vector is always scaled based on <code>camera-radius</code> when
         program starts.
       <li>Besides VRML/X3D, also Collada and 3DS can include camera information,
         so we can use it. Other 3D formats don't support camera information.
@@ -309,23 +309,23 @@ and Monte Carlo path tracing.
     with given field of view angle in horizontal direction. In degrees.
     Default is 60 degrees. Note: vertical angle will be automatically
     determined based on horizontal view angle and window width/height
-    (unless you specify <tt>force-view-angle-y</tt>, see below).
+    (unless you specify <code>force-view-angle-y</code>, see below).
 
   <dt><span class="command_line_option">--force-view-angle-y &lt;float&gt;</span></dt>
 
   <dd><p>Use perspective projection,
     with given field of view angle in vertical direction.
     Normally camera vertical angle will be automatically
-    derived from <tt>--view-angle-x</tt> and requested
-    output <tt>&lt;image-width&gt;</tt> and <tt>&lt;image-height&gt;</tt>.
+    derived from <code>--view-angle-x</code> and requested
+    output <code>&lt;image-width&gt;</code> and <code>&lt;image-height&gt;</code>.
     You can use this parameter to force some other non-proportional
     camera vertical angle.</dd>
 
   <dt><span class="command_line_option">--ortho &lt;float&gt; &lt;float&gt; &lt;float&gt; &lt;float&gt;</span></dt>
 
   <dd><p>Use orthographic projection, with given left, bottom, right, top
-    dimensions. This makes previous <tt>--view-angle-x</tt> and
-    <tt>--force-view-angle-y</tt> ignored (they are not sensible in orthographic
+    dimensions. This makes previous <code>--view-angle-x</code> and
+    <code>--force-view-angle-y</code> ignored (they are not sensible in orthographic
     projection). Note that order of arguments follows the
     X3D OrthoViewpoint specificication (and differs from typical OpenGL,
     like used by glOrtho).</p></dd>
@@ -337,52 +337,52 @@ and Monte Carlo path tracing.
 
   <dt><span class="command_line_option">--write-partial-rows &lt;rows&gt; &lt;log-rows-file&gt;</span></dt>
 
-  <dd><p>Always after generating <tt>&lt;rows&gt;</tt> rows,
+  <dd><p>Always after generating <code>&lt;rows&gt;</code> rows,
     rayhunter will write the (partially finished) output image
-    (to <tt>&lt;output-filename&gt;</tt>, i.e. to the same file where
+    (to <code>&lt;output-filename&gt;</code>, i.e. to the same file where
     final image is supposed to be written). Additionally, each time
     when writing such partial image, rayhunter will write a file
-    <tt>&lt;log-rows-file&gt;</tt> that will contain a single integer &mdash;
+    <code>&lt;log-rows-file&gt;</code> that will contain a single integer &mdash;
     the number of already finished rows.
 
     <p>This option has a couple of uses.
     <ol>
       <li>First of all, obviously, it lets you view unfinished
-        results of <tt>rayhunter</tt>, if you're not patient.
+        results of <code>rayhunter</code>, if you're not patient.
 
-      <li>This allows you to interrupt <tt>rayhunter</tt> process
+      <li>This allows you to interrupt <code>rayhunter</code> process
         at any time and you will remain with a partially completed image.
-        Then you can run <tt>rayhunter</tt> once again
-        with <tt>--first-row</tt> option
+        Then you can run <code>rayhunter</code> once again
+        with <code>--first-row</code> option
         to finish rendering the image. You can look at
-        <tt>&lt;log-rows-file&gt;</tt> to know how many rows are already finished.
+        <code>&lt;log-rows-file&gt;</code> to know how many rows are already finished.
 
         <p>E.g. you can use such script:
 <pre>
   rayhunter ... --first-row `cat rows.log` --write-partial-rows 10 rows.log
 </pre>
-        This way after doing every 10 rows, <tt>rayhunter</tt>
+        This way after doing every 10 rows, <code>rayhunter</code>
         will save it's partially
         finished work. And if you will interrupt, kill etc.
-        <tt>rayhunter</tt> process,
+        <code>rayhunter</code> process,
         you will be able to just run this script once again and
-        <tt>rayhunter</tt> will start rendering roughly at the point where it finished.
+        <code>rayhunter</code> will start rendering roughly at the point where it finished.
 
       <li>If you want to render the image on more than one computer
-        at the same time, you can easily run <tt>rayhunter</tt> on every computer
-        with different <tt>--first-row</tt> argument and with appropriately
-        small <tt>&lt;rows&gt;</tt> value for <tt>--write-partial-rows</tt>.
+        at the same time, you can easily run <code>rayhunter</code> on every computer
+        with different <code>--first-row</code> argument and with appropriately
+        small <code>&lt;rows&gt;</code> value for <code>--write-partial-rows</code>.
         When all processes will finish their work, you will only have
         to combine resulting images into one.
     </ol>
 
-    <p>Note that very small <tt>&lt;rows&gt;</tt> value can slow down the
+    <p>Note that very small <code>&lt;rows&gt;</code> value can slow down the
     rendering process. But usually it's not a significant slowdown,
     after all usually ray-tracing takes a lot of time and wasting
     a couple of additional seconds is not a problem.
 
-    <p>Give value of 0 for <tt>&lt;rows&gt;</tt> to disable writing
-    partial image and <tt>&lt;log-rows-file&gt;</tt> file.
+    <p>Give value of 0 for <code>&lt;rows&gt;</code> to disable writing
+    partial image and <code>&lt;log-rows-file&gt;</code> file.
     This is the default behavior.
 
     <p><i>Note about writing partial image:</i> when writing
@@ -399,7 +399,7 @@ and Monte Carlo path tracing.
 
   <dd><p>This option is meaningful only when you use <i>path tracer</i>.
     Argument is a float number in range [0; 1].
-    At each point on the path, if the specified <tt>&lt;recursion-depth&gt;</tt>
+    At each point on the path, if the specified <code>&lt;recursion-depth&gt;</code>
     is exceeded, Russian-roulette is used to determine whether the
     path should terminate here. If random number from [0; 1] range
     is larger than argument given to this option, the path will terminate.
@@ -421,7 +421,7 @@ and Monte Carlo path tracing.
     <p>When argument for this option is exactly 0,
     Russian-roulette will always lose. In other words,
     Russian-roulette will not be used at all. In this case
-    <tt>&lt;recursion-depth&gt;</tt> value will work like
+    <code>&lt;recursion-depth&gt;</code> value will work like
     for classic ray-tracer. But the result will always be biased,
     i.e. (slightly) incorrect, usually darker than it should be.
 
@@ -434,7 +434,7 @@ and Monte Carlo path tracing.
     this too much. You can use here 10 or something like that to
     have anti-aliased image. If you want to just increment
     number of paths, usually it's wiser to increment
-    <tt>&lt;non-primary-samples-count&gt;</tt>, this way you will
+    <code>&lt;non-primary-samples-count&gt;</code>, this way you will
     slow down rendering by a little lesser factor.</dd>
 
   <dt><span class="command_line_option">--direct-illum-samples-count &lt;count&gt;</span></dt>
@@ -446,7 +446,7 @@ and Monte Carlo path tracing.
     which can bring good results if your scene has a complex light
     setting (many light sources, in different places etc.)
     Remember that you can also just increase number of paths
-    (i.e. <tt>&lt;non-primary-samples-count&gt;</tt>),
+    (i.e. <code>&lt;non-primary-samples-count&gt;</code>),
     as this will also produce more checks for rays to light sources.
 
     <p>For educational purposed you can also set this to 0
@@ -459,17 +459,17 @@ and Monte Carlo path tracing.
   <dt><span class="command_line_option">--first-row &lt;first-row-num&gt;</span></dt>
 
   <dd><p>If you will use this option with non-zero argument then
-    <tt>&lt;output-filename&gt;</tt> must already exist.
-    <tt>rayhunter</tt> will load the initial image from this file.
+    <code>&lt;output-filename&gt;</code> must already exist.
+    <code>rayhunter</code> will load the initial image from this file.
     Then the image will be resized, if needed,
-    to <tt>&lt;image-width&gt;</tt> and <tt>&lt;image-height&gt;</tt>.
-    Then <tt>rayhunter</tt> will start rendering,
-    but not from the beginning: from the given <tt>&lt;first-row-num&gt;</tt>
+    to <code>&lt;image-width&gt;</code> and <code>&lt;image-height&gt;</code>.
+    Then <code>rayhunter</code> will start rendering,
+    but not from the beginning: from the given <code>&lt;first-row-num&gt;</code>
     row number. Rendering results will be written on the image.
 
-    <p>This way you can tell <tt>rayhunter</tt> to resume rendering
+    <p>This way you can tell <code>rayhunter</code> to resume rendering
     that is already partially done. This is particularly handy
-    in connection with <tt>--write-partial-rows</tt> option, see there for
+    in connection with <code>--write-partial-rows</code> option, see there for
     description.
 
     <p>Argument 0 (the default) for this options means that
@@ -482,12 +482,12 @@ and Monte Carlo path tracing.
   <dd><p>These options control the triangulation.
     view3dscene has exactly the same options, and they are documented
     in detail in <?php echo a_href_page_hashlink(
-    "view3dscene <tt>--detail-*</tt> options documentation",
+    "view3dscene <code>--detail-*</code> options documentation",
     "view3dscene", "command_line_options_detail"); ?>.
 
-    <p>Notes specific to <tt>rayhunter</tt>: note that <tt>rayhunter</tt>
+    <p>Notes specific to <code>rayhunter</code>: note that <code>rayhunter</code>
     never does so-called <i>over-triangulating</i>.
-    This also means that option <tt>--detail-rect-divisions</tt>
+    This also means that option <code>--detail-rect-divisions</code>
     is useless. It was added here only for completeness.
   </dd>
 
@@ -496,10 +496,10 @@ and Monte Carlo path tracing.
 
   <dd><p>These parameters control octree generation.
     By default
-    <tt>--octree-max-depth</tt>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?> and
-    <tt>--octree-leaf-capacity</tt>=<?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>.
+    <code>--octree-max-depth</code>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?> and
+    <code>--octree-leaf-capacity</code>=<?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>.
     You can also specify octree propeties inside VRML/X3D file:
-    use <tt>KambiNavigationInfo.octreeVisibleTriangles</tt>
+    use <code>KambiNavigationInfo.octreeVisibleTriangles</code>
     (see <?php echo a_href_page_hashlink('octree properties extension',
     'x3d_extensions', 'section_ext_octree_properties'); ?>).
 
@@ -515,47 +515,47 @@ and Monte Carlo path tracing.
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><i>Only for <tt>classic</tt> ray-tracer :</i><br>
+  <li><p><i>Only for <code>classic</code> ray-tracer :</i><br>
     Implemented light model is as close as possible to the
     <a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14">
     light model outlined in VRML 97 specification</a>.
     Some modifications were needed because I have recursive
     ray-tracing (while VRML 97 specifies only local
     light model). Also VRML 1.0 models require different treating
-    in some cases (e.g. <tt>SpotLight</tt> focus is specified using a different
-    way and <tt>ambientIntensity</tt> is not available in standard VRML 1.0).
+    in some cases (e.g. <code>SpotLight</code> focus is specified using a different
+    way and <code>ambientIntensity</code> is not available in standard VRML 1.0).
 
-    <p>We handle all VRML light nodes &mdash; <tt>DirectionalLight</tt>,
-    <tt>SpotLight</tt> and <tt>PointLight</tt>. Also the headlight
-    is used, configurable by <tt>NavigationInfo.headlight</tt>
+    <p>We handle all VRML light nodes &mdash; <code>DirectionalLight</code>,
+    <code>SpotLight</code> and <code>PointLight</code>. Also the headlight
+    is used, configurable by <code>NavigationInfo.headlight</code>
     and <?php echo a_href_page_hashlink('KambiNavigationInfo.headlightNode',
     'x3d_extensions', 'section_ext_headlight'); ?>.
 
-    <p>For <tt>&lt;recursion-depth&gt;</tt> equal zero we use only
-    <tt>diffuse</tt> material color. According to VRML 97 light model,
-    <tt>emission</tt> color would be more correct but in 99% of real
-    cases <tt>emission</tt> color is just black so the whole rendered
-    image would be black. That's why I decided to use <tt>diffuse</tt>
-    color instead of <tt>emission</tt>. Everyone understands that setting
-    <tt>&lt;recursion-depth&gt;</tt> to zero is only for testing purposes
+    <p>For <code>&lt;recursion-depth&gt;</code> equal zero we use only
+    <code>diffuse</code> material color. According to VRML 97 light model,
+    <code>emission</code> color would be more correct but in 99% of real
+    cases <code>emission</code> color is just black so the whole rendered
+    image would be black. That's why I decided to use <code>diffuse</code>
+    color instead of <code>emission</code>. Everyone understands that setting
+    <code>&lt;recursion-depth&gt;</code> to zero is only for testing purposes
     anyway.
 
-  <li><p><i>Mostly for <tt>classic</tt> ray-tracer :</i><br>
+  <li><p><i>Mostly for <code>classic</code> ray-tracer :</i><br>
     <?php echo a_href_page_hashlink(
-      "Use <tt>mirror</tt> field of <tt>Material</tt> node to create mirrors",
+      "Use <code>mirror</code> field of <code>Material</code> node to create mirrors",
       "x3d_extensions", "section_ext_material_mirror"); ?>.
 
-  <li><p><i>Only for <tt>path</tt> tracer :</i><br>
+  <li><p><i>Only for <code>path</code> tracer :</i><br>
     We don't use point and directional lights,
-    so VRML <tt>DirectionalLight</tt>, <tt>SpotLight</tt> and
-    <tt>PointLight</tt> nodes are completely ignored.
+    so VRML <code>DirectionalLight</code>, <code>SpotLight</code> and
+    <code>PointLight</code> nodes are completely ignored.
     Only the surface lights are used. Every object with
-    a non-black <tt>emissiveColor</tt> is a light source.
+    a non-black <code>emissiveColor</code> is a light source.
 
     <p>Implemented BRDF is Phong's BRDF.
     See <?php echo a_href_page_hashlink(
      "fields describing physical properties (Phong's BRDF) for " .
-     "<tt>Material</tt>node", "x3d_extensions",
+     "<code>Material</code>node", "x3d_extensions",
      "section_ext_material_phong_brdf_fields"); ?>.
 
   <li><p>Some things not handled (yet): textures, interpolating
@@ -564,7 +564,7 @@ and Monte Carlo path tracing.
     with regards to normal vectors).
 
   <li><p>This concerns actually most 3d engines, including
-    ray-tracer algorithms inside <tt>rayhunter</tt>
+    ray-tracer algorithms inside <code>rayhunter</code>
     and real-time OpenGL rendering inside
     <?php echo a_href_page("view3dscene", "view3dscene"); ?>:
     3d model's geometry must be correct. Which means that:
@@ -577,7 +577,7 @@ and Monte Carlo path tracing.
         they will fight which one is nearer than the other
         and which one casts the shadow over the other.
 
-        <p>Actually <tt>rayhunter</tt> should be able to handle such
+        <p>Actually <code>rayhunter</code> should be able to handle such
         bad case of coplanar surfaces (i.e. result will look OK
         as long as surfaces have the same material), but there
         is never 100% warranty for such things (because it involves
@@ -592,36 +592,36 @@ and Monte Carlo path tracing.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The same ray-tracer code as is used by <tt>rayhunter</tt>
+<p>The same ray-tracer code as is used by <code>rayhunter</code>
 is also used inside
 <?php echo a_href_page("view3dscene", "view3dscene"); ?>.
 While using ray-tracer from
 <?php echo a_href_page("view3dscene", "view3dscene"); ?>
- is more comfortable, using command-line <tt>rayhunter</tt> has also
+ is more comfortable, using command-line <code>rayhunter</code> has also
 some advantages:
 
 <ul>
-  <li><p>The obvious advantage is that you can use <tt>rayhunter</tt>
+  <li><p>The obvious advantage is that you can use <code>rayhunter</code>
     in batch mode,from scripts etc.
 
-  <li><p><tt>rayhunter</tt> can produce images in RGBE format.
+  <li><p><code>rayhunter</code> can produce images in RGBE format.
 
-  <li>You can use options <tt>--first-row</tt> and
-    <tt>--write-partial-rows</tt> to be able to kill rayhunter process
+  <li>You can use options <code>--first-row</code> and
+    <code>--write-partial-rows</code> to be able to kill rayhunter process
     at any time and then later resume rendering from last point.
     You can also use the same options to render various parts of
     the image simultaneously on multiple systems.
     These advantages may be crucial if you want to do some serious
     rendering using path tracer, since they may take a lot of time.
 
-  <li><p>Options <tt>--r-roul-continue</tt>,
-    <tt>--direct-illum-samples-count</tt>,
-    <tt>--primary-samples-count</tt> that allow you to better control
-    path tracing are not available in <tt>view3dscene</tt>.
+  <li><p>Options <code>--r-roul-continue</code>,
+    <code>--direct-illum-samples-count</code>,
+    <code>--primary-samples-count</code> that allow you to better control
+    path tracing are not available in <code>view3dscene</code>.
 
-  <li><tt>rayhunter</tt> may work a little faster since it doesn't
+  <li><code>rayhunter</code> may work a little faster since it doesn't
     display the image while rendering. Although using
-    <tt>--write-partial-rows</tt> you can force <tt>rayhunter</tt>
+    <code>--write-partial-rows</code> you can force <code>rayhunter</code>
     to write partial result from time to time.
 </ul>
 

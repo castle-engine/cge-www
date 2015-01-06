@@ -31,10 +31,10 @@
   'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
-Run the game binary (<tt>./kambi_lines</tt> on Unix,
-<tt>kambi_lines.exe</tt> on Windows).</p>
+Run the game binary (<code>./kambi_lines</code> on Unix,
+<code>kambi_lines.exe</code> on Windows).</p>
 
-<p>You can run the program with <tt>--fullscreen</tt> command-line option,
+<p>You can run the program with <code>--fullscreen</code> command-line option,
 the game will then change screen resolution to 640x480 and run in fullscreen
 mode (this is what original DOS "Color Lines" were doing).
 

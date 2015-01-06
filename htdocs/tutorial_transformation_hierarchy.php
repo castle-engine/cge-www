@@ -51,7 +51,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     automatically builds a tree of X3D nodes based on 3D model contents.
     You can also build (or process) the X3D nodes tree by code.
     There are various grouping and transforming nodes,
-    most notably <tt>Transform</tt>
+    most notably <code>Transform</code>
     (see <?php echo a_href_page('X3D grouping component',
     'x3d_implementation_grouping'); ?>).
 
@@ -60,7 +60,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     <?php api_link('TCastleSceneCore.Shapes', 'CastleSceneCore.TCastleSceneCore.html#Shapes'); ?>
     tree.
 
-    <p>The visible nodes of this tree are X3D <tt>Shape</tt> nodes
+    <p>The visible nodes of this tree are X3D <code>Shape</code> nodes
     (<?php api_link('TShapeNode', 'X3DNodes.TShapeNode.html'); ?>)
     with geometry nodes inside
     (<?php api_link('TAbstractGeometryNode', 'X3DNodes.TAbstractGeometryNode.html'); ?>).

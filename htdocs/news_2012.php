@@ -30,29 +30,29 @@ castle_thumbs(array(
 <ol>
   <li><p><b>Creatures/items</b> (commonly called "resources" in many places) <b>improvements</b>:</p>
     <ol>
-      <li><p>New example program: <tt>resource_animations</tt>. Demonstrates how to define creature/item animations in <tt>resource.xml</tt> files, from <a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim</a> and/or X3D animations. Can be also used to preview animations from any <tt>resource.xml</tt> files, e.g. you can try it on <a href="http://castle-engine.sourceforge.net/castle.php">castle1</a> creatures and items. See DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later) for notes about how to design your creatures/items.</p>
+      <li><p>New example program: <code>resource_animations</code>. Demonstrates how to define creature/item animations in <code>resource.xml</code> files, from <a href="http://castle-engine.sourceforge.net/kanim_format.php">KAnim</a> and/or X3D animations. Can be also used to preview animations from any <code>resource.xml</code> files, e.g. you can try it on <a href="http://castle-engine.sourceforge.net/castle.php">castle1</a> creatures and items. See DRAFT.modeling_tutorial.txt (will be moved to nicer HTML page later) for notes about how to design your creatures/items.</p>
         <p>(<a href="http://opengameart.org/content/animated-knight">The knight animated model comes from opengameart.org</a>.)</p>
       </li>
-      <li><p>Defining short-range creature attack and/or firing a missile are trivial now. See <tt>TWalkAttackCreatureKind.AttackXxx</tt> and <tt>TWalkAttackCreatureKind.FireMissileXxx</tt> properties, and <tt>&lt;fire_missile&gt;</tt> and <tt>&lt;attack&gt;</tt> elements in <tt>resource.xml</tt>. <!-- As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about. --></p>
-        <p>What actually happens is configurable by overriding methods <tt>TWalkAttackCreature.Attack</tt> and <tt>TWalkAttackCreature.FireMissile</tt>. So, while you can think that &lt;attack&gt; is "short-range attack" and &lt;fire_missile&gt; is "firing a missile", in reality it\'s more like &lt;attack&gt; is "1st configurable attack-like action" and &lt;fire_missile&gt; is "2nd configurable attack-like action".</p>
-        <p>You still can use extra states for special purposes in TWalkAttackCreature (<tt>csMax+1</tt>, <tt>csMax+2</tt> etc.), so it\'s possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.</p>
+      <li><p>Defining short-range creature attack and/or firing a missile are trivial now. See <code>TWalkAttackCreatureKind.AttackXxx</code> and <code>TWalkAttackCreatureKind.FireMissileXxx</code> properties, and <code>&lt;fire_missile&gt;</code> and <code>&lt;attack&gt;</code> elements in <code>resource.xml</code>. <!-- As much as possible, &lt;fire_missile&gt; properties are similar to &lt;attack&gt;, so it\'s consistent to think about. --></p>
+        <p>What actually happens is configurable by overriding methods <code>TWalkAttackCreature.Attack</code> and <code>TWalkAttackCreature.FireMissile</code>. So, while you can think that &lt;attack&gt; is "short-range attack" and &lt;fire_missile&gt; is "firing a missile", in reality it\'s more like &lt;attack&gt; is "1st configurable attack-like action" and &lt;fire_missile&gt; is "2nd configurable attack-like action".</p>
+        <p>You still can use extra states for special purposes in TWalkAttackCreature (<code>csMax+1</code>, <code>csMax+2</code> etc.), so it\'s possible to add even more kinds of attack (or really anything else) by overriding appropriate methods.</p>
       </li>
-      <li>Removing dead creature corpses from level is trivial, see <tt>RemoveDead</tt> property and <tt>remove_dead</tt> in <tt>resource.xml</tt>.
+      <li>Removing dead creature corpses from level is trivial, see <code>RemoveDead</code> property and <code>remove_dead</code> in <code>resource.xml</code>.
       <li>Weapons behavior is trivial to define also:
         <ol>
-          <li>short-range attack and missile firing (with ammo or not) is configurable fully inside TItemWeaponKind (and related <tt>resource.xml</tt> file), no need for a single line of code.</li>
+          <li>short-range attack and missile firing (with ammo or not) is configurable fully inside TItemWeaponKind (and related <code>resource.xml</code> file), no need for a single line of code.</li>
           <li>A weapon can also immediately shoot (like a pistol).</li>
           <li>Ammunition type is configurable both for missile firing (arrows to fire) and immediate shooting or short-range (bullets for a pistol).</li>
         </ol>
       </li>
       <li><p>Die animations, and configurable RemoveDead, are also available for Still and Missile creatures. Die animation allows e.g. to make exploding animations for missiles and immobile objects (like barrel in the movie above).</p>
         <p>RemoveDead allows to keep the corpse on the level, with special twists for missiles. Your missiles, like arrows, can be left "stuck" in the wall. (This mechanism should be better and more intelligent in the future, as part of the "decal" system. For now, at least it basically works for some cases.)</p></li>
-      <li><tt>CastShadowVolumes</tt> and <tt>ReceiveShadowVolumes</tt>, default true, configurable for every item and creature (<tt>cast_shadow_volumes</tt> and <tt>receive_shadow_volumes</tt> in <tt>resource.xml</tt>). <!-- It was already possible to configure code, but now it\'s easier &mdash; just a boolean flag, and resource.xml variable.--></li>
-      <li><tt>TItemOnWorld.AutoPick</tt> property, to control automatic picking of items by player, and <tt>TItemOnWorld.ExtractItem</tt> method to implement picking yourself.</li>
-      <li><tt>TItemOnWorld.RotationSpeed</tt> property, to control the speed of rotation of items (set to 0 to disable rotating).</li>
-      <li><tt>TInventoryItem.Stack</tt> method to override, to affect how items stacking works.</li>
-      <li>New nice properties to control middle point used for collisions (see <tt>T3D.Middle</tt>, <tt>T3DCustomTransform.MiddlePoint</tt>, <tt>T3DCustomTransform.PreferredHeight</tt>). Unified gravity on items and creatures, with new comfortable properties (see <tt>T3DCustomTransform.Gravity</tt>, <tt>T3DCustomTransform.FallSpeed</tt>, <tt>T3DCustomTransform.GrowSpeed</tt>). More configurable from <tt>resource.xml</tt> file (<tt>middle_height</tt>, <tt>fall_speed</tt>, <tt>grow_speed</tt>, <tt>direction_fall_speed</tt> &mdash; see <a href="http://castle-engine.sourceforge.net/creating_data_resources.php">creating_data_resources</a>).
-      <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games. If needed, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their <tt>T3D.PointingDeviceActivate</tt>, like before.
+      <li><code>CastShadowVolumes</code> and <code>ReceiveShadowVolumes</code>, default true, configurable for every item and creature (<code>cast_shadow_volumes</code> and <code>receive_shadow_volumes</code> in <code>resource.xml</code>). <!-- It was already possible to configure code, but now it\'s easier &mdash; just a boolean flag, and resource.xml variable.--></li>
+      <li><code>TItemOnWorld.AutoPick</code> property, to control automatic picking of items by player, and <code>TItemOnWorld.ExtractItem</code> method to implement picking yourself.</li>
+      <li><code>TItemOnWorld.RotationSpeed</code> property, to control the speed of rotation of items (set to 0 to disable rotating).</li>
+      <li><code>TInventoryItem.Stack</code> method to override, to affect how items stacking works.</li>
+      <li>New nice properties to control middle point used for collisions (see <code>T3D.Middle</code>, <code>T3DCustomTransform.MiddlePoint</code>, <code>T3DCustomTransform.PreferredHeight</code>). Unified gravity on items and creatures, with new comfortable properties (see <code>T3DCustomTransform.Gravity</code>, <code>T3DCustomTransform.FallSpeed</code>, <code>T3DCustomTransform.GrowSpeed</code>). More configurable from <code>resource.xml</code> file (<code>middle_height</code>, <code>fall_speed</code>, <code>grow_speed</code>, <code>direction_fall_speed</code> &mdash; see <a href="http://castle-engine.sourceforge.net/creating_data_resources.php">creating_data_resources</a>).
+      <li>Removed default TCreature and TItemOnWorld behavior on "activation" (Input_Interact, usually "e" in 3D games like "The Castle" and left mouse click in traditional 3D viewers). Previously they were making a simple description "what you see" on the Notifications, which may not be a desirable default behavior for many games. If needed, you can reimplement this (or many other ideas) by overriding TCastleSceneManager.PointingDeviceActivate3D . You can also make your own T3D descendants and override their <code>T3D.PointingDeviceActivate</code>, like before.
     </ol>
   </li>
 
@@ -61,39 +61,39 @@ castle_thumbs(array(
 
   <li><p><b>Levels improvements</b>:</p>
     <ol>
-      <li><p>Placeholders are nicer. You can indicate in <tt>level.xml</tt> how to detect placeholder names in 3D level file, for example use <tt>placeholders="blender"</tt> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is <i>only</i> for <tt>TGameSceneManager.LoadLevel</tt> placeholders, nothing else. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">level.xml and resource.xml files documentation</a>.</p>
-        <p>You can register own callbacks, see <tt>PlaceholdersNames</tt> and docs of <tt>TPlaceholderName</tt>.</p>
+      <li><p>Placeholders are nicer. You can indicate in <code>level.xml</code> how to detect placeholder names in 3D level file, for example use <code>placeholders="blender"</code> to use object names set in Blender. You configure it now nicely to support any other modeler. Also, we now make clear that this detection dependent on modeler is <i>only</i> for <code>TGameSceneManager.LoadLevel</code> placeholders, nothing else. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">level.xml and resource.xml files documentation</a>.</p>
+        <p>You can register own callbacks, see <code>PlaceholdersNames</code> and docs of <code>TPlaceholderName</code>.</p>
       </li>
-      <li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">notes about sectors/waypoints for user</a>, and see <tt>TGameSceneManager.LoadLevel</tt> for developer docs.</li>
-      <li>Extracting direction (for initial direction that the creature is facing) from placeholder. See <tt>placeholder_default_direction</tt> in <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">creating_data_levels docs</a>.
-      <li><tt>TCastleSceneManager.OnMoveAllowed</tt> callback, to control how the algorithm described at <tt>TCastleSceneManager.MoveLimit</tt> works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
+      <li>Magic "margin" parameter around sectors removed. We now just look at waypoint\'s bounding box. See <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">notes about sectors/waypoints for user</a>, and see <code>TGameSceneManager.LoadLevel</code> for developer docs.</li>
+      <li>Extracting direction (for initial direction that the creature is facing) from placeholder. See <code>placeholder_default_direction</code> in <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">creating_data_levels docs</a>.
+      <li><code>TCastleSceneManager.OnMoveAllowed</code> callback, to control how the algorithm described at <code>TCastleSceneManager.MoveLimit</code> works &mdash; allows to limit the working of gravity and/or movement to some 3D space.
     </ol>
   </li>
 
   <li><p><b>Player improvements</b>:</p>
     <ol>
-      <li><tt>TPlayer.RenderOnTop</tt> feature.</li>
-      <li>Every <tt>T3DOrient</tt> instance has automatically a synchronized <tt>T3DOrient.Camera</tt> instance inside. This makes Player&lt;-&gt;Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in <a href="http://tremulous.net/">Tremulous</a>, it\'s quite cool.</li>
-      <li><tt>TPlayer.Flying</tt> and <tt>TPlayer.FlyingTimeOut</tt>, a simpler and more flexible properties to control player flying (replace previous <tt>TPlayer.FlyingMode</tt> and friends).
+      <li><code>TPlayer.RenderOnTop</code> feature.</li>
+      <li>Every <code>T3DOrient</code> instance has automatically a synchronized <code>T3DOrient.Camera</code> instance inside. This makes Player&lt;-&gt;Camera synchronization work without any fuss. It also allows to switch your view into a computer-controlled creature, which is quite fun. In network games, other players will also be creatures (with data synchronized from network), so this will also allow observing other players when in "spectator" mode &mdash; I saw this feature in <a href="http://tremulous.net/">Tremulous</a>, it\'s quite cool.</li>
+      <li><code>TPlayer.Flying</code> and <code>TPlayer.FlyingTimeOut</code>, a simpler and more flexible properties to control player flying (replace previous <code>TPlayer.FlyingMode</code> and friends).
     </ol>
   </li>
 
   <li><p><b>Image API improvements</b>:</p>
     <ol>
-      <li>Cleanups around <tt>AlphaChannel</tt> detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a></li>
-      <li>Introducing <tt>TGLImage</tt> class in <tt>GLImages</tt> unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.</li>
-      <li><tt>ForbiddenConvs</tt> parameter to <tt>LoadImage</tt> removed, along with <tt>TImageLoadConversions</tt> and friends. They were complicated, and not really useful in practice. (If you\'re really paranoid about conversions, you can use <tt>LoadImage</tt> to any class and make conversions yourself, honoring any order/limits as you desire.)</li>
+      <li>Cleanups around <code>AlphaChannel</code> detection, code simplified (and much shortened). <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection">Our alphaChannel extension is now available for all X3DTextureNode.</a></li>
+      <li>Introducing <code>TGLImage</code> class in <code>GLImages</code> unit, for drawing images on 2D screen. This encapsulates a display list, and in the future will be seamlessly changed to PBO for modern OpenGL versions.</li>
+      <li><code>ForbiddenConvs</code> parameter to <code>LoadImage</code> removed, along with <code>TImageLoadConversions</code> and friends. They were complicated, and not really useful in practice. (If you\'re really paranoid about conversions, you can use <code>LoadImage</code> to any class and make conversions yourself, honoring any order/limits as you desire.)</li>
     </ol>
   </li>
 
   <li><p><b>Other changes</b>:</p>
     <ol>
-      <li>Unit <tt>CastleGameCache</tt> removed. We automatically use the global <tt>GLContextCache</tt> now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by <tt>TCastleScene.CreateCustomCache</tt> and <tt>TCastlePrecalculatedAnimation.CreateCustomCache</tt> &mdash; but, aside from debugging, it\'s hard to imagine why you would need it now :)</li>
-      <li>OpenGL resources are automatically shared between two or more <tt>TCastleControl</tt> controls. Also <tt>Idle</tt> fixes for multiple <tt>TCastleControl</tt> in a single application.</li>
-      <li>Generic unit name <tt>Shape</tt> renamed to <tt>CastleShapes</tt>, <tt>Images</tt> to <tt>CastleImages</tt>, <tt>Triangle</tt> to <tt>X3DTriangles</tt>. New unit <tt>CastleTriangles</tt> extracted from <tt>VectorMath</tt> (to make a huge <tt>VectorMath</tt> unit at least a little slimmer).</li>
-      <li><p>Large press / release callbacks and virtual methods rearrangement: all presses (<tt>KeyDown</tt>, <tt>MouseDown</tt>, <tt>MouseWheel</tt>) now go to a single <tt>Press</tt> method (with <tt>TInputPressRelease</tt> param). Likewise, all releases (<tt>KeyUp</tt>, <tt>MouseUp</tt> (we didn\'t implement mouse wheel releases yet)) go to <tt>Release</tt>. Same goes for callbacks, now you have <tt>OnPress</tt> and <tt>OnRelease</tt>.</p>
+      <li>Unit <code>CastleGameCache</code> removed. We automatically use the global <code>GLContextCache</code> now, this makes things trivial to use and automatically optimal. If you really, really want to use a separate cache for some stuff, you can still do it by <code>TCastleScene.CreateCustomCache</code> and <code>TCastlePrecalculatedAnimation.CreateCustomCache</code> &mdash; but, aside from debugging, it\'s hard to imagine why you would need it now :)</li>
+      <li>OpenGL resources are automatically shared between two or more <code>TCastleControl</code> controls. Also <code>Idle</code> fixes for multiple <code>TCastleControl</code> in a single application.</li>
+      <li>Generic unit name <code>Shape</code> renamed to <code>CastleShapes</code>, <code>Images</code> to <code>CastleImages</code>, <code>Triangle</code> to <code>X3DTriangles</code>. New unit <code>CastleTriangles</code> extracted from <code>VectorMath</code> (to make a huge <code>VectorMath</code> unit at least a little slimmer).</li>
+      <li><p>Large press / release callbacks and virtual methods rearrangement: all presses (<code>KeyDown</code>, <code>MouseDown</code>, <code>MouseWheel</code>) now go to a single <code>Press</code> method (with <code>TInputPressRelease</code> param). Likewise, all releases (<code>KeyUp</code>, <code>MouseUp</code> (we didn\'t implement mouse wheel releases yet)) go to <code>Release</code>. Same goes for callbacks, now you have <code>OnPress</code> and <code>OnRelease</code>.</p>
 
-        <p>This allows a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on <tt>TInputShortcut</tt>, where you can customize whether it\'s key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single <tt>TInputPressRelease</tt> value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.</p>
+        <p>This allows a huge code cleanup (and shortening) in a lot of places. Since our engine concentrates input processing on <code>TInputShortcut</code>, where you can customize whether it\'s key and/or mouse button and/or mouse wheel, it makes sense to store "press" and "release" as a single <code>TInputPressRelease</code> value. Previously, a lot of code was complicated because of this, and also some methods had a lot of parameters to pass all key/mouse information in separate variables.</p>
 
         <p>If you want to add some key/mouse shortcut to your game, you can now do it easily:</p>
 
@@ -104,7 +104,7 @@ Input_UseLifePotion := TInputShortcut.Create(nil, \'Use life potion\', \'life_po
 Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
 </pre>
 
-        <p>Then use it in <tt>TCastleWindow.OnPress</tt> or <tt>TCastleControl.OnPress</tt> callback, or in an overridden <tt>TInputListener.Press</tt> method (<tt>TInputListener</tt> is an ancestor for many things, like <tt>TCamera</tt>, <tt>TUIControl</tt>, <tt>TCastleSceneManager</tt>) like</p>
+        <p>Then use it in <code>TCastleWindow.OnPress</code> or <code>TCastleControl.OnPress</code> callback, or in an overridden <code>TInputListener.Press</code> method (<code>TInputListener</code> is an ancestor for many things, like <code>TCamera</code>, <code>TUIControl</code>, <code>TCastleSceneManager</code>) like</p>
 
 <pre class="sourcecode">
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
@@ -113,9 +113,9 @@ begin
 end;
 </pre>
 
-        <p>The keymap management in <tt>CastleInputs</tt> unit cooperates with it nicely. For example you can check which shortcut matches by <tt>InputsAll.SeekMatchingShortcut</tt>. You can get an input from user by <tt>CastleMessages.MessageKeyMouse</tt>. This is great for games where you want to allow user to customize inputs. See <tt>GameControlsMenu</tt> in castle1 source for a working example of it, with <tt>TCastleOnScreenMenu integration</tt>.</p>
+        <p>The keymap management in <code>CastleInputs</code> unit cooperates with it nicely. For example you can check which shortcut matches by <code>InputsAll.SeekMatchingShortcut</code>. You can get an input from user by <code>CastleMessages.MessageKeyMouse</code>. This is great for games where you want to allow user to customize inputs. See <code>GameControlsMenu</code> in castle1 source for a working example of it, with <code>TCastleOnScreenMenu integration</code>.</p>
 
-        <p>You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the <tt>TInputPressRelease</tt> is a pretty trivial structure, it has <tt>EventType</tt> field, and even helpers like <tt>IsKey</tt>. So you can do</p>
+        <p>You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the <code>TInputPressRelease</code> is a pretty trivial structure, it has <code>EventType</code> field, and even helpers like <code>IsKey</code>. So you can do</p>
 
 <pre class="sourcecode">
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
@@ -157,14 +157,14 @@ castle_thumbs(array(
     <a href="http://castle-engine.sourceforge.net/creating_data_intro.php">level.xml and resource.xml files documentation</a>.
     It\'s still a lot of raw, unformatted text, but the content pretty much covers now everything I want, and it describes the latest engine workings in SVN.</p>
 
-  <li><p>Previous <tt>index.xml</tt> are now named <tt>level.xml</tt> (for levels), or <tt>resource.xml</tt> (for creatures, items, and other heavy 3D stuff that may be shared by levels). This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).</p></li>
+  <li><p>Previous <code>index.xml</code> are now named <code>level.xml</code> (for levels), or <code>resource.xml</code> (for creatures, items, and other heavy 3D stuff that may be shared by levels). This makes things cleaner, and LoadFromFiles calls easier (you can just let it search whole ProgramDataPath).</p></li>
 
   <li><p>Placeholder 3D objects have now consistent naming. "Placeholders" are 3D objects that have special meaning when you load your level through TGameSceneManager.LoadLevel &mdash; objects with some special names are removed from normal level geometry, and they indicate... well, various things. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleLevels.TGameSceneManager.html#LoadLevel">TGameSceneManager.LoadLevel docs</a> (from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/">engine SVN reference</a>) for full reference. Short:</p>
     <ul>
-      <li>Resources (creatures and items initial positions) placeholders and are now named <tt>CasRes...</tt>.</li>
-      <li>Movement limit box is named <tt>CasMoveLimit</tt> (previously "LevelBox"; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#MoveLimit">TCastleSceneManager.MoveLimit</a> for docs).</li>
-      <li>Water volume is <tt>CasWater</tt> (see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#Water">TCastleSceneManager.Water</a> docs).</li>
-      <li>Sectors and waypoints are <tt>CasSector...</tt>, <tt>CasWaypoint...</tt> (for creature AI; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#CreateSectors">TCastleSceneManager.CreateSectors</a>).</li>
+      <li>Resources (creatures and items initial positions) placeholders and are now named <code>CasRes...</code>.</li>
+      <li>Movement limit box is named <code>CasMoveLimit</code> (previously "LevelBox"; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#MoveLimit">TCastleSceneManager.MoveLimit</a> for docs).</li>
+      <li>Water volume is <code>CasWater</code> (see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#Water">TCastleSceneManager.Water</a> docs).</li>
+      <li>Sectors and waypoints are <code>CasSector...</code>, <code>CasWaypoint...</code> (for creature AI; see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleSceneManager.TCastleSceneManager.html#CreateSectors">TCastleSceneManager.CreateSectors</a>).</li>
     </ul>
   </li>
 
@@ -180,7 +180,7 @@ castle_thumbs(array(
   Levels.LoadFromFiles;
   Window.SceneManager.LoadLevel(\'my_level_name\');
 </pre>
-        <p>Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and <tt>level.xml</tt> file with <tt>name="my_level_name"</tt>. You already have all the code you need :) See <tt>castle_game_engine/examples/3d_sound_game/</tt> for a larger working example using this.</p>
+        <p>Congratulations, you just wrote a game :) All that remains is to prepare a game 3D data, and <code>level.xml</code> file with <code>name="my_level_name"</code>. You already have all the code you need :) See <code>castle_game_engine/examples/3d_sound_game/</code> for a larger working example using this.</p>
         <p>(Update: 2012-09-16: the very next day after writing this, the API changed a little again; the example above was adapted.)</p>
       </li>
     </ul>
@@ -198,7 +198,7 @@ castle_thumbs(array(
 
   <li><p>Sound: engine units and classes simpler, no AL prefix everywhere. Also fixes to AudioClip X3D node (it wasn\'t always releasing reference when it should, causing crashes in special situations).</p></li>
 
-  <li><p>Limit amount of logging by default. Our InitializeLog (see CastleLog unit docs, try <tt>--debug-log</tt> options of various programs) was producing way too much information by default, and important things were difficult to spot. Now by default it\'s shorter, showing only seldom happening things or important warnings.</p></li>
+  <li><p>Limit amount of logging by default. Our InitializeLog (see CastleLog unit docs, try <code>--debug-log</code> options of various programs) was producing way too much information by default, and important things were difficult to spot. Now by default it\'s shorter, showing only seldom happening things or important warnings.</p></li>
 
   <li><p>Much cleanup in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleInputs.html">CastleInputs unit</a>. TInputShortcut and TInputConfiguration merged. Idea of "global" and "local" key shortcuts clearly defined and documented.</p></li>
 
@@ -243,10 +243,10 @@ castle_thumbs(array(
 <p>New engine units since last news:</p>
 
 <ol>
-  <li>New <tt>CastleLevel</tt> unit to find game levels (<tt>index.xml</tt> files), load them, scanning 3D level file for placeholders defining initial creatures/items, and integrating with player.</li>
-  <li>New <tt>CastlePlayer</tt> unit to manage a central player object, with an inventory, footsteps sound, swimming and so on. This unit will probably shrink a little in the future, as most of it\'s functionality should also be available for creatures.</li>
-  <li>New <tt>CastleItems</tt> unit to define items (things that you can use in a game, like a sword or a life potion or a key). Item is a <tt>TItem</tt> instance, that refers to a corresponding <tt>TItemKind</tt> instance, referenced by <tt>TItem.Kind</tt>. This is similar to how you define creatures (see <a href="http://castle-engine.sourceforge.net/news.php?id=2012-06-10">previous news post about <tt>CastleCreatures</tt> unit</a>), in that we have a separate class for an item and for item kind. A little complication here is that <tt>TItem</tt> is not a 3D object (it cannot be directly added to the level), instead you have to use <tt>TItem.PutOnLevel</tt> to get <tt>TItemOnLevel</tt> instance.</li>
-  <li>New <tt>CastleInputs</tt> unit, centralized keymap handling, detecting key conflicts and such.</li>
+  <li>New <code>CastleLevel</code> unit to find game levels (<code>index.xml</code> files), load them, scanning 3D level file for placeholders defining initial creatures/items, and integrating with player.</li>
+  <li>New <code>CastlePlayer</code> unit to manage a central player object, with an inventory, footsteps sound, swimming and so on. This unit will probably shrink a little in the future, as most of it\'s functionality should also be available for creatures.</li>
+  <li>New <code>CastleItems</code> unit to define items (things that you can use in a game, like a sword or a life potion or a key). Item is a <code>TItem</code> instance, that refers to a corresponding <code>TItemKind</code> instance, referenced by <code>TItem.Kind</code>. This is similar to how you define creatures (see <a href="http://castle-engine.sourceforge.net/news.php?id=2012-06-10">previous news post about <code>CastleCreatures</code> unit</a>), in that we have a separate class for an item and for item kind. A little complication here is that <code>TItem</code> is not a 3D object (it cannot be directly added to the level), instead you have to use <code>TItem.PutOnLevel</code> to get <code>TItemOnLevel</code> instance.</li>
+  <li>New <code>CastleInputs</code> unit, centralized keymap handling, detecting key conflicts and such.</li>
 </ol>
 
 <!--
@@ -263,10 +263,10 @@ The engine draft tutorial, see DRAFT.engine_tutorial.txt, is also being extended
 
 <ol>
   <li>In <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> <i>"Help -&gt; Selected Object Information"</i>, show Blender object/mesh name.</li>
-  <li>Handle beamWidth --&gt; GL_SPOT_EXPONENT translation similar to Xj3D: OpenGL spot exponent is <i>0.5 / max(beamWidth, epsilon)</i> (unless <i>beamWidth &gt;= cutOffAngle</i>, then spot exponent is always zero). This allows to at least influence drop off rate with <tt>beamWidth</tt>, and gives precise conversion from VRML 1.0 <tt>dropOffRate</tt> -&gt; VRML 2/X3D <tt>beamWidth</tt>. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/chapter_opengl_rendering.xml">engine internals doc about OpenGL rendering (sorry, just DocBook source now)</a> for details.</li>
-  <li><a href="http://castle-engine.sourceforge.net/castle_script.php">CastleScript</a> <tt>writeln()</tt> can be used in games to make notifications. Also CastleScript <tt>shortcut()</tt> is now available, to show user the value of some key shortcut. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/castle_script.html">CastleScript SVN docs</a> for details. This allows <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> levels (and future Castle2) levels to make notifications using more standard X3D mechanisms: they now use <tt>ProximitySensor</tt> + CastleScript to show hints, instead of our custom &lt;area&gt; invention. See e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages level X3D source</a> to see how it looks like.</li>
+  <li>Handle beamWidth --&gt; GL_SPOT_EXPONENT translation similar to Xj3D: OpenGL spot exponent is <i>0.5 / max(beamWidth, epsilon)</i> (unless <i>beamWidth &gt;= cutOffAngle</i>, then spot exponent is always zero). This allows to at least influence drop off rate with <code>beamWidth</code>, and gives precise conversion from VRML 1.0 <code>dropOffRate</code> -&gt; VRML 2/X3D <code>beamWidth</code>. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/chapter_opengl_rendering.xml">engine internals doc about OpenGL rendering (sorry, just DocBook source now)</a> for details.</li>
+  <li><a href="http://castle-engine.sourceforge.net/castle_script.php">CastleScript</a> <code>writeln()</code> can be used in games to make notifications. Also CastleScript <code>shortcut()</code> is now available, to show user the value of some key shortcut. See <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/castle_script.html">CastleScript SVN docs</a> for details. This allows <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> levels (and future Castle2) levels to make notifications using more standard X3D mechanisms: they now use <code>ProximitySensor</code> + CastleScript to show hints, instead of our custom &lt;area&gt; invention. See e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages level X3D source</a> to see how it looks like.</li>
   <li>Our "thunder" effect (blinking light and some sound), used previously in "cages" level of castle1 and lets_take_a_walk, is now remade as pure X3D prototype. This means it\'s simpler, more configurable, and doesn\'t use a single line of ObjectPascal code :) See it\'s implementation here: <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/thunder.x3dv">thunder.x3dv</a>, examples how it\'s used are at the bottom of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/3d_sound_game/data/levels/base/base.x3dv">base.wrl</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages_final.x3dv</a>.</li>
-  <li><tt>examples/3d_sound_game/lets_take_a_walk</tt> uses <tt>CastleLevel</tt>, as a first demo (besides the castle1 game).</li>
+  <li><code>examples/3d_sound_game/lets_take_a_walk</code> uses <code>CastleLevel</code>, as a first demo (besides the castle1 game).</li>
   <li>New <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu item <i>"Remove placeholder nodes from "Castle Game Engine" levels"</i>, a general way to remove some specially-named nodes (see <a href="http://castle-engine.sourceforge.net/creating_data_levels.php">castle development doc</a> for reference of most of them, see sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn\'t really prove useful.</li>
   <li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.</li>
   <li>Comfortable TCastleWindowBase.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindowBase.AntiAliasing instead of TCastleWindowBase.MultiSampling for a little higher-level approach for MSAA.</li>
@@ -307,7 +307,7 @@ castle_thumbs(array(
 
     <p>Basic shadows settings (by <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> or <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadows">shadow volumes</a>) are also configurable using this. In particular try out the <i>"Shadows (Easy: Shadow Maps)"</i> setting (not for PointLight), it just works on an arbitrary scene. I hope that this will also make our dynamic shadows algorithms more discoverable :)</p>
 
-    <p>Note: turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders-&gt;Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (See also the <tt>Shape.shading="PHONG"</tt> extension below to mark inside your X3D file that some shapes should use this look by default.)</p>
+    <p>Note: turn on <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">per-pixel lighting by using "Shaders-&gt;Enable For Everything" menu item</a> to see perfect lights results, this may be necessary to make local light effects really stand out. (See also the <code>Shape.shading="PHONG"</code> extension below to mark inside your X3D file that some shapes should use this look by default.)</p>
 
     <p>This is a tool for tweaking lights, not for designing them from the start. There\'s no option to add a new light, you can only change existing light sources. There\'s also no option to delete a light, although you can always disable light by setting "On" value to "No".</p>
 
@@ -359,7 +359,7 @@ castle_thumbs(array(
     it. But we would really like to encourage people to instead fix models
     to be perfect manifolds. Remember that you can <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_shadow_caster">mark some shapes as not shadow casters</a>
     to avoid considering them at all in the manifold/border edges
-    set. Only the shapes that sum into a 2-manifold should have <tt>shadowCaster = true</tt>.</p>
+    set. Only the shapes that sum into a 2-manifold should have <code>shadowCaster = true</code>.</p>
   </li>
 
   <li><p><b>Engine improvements</b> for programmers:</p>
@@ -403,41 +403,41 @@ castle_thumbs(array(
 <p>New features done lately:</p>
 
 <ol>
-  <li><p>Engine contains now the promised <tt>CastleCreatures</tt> unit (see inside <tt>src/game/</tt> subdirectory in SVN), that allows you to <b>easily create creatures with artificial intelligence</b>. (For details see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleCreatures.html">initial docs</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/game/castlecreatures.pas">castlecreatures.pas source</a>.) There are various ways to use it:</p>
+  <li><p>Engine contains now the promised <code>CastleCreatures</code> unit (see inside <code>src/game/</code> subdirectory in SVN), that allows you to <b>easily create creatures with artificial intelligence</b>. (For details see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/CastleCreatures.html">initial docs</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/game/castlecreatures.pas">castlecreatures.pas source</a>.) There are various ways to use it:</p>
 
     <ol>
-      <li><p>For starters, you can just use the walk-attack-state intelligence, by the <tt>TWalkAttackCreatureKind</tt> class. Such creature tracks the player (remembers last seen player 3D position, walks/flies to it, possibly through sectors/waypoints &mdash; so it can pass through narrow doors in a labyrinth or walk over a narrow bridge), attacks the player from the right distance (this can be either a melee attack, or shooting a missile &mdash; which adds a missile to the 3D world), eventually runs from the player (when he\'s too close and/or our health is low). For now, the player is always the main enemy, and there\'s no "creature vs creature" fighting, although it can be added easily in the future.</p>
+      <li><p>For starters, you can just use the walk-attack-state intelligence, by the <code>TWalkAttackCreatureKind</code> class. Such creature tracks the player (remembers last seen player 3D position, walks/flies to it, possibly through sectors/waypoints &mdash; so it can pass through narrow doors in a labyrinth or walk over a narrow bridge), attacks the player from the right distance (this can be either a melee attack, or shooting a missile &mdash; which adds a missile to the 3D world), eventually runs from the player (when he\'s too close and/or our health is low). For now, the player is always the main enemy, and there\'s no "creature vs creature" fighting, although it can be added easily in the future.</p>
 
-        <p>For basic usage, there\'s no need to even derive new classes. All you need to do is to create a directory holding creature 3D data and <tt>index.xml</tt> describing it (for example, see various subdirectories of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/creatures/">castle/data/creatures/ in SVN</a>).</p>
+        <p>For basic usage, there\'s no need to even derive new classes. All you need to do is to create a directory holding creature 3D data and <code>index.xml</code> describing it (for example, see various subdirectories of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/creatures/">castle/data/creatures/ in SVN</a>).</p>
 
         <p>There are a lot of settings to achieve particular behavior, e.g. cowardly/brave, offensive/defensive, melee/ranged, etc.</p>
 
-        <p>There is also a "missile" intelligence (<tt>TMissileCreatureKind</tt>), that causes the creature to blindly go in given direction (possibly with gravity and/or homing (close-on-target) features). On impact, missile may explode, hurting player and/or other creatures. Any kind of missile, <!-- (that doesn\'t immediately hurt the enemy), --> like arrow or lighting bolt, is represented as such "missile creature", that flies independently of the shooter.</p>
+        <p>There is also a "missile" intelligence (<code>TMissileCreatureKind</code>), that causes the creature to blindly go in given direction (possibly with gravity and/or homing (close-on-target) features). On impact, missile may explode, hurting player and/or other creatures. Any kind of missile, <!-- (that doesn\'t immediately hurt the enemy), --> like arrow or lighting bolt, is represented as such "missile creature", that flies independently of the shooter.</p>
       </li>
 
       <li><p>You can also derive simple descendants of above classes, to customize their behavior. For example, <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> customizes walk-attack creature to give both ranged and melee attacks to the <i>Spider Queen</i>, to make <i>werewolves</i> howl from time to time, and such. See <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/source/gamecreatures.pas">castle1 GameCreatures.pas unit sources</a>. We plan to add a simple FPS game to the engine examples, to illustrate this nicer.</p></li>
 
-      <li><p>Finally, nothing stops you from taking basic <tt>TCreatureKind</tt>, or even the more basic <tt>T3DAlive</tt> class, and add an intelligence there. Methods <tt>MyMove</tt>, <tt>MyMoveAllowed</tt>, <tt>MyHeight</tt>, <tt>MyLineOfSight</tt> allow you to add any kind of movement/intelligence to any 3D object. See <tt>Base3D</tt> unit and classes there.</p></li>
+      <li><p>Finally, nothing stops you from taking basic <code>TCreatureKind</code>, or even the more basic <code>T3DAlive</code> class, and add an intelligence there. Methods <code>MyMove</code>, <code>MyMoveAllowed</code>, <code>MyHeight</code>, <code>MyLineOfSight</code> allow you to add any kind of movement/intelligence to any 3D object. See <code>Base3D</code> unit and classes there.</p></li>
     </ol>
 
-    <p>We also have <tt>CastleResources</tt> unit (for reference-counted, heavy 3D resources) and other new units in the <tt>src/game/</tt> subdirectory.</p>
+    <p>We also have <code>CastleResources</code> unit (for reference-counted, heavy 3D resources) and other new units in the <code>src/game/</code> subdirectory.</p>
 
     <p>This achieves the major goal for the next engine version :) But there\'s still more work &mdash; we want to have there also (pickable) items, advanced player management, and advanced level loading. This is all already implemented in castle1 source, but we still need to generalize and clean up the code.</p>
   </li>
 
   <li><p>Jan Adamec started implementation of a new camera navigation method, called <i>Architecture</i> now. The idea is to create a more constrained Examine mode, suitable for viewing models with a ground/floor, where you don\'t want to accidentally flip the model upside-down.</p>
 
-    <p>The new navigation mode is already available on <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> header (take <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">view3dscene binary from snapshots</a>), it\'s also available for VRML/X3D models by <tt>NavigationInfo.type="ARCHITECTURE"</tt>. Remember it\'s a work in progress for now, the behavior will change.</p></li>
+    <p>The new navigation mode is already available on <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> header (take <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">view3dscene binary from snapshots</a>), it\'s also available for VRML/X3D models by <code>NavigationInfo.type="ARCHITECTURE"</code>. Remember it\'s a work in progress for now, the behavior will change.</p></li>
 
   <li><p>Some more screenshots of <a href="http://www.roomarranger.com/">Room Arranger scenes</a> with <i>Screen Space Ambient Occlusion</i>, and more screenshots of triangulating of non-trivial polygons, are visible on the side of this post. See <a href="http://castle-engine.sourceforge.net/news.php?item=2012-05-11-new-features">previous news</a> for details about these features.</p></li>
 
-  <li><p>Fractals demo using our engine (<tt>TCastleWindow</tt> and such) is available on github: <a href="https://github.com/michaliskambi/fractals-demo-cge">github.com/michaliskambi/fractals-demo-cge</a>. The code is GPL >= 2, by Michalis. Partially, I set this up to play with github :) But it also shows one way to distribute a code of a game/utility using our engine. You can look at README.txt, Lazarus lpi, and compilation scripts there as an example.</p></li>
+  <li><p>Fractals demo using our engine (<code>TCastleWindow</code> and such) is available on github: <a href="https://github.com/michaliskambi/fractals-demo-cge">github.com/michaliskambi/fractals-demo-cge</a>. The code is GPL >= 2, by Michalis. Partially, I set this up to play with github :) But it also shows one way to distribute a code of a game/utility using our engine. You can look at README.txt, Lazarus lpi, and compilation scripts there as an example.</p></li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/lets_take_a_walk.php">lets_take_a_walk, demo of 3D sounds inside our engine</a>, was refreshed (to use T3D classes) and added as another example to our engine sources (under <tt>castle_game_engine/examples/3d_sound_game/</tt>).</p></li>
+  <li><p><a href="http://castle-engine.sourceforge.net/lets_take_a_walk.php">lets_take_a_walk, demo of 3D sounds inside our engine</a>, was refreshed (to use T3D classes) and added as another example to our engine sources (under <code>castle_game_engine/examples/3d_sound_game/</code>).</p></li>
 
   <li><p>Added comments about sponsoring, and links to <a href="http://www.fossfactory.org/">FOSS Factory</a> and <a href="http://gun.io/">Gun.io</a> to our <a href="http://castle-engine.sourceforge.net/donate.php">donations</a> page.</p></li>
 
-  <li><p><a href="http://www.lazarus.freepascal.org/">Lazarus</a> TOpenGLControl component got quite a few improvements in Lazarus SVN, thanks to the work of Michalis, Jan Adamec and Andrey Zubarev: <a href="http://bugs.freepascal.org/view.php?id=22026">MultiSampling</a>, <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a>, <a href="http://bugs.freepascal.org/view.php?id=18046">AUX buffers</a>. This is an ancestor of our <tt>TCastleControl</tt> component, so all these improvements are directly useful also inside our engine.</p></li>
+  <li><p><a href="http://www.lazarus.freepascal.org/">Lazarus</a> TOpenGLControl component got quite a few improvements in Lazarus SVN, thanks to the work of Michalis, Jan Adamec and Andrey Zubarev: <a href="http://bugs.freepascal.org/view.php?id=22026">MultiSampling</a>, <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a>, <a href="http://bugs.freepascal.org/view.php?id=18046">AUX buffers</a>. This is an ancestor of our <code>TCastleControl</code> component, so all these improvements are directly useful also inside our engine.</p></li>
 
   <li><p>Other small fixes/updates:</p>
 
@@ -516,11 +516,11 @@ castle_thumbs(array(
     <img src="' . CURRENT_URL . 'images/original_size/navigation_controls.png" alt="Walk/Fly navigation controls" />
   </li>
 
-  <li><p>Also thanks to Jan Adamec, we have <b>Screen Space Ambient Occlusion</b> implemented inside our engine. Available as comfortable <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu item "View -&gt; Screen Effects -&gt; Screen Space Ambient Occlusion" (for developers: <tt>TCastleAbstractViewport.ScreenSpaceAmbientOcclusion</tt>.) Works on arbitrary models out-of-the-box :) Uses <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">our screen effects framework</a>.</p></li>
+  <li><p>Also thanks to Jan Adamec, we have <b>Screen Space Ambient Occlusion</b> implemented inside our engine. Available as comfortable <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu item "View -&gt; Screen Effects -&gt; Screen Space Ambient Occlusion" (for developers: <code>TCastleAbstractViewport.ScreenSpaceAmbientOcclusion</code>.) Works on arbitrary models out-of-the-box :) Uses <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">our screen effects framework</a>.</p></li>
 
-  <li><p><b>Screen effects cooperate now wit multi-sampling (anti-aliasing)</b>. Previously, any screen effect (like SSAO, or <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> effects, or effects in VRML/X3D files like <tt>demo_models/screen_effects/</tt> from <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>) was disabling anti-aliasing.</p>
+  <li><p><b>Screen effects cooperate now wit multi-sampling (anti-aliasing)</b>. Previously, any screen effect (like SSAO, or <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> effects, or effects in VRML/X3D files like <code>demo_models/screen_effects/</code> from <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>) was disabling anti-aliasing.</p>
 
-    <p>Now we can use <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">OpenGL ARB_texture_multisample</a> to have multi-sample textures used with screen effects. The GLSL code of every screen effect is linked with some helper <tt>screen_xxx</tt> functions. If you use them, your effects will work both with and without multi-sampling. The new functions are documented in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_extensions_screen_effects.html">future Screen Effects docs</a> (this will replace <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">the current Screen Effects docs</a> at the next release). All existing engine effects, like SSAO and other view3dscene effects in "View-&gt;Screen Effects", are already ported to use scene_xxx functions and cooperate with anti-aliasing.</p></li>
+    <p>Now we can use <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">OpenGL ARB_texture_multisample</a> to have multi-sample textures used with screen effects. The GLSL code of every screen effect is linked with some helper <code>screen_xxx</code> functions. If you use them, your effects will work both with and without multi-sampling. The new functions are documented in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_extensions_screen_effects.html">future Screen Effects docs</a> (this will replace <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">the current Screen Effects docs</a> at the next release). All existing engine effects, like SSAO and other view3dscene effects in "View-&gt;Screen Effects", are already ported to use scene_xxx functions and cooperate with anti-aliasing.</p></li>
 
   <li><p><b>Triangulator fixes for complicated concave polygons</b>. Various fixes to account for duplicated vertexes and (more general) collinear triangles inside polygon. Previously, they could cause problems, with normal vectors of polygon and ears determined incorrectly, and allowing invalid non-empty ear triangles. The video below visualizes how our simple triangulation algorithm (by ear clipping) works:
 
@@ -529,7 +529,7 @@ castle_thumbs(array(
   <li><p><b>X3D 3.3</b> handling. See <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/index.html">X3D 3.3 specification</a> for details.
 
     <ul>
-      <li><p><tt>UNIT</tt> statement handled (in both classic and XML encoding), see <tt>demo_models/x3d/units*</tt>. Angle and length conversion is actually done.
+      <li><p><code>UNIT</code> statement handled (in both classic and XML encoding), see <code>demo_models/x3d/units*</code>. Angle and length conversion is actually done.
 
         <p>For example, you can now express angles in degrees by simple declaration at the beginning of X3D file. This affects interpretation of these fields:
 
@@ -545,13 +545,13 @@ castle_thumbs(array(
         <p>Length conversion is also possible. This is less useful IMHO &mdash; you can as well just wrap your model in a Transform with some scale. Actually, that\'s exactly our implementation of "UNIT length" for now &mdash; we simply add appropriate scale (calculated looking at length unit of inlined model (inner), and looking at length unit of inlining model (outer)).
       </li>
 
-      <li><p><tt>MetadataBoolean</tt> node added.
+      <li><p><code>MetadataBoolean</code> node added.
 
-      <li><p><tt>GravityPhysicsModelNode</tt> renamed to <tt>ForcePhysicsModelNode</tt> (spec was mistakenly confusing these two names). (Only parsing.)
+      <li><p><code>GravityPhysicsModelNode</code> renamed to <code>ForcePhysicsModelNode</code> (spec was mistakenly confusing these two names). (Only parsing.)
 
-      <li><p>Added <tt>SliderJoint.sliderForce</tt> (Only parsing.)
+      <li><p>Added <code>SliderJoint.sliderForce</code> (Only parsing.)
 
-      <li><p><tt>DISEntityTypeMapping</tt> has X3DUrlObject as ancestor (Only parsing.)
+      <li><p><code>DISEntityTypeMapping</code> has X3DUrlObject as ancestor (Only parsing.)
 
       <li><p>The only relevant thing still missing from full X3D 3.3 implementation is the new, very exciting for me, <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/components/volume.html">Volume rendering component</a>. I would like to tackle it at some point, as it may be quite fun, impressive and useful. (But no deadline yet, so if you\'re really interested in seeing it implemented &mdash; contact me, patches are welcome :)
     </ul>
@@ -559,11 +559,11 @@ castle_thumbs(array(
 
   <li><p>Victor Amat send us some very nice 3D model of <b><a href="http://en.wikipedia.org/wiki/Barcelona_Pavilion">German Pavillion in the Universal Expo of Barcelona of 1929</a></b>, see the screenshots on the right, with very nice water and reflections.
 
-    <p>And, also from Victor Amat, a nice <b>soft shadows demo based on shadow maps</b>. It\'s an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side. The source X3D file is inside <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN, see subdirectory <tt>demo_models/shadow_maps/soft_shadow_poisson_sampling/</tt>. Thousand thanks!
+    <p>And, also from Victor Amat, a nice <b>soft shadows demo based on shadow maps</b>. It\'s an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side. The source X3D file is inside <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN, see subdirectory <code>demo_models/shadow_maps/soft_shadow_poisson_sampling/</code>. Thousand thanks!
 
-  <li><p>The X3D feature to specify <b>height of the tallest object you can climb</b> inside <tt>NavigationInfo.avatarSize[2]</tt> field is now correctly supported. The demo model is inside <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (open <tt>demo_models/navigation/avatar_climb_stairs.x3dv</tt>; only in SVN for now, until next release).</p></li>
+  <li><p>The X3D feature to specify <b>height of the tallest object you can climb</b> inside <code>NavigationInfo.avatarSize[2]</code> field is now correctly supported. The demo model is inside <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (open <code>demo_models/navigation/avatar_climb_stairs.x3dv</code>; only in SVN for now, until next release).</p></li>
 
-  <li><p><b><tt>VisibilitySensor</tt> node</b> is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv in <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN.
+  <li><p><b><code>VisibilitySensor</code> node</b> is implemented (looking only at frustum for now). See the testcase sensors_environmental/visibility_sensor.x3dv in <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN.
 
   <li><p>The <b>speed of Examine rotation by keys is now capped at a maximum constant</b>, to prevent accidentally making wildly fast (and, as such, useless and confusing) rotations.</p></li>
 
@@ -603,14 +603,14 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p><i>Developers:</i> <b>picking improvements with T3D hierarchy</b>: unified <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> style of picking, common to FPS games (pressing the "e" button when looking at item, stateless interaction with 3D items) with <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">VRML/X3D pointer sensors</a> (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally more powerful). Now it all goes through <tt>T3D.PointingDeviceActivate/Move</tt>, that can be overridden at each T3D.</p>
+  <li><p><i>Developers:</i> <b>picking improvements with T3D hierarchy</b>: unified <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> style of picking, common to FPS games (pressing the "e" button when looking at item, stateless interaction with 3D items) with <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">VRML/X3D pointer sensors</a> (operating with TouchSensors and drag sensors, that is stateful, tracks isOver/isActive and generally more powerful). Now it all goes through <code>T3D.PointingDeviceActivate/Move</code>, that can be overridden at each T3D.</p>
 
     <p>The user-visible benefit from this is that you can now pick creatures to see their name and health status. (Press "e" (interact key) to see info about creature or item at the center of the screen.) The real benefit is that new games can use picking easily, for more purposes.</p>
   </li>
 
-  <li><p><i>Developers:</i> <b>camera classes improvements</b>: their input shortcuts are now published (making it possible to customize them from Lazarus object inspector), they do not descend from TUIControl (as you should only use cameras on <tt>SceneManager.Camera</tt>), TCastleSceneManager.DefaultVisibilityLimit, better <tt>Camera.Radius</tt> treatment.</p></li>
+  <li><p><i>Developers:</i> <b>camera classes improvements</b>: their input shortcuts are now published (making it possible to customize them from Lazarus object inspector), they do not descend from TUIControl (as you should only use cameras on <code>SceneManager.Camera</code>), TCastleSceneManager.DefaultVisibilityLimit, better <code>Camera.Radius</code> treatment.</p></li>
 
-  <li><p><i>Developers:</i>Various improvements to example <tt>examples/lazarus/model_3d_viewer/</tt>, based on Jan Adamec patches: <b>buttons to change navigation mode, to make a screenshot, and nice engine logo</b>.
+  <li><p><i>Developers:</i>Various improvements to example <code>examples/lazarus/model_3d_viewer/</code>, based on Jan Adamec patches: <b>buttons to change navigation mode, to make a screenshot, and nice engine logo</b>.
 
   <li><p>Website stuff:
 
@@ -663,7 +663,7 @@ In somewhat random order:</p>
     and <a href="http://castle-engine.sourceforge.net/x3d_implementation_networking.php">Anchor
     node can now open URLs in a browser (for documents that are not recognized as 3D models)</a>.
 
-    <p>Engine contains a unit <tt>CastleOpenDocument</tt>, using code
+    <p>Engine contains a unit <code>CastleOpenDocument</code>, using code
     adapted from Lazarus LCL, to open URLs and documents on all platforms.
 
   <li><p>To our
@@ -674,16 +674,16 @@ In somewhat random order:</p>
 
   <li><p>We accept BitCoin for <a href="http://castle-engine.sourceforge.net/donate.php">donations</a>.
     If you wish to donate this way,
-    simply send some bitcoins to this address: <tt>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</tt></p>
+    simply send some bitcoins to this address: <code>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</code></p>
 
     <p>If you like view3dscene, please consider <a href="http://castle-engine.sourceforge.net/donate.php">donating
     using any of the listed options</a> :) Thanks!
 
   <li><p>For developers using our <a href="http://castle-engine.sourceforge.net/engine.php">engine</a>:
-    <tt>T3DTransform</tt> class is available, to comfortably transform 3D scenes
+    <code>T3DTransform</code> class is available, to comfortably transform 3D scenes
     (translate, rotate around specified center, scale around specified center
     with specified scaleOrientation). The demo how to use it is inside
-    <tt>castle_game_engine/examples/3d_rendering_processing/scene_manager_demos.lpr</tt> in SVN,
+    <code>castle_game_engine/examples/3d_rendering_processing/scene_manager_demos.lpr</code> in SVN,
     and also in new "The Castle" sources.
 
   <li><p>Various work on simplifying <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a> sources, and merging
@@ -693,7 +693,7 @@ In somewhat random order:</p>
     <ul>
       <li>Shadow volumes are now enabled by default</li>
       <li>Comfortable T3D.ReceiveShadowVolumes property</li>
-      <li>Teleport (on gate level), and spiders sliding down (on cages level) are now done by <tt>T3DTransform</tt> descendants. This means that spiders sliding down cast shadows too.</li>
+      <li>Teleport (on gate level), and spiders sliding down (on cages level) are now done by <code>T3DTransform</code> descendants. This means that spiders sliding down cast shadows too.</li>
     </ul>
 
   <li><p>Notes about recently released FPC 2.6.0: Yes, it works perfectly
@@ -704,10 +704,10 @@ In somewhat random order:</p>
     which is actually a bug in my compilation scripts.
     This concerns you only if you compile final programs (not just the engine),
     and only if you use scripts (as opposed to Lazarus) to compile.
-    In such case, make sure you use <tt>${CASTLE_FPC_OPTIONS:-}</tt>
-    instead of <tt>"${CASTLE_FPC_OPTIONS:-}"</tt> (strip double quotes).
+    In such case, make sure you use <code>${CASTLE_FPC_OPTIONS:-}</code>
+    instead of <code>"${CASTLE_FPC_OPTIONS:-}"</code> (strip double quotes).
 
-  <li><p>Cooperation between <tt>Anchor</tt> and other pointing-device
+  <li><p>Cooperation between <code>Anchor</code> and other pointing-device
     sensors improved in constructions like
 
 <pre>
@@ -719,8 +719,8 @@ Anchor {
 }
 </pre>
 
-    <p>Previously such <tt>Anchor</tt> was ignored (hidden by
-    <tt>TouchSensor</tt>), now it\'s treated like sibling to <tt>TouchSensor</tt>.
+    <p>Previously such <code>Anchor</code> was ignored (hidden by
+    <code>TouchSensor</code>), now it\'s treated like sibling to <code>TouchSensor</code>.
     So it can be activated, it\'s description is shown etc.
     Compatible with at least InstantReality.
 

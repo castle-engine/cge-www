@@ -4,7 +4,7 @@ creating_data_header('Player configuration');
 ?>
 
 <p>You can load an XML file configuring various player properties.
-Below is a sample <tt>player.xml</tt> file
+Below is a sample <code>player.xml</code> file
 with links to documentation for every attribute.
 
 <ul>

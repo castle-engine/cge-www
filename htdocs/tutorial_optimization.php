@@ -22,33 +22,33 @@ probably start to wonder about the speed and memory usage.</p>
 
 <p>The main thing that measures your game speed is the <i>Frames Per Second</i>.
 Engine automatically keeps track of this for you.
-Use the <tt>TCastleControl.Fps</tt> or <tt>TCastleWindow.Fps</tt>
+Use the <code>TCastleControl.Fps</code> or <code>TCastleWindow.Fps</code>
 to get an instance of
  <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>,
 and inside you have two important numbers:
  <?php api_link('TFramesPerSecond.FrameTime', 'CastleTimeUtils.TFramesPerSecond.html#FrameTime'); ?> and
  <?php api_link('TFramesPerSecond.RealTime', 'CastleTimeUtils.TFramesPerSecond.html#RealTime'); ?>.
 We will explain the
-difference between <tt>FrameTime</tt> and <tt>RealTime</tt> shortly.</p>
+difference between <code>FrameTime</code> and <code>RealTime</code> shortly.</p>
 
 <p>How to show them? However you like:</p>
 
 <ul>
-  <li>If you use <tt>TCastleWindow</tt>,
-    you can trivially enable <tt>TCastleWindow.FpsShowOnCaption</tt>
+  <li>If you use <code>TCastleWindow</code>,
+    you can trivially enable <code>TCastleWindow.FpsShowOnCaption</code>
     to show FPS on your window caption.
 
   <li>You can show them on Lazarus label or caption. Just be sure to
     not update them too often &mdash; <i>updating normal Lazarus controls all
     the time may slow your OpenGL context drastically</i>. Same warning goes
-    about writing them to the console with <tt>Writeln</tt> &mdash; don't call it too
+    about writing them to the console with <code>Writeln</code> &mdash; don't call it too
     often, or your rendering will be slower. It's simplest to use
-    Lazarus <tt>TTimer</tt> to update it only once per second or such. Actually,
+    Lazarus <code>TTimer</code> to update it only once per second or such. Actually,
     these properties show you an average from last second, so
     there's not even a reason to redraw them more often.
 
   <li>You can also simply display them on an OpenGL context (see the
-    <?php echo a_href_page('example about designing your own <tt>TGame2DControls</tt>
+    <?php echo a_href_page('example about designing your own <code>TGame2DControls</code>
     in earlier chapter', 'tutorial_player_2d_controls'); ?>).
 </ul>
 
@@ -79,7 +79,7 @@ number of frames per second that we managed to render.</b> Caveats:
     screen. E.g. keep camera moving, or have something animated on the
     screen, or set
     <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowBase.html#AutoRedisplay'); ?>
-    to <tt>true</tt>.
+    to <code>true</code>.
     Otherwise, we will not refresh the screen (no point to
     redraw the same thing), and "<i>real time</i>" will drop to almost zero if
     you look at a static scene.
@@ -94,10 +94,10 @@ number of frames per second that we managed to render.</b> Caveats:
 </ul>
 
 <p><b><i>"Frame time"</i> measures how much frames we
-would get, if we ignore the time spent outside <tt>OnDraw</tt> events.</b>
+would get, if we ignore the time spent outside <code>OnDraw</code> events.</b>
 Use <i>"frame time"</i>... with caution. But it's often
 useful to compare it with <i>"real
-time"</i> (with <tt>LimitFPS</tt> feature turned off),
+time"</i> (with <code>LimitFPS</code> feature turned off),
 as it may then tell you whether the
 bottleneck is in rendering or outside of rendering (like collision
 detection and creature AI). Caveats:
@@ -115,23 +115,23 @@ good thing, actually, if your game can spend this time on something useful
 like collisions. Just don't overestimate it &mdash; you didn't make
 rendering faster, but you managed to do a useful work in the meantime.
 
-<p>For example: if you set <tt>LimitFPS</tt> to a small value, you may observe
+<p>For example: if you set <code>LimitFPS</code> to a small value, you may observe
 that <i>"frame time"</i> grows higher. Why? Because when the CPU is idle
-(which is often if <tt>LimitFPS</tt> is small), then GPU has a free time to
+(which is often if <code>LimitFPS</code> is small), then GPU has a free time to
 finish rendering previous frame. So the GPU does the work for free,
-outside of <tt>OnDraw</tt> time, when your CPU is busy with something
+outside of <code>OnDraw</code> time, when your CPU is busy with something
 else. OTOH when CPU works on producing new frames, then you have to
-wait inside <tt>OnDraw</tt> until previous frame finishes.
+wait inside <code>OnDraw</code> until previous frame finishes.
 
 <p>In other words, improvements to <i>"frame time"</i> must be taken with a
-grain of salt. We spend less time in <tt>OnDraw</tt> event: this does not
+grain of salt. We spend less time in <code>OnDraw</code> event: this does not
 necessarily mean that we really render faster.
 
 <p>Still, often <i>"frame time"</i> does reflect the speed of GPU rendering.
 
-<p>If you turn off <tt>LimitFPS</tt>, and compare <i>"frame time"</i> with
+<p>If you turn off <code>LimitFPS</code>, and compare <i>"frame time"</i> with
 <i>"real time"</i>,
-you can see how much time was spent outside <tt>OnDraw</tt>. Usually, <i>"frame
+you can see how much time was spent outside <code>OnDraw</code>. Usually, <i>"frame
 time"</i> will be close to <i>"real time"</i>. If the gap is large, it may mean
 that you have a bottleneck in non-rendering code (like collision
 detection and creature AI).
@@ -185,7 +185,7 @@ matters for level.
 <p>Use X3D Collision node to easily mark unneeded shapes as
 non-collidable or to provide a simpler "proxy" mesh to use for
 collisions with complicated objects. See
-<tt>demo_models/vrml_2/collisions_final.wrl</tt>
+<code>demo_models/vrml_2/collisions_final.wrl</code>
 inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
 It's really trivial
 in X3D, and we support it 100% &mdash; I just wish there was a way to
@@ -210,8 +210,8 @@ for a wide range of scenes.
 detect memory problems, as there are plenty of them available with
 FPC+Lazarus already. To simply see the memory usage, just use process
 monitor that comes with your OS. To detect memory leaks, be sure to
-use FPC <tt>HeapTrc.pas</tt> (compile with <tt>-gl -gh</tt>). See also Lazarus units
-like <tt>LeakInfo</tt>. Finally, you can use full-blown memory profilers like
+use FPC <code>HeapTrc.pas</code> (compile with <code>-gl -gh</code>). See also Lazarus units
+like <code>LeakInfo</code>. Finally, you can use full-blown memory profilers like
 valgrind's massif with FPC code (see section "Profiling" lower in this
 tutorial).
 
@@ -219,7 +219,7 @@ tutorial).
 
 <p>You can use any FPC tools to profile your code, for memory and
 speed. There's a small document about it in engine sources, see
-<tt>castle_game_engine/doc/profiling_howto.txt</tt> . See also
+<code>castle_game_engine/doc/profiling_howto.txt</code> . See also
 <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC wiki about profiling</a>.
 
 <?php

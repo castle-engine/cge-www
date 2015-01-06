@@ -26,7 +26,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <tt>nurbs</tt> subdirectory inside <?php
+see the <code>nurbs</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -40,35 +40,35 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>
 
 <p><?php echo x3d_node_link('NurbsTrimmedSurface'); ?>
- has only partial support: it is rendered just like <tt>NurbsPatchSurface</tt>,
-ignoring <tt>trimmingContour</tt>.</p>
+ has only partial support: it is rendered just like <code>NurbsPatchSurface</code>,
+ignoring <code>trimmingContour</code>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <tt>NurbsSurface</tt>, <tt>NurbsCurve</tt>, <tt>NurbsPositionInterpolator</tt>.</p>
+<p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <code>NurbsSurface</code>, <code>NurbsCurve</code>, <code>NurbsPositionInterpolator</code>.</p>
 
 <p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.</p>
 
 <ul>
-  <li><p>Only X3D surfaces have <tt>xClosed</tt> fields. We treat TRUE value there as "possibly closed", that is &mdash; if field indicates closed, we still check if limiting points match (X3D spec suggests we should do this, as far as I understand). This means X3D models may be loaded faster &mdash; if xClosed = FALSE, we do not even check if limiting points match.</p></li>
+  <li><p>Only X3D surfaces have <code>xClosed</code> fields. We treat TRUE value there as "possibly closed", that is &mdash; if field indicates closed, we still check if limiting points match (X3D spec suggests we should do this, as far as I understand). This means X3D models may be loaded faster &mdash; if xClosed = FALSE, we do not even check if limiting points match.</p></li>
 
-  <li><p>Only VRML 97 surfaces have <tt>ccw</tt> field.</p></li>
+  <li><p>Only VRML 97 surfaces have <code>ccw</code> field.</p></li>
 
-  <li><p>VRML 97 versions specify <tt>coord</tt> as direct <tt>MFVec3f</tt> field, while X3D versions specify <tt>coord</tt> as <tt>SFNode</tt> (containing <tt>Coordinate</tt> or similar node).</p></li>
+  <li><p>VRML 97 versions specify <code>coord</code> as direct <code>MFVec3f</code> field, while X3D versions specify <code>coord</code> as <code>SFNode</code> (containing <code>Coordinate</code> or similar node).</p></li>
 
-  <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different field names (keyValue, keyWeight, following interpolator conventions) than X3D <tt>NurbsPositionInterpolator</tt> (controlPoint, weight, following nurbs conventions).</p></li>
+  <li><p>VRML 97 <code>NurbsPositionInterpolator</code> has different field names (keyValue, keyWeight, following interpolator conventions) than X3D <code>NurbsPositionInterpolator</code> (controlPoint, weight, following nurbs conventions).</p></li>
 
-  <li><p>VRML 97 <tt>NurbsPositionInterpolator</tt> has different default value for order (4) than X3D version (3). Beware of this when converting from VRML 97 to X3D.</p></li>
+  <li><p>VRML 97 <code>NurbsPositionInterpolator</code> has different default value for order (4) than X3D version (3). Beware of this when converting from VRML 97 to X3D.</p></li>
 
-  <li><p>In VRML 97, <tt>knot</tt> and <tt>weight</tt> data is <tt>MFFloat</tt>, single-precision. In X3D, it's <tt>MFDouble</tt>.</p></li>
+  <li><p>In VRML 97, <code>knot</code> and <code>weight</code> data is <code>MFFloat</code>, single-precision. In X3D, it's <code>MFDouble</code>.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Note that in VRML and X3D, NURBS control points are expressed in
 homogeneous coordinates. That is, the control point is actually
-a 4D vector <tt>(x, y, z, weight)</tt>, which means that it's actual 3D position
-is <tt>(x/weight, y/weight, z/weight)</tt>.</p>
+a 4D vector <code>(x, y, z, weight)</code>, which means that it's actual 3D position
+is <code>(x/weight, y/weight, z/weight)</code>.</p>
 
 <p>This may be a little confusing, if you're used to normal NURBS
 equation definition like from <a href="http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/NURBS-def.html">here</a>

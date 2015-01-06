@@ -3,7 +3,7 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Simple loading of 3D models');
 ?>
 
-<p>We will now load a 3D model from file using the <tt>TCastleScene</tt> class.
+<p>We will now load a 3D model from file using the <code>TCastleScene</code> class.
 This is also one approach to load a simple game level,
 although you will learn a better way later to load a full-featured game level.</p>
 
@@ -13,7 +13,7 @@ such.
 <?php echo a_href_page('VRML / X3D is really quite powerful', 'vrml_x3d'); ?>.
 
 <p>A sample 3D model may be found inside engine examples,
-in <tt>examples/3d_rendering_processing/models/bridge_final.x3dv</tt>.
+in <code>examples/3d_rendering_processing/models/bridge_final.x3dv</code>.
 You can also download
 <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
 <!--
@@ -50,8 +50,8 @@ end.'); ?>
 it's contents from a file.
 <?php api_link('Scene.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?>
  determines what spatial
-structures (octrees for now) are created, the value <tt>[ssRendering,
-ssDynamicCollisions]</tt> is the most flexible one (it allows to speed up
+structures (octrees for now) are created, the value <code>[ssRendering,
+ssDynamicCollisions]</code> is the most flexible one (it allows to speed up
 the rendering by frustum culling, detect collisions between player and
 level, and it adapts to a dynamic level that may have some animated
 parts).

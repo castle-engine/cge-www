@@ -24,7 +24,7 @@
     <?php echo x3d_node_link('PointLight'); ?>,
     <?php echo x3d_node_link('SpotLight'); ?>
 
-    <p><i>Note</i>: VRML 2.0 <tt>SpotLight.beamWidth</tt>
+    <p><i>Note</i>: VRML 2.0 <code>SpotLight.beamWidth</code>
     idea cannot be translated to a standard
     OpenGL spotlight, so if you set beamWidth &lt; cutOffAngle then the light
     will not look exactly VRML 2.0-spec compliant.
@@ -37,7 +37,7 @@
     are supported. Our engine can support as many lights as are
     allowed by your OpenGL implementation, which is <i>at least</i> 8.
 
-    <p><tt>global</tt> field from X3D is also supported. The default
+    <p><code>global</code> field from X3D is also supported. The default
     value of this field is consistent with VRML 2.0 specification
     (that always wants directional lights non-global, and other lights
     always global).
@@ -62,8 +62,8 @@ This is usually slower but also more beautiful than default
     are precisely rendered.</p></li>
   <li><p>Lights attenuation is also calculated per-pixel,
     this sometimes gives much better results.</li>
-  <li><p>Spot lights <tt>beamWidth</tt> is correctly applied
-    (for fixed-function rendering, <tt>beamWidth</tt> could not be perfectly
+  <li><p>Spot lights <code>beamWidth</code> is correctly applied
+    (for fixed-function rendering, <code>beamWidth</code> could not be perfectly
     represented by OpenGL spot exponent).</li>
   <li>
     <?php
@@ -75,7 +75,7 @@ This is usually slower but also more beautiful than default
     <p>Light radius is also checked per-pixel when necessary
     (when shape is partially inside, partially outside the light radius).
     <!-- (previously, only per-shape). -->
-    This allows to use <tt>"radius"</tt> field (on point and spot lights)
+    This allows to use <code>"radius"</code> field (on point and spot lights)
     for much more dramatic lighting effects.
     For example, compare the two screenshots from
     light_street_lights_radius demo on the right (from

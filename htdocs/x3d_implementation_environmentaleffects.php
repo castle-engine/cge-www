@@ -2,8 +2,8 @@
   require_once 'x3d_implementation_common.php';
   x3d_status_header('Environmental effects', 'enveffects',
     'This component defines special rendering effects.
-     <tt>Background</tt> defines the sky colors and textures.
-     <tt>Fog</tt> and <tt>LocalFog</tt> simulate natural fog.'
+     <code>Background</code> defines the sky colors and textures.
+     <code>Fog</code> and <code>LocalFog</code> simulate natural fog.'
   );
 ?>
 
@@ -17,10 +17,10 @@
 
   <li><p><?php echo x3d_node_link('FogCoordinate'); ?> is also supported.
 
-    <p>Note that depths (in <tt>FogCoordinate.depth</tt>) are sensible
+    <p>Note that depths (in <code>FogCoordinate.depth</code>) are sensible
     only in the [0, 1] range (like allowed by the specification),
-    and are not affected by the <tt>Fog.visibilityRange</tt>
-    (also following the spec). Effectively, this means that <tt>FogCoordinate.depth</tt>
+    and are not affected by the <code>Fog.visibilityRange</code>
+    (also following the spec). Effectively, this means that <code>FogCoordinate.depth</code>
     does <i>not</i> substitute the mere distance to the eye in the fog equation.
     Instead, it specifies directly the fog intensity.
     I understand that this is the intention of the spec, although the wording

@@ -22,7 +22,7 @@ and gen_function
 
 <p><i>glplotter</i> draws graphs. It can generate graphs
 of various functions (you can specify any mathematical expression as function
-expression, e.g. "<tt>sin(x) + x^2</tt>").</p>
+expression, e.g. "<code>sin(x) + x^2</code>").</p>
 
 <p><i>glplotter</i> can also load a graph from a file. This is useful
 if your graph data doesn't come from any mathematical expression &mdash;
@@ -62,9 +62,9 @@ of keys).--></p>
 <?php echo $toc->html_section(); ?>
 
 <p>You can pass at command-line file names from which to load graphs.
-Dash (<tt>-</tt>) as filename means "standard input".
+Dash (<code>-</code>) as filename means "standard input".
 
-<p>E.g. you could pipe the output of <tt>gen_function</tt> program
+<p>E.g. you could pipe the output of <code>gen_function</code> program
 to glplotter, like
 <pre>
   gen_function "sin(x)" -10 10 0.1 | glplotter -
@@ -79,15 +79,15 @@ will display graphs of sinus and x<sup>2</sup> at once.
 Of course, in case of function expressions, it's usually more comfortable
 to set them up inside glplotter using <i>"Functions"</i> menu.
 
-<p>Options <tt>--light</tt> and <tt>--dark</tt> allow you to choose
+<p>Options <code>--light</code> and <code>--dark</code> allow you to choose
 appropriate color scheme.
 
-<p>Option <tt>--custom-size SIZE</tt> (or <tt>-c SIZE</tt>) specifies size for
+<p>Option <code>--custom-size SIZE</code> (or <code>-c SIZE</code>) specifies size for
 <ul>
-  <li>grid shown when <tt>--grid-custom</tt> was used (or Ctrl + G pressed)
-  <li>numbers scale shown when <tt>--num-scale-custom</tt> was used
+  <li>grid shown when <code>--grid-custom</code> was used (or Ctrl + G pressed)
+  <li>numbers scale shown when <code>--num-scale-custom</code> was used
     (or Ctrl + S pressed)
-  <li>numbers shown when <tt>--numbers-custom</tt> was used (or
+  <li>numbers shown when <code>--numbers-custom</code> was used (or
     Ctrl + N pressed)
 </ul>
 
@@ -104,15 +104,15 @@ any shape, they can cross each other etc.
 
 <p>File format:
 <ul>
-  <li>Lines starting with <tt>#</tt> (hash) are comments.
+  <li>Lines starting with <code>#</code> (hash) are comments.
   <li>Lines with two float numbers (separated by any whitespae)
     represent another point of the graph. You can use decimal or scientific
-    float format (like <tt>3.14</tt> or <tt>10e-3</tt>).
+    float format (like <code>3.14</code> or <code>10e-3</code>).
     A line segment will be drawn from this point to the next one
-    (unless a <tt>break</tt> will occur).
-  <li>Line with only <tt>break</tt> word means a break in a line segment
+    (unless a <code>break</code> will occur).
+  <li>Line with only <code>break</code> word means a break in a line segment
     sequence.
-  <li>Line like <tt>name=&lt;graph_name&gt;</tt> specifies graph name
+  <li>Line like <code>name=&lt;graph_name&gt;</code> specifies graph name
     (will be used in glplotter legend).
 </ul>
 Whitespace at the beginning and end of the line is always ignored.
@@ -130,7 +130,7 @@ Whitespace at the beginning and end of the line is always ignored.
 
 <?php echo $toc->html_section(); ?>
 
-<p><tt>gen_function</tt> generates graph file from given function expression.
+<p><code>gen_function</code> generates graph file from given function expression.
 It's seldom needed &mdash; glplotter can make a graph from function expression
 on it's own, see menu <i>"Functions"</i>.
 
@@ -152,8 +152,8 @@ echo_standard_program_download('gen_function', 'gen_function',
 </pre>
 
 <p>This will write on standard output the graph of function
-<tt>&lt;function&gt;</tt> for x in range <tt>[&lt;x1&gt; ; &lt;x2&gt;]</tt>
-(with x sampled at each <tt>&lt;xstep&gt;</tt> distance).
+<code>&lt;function&gt;</code> for x in range <code>[&lt;x1&gt; ; &lt;x2&gt;]</code>
+(with x sampled at each <code>&lt;xstep&gt;</code> distance).
 The graph will be in format understood by glplotter.
 
 <p>For example
@@ -194,7 +194,7 @@ postaci jako:
 </pre>
 
 Czyli lewa kolumna to po kolei numbers od 0 do 5 (co 1) a prawa kolumna
-to wartości funkcji <tt>x^2</tt> (czyli x<sup>2</sup>) gdzie x to wartość
+to wartości funkcji <code>x^2</code> (czyli x<sup>2</sup>) gdzie x to wartość
 w lewej kolumnie.
 
 <p>Polecenia
@@ -209,7 +209,7 @@ albo, krócej,
   gen_function "x^2" 0 5 1 | glplotter -
 </pre>
 
-wyświetlą więc wykresik funkcji x<sup>2</sup> na przedziale <tt>[0;5]</tt>. */
+wyświetlą więc wykresik funkcji x<sup>2</sup> na przedziale <code>[0;5]</code>. */
 ?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
@@ -220,8 +220,8 @@ wyświetlą więc wykresik funkcji x<sup>2</sup> na przedziale <tt>[0;5]</tt>. *
 <p>Short overview of mathematical expressions syntax: this is really
 just normal syntax of mathematical expressions, as used in all software
 and resembling normal mathematical notation.
-When we deal with function expressions, then <tt>x</tt> represents the argument,
-e.g. <tt>(x+4)*3+2</tt>, <tt>sin(x)</tt> etc.
+When we deal with function expressions, then <code>x</code> represents the argument,
+e.g. <code>(x+4)*3+2</code>, <code>sin(x)</code> etc.
 
 <p>For detailed information about syntax and built-in functions,
 see <?php echo a_href_page('CastleScript language reference', 'castle_script'); ?>.

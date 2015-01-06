@@ -43,7 +43,7 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
   you want, and run the program inside. The documentation
   (this web page) is also included inside
-  (look in the <tt>documentation/</tt> subdirectory) for offline viewing.');
+  (look in the <code>documentation/</code> subdirectory) for offline viewing.');
 
 /* Complete sitemap of our website.
    This determines a lot of navigational stuff: header menu, sidebar,
@@ -549,7 +549,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
 
   if (empty($castle_sidebar))
     $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
-    $rendered .= '<table class="layout" cellspacing="0">
+    $rendered .= '<table class="layout">
       <col class="content_column">
       <col class="sidebar_column">
       <tr><td class="layout content">' . _castle_breadcrumbs($path);
@@ -597,11 +597,6 @@ function echo_footer ()
       Like every other frickin' website on the Internet.
       Blink twice if you understand.</small>
     </td>
-
-    <?php if (!IS_GEN_LOCAL) { ?>
-      <td> <a href="http://validator.w3.org/check/referer"> <img border="0" src="images/valid-html401.png" alt="Valid HTML 4.01!" height="31" width="88"></a> <?php // style="padding-bottom: 3%" ?> </td>
-    <?php } ?>
-
   </tr></table>
 
 
@@ -807,8 +802,11 @@ function castle_thumbs($images, $columns=1, $align='right')
   /* style="clear: right" is added to work nicely with Flattr images,
      that are on some pages (like castle.php) directly above this table
      and also aligned to the right. */
-  $result = '<table' . ($align != '' ? ' align="'.$align.'"' : '') .
-    ' style="clear: right">';
+  $result = '<table style="clear: right';
+  if ($align != '') {
+    $result .= '; float: ' . $align;
+  }
+  $result .= '">';
 
   $column_now = 0;
 
@@ -833,7 +831,7 @@ function castle_thumbs($images, $columns=1, $align='right')
           <a href="' . $linktarget . '"
              class="screenshot"
              title="' . $image['titlealt'] . '"><img
-            align="right"
+            style="float: right"
             src="' . CURRENT_URL . 'images/thumb_size/' . $image['filename'] . '"
             alt="' . $image['titlealt'] . '"
           /></a>';

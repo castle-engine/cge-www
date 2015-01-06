@@ -32,18 +32,18 @@ pre.sourcecode {
 a.kscript_func_docs { text-decoration: underline; }
 
 pre.terminal { background-color: #EEE;  padding: 0.3em; }
-tt.terminal { background-color: #EEE; }
+code.terminal { background-color: #EEE; }
 
-tt { background-color: #f0f0f0; }
-/* Override above rule for x3d_component_intro. These <tt> are in practice
+code { background-color: #f0f0f0; }
+/* Override above rule for x3d_component_intro. These <code> are in practice
    surrounded by <b> now. */
-div.x3d_component_intro tt { background-color: transparent; }
+div.x3d_component_intro code { background-color: transparent; }
 
 /* SVN URLs tend to be long, and they look confusing when they are wrapped
    (in Firefox/Iceweasel) or cannot wrap (in Google Chrome and probably
    others). */
 pre.small { font-size: xx-small; }
-tt.small { font-size: xx-small; }
+code.small { font-size: xx-small; }
 
 pre.plug_declaration { border: thin solid #333; padding: 0.2em; }
 
@@ -69,7 +69,7 @@ span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 
 /* Tables with key controls should be done with
    <table border="1" class="key_list"> */
-table.key_list { width: 90%; }
+table.key_list { width: 90%; border: thin solid ; }
 table.key_list th { background: #eeeee0; }
 table.key_list td { background: #ddddd0; width: 50%; }
 
@@ -120,9 +120,11 @@ dl.vrml_ver_differences > dt {
 
 table.program_image_links {
   width: 100%;
+  border-spacing: 20px;
 }
 table.program_image_links_half {
   width: 50%;
+  border-spacing: 20px;
 }
 td.program_image_link img { border: none; }
 td.program_image_link {
@@ -135,6 +137,10 @@ td.program_image_link {
 
 table.main_links {
   width: 100%;
+  /* Like old cellspacing on <table>, see
+     http://stackoverflow.com/questions/339923/set-cellpadding-and-cellspacing-in-css
+  */
+  border-spacing: 20px;
 }
 td.main_link {
   background: #efdfae;
@@ -220,7 +226,14 @@ table.x3dtests tr.x3dtests-results td {
   font-size: smaller;
   padding: 0.1em;
 }
-table.layout { margin: 0px; padding: 0px; border: 0px; width: 100%; }
+table.layout {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 /* Don't set padding/margin here,
    sidebar_column and content_column want different padding/margin. */
 td.layout { border: 0px; vertical-align: top; }
@@ -288,7 +301,7 @@ div.x3d_component_intro {
 
 div.x3d_component_intro p.paragraph_first { margin-top: 0px; }
 div.x3d_component_intro p.paragraph_last { margin-bottom: 0px; }
-div.x3d_component_intro p.paragraph_first tt { font-weight: bold; }
+div.x3d_component_intro p.paragraph_first code { font-weight: bold; }
 
 /* news --------------------------------------------------------------------- */
 

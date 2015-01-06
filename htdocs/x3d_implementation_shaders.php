@@ -41,7 +41,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For complete demos and tests of these features,
-see the <tt>shaders</tt> subdirectory inside <?php
+see the <code>shaders</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -55,7 +55,7 @@ allow you to write shaders in the <a href="http://www.opengl.org/documentation/g
 <?php echo $toc->html_section(); ?>
 
 <p>Examples below are in the classic (VRML) encoding.
-Add inside the <tt>Appearance</tt> node code like</p>
+Add inside the <code>Appearance</code> node code like</p>
 
 <pre class="vrml_code">
 shaders ComposedShader {
@@ -73,7 +73,7 @@ shaders ComposedShader {
 (instead of putting it in an external file).
 The best way to do this, following the standards, is to use
 the <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>.
-In the simplest case, just start the URL with "<tt>data:text/plain,</tt>"
+In the simplest case, just start the URL with "<code>data:text/plain,</code>"
 and then write your shader code.</p>
 
 <p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/shaders_inlined.x3dv">Example: shaders_inlined.x3dv</a>.</p>
@@ -85,7 +85,7 @@ shader source code inside the CDATA.</p>
 <a href="http://instant-reality.com/">InstantPlayer</a>)
 we also recognize URL as containing direct shader source if it
 has any newlines and doesn't start with any URL protocol.
-But it's better to use "<tt>data:text/plain,</tt>" mentioned above.
+But it's better to use "<code>data:text/plain,</code>" mentioned above.
 
 <?php echo $toc->html_section(); ?>
 
@@ -97,7 +97,7 @@ inputOutput SFVec3f UniformVariableName 1 0 0
 </pre>
 
 to your ComposedShader node. These uniforms may also be modified by
-events (when they are <tt>inputOutput</tt> or <tt>inputOnly</tt>),
+events (when they are <code>inputOutput</code> or <code>inputOnly</code>),
 for example here's a simple way to pass the current time (in seconds)
 to your shader:
 
@@ -130,17 +130,16 @@ GLSL array types.</p>
 
 <p>TODO: we support all mappings between VRML/X3D and GLSL types
 for uniform values (that are mentioned in X3D spec),
-except <tt>SFImage</tt> and <tt>MFImage</tt>.</p>
+except <code>SFImage</code> and <code>MFImage</code>.</p>
 
-<a name="glsl_passing_uniform_textures"></a>
 <?php echo $toc->html_section(); ?>
 
-<p>You can also specify texture node (as <tt>SFNode</tt> field, or an array
-of textures in <tt>MFNode</tt> field) as a uniform field value.
+<p>You can also specify texture node (as <code>SFNode</code> field, or an array
+of textures in <code>MFNode</code> field) as a uniform field value.
 Engine will load and bind the texture and pass to GLSL uniform variable
 bound texture unit. This means that you can pass in a natural way
-texture node to a GLSL <tt>sampler2D</tt>, <tt>sampler3D</tt>,
-<tt>samplerCube</tt>, <tt>sampler2DShadow</tt> and such.</p>
+texture node to a GLSL <code>sampler2D</code>, <code>sampler3D</code>,
+<code>samplerCube</code>, <code>sampler2DShadow</code> and such.</p>
 
 <pre class="vrml_code">
 shaders ComposedShader {
@@ -168,27 +167,27 @@ shaders ComposedShader {
 
 <p>A full working version of this example can be found
 in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
- (look for file <tt>shaders/simple_multitex_shaders.x3dv</tt>),
+ (look for file <code>shaders/simple_multitex_shaders.x3dv</code>),
 <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
 </p>
 
 <p>When using GLSL shaders in X3D you should pass all
-needed textures to them this way. Normal <tt>appearance.texture</tt>
+needed textures to them this way. Normal <code>appearance.texture</code>
 is ignored when using shaders. However, in our engine,
 we have a special case to allow you to specify textures also
-in traditional <tt>appearance.texture</tt> field: namely,
-when <tt>ComposedShader</tt> doesn't contain any texture nodes,
-we will still bind <tt>appearance.texture</tt>. This e.g. allows
-you to omit declaring texture nodes in <tt>ComposedShader</tt>
+in traditional <code>appearance.texture</code> field: namely,
+when <code>ComposedShader</code> doesn't contain any texture nodes,
+we will still bind <code>appearance.texture</code>. This e.g. allows
+you to omit declaring texture nodes in <code>ComposedShader</code>
 field if you only have one texture, it also allows renderer to
 reuse OpenGL shader objects more (as you will be able to DEF/USE
-in X3D <tt>ComposedShader</tt> nodes even when they use different
+in X3D <code>ComposedShader</code> nodes even when they use different
 textures). But this feature should
 not be used or depended upon in the long run.</p>
 
 <p>Note that for now you have to pass textures in VRML/X3D fields
-(<tt>initializeOnly</tt> or <tt>inputOutput</tt>).
-TODO: Using <tt>inputOnly</tt> event to pass texture node to GLSL shader
+(<code>initializeOnly</code> or <code>inputOutput</code>).
+TODO: Using <code>inputOnly</code> event to pass texture node to GLSL shader
 does not work.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -199,8 +198,8 @@ The way do use this of course follows X3D specification,
 see <?php echo x3d_node_link('FloatVertexAttribute'); ?>,
 <?php echo x3d_node_link('Matrix3VertexAttribute'); ?>,
 <?php echo x3d_node_link('Matrix4VertexAttribute'); ?> nodes.
-You can place them in the <tt>attrib</tt> field of most geometry nodes
-(like <tt>IndexedFaceSet</tt>).</p>
+You can place them in the <code>attrib</code> field of most geometry nodes
+(like <code>IndexedFaceSet</code>).</p>
 
 <p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/attributes.x3dv">Example attributes.x3dv</a>,
 showing how to pass elevation grid heights by the shader attributes.</p>
@@ -215,8 +214,8 @@ showing how to pass elevation grid heights by the shader attributes.</p>
 
 <p>We support <i>geometry shaders</i>
 (in addition to standard <i>vertex</i> and <i>fragment shaders</i>).
-To use them, simply set <tt>ShaderPart.type</tt> to <tt>"GEOMETRY"</tt>,
-and put code of your geometry shader inside <tt>ShaderPart.url</tt>.</p>
+To use them, simply set <code>ShaderPart.type</code> to <code>"GEOMETRY"</code>,
+and put code of your geometry shader inside <code>ShaderPart.url</code>.</p>
 
 <p><b>What is a geometry shader?</b>
 A geometry shader is executed once for each primitive, like once for each triangle.
@@ -232,13 +231,13 @@ Geometry shader uses the information about given primitive: vertex positions
 from vertex shader, usually in eye or object space,
 and all vertex attributes.
 A single geometry shader may generate any number of primitives
-(separated by the <tt>EndPrimitive</tt> call), so you can easily "explode"
+(separated by the <code>EndPrimitive</code> call), so you can easily "explode"
 a simple input primitive into a number of others.
 You can also delete some original primitives based on some criteria.
 The type of the primitive may be changed by the geometry shader
 &mdash; for example, triangles may be converted to points or the other way around.</p>
 
-<p>Examples of geometry shaders with <tt>ComposedShader</tt>:</p>
+<p>Examples of geometry shaders with <code>ComposedShader</code>:</p>
 
 <ul>
   <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader.x3dv">Download
@@ -252,13 +251,13 @@ as part of our <?php echo a_href_page('compositing shaders', 'compositing_shader
  extensions. The most important advantage is that you can implement
 only the geometry shader, and use the default vertex and fragment shader code
 (that will do the boring stuff like texturing, lighting etc.).
-Inside the geometry shader you have functions <tt>geometryVertexXxx</tt>
+Inside the geometry shader you have functions <code>geometryVertexXxx</code>
 to pass-through or blend input vertexes in any way you like.
 Everything is described in detail in our
 <?php echo a_href_page('compositing shaders documentation', 'compositing_shaders'); ?>,
  in particular see the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>.</p>
 
-<p>Examples of geometry shaders with <tt>Effect</tt>:</p>
+<p>Examples of geometry shaders with <code>Effect</code>:</p>
 
 <ul>
   <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_simple.x3dv">geometry_shader_simple</a></li>
@@ -278,18 +277,18 @@ only available through extensions:
 <a href="http://www.opengl.org/registry/specs/ARB/geometry_shader4.txt">ARB_geometry_shader4</a>
 or <a href="http://www.opengl.org/registry/specs/EXT/geometry_shader4.txt">EXT_geometry_shader4</a>.
 They had the same purpose, but the syntax and calls were different and incompatible.
-For example, vertex positions were in <tt>gl_PositionIn</tt> instead of <tt>gl_in</tt>.
+For example, vertex positions were in <code>gl_PositionIn</code> instead of <code>gl_in</code>.
 
 <p>The most important incompatibility was that the <i>input
 and output primitive types</i>, and the <i>maximum number of vertices
 generated</i>, were specified outside of the shader source code.
 To handle this, an X3D browser would have to do special OpenGL calls
-(<tt>glProgramParameteriARB/EXT</tt>),
+(<code>glProgramParameteriARB/EXT</code>),
 and these additional parameters must be placed inside the special
-fields of the <tt>ComposedShader</tt>.
+fields of the <code>ComposedShader</code>.
 <a href="http://doc.instantreality.org/documentation/nodetype/ComposedShader/">InstantReality
-ComposedShader</a> adds additional fields <tt>geometryInputType</tt>,
-<tt>geometryOutputType</tt>, <tt>geometryVerticesOut</tt> specifically
+ComposedShader</a> adds additional fields <code>geometryInputType</code>,
+<code>geometryOutputType</code>, <code>geometryVerticesOut</code> specifically
 for this purpose
 (see also the bottom of <a href="http://doc.instantreality.org/tutorial/shader-programs/">InstantReality
 shaders overview</a>).</p>
@@ -304,7 +303,7 @@ example on Wikipedia of GLSL geometry shader differences before and after GLSL 1
 
 <p>We have decided to <b>not implement the old style geometry shaders</b>.
 The implementation would complicate the code
-(need to handle new fields of the <tt>ComposedShader</tt> node),
+(need to handle new fields of the <code>ComposedShader</code> node),
 and have little benefit (usable only for old OpenGL versions;
 to make geometry shaders work with both old and new OpenGL versions,
 authors would have to provide two separate versions of their geometry shaders).</p>
@@ -328,7 +327,7 @@ in float my_variable[gl_in.length()];
 </pre>
 
 <p>Unfortunately, the above syntax does not work on NVidia,
-that does not know that <tt>gl_in.length()</tt> is constant.
+that does not know that <code>gl_in.length()</code> is constant.
 On the other hand, NVidia doesn't require input array declaration.
 So you have to write:</p>
 
@@ -341,7 +340,7 @@ work on NVidia. We know how to do it on NVidia, but it doesn't work on ATI.
 Welcome to the world of modern computer graphics :)</p>
 
 <p>To enable you to write simple and robust geometry shaders,
-our engine allows you to use a macro <tt>CASTLE_GEOMETRY_INPUT_SIZE</tt>
+our engine allows you to use a macro <code>CASTLE_GEOMETRY_INPUT_SIZE</code>
 that expands to appropriate text (or nothing) for current GPU.
 So you can just write:</p>
 
@@ -351,8 +350,8 @@ in float my_variable[CASTLE_GEOMETRY_INPUT_SIZE];
 
 <?php echo $toc->html_section(); ?>
 
-<p>TODO: <tt>activate</tt> event doesn't work to relink the GLSL
-program now. (<tt>isSelected</tt> and <tt>isValid</tt> work perfectly for any
+<p>TODO: <code>activate</code> event doesn't work to relink the GLSL
+program now. (<code>isSelected</code> and <code>isValid</code> work perfectly for any
 X3DShaderNode.)
 
 <?php

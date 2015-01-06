@@ -12,12 +12,12 @@
 <ul>
   <li><p><?php echo x3d_node_link('WorldInfo'); ?></p>
 
-    <p><tt>WorldInfo.title</tt>, if set, is displayed by
+    <p><code>WorldInfo.title</code>, if set, is displayed by
     view3dscene on window's caption.</p></li>
 
-  <li><p><tt>UNIT</tt> statement (see <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/index.html">X3D 3.3 specification</a>) is handled. In both classic and XML encoding. Angle and length conversion is actually done.</p>
+  <li><p><code>UNIT</code> statement (see <a href="http://www.web3d.org/files/specifications/19775-1/V3.3/index.html">X3D 3.3 specification</a>) is handled. In both classic and XML encoding. Angle and length conversion is actually done.</p>
 
-    <p>Working examples of using it are inside <tt>demo_models/x3d/units*</tt> in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>. In short, you can declare them like this in X3D XML encoding:</p>
+    <p>Working examples of using it are inside <code>demo_models/x3d/units*</code> in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>. In short, you can declare them like this in X3D XML encoding:</p>
 
 <pre class="vrml_code">
 &lt;X3D version="3.3" profile="..."  ... &gt;

@@ -47,15 +47,15 @@ by processing the rendered image. Demos:</p>
     <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
     <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
-    and open files in <tt>screen_effects</tt> subdirectory there, to see the complete
+    and open files in <code>screen_effects</code> subdirectory there, to see the complete
     working demos with an example castle model underneath.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>You can define your own screen effects by using
-the <tt>ScreenEffect</tt> node in your VRML/X3D files.
-Inside the <tt>ScreenEffect</tt> node you provide your own shader code
+the <code>ScreenEffect</code> node in your VRML/X3D files.
+Inside the <code>ScreenEffect</code> node you provide your own shader code
 to process the screen, given the current color and depth buffer contents.
 With the power of GLSL shading language,
 your possibilities are endless :). You can warp the view,
@@ -72,35 +72,35 @@ color operations and so on.</p>
   node_end();
 ?>
 
-<p>A <tt>ScreenEffect</tt> is active if it's a part of normal VRML/X3D
+<p>A <code>ScreenEffect</code> is active if it's a part of normal VRML/X3D
 transformation hierarchy (in normal words: it's not inside a disabled
-child of the <tt>Switch</tt> node or such) and when the <tt>"enabled"</tt>
-field is <tt>TRUE</tt>.
-In the simple cases, you usually just add <tt>ScreenEffect</tt> node
+child of the <code>Switch</code> node or such) and when the <code>"enabled"</code>
+field is <code>TRUE</code>.
+In the simple cases, you usually just add <code>ScreenEffect</code> node
 anywhere at the top level of your VRML/X3D file. If you use many
-<tt>ScreenEffect</tt> nodes, then their order matters:
+<code>ScreenEffect</code> nodes, then their order matters:
 they process the rendered screen in the given order.</p>
 
 <p>You have to specify a shader to process the rendered screen by the
-<tt>"shaders"</tt> field. This works exactly like the standard X3D
-<tt>"Appearance.shaders"</tt>, by selecting a first supported shader.
+<code>"shaders"</code> field. This works exactly like the standard X3D
+<code>"Appearance.shaders"</code>, by selecting a first supported shader.
 Right now our engine supports only GLSL (OpenGL shading language) shaders
-inside <tt>ComposedShader</tt> nodes, see <?php echo a_href_page(
+inside <code>ComposedShader</code> nodes, see <?php echo a_href_page(
 'the general overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>
  and <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/shaders.html">X3D
 "Programmable shaders component" specification</a> and of course
 the <a href="http://www.opengl.org/documentation/glsl/">GLSL documentation</a>.</p>
 
-<p>The shader inside <tt>ScreenEffect</tt> is always linked with a library
+<p>The shader inside <code>ScreenEffect</code> is always linked with a library
 of useful GLSL functions:.</p>
 
 <ul>
-  <li><tt>ivec2 screen_position()</tt> - position of the current pixel.
-    This pixel's color will be set by our <tt>gl_FragColor</tt> value at exit.</li>
-  <li><tt>int screen_x()</tt>, <tt>int screen_y()</tt> - x and y coordinates of current pixel position, for comfort.</li>
-  <li><tt>vec4 screen_get_color(ivec2 position)</tt> - get previous screen color at this pixel.</li>
-  <li><tt>float screen_get_depth(ivec2 position)</tt> - get previous depth at this pixel (only if <tt>needsDepth</tt> was <tt>TRUE</tt>).</li>
-  <li>uniform values <tt>int screen_width</tt>, <tt>int screen_height</tt> - screen size in pixels.<br>
+  <li><code>ivec2 screen_position()</code> - position of the current pixel.
+    This pixel's color will be set by our <code>gl_FragColor</code> value at exit.</li>
+  <li><code>int screen_x()</code>, <code>int screen_y()</code> - x and y coordinates of current pixel position, for comfort.</li>
+  <li><code>vec4 screen_get_color(ivec2 position)</code> - get previous screen color at this pixel.</li>
+  <li><code>float screen_get_depth(ivec2 position)</code> - get previous depth at this pixel (only if <code>needsDepth</code> was <code>TRUE</code>).</li>
+  <li>uniform values <code>int screen_width</code>, <code>int screen_height</code> - screen size in pixels.<br>
     Note: <i>do not</i> define these uniform variables in your shader code. Or you will get "repeated declaration" GLSL errors. That is because on OpenGLES (Android, iOS), we have to actually "glue" the common screen effect code at the beginning of your code, and it already defines these uniform variables. (And we do it the same for desktop OpenGL, for consistency.)</li>
 </ul>
 
@@ -152,7 +152,7 @@ void main (void)
 
 <?php echo $toc->html_section(); ?>
 
-<p>Details about special functions available in the <tt>ScreenEffect</tt>
+<p>Details about special functions available in the <code>ScreenEffect</code>
 shader:</p>
 
 <ul>
@@ -160,38 +160,38 @@ shader:</p>
     depth buffer) as a texture (normal npot texture, before OpenGLES
     we also used <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>)
     or a <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">multi-sample texture</a>.
-    You should just use the comfortable functions <tt>screen_get_xxx</tt>
+    You should just use the comfortable functions <code>screen_get_xxx</code>
     to read previous
     screen contents, they will hide the differences for you, and your screen
     effects will work for all multi-sampling (anti-aliasing) configurations.</p></li>
 
-  <li><p>The texture coordinates for <tt>screen_get_xxx</tt>
-    are integers, in range <tt>[0..width - 1, 0..height - 1]</tt>.
+  <li><p>The texture coordinates for <code>screen_get_xxx</code>
+    are integers, in range <code>[0..width - 1, 0..height - 1]</code>.
     This is usually comfortable when writing screen effects shaders,
-    for example you know that <tt>(screen_x() - 1)</tt> is
+    for example you know that <code>(screen_x() - 1)</code> is
     "one pixel to the left".</p>
 
     <p>You can of course sample the previous screen however you like.
-    The <tt>screen_position()</tt> (or, equivalent,
-    <tt>ivec2(screen_x(), screen_y())</tt>)
+    The <code>screen_position()</code> (or, equivalent,
+    <code>ivec2(screen_x(), screen_y())</code>)
     is the position of current pixel, you can use it e.g. to query previous
     color at this point, or query some other colors around this point
     (e.g. to blur the image).
-    Note that using <tt>gl_FragCoord.st</tt> as a pixel position
+    Note that using <code>gl_FragCoord.st</code> as a pixel position
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
     when you use <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
-    with our engine. <tt>screen_position()</tt>
+    with our engine. <code>screen_position()</code>
     will cooperate nicely with custom viewports.</p></li>
 
-  <li><p>We also pass uniform <tt>"screen_width"</tt>, <tt>"screen_height"</tt>
+  <li><p>We also pass uniform <code>"screen_width"</code>, <code>"screen_height"</code>
     integers to the shader. These give you the size of the screen.
-    (On new GPUs, you could also get them with GLSL function <tt>textureSize</tt>,
+    (On new GPUs, you could also get them with GLSL function <code>textureSize</code>,
     but it's not available on older GPUs/OpenGL versions.)</p>
 
-  <li><p>If you set <tt>"needsDepth"</tt> to <tt>TRUE</tt> then we also pass
+  <li><p>If you set <code>"needsDepth"</code> to <code>TRUE</code> then we also pass
     depth buffer contents to the shader.
-    You can query it using <tt>screen_get_depth</tt> function..</p>
+    You can query it using <code>screen_get_depth</code> function..</p>
 
     <p>You can query depth information at any pixel for various effects.
     Remember that you are not limited to querying the depth of the current
@@ -204,24 +204,24 @@ shader:</p>
     the flashlight circle size.</p></li>
 
   <li><p>Remember that you can pass other uniform values to the shader,
-    just like with any other <tt>ComposedShader</tt> nodes.
+    just like with any other <code>ComposedShader</code> nodes.
     For example you can pass an additional helper texture
     (e.g. a headlight mask) to the shader. Or you can route the current
-    time (from <tt>TimeSensor</tt>) to the shader, to make your effect
+    time (from <code>TimeSensor</code>) to the shader, to make your effect
     based on time.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p><tt>ScreenEffect</tt> under a dynamic <tt>Switch</tt> doesn't
-react properly &mdash; changing <tt>"Switch.whichChoice"</tt> doesn't
+<p><code>ScreenEffect</code> under a dynamic <code>Switch</code> doesn't
+react properly &mdash; changing <code>"Switch.whichChoice"</code> doesn't
 deactivate the old effect, and doesn't activate the new effect.
 <!-- We would have to move them to Shapes tree for this,
 which would turn all our processing of ScreenEffectNodes
 into iterating over shapes, which may be too slow...  -->
-For now, do not place <tt>ScreenEffect</tt> under <tt>Switch</tt>
+For now, do not place <code>ScreenEffect</code> under <code>Switch</code>
 that can change during the world life. If you want to (de)activate
 the shader dynamically (based on some events in your world),
-you can send events to the exposed <tt>"enabled"</tt> field.</p>
+you can send events to the exposed <code>"enabled"</code> field.</p>
 
 <?php castle_footer(); ?>

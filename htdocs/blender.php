@@ -29,14 +29,14 @@ Blender's X3D exporter.</p>
     Download the actual exporter.
 
     <p>Copy it over (overwrite) the original Blender exporter,
-    which is in <tt>&lt;blender-installation-dir&gt;/2.68/scripts/addons/io_scene_x3d/export_x3d.py</tt>.
+    which is in <code>&lt;blender-installation-dir&gt;/2.68/scripts/addons/io_scene_x3d/export_x3d.py</code>.
     <!--You will need to restart Blender (if currently running to load the new exporter.-->
 
     <p><i>Note</i>: as of Blender 2.68, our custom exporter doesn't serve much
     purpose. All the past bugfixes have been applied to the
     Blender standard X3D exporter. The only feature our exporter script
     has over the standard exporter is the magic treatment of images named
-    <tt>xxx_normalmap</tt>, and we don't really advice using this
+    <code>xxx_normalmap</code>, and we don't really advice using this
     (better use <?php echo a_href_page('material_properties.xml',
     'creating_data_material_properties'); ?>).
 
@@ -83,7 +83,7 @@ on any license required for official Blender wiki / docs contents is granted.</p
         User Preferences (opens new window) -&gt; Addons (tab)
         -&gt; Install Addon... (button at the bottom)</i>.
         Or just copy the file directly to the
-        <tt>scripts/addons/</tt> directory.
+        <code>scripts/addons/</code> directory.
       <li>Enable it, by clicking the checkbox at <i>"Import-Export:Export KAnim"</i>
         in the Addons window.
     </ol>
@@ -103,7 +103,7 @@ and then our "KAnim hack" will no longer be useful.)</p>
   <li><p>Script <?php echo_svn_blender_file('kambi_vrml97_export.py') ?>
     (requires accompanying <?php echo_svn_blender_file('kambi_vrml97_export_base.py') ?>) :</p>
 
-    <p>Customized version of <tt>vrml97_export.py</tt> script
+    <p>Customized version of <code>vrml97_export.py</code> script
     (distributed with newer Blender versions, originally from
     <a href="http://kimballsoftware.com/blender/">here</a>).
     Various customizations to improve exporting VRML 2.0 (aka 97) models:
@@ -115,7 +115,7 @@ and then our "KAnim hack" will no longer be useful.)</p>
     Search for "Kambi" string inside files to know more.</p>
 
     <p>The essential exporter class is inside
-    <tt>kambi_vrml97_export_base.py</tt>, to be shared by <tt>kanim_export.py</tt>.</p>
+    <code>kambi_vrml97_export_base.py</code>, to be shared by <code>kanim_export.py</code>.</p>
 
     <p>May not work with Blender &lt; 2.44.</p>
 
@@ -128,7 +128,7 @@ and then our "KAnim hack" will no longer be useful.)</p>
 
     <p>Some details important for anyone who exports VRML 2.0 from Blender,
     using original or our script versions. Also explains some
-    reasoning behind changes in <tt>kambi_vrml97_export[_base].py</tt>
+    reasoning behind changes in <code>kambi_vrml97_export[_base].py</code>
     as compared to original exporter.</p>
   </li>
 

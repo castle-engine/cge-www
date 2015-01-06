@@ -6,13 +6,13 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Output events to generate camera matrix (<tt>Viewpoint.camera*Matrix</tt> events)', 'ext_viewpoint_camera_matrix'),
-      new TocItem('Control head bobbing (<tt>KambiNavigationInfo.headBobbing*</tt> fields)', 'ext_head_bobbing'),
-      new TocItem('Customize headlight (<tt>KambiNavigationInfo.headlightNode</tt>)', 'ext_headlight'),
-      new TocItem('Specify blending sort (<tt>NavigationInfo.blendingSort</tt>)', 'ext_blending_sort'),
-      new TocItem('Specify octree properties (node <tt>KambiOctreeProperties</tt>, various fields <tt>octreeXxx</tt>)', 'ext_octree_properties'),
-      new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<tt>KambiNavigationInfo.timeOriginAtLoad</tt>)', 'ext_time_origin_at_load'),
-      new TocItem('DEPRECATED: Fields <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt> for <tt>PerspectiveCamera</tt>, <tt>OrthographicCamera</tt> and <tt>Viewpoint</tt> nodes', 'ext_cameras_alt_orient'),
+      new TocItem('Output events to generate camera matrix (<code>Viewpoint.camera*Matrix</code> events)', 'ext_viewpoint_camera_matrix'),
+      new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
+      new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight'),
+      new TocItem('Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
+      new TocItem('Specify octree properties (node <code>KambiOctreeProperties</code>, various fields <code>octreeXxx</code>)', 'ext_octree_properties'),
+      new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>KambiNavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load'),
+      new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient'),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -23,9 +23,9 @@
 <?php echo $toc->html_section(); ?>
 
 <p>To every viewpoint node (this applies to all viewpoints usable
-in our engine, including all <tt>X3DViewpointNode</tt> descendants,
-like <tt>Viewpoint</tt> and <tt>OrthoViewpoint</tt>, and even to
-VRML 1.0 <tt>PerspectiveCamera</tt> and <tt>OrthographicCamera</tt>)
+in our engine, including all <code>X3DViewpointNode</code> descendants,
+like <code>Viewpoint</code> and <code>OrthoViewpoint</code>, and even to
+VRML 1.0 <code>PerspectiveCamera</code> and <code>OrthographicCamera</code>)
 we add output events that provide you with current camera matrix.
 One use for such matrices is to route them to your GLSL shaders (as
 uniform variables), and use inside the shaders to transform between
@@ -43,46 +43,46 @@ world and camera space.</p>
   node_end();
 ?>
 
-<p><tt>"cameraMatrix"</tt> transforms from world-space (global 3D space
+<p><code>"cameraMatrix"</code> transforms from world-space (global 3D space
 that we most often think within) to camera-space (aka eye-space;
 when thinking within this space, you know then that the camera
 position is at (0, 0, 0), looking along -Z, with up in +Y).
 It takes care of both the camera position and orientation,
 so it's 4x4 matrix.
-<tt>"cameraInverseMatrix"</tt> is simply the inverse of this matrix,
+<code>"cameraInverseMatrix"</code> is simply the inverse of this matrix,
 so it transforms from camera-space back to world-space.</p>
 
-<p><tt>"cameraRotationMatrix"</tt> again
+<p><code>"cameraRotationMatrix"</code> again
 transforms from world-space to camera-space, but now it only takes
 care of camera rotations, disregarding camera position. As such,
 it fits within a 3x3 matrix (9 floats), so it's smaller than full
-<tt>cameraMatrix</tt> (4x4, 16 floats).
-<tt>"cameraRotationInverseMatrix"</tt> is simply it's inverse.
+<code>cameraMatrix</code> (4x4, 16 floats).
+<code>"cameraRotationInverseMatrix"</code> is simply it's inverse.
 Ideal to transform directions
 between world- and camera-space in shaders.</p>
 
-<p><tt>"cameraMatrixSendAlsoOnOffscreenRendering"</tt> controls
+<p><code>"cameraMatrixSendAlsoOnOffscreenRendering"</code> controls
 when the four output events above are generated.
-The default (<tt>FALSE</tt>) behavior is that they are generated only
+The default (<code>FALSE</code>) behavior is that they are generated only
 for camera that corresponds to the actual viewpoint, that is: for the
 camera settings used when rendering scene to the screen.
-The value <tt>TRUE</tt> causes the output matrix events to be generated
+The value <code>TRUE</code> causes the output matrix events to be generated
 also for temporary camera settings used for off-screen rendering
-(used when generating textures for <tt>GeneratedCubeMapTexture</tt>,
-<tt>GeneratedShadowMap</tt>, <tt>RenderedTexture</tt>). This is a little
+(used when generating textures for <code>GeneratedCubeMapTexture</code>,
+<code>GeneratedShadowMap</code>, <code>RenderedTexture</code>). This is a little
 dirty, as cameras used for off-screen rendering do not (usually) have
 any relation to actual viewpoint (for example, for
-<tt>GeneratedCubeMapTexture</tt>, camera is positioned in the middle
+<code>GeneratedCubeMapTexture</code>, camera is positioned in the middle
 of the shape using the cube map). But this can be useful: when you route
 these events straight to the shaders, you usually need in shaders "actual
 camera" (which is not necessarily current viewpoint camera) matrices.</p>
 
 <p>These events are usually generated only by the currently bound viewpoint node.
-The only exception is when you use <tt>RenderedTexture</tt>
-and set something in <tt>RenderedTexture.viewpoint</tt>:
-in this case, <tt>RenderedTexture.viewpoint</tt> will generate appropriate
-events (as long as you set <tt>cameraMatrixSendAlsoOnOffscreenRendering</tt>
-to <tt>TRUE</tt>). Conceptually, <tt>RenderedTexture.viewpoint</tt>
+The only exception is when you use <code>RenderedTexture</code>
+and set something in <code>RenderedTexture.viewpoint</code>:
+in this case, <code>RenderedTexture.viewpoint</code> will generate appropriate
+events (as long as you set <code>cameraMatrixSendAlsoOnOffscreenRendering</code>
+to <code>TRUE</code>). Conceptually, <code>RenderedTexture.viewpoint</code>
 is temporarily bound (although it doesn't send isBound/bindTime events).
 
 <?php echo $toc->html_section(); ?>
@@ -93,13 +93,13 @@ This simulates our normal human vision &mdash; we can't usually keep
 our head at the exact same height above the ground when walking
 or running :)
 By default our engine does head bobbing (remember, only when gravity
-works; that is when the navigation mode is <tt>WALK</tt>).
+works; that is when the navigation mode is <code>WALK</code>).
 This is common in FPS games.</p>
 
 <p>Using the extensions below you can tune (or even turn off)
 the head bobbing behavior. For this we add new fields to the
-<tt>KambiNavigationInfo</tt> node (introduced in the previous section,
-can be simply used instead of the standard <tt>NavigationInfo</tt>).</p>
+<code>KambiNavigationInfo</code> node (introduced in the previous section,
+can be simply used instead of the standard <code>NavigationInfo</code>).</p>
 
 <?php
   echo node_begin('KambiNavigationInfo : NavigationInfo');
@@ -111,20 +111,20 @@ can be simply used instead of the standard <tt>NavigationInfo</tt>).</p>
   node_end();
 ?>
 
-<p>Intuitively, <tt>headBobbing</tt> is the intensity of the whole effect
-(0 = no head bobbing) and <tt>headBobbingTime</tt> determines
+<p>Intuitively, <code>headBobbing</code> is the intensity of the whole effect
+(0 = no head bobbing) and <code>headBobbingTime</code> determines
 the time of a one step of a walking human.</p>
 
-<p>The field <tt>headBobbing</tt> multiplied by the avatar height specifies how far
+<p>The field <code>headBobbing</code> multiplied by the avatar height specifies how far
 the camera can move up and down. The avatar height is taken from
-the standard <tt>NavigationInfo.avatarSize</tt> (2nd array element).
+the standard <code>NavigationInfo.avatarSize</code> (2nd array element).
 Set this to exact 0 to disable head bobbing.
 This must always be &lt; 1. For sensible effects, this should
 be something rather close to 0.
 
 <small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbing property.', 'CastleCameras.TWalkCamera.html#HeadBobbing'); ?>)</small></p>
 
-<p>The field <tt>headBobbingTime</tt> determines how much time passes
+<p>The field <code>headBobbingTime</code> determines how much time passes
 to make full head bobbing sequence (camera swing up and then down back to original height).
 
 <small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbingTime property.', 'CastleCameras.TWalkCamera.html#HeadBobbingTime'); ?>)</small></p>
@@ -140,10 +140,10 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>You can configure the appearance of headlight by the <tt>headlightNode</tt>
-field of <tt>KambiNavigationInfo</tt> node.
-<tt>KambiNavigationInfo</tt> is just a replacement of standard
-<tt>NavigationInfo</tt>, adding some extensions specific to our engine.
+<p>You can configure the appearance of headlight by the <code>headlightNode</code>
+field of <code>KambiNavigationInfo</code> node.
+<code>KambiNavigationInfo</code> is just a replacement of standard
+<code>NavigationInfo</code>, adding some extensions specific to our engine.
 
 <?php echo node_begin("KambiNavigationInfo : NavigationInfo");
   $node_format_fd_type_pad = 5;
@@ -156,11 +156,11 @@ field of <tt>KambiNavigationInfo</tt> node.
   node_end();
 ?>
 
-<p><tt>headlightNode</tt> defines the type and properties of the
+<p><code>headlightNode</code> defines the type and properties of the
 light following the avatar ("head light"). You can put any
 valid X3D light node here. If you don't give anything here (but still
-request the headlight by <tt>NavigationInfo.headlight = TRUE</tt>,
-which is the default) then the default <tt>DirectionalLight</tt>
+request the headlight by <code>NavigationInfo.headlight = TRUE</code>,
+which is the default) then the default <code>DirectionalLight</code>
 will be used for headlight.
 
 <ul>
@@ -179,7 +179,7 @@ will be used for headlight.
     the spot shape "crawls" on the triangles,
     instead of staying in a nice circle).
     So to see the spot light cone perfectly, and also to see
-    <tt>SpotLight.beamWidth</tt> perfectly,
+    <code>SpotLight.beamWidth</code> perfectly,
     enable per-pixel shader lighting.
 
     <p>Note that instead of setting headlight to spot, you may also
@@ -191,8 +191,8 @@ will be used for headlight.
     but also potentially more efficient (for starters, you don't have
     to use per-pixel lighting on everything to make it nicely round).
 
-  <li><p>Your specified <tt>"location"</tt> of the light (if you put here <tt>PointLight</tt>
-    or <tt>SpotLight</tt>) will be ignored.
+  <li><p>Your specified <code>"location"</code> of the light (if you put here <code>PointLight</code>
+    or <code>SpotLight</code>) will be ignored.
     Instead we will synchronize light location in each frame
     to the player's location
     (in world coordinates)<!--, TODO: modified by the
@@ -202,13 +202,13 @@ will be used for headlight.
     <!-- TODO: test. This is useful to visualize headlight location,
     together with headlightMove. -->
 
-  <li><p>Similarly, your specified <tt>"direction"</tt> of the light
-    (if this is <tt>DirectionalLight</tt> or <tt>SpotLight</tt>)
+  <li><p>Similarly, your specified <code>"direction"</code> of the light
+    (if this is <code>DirectionalLight</code> or <code>SpotLight</code>)
     will be ignored. Instead we will keep it synchronized
     with the player's normalized direction
     (in world coordinates). You can ROUTE this direction to see it changing.
 
- <li><p>The <tt>"global"</tt> field doesn't matter.
+ <li><p>The <code>"global"</code> field doesn't matter.
    Headlight always shines on everything, ignoring normal VRML/X3D
    light scope rules.
 
@@ -315,16 +315,16 @@ also take a look at the (source code and docs) of the
   node_end();
 ?>
 
-<p>Limit <tt>-1</tt> means to use the default value hard-coded in the program.
+<p>Limit <code>-1</code> means to use the default value hard-coded in the program.
 Other values force the generation of octree with given limit.
 For educational purposes, you can make an experiment and try
 maxDepth = 0: this forces a one-leaf tree, effectively
 making octree searching work like a normal linear searching.
 You should see a dramatic loss of game speed on non-trivial models then.</p>
 
-<p>To affect the scene octrees you can place <tt>KambiOctreeProperties</tt>
-node inside <tt>KambiNavigationInfo</tt> node. For per-shape
-octrees, we add new fields to <tt>Shape</tt> node:</p>
+<p>To affect the scene octrees you can place <code>KambiOctreeProperties</code>
+node inside <code>KambiNavigationInfo</code> node. For per-shape
+octrees, we add new fields to <code>Shape</code> node:</p>
 
 <?php echo node_begin("KambiNavigationInfo : NavigationInfo");
   $node_format_fd_type_pad = 5;
@@ -351,37 +351,37 @@ octrees, we add new fields to <tt>Shape</tt> node:</p>
   node_end();
 ?>
 
-<p>See the API documentation for classes <tt>TCastleSceneCore</tt> and <tt>TShape</tt>
+<p>See the API documentation for classes <code>TCastleSceneCore</code> and <code>TShape</code>
 for precise description about what each octree is.
 In normal simulation of dynamic 3D scenes,
-we use only <tt>octreeRendering</tt>, <tt>octreeDynamicCollisions</tt> and
-<tt>Shape.octreeTriangles</tt> octrees. Ray-tracers usually use
-<tt>octreeVisibleTriangles</tt>.</p>
+we use only <code>octreeRendering</code>, <code>octreeDynamicCollisions</code> and
+<code>Shape.octreeTriangles</code> octrees. Ray-tracers usually use
+<code>octreeVisibleTriangles</code>.</p>
 
 <p>We will use scene octree properties from the first bound
-<tt>NavigationInfo</tt> node (see VRML/X3D specifications
+<code>NavigationInfo</code> node (see VRML/X3D specifications
 about the rules for bindable nodes). If this node is not
-<tt>KambiNavigationInfo</tt>, or appropriate <tt>octreeXxx</tt> field
-is <tt>NULL</tt>, or appropriate field within <tt>KambiOctreeProperties</tt>
-is <tt>-1</tt>, then the default hard-coded limit will be used.
+<code>KambiNavigationInfo</code>, or appropriate <code>octreeXxx</code> field
+is <code>NULL</code>, or appropriate field within <code>KambiOctreeProperties</code>
+is <code>-1</code>, then the default hard-coded limit will be used.
 
 <p>Currently, it's not perfectly specified what happens to octree limits
-when you bind other <tt>[Kambi]NavigationInfo</tt> nodes during the game.
+when you bind other <code>[Kambi]NavigationInfo</code> nodes during the game.
 With current implementation, this <i>will</i> cause the limits to change,
 but they will be actually applied only when the octree will be rebuild
 &mdash; which may happen never, or only at some radical rebuild of
 VRML graph by other events. So if you have multiple
-<tt>[Kambi]NavigationInfo</tt> nodes in your world, I advice to
-specify in all of them exactly the same <tt>octreeXxx</tt> fields values.
+<code>[Kambi]NavigationInfo</code> nodes in your world, I advice to
+specify in all of them exactly the same <code>octreeXxx</code> fields values.
 
 <?php echo $toc->html_section(); ?>
 
 <p>By default, VRML/X3D time origin is at <i>00:00:00 GMT January 1, 1970</i>
-and <tt>SFTime</tt> reflects real-world time (taken from your OS).
+and <code>SFTime</code> reflects real-world time (taken from your OS).
 <?php echo a_href_page('This is somewhat broken idea in my opinion',
 'x3d_time_origin_considered_uncomfortable'); ?>, unsuitable
 for normal single-user games. So you can change this by using
-<tt>KambiNavigationInfo</tt> node:
+<code>KambiNavigationInfo</code> node:
 
 <?php
   echo node_begin('KambiNavigationInfo : NavigationInfo');
@@ -392,18 +392,18 @@ for normal single-user games. So you can change this by using
   node_end();
 ?>
 
-<p>The default value, <tt>FALSE</tt>, means the standard VRML behavior.
-When <tt>TRUE</tt> the time origin for this VRML scene is considered
+<p>The default value, <code>FALSE</code>, means the standard VRML behavior.
+When <code>TRUE</code> the time origin for this VRML scene is considered
 to be 0.0 when browser loads the file. For example this means that you can
-easily specify desired <tt>startTime</tt> values for time-dependent nodes
-(like <tt>MovieTexture</tt> or <tt>TimeSensor</tt>)
+easily specify desired <code>startTime</code> values for time-dependent nodes
+(like <code>MovieTexture</code> or <code>TimeSensor</code>)
 to start playing at load time, or a determined number of seconds
 after loading of the scene.
 
 <?php echo $toc->html_section(); ?>
 
 <p>Standard VRML way of specifying camera orientation
-(look direction and up vector) is to use <tt>orientation</tt> field
+(look direction and up vector) is to use <code>orientation</code> field
 that says how to rotate standard look direction vector (&lt;0,0,-1&gt;)
 and standard up vector (&lt;0,1,0&gt;). While I agree that this
 way of specifying camera orientation has some advantages
@@ -413,25 +413,25 @@ I think that this is very uncomfortable for humans.
 
 <p>Reasoning:
 <ol>
-  <li>It's very difficult to write such <tt>orientation</tt> field
+  <li>It's very difficult to write such <code>orientation</code> field
     by human, without some calculator. When you set up
     your camera, you're thinking about "<i>In what direction it looks ?</i>"
     and "<i>Where is my head ?</i>", i.e. you're thinking
     about look and up vectors.
 
-  <li>Converting between <tt>orientation</tt> and look and up
+  <li>Converting between <code>orientation</code> and look and up
     vectors is trivial for computers but quite hard for humans
     without a calculator (especially if real-world values are
     involved, that usually don't look like "nice numbers").
     Which means that when I look at source code of your VRML
-    camera node and I see your <tt>orientation</tt> field
+    camera node and I see your <code>orientation</code> field
     &mdash; well, I still have no idea how your camera is oriented.
     I have to fire up some calculating program, or one
     of programs that view VRML (like view3dscene).
     This is not some terrible disadvantage, but still it matters
     for me.
 
-  <li><tt>orientation</tt> is written with respect to standard
+  <li><code>orientation</code> is written with respect to standard
     look (&lt;0,0,-1&gt;) and up (&lt;0,1,0&gt;) vectors.
     So if I want to imagine camera orientation in my head &mdash;
     I have to remember these standard vectors.
@@ -448,12 +448,12 @@ I think that this is very uncomfortable for humans.
 
 <p>Also, VRML 2.0 spec says that the gravity upward vector should
 be taken as +Y vector transformed by whatever transformation is applied
-to <tt>Viewpoint</tt> node. This also causes similar problems,
+to <code>Viewpoint</code> node. This also causes similar problems,
 since e.g. to have gravity upward vector in +Z you have to apply
-rotation to your <tt>Viewpoint</tt> node.
+rotation to your <code>Viewpoint</code> node.
 
-<p>So I decided to create new fields for <tt>PerspectiveCamera</tt>,
-<tt>OrthographicCamera</tt> and <tt>Viewpoint</tt>
+<p>So I decided to create new fields for <code>PerspectiveCamera</code>,
+<code>OrthographicCamera</code> and <code>Viewpoint</code>
 nodes to allow alternative way to specify
 an orientation:
 <?php echo node_begin("PerspectiveCamera / OrthographicCamera / Viewpoint");
@@ -465,45 +465,45 @@ an orientation:
   node_end();
 ?>
 
-<p>If at least one vector in <tt>direction</tt> field
+<p>If at least one vector in <code>direction</code> field
 is specified, then this is taken as camera look vector.
-Analogous, if at least one vector in <tt>up</tt> field
+Analogous, if at least one vector in <code>up</code> field
 is specified, then this is taken as camera up vector.
 This means that if you specify some vectors for
-<tt>direction</tt> and <tt>up</tt> then the value of
-<tt>orientation</tt> field is ignored.
-<tt>direction</tt> and <tt>up</tt> fields should have
+<code>direction</code> and <code>up</code> then the value of
+<code>orientation</code> field is ignored.
+<code>direction</code> and <code>up</code> fields should have
 either none or exactly one element.
 
-<p>As usual, <tt>direction</tt> and <tt>up</tt> vectors
+<p>As usual, <code>direction</code> and <code>up</code> vectors
 can't be parallel and can't be zero.
-They don't have to be orthogonal &mdash; <tt>up</tt> vector will be
-always silently corrected to be orthogonal to <tt>direction</tt>.
+They don't have to be orthogonal &mdash; <code>up</code> vector will be
+always silently corrected to be orthogonal to <code>direction</code>.
 Lengths of these vectors are always ignored.
 <!--
 (m.in. dlatego że w standardowym VRMLu nie można przy
-pomocy <tt>orientation</tt> ustalać długości tych wektorów, ale także dlatego
+pomocy <code>orientation</code> ustalać długości tych wektorów, ale także dlatego
 że tak jest wygodniej, zazwyczaj byłoby to raczej uciążliwe niż
 funkcjonalne gdyby w jakiś sposób robić coś inaczej w zależnosci od
 długości tych wektorow; także dlatego że jest w VRMLowej kamerze
-pole <tt>focalDistance</tt> slużące własnie do robienia rzeczy które
-móglbyś chcieć zrobić na podstawie dlugości wektora <tt>direction</tt>).
+pole <code>focalDistance</code> slużące własnie do robienia rzeczy które
+móglbyś chcieć zrobić na podstawie dlugości wektora <code>direction</code>).
 -->
 
 <p>As for gravity: VRML 2.0 spec says to take standard +Y vector
 and transform it by whatever transformation was applied to
-<tt>Viewpoint</tt> node. So we modify this to say
-<i>take <tt>gravityUp</tt> vector
+<code>Viewpoint</code> node. So we modify this to say
+<i>take <code>gravityUp</code> vector
 and transform it by whatever transformation was applied to
-<tt>Viewpoint</tt> node</i>. Since the default value for
-<tt>gravityUp</tt> vector is just +Y, so things work 100% conforming
-to VRML spec if you don't specify <tt>gravityUp</tt> field.
+<code>Viewpoint</code> node</i>. Since the default value for
+<code>gravityUp</code> vector is just +Y, so things work 100% conforming
+to VRML spec if you don't specify <code>gravityUp</code> field.
 
 <p>In <?php echo a_href_page("view3dscene", "view3dscene") ?>
  "<i>Print current camera node</i>" command (key shortcut Ctrl+C)
 writes camera node in both versions &mdash; one that uses
-<tt>orientation</tt> field and transformations to get gravity upward vector,
-and one that uses <tt>direction</tt> and <tt>up</tt> and <tt>gravityUp</tt>
+<code>orientation</code> field and transformations to get gravity upward vector,
+and one that uses <code>direction</code> and <code>up</code> and <code>gravityUp</code>
 fields.
 
  <!-- funkcje X3DFields.CamDirUp2Orient i CastleVectors.RotatePointAroundAxis -->

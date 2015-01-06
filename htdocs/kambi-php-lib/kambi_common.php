@@ -532,15 +532,16 @@ function common_header($a_page_title, $page_lang,
   if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-<?php // I use HTML 4.01 with deprecated things ?>
-
+<!DOCTYPE html>
 <?php echo "<html lang=\"" .$page_lang. "\">\n"; ?>
 
 <head>
+<!-- meta suggested by bootstrap, but generally sensible -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="Author" content="Michalis Kamburelis">
 
 <?php
@@ -562,12 +563,6 @@ function common_header($a_page_title, $page_lang,
                 type=\"text/html\"
                 href=\"$page_url\"
                 title=\"$main_page_title$url_comment\">\n";
-  }
-
-  switch ($page_lang)
-  {
-    case LANG_PL: echo "<meta name=\"Language\" content=\"Polish\">\n"; break;
-    case LANG_EN: echo "<meta name=\"Language\" content=\"English\">\n"; break;
   }
 ?>
 

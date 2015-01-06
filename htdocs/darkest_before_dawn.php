@@ -78,7 +78,7 @@ and can be downloaded like this:
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, 'darkest_before_dawn'); ?></pre>
 
-<p>See the <tt>README.txt</tt> for compilation instructions.
+<p>See the <code>README.txt</code> for compilation instructions.
 For a standalone compilation all you need is the
 <a href="http://castle-engine.sourceforge.net/engine.php">engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.

@@ -70,7 +70,7 @@ comments explaining what this file demonstrates.
 but many of them should also be handled by other conforming
 VRML/X3D browsers.</p>
 
-<p>Files inside <tt>warnings/</tt> subdirectories are deliberately invalid
+<p>Files inside <code>warnings/</code> subdirectories are deliberately invalid
 in some ways. Good VRML/X3D browser should display a sensible warning
 message and (when possible) continue (omitting only the problematic part).</p>
 
@@ -110,17 +110,17 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 <ul>
   <li><p><i>Victor Amat</i> provided a lot of interesting demos.
     To mention some:
-    flat mirrors by <tt>RenderedTexture</tt> (see <tt>x3d/rendered_texture/</tt>),
-    Screen Space Ambient Occlusion (see <tt>shadow_maps/ssao*</tt>),
+    flat mirrors by <code>RenderedTexture</code> (see <code>x3d/rendered_texture/</code>),
+    Screen Space Ambient Occlusion (see <code>shadow_maps/ssao*</code>),
     shadow maps tests (including demo to visualize bias/scale,
-    <tt>shadow_maps/shadow_bias.x3dv</tt>),
-    <tt>vrml_2/camera_{orient,rot}.wrl</tt>,
-    <tt>orientation_interpolator_alum_box.wrl</tt>,
-    test textures for spherical mapping testing (<tt>textures/spheremap-*.jpg</tt>).
+    <code>shadow_maps/shadow_bias.x3dv</code>),
+    <code>vrml_2/camera_{orient,rot}.wrl</code>,
+    <code>orientation_interpolator_alum_box.wrl</code>,
+    test textures for spherical mapping testing (<code>textures/spheremap-*.jpg</code>).
     Thousand thanks!</p></li>
 
-  <li><p><i>Stephen H. France</i> provided various tests for <tt>TimeSensor</tt>,
-    <tt>Extrusion</tt> and others. Thanks!</p></li>
+  <li><p><i>Stephen H. France</i> provided various tests for <code>TimeSensor</code>,
+    <code>Extrusion</code> and others. Thanks!</p></li>
 
   <li><p>Various models were based on
     <a href="http://opengameart.org/">OpenGameArt.org</a> models,
@@ -130,14 +130,14 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 
     <p>Examples include
     <a href="http://opengameart.org/content/shrine-shinto-japan">Shinto Shrine</a>
-    (used for compositing shaders demo inside <tt>compositing_shaders/shinto_shrine/</tt>).
-    Also a lot of textures, see <tt>compositing_shaders/textures/AUTHORS.txt</tt>.</p>
+    (used for compositing shaders demo inside <code>compositing_shaders/shinto_shrine/</code>).
+    Also a lot of textures, see <code>compositing_shaders/textures/AUTHORS.txt</code>.</p>
   </li>
 
-  <li><p><i>Orin Palmer</i> created plane model in 3DS, see <tt>3ds/p47d.3ds</tt>
-    and <tt>3ds/p47d.txt</tt>.</p></li>
+  <li><p><i>Orin Palmer</i> created plane model in 3DS, see <code>3ds/p47d.3ds</code>
+    and <code>3ds/p47d.txt</code>.</p></li>
 
-  <li><p>Many textures inside <tt>textures/castle/</tt>
+  <li><p>Many textures inside <code>textures/castle/</code>
     are from <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public domain textures from unfinished game "Golgotha"</a><!-- (previously on http://www.jonathanclark.com/, but host seems dead now)-->
     </p></li>
 
@@ -146,7 +146,7 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
     David steep parallax mapping code</a>, based on <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">paper
     about steep mapping</a>.
 
-  <li><p>See also <tt>AUTHORS.txt</tt> files inside the archive for detailed
+  <li><p>See also <code>AUTHORS.txt</code> files inside the archive for detailed
     and complete listing of authors and sources.</p></li>
 </ul>
 

@@ -22,7 +22,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these nodes,
-see the <tt>event_utilities</tt> subdirectory inside <?php
+see the <code>event_utilities</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <p>A nice <a href="http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter09-EventUtilitiesScripting/X3dEventUtilityNodeEventDiagrams.pdf">reference
@@ -45,7 +45,7 @@ Don Brutzman!</p>
 <?php echo x3d_node_link('IntegerSequencer'); ?>.
 
 <p>You may also want to look at related <?php echo a_href_page_hashlink(
-'<tt>Toggler</tt> node extension', 'x3d_extensions', 'section_ext_toggler'); ?>.</p>
+'<code>Toggler</code> node extension', 'x3d_extensions', 'section_ext_toggler'); ?>.</p>
 
 <?php
   x3d_status_footer();

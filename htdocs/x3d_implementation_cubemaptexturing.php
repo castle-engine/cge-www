@@ -5,9 +5,9 @@
      Such textures generate a color based on a direction.
      They are one of the common methods for environment mapping
      (that is, simulation of mirror-like surfaces).
-     <tt>ComposedCubeMapTexture</tt> and <tt>ImageCubeMapTexture</tt>
+     <code>ComposedCubeMapTexture</code> and <code>ImageCubeMapTexture</code>
      allow loading a cube map texture from file(s).
-     <tt>GeneratedCubeMapTexture</tt> allows to create and use
+     <code>GeneratedCubeMapTexture</code> allows to create and use
      an environment map capturing actual environment in your virtual 3D world,
      thus making true realtime mirror.');
 
@@ -31,12 +31,12 @@ echo castle_thumbs(array(
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <tt>cube_environment_mapping</tt> subdirectory inside <?php
+see the <code>cube_environment_mapping</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <tt>GeneratedCubeMapTexture</tt> node is a ready solution
+<p>The <code>GeneratedCubeMapTexture</code> node is a ready solution
 to simulate mirror-like surfaces. It should be coupled with
 <?php echo a_href_page_hashlink('texture coordinates to reflect in world space',
 'x3d_extensions', 'section_ext_tex_coord_worldspace'); ?>
@@ -44,36 +44,36 @@ to simulate mirror-like surfaces. It should be coupled with
 
 <ol>
   <li><p>Choose a shape in your VRML/X3D model that should act like a mirror.</p></li>
-  <li><p>As it's texture set <tt>GeneratedCubeMapTexture</tt> node.</p>
+  <li><p>As it's texture set <code>GeneratedCubeMapTexture</code> node.</p>
 
     <p>This texture will be automatically generated to represent
     the environment around the given shape (the shape itself
     is not rendered into this texture, it doesn't mirror itself).
-    Set <tt>GeneratedCubeMapTexture.update</tt> to specify when this texture
-    should be generated. Two sensible values are <tt>ALWAYS</tt>
-    (if the world around is dynamic) or <tt>NEXT_FRAME_ONLY</tt>
+    Set <code>GeneratedCubeMapTexture.update</code> to specify when this texture
+    should be generated. Two sensible values are <code>ALWAYS</code>
+    (if the world around is dynamic) or <code>NEXT_FRAME_ONLY</code>
     (if the world around is completely static).</p>
 
     <p>The texture is actually kept as six square 2D textures inside
     the graphic card. You can control the size of these squares
-    by <tt>GeneratedCubeMapTexture.size</tt>: larger values
+    by <code>GeneratedCubeMapTexture.size</code>: larger values
     mean better quality, but also worse speed.</p>
 
     <p>Note that if your shape already uses some texture,
-    you will have to convert it's textures into <tt>MultiTexture</tt>
+    you will have to convert it's textures into <code>MultiTexture</code>
     node, with the 1st item containing the old texture,
-    and the 2nd item containing the new <tt>GeneratedCubeMapTexture</tt>.
+    and the 2nd item containing the new <code>GeneratedCubeMapTexture</code>.
     See <?php echo a_href_page('"Texturing" component',
     'x3d_implementation_texturing'); ?> for multi-texture documentation.</p></li>
 
-  <li><p>As the texture coordinates set <tt>TextureCoordinateGenerator</tt>
-    node with <tt>mode</tt> field set to <tt>WORLDSPACEREFLECTIONVECTOR</tt>.</p>
+  <li><p>As the texture coordinates set <code>TextureCoordinateGenerator</code>
+    node with <code>mode</code> field set to <code>WORLDSPACEREFLECTIONVECTOR</code>.</p>
 
     <p>Note that if your shape already uses some texture coordinates,
-    you will have to convert them into <tt>MultiTextureCoordinate</tt>,
-    see notes above about <tt>MultiTexture</tt>.</p>
+    you will have to convert them into <code>MultiTextureCoordinate</code>,
+    see notes above about <code>MultiTexture</code>.</p>
 
-    <p>Note that in our engine all 3D geometry nodes have the <tt>texCoord</tt>
+    <p>Note that in our engine all 3D geometry nodes have the <code>texCoord</code>
     field, so you can do this really with every shape.
     Even with the primitives
     like  <?php echo a_href_page_hashlink('Box / Cone / Cylinder / Sphere',
@@ -110,7 +110,7 @@ really large size), and only if the mirror object is small compared
 to the surrounding enviroment (as there are are no self-reflections).</p>
 
 <!--p>(Note that
-< ?php echo a_href_page_hashlink('<tt>Teapot</tt> node is our extension (compatible with InstantReality)',
+< ?php echo a_href_page_hashlink('<code>Teapot</code> node is our extension (compatible with InstantReality)',
 'x3d_extensions', 'section_ext_teapot'); ? >)</p-->
 
 <?php echo $toc->html_section(); ?>
@@ -139,8 +139,8 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
     to make all six textures equal &mdash; so you have to provide textures
     already satisfying this.
 
-    <p>We add <tt>textureProperties</tt> field to the <tt>ComposedCubeMapTexture</tt>
-    node, intended for <tt>TextureProperties</tt> child, working just like
+    <p>We add <code>textureProperties</code> field to the <code>ComposedCubeMapTexture</code>
+    node, intended for <code>TextureProperties</code> child, working just like
     in other texture nodes (you can use it to set minification / magnification
     filter, anisotropy and such). Although X3D 3.2 specification doesn't mention this,
     it seems natural, and <a href="http://www.instantreality.org/documentation/nodetype/ComposedCubeMapTexture/">instantreality
@@ -156,7 +156,7 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
   <li><?php echo x3d_node_link('GeneratedCubeMapTexture'); ?>
 
     <p>Texture is rendered from the middle 3D point of bounding box
-    of the shape using this texture. You cannot reUSE the same <tt>GeneratedCubeMapTexture</tt>
+    of the shape using this texture. You cannot reUSE the same <code>GeneratedCubeMapTexture</code>
     node for various shapes (as then we would not know from which shape
     to generate).</p>
 
@@ -171,10 +171,10 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
     (each frame rendered uses textures generated in the previous frame).
     You can see recursive mirrors in our <?php
     echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>
-    (see <tt>cube_environment_mapping/cubemap_generated_recursive.x3dv</tt>
-    <tt>cube_environment_mapping/cubemap_generated_in_dynamic_world.x3dv</tt>).</p>
+    (see <code>cube_environment_mapping/cubemap_generated_recursive.x3dv</code>
+    <code>cube_environment_mapping/cubemap_generated_in_dynamic_world.x3dv</code>).</p>
 
-    <p>Provided <tt>size</tt> will automatically be adjusted to be power of two,
+    <p>Provided <code>size</code> will automatically be adjusted to be power of two,
     and within OpenGL limits (GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB).</p>
 
     <p>Current player camera doesn't affect how cube map is generated.
@@ -183,7 +183,7 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
     each time when the player moves.</p>
 
     <ul>
-      <li><p>When <tt>update = "ALWAYS"</tt>, this optimization is automatically
+      <li><p>When <code>update = "ALWAYS"</code>, this optimization is automatically
         used under the hood. Texture is internally not updated every frame
         &mdash; when we know nothing visible changed on the scene, we do
         not regenerate the texture (since it would be generated the same).
@@ -193,8 +193,8 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
         have to be regenerated on every camera move).</p></li>
 
       <li><p>This also means that generated cube map texture
-        is similar to static (from <tt>ImageCubeMapTexture</tt>
-        and <tt>ComposedCubeMapTexture</tt>), and you usually want to
+        is similar to static (from <code>ImageCubeMapTexture</code>
+        and <code>ComposedCubeMapTexture</code>), and you usually want to
         use <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
         texture generation', 'x3d_extensions',
         'section_ext_tex_coord_worldspace'); ?> to simulate mirror.

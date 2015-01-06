@@ -68,31 +68,31 @@ including the sources for many example programs and engine tools.
 
 <ul>
   <li><p><b>For <a href="http://lazarus.freepascal.org/">Lazarus</a></b>:
-    install the package <tt>castle_game_engine/packages/castle_components.lpk</tt>.
-    It will also automatically install the package <tt>castle_base</tt>,
+    install the package <code>castle_game_engine/packages/castle_components.lpk</code>.
+    It will also automatically install the package <code>castle_base</code>,
     as a dependency.
     Then, open and compile (but do not install) the package
-    <tt>castle_game_engine/packages/castle_window.lpk</tt>.
+    <code>castle_game_engine/packages/castle_window.lpk</code>.
 
     <p>Then just compile and run from Lazarus any example you want
-    (in <tt>examples</tt> subdirectory), just open the <tt>xxx.lpi</tt>
+    (in <code>examples</code> subdirectory), just open the <code>xxx.lpi</code>
     project file and compile/run as any other program.
 
   <li><p><b>For command-line FPC</b>:
-    Compile the engine with simple "<tt>make</tt>" inside the
-    <tt>castle_game_engine/</tt> directory
+    Compile the engine with simple "<code>make</code>" inside the
+    <code>castle_game_engine/</code> directory
     (uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>).
     Compile examples <!-- (the ones that do not require Lazarus) -->
-    by simple "<tt>make examples</tt>".
-    Or execute <tt>xxx_compile.sh</tt> scripts to compile particular
+    by simple "<code>make examples</code>".
+    Or execute <code>xxx_compile.sh</code> scripts to compile particular
     examples.
 
     <p>To develop your own programs, you can either add
-    the engine unit output path to your <tt>fpc.cfg</tt> file,
+    the engine unit output path to your <code>fpc.cfg</code> file,
     or you can compile your own projects using our
     <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
     <!--
-    If you know what you're doing, we also provide <tt>castle-fpc.cfg</tt> config
+    If you know what you're doing, we also provide <code>castle-fpc.cfg</code> config
     in the engine sources,
     -->
 </ul>
@@ -103,7 +103,7 @@ main OpenGL initialization method is <b>not</b> the Lazarus TOpenGLControl
 takes too much space.
 
 <p>There are also some Lazarus packages and examples (e.g. to extend Lazarus
-<tt>TOpenGLControl</tt> component), they have to be compiled from
+<code>TOpenGLControl</code> component), they have to be compiled from
 within Lazarus. Although note that the engine doesn't require LCL
 for anything.
 these are not an
@@ -127,7 +127,7 @@ OpenAL, and vorbisfile</i>.</p>
 <ul>
   <li><i>On Linux and FreeBSD</i> you should install these libraries
     using your favourite package manager.
-    Remember to install <tt>-dev</tt> versions of these libraries too
+    Remember to install <code>-dev</code> versions of these libraries too
     (if you're under Debian or similar distribution) to be able to compile
     programs that link to these libraries.
 
@@ -176,7 +176,7 @@ need inside VRML/X3D file (of course, for advanced usage you can do a lot more
 with ObjectPascal code, and you can always build/modify VRML/X3D graph
 by ObjectPascal code).
 So <b>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></b>
- and try opening them with any engine example program (like <tt>scene_manager_basic.lpr</tt>,
+ and try opening them with any engine example program (like <code>scene_manager_basic.lpr</code>,
 or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
 &mdash; you will find that everything just works,
 not requiring a single line of ObjectPascal code.</p>
@@ -280,8 +280,8 @@ are available on Castle Game Engine YouTube channel</a>.</p>
       <li>We fully support rendering both in fixed-function
         and programmable pipelines. In the latter case,
         the whole shading is expressed through GLSL shaders
-        (that you can override with <tt>ComposedShader</tt>
-        or exhance with <tt>Effect</tt>, see links above).</li>
+        (that you can override with <code>ComposedShader</code>
+        or exhance with <code>Effect</code>, see links above).</li>
     </ul>
 
   <li><b>Screen-space effects</b> in GLSL are very easy to create (see
@@ -372,10 +372,10 @@ are available on Castle Game Engine YouTube channel</a>.</p>
     including creating Android apk packages.</li>
 
   <li>There are <b>many example programs</b>, look in sources
-    <tt>castle_game_engine/examples/</tt> subdirectory.</li>
+    <code>castle_game_engine/examples/</code> subdirectory.</li>
 
-  <li>There are ready window classes (<tt>TCastleWindow</tt>)
-    and Lazarus components (<tt>TCastleControl</tt>) to make simple
+  <li>There are ready window classes (<code>TCastleWindow</code>)
+    and Lazarus components (<code>TCastleControl</code>) to make simple
     VRML/X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;
     we have various <b>Lazarus components</b>.</li>
@@ -384,7 +384,7 @@ are available on Castle Game Engine YouTube channel</a>.</p>
     For example, you can only take model loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
     but still initialize OpenGL context yourself (no requirement to do it
-    by our <tt>CastleWindow</tt> unit). And so on.
+    by our <code>CastleWindow</code> unit). And so on.
     Of course, ultimately you can just use everything from our engine,
     nicely integrated &mdash; but the point is that you don't have to.</li>
 
@@ -476,11 +476,11 @@ As a special exception, the copyright holders of this library give you permissio
 
 <p>Important notes:</p>
 <ul>
-  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <tt>CASTLE_ENGINE_LGPL</tt> symbol defined in file <tt>castle_game_engine/base/castleconf.inc</tt>. Just put there <tt>{$define CASTLE_ENGINE_LGPL}</tt> line (or simply remove the beginning space in already prepared comment <tt>{&nbsp;$define CASTLE_ENGINE_LGPL}</tt>).</p>
+  <li><p>If you want to use the engine on LGPL terms (as opposed to more strict GPL) you <i>must</i> compile the engine with <code>CASTLE_ENGINE_LGPL</code> symbol defined in file <code>castle_game_engine/base/castleconf.inc</code>. Just put there <code>{$define CASTLE_ENGINE_LGPL}</code> line (or simply remove the beginning space in already prepared comment <code>{&nbsp;$define CASTLE_ENGINE_LGPL}</code>).</p>
 
     <p>This is necessary to avoid pulling in GPL-only dependencies. For now, this is only the NURBS unit (uses GPL-only code from <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a>). This missing NURBS implementation is the only difference between LGPL and "strict GPL" engine version.</p></li>
 
-  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <tt>castle_game_engine</tt> archive. The rest of the programs (<tt>view3dscene</tt>, <tt>castle</tt> etc.) are still strict GPL.</p></li>
+  <li><p>Note that LGPL stuff concerns only the engine, i.e. things inside <code>castle_game_engine</code> archive. The rest of the programs (<code>view3dscene</code>, <code>castle</code> etc.) are still strict GPL.</p></li>
 </ul>
 
 <?php

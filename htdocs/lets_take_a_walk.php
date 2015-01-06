@@ -65,14 +65,14 @@ appropriate DLLs are already is the archive.
   'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
-Run the game binary (<tt>./lets_take_a_walk</tt> on Unix,
-<tt>lets_take_a_walk.exe</tt> on Windows).</p>
+Run the game binary (<code>./lets_take_a_walk</code> on Unix,
+<code>lets_take_a_walk.exe</code> on Windows).</p>
 
 <p>Press F1 in the game to get help.
 
 <p>This is free/open-source software.
-Sources of <tt>lets_take_a_walk</tt> live as an example inside
-engine sources, in <tt>castle_game_engine/examples/3d_sound_game/</tt>.</p>
+Sources of <code>lets_take_a_walk</code> live as an example inside
+engine sources, in <code>castle_game_engine/examples/3d_sound_game/</code>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -108,18 +108,18 @@ Important libraries used: <a href="http://www.opengl.org">OpenGL</a>,
 <p>Sounds from
 <a href="http://www.a1freesoundeffects.com/">A1 Free Sound Effects</a>.
 Textures done with <a href="http://www.gimp.org">GIMP</a>.
-<tt>user_help</tt> and <tt>mute_label_scroll</tt> used a little help from
+<code>user_help</code> and <code>mute_label_scroll</code> used a little help from
 <a href="http://www.imagemagick.org/">ImageMagick</a>.
-<tt>base_shadowed.png</tt> generated using my program <tt>gen_light_map</tt>
+<code>base_shadowed.png</code> generated using my program <code>gen_light_map</code>
 (available as part of <?php echo a_href_page('engine sources', 'engine'); ?>,
-see <tt>examples/vrml/tools/gen_light_map.lpr</tt> file).
-Sky in <tt>skies/</tt> done using <a href="http://www.planetside.co.uk/">
+see <code>examples/vrml/tools/gen_light_map.lpr</code> file).
+Sky in <code>skies/</code> done using <a href="http://www.planetside.co.uk/">
 Terragen</a>.
-<tt>base_b_proc.wrl</tt> done in <a href="http://www.blender3d.org">Blender</a>
-and processed using my small <tt>process_base_b</tt> program
+<code>base_b_proc.wrl</code> done in <a href="http://www.blender3d.org">Blender</a>
+and processed using my small <code>process_base_b</code> program
 (available in <?php echo a_href_page('lets_take_a_walk sources', 'engine'); ?>,
-see <tt>lets_take_a_walk/devel/vrml/process_base_b.lpr</tt> file).
-<tt>rat.wrl</tt> and <tt>tree.wrl</tt> are modified (using Blender)
+see <code>lets_take_a_walk/devel/vrml/process_base_b.lpr</code> file).
+<code>rat.wrl</code> and <code>tree.wrl</code> are modified (using Blender)
 files from  <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 
 <?php

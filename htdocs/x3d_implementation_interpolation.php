@@ -4,7 +4,7 @@
   x3d_status_header('Interpolation', 'interp',
     'This component defines nodes to interpolate between a given set
      of values. Interpolators are often used for animation,
-     receiving time values from <tt>TimeSensor</tt> and sending interpolated
+     receiving time values from <code>TimeSensor</code> and sending interpolated
      values to visible nodes.');
 
   $toc = new TableOfContents(
@@ -33,13 +33,13 @@
     <?php echo x3d_node_link('CoordinateInterpolator2D'); ?>,
     <?php echo x3d_node_link('NormalInterpolator'); ?></p>
 
-    <p>Interpolation of <tt>OrientationInterpolator</tt> correctly goes through
+    <p>Interpolation of <code>OrientationInterpolator</code> correctly goes through
     the shortest path on the unit sphere, with constant velocity.</p>
 
-    <p>Interpolation of <tt>ColorInterpolator</tt> correctly interpolates
+    <p>Interpolation of <code>ColorInterpolator</code> correctly interpolates
     in HSV space.</p>
 
-    <p><i>TODO</i>: Interpolation of <tt>NormalInterpolator</tt> simply interpolates
+    <p><i>TODO</i>: Interpolation of <code>NormalInterpolator</code> simply interpolates
     3D vectors (and normalizes afterwards), instead of
     a nice interpolation on the unit sphere.</p>
 </ul>

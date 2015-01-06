@@ -18,11 +18,11 @@ creature/player is facing.
         rotate the model, i.e. change +Z to +Y. This is actually the
         default for X3D exporter since some time.
 
-      <li>Make sure your <tt>Viewpoint</tt> indicates +Y as up vector. This is
+      <li>Make sure your <code>Viewpoint</code> indicates +Y as up vector. This is
         actually the default VRML/X3D value.
 
       <li>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at default
-        <tt>otUpYDirectionMinusZ</tt>.
+        <code>otUpYDirectionMinusZ</code>.
     </ol>
   </li>
 
@@ -34,10 +34,10 @@ creature/player is facing.
         coordinate system.
 
       <li>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
-        generate a <tt>Viewpoint</tt> in your level that makes gravity working in Z
+        generate a <code>Viewpoint</code> in your level that makes gravity working in Z
         axis.
 
-      <li>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <tt>otUpZDirectionX</tt>.
+      <li>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <code>otUpZDirectionX</code>.
     </ol>
   </li>
 </ul>
@@ -85,14 +85,14 @@ feature, and instead decide to work with VRML/X3D files where +Z is
 
 <p>VRML/X3D is flexible in this regard: although the default is to have
 up in +Y, the specification says that up is +Y transformed by the
-<tt>Viewpoint</tt> node transformation, and we honour it. In short, this means
+<code>Viewpoint</code> node transformation, and we honour it. In short, this means
 that gravity is configurable in VRML/X3D file. You can setup your
 camera in <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
 use <i>"Navigation -> Walk and Fly settings ->
 Change Up Vector"</i>, input any vector you want (like "0 0 1"), then use
 <i>"Console -> Print Current Camera..."</i> option, and copy-paste the
 generated code from the console to your VRML/X3D file. This will set a
-<tt>Viewpoint</tt> with desired up vector, which will be correctly used by our
+<code>Viewpoint</code> with desired up vector, which will be correctly used by our
 engine (and other good VRML/X3D browsers actually) for gravity.</p>
 
 <p>The notion of direction/up is used by our engine in two places:</p>
@@ -100,28 +100,28 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 <ol>
   <li><p>Gravity pulls things (player, items, creatures...) down in the -up
     vector. We automatically detect this based on the gravity vector of
-    the <tt>Viewpoint</tt> inside your <?php api_link('TCastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
+    the <code>Viewpoint</code> inside your <?php api_link('TCastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
     (you usually
     want to set this to your level 3D model). This means that we follow
     VRML/X3D specification, and gravity vector is derived from the 3D
     model of your level. You can use e.g. <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
     to generate
-    <tt>Viewpoint</tt> node with a desired gravity vector. You can read this vector
-    by looking at <tt>TCastleSceneManager.GravityUp</tt>,
-    <tt>TCastleSceneManager.Camera.GravityUp</tt>, and
-    <tt>World.GravityUp</tt> (from any
-    <tt>T3D</tt> code), these are always equal.
+    <code>Viewpoint</code> node with a desired gravity vector. You can read this vector
+    by looking at <code>TCastleSceneManager.GravityUp</code>,
+    <code>TCastleSceneManager.Camera.GravityUp</code>, and
+    <code>World.GravityUp</code> (from any
+    <code>T3D</code> code), these are always equal.
 
   <li><p>Oriented 3D things, like creatures, player, and items (and anything
-    else derived from <tt>T3DOrient</tt> class) are always oriented such that their
+    else derived from <code>T3DOrient</code> class) are always oriented such that their
     local direction/up is matching the vectors defined by
-    <tt>T3DOrient.Orientation</tt> property. Although the publicly visible
-    properties like <tt>TCreature.Up</tt> are automatically set to be <i>usually</i>
-    equal to the <tt>World.GravityUp</tt> (in case of flying creatures, it may
+    <code>T3DOrient.Orientation</code> property. Although the publicly visible
+    properties like <code>TCreature.Up</code> are automatically set to be <i>usually</i>
+    equal to the <code>World.GravityUp</code> (in case of flying creatures, it may
     actually be different sometimes). But you still have to set the
-    <tt>T3DOrient.Orientation</tt> yourself, to make the local creature model
+    <code>T3DOrient.Orientation</code> yourself, to make the local creature model
     correctly match these vectors. You want to set it such that typical up
-    of your creatures changes into <tt>World.GravityUp</tt> (that is, creature's up
+    of your creatures changes into <code>World.GravityUp</code> (that is, creature's up
     remains untransformed).
 </ol>
 

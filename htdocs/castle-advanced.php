@@ -67,7 +67,7 @@ you can disable it from the main menu:
 
 <p>You can use <?php echo a_href_page("standard options
 understood by our OpenGL programs", "opengl_options") ?>
- like <tt>--geometry</tt> and <tt>--fullscreen</tt>
+ like <code>--geometry</code> and <code>--fullscreen</code>
 to force windowed or fullscreen mode with desired size.
 For example run like this:
 
@@ -96,7 +96,7 @@ probably stop any other programs that play some music.
 
 Other command-line options, not mentioned in this file before:
 <ul>
-  <li><p><tt>--debug-log</tt>
+  <li><p><code>--debug-log</code>
 
     <p>This will output a lot of info on stdout.
     When sending bug reports, it may be useful to attach generated log
@@ -105,11 +105,11 @@ Other command-line options, not mentioned in this file before:
 
   <li><p>See <?php echo a_href_page('some general notes about command-line
     options understood by all my programs', 'common_options'); ?>.
-    In particular, <tt>castle --help</tt> will show full list
+    In particular, <code>castle --help</code> will show full list
     of all available command-line options.</li>
 
 <?php /*
-  <li><p><tt>--no-shadows</tt>
+  <li><p><code>--no-shadows</code>
 
     <p>This disallows rendering of shadows in the game.
     Just like turning off "Video options -> Shadows" option, this will
@@ -184,10 +184,10 @@ to see how things work now &mdash; without exiting the game.
 
 <p>There are also some command-line debug options (but not too much &mdash;
 it's always more flexible to have things available at runtime instead
-of only at the start). Run the program with <tt>--help</tt>
+of only at the start). Run the program with <code>--help</code>
 to get their list.
 <?php /*
-<tt>--debug-no-creatures</tt> is one such useful option:
+<code>--debug-no-creatures</code> is one such useful option:
 it avoids this lengthy "Loading creatures" loading time, which is useful
 when you're not interested in testing creatures
 (e.g. when you only design new level geometry).

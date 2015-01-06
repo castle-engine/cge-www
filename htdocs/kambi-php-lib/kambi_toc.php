@@ -167,10 +167,10 @@ class TableOfContents {
        0 corresponds to <h2>. */
     $heading_level = min($toc_item->nesting + 2, 6);
 
-    $result = "<h$heading_level><a name=\"section_" .
+    $result = "<h$heading_level id=\"section_" .
       $toc_item->anchor_name . "\">" .
       ($this->echo_numbers ? $toc_item->number . '. ' : '') .
-      $toc_item->display_name . "</a></h$heading_level>\n";
+      $toc_item->display_name . "</h$heading_level>\n";
     $this->next_section_heading++;
     return $result;
   }

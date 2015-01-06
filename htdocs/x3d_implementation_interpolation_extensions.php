@@ -19,8 +19,8 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>As an extension, we add the <tt>ColorSetInterpolator</tt> node,
-that generates <tt>MFColor</tt> values.</p>
+<p>As an extension, we add the <code>ColorSetInterpolator</code> node,
+that generates <code>MFColor</code> values.</p>
 
 <?php echo
   node_begin('ColorSetInterpolator : X3DInterpolatorNode');
@@ -35,27 +35,27 @@ that generates <tt>MFColor</tt> values.</p>
   node_end();
 ?>
 
-<p>The number of items in the "<tt>keyValue</tt>" field should be a multiple
-of the number of items in the "<tt>key</tt>" field, that is
-<tt>keyValue.count = key.count * singleValueChangedCount</tt>.
-When the "<tt>set_fraction</tt>" input event is received,
+<p>The number of items in the "<code>keyValue</code>" field should be a multiple
+of the number of items in the "<code>key</code>" field, that is
+<code>keyValue.count = key.count * singleValueChangedCount</code>.
+When the "<code>set_fraction</code>" input event is received,
 we linearly interpolate
-the colors, and the "<tt>value_changed</tt>" event is generated with
-a set of <tt>singleValueChangedCount</tt> colors.</p>
+the colors, and the "<code>value_changed</code>" event is generated with
+a set of <code>singleValueChangedCount</code> colors.</p>
 
 <p>This works and looks exactly like
-other interpolation nodes. It is similar to <tt>CoordinateInterpolator</tt>,
-but generates colors. It is similar to <tt>ColorInterpolator</tt>,
+other interpolation nodes. It is similar to <code>CoordinateInterpolator</code>,
+but generates colors. It is similar to <code>ColorInterpolator</code>,
 but generates many values. Colors are interpolated in HSV
 space.</p>
 
-<p>Useful to interpolate e.g. <tt>Background.skyColor</tt> values,
-or <tt>Color.color</tt> values.</p>
+<p>Useful to interpolate e.g. <code>Background.skyColor</code> values,
+or <code>Color.color</code> values.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>As an extension, we add the <tt>VectorInterpolator</tt> node,
-that generates <tt>MFFloat</tt> values. This is
+<p>As an extension, we add the <code>VectorInterpolator</code> node,
+that generates <code>MFFloat</code> values. This is
 <a href="http://doc.instantreality.org/documentation/nodetype/VectorInterpolator/">compatible with InstantReality</a>.</p>
 
 <?php echo
@@ -71,15 +71,15 @@ that generates <tt>MFFloat</tt> values. This is
   node_end();
 ?>
 
-<p>The number of items in the "<tt>keyValue</tt>" field should be a multiple
-of the number of items in the "<tt>key</tt>" field, that is
-<tt>keyValue.count = key.count * singleValueChangedCount</tt>.
-When the "<tt>set_fraction</tt>" input event is received,
+<p>The number of items in the "<code>keyValue</code>" field should be a multiple
+of the number of items in the "<code>key</code>" field, that is
+<code>keyValue.count = key.count * singleValueChangedCount</code>.
+When the "<code>set_fraction</code>" input event is received,
 we linearly interpolate
-the floats, and the "<tt>value_changed</tt>" event is generated with
-a set of <tt>singleValueChangedCount</tt> floats.</p>
+the floats, and the "<code>value_changed</code>" event is generated with
+a set of <code>singleValueChangedCount</code> floats.</p>
 
-<p>Useful to interpolate e.g. by <tt>ElevationGrid.set_height</tt>.</p>
+<p>Useful to interpolate e.g. by <code>ElevationGrid.set_height</code>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -114,13 +114,13 @@ a set of <tt>singleValueChangedCount</tt> floats.</p>
 
 <p>These nodes interpolate using <i>cubic Bezier curves</i>. They are similar to
 standard X3D interpolator nodes (that use linear interpolation between values)
-and to X3D <tt>Spline*Interpolator</tt> nodes (that use Catmull-Rom splines),
+and to X3D <code>Spline*Interpolator</code> nodes (that use Catmull-Rom splines),
 but these ones use <i>cubic Bezier curves</i>.
 
-<p><tt>CubicBezierPositionInterpolator</tt> is equivalent to standard
+<p><code>CubicBezierPositionInterpolator</code> is equivalent to standard
 <?php echo x3d_node_link('PositionInterpolator'); ?>, except using
 cubic Bezier curve instead of linear interpolation.
-<tt>CubicBezier2DOrientationInterpolator</tt> is equivalent to standard
+<code>CubicBezier2DOrientationInterpolator</code> is equivalent to standard
 <?php echo x3d_node_link('OrientationInterpolator'); ?>, except using
 cubic Bezier curve instead of linear interpolation, and simplifying parameters
 for rotations in 2D.
@@ -134,18 +134,18 @@ See <a href="http://esotericsoftware.com/spine-json-format">Spine JSON docs</a>,
 paragraphs <i>The Bézier curve array has 4 elements...</i>.
 Our Spine reading code automatically uses these nodes where necessary.
 
-<p>Every <tt>CubicBezier*Interpolator</tt> node has an additional field <tt>controlPoints</tt> (number of 4D vectors) describing the Bezier curves between they key values. Between every 2 values (on <tt>keyValue</tt> field) there are 2 additional 2D points (Bezier control points), packed together as 4D vector. So the count of <tt>controlPoints</tt> must be <i>n - 1</i> (additional values are silently ignored, and when missing we assume linear interpolation) where <i>n</i> is the count of <tt>key</tt>s (and <tt>keyValue</tt>s). Let us call every 4 numbes as <i>CX1</i>, <i>CY1</i>, <i>CX2</i>, <i>CY2</i>. Values <i>CX1</i> and <i>CX2</i> determine the position of handle between previous (0) and next (1) key. Values <i>CY1</i> and <i>CY2</i> determine the output value, where 0 is the value at previous key and 1 is the value at next key.
+<p>Every <code>CubicBezier*Interpolator</code> node has an additional field <code>controlPoints</code> (number of 4D vectors) describing the Bezier curves between they key values. Between every 2 values (on <code>keyValue</code> field) there are 2 additional 2D points (Bezier control points), packed together as 4D vector. So the count of <code>controlPoints</code> must be <i>n - 1</i> (additional values are silently ignored, and when missing we assume linear interpolation) where <i>n</i> is the count of <code>key</code>s (and <code>keyValue</code>s). Let us call every 4 numbes as <i>CX1</i>, <i>CY1</i>, <i>CX2</i>, <i>CY2</i>. Values <i>CX1</i> and <i>CX2</i> determine the position of handle between previous (0) and next (1) key. Values <i>CY1</i> and <i>CY2</i> determine the output value, where 0 is the value at previous key and 1 is the value at next key.
 
-<p>For <tt>CubicBezier2DOrientationInterpolator</tt>, the way we handle
+<p>For <code>CubicBezier2DOrientationInterpolator</code>, the way we handle
 2D rotation interpolation requires additional explanation.
-The final rotation (expressed as <tt>SFRotation</tt>) is always calculated
-as a rotation around constant vector (in <tt>axis</tt> field),
+The final rotation (expressed as <code>SFRotation</code>) is always calculated
+as a rotation around constant vector (in <code>axis</code> field),
 with rotation angle calculated by interpolating (with cubic Bezier curves)
-the angles defined in <tt>keyValue</tt> field (as radians).
-This way <tt>CubicBezier2DOrientationInterpolator</tt> is very efficient for 2D
+the angles defined in <code>keyValue</code> field (as radians).
+This way <code>CubicBezier2DOrientationInterpolator</code> is very efficient for 2D
 rotations.
 
-<p>Note that you could also use <tt>NurbsPositionInterpolator</tt> and <tt>NurbsOrientationInterpolator</tt> to interpolate using Bezier curves (<?php echo a_href_page('see NURBS nodes','x3d_implementation_nurbs'); ?>), since NURBS equations already allow to specify Bezier curves. However, this would be less efficient to calculate, as we don't know then that the NURBS "knot" represents a Bezier curve. We can calculate resuls faster knowing that it's a Bezier cubic curve, not anything more generic. Additionally, <tt>CubicBezier2DOrientationInterpolator</tt> makes extra optimization, knowing that rotation is in 2D.
+<p>Note that you could also use <code>NurbsPositionInterpolator</code> and <code>NurbsOrientationInterpolator</code> to interpolate using Bezier curves (<?php echo a_href_page('see NURBS nodes','x3d_implementation_nurbs'); ?>), since NURBS equations already allow to specify Bezier curves. However, this would be less efficient to calculate, as we don't know then that the NURBS "knot" represents a Bezier curve. We can calculate resuls faster knowing that it's a Bezier cubic curve, not anything more generic. Additionally, <code>CubicBezier2DOrientationInterpolator</code> makes extra optimization, knowing that rotation is in 2D.
 
 <?php
   x3d_status_footer();

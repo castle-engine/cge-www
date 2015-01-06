@@ -8,10 +8,10 @@ function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
 {
   $result = "Rayhunter parameters: minimal depth $min_depth,
     non primary samples count : $non_prim_samples,
-    <tt>--r-roul-continue $r_roul</tt>,
-    <tt>--primary-samples-count $prim_samples</tt>";
+    <code>--r-roul-continue $r_roul</code>,
+    <code>--primary-samples-count $prim_samples</code>";
   if ($direct_samples != 1) $result .=
-    "<tt>--direct-illum-samples-count $direct_samples</tt>";
+    "<code>--direct-illum-samples-count $direct_samples</code>";
   $result .= '.';
   return $result;
 }
@@ -34,10 +34,10 @@ function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
 
 <?php echo $toc->html_section(); ?>
 
-<p>On this page whenever I write that I used 3d models in <tt>mgf</tt>
+<p>On this page whenever I write that I used 3d models in <code>mgf</code>
 format, this means that I actually converted them to VRML using
 <?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>.
-Whenever I used 3d models in <tt>3DS</tt> format, this
+Whenever I used 3d models in <code>3DS</code> format, this
 means that I actually converted them to VRML using
 <?php echo a_href_page("view3dscene", "view3dscene"); ?>.
 
@@ -46,20 +46,20 @@ means that I actually converted them to VRML using
 <?php echo $toc->html_section(); ?>
 
 <p><?php echo a_href_page("rayhunter", "rayhunter"); ?>
- with parameter <tt>classic</tt> was used to render images in this section.
+ with parameter <code>classic</code> was used to render images in this section.
 
 <p>All images below were made by <?php echo a_href_page("rayhunter", "rayhunter"); ?>
  with 2x larger width and height, and then they were scaled down
-using <tt>pfilt</tt> program from
+using <code>pfilt</code> program from
 <a href="http://floyd.lbl.gov/radiance/">Radiance programs</a>.
 This way I did trivial anti-aliasing by <i>oversampling</i>.
 
 <p>For classic ray-tracer I added some point/directional/spot lights
 to the models. Sometimes I added <?php echo a_href_page_hashlink(
- '<tt>mirror</tt> property', 'x3d_extensions', 'section_ext_material_mirror'); ?>
+ '<code>mirror</code> property', 'x3d_extensions', 'section_ext_material_mirror'); ?>
  to turn some materials into mirrors.
 
-<p><b>Office</b>. I used <tt>office.mgf</tt> model
+<p><b>Office</b>. I used <code>office.mgf</code> model
 from collection of models of the
 <a href="http://www.cs.kuleuven.ac.be/~graphics/RENDERPARK/">RenderPark project</a>
 (you can download this collection from
@@ -74,7 +74,7 @@ shines from the outside (and that's how louvers cast shadows on the whole room).
   array('filename' => 'office-wlight-4-classic-filt.png', 'titlealt' => ''),
 ), 1000, ''); ?>
 
-<p><b>Graz</b>. I used model <tt>graz.mgf</tt>, also from
+<p><b>Graz</b>. I used model <code>graz.mgf</code>, also from
 <a href="http://www.cs.kuleuven.ac.be/~graphics/RENDERPARK/">RenderPark</a>
 scenes collection. Four bright lights are placed right under the ceiling,
 note also two blueish mirrors hanging on the walls.
@@ -86,7 +86,7 @@ note also two blueish mirrors hanging on the walls.
   array('filename' => 'graz-wlight-4-classic-filt.png', 'titlealt' => ''),
 ), 1000, ''); ?>
 
-<p><b>Sibenik</b>. I used <tt>sibenik.3ds</tt> model from
+<p><b>Sibenik</b>. I used <code>sibenik.3ds</code> model from
 <a href="http://hdri.cgtechniques.com/~sibenik2/">
 http://hdri.cgtechniques.com/~sibenik2/</a>.
 Unfortunately <?php echo a_href_page("rayhunter", "rayhunter"); ?>
@@ -118,7 +118,7 @@ you can see some rays are transmitted completely inside underwater.
 
 <p><b>Forest</b>. Model that I made using
 <a href="http://www.blender3d.org">Blender</a>,
-using also <tt>tree.3ds</tt> from
+using also <code>tree.3ds</code> from
 <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 Lights and fog added by hand.
 You can <?php echo current_www_a_href_size("download this model",
@@ -151,7 +151,7 @@ time both walls act as mirrors (stronger mirrors, 0.9) and so the reflection is 
 
 <p>You can download corresponding blender and VRML data files from <?php
   echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
- (look for <tt>lights_materials/raytracer/alien_mirror.wrl</tt>, there's also <tt>.blend</tt>).
+ (look for <code>lights_materials/raytracer/alien_mirror.wrl</code>, there's also <code>.blend</code>).
 By the way, this is one of the first rayhunter renderings of VRML 2.0 models !
 
 <hr> <!-- =============================================== -->
@@ -159,7 +159,7 @@ By the way, this is one of the first rayhunter renderings of VRML 2.0 models !
 <?php echo $toc->html_section(); ?>
 
 <p><?php echo a_href_page("rayhunter", "rayhunter"); ?>
- with parameter <tt>path</tt> was used to render images in this section.
+ with parameter <code>path</code> was used to render images in this section.
 
 <p>If you will compare images below with the images above
 (rendered using classic ray-tracer), bear in mind that
@@ -183,7 +183,7 @@ properties so that classic and path tracer results are similar.
 
 <p><b>Office and graz</b>. Same models and camera settings as the renderings
 in the <i>classic</i> section before.
-The lower images were processed using <tt>pcond -h</tt> to improve the look.
+The lower images were processed using <code>pcond -h</code> to improve the look.
 
 <p>For <i>graz</i>:
 <?php echo path_tracer_params_descr(1, 0.5, 2000, 1, 1); ?>
@@ -219,16 +219,16 @@ Russian-roulette is a good idea and minimal path depth setting is
 also a good idea :)
 <ul>
   <li><i>(left image)</i> Minimal depth = 3,
-    <tt>--r-roul-continue 0</tt> (so the paths were always
+    <code>--r-roul-continue 0</code> (so the paths were always
     cut at depth 3, so our calculations are inherently incorrect
     (the method is <i>biased</i>), and you can clearly see that
     left image is darker than the right one.
   <li><i>(middle image)</i> Minimal depth = 0,
-    <tt>--r-roul-continue 0.8</tt> (so path depth depends
+    <code>--r-roul-continue 0.8</code> (so path depth depends
     only on Russian-roulette). You can see a lot of noise
     on the image, that's the noise produced by the roulette.
   <li><i>(right image)</i> Minimal depth = 2,
-    <tt>--r-roul-continue 0.5</tt>. This looks best,
+    <code>--r-roul-continue 0.5</code>. This looks best,
     small noise and not biased.
 </ul>
 

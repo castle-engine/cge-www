@@ -26,16 +26,16 @@ downloaded below.</p>
     and additionally download <?php echo a_href_page('Castle Game Engine', 'engine'); ?> sources.</li>
 
   <li><p><b>Unpack</b> them such that
-    <tt>castle_game_engine/</tt> and program-specific directory
-    (like <tt>castle/</tt> or <tt>view3dscene/</tt>)
+    <code>castle_game_engine/</code> and program-specific directory
+    (like <code>castle/</code> or <code>view3dscene/</code>)
     are siblings.
 
-  <li><p><b>Compile</b> every program by using <tt>compile.sh</tt> script inside
-    it's directory. The one exception is <tt>castle</tt> code,
-    which should be compiled by executing <tt>make</tt>.
+  <li><p><b>Compile</b> every program by using <code>compile.sh</code> script inside
+    it's directory. The one exception is <code>castle</code> code,
+    which should be compiled by executing <code>make</code>.
 
     <p>Alternatively, you can compile using Lazarus project files (be sure to first
-    compile Lazarus packages in <tt>castle_game_engine/packages/</tt>.
+    compile Lazarus packages in <code>castle_game_engine/packages/</code>.
 
     <p><a href="http://www.freepascal.org/">FPC (Free Pascal Compiler)</a>
     is required for compilation, <?php echo a_href_page_hashlink('see
@@ -53,9 +53,9 @@ downloaded below.</p>
     to detect data directory. It will automatically
     use current directory, if the data is there.
 
-    <p>But you can also move/symlink data to <tt>$HOME/.local/share/xxx</tt>
-    or <tt>/usr/local/share/xxx</tt> or <tt>/usr/share/xxx</tt>.
-    You can do this easily by executing <tt>make install</tt> inside program
+    <p>But you can also move/symlink data to <code>$HOME/.local/share/xxx</code>
+    or <code>/usr/local/share/xxx</code> or <code>/usr/share/xxx</code>.
+    You can do this easily by executing <code>make install</code> inside program
     directory.
 </ol>
 
@@ -90,7 +90,7 @@ notes near some programs below.
   function echo_src_svnonly($name)
   {
     echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal small">' .
-        sf_checkout_link(true, $name) . '</tt></li>
+        sf_checkout_link(true, $name) . '</code></li>
       ';
   }
 
@@ -165,10 +165,10 @@ book about the Subversion</a>.</p>
 
 <pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
 
-<p>Please note that the full <tt>trunk</tt> is quite large.
-It contains everything: the core engine sources (<tt>castle_game_engine</tt> subdirectory),
-webpages stuff (in <tt>www</tt> subdirectory),
-<tt>view3dscene</tt> sources, <tt>castle</tt> sources etc.
+<p>Please note that the full <code>trunk</code> is quite large.
+It contains everything: the core engine sources (<code>castle_game_engine</code> subdirectory),
+webpages stuff (in <code>www</code> subdirectory),
+<code>view3dscene</code> sources, <code>castle</code> sources etc.
 Often you want to download only specific subdirectories of it.</p>
 
 <p>You can also <a href="https://sourceforge.net/p/castle-engine/code/">browse
@@ -179,7 +179,7 @@ version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
 You can also download the code from one of
-<tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</tt>
+<tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</code>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 

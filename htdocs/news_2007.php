@@ -16,9 +16,9 @@ array_push($news,
     culling etc.), conserve memory feature (all Radeon issues should be fixed
     now).</li>
   <li>" . news_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
-    prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>),
+    prototypes (both <code>PROTO</code> and <code>EXTERNPROTO</code>),
     VRML 2.0 lights are correctly handled,
-    handling of colors for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>,
+    handling of colors for <code>IndexedFaceSet</code> and <code>IndexedLineSet</code>,
     <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
   <li>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
     released: most things mentioned above were actually implemented in the base
@@ -53,8 +53,8 @@ array_push($news,
         of shadows qualified as z-pass, z-fail, z-fail with light cap needed etc.
       <li>Shadow volumes silhouette optimization improved: now models don't have
         to be perfect manifold to use this. See
-        <tt>kambi_vrml_game_engine/examples/vrml/shadow_volume_test/</tt>
-        demo, in particular the <tt>shadow_volume_test_ball_with_tentacles.sh</tt>
+        <code>kambi_vrml_game_engine/examples/vrml/shadow_volume_test/</code>
+        demo, in particular the <code>shadow_volume_test_ball_with_tentacles.sh</code>
         example.</li>
       <li>Much better frustum culling for shadows.</li>
     </ul>
@@ -82,23 +82,23 @@ array_push($news,
 <p>" . news_a_href_page('view3dscene 2.3.0', 'view3dscene') . " released:
 
 <ul>
-  <li>Prototypes (both <tt>PROTO</tt> and <tt>EXTERNPROTO</tt>)
+  <li>Prototypes (both <code>PROTO</code> and <code>EXTERNPROTO</code>)
     VRML 2.0 feature is fully implemented now !</li>
-  <li>VRML 2.0 lights are correctly handled (<tt>DirectionalLight</tt>
+  <li>VRML 2.0 lights are correctly handled (<code>DirectionalLight</code>
     affects every sibling, positional lights affect whole scene taking
-    <tt>radius</tt> into account).</li>
-  <li><tt>ROUTE</tt> constructs of VRML 2.0 are parsed now.
+    <code>radius</code> into account).</li>
+  <li><code>ROUTE</code> constructs of VRML 2.0 are parsed now.
     Although they still don't actually <b>do</b> anything.
     So at least scenes using routes are partially handled (routes are simply
     ignored), instead of just producing an error.</li>
   <li>Default blending dest factor for view3dscene is
-    <tt>GL_ONE_MINUS_SRC_ALPHA</tt>, since this is expected by most VRML
+    <code>GL_ONE_MINUS_SRC_ALPHA</code>, since this is expected by most VRML
     authors.</li>
   <li>VRML files compressed by gzip are handled OK even if they have
-    normal <tt>.wrl</tt> extension.</li>
+    normal <code>.wrl</code> extension.</li>
   <li>--write-to-vrml fixed</li>
-  <li>Handling of colors (<tt>color</tt>, <tt>colorPerVertex</tt>,
-    <tt>colorIndex</tt>) for <tt>IndexedFaceSet</tt> and <tt>IndexedLineSet</tt>
+  <li>Handling of colors (<code>color</code>, <code>colorPerVertex</code>,
+    <code>colorIndex</code>) for <code>IndexedFaceSet</code> and <code>IndexedLineSet</code>
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
   <li><a
@@ -117,8 +117,8 @@ more internal features not mentioned above:</p>
     (tested compilation with cross compiler, no actual run tests).</p>
 
     <p>This also results in the change of archive binary names:
-    they all get <tt>i386</tt> after their name, eventually I may release
-    precompiled versions for <tt>x86-64</tt> too.</p></li>
+    they all get <code>i386</code> after their name, eventually I may release
+    precompiled versions for <code>x86-64</code> too.</p></li>
 
   <li><p>GLWindow allows to change cursor shape.</p></li>
 
@@ -254,7 +254,7 @@ SourceForge.
   '<!-- Older logs are available only in HTML, they were not converted
        to $news format. -->
 
-  <div class="old_news_item"><p><a name="older_news"><span class="old_news_date">July 19, 2007:</span></a></p>
+  <div class="old_news_item"><p id="older_news"><span class="old_news_date">July 19, 2007:</span></p>
 
     <p>Just to let you know that my whole VRML stuff is on the move
     to <a href="http://sourceforge.net">SourceForge.net</a>.
@@ -317,7 +317,7 @@ SourceForge.
             to search your inventory by the "[", "]" keys .
           <li>"Invert vertical mouse look" option.
         </ul>
-      <li><tt>--screen-size</tt> command-line option.
+      <li><code>--screen-size</code> command-line option.
       <li>On "Castle Hall" level: werewolves fight totally changed, to be much more
         interesting.
       <li>On "The Gate" level: teleport made closer, to reduce a little the need
@@ -362,21 +362,21 @@ SourceForge.
     <p>Most notable engine internal improvements for programmers
     (of course not counting features and fixes that already got mentioned above... ) :
     <ul>
-      <li>VRML camera is now correctly read, transformation of <tt>Viewpoint</tt>
+      <li>VRML camera is now correctly read, transformation of <code>Viewpoint</code>
         indicates gravity direction. This way you can set gravity up vector
         and initial camera up vector to different things.
       <li>New examples in "Kambi VRML game engine":<br />
-        <tt>vrml/opengl/examples/shadow_volume_test</tt>,<br />
-        <tt>opengl/examples/demo_matrix_navigation</tt>,<br />
-        <tt>3d/examples/draw_space_filling_curve</tt>,<br />
-        <tt>opengl/examples/fog_coord</tt>,<br />
-        <tt>audio/examples/algets</tt> and<br />
-        <tt>audio/examples/alplay</tt>.
+        <code>vrml/opengl/examples/shadow_volume_test</code>,<br />
+        <code>opengl/examples/demo_matrix_navigation</code>,<br />
+        <code>3d/examples/draw_space_filling_curve</code>,<br />
+        <code>opengl/examples/fog_coord</code>,<br />
+        <code>audio/examples/algets</code> and<br />
+        <code>audio/examples/alplay</code>.
       <li>Everything is in FPC objfpc mode, no longer Delphi compat mode anywhere.
       <li>Integration with FPC Matrix unit started (VectorMath now reuses
         non-object types from Matrix, many units use Matrix object types
         and overloaded operators).
-      <li><tt>VRMLRayTracer</tt> interface changed to much cleaner object-oriented.
+      <li><code>VRMLRayTracer</code> interface changed to much cleaner object-oriented.
       <li>Detailed GL_VERSION and GLU_VERSION parsing and reporting,
         including the ability to detect Mesa and Mesa version.
         See GLVersion and GLUVersion objects.
@@ -393,26 +393,26 @@ SourceForge.
     confugurability by editing game XML files:
     <ul>
       <!--li>"Render for level screenshot"-->
-      <li>Configure sounds by <tt>sounds/index.xml</tt> file,
+      <li>Configure sounds by <code>sounds/index.xml</code> file,
         debug menu option "Reload sounds.xml".
-      <li>Configure items by <tt>items/kinds.xml</tt> file.
+      <li>Configure items by <code>items/kinds.xml</code> file.
       <li>Blending type configurable for all items and creatures.
       <li>All animations are now expressed in external files
         (in *.kanim files or in XML nodes inside kinds.xml files).
       <!--li>"Fly" debug option.-->
-      <li>Configure levels by <tt>levels/index.xml</tt> file.
+      <li>Configure levels by <code>levels/index.xml</code> file.
         Many level properties, also hint boxes are configurable there.
       <li>New level "hello world".
-      <li><tt>KambiHeadLight</tt> node to configure headlight from VRML.
+      <li><code>KambiHeadLight</code> node to configure headlight from VRML.
       <li>No longer any need for "Transparent" properties. All creatures/items/levels
         can now freely mix transparent and opaque parts, and everything will
         be rendered always OK.
       <li>Octree params configurable from debug menu.
     </ul>
 
-    <p>Also packaging changes: <tt>units-src</tt> renamed to
-    <tt>kambi_vrml_game_engine-src</tt>,
-    <tt>kambi.cfg</tt> file is included inside, <tt>test_kambi_units</tt>
+    <p>Also packaging changes: <code>units-src</code> renamed to
+    <code>kambi_vrml_game_engine-src</code>,
+    <code>kambi.cfg</code> file is included inside, <code>test_kambi_units</code>
     is included inside. Most programs package names include their version numbers.
 
     <p>Minor programs releases:
@@ -453,9 +453,9 @@ SourceForge.
      Most of the content of this page was already said here and there,
     but now I want to say it more explicitly: <em>I\'m making a reusable game
     engine</em>. Also the engine sources are updated now, three new example
-    programs are added: <tt>images/examples/image_convert</tt>,
-    <tt>opengl/examples/test_font_break</tt> and
-    <tt>opengl/examples/multi_glwindow</tt>.</div>
+    programs are added: <code>images/examples/image_convert</code>,
+    <code>opengl/examples/test_font_break</code> and
+    <code>opengl/examples/multi_glwindow</code>.</div>
 
   <div class="old_news_item"><p><span class="old_news_date">September 27, 2006:</span>
     <p>Final version of
@@ -471,9 +471,9 @@ SourceForge.
 
     <p>Units ' . news_a_href_page('sources', 'sources') . ' updated:
     included is an example how to do fog culling (to the fog visibility range),
-    see the file <tt>units/vrml/opengl/examples/fog_culling.dpr</tt>.
+    see the file <code>units/vrml/opengl/examples/fog_culling.dpr</code>.
     Also blending source and dest factors are now configurable.
-    Also behavior on incorrect <tt>Background</tt> nodes is now better
+    Also behavior on incorrect <code>Background</code> nodes is now better
     (reports warning and proceeds).</p></div>
 
   <div class="old_news_item"><p><span class="old_news_date">September 13, 2006:</span>
@@ -485,10 +485,10 @@ SourceForge.
     <p>' . news_a_href_page('view3dscene 2.0.1', 'view3dscene') . '
      released &mdash; small updates and fixes. New menu items
     were added to display the whole octree and to change the
-    point size of <tt>PointSet</tt>.
+    point size of <code>PointSet</code>.
     The quadric stacks value (for the command-line option
-    <tt>--detail-quadric-stacks</tt>
-    and <tt>KambiTriangulation</tt> node) can be 1 now.
+    <code>--detail-quadric-stacks</code>
+    and <code>KambiTriangulation</code> node) can be 1 now.
     The recently released FPC 2.0.4 is used to compile view3dscene now.</p>
 
     <p>Also, <a href="http://freshmeat.net/projects/view3dscene/">view3dscene
@@ -498,7 +498,7 @@ SourceForge.
 
     <p>In ' . news_a_href_page('VRML test suite',
       'kambi_vrml_test_suite') . '
-     <tt>vrml_2/kambi_extensions/fog_linear_with_immune.wrl</tt> test fixed.</div>
+     <code>vrml_2/kambi_extensions/fog_linear_with_immune.wrl</code> test fixed.</div>
 
   <div class="old_news_item"><p><span class="old_news_date">August 24, 2006:</span>
 
@@ -528,10 +528,10 @@ SourceForge.
         stored and can be later viewed from the GUI using "View warnings"
         menu item, added "Reopen" menu item, added "Edit" menu
         (to perform interactively all the things previously
-        controlled by <tt>--scene-change-*</tt> command-line options;
-        <tt>--scene-change-*</tt> command-line options remain to work
+        controlled by <code>--scene-change-*</code> command-line options;
+        <code>--scene-change-*</code> command-line options remain to work
         but only for the first loaded scene, so they are mostly useful
-        when combined with <tt>--write-to-vrml</tt>).
+        when combined with <code>--write-to-vrml</code>).
       <li>' . news_a_href_page('Kambi VRML test suite',
         'kambi_vrml_test_suite') . ' &mdash; this was previously
         known on these pages as "kambi_vrml_examples.tar.gz", or "Example VRMLs".
@@ -566,27 +566,27 @@ SourceForge.
       <li>' . news_a_href_page('Sources', 'sources') . ' and
         ' . news_a_href_page('sources documentation', 'reference') . '
         updated with all improvements mentioned above.
-      <li><tt>edytorek</tt> is removed from these pages.
+      <li><code>edytorek</code> is removed from these pages.
         Reasoning: I was not using it, not developing it, and I lost my interest
         in it long time ago. Since a long time I use Emacs as my only
         text editor, under all OSes. So there were a couple of embarassing
-        issues with <tt>edytorek</tt> : it was Windows-only, it was
+        issues with <code>edytorek</code> : it was Windows-only, it was
         compiled with Delphi Personal, and I didn\'t publish here it\'s source code...
         All these issues are quite embarassing for someone who
         uses Linux and FreePascal as his main work tools, and develops
         open-source programs... Of course I intended to clean edytorek
         code, porting it to Lazarus and publish it\'s sources some day,
         but, honestly, I don\'t think that it will ever happen.
-        So, goodbye <tt>edytorek</tt>.
+        So, goodbye <code>edytorek</code>.
     </ul>
     </div>
 
   <div class="old_news_item"><p><span class="old_news_date">August 1, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', "castle") . '
      (0.6.5) released: whole documentation is in HTML (available
-    both here online and offline inside <tt>documentation/</tt>
+    both here online and offline inside <code>documentation/</code>
     subdirectory, README file inside archive doesn\'t contain much now),
-    <tt>--debug-log</tt> option will print lots of debug info,
+    <code>--debug-log</code> option will print lots of debug info,
     lifeloss when falling down lowered (to avoid getting hurt too easily
     when jumping), removed one scroll of flying from "Castle Hall"
     (to make the trick with flying over creatures harder),
@@ -651,7 +651,7 @@ SourceForge.
     are not fixed yet &mdash; so stay tuned :)
 
     <p>In an unrelated news: For those of you who know my old alternative
-    email address <tt>mkambi@poczta.onet.pl</tt>: don\'t use this address anymore.
+    email address <code>mkambi@poczta.onet.pl</code>: don\'t use this address anymore.
     I will not receive mail send to this address.
     If you recently (in May 2006 or later) send a mail to this adress,
     then I probably didn\'t get it.
@@ -774,8 +774,8 @@ SourceForge.
 
   <div class="old_news_item"><span class="old_news_date">May 4, 2006:</span>
     <p>New version of ' . news_a_href_page('"The Castle"', 'castle') . ' (0.5.9)
-    released: creatures are now configurable by <tt>kinds.xml</tt> file,
-    <tt>--debug-no-creatures</tt> command-line option,
+    released: creatures are now configurable by <code>kinds.xml</code> file,
+    <code>--debug-no-creatures</code> command-line option,
     you can set color bit depth and display frequency (the last feature is actually
     honoured only on Windows for now &mdash; yeah, I\'m under the pressure :) ).
     "Official" downloadable version is still 0.5.6,
@@ -842,7 +842,7 @@ SourceForge.
         (ver 1.1.4) release &mdash; bugfix for newer OpenAL
         under Linux that don\'t include alut functions in the same SO file.
       <li>Inside units sources, there\'s new unit
-        <tt>ALSourceAllocator</tt> and it\'s demo in <tt>audio/examples/</tt>.
+        <code>ALSourceAllocator</code> and it\'s demo in <code>audio/examples/</code>.
         This is an intelligent manager of OpenAL sounds,
         used in ' . news_a_href_page('The Castle', 'castle') . '.
     </ul>
@@ -861,20 +861,20 @@ SourceForge.
         <p>VRML extensions:
         <ul>
           <li>' . news_a_href_page_hashlink(
-            'Field <tt>separate</tt> for <tt>WWWInline</tt> node',
+            'Field <code>separate</code> for <code>WWWInline</code> node',
             'x3d_extensions', 'section_ext_wwwinline_separate') . '.
           <li>' . news_a_href_page_hashlink(
-            '<tt>Fog</tt> node extensions to define volumetric fog',
+            '<code>Fog</code> node extensions to define volumetric fog',
             'x3d_extensions', 'section_ext_fog_volumetric') . '
           <li>' . news_a_href_page_hashlink(
-            '<tt>fogImmune</tt> field for <tt>Material</tt> node',
+            '<code>fogImmune</code> field for <code>Material</code> node',
             'x3d_extensions', 'section_ext_fog_immune') . '
         </ul>
 
         <p>Also head bobbing much better, and various other improvements.
 
       <li><p>Important updates to demo_animation
-        (see <tt>units/vrml/opengl/examples/</tt>) in the
+        (see <code>units/vrml/opengl/examples/</code>) in the
         ' . news_a_href_page('sources', 'sources') . ':
         <ul>
           <li>New demo (gus) showing how to use Blender "armature" animation
@@ -883,7 +883,7 @@ SourceForge.
             comfortably design animations in Blender and then use them with my engine.
           <li>Important fix for animating models with textures, demo (cube_opening)
             added.
-          <li>Animating class <tt>TVRMLGLAnimation</tt> extended to be able
+          <li>Animating class <code>TVRMLGLAnimation</code> extended to be able
             to animate / morph between an atritrary number of models (>= 2),
             not only 2. Each model has an associated point of time in the
             animation. Demo (gus_3_final, to be used together with gus_1_final
@@ -969,7 +969,7 @@ SourceForge.
         too often and recently I broke many of them (bacause of changes to
         <a href="' . CURRENT_URL . 'apidoc/html/KambiUtils.html#Parameters">Parameters</a>
         stuff). It\'s fixed now. I also added the automatic test of compilation
-        to the script I use to create <tt>units-src.tar.gz</tt> archive, so
+        to the script I use to create <code>units-src.tar.gz</code> archive, so
         this Will Not Happen Again.
       <li>Fullscreen toggle shortcut is F11 (following (GNOME) standards
         &mdash; epiphany, GIMP, gthumb and firefox).
@@ -1044,7 +1044,7 @@ SourceForge.
 
     <p>New unit VRMLGLAnimation was created, to easily produce animations
     from still scenes.
-    See extensive demo in <tt>vrml/opengl/examples/demo_animation.dpr</tt>,
+    See extensive demo in <code>vrml/opengl/examples/demo_animation.dpr</code>,
     with raptor and sphere sample models.
 
     <p>I\'m also glad to add that I\'m starting in
@@ -1094,7 +1094,7 @@ SourceForge.
         complete English documentation. Polish docs removed.
       <li>' . news_a_href_page("view3dscene", "view3dscene") . ' 1.1.3
         released &mdash; now English documentation is complete
-        (docs about <tt>--detail-...</tt> options added).
+        (docs about <code>--detail-...</code> options added).
         Also handling of some Inventor models improved &mdash;
         RotationXYZ is handled, some other Inventor fields are parsed
         (and then ignored).
@@ -1105,7 +1105,7 @@ SourceForge.
       <li>' . news_a_href_page("lets_take_a_walk", "lets_take_a_walk") . ' 1.1.0
         released &mdash; complete English documentation, F1 shows help text,
         sources contain <i>really</i> all source files &mdash; including
-        <tt>devel</tt> subdir with some scripts and Blender, GIMP and Terragen
+        <code>devel</code> subdir with some scripts and Blender, GIMP and Terragen
         data files. Polish docs removed.
       <li>' . news_a_href_page("glcaps", "glcaps") . ' 1.1.0
         released &mdash; complete English documentation. Polish docs removed.
@@ -1115,9 +1115,9 @@ SourceForge.
         released &mdash; complete English documentation, small changes.
     <li>' . news_a_href_page("rayhunter", "rayhunter") . ' 1.1.0
         released &mdash; complete English documentation, greatly extended
-        abilities of <tt>--write-partial-rows</tt> option by <tt>&lt;log-rows-file&gt;</tt>.
+        abilities of <code>--write-partial-rows</code> option by <code>&lt;log-rows-file&gt;</code>.
         Polish docs removed.
-      <li><tt>various_notes_begin.pasdoc</tt> and <tt>gen_light_map.dpr</tt>
+      <li><code>various_notes_begin.pasdoc</code> and <code>gen_light_map.dpr</code>
         are contained in units sources.
     </ul>
 
@@ -1125,7 +1125,7 @@ SourceForge.
     <ul>
       <li>' . news_a_href_page("lets_take_a_walk", "lets_take_a_walk") . ' 1.1.1
         released (only for Linux, other binaries stay 1.1.0) &mdash;
-        when using OpenAL sound, sometimes <tt>lets_take_a_walk</tt>
+        when using OpenAL sound, sometimes <code>lets_take_a_walk</code>
         hanged on exit (i.e. when you pressed Escape or Alt+F4 etc.). Fixed now.
     </ul>
 
@@ -1265,7 +1265,7 @@ SourceForge.
         and many other speed improvements here and there).
         All VRML programs work now faster.
 
-        <p>Added to sources file <tt>units/vrml/opengl/README.optimization_notes</tt>
+        <p>Added to sources file <code>units/vrml/opengl/README.optimization_notes</code>
         that describes how current optimization works, what are the possible
         drawbacks and what are the possible alternatives (and what
         drawbacks are hidden in those alternatives :).
@@ -1300,7 +1300,7 @@ SourceForge.
       <li><p>First part of optimizing OpenGL display using frustum culling
         done: frustum culling without the help of octree done.
 
-        <p>User-visible changes: added <tt>--renderer-optimization</tt>
+        <p>User-visible changes: added <code>--renderer-optimization</code>
         parameter for ' . news_a_href_page('view3dscene', 'view3dscene') . ', see
         ' . news_a_href_page("view3dscene", "view3dscene") . '
         page for docs of this parameter.
@@ -1330,7 +1330,7 @@ SourceForge.
         TOctree.EnumerateCollidingOctreeItems implemented and
         TVRMLFlatSceneGL.RenderFrustumOctree implemented.</small>
 
-      <li><p>Added to sources file <tt>units/vrml/opengl/README.optimization_notes</tt>
+      <li><p>Added to sources file <code>units/vrml/opengl/README.optimization_notes</code>
         that describes how current optimization works, what are the possible
         drawbacks and what are the possible alternatives (and what
         drawbacks are hidden in those alternatives :).
@@ -1346,7 +1346,7 @@ SourceForge.
         Also problem with updating Caption too often (this caused
         some noticeable slowdown on XWindows on my system).
 
-      <li><p>Example program <tt>units/vrml/opengl/simpleViewModel_2.dpr</tt>
+      <li><p>Example program <code>units/vrml/opengl/simpleViewModel_2.dpr</code>
         added.
 
       <!-- /* echo a_href_page(\'malfunction\', \'malfunction\'); (1.0.2):
@@ -1488,7 +1488,7 @@ SourceForge.
         Added ' . news_a_href_page('page describing my versioning scheme',
         'versioning') . '.
 
-        <p>All programs with version number accept <tt>-v</tt> (or <tt>--version</tt>)
+        <p>All programs with version number accept <code>-v</code> (or <code>--version</code>)
         command-line parameter to display version number.
         Page with ' . news_a_href_page(
         'some notes about parameters understood by my programs',
@@ -1501,7 +1501,7 @@ SourceForge.
         ' . news_a_href_page('sources','sources') . '
         page is also updated.
 
-      <li><p>Published imageToPas in <tt>units/images/tools/</tt>.
+      <li><p>Published imageToPas in <code>units/images/tools/</code>.
 
       <li><p>Small example of MathExprParser unit in units/base/examples/kambi_calc.dpr.
 
@@ -1513,14 +1513,14 @@ SourceForge.
         viewed image. This was done mainly to basically test that these functions
         work, but may be useful anyhow.
 
-      <li><p>Fixed some problems with using <tt>--fullscreen-custom</tt> under Win32.
+      <li><p>Fixed some problems with using <code>--fullscreen-custom</code> under Win32.
 
       <li><p>Removed from sources many files that were needed only for FPC 1.0.10:
         randomconf.inc, mtrand.pas, 10 files *_defpars.inc
 
       <li><p>UNIX (Linux, FreeBSD) versions of malfunction, kulki,
         lets_take_a_walk again have ability to change screen resolution
-        (<tt>--fullscreen-custom</tt> parameter)
+        (<code>--fullscreen-custom</code> parameter)
         that was not available due to bug in FPC 1.0.10.
 
       <li><p>Some usability problems with ' . news_a_href_page('kulki',
@@ -1533,12 +1533,12 @@ SourceForge.
     nice example programs that demonstrate some higher-level
     functionality of my units:
     <ul>
-      <li><tt>units/opengl/examples/menuTest.dpr</tt> (GLWindow with menu)
-      <li><tt>units/vrml/opengl/examples/simpleViewModel.dpr</tt>
+      <li><code>units/opengl/examples/menuTest.dpr</code> (GLWindow with menu)
+      <li><code>units/vrml/opengl/examples/simpleViewModel.dpr</code>
         (simple demo of loading and rendering VRML/3DS models and
         allowing user to walk in them; something like extremely-simplified
         view3dscene)
-      <li><tt>units/vrml/examples/many2vrml.dpr</tt> (converting 3DS and others
+      <li><code>units/vrml/examples/many2vrml.dpr</code> (converting 3DS and others
         to VRML)
     </ul>
     Also ' . news_a_href_page('sources', 'sources') . ' page updated with
@@ -1549,7 +1549,7 @@ SourceForge.
   <div class="old_news_item"><p><span class="old_news_date">December 10, 2004:</span>
     ' . news_a_href_page('Sources of units and view3dscene', 'sources') . '
     updated: units and view3dscene compile with FPC 1.9.5 from CVS
-    from 2004-12-07 (at least under Linux), <tt>units/base/examples/</tt>
+    from 2004-12-07 (at least under Linux), <code>units/base/examples/</code>
     subdirectory with two small example programs.
     </div>
 
@@ -1641,7 +1641,7 @@ SourceForge.
     <ul>
       <li>' . news_a_href_page('view3dscene', 'view3dscene') . ' updated:
         "Configure scene loading" submenu
-        (it\'s just a GUI for <tt>--scene-changes-xxx</tt> command-line params)
+        (it\'s just a GUI for <code>--scene-changes-xxx</code> command-line params)
       <li>Some small updates: to HTML pages,
         to ' . news_a_href_page('malfunction', 'malfunction') . '
         under Linux (no GTK dependency),

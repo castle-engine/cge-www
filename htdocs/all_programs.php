@@ -5,7 +5,7 @@ castle_header('Games and Tools');
 /* Some functions ----------------------------------------------------------- */
 
 $main_list_item_num = 0;
-function main_list_item($item_title, $anchor_name = '')
+function main_list_item($item_title)
 {
   global $main_list_item_num;
   $main_list_item_num++;
@@ -13,9 +13,7 @@ function main_list_item($item_title, $anchor_name = '')
   /* The leading <p> is needed for IE to keep appropriate vertical
      distance. */
   return "<p><div class=\"main_list_item\">" .
-    ($anchor_name != '' ? "<a name=\"$anchor_name\">": '') .
     "$item_title" .
-    ($anchor_name != '' ? "</a>": '') .
     '</div>';
 }
 
@@ -34,14 +32,12 @@ function program_image_link($title, $subtitle, $image_name, $page_name)
 
 function program_image_links_table_begin()
 {
-  /* No way to nicely express this cellspacing in CSS ? */
-  echo '<table class="program_image_links" cellspacing="20">';
+  echo '<table class="program_image_links">';
 }
 
 function program_image_links_table_begin_half()
 {
-  /* No way to nicely express this cellspacing in CSS ? */
-  echo '<table class="program_image_links_half" cellspacing="20">';
+  echo '<table class="program_image_links_half">';
 }
 
 /* Functions end ------------------------------------------------------------ */

@@ -39,10 +39,10 @@ Player := TPlayer.Create(SceneManager);
 SceneManager.Items.Add(Player);
 SceneManager.Player := Player;'); ?>
 
-<p>It's best to do this (assign <tt>SceneManager.Player</tt>) before
-<tt>SceneManager.LoadLevel</tt>, this way <tt>Player.Camera</tt> is automatically
-configured as <tt>SceneManager.Camera</tt> and it follows level's properties
-like <tt>PreferredHeight</tt> (from level's <tt>NavigationInfo.avatarSize</tt>).
+<p>It's best to do this (assign <code>SceneManager.Player</code>) before
+<code>SceneManager.LoadLevel</code>, this way <code>Player.Camera</code> is automatically
+configured as <code>SceneManager.Camera</code> and it follows level's properties
+like <code>PreferredHeight</code> (from level's <code>NavigationInfo.avatarSize</code>).
 
 <h2>3D models relative to player</h2>
 
@@ -50,7 +50,7 @@ like <tt>PreferredHeight</tt> (from level's <tt>NavigationInfo.avatarSize</tt>).
 <?php api_link('T3DList', 'Castle3D.T3DList.html'); ?>,
 which means that you can add
 additional 3D objects as it's children, like
-<tt>Player.Add(Some3DObject)</tt>. These 3D objects will always be rendered
+<code>Player.Add(Some3DObject)</code>. These 3D objects will always be rendered
 relative to the player, so they will move along with the player. This
 is an easy way to add 3D weapon models and similar things to your
 display. Although, for weapons, we actually handle it automatically
@@ -70,21 +70,21 @@ on/off by <?php api_link('TPlayer.RenderOnTop', 'CastlePlayer.TPlayer.html#Rende
  behavior, the 3D objects
 that are children of player are rendered and processed just like all other 3D
 stuff. For example, they can be animated (by using
-<tt>TCastlePrecalculatedAnimation</tt> or by using <tt>TCastleScene</tt> with
-<tt>TCastleScene.ProcessEvents := true</tt>).
+<code>TCastlePrecalculatedAnimation</code> or by using <code>TCastleScene</code> with
+<code>TCastleScene.ProcessEvents := true</code>).
 
 <p>Note that the player 3D objects <b>do not</b> make the player
 collision sphere (aka camera radius) larger. If you want to make the
-collision sphere larger, you can do it by placing a <tt>NavigationInfo</tt>
-node in a level 3D file, and adjusting the 1st item of <tt>avatarSize</tt>
+collision sphere larger, you can do it by placing a <code>NavigationInfo</code>
+node in a level 3D file, and adjusting the 1st item of <code>avatarSize</code>
 field &mdash; it determines the camera radius.
-See <tt>examples/fps_game/data/example_level/example_level_final.x3dv</tt>
+See <code>examples/fps_game/data/example_level/example_level_final.x3dv</code>
 for an example VRML/X3D configuring the player.
 
 <p style="margin-left: 1em"><b>Alternative method:</b>
 There is an alternative way to place things relative to player view:
 use X3D ProximitySensor node. See
-<tt>demo_models/sensors_environmental/follow_camera_by_proximity_sensor.x3dv</tt>
+<code>demo_models/sensors_environmental/follow_camera_by_proximity_sensor.x3dv</code>
 in <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>
  for a simple example how to code it in X3D. This allows you to place
 the 3D things that are relative to player inside a larger X3D file,

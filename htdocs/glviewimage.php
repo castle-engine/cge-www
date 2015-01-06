@@ -30,7 +30,7 @@
   ));
  ?>
 
-<p><tt>glViewImage</tt> is an image viewer, converter and even
+<p><code>glViewImage</code> is an image viewer, converter and even
 a very limited image editor.</p>
 
 <?php
@@ -46,7 +46,7 @@ a very limited image editor.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><tt>glViewImage</tt> was originally developed to test and demonstrate
+<p><code>glViewImage</code> was originally developed to test and demonstrate
 the power of image handling inside our <?php echo a_href_page(
 'Castle Game Engine', 'engine'); ?> , but it became quite usable
 utility on it's own. Viewed image can be quickly scaled and moved,
@@ -75,7 +75,7 @@ is also very useful.</p>
     Draw Surface</a>. This image format may be used for advanced
     texturing, as it can store textures compressed for GPUs,
     possibly with mipmaps, cube maps, volume textures.
-    With <tt>glViewImage</tt> you can view all subimages
+    With <code>glViewImage</code> you can view all subimages
     within one DDS file, see menu items
     <i>Images-&gt;Next/Previous subimage in DDS</i>. Saving to DDS images
     is also supported. <?php echo a_href_page_hashlink(
@@ -102,20 +102,20 @@ is also very useful.</p>
   <li><p><b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
     To load and save these images, you need to install
     the <a href="http://www.imagemagick.org/">ImageMagick</a>
-    package, and make sure it's <tt>convert</tt> program is available on $PATH.
+    package, and make sure it's <code>convert</code> program is available on $PATH.
     Then our engine will recognize these image formats,
-    and seamlessly load/save them (by running <tt>convert</tt> "under the hood").
+    and seamlessly load/save them (by running <code>convert</code> "under the hood").
   </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can simply run the <tt>glViewImage</tt> without parameters,
+<p>You can simply run the <code>glViewImage</code> without parameters,
 and open / save images using the menu commands.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<table border="1" class="key_list">
+<table class="key_list">
   <tr><th colspan="2">
     Keys not available as menu items:
   <tr><td>Arrows            <td>move image
@@ -129,8 +129,8 @@ and open / save images using the menu commands.</p>
 glViewImage guesses image format using file extension (yes, yes,
 I will change it at some time to recognize image format based on
 file content), so it's important for files to have good
-filename extension. JPEG images may have extension <tt>jpg</tt>
-or <tt>jpeg</tt>, RGBE images - <tt>rgbe</tt> or <tt>pic</tt>,
+filename extension. JPEG images may have extension <code>jpg</code>
+or <code>jpeg</code>, RGBE images - <code>rgbe</code> or <code>pic</code>,
 rest is obvious.
 
 <p>Opened image is also added to the image list.
@@ -147,32 +147,32 @@ glViewImage you can give it as parameters a list of images to browse.
   <li><p>A directory name &mdash; glViewImage will display all images
     found in this directory.
 
-    <p>E.g. run <tt>glViewImage ~/my_images/</tt> to display
-    all images in <tt>~/my_images/</tt> directory.
+    <p>E.g. run <code>glViewImage ~/my_images/</code> to display
+    all images in <code>~/my_images/</code> directory.
 
   <li><p>A filename mask &mdash; glViewImage will display all images
-    matching given mask, where <tt>'?'</tt> matches any char and
-    <tt>'*'</tt> matches any number of any chars.
+    matching given mask, where <code>'?'</code> matches any char and
+    <code>'*'</code> matches any number of any chars.
     Of course, users of bash and similar non-Windows shells can utilize
     shell filename expansion instead.
 
-    <p>E.g. run <tt>glViewImage ~/my_images/*.png</tt> to display
-    all PNG images in directory <tt>~/my_images/</tt>.
-    Or just run <tt>glViewImage ~/my_image.png</tt>
-    to display only one image in file <tt>~/my_image.png</tt>.
+    <p>E.g. run <code>glViewImage ~/my_images/*.png</code> to display
+    all PNG images in directory <code>~/my_images/</code>.
+    Or just run <code>glViewImage ~/my_image.png</code>
+    to display only one image in file <code>~/my_image.png</code>.
 
-  <li><p><tt>@&lt;filename&gt;</tt> &mdash; glViewImage will read
-    image filenames from file <tt>&lt;filename&gt;</tt>,
+  <li><p><code>@&lt;filename&gt;</code> &mdash; glViewImage will read
+    image filenames from file <code>&lt;filename&gt;</code>,
     each line is one filename
-    (<tt>&lt;filename&gt;</tt> "-" means "standard input", as usual;
-    so you can pipe output of e.g. <tt>find</tt> program to glViewImage).
+    (<code>&lt;filename&gt;</code> "-" means "standard input", as usual;
+    so you can pipe output of e.g. <code>find</code> program to glViewImage).
 </ul>
 
 <!-- Example of use: find . -name '*.jpg' -print | glViewImage.exe @- -->
 
-<p>Running <tt>glViewImage</tt> with no parameters is equivalent
+<p>Running <code>glViewImage</code> with no parameters is equivalent
 to running<br>
-<tt>&nbsp;&nbsp;glViewImage .</tt><br>
+<code>&nbsp;&nbsp;glViewImage .</code><br>
 so you will view all images (that glViewImage can handle) in the current directory.
 If none found, the default welcome image will be displayed.
 
@@ -182,10 +182,9 @@ If none found, the default welcome image will be displayed.
 "some notes about command-line options understood by my programs",
 "common_options") ?>
  are available. If you will not give any parameter that forces some
-window size (like <tt>--geometry</tt>) then program will open a window
+window size (like <code>--geometry</code>) then program will open a window
 with the same size as the first displayed image.
 
-<a name="about_saving"></a>
 <?php echo $toc->html_section(); ?>
 
 <p>Resulting image format is determined by filename extension, unknown
@@ -208,7 +207,7 @@ and saving them back will always make uncompressed files.
   DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
   DEPENDS_MACOSX)); ?>
 
-<p><tt>convert</tt> program from
+<p><code>convert</code> program from
 <a href="http://www.imagemagick.org/">ImageMagick</a>
 package must be available on $PATH for some image formats to work.
 

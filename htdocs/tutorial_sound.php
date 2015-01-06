@@ -13,22 +13,22 @@ non-trivial situations.</p>
 <h2>Loading and playing sound inside VRML/X3D</h2>
 
 <p>First, get a sample sound file and place it within your game data.
-You can find some sample files inside <tt>examples/fps_game/data/sounds/</tt>,
+You can find some sample files inside <code>examples/fps_game/data/sounds/</code>,
 or in <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>
- (subdirectory <tt>sound/</tt>),
+ (subdirectory <code>sound/</code>),
 or on websites like <a href="http://opengameart.org/">OpenGameArt.org</a>.
 </p>
 
 <p>To add a looping sound to your VRML/X3D file in classic encoding
-(<tt>xxx.x3dv</tt> files) add this:</p>
+(<code>xxx.x3dv</code> files) add this:</p>
 
 <pre class="sourcecode">Sound {
   source AudioClip { url "sample.wav" loop TRUE }
 }</pre>
 
-<p>Remember that URL <tt>"sample.wav"</tt> is specified relative to the location
-of your <tt>xxx.x3dv</tt> file. In the simplest case, just place both <tt>xxx.x3dv</tt>
-and <tt>sample.wav</tt> in the same directory, and you're fine.</p>
+<p>Remember that URL <code>"sample.wav"</code> is specified relative to the location
+of your <code>xxx.x3dv</code> file. In the simplest case, just place both <code>xxx.x3dv</code>
+and <code>sample.wav</code> in the same directory, and you're fine.</p>
 
 <h2>Loading and playing sound inside ObjectPascal code</h2>
 
@@ -56,7 +56,7 @@ closing OpenAL context.</p>
 <h2>Sounds repository</h2>
 
 <p>Larger games may find it comfortable to define a repository of sounds.
-You do it by creating an XML file, for example named <tt>sounds.xml</tt>,
+You do it by creating an XML file, for example named <code>sounds.xml</code>,
 looking like this:</p>
 
 <?php echo xml_highlight(
@@ -71,16 +71,16 @@ looking like this:</p>
 <?php echo a_href_page('creating game sounds guide', 'creating_data_sound'); ?>
  for detailed specification about sound XML files.
 See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'); ?> docs
- and <tt>examples/fps_game/</tt> for example.
+ and <code>examples/fps_game/</code> for example.
 You have to initialize the sound repository inside your game code like this:</p>
 
 <?php echo pascal_highlight(
 'SoundEngine.RepositoryURL := ApplicationData(\'sounds/index.xml\');'); ?>
 
 <p>After this, you can refer to your sound names from files like
-<tt>resource.xml</tt> (for creatures/items sounds)
-or <tt>material_properties.xml</tt>  (for footsteps)
-or <tt>level.xml</tt> (for level music).
+<code>resource.xml</code> (for creatures/items sounds)
+or <code>material_properties.xml</code>  (for footsteps)
+or <code>level.xml</code> (for level music).
 See <?php echo a_href_page('creating game data guide', 'creating_data_intro'); ?>
  for reference of these files.</p>
 
@@ -122,10 +122,10 @@ Mentioned above already?
 <h2>Level music</h2>
 
 There is a special comfortable way to enable looping music on a level,
-if you use <tt>level.xml</tt> file with TGameSceneManager.LoadLevel. Simply add
-<tt>music_sound="xxx"</tt> attribute to the root element of your
-<tt>level.xml</tt> file, where <tt>xxx</tt> refers to a sound name
-defined in <tt>data/sounds/index.xml</tt>.
+if you use <code>level.xml</code> file with TGameSceneManager.LoadLevel. Simply add
+<code>music_sound="xxx"</code> attribute to the root element of your
+<code>level.xml</code> file, where <code>xxx</code> refers to a sound name
+defined in <code>data/sounds/index.xml</code>.
 -->
 
 <h2>More</h2>
@@ -134,7 +134,7 @@ defined in <tt>data/sounds/index.xml</tt>.
 <?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
 <?php api_link('SoundEngine.Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?> or
 <?php api_link('SoundEngine.Sound', 'CastleSoundEngine.TRepoSoundEngine.html#Sound'); ?>.
-It's either <tt>nil</tt> (if no OpenAL resources were available to
+It's either <code>nil</code> (if no OpenAL resources were available to
 play this sound, and it's priority doesn't allow overriding other
 sounds) or it's a
 <?php api_link('TSound', 'CastleSoundAllocator.TSound.html'); ?>

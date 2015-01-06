@@ -35,21 +35,21 @@
 
     <p><?php echo a_href_page_hashlink('DDS file format', 'x3d_implementation_texturing',
     'section_dds'); ?> to specify 3d (volume)
-    textures is supported by <tt>ImageTexture3D</tt>.</p>
+    textures is supported by <code>ImageTexture3D</code>.</p>
 
-    <p>Note that <tt>PixelTexture3D</tt> with RGBA values has a
-    problematic behavior because it uses <tt>MFInt32</tt> field for colors.
-    When you encode RGBA colors (following <tt>SFImage</tt> specification),
+    <p>Note that <code>PixelTexture3D</code> with RGBA values has a
+    problematic behavior because it uses <code>MFInt32</code> field for colors.
+    When you encode RGBA colors (following <code>SFImage</code> specification),
     the most significant byte of Int32 may have to be non-zero,
     which means that you will have to write negative values
-    inside <tt>PixelTexture3D.image</tt>. (Of course we handle it correctly,
+    inside <code>PixelTexture3D.image</code>. (Of course we handle it correctly,
     I'm just signalling there's a strangeness here. For normal
-    <tt>SFImage</tt> fields this problem doesn't exist because our lexer
+    <code>SFImage</code> fields this problem doesn't exist because our lexer
     can actually understand integer values outside of int32 range, so when parsing
     SFImage this is handled Ok, without going through int32.)</p>
 
-    <p>Automatic 3D texture coord generation for primitives (<tt>Box</tt>,
-    <tt>Sphere</tt>, <tt>Cone</tt>, <tt>Cylinder</tt>) is done
+    <p>Automatic 3D texture coord generation for primitives (<code>Box</code>,
+    <code>Sphere</code>, <code>Cone</code>, <code>Cylinder</code>) is done
     (according to X3D spec, <i>33.2.4 Texture coordinate generation for primitive objects</i>).
 </ul>
 

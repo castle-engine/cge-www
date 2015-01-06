@@ -9,27 +9,27 @@
 
 <?php echo pretty_heading("kambi_mgf2inv"); ?>
 
-<p><tt>kambi_mgf2inv</tt> is just a slightly modified version
-of the <tt>mgf2inv</tt> program by Greg Ward. <tt>mgf2inv</tt> converts
+<p><code>kambi_mgf2inv</code> is just a slightly modified version
+of the <code>mgf2inv</code> program by Greg Ward. <code>mgf2inv</code> converts
 files in <a href="http://floyd.lbl.gov/mgf/">MGF (Materials and Geometry Format,
 also developed by Greg Ward)</a> format into VRML 1.0 models (or Inventor
 1.0 or 2.0).
 
-<p>My <tt>kambi_mgf2inv</tt> writes
-<?php echo a_href_page_hashlink("six additional fields of node <tt>Material</tt>
+<p>My <code>kambi_mgf2inv</code> writes
+<?php echo a_href_page_hashlink("six additional fields of node <code>Material</code>
 that describe physical material properties for Phong BRDF",
 "x3d_extensions", "ext_material_phong_brdf_fields"); ?>.
 These properties are already available in MGF (with the exception of two
-exponents, <tt>reflSpecularExp</tt> and <tt>transSpecularExp</tt>,
-they have to be calculated from MGF's <tt>roughness</tt>)
+exponents, <code>reflSpecularExp</code> and <code>transSpecularExp</code>,
+they have to be calculated from MGF's <code>roughness</code>)
 so writing these values into VRML was not a problem. It allowed me to test
 <?php echo a_href_page("rayhunter", "rayhunter"); ?> &mdash; raytracer based on
 VRML models &mdash; on existing MGF models.
 All I had to do was to convert MGF models with this program.
 
-<p><tt>kambi_mgf2inv</tt> fixes also a small bug in <tt>mgf2inv</tt>,
+<p><code>kambi_mgf2inv</code> fixes also a small bug in <code>mgf2inv</code>,
 non-convex faces
-were sometimes marked as convex with <tt>mgf2inv</tt>. (This is already fixed
+were sometimes marked as convex with <code>mgf2inv</code>. (This is already fixed
 in the current Radiance version (current, i.e. experimental, not official;
 downloadable from <a href="http://www.radiance-online.org/">
 http://www.radiance-online.org/</a>) so soon it will be fixed in official

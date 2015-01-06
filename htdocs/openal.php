@@ -30,7 +30,7 @@ Section below describes how to install OpenAL in the
 <dl>
   <dt>Linux users:</dt>
   <dd><p>Install appropriate package for your Linux distribution.
-    Look for a package named like <tt>libopenal*</tt>.</p>
+    Look for a package named like <code>libopenal*</code>.</p>
 
     <p>My games work with both common OpenAL implementations:
     <i>OpenAL Sample Implementation</i> (the original implementation,
@@ -41,7 +41,7 @@ Section below describes how to install OpenAL in the
     </dd>
 
   <dt>FreeBSD users:</dt>
-  <dd><p>Simple <tt>pkg_add -r openal</tt> command should do
+  <dd><p>Simple <code>pkg_add -r openal</code> command should do
     the trick.</p></dd>
 
   <dt>Mac OS X users:</dt>
@@ -57,7 +57,7 @@ Section below describes how to install OpenAL in the
     binary packages of my games under Windows. So you don't have to do anything.</p>
 
     <p>However, you're free to remove appropriate DLL files
-    (<tt>OpenAL32.dll</tt> and <tt>wrap_oal.dll</tt>) provided in my archives
+    (<code>OpenAL32.dll</code> and <code>wrap_oal.dll</code>) provided in my archives
     and install
     OpenAL yourself. This is especially handy if you
     want to use other OpenAL implementation than the one from Creative.
@@ -85,11 +85,11 @@ source code</a> instructions.
     chair beside you and you don't want to wake him up).</dd>
 
   <dt>--audio-device DEVICE-NAME</dt>
-  <dd><p>Use given <tt>DEVICE-NAME</tt> for sound output. Usually, the default
+  <dd><p>Use given <code>DEVICE-NAME</code> for sound output. Usually, the default
     one should be the best.</p>
 
-    <p>To list the available devices use the <tt>--help</tt> command-line option
-    (at the <tt>--audio-device</tt> description you will see a list of devices detected).
+    <p>To list the available devices use the <code>--help</code> command-line option
+    (at the <code>--audio-device</code> description you will see a list of devices detected).
     In <?php echo a_href_page('The Castle', 'castle'); ?>
     you can also see and choose them by the <i>Sound output device</i> menu.
     In <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
@@ -115,14 +115,14 @@ source code</a> instructions.
         <p>A useful device is <i>"Wave File Writer"</i>, to record
         3D sound to file. Note that you have to specify output filename
         in config file, otherwise it will not work. For example,
-        make a file <tt>$HOME/.alsoftrc</tt> with two lines:</p>
+        make a file <code>$HOME/.alsoftrc</code> with two lines:</p>
 
 <pre>
 [wave]
 file = /tmp/output.wav
 </pre>
 
-        <p>For more configuration options, look into <tt>/etc/openal/alsoft.conf</tt>
+        <p>For more configuration options, look into <code>/etc/openal/alsoft.conf</code>
         that should be installed with openal-soft package. It contains
         many comments about the possible options.</p>
       </dd>
@@ -134,33 +134,33 @@ file = /tmp/output.wav
           <tr><th>OpenAL Name</th>
               <th>Device</th>
               <th>Notes</th></tr>
-          <tr><td><tt>native</tt></td>
+          <tr><td><code>native</code></td>
               <td>operating system native</td>
               <td>The default device.</td></tr>
-          <tr><td><tt>sdl</tt></td>
+          <tr><td><code>sdl</code></td>
               <td>Simple DirectMedia Layer backend</td></tr>
-          <tr><td><tt>arts</tt></td>
+          <tr><td><code>arts</code></td>
               <td>aRTs backend</td>
               <td>Note that it seems terribly unstable. Use at your own risk.</td>
               </tr>
-          <tr><td><tt>esd</tt></td>
+          <tr><td><code>esd</code></td>
               <td>Esound daemon backend</td></tr>
-          <tr><td><tt>alsa</tt></td>
+          <tr><td><code>alsa</code></td>
               <td>ALSA backend</td>
               <td><p>While it works OK,
                 it tries to acquire the exclusive ownership
                 over sound device. So, unlike most other programs that use ALSA,
                 OpenAL programs by default <i>cannot</i> play sound when some
                 other program already plays sound. For example,
-                you cannot run <tt>rhyrthmbox</tt> and listen to your own chosen
+                you cannot run <code>rhyrthmbox</code> and listen to your own chosen
                 music while playing my games.
 
                 <p>The workaround is to run my games through
-                <tt>aoss</tt> wrapper.</td>
+                <code>aoss</code> wrapper.</td>
               </tr>
-          <tr><td><tt>waveout</tt></td>
+          <tr><td><code>waveout</code></td>
               <td>WAVE file output</td>
-              <td><p>A file named like <tt>openal-0.wav</tt> will be generated
+              <td><p>A file named like <code>openal-0.wav</code> will be generated
                 that contains recorded sound. </p>
 
                 <p>Note that OpenAL
@@ -169,18 +169,18 @@ file = /tmp/output.wav
                 but only because I made a workaround specifically for this.
                 I found that it's usually a good workaround
                 to convert the WAV file with sox,
-                like <tt>sox openal-0.wav newopenal-0.wav</tt>.
+                like <code>sox openal-0.wav newopenal-0.wav</code>.
                 Such WAV file generated by sox should be readable everywhere.
                 I reported this problem to Debian OpenAL package
                 (probably a problem is general and fix will be generally usable
                 too) <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=435754">here</a>.</p>
               </td>
               </tr>
-          <tr><td><tt>null</tt></td>
+          <tr><td><code>null</code></td>
               <td>no output</td></tr>
         </table>
 
-        <p>In the simplest case, to use some other device, e.g. <tt>alsa</tt>,
+        <p>In the simplest case, to use some other device, e.g. <code>alsa</code>,
         just run program with command-line option like:
 
         <pre>  --audio-device "'(( devices '(alsa) ))"</pre>
@@ -190,11 +190,11 @@ file = /tmp/output.wav
         splitted by shell. No, it's not Lisp, but it was
         designed to look similar.)
 
-        <p>Then if you will find that e.g. <tt>alsa</tt> device
+        <p>Then if you will find that e.g. <code>alsa</code> device
         sounds best and you want my programs (and all
         other programs that use OpenAL) to always use
-        <tt>alsa</tt> device, you can create file
-        <tt>/etc/openalrc</tt> or <tt>$HOME/.openalrc</tt> with
+        <code>alsa</code> device, you can create file
+        <code>/etc/openalrc</code> or <code>$HOME/.openalrc</code> with
         line
 
         <pre>  ( define devices '(alsa) )</pre>

@@ -96,7 +96,7 @@ the list of changes since last release.</p>
     <?php echo a_href_page_hashlink('install OpenAL', 'openal',
     'section_install'); ?> and vorbisfile library.
     If installing the older OpenAL <i>Sample Implementation from Loki</i>
-    be sure to install also <tt>libvorbis-dev</tt> package
+    be sure to install also <code>libvorbis-dev</code> package
     (i.e. with developers symlinks) too (otherwise SI reports that
     vorbis extension is present, but will fail to use it).
     This problem is not present with newer OpenAL-Soft,
@@ -106,14 +106,14 @@ the list of changes since last release.</p>
     OpenAL.</i></p>
 
     <p>Installing actual game: extract the downloaded archive anywhere.
-    Run the game by running the binary, like <tt>./castle</tt>.</p>
+    Run the game by running the binary, like <code>./castle</code>.</p>
 
     <p>If you don't want to always run the binary from the game's
     directory, you can also put the game binary anywhere on $PATH
-    (e.g. <tt>$HOME/bin</tt> or <tt>/usr/local/bin</tt>)
-    and extract the <tt>data</tt> to
-    to <tt>$HOME/.local/share/castle/</tt>, or <tt>/usr/local/share/castle/</tt>,
-    or <tt>/usr/share/castle/</tt>.</p>
+    (e.g. <code>$HOME/bin</code> or <code>/usr/local/bin</code>)
+    and extract the <code>data</code> to
+    to <code>$HOME/.local/share/castle/</code>, or <code>/usr/local/share/castle/</code>,
+    or <code>/usr/share/castle/</code>.</p>
 
   <li>
     <p><b>Mac OS X:</b></p>
@@ -124,7 +124,7 @@ the list of changes since last release.</p>
     instructions how to get them.</p>
 
     <p>Installing actual game: extract the downloaded archive anywhere.
-    Run the game by running the binary, like <tt>./castle</tt>.
+    Run the game by running the binary, like <code>./castle</code>.
     You can also install / symlink in special directories, see
     above Linux notes.</p>
 
@@ -135,7 +135,7 @@ the list of changes since last release.</p>
     included in the archive. So you don't have to install OpenAL yourself.</p>
 
     <p>Installing actual game: extract the downloaded archive anywhere.
-    Run the game by running <tt>castle.exe</tt>.</p>
+    Run the game by running <code>castle.exe</code>.</p>
 
     <p>Note that from the game you will be able to choose various
     audio devices (see menu <i>Sound options</i>).
@@ -153,10 +153,10 @@ the list of changes since last release.</p>
 You may also want to delete configuration file:</p>
 
 <table class="thin_borders">
-  <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><tt>$HOME/.config/castle/castle.conf</tt>
-  <tr><td>Windows >= NT / 2000 / XP <td><tt>Documents and
-    Settings\&lt;UserName&gt;\Application Data\castle.conf</tt>
-  <tr><td>Windows 95 / 98 / ME <td><tt>&lt;program's directory&gt;\castle.conf</tt>
+  <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><code>$HOME/.config/castle/castle.conf</code>
+  <tr><td>Windows >= NT / 2000 / XP <td><code>Documents and
+    Settings\&lt;UserName&gt;\Application Data\castle.conf</code>
+  <tr><td>Windows 95 / 98 / ME <td><code>&lt;program's directory&gt;\castle.conf</code>
 </table>
 
 <?php echo $toc->html_section(); ?>

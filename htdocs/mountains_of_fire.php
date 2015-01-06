@@ -124,7 +124,7 @@ Try it now!
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><tt>--left-handed</tt>
+  <li><p><code>--left-handed</code>
 
     <p>Run the game swapping the split screen order. This is useful if the mouse
     is on the left of the keyboard, then you want the left screen part
@@ -134,9 +134,9 @@ Try it now!
     By default we start in fullscreen.
 
   <li><p><a href="http://castle-engine.sourceforge.net/openal.php#section_options">Usual sound options</a>.
-    For example <tt>--no-sound</tt>.
+    For example <code>--no-sound</code>.
 
-  <li><p><tt>--debug-log</tt>, <tt>--debug-speed</tt>
+  <li><p><code>--debug-log</code>, <code>--debug-speed</code>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -149,7 +149,7 @@ and can be downloaded like this:
 <p>The exact source code for version <?php echo VERSION_MOUNTAINS_OF_FIRE; ?>
  is also available as a tar.gz archive: <a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-src.tar.gz">download "Mountains Of Fire" <?php echo VERSION_MOUNTAINS_OF_FIRE; ?> sources</a>.
 
-<p>See the <tt>README.txt</tt> for compilation instructions.
+<p>See the <code>README.txt</code> for compilation instructions.
 For a standalone compilation all you need is the
 <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.

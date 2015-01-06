@@ -30,30 +30,30 @@ any extra dependencies (like X11 and GTK).
 
 <?php echo $toc->html_section(); ?>
 
-<p>We did it by using the LCL backend of <tt>CastleWindow</tt>. This uses
+<p>We did it by using the LCL backend of <code>CastleWindow</code>. This uses
 <a href="http://www.lazarus.freepascal.org/">Lazarus</a> LCL under the hood,
-wrapping Lazarus <tt>TForm</tt> and <tt>TOpenGLControl</tt> inside a
-<tt>TCastleWindow</tt>.
+wrapping Lazarus <code>TForm</code> and <code>TOpenGLControl</code> inside a
+<code>TCastleWindow</code>.
 Although it still has some issues (see below), it gives us native look
 and a lot of stuff "for free".
 
 <p>Developers: If you want to use these features,
-you have to use the package <tt>alternative_castle_window_based_on_lcl.lpk</tt>
-instead of <tt>castle_window.lpk</tt>.
-This will give you <tt>CastleWindow</tt> unit that uses LCL and requires
+you have to use the package <code>alternative_castle_window_based_on_lcl.lpk</code>
+instead of <code>castle_window.lpk</code>.
+This will give you <code>CastleWindow</code> unit that uses LCL and requires
 the <i>castle_components</i> package.
 If you open an existing source code,
 like view3dscene, you will have to change the dependencies in Lazarus <i>Project inspector</i>
-to use <tt>alternative_castle_window_based_on_lcl</tt> instead of <tt>castle_window</tt>.
+to use <code>alternative_castle_window_based_on_lcl</code> instead of <code>castle_window</code>.
 We hope to make it easier in the future by using the <i>"Provides"</i> option of Lazarus packages,
 but right now it doesn't do what we want &mdash; it can not "pull" extra depencies
 present in alternative package but not present in original.
 
-<p>This change allows <tt>CastleWindow</tt>-based programs,
+<p>This change allows <code>CastleWindow</code>-based programs,
 like <?php echo a_href_page("view3dscene", "view3dscene") ?>,
 to have native look on Mac OS X.
 Of course in your own programs you can also use Lazarus
-forms directly (with our <tt>TCastleControl</tt>) &mdash; this was always possible,
+forms directly (with our <code>TCastleControl</code>) &mdash; this was always possible,
 and gives you the same native look through <a href="http://www.lazarus.freepascal.org/">Lazarus</a>.
 
 <p>On Mac OS X, the default LCL widgetset is
@@ -63,7 +63,7 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
   <li><p>Good: native look, application has a normal menu bar,
     shows native dialog boxes (to open/save file, choose color and such)
     and generally looks and feels like every other Mac OS X application.
-    Lazarus compiles it into a <i>bundle</i> like <tt>view3dscene.app</tt>
+    Lazarus compiles it into a <i>bundle</i> like <code>view3dscene.app</code>
     that can be easily installed by dragging to your <i>Applications</i>
     directory.
 
@@ -83,16 +83,16 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
     (for Mac OS X)</a>.
 
     <p>It may also be resolved on our side if we ever make direct
-    <tt>CastleWindow</tt> backend based on Cocoa (without using Lazarus LCL):
+    <code>CastleWindow</code> backend based on Cocoa (without using Lazarus LCL):
     <ul>
       <li>It's a matter of creating and implementing a file
-        <tt>castle_game_engine/src/window/castlewindow_cocoa.inc</tt>,
+        <code>castle_game_engine/src/window/castlewindow_cocoa.inc</code>,
         based on
-        <tt>castle_game_engine/src/window/castlewindow_backend_template.inc</tt>.
+        <code>castle_game_engine/src/window/castlewindow_backend_template.inc</code>.
         See <?php echo a_href_page('engine sources', 'engine'); ?>.
         See at other "backends" (like GTK, WinAPI, Xlib, LCL)
         for examples how to implement such thing, everything is inside
-        <tt>src/window/</tt> dir.
+        <code>src/window/</code> dir.
       <li>Alternatively, send Michalis a simple and clear example of FPC program
 	using Cocoa that 1. creates and shows a window
 	2. with menu bar 3. and with OpenGL context area covering the window.
@@ -171,11 +171,11 @@ some additional software:
     <p><i>Somewhat internal notes:</i> if you start our program from within
     X11 xterm, it will be focused at the start. When you start us outside of X11,
     and we detect that the default X display doesn't work,
-    we automatically use display name <tt>:0</tt> under Mac OS X.
+    we automatically use display name <code>:0</code> under Mac OS X.
     This way we attach to the running X server, even if you execute us from some
     other application.
     <i>You can also explicitly start
-    with command-line option <tt>--display=:0</tt>, or always run us from X11 xterm,
+    with command-line option <code>--display=:0</code>, or always run us from X11 xterm,
     to use given X display.</i></p></li>
 
   <li><p><b>libpng</b> (may be installed by
@@ -188,8 +188,8 @@ some additional software:
     <b>GTK and GtkGLExt</b> are required.
     They should be installed using <a href="http://www.finkproject.org/">fink</a>.
     Follow fink installation instructions, then
-    simple command "<tt>fink install gtkglext1</tt>" should install all
-    the libraries we require (if in trouble, look for packages by "<tt>fink list xxx</tt>").</p>
+    simple command "<code>fink install gtkglext1</code>" should install all
+    the libraries we require (if in trouble, look for packages by "<code>fink list xxx</code>").</p>
 
     <p>Note that binary fink packages are usually too old (if available at all...).
     So just go with the "source" installation. Don't be afraid if you're not a programmer
@@ -218,7 +218,7 @@ path by command like
 <pre class="bordered_code">
   export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 </pre>
-before executing programs. (you can add this to your <tt>.bashrc</tt>
+before executing programs. (you can add this to your <code>.bashrc</code>
 or similar file for comfort).
 
 <?php echo $toc->html_section(); ?>
@@ -230,12 +230,12 @@ is required. For comfortable RAD development, you may also consider
 inside Lazarus installations, if you choose normal packages).</p>
 
 <p>As of fink 0.29.21 (on Mac OS X 10.6.7), you should additionally install
-the fink "<tt>pango1-xft2-shlibs</tt>" package. Simple "<tt>fink install pango1-xft2-shlibs</tt>"
+the fink "<code>pango1-xft2-shlibs</code>" package. Simple "<code>fink install pango1-xft2-shlibs</code>"
 should do the trick. This is necessary for successful linking.</p>
 
 <p>The linker must know the location of fink and X11
 libraries. If you have installed fink and X11 in standard locations,
-you can simply add these lines to your <tt>/etc/fpc.cfg</tt> file:</p>
+you can simply add these lines to your <code>/etc/fpc.cfg</code> file:</p>
 
 <pre class="sourcecode">
 -Fl/sw/lib/
@@ -268,9 +268,9 @@ and  that you package however you like.</p>
     </li>
 
   <li><p>Optionally, <i>add libraries (like libpng and vorbisfile) to the bundle</i>.
-    If you link to them dynamically (e.g. using our <tt>TDynLib.Load</tt>),
-    you should load them from a path relative to <tt>BundlePath</tt>, like
-    <tt>BundlePath + 'Contents/MacOS/libpng.dylib'</tt>.
+    If you link to them dynamically (e.g. using our <code>TDynLib.Load</code>),
+    you should load them from a path relative to <code>BundlePath</code>, like
+    <code>BundlePath + 'Contents/MacOS/libpng.dylib'</code>.
 
     <p>See
     <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries">Mac OS X Libraries on FPC wiki</a>

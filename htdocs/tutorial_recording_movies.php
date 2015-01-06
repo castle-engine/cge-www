@@ -8,12 +8,12 @@ interactive operations, like during a game. One reason for this is
 that it's non-trivial to implement, and the other reason is that you
 can use existing external programs to do this. Under Linux I like
 <a href="https://github.com/nullkey/glc/wiki/">glc</a>,
-under Windows there is <tt>fraps</tt> and many others.
+under Windows there is <code>fraps</code> and many others.
 
 <p>However, we support recording a predefined animation in VRML/X3D
 (meaning: it plays without any user interaction) to a series of
 images. Such animation can then be converted into a movie e.g. using
-<tt>ffmpeg</tt> (our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+<code>ffmpeg</code> (our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
  does this automatically under the hood). Although this is
 limited to predefined animations, in exchange this allows to record
 the animation with perfect quality and with constant number of frames
@@ -44,17 +44,17 @@ work 100% reliably, without any worries how fast you can process
 captured images.
 
 <p>The time of the scene and of the camera is actually independent. You
-can remove the <tt>"MainScene.IncreaseTime"</tt> call, if you know that your
+can remove the <code>"MainScene.IncreaseTime"</code> call, if you know that your
 scene stays static (or you want to force it to look like static), and
 want to animate only camera. Or the other way around, if your camera
 is static (or you want to force it to be static) but you have an
-animation in VRML/X3D, you can remove the <tt>"Camera.Update"</tt> line.
+animation in VRML/X3D, you can remove the <code>"Camera.Update"</code> line.
 
-<p><tt>FrameTime</tt> is a constant saying how many seconds passed between frames.
-Both <tt>TCastleSceneCore.IncreseTime</tt> and
-<tt>TCamera.Update</tt> take it's time argument in seconds. Don't worry, this
+<p><code>FrameTime</code> is a constant saying how many seconds passed between frames.
+Both <code>TCastleSceneCore.IncreseTime</code> and
+<code>TCamera.Update</code> take it's time argument in seconds. Don't worry, this
 is a float, so actually it honors fractions of seconds as well.
-So something like <tt>FrameTime := 1/25</tt> to get 25 frames per second will work
+So something like <code>FrameTime := 1/25</code> to get 25 frames per second will work
 perfectly Ok.
 
 <?php

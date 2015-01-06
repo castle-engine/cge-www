@@ -7,7 +7,7 @@ tutorial_header('Download and install the engine, try the demos');
 engine source code with examples', 'engine'); ?>.</p>
 
 <p>The example program that shows most of the features presented in
-this tutorial is inside <tt>examples/fps_game/fps_game.lpr</tt> .
+this tutorial is inside <code>examples/fps_game/fps_game.lpr</code> .
 I suggest looking at it's source
 code for a complete implementation that uses most the code snippets
 shown in this tutorial.</p>
@@ -15,13 +15,13 @@ shown in this tutorial.</p>
 <ul>
   <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a>:</b>
     Run Lazarus,
-    and open packages in the <tt>castle_game_engine/packages/</tt>
-    subdirectory. Open and compile all three packages (<tt>castle_base.lpk</tt>,
-    <tt>castle_components.lpk</tt>, <tt>castle_window.lpk</tt>), to test that things compile
-    OK. Then install the package <tt>castle_components.lpk</tt> (it will
-    also install <tt>castle_base.lpk</tt> by dependency).
+    and open packages in the <code>castle_game_engine/packages/</code>
+    subdirectory. Open and compile all three packages (<code>castle_base.lpk</code>,
+    <code>castle_components.lpk</code>, <code>castle_window.lpk</code>), to test that things compile
+    OK. Then install the package <code>castle_components.lpk</code> (it will
+    also install <code>castle_base.lpk</code> by dependency).
     (Do not install
-    <tt>castle_window.lpk</tt> &mdash; you don't want to have this installed in
+    <code>castle_window.lpk</code> &mdash; you don't want to have this installed in
     Lazarus.)</p>
 
     <p>Once packages are successfully installed, Lazarus restarts, and you
@@ -35,20 +35,20 @@ shown in this tutorial.</p>
   <li><p><b>Alternatively, our engine can be used without Lazarus and LCL
     (Lazarus Component Library). Only <a href="http://www.freepascal.org/">FPC
     (Free Pascal Compiler)</a> is required</b>. Many of the example programs
-    use our own <tt>CastleWindow</tt> unit to communicate with window manager,
+    use our own <code>CastleWindow</code> unit to communicate with window manager,
     and they do not depend on Lazarus LCL.
-    You can use command-line <tt>xxx_compile.sh</tt> scripts (or just call
-    <tt>make examples</tt>) to compile them using FPC.
+    You can use command-line <code>xxx_compile.sh</code> scripts (or just call
+    <code>make examples</code>) to compile them using FPC.
 
     <p>You will not be able to compile components and examples using LCL
-    of course (things inside <tt>src/components/</tt> and <tt>examples/lazarus/</tt>).
+    of course (things inside <code>src/components/</code> and <code>examples/lazarus/</code>).
   </li>
 </ul>
 
 <p>Let's quickly open and run some demos, to make sure that everything
 works. I suggest running at least
-<tt>examples/lazarus/model_3d_viewer/</tt> (demo using Lazarus LCL) and
-<tt>examples/fps_game/</tt> (demo using our CastleWindow unit).</p>
+<code>examples/lazarus/model_3d_viewer/</code> (demo using Lazarus LCL) and
+<code>examples/fps_game/</code> (demo using our CastleWindow unit).</p>
 
 <p>Make sure you have installed the necessary libraries first, or some of
 the demos will not work. The required libraries are mentioned near the <?php

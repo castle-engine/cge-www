@@ -36,11 +36,11 @@ Major changes:
     <p>I prepared a video showing a simple dynamic world written in X3D and played with view3dscene, see it on the right. The video is only a poor substitute for actually running and playing with this yourself, feeling the smoothness of all editing (the poor framerate of the video is only because of the capturing process...). So after downloading view3dscene, you're welcome to also download this <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/dynamic_world.x3dv\">demo dynamic_world.x3dv</a> (or just grab it along with the rest of " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') .
     ") and open it. It shows how you can edit the world by KambiScript, how changing transformations works fast, and how it all cooperates with collision detection &mdash; whatever scene you will build, your avatar will move honoring collision detection.
 
-  <li><p>Changing <b><tt>Switch.whichChoice</tt> is greatly optimized</b>.
+  <li><p>Changing <b><code>Switch.whichChoice</code> is greatly optimized</b>.
     Previously this was very costly operation, now it's instantaneous
     (almost no work is required).
     Many other optimizations were done for dynamic worlds, including
-    <b>faster <tt>Transform</tt> traversing</b>, faster sensor's enabled switching,
+    <b>faster <code>Transform</code> traversing</b>, faster sensor's enabled switching,
     more reliable starting of time-dependent nodes and many more.
 
     <p>Thanks to <a href=\"http://www.de-panther.com/\">De-Panther</a> for
@@ -60,7 +60,7 @@ castle_thumbs(array(
     We also have new <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
-    <tt>x3d/kambi_extensions/shadows_dynamic.x3dv</tt> from
+    <code>x3d/kambi_extensions/shadows_dynamic.x3dv</code> from
     " . news_a_href_page('Kambi VRML test suite', 'kambi_vrml_test_suite') . "
     in new view3dscene.
 
@@ -69,9 +69,9 @@ castle_thumbs(array(
     whether your models are correctly manifold (this is important for
     shadow volumes).
 
-  <li><p><tt>ProximitySensor.orientation_changed</tt>,
-    <tt>X3DSequencerNode</tt>,
-    <tt>BooleanSequencer</tt>, <tt>IntegerSequencer</tt> implemented.
+  <li><p><code>ProximitySensor.orientation_changed</code>,
+    <code>X3DSequencerNode</code>,
+    <code>BooleanSequencer</code>, <code>IntegerSequencer</code> implemented.
 
     <p><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
 
@@ -115,10 +115,10 @@ Castle Game Engine release</a> and compile / run the radiance_transfer
 example there.)
 
 <p>Inside that directory there are also other models ready to test with
-PRT. There's also <tt>precompute_radiance_transfer</tt> to process
+PRT. There's also <code>precompute_radiance_transfer</code> to process
 any 3D model (readable by my engine &mdash; VRML, X3D, 3DS, Wavefront,
 Collada...) into a VRML model that can be displayed using
-<tt>radiance_transfer</tt> with PRT effects. There's also <tt>show_sh</tt>
+<code>radiance_transfer</code> with PRT effects. There's also <code>show_sh</code>
 program to view 25 first <a href=\"http://en.wikipedia.org/wiki/Spherical_harmonics\">spherical harmonics</a> (this will be useful if you'll want to understand how PRT works :) )."),
 
     array('title' => 'view3dscene 3.1, engine 1.5 release: Scripting, VRML browser components, and more',
@@ -153,7 +153,7 @@ castle_thumbs(array(
     write complete interactive 3D games and run them with view3dscene
     (or any other VRML browser using our engine).
     " . news_a_href_page('Kambi VRML test suite 2.3.0', 'kambi_vrml_test_suite') .
-    " contains source VRML files with KambiScript tests (see <tt>kambi_script/</tt>
+    " contains source VRML files with KambiScript tests (see <code>kambi_script/</code>
     in there, like
     <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/kambi_script/ball_game.x3dv\">kambi_script_ball_game.x3dv</a>
     or
@@ -164,13 +164,13 @@ castle_thumbs(array(
     works.</p></li>
 
   <li><p>Various <b>navigation improvements for scripted worlds</b>:
-    <tt>NavigationInfo.type = \"NONE\"</tt> and
-    <tt>NavigationInfo.speed = 0</tt> cases are supported.
-    They are useful when you implement whole navigation yourself, by <tt>KeySensor</tt>
+    <code>NavigationInfo.type = \"NONE\"</code> and
+    <code>NavigationInfo.speed = 0</code> cases are supported.
+    They are useful when you implement whole navigation yourself, by <code>KeySensor</code>
     and scripting.</p>
 
     <p>Also view3dscene key shortcuts changed, to allow easily avoiding
-    collisions with keys that you handle through <tt>KeySensor</tt> and scripting.
+    collisions with keys that you handle through <code>KeySensor</code> and scripting.
     All menu shortcuts are now with <i>Ctrl</i> modifier
     (for example, previously you switched collision detection with <i>C</i>,
     now you have to press <i>Ctrl+C</i>).</li>
@@ -180,9 +180,9 @@ castle_thumbs(array(
     to generate correct events on both key down and key up, with both TGLWindow
     and Lazarus component.
 
-    simple nodes <tt>Circle2D</tt>,
-    <tt>TextureTransformMatrix3D</tt>, <tt>TextureTransform3D</tt>,
-    <tt>MultiTextureTransform</tt>.</p>
+    simple nodes <code>Circle2D</code>,
+    <code>TextureTransformMatrix3D</code>, <code>TextureTransform3D</code>,
+    <code>MultiTextureTransform</code>.</p>
 -->
 
 
@@ -193,22 +193,22 @@ castle_thumbs(array(
     -->
 
   <li><p>For programmers using our engine, we have <b>VRML browser
-    components</b>. Two flavors: <tt>TGLWindowVRMLBrowser</tt> (a descendant
-    of our <tt>TGLWindow</tt>) and, for Lazarus LCL, <tt>TKamVRMLBrowser</tt>
-    (a descendant of <tt>TOpenGLControl</tt>). Using them is trivial,
-    just drop <tt>TKamVRMLBrowser</tt> on the form
-    and call it's <tt>Load</tt> method &mdash; whole rendering and navigation
+    components</b>. Two flavors: <code>TGLWindowVRMLBrowser</code> (a descendant
+    of our <code>TGLWindow</code>) and, for Lazarus LCL, <code>TKamVRMLBrowser</code>
+    (a descendant of <code>TOpenGLControl</code>). Using them is trivial,
+    just drop <code>TKamVRMLBrowser</code> on the form
+    and call it's <code>Load</code> method &mdash; whole rendering and navigation
     will automatically work. Other Lazarus packages
     fixes were made, to make them more easily usable. Thanks to De-Panther for
     pushing me to implement this :)</p></li>
 
   <li><p><b><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_script_compiled\">Script
-    protocol \"<tt>compiled:</tt>\"</a></b> is implemented, to easily link
+    protocol \"<code>compiled:</code>\"</a></b> is implemented, to easily link
     VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
 
-  <li><p>Other improvements: using quaternions for <tt>EXAMINE</tt> navigation,
-    simple nodes <tt>Circle2D</tt>, <tt>TextureTransformMatrix3D</tt>,
-    <tt>TextureTransform3D</tt>, <tt>MultiTextureTransform</tt>.
+  <li><p>Other improvements: using quaternions for <code>EXAMINE</code> navigation,
+    simple nodes <code>Circle2D</code>, <code>TextureTransformMatrix3D</code>,
+    <code>TextureTransform3D</code>, <code>MultiTextureTransform</code>.
 
   <!--
 
@@ -222,7 +222,7 @@ will be solved.
 Right now they are a weak point of our engine &mdash; animating geometry
 by VRML events is unnecessarily time-consuming when collision detection has to be up-to-date.
 Also more rendering optimizations for animating by VRML events
-will be done (optimize case when you often change <tt>Switch</tt>
+will be done (optimize case when you often change <code>Switch</code>
 choice, automatically detect when roSeparateShapeStates /
 ...NoTransform / roNone is suitable).</p>
 "),
@@ -258,20 +258,20 @@ is released and some other programs here get minor updates.</p>
     of 3D world within a single VRML/X3D file, as envisioned in
     the specifications.</p>
 
-    <p>Four basic sensors are implemented now: <tt>TimeSensor</tt>,
-    <tt>TouchSensor</tt>, <tt>KeySensor</tt> and <tt>ProximitySensor</tt>.
-    Also <tt>Anchor</tt> is \"clickable\" now. For now you have to be in
-    <tt>Walk</tt> mode with <i>Collision Checking</i>
-    enabled to have picking (<tt>TouchSensor</tt>, <tt>Anchor</tt>) working.</p>
+    <p>Four basic sensors are implemented now: <code>TimeSensor</code>,
+    <code>TouchSensor</code>, <code>KeySensor</code> and <code>ProximitySensor</code>.
+    Also <code>Anchor</code> is \"clickable\" now. For now you have to be in
+    <code>Walk</code> mode with <i>Collision Checking</i>
+    enabled to have picking (<code>TouchSensor</code>, <code>Anchor</code>) working.</p>
 
     <p>Linear interpolators are also implemented.
     Some \"event utilities\" nodes are implemented
-    (including useful <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_avalon\"><tt>Logger</tt>
+    (including useful <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_avalon\"><code>Logger</code>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
     <a href=\"http://castle-engine.sourceforge.net/x3d_implementation_shaders.php\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
-    Events to control behavior of <tt>Inline</tt> (and <tt>InlineLoadControl</tt>
+    Events to control behavior of <code>Inline</code> (and <code>InlineLoadControl</code>
     for VRML 97) work too.
     Prototypes and external prototypes also work 100% with events according
     to specification, so you can pass events to/from prototypes.
@@ -300,9 +300,9 @@ is released and some other programs here get minor updates.</p>
 
   <li><p>Many other features, including
     <ul>
-      <li><tt>Extrusion</tt> node handling,</li>
-      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_blending\"><tt>BlendMode</tt> extension</a>,
-      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_kambi_inline\"><tt>KambiInline</tt> extension
+      <li><code>Extrusion</code> node handling,</li>
+      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_blending\"><code>BlendMode</code> extension</a>,
+      <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_kambi_inline\"><code>KambiInline</code> extension
         to automatically replace nodes within inlined content</a>,</li>
       <li><a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_time_origin_at_load\">extension
         to force VRML time-origin to start at loading time</a>, because
@@ -343,10 +343,10 @@ castle_thumbs(array(
 routes and events mechanism works. This means that you can express animations and interactions
 within single VRML / X3D file, like envisioned in the specifications.</p>
 
-<p>We have 2 sensor nodes working already (<tt>TimeSensor</tt>
-and <tt>KeySensor</tt>), 7 linear interpolator nodes, and 5 event utilities
+<p>We have 2 sensor nodes working already (<code>TimeSensor</code>
+and <code>KeySensor</code>), 7 linear interpolator nodes, and 5 event utilities
 nodes (including <a href=\"http://instant-reality.com/documentation/nodetype/Logger/\">Avalon
-<tt>Logger</tt> node</a>, a useful debugger for events).
+<code>Logger</code> node</a>, a useful debugger for events).
 All exposed fields of other nodes also work, obviously.
 This is all available only in SVN for now. When I get back from vacation
 (at the end of August) this work will be continued (many other sensors
@@ -355,7 +355,7 @@ optimized) and it will all be released as <i>view3dscene 3.0</i>.</p>
 
 <p>As a demo, see the 6-second movie on the right. It shows
 animation in X3D done by routing
-<tt>TimeSensor</tt> to <tt>CoordinateInterpolator</tt> to <tt>IndexedFaceSet</tt>.
+<code>TimeSensor</code> to <code>CoordinateInterpolator</code> to <code>IndexedFaceSet</code>.
 The model is <a href=\"http://www.web3d.org/x3d/content/examples/Basic/StudentProjects/\">\"Laetitia Sprints\" from
 web3d.org examples</a>.</p>"),
 
@@ -376,7 +376,7 @@ web3d.org examples</a>.</p>"),
     news_a_href_page('Kanim (Kambi animations) file format', 'kanim_format') .
     ' and it supports our ' .
     news_a_href_page('extension nodes and fields', 'x3d_extensions') .
-    ' (run with <tt>-kambi</tt> command-line option, or use <i>"Start next time
+    ' (run with <code>-kambi</code> command-line option, or use <i>"Start next time
     with kambi support"</i> menu item). Thousand thanks for
     Joerg "MUFTI" Scheurich!</p>
   </li>
@@ -390,17 +390,17 @@ web3d.org examples</a>.</p>"),
 
         <p>Besides all features from VRML 2.0, many X3D-specific
         features are already supported, like
-        geometric primitives <tt>[Indexed][Triangle/Quad][Fan/Strip]Set</tt> (8 nodes total).
+        geometric primitives <code>[Indexed][Triangle/Quad][Fan/Strip]Set</code> (8 nodes total).
         Rendering internals were reorganized into much smarter hierarchy, to handle
-        these new X3D nodes as well as <tt>IndexedFaceSet</tt> and other VRML 97 and 1.0
+        these new X3D nodes as well as <code>IndexedFaceSet</code> and other VRML 97 and 1.0
         nodes implemented since a long time.</p>
       </li>
 
-      <li><p><tt>Extrusion</tt> node handling.</p></li>
+      <li><p><code>Extrusion</code> node handling.</p></li>
 
-      <li><p>New extensions, like <tt>BlendMode</tt> node (a subset of
+      <li><p>New extensions, like <code>BlendMode</code> node (a subset of
         <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">Avalon BlendMode node</a>)
-        and <tt>KambiInline</tt> (an Inline that can somewhat
+        and <code>KambiInline</code> (an Inline that can somewhat
         process the inlined content).</p></li>
 
       <li>
@@ -414,8 +414,8 @@ web3d.org examples</a>.</p>"),
         <p>Texture department:
         Textures with full alpha channel are now nicely rendered with blending
         (and textures will simple alpha channel are still detected and rendered
-        faster by alpha_test). Moreover, <tt>MovieTexture</tt> node is now
-        handled (movie can be read from image sequences, like <tt>image%d.png</tt>,
+        faster by alpha_test). Moreover, <code>MovieTexture</code> node is now
+        handled (movie can be read from image sequences, like <code>image%d.png</code>,
         and from normal movie formats thanks to <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>).
         As a demo, see the flames animation on the right.</p>
 
@@ -511,7 +511,7 @@ Below is only a shortcut of the most important changes
   <li><i>Examine</i> mode allows to rotate and move the scene by mouse
     dragging.</li>
 
-  <li><tt>--screenshot</tt> command-line option for
+  <li><code>--screenshot</code> command-line option for
     " . news_a_href_page('view3dscene', 'view3dscene') . ",
     to take screenshots of the scene in batch mode.</li>
 
@@ -546,7 +546,7 @@ Many long-awaited graphic features implemented:</p>
     " . news_a_href_page('castle', 'castle') . " uses bump mapping, for now only
     on the \"fountain\" level.</p>
 
-    <p><i>For programmers</i>: see also <tt>kambi_vrml_game_engine/examples/vrml/bump_mapping</tt> demo in engine sources,
+    <p><i>For programmers</i>: see also <code>kambi_vrml_game_engine/examples/vrml/bump_mapping</code> demo in engine sources,
     it demonstrates emboss, dot and all other bump mapping
     methods built in VRML engine. Also my notes about emboss and dot
     (by multitexturing) bump mapping methods may be interesting.</p>
@@ -576,7 +576,7 @@ Many long-awaited graphic features implemented:</p>
   <li><p><b>Anti-aliasing</b> available (if multisampling is supported by
     graphic card). " . news_a_href_page('view3dscene', 'view3dscene') . "
     has comfortable menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>
-    and also a command-line option <tt>--anti-alias</tt> to control this,
+    and also a command-line option <code>--anti-alias</code> to control this,
     " . news_a_href_page('castle', 'castle') . " has comfortable menu item
     in <i>Video options</i>.</p>
 
@@ -590,7 +590,7 @@ Many long-awaited graphic features implemented:</p>
     materials, textures).</p>
   </li>
 
-  <li><p><tt>Examine</tt> mode allows to rotate and move the scene by mouse
+  <li><p><code>Examine</code> mode allows to rotate and move the scene by mouse
     dragging. This is more intuitive and sometimes comfortable.
     This feature is mostly noticeable in
     " . news_a_href_page('view3dscene', 'view3dscene') . ", although
@@ -603,7 +603,7 @@ Many long-awaited graphic features implemented:</p>
 " . news_a_href_page('view3dscene', 'view3dscene') . ":</p>
 
 <ul>
-  <li><tt>--screenshot</tt> command-line option, requested a few times,
+  <li><code>--screenshot</code> command-line option, requested a few times,
     to take screenshots of the scene in batch mode.</li>
   <li>Various <i>fill modes</i>. Previously only <i>normal</i> and
     <i>wireframe</i> were available, now we have a couple more,
@@ -632,11 +632,11 @@ settings from Blender are correctly exported to VRML file (as creasteAngle field
     (While OpenGLh was on the level of GL 1.2 + many extensions).</li>
 
   <li>Among many new demo programs, there's also
-    <tt>kambi_vrml_game_engine/examples/vrml/plane_mirror_and_shadow.lpr</tt>
+    <code>kambi_vrml_game_engine/examples/vrml/plane_mirror_and_shadow.lpr</code>
     to test plane-projected shadows and plane mirrors. Plane-projected shadows
     is only for simple demo (we have implemented shadow volumes, thousand times better
     algorithm, after all), but plane mirrors will be implemented
-    in the future in the VRML engine (using \"mirror\" <tt>Material</tt>
+    in the future in the VRML engine (using \"mirror\" <code>Material</code>
     field automatically).</li>
 </ul>
 

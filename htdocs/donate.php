@@ -87,7 +87,7 @@ and view3dscene, and our games :) Thanks!</p>
   <!--div style="margin-left: 20%; margin-right: 20%"-->
   <!-- img src="images/bitcoin_logo.png" alt="Bitcoin logo" style="float: left; margin-right: 1em" / -->
   <p>You can also donate using <a href="http://www.bitcoin.org/">BitCoin</a>.
-  Simply donate to <tt>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</tt></p>
+  Simply donate to <code>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</code></p>
   <!--/div-->
   </td></tr>
 

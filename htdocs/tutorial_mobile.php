@@ -47,15 +47,15 @@ are some things not implemented yet in the OpenGLES version</a>.
 
 <p>It is easy to create a game that can be compiled <i>both</i> for
 Android/iOS and for desktop. To make it work, you should create a simple
-platform-independent main game unit (traditionally called just <tt>game.pas</tt>
+platform-independent main game unit (traditionally called just <code>game.pas</code>
 in our example projects) and maintain a very small platform-specific
 game program/library files.
 
-<p>See the skeleton project in engine examples <tt>castle_game_engine/examples/portable_game_skeleton/</tt>
+<p>See the skeleton project in engine examples <code>castle_game_engine/examples/portable_game_skeleton/</code>
 for a skeleton code using this approach. Feel free to use it as a start of your
 projects. Other examples of this approach can be found
 in most new projects/examples of our engine. For example see
-<tt>castle_game_engine/examples/2d_spine_game/</tt> code.
+<code>castle_game_engine/examples/2d_spine_game/</code> code.
 Or <a href="http://castle-engine.sourceforge.net/darkest_before_dawn.php">Darkest Before the Dawn</a>
 source code (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/darkest_before_dawn/code/game.pas">game.pas of Darkest Before the Dawn</a>).
 
@@ -63,9 +63,9 @@ source code (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/dark
 
 <ol>
   <li><p>Define main (platform-independent) game code in a unit like
-    <tt>game.pas</tt> (and of course use other units, as needed).
+    <code>game.pas</code> (and of course use other units, as needed).
 
-  <li><p>The initialization section of the <tt>Game</tt> unit should only
+  <li><p>The initialization section of the <code>Game</code> unit should only
    assign callbacks to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>,
    and create window and assign it's callbacks.
    Do not do any real processing in the unit initialization,
@@ -80,7 +80,7 @@ source code (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/dark
    OpenGL context, and show loading progress,
    like <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
 
-   <p>The unit should expose the <tt>Window</tt> instance,
+   <p>The unit should expose the <code>Window</code> instance,
    that will be used by platform-specific program/library code.
    It should descend from <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> class
    (in most cases, just use the standard <?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?> class,
@@ -165,27 +165,27 @@ initialization
   Window.OnPress := @WindowPress;
 end.'); ?>
 
-  <li><p>In the <tt>Game</tt> unit, <b>do not</b>:
+  <li><p>In the <code>Game</code> unit, <b>do not</b>:
 
     <ul>
-      <li>Do not call <tt>Window.Open</tt> or <tt>Window.Close</tt> or
-        <tt>Application.Run</tt>.
+      <li>Do not call <code>Window.Open</code> or <code>Window.Close</code> or
+        <code>Application.Run</code>.
 
-      <li><p>Do not create more than one <tt>Window</tt>.
+      <li><p>Do not create more than one <code>Window</code>.
         If you want your game to be truly portable to <b>any</b> device &mdash;
-        you have to limit yourself to using only one <tt>Window</tt>.
+        you have to limit yourself to using only one <code>Window</code>.
         For normal games that's probably natural anyway.
 
         <p>Note that the engine still supports, and will always support,
         multiple-window programs, but for that you will have to just write
         your own program code. See e.g.
-        <tt>castle_game_engine/examples/window/multi_window.lpr</tt> example.
+        <code>castle_game_engine/examples/window/multi_window.lpr</code> example.
         There's no way to do it portably, for Android, iOS, web browser plugin...
     </ul>
 
   <li>Merely use the Game unit from .lpr files that are specific to platform.
 
-    <p>Android .lpr file (like <tt>my_fantastic_game_android.lpr</tt>)
+    <p>Android .lpr file (like <code>my_fantastic_game_android.lpr</code>)
     should define a library, and may be as simple as this:
 
 <?php echo pascal_highlight(
@@ -195,7 +195,7 @@ uses CastleAndroidNativeAppGlue, Game;
 exports ANativeActivity_onCreate;
 end.'); ?>
 
-    <p>Desktop .lpr file (like <tt>my_fantastic_game_standalone.lpr</tt>)
+    <p>Desktop .lpr file (like <code>my_fantastic_game_standalone.lpr</code>)
     should define a program that opens the window
     and runs the application. It may be as simple as this:
 
@@ -227,7 +227,7 @@ on touch interfaces (since we don't get motion events when you don't press...),
 keyboard is uncomfortable on touch devices,
 multi-touch doesn't work on desktops and so on.
 
-<p>A simple example of a 3D navigation, if you use <tt>Player</tt> instance
+<p>A simple example of a 3D navigation, if you use <code>Player</code> instance
 (see previous tutorial chapter for overview how to use it):</p>
 
 <?php echo pascal_highlight(

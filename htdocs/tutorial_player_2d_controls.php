@@ -43,13 +43,13 @@ var
   Controls2D := TGame2DControls.Create(Application);
   Window.Controls.Add(Controls2D);'); ?>
 
-<p>Inside <tt>TGame2DControls.Render</tt> you have the full knowledge about the world,
-about the <tt>Player</tt> and <tt>Player</tt>'s inventory.
+<p>Inside <code>TGame2DControls.Render</code> you have the full knowledge about the world,
+about the <code>Player</code> and <code>Player</code>'s inventory.
 And you can draw them however you like. Basically, you can use
 direct OpenGL commands (with some care taken, see
 <?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
  docs about what you can change carelessly; the rest should be secured
-using <tt>glPushAttrib</tt> / <tt>glPopAttrib</tt>).
+using <code>glPushAttrib</code> / <code>glPopAttrib</code>).
 But we give you a lot of helpers:
 
 <ul>
@@ -84,7 +84,7 @@ But we give you a lot of helpers:
 'UIFont.Print(10, 10, Yellow,
   Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
 
-  <li><p>Every inventory item has already loaded image (defined in <tt>resource.xml</tt>),
+  <li><p>Every inventory item has already loaded image (defined in <code>resource.xml</code>),
     as <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>
     (image stored in normal memory, see
     <?php api_link('CastleImages', 'CastleImages.html'); ?> unit) and
@@ -109,7 +109,7 @@ But we give you a lot of helpers:
     <?php api_link('Player.FadeOutIntensity', 'CastlePlayer.TPlayer.html#FadeOutIntensity'); ?>
     representing when player is in pain (and the pain color).
     <?php api_link('Player.Dead', 'Castle3D.T3DAlive.html#Dead'); ?>
-    says when player is dead (this is simply when <tt>Life <= 0</tt>).
+    says when player is dead (this is simply when <code>Life <= 0</code>).
 
     <p>For example you can visualize pain and dead states like this:
 
@@ -118,22 +118,22 @@ But we give you a lot of helpers:
   GLFadeRectangle(ContainerRect, Red, 1.0) else
   GLFadeRectangle(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
 
-    <p>Note that <tt>Player.FadeOutIntensity</tt> will be 0 when there is no pain, which cooperates
-    nicely with <tt>GLFadeRectangle</tt> definition that will do nothing when 4th parameter is 0.
-    That is why we carelessly always call <tt>GLFadeRectangle</tt> &mdash; when player is not dead,
-    and is not in pain (<tt>Player.FadeOutIntensity</tt> = 0) then nothing will actually happen.
+    <p>Note that <code>Player.FadeOutIntensity</code> will be 0 when there is no pain, which cooperates
+    nicely with <code>GLFadeRectangle</code> definition that will do nothing when 4th parameter is 0.
+    That is why we carelessly always call <code>GLFadeRectangle</code> &mdash; when player is not dead,
+    and is not in pain (<code>Player.FadeOutIntensity</code> = 0) then nothing will actually happen.
 
-  <li><p>Use the <tt>Theme</tt> global variable
+  <li><p>Use the <code>Theme</code> global variable
     (instance of <?php api_link('TCastleTheme', 'CastleControls.TCastleTheme.html'); ?>)
     to draw using a predefined set of images. For example,
-    image type <tt>tiActiveFrame</tt> is a general-purpose frame that you can
+    image type <code>tiActiveFrame</code> is a general-purpose frame that you can
     use to mark a specific region on the screen. You draw it like this:
 
 <?php echo pascal_highlight(
 'Theme.Draw(Rectangle(10, 10, 100, 100), tiActiveFrame);'); ?>
 
     <p>You can change all the theme images. You can change them to one
-    of the predefined images in <tt>CastleControlsImages</tt> unit.
+    of the predefined images in <code>CastleControlsImages</code> unit.
     Like this:
 
 <?php echo pascal_highlight(
@@ -147,12 +147,12 @@ Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
 Theme.OwnsImages[tiActiveFrame] := true;
 Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
 
-    <p>If the set of predefined images in <tt>Theme</tt> is too limiting,
+    <p>If the set of predefined images in <code>Theme</code> is too limiting,
     then use <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
     directly, see below.
 
   <li><p><?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
-    has methods <tt>Draw</tt> and <tt>Draw3x3</tt> to draw the image,
+    has methods <code>Draw</code> and <code>Draw3x3</code> to draw the image,
     intelligently stretching it, optionally preserving unstretched corners.
     We advice to draw most of your GUI using such images.
     This way the look of your game is defined by a set of images,
@@ -166,13 +166,13 @@ Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
     and many other units, provide many other helpers.
 </ul>
 
-<p>See <tt>examples/fps_game</tt> for a working and fully-documented
-demo of such <tt>TGame2DControls</tt> implementation.
-See <?php echo a_href_page('"The Castle 1"', 'castle'); ?> sources (unit <tt>GamePlay</tt>)
+<p>See <code>examples/fps_game</code> for a working and fully-documented
+demo of such <code>TGame2DControls</code> implementation.
+See <?php echo a_href_page('"The Castle 1"', 'castle'); ?> sources (unit <code>GamePlay</code>)
 for an example implementation that shows
 more impressive player's life indicator and inventory and other things on the screen.
 
-<p>You can use any 2D engine controls like this, just add them to <tt>Window.Controls</tt>.
+<p>You can use any 2D engine controls like this, just add them to <code>Window.Controls</code>.
 See <?php api_link('CastleControls', 'CastleControls.html'); ?>
  unit for some standard buttons and panels and images.
 But for a specific game you will probably want a specialized UI,

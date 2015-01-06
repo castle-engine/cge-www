@@ -33,7 +33,7 @@ echo pretty_heading($page_title);
 code that will be seamlessly integrated with our engine internal shaders.
 This allows you to create a myriad of effects using
 the OpenGL Shading Language (GLSL).
-Contrary to the traditional approach (using <tt>ComposedShader</tt> node,
+Contrary to the traditional approach (using <code>ComposedShader</code> node,
 see <?php echo a_href_page(
 'shader component support', 'x3d_implementation_shaders'); ?>),
 our system allows you to define effects easily, without the need
@@ -45,8 +45,8 @@ rendering features.</p>
 
 <p>The examples are available inside
 <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
-Download them, and look inside the subdirectory <tt>compositing_shaders</tt> there.
-Also the <tt>water</tt> subdirectory contains water implementation
+Download them, and look inside the subdirectory <code>compositing_shaders</code> there.
+Also the <code>water</code> subdirectory contains water implementation
 using our effects.</p>
 
 <p>You can open the example models with any of our engine tools, like
@@ -63,9 +63,9 @@ using our effects.</p>
   <li>Of course, you can also get the sources of above documents:
     <ul>
       <li>My Ph.D. thesis sources (in DocBook) can be downloaded from SVN URL:<br/>
-        <tt>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders_doc/</tt></li>
+        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders_doc/</code></li>
       <li>Slides and conference paper (in TeX) are alongside, on SVN URL:<br/>
-        <tt>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders/</tt></li>
+        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders/</code></li>
     </ul>
   </li>
 </ol>

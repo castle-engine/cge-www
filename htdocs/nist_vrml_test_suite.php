@@ -18,11 +18,11 @@ For historical purposes, you can also see at
 Which is a good objective measure,
 but also means that many tests failed
 because unrelated features are not implemented. For example,
-don't be discouraged by many failures in <tt>PROTO</tt> category.
+don't be discouraged by many failures in <code>PROTO</code> category.
 Prototypes were 100% working in all tests, and I consider their
 implementation as practically finished.
-But unrelated things like missing <tt>Script</tt> support for ECMAScript
-prevented the tests in <tt>PROTO</tt> category from passing completely.</p>
+But unrelated things like missing <code>Script</code> support for ECMAScript
+prevented the tests in <code>PROTO</code> category from passing completely.</p>
 
 <p>The style of table below was modeled after similar page
 at <a href="http://www.openvrml.org/doc/conformance.html">
@@ -421,8 +421,8 @@ pass(2, 'Results look slightly incorrect, but matching precisely Xj3D and OpenVR
     <td rowspan="6">Box</td>
     <td>1</td>
     <td class="pass">+</td>
-    <td>This links to <tt>Text</tt> test, that passes (but has nothing
-      to do with <tt>Box</tt>)
+    <td>This links to <code>Text</code> test, that passes (but has nothing
+      to do with <code>Box</code>)
   </tr>
 
 <?php
@@ -434,30 +434,30 @@ pass(5);
     <td rowspan="8">Cone</td>
     <td>1</td>
     <td class="pass">+</td>
-    <td>This links to <tt>Text</tt> test, that passes (but has nothing
-      to do with <tt>Cone</tt>)
+    <td>This links to <code>Text</code> test, that passes (but has nothing
+      to do with <code>Cone</code>)
   </tr>
 
 <?php
 $current_test_number = 2;
-pass(4, 'Again, tests linking to unrelated testcases for <tt>Box</tt> node (that pass)');
+pass(4, 'Again, tests linking to unrelated testcases for <code>Box</code> node (that pass)');
 pass(2);
-pass(1, 'Unrelated <tt>Box</tt> test... (that passes)');
+pass(1, 'Unrelated <code>Box</code> test... (that passes)');
 ?>
 
   <tr>
     <td rowspan="9">Cylinder</td>
     <td>1</td>
     <td class="pass">+</td>
-    <td>Unrelated <tt>Text</tt> test again...
+    <td>Unrelated <code>Text</code> test again...
   </tr>
 
 <?php
 $current_test_number = 2;
-pass(4, 'Unrelated tests for <tt>Box</tt> again...');
+pass(4, 'Unrelated tests for <code>Box</code> again...');
 pass(2);
-pass(1, 'Unrelated <tt>Cone</tt> test...');
-pass(1, 'Unrelated <tt>Box</tt> test...');
+pass(1, 'Unrelated <code>Cone</code> test...');
+pass(1, 'Unrelated <code>Box</code> test...');
 ?>
 
   <tr>
@@ -1019,7 +1019,7 @@ pass(5, "Note that switching between Viewpoints in these tests has very strange 
     <td rowspan="6">Switch</td>
     <td>1</td>
     <td class="pass">+</td>
-    <td>This is actually an <tt>Anchor</tt> bound-500 test, that passes.
+    <td>This is actually an <code>Anchor</code> bound-500 test, that passes.
       (Possibly, wget messed up my local copy of NIST tests...
       Online server with NIST tests is broken, so I can't check).
   </tr>

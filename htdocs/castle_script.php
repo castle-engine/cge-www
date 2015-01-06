@@ -5,12 +5,12 @@
 
   function func_ref($name, $title)
   {
-    echo '<a href="#function_' . $name . '"><tt>' . $title . '</tt></a>';
+    echo '<a href="#function_' . $name . '"><code>' . $title . '</code></a>';
   }
 
   function func($name, $title)
   {
-    echo '<a name="function_' . $name . '" class="kscript_func_docs"><tt>' . $title . '</tt></a>';
+    echo '<tt id="function_' . $name . '" class="kscript_func_docs">' . $title . '</code>';
   }
 ?>
 
@@ -23,9 +23,9 @@
 <?php echo pretty_heading('CastleScript language', NULL,
 'Simple scripting language for Castle Game Engine'); ?>
 
-<p><tt>CastleScript</tt> (previously "KambiScript")
+<p><code>CastleScript</code> (previously "KambiScript")
 is a simple scripting language used in
-our <i>Castle Game Engine</i>. You can use it in VRML/X3D <tt>Script</tt>
+our <i>Castle Game Engine</i>. You can use it in VRML/X3D <code>Script</code>
 nodes. Also it's syntax of mathematical expressions is used
 throughout our engine, for example <?php echo a_href_page(
 'glplotter and gen_function',
@@ -34,7 +34,7 @@ not related to X3D) use this syntax to define function expressions.</p>
 
 <p>The language is deliberately very simple. It's a scripting language,
 with features inspired by many other languages, and by author's laziness.
-For example I was too lazy to add <tt>if</tt>, <tt>while</tt> and such
+For example I was too lazy to add <code>if</code>, <code>while</code> and such
 constructs to the grammar,
 instead you have built-in functions like
 <?php func_ref('if', 'if(condition, then_code, else_code)'); ?>.
@@ -102,12 +102,12 @@ pure non-scripted X3D).</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>URLs in <tt>Script</tt> node starting with <tt>castlescript:</tt>
+<p>URLs in <code>Script</code> node starting with <code>castlescript:</code>
 are understood to contain program in CastleScript language.
-URLs to external files with extension <tt>.castlescript</tt> point
+URLs to external files with extension <code>.castlescript</code> point
 to whole files in CastleScript language.
-(Deprecated: also <tt>kambiscript:</tt> as a protocol and
-<tt>.kambiscript</tt> as an extension are recognized.) Like</p>
+(Deprecated: also <code>kambiscript:</code> as a protocol and
+<code>.kambiscript</code> as an extension are recognized.) Like</p>
 
 <pre class="sourcecode">
 Script {
@@ -166,7 +166,7 @@ open := not(open)
 </pre>
 
 <p>Example script behavior above could also be done by combining
-<tt>BooleanToggle</tt>, <tt>BooleanFilter</tt>, <tt>TimeTrigger</tt>
+<code>BooleanToggle</code>, <code>BooleanFilter</code>, <code>TimeTrigger</code>
 X3D nodes.
 But script is already simpler and shorter, and allows you to trivially
 add other interesting things.</p>
@@ -203,8 +203,8 @@ function input(value, timestamp)
   <li><p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/castle_script/particles.x3dv">particles.x3dv</a>
     &mdash; a simple particle engine. Whole particles animation,
     logic (randomization, speed, gravity) is implemented in CastleScript.
-    "Particles" are rendered as points and lines (<tt>PointSet</tt>,
-    <tt>IndexedLineSet</tt>).
+    "Particles" are rendered as points and lines (<code>PointSet</code>,
+    <code>IndexedLineSet</code>).
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -213,7 +213,7 @@ function input(value, timestamp)
 or any indentation) is to separate tokens when needed (for example, between
 two identifiers).</p>
 
-<p><i>Comments</i> are within curly braces: <tt>{ this is a comment }</tt>
+<p><i>Comments</i> are within curly braces: <code>{ this is a comment }</code>
 (Pascal-like).</p>
 
 <?php echo $toc->html_section(); ?>
@@ -224,7 +224,7 @@ at runtime. Four core types are available:</p>
 <ol>
   <li><p><i>Integers.</i>
     Syntax of integer constants is obvious,
-    like <tt>123</tt>. Built-in function
+    like <code>123</code>. Built-in function
     <?php func_ref('int', 'int(...)'); ?> allows
     you to convert other core types into integer.</p>
 
@@ -233,14 +233,14 @@ at runtime. Four core types are available:</p>
 
     <p>Specifically for comfortable processing of
     <a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#KeySensor">X3D
-    KeySensor node</a> events <tt>actionKeyPress/Release</tt>
-    you have 20 key constants available: <tt>ACTION_KEY_F1</tt>,
-    ... <tt>ACTION_KEY_F12</tt>, <tt>ACTION_KEY_HOME</tt>, etc.
+    KeySensor node</a> events <code>actionKeyPress/Release</code>
+    you have 20 key constants available: <code>ACTION_KEY_F1</code>,
+    ... <code>ACTION_KEY_F12</code>, <code>ACTION_KEY_HOME</code>, etc.
     (see KeySensor specification for full list).</p></li>
 
   <li><p><i>Floats.</i> Syntax of float constants
-    is also obvious, like <tt>3.1415</tt>. You have
-    constants <tt>pi</tt> and <tt>enat</tt> (Euler's number).
+    is also obvious, like <code>3.1415</code>. You have
+    constants <code>pi</code> and <code>enat</code> (Euler's number).
     Built-in function
     <?php func_ref('float', 'float(...)'); ?> allows
     you to convert other core types into float.</p>
@@ -249,17 +249,17 @@ at runtime. Four core types are available:</p>
     platform, which means at least Double, and on many platforms
     Extended.</p></li>
 
-  <li><p><i>Booleans.</i> Two obvious constants are available, <tt>false</tt>
-    and <tt>true</tt> (case is ignored, as usual in CastleScript,
+  <li><p><i>Booleans.</i> Two obvious constants are available, <code>false</code>
+    and <code>true</code> (case is ignored, as usual in CastleScript,
     so you can also write uppercase
-    <tt>FALSE</tt> or <tt>TRUE</tt> like in classic encoding).
+    <code>FALSE</code> or <code>TRUE</code> like in classic encoding).
     Built-in function
     <?php func_ref('bool', 'bool(...)'); ?> allows
     you to convert other core types into boolean.</p></li>
 
   <li><p><i>Strings.</i> Syntax of constants is Pascalish (in apostrophes, and two
     consecutive apostrophes inside mean that you want a single literal
-    apostrophe character). For example <tt>'He said "It''s mine."'</tt>.
+    apostrophe character). For example <code>'He said "It''s mine."'</code>.
     Apostrophe was chosen not only because, y'know, it's Pascalish :),
     but also because it makes embedding CastleScript code within
     VRML/X3D string easier (no need to escape quotes by backslashes).
@@ -289,17 +289,17 @@ Simply make a newline in the string literal to get a newline inside the string.'
 </ol>
 
 <p>The one and only implicit type conversion (promotion) of types is from
-integer to float (for example, <tt>my_float := 44</tt> works,
-you don't have to write <tt>my_float := 44.0</tt>).
+integer to float (for example, <code>my_float := 44</code> works,
+you don't have to write <code>my_float := 44.0</code>).
 In particular, note that <i>boolean type is not interchangeable
 with integer</i> like in C. If you want to convert between boolean and integer,
-you have to convert explicitly by <tt>bool(my_int)</tt> or <tt>int(my_bool)</tt>,
+you have to convert explicitly by <code>bool(my_int)</code> or <code>int(my_bool)</code>,
 like in Pascal. The only exception is when using CastleScript solely for
 mathematical expressions (like in <?php echo a_href_page(
 'glplotter and gen_function',
-'glplotter_and_gen_function'); ?>, internally using <tt>ParseFloatExpression</tt>
+'glplotter_and_gen_function'); ?>, internally using <code>ParseFloatExpression</code>
 function): in this case, result is always implicitly converted to float,
-like it would be embedded within <tt>float(...)</tt> call.
+like it would be embedded within <code>float(...)</code> call.
 </p>
 
 <p>When using CastleScript inside X3D scripts, internally you have
@@ -324,7 +324,7 @@ set component <?php func_ref('array_set', 'array_set(array, index, component_val
 <?php echo $toc->html_section(); ?>
 
 <p><i>Program</i> is just a set of functions. The engine will take care
-to call function <tt>xxx</tt> when input event of the same name will arrive.</p>
+to call function <code>xxx</code> when input event of the same name will arrive.</p>
 
 <p><i>Expressions and instructions</i> are the same thing within
 the language. For example, "assignment" is an instruction, since
@@ -332,22 +332,22 @@ it causes calculation of the right operand and assigning it to the left
 operand, but it's also an "expression", since it returns the value
 (the assigned value).
 So "chained" assignment, like in C, is possible (although
-usually discouraged, to not obfuscate the code): <tt>a := b := x + y</tt> works.
+usually discouraged, to not obfuscate the code): <code>a := b := x + y</code> works.
 In the rest of this description, terms "instruction" and "expression"
 mean exactly the same thing.</p>
 
-<p><i>Function</i> starts from the <tt>function</tt> keyword,
+<p><i>Function</i> starts from the <code>function</code> keyword,
 then function name (identifier),
 then list of 0 or more parameters (identifiers separated by commas),
 always within parenthesis. For functions within X3D Script nodes:
-<tt>initialize</tt> and <tt>shutdown</tt> must take exactly
+<code>initialize</code> and <code>shutdown</code> must take exactly
 one parameter (timestamp of the event: SFTime), functions called
 by incoming events must take exactly two parameters (value send to the event,
 and timestamp: SFTime).</p>
 
 <p>Function body is just a sequence of expressions separated by
 semicolon. Formally, function body is actually a single expression,
-but we have a semicolon operator: <tt>A;B</tt> means "calculate A,
+but we have a semicolon operator: <code>A;B</code> means "calculate A,
 ignore result, then calculate and return result of B".
 For now, result of functions body is ignored (so all our functions
 are in fact <i>procedures</i>).
@@ -356,12 +356,12 @@ so it's used only between instructions).</p>
 
 <p>Note that the way semicolon and expressions are defined means
 that we don't need any special syntax for compound instruction
-(like <tt>begin end</tt> in Pascal or
-<tt>{ }</tt> in C). Instead, normal parenthesis may be
+(like <code>begin end</code> in Pascal or
+<code>{ }</code> in C). Instead, normal parenthesis may be
 used if necessary to group instructions.</p>
 
 <p>An <i>assignment instruction</i> is an operand, followed by
-the assignment operator <tt>:=</tt> (Pascal-like),
+the assignment operator <code>:=</code> (Pascal-like),
 followed by an expression to calculate value to assign.
 
 <p>For X3D scripts, you are allowed to assign to output events
@@ -383,7 +383,7 @@ standard:</p>
     when script function finished execution. When you assigned
     multiple values for the same field/event, only the last one is send.
     In case of multiple-value fields, the combined end value is send.
-    For example, assuming <tt>output</tt> is an <tt>outputOnly</tt>
+    For example, assuming <code>output</code> is an <code>outputOnly</code>
     event of MFFloat type:
 
 <pre class="sourcecode">
@@ -393,17 +393,17 @@ function foo(value, timestamp)
   array_set(output, 2, 44.0)
 </pre>
 
-    <p>The example above will send one <tt>output</tt> event with value
-    <tt>(0.0, 666.0, 44.0, 3.0)</tt>.</p></li>
+    <p>The example above will send one <code>output</code> event with value
+    <code>(0.0, 666.0, 44.0, 3.0)</code>.</p></li>
 </ul>
 
 <p>Right side of the assignment instruction is the value to calculate
 and assign. In short, a normal mathematical expression is allowed there,
 just like you seen in all programming languages. We have multiplicative
-operators (<tt>/, *, ^, %</tt>),
-we have additive operators (<tt>+, -</tt>) with lower
+operators (<code>/, *, ^, %</code>),
+we have additive operators (<code>+, -</code>) with lower
 priority, we have comparison operators
-(<tt>&lt;, &gt;, &lt;=, &gt;=, = or &lt;&gt;</tt>) with even lower
+(<code>&lt;, &gt;, &lt;=, &gt;=, = or &lt;&gt;</code>) with even lower
 priority. We have all standard math
 functions. Built-in functions and operators are overloaded
 for all suitable types. Section below gives a full list of operators
@@ -418,8 +418,8 @@ and functions.</p>
     to an integer.</p>
 
     <p>Float is converted to int by discarding it's fractional
-    part (like in C; for positive numbers, this is like <tt>floor</tt>, for negative
-    this is like <tt>ceil</tt>).
+    part (like in C; for positive numbers, this is like <code>floor</code>, for negative
+    this is like <code>ceil</code>).
     There are also functions <?php func('floor', 'floor'); ?>, <?php func('ceil', 'ceil'); ?> and
     <?php func('round', 'round'); ?> that convert float to an integer with other rounding
     modes.</p>
@@ -429,11 +429,11 @@ and functions.</p>
     don't guarantee "true" value (saying "true" is anything &lt;&gt; 0),
     CastleScript actually guarantees that "true" will result in 1.
     This is sometimes useful in smart mathematical expressions
-    (like <tt>my_int := 1 - int(my_bool)</tt>).</p>
+    (like <code>my_int := 1 - int(my_bool)</code>).</p>
 
     <p>String is converted to int by, well,
     converting string to integer using standard decimal notation
-    (<tt>int('123') = 123</tt>).</p></li>
+    (<code>int('123') = 123</code>).</p></li>
 
   <li><p><?php func('float', 'float(...)'); ?> converts a "core" type
     to a float.</p>
@@ -445,7 +445,7 @@ and functions.</p>
     <p>Bool is converted to 0.0 (false) or 1.0 (true).</p>
 
     <p>String is converted to float by parsing number from string,
-    like <tt>float('3.14') = 3.14</tt>.</p></li>
+    like <code>float('3.14') = 3.14</code>.</p></li>
 
   <li><p><?php func('bool', 'bool(...)'); ?> converts a "core" type
     to a boolean.</p>
@@ -470,9 +470,9 @@ have the necessary type. For example, converting float to float is a valid
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('if', 'if(condition, then_code, else_code)'); ?> is our
-conditional instruction. <tt>condition</tt> is first calculated, must be a boolean
-value. If it's true, then <tt>then_code</tt> is executed and returned as
-"if" value. Otherwise, <tt>else_code</tt> is executed and returned as
+conditional instruction. <code>condition</code> is first calculated, must be a boolean
+value. If it's true, then <code>then_code</code> is executed and returned as
+"if" value. Otherwise, <code>else_code</code> is executed and returned as
 "if" value. You may note that (because of CastleScript unification of
 "instruction" and "expression" terms) this can be used in both
 functional and imperative form. That is, all below are valid:</p>
@@ -490,34 +490,34 @@ functional and imperative form. That is, all below are valid:</p>
 
 <p><?php func('when', 'when(condition, then_code)'); ?> is
 a conditional instruction without the "else" clause.
-It's equivalent to <tt>if(condition, then_code, false)</tt>, so it simply
-returns <tt>false</tt> when condition is not satisfied.
-(This is considered a good thing that the normal <tt>if</tt>
+It's equivalent to <code>if(condition, then_code, false)</code>, so it simply
+returns <code>false</code> when condition is not satisfied.
+(This is considered a good thing that the normal <code>if</code>
 <i>requires</i> the else clause; this way we avoid trivial errors
-when programmer forgets to write <tt>else</tt> clause; similar
-<tt>when</tt> expression may be found e.g. in Lisp and <a href="http://nemerle.org/">Nemerle</a>.)
+when programmer forgets to write <code>else</code> clause; similar
+<code>when</code> expression may be found e.g. in Lisp and <a href="http://nemerle.org/">Nemerle</a>.)
 </p>
 
 <p><?php func('while', 'while(condition, loop_code)'); ?> performs
-a while loop. Calculate <tt>condition</tt> (must yield a boolean value),
-if true then execute <tt>loop_code</tt> and again calculate <tt>condition</tt>,
-if it's still true then execute <tt>loop_code</tt> again, ... you get the idea.</p>
+a while loop. Calculate <code>condition</code> (must yield a boolean value),
+if true then execute <code>loop_code</code> and again calculate <code>condition</code>,
+if it's still true then execute <code>loop_code</code> again, ... you get the idea.</p>
 
 <p><?php func('for', 'for(counter, begin_value, end_value, loop_code)'); ?> performs
-a for loop. <tt>counter</tt> must be an assignable integer variable
+a for loop. <code>counter</code> must be an assignable integer variable
 (note that for now you cannot declare new variables for CastleScript;
-you usually need to overuse <tt>initializeOnly</tt> field of X3D script
-node for this). <tt>begin_value</tt>, <tt>end_value</tt> must also
+you usually need to overuse <code>initializeOnly</code> field of X3D script
+node for this). <code>begin_value</code>, <code>end_value</code> must also
 be integer values, will be calculated once at the beginning of the loop.
-We will assign to <tt>counter</tt> variable integer values
-from <tt>begin_value</tt> to <tt>end_value</tt>, and for each
-counter value we will execute <tt>loop_code</tt>.
-It's undefined what happens when <tt>loop_code</tt> changes directly the
-<tt>counter</tt> value.</p>
+We will assign to <code>counter</code> variable integer values
+from <code>begin_value</code> to <code>end_value</code>, and for each
+counter value we will execute <code>loop_code</code>.
+It's undefined what happens when <code>loop_code</code> changes directly the
+<code>counter</code> value.</p>
 
-<p><tt>for</tt> and <tt>while</tt> loops return
-the value of last executed <tt>loop_code</tt>,
-or <tt>false</tt> if <tt>loop_code</tt> did not get executed even once.</p>
+<p><code>for</code> and <code>while</code> loops return
+the value of last executed <code>loop_code</code>,
+or <code>false</code> if <code>loop_code</code> did not get executed even once.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -537,11 +537,11 @@ They all take a float type, and return a float type unless otherwise noted:</p>
       <?php func('CosH', 'CosH'); ?>,
       <?php func('TanH', 'TanH'); ?>,
       <?php func('CoTanH', 'CoTanH'); ?>
-  <li><?php func('Log2', 'Log2'); ?> (same as <tt>Log(2, x)</tt>),
+  <li><?php func('Log2', 'Log2'); ?> (same as <code>Log(2, x)</code>),
       <?php func('Ln', 'Ln'); ?>,
       <?php func('Log', 'Log'); ?>,
-      <?php func('Power2', 'Power2'); ?> (same as <tt>Power(2, x) = 2^x</tt>),
-      <?php func('Exp', 'Exp'); ?> (same as <tt>Power(enat, x) = enat^x</tt>),
+      <?php func('Power2', 'Power2'); ?> (same as <code>Power(2, x) = 2^x</code>),
+      <?php func('Exp', 'Exp'); ?> (same as <code>Power(enat, x) = enat^x</code>),
       <?php func('Power', 'Power'); ?>,
       <?php func('Sqr', 'Sqr'); ?>,
       <?php func('Sqrt', 'Sqrt'); ?><br>
@@ -556,8 +556,8 @@ They all take a float type, and return a float type unless otherwise noted:</p>
 within 0...1 range (0 included, 1 excluded).</p>
 
 <p><?php func('random', 'random(int)'); ?> returns a random integer number
-strictly less than <tt>int</tt> and &gt;= 0.
-(<tt>int</tt> argument must be &gt; 0).</p>
+strictly less than <code>int</code> and &gt;= 0.
+(<code>int</code> argument must be &gt; 0).</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -580,8 +580,8 @@ display it on the console (standard error output),
 games (like <?php echo a_href_page('The Castle', 'castle'); ?>)
 display it as in-game notification.
 (As a developer, you can configure how this is handled,
-see <tt>OnScriptMessage</tt> in <tt>CastleScript</tt> unit.
-By default, it results in <tt>OnWarning</tt>, that by default is simply ignored.
+see <code>OnScriptMessage</code> in <code>CastleScript</code> unit.
+By default, it results in <code>OnWarning</code>, that by default is simply ignored.
 Although my programs usually take care to do something more useful with it.)</p>
 
 <p>Most array functions can also treat the string as an array of characters.
@@ -603,15 +603,15 @@ will be accepted here, and rendered if present in the font.
 Currently, our font rendering is limited to 256-character encodings.</p>
 
 <p><?php func('shortcut', 'shortcut(name)'); ?> is a function
-only available in games (technically: only in programs using <tt>CastleInputs</tt>
+only available in games (technically: only in programs using <code>CastleInputs</code>
 unit). It returns a nice string describing the named key/mouse shortcut
 in the game. It's useful if you want to show a message describing some
-shortcut, for example <tt>writeln('Hint: you can open this door using the ' +
-shortcut('interact'))</tt>. Depending on user current key definitions,
+shortcut, for example <code>writeln('Hint: you can open this door using the ' +
+shortcut('interact'))</code>. Depending on user current key definitions,
 we will show something like <i>Hint: you can open this door using the key "e"</i>
 or <i>Hint: you can open this door using the mouse "left"</i>.
-See <tt>CastleInputs</tt> for available shortcut names, additionally
-games may define their own key shortcuts by creating new <tt>TInputConfiguration</tt>
+See <code>CastleInputs</code> for available shortcut names, additionally
+games may define their own key shortcuts by creating new <code>TInputConfiguration</code>
 instances.</p>
 
 <p>A lot of string functions are trivial to add
@@ -624,20 +624,20 @@ instances.</p>
 All arguments must have the same type (X3D multiple-value fields
 can't have mixed types).</p>
 
-<p>Note that parameter-less <tt>array()</tt> call is not allowed,
+<p>Note that parameter-less <code>array()</code> call is not allowed,
 because we wouldn't know then the resulting type (is it an
 empty array of floats? empty array of integers? etc.)
-Don't worry, you can use <tt>array_set_count(my_array, 0)</tt> for making
+Don't worry, you can use <code>array_set_count(my_array, 0)</code> for making
 array empty.</p>
 
 <p>Note that floating-point values in arrays are stored only with single-
 or double- precision. This contrasts with singleton values, which are always stored
 in the best precision possible. Having explicit single-
 or double- precision arrays is better for storage and allows faster
-copying between X3D fields. Normal <tt>array</tt> with float parameters will create
-an array of single-precision values (that is, X3D <tt>MFFloat</tt>).
+copying between X3D fields. Normal <code>array</code> with float parameters will create
+an array of single-precision values (that is, X3D <code>MFFloat</code>).
 You have to call <?php func('array_d', 'array_d'); ?> to request double-precision storage
-(suitable for X3D <tt>MFDouble</tt> or <tt>MFTime</tt>).</p>
+(suitable for X3D <code>MFDouble</code> or <code>MFTime</code>).</p>
 
 <p><?php func('array_get_count', 'array_get_count(my_array)'); ?> and
 <?php func('array_set_count', 'array_set_count(my_array, new_count)'); ?> get and set array count.
@@ -646,13 +646,13 @@ When you shrink array, excessive values are discarded.</p>
 
 <p><?php echo func('array_get', 'array_get(my_array, index)'); ?>
  gets an item from array on given index. In "normal" programming languages,
-implemented by less lazy programmers, this is written as <tt>my_array[index]</tt> :)
+implemented by less lazy programmers, this is written as <code>my_array[index]</code> :)
 Analogous
 <?php echo func('array_set', 'array_set(my_array, index, component_value)'); ?>
  sets a value of item in an array.
-In "normal" programming languages you would write <tt>my_array[index] := component_value</tt>.
+In "normal" programming languages you would write <code>my_array[index] := component_value</code>.
 
-<p><tt>array_set</tt> and <tt>array_set_count</tt> also return the new array
+<p><code>array_set</code> and <code>array_set_count</code> also return the new array
 (that is, they return the new value of their 1st argument),
 this may be comfortable sometimes.</p>
 
@@ -662,26 +662,26 @@ this may be comfortable sometimes.</p>
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('vector', 'vector(x, y), vector(x, y, z), vector(x, y, z, w)'); ?>
- create a single-precision vectors (called <tt>SFVec2f</tt>,
-<tt>SFVec3f</tt>, <tt>SFVec4f</tt> in X3D).
-Suffix <tt>_d</tt> means that you want double-precision vectors:
+ create a single-precision vectors (called <code>SFVec2f</code>,
+<code>SFVec3f</code>, <code>SFVec4f</code> in X3D).
+Suffix <code>_d</code> means that you want double-precision vectors:
 <?php func('vector_d', 'vector_d(x, y), vector_d(x, y, z), vector_d(x, y, z, w)'); ?>.</p>
 
 <p><?php echo func('vector_get', 'vector_get(my_vec, index)'); ?>
  gets vector component. Allowed index values obviously depend on vector size,
-for example on <tt>SFVec3f</tt> you can use index 0, 1, 2.
+for example on <code>SFVec3f</code> you can use index 0, 1, 2.
 <?php echo func('vector_set', 'vector_set(my_vec, index, component_value)'); ?>
  sets given vector component (and returns new vector, for comfort).</p>
 
 <p><?php func('vector_get_count', 'vector_get_count(my_vec)'); ?> is available,
-for analogy with <tt>array_get_count</tt>. Vector has a fixed number
-of components, so there is no <tt>vector_set_count</tt>.
+for analogy with <code>array_get_count</code>. Vector has a fixed number
+of components, so there is no <code>vector_set_count</code>.
 </p>
 
 <p>Standard vector math utilities are available:
 <?php func('vector_length(v)', 'vector_length(v)'); ?>, <?php func('vector_sqr_length(v)', 'vector_sqr_length(v)'); ?>,
-<?php func('vector_dot(v1, v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
-<?php func('vector_cross(v1, v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
+<?php func('vector_dot(v1,v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
+<?php func('vector_cross(v1,v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
 only on 3-component vectors).
 <?php func('max', 'max(vector1, vector2)'); ?>,
 <?php func('min', 'min(vector1, vector2)'); ?>
@@ -698,8 +698,8 @@ account human eye sensitivity).
 
 <?php echo $toc->html_section(); ?>
 
-<p>Rotations (X3D <tt>SFRotation</tt>, or an element of
-<tt>MFRotation</tt> array) are, in CastleScript, just 4-value single-precision
+<p>Rotations (X3D <code>SFRotation</code>, or an element of
+<code>MFRotation</code> array) are, in CastleScript, just 4-value single-precision
 vectors. First three scalars are rotation axis (should be always normalized,
 VRML/X3D require this), 4th item is the rotation angle (in radians).
 So you can operate on rotations from CastleScript using all normal functions
@@ -711,9 +711,9 @@ on vectors.</p>
   <li><p><?php func('orientation_from_direction_up', 'orientation_from_direction_up(dir, up)'); ?>
     converts a direction and up 3D vectors into an orientation.
     This is a rotation that transforms default direction (0, 0, -1)
-    and default up (0, 1, 0) into your desired <tt>direction</tt> and <tt>up</tt> vectors.
+    and default up (0, 1, 0) into your desired <code>direction</code> and <code>up</code> vectors.
     This is suitable for example for calculating
-    VRML/X3D <tt>Viewpoint.orientation</tt>.</p>
+    VRML/X3D <code>Viewpoint.orientation</code>.</p>
 
     <p>Given here direction and up vectors do not have to be normalized
     (they only must not be zero). They also do not have to be orthogonal
@@ -721,9 +721,9 @@ on vectors.</p>
     to direction).</p>
 
   <li><p><?php func('rotate', 'rotate(rotation, point)'); ?>
-    rotates given 3D <tt>point</tt>. <tt>rotation</tt> parameter contains
+    rotates given 3D <code>point</code>. <code>rotation</code> parameter contains
     an axis (first three components) and an angle in radians (last component),
-    so it's compatible with VRML/X3D <tt>SFRotation</tt>.</p>
+    so it's compatible with VRML/X3D <code>SFRotation</code>.</p>
 
   <li><p><?php func('orientation_to_direction', 'orientation_to_direction(rotation)'); ?>
     determines direction vector back from an orientation,
@@ -731,15 +731,15 @@ on vectors.</p>
     Similarly <?php func('orientation_to_up', 'orientation_to_up(rotation)'); ?>.
     Resulting direction and up vectors are always normalized.</p>
 
-    <p>These functions are equivalent to using <tt>rotate(rotation, (0, 0, -1))</tt>
-    (for <tt>orientation_to_direction</tt>) and <tt>rotate(rotation, (0, 1, 0))</tt>
-    (for <tt>orientation_to_up</tt>).</p></li>
+    <p>These functions are equivalent to using <code>rotate(rotation, (0, 0, -1))</code>
+    (for <code>orientation_to_direction</code>) and <code>rotate(rotation, (0, 1, 0))</code>
+    (for <code>orientation_to_up</code>).</p></li>
 
   <li><p><?php func('slerp', 'slerp(value, rotation1, rotation2)'); ?>
     calculates a <a href="http://en.wikipedia.org/wiki/Slerp">spherical linear interpolation</a>
-    between two rotations. For <tt>value</tt> = 0 the result
-    is <tt>rotation1</tt>, for <tt>value</tt> = 1 the result
-    is <tt>rotation2</tt>, and between (and outside) the result is a nicely interpolated
+    between two rotations. For <code>value</code> = 0 the result
+    is <code>rotation1</code>, for <code>value</code> = 1 the result
+    is <code>rotation2</code>, and between (and outside) the result is a nicely interpolated
     rotation on a unit sphere.</p></li>
 </ul>
 
@@ -749,24 +749,24 @@ for a simple X3D Script using above rotation functions.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>3x3 and 4x4 matrices are supported. Single- and double- precision.
-X3D calls these matrix types <tt>SFMatrix3f</tt>, <tt>SFMatrix4f</tt>,
-<tt>SFMatrix3d</tt>, <tt>SFMatrix4d</tt>.
+X3D calls these matrix types <code>SFMatrix3f</code>, <code>SFMatrix4f</code>,
+<code>SFMatrix3d</code>, <code>SFMatrix4d</code>.
 Matrix is treated similar to an array of vectors (array of columns).</p>
 
 <p><?php func('matrix', 'matrix(column1, column2, column3), matrix(column1, column2, column3, column4)'); ?>
- create a matrix. Each <tt>column</tt> argument is a vector.
+ create a matrix. Each <code>column</code> argument is a vector.
 Number or arguments determines if it's 3x3 or 4x4 matrix.
 Type of arguments (single- or double- precision vectors) determines
 if matrix is single or double precision.
 
 <p><?php echo func('matrix_get', 'matrix_get(my_matrix, column_index)'); ?>
  gets matrix column. Allowed index values obviously depend on matrix size,
-for example on <tt>SFMatrix4f</tt> you can use index 0, 1, 2, 3.
+for example on <code>SFMatrix4f</code> you can use index 0, 1, 2, 3.
 <?php echo func('matrix_set', 'matrix_set(my_matrix, column_index, column_value)'); ?>
  sets given matrix column (and returns new matrix, for comfort).</p>
 
 <p><?php func('matrix_get_count', 'matrix_get_count(my_vec)'); ?> is available,
-for analogy with <tt>array_get_count</tt> and <tt>vector_get_count</tt>.
+for analogy with <code>array_get_count</code> and <code>vector_get_count</code>.
 Returns number of columns, 3 or 4. For now, non-uniform matrices are not
 supported, so this is also the number of rows.</p>
 
@@ -777,8 +777,8 @@ compare matrix using normal operators.</p>
 <?php echo $toc->html_section(); ?>
 
 <p><?php func('image', 'image(width, height, components)'); ?> creates
-a new image. <tt>components</tt> is the number of image components,
-like in X3D <tt>SFImage</tt> field:
+a new image. <code>components</code> is the number of image components,
+like in X3D <code>SFImage</code> field:
 
 <ul>
   <li>1 component is grayscale image,
@@ -788,13 +788,13 @@ like in X3D <tt>SFImage</tt> field:
 </ul>
 
 <p>Note that image contents are <i>not initialized</i> (meaning:
-they are filled with random garbage in memory) by <tt>image</tt> function.
+they are filled with random garbage in memory) by <code>image</code> function.
 This is for the sake of speed.</p>
 
 <p><?php func('image_load', 'image_load(url)'); ?> loads
 an image from file. This is quite powerful utility, allowing you
 to load textures at any time from a script. (It's not a security
-problem, since you can do the same from normal X3D nodes like <tt>ImageTexture</tt>.)
+problem, since you can do the same from normal X3D nodes like <code>ImageTexture</code>.)
 URL may be relative to X3D file containing the Script node.</p>
 
 <p><?php func('image_width', 'image_width(my_image)'); ?>,
@@ -806,13 +806,13 @@ width, height and number of image components.</p>
 of them:
 
 <ul>
-  <li><p>Functions with <tt>_color</tt> suffix operate only on non-alpha channels
+  <li><p>Functions with <code>_color</code> suffix operate only on non-alpha channels
     of the image. For 1 and 2 component images, they take/return
     a single floating point value describing color intensity
     (in 0..1 range). For 3 and 4 component images, they take/return
     a 3-element vector with single precision, describing RGB color value.</p></li>
 
-  <li><p>Functions with <tt>_alpha</tt> operate only on alpha channel
+  <li><p>Functions with <code>_alpha</code> operate only on alpha channel
     of the image. They take/return a single floating point value
     describing alpha (opacity), in 0..1 range.</p></li>
 
@@ -821,7 +821,7 @@ of them:
     a single floating point value. For 2,3,4 component images,
     they take/return a vector (with single precision) describing
     color with alpha value. For images without alpha value (1 or 3
-    components), these functions are exactly equivalent to <tt>_color</tt>
+    components), these functions are exactly equivalent to <code>_color</code>
     functions.</p></li>
 </ul>
 
@@ -838,13 +838,13 @@ of them:
     <?php func('image_set_alpha', 'image_set_alpha(my_image, x, y, alpha)'); ?><br/>
     Set single pixel to given color/alpha.</p></li>
 
-  <li><p>More "set" functions were planned, like <tt>image_set_rectangle</tt>,
-    <tt>image_apply_decal</tt>, but finally I didn't have the nerve
+  <li><p>More "set" functions were planned, like <code>image_set_rectangle</code>,
+    <code>image_apply_decal</code>, but finally I didn't have the nerve
     to implement everything possible :) Report if you would like any function to be added
     to CastleScript for images.</p></li>
 </ul>
 
-<p>For comfort, <tt>set</tt> functions return back the image (that is,
+<p>For comfort, <code>set</code> functions return back the image (that is,
 the new value of 1st argument).</p>
 
 <p>For example CastleScript programs that generate and process images,
@@ -898,7 +898,7 @@ will be more than happy to add them :)
   # (like in all programming languages).
   # This means that adding 1.0 one hundred times will not necessarily yield result
   # equal to literal 100.0. You can compare with some epsilon, like
-  # "abs(a-b) < 0.001", if needed.
+  # "abs(a-b) &lt; 0.001", if needed.
 
   NonAssignmentExpression = ComparisonArgument [{ComparisonOperator ComparisonArgument}] |
 

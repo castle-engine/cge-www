@@ -59,7 +59,7 @@ parts (99% of usage) of given level are covered.</p>
       <th>Supported level</th></tr>
   <tr><td><?php echo a_href_page('Core'                            , 'x3d_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Time'                            , 'x3d_implementation_time'                ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>2</b> (+ many level 3 features: full <tt>Inline</tt>, <tt>IMPORT/EXPORT</tt> support; missing is <tt>LoadSensor</tt>)</td></tr>
+  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>2</b> (+ many level 3 features: full <code>Inline</code>, <code>IMPORT/EXPORT</code> support; missing is <code>LoadSensor</code>)</td></tr>
   <tr><td><?php echo a_href_page('Grouping'                        , 'x3d_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
@@ -124,8 +124,8 @@ specification nodes actually use this.</p>
 
 <p>Prototypes (both external and not) are 100% done and working :)
 External prototypes recognize URN of standard VRML 97 nodes, i.e.
-<tt>urn:web3d:vrml97:node:Xxx</tt> and standard X3D nodes
-(<tt>urn:web3d:x3d:node:Xxx</tt>), see also our extensions URN
+<code>urn:web3d:vrml97:node:Xxx</code> and standard X3D nodes
+(<code>urn:web3d:x3d:node:Xxx</code>), see also our extensions URN
 on <?php echo a_href_page('VRML/X3D extensions', 'x3d_extensions'); ?>.
 
 <p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
@@ -157,34 +157,34 @@ anyway &mdash; if there is demand, we can surely implement them.
 <p>Not implemented VRML 1.0 features:
 
 <ul>
-  <li><p><tt>AsciiText.width</tt> is ignored.
+  <li><p><code>AsciiText.width</code> is ignored.
 
-  <li><p>Clicking on <tt>WWWAnchor</tt> doesn't work (use VRML &gt;= 2.0
-    <tt>Anchor</tt> instead, implementing old VRML 1.0 anchor is not worth
+  <li><p>Clicking on <code>WWWAnchor</code> doesn't work (use VRML &gt;= 2.0
+    <code>Anchor</code> instead, implementing old VRML 1.0 anchor is not worth
     the trouble and would unnecessarily obfuscate the code).
 </ul>
 
 <p>Notes about other VRML 1.0 features limitations/internal workings:
 
 <ul>
-  <li><p><tt>OrthographicCamera.height</tt> and
-    <tt>PerspectiveCamera.heightAngle</tt> fields work like
-    X3D <tt>OrthoViewpoint.fieldOfView</tt> and
-    <tt>Viewpoint.fieldOfView</tt>. This means that they specify
+  <li><p><code>OrthographicCamera.height</code> and
+    <code>PerspectiveCamera.heightAngle</code> fields work like
+    X3D <code>OrthoViewpoint.fieldOfView</code> and
+    <code>Viewpoint.fieldOfView</code>. This means that they specify
     the angle/height along the <i>smaller</i> browser window size &mdash;
     which is <i>usualy the height</i>, but <i>may be width</i> if you
     resize the window to be taller and thinner.
 
-  <li><p><tt>AsciiText</tt> node's triangles and vertexes are not counted
+  <li><p><code>AsciiText</code> node's triangles and vertexes are not counted
     when writing triangles and vertexes counts of the scene.
     This is actually somewhat Ok, as later VRML specs say explicitly that
     Text nodes do not participate in collision detection
     (so they do not have triangles/vertexes for collision detection,
     only for rendering).
 
-  <li><p>We're always rendering the nearest (first) child of VRML 1.0 <tt>LOD</tt>
+  <li><p>We're always rendering the nearest (first) child of VRML 1.0 <code>LOD</code>
     node. Therefore we're potentially losing some optimization if the scene
-    has reasonably designed <tt>LOD</tt> nodes.</p>
+    has reasonably designed <code>LOD</code> nodes.</p>
 
     <p>Reason: this is caused by possible "leaking" of properties
     in VRML 1.0. Change of LODs choice could potentially change
@@ -199,39 +199,39 @@ anyway &mdash; if there is demand, we can surely implement them.
     since there's no event mechanism in pure VRML 1.0.</p>
 
     <p>Note that VRML &gt;= 2.0 LOD node is working fast and switches
-    between children, according to spec. Also <tt>Switch.whichChoice</tt>
+    between children, according to spec. Also <code>Switch.whichChoice</code>
     changing is optimized and instantly fast in VRML &gt;= 2.0. So just
     upgrade to VRML 2.0 (aka 97) or X3D if you need these features.
 
-  <li><p>Camera <tt>focalDistance</tt> is ignored. This
+  <li><p>Camera <code>focalDistance</code> is ignored. This
     is allowed by specification. And honestly VRML 1.0 specification
     is so ambiguous about this feature (<i>browser should adjust
     flying speed to reach that point in a reasonable amount of time</i>,
     <i>perhaps the browser can use this as a hint</i>...) that
-    I see no reliable way to handle <tt>focalDistance</tt>.
+    I see no reliable way to handle <code>focalDistance</code>.
 
-    <p>Fortunately, VRML 2.0 replaced this with <tt>NavigationInfo.speed</tt>
+    <p>Fortunately, VRML 2.0 replaced this with <code>NavigationInfo.speed</code>
     feature, with clear meaning (basically, it's just a distance per second),
     so please use this instead. (For my engine, you can use
-    <tt>NavigationInfo</tt> node even in VRML 1.0 models.)
+    <code>NavigationInfo</code> node even in VRML 1.0 models.)
 
-  <li><p>Extensibility features (<tt>isA</tt> and <tt>fields</tt>) are not handled
+  <li><p>Extensibility features (<code>isA</code> and <code>fields</code>) are not handled
     fully, although you probably will not notice. For built-in nodes,
-    <tt>isA</tt> and <tt>fields</tt> are correctly parsed but ignored.
+    <code>isA</code> and <code>fields</code> are correctly parsed but ignored.
     For unknown nodes, they are simply omitted up to the matching
     closing parenthesis.
 
     <p>This means that the only case when you will notice something doesn't
     work is when you use non-standard VRML node but point to a standard
-    node with <tt>isA</tt> declaration. Then my engine will ignore
-    <tt>isA</tt> declaration, while it should use it to interpret your node
+    node with <code>isA</code> declaration. Then my engine will ignore
+    <code>isA</code> declaration, while it should use it to interpret your node
     and (at least partially, when possible) handle it.</p>
 
     <p>Finishing of handling this VRML 1.0 feature has rather low priority,
     since this mechanism was completely dropped in later VRML versions.
     VRML 2.0 and X3D replaced this by fantastic prototypes mechanism,
     which is basically an extra-powerful and elegant way of doing what
-    VRML 1.0 tried to do with <tt>isA</tt> and <tt>fields</tt> feature
+    VRML 1.0 tried to do with <code>isA</code> and <code>fields</code> feature
     (and VRML/X3D prototypes are already handled 100% by our engine).
 
   <li><p>MFString field with strings not enclosed in double quotes will

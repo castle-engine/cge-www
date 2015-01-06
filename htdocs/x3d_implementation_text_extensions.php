@@ -6,8 +6,8 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Text transparency mode (<tt>FontStyle.blending</tt>)', 'ext_fontstyle_blending'),
-      new TocItem('DEPRECATED: 3D text (node <tt>Text3D</tt>)', 'ext_text3d'),
+      new TocItem('Text transparency mode (<code>FontStyle.blending</code>)', 'ext_fontstyle_blending'),
+      new TocItem('DEPRECATED: 3D text (node <code>Text3D</code>)', 'ext_text3d'),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -28,9 +28,9 @@
 This allows very efficient rendering on all possible 3D devices.
 But it also means that you have the usual choice whether to use
 "alpha testing" transparency ("all or nothing",
-when the <tt>FontStyle.blending</tt>
-is <tt>FALSE</tt>) or smooth blending (default, when
-the <tt>FontStyle.blending</tt> is <tt>TRUE</tt>).
+when the <code>FontStyle.blending</code>
+is <code>FALSE</code>) or smooth blending (default, when
+the <code>FontStyle.blending</code> is <code>TRUE</code>).
 Each one has it's benefits and drawbacks:
 
 <ol>
@@ -41,14 +41,14 @@ Each one has it's benefits and drawbacks:
   <li><p>With alpha testing, the text casts correct shadows using shadow maps.</p></li>
 </ol>
 
-<p>This is available for all <tt>FontStyle</tt> node versions
+<p>This is available for all <code>FontStyle</code> node versions
 (VRML 1.0 and VRML 2.0 / X3D).
 
 <?php echo $toc->html_section(); ?>
 
 <p><i>Since version 5.1.0 of Castle Game Engine (corresponding
 to version 3.15.0 of view3dscene), this node is deprecated,
-and it is rendered only as a flat <tt>Text</tt> node.
+and it is rendered only as a flat <code>Text</code> node.
 <!--
 Our new text rendering method (using texture) offered new features
 and optimizations, but unfortunately it's impossible to render
@@ -72,25 +72,25 @@ for text.</i></p>
   node_end();
 ?>
 
-<p>This renders the text, pretty much like <tt>Text</tt> node from
-VRML 97 (see VRML 97 specification about <tt>string</tt>, <tt>fontStyle</tt>,
-<tt>length</tt>, <tt>maxExtent</tt> fields). But the text is 3D:
-it's "pushed" by the amount <tt>depth</tt> into negative Z. The normal
+<p>This renders the text, pretty much like <code>Text</code> node from
+VRML 97 (see VRML 97 specification about <code>string</code>, <code>fontStyle</code>,
+<code>length</code>, <code>maxExtent</code> fields). But the text is 3D:
+it's "pushed" by the amount <code>depth</code> into negative Z. The normal
 text is on Z = 0, the 3D text had front cap on Z = 0, back cap on Z = -Depth,
 and of course the extrusion (sides).</p>
 
 <p>Also, it's natural to apply backface culling to such text, so we have
-a <tt>solid</tt> field. When true (default), then backface culling is done.
+a <code>solid</code> field. When true (default), then backface culling is done.
 This may provide much speedup, unless camera is able to enter
-"inside" the text geometry (in which case solid should be set to <tt>FALSE</tt>).</p>
+"inside" the text geometry (in which case solid should be set to <code>FALSE</code>).</p>
 
-<p>If <tt>depth</tt> is zero, then normal 2D text is rendered.
-However, backface culling may still be applied (if <tt>solid</tt> is true)
+<p>If <code>depth</code> is zero, then normal 2D text is rendered.
+However, backface culling may still be applied (if <code>solid</code> is true)
 &mdash; so this node also allows you to make 2D text that's supposed to be
 visible from only front side.</p>
 
 <p>See our <?php echo a_href_page('VRML/X3D demo models',
-'demo_models'); ?>, file <tt>text/text_depth.wrl</tt> for example use of this.</p>
+'demo_models'); ?>, file <code>text/text_depth.wrl</code> for example use of this.</p>
 
 <p>Compatibility:
 
@@ -114,9 +114,9 @@ EXTERNPROTO Text3D [
 
   <li>This is somewhat compatible to <a href="http://www.parallelgraphics.com/developer/products/cortona/extensions/text3d/">Text3D
     node from Parallel Graphics</a>. At the beginning I implemented this
-    extension differently (<tt>kambiDepth</tt>, <tt>kambiSolid</tt> fields
-    for <tt>AsciiText</tt> and <tt>Text</tt> nodes). But later I found
-    these Parallel Graphics <tt>Text3D</tt> definition, so I decided
+    extension differently (<code>kambiDepth</code>, <code>kambiSolid</code> fields
+    for <code>AsciiText</code> and <code>Text</code> nodes). But later I found
+    these Parallel Graphics <code>Text3D</code> definition, so I decided
     to make my version compatible.</li>
 </ul>
 

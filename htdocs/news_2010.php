@@ -24,12 +24,12 @@ castle_thumbs(array(
 <p>Other improvements in our engine and ' . news_a_href_page('view3dscene', 'view3dscene') . ':</p>
 
 <ul>
-  <li><tt>MultiGeneratedTextureCoordinate</tt> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><code>MultiGeneratedTextureCoordinate</code> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
   <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
   <li>Fix Collada-&gt;VRML conversion (thanks to Simon from ' . news_a_href_page('forum', 'forum') . ').</li>
   <li>Zoom improved, to prevent going too far away from object by zoom-in.</li>
   <li>Help wanted: if you\'re familiar with Mac OS X (and FreePascal), I outlined <a href="http://castle-engine.sourceforge.net/macosx_requirements.php">here how you can help</a>.</li>
-  <li>Fixed <tt>view3dscene --screenshot</tt> modal box on invalid filename.</li>
+  <li>Fixed <code>view3dscene --screenshot</code> modal box on invalid filename.</li>
   <li>When local geometry (like coordinates) is often changed, shape changes into "dynamic" state: it\'s octree will be very simple, so we will not waste time on rebuilding it.</li>
   <li>Make a nice warning when more than one value specified for SFNode field value in X3D encoding.</li>
 
@@ -107,24 +107,24 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
     <!--p>Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and little use. New Screen Effects allow much more effects, with a modern implementation.</p-->
   </li>
 
-  <li><p><b>New nodes</b> implemented: <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">drag sensors (<tt>PlaneSensor, SphereSensor, CylinderSensor</tt>)</a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_implementation_rendering.php"><tt>ClipPlane</tt>, <tt>ColorRGBA</tt></a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_implementation_navigation.php"><tt>Billboard</tt>, <tt>ViewpointGroup</tt></a>,
+  <li><p><b>New nodes</b> implemented: <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">drag sensors (<code>PlaneSensor, SphereSensor, CylinderSensor</code>)</a>,
+    <a href="http://castle-engine.sourceforge.net/x3d_implementation_rendering.php"><code>ClipPlane</code>, <code>ColorRGBA</code></a>,
+    <a href="http://castle-engine.sourceforge.net/x3d_implementation_navigation.php"><code>Billboard</code>, <code>ViewpointGroup</code></a>,
     <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_toggler">Toggler</a>.</p>
   </li>
 
   <li><p>Major <b>improvements and fixes to existing nodes</b>:
-    <tt>Transform</tt> (and similar nodes from H-Anim) animation is greatly optimized.
-    Also changing <tt>Transform</tt> node containing light sources works fast now.
-    Many <a href="http://castle-engine.sourceforge.net/x3d_implementation_time.php"><tt>TimeSensor</tt></a>,
+    <code>Transform</code> (and similar nodes from H-Anim) animation is greatly optimized.
+    Also changing <code>Transform</code> node containing light sources works fast now.
+    Many <a href="http://castle-engine.sourceforge.net/x3d_implementation_time.php"><code>TimeSensor</code></a>,
     <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a>,
-    <tt>OrthoViewpoint</tt> improvements.
+    <code>OrthoViewpoint</code> improvements.
     <!--Events mechanism is optimized for many fields.-->
     See ' . news_a_href_page('news archive for details', 'news') . '.</p></li>
 
-  <li><p><b>Camera improvements</b>: Examine camera now honors <tt>Viewpoint</tt>
+  <li><p><b>Camera improvements</b>: Examine camera now honors <code>Viewpoint</code>
     nodes. Switching navigation mode preserves camera view.
-    Smooth transitions (following <tt>NavigationInfo.transitionType, NavigationInfo.transitionTime</tt> fields)
+    Smooth transitions (following <code>NavigationInfo.transitionType, NavigationInfo.transitionTime</code> fields)
     are done. <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">headBobbingDistance
     is renamed into much more suitable headBobbingTime and expressed in seconds</a>.
     Mouse wheel is supported for zooming in Examine mode.</p>
@@ -135,7 +135,7 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
     mouse over them to see) describing camera controls.
     Nice "%s warnings" button.</p></li>
 
-  <li><p>Primitives (<tt>Box, Cone, Cylinder, Sphere</tt>) have the
+  <li><p>Primitives (<code>Box, Cone, Cylinder, Sphere</code>) have the
     <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">texCoord</a>
     field and work with <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a>,
     multi-texturing, <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> etc.</p>
@@ -197,7 +197,7 @@ castle_thumbs(array(
 
     <p>They are used by view3dscene to display nice <b>description of key/mouse controls for given navigation mode</b> &mdash; just mouse over the "Examine", "Walk", "Fly" buttons. I really hope that this is useful (for both new and advanced users), comments about how you like it are most welcome. Hopefully, this will make the navigation controls more obvious.</p>
 
-    <p><small>Developers: you may be interested that tooltips are implemented for everything, and you can render a toolbar both in 2D and 3D. So you can e.g. position a text in 3D coordinates, over an 3D object, as a tooltip. See <tt>TUIControl.TooltipStyle</tt>, <tt>TUIControl.DrawTooltip</tt>, <tt>TKamGLButton.Tooltip</tt>.</small></p></li>
+    <p><small>Developers: you may be interested that tooltips are implemented for everything, and you can render a toolbar both in 2D and 3D. So you can e.g. position a text in 3D coordinates, over an 3D object, as a tooltip. See <code>TUIControl.TooltipStyle</code>, <code>TUIControl.DrawTooltip</code>, <code>TKamGLButton.Tooltip</code>.</small></p></li>
 
   <li><p>Shadow maps PCF methods (in particular "PCF bilinear") look now better, because they know the correct shadow map size.</p></li>
 
@@ -207,7 +207,7 @@ castle_thumbs(array(
     <ul>
       <li>' . news_a_href_page('Documentation', 'engine_doc') . ': many updates, first of all a <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.scene_manager.html">new short chapter about scene manager</a> (based on my old news post).</li>
       <li>' . news_a_href_page('API reference', 'reference') . ': many improvements, a lot of documentation improved for English and PasDoc, and regenerated with <a href="http://pasdoc.sipsolutions.net/">PasDoc 0.12.1</a></li>
-      <li>Nice bridge model for <tt>kambi_vrml_game_engine/examples/vrml/</tt></li>
+      <li>Nice bridge model for <code>kambi_vrml_game_engine/examples/vrml/</code></li>
     </ul></li>
 </ul>
 
@@ -239,19 +239,19 @@ castle_thumbs(array(
     (<a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-334.htm">PlaneSensor</a>,
      <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-344.htm">SphereSensor</a>,
      <a href="http://accad.osu.edu/~pgerstma/class/vnv/resources/info/AnnotatedVrmlRef/ch3-315.htm">CylinderSensor</a>)
-    or our Kambi VRML test suite (see SVN, files <tt>x3d/xxx_sensor*.x3dv</tt>). They allow you to really easily add great interactivity to your VRML/X3D scenes.</p>
+    or our Kambi VRML test suite (see SVN, files <code>x3d/xxx_sensor*.x3dv</code>). They allow you to really easily add great interactivity to your VRML/X3D scenes.</p>
 
     <p>Also related to sensors: fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).</p></li>
 
   <li><p>New functions for <a href="http://castle-engine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
 
-  <li><p>Changing <b><tt>Transform</tt> node containing light sources</b> is greatly optimized now.</p>
+  <li><p>Changing <b><code>Transform</code> node containing light sources</b> is greatly optimized now.</p>
 
     <p>This also causes a regression: if you instantiate this light source (through DEF/USE), and then try to animate it by changing it\'s Transform node &mdash; too many light instances will be updated. This is a regression (something that used to work correctly, but now doesn\'t work), but I feel it\'s justified &mdash; while previous behavior was correct, it was also awfully slow (bringing even trivial scenes to a speed of a few FPS), so the new behavior is at least usable in common cases.</p>
 
     <p>Various fixes along the way. Including shadow map regeneration when light changes.</p></li>
 
-  <li><p><b>Mouse wheel</b> is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for ' . news_a_href_page('castle', 'castle') . ' actions (default is to scroll through inventory). <small>Developers: see <tt>TGLWindow.OnMouseWheel</tt> for using this in your own programs.</small></p></li>
+  <li><p><b>Mouse wheel</b> is supported. It is used for zoom (in camera Examine mode), scrolling text (in various message boxes), it can also be used as a (configurable) shortcut for ' . news_a_href_page('castle', 'castle') . ' actions (default is to scroll through inventory). <small>Developers: see <code>TGLWindow.OnMouseWheel</code> for using this in your own programs.</small></p></li>
 
   <li><p>Warnings after loading a model are signaled by a <b>"%d warnings" button</b> by ' . news_a_href_page('view3dscene', 'view3dscene') . '. This way warnings are still clearly visible (the button only disappears after you use it on this model), but don\'t make an "obstacle" (modal box) to viewing the model.</p></li>
 
@@ -307,9 +307,9 @@ castle_thumbs(array(
     <ul>
       <li><p><i>Examine camera got a functionality boost</i>, and as a result some long-time troubles with switching camera modes are fixed now. Examine camera correctly honors now Viewpoint nodes, and switching camera modes preserves the current view, and switching viewpoints preserves camera mode. Thanks to Jens van Schelve for reporting this and pushing me to fix this :)</p>
 
-        <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML/X3D scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <tt>"(SceneManager.Camera as TWalkCamera)"</tt> to access Walk-specific properties, you may need to use now <tt>"(SceneManager as TUniversalCamera).Walk"</tt> to use them. Or just try to use the basic <tt>TCamera</tt> features, without downcasting to specific camera descendants.</small></p></li>
+        <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML/X3D scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <code>"(SceneManager.Camera as TWalkCamera)"</code> to access Walk-specific properties, you may need to use now <code>"(SceneManager as TUniversalCamera).Walk"</code> to use them. Or just try to use the basic <code>TCamera</code> features, without downcasting to specific camera descendants.</small></p></li>
 
-      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <tt>NavigationInfo.transitionType</tt>, <tt>NavigationInfo.transitionTime</tt> fields (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">X3D spec</a>).</p></li>
+      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <code>NavigationInfo.transitionType</code>, <code>NavigationInfo.transitionTime</code> fields (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">X3D spec</a>).</p></li>
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
@@ -317,17 +317,17 @@ castle_thumbs(array(
     </ul></li>
 
   <li><p>New sensors implemented:<br/>
-    <b><tt>PlaneSensor</tt></b>
+    <b><code>PlaneSensor</code></b>
       (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
        <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">support details</a>,
        demos in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
-    <b><tt>StringSensor</tt></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://castle-engine.sourceforge.net/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
+    <b><code>StringSensor</code></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://castle-engine.sourceforge.net/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
-  <li><p><b>Shadow maps</b> (<a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<tt>Box</tt>, <tt>Sphere</tt> etc.) are fixed now (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
+  <li><p><b>Shadow maps</b> (<a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<code>Box</code>, <code>Sphere</code> etc.) are fixed now (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
   <li><p>Victor Amat updated the demo using our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get <b>mirrors on a flat surface</b>. See kambi_vrml_test_suite/x3d/rendered_texture/chess.x3dv in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN kambi_vrml_test_suite</a>.</p></li>
 
-  <li><p>Various <b>fixes to <tt>TimeSensor</tt></b> and other stuff, thanks to Stephen H. France for reporting!</p></li>
+  <li><p>Various <b>fixes to <code>TimeSensor</code></b> and other stuff, thanks to Stephen H. France for reporting!</p></li>
 </ol>
 '),
 
@@ -349,7 +349,7 @@ castle_thumbs(array(
 
     <ul>
       <li><b>ClipPlane</b> node is handled.
-      <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster.<!-- (uses <tt>glColorMaterial</tt>).-->
+      <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster.<!-- (uses <code>glColorMaterial</code>).-->
       <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b></a> output events are implemented.
       <li><b>TimeSensor.enabled, cycleTime</b> are now handled correctly.
       <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_toggler"><b>Toggler</b></a> node (simple event utility) from InstantReality is handled.
@@ -357,16 +357,16 @@ castle_thumbs(array(
 
   <li><p>Stephen H. France prepared <b><a href="http://castle-engine.sourceforge.net/abbreviated_x3d_specs_for_users.chm">X3D specification including Kambi extensions</a> and <a href="http://castle-engine.sourceforge.net/kambiscript_language.chm">KambiScript reference</a></b> in the CHM format. The CHM format makes them easy to browse and search. Thanks!</p>
 
-  <li><p><b>Primitives</b>: more nodes (boxes, spheres, cones, cylinders) are now processed by converting them to <tt>IndexedFaceSet</tt> or similar low-level geometry. (This is called the <i>"proxy mechanism"</i> in sources.) And the whole mechanism is now much more efficient, so e.g. <tt>Extrusion</tt>, <tt>Teapot</tt>, NURBS curves and surfaces are processed now faster.</p>
+  <li><p><b>Primitives</b>: more nodes (boxes, spheres, cones, cylinders) are now processed by converting them to <code>IndexedFaceSet</code> or similar low-level geometry. (This is called the <i>"proxy mechanism"</i> in sources.) And the whole mechanism is now much more efficient, so e.g. <code>Extrusion</code>, <code>Teapot</code>, NURBS curves and surfaces are processed now faster.</p>
 
     <p>The immediate gain from it is that Box, Cone, Cylinder, Sphere <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">get the "texCoord" field</a>. In particular they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly, and they can be shadow map receivers (although this last thing still needs a little work).</p>
 
     <!--p>Developers: this makes a little incompatible change. TVRMLShape.Geometry/State now may return something more temporary. Most code should work out-of-the-box without changes (and work faster!), but if you e.g. played with removing the geometry nodes &mdash; you should consider using TVRMLShape.OriginalGeometry node instead, see also TVRMLScene.RemoveShapeGeometry.</p-->
   </li>
 
-  <li><p><b>Events</b>: the code responsible for changing the VRML/X3D graph (in particular, through the events) got a few refreshments. Some events work better or faster now (e.g. <tt>RenderedTexture.dimensions</tt> and <tt>depthMap</tt> can be changed through events.)</p>
+  <li><p><b>Events</b>: the code responsible for changing the VRML/X3D graph (in particular, through the events) got a few refreshments. Some events work better or faster now (e.g. <code>RenderedTexture.dimensions</code> and <code>depthMap</code> can be changed through events.)</p>
 
-    <p>A couple of large optimizations for <tt>Transform</tt> animation were implemented.</p>
+    <p>A couple of large optimizations for <code>Transform</code> animation were implemented.</p>
 
   <!--li><p>Next view3dscene release will include scripts to easier setup desktop (GNOME) integration.</li-->
 </ol>
@@ -391,18 +391,18 @@ castle_thumbs(array(
 <ul>
   <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
   <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_receive_shadows">Apperance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
-  <li>Light sources\' <tt>projectionNear</tt>, <tt>projectionFar</tt> and such are automatically calculated now to suitable values, as long as you use high-level <tt>X3DLightNode.shadows</tt> or <tt>Apperance.receiveShadows</tt> fields.</li>
-  <li>Incompatible changes: <tt>DirectionalLight.projectionRectangle</tt> order changed, to match standard <tt>OrthoViewpoint.fieldOfView</tt> order. Also, <tt>projection*</tt> parameters are zero by default (which indicates that they should be automatically calculated).</li>
+  <li>Light sources\' <code>projectionNear</code>, <code>projectionFar</code> and such are automatically calculated now to suitable values, as long as you use high-level <code>X3DLightNode.shadows</code> or <code>Apperance.receiveShadows</code> fields.</li>
+  <li>Incompatible changes: <code>DirectionalLight.projectionRectangle</code> order changed, to match standard <code>OrthoViewpoint.fieldOfView</code> order. Also, <code>projection*</code> parameters are zero by default (which indicates that they should be automatically calculated).</li>
   <li>Easy menu items to control shadow maps, see the new <i>View -&gt; Shadow Maps -&gt; ...</i> submenu.</li>
   <li>New <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
   <li>Extensions to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
-  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://castle-engine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <tt>--ortho</tt> option).</li>
+  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://castle-engine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <code>--ortho</code> option).</li>
   <li>See also <a href="http://castle-engine.sourceforge.net/news.php#2010-7-9-development_news__many_shadow_maps_improvements__castle_fountain__more">previous news item</a> for some more details about new stuff implemented.
 </ul>
 
 <p>Also, <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d_slides.pdf">the slides from my Web3D 2010 talk about Shadow Maps</a> (and the <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">paper</a>) are available now.</p>
 
-<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <tt>x3d/rendered_texture</tt> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite (new version 2.8.0)</a>.</p>
+<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <code>x3d/rendered_texture</code> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite (new version 2.8.0)</a>.</p>
 
 <p>All the shadow maps improvements are actually implemented inside our <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">engine (new version 2.1.0)</a>.</p>
 '),
@@ -427,13 +427,13 @@ castle_thumbs(array(
 <p>The improvements already implemented are:</p>
 
 <ul>
-  <li>First of all, <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_receive_shadows"><tt>Apperance.receiveShadows</tt> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
-  <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <tt>receiveShadows</tt> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
-  <li>New <tt>ProjectedTextureCoordinate</tt> node, that replaces deprecated now <tt>TextureCoordinateGenerator.mode = "PROJECTION"</tt>.</li>
+  <li>First of all, <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_receive_shadows"><code>Apperance.receiveShadows</code> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
+  <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <code>receiveShadows</code> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
+  <li>New <code>ProjectedTextureCoordinate</code> node, that replaces deprecated now <code>TextureCoordinateGenerator.mode = "PROJECTION"</code>.</li>
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
 </ul>
 
-<p>For now, you can test these features by using <tt>view3dscene</tt> from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
+<p>For now, you can test these features by using <code>view3dscene</code> from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
 
 <p>You may also be interested in our shadow maps testing scene "sunny_street", you can checkout it from SVN url <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/">http://svn.code.sf.net/p/castle-engine/code/trunk/vrml_engine_doc/shadow_maps_x3d/sunny_street/</a>.</p>
 
@@ -448,7 +448,7 @@ castle_thumbs(array(
   <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
   <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=14">reporting</a>.</li>
   <li>Better menu behavior with GTK2 backend.</li>
-  <li>Our procedural terrain demo (<tt>examples/vrml/terrain/</tt> in sources) can export the terrain to X3D (<tt>ElevationGrid</tt>) now.</li>
+  <li>Our procedural terrain demo (<code>examples/vrml/terrain/</code> in sources) can export the terrain to X3D (<code>ElevationGrid</code>) now.</li>
   <li>Support IMPORT/EXPORT for VRML 2.0 (97) too. Although it\'s defined only in X3D spec, it\'s so useful that I enable it also for VRML 2.0.</li>
 </ul>
 
@@ -498,7 +498,7 @@ castle_thumbs(array(
 )) .
 '<p>A bug crawled into view3dscene 3.5.0 release: opening kanim and MD3 files usually failed with <i>"Invalid floating point operation"</i>. Therefore, we quickly release a fix in ' . news_a_href_page('view3dscene 3.5.1', 'view3dscene') . '. By the way, <i>View-&gt;Blending...</i> menu options are rearranged and <i>Help-&gt;OpenGL information</i> looks better now.</p>
 
-<p>Also ' . news_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <tt>glcaps</tt>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>
+<p>Also ' . news_a_href_page('glinformation 1.2.0', 'glinformation') . ' (previously known as <code>glcaps</code>) is released: various improvements to the output (it\'s the same text as <i>Help->OpenGL information</i> in view3dscene) and packaging.</p>
 
 <p>' . news_a_href_page('Engine 2.0.1', 'kambi_vrml_game_engine') . ' is also released with these fixes.</p>'),
 
@@ -529,10 +529,10 @@ castle_thumbs(array(
 <p><b>Programmer-visible engine features</b>:</p>
 
 <ul>
-  <li>Scene manager (<tt>TKamSceneManager</tt>), a manager of the 3D world.</li>
-  <li>Custom viewports (<tt>TKamViewport</tt>) easily usable with our scene manager.</li>
-  <li>2D controls framework: <tt>TKamGLButton</tt>, <tt>TKamGLImage</tt>, better <tt>TGLMenu</tt> and more. Viewports are also 2D controls.</li>
-  <li>Engine sources reorganized into more intuitive <tt>src/</tt>, <tt>examples/</tt> etc. directories.</li>
+  <li>Scene manager (<code>TKamSceneManager</code>), a manager of the 3D world.</li>
+  <li>Custom viewports (<code>TKamViewport</code>) easily usable with our scene manager.</li>
+  <li>2D controls framework: <code>TKamGLButton</code>, <code>TKamGLImage</code>, better <code>TGLMenu</code> and more. Viewports are also 2D controls.</li>
+  <li>Engine sources reorganized into more intuitive <code>src/</code>, <code>examples/</code> etc. directories.</li>
   <li>Much more components registered on the Lazarus palette. (This will be extended in next releases.)</li>
   <li>Engine is licensed now on the terms of <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
 </ul>
@@ -559,15 +559,15 @@ castle_thumbs(array(
 
 <p>Your viewports may be placed in any way you like on the screen, they can even be overlapping (one viewport partially obscures another). Each viewport has it\'s own dimensions, own camera, but all viewports share the same 3D world. Each viewport has also it\'s own rendering methods, so you can derive e.g. a specialized viewport that always shows wireframe view of the 3D world.</p>
 
-<p>This very nice feature is implemented thanks to the scene manager framework. The scene manager itself also acts as a viewport (if <tt>DefaultViewport</tt> is true), which is comfortable for simple programs where one viewport is enough. When <tt>DefaultViewport</tt> is false, scene manager is merely a container for your 3D world, referenced by custom viewports (<tt>TKamViewport</tt> classes).</p>
+<p>This very nice feature is implemented thanks to the scene manager framework. The scene manager itself also acts as a viewport (if <code>DefaultViewport</code> is true), which is comfortable for simple programs where one viewport is enough. When <code>DefaultViewport</code> is false, scene manager is merely a container for your 3D world, referenced by custom viewports (<code>TKamViewport</code> classes).</p>
 
-<p>See the screenshots on the right and <tt>kambi_vrml_game_engine/examples/vrml/multiple_viewports.lpr</tt> example program in the SVN for demo.</p>
+<p>See the screenshots on the right and <code>kambi_vrml_game_engine/examples/vrml/multiple_viewports.lpr</code> example program in the SVN for demo.</p>
 
 <!-- teaser -->
 
-<p>Other improvements include new button rendered in the OpenGL (<tt>TKamGLButton</tt> in <tt>kambi_vrml_game_engine/src/ui/opengl/glcontrols.pas</tt> unit), you can see it on the screenshots too. This is the start of a promised 2D controls library for the engine. The idea is that such button may be easily themed for your OpenGL game, to match game mood and graphics.</p>
+<p>Other improvements include new button rendered in the OpenGL (<code>TKamGLButton</code> in <code>kambi_vrml_game_engine/src/ui/opengl/glcontrols.pas</code> unit), you can see it on the screenshots too. This is the start of a promised 2D controls library for the engine. The idea is that such button may be easily themed for your OpenGL game, to match game mood and graphics.</p>
 
-<p>Also there\'s a <tt>TKamGLImage</tt> control, and lot\'s of bugfixes stabilizing engine 2.0.0. It\'s pretty much finished now &mdash; expect engine 2.0.0 and view3dscene 3.5 releases very shortly :)</p>'),
+<p>Also there\'s a <code>TKamGLImage</code> control, and lot\'s of bugfixes stabilizing engine 2.0.0. It\'s pretty much finished now &mdash; expect engine 2.0.0 and view3dscene 3.5 releases very shortly :)</p>'),
 
     array('title' => 'Terrain demo much extended',
           'year' => 2010,
@@ -585,7 +585,7 @@ castle_thumbs(array(
     'html' => (!HTML_VALIDATION ? '<object width="370" height="227"><param name="movie" value="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="370" height="227"></embed></object>' : '')),
 ), 2) .
 
-'<p>Our procedural terrain demo (see <tt>kambi_vrml_game_engine/examples/vrml/terrain</tt> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
+'<p>Our procedural terrain demo (see <code>kambi_vrml_game_engine/examples/vrml/terrain</code> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
 
 <ul>
   <li><i>Heterogeneous</i> terrain (idea from <a href="http://www.kenmusgrave.com/dissertation.html">Ken Musgrave</a>) implemented, this makes more realistic terrain (smooth valleys, noisy mountains).</li>
@@ -616,11 +616,11 @@ castle_thumbs(array(
 <p>This was always possible, but some recent improvements made this much easier. Namely:</p>
 
 <ol>
-  <li>Our <tt>examples/vrml/bump_mapping</tt> demo now works with animated objects without any trouble.</li>
-  <li>Our <tt>examples/vrml/tools/kanim_to_interpolators</tt> is now slightly more general converter from ' . news_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . news_a_href_page('exporting from Blender to kanim', 'blender') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
+  <li>Our <code>examples/vrml/bump_mapping</code> demo now works with animated objects without any trouble.</li>
+  <li>Our <code>examples/vrml/tools/kanim_to_interpolators</code> is now slightly more general converter from ' . news_a_href_page('KAnim format', 'kanim_format') . ' to VRML/X3D. This means it\'s possible to make "normal" animated VRML/X3D models by ' . news_a_href_page('exporting from Blender to kanim', 'blender') . ', then converting kanim to VRML/X3D. Convertion kanim-&gt;VRML/X3D is totally lossless, so the whole setup works quite flawlessly &mdash; at least for this simple cloth demo.</li>
 </ol>
 
-<p>The source model is in SVN, in <tt>kambi_vrml_test_suite/bump_mapping/cloth/</tt>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
+<p>The source model is in SVN, in <code>kambi_vrml_test_suite/bump_mapping/cloth/</code>. You can open it with the bump_mapping example (from our engine sources) or view3dscene.</p>'),
 
     array('title' => 'More engine 2.0 news: all examples and &quot;The Castle&quot; use scene manager',
           'year' => 2010,
@@ -635,9 +635,9 @@ castle_thumbs(array(
 
 <p>More teasers about the <i>Castle 1.0.0</i> release and plans for <i>Castle 2</i> in later post hopefully next week.</p>
 
-<p>Getting back to the engine work, one important news for developers:  <!-- teaser --> I renamed one of the most important new classes: what was <tt>TBase3D</tt> is now called "<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a>". (Reasoning: this is a shorter and better name. "Base" prefix was just uncomfortable, esp. since descendants were no longer "base" 3D objects but they were have to be called "TBase3D" in many places.)</p>
+<p>Getting back to the engine work, one important news for developers:  <!-- teaser --> I renamed one of the most important new classes: what was <code>TBase3D</code> is now called "<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a>". (Reasoning: this is a shorter and better name. "Base" prefix was just uncomfortable, esp. since descendants were no longer "base" 3D objects but they were have to be called "TBase3D" in many places.)</p>
 
-<p>Also, some other classes (<tt>T[Custom]Translated/List3D</tt>) renamed to follow <tt>T3DXxx</tt> pattern, like <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a>. That is, I moved the "3D" part of the name to the beginning. (Reasoning: looks just better, and is consequent with usage of other common prefixes like TKamXxx and TVRMLXxx classes. General rule is that "common part should be the prefix, not suffix", as this is easier to see (and presents itself better when identifiers are sorted alphabetically in API docs etc.).)</p>
+<p>Also, some other classes (<code>T[Custom]Translated/List3D</code>) renamed to follow <code>T3DXxx</code> pattern, like <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a>. That is, I moved the "3D" part of the name to the beginning. (Reasoning: looks just better, and is consequent with usage of other common prefixes like TKamXxx and TVRMLXxx classes. General rule is that "common part should be the prefix, not suffix", as this is easier to see (and presents itself better when identifiers are sorted alphabetically in API docs etc.).)</p>
 
 <p>These renames concern only new classes, not released anyway yet (and we know anyway that engine 2.0.0 will break some compatibility, so let\'s take this opportunity and "get" the important classes names right, Ok? :) ).</p>
 
@@ -663,7 +663,7 @@ castle_thumbs(array(
 
 <ol>
   <li>
-    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . news_a_href_page('castle', 'castle') . ' and recent <tt>examples/vrml/terrain</tt> demo).</p>
+    <p>The number one reason behind all these changes is that it was too difficult to add new stuff to your window. This concerned 3D stuff, mainly the two most important classes of our engine: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a>. And it also concerned 2D controls, for example our menu with fancy GUI sliders: <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> (this was used in ' . news_a_href_page('castle', 'castle') . ' and recent <code>examples/vrml/terrain</code> demo).</p>
 
     <p><b>The goal</b>: the goal (already achieved :) ) is to allow you to make a full 3D model viewer / VRML browser (with collisions, fully optimized rendering etc.) by this simple code:</p>
 
@@ -690,7 +690,7 @@ end.
 
     <p>(The source code of this is in <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_basic.lpr">scene_manager_basic</a> demo inside engine examples. There\'s also more extensive demo in the <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/examples/vrml/scene_manager_demos.lpr">scene_manager_demos</a> sample.)</p>
 
-    <p>This looks nice a relatively straighforward, right? You create 3D object (<tt>Scene</tt>), you create 3D world (<tt>SceneManager</tt>), and a window to display the 3D world (<tt>Window</tt>). What is really the point here is that you immediately know how to add a second 3D object: just create <tt>Scene2</tt>, and add it to <tt>SceneManager.Items</tt>.</p>
+    <p>This looks nice a relatively straighforward, right? You create 3D object (<code>Scene</code>), you create 3D world (<code>SceneManager</code>), and a window to display the 3D world (<code>Window</code>). What is really the point here is that you immediately know how to add a second 3D object: just create <code>Scene2</code>, and add it to <code>SceneManager.Items</code>.</p>
 
     <p>The idea of <i>scene manager</i> will soon be explained in more detail, for now let\'s go a litle back in time and see what was wrong without the scene manager:</p>
 
@@ -698,21 +698,21 @@ end.
 
     <p>You could use something like <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindowVRMLBrowser.TGLWindowVRMLBrowser.html">TGLWindowVRMLBrowser</a> (or equivalent Lazarus component, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiVRMLBrowser.TKamVRMLBrowser.html">TKamVRMLBrowser</a>) but these offered too little flexibility. They were made to allow easily loading <i>only one scene</i>.</p>
 
-    <p>For anything more complicated, you had to directly create your <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> etc. classes, and (this is the key point) to handle various window / camera / callbacks to connect the 3D scene with a camera and with a window. For example, you had to register window <tt>OnIdle</tt> callback to increment VRML scene time (to keep animations running etc.) You had to register <tt>OnKeyDown</tt>, <tt>OnKeyUp</tt> and pass key events to VRML scene (to make VRML sensors work), <tt>OnMouseXxx</tt> callbacks had to be passed to handle VRML touch sensors, <tt>OnDraw</tt> to handle scene rendering. You also had to register camera callbacks (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnMoveAllowed"><tt>OnMoveAllowed</tt></a>, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnGetCameraHeight"><tt>OnGetCameraHeight</tt></a>) to connect collision detection with your 3D scene. And the list goes on...</p>
+    <p>For anything more complicated, you had to directly create your <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> etc. classes, and (this is the key point) to handle various window / camera / callbacks to connect the 3D scene with a camera and with a window. For example, you had to register window <code>OnIdle</code> callback to increment VRML scene time (to keep animations running etc.) You had to register <code>OnKeyDown</code>, <code>OnKeyUp</code> and pass key events to VRML scene (to make VRML sensors work), <code>OnMouseXxx</code> callbacks had to be passed to handle VRML touch sensors, <code>OnDraw</code> to handle scene rendering. You also had to register camera callbacks (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnMoveAllowed"><code>OnMoveAllowed</code></a>, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TWalkCamera.html#OnGetCameraHeight"><code>OnGetCameraHeight</code></a>) to connect collision detection with your 3D scene. And the list goes on...</p>
 
-    <p>As a witness to all these troubles, have a look at implementation of <tt>GLWindowVRMLBrowser</tt> or (nearly identical) implementation of <tt>KambiVRMLBrowser</tt> is last released engine version. They are long and clumsy. In current SVN code, they are nice, short and clean, and also more flexible (can handle many 3D objects, not just 1 VRML scene).</p>
+    <p>As a witness to all these troubles, have a look at implementation of <code>GLWindowVRMLBrowser</code> or (nearly identical) implementation of <code>KambiVRMLBrowser</code> is last released engine version. They are long and clumsy. In current SVN code, they are nice, short and clean, and also more flexible (can handle many 3D objects, not just 1 VRML scene).</p>
 
     <p><b>The solution(s):</b> There are actually two solutions, one directed at 3D objects (living in the 3D world), the other at 2D controls (merely taking some space on the 2D window) . They are quite similar, and nicely playing with each other:</p>
 
     <ol>
-      <li><p><i>For 3D objects</i>: we have a base class <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a> from which <i>all</i> other 3D objects are derived. For example, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a> are both descendants of <tt>T3D</tt> now. There are some other helper 3D objects (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> - list of other 3D objects, and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a> - translated other 3D object). And the real beauty is that you can easily derive your own <tt>T3D</tt> descendants, just override a couple methods and you get 3D objects that can be visible, can collide etc. in 3D world.</p>
+      <li><p><i>For 3D objects</i>: we have a base class <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3D.html">T3D</a> from which <i>all</i> other 3D objects are derived. For example, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLScene.TVRMLGLScene.html">TVRMLGLScene</a> and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/VRMLGLAnimation.TVRMLGLAnimation.html">TVRMLGLAnimation</a> are both descendants of <code>T3D</code> now. There are some other helper 3D objects (<a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Base3D.T3DList.html">T3DList</a> - list of other 3D objects, and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GL3D.T3DTranslated.html">T3DTranslated</a> - translated other 3D object). And the real beauty is that you can easily derive your own <code>T3D</code> descendants, just override a couple methods and you get 3D objects that can be visible, can collide etc. in 3D world.</p>
 
-        <p>Now, what to do with your 3D objects? Add them to your 3D world, of course. The new great class that is fully implemented now is the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a>. In every program you create an instance of this class (or your own dencendant of <tt>TKamSceneManager</tt>), and you add your 3D objects to the scene manager. Scene manager keeps the whole knowledge about your 3D world, as a tree of <tt>T3D</tt> objects. After adding your whole 3D world to the scene manager, you can add the scene manager to <tt>Controls</tt> (more on this next), and then scene manager will receive all necessary events from your window, and will pass them to all interested 3D objects. Also scene manager connects your camera, and defines your viewport where 3D world is rendered through this camera.</p>
+        <p>Now, what to do with your 3D objects? Add them to your 3D world, of course. The new great class that is fully implemented now is the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a>. In every program you create an instance of this class (or your own dencendant of <code>TKamSceneManager</code>), and you add your 3D objects to the scene manager. Scene manager keeps the whole knowledge about your 3D world, as a tree of <code>T3D</code> objects. After adding your whole 3D world to the scene manager, you can add the scene manager to <code>Controls</code> (more on this next), and then scene manager will receive all necessary events from your window, and will pass them to all interested 3D objects. Also scene manager connects your camera, and defines your viewport where 3D world is rendered through this camera.</p>
       </li>
 
-      <li><p><i>For 2D controls</i>: quite similar solution is used, although with some details different. All stuff that had to receive window events must derive from base <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html">TUIControl</a> class. This means that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> is now a descendant of <tt>TUIControl</tt>, and in the future I would like to have a small library of generally-usable simple 2D controls available here. Also note that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a> is <tt>TUIControl</tt> descendant, since scene manager by default acts as a viewport (2D rectangle) through which you can see your 3D world. (Possibility to easily add custom viewports from the same scene manager is the next thing on my to-do list.)</p>
+      <li><p><i>For 2D controls</i>: quite similar solution is used, although with some details different. All stuff that had to receive window events must derive from base <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html">TUIControl</a> class. This means that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLMenu.TGLMenu.html">TGLMenu</a> is now a descendant of <code>TUIControl</code>, and in the future I would like to have a small library of generally-usable simple 2D controls available here. Also note that <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">TKamSceneManager</a> is <code>TUIControl</code> descendant, since scene manager by default acts as a viewport (2D rectangle) through which you can see your 3D world. (Possibility to easily add custom viewports from the same scene manager is the next thing on my to-do list.)</p>
 
-        <p>To actually use the <tt>TUIControl</tt>, you add it to the window\'s <tt>Controls</tt> list. If you use Lazarus component, then you\'re interested in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiGLControl.TKamOpenGLControl.html#Controls">TKamOpenGLControl.Controls</a> list. If you use our own window library, you\'re intersted in the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLUIWindow.html#Controls">TGLUIWindow.Controls</a>. Once control is added to the controls list, it will automatically receive all interesting events from our window.</p>
+        <p>To actually use the <code>TUIControl</code>, you add it to the window\'s <code>Controls</code> list. If you use Lazarus component, then you\'re interested in <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiGLControl.TKamOpenGLControl.html#Controls">TKamOpenGLControl.Controls</a> list. If you use our own window library, you\'re intersted in the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLUIWindow.html#Controls">TGLUIWindow.Controls</a>. Once control is added to the controls list, it will automatically receive all interesting events from our window.</p>
       </li>
     </ol>
 
@@ -724,22 +724,22 @@ end.
 
     <ul>
       <li>
-        <p>The <i>Lazarus integration of the engine is better</i>, with many old classes reworked as components. This is also tied to the previous change, because both <tt>T3D</tt> and <tt>TUIControl</tt> are descendants of <tt>TComponent</tt> &mdash; which means that important classes of our engine, like <tt>TVRMLGLScene</tt>, and also the cameras are now components that can be registered on Lazarus palette.</p>
+        <p>The <i>Lazarus integration of the engine is better</i>, with many old classes reworked as components. This is also tied to the previous change, because both <code>T3D</code> and <code>TUIControl</code> are descendants of <code>TComponent</code> &mdash; which means that important classes of our engine, like <code>TVRMLGLScene</code>, and also the cameras are now components that can be registered on Lazarus palette.</p>
 
-        <p>This is not yet finished: some important properties of these classes are not published, or not possible to design from the IDE. For example, you cannot add items to the <tt>TKamOpenGLControl.Controls</tt> list yet from the IDE. This doesn\'t limit your possibilities, it only means that you\'ll have to do some work by writing source code as opposed to just clicking in Lazarus. Things for sure are already a lot better than in previous engine release.</p>
+        <p>This is not yet finished: some important properties of these classes are not published, or not possible to design from the IDE. For example, you cannot add items to the <code>TKamOpenGLControl.Controls</code> list yet from the IDE. This doesn\'t limit your possibilities, it only means that you\'ll have to do some work by writing source code as opposed to just clicking in Lazarus. Things for sure are already a lot better than in previous engine release.</p>
 
-        <p>Mouse look is now also available in Lazarus <tt>TKamOpenGLControl</tt> component.</p>
+        <p>Mouse look is now also available in Lazarus <code>TKamOpenGLControl</code> component.</p>
       </li>
 
-      <li><p><tt>T3D/TUIControl</tt> give various improvements to all 2D/3D objects. For examples, <tt>TVRMLGLScene</tt> automatically sets cursor to "hand" when it\'s over a touch sensor. In fact, every <tt>T3D</tt> and <tt>TUIControl</tt> can affect cursor by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html#Cursor">Cursor</a> property.</p></li>
+      <li><p><code>T3D/TUIControl</code> give various improvements to all 2D/3D objects. For examples, <code>TVRMLGLScene</code> automatically sets cursor to "hand" when it\'s over a touch sensor. In fact, every <code>T3D</code> and <code>TUIControl</code> can affect cursor by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/UIControls.TUIControl.html#Cursor">Cursor</a> property.</p></li>
 
       <li><p>If you do not explicitly create a camera for the scene manager, a suitable one is automatically created, see <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html#Camera">TKamSceneManager.Camera</a>.</p></li>
 
-      <li><p>All "navigator" classes, fields etc. are renamed to "camera". So e.g. <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TExamineCamera.html">TExamineCamera</a> is just a new name for our good old <tt>TExamineNavigator</tt> and such.</p>
+      <li><p>All "navigator" classes, fields etc. are renamed to "camera". So e.g. <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/Cameras.TExamineCamera.html">TExamineCamera</a> is just a new name for our good old <code>TExamineNavigator</code> and such.</p>
 
-        <p>Old names <i>navigator</i> were coined to emphasize the fact that they do not have to represent "real" camera that is used to display the 3D scene on the screen, they can be used to manipulate any 3D object of your scene. For example <tt>shadow_fields</tt> demo uses 4 examine navigators to manipulate various scene elements, <tt>rift</tt> uses special walk navigator to represent position of the player in the room, etc. But I decided that the name is just confusing, as most of the time you use this as a "normal camera". Advanced users can probably grasp the fact that in fact "camera" doesn\'t have to be used to display whole scene from the screen.</p></li>
+        <p>Old names <i>navigator</i> were coined to emphasize the fact that they do not have to represent "real" camera that is used to display the 3D scene on the screen, they can be used to manipulate any 3D object of your scene. For example <code>shadow_fields</code> demo uses 4 examine navigators to manipulate various scene elements, <code>rift</code> uses special walk navigator to represent position of the player in the room, etc. But I decided that the name is just confusing, as most of the time you use this as a "normal camera". Advanced users can probably grasp the fact that in fact "camera" doesn\'t have to be used to display whole scene from the screen.</p></li>
 
-      <li><p>GTK 2 backend of our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> class was much reworked. Namely, 1. we no longer use GTK\'s <tt>gtk_idle_add</tt> to implement our <tt>OnIdle</tt> callbacks and 2. GTK\'s "expose" signal no longer calls directly <tt>OnDraw</tt> callback . These caused an endless stream of troubles with stability, related to GTK idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
+      <li><p>GTK 2 backend of our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/GLWindow.TGLWindow.html">TGLWindow</a> class was much reworked. Namely, 1. we no longer use GTK\'s <code>gtk_idle_add</code> to implement our <code>OnIdle</code> callbacks and 2. GTK\'s "expose" signal no longer calls directly <code>OnDraw</code> callback . These caused an endless stream of troubles with stability, related to GTK idle events priorities. Our new solution is much simpler, solving some recent problems and removing ugly workarounds for the old ones.
 
         <p>For more in-depth discussion of past problems, reasonings and solutions, see the document <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/src/glwindow/gtk/why_not_using_gtk_idle.txt">why_not_gtk_idle.txt</a>.
       </li>

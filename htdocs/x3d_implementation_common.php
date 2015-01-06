@@ -66,7 +66,7 @@ function x3d_status_footer()
 function x3d_node_link($node_name)
 {
   global $x3d_component_url;
-  return '<tt><a href="' . $x3d_component_url . '#' . $node_name . '">' .
-    $node_name . '</a></tt>';
+  return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
+    $node_name . '</a></code>';
 }
 ?>

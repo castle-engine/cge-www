@@ -24,14 +24,14 @@
 did the whole programming and most of the 3D modelling.
 
 <p><i>Szymon Stoma and Kaśka Zaremba</i> designed and modelled the scenario
-on "The Gate" level (all models in <tt>data/levels/gate/gate_parts/</tt>),
+on "The Gate" level (all models in <code>data/levels/gate/gate_parts/</code>),
 modelled many 3D objects (keys, bow, quiver, arrows, ball_missile_s),
 provided some sounds and a large amount of feedback.</p>
 
 <p><i>Grzegorz Hermanowicz</i> implemented underwater "sick"
 projection effect and started gravity for arrows implementation.</p>
 
-<p><i>Michał Wojtkiewicz</i> provided the <tt>levels/gate/tree</tt> model.</p>
+<p><i>Michał Wojtkiewicz</i> provided the <code>levels/gate/tree</code> model.</p>
 
 <p><i>Great thank you to everyone who contributed!</i></p>
 
@@ -43,7 +43,7 @@ projection effect and started gravity for arrows implementation.</p>
 
     <p>We also used some engine tools and accompanying programs:
     <?php echo a_href_page('rayhunter', 'rayhunter'); ?>
-    was used to render some items 2D images (see <tt>data/items/xxx/image.png</tt>),
+    was used to render some items 2D images (see <code>data/items/xxx/image.png</code>),
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
     was used to test and slightly edit 3D models,
     and to make many screenshots.
@@ -59,11 +59,11 @@ projection effect and started gravity for arrows implementation.</p>
   <li><a href="http://www.imagemagick.org/script/index.php">ImageMagick</a></li>
 
   <li><a href="http://www.planetside.co.uk/terragen/">Terragen</a>
-    was used to create skies (see <tt>data/skies/</tt>).
+    was used to create skies (see <code>data/skies/</code>).
 
   <li>Some post-processing of VRML models was done using EmacsLisp.
-    See <tt>data/kambi-castle-utils.el</tt> and various Makefiles,
-    like <tt>data/levels/gate/Makefile</tt>.
+    See <code>data/kambi-castle-utils.el</code> and various Makefiles,
+    like <code>data/levels/gate/Makefile</code>.
 </ul>
 
 <p>Sounds:
@@ -83,7 +83,7 @@ by "The Castle" team (see <a href="#section_authors">above</a>),
 some data was obtained from the Internet,
 under various "free" licenses. Unfortunately, not 100% of them are really
 FOSS compatible, but we're working on it.
-See <tt>castle/data/AUTHORS.txt</tt> for details.
+See <code>castle/data/AUTHORS.txt</code> for details.
 
 <p>The larger data collections used:
 
@@ -109,7 +109,7 @@ for my engine).</p>
 
 <p>Thanks go to whole Id staff that produced DOOM. For a lot of technical details
 how DOOM E1M1 level was done in my game, see the file
-<tt>data/levels/doom/e1m1/README.txt</tt> in game data.
+<code>data/levels/doom/e1m1/README.txt</code> in game data.
 Music is taken from great <a href="http://www.sirgalahad.org/paul/doom/">"DOOM
 I and II Music" as compiled by Paul Burdette</a>.
 
@@ -118,16 +118,16 @@ I and II Music" as compiled by Paul Burdette</a>.
   <p><i>Legal things</i>:
 
   <p><b>For distro packagers</b>: remember that the Doom level and it's resources
-  (i.e. most of the things inside directories <tt>data/levels/doom/e1m1/</tt>,
-  <tt>data/textures/doom/</tt>, <tt>data/sounds/doom/</tt> and
-  <tt>data/skies/doom/</tt>)
+  (i.e. most of the things inside directories <code>data/levels/doom/e1m1/</code>,
+  <code>data/textures/doom/</code>, <code>data/sounds/doom/</code> and
+  <code>data/skies/doom/</code>)
   are not open-source, are not
   covered by GNU GPL license, are not under my (Michalis Kamburelis)
   copyright etc. Legally, I guess that they are a heavily processed version of the
   content that was originally developed by Doom authors, and they own it.
 
   <p>If you want to redistribute my game as a pure open-source, you
-  can simply remove these <tt>doom/</tt> subdirectories. The DOOM level
+  can simply remove these <code>doom/</code> subdirectories. The DOOM level
   will then disappear from the "New Game" menu.
 
   <p><b>For Id Software</b>: hopefully if any lawyer working for Id Software

@@ -51,7 +51,7 @@ Internally, they may even be converted (after loading) to precalculated
 animations.</p>
 
 <p>There's also a crude converter from kanim format to VRML/X3D
-interpolators in our engine examples (see <tt>examples/vrml/tools/kanim_to_interpolators</tt>).
+interpolators in our engine examples (see <code>examples/vrml/tools/kanim_to_interpolators</code>).
 It's a little crude (works only when you animate only a single mesh),
 but may be enough for simple uses. So this is one way to generate an animated
 VRML/X3D file from Blender: export from Blender to kanim, then convert
@@ -166,10 +166,10 @@ for all your needs):</p>
     Note that you can use our
     <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
     'x3d_implementation_interpolation'); ?> to animate sets of colors like
-    <tt>skyColor</tt>, <tt>groundColor</tt>.
+    <code>skyColor</code>, <code>groundColor</code>.
     See our <?php echo a_href_page('VRML/X3D demo models',
     'demo_models'); ?>
-    (look inside <tt>background/background_animate*</tt>) for demos.</p>
+    (look inside <code>background/background_animate*</code>) for demos.</p>
   </li>
 
   <li><p>Some view3dscene features, like saving to VRML/X3D and

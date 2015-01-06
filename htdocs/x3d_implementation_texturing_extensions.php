@@ -6,14 +6,14 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Bump mapping (<tt>normalMap</tt>, <tt>heightMap</tt>, <tt>heightMapScale</tt> fields of <tt>Appearance</tt>)', 'ext_bump_mapping'),
-      new TocItem('Texture automatically rendered from a viewpoint (<tt>RenderedTexture</tt> node)', 'ext_rendered_texture'),
-      new TocItem('Generate texture coordinates on primitives (<tt>Box/Cone/Cylinder/Sphere/Extrusion/Text.texCoord</tt>)', 'ext_tex_coord'),
-      new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <tt>TextureCoordinateGenerator.mode</tt> values)', 'ext_tex_coord_worldspace'),
-      new TocItem('Tex coord generation dependent on bounding box (<tt>TextureCoordinateGenerator.mode</tt> = BOUNDS*)', 'ext_tex_coord_bounds'),
-      new TocItem('Override alpha channel detection (field <tt>alphaChannel</tt> for <tt>ImageTexture</tt>, <tt>MovieTexture</tt> and other textures)', 'ext_alpha_channel_detection'),
-      new TocItem('Movies for <tt>MovieTexture</tt> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
-      new TocItem('Texture for GUI (<tt>TextureProperties.guiTexture</tt>)', 'texture_properties_gui_texture'),
+      new TocItem('Bump mapping (<code>normalMap</code>, <code>heightMap</code>, <code>heightMapScale</code> fields of <code>Appearance</code>)', 'ext_bump_mapping'),
+      new TocItem('Texture automatically rendered from a viewpoint (<code>RenderedTexture</code> node)', 'ext_rendered_texture'),
+      new TocItem('Generate texture coordinates on primitives (<code>Box/Cone/Cylinder/Sphere/Extrusion/Text.texCoord</code>)', 'ext_tex_coord'),
+      new TocItem('Generating 3D tex coords in world space (easy mirrors by additional <code>TextureCoordinateGenerator.mode</code> values)', 'ext_tex_coord_worldspace'),
+      new TocItem('Tex coord generation dependent on bounding box (<code>TextureCoordinateGenerator.mode</code> = BOUNDS*)', 'ext_tex_coord_bounds'),
+      new TocItem('Override alpha channel detection (field <code>alphaChannel</code> for <code>ImageTexture</code>, <code>MovieTexture</code> and other textures)', 'ext_alpha_channel_detection'),
+      new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
+      new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
     ));
   $toc->echo_numbers = true;
 ?>
@@ -23,7 +23,7 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>We add to the <tt>Appearance</tt> node new fields useful for bump mapping:
+<p>We add to the <code>Appearance</code> node new fields useful for bump mapping:
 
 <?php
   echo node_begin('Appearance : X3DAppearanceNode');
@@ -45,9 +45,9 @@
   ));
 ?>
 
-<p>RGB channels of the texture specified as <tt>normalMap</tt> describe
+<p>RGB channels of the texture specified as <code>normalMap</code> describe
 normal vector values of the surface. Normal vectors are encoded as colors:
-vector <tt>(x, y, z)</tt> should be encoded as <tt>RGB((x+1)/2, (y+1)/2, (z+1)/2)</tt>.
+vector <code>(x, y, z)</code> should be encoded as <code>RGB((x+1)/2, (y+1)/2, (z+1)/2)</code>.
 
 <p>You can use e.g.
 <a href="http://code.google.com/p/gimp-normalmap/">GIMP
@@ -63,7 +63,7 @@ results, you can place some dynamic light source in the scene
 
 <p>You can additionally specify a height map.
 Since version 3.10.0 of view3dscene (2.5.0 of engine), this height map
-is specified within the alpha channel of the <tt>normalMap</tt> texture.
+is specified within the alpha channel of the <code>normalMap</code> texture.
 This leads to easy and efficient implementation, and also it is easy
 for texture creators: in <a href="http://code.google.com/p/gimp-normalmap/">GIMP
 normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>.
@@ -72,8 +72,8 @@ actually we have a full <a href="http://graphics.cs.brown.edu/games/SteepParalla
 self-shadowing</a> implementation. This can make the effect truly
 amazing, but also slower.</p>
 
-<p>If the height map (that is, the alpha channel of <tt>normalMap</tt>)
-exists, then we also look at the <tt>heightMapScale</tt> field.
+<p>If the height map (that is, the alpha channel of <code>normalMap</code>)
+exists, then we also look at the <code>heightMapScale</code> field.
 This allows you to tweak the perceived height of bumps
 for parallax mapping.</p>
 
@@ -95,16 +95,16 @@ same texture transform) as the first texture (in case of multi-texturing).</p>
     <?php echo a_href_page("view3dscene", "view3dscene") ?>
     sample models from <?php echo a_href_page('our VRML/X3D demo models',
     'demo_models'); ?> (see subdirectory
-    <tt>bump_mapping/)</tt>.</p></li>
+    <code>bump_mapping/)</code>.</p></li>
 
   <li><p>You can see this used in
     <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
     Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
 </ul>
 
-<p>Note: you can also use these fields within <tt>KambiAppearance</tt> node
-instead of <tt>Appearance</tt>. This allows you to declare <tt>KambiAppearance</tt>
-by EXTERNPROTO, that fallbacks on standard <tt>Appearance</tt>,
+<p>Note: you can also use these fields within <code>KambiAppearance</code> node
+instead of <code>Appearance</code>. This allows you to declare <code>KambiAppearance</code>
+by EXTERNPROTO, that fallbacks on standard <code>Appearance</code>,
 and thus bump mapping extensions will be gracefully omitted by other
 browsers. See <?php echo a_href_page('VRML/X3D demo models',
 'demo_models'); ?> for examples.</p>
@@ -143,20 +143,20 @@ place in 3D world.</p>
   node_end();
 ?>
 
-<p>First two numbers in <tt>"dimensions"</tt> field specify
+<p>First two numbers in <code>"dimensions"</code> field specify
 the width and the height of the texture. (Our
-current implementation ignores the rest of <tt>dimensions</tt> field.)</p>
+current implementation ignores the rest of <code>dimensions</code> field.)</p>
 
-<p><tt>"update"</tt> is the standard field for automatically generated
-textures (works the same as for <tt>GeneratedCubeMapTexture</tt> or <tt>GeneratedShadowMap</tt>).
+<p><code>"update"</code> is the standard field for automatically generated
+textures (works the same as for <code>GeneratedCubeMapTexture</code> or <code>GeneratedShadowMap</code>).
 It says when to actually generate the texture:
 "NONE" means never,
 "ALWAYS" means every frame (for fully dynamic scenes),
 "NEXT_FRAME_ONLY" says to update at the next frame (and
 afterwards change back to "NONE").</p>
 
-<p><tt>"viewpoint"</tt> allows you to explicitly specify viewpoint
-node from which to render to texture. Default <tt>NULL</tt> value
+<p><code>"viewpoint"</code> allows you to explicitly specify viewpoint
+node from which to render to texture. Default <code>NULL</code> value
 means to render from the current camera (this is equivalent to
 specifying viewpoint node that is currently bound). Yes, you can easily
 see recursive texture using this, just look at
@@ -165,37 +165,37 @@ speed &mdash; we always render texture only once in a frame.)
 You can of course specify other viewpoint
 node, to make rendering from there.</p>
 
-<p><tt>"textureProperties"</tt> is the standard field of all texture nodes.
-You can place there a <tt>TextureProperties</tt> node
+<p><code>"textureProperties"</code> is the standard field of all texture nodes.
+You can place there a <code>TextureProperties</code> node
 to specify magnification, minification filters
 (note that mipmaps, if required, will always be correctly automatically
-updated for <tt>RenderedTexture</tt>), anisotropy and such.</p>
+updated for <code>RenderedTexture</code>), anisotropy and such.</p>
 
-<p><tt>"repeatS"</tt>, <tt>"repeatT"</tt>, <tt>"repeatR"</tt>
+<p><code>"repeatS"</code>, <code>"repeatT"</code>, <code>"repeatR"</code>
 are also standard for texture nodes,
-specify whether texture repeats or clamps. For <tt>RenderedTexture</tt>,
-you may often want to set them to <tt>FALSE</tt>. <tt>"repeatR"</tt>
+specify whether texture repeats or clamps. For <code>RenderedTexture</code>,
+you may often want to set them to <code>FALSE</code>. <code>"repeatR"</code>
 is for 3D textures, useless for now.</p>
 
-<p><tt>"depthMap"</tt>, if it is <tt>TRUE</tt>, then the generated texture
+<p><code>"depthMap"</code>, if it is <code>TRUE</code>, then the generated texture
 will contain the depth buffer of the image (instead of the color buffer
 as usual). (Our current implementation only looks at the first item of
-<tt>MFBool</tt> field <tt>depthMap</tt>.)</p>
+<code>MFBool</code> field <code>depthMap</code>.)</p>
 
-<p><tt>"rendering"</tt> output event sends a <tt>TRUE</tt> value right
-before rendering to the texture, and sends <tt>FALSE</tt> after.
-It can be useful to e.g. ROUTE this to a <tt>ClipPlane.enabled</tt> field.
+<p><code>"rendering"</code> output event sends a <code>TRUE</code> value right
+before rendering to the texture, and sends <code>FALSE</code> after.
+It can be useful to e.g. ROUTE this to a <code>ClipPlane.enabled</code> field.
 This is our (Kambi engine) extension, not present in other implementations.
-In the future, <tt>"scene"</tt> field will be implemented, this will
-allow more flexibility, but for now the simple <tt>"rendering"</tt> event
+In the future, <code>"scene"</code> field will be implemented, this will
+allow more flexibility, but for now the simple <code>"rendering"</code> event
 may be useful.</p>
 
-<p><tt>"viewing"</tt> and <tt>"projection"</tt> output events are
+<p><code>"viewing"</code> and <code>"projection"</code> output events are
 also send right before rendering, they contain the modelview (camera)
 and projection matrices.</p>
 
-<p>TODO: <tt>"scene"</tt> should also be supported.
-<tt>"background"</tt> and <tt>"fog"</tt> also. And the default
+<p>TODO: <code>"scene"</code> should also be supported.
+<code>"background"</code> and <code>"fog"</code> also. And the default
 background / fog behavior should change? To match the Xj3D,
 by default no background / fog means that we don't use them,
 currently we just use the current background / fog.
@@ -208,21 +208,21 @@ but the basic fields and usage remain the same.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>We add a <tt>texCoord</tt> field to various VRML/X3D primitives.
+<p>We add a <code>texCoord</code> field to various VRML/X3D primitives.
 You can use it to generate texture coordinates on a primitive,
-by the <tt>TextureCoordinateGenerator</tt> node (for example
+by the <code>TextureCoordinateGenerator</code> node (for example
 <a href="#section_ext_tex_coord_worldspace">to make mirrors</a>),
-or (for shadow maps) <a href="#section_ext_texture_gen_projective"><tt>ProjectedTextureCoordinate</tt></a>.
+or (for shadow maps) <a href="#section_ext_texture_gen_projective"><code>ProjectedTextureCoordinate</code></a>.
 
 <p>You can even use multi-texturing on primitives, by
-<tt>MultiGeneratedTextureCoordinate</tt> node. This works exactly like
-standard <tt>MultiTextureCoordinate</tt>, except only coordinate-generating
+<code>MultiGeneratedTextureCoordinate</code> node. This works exactly like
+standard <code>MultiTextureCoordinate</code>, except only coordinate-generating
 children are allowed.</p>
 
-<p>Note that you cannot use explicit <tt>TextureCoordinate</tt> nodes
+<p>Note that you cannot use explicit <code>TextureCoordinate</code> nodes
 for primitives, because you don't know the geometry of the primitive.
-For a similar reason you cannot use <tt>MultiTextureCoordinate</tt>
-(as it would allow <tt>TextureCoordinate</tt> as children).</p>
+For a similar reason you cannot use <code>MultiTextureCoordinate</code>
+(as it would allow <code>TextureCoordinate</code> as children).</p>
 
 <?php
   echo node_begin('Box / Cone / Cylinder / Sphere / Extrusion / Text');
@@ -240,7 +240,7 @@ For a similar reason you cannot use <tt>MultiTextureCoordinate</tt>
   node_end();
 ?>
 
-<p><i>Note: <tt>MultiGeneratedTextureCoordinate</tt> is not available
+<p><i>Note: <code>MultiGeneratedTextureCoordinate</code> is not available
 in older view3dscene &lt;= 3.7.0.</i>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -251,11 +251,11 @@ array('filename' => "cubemap_teapot.png", 'titlealt' => 'Teapot with cube map re
 ));
 ?>
 
-<p><tt>TextureCoordinateGenerator.mode</tt> allows two additional
+<p><code>TextureCoordinateGenerator.mode</code> allows two additional
 generation modes:
 
 <ol>
-  <li><p><tt>WORLDSPACEREFLECTIONVECTOR</tt>:
+  <li><p><code>WORLDSPACEREFLECTIONVECTOR</code>:
     Generates reflection coordinates mapping to 3D direction in <i>world space</i>.
     This will make the cube map reflection
     simulating real mirror. It's analogous to standard
@@ -263,7 +263,7 @@ generation modes:
     making the mirror reflecting mostly the "back" side of the cube,
     regardless of how the scene is rotated.</li>
 
-  <li><p><tt>WORLDSPACENORMAL</tt>: Use the vertex normal, transformed
+  <li><p><code>WORLDSPACENORMAL</code>: Use the vertex normal, transformed
     to <i>world space</i>, as texture coordinates. Analogous to
     standard "CAMERASPACENORMAL", that does the same but in camera space.</li>
 </ol>
@@ -276,20 +276,20 @@ See <?php echo a_href_page('Cube map environmental texturing component',
 
 <?php echo $toc->html_section(); ?>
 
-<p>Three more values for <tt>TextureCoordinateGenerator.mode</tt>:</p>
+<p>Three more values for <code>TextureCoordinateGenerator.mode</code>:</p>
 
 <ol>
-  <li><tt>BOUNDS</tt>:
+  <li><code>BOUNDS</code>:
     Automatically generate nice texture coordinates, suitable for 2D or 3D
-    textures. This is equivalent to either <tt>BOUNDS2D</tt> or <tt>BOUNDS3D</tt>,
+    textures. This is equivalent to either <code>BOUNDS2D</code> or <code>BOUNDS3D</code>,
     depending on what type of texture is actually used during rendering.
 
-  <li><tt>BOUNDS2D</tt>:
+  <li><code>BOUNDS2D</code>:
     Automatically generate nice 2D texture coordinates, based on the local
     bounding box of given shape. This texture mapping is precisely defined
-    by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/geometry3D.html#IndexedFaceSet"><tt>IndexedFaceSet</tt> description</a>.
+    by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/geometry3D.html#IndexedFaceSet"><code>IndexedFaceSet</code> description</a>.
 
-  <li><tt>BOUNDS3D</tt>:
+  <li><code>BOUNDS3D</code>:
     Automatically generate nice 3D texture coordinates, based on the local
     bounding box of given shape. This texture mapping is precisely defined
     by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texture3D.html#Texturecoordinategeneration"><i>Texturing3D</i> component,
@@ -299,7 +299,7 @@ See <?php echo a_href_page('Cube map environmental texturing component',
 <p>Following VRML/X3D standards, above texture mappings are
 automatically used when you supply a texture but no texture coordinates for your
 shape. Our extensions make it possible to also explicitly use these mappgins,
-when you really want to explicitly use <tt>TextureCoordinateGenerator</tt> node.
+when you really want to explicitly use <code>TextureCoordinateGenerator</code> node.
 This is useful when working with multi-texturing (e.g. one texture unit
 may have BOUNDS mapping, while the other texture unit has different mapping).</p>
 
@@ -329,10 +329,10 @@ Developers: see
 <?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>,
 default tolerance values used by X3D renderer are 5 and 0.01.
 There is also a special program in <?php echo a_href_page('engine sources',
-'engine'); ?> (see <tt>examples/images_videos/detect_alpha_simple_yes_no.lpr</tt>
+'engine'); ?> (see <code>examples/images_videos/detect_alpha_simple_yes_no.lpr</code>
 file) if you want to use this algorithm yourself.
 You can also see the results for your textures if you run view3dscene
-with <tt>--debug-log</tt> option.
+with <code>--debug-log</code> option.
 
 <p>Sometimes you want to override results of this automatic detection.
 For example, maybe your texture has some pixels using full range alpha
@@ -340,7 +340,7 @@ but you still want to use simpler rendering by alpha testing
 (that doesn't require sorting, and works nicely with shadow maps).
 
 <p>If you modify the texture contents at runtime (for example by scripts,
-like <tt>demo_models/castle_script/edit_texture.x3dv</tt>
+like <code>demo_models/castle_script/edit_texture.x3dv</code>
 in <?php echo a_href_page('demo models','demo_models'); ?>)
 you should also be aware that alpha channel detection happens only once.
 It is not repeated later, as this would be 1. slow 2. could cause
@@ -349,8 +349,8 @@ a specific alpha channel treatment, if initial texture contents
 are opaque but you want to later modify it's alpha channel.
 
 <p>To enable this we add new field to all texture nodes
-(everything descending from <tt>X3DTextureNode</tt>,
-like <tt>ImageTexture</tt>, <tt>MovieTexture</tt>; also <tt>Texture2</tt>
+(everything descending from <code>X3DTextureNode</code>,
+like <code>ImageTexture</code>, <code>MovieTexture</code>; also <code>Texture2</code>
 in VRML 1.0):
 
 <?php
@@ -362,7 +362,7 @@ in VRML 1.0):
   node_end();
 ?>
 
-<p>Value <tt>AUTO</tt> means that automatic detection is used, this
+<p>Value <code>AUTO</code> means that automatic detection is used, this
 is the default. Other values force the specific alpha channel treatment
 and rendering, regardless of initial texture contents.
 
@@ -380,28 +380,28 @@ and rendering, regardless of initial texture contents.
   ));
 ?>
 
-<p>Inside <tt>MovieTexture</tt> nodes, you can use an URL like
-<tt>my_animation_@counter(1).png</tt> to load movie from a sequence of images.
+<p>Inside <code>MovieTexture</code> nodes, you can use an URL like
+<code>my_animation_@counter(1).png</code> to load movie from a sequence of images.
 This will load a series of images.
-We will substitute <tt>@counter(&lt;padding&gt;)</tt>
+We will substitute <code>@counter(&lt;padding&gt;)</code>
 with successive numbers starting from 0 or 1 (if filename
-<tt>my_animation_0.png</tt> exists,
-we use it; otherwise we start from <tt>my_animation_1.png</tt>).
+<code>my_animation_0.png</code> exists,
+we use it; otherwise we start from <code>my_animation_1.png</code>).
 
-<p>The paramter inside <tt>@counter(&lt;padding&gt;)</tt>
+<p>The paramter inside <code>@counter(&lt;padding&gt;)</code>
 macro specifies the padding.
 The number will be padded with zeros to have at least the required length.
-For example, <tt>@counter(1).png</tt>
+For example, <code>@counter(1).png</code>
 results in names like 1.png, 2.png, ..., 9.png, 10.png...
-While <tt>@counter(4).png</tt> results in names like 0001.png,
+While <code>@counter(4).png</code> results in names like 0001.png,
 0002.png, ..., 0009.png, 0010.png, ...
 
 <p>A movie loaded from image sequence will always run at the speed of
 25 frames per second. (Developers: if you use a class like
-<tt>TGLVideo2D</tt> to play movies, you can customize
-the <tt>TGLVideo2D.FramesPerSecond</tt> property.)
+<code>TGLVideo2D</code> to play movies, you can customize
+the <code>TGLVideo2D.FramesPerSecond</code> property.)
 
-<p>A simple image filename (without <tt>@counter(&lt;padding&gt;)</tt>
+<p>A simple image filename (without <code>@counter(&lt;padding&gt;)</code>
 macro) is also accepted
 as a movie URL. This just loads a trivial movie, that consists of one
 frame and is always still...
@@ -419,9 +419,9 @@ alpha channel appropriately. This is crucial if you want to have
 a video of smoke or flame in your game, since such textures usually
 require an alpha channel.
 
-<p>Samples of <tt>MovieTexture</tt> usage
+<p>Samples of <code>MovieTexture</code> usage
 are inside <?php echo a_href_page('our VRML/X3D demo models',
-'demo_models'); ?>, in subdirectory <tt>movie_texture/</tt>.
+'demo_models'); ?>, in subdirectory <code>movie_texture/</code>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -432,7 +432,7 @@ are inside <?php echo a_href_page('our VRML/X3D demo models',
   node_end();
 ?>
 
-<p>When the <tt>guiTexture</tt> field is <tt>TRUE</tt>, the texture is
+<p>When the <code>guiTexture</code> field is <code>TRUE</code>, the texture is
 not forced to have power-of-two size, and it never uses mipmaps. Good
 for GUI stuff, or other textures where forcing power-of-two causes
 unacceptable loss of quality (and it's better to resign from mipmaps).

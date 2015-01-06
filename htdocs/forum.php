@@ -126,7 +126,7 @@ proposed tasks:</p>
 If you'd like to join, or just send some patches improving something,
 please contact us, for example through <a href="<?php echo FORUM_URL; ?>">forum</a>.
 
-<p><a name="large_planned_features">Below are some ideas for development.</a>
+<p id="large_planned_features">Below are some ideas for development.
 Some of them are not trivial, although they may be easy
 if you have an expertise in a particular area (or you're willing to gain
 such expertise :) This list isn't exhaustive of course, there are many things
@@ -164,7 +164,7 @@ If you don't have time to work on them, but you badly need them, consider also
     own problems (mouse look is not smooth with LCL message loop).
 
     <p>The proposed task is to implement nice Cocoa backend
-    in <tt>CastleWindow</tt> unit. Contributions are welcome.
+    in <code>CastleWindow</code> unit. Contributions are welcome.
     This is an easy and rewarding task for a developer interested in Mac OS X.
   </li>
 
@@ -178,7 +178,7 @@ If you don't have time to work on them, but you badly need them, consider also
 
   <li>
     <p><b>Advanced networking support</b></p>
-    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <tt>file</tt> and <tt>data</tt> and <tt>http</tt> URLs.
+    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
 
     <p>Things missing are listed below (some of them may done by adding
     integration with <a href="http://lnet.wordpress.com/">LNet</a> or
@@ -186,11 +186,11 @@ If you don't have time to work on them, but you badly need them, consider also
     intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>).
 
     <ol>
-      <li><p><b>Support for <tt>https</tt></b>. By sending patches to add it to
+      <li><p><b>Support for <code>https</code></b>. By sending patches to add it to
         FpHttpClient. Or by using LNet or Synapse (they both include https
         support).
 
-      <li><p><b>Support for <tt>ftp</tt></b>. By using LNet or Synapse, unless
+      <li><p><b>Support for <code>ftp</code></b>. By using LNet or Synapse, unless
         something ready in FPC appears in the meantime.
         Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
 
@@ -211,7 +211,7 @@ If you don't have time to work on them, but you badly need them, consider also
         point: being able to reliably cancel the download.
 
         <p>There is a question how to do it.
-        We can use <tt>TThread</tt> for downloads,
+        We can use <code>TThread</code> for downloads,
         maybe even a couple of threads each for a separate download.
         We can use API that doesn't block (like LNet or Sockets,
         with Timeout > 0).
@@ -222,13 +222,13 @@ If you don't have time to work on them, but you badly need them, consider also
         to report when it finished work.
 
         <p>The difficult part is reliably breaking the download.
-        Using something like <tt>TThread.Terminate</tt> will not do anything
+        Using something like <code>TThread.Terminate</code> will not do anything
         good while the thread is hanging waiting for socket data
-        (<tt>TThread.Terminate</tt> is a graceful way to close the thread,
+        (<code>TThread.Terminate</code> is a graceful way to close the thread,
         it only works as often as the thread explicitly checks
-        <tt>TThread.Terminated</tt>). Hacks like <tt>Windows.TerminateThread</tt>
+        <code>TThread.Terminated</code>). Hacks like <code>Windows.TerminateThread</code>
         are 1. OS-specific 2. very dirty,
-        as <tt>TThread.Execute</tt> has no change to release allocated memory
+        as <code>TThread.Execute</code> has no change to release allocated memory
         and such.
         The bottom line: <i>merely using TThread does <b>not</b> give
         you a reliable and clean way to break the thread execution at any time</i>.
@@ -242,7 +242,7 @@ If you don't have time to work on them, but you badly need them, consider also
         So the correct answer seems <i>use LNet/Sockets (not
         FpHttpClient/Synapse), with non-blocking API, within a TThread;
         thanks to non-blocking API you can guarantee checking
-        <tt>TThread.Terminated</tt> at regular intervals</i>.
+        <code>TThread.Terminated</code> at regular intervals</i>.
 
         <p>I'm no expert in threads and networking, so if anyone has
         any comments about this (including just comfirming my analysis)
@@ -256,7 +256,7 @@ If you don't have time to work on them, but you badly need them, consider also
         http://stackoverflow.com/questions/3788743/correct-thread-destroy
         -->
 
-      <li><p><b>Support X3D <tt>LoadSensor</tt> node</b>.
+      <li><p><b>Support X3D <code>LoadSensor</code> node</b>.
 
       <li><p><b>Caching on disk of downloaded data</b>.
         Just like WWW browsers, we should be able to cache

@@ -9,7 +9,7 @@ castle_header('Castle Game Engine',
   'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
 ?>
 
-<table class="main_links" cellspacing="20">
+<table class="main_links">
   <tr>
     <td class="main_link" rowspan="2">
       <p><b>For developers:</b></p>

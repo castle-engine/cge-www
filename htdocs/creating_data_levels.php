@@ -13,12 +13,12 @@ $toc = new TableOfContents(
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>Below is a sample <tt>level.xml</tt> content,
+<p>Below is a sample <code>level.xml</code> content,
 with links to documentation for every attribute.
 
 <ul>
   <li>(Almost) every attribute is optional, so in practice
-    there's no need to specify them all in your <tt>level.xml</tt> files.
+    there's no need to specify them all in your <code>level.xml</code> files.
   <li>See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
     for information how to initialize levels from such files.
 </ul>
@@ -65,8 +65,8 @@ with links to documentation for every attribute.
 These are 3D shapes with special names that will be recognized by the engine:
 
 <ul>
-  <li><p>Initial <b>creatures / items</b> are indicated by placeholders named <tt>CasRes</tt>
-    + resource name. <tt>CasRes</tt> is short for <i>Castle Game Engine Resource</i>.
+  <li><p>Initial <b>creatures / items</b> are indicated by placeholders named <code>CasRes</code>
+    + resource name. <code>CasRes</code> is short for <i>Castle Game Engine Resource</i>.
 
     <!--
     Position is determined
@@ -75,15 +75,15 @@ These are 3D shapes with special names that will be recognized by the engine:
 
     <p>The resource name refers to
     <?php api_link('T3DResource.Name', 'CastleResources.T3DResource.html#Name'); ?>,
-    it much match one of <tt>name="ResourceName"</tt> declarations in your
-    <tt>resource.xml</tt> files.
+    it much match one of <code>name="ResourceName"</code> declarations in your
+    <code>resource.xml</code> files.
 
     <ul>
       <li>To place a creature on the level, name your placeholder
-        <tt>CasRes&lt;resource-name&gt;[&lt;optional-initial-life&gt;][_&lt;ignored&gt;]</tt>.
+        <code>CasRes&lt;resource-name&gt;[&lt;optional-initial-life&gt;][_&lt;ignored&gt;]</code>.
         By default (if not explicitly specified),
-        the initial creature life is taken from <tt>default_max_life</tt>
-        given in <tt>resource.xml</tt>.
+        the initial creature life is taken from <code>default_max_life</code>
+        given in <code>resource.xml</code>.
         It is possible to place a creature corpse on the level this way,
         by specifying life as 0.
         Initial creature looking direction
@@ -92,7 +92,7 @@ These are 3D shapes with special names that will be recognized by the engine:
         in short: look at where local +X of the placeholder is pointing.
 
       <li>To place an item on the level, name your placeholder
-        <tt>CasRes&lt;resource-name&gt;[&lt;optional-item-quantity&gt;][_&lt;ignored&gt;]</tt>.
+        <code>CasRes&lt;resource-name&gt;[&lt;optional-item-quantity&gt;][_&lt;ignored&gt;]</code>.
         By default (if not explicitly specified),
         item quantity is 1.
     </ul>
@@ -133,9 +133,9 @@ These are 3D shapes with special names that will be recognized by the engine:
         sectors layouts that I will typically use).
 -->
 
-    <p>Placeholders named <tt>CasSector&lt;index&gt;[_&lt;ignored&gt;]</tt>
+    <p>Placeholders named <code>CasSector&lt;index&gt;[_&lt;ignored&gt;]</code>
     define sectors.
-    Placeholders named <tt>CasWaypoint[_&lt;ignored&gt;]</tt> define waypoints.
+    Placeholders named <code>CasWaypoint[_&lt;ignored&gt;]</code> define waypoints.
 
     <p>Sectors of waypoints (and reverse property, waypoints
     of sectors) are automatically calculated, by looking how waypoints
@@ -171,10 +171,10 @@ These are 3D shapes with special names that will be recognized by the engine:
 "placeholder name" from a VRML/X3D shape.</p>
 
 <ol>
-  <li><tt>"x3dshape"</tt> (default) means that the placeholder name comes from
+  <li><code>"x3dshape"</code> (default) means that the placeholder name comes from
     VRML 2.0/X3D Shape node name (set using "DEF" in VRML/X3D).
 
-  <li><tt>"blender"</tt> means that the placeholder name is detected following
+  <li><code>"blender"</code> means that the placeholder name is detected following
     standard Blender VRML/X3D exporters behavior.
     This allows you to set the placeholder name easily in Blender,
     just set the Blender object name.

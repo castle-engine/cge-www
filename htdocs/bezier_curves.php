@@ -43,7 +43,7 @@ curves connected smoothly).
 point on that curve.
 
 <p>On start background is inited from
-UserOptionsPath + <tt>default_bezier_curves_image.jpg</tt>, if it exists.
+UserOptionsPath + <code>default_bezier_curves_image.jpg</code>, if it exists.
 UserOptionsPath = (linux, freebsd, macosx) home dir, (windows) exe dir.
 
 <p>Save/Open work using non-standard nodes RationalBezierCurve
@@ -64,7 +64,7 @@ SmoothInterpolatedCurve {
 }
 </pre>
 
-<h2><a name="section_depends">Requirements</a></h2>
+<h2 id="section_depends">Requirements</h2>
 
 <?php echo depends_ul( array(
   DEPENDS_OPENGL,

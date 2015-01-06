@@ -30,9 +30,9 @@ Both skeletal and skinned animation is supported.</p>
     <?php echo x3d_node_link('HAnimDisplacer'); ?> (X3D version)
 
     <p>As you see, X3D version has exactly the same nodes, working the same way,
-    but with <tt>HAnim</tt> prefix before node name. (I have no idea why
+    but with <code>HAnim</code> prefix before node name. (I have no idea why
     this prefix was added in X3D specification, but it's supported.)
-    Actually we allow both versions (with <tt>HAnim</tt> prefix and without)
+    Actually we allow both versions (with <code>HAnim</code> prefix and without)
     in all VRML and X3D versions (<?php echo a_href_page_hashlink("with our
     engine you can generally mix VRML/X3D versions",
     'x3d_extensions', 'section_ext_mix_vrml_1_2'); ?>). But VRML authors/generators should
@@ -51,22 +51,22 @@ in one model):
   <li><p><i>skeletal</i> &mdash; you place your geometry inside
     joints (as segments or sites). This is simple, and joints
     work then quite like animated transform nodes.
-    Animating transformations of <tt>Joint</tt> nodes and such
-    is optimized, just like for <tt>Transform</tt> node.</p>
+    Animating transformations of <code>Joint</code> nodes and such
+    is optimized, just like for <code>Transform</code> node.</p>
     </li>
 
   <li><p><i>skinned</i> &mdash; place the actual geometry (shapes)
-    inside "<tt>HAnimHumanoid.skin</tt>" field.
-    Then you refer (<tt>USE</tt>) the skin coordinates in
-    "<tt>HAnimHumanoid.skinCoord</tt>". And finally,
+    inside "<code>HAnimHumanoid.skin</code>" field.
+    Then you refer (<code>USE</code>) the skin coordinates in
+    "<code>HAnimHumanoid.skinCoord</code>". And finally,
     in each joint you modify skin coordinates by
-    "<tt>HAnimJoint.skinCoordIndex</tt>", "<tt>HAnimJoint.skinCoordWeight</tt>".</p>
+    "<code>HAnimJoint.skinCoordIndex</code>", "<code>HAnimJoint.skinCoordWeight</code>".</p>
 
-    <p>Remember that you also have to list (<tt>USE</tt>) all
-    the joints inside flat list "<tt>HAnimHumanoid.joints</tt>".
+    <p>Remember that you also have to list (<code>USE</code>) all
+    the joints inside flat list "<code>HAnimHumanoid.joints</code>".
     Actually, specification requires them in every case (not only
     for skinned animation), but our engine <i>for now</i> uses them only
-    for joints that affect "<tt>skinCoordIndex</tt>".</p>
+    for joints that affect "<code>skinCoordIndex</code>".</p>
 
     <p><a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality
     has a nice overview of how the X3D nodes should be set up</a>,
@@ -82,7 +82,7 @@ in one model):
     <i>Edit -&gt; Add Humanoids Joints Visualization</i>
     menu option to see the joints centers and their names.</p>
 
-    <p>TODO: <tt>skinNormal</tt> is not supported yet.</p></li>
+    <p>TODO: <code>skinNormal</code> is not supported yet.</p></li>
 </ul>
 
 <?php

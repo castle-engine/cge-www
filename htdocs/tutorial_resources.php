@@ -11,7 +11,7 @@ and items suitable for 3D games is ready, in
 <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
 <?php api_link('CastleItems', 'CastleItems.html'); ?> units.</p>
 
-<p>Creatures and items are defined by files named <tt>resource.xml</tt>
+<p>Creatures and items are defined by files named <code>resource.xml</code>
 in the game data. Their contents looks like this:</p>
 
 <?php echo xml_highlight(
@@ -29,25 +29,25 @@ in the game data. Their contents looks like this:</p>
   </model>
 </resource>'); ?>
 
-<p>The <tt>url</tt> properties refer to actual 3D models
+<p>The <code>url</code> properties refer to actual 3D models
 defining creature animations.
-See <tt>examples/fps_game/</tt> data for a real example how such file looks
+See <code>examples/fps_game/</code> data for a real example how such file looks
 like. And see <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>
  for a complete
-documentation of <tt>resource.xml</tt> files, and how to create and export
+documentation of <code>resource.xml</code> files, and how to create and export
 creature/item animations.</p>
 
 <p>The most important properties
-about creatures and items specified in <tt>resource.xml</tt>
+about creatures and items specified in <code>resource.xml</code>
 files are:</p>
 
 <ul>
-  <li><tt>name</tt>: this is a unique internal name of the
+  <li><code>name</code>: this is a unique internal name of the
     resource (creature or item). It can be used as a placeholder name
     to place initial creatures/items on the level using 3D modeller
     (like <a href="http://www.blender.org/">Blender</a>).
 
-  <li><tt>type</tt>: refers to ObjectPascal class handling the actual behavior of
+  <li><code>type</code>: refers to ObjectPascal class handling the actual behavior of
     this resource. Engine already defines various basic creatures/items behavior,
     you can also extend our classes to create your own types.
 </ul>
@@ -66,12 +66,12 @@ loaded.
 You usually want to do it
 before loading the level, this way loading the level will be able
 to automatically add initial creatures/items from placeholders.
-It is best to also list necessary creatures in <tt>level.xml</tt>
-file in <tt>&lt;prepare_resources&gt;</tt> element,
+It is best to also list necessary creatures in <code>level.xml</code>
+file in <code>&lt;prepare_resources&gt;</code> element,
 to have them prepared (list there both the initial creatures
 and the creatures you will spawn by code during the game).
 See <?php echo a_href_page('creating levels', 'creating_data_levels'); ?>
- for documentation of <tt>level.xml</tt>  files.
+ for documentation of <code>level.xml</code>  files.
 
 <p>The "type" of the creatures determines it's ObjectPascal class, in
 turn determining creature AI, and how many 3D models (or states) it has,

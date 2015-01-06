@@ -37,9 +37,9 @@ context. There are two ways of doing this:
     <p><b>Create new project using Lazarus "New Project" menu item.
     Choose "Custom Application" (or "Project-&gt;Simple Program").
     Using "Project->Project Inspector" window add a "New Requirement"
-    and choose <tt>castle_base</tt> package.
-    Then add another requirement and choose <tt>castle_window</tt>
-    package. (You should have <tt>castle_xxx</tt> packages compiled
+    and choose <code>castle_base</code> package.
+    Then add another requirement and choose <code>castle_window</code>
+    package. (You should have <code>castle_xxx</code> packages compiled
     in a previous step).</b></p>
 
     <p>Place this source code in your program file (lpr).</p>
@@ -60,11 +60,11 @@ end.'); ?>
 
     <p>Above we set global <?php api_link('Application',
     'CastleWindow.html#Application'); ?>
-    as the owner (first constructor parameter) of <tt>Window</tt>. This way
-    we don't have to care about freeing it later. When the <tt>Application</tt> is
-    freed (which is done automatically by <tt>CastleWindow</tt> unit finalization),
-    the <tt>Window</tt> will be freed too. You can pass <tt>nil</tt> instead of
-    <tt>Application</tt> if you really want to avoid this automatic memory
+    as the owner (first constructor parameter) of <code>Window</code>. This way
+    we don't have to care about freeing it later. When the <code>Application</code> is
+    freed (which is done automatically by <code>CastleWindow</code> unit finalization),
+    the <code>Window</code> will be freed too. You can pass <code>nil</code> instead of
+    <code>Application</code> if you really want to avoid this automatic memory
     management, and free things yourself. This whole "owner" mechanism is
     actually a normal behavior of ObjectPascal components.</p>
 
@@ -73,7 +73,7 @@ end.'); ?>
   <li><p><b>Alternative is to use our
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     inside normal Lazarus
-    form</b>. Just pick <tt>TCastleControl</tt> from the component palette (tab
+    form</b>. Just pick <code>TCastleControl</code> from the component palette (tab
     <i>"Castle"</i>) and drop it on a regular Lazarus form. This allows for
     seamless integration with the normal application design using
     Lazarus, as you have a normal Lazarus form where you can place
@@ -91,18 +91,18 @@ end.'); ?>
     (<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>).
     Both approaches make sense, really, and it's your
-    choice. You should choose Lazarus method (<tt>TCastleControl</tt>) if you want
+    choice. You should choose Lazarus method (<code>TCastleControl</code>) if you want
     to integrate game context with normal GUI (Lazarus forms, controls) or
     if you're just more comfortable with dropping components on a Lazarus
     form. If you want best OpenGL features, or if you're just more
     comfortable working outside of Lazarus (like with custom editor and
     only calling FPC through command-line) then probably you want to choose
-    <tt>TCastleWindow</tt> method. The difference is only how you start: create a
-    <tt>TCastleWindow</tt> instance by code, or drop <tt>TCastleControl</tt>
+    <code>TCastleWindow</code> method. The difference is only how you start: create a
+    <code>TCastleWindow</code> instance by code, or drop <code>TCastleControl</code>
     on a Lazarus
-    form. Everything else goes <i>almost</i> the same, as the <tt>TCastleControl</tt>
-    and <tt>TCastleWindow</tt> are designed to be very similar
-    (for example they both have <tt>Controls</tt> list, where
+    form. Everything else goes <i>almost</i> the same, as the <code>TCastleControl</code>
+    and <code>TCastleWindow</code> are designed to be very similar
+    (for example they both have <code>Controls</code> list, where
     we add 2D and 3D stuff of our engine).
 
     <p>In case of using Lazarus forms, you will usually want to place the
@@ -110,18 +110,18 @@ end.'); ?>
     just place it inside the
     <?php api_link('OnGLContextOpen event', 'CastleControl.TCastleControlBase.html#OnGLContextOpen'); ?>
     event (you
-    could also move non-OpenGL parts into <tt>TForm.OnCreate</tt>, that happens
+    could also move non-OpenGL parts into <code>TForm.OnCreate</code>, that happens
     earlier).
 
     <p><b>Create new project using Lazarus "New Project" menu item. Choose
     "Application". Drop TCastleControl on your form and resize it to
     fit the window. Press "Run" and behold :)</b>
 
-    <p>Note about key handling (applies only to <tt>TCastleControl</tt>): Like every
-    proper Lazarus control, our <tt>TCastleControl</tt> receives the keys only when
+    <p>Note about key handling (applies only to <code>TCastleControl</code>): Like every
+    proper Lazarus control, our <code>TCastleControl</code> receives the keys only when
     it has <i>focus</i>. The control <i>does not</i> capture all the keys
     pressed over the form (this would be bad, as other controls, maybe
-    even other <tt>TCastleControl</tt> on the same form, may want to handle
+    even other <code>TCastleControl</code> on the same form, may want to handle
     them). To make sure that controlling the camera by keys (arrow keys,
     and/or AWSD and other keys, more about keys later) works, make sure
     that your control has a focus.
@@ -133,7 +133,7 @@ end.'); ?>
 
     <p>whenever you want.
 
-    <p>There's no visual indicator when <tt>TCastleControl</tt> has focus
+    <p>There's no visual indicator when <code>TCastleControl</code> has focus
     (as there's
     no standard way to show it, that would be pleasing for various game
     applications).
@@ -142,31 +142,31 @@ end.'); ?>
 
     <ol>
       <li><p>In the simplest cases, the problem simply doesn't exist, as
-        <tt>TCastleControl</tt> is the only thing on your form able to receive focus
+        <code>TCastleControl</code> is the only thing on your form able to receive focus
         &mdash; so it always has focus. All other components on this Lazarus form
-        (if any) are unfocusable, like <tt>TSpeedButton</tt>.</p></li>
+        (if any) are unfocusable, like <code>TSpeedButton</code>.</p></li>
 
       <li><p>If you want to use other focusable controls, it's really up to you
         how to present it to user. In principle, you don't have to do
         anything, focus works, and it can be switched into/out of
-        <tt>TCastleControl</tt> by the Tab key or clicking with mouse on other
+        <code>TCastleControl</code> by the Tab key or clicking with mouse on other
         controls.</p>
 
         <ol>
           <li><p>You may want to create a special key shortcut to quickly shift
-            focus to your control (calling <tt>Control.SetFocus</tt>).</p></li>
+            focus to your control (calling <code>Control.SetFocus</code>).</p></li>
 
           <li><p>You may want to draw some visual indication, like a border around
-            <tt>TCastleControl</tt>, when it's focused. Actually, our <tt>TCastleControl</tt>
-            may contain inside our own controls (<tt>TUIControl</tt> class), so you may
-            want to draw <tt>TUIControl</tt> that is focused (see
-            <tt>examples/3d_rendering_processing/multiple_viewports.lpr</tt> for simple
+            <code>TCastleControl</code>, when it's focused. Actually, our <code>TCastleControl</code>
+            may contain inside our own controls (<code>TUIControl</code> class), so you may
+            want to draw <code>TUIControl</code> that is focused (see
+            <code>examples/3d_rendering_processing/multiple_viewports.lpr</code> for simple
             example that shows which viewport is active, having 4 viewports
             within a single OpenGL context).</p></li>
 
           <li><p>Finally, if you really want, you can also use standard Lazarus
-            features like <tt>TForm.KeyPreview</tt> and
-            <tt>TForm.OnKeyDown</tt> / <tt>TForm.OnKeyUp</tt> to
+            features like <code>TForm.KeyPreview</code> and
+            <code>TForm.OnKeyDown</code> / <code>TForm.OnKeyUp</code> to
             capture some keys at form level and pass them directly to chosen
             control.</p></li>
         </ol>

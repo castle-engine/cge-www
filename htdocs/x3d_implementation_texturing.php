@@ -2,9 +2,9 @@
   require_once 'x3d_implementation_common.php';
   x3d_status_header('Texturing', 'texturing',
     'This component provides extensive textures support.
-     2D textures may be loaded from image files (<tt>ImageTexture</tt>),
-     movie files (<tt>MovieTexture</tt>) or encoded directly in VRML/X3D files
-     (<tt>PixelTexture</tt>, also <tt>ImageTexture</tt> with <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data</a> urls).
+     2D textures may be loaded from image files (<code>ImageTexture</code>),
+     movie files (<code>MovieTexture</code>) or encoded directly in VRML/X3D files
+     (<code>PixelTexture</code>, also <code>ImageTexture</code> with <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data</a> urls).
      Multiple textures may be overlayed on a single polygon in a variety
      of ways. Texture coordinates may be explicitly provided or automatically
      calculated, and may be transformed.');
@@ -28,8 +28,8 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <tt>texturing_advanced</tt> and <tt>movie_texture</tt>
-and <tt>multi_texturing</tt> subdirectories inside <?php
+see the <code>texturing_advanced</code> and <code>movie_texture</code>
+and <code>multi_texturing</code> subdirectories inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -96,22 +96,22 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Support for all fields (unless mentioned below).
 
-    <p>Note that using <tt>MultiTexture.function</tt>
+    <p>Note that using <code>MultiTexture.function</code>
     forces shader pipeline for given shape (so it will not work on really
     old GPUs).
     There is no way to reasonably do this using OpenGL fixed-function pipeline,
     as corresponding OpenGL settings
     (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
-    are done, while X3D spec requires <tt>function</tt> to act afterwards.
+    are done, while X3D spec requires <code>function</code> to act afterwards.
 
     <p><i>TODO</i>: modes
-    <tt>MODULATEALPHA_ADDCOLOR</tt>,
-    <tt>MODULATEINVALPHA_ADDCOLOR</tt>,
-    <tt>MODULATEINVCOLOR_ADDALPHA</tt>
+    <code>MODULATEALPHA_ADDCOLOR</code>,
+    <code>MODULATEINVALPHA_ADDCOLOR</code>,
+    <code>MODULATEINVCOLOR_ADDALPHA</code>
     are temporarily not supported.</p>
 
     <p><i>TODO</i>: source values "DIFFUSE" and "SPECULAR" are treated
-    the same, as <tt>PRIMARY_COLOR</tt> (in the sense of OpenGL
+    the same, as <code>PRIMARY_COLOR</code> (in the sense of OpenGL
     ARB_texture_env_combine extension). Primary color contains
     material ambient, diffuse and specular factors,
     multiplied by lighting properties, summed over all lights.
@@ -142,8 +142,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('TextureProperties'); ?>
 
-    <p><tt>minificationFilter</tt>, <tt>magnificationFilter</tt>,
-    <tt>anisotropicDegree</tt> are supported. <i>TODO</i>: rest is not.
+    <p><code>minificationFilter</code>, <code>magnificationFilter</code>,
+    <code>anisotropicDegree</code> are supported. <i>TODO</i>: rest is not.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -155,11 +155,7 @@ support</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><a name="section_multi_texturing_clarifications"></a>
-<a name="section_multi_texturing_source"></a>
-<a name="section_multi_texturing_spec_problems"></a>
-<a name="section_default_texture_mode"></a>
-<?php echo a_href_page('Comments about X3D MultiTexturing problems
+<p><?php echo a_href_page('Comments about X3D MultiTexturing problems
 and solutions (used in our engine, and proposed for future X3D spec) are here.',
 'x3d_multi_texturing'); ?>
 
@@ -171,7 +167,7 @@ compressed for GPU (S3TC), storing mipmaps, cube maps, and volume (3D) textures.
 A number of technical details about DDS implementation are below, but in short:
 we try to support all formats and all options of DDS in a standard way.
 You may find example DDS images inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <tt>textures</tt> subdirectory for <tt>*.dds</tt> files). You can open them directly with our image viewer <?php echo a_href_page("glViewImage", "glviewimage") ?>.</p>
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <code>textures</code> subdirectory for <code>*.dds</code> files). You can open them directly with our image viewer <?php echo a_href_page("glViewImage", "glviewimage") ?>.</p>
 
 <p>Implementation history:
 

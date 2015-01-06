@@ -17,7 +17,7 @@ data in our engine.
     <ul>
       <li><p>Note about attributes that specify URLs: the default value is
         always empty string (although sometimes URL is just required,
-        e.g. <tt>"scene"</tt> inside <tt>level.xml</tt>). Relative URLs
+        e.g. <code>"scene"</code> inside <code>level.xml</code>). Relative URLs
         are always relative to the XML file. In simple cases, you just use
         filenames there, and place your data files along the XML files.
 
@@ -28,25 +28,25 @@ data in our engine.
     </ul>
 
   <li><p>Note that the attributes shown are not exhaustive: you can
-    derive new classes (descendants of <tt>TLevelLogic</tt>, <tt>TCreatureResource</tt>,
-    and others) where you read other attributes. Also, for <tt>resource.xml</tt>,
-    we show attributes of a <tt>TWalkAttackCreatureResource</tt> class (indicated
-    by <tt>type="WalkAttack"</tt>), but there are also other resources:
-    <tt>TMissileCreatureResource</tt>, <tt>TStillCreatureResource</tt>,
-    <tt>TItemResource</tt>,
-    <tt>TItemWeaponResource</tt>. They all share some properties (defined at base
-    <tt>T3DResource</tt>, also all creatures have base <tt>TCreatureResource</tt>, also
-    all items have base <tt>TItemResource</tt>), and also they all have some
+    derive new classes (descendants of <code>TLevelLogic</code>, <code>TCreatureResource</code>,
+    and others) where you read other attributes. Also, for <code>resource.xml</code>,
+    we show attributes of a <code>TWalkAttackCreatureResource</code> class (indicated
+    by <code>type="WalkAttack"</code>), but there are also other resources:
+    <code>TMissileCreatureResource</code>, <code>TStillCreatureResource</code>,
+    <code>TItemResource</code>,
+    <code>TItemWeaponResource</code>. They all share some properties (defined at base
+    <code>T3DResource</code>, also all creatures have base <code>TCreatureResource</code>, also
+    all items have base <code>TItemResource</code>), and also they all have some
     specific properties. See the engine API documentation for a complete
     list of properties of above classes, (almost) all of them can
-    be set by a <tt>resource.xml</tt> file.
+    be set by a <code>resource.xml</code> file.
 </ol>
 
 <h2>Notes specifically about level.xml and resource.xml files</h2>
 
 <ol>
   <li><p>The data directory of the game is scanned for the special XML files named
-    <tt>level.xml</tt> and <tt>resource.xml</tt>. This allows you to define new
+    <code>level.xml</code> and <code>resource.xml</code>. This allows you to define new
     creatures or items (something that can be picked and carried by the player)
     or levels to the game simply by adding an additional subdirectory
     to the game data.
@@ -59,7 +59,7 @@ data in our engine.
     <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
     function.
 
-  <li><p>Each <tt>level.xml</tt> / <tt>resource.xml</tt>
+  <li><p>Each <code>level.xml</code> / <code>resource.xml</code>
     file may contain relative URLs for
     3D models and images related to this resource.
     The idea is that the XML file is kept together with the data of particular

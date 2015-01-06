@@ -14,35 +14,35 @@ castle_thumbs(array(
   array('filename' => 'terrain_2.png', 'titlealt' => 'Terrain from SRTM file'),
 )) . '<ol>
   <li>
-    <p>There\'s a new demo in engine <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN sources</a>: <tt>terrain</tt> (look inside <tt>kambi_vrml_game_engine/examples/vrml/terrain/</tt> directory). It shows basic procedural terrain generation. Uses cosine interpolated noise, summed by <i>Fractional Brownian Motion</i> (which is a fancy way of saying "sum a few scaled noise functions"&nbsp;:)&nbsp;).</p>
+    <p>There\'s a new demo in engine <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN sources</a>: <code>terrain</code> (look inside <code>kambi_vrml_game_engine/examples/vrml/terrain/</code> directory). It shows basic procedural terrain generation. Uses cosine interpolated noise, summed by <i>Fractional Brownian Motion</i> (which is a fancy way of saying "sum a few scaled noise functions"&nbsp;:)&nbsp;).</p>
 
     <p>It can also load a terrain data from <a href="http://www2.jpl.nasa.gov/srtm/">SRTM (.hgt files)</a> (for example, <a href="http://netgis.geo.uw.edu.pl/srtm/Europe/">sample files for Europe are here</a>). And it can display a terrain defined by mathematical expression, like <i>sin(x*10) * sin(y*10)</i> (see <a href="http://castle-engine.sourceforge.net/kambi_script.php">KambiScript language reference</a> for full syntax and functions available for math expressions).</p>
 
     <p>If you\'re interested in some background, <a href="http://freespace.virgin.net/hugo.elias/models/m_perlin.htm">this is the simplest introduction to "making noise"</a> (although beware that it\'s actually not about Perlin noise :), Perlin noise is a "gradient noise", not covered there).</p>
 
-    <p>I would like to extend this <tt>terrain</tt> demo to something much larger (infinite terrain rendering, render with normals, cover with a couple layers of textures, add water surface, maybe render with Precomputed Radiance Transfer (taken from my other demo) etc.). For now, it\'s a start :)</p>
+    <p>I would like to extend this <code>terrain</code> demo to something much larger (infinite terrain rendering, render with normals, cover with a couple layers of textures, add water surface, maybe render with Precomputed Radiance Transfer (taken from my other demo) etc.). For now, it\'s a start :)</p>
   </li>
 
   <li>
-    <p>Developers will note large changes in the layout of <tt>kambi_vrml_game_engine</tt> archive (and SVN directory).</p>
+    <p>Developers will note large changes in the layout of <code>kambi_vrml_game_engine</code> archive (and SVN directory).</p>
 
     <ol>
-      <li>All "core" sources are moved to the <a href="' . sf_checkout_link(false, 'castle_game_engine/src/') . '"><tt>src/</tt> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
+      <li>All "core" sources are moved to the <a href="' . sf_checkout_link(false, 'castle_game_engine/src/') . '"><code>src/</code> subdirectory</a>, to keep them separate from other stuff (packages, doc, tests etc.).
 
-      <li><a href="' . sf_checkout_link(false, 'castle_game_engine/examples/') . '"><tt>examples/</tt> subdirectory</a> was moved to the top. I should have done this a long time ago.  If you want to look at VRML demos, now you just go to <tt>examples/vrml/</tt> subdirectory, which is hopefully obvious to new developers. (Previously, you had to dig into cryptically-named <tt>3dmodels.gl/examples/</tt>)
+      <li><a href="' . sf_checkout_link(false, 'castle_game_engine/examples/') . '"><code>examples/</code> subdirectory</a> was moved to the top. I should have done this a long time ago.  If you want to look at VRML demos, now you just go to <code>examples/vrml/</code> subdirectory, which is hopefully obvious to new developers. (Previously, you had to dig into cryptically-named <code>3dmodels.gl/examples/</code>)
 
       <!-- teaser </li></ol></li></ol> -->
 
       <li>Also, some subdirectory names changes, and some units moved around.
         <ul>
-          <li>We have new subdirectory for <tt>glwindow</tt> specific stuff (since the distinction what is for GLWindow, and what is not, is important to many developers; e.g. if you always want to use Lazarus OpenGL control, then GLWindow isn\'t really useful for you).
-          <li>We have new subdirectory for <tt>ui</tt> This contains now the navigator and GLMenu &mdash; both things were available already, but now are implemented as <tt>TUIControl</tt> descendants, handled in more uniform fashion. In the future, I want to extend this, to make more OpenGL controls this way. The very scene manager may be treated as such "control" one day.
+          <li>We have new subdirectory for <code>glwindow</code> specific stuff (since the distinction what is for GLWindow, and what is not, is important to many developers; e.g. if you always want to use Lazarus OpenGL control, then GLWindow isn\'t really useful for you).
+          <li>We have new subdirectory for <code>ui</code> This contains now the navigator and GLMenu &mdash; both things were available already, but now are implemented as <code>TUIControl</code> descendants, handled in more uniform fashion. In the future, I want to extend this, to make more OpenGL controls this way. The very scene manager may be treated as such "control" one day.
           <li>I noticed that the most important directories of our engine had a little cryptic naming: 3dgraph, 3dmodels, 3dmodels.gl. After a little shuffling, the new names are 3d, vrml, vrml/opengl/ &mdash; this should make things much clearer.
         </ul>
       <li>A minor thing is also that units Glw_Navigated, Glw_Win, Glw_Demo are gone, along with the one-unit package kambi_glwindow_navigated. I never liked these units, they were just handy shortcuts for simple demo programs. All normal programs should declare and explicitly create TGLWindow instance themselves, this is just 2 more lines of code but gives you better understanding what TGLWindow is and is more clean IMO.
       <li>Also, new kambi_vrml_game_engine*.tar.gz archives will contain offline HTML docs by pasdoc (the same ones <a href="http://castle-engine.sourceforge.net/apidoc/html/index.html">as available online</a>).
     </ol>
-    <!-- p>Please note that because of this change, pretty much everything inside <tt>kambi_vrml_game_engine</tt> is now, well, somewhere else. E.g. some URLs here and there may temporarily not work. Of course, please submit any observed problems, so that I may fix every page to be perfect. -->
+    <!-- p>Please note that because of this change, pretty much everything inside <code>kambi_vrml_game_engine</code> is now, well, somewhere else. E.g. some URLs here and there may temporarily not work. Of course, please submit any observed problems, so that I may fix every page to be perfect. -->
   </li>
 </ol>
 '),
@@ -76,7 +76,7 @@ castle_thumbs(array(
     </ol>
   </li>
 
-  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <tt>GeneratedShadowMap</tt>. The complete examples, with shaders, are available inside our <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
+  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <code>GeneratedShadowMap</code>. The complete examples, with shaders, are available inside our <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
 
     <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
 
@@ -103,13 +103,13 @@ castle_thumbs(array(
   array('filename' => 'nurbs_curve_interpolators.png', 'titlealt' => 'Animating along the NURBS curve (NurbsPositionInterpolator and NurbsOrientationInterpolator)'),
   array('filename' => 'nurbs_surface_interpolator.png', 'titlealt' => 'Animating along the NURBS surface (NurbsSurfaceInterpolator)'),
 )) . '
-<p>Implementation of NURBS is progressing very nicely. In addition to previously announced nodes (rendered curves and surfaces: <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt>), we now also handle X3D NURBS interpolators: <tt>NurbsPositionInterpolator</tt>, <tt>NurbsSurfaceInterpolator</tt>, <tt>NurbsOrientationInterpolator</tt>. Using them you can animate movement of objects and viewpoints along the NURBS curves and surfaces.</p>
+<p>Implementation of NURBS is progressing very nicely. In addition to previously announced nodes (rendered curves and surfaces: <code>NurbsPatchSurface</code> and <code>NurbsCurve</code>), we now also handle X3D NURBS interpolators: <code>NurbsPositionInterpolator</code>, <code>NurbsSurfaceInterpolator</code>, <code>NurbsOrientationInterpolator</code>. Using them you can animate movement of objects and viewpoints along the NURBS curves and surfaces.</p>
 
 <p>Also basic VRML 97 NURBS nodes are implemented, for compatibility.</p>
 
 <p><a href="http://castle-engine.sourceforge.net/x3d_implementation_nurbs.php">Up-to-date documentation about supported NURBS nodes is here.</a> Some demo scenes are inside kambi_vrml_test_suite in SVN, see e.g. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/nurbs_curve_interpolators.x3dv">nurbs_curve_interpolators.x3dv</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/nurbs_surface_interpolator.x3dv">nurbs_surface_interpolator.x3dv</a>.</p>
 
-<p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
+<p>You can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <code>view3dscene</code>. Or, of course, you can wait for the next stable view3dscene 3.5 release &mdash; later this month.</p>
 '),
 
     array('title' => 'Development news - NURBS basics',
@@ -122,13 +122,13 @@ castle_thumbs(array(
 castle_thumbs(array(
   array('filename' => 'nurbs_lantern.png', 'titlealt' => 'Lantern composed from NURBS patches (from web3d.org examples)'),
 )) . '
-<p>Basic support for X3D NURBS is implemented. <tt>NurbsPatchSurface</tt> and <tt>NurbsCurve</tt> nodes are handled following X3D specification.</p>
+<p>Basic support for X3D NURBS is implemented. <code>NurbsPatchSurface</code> and <code>NurbsCurve</code> nodes are handled following X3D specification.</p>
 
 <p>As a background info: the core of our NURBS implementation (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/src/3d/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
 
 <p>For the next engine release, this NURBS support will be extended. I would like to cover X3D NURBS component up to level 2 and also implement most important VRML 97 NURBS nodes for compatibility (they are similar but a little incompatible to X3D ones).</p>
 
-<p>For now, you can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <tt>view3dscene</tt>.</p>
+<p>For now, you can try the new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a> of <code>view3dscene</code>.</p>
 '),
 
     array('title' => 'view3dscene 3.4 release - advanced texturing',
@@ -151,11 +151,11 @@ castle_thumbs(array(
 <ul>
   <li><p>All X3D multi-texturing nodes implemented. See also <a href="http://castle-engine.sourceforge.net/x3d_implementation_texturing.php#section_multi_texturing_clarifications">clarifications how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</p></li>
 
-  <li><p>All X3D cube map nodes implemented. This includes <tt>GeneratedCubeMapTexture</tt>, very useful to make mirrors, especially with the help of <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR extensions</a>.</p></li>
+  <li><p>All X3D cube map nodes implemented. This includes <code>GeneratedCubeMapTexture</code>, very useful to make mirrors, especially with the help of <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR extensions</a>.</p></li>
 
   <li><p>All X3D 3D texture nodes implemented.</p></li>
 
-  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <tt>ImageTexture3D</tt>, cube map in <tt>ImageCubeMapTexture</tt>). S3TC compression, explicit mipmaps are all supported, <a href="http://castle-engine.sourceforge.net/x3d_implementation_texturing.php#section_dds">more details here</a>. New ' . news_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <tt>glViewImage</tt> along the road.--></p></li>
+  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <code>ImageTexture3D</code>, cube map in <code>ImageCubeMapTexture</code>). S3TC compression, explicit mipmaps are all supported, <a href="http://castle-engine.sourceforge.net/x3d_implementation_texturing.php#section_dds">more details here</a>. New ' . news_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <code>glViewImage</code> along the road.--></p></li>
 
   <li><p><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
 
@@ -163,7 +163,7 @@ castle_thumbs(array(
 
   <li><p>New extensions to easily make <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">projective texturing and shadow maps</a> within your VRML/X3D worlds.</p></li>
 
-  <li><p>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>).</p></li>
+  <li><p>Anisotropic texture filtering (by standard X3D <code>TextureProperties.anisotropicDegree</code>).</p></li>
 
   <li><p><i>Hardware occlusion query</i> may be activated for rendering, this can speed browsing large scenes enormously. Try it by menu options <i>View -&gt; ... Occlusion Query</i>.</p></li>
 </ul>
@@ -173,7 +173,7 @@ castle_thumbs(array(
 <ul>
   <li><p>When using single texturing, you can set environment mode to replace <a href="http://castle-engine.sourceforge.net/x3d_implementation_status.php#default_texture_mode_modulate">(default is modulate)</a>.</p></li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/kambi_script.php">KambiScript</a> functions to operate on string characters: <tt>"character_from_code"</tt>, overloaded <tt>"array_set", "array_get", "array_get_count", "array_set_count"</tt> for strings.</li>
+  <li><p><a href="http://castle-engine.sourceforge.net/kambi_script.php">KambiScript</a> functions to operate on string characters: <code>"character_from_code"</code>, overloaded <code>"array_set", "array_get", "array_get_count", "array_set_count"</code> for strings.</li>
 
   <li><p>As usual, along with view3dscene release, we also release <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">accompanying Kambi VRML engine (version 1.8.0)</a> for developers. Released binaries are compiled with FPC 2.2.4, sources can also be compiled with FPC from trunk (tested on 2009-08-21). I also provide binaries for Linux/x86_64 (not only 32-bit Linux/i386), as I see a demand for it.</li>
 </ul>'
@@ -197,7 +197,7 @@ castle_thumbs(array(
   <li><a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_extensions.html#section_ext_tex_coord_worldspace">WORLDSPACEREFLECTIONVECTOR, WORLDSPACENORMAL extensions</a> are documented.</li>
   <li>We have a <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_implementation_texturing.php#section_multi_texturing">clear and precise specification how MultiTexture.mode/source fields work and how to separate them for rgb and alpha channel</a>.</li>
   <li>Texture handling code was refactored last week: we have much cleaner implementation now, various bump mapping fixes were done by the way, and all texture generating nodes use now OpenGL framebuffer (possibly faster, and texture dimensions no longer limited by window size).</li>
-  <li><tt>Examine</tt> mode improved, to be more feature-rich like <tt>Walk</tt> mode: works nicely with <tt>LOD</tt> and <tt>ProximitySensor</tt> nodes, you can click on <tt>TouchSensor</tt> and such in <tt>Examine</tt> mode, you can initiate ray-tracer in view3dscene from <tt>Examine</tt> mode.</li>
+  <li><code>Examine</code> mode improved, to be more feature-rich like <code>Walk</code> mode: works nicely with <code>LOD</code> and <code>ProximitySensor</code> nodes, you can click on <code>TouchSensor</code> and such in <code>Examine</code> mode, you can initiate ray-tracer in view3dscene from <code>Examine</code> mode.</li>
 </ul>
 
 <p>Still no official release, but view3dscene 3.4 should be released Really Soon :) For now you can try new features by using the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>.</p>
@@ -222,12 +222,12 @@ castle_thumbs(array(
 <p>New features implemented last month in our engine:</p>
 
 <ul>
-  <li>3D textures (full support for X3D <tt>Texturing3D</tt> component).
-    In particular, <tt>ImageTexture3D</tt> supports 3D textures in DDS format.</li>
+  <li>3D textures (full support for X3D <code>Texturing3D</code> component).
+    In particular, <code>ImageTexture3D</code> supports 3D textures in DDS format.</li>
   <li>New extensions to easily make
     <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">projective
     texturing and shadow maps</a> within your VRML/X3D worlds.</li>
-  <li>Anisotropic texture filtering (by standard X3D <tt>TextureProperties.anisotropicDegree</tt>
+  <li>Anisotropic texture filtering (by standard X3D <code>TextureProperties.anisotropicDegree</code>
     field).</li>
   <li><i>Hardware occlusion query</i> may be activated for rendering,
     this can speed browsing large
@@ -235,7 +235,7 @@ castle_thumbs(array(
     and more involved algorithm <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling (see GPU Gems 2, Chapter 6)</a>.
     view3dscene has menu options (<i>View -&gt; ... Occlusion Query</i>) to try it all.
     </li>
-  <li>And many other things: fixes and optimizations for <tt>GeneratedCubeMapTexture</tt>,
+  <li>And many other things: fixes and optimizations for <code>GeneratedCubeMapTexture</code>,
     glViewImage improvements (you no longer have to open files from command-line),
     S3TC compressed textures (from DDS; usable as textures, also viewable in glViewImage),
     sorting transparent shapes (for better blending),
@@ -264,19 +264,19 @@ castle_thumbs(array(
 <ul>
   <li>X3D multi-texturing.</li>
   <li>X3D cube map nodes.</li>
-  <li>This also means that DDS file format (for <tt>ImageCubeMapTexture</tt>) is implemented (both reading and writing, you can even use glViewImage as a simple DDS editor).</li>
-  <li>This includes generating textures on the fly (for <tt>GeneratedCubeMapTexture</tt>).</li>
-  <li>As extensions, I added texture generation modes "<tt>WORLDSPACEREFLECTIONVECTOR</tt>" and "<tt>WORLDSPACENORMAL</tt>" (analogous to X3D standard modes in CAMERA space) to make simulating real reflections trivial.</li>
+  <li>This also means that DDS file format (for <code>ImageCubeMapTexture</code>) is implemented (both reading and writing, you can even use glViewImage as a simple DDS editor).</li>
+  <li>This includes generating textures on the fly (for <code>GeneratedCubeMapTexture</code>).</li>
+  <li>As extensions, I added texture generation modes "<code>WORLDSPACEREFLECTIONVECTOR</code>" and "<code>WORLDSPACENORMAL</code>" (analogous to X3D standard modes in CAMERA space) to make simulating real reflections trivial.</li>
   <li>There is also quite cool new feature in view3dscene to catch a "screenshot" of 3D world around you as a cube map (DDS, or six separate normal images).</li>
   <li>Passing almost all possible VRML types to GLSL shaders is implemented.</li>
   <li>..and a lot of other cool features are already implemented :)</li>
 </ul>
 
-<p>The plan for the next release (view3dscene 3.4, engine 1.8) is to polish implementation of all above (yes, there are some known problems, also <tt>GeneratedCubeMapTexture</tt> implementation is severely unoptimal now), and add related texturing and GLSL features:</p>
+<p>The plan for the next release (view3dscene 3.4, engine 1.8) is to polish implementation of all above (yes, there are some known problems, also <code>GeneratedCubeMapTexture</code> implementation is severely unoptimal now), and add related texturing and GLSL features:</p>
 
 <ul>
   <li>3D texturing (that\'s easy since we already have DDS).</li>
-  <li>Basic implementation of <a href="http://www.instantreality.org/documentation/nodetype/RenderedTexture/"><tt>RenderedTexture</tt></a> from InstantReality (that\'s easy since it\'s internally simpler than <tt>GeneratedCubeMapTexture</tt>).</li>
+  <li>Basic implementation of <a href="http://www.instantreality.org/documentation/nodetype/RenderedTexture/"><code>RenderedTexture</code></a> from InstantReality (that\'s easy since it\'s internally simpler than <code>GeneratedCubeMapTexture</code>).</li>
   <li>Finish GLSL stuff by supporting X3D attributes nodes.</li>
 </ul>
 
@@ -320,11 +320,11 @@ $ ./dynamic_ambient_occlusion_compile.sh
 $ ./dynamic_ambient_occlusion models/peach.wrl.gz
 </pre>
 
-<p>There are more sample models in the <tt>models</tt> subdirectories,
+<p>There are more sample models in the <code>models</code> subdirectories,
 and you can test both demos with your own models.
 Both techniques require highly-tesselated
 models to make shadows look nice. Shadow fields require preprocessing
-by included <tt>precompute_shadow_field</tt> program. Dynamic ambient
+by included <code>precompute_shadow_field</code> program. Dynamic ambient
 occlusion doesn\'t require any preprocessing, but it requires really good
 GPU (it does ~thousands of texture fetches per pixel in GLSL fragment shader).
 You can find a lot of notes and links in the README files inside the

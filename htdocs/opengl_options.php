@@ -15,7 +15,7 @@
   <dd><p>Start in fullscreen mode.
 
     <p>For some programs, you can also switch between fullscreen and windowed
-    mode at runtime. Standard key shortcut for this is <tt>F11</tt>.
+    mode at runtime. Standard key shortcut for this is <code>F11</code>.
   </dd>
 
   <dt>--fullscreen-custom WIDTHxHEIGHT</dt>
@@ -32,25 +32,25 @@
   <dd><p>Start in window mode with given WIDTH and HEIGHT
     positioned at (XOFF, YOFF).
 
-    <p>&lt;sign&gt; is either "<tt>+</tt>" or "<tt>-</tt>".
-    <tt>+XOFF</tt> means that left window border should be
-    <tt>XOFF</tt> pixels from left screen border. Note that
-    <tt>XOFF</tt> itself may be negative (e.g. in
-    <tt>--geometry 100x100+-100+100</tt>) and then window will be positioned
-    slightly offscreen. Similarly, <tt>-XOFF</tt> means that right
-    window border should be <tt>XOFF</tt> pixels from right screen border.
-    Similar for <tt>+YOFF</tt> or <tt>-YOFF</tt> &mdash; they specify
+    <p>&lt;sign&gt; is either "<code>+</code>" or "<code>-</code>".
+    <code>+XOFF</code> means that left window border should be
+    <code>XOFF</code> pixels from left screen border. Note that
+    <code>XOFF</code> itself may be negative (e.g. in
+    <code>--geometry 100x100+-100+100</code>) and then window will be positioned
+    slightly offscreen. Similarly, <code>-XOFF</code> means that right
+    window border should be <code>XOFF</code> pixels from right screen border.
+    Similar for <code>+YOFF</code> or <code>-YOFF</code> &mdash; they specify
     distance from upper or lower screen border.
 
-    <p>You can omit the <tt>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</tt> part
-    and provide only <tt>WIDTHxHEIGHT</tt> part. You can also omit
-    <tt>WIDTHxHEIGHT</tt> part and provide only
-    <tt>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</tt> part.
+    <p>You can omit the <code>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</code> part
+    and provide only <code>WIDTHxHEIGHT</code> part. You can also omit
+    <code>WIDTHxHEIGHT</code> part and provide only
+    <code>&lt;sign&gt;XOFF&lt;sign&gt;YOFF</code> part.
 
-    <!--  Literka "x" w <tt>WIDTHxHEIGHT</tt> może tak naprawdę
+    <!--  Literka "x" w <code>WIDTHxHEIGHT</code> może tak naprawdę
     być dużym "X" lub małym "x". -->
 
-    <p>This option works the same as standard <tt>-geometry</tt> option for
+    <p>This option works the same as standard <code>-geometry</code> option for
     most XWindows programs.
 
     <p>Note that window manager <!-- under XWindows

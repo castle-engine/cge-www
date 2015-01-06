@@ -47,7 +47,7 @@ See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
     or a plane engine, the sound file should be equally loud.
     This allows to have best quality sound.
 
-    <p>Scale the sound by changing the <tt>gain</tt> property
+    <p>Scale the sound by changing the <code>gain</code> property
     in sound configuration.
 
   <li><p>If sound is supposed to be spatialized (i.e. played
@@ -58,7 +58,7 @@ See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
     <p>You can use any editor you like to convert your sounds to mono.
     I like this sox command-line:
     <pre>  sox input.wav -c 1 output.wav</pre>
-    See also <tt>data/sounds/scripts/example_make_mono.sh</tt>
+    See also <code>data/sounds/scripts/example_make_mono.sh</code>
 -->
 
   <li><p>Specifically when making footsteps sound: synchronize it's duration

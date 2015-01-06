@@ -51,11 +51,11 @@ glinformation is intended to be a diagnostic tool, that may be used
 in case there is some error somewhere &mdash; maybe in my own code),
 I provide also a special GLUT version of glinformation. This initializes
 OpenGL context using GLUT, then writes the same info as normal
-version. The <tt>glinformation_glut</tt> binary is inside the above download.</p>
+version. The <code>glinformation_glut</code> binary is inside the above download.</p>
 
 <h3>glxinfo notes</h3>
 
-<p>XWindows users can also use <tt>glxinfo</tt> program.
+<p>XWindows users can also use <code>glxinfo</code> program.
 It's purpose is similar to glinformation (but it's only for GLX,
 so it's able to write some info like all possible visual configurations).</p>
 

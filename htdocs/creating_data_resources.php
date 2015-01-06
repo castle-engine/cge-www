@@ -15,14 +15,14 @@ $toc = new TableOfContents(
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p><tt>resource.xml</tt> files define the properties of resources: creatures and items.
-Below is a sample <tt>resource.xml</tt> file,
+<p><code>resource.xml</code> files define the properties of resources: creatures and items.
+Below is a sample <code>resource.xml</code> file,
 with links to documentation for every attribute.
 
 <ul>
   <li>(Almost) every attribute is optional, so in practice
-    there's no need to specify them all in your <tt>resource.xml</tt> files.
-  <li>Note that sample below shows properties for resource of type <tt>WalkAttack</tt>
+    there's no need to specify them all in your <code>resource.xml</code> files.
+  <li>Note that sample below shows properties for resource of type <code>WalkAttack</code>
     (indicating <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
     class), there are other resource types (for creatures and items)
     with a little different properties.
@@ -115,19 +115,19 @@ with links to documentation for every attribute.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <tt>type</tt> attribute determines the exact class (ObjectPascal
+<p>The <code>type</code> attribute determines the exact class (ObjectPascal
 implementation) used to instantiate this resource.
 You can use the same type many types of course,
-for example you can define many creatures of type <tt>WalkAttack</tt>
-or <tt>Missile</tt> and many items of type <tt>Item</tt>.
+for example you can define many creatures of type <code>WalkAttack</code>
+or <code>Missile</code> and many items of type <code>Item</code>.
 
 <p>This type determines the behavior that is coded in ObjectPascal
 &mdash; like creature artificial intelligence, whether item can be equipped,
 what happens when item is used and so on.
 
 <p>The type also determines available attributes and animations of this resource.
-For example, only creature type <tt>WalkAttack</tt> (or it's descendants)
-have the <tt>&lt;attack&gt;</tt> animation. See the properties of resource
+For example, only creature type <code>WalkAttack</code> (or it's descendants)
+have the <code>&lt;attack&gt;</code> animation. See the properties of resource
 classes to know what is available:
 
 <ul>
@@ -166,8 +166,8 @@ like. See <?php api_link('T3DCustomTransform.MiddleHeight', 'Castle3D.T3DCustomT
 <p>3D resources, like creatures and items, display various 3D
 animations. Depending on the creature state, like standing / attacking
 / dying, we may want to display different animation of the given
-creature instance. We define these animations using the <tt>&lt;model&gt;</tt>
-element of creature/item <tt>resource.xml</tt> file.
+creature instance. We define these animations using the <code>&lt;model&gt;</code>
+element of creature/item <code>resource.xml</code> file.
 
 <p>As a developer, you can
 also create <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceAnimation.html'); ?>
@@ -175,15 +175,15 @@ also create <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceA
 <?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?> descendant,
  this way you can add new animations for your own/extended resources.
 At this point, I highly advice you compile and run the
-<tt>examples/resource_animations</tt> example program from the engine sources.
-The <tt>data/</tt> subdirectory of it shows examples of how you can define <tt>&lt;model&gt;</tt>,
+<code>examples/resource_animations</code> example program from the engine sources.
+The <code>data/</code> subdirectory of it shows examples of how you can define <code>&lt;model&gt;</code>,
 discussed below. It is also a great program to test your own
 creatures/items animations (before using in the actual game), you
-can load their <tt>resource.xml</tt> using the <i>"Add resource..."</i> button and
+can load their <code>resource.xml</code> using the <i>"Add resource..."</i> button and
 directly play loaded animations.
 
 <p>There are three approaches to indicate animations
-in <tt>&lt;model&gt;</tt> element in <tt>resource.xml</tt> file.
+in <code>&lt;model&gt;</code> element in <code>resource.xml</code> file.
 Which one to choose depends on what 3D
 modeler / exporter you use to design your models:
 
@@ -247,32 +247,32 @@ modeler / exporter you use to design your models:
 <p>To describe above three cases in more precise manner for developers:</p>
 
 <ul>
-  <li><p>(Case 3. above) When animation state, like <tt>&lt;stand&gt;</tt> or <tt>&lt;walk&gt;</tt>,
-    doesn't have a <tt>time_sensor</tt> attribute &mdash; then it must have
-    <tt>url</tt> attribute, and we use precalculated animation,
+  <li><p>(Case 3. above) When animation state, like <code>&lt;stand&gt;</code> or <code>&lt;walk&gt;</code>,
+    doesn't have a <code>time_sensor</code> attribute &mdash; then it must have
+    <code>url</code> attribute, and we use precalculated animation,
     TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
     X3D animations. Suitable also when the model is just a still 3D
     model, as then TCastlePrecalculatedAnimation simply renders it.
 
-  <li><p>(Case 2. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
-    <tt>&lt;walk&gt;</tt> has both <tt>time_sensor</tt> and <tt>url</tt>, then we load it to a
+  <li><p>(Case 2. above) Otherwise, if an animation state like <code>&lt;stand&gt;</code> or
+    <code>&lt;walk&gt;</code> has both <code>time_sensor</code> and <code>url</code>, then we load it to a
     TCastleScene and use appropriate TimeSensor to play the animation.
 
-  <li><p>(Case 1. above) Otherwise, if an animation state like <tt>&lt;stand&gt;</tt> or
-    <tt>&lt;walk&gt;</tt> has only <tt>time_sensor</tt>, then we use a 3D model defined at
-    <tt>&lt;model&gt;</tt> element to choose and play appropriate animation. This also
+  <li><p>(Case 1. above) Otherwise, if an animation state like <code>&lt;stand&gt;</code> or
+    <code>&lt;walk&gt;</code> has only <code>time_sensor</code>, then we use a 3D model defined at
+    <code>&lt;model&gt;</code> element to choose and play appropriate animation. This also
     means using TCastleScene and appropriate TimeSensor to play it,
     but this time it's a single TCastleScene potentially shared by various
     animations.
 </ul>
 
 <p>In some situations, we have to know the animation duration (for
-example, to know when <tt>&lt;attack&gt;</tt> animation ends and we should get back
-to <tt>&lt;stand&gt;</tt> or <tt>&lt;walk&gt;</tt> state).
+example, to know when <code>&lt;attack&gt;</code> animation ends and we should get back
+to <code>&lt;stand&gt;</code> or <code>&lt;walk&gt;</code> state).
 
 <ul>
   <li><p>For TCastlePrecalculatedAnimation, the animation always starts from
-    the local time 0, goes to the last time (time of last <tt>&lt;frame&gt;</tt> in
+    the local time 0, goes to the last time (time of last <code>&lt;frame&gt;</code> in
     kanim file). Then it eventually goes backward, it backwards="true"
     in kanim file. So we know the duration by looking at frames time and
     backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin
@@ -305,12 +305,12 @@ state (and moment) of the animation.
 <!--
 
   <li><p>When you want to use this creature on particular level(s),
-    you should add it to <tt>prepare_resources</tt> in <tt>level.xml</tt>
+    you should add it to <code>prepare_resources</code> in <code>level.xml</code>
     file. Alternatively, if the creature should be always loaded
-    when the player is present (for example, special creature <tt>Arrow</tt>
+    when the player is present (for example, special creature <code>Arrow</code>
     should be always loaded, as the player may come to any level with a bow
-    and shoot some arrows), then it should have <tt>always_prepare</tt> in
-    it's <tt>resource.xml</tt>.</p></li>
+    and shoot some arrows), then it should have <code>always_prepare</code> in
+    it's <code>resource.xml</code>.</p></li>
 
   <li><p>If you want to use <?php echo a_href_page_hashlink('shadow volumes', 'x3d_extensions',
     'section_ext_shadows'); ?>, and you want the creature to cast shadows

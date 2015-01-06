@@ -37,8 +37,8 @@ or something like that. The truth is that
   'malfunction', 'malfunction', VERSION_MALFUNCTION); ?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
-Run the game binary (<tt>./malfunction</tt> on Unix,
-<tt>malfunction.exe</tt> on Windows).</p>
+Run the game binary (<code>./malfunction</code> on Unix,
+<code>malfunction.exe</code> on Windows).</p>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
 
@@ -93,16 +93,16 @@ pasjpeg</a> (which is the translated to Pascal version of
 original ANSI C code written by
 <a href="http://www.ijg.org/">Independent JPEG Group</a>).
 
-<p>Skies in the files <tt>skies/lake_sky*</tt> and <tt>skies/foggy_sky*</tt>
+<p>Skies in the files <code>skies/lake_sky*</code> and <code>skies/foggy_sky*</code>
 are generated using a cute program
 <a href="http://www.planetside.co.uk/">Terragen</a>.
-<tt>skies/thespace</tt> made from graphics from
+<code>skies/thespace</code> made from graphics from
 <a href="http://www.grsites.com">http://www.grsites.com</a>,
-<tt>textures/water002.jpg</tt> is also from there.
-<tt>textures/metal{5,6}</tt>, <tt>textures/rock{2,6,8}</tt> from
+<code>textures/water002.jpg</code> is also from there.
+<code>textures/metal{5,6}</code>, <code>textures/rock{2,6,8}</code> from
 <a href="http://www.amazing3d.com">http://www.amazing3d.com</a>
 (from <i>free</i> textures),
-<tt>textures/bridger_road_top.jpg</tt> from
+<code>textures/bridger_road_top.jpg</code> from
 <a href="http://www.wolfiesden.com/golgotha/golgotha.asp">public domain Golgotha textures</a>.
 Menu items use "<i>I suck at golf</i>" font from
 <a href="http://fonts.tom7.com/">[Divide by zero]</a>.
@@ -111,7 +111,7 @@ Menu items use "<i>I suck at golf</i>" font from
 <a href="http://www.gimp.org/">GIMP</a>.
 
 <p>"<i>Tie fighter</i>" and "<i>destroyer</i>" models are modified
-versions of <tt>tieftr.wrl</tt> and <tt>station.3ds</tt> from
+versions of <code>tieftr.wrl</code> and <code>station.3ds</code> from
 <a href="http://www.3dcafe.com">http://www.3dcafe.com</a>
 (from <i>free</i> models), the rest of VRMLs made by me by hand
 or using <a href="http://www.blender.org/">Blender</a>
