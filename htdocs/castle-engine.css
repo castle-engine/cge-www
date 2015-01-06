@@ -135,7 +135,7 @@ dl.vrml_ver_differences > dt {
   padding: 0.5em;
   width: 100%;
   margin: 20px 0;
-  height: 380px;
+  min-height: 380px;
 }
 
 .main_link {
