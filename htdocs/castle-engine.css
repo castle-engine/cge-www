@@ -1,8 +1,9 @@
 /* No body margins, we want our header and sidebar closely at window border.
    Instead use class "content" to add some nice padding between
    window border and actual text. */
-body { margin: 0px; padding: 0px; }
-.content { margin: 0px; padding: 0.4em; }
+/* body { margin: 0px; padding: 0px; } */
+/* .content { margin: 0px; padding: 0.4em; } */
+/* Bootstrap takes care of above now */
 
 object.movie_thumbnail {
   width: 200px;
@@ -68,10 +69,14 @@ span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 }
 
 /* Tables with key controls should be done with
-   <table border="1" class="key_list"> */
-table.key_list { width: 90%; border: thin solid ; }
-table.key_list th { background: #eeeee0; }
-table.key_list td { background: #ddddd0; width: 50%; }
+   <table class="key_list"> */
+table.key_list {
+  width: 90%;
+  border: thin solid;
+  border-collapse: separate;
+}
+table.key_list th { background: #eeeee0; border: thin solid white; }
+table.key_list td { background: #ddddd0; border: thin solid white; width: 50%; }
 
 /* Adapted from my pasdoc.css */
 table.thin_borders { border-collapse: collapse; }
@@ -121,10 +126,12 @@ dl.vrml_ver_differences > dt {
 table.program_image_links {
   width: 100%;
   border-spacing: 20px;
+  border-collapse: separate;
 }
 table.program_image_links_half {
   width: 50%;
   border-spacing: 20px;
+  border-collapse: separate;
 }
 td.program_image_link img { border: none; }
 td.program_image_link {
@@ -141,6 +148,7 @@ table.main_links {
      http://stackoverflow.com/questions/339923/set-cellpadding-and-cellspacing-in-css
   */
   border-spacing: 20px;
+  border-collapse: separate;
 }
 td.main_link {
   background: #efdfae;
@@ -501,4 +509,18 @@ div.quote {
 
 .google-search-results-container .gsc-expansionArea {
   border-bottom: thin solid #aaaaaa;
+}
+
+/* Restore normal CSS behaviour, overriding Bootstrap weirdness */
+.google-search-container {
+  line-height: normal;
+}
+.google-search-container {
+  box-sizing: content-box !important;
+}
+.google-search-container div {
+  box-sizing: content-box !important;
+}
+.gsc-search-button {
+  box-sizing: content-box !important;
 }

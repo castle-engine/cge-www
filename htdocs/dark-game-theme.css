@@ -9,8 +9,8 @@ div.download { background: #866; color: black; }
 div.download a { color: black; }
 div.download table a { color: black; border: thin dashed black; }
 
-pre.terminal { background: #333; }
-tt { background: #333; }
+pre.terminal { background: #333; color: white; }
+code { background: #333; color: white; }
 
 h2 { color: #BBD; }
 

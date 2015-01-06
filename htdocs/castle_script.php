@@ -10,7 +10,7 @@
 
   function func($name, $title)
   {
-    echo '<tt id="function_' . $name . '" class="kscript_func_docs">' . $title . '</code>';
+    echo '<code id="function_' . $name . '" class="kscript_func_docs">' . $title . '</code>';
   }
 ?>
 

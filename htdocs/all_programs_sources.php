@@ -89,7 +89,7 @@ notes near some programs below.
 <?php
   function echo_src_svnonly($name)
   {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><tt class="terminal small">' .
+    echo '<li><p>' . $name . ': only from Subversion by:<br><code class="terminal small">' .
         sf_checkout_link(true, $name) . '</code></li>
       ';
   }
@@ -179,7 +179,7 @@ version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
 You can also download the code from one of
-<tt class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</code>
+<code class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</code>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 

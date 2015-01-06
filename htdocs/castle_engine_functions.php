@@ -457,15 +457,12 @@ function echo_header_bonus ()
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
 <link type="text/css" rel="stylesheet" media="all" href="castle-engine.css">
-<link type="text/css" rel="stylesheet" href="colorbox/example3/colorbox.css">
 
 <?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
 <?php } ?>
 
 <script type="text/javascript" src="castle-engine.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="colorbox/jquery.colorbox-min.js"></script>
 
 <style type="text/css"><!--
 <?php echo $geshi->get_stylesheet(false); ?>
@@ -547,12 +544,13 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     ' . _castle_header_menu($path[0]) . '
   </div>';
 
+  // make sure to start container-fluid for bootstrap container
   if (empty($castle_sidebar))
-    $rendered .=  _castle_breadcrumbs($path) . '<div class="content">'; else
+    $rendered .=  _castle_breadcrumbs($path) . '<div class="content container-fluid">'; else
     $rendered .= '<table class="layout">
       <col class="content_column">
       <col class="sidebar_column">
-      <tr><td class="layout content">' . _castle_breadcrumbs($path);
+      <tr><td class="layout content container-fluid">' . _castle_breadcrumbs($path);
 
 //  $rendered .= google_custom_search_results();
 
@@ -566,12 +564,6 @@ function castle_footer()
   if (empty($castle_sidebar))
     echo '</div>'; else
     echo '</td><td class="layout">' .$castle_sidebar. '</td></tr></table>';
-
-  ?>
-<script type="text/javascript">
-  jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
-</script>
-  <?php
 
   common_footer();
 }
