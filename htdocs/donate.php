@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_header('Donate');
+  castle_header('Donate', NULL, array('forum', 'donate'));
   echo pretty_heading($page_title);
 ?>
 
@@ -18,7 +18,7 @@ for any bugfix or a new feature or a new game getting released!
 
 <p>It would be absolutely great for me to gain some income,
 and be able to live without other jobs, and commit
-100% of my computer time to this engine. So 
+100% of my computer time to this engine. So
 -->
 
 Please donate &mdash; even

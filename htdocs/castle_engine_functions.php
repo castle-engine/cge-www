@@ -226,9 +226,11 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
-
-  'donate' => array('title' => 'Donate'),
+  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum',
+    'sub' => array(
+      'donate' => array('title' => 'Donate'),
+    ),
+  ),
 
   'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'Games and Tools',
     'sub' => array(
@@ -351,49 +353,29 @@ function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
-//  $menu_for_users = 6 * 2 + 1;
-//  $menu_for_developers = 2 * count($castle_sitemap) + 1 - $menu_for_users;
-
-  /* It's a hack even to use a table cell for this.
-     It's even bigger hack to insert empty <div> here, but it's required
-     (on Google Chrome and Konqueror and IE, not on FireFox)
-     to place the lower border of separator at exactly the same level
-     as lower border of tabs.
-     Using border-bottom on td.lower_separator doesn't work reliably for this. */
-  $td_separator = '<td class="lower_separator"><div>&nbsp;</div></td>';
-
-  $result = '
-    <table class="header_menu">';
-//  $result .= '
-//      <tr>
-//        <td colspan="' . $menu_for_users . '" class="higher higher_left">&larr; Users</td>
-//        <td colspan="' . $menu_for_developers . '" class="higher higher_right">Developers &rarr;</td>
-//      </tr>';
-  $result .= '
-      <tr>' . $td_separator;
+  $result = '<ul class="nav nav-tabs" style="clear: both">';
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
-    $result .= '<td class="lower"><a href="';
+    $result .= '<li role="presentation" ';
+    if ($menu_item_page == $current_page)
+      $result .= ' class="active"';
+    $result .= '><a href="';
     if (isset($menu_item['url']))
       $result .= $menu_item['url']; else
       $result .= en_page_url($menu_item_page);
     $result .= '"';
     if (isset($menu_item['hint']))
       $result .= ' title="' . $menu_item['hint'] . '"';
-    if ($menu_item_page == $current_page)
-      $result .= ' id="current"';
     if (isset($menu_item['title-for-header-menu']))
       $title = $menu_item['title-for-header-menu']; else
       $title = $menu_item['title'];
-    $result .= '>' . $title . '</a></td>' . $td_separator;
+    $result .= '>' . $title . '</a></li>';
   }
   unset($menu_item);
   unset($menu_item_page);
 
-  $result .= '
-      </tr>
-    </table>';
+  $result .= '</ul>';
 
   return $result;
 }
@@ -539,20 +521,29 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     $castle_sidebar = '';
 
   $rendered = '
-  <div class="header">
-    <!--img class="header_icon" src="images/header_icon.png" alt="Castle Game Engine icon" /-->
-    ' . google_custom_search_box() . '
-    <div class="header_title"><a href="'.en_page_url(MAIN_PAGE_BASENAME).'">Castle Game Engine</a></div>
-    ' . _castle_header_menu($path[0]) . '
-  </div>';
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
+          <img alt="" src="images/header_icon.png">
+        </a>
+        <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
+          Castle Game Engine
+        </a>
+      </div>
+      ' . _castle_header_menu($path[0]) . '
+    </div>
+  </nav>';
+
+//      ' . google_custom_search_box() . '
 
   // make sure to start container-fluid for bootstrap container
   if (empty($castle_sidebar))
     $rendered .=  _castle_breadcrumbs($path) . '<div class="content container-fluid">'; else
-    $rendered .= '<table class="layout">
-      <col class="content_column">
-      <col class="sidebar_column">
-      <tr><td class="layout content container-fluid">' . _castle_breadcrumbs($path);
+    $rendered .= '<div class="content container-fluid">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="content container-fluid">' . _castle_breadcrumbs($path);
 
 //  $rendered .= google_custom_search_results();
 
@@ -565,7 +556,7 @@ function castle_footer()
 
   if (empty($castle_sidebar))
     echo '</div>'; else
-    echo '</td><td class="layout">' .$castle_sidebar. '</td></tr></table>';
+    echo '</div></div><div class="col-sm-3 well">' .$castle_sidebar. '</div></div></div>';
 
   common_footer();
 }
