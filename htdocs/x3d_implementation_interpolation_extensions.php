@@ -11,7 +11,6 @@
       new TocItem('VectorInterpolator', 'vector_interpolator'),
       new TocItem('CubicBezierPositionInterpolator and CubicBezier2DOrientationInterpolator', 'cubic_bezier_interpolator'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

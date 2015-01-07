@@ -12,7 +12,6 @@
       new TocItem('General notes', 'x3d_general', 1),
       new TocItem('VRML 1.0', 'vrml_1'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title); ?>

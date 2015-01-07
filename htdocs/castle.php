@@ -22,7 +22,6 @@
       new TocItem('Uninstalling', 'uninstall', 1),
       new TocItem('Movies', 'movies'),
     ));
-  $toc->echo_numbers = true;
 
 ?>
 

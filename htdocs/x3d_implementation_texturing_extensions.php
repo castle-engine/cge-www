@@ -15,7 +15,6 @@
       new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
       new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

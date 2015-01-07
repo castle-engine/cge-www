@@ -11,7 +11,6 @@
       new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
       new TocItem('Related single-texturing problem: RGB texture color by default modulates material color', 'default_texture_mode'),
     ));
-  $toc->echo_numbers = true;
 
   $tests_url = sf_checkout_link(false, 'demo_models/multi_texturing/');
 ?>

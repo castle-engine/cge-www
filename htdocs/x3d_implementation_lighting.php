@@ -9,7 +9,6 @@
       new TocItem('Per-pixel lighting', 'per_pixel_lighting'),
       new TocItem('Problems? Get latest GPU drivers', 'latest_gpu_drivers', 1),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

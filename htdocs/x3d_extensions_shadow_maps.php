@@ -18,7 +18,6 @@ $toc = new TableOfContents(array(
   new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
   new TocItem('Optionally specify shadow casters (<code>KambiAppearance.shadowCaster</code>)', 'shadow_caster'),
 ));
-$toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title);  ?>

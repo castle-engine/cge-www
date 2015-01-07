@@ -16,7 +16,6 @@
       new TocItem('Supported nodes', 'support'),
       new TocItem('DEF / USE on sounds', 'def_use'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

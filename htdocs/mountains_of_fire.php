@@ -48,7 +48,6 @@ Try it now!
       new TocItem('License', 'license'),
     )
   );
-  $toc->echo_numbers = true;
   echo $toc->html_toc();
 ?>
 

@@ -9,7 +9,6 @@
       new TocItem('Boolean value toggler (<code>Toggler</code> node)', 'ext_toggler'),
       new TocItem('Force sequencer continous output (<code>X3DSequencerNode.forceContinousValue_Changed</code>)', 'forceContinousValue_Changed'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

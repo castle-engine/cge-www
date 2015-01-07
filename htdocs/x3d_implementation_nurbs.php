@@ -17,7 +17,6 @@
       new TocItem('VRML 2.0 (97) support', 'vrml2_support'),
       new TocItem('Control points are in homogeneous coordinates', 'homogeneous_coordinates'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

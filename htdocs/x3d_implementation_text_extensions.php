@@ -9,7 +9,6 @@
       new TocItem('Text transparency mode (<code>FontStyle.blending</code>)', 'ext_fontstyle_blending'),
       new TocItem('DEPRECATED: 3D text (node <code>Text3D</code>)', 'ext_text3d'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

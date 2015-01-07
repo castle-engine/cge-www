@@ -48,7 +48,6 @@ formats.</p>
       new TocItem(DEPENDS, 'depends'),
     )
   );
-  $toc->echo_numbers = true;
   echo $toc->html_toc();
 ?>
 

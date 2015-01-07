@@ -12,7 +12,6 @@
       new TocItem('Supported nodes', 'support'),
       new TocItem('TODOs', 'todo'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

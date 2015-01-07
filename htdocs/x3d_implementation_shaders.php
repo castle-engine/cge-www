@@ -32,7 +32,6 @@
       new TocItem('Macro CASTLE_GEOMETRY_INPUT_SIZE', 'geometry_input_size', 2),
       new TocItem('TODOs', 'todos', 1),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

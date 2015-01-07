@@ -39,8 +39,8 @@ class TableOfContents {
   var $items;
   var $next_section_heading;
 
-  /* default false; if true, section numbers will be printed by html_section */
-  var $echo_numbers;
+  /* Show section numbers in html_section */
+  var $echo_numbers = true;
 
   /* Gets $an_items array, must be indexed by integers starting from 0
      (and keys must be sorted by these integers too, so possibly
@@ -49,7 +49,7 @@ class TableOfContents {
   {
     $this->items = $an_items;
     $this->next_section_heading = 0;
-    $this->echo_numbers = false;
+    $this->echo_numbers = true;
   }
 
   /* private funcs -----------------------------------------------------------  */

@@ -95,7 +95,6 @@ pure non-scripted X3D).</p>
       new TocItem('Precise grammar', 'precise_grammar')
     )
   );
-  $toc->echo_numbers = true;
 ?>
 
 <?php echo $toc->html_toc(); ?>

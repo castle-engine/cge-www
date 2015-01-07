@@ -17,7 +17,6 @@
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

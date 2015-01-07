@@ -14,7 +14,6 @@ $toc = new TableOfContents(array(
   new TocItem('Field <code>separate</code> for <code>WWWInline</code> node', 'ext_wwwinline_separate'),
   new TocItem('Field <code>parts</code> in <code>Cone</code> and <code>Cylinder</code> nodes may have value <code>NONE</code>', 'ext_cone_cyl_parts_none'),
 ));
-$toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title);  ?>

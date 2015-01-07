@@ -11,7 +11,6 @@
       new TocItem('Development', 'development'),
       new TocItem('Authors', 'authors'),
     ));
-  $toc->echo_numbers = true;
 
   echo pretty_heading($page_title, VERSION_DEMO_MODELS);
   echo castle_thumbs(array(

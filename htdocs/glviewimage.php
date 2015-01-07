@@ -19,7 +19,6 @@
       new TocItem(DEPENDS, 'depends'),
     )
   );
-  $toc->echo_numbers = true;
 ?>
 
 <?php

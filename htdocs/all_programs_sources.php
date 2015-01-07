@@ -10,7 +10,6 @@ $toc = new TableOfContents(
     new TocItem("Getting bleeding-edge (development) version from Subversion (SVN)", 'svn'),
   )
 );
-$toc->echo_numbers = true;
 ?>
 
 <p>Contents:

@@ -13,7 +13,6 @@
       new TocItem('Developers: creating Mac OS X applications', 'creating_apps'),
     )
   );
-  $toc->echo_numbers = true;
 
   echo pretty_heading($page_title);
 ?>

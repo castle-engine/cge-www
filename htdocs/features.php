@@ -10,7 +10,6 @@
       new TocItem('Exhaustive list of features', 'exhaustive_features'),
     )
   );
-  $toc->echo_numbers = true;
 
 /*  echo flattr_button(); */
 

@@ -14,7 +14,6 @@
       new TocItem('Debug menu, debug options', 'debug_menu_options'),
     )
   );
-  $toc->echo_numbers = true;
 ?>
 
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash;

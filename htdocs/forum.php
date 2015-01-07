@@ -42,7 +42,6 @@ $toc = new TableOfContents(
     new TocItem('For Blender experts', 'blender'),
     new TocItem('For Linux distros package maintainers', 'distros'),
   ));
-$toc->echo_numbers = true;
 ?>
 
 <?php echo $toc->html_toc(); ?>

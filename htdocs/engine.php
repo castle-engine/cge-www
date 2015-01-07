@@ -13,7 +13,6 @@
       new TocItem('License', 'license'),
     )
   );
-  $toc->echo_numbers = true;
 
 /*  echo flattr_button(); */
 

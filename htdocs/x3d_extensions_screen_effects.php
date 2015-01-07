@@ -12,7 +12,6 @@ $toc = new TableOfContents(array(
   new TocItem('Details', 'details'),
   new TocItem('Todos', 'todos'),
 ));
-$toc->echo_numbers = true;
 
   echo castle_thumbs(array(
     array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),

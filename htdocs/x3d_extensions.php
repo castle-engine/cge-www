@@ -55,7 +55,6 @@ $toc = new TableOfContents(array(
 
   new TocItem('VRML 1.0-specific extensions', 'exts_vrml1', 1),
 ));
-$toc->echo_numbers = true;
 ?>
 
 <?php echo pretty_heading($page_title);  ?>

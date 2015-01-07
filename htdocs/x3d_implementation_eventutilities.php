@@ -11,7 +11,6 @@
       new TocItem('Demos', 'demos'),
       new TocItem('Supported nodes', 'support'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:

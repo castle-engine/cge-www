@@ -10,7 +10,6 @@ $toc = new TableOfContents(array(
   new TocItem('Examples', 'examples'),
   new TocItem('Documentation', 'docs'),
 ));
-$toc->echo_numbers = true;
 
 echo castle_thumbs(array(
   array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),

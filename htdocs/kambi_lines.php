@@ -18,7 +18,6 @@
       new TocItem('Source code', 'source'),
     )
   );
-  $toc->echo_numbers = true;
 ?>
 
 <p>This is my version of an old game known as "Color Lines".

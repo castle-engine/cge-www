@@ -22,7 +22,6 @@ echo castle_thumbs(array(
       new TocItem('Tutorial: How to make a mirror', 'example'),
       new TocItem('Supported nodes', 'support'),
     ));
-  $toc->echo_numbers = true;
 ?>
 
 <p>Contents:
