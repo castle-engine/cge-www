@@ -763,7 +763,7 @@ function echo_standard_program_download(
    - linktarget (string) - optional URL (full URL!) where the link leads.
      If not specified, the link leads to full image size.
 
-   If $align non-empty, the table is floating left / right.
+   $align is empty or 'right'.
 
    $columns specifies number of columns of the table.
    We will automatically divide $images into rows with $columns images
@@ -784,11 +784,7 @@ function castle_thumbs($images, $columns=1, $align='right')
   /* style="clear: right" is added to work nicely with Flattr images,
      that are on some pages (like castle.php) directly above this table
      and also aligned to the right. */
-  $result = '<table style="clear: right';
-  if ($align != '') {
-    $result .= '; float: ' . $align;
-  }
-  $result .= '">';
+  $result = '<table class="thumbnails thumbnails-align-' . $align . '">';
 
   $column_now = 0;
 

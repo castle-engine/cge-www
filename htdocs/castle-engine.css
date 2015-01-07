@@ -19,6 +19,15 @@ div.thumbs_cell_with_text_or_movie {
   text-align: center;
 }
 
+.thumbnails {
+  clear: right;
+}
+.thumbnails-align-right {
+  float: right;
+  /* Avoids wide thumbnail column until images load */
+  max-width: 250px;
+}
+
 /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
 pre {
   white-space: pre-wrap;
