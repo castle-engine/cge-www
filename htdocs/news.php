@@ -59,24 +59,10 @@ echo '<div class="panel-footer">
   Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
   <a href="https://www.facebook.com/castleengine">Facebook</a> or
   <a href="https://twitter.com/castleengine">Twitter</a> to get latest news about
-  the engine development.<br/><br/>
-
-  <b>Comments?</b>
-  Go to our ' . FORUM_LINK . ' or ' . MAILING_LIST_LINK . ' or any social site mentioned above.<br/><br/>
-
-  <b>Watch engine development:</b>
-  To <i>really</i> watch the engine development closely, you can
-  <a href="https://sourceforge.net/p/castle-engine/code/feed">watch the commits through RSS feed</a>.
-  <!-- not polled unfortunately:
-  <a href="http://cia.vc/stats/project/castle-engine">Castle Game Engine on
-  cia.vc</a>.
-  -->
-  There is also <a href="https://www.ohloh.net/p/castle-engine">our
-  project page on Ohloh</a> (please rate and click on
-  <i>"I use this"</i> button there!).
+  the engine development.
 </div>';
 
-echo '<br/>';
+echo disqus_form();
 
 echo $older_newer_bar;
 

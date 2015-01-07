@@ -51,7 +51,7 @@ function googleplus_badge($large = false)
   if ($large) {
     return '<div class="g-page" data-href="//plus.google.com/u/0/101185352355602218697" data-rel="publisher"></div>';
   } else {
-    return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697"></div>';
+    return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697" data-layout="portrait" width="280"></div>';
   }
   //return '<g:plusone size="tall"></g:plusone>';
 }
@@ -194,9 +194,13 @@ function youtube_subscribe()
 
 function disqus_form()
 {
-  global $page_basename, $page_title, $this_page_name;
+  global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
 
   if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+
+  /* only show it once. This allows to insert this earlier for news */
+  if (!empty($disqus_form_already_done)) return '';
+  $disqus_form_already_done = true;
 
   /* From https://castle-engine.disqus.com/admin/settings/universalcode/ */
   return "

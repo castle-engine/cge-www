@@ -419,6 +419,15 @@ div.quote {
 
 #disqus_thread {
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+
+.main-widgets {
+  float: right;
+  width: 300px;
+}
+
+.bottom-widget {
+  margin: 0.5em 0;
 }

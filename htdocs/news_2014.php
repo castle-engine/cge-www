@@ -13,15 +13,15 @@ castle_thumbs(array(
   array('filename' => 'goblins-ffd_0.png', 'titlealt' => 'Spine animation with female skin'),
   array('filename' => 'spine_spinosaurus_0.png', 'titlealt' => 'GUI in Spine'),
   array('filename' => 'android1.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
-  array('filename' => 'android_text.png', 'titlealt' => 'Text node on Android'),
+//  array('filename' => 'android_text.png', 'titlealt' => 'Text node on Android'),
   array('filename' => 'primitives_3.png', 'titlealt' => 'Text with shadow'),
   array('filename' => 'android_little_things.png', 'titlealt' => '&quot;Little Things&quot; game on Android'),
   array('filename' => 'android_tasty_reflections.png', 'titlealt' => '&quot;Tasty Reflections&quot; game on Android'),
-  array('filename' => 'named_animation_knight.png', 'titlealt' => 'Named animations on 3D model'),
+//  array('filename' => 'named_animation_knight.png', 'titlealt' => 'Named animations on 3D model'),
   array('filename' => 'play_named_animation_fixed.png', 'titlealt' => 'Named animations on example Spine model'),
   array('filename' => 'venice_named_animation.png', 'titlealt' => 'Named animations on Venice character'),
-  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => '&quot;Mountains Of Fire&quot; game screen'),
-  array('filename' => 'hotel_nuclear_screen_5.png', 'titlealt' => '&quot;Hotel Nuclear&quot; game screen'),
+//  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => '&quot;Mountains Of Fire&quot; game screen'),
+//  array('filename' => 'hotel_nuclear_screen_5.png', 'titlealt' => '&quot;Hotel Nuclear&quot; game screen'),
   array('filename' => 'sunny_street_final_0.png', 'titlealt' => 'New selection indicator'),
 )) .
 '<p>We proudly present, after 7 months of work, the next official release of our engine:)
@@ -79,22 +79,7 @@ castle_thumbs(array(
   <li><a href="http://castle-engine.sourceforge.net/mountains_of_fire.php">Mountains Of Fire &mdash; split-screen cooperative survival game</a>
   <li><a href="https://github.com/michaliskambi/frogger3d">Frogger 3D (initial version done during 1-hour gamejam by Michalis!:)</a>
 </ul>
-
-<hr/>
-
-<p><b>Comment and watch Castle Game Engine on Google+, Facebook, Twitter:</b></p>
-
-<div class="bottom-widget" style="display: inline-block; vertical-align: top">
-' . googleplus_badge(true) . '
-</div>
-
-<div class="bottom-widget" style="display: inline-block; vertical-align: top">
-' . facebook_button() . '
-</div>
-
-<div class="bottom-widget" style="display: inline-block; vertical-align: top">
-' . twitter_widget() . '
-</div>'),
+'),
 
     array('title' => 'Castle Game Engine 5.0.0 release (Android, iOS, more), view3dscene 3.14.0 release',
           'year' => 2014,

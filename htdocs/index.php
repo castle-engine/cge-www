@@ -48,41 +48,33 @@ castle_header('Castle Game Engine',
   </div>
 </div>
 
-<div style="width: 100%; text-align: center;">
-<!-- <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 0em; width: 33%;"> -->
-<!-- <b style="font-size: larger;"><?php echo last_news_to_html(); ?></b> -->
-<!-- </div> -->
+<div class="main-widgets">
+<div class="bottom-widget">
+<b style="font-size: larger;"><?php echo last_news_to_html(); ?></b>
+</div>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
+<div class="bottom-widget">
 <?php echo googleplus_badge(); ?>
 </div>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
+<div class="bottom-widget">
 <?php echo facebook_button(); ?>
 </div>
 
-<!-- <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;"> -->
-<!-- <div><?php echo twitter_widget(); ?></div> -->
-<!-- </div> -->
+<!--
+<div class="bottom-widget">
+<div><?php echo twitter_widget(); ?></div>
+</div>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;">
+<div class="bottom-widget">
 <?php echo youtube_subscribe(false); ?>
 </div>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;">
+<div class="bottom-widget">
 <?php echo flattr_button(false); ?>
 </div>
+-->
 </div>
-
-<?php /*
-<p style="margin-bottom: 0.1em;"><i><b>Author:</b>
-<a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis (aka Kambi)</a>
-(< ?php echo michalis_mailto('email'); ? >).</i></p>
-*/ ?>
-
-<!-- Some dumb separation from footer -->
-<br/>
-<br/>
 
 <?php
   castle_footer();
