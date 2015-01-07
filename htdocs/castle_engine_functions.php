@@ -531,11 +531,10 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
           Castle Game Engine
         </a>
       </div>
+      ' . google_custom_search_box() . '
       ' . _castle_header_menu($path[0]) . '
     </div>
   </nav>';
-
-//      ' . google_custom_search_box() . '
 
   // make sure to start container-fluid for bootstrap container
   if (empty($castle_sidebar))
