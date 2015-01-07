@@ -20,8 +20,7 @@
     alt="Castle Game Engine icon"
     style="float: right; clear: right; margin-top: 1em;" />';
 
-  echo pretty_heading('Castle Game Engine',
-    VERSION_CASTLE_GAME_ENGINE, 'Downloads and docs for developers');
+  echo pretty_heading('Castle Game Engine', VERSION_CASTLE_GAME_ENGINE);
 
   echo castle_thumbs(array(
     array('filename' => 'fps_game_screen_19.png', 'titlealt' => 'FPS game screen'),

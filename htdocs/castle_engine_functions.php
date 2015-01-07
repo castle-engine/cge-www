@@ -94,7 +94,7 @@ $castle_sitemap = array(
 
   'features' => array('title' => 'Features', 'title-for-header-menu' => 'Features'),
 
-  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Engine download and documentation', 'title-for-header-menu' => 'Download and documentation',
+  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Download and documentation', 'title-for-header-menu' => 'Download and documentation',
     'sidebar' => true,
     'sub' => array(
       'tutorial_intro' => array('title' => 'Tutorial',
@@ -150,7 +150,7 @@ $castle_sitemap = array(
     ),
   ),
 
-  'vrml_x3d' => array('hint' => 'Our extensions and status of VRML/X3D implementation', 'title' => 'VRML / X3D support', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
+  'vrml_x3d' => array('hint' => 'Our extensions and status of VRML/X3D implementation', 'title' => 'VRML / X3D', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
     'sidebar' => true,
     'sub' => array(
       'demo_models' => array('title' => 'Demo models'),
