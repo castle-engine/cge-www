@@ -92,119 +92,119 @@
      uważam za lepszy od ~ bo jest dłuższy.
   */
 
-  /* assert_options(ASSERT_ACTIVE, 1); */
+/* assert_options(ASSERT_ACTIVE, 1); */
 
-  require_once 'funcs.php';
-  require_once 'kambi_toc.php';
+require_once 'funcs.php';
+require_once 'kambi_toc.php';
 
-  /* Constants always defined by this script (so they are accessible after
-       including this script) :
+/* Constants always defined by this script (so they are accessible after
+     including this script) :
 
-     IS_GEN_LOCAL : bool = true means we're generating local version of the
-       page to be stored as usual HTML, not as part of the online
-       pages on CURRENT_URL.
-       It is set here to true if you give --gen-local param to php,
-       else it's false.
+   IS_GEN_LOCAL : bool = true means we're generating local version of the
+     page to be stored as usual HTML, not as part of the online
+     pages on CURRENT_URL.
+     It is set here to true if you give --gen-local param to php,
+     else it's false.
 
-       What is "local" page ? A better name would be a "separate" page;
-       such pages can be distribited separately, i.e. without attaching
-       to them default index.html page, images\default_background etc.
-       This allows me to distribute some pages as documentation for
-       my programs (e.g. lets_take_a_walk contains such lets_take_a_walk.php
-       generated with --gen-local) while not being forced to distribute
-       with them _all_ documentation from my site
-       (e.g. lets_take_a_walk contains lets_take_a_walk[.pl].php,
-       common_options.php, opengl_options[.pl].php. It does not
-       contain some pages that I do not consider "part of documentation for
-       lets_take_a_walk usage" like index.php/html).
-       Some steps (in this file and in all specific php
-       pages) must to be taken when generating "local" pages:
-       - links to main page (index[.pl].(php|html)) (like those
-         in $s_quick_links and <link rel=Start ...>) must not be
-         generated
-       - default page background (specified by calling common_header())
-         may not contain any url to image
-       - every local page will have in it's footer a text stating that
-           o. I'm the author of this page,
-           o. link to CURRENT_URL
-         (I want to display this information to everyone that sees my
-         pages/programs; when not generating local pages, this info
-         is listed on index.php)
+     What is "local" page ? A better name would be a "separate" page;
+     such pages can be distribited separately, i.e. without attaching
+     to them default index.html page, images\default_background etc.
+     This allows me to distribute some pages as documentation for
+     my programs (e.g. lets_take_a_walk contains such lets_take_a_walk.php
+     generated with --gen-local) while not being forced to distribute
+     with them _all_ documentation from my site
+     (e.g. lets_take_a_walk contains lets_take_a_walk[.pl].php,
+     common_options.php, opengl_options[.pl].php. It does not
+     contain some pages that I do not consider "part of documentation for
+     lets_take_a_walk usage" like index.php/html).
+     Some steps (in this file and in all specific php
+     pages) must to be taken when generating "local" pages:
+     - links to main page (index[.pl].(php|html)) (like those
+       in $s_quick_links and <link rel=Start ...>) must not be
+       generated
+     - default page background (specified by calling common_header())
+       may not contain any url to image
+     - every local page will have in it's footer a text stating that
+         o. I'm the author of this page,
+         o. link to CURRENT_URL
+       (I want to display this information to everyone that sees my
+       pages/programs; when not generating local pages, this info
+       is listed on index.php)
 
-       - links to files on WWW should be always written
-         using current_www_a_href_size. This way when we generate local page
-         those links will always have absolute URL starting with CURRENT_URL.
-         That's needed since we don't provide anything besides HTML pages
-         in locally generated versions.
+     - links to files on WWW should be always written
+       using current_www_a_href_size. This way when we generate local page
+       those links will always have absolute URL starting with CURRENT_URL.
+       That's needed since we don't provide anything besides HTML pages
+       in locally generated versions.
 
-     IS_GEN_PAGE_HREFS_TO_HTML : bool = true means we're generating
-       a_href_page with extension HTML instead of default PHP extension
-       (it does NOT mean any other changes in pages; i.e. everything will
-       look as usual (links to index.html, default background contains link to
-       bg image etc.); it was useful once when on camelot.homedns.org
-       php was not available - I was then able to generate all pages locally
-       with href's to htmls and everything worked as expected;
-       now it is still useful
-       since it is required by IS_GEN_LOCAL).
+   IS_GEN_PAGE_HREFS_TO_HTML : bool = true means we're generating
+     a_href_page with extension HTML instead of default PHP extension
+     (it does NOT mean any other changes in pages; i.e. everything will
+     look as usual (links to index.html, default background contains link to
+     bg image etc.); it was useful once when on camelot.homedns.org
+     php was not available - I was then able to generate all pages locally
+     with href's to htmls and everything worked as expected;
+     now it is still useful
+     since it is required by IS_GEN_LOCAL).
 
-       Always true if IS_GEN_LOCAL, use command-line param --gen-page-hrefs-to-html
-       to force it to be true even if not IS_GEN_LOCAL. If not IS_GEN_LOCAL
-       and no command-line param "gen_page_hrefs_to_html" then it will be false.
-  */
+     Always true if IS_GEN_LOCAL, use command-line param --gen-page-hrefs-to-html
+     to force it to be true even if not IS_GEN_LOCAL. If not IS_GEN_LOCAL
+     and no command-line param "gen_page_hrefs_to_html" then it will be false.
+*/
 
-  /* Parsuj argv. ============================================================
+/* Parsuj argv. ============================================================
 
-     Dozwolone opcje:
-     --gen-local : ustaw IS_GEN_LOCAL na true
-     --gen-page-hrefs-to-html : ustaw IS_GEN_PAGE_HREFS_TO_HTML na true
-     --locally-avail ARGS... :
-       wszystkie parametry za --locally-avail zostaną potraktowane jako
-       nazwy plików które deklarujemy jako dostępne lokalnie w sensie funkcji
-       is_file_available_locally.
-     Wszystkie nieznane parametry spowodują exit() z odpowiednim komunikatem
-     błędu.
+   Dozwolone opcje:
+   --gen-local : ustaw IS_GEN_LOCAL na true
+   --gen-page-hrefs-to-html : ustaw IS_GEN_PAGE_HREFS_TO_HTML na true
+   --locally-avail ARGS... :
+     wszystkie parametry za --locally-avail zostaną potraktowane jako
+     nazwy plików które deklarujemy jako dostępne lokalnie w sensie funkcji
+     is_file_available_locally.
+   Wszystkie nieznane parametry spowodują exit() z odpowiednim komunikatem
+   błędu.
 
-     Tutaj ustawiamy stałe IS_GEN_LOCAL, IS_GEN_PAGE_HREFS_TO_HTML
-     oraz zmienną $locally_available_files. Tutaj też ustawiamy sobie
-     prawidłowe current dir w przypadku IS_GEN_LOCAL=true.
-  */
+   Tutaj ustawiamy stałe IS_GEN_LOCAL, IS_GEN_PAGE_HREFS_TO_HTML
+   oraz zmienną $locally_available_files. Tutaj też ustawiamy sobie
+   prawidłowe current dir w przypadku IS_GEN_LOCAL=true.
+*/
 
-  /* Zmienna wewnętrzna dla funkcji is_file_available_locally, ustawiana
-     w kodzie poniżej. */
-  $locally_available_files = array();
+/* Zmienna wewnętrzna dla funkcji is_file_available_locally, ustawiana
+   w kodzie poniżej. */
+$locally_available_files = array();
 
-  if (array_key_exists('argc', $_SERVER))
+if (array_key_exists('argc', $_SERVER))
+{
+  for ($i = 1; $i < $_SERVER['argc']; $i++)
   {
-    for ($i = 1; $i < $_SERVER['argc']; $i++)
+    if ($_SERVER['argv'][$i] == '--gen-local')
+      define_if_needed('IS_GEN_LOCAL', true); else
+    if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
+      define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
+    if ($_SERVER['argv'][$i] == '--html-validation')
+      define_if_needed('HTML_VALIDATION', true); else
+    if ($_SERVER['argv'][$i] == '--locally-avail')
     {
-      if ($_SERVER['argv'][$i] == '--gen-local')
-        define_if_needed('IS_GEN_LOCAL', true); else
-      if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
-        define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
-      if ($_SERVER['argv'][$i] == '--html-validation')
-        define_if_needed('HTML_VALIDATION', true); else
-      if ($_SERVER['argv'][$i] == '--locally-avail')
-      {
-        $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
-        break;
-      } else
-        exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
-    }
+      $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
+      break;
+    } else
+      exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
   }
+}
 
-  // testy: echo "Locally available are "; print_r($locally_available_files);
+// testy: echo "Locally available are "; print_r($locally_available_files);
 
-  /* Jeżeli stałe nie zostały ustawione przed odpowiednie parametry
-     to ustaw je teraz. */
-  define_if_needed('IS_GEN_LOCAL', false);
-  define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
-  define_if_needed('HTML_VALIDATION', false);
+/* Jeżeli stałe nie zostały ustawione przed odpowiednie parametry
+   to ustaw je teraz. */
+define_if_needed('IS_GEN_LOCAL', false);
+define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
+define_if_needed('HTML_VALIDATION', false);
 
-  if (IS_GEN_LOCAL)
-  {
-    $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH) . 'www/htdocs/';
-    chdir($dir) or exit("Cannot change directory to \"$dir\"");
-  }
+if (IS_GEN_LOCAL)
+{
+  $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH) . 'www/htdocs/';
+  chdir($dir) or exit("Cannot change directory to \"$dir\"");
+}
 
 /* ============================================================
    some functions related to IS_GEN_LOCAL */
@@ -422,44 +422,6 @@ function a_href_page_hashlink($link_title, $page_name, $hash_link)
   return a_href_page_core($link_title, $page_name, $hash_link);
 }
 
-function echo_kambi_common_css()
-{
-?>
-
-<!--
-  This is unclean, but it's more comfortable to keep below CSS
-  directly inside HTML page. This is in kambi_common.php,
-  that should be useful for both michalis.ii and castle-engine.sf.net webpages,
-  and must be suitable also for offline documentation in castle-engine programs.
--->
-<!-- link type="text/css" rel="stylesheet" media="all"  href="kambi-php-lib/kambi_common.css" -->
-
-<style type="text/css"><!--
-body { background: white; font-family: sans-serif; }
-
-dt { font-weight: bold; }
-span.page_copyright { font-size: smaller }
-
-span.version_number { font-size: small }
-
-div.quick_links_bottom_line { text-align: <?php
-  echo (IS_GEN_LOCAL ? 'left' : 'center' ) ?>; }
-
-.rss_link {
-  float: right;
-  background: red;
-  padding: 0.3em;
-  border: thin outset black;
-}
-
-.rss_link a {
-  color: white;
-  font-weight: bold
-}
---></style>
-<?php
-}
-
 /* Sets global $page_basename and $this_page_name, if not already set.
    It is Ok (harmless) to call this more than once during page request
    (useful, since we call it from common_header but "Castle Game Engine"
@@ -489,6 +451,15 @@ function kambi_bootstrap()
 
 /* header ============================================================ */
 
+/* URL relative path from this page to root, where kambi-php-lib/
+   is a subdirectory.
+   If a particular page is not within root directory,
+   then change this before calling common_header. */
+global $relative_path_to_root;
+if (empty($relative_path_to_root)) {
+  $relative_path_to_root = '';
+}
+
 /* $meta_description :string/NULL = krótki opis strony,
    o ile nie będzie NULL będzie wypisany jako <meta name="Description" ...>
 
@@ -505,7 +476,8 @@ function kambi_bootstrap()
 function common_header($a_page_title, $page_lang,
   $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
 {
-  global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename;
+  global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename,
+    $relative_path_to_root;
 
   $page_title = $a_page_title;
 
@@ -522,7 +494,7 @@ function common_header($a_page_title, $page_lang,
       case LANG_EN: $SBackToMain = 'back to main page'; break;
     }
     $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
-      $SBackToMain, MAIN_PAGE_BASENAME));
+      $SBackToMain, $relative_path_to_root . MAIN_PAGE_BASENAME));
   }
 
   if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
@@ -565,11 +537,12 @@ function common_header($a_page_title, $page_lang,
 <title><?php echo $page_title ?></title>
 
 <!-- Bootstrap -->
-<link href="kambi-php-lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="kambi-php-lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
-<link type="text/css" rel="stylesheet" href="kambi-php-lib/colorbox/example3/colorbox.css">
+<!-- Colorbox -->
+<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -578,7 +551,37 @@ function common_header($a_page_title, $page_lang,
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<?php echo_kambi_common_css(); ?>
+<!--
+  It's more comfortable to keep below CSS
+  directly inside HTML page. This is in kambi_common.php,
+  that should be useful for both michalis.ii and castle-engine.sf.net webpages,
+  and must be suitable also for offline documentation in castle-engine programs.
+-->
+<!-- link type="text/css" rel="stylesheet" media="all"  href="<?php echo $relative_path_to_root; ?>kambi-php-lib/kambi_common.css" -->
+
+<style type="text/css"><!--
+body { background: white; font-family: sans-serif; }
+
+dt { font-weight: bold; }
+span.page_copyright { font-size: smaller }
+
+span.version_number { font-size: small }
+
+div.quick_links_bottom_line { text-align: <?php
+  echo (IS_GEN_LOCAL ? 'left' : 'center' ) ?>; }
+
+.rss_link {
+  float: right;
+  background: red;
+  padding: 0.3em;
+  border: thin outset black;
+}
+
+.rss_link a {
+  color: white;
+  font-weight: bold
+}
+--></style>
 
 <?php
   echo_header_bonus();
@@ -591,7 +594,7 @@ function common_header($a_page_title, $page_lang,
   if ( (!defined('KAMBI_NO_HOME_LINK')) &&
        (!$main_page) &&
        ($s_quick_links != '') ) { ?>
-    <p align="right"><small> <?php echo $s_quick_links; ?> </small></p>
+    <p class="text-right"><small> <?php echo $s_quick_links; ?> </small></p>
 <?php };
 }
 
@@ -599,7 +602,7 @@ function common_header($a_page_title, $page_lang,
 
 function common_footer()
 {
-  global $s_quick_links, $main_page;
+  global $s_quick_links, $main_page, $relative_path_to_root;
 
   /* This is html text with copyright of these pages. */
   define('PAGE_COPYRIGHT',
@@ -623,14 +626,14 @@ and you are free to modify and further distribute it on terms of
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="kambi-php-lib/js/jquery.min.js"></script>
+<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/js/jquery.min.js" type="text/javascript"></script>
 <!-- Include colorbox after jQuery is known -->
-<script type="text/javascript" src="kambi-php-lib/colorbox/jquery.colorbox-min.js"></script>
+<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
