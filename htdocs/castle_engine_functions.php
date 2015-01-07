@@ -551,8 +551,9 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
 
 function castle_footer()
 {
-  global $castle_sidebar;
+  echo disqus_form();
 
+  global $castle_sidebar;
   if (empty($castle_sidebar))
     echo '</div>'; else
     echo '</div></div><div class="col-sm-3 well">' .$castle_sidebar. '</div></div></div>';
@@ -562,14 +563,6 @@ function castle_footer()
 
 function echo_footer ()
 {
-  if (IS_GEN_LOCAL) { ?>
-    <address>
-    By Michalis Kamburelis, as part of
-    <?php echo "<a href=\"" . CURRENT_URL . "\">Castle Game Engine</a>"; ?>.
-    </address>
-    <?php
-  }
-
   ?>
 
   <div class="panel-footer">

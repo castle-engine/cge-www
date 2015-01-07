@@ -189,3 +189,28 @@ function youtube_subscribe()
 <div class="g-ytsubscribe" data-channelid="UCq9jJ5ivIXC5VEWiUAfxBxw" data-layout="full" data-count="default"></div>
 ';
 }
+
+/* Disqus -------------------------------------------------------------------- */
+
+function disqus_form()
+{
+  global $page_basename, $page_title, $this_page_name;
+
+  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+
+  /* From https://castle-engine.disqus.com/admin/settings/universalcode/ */
+  return "
+    <div id=\"disqus_thread\"></div>
+    <script type=\"text/javascript\">
+      var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
+      var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
+      var disqus_title = '" . htmlspecialchars($page_title) . "';
+      var disqus_url = '" . CURRENT_URL . $this_page_name . "';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href=\"https://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>";
+}

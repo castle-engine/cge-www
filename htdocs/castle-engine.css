@@ -416,3 +416,9 @@ div.quote {
 .gsc-search-button {
   box-sizing: content-box !important;
 }
+
+#disqus_thread {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
