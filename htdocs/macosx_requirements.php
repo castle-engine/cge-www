@@ -145,7 +145,7 @@ in Finder, or in dock...).
 
 <p>To see the console output, run view3dscene from terminal:
 
-<pre class="bordered_code">
+<pre>
 cd directory-where-you-installed-view3dscene/
 ./view3dscene.app/Contents/MacOS/view3dscene
 </pre>
@@ -214,8 +214,8 @@ some additional software:
 
 <p>For libs installed by fink, you may have to add them to your libs
 path by command like
-<pre class="bordered_code">
-  export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
+<pre>
+export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 </pre>
 before executing programs. (you can add this to your <code>.bashrc</code>
 or similar file for comfort).

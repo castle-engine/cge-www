@@ -98,16 +98,19 @@ span.command_line_option {
   padding: 0.5em;
 } */
 
-pre.vrml_code {
-  border: 1px solid #aaaaaa;
-  background-color: #f9f9f9;
-  padding: 0.3em;
-}
+dt { font-weight: bold; }
+span.page_copyright { font-size: smaller }
+span.version_number { font-size: small }
 
-pre.bordered_code {
-  border: 1px solid #aaaaaa;
-  background-color: #f9f9f9;
+.rss_link {
+  float: right;
+  background: red;
   padding: 0.3em;
+  border: thin outset black;
+}
+.rss_link a {
+  color: white;
+  font-weight: bold
 }
 
 pre.vrml_extension_spec { }

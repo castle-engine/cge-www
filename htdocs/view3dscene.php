@@ -87,7 +87,7 @@ you can optionally install also view3dscene menu item
 (will be placed in the <i>Graphics</i> menu category), with a nice icon,
 and associate it with appropriate 3D model types.</p>
 
-<pre class="bordered_code">
+<pre>
 # Place view3dscene on $PATH, for example like this:
 sudo ln -s /usr/local/bin/view3dscene view3dscene
 
@@ -107,7 +107,7 @@ view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
 in the viewed directory. Assuming that view3dscene is on the $PATH
 and you already did previous <code>./install.sh</code>, you can run:</p>
 
-<pre class="bordered_code">
+<pre>
 ./install_thumbnailer.sh
 </pre>
 
@@ -362,8 +362,8 @@ They all are optional.
 <p>Command-line options:
 
 <pre>
-  --screenshot  TIME  FILE-NAME
-  --screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME
+--screenshot  TIME  FILE-NAME
+--screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME
 </pre>
 
 <p>These options allow you to capture a screenshot of the loaded scene.
@@ -398,7 +398,7 @@ of the default empty (black) scene. So to take a simple screenshot
 of a scene, at it's default camera, just call</p>
 
 <pre>
-  view3dscene my_model.wrl --screenshot 0 output.png
+view3dscene my_model.wrl --screenshot 0 output.png
 </pre>
 
 <p><b>The detailed specification how screenshot options work</b>:
@@ -489,7 +489,7 @@ of a scene, at it's default camera, just call</p>
   <li><p>Simply get a single screenshot at given time:
 
 <pre>
-  view3dscene my_model.wrl --screenshot 0 output.png
+view3dscene my_model.wrl --screenshot 0 output.png
 </pre>
   </li>
 
@@ -498,7 +498,7 @@ of a scene, at it's default camera, just call</p>
     25 frames per second:
 
 <pre>
-  view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
+view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
 </pre>
 
     <p>To get this as a sequence of images, just use <code>output@counter(4).png</code>
@@ -508,9 +508,9 @@ of a scene, at it's default camera, just call</p>
   <li><p>Example of more complicated use:
 
 <pre>
-  view3dscene my_model.kanim \
-    --screenshot-range 0 0.04 50 output@counter(1).avi \
-    --screenshot-range 10 0.04 50 output@counter(1).avi
+view3dscene my_model.kanim \
+  --screenshot-range 0 0.04 50 output@counter(1).avi \
+  --screenshot-range 10 0.04 50 output@counter(1).avi
 </pre>
 
     <p>This generates two files: <code>output1.avi</code> with 2 second animation
@@ -572,7 +572,7 @@ of a scene, at it's default camera, just call</p>
         castle_game_engine and view3dscene', 'all_programs_sources'); ?>.
         Unpack them, such that <code>castle_game_engine/</code> and <code>view3dscene/</code>
         directories are siblings.
-      <li>In the terminal, do <pre class="bordered_code">
+      <li>In the terminal, do <pre>
 export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd view3dscene/
 ./compile.sh
@@ -661,7 +661,7 @@ even on a stripped-down system) and has simpler command-line options
 (as it's purpose is only to convert).</p>
 
 <p>Examples:</p>
-<pre class="bordered_code">
+<pre>
 # Convert Collada to X3D
 view3dscene input.dae --write &gt; output.x3dv
 # Same as above, but by tovrmlx3d binary
