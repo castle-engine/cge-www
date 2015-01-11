@@ -48,6 +48,12 @@ mk_offline_docs ()
   mkdir -p "${OUTPUT_PATH}"images/
   cp "${CASTLE_ENGINE_HTDOCS}images/header_icon.png" \
      "${OUTPUT_PATH}"images/
+  mkdir -p "${OUTPUT_PATH}"kambi-php-lib/
+  cp -R \
+     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/bootstrap" \
+     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/colorbox" \
+     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/js" \
+     "${OUTPUT_PATH}"kambi-php-lib/
   # In the future we may add castle-engine.js, but for now it's used only
   # in some news text, not needed in offline docs.
 }
