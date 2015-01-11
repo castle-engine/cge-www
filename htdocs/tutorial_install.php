@@ -4,25 +4,17 @@ tutorial_header('Download and install the engine, try the demos');
 ?>
 
 <p>If you haven't done it yet, <?php echo a_href_page('download the
-engine source code with examples', 'engine'); ?>.</p>
+engine source code with examples', 'engine'); ?>.
 
-<p>The example program that shows most of the features presented in
-this tutorial is inside <code>examples/fps_game/fps_game.lpr</code> .
-I suggest looking at it's source
-code for a complete implementation that uses most the code snippets
-shown in this tutorial.</p>
+<p><b>The short usage instructions</b>:
 
 <ul>
   <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a>:</b>
-    Run Lazarus,
-    and open packages in the <code>castle_game_engine/packages/</code>
-    subdirectory. Open and compile all three packages (<code>castle_base.lpk</code>,
-    <code>castle_components.lpk</code>, <code>castle_window.lpk</code>), to test that things compile
-    OK. Then install the package <code>castle_components.lpk</code> (it will
-    also install <code>castle_base.lpk</code> by dependency).
-    (Do not install
-    <code>castle_window.lpk</code> &mdash; you don't want to have this installed in
-    Lazarus.)</p>
+    In Lazarus install the package <code>castle_game_engine/packages/castle_components.lpk</code>.
+    It will also automatically install the package <code>castle_base</code>,
+    as a dependency.
+    Then, open and compile (but do not install) the package
+    <code>castle_game_engine/packages/castle_window.lpk</code>.
 
     <p>Once packages are successfully installed, Lazarus restarts, and you
     should see the <i>"Castle"</i> tab with our components.
@@ -40,17 +32,23 @@ shown in this tutorial.</p>
     You can use command-line <code>xxx_compile.sh</code> scripts (or just call
     <code>make examples</code>) to compile them using FPC.
 
-    <p>You will not be able to compile components and examples using LCL
-    of course (things inside <code>src/components/</code> and <code>examples/lazarus/</code>).
+    <p>To develop your own programs, you can compile the engine with <code>make</code>
+    and add the engine unit output path (like <code>.../castle_game_engine/units/i386-linux/</code>)
+    to your <code>fpc.cfg</code> file.
+    Or you can compile your own projects using our
+    <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
   </li>
 </ul>
 
-<p>Let's quickly open and run some demos, to make sure that everything
-works. I suggest running at least
-<code>examples/lazarus/model_3d_viewer/</code> (demo using Lazarus LCL) and
-<code>examples/fps_game/</code> (demo using our CastleWindow unit).</p>
+<p><b>Try the examples:</b> I suggest you compile and run now our example project
+<code>examples/fps_game/fps_game.lpr</code> .
+Also look at it's source code for a complete demo of various concepts
+presented in this tutorial.
 
-<p>Make sure you have installed the necessary libraries first, or some of
+<p>If you use Lazarus LCL, try also compiling and running the demo inside
+<code>examples/lazarus/model_3d_viewer/</code>.</p>
+
+<p><b>Make sure you have installed the necessary libraries</b> first, or some of
 the demos will not work. The required libraries are mentioned near the <?php
 echo a_href_page_hashlink('engine download', 'engine', 'section_download_src'); ?>.
 <!--
@@ -62,6 +60,7 @@ Under Windows, you will usually want to grab the necessary DLLs from: <a href="h
 somewhere on your $PATH, or just place them in every directory
 with .exe files that you compile with our engine.</p>
 
+<!--
 <p>If you are interested in developing for Android or iOS, you will want
 to later read also
 <ul>
@@ -70,6 +69,7 @@ to later read also
 </ul>
 
 <p>Now we'll start creating our own game from scratch.</p>
+-->
 
 <?php
 tutorial_footer();
