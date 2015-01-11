@@ -65,7 +65,7 @@ function googleplus_button()
 function google_custom_search_box()
 {
   // https://developers.google.com/custom-search/docs/element
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (CASTLE_OFFLINE || HTML_VALIDATION || IS_GEN_LOCAL) return '';
 
   return <<<EOD
 <div class="google-search-container">
@@ -196,7 +196,7 @@ function disqus_form()
 {
   global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
 
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (CASTLE_OFFLINE || HTML_VALIDATION || IS_GEN_LOCAL) return '';
 
   /* only show it once. This allows to insert this earlier for news */
   if (!empty($disqus_form_already_done)) return '';

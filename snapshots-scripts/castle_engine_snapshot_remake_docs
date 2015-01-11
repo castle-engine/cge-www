@@ -44,6 +44,7 @@ mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
   castle_script.html \
   glviewimage.html \
   macosx_requirements.html \
+  engine.html \
   creating_data_3d.html \
   creating_data_intro.html \
   creating_data_levels.html \
@@ -71,8 +72,10 @@ mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
   tutorial_resources_extending.html \
   tutorial_resources.html \
   tutorial_resources_using_existing.html \
-  tutorial_scene_manager.html \
+  tutorial_lazarus_focus.html \
   tutorial_screenshots.html \
   tutorial_sound.html \
   tutorial_up.html \
-  tutorial_user_prefs.html
+  tutorial_user_prefs.html \
+  tutorial_transformation_hierarchy.html \
+  tutorial_mobile.html
