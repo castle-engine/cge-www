@@ -36,15 +36,19 @@
 ));
 ?>
 
-<p><i>Castle Game Engine</i> is an open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-3D/2D game engine for ObjectPascal. We support of lot of 3D and 2D formats for your games
-(<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
-<a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>...),
-we're portable to a lot of platforms (Linux, Windows, Mac OS X, Android, iOS...),
-we provide optimized rendering with a lot of graphic effects,
-and we have a great API for managing your game world (including high-level classes like ready-to-use creature AI).
+<p>An open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+3D/2D game engine for ObjectPascal.
 
-<p>Contents:
+<ul>
+  <li>We support of lot of 3D and 2D formats
+    (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
+    <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>...),
+  <li>we're portable to a lot of platforms (Linux, Windows, Mac OS X, Android, iOS...),
+  <li>we provide optimized rendering with a lot of graphic effects,
+  <li>and we have a great API for managing your game world. <!-- (including high-level classes like ready-to-use creature AI).-->
+</ul>
+
+<p>Contents of this page:
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
