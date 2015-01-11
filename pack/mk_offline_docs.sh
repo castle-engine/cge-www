@@ -46,9 +46,7 @@ mk_offline_docs ()
 
   cp "${CASTLE_ENGINE_HTDOCS}"castle-engine.css "${OUTPUT_PATH}"
   mkdir -p "${OUTPUT_PATH}"images/
-  cp "${CASTLE_ENGINE_HTDOCS}images/header-pattern.png" \
-     "${CASTLE_ENGINE_HTDOCS}images/header_icon.png" \
-     "${CASTLE_ENGINE_HTDOCS}images/download_box_bg.png" \
+  cp "${CASTLE_ENGINE_HTDOCS}images/header_icon.png" \
      "${OUTPUT_PATH}"images/
   # In the future we may add castle-engine.js, but for now it's used only
   # in some news text, not needed in offline docs.
