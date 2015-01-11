@@ -70,7 +70,7 @@ understood by our OpenGL programs", "opengl_options") ?>
 to force windowed or fullscreen mode with desired size.
 For example run like this:
 
-<pre class="sourcecode">
+<pre>
 castle --geometry 800x600
 </pre>
 

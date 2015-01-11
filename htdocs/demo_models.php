@@ -92,7 +92,7 @@ have to actually send your 3D model source.--></p>
 
 <p>You can always download the very current version of these models from SVN by:</p>
 
-<pre class="terminal small"><?php
+<pre><?php
   echo sf_checkout_link(true, 'demo_models'); ?></pre>
 
 <?php echo $toc->html_section(); ?>

@@ -74,7 +74,7 @@ automatically propose to install it.
 <p>The full source code is available in the SVN repository,
 and can be downloaded like this:
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'darkest_before_dawn'); ?></pre>
+<pre><?php echo sf_checkout_link(true, 'darkest_before_dawn'); ?></pre>
 
 <p>See the <code>README.txt</code> for compilation instructions.
 For a standalone compilation all you need is the

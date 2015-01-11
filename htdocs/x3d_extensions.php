@@ -401,7 +401,7 @@ These names are not invented by us, they are the names used for <a href="http://
       echo
       node_dots('all normal Inline fields') .
       node_field('MFString', '[in,out]', 'replaceNames', '[]') .
-      node_field('MFNode', '[in,out]', 'replaceNodes' , '[]', 'any VRML node is valid on this list') .
+      node_field('MFNode', '[in,out]', 'replaceNodes' , '[]', 'any node is valid on this list') .
       node_end();
     ?>
 
@@ -518,20 +518,19 @@ Shape {
 
     <p>For example consider this Script:
 
-<pre class="vrml_code">
-  DEF S Script {
-    inputOnly SFTime touch_event
-    inputOnly SFBool some_other_event
-    inputOnly SFInt32 yet_another_event
-    url "compiled:
+<pre>
+DEF S Script {
+  inputOnly SFTime touch_event
+  inputOnly SFBool some_other_event
+  inputOnly SFInt32 yet_another_event
+  url "compiled:
 initialize=script_initialization
 touch_event=touch_handler
 some_other_event=some_other_handler
 " }
 
-  DEF T TouchSensor { }
-  ROUTE T.touchTime TO S.touch_event
-</pre>
+DEF T TouchSensor { }
+ROUTE T.touchTime TO S.touch_event');</pre>
 
     <p>This means that handler named <code>touch_handler</code> will
     be executed when user will activate TouchSensor.
@@ -552,8 +551,8 @@ some_other_event=some_other_handler
     appropriate handlers
     in your Pascal code. Like this:</p>
 
-<pre class="sourcecode">
-type
+<?php echo pascal_highlight(
+'type
   TMyObject = class
     procedure ScriptInitialization(Value: TX3DField; const Time: TX3DTime);
     procedure TouchHandler(Value: TX3DField; const Time: TX3DTime);
@@ -572,7 +571,7 @@ begin
   { ... do here whatever you want ...
 
     Value parameter here contains a value passed to Script.touch_event.
-    You can cast it to appropriate field type and get it's value,
+    You can cast it to appropriate field type and get it\'s value,
     like "(Value as TSFTime).Value".
 
     (Although in case of this example, Value here will always come from
@@ -583,9 +582,8 @@ end;
 
   { ... and somewhere after creating TCastleSceneCore (or TCastleScene) do this: }
 
-  Scene.RegisterCompiledScript('script_initialization', @MyObject.ScriptInitialization);
-  Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
-</pre>
+  Scene.RegisterCompiledScript(\'script_initialization\', @MyObject.ScriptInitialization);
+  Scene.RegisterCompiledScript(\'touch_handler\', @MyObject.TouchHandler);'); ?>
 
     <p>For working example code in Pascal and VRML/X3D of this, see
     <code>castle_game_engine/examples/3d_rendering_processing/call_pascal_code_from_3d_model_script.lpr</code>
@@ -851,14 +849,14 @@ end;
 
     <p>E.g. you can call <?php echo a_href_page('view3dscene',
     'view3dscene'); ?> like
-    <pre>
-      view3dscene my_compressed_vrml_file.wrl.gz
-    </pre>
+<pre>
+view3dscene my_compressed_vrml_file.wrl.gz
+</pre>
     and you can use WWWInline nodes that refer to gzip-compressed VRML
     files, like
-    <pre>
-      WWWInline { name "my_compressed_vrml_file.wrl.gz" }
-    </pre>
+<pre>
+WWWInline { name "my_compressed_vrml_file.wrl.gz" }
+</pre>
 
     <p>Filenames ending with <code>.wrl.gz</code> or <code>.wrz</code> are
     assumed to be always compressed by gzip.</p>

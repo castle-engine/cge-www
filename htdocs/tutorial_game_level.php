@@ -48,7 +48,7 @@ using <code>level.xml</code> files. In short, the most important attributes are:
 <p>Traditionally, I place each level in a subdirectory of <code>data/levels/</code>,
 along with it's associated 3D models. So I have a structure like this:</p>
 
-<pre class="sourcecode">data/
+<pre>data/
   levels/
     pits/
       level.xml

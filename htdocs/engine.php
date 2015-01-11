@@ -224,7 +224,7 @@ to hang on to FPC releases available in distros.
 <p>Instead of downloading the archive, you can also get the latest
 (bleeding-edge) engine sources from Subversion by:</p>
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
+<pre><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 

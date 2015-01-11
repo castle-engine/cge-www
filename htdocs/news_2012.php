@@ -99,14 +99,14 @@ castle_thumbs(array(
 
         <p>Create it, like this:</p>
 
-<pre class="sourcecode">
+<pre>
 Input_UseLifePotion := TInputShortcut.Create(nil, \'Use life potion\', \'life_potion_use\', igItems);
 Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
 </pre>
 
         <p>Then use it in <code>TCastleWindow.OnPress</code> or <code>TCastleControl.OnPress</code> callback, or in an overridden <code>TInputListener.Press</code> method (<code>TInputListener</code> is an ancestor for many things, like <code>TCamera</code>, <code>TUIControl</code>, <code>TCastleSceneManager</code>) like</p>
 
-<pre class="sourcecode">
+<pre>
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
 begin
   if Input.IsEvent(Event) then ...
@@ -117,7 +117,7 @@ end;
 
         <p>You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the <code>TInputPressRelease</code> is a pretty trivial structure, it has <code>EventType</code> field, and even helpers like <code>IsKey</code>. So you can do</p>
 
-<pre class="sourcecode">
+<pre>
 procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
 begin
   if Input.IsKey(CharEscape) then ...
@@ -176,7 +176,7 @@ castle_thumbs(array(
       <li>Much more docs around TGameSceneManager and TLevelInfo.
       <li>Ugly MenuBackground parameter removed, it\'s not needed at all.
       <li>Oh, and TCastleWindow.SceneManager and TCastleControl.SceneManager is now of TGameSceneManager class. So if you use TCastleWindow / TCastleControl, you can use the levels system designed in CastleLevels really trivially:
-<pre class="sourcecode">
+<pre>
   Levels.LoadFromFiles;
   Window.SceneManager.LoadLevel(\'my_level_name\');
 </pre>

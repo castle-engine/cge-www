@@ -46,7 +46,7 @@ and <code>ttf-dejavu</code> font if you want to make PDF version.</p>
 
 <p>You can also download the latest version from Subversion by:</p>
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
+<pre><?php echo sf_checkout_link(true, 'vrml_engine_doc'); ?></pre>
 
 <p>The example VRML 1.0/2.0 models, used for screenshots
 in this work, are available inside <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>

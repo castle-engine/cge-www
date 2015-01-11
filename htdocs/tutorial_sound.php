@@ -22,7 +22,7 @@ or on websites like <a href="http://opengameart.org/">OpenGameArt.org</a>.
 <p>To add a looping sound to your VRML/X3D file in classic encoding
 (<code>xxx.x3dv</code> files) add this:</p>
 
-<pre class="sourcecode">Sound {
+<pre>Sound {
   source AudioClip { url "sample.wav" loop TRUE }
 }</pre>
 
@@ -111,7 +111,7 @@ the sounds XML file.</p>
 <p>You can also refer to your sound names from VRML/X3D AudioClip node,
 using the "sounds-repository" protocol:</p>
 
-<pre class="sourcecode">Sound {
+<pre>Sound {
   source AudioClip { url "sounds-repository:sample" loop TRUE }
 }</pre>
 -->

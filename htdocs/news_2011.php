@@ -938,7 +938,7 @@ castle_thumbs(array(
 
 <p>For developers, as usual we release a <b>new <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.3.0</a></b>. Besides sound in VRML/X3D, you will notice a new shiny SoundEngine (instance of TALSoundEngine, in ALSoundEngine unit) that makes using OpenAL a breeze from ObjectPascal code. Sample usage:</p>
 
-<pre class="sourcecode">
+<pre>
 var Buffer: TALBuffer;
 ...
 Buffer := SoundEngine.LoadBuffer(\'sample.wav\');

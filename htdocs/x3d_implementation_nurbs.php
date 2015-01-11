@@ -74,11 +74,11 @@ equation definition like from <a href="http://www.cs.mtu.edu/~shene/COURSES/cs36
 or <a href="http://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at wikipedia</a>.
 Instead of usual equation:</p>
 
-<pre class="sourcecode">P(u) = (sum of basis * control point * weight) / (sum of basis * weight)</pre>
+<pre>P(u) = (sum of basis * control point * weight) / (sum of basis * weight)</pre>
 
 <p>VRML/X3D uses a simpler equation:</p>
 
-<pre class="sourcecode">P(u) = (sum of basis * control point) / (sum of basis * weight)</pre>
+<pre>P(u) = (sum of basis * control point) / (sum of basis * weight)</pre>
 
 <p>That is, <i>"X3D control point"</i> (as specified in VRML/X3D file) is assumed
 to be already multiplied by weight.</p>

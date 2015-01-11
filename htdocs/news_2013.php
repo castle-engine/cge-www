@@ -140,7 +140,7 @@ castle_thumbs(array(
   <li>In all programs (view3dscene and others created by Castle Game Engine) the Home / PageUp / PageDown keys loose their old meaning (they were used to raise/bow/straighten head in Walk, or rotate/reset in 3rd axis in Examine). I think that nowadays, people don\'t need keys to perform these actions, as rotating with mouse (like mouse look or mouse dragging or scroll wheel) is more intuitive and more discoverable. This way these keys are free to use for viewpoint navigation.
     <p>If you would like to restore the previous behavior just for your application, you can of course do it, since all the inputs of cameras remain configurable. Like this:
 
-<pre class="sourcecode">
+<pre>
 var
   Camera: TUniversalCamera;
 

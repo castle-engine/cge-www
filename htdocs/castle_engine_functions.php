@@ -429,7 +429,7 @@ function echo_header_bonus ()
   global $geshi;
   $geshi = new GeSHi();
   $geshi->enable_classes();
-  $geshi->set_overall_class('sourcecode');
+  //$geshi->set_overall_class('sourcecode'); // not needed anymore
   /* looks like we need to set_language before get_stylesheet,
      otherwise not everything necessary is output. */
   $geshi->set_language('delphi');
@@ -912,7 +912,7 @@ function xml_highlight($source)
   $source = str_replace('&', '&amp;', $source);
   $source = str_replace('<', '&lt;', $source);
   $source = str_replace('>', '&gt;', $source);
-  $source = '<pre class="xml sourcecode">' . $source . '</pre>';
+  $source = '<pre class="xml">' . $source . '</pre>';
   $source = preg_replace('/\\[\\[(.+)\\|(.+)\\]\\]/',
     '<a href="' . CASTLE_REFERENCE_URL . '\\1">\\2</a>', $source);
   return $source;
@@ -925,5 +925,15 @@ function pascal_highlight($source)
   $geshi->set_language('delphi');
   return $geshi->parse_code();
 }
+
+/* unused now:
+function vrmlx3d_highlight($source)
+{
+  global $geshi;
+  $geshi->set_source($source);
+  $geshi->set_language('Bash');
+  return $geshi->parse_code();
+}
+*/
 
 ?>

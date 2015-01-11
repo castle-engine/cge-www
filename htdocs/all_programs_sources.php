@@ -88,7 +88,7 @@ notes near some programs below.
 <?php
   function echo_src_svnonly($name)
   {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><code class="terminal small">' .
+    echo '<li><p>' . $name . ': only from Subversion by:<br><code>' .
         sf_checkout_link(true, $name) . '</code></li>
       ';
   }
@@ -117,7 +117,7 @@ notes near some programs below.
     }
 
     echo
-      '<p>Download from Subversion by:</p><pre class="terminal small">' .
+      '<p>Download from Subversion by:</p><pre>' .
         sf_checkout_link(true, $internal_name) . '</pre></li>
       ';
   }
@@ -162,7 +162,7 @@ book about the Subversion</a>.</p>
 
 <p>To download full sources for all projects, do</p>
 
-<pre class="terminal small"><?php echo sf_checkout_link(true, ''); ?></pre>
+<pre><?php echo sf_checkout_link(true, ''); ?></pre>
 
 <p>Please note that the full <code>trunk</code> is quite large.
 It contains everything: the core engine sources (<code>castle_game_engine</code> subdirectory),
@@ -178,7 +178,7 @@ version of the work. That said, usually it's quite stable (I have a personal
 policy to try to commit only code that is compileable and somewhat tested).
 So feel free to peek, and please report eventual bugs you spot.
 You can also download the code from one of
-<code class="terminal">http://svn.code.sf.net/p/castle-engine/code/tags/</code>
+<code>http://svn.code.sf.net/p/castle-engine/code/tags/</code>
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 

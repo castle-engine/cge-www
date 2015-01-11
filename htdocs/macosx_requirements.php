@@ -236,7 +236,7 @@ should do the trick. This is necessary for successful linking.</p>
 libraries. If you have installed fink and X11 in standard locations,
 you can simply add these lines to your <code>/etc/fpc.cfg</code> file:</p>
 
-<pre class="sourcecode">
+<pre>
 -Fl/sw/lib/
 -Fl/usr/X11/lib/
 </pre>

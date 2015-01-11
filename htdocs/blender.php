@@ -145,7 +145,7 @@ and then our "KAnim hack" will no longer be useful.)</p>
 <h2>Subversion</h2>
 
 <p>You can grab all this stuff from SVN:
-<pre class="terminal small">
+<pre>
 <?php echo sf_checkout_link(true, 'blender'); ?>
 </pre>
 
