@@ -94,7 +94,7 @@ $castle_sitemap = array(
 
   'features' => array('title' => 'Features', 'title-for-header-menu' => 'Features'),
 
-  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Download and documentation', 'title-for-header-menu' => 'Download and documentation',
+  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Download and Documentation', 'title-for-header-menu' => 'Download and Documentation',
     'sidebar' => true,
     'sub' => array(
       'tutorial_intro' => array('title' => 'Tutorial',
@@ -104,6 +104,7 @@ $castle_sitemap = array(
           'tutorial_opengl_context' => array('title' => 'First program: display an empty window'),
           'tutorial_load_3d' => array('title' => 'Simple loading of 3D models'),
           'tutorial_game_level' => array('title' => 'Loading game level'),
+          'tutorial_castle_scene_transform' => array('title' => 'Adding a simple moving object'),
           'tutorial_player' => array('title' => 'Player'),
           'tutorial_mobile' => array('title' => 'Developing mobile (and cross-platform) games'),
           'tutorial_resources' => array('title' => 'Creatures and items',
