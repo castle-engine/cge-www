@@ -80,6 +80,36 @@ begin
     Vector3Single(10, 0, 0) * SecondsPassed;
 end;'); ?>
 
+<p>That's it, you have a moving 3D object in your world,
+and the movement in 100% controlled by your code!
+
+<p>For more advanced usage, note that:
+
+<ul>
+  <li><p>You can add many of such objects to your world,
+    and use <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>
+    or <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>
+    to build any transformation hierarchy that is comfortable.
+
+    <p>You can remove and add these objects during your game freely.
+    To keep performance, just avoid loading from 3D model files
+    (<code>TCastleScene.Load</code>) during the game,
+    so you may need to keep some scenes precreated.
+    Our mechanism of <i>creature/items resources</i> exposes a flexible
+    approach based on this, but for simple cases you can just do it yourself.
+
+  <li><p>You can override these classes to define your own stuff.
+    These objects can collide and perform AI if you want.
+    Note that every <?php api_link('T3D', 'Castle3D.T3D.html'); ?> object knows
+    it's <?php api_link('World', 'Castle3D.T3D.html#World'); ?>
+     so it knows how to move and collide
+    within the 3D world. That's how AI is implemented.
+    See <?php api_link('T3D.Move', 'Castle3D.T3D.html#Move'); ?>,
+     <?php api_link('T3D.MoveAllowed', 'Castle3D.T3D.html#MoveAllowed'); ?>,
+     <?php api_link('T3D.Height', 'Castle3D.T3D.html#Height'); ?> and
+     <?php api_link('T3D.LineOfSight', 'Castle3D.T3D.html#LineOfSight'); ?> methods.
+</ul>
+
 <?php
 tutorial_footer();
 ?>

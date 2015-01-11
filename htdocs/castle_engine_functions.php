@@ -114,7 +114,6 @@ $castle_sitemap = array(
             ),
           ),
           'tutorial_up' => array('title' => 'Which way is up?'),
-          'tutorial_3d_custom' => array('title' => 'Define other 3D objects'),
           'tutorial_player_2d_controls' => array('title' => 'Display 2D controls: player HUD'),
           'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),
           'tutorial_notifications' => array('title' => 'Notifications'),
