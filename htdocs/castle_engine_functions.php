@@ -101,12 +101,7 @@ $castle_sitemap = array(
         'sub' => array(
           'tutorial_intro' => array('title' => 'Introduction'),
           'tutorial_install' => array('title' => 'Download, install, try demos'),
-          'tutorial_opengl_context' => array('title' => 'OpenGL context',
-            'sub' => array(
-              'tutorial_lazarus_focus' => array('title' => 'Sidenote about the focus of TCastleControl'),
-            ),
-          ),
-          'tutorial_scene_manager' => array('title' => 'Scene Manager'),
+          'tutorial_opengl_context' => array('title' => 'First program: display an empty window'),
           'tutorial_load_3d' => array('title' => 'Simple loading of 3D models'),
           'tutorial_game_level' => array('title' => 'Loading game level'),
           'tutorial_player' => array('title' => 'Player'),
@@ -131,6 +126,7 @@ $castle_sitemap = array(
           'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'tutorial_optimization' => array('title' => 'Optimization and profiling'),
           'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
+          'tutorial_lazarus_focus' => array('title' => 'Sidenote about the focus of TCastleControl'),
           'tutorial_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
         ),
       ),

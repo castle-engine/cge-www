@@ -115,6 +115,10 @@ The main way for
 initializing OpenGL for games is by CastleWindow unit that doesn't depend on
 any Lazarus units. -->
 
+<p><b>Now jump into our
+<?php echo a_href_page('tutorial', 'tutorial_intro') ?> and you will
+have a working game in 5 minutes! :)</b>
+
 <p><b>Remember to install required libraries</b>:
 programs developed using our engine (engine examples and normal programs)
 may use a couple of libraries.

@@ -9,7 +9,7 @@ engine source code with examples', 'engine'); ?>.
 <p><b>The short usage instructions</b>:
 
 <ul>
-  <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a>:</b>
+  <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms:</b>
     In Lazarus install the package <code>castle_game_engine/packages/castle_components.lpk</code>.
     It will also automatically install the package <code>castle_base</code>,
     as a dependency.
@@ -32,11 +32,26 @@ engine source code with examples', 'engine'); ?>.
     You can use command-line <code>xxx_compile.sh</code> scripts (or just call
     <code>make examples</code>) to compile them using FPC.
 
-    <p>To develop your own programs, you can compile the engine with <code>make</code>
-    and add the engine unit output path (like <code>.../castle_game_engine/units/i386-linux/</code>)
-    to your <code>fpc.cfg</code> file.
-    Or you can compile your own projects using our
-    <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+    <p>In this case, to develop your own programs, you have several options:
+    <ol>
+      <li><p>Use Lazarus just to manage a custom application:
+        <ul>
+          <li>Once, compile (do not install) the package
+            <code>castle_game_engine/packages/castle_window.lpk</code>, like in previous version.
+          <li>Create new project using Lazarus <i>"New Project"</i> menu item.</li>
+          <li>Choose <i>"Custom Application"</i> (or <i>"Project-&gt;Simple Program"</i>).</li>
+          <li>Using <i>"Project->Project Inspector"</i> window add a <i>"New Requirement"</i>
+            and choose <code>castle_base</code> package.</li>
+          <li>Then add another requirement and choose <code>castle_window</code>
+            package.</li>
+        </ul>
+      <li><p>Or compile your projects using our
+        <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+        Edit and debug them using whatever tool you like.
+      <li><p>Or compile the engine with <code>make</code>
+        and add the engine unit output path (like <code>.../castle_game_engine/units/i386-linux/</code>)
+        to your <code>fpc.cfg</code> file.
+    </ol>
   </li>
 </ul>
 

@@ -130,7 +130,7 @@ Application.Run; // this goes after preparing level (and everything else)'); ?>
     make sure you call
     <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
     from
-    <?php api_link('OnGLContextOpen event', 'CastleControl.TCastleControlBase.html#OnGLContextOpen'); ?>
+    <?php api_link('OnOpen event', 'CastleControl.TCastleControlCustom.html#OnOpen'); ?>
     event (or something that occurs even later).
 </ol>
 
