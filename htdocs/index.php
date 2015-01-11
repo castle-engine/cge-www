@@ -16,7 +16,7 @@ castle_header('Castle Game Engine',
       <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
       <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
       <p><!--The engine is where all the magic actually happens :)-->
-      Open-source (LGPL) 3D and 2D game engine for <a href="http://www.freepascal.org/">FreePascal / Lazarus</a>. Excellent support for the&nbsp;<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?> 3D data format, other 3D formats also supported. Many advanced graphic effects.</p>
+      Open-source (LGPL) game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
     </div>
   </div>
 
@@ -48,32 +48,39 @@ castle_header('Castle Game Engine',
   </div>
 </div>
 
-<div class="main-widgets">
-<div class="bottom-widget">
-<b style="font-size: larger;"><?php echo last_news_to_html(); ?></b>
-</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="main-widgets">
+      <div class="bottom-widget">
+      <b style="font-size: larger;"><?php echo last_news_to_html(); ?></b>
+      </div>
 
-<div class="bottom-widget">
-<?php echo googleplus_badge(); ?>
-</div>
+      <div class="bottom-widget">
+      <?php echo facebook_button(); ?>
+      </div>
 
-<div class="bottom-widget">
-<?php echo facebook_button(); ?>
-</div>
+      <div class="bottom-widget">
+      <?php echo googleplus_badge(); ?>
+      </div>
 
-<!--
-<div class="bottom-widget">
-<div><?php echo twitter_widget(); ?></div>
-</div>
+      <!--
+      <div class="bottom-widget">
+      <div><?php echo twitter_widget(); ?></div>
+      </div>
 
-<div class="bottom-widget">
-<?php echo youtube_subscribe(false); ?>
-</div>
+      <div class="bottom-widget">
+      <?php echo youtube_subscribe(false); ?>
+      </div>
 
-<div class="bottom-widget">
-<?php echo flattr_button(false); ?>
-</div>
--->
+      <div class="bottom-widget">
+      <?php echo flattr_button(false); ?>
+      </div>
+      -->
+    </div>
+  </div>
+  <div class="col-md-8">
+    <?php echo disqus_form(); ?>
+  </div>
 </div>
 
 <?php

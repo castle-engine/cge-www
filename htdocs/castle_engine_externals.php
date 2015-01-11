@@ -140,7 +140,7 @@ function facebook_button()
 
   return $header .
 //    '<div class="fb-like" data-href="http://castle-engine.sourceforge.net/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
-      '<div class="fb-like-box" data-href="https://www.facebook.com/castleengine" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>';
+      '<div class="fb-like-box" data-href="https://www.facebook.com/castleengine" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>';
 }
 
 /* Paypal -------------------------------------------------------------------- */

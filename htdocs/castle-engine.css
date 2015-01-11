@@ -120,26 +120,27 @@ dl.vrml_ver_differences > dt {
   font-style: italic;
 }
 
-.program_image_link img { border: none; }
-.program_image_link {
-  background: #e8d59a;
-  border: 1px solid black;
+.program_image_link,
+.main_link {
+  /* background: #e8d59a; */
+  /* background: #efdfae; */
+  border-width: thin;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: #dcdcdc;
   text-align: center;
   padding: 0.5em;
   width: 100%;
   margin: 20px 0;
-  min-height: 380px;
+}
+.program_image_link img,
+.main_link img {
+  border: none;
 }
 
-.main_link {
-  background: #efdfae;
-  border: 1px solid black;
-  text-align: center;
-  padding: 0.5em;
-  width: 100%;
-  margin: 20px 0;
+.program_image_link {
+  min-height: 380px;
 }
-.main_link img { border: none; }
 
 .program_image_link_title { font-size: larger; }
 
@@ -412,7 +413,7 @@ div.quote {
 }
 
 .main-widgets {
-  float: right;
+  float: left;
   width: 300px;
 }
 

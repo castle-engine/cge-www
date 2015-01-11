@@ -114,7 +114,7 @@ function last_news_to_html()
     $title = $item['short_title']; else
     $title = $item['title'];
 
-  return '<a href="' . CURRENT_URL . 'news.php?item=' . $item['id'] . '">News: ' .
+  return '<a href="' . CURRENT_URL . 'news.php?item=' . $item['id'] . '">Latest release: ' .
     castle_news_date_long($item) . ':<br/>' . $title . '</a>';
 }
 
