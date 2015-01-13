@@ -3,18 +3,30 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Display 2D controls: player HUD');
 ?>
 
-<p>You will probably want to draw some custom 2D controls on your screen,
-for example to display player life or inventory. The engine does manage them
-automatically for you (see properties in
-<?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> ancestors like
+<p>You will probably want to draw some 2D controls on your screen,
+even if your game is 3D.
+For example you will want to display some player information,
+like current life or inventory, as a HUD (<i>heads-up display</i>).
+
+Note that you can use the standard
+ <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
+ class to automatically store and update your player's life and inventory
+(see <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> and ancestors properties, like
 <?php api_link('T3DAliveWithInventory.Inventory', 'CastleItems.T3DAliveWithInventory.html#Inventory'); ?> and
 <?php api_link('T3DAlive.Life', 'Castle3D.T3DAlive.html#Life'); ?>).
-But by default the engine doesn't display them in any way,
+But this information is not <i>displayed</i> automatically in any way,
 since various games have wildly different needs.
 
-<p>You can do it by defining a new
+<p>In the simple cases, to display something in 2D,
+just place the appropriate drawing code in <code>OnRender</code> event
+(see <?php api_link('TCastleWindowCustom.OnRender', 'CastleWindow.TCastleWindowCustom.html#OnRender'); ?>,
+<?php api_link('TCastleControlCustom.OnRender', 'CastleControl.TCastleControlCustom.html#OnRender'); ?>).
+
+<p>In the not-so-simple cases, when your game grows larger and you
+want to easily manage the stuff you display,
+it is best to define a new
 <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
- descendant, where you can draw anything you want in overridden
+ descendant, where you can draw anything you want in the overridden
 <?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
  method. A simple example:
 
@@ -45,15 +57,54 @@ var
 
 <p>Inside <code>TGame2DControls.Render</code> you have the full knowledge about the world,
 about the <code>Player</code> and <code>Player</code>'s inventory.
-And you can draw them however you like. Basically, you can use
-direct OpenGL commands (with some care taken, see
-<?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
- docs about what you can change carelessly; the rest should be secured
-using <code>glPushAttrib</code> / <code>glPopAttrib</code>).
-But we give you a lot of helpers:
+And you can draw them using our 2D drawing API:
 
 <ul>
-  <li><p>Our projection has (0,0) in lower-left corner (as is standard
+  <li><p>To draw a <b>text</b>, you can use ready global fonts
+    <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
+    <?php api_link('UIFontSmall', 'CastleControls.html#UIFontSmall'); ?>
+    (in <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
+    These are instances of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>.
+    For example, you can show player's health like this:
+
+<?php echo pascal_highlight(
+'UIFont.Print(10, 10, Yellow,
+  Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
+
+    <p>Of course you can also create your own instances
+    of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>
+    to have more fonts.
+
+  <li><p>To draw an <b>image</b>, use
+    <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>.
+    It has methods <code>Draw</code> and <code>Draw3x3</code> to draw the image,
+    intelligently stretching it, optionally preserving unstretched corners.
+
+    <p>Note that <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is an OpenGL resource &mdash;
+    which means that usually you create it in <code>GLContextOpen</code>
+    and destroy in <code>GLContextClose</code> methods of your <code>TUIControl</code>
+    descendant.
+
+  <li><p><?php api_link('DrawRectangle', 'CastleGLUtils.DrawRectangle.html'); ?>
+    allows to easily draw 2D <b>rectangle</b> filled with color.
+    Blending is automatically used if you pass color with alpha &lt; 1.
+
+  <li><p>Every <b>inventory item</b> has already loaded image (defined in <code>resource.xml</code>),
+    as <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>
+    (image stored in normal memory, see
+    <?php api_link('CastleImages', 'CastleImages.html'); ?> unit) and
+    <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
+    (image stored in GPU memory, easy to render, see
+    <?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> unit).
+    For example, you can iterate over inventory
+    list and show them like this:
+
+<?php echo pascal_highlight(
+'for I := 0 to Player.Inventory.Count - 1 do
+  Player.Inventory[I].Resource.GLImage.Draw(I * 100, 0);'); ?>
+
+  <li><p>To adjust your code to window size, note that
+    our projection has (0,0) in lower-left corner (as is standard
     for 2D OpenGL). You can look at the size, in pixels, of the current
     <!--2D control in
     <?php api_link('TUIControl.Width', 'CastleUIControls.TUIControl.html#Width'); ?> x
@@ -69,36 +120,7 @@ But we give you a lot of helpers:
     or (as a rectangle)
     <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowBase.html#Rect'); ?>.
 
-  <li><p>You have ready global bitmap fonts
-    <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
-    <?php api_link('UIFontSmall', 'CastleControls.html#UIFontSmall'); ?>
-    (in <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
-    These are instances of <?php api_link('TGLBitmapFont', 'CastleGLBitmapFonts.TGLBitmapFont.html'); ?>
-    that
-    you can use to draw text. (Of course you can also create your own instances
-    of <?php api_link('TGLBitmapFont', 'CastleGLBitmapFonts.TGLBitmapFont.html'); ?>
-    to have more fonts.)
-    For example, you can show player's health like this:
-
-<?php echo pascal_highlight(
-'UIFont.Print(10, 10, Yellow,
-  Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
-
-  <li><p>Every inventory item has already loaded image (defined in <code>resource.xml</code>),
-    as <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>
-    (image stored in normal memory, see
-    <?php api_link('CastleImages', 'CastleImages.html'); ?> unit) and
-    <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
-    (image stored in GPU memory, easy to render, see
-    <?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> unit).
-    For example, you can iterate over inventory
-    list and show them like this:
-
-<?php echo pascal_highlight(
-'for I := 0 to Player.Inventory.Count - 1 do
-  Player.Inventory[I].Resource.GLImage.Draw(I * 100, 0);'); ?>
-
-  <li><p>For simple screen fade effects, you have procedures inside
+  <li><p>For <b>simple screen fade effects</b>, you have procedures inside
     <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
     like <?php api_link('GLFadeRectangle', 'CastleGLUtils.html#GLFadeRectangle'); ?>.
     This allows you to draw
@@ -147,23 +169,23 @@ Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
 Theme.OwnsImages[tiActiveFrame] := true;
 Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
 
-    <p>If the set of predefined images in <code>Theme</code> is too limiting,
-    then use <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
-    directly, see below.
-
-  <li><p><?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
-    has methods <code>Draw</code> and <code>Draw3x3</code> to draw the image,
-    intelligently stretching it, optionally preserving unstretched corners.
-    We advice to draw most of your GUI using such images.
+    <p>All our standard 2D controls are drawn using theme images.
     This way the look of your game is defined by a set of images,
     that can be easily changed by artists.
 
-  <li><p><?php api_link('DrawRectangle', 'CastleGLUtils.DrawRectangle.html'); ?>
-    allows to easily draw 2D rectangle filled with color.
-    Blending is automatically used if you pass color with alpha &lt; 1.
+    <p>If the set of predefined images in <code>Theme</code> is too limiting,
+    then use <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
+    directly.
 
   <li><p><?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?>,
-    and many other units, provide many other helpers.
+    and some other units, provide other drawing helpers.
+
+    <p>As a last resort, if you know OpenGL,
+    you can just use direct OpenGL commands to render. This requires OpenGL knowledge
+    and some extra care &mdash; you cannot change some state carelessly
+    (see <?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>),
+    and you must be careful if you want your code to be portable to OpenGLES
+    (Android,iOS).
 </ul>
 
 <p>See <code>examples/fps_game</code> for a working and fully-documented
