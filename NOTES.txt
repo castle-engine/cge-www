@@ -136,6 +136,7 @@ Procedure to update WWW content:
     https://plus.google.com/communities/114860965042324270757
     As Castle Game Engine:
     https://plus.google.com/b/101185352355602218697/communities/114860965042324270757
+    Use tags #FreePascal #ObjectPascal #GameDevelopment
 
   - really large new features may cause updates of project description.
     Change project_description.txt text, and see there for a list of places
