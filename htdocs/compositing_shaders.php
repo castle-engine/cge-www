@@ -28,16 +28,19 @@ echo pretty_heading($page_title);
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>You can create pieces of shading language
-code that will be seamlessly integrated with our engine internal shaders.
-This allows you to create a myriad of effects using
-the OpenGL Shading Language (GLSL).
+<p>This in an extension of <?php echo a_href_page('X3D', 'vrml_x3d'); ?> that allows
+to use shaders to define <i>effects</i> on 3D shapes, textures and lights.
+You basically provide small pieces of shading language code that
+will be seamlessly integrated with the engine internal shaders (and with each other).
+This allows to create graphic effects using
+the powerful shader langauges (like OpenGL Shading Language, GLSL, in case of <i>Castle Game Engine</i>).
 Contrary to the traditional approach (using <code>ComposedShader</code> node,
 see <?php echo a_href_page(
 'shader component support', 'x3d_implementation_shaders'); ?>),
-our system allows you to define effects easily, without the need
-to replicate existing functionality (like lighting and texturing operations),
-and your effects automatically cooperate with each other and with standard
+our system allows to create the effects easily. There is no need
+to replicate existing functionality (you don't have to reimplement existing lighting or texturing operations
+in your shaders, if you don't want to modify them).
+Your shader effects automatically cooperate with each other and with standard
 rendering features.</p>
 
 <?php echo $toc->html_section(); ?>
