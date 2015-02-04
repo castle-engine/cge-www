@@ -225,7 +225,7 @@ castle_thumbs(array(
 castle_thumbs(array(
   array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/1mUU8prDi9k" frameborder="0" allowfullscreen></iframe>' : '')),
   array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/rsuF9f3tio8" frameborder="0" allowfullscreen></iframe>' : '')),
-  array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/lsUztfdike8" frameborder="0" allowfullscreen></iframe>' : '')),
+  array('html' => (!HTML_VALIDATION ? '<iframe width="420" height="315" src="http://www.youtube.com/embed/7tV9Qmjgx1U" frameborder="0" allowfullscreen></iframe>' : '')),
 )) .
 '<p>The work on the next <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a> version continues :) Looking at the size of the improvements, next version will deserve the new major number 4.0.0 (even though last version was 3.0.0). We have almost finished new engine features planned for the next version, and we have a lot of new documentation. <!-- (as the point of next engine version is to be better documented for developers). -->
 
@@ -502,7 +502,7 @@ castle_thumbs(array(
 
         <p>The video below shows how 3D mouse works in various navigation modes:</p>
 
-        <iframe width="420" height="315" src="http://www.youtube.com/embed/lsUztfdike8" frameborder="0" allowfullscreen></iframe>
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/7tV9Qmjgx1U" frameborder="0" allowfullscreen></iframe>
       </li>
 
       <li><p><b>Navigation by mouse dragging</b> is now possible in Walk/Fly modes (similar to other VRML/X3D viewers). Drag with left mouse button to move forward, backward and rotate. Drag with right mouse button to move sideways (strafe) and fly up/down.</p></li>

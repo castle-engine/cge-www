@@ -354,7 +354,7 @@ castle_thumbs(array(
 
 <ol>
   <li>Navigating in <i>Walk / Fly</i> modes by mouse dragging.</li>
-  <li><a href="http://youtu.be/lsUztfdike8">Using 3D mouse devices</a>.</li>
+  <li><a href="http://youtu.be/7tV9Qmjgx1U">Using 3D mouse devices</a>.</li>
   <li>Screen-space ambient occlusion (see menu <i>"View -> Screen Effects"</i> menu item, developers: try the ultra-simple <a href="' . CURRENT_URL . 'apidoc/html/CastleSceneManager.TCastleAbstractViewport.html#ScreenSpaceAmbientOcclusion">TCastleAbstractViewport.ScreenSpaceAmbientOcclusion</a> boolean property).</li>
   <li>All screen effects cooperate now with multi-sampling (anti-aliasing).</li>
   <li>UNIT statement from X3D 3.3 is implemented.</li>

@@ -266,7 +266,7 @@ available in our SVN repository.
 
     <p>You can develop cross-target games (for Android, iOS, or standalone &mdash; normal OSes like Linux or Windows) using the engine. This means that a single source code can be used to compile multiple versions of the game. We also have plans to make a "build tool" for the engine to auto-generate the necessary files for the compilation on given target (although it\'s unsure if this will be ready for next release). See <a href="https://sourceforge.net/p/castle-engine/wiki/Planned:%20build%20tool/">Planned: build tool</a> wiki page, and drop a comment if you\'re interested!
 
-    <p>' . (!HTML_VALIDATION ? '<iframe width="560" height="315" src="//www.youtube.com/embed/8u7DggGe_Uk?rel=0" frameborder="0" allowfullscreen></iframe>' : '') . '
+    <p>' . (!HTML_VALIDATION ? '<iframe width="560" height="315" src="//www.youtube.com/embed/dVGZ3lGrrVc?rel=0" frameborder="0" allowfullscreen></iframe>' : '') . '
 
   <li><b>Engine can be compiled and used as a shared library</b> (<code>castleengine.dll</code> on Windows, <code>libcastleengine.so</code> on Linux), <b>with API accessible from C or C++</b>. We provide a C header in <code>src/library/castlelib.h</code> for this purpose. See code in <code>src/library/</code> and tests in <code>examples/library/</code> .
 

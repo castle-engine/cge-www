@@ -345,7 +345,7 @@ flawlessly :) So give it a try!
 </table>
 
 <p>We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,
-see <a href="http://www.youtube.com/watch?v=lsUztfdike8">the demo video about 3D mouse inside
+see <a href="http://www.youtube.com/watch?v=7tV9Qmjgx1U">the demo video about 3D mouse inside
 view3dscene</a>.</p>
 
 <p>There are many more operations with key shortcuts, that work in all
