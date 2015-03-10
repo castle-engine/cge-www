@@ -370,7 +370,9 @@ function page_url($page_name, $hash_link, &$url_comment)
 
   $result = $page_name;
 
-  if (!isset(parse_url($result)['scheme'])) {
+  $parse_url_result = parse_url($result);
+
+  if (!isset($parse_url_result['scheme'])) {
     $already_has_extension = strpos($page_name, '.php') !== FALSE;
     if (!is_page_available_locally($result))
     {
