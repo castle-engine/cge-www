@@ -17,8 +17,10 @@ function main_list_item($item_title)
     '</div>';
 }
 
-/* Image used here for $image_name must have "program_link_size"
-   generated, so make sure it's listed in images/Makefile in PROGRAM_LINK_SIZE. */
+/* Link to program page.
+   Image used here for $image_name must have "program_link_size"
+   generated, so make sure it's listed in images/Makefile in PROGRAM_LINK_SIZE.
+   $page_name may be a complete URL, or a page name for a_href_page. */
 function program_image_link($title, $subtitle, $image_name, $page_name)
 {
   echo '<div class="col-sm-6"><div class="program_image_link"><p>' .
@@ -45,6 +47,10 @@ games from Michalis Kamburelis itch.io profile</a>.
 <?php echo main_list_item("Games"); ?>
 
 <div class="row">
+  <?php program_image_link('Hydra Battles',
+    'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/michaliskambi/hydra-battles">Source code on GitHub</a>.',
+    "hydra_battles_screen_best.png", 'http://michaliskambi.itch.io/hydra-battles'); ?>
+
   <?php program_image_link('Mountains Of Fire',
     '3D game with split-screen view where human and worm cooperate to survive. For single player or 2 players.',
     "mountains_of_fire_screen_1.png", 'mountains_of_fire'); ?>

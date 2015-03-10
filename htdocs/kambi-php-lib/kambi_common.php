@@ -368,28 +368,31 @@ function page_url($page_name, $hash_link, &$url_comment)
        str_append_part_to1st($url_comment, ', ', $next_part) */
   $url_comment = '';
 
-  $already_has_extension = strpos($page_name, '.php') !== FALSE;
-
   $result = $page_name;
 
-  if (!is_page_available_locally($result))
-  {
+  if (!isset(parse_url($result)['scheme'])) {
+    $already_has_extension = strpos($page_name, '.php') !== FALSE;
+    if (!is_page_available_locally($result))
+    {
+      if (!$already_has_extension)
+        $result = CURRENT_URL . $result . '.php';
+      str_append_part_to1st($url_comment, ', ', 'online docs');
+    } else
     if (!$already_has_extension)
-      $result = CURRENT_URL . $result . '.php';
-    str_append_part_to1st($url_comment, ', ', 'online docs');
-  } else
-  if (!$already_has_extension)
-  {
-    if (IS_GEN_PAGE_HREFS_TO_HTML)
-      $result .= '.html'; else
-      $result .= '.php';
+    {
+      if (IS_GEN_PAGE_HREFS_TO_HTML)
+        $result .= '.html'; else
+        $result .= '.php';
+    }
   }
 
-  if ($hash_link != '')
+  if ($hash_link != '') {
     $result .= '#' . $hash_link;
+  }
 
-  if ($url_comment != '')
+  if ($url_comment != '') {
     $url_comment = " <i>($url_comment)</i>";
+  }
 
   return $result;
 }

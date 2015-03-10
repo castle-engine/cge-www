@@ -33,12 +33,15 @@ castle_header('Castle Game Engine',
   <div class="col-md-4">
     <div class="main_link">
       <p><b>For players:</b></p>
-      <p><a href="mountains_of_fire.php"><img src="images/main_link_size/mountains_of_fire_screen_1.png" alt="Mountains Of Fire" /></a></p>
-      <p class="program_image_link_title"><a href="mountains_of_fire.php"><b>Mountains Of Fire</b></a></p>
-      <p>3D game with split-screen view where human and worm cooperate to survive. For single player or 2 players.</p>
-      <!-- <p><a href="darkest_before_dawn.php"><img src="images/main_link_size/darkest_before_dawn_2.png" alt="Darkest Before the Dawn" /></a></p> -->
-      <!-- <p class="program_image_link_title"><a href="darkest_before_dawn.php"><b>Darkest Before the Dawn</b></a></p> -->
-      <!-- <p>Small scary 3D game, for Android and standalone (Linux, Windows).</p> -->
+      <?php
+        $featured_game_page_name = 'http://michaliskambi.itch.io/hydra-battles';
+        $featured_game_screenshot_name = 'hydra_battles_screen_best';
+        $featured_game_name = 'Hydra Battles';
+        $featured_game_description = 'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/michaliskambi/hydra-battles">Source code on GitHub</a>.';
+      ?>
+      <p><?php echo a_href_page('<img src="images/main_link_size/' . $featured_game_screenshot_name .'.png" alt="' . $featured_game_name . '" />', $featured_game_page_name); ?>
+      <p class="program_image_link_title"><?php echo a_href_page('<b>' . $featured_game_name . '</b>', $featured_game_page_name); ?></p>
+      <p><?php echo $featured_game_description; ?></p>
     </div>
 
     <div class="main_link">
