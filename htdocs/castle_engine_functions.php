@@ -577,43 +577,13 @@ function echo_footer ()
 
   <?php
 
-  /* Insert piwik code */
+  /* Insert tracking code */
   if ( (!IS_GEN_LOCAL) &&
        isset($_SERVER["HTTP_HOST"]) &&
        ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net') )
   {
-/* Note: only one piwik.js should be included,
-   so don't report to multiple Piwik installations.
-   This Piwik code must be synched with
-   ../../papers/compositing_shaders_doc/xsl/html_piwik.xsl
-   ../../vrml_engine_doc/xsl/html_piwik.xsl
-   ../../castle_game_engine/doc/pasdoc/footer.html
-*/
-?>
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://michalis.ii.uni.wroc.pl/piwik-castle-engine/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "1"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Piwik Code -->
-
-<noscript>
-<!-- Piwik Image Tracker -->
-<img src="http://michalis.ii.uni.wroc.pl/piwik-castle-engine/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
-<!-- End Piwik -->
-</noscript>
-
-<?php
+    echo_piwik_tracking();
+    echo_google_analytics_tracking();
   }
 }
 
