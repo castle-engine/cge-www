@@ -481,6 +481,9 @@ view3dscene my_model.wrl --screenshot 0 output.png
     For example, <code>@counter(1)</code> results in names like
     1, 2, ..., 9, 10... while <code>@counter(4)</code>
     results in names like 0001, 0002, ..., 0009, 0010, ...
+
+  <li><p>Add <code>--screenshot-transparent</code> option to have a transparent image,
+    with transparent pixels in place where background color would be visible.
 </ul>
 
 <p><b>Examples</b>:
