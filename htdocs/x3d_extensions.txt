@@ -1,6 +1,9 @@
 # Specification of extensions from
 # http://castle-engine.sourceforge.net/x3d_extensions.php
-# in the format comfortable for white dune scripts.
+# in the format comfortable for white dune scripts
+# and also for out own castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr .
+#
+# Do *not* list here fields inherited from ancestor nodes.
 
 Appearance : X3DAppearanceNode {
   ... all normal Appearance fields ...
@@ -27,58 +30,64 @@ KambiAppearance : Appearance {
   ... all Appearance fields (with our extensions, see above) ...
 }
 
-X3DLightNode : X3DChildNode {
-  ... all normal X3DLightNode fields ...
-  SFBool     []            shadows               FALSE
-  SFBool     [in,out]      shadowVolumes         FALSE
-  SFBool     [in,out]      shadowVolumesMain     FALSE       # meaningfull only when shadowVolumes = TRUE
-  SFFloat    [in,out]      projectionNear        1           # > 0
-  SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
-  SFVec3f    [in,out]      up                    0 1 0
-  SFNode     []            defaultShadowMap      NULL        # [GeneratedShadowMap]
-  MFNode     []            effects               []          # [Effect]
-}
+# For castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr,
+# these extensions are inside castle_game_engine/src/x3d/doc/ txt files.
+### X3DLightNode : X3DChildNode {
+###   ... all normal X3DLightNode fields ...
+###   SFBool     []            shadows               FALSE
+###   SFBool     [in,out]      shadowVolumes         FALSE
+###   SFBool     [in,out]      shadowVolumesMain     FALSE       # meaningfull only when shadowVolumes = TRUE
+###   SFFloat    [in,out]      projectionNear        1           # > 0
+###   SFFloat    [in,out]      projectionFar         100         # anything > projectionNear
+###   SFVec3f    [in,out]      up                    0 1 0
+###   SFNode     []            defaultShadowMap      NULL        # [GeneratedShadowMap]
+###   MFNode     []            effects               []          # [Effect]
+### }
 
 X3DTextureNode : X3DAppearanceChildNode {
   ... all normal X3DTextureNode fields ...
   MFNode     []            effects          []          # [Effect]
 }
 
-DirectionalLight : X3DLightNode {
-  ... all normal DirectionalLight fields ...
-  SFVec4f    [in,out]      projectionRectangle   -10 10 -10 10  # # left, right, bottom, top; must be left < right and bottom < top
-  SFVec3f    [in,out]      projectionLocation    0 0 0       # affected by node's transformation
-}
+# For castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr,
+# these extensions are inside castle_game_engine/src/x3d/doc/ txt files.
+### DirectionalLight : X3DLightNode {
+###   ... all normal DirectionalLight fields ...
+###   SFVec4f    [in,out]      projectionRectangle   -10 10 -10 10  # left, right, bottom, top; must be left < right and bottom < top
+###   SFVec3f    [in,out]      projectionLocation    0 0 0          # affected by node's transformation
+### }
 
-SpotLight : X3DLightNode {
-  ... all normal SpotLight fields ...
-  SFFloat    [in,out]      projectionAngle       0
-}
+# For castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr,
+# these extensions are inside castle_game_engine/src/x3d/doc/ txt files.
+### SpotLight : X3DLightNode {
+###   ... all normal SpotLight fields ...
+###   SFFloat    [in,out]      projectionAngle       0
+### }
 
 GeneratedShadowMap : X3DTextureNode {
-  SFNode     [in,out]      metadata         NULL                  # [X3DMetadataObject]
   SFString   [in,out]      update           "NONE"                # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
   SFInt32    []            size             128
   SFNode     []            light            NULL                  # [X3DLightNode]
   SFFloat    [in,out]      scale            1.1
   SFFloat    [in,out]      bias             4.0
-  SFString   []            compareMode      "COMPARE_R_LEQUAL"    # ["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]
+  SFString   []            compareMode      "COMPARE_R_LEQUAL"    # ["COMPARE_R_LEQUAL"|"COMPARE_R_GEQUAL"|"NONE"]
 }
 
-X3DViewpointNode : X3DBindableNode {
-  ... all normal X3DViewpointNode fields ...
-  SFMatrix4f [out]         cameraMatrix
-  SFMatrix4f [out]         cameraInverseMatrix
-  SFMatrix3f [out]         cameraRotationMatrix
-  SFMatrix3f [out]         cameraRotationInverseMatrix
-  SFBool     [in,out]      cameraMatrixSendAlsoOnOffscreenRendering  FALSE
-  MFVec3f    [in,out]      direction   []
-  MFVec3f    [in,out]      up          []
-  SFVec3f    [in,out]      gravityUp   0 1 0
-}
+# For castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr,
+# these extensions are inside castle_game_engine/src/x3d/doc/ txt files.
+### X3DViewpointNode : X3DBindableNode {
+###   ... all normal X3DViewpointNode fields ...
+###   SFMatrix4f [out]         cameraMatrix
+###   SFMatrix4f [out]         cameraInverseMatrix
+###   SFMatrix3f [out]         cameraRotationMatrix
+###   SFMatrix3f [out]         cameraRotationInverseMatrix
+###   SFBool     [in,out]      cameraMatrixSendAlsoOnOffscreenRendering  FALSE
+###   MFVec3f    [in,out]      direction   []
+###   MFVec3f    [in,out]      up          []
+###   SFVec3f    [in,out]      gravityUp   0 1 0
+### }
 
 Text3D : X3DGeometryNode {
-  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   MFString   [in,out]      string      []
   SFNode     [in,out]      fontStyle   NULL
   MFFloat    [in,out]      length      []
@@ -89,13 +98,13 @@ Text3D : X3DGeometryNode {
 
 X3DTexture2DNode : X3DAppearanceChildNode {
   ... all normal X3DTexture2DNode fields ...
-  SFString   []            alphaChannel  "AUTO"      # "AUTO", "SIMPLE_YES_NO" or "FULL_RANGE"
+  SFString   []            alphaChannel  "AUTO"      # ["AUTO"|"SIMPLE_YES_NO"|"FULL_RANGE"]
 }
 
 KambiInline : Inline {
   ... all normal Inline fields ...
   MFString   [in,out]      replaceNames  []
-  MFNode     [in,out]      replaceNodes  []          # any VRML node is valid on this list
+  MFNode     [in,out]      replaceNodes  []          # any VRML/X3D node is valid on this list
 }
 
 KambiNavigationInfo : NavigationInfo {
@@ -122,26 +131,26 @@ X3DFogObject {
   SFFloat  [in,out]      volumetricVisibilityStart     0
 }
 
-Material : X3DMaterialNode {
-  ... all normal Material fields ...
-  SFFloat    [in,out]      mirror      0.0         # [0.0; 1.0]
-  MFColor    [in,out]      reflSpecular          []          # specular reflectance
-  MFColor    [in,out]      reflDiffuse           []          # diffuse reflectance
-  MFColor    [in,out]      transSpecular         []          # specular transmittance
-  MFColor    [in,out]      transDiffuse          []          # diffuse transmittance
-  SFFloat    [in,out]      reflSpecularExp       1000000     # specular reflectance exponent
-  SFFloat    [in,out]      transSpecularExp      1000000     # specular transmittance exponent
-}
+# For castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr,
+# these extensions are inside castle_game_engine/src/x3d/doc/ txt files.
+### Material : X3DMaterialNode {
+###   ... all normal Material fields ...
+###   SFFloat    [in,out]      mirror      0.0         # [0.0; 1.0]
+###   MFColor    [in,out]      reflSpecular          []          # specular reflectance
+###   MFColor    [in,out]      reflDiffuse           []          # diffuse reflectance
+###   MFColor    [in,out]      transSpecular         []          # specular transmittance
+###   MFColor    [in,out]      transDiffuse          []          # diffuse transmittance
+###   SFFloat    [in,out]      reflSpecularExp       1000000     # specular reflectance exponent
+###   SFFloat    [in,out]      transSpecularExp      1000000     # specular transmittance exponent
+### }
 
 KambiTriangulation : X3DChildNode {
-  SFNode   [in,out]      metadata         NULL   # [X3DMetadataObject]
   SFInt32  [in,out]      quadricSlices    -1     # {-1} + [3, infinity)
   SFInt32  [in,out]      quadricStacks    -1     # {-1} + [2, infinity)
   SFInt32  [in,out]      rectDivisions    -1     # [-1, infinity)
 }
 
 KambiHeadLight : X3DChildNode {
-  SFNode     [in,out]      metadata              NULL        # [X3DMetadataObject]
   SFFloat    [in,out]      ambientIntensity      0           # [0.0, 1.0]
   SFVec3f    [in,out]      attenuation           1 0 0       # [0, infinity)
   SFColor    [in,out]      color                 1 1 1       # [0, 1]
@@ -152,7 +161,6 @@ KambiHeadLight : X3DChildNode {
 }
 
 KambiOctreeProperties : X3DNode {
-  SFNode  [in,out]      metadata              NULL    # [X3DMetadataObject]
   SFInt32 []            maxDepth              -1      # must be >= -1
   SFInt32 []            leafCapacity          -1      # must be >= -1
 }
@@ -164,7 +172,6 @@ X3DShapeNode : X3DChildNode, X3DBoundedObject {
 }
 
 Teapot : X3DGeometryNode {
-  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   SFVec3f    []            size        3 3 3
   SFBool     []            solid       TRUE
   SFBool     []            manifold    FALSE
@@ -172,7 +179,6 @@ Teapot : X3DGeometryNode {
 }
 
 RenderedTexture : X3DTextureNode {
-  SFNode     [in,out]      metadata              NULL             # [X3DMetadataObject]
   MFInt32    [in,out]      dimensions            128 128 4 1 1
   SFString   [in,out]      update                "NONE"           # ["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]
   SFNode     [in,out]      viewpoint             NULL             # [X3DViewpointNode] (VRML 1.0 camera nodes also allowed)
@@ -184,7 +190,6 @@ RenderedTexture : X3DTextureNode {
 }
 
 Logger : X3DChildNode {
-  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   SFInt32    [in,out]      level       1
   SFString   []            logFile     ""
   SFBool     [in,out]      enabled     TRUE
@@ -222,13 +227,11 @@ Extrusion : X3DGeometryNode {
 }
 
 ProjectedTextureCoordinate : X3DTextureCoordinateNode {
-  SFNode     [in,out]      metadata    NULL        # [X3DMetadataObject]
   SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
 }
 
 # See http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php
 ScreenEffect : X3DChildNode {
-  SFNode     [in,out]      metadata    NULL      # [X3DMetadataObject]
   SFBool     [in,out]      enabled     TRUE
   SFBool     [in,out]      needsDepth  FALSE
   MFNode     [in,out]      shaders     []        # [X3DShaderNode]
@@ -250,8 +253,7 @@ VectorInterpolator : X3DInterpolatorNode {
 # See http://castle-engine.sourceforge.net/compositing_shaders.php for Effect etc. docs
 
 Effect : X3DChildNode {
-  SFNode     [in,out]      metadata    NULL    # [X3DMetadataObject]
-  SFString   []            language    ""      # allowed values like ComposedShader.language
+  SFString   []            language    ""      # ["CG"|"GLSL"|"HLSL"] ; allowed values like ComposedShader.language
   SFBool     [in,out]      enabled     TRUE
   MFNode     []            parts       []      # [EffectPart]
 
@@ -264,13 +266,11 @@ Effect : X3DChildNode {
 
 EffectPart : X3DNode, X3DUrlObject {
   # for XML encoding, default containerField: parts
-  SFNode   [in,out] metadata NULL       # [X3DMetadataObject]
   MFString []       url      []         # (may be changed to [in,out] one day)
   SFString []       type     "VERTEX"   # ["VERTEX"|"FRAGMENT"]
 }
 
 ShaderTexture : X3DTextureNode {
-  SFNode   [in,out] metadata        NULL        # [X3DMetadataObject]; defined in X3DNode
   MFNode   []       effects         []          # [Effect]; defined in X3DTextureNode
   SFString []       defaultTexCoord "BOUNDS2D"  # ["BOUNDS2D"|"BOUNDS3D"]
 }
