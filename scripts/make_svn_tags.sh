@@ -29,7 +29,7 @@ do_svn_tag ()
 # do_svn_tag kambi_lines
 # do_svn_tag lets_take_a_walk
 # do_svn_tag rayhunter
-do_svn_tag view3dscene
+#do_svn_tag view3dscene
 # do_svn_tag malfunction
 do_svn_tag castle_game_engine
-do_svn_tag demo_models
+#do_svn_tag demo_models
