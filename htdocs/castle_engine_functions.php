@@ -13,6 +13,12 @@
    Overall, this allows to browse our webpages locally
    (through http://localhost/...) faster. */
 define('CASTLE_OFFLINE', false);
+/*
+define('CASTLE_OFFLINE', isset($_SERVER['SERVER_NAME']) && (
+    $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
+    $_SERVER['SERVER_NAME'] == 'localhost'
+  )
+);*/
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
