@@ -42,28 +42,30 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
     </ul>
   </li>
 
+  <li><p>New capabilities for <b>font rendering</b>: <b>scaling:</b>
+  ' . api_link('TCastleFont.Scale', 'CastleFonts.TCastleFont.html#Scale', false) . ',
+  <b>outline:</b>
+  ' . api_link('TCastleFont.Outline', 'CastleFonts.TCastleFont.html#Outline', false) . ',
+  ' . api_link('TCastleFont.OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor', false) . ',
+  <b>print in rect:</b>
+  ' . api_link('TCastleFont.PrintRect', 'CastleFonts.TCastleFont.html#PrintRect', false) . ',
+  ' . api_link('TCastleFont.PrintRectMultiline', 'CastleFonts.TCastleFont.html#PrintRectMultiline', false) . ',
+  ' . api_link('TCastleFont.PushProperties', 'CastleFonts.TCastleFont.html#PushProperties', false) . ',
+  ' . api_link('TCastleFont.PopProperties', 'CastleFonts.TCastleFont.html#PopProperties', false) . '.
+
+  <li><p>' . api_link('TUIState', 'CastleUIState.TUIState.html', false) . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
+
+  <li><p>New option <code>android_project</code> was added to our <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
+
   <li><p><b>Getting and setting fields of X3D nodes</b> has now clean API. Just use <code>LightNode.Intensity := 0.5</code> instead of ugly <code>LightNode.FdIntensity.Send(0.5)</code>.
 
   <li><p>By default we use fcl-image <b>built-in handling of PNG</b> format. This removes the need to use/distribute extra libraries for handling PNG on any platform.
 
   <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="http://castle-engine.sourceforge.net/tutorial_log.php">See the updated tutorial link about logging for details.</a>
 
-  <li><p>New capabilities for <b>font rendering</b>:
-  ' . api_link('TCastleFont.Scale', 'CastleFonts.TCastleFont.html#Scale', false) . ',
-  ' . api_link('TCastleFont.Outline', 'CastleFonts.TCastleFont.html#Outline', false) . ',
-  ' . api_link('TCastleFont.OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor', false) . ',
-  ' . api_link('TCastleFont.PrintRect', 'CastleFonts.TCastleFont.html#PrintRect', false) . ',
-  ' . api_link('TCastleFont.PrintRectMultiline', 'CastleFonts.TCastleFont.html#PrintRectMultiline', false) . ',
-  ' . api_link('TCastleFont.PushProperties', 'CastleFonts.TCastleFont.html#PushProperties', false) . ',
-  ' . api_link('TCastleFont.PopProperties', 'CastleFonts.TCastleFont.html#PopProperties', false) . '.
-
   <li><p>' . api_link('TCastle2DControl', 'CastleControl.TCastle2DControl.html', false) . ' component for easily creating 2D games. Already contains a ready T2DSceneManager.
 
   <li><p><b>Encrypt/decrypt XML data using BlowFish</b>. In the simplest case, just set <code>TCastleConfig.BlowFishKeyPhrase</code> property. This allows to encrypt your XML data, for example to prevent cheaters from easily modifying your game configuration variables in XML. It assumes that the particular value of BlowFishKeyPhrase you use is kept secret &mdash; e.g. it\'s compiled and maybe obfuscated.
-
-  <li><p>' . api_link('TUIState', 'CastleUIState.TUIState.html', false) . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
-
-  <li><p>New option <code>android_project</code> was added to our <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
 
   <li><p>Numerous smaller new features:
   ' . api_link('TGLImage.Draw3x1', 'CastleGLImages.TGLImage.html#Draw3x1', false) . ',
