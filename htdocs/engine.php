@@ -158,6 +158,13 @@ you have appropriate libraries installed on your system.
 
 <ul>
   <li><?php echo a_href_page('Tutorial', 'tutorial_intro') ?></li>
+  <li><i>Alternative tutorial:</i>
+    <a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">the slides</a> and
+    and <a href="https://github.com/michaliskambi/cge-tutorial">the examples (sample data and code)</a>.
+    This is a tutorial presented live by Michalis during
+    the <i>Web3d&nbsp;2015 conference</i>.
+    It shows (from the ground up) the creation of a simple 3D FPS game and 2D game.
+    </li>
   <li><?php echo a_href_page('Classes overview (cheatsheet)', 'tutorial_classes_overview') ?></li>
   <li><?php echo a_href_page('Guide to creating game data', 'creating_data_intro') ?></li>
   <li><a href="<?php echo reference_link(); ?>">API reference</a>
