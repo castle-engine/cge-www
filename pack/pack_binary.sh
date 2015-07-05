@@ -12,12 +12,7 @@ set -eu
 #   Notes about CPU naming:
 #   - Debian uses names Intel x86 (i386) / AMD64 (amd64)
 #   - FPC uses i386 / x86_64
-#   I follow FPC.
-#
-# OS compatibility:
-# - Under all Unixes: you can update all.
-# - Under Windows: you can only update Windows binaries
-#   (other OSes filesystems are not directly visible from Windows).
+#   We follow FPC naming.
 #
 # This script should be run from it's containing dir
 # (this is used by pack_utilities.sh for calculating $FILE_RELEASES_PATH).

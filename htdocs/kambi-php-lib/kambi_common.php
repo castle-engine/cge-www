@@ -192,7 +192,7 @@ if (array_key_exists('argc', $_SERVER))
   }
 }
 
-// testy: echo "Locally available are "; print_r($locally_available_files);
+// tests: echo "Locally available are "; print_r($locally_available_files);
 
 /* Jeżeli stałe nie zostały ustawione przed odpowiednie parametry
    to ustaw je teraz. */

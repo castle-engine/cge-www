@@ -5,77 +5,20 @@ export CASTLE_ENGINE_PATH=/home/michalis/sources/castle-engine/trunk/
 
 . "$CASTLE_ENGINE_PATH"www/pack/mk_offline_docs.sh
 
-mk_offline_docs ~/public_html/castle-engine-snapshots/docs/ \
-  x3d_extensions.html \
-  x3d_extensions_shadow_maps.html \
-  x3d_extensions_vrml1.html \
-  x3d_extensions_screen_effects.html \
-  x3d_implementation_cadgeometry.html \
-  x3d_implementation_core.html \
-  x3d_implementation_cubemaptexturing.html \
-  x3d_implementation_environmentaleffects.html \
-  x3d_implementation_environmentalsensor.html \
-  x3d_implementation_eventutilities.html \
-  x3d_implementation_geometry2d.html \
-  x3d_implementation_geometry3d.html \
-  x3d_implementation_grouping.html \
-  x3d_implementation_hanim.html \
-  x3d_implementation_interpolation.html \
-  x3d_implementation_keydevicesensor.html \
-  x3d_implementation_lighting.html \
-  x3d_implementation_navigation.html \
-  x3d_implementation_networking.html \
-  x3d_implementation_nurbs.html \
-  x3d_implementation_pointingdevicesensor.html \
-  x3d_implementation_rendering.html \
-  x3d_implementation_scripting.html \
-  x3d_implementation_shaders.html \
-  x3d_implementation_shape.html \
-  x3d_implementation_sound.html \
-  x3d_implementation_status.html \
-  x3d_implementation_text.html \
-  x3d_implementation_texturing3d.html \
-  x3d_implementation_texturing.html \
-  x3d_implementation_time.html \
-  vrml_x3d.html \
-  nist_vrml_test_suite.html \
-  kanim_format.html \
-  x3d_time_origin_considered_uncomfortable.html \
-  castle_script.html \
-  glviewimage.html \
-  macosx_requirements.html \
-  engine.html \
-  creating_data_3d.html \
-  creating_data_intro.html \
-  creating_data_levels.html \
-  creating_data_material_properties.html \
-  creating_data_player.html \
-  creating_data_resources.html \
-  creating_data_sound.html \
-  creating_data_xml.html \
-  tutorial_3d_custom.html \
-  tutorial_classes_overview.html \
-  tutorial_game_level.html \
-  tutorial_install.html \
-  tutorial_intro.html \
-  tutorial_key_mouse.html \
-  tutorial_load_3d.html \
-  tutorial_log.html \
-  tutorial_network.html \
-  tutorial_notifications.html \
-  tutorial_on_screen_menu.html \
-  tutorial_opengl_context.html \
-  tutorial_optimization.html \
-  tutorial_player_2d_controls.html \
-  tutorial_player.html \
-  tutorial_recording_movies.html \
-  tutorial_resources_extending.html \
-  tutorial_resources.html \
-  tutorial_resources_using_existing.html \
-  tutorial_lazarus_focus.html \
-  tutorial_screenshots.html \
-  tutorial_sound.html \
-  tutorial_up.html \
-  tutorial_user_prefs.html \
-  tutorial_transformation_hierarchy.html \
-  tutorial_mobile.html
+# Generate docs for all the files you can.
+# Some exceptions are listed explicitly in 'find' params,
+# most are eliminated by using CASTLE_DOCS_SKIP_INVALID.
+
+FILE_LIST=`find "$CASTLE_ENGINE_PATH"www/htdocs/ -mindepth 1 -maxdepth 1 -iname '*.php' \
+  -not -iname 'index.php' \
+  -not -iname 'news_????.php' \
+  -execdir echo '{}' ';' | \
+  sed -e 's|\.php|.html|' -e 's|./||' | \
+  sort`
+
+export CASTLE_DOCS_SKIP_INVALID='t'
+
+DOCS_OUTPUT="${HOME}/public_html/castle-engine-snapshots/docs/"
+
+clean_offline_docs "${DOCS_OUTPUT}"
+mk_offline_docs "${DOCS_OUTPUT}" ${FILE_LIST}

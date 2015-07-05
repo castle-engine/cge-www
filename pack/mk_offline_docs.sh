@@ -3,7 +3,7 @@ set -eu
 
 # Source this script for mk_offline_docs bash function.
 # Needs CASTLE_ENGINE_PATH defined to work.
-
+#
 # Create offline version of a subset of our WWW page.
 #
 # $1 is the output path (must contain final slash. May be absolute or relative.)
@@ -14,6 +14,11 @@ set -eu
 #
 # We also always add to $OUTPUT some necessary files always used by our HTMLs:
 # some images/ and CSS files and possibly some more.
+#
+# Honors global CASTLE_DOCS_SKIP_INVALID, this skips php files that do not produce
+# any content (only php code, like redirects of function library).
+
+
 mk_offline_docs ()
 {
   local OUTPUT_PATH="$1"
@@ -25,16 +30,22 @@ mk_offline_docs ()
 
   local CASTLE_ENGINE_HTDOCS="$CASTLE_ENGINE_PATH"www/htdocs/
 
-  for OUTPUT_FILE in $@; do
+  for OUTPUT_FILE in "$@"; do
     if `stringoper IsSuffix .html "$OUTPUT_FILE"`; then
       SOURCE_PHP=`stringoper ChangeFileExt "$OUTPUT_FILE" .php`
+      echo -n "Offline docs: ${OUTPUT_FILE}: "
       php -q "${CASTLE_ENGINE_HTDOCS}${SOURCE_PHP}" --gen-local --locally-avail "$@" > "${OUTPUT_PATH}${OUTPUT_FILE}"
-      echo 'Offline docs:' "${OUTPUT_FILE}" ': created by php'
+      echo 'done.'
       # Sanity check.
       # Note: "wc --bytes" sounds cleaner than "wc -c", but is not available on Mac OS X.
       if [ `wc -c < "${OUTPUT_PATH}${OUTPUT_FILE}"` -lt 10 ]; then
-        echo 'Error: Offline doc file created has < 10 bytes, probably source php was just a redirect.' > /dev/stderr
-        exit 1
+        if [ -n "${CASTLE_DOCS_SKIP_INVALID:-}" ]; then
+          echo 'NOTE: Offline doc file created has < 10 bytes, probably source php was just a php code. Removing.'
+          rm -f "${OUTPUT_PATH}${OUTPUT_FILE}"
+        else
+          echo 'ERROR: Offline doc file created has < 10 bytes, probably source php was just a php code.' > /dev/stderr
+          exit 1
+        fi
       fi
     else
       OUTPUT_FILE_SUBDIR=`stringoper ExtractFilePath "${OUTPUT_FILE}"`
@@ -56,4 +67,14 @@ mk_offline_docs ()
      "${OUTPUT_PATH}"kambi-php-lib/
   # In the future we may add castle-engine.js, but for now it's used only
   # in some news text, not needed in offline docs.
+}
+
+clean_offline_docs ()
+{
+  local OUTPUT_PATH="$1"
+  shift 1
+
+  rm -Rf "${OUTPUT_PATH}"/*.html \
+         "${OUTPUT_PATH}"/images \
+         "${OUTPUT_PATH}"/kambi-php-lib
 }
