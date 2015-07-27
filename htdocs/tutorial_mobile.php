@@ -12,10 +12,12 @@ $toc = new TableOfContents(
 ?>
 
 
-<p>Mobile platforms (Android, iOS) have some significant differences
-from desktop platforms (Windows, Linux, Mac OS X, FreeBSD...).
-While our engine hides them from you as much as possible, there are some facts
-you just have to know.
+<p>Mobile platforms (Android, iOS) differ
+from desktop platforms (Windows, Linux, Mac OS X, FreeBSD...) in many aspects.
+Our engine hides a lot of these differences from you by giving you
+a nice cross-platform API. Still, there are some
+facts you have to know when developing a game for a mobile platform
+(or developing a game both for mobile and standalone platforms).
 <!--
 Now that you've seen how to create a simple game, with level and player,
 it seems a good moment to talk about them.
@@ -213,6 +215,21 @@ end.'); ?>
     and load/save user configuration. See examples how to do it:
     <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/darkest_before_dawn/code/darkest_before_dawn_standalone.lpr">darkest_before_dawn program file (simple)</a>
     or <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/hotel_nuclear/code/hotel_nuclear.lpr">hotel_nuclear (more complicated)</a>.
+
+    <p>Note that <b>you can edit and run the desktop version using <i>Lazarus</i></b>,
+    to benefit from Lazarus editor, code tools, integrated debugger...
+    Using our build tool does not prevent using Lazarus at all!
+    <ul>
+      <li>Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
+        option. Or (if you already have the <code>xxx.lpr</code> file) create
+        the project using <i>Project -&gt; New Project From File...</i>.
+      <li>Add to the project requirements packages <code>castle_base</code> and <code>castle_window</code>
+        (from <i>Project -&gt; Project Inspector</i>, you want to <i>Add</i> a <i>New Requirement</i>).
+      <li>Save the project as <code>my_fantastic_game_standalone.lpi</code>.
+      <li>...and develop and run as usual.
+      <li>Edit the main <code>my_fantastic_game_standalone.lpr</code>
+        file using the <i>Project -&gt; View Project Source</i> option in Lazarus.
+    </ul>
 </ol>
 
 <?php echo $toc->html_section(); ?>
