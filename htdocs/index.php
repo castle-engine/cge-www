@@ -37,7 +37,7 @@ castle_header('Castle Game Engine',
         $featured_game_page_name = 'http://michaliskambi.itch.io/hydra-battles';
         $featured_game_screenshot_name = 'hydra_battles_screen_best';
         $featured_game_name = 'Hydra Battles';
-        $featured_game_description = 'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/michaliskambi/hydra-battles">Source code on GitHub</a>.';
+        $featured_game_description = 'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/castle-engine/hydra-battles">Source code on GitHub</a>.';
       ?>
       <p><?php echo a_href_page('<img src="images/main_link_size/' . $featured_game_screenshot_name .'.png" alt="' . $featured_game_name . '" />', $featured_game_page_name); ?>
       <p class="program_image_link_title"><?php echo a_href_page('<b>' . $featured_game_name . '</b>', $featured_game_page_name); ?></p>

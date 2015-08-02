@@ -48,7 +48,7 @@ games from Michalis Kamburelis itch.io profile</a>.
 
 <div class="row">
   <?php program_image_link('Hydra Battles',
-    'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/michaliskambi/hydra-battles">Source code on GitHub</a>.',
+    'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/castle-engine/hydra-battles">Source code on GitHub</a>.',
     "hydra_battles_screen_best.png", 'http://michaliskambi.itch.io/hydra-battles'); ?>
 
   <?php program_image_link('Mountains Of Fire',
