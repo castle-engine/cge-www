@@ -537,6 +537,12 @@ function common_header($a_page_title, $page_lang,
                 href=\"$page_url\"
                 title=\"$main_page_title$url_comment\">\n";
   }
+
+  $extra_body_classes = '';
+  if (defined('CASTLE_GITHUB_NAME')) {
+    $extra_body_classes .= 'has-github-ribbon';
+  }
+
 ?>
 
 <title><?php echo $page_title ?></title>
@@ -561,7 +567,7 @@ function common_header($a_page_title, $page_lang,
   echo $bonus_header_tags;
 ?>
 </head>
-<body>
+<body <?php if (!empty($extra_body_classes)) echo 'class="' . $extra_body_classes . '"'; ?>>
 
 <?php
   if ( (!defined('KAMBI_NO_HOME_LINK')) &&

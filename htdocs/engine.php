@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'castle-engine');
 
+  require_once 'castle_engine_functions.php';
   castle_header("Castle Game Engine - Downloads and docs for developers", NULL, array('engine'));
 
   $toc = new TableOfContents(

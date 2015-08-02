@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'bezier-curves');
 
+  require_once 'castle_engine_functions.php';
   castle_header("bezier_curves",
     "bezier_curves - plot rational bezier curves.",
     array('all_programs'));

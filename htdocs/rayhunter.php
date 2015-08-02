@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'rayhunter');
 
+  require_once 'castle_engine_functions.php';
   castle_header("rayhunter",
     "rayhunter - simple raytracer. Classic ray tracer " .
     "and basic Monte Carlo path tracer implemented. Open-source, portable " .

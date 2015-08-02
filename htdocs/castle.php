@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'castle-game');
 
+  require_once 'castle_engine_functions.php';
   castle_header("The Castle", NULL, array('all_programs', 'castle'));
 
   echo flattr_button();

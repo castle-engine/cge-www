@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'glviewimage');
 
+  require_once 'castle_engine_functions.php';
   castle_header("glViewImage",
     "glViewImage - a small image viewer using OpenGL. " .
     "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .

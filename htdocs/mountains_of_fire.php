@@ -1,5 +1,6 @@
 <?php
   define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
+  define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
 
   require_once 'castle_engine_functions.php';
   castle_header("Mountains Of Fire", NULL,

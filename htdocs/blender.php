@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'cge-blender');
 
+  require_once 'castle_engine_functions.php';
   castle_header("Blender X3D exporter (with Kambi modifications)",
     NULL, array('blender'));
 

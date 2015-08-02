@@ -363,6 +363,10 @@ div.quote {
   margin-right: 0.5em;
 }
 
+.has-github-ribbon .google-search-container {
+  margin-right: 140px; /* margin from GitHub ribbon */
+}
+
 .google-search-container .gsc-search-button {
   position: absolute;
   right: 0;

@@ -1,6 +1,7 @@
 <?php
-  require_once 'castle_engine_functions.php';
+  define('CASTLE_GITHUB_NAME', 'malfunction');
 
+  require_once 'castle_engine_functions.php';
   castle_header("malfunction", 'Small 3d game. ' .
     'You fly a spaceship and try to shoot down all alien ships.',
     array('all_programs'));
