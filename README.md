@@ -1,24 +1,21 @@
-Layout:
+Code and data of Castle Game Engine website
+===========================================
+
+Layout
+------
 
 htodcs/ is exactly what goes into http://castle-engine.sourceforge.net/
 
-screenshots/ are only a copy (sometimes with better resolution)
-of the same screenshots that are available on SF screenshot
-page of our project.
+screenshots/ are only a copy (sometimes with better resolution) of the same screenshots that are available on SF screenshot page of our project.
 
-scripts/ are various scripts, usually in bash, helpful to manage the
-website.
+scripts/ are various scripts, usually in bash, helpful to manage the website.
 
-  scripts/shell.sf.net are meant to be
-  run when logged on shell.sourceforge.net server, i.e. these scripts
-  are supposed to work on currently "online" version on the website on SF.
+* scripts/shell.sf.net are meant to be run when logged on shell.sourceforge.net server, i.e. these scripts are supposed to work on currently "online" version on the website on SF.
 
-  Rest of scripts/ should usually be run on your local version,
-  checkouted somewhere on your local computer. Running them on shell.sf.net
-  is not preferred, sometimes has little sense.
+* Rest of scripts/ should usually be run on your local version, checkouted somewhere on your local computer. Running them on shell.sf.net is not preferred, sometimes has little sense.
 
-----------------------------------------
-Procedure to update WWW content:
+Procedure to update WWW content
+-------------------------------
 
 - Making a release:
   1. testing is described in TESTS.txt

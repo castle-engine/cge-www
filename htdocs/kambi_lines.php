@@ -121,13 +121,13 @@ right after another.
 
 <p>Concept is closely based on original DOS "Color lines" game
 by Olga Demin (programming), Igor Ivkin and Gennady Denisov (graphics).
-Also most of graphics are copied from that game.
-I used them without any permission, so, essentially, they are stolen,
-but this game is "abandonware" since very long time, so I guess noone cares.
-Anyway, credit for graphics goes to Igor Ivkin and Gennady Denisov,
-who made graphics for original DOS "Color lines".
+Most of graphics are copied from that game.
+We use them without any permission, hoping that it's OK
+&mdash; as the DOS version of this game is "abandonware" since a very long time.
+So, credit for graphics goes to Igor Ivkin and Gennady Denisov,
+who made cool graphics for the original DOS "Color lines".
 
-<p>The graphics for the default set of 7 balls are modified version
+<p>The graphics for the default set of 7 balls are a modified version
 of "KDE Lines" graphics.
 
 <p>Splash screen was made by

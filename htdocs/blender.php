@@ -84,7 +84,7 @@ on any license required for official Blender wiki / docs contents is granted.</p
         -&gt; Install Addon... (button at the bottom)</i>.
         Or just copy the file directly to the
         <code>scripts/addons/</code> directory.
-      <li>Enable it, by clicking the checkbox at <i>"Import-Export:Export KAnim"</i>
+      <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export KAnim"</i>
         in the Addons window.
     </ol>
   </li>
