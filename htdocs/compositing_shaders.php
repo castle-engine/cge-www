@@ -65,9 +65,9 @@ using our effects.</p>
   <li>Of course, you can also get the sources of above documents:
     <ul>
       <li>My Ph.D. thesis sources (in DocBook) can be downloaded from SVN URL:<br/>
-        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders_doc/</code></li>
+        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/documentation/compositing_shaders_doc/</code></li>
       <li>Slides and conference paper (in TeX) are alongside, on SVN URL:<br/>
-        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/papers/compositing_shaders/</code></li>
+        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/documentation/compositing_shaders/</code></li>
     </ul>
   </li>
 </ol>
