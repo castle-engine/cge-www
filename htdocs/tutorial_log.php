@@ -20,6 +20,16 @@ tutorial_header('Logging');
     we log to the file <code>xxx.log</code> in the current directory
     (where <code>xxx</code> is your <code>ApplicationName</code>).
 
+  <li><p><i>On Windows GUI libraries (like NPAPI plugins)</i>
+    <!-- the standard error is (usually) not available, so -->
+    we log to the file <code>xxx.log</code> in the user's private directory
+    (where <code>xxx</code> is your <code>ApplicationName</code>).
+    <i>User's private directory</i> is determined by standard FPC functions,
+    that in turn use standard Windows functions,
+    it's something like
+    <code>c:/Documents and Settings/USERNAME/Local settings/Application Data/xxx/xxx.log</code> or
+    <code>c:/c:/Users/USERNAME/AppData/Local/xxx/xxx.log</code> depending on your Windows version.
+
   <li><p>You can pass a parameter to <code>InitializeLog</code>
     to generate log to any stream.
 </ul>
