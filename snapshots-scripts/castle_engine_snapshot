@@ -40,7 +40,8 @@ move_all_programs ()
 
   mv bezier_curves/bezier_curves"$EXT" "$OUT_PATH"
   mv castle/castle"$EXT" "$OUT_PATH"
-  mv gen_function/gen_function"$EXT" "$OUT_PATH"
+  mv glplotter/gen_function"$EXT" "$OUT_PATH"
+  mv glplotter/glplotter"$EXT" "$OUT_PATH"
   mv glinformation/glinformation"$EXT" "$OUT_PATH"
   mv glinformation/glinformation_glut"$EXT" "$OUT_PATH"
   mv glplotter/glplotter"$EXT" "$OUT_PATH"
