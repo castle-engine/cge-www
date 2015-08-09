@@ -1,5 +1,15 @@
 <?php
 
+/* next news images:
+  A       0       ?           www/htdocs/images/original_size/chrome.png
+  A       0       ?           www/htdocs/images/original_size/dragon_squash_plugin.png
+  A       0       ?           www/htdocs/images/original_size/firefox.png
+  A       0       ?           www/htdocs/images/original_size/fly_over_river_screen_26.png
+  A       0       ?           www/htdocs/images/original_size/plugin_4.png
+  A       0       ?           www/htdocs/images/original_size/plugin_windows_chrome.png
+  A       0       ?           www/htdocs/images/original_size/plugin_windows_ff.png
+*/
+
 array_push($news,
     array('title' => 'Castle Game Engine 5.2.0 release',
           'year' => 2015,
