@@ -98,6 +98,9 @@ Procedure to update WWW content
     uploaded in previous step, thus checking that all files (even those
     ignored by SVN) were uploaded correctly.
 
+- a release of engine or view3dscene or some other tools can also be
+  uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
+
 Announcing release
 ------------------
 
