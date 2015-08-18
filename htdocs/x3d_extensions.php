@@ -166,7 +166,7 @@ others) are full of demos of our extensions.</p>
 
 <p>In the future, we plan to add other options to this field,
 like <code>WIREFRAME</code>, <code>FLAT</code>, <code>GOURAUD</code>.
-These names are not invented by us, they are the names used for <a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/networking.html#t-BrowserProperties">"Browser options" in X3D spec</a>
+These names are not invented by us, they are the names used for <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>
 (with <code>DEFAULT</code> added by us).</p>
 
 <?php echo $toc->html_section(); ?>

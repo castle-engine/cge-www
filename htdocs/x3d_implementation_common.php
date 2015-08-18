@@ -5,6 +5,12 @@
 
 require_once 'castle_engine_functions.php';
 
+function x3d_spec_latest_url($component_name)
+{
+  return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .
+    $component_name . '.html';
+}
+
 function vrmlx3d_header($a_page_title)
 {
   castle_header($a_page_title, NULL, array('vrml_x3d'));
@@ -24,8 +30,7 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
   echo pretty_heading($x3d_component_name . ' component');
 
   global $x3d_component_url;
-  $x3d_component_url = 'http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/' .
-    $x3d_spec_page_url . '.html';
+  $x3d_component_url = x3d_spec_latest_url($x3d_spec_page_url);
 
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
@@ -45,8 +50,7 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
   echo pretty_heading($x3d_component_name . ' component - extensions');
 
   global $x3d_component_url;
-  $x3d_component_url = 'http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/' .
-    $x3d_spec_page_url . '.html';
+  $x3d_component_url = x3d_spec_latest_url($x3d_spec_page_url);
 
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
