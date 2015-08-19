@@ -44,7 +44,8 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
   $base_component_page = 'x3d_implementation_' . $base_component_page;
   castle_header($x3d_component_name .
     ' component - extensions - Castle Game Engine',
-    'Castle Game Engine (and view3dscene) extensions',
+    'Castle Game Engine (and view3dscene) extensions to the ' . $x3d_component_name .
+    ' X3D component',
     array('vrml_x3d', 'x3d_implementation_status', $base_component_page));
 
   echo pretty_heading($x3d_component_name . ' component - extensions');
