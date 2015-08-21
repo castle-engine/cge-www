@@ -44,7 +44,7 @@
   <li>We support of lot of 3D and 2D formats
     (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
     <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>...),
-  <li>we're portable to a lot of platforms (Linux, Windows, Mac OS X, Android, iOS...),
+  <li>we're portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...),
   <li>we provide optimized rendering with a lot of graphic effects,
   <li>and we have a great API for managing your game world. <!-- (including high-level classes like ready-to-use creature AI).-->
 </ul>
