@@ -5,12 +5,6 @@
 
 require_once 'castle_engine_functions.php';
 
-function x3d_spec_latest_url($component_name)
-{
-  return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .
-    $component_name . '.html';
-}
-
 function vrmlx3d_header($a_page_title)
 {
   castle_header($a_page_title, NULL, array('vrml_x3d'));

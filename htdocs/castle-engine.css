@@ -265,6 +265,8 @@ div.x3d_component_intro p.paragraph_first { margin-top: 0px; }
 div.x3d_component_intro p.paragraph_last { margin-bottom: 0px; }
 div.x3d_component_intro p.paragraph_first code { font-weight: bold; }
 
+dd { margin-left: 2em; }
+
 /* news --------------------------------------------------------------------- */
 
 span.old_news_date { font-weight: bold; }

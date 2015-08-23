@@ -48,6 +48,8 @@ echo castle_thumbs(array(
       <li>Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. VRML/X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
       <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a></b> and many others.</p></li>
     </ul>
+    <p>Our <?php echo a_href_page('tutorial', 'tutorial_intro'); ?> describes a lot of ways to use 3D and 2D objects,
+    for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
 
   <li>We have an optimized <b>renderer for OpenGL and OpenGLES2</b>.
 
@@ -55,10 +57,9 @@ echo castle_thumbs(array(
     <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
     In part, that's because VRML and X3D are open and popular 3D
     formats, and decent exporters for them exist in practically every 3D
-    authoring tool. For detecting "placeholders" on levels
-    (see
-    <?php echo a_href_page('creating levels documentation', 'creating_data_levels'); ?>),
-    you can configure detection method.
+    authoring tool. For detecting
+    <?php echo a_href_page('"placeholders" on levels', 'creating_data_levels'); ?>
+    you can configure the detection method to match your authoring tool.
 
   <li><b>Animations</b> are supported,
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
@@ -69,7 +70,12 @@ echo castle_thumbs(array(
     and using as OpenGL textures. Besides many common image formats
     (png, jpg, ppm, bmp, just for starters), included is also support for
     <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
-    RGBE format (Radiance HDR format).</li>
+    RGBE format (Radiance HDR format).
+    See <?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and units
+    <?php api_link('CastleImages', 'CastleImages.html'); ?>,
+    <?php api_link('CastleGLImages', 'CastleGLImages.html'); ?>,
+    <?php api_link('CastleDDS', 'CastleDDS.html'); ?>.
+    </li>
 
   <li>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
     using <i>FreeType</i> library, and render them at any size, with anti-aliasing
@@ -77,13 +83,19 @@ echo castle_thumbs(array(
     which allows us to provide default fonts (available as-is),
     and to use fonts even when <i>FreeType</i> library is not available.
     You can also use colorful fonts from a texture.
-    Font rendering can allow international characters in UTF-8.</li>
+    Font rendering can allow international characters in UTF-8.
+    See <?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and unit
+    <?php api_link('CastleFonts', 'CastleFonts.html'); ?>.
+    </li>
 
   <li><b>Saving</b> the current state of 3D/2D world (VRML/X3D node graph)
     to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
     You can even use it to make your own 3D modeller on top of our engine.
     Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
-    and limited editing capabilities are provided out-of-the-box by our tools.</li>
+    and limited editing capabilities are provided out-of-the-box by our tools.
+    See <?php api_link('Save3D', 'X3DNodes.html#Save3D'); ?> procedure
+    for the basic way to save 3D data.
+    </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -100,8 +112,8 @@ echo castle_thumbs(array(
 <ul>
   <li><p>You can compile and package your games as
     <ul>
-      <li><b>standalone</b> (Linux, Windows, Mac OS X, FreeBSD, more...),
-      <li><b>mobile</b> (Android, iOS),
+      <li><b>standalone</b> (Linux, Windows, Mac OS X, FreeBSD, more... 32-bit and 64-bit),
+      <li><b>mobile</b> (<a href="https://sourceforge.net/p/castle-engine/wiki/Android%20development/">Android</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">iOS</a>),
       <li><b>web browser plugin</b> (Linux, Windows, <a href="https://sourceforge.net/p/castle-engine/wiki/Web%20plugin%20development/">for browsers supporting NPAPI</a>).
     </ul>
 
@@ -133,12 +145,17 @@ echo castle_thumbs(array(
   <li><b>Scene manager</b> is used for centralized 3D world handling,
     with <b>custom viewports</b> possible.</li>
 
-  <li>Shadows by both <b>shadow volumes</b> (full implementation, with z-fail / z-pass
-    switching, silhouette detection etc.) and <b>shadow maps</b>.
+  <li>Shadows by <b>shadow maps</b>.
     <?php echo a_href_page('Our shadow maps are very comfortable to use',
     'x3d_extensions_shadow_maps'); ?>, and shadows from multiple light
     sources are correctly rendered.
     We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
+
+  <li>Shadows by <b>shadow volumes</b> (full implementation,
+    with z-fail / z-pass switching, silhouette detection etc. &mdash;
+    but for now limited only to a single light).
+    See <?php echo a_href_page_hashlink('shadow volumes documentation', 'x3d_extensions',
+    'section_ext_shadows'); ?>.
 
   <li><b><?php echo a_href_page_hashlink('Bump mapping',
     'x3d_extensions', 'section_ext_bump_mapping'); ?></b> is trivially
@@ -149,7 +166,8 @@ echo castle_thumbs(array(
 
   <li><b>Shaders</b>:
     <ul>
-      <li>We have classes to easily use GLSL shaders.
+      <li>We have classes to easily use GLSL shaders
+        (see <?php api_link('CastleGLShaders', 'CastleGLShaders.html'); ?> unit).
         But usually you don't need to use them, because...</li>
       <li>You can
         <?php echo a_href_page('design and control GLSL shaders inside VRML/X3D',
@@ -167,21 +185,21 @@ echo castle_thumbs(array(
         or exhance with <code>Effect</code>, see links above).</li>
     </ul>
 
-  <li><b>Screen-space effects</b> in GLSL are very easy to create (see
-    <?php echo a_href_page('ScreenEffect docs',
-    'x3d_extensions_screen_effects'); ?>).
+  <li><b><?php echo a_href_page('Screen-space effects', 'x3d_extensions_screen_effects'); ?></b> in GLSL are
+    very easy to define and use, in pure X3D or in Pascal code.
 
   <li>Many texturing features:
 
     <ul>
-      <li><b>multi-texturing</b>,
-      <li><b>cube map texturing</b> (can be loaded from separate files,
-        DDS files, or captured during runtime),
-      <li><b>3D textures</b>,
+      <li><b>multi-texturing</b> (see <?php echo a_href_page('X3D texturing component docs', 'x3d_implementation_texturing'); ?>),
+     <li><b>cube map texturing</b> (can be loaded from separate files,
+        DDS files, or captured during runtime,
+        see <?php echo a_href_page('X3D cubemap texturing component docs', 'x3d_implementation_cubemaptexturing'); ?>),
+      <li><b>3D textures</b> (see <?php echo a_href_page('X3D 3D texturing component docs', 'x3d_implementation_texturing3d'); ?>),
       <li><b>compressed textures</b> (supporting both desktop and mobile
         compression formats, like S3TC, ATITC, PVRTC, ETC).
         <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleImages.html#LoadImagePreprocess">You can replace image URLs at runtime, to switch uncompressed texture files with compressed depending on GPU</a>.
-      <li><b>anisotropic filtering</b>,
+      <li><b>anisotropic filtering</b> (just use <a href="<?php echo x3d_spec_latest_url('texturing'); ?>#TextureProperties">TextureProperties.anisotropicDegree</a> in X3D),
       <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.html#TextureMemoryProfiler">GPU texture memory profiler</a>,
         extremely valuable to optimize your texture memory usage (important
         on mobile platforms).
@@ -190,6 +208,14 @@ echo castle_thumbs(array(
   <li>Speeding up rendering by <b>hardware occlusion query</b>,
     a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
     more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
+    See <?php api_link('UseOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseOcclusionQuery'); ?>,
+    <?php api_link('UseHierarchicalOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseHierarchicalOcclusionQuery'); ?>
+    properties.
+
+  <li><b>Anti-aliasing</b> (by OpenGL multi-sampling),
+    see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindowCustom.html#AntiAliasing'); ?>
+    property.
+    </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -205,9 +231,27 @@ echo castle_thumbs(array(
       <li>You can extend it in many ways.
       <li>You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from <?php api_link('T3D', 'Castle3D.T3D.html'); ?>.
     </ul>
-    <?php echo a_href_page('Engine tutorial', 'tutorial_resources_extending'); ?> contains detailed information about this.
+    <p><?php echo a_href_page('Engine tutorial', 'tutorial_resources_extending'); ?> contains detailed information about this.
 
   <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> which is very cool for creating 2D animations.
+
+  <li>Octrees are used for various <b>collision detection</b> tasks.
+    For dynamic scenes, a hierarchy of octrees is used, allowing accurate
+    and fast collision detection even when the scene constantly changes.
+    There are many ways to use collision detection,
+    for example you can query for collision between a specific
+    <?php api_link('T3D instance', 'Castle3D.T3D.html'); ?> and the rest of the world
+    (by methods like
+    <?php api_link('T3D.Move', 'Castle3D.T3D.html#Move'); ?>,
+    <?php api_link('T3D.Ray', 'Castle3D.T3D.html#Ray'); ?>
+    <?php api_link('T3D.Height', 'Castle3D.T3D.html#Height'); ?>)
+    or you can ask the whole world whether it collides with some geometric shape
+    (calling methods like
+    <?php api_link('T3D.BoxCollision', 'Castle3D.T3D.html#BoxCollision'); ?>,
+    <?php api_link('T3D.SphereCollision', 'Castle3D.T3D.html#SphereCollision'); ?>
+    <?php api_link('T3D.RayCollision', 'Castle3D.T3D.html#RayCollision'); ?>
+    on the main 3D world instance: <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>).
+    </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -223,7 +267,7 @@ echo castle_thumbs(array(
 ?>
 
 <ul>
-  <li>Comfortable <b>3D sound engine</b>,
+  <li>Comfortable <b><?php echo a_href_page('3D sound engine', 'tutorial_sound'); ?></b>,
     using <?php echo a_href_page('OpenAL', 'openal'); ?>,
     with intelligent sound source management,
     supporting WAV and OggVorbis formats.
@@ -239,16 +283,13 @@ echo castle_thumbs(array(
     Also creating your own 2D controls, using smartly stretched images and text,
     is very easy.
     Good for games, where making a custom-looking GUI (that fits with
-    your game theme) is important.</li>
-
-  <li><b>Anti-aliasing</b> (initializing OpenGL multi-sampling) is covered.</li>
+    your game theme) is important.
+    See <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.</li>
 
   <li>Simple <b>ray-tracer</b> is implemented
-    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>).</li>
-
-  <li>Octrees are used for various <b>collision detection</b> tasks.
-    For dynamic scenes, a hierarchy of octrees is used, allowing accurate
-    and fast collision detection even when the scene constantly changes.</li>
+    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>,
+    developers see
+    <?php api_link('CastleRayTracer', 'CastleRayTracer.html'); ?> unit).</li>
 
   <li>Playing <b>movie files</b>. This includes loading and saving
     as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
@@ -256,11 +297,14 @@ echo castle_thumbs(array(
     is limited to a small movies for now (as memory consumption is large),
     it's perfect for flame or smoke animation in games. We even have a simple
     movie editor as an example program in engine sources.
+    See <?php api_link('TVideo', 'CastleVideos.TVideo.html'); ?>,
+    <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?>
+    and related classes.
 
-  <li>There are <b>many example programs</b>, look in sources
+  <li>We have <b>many example programs</b>. Browse the engine
     <code>castle_game_engine/examples/</code> subdirectory.</li>
 
-  <li>There are ready window classes (<code>TCastleWindow</code>)
+  <li>We have ready window classes (<code>TCastleWindow</code>)
     and Lazarus components (<code>TCastleControl</code>) to make simple
     VRML/X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;

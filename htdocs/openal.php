@@ -4,6 +4,7 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Developers API', 'api'),
       new TocItem('Installing OpenAL', 'install'),
       new TocItem('Command-line options respected by all my programs that use OpenAL',
         'options'),
@@ -19,6 +20,11 @@ All the sound played by our engine goes through it.</p>
 
 Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For developers, the decription how to use 3D sound in <i>Castle Game Engine</i>
+is in <?php echo a_href_page('tutorial about sound', 'tutorial_sound'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

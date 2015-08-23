@@ -923,6 +923,12 @@ function pascal_highlight($source)
   return $geshi->parse_code();
 }
 
+function x3d_spec_latest_url($component_name)
+{
+  return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .
+    $component_name . '.html';
+}
+
 /* unused now:
 function vrmlx3d_highlight($source)
 {
