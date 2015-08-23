@@ -136,6 +136,7 @@ dl.vrml_ver_differences > dt {
 .program_image_link img,
 .main_link img {
   border: none;
+  max-width: 100%; /* force scaling down on narrow window width, for 3-column layout of all_programs.php */
 }
 
 .program_image_link {

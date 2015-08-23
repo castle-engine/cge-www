@@ -23,7 +23,7 @@ function main_list_item($item_title)
    $page_name may be a complete URL, or a page name for a_href_page. */
 function program_image_link($title, $subtitle, $image_name, $page_name)
 {
-  echo '<div class="col-sm-6"><div class="program_image_link"><p>' .
+  echo '<div class="col-sm-4"><div class="program_image_link"><p>' .
     a_href_page("<img src=\"images/program_link_size/$image_name\"
       alt=\"$title\" />", $page_name) .
     '</p><p class="program_image_link_title">' .
@@ -37,12 +37,14 @@ function program_image_link($title, $subtitle, $image_name, $page_name)
 echo pretty_heading($page_title, NULL, 'developed using our engine');
 ?>
 
-<a href="http://michaliskambi.itch.io/">You can also download some of these
+<p><a href="http://michaliskambi.itch.io/">You can also download some of these
 games from Michalis Kamburelis itch.io profile</a>.
 
 <p>Developers: remember you can
 <?php echo a_href_page('also download sources of all these programs',
-'all_programs_sources'); ?>.</p>
+'all_programs_sources'); ?>. They are also available on GitHub,
+<a href="https://github.com/castle-engine/">as part of GitHub Castle Game Engine organization</a>.
+</p>
 
 <?php echo main_list_item("Games"); ?>
 

@@ -302,7 +302,13 @@ echo castle_thumbs(array(
     and related classes.
 
   <li>We have <b>many example programs</b>. Browse the engine
-    <code>castle_game_engine/examples/</code> subdirectory.</li>
+    <code>castle_game_engine/examples/</code> subdirectory.
+    For even more examples, see
+    <?php echo a_href_page('some larger
+    games we have developed using Castle Game Engine', 'all_programs'); ?> and their
+    sources (for example <a href="https://github.com/castle-engine/">on GitHub
+    Castle Game Engine organization</a>).
+    </li>
 
   <li>We have ready window classes (<code>TCastleWindow</code>)
     and Lazarus components (<code>TCastleControl</code>) to make simple
