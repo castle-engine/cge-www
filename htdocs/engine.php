@@ -10,7 +10,7 @@
       new TocItem('Documentation', 'docs'),
       new TocItem('Other useful downloads', 'other_downloads'),
       new TocItem('FPC (Free Pascal Compiler) version required', 'fpc_ver'),
-      new TocItem('Bleeding edge (SVN) sources', 'svn'),
+      new TocItem('Get the latest sources from SVN or GIT', 'svn'),
       new TocItem('License', 'license'),
     )
   );
@@ -237,10 +237,15 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Instead of downloading the archive, you can also get the latest
-(bleeding-edge) engine sources from Subversion by:</p>
+<p>You can also get the latest (<i>bleeding edge, work in progress!</i>)
+engine sources from
+<a href="https://sourceforge.net/projects/castle-engine/">our SourceForge project</a> SVN by:</p>
 
 <pre><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
+
+<p>Or you can get them from <a href="https://github.com/castle-engine/castle-engine">our GitHub project</a> (auto-synchronized with SVN), like this:
+
+<pre>git clone https://github.com/castle-engine/castle-engine.git</pre>
 
 <?php echo $toc->html_section(); ?>
 
