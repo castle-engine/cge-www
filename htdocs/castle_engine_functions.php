@@ -12,13 +12,11 @@
 
    Overall, this allows to browse our webpages locally
    (through http://localhost/...) faster. */
-define('CASTLE_OFFLINE', false);
-/*
 define('CASTLE_OFFLINE', isset($_SERVER['SERVER_NAME']) && (
     $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
     $_SERVER['SERVER_NAME'] == 'localhost'
   )
-);*/
+);
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
@@ -753,16 +751,31 @@ function echo_standard_program_download(
 */
 function castle_thumbs($images, $columns=1, $align='right')
 {
+  if (count($images) == 0) {
+    return '';
+  }
+
   /* style="clear: right" is added to work nicely with Flattr images,
      that are on some pages (like castle.php) directly above this table
      and also aligned to the right. */
-  $result = '<table class="thumbnails thumbnails-align-' . $align . '">';
+  $result = '<table class="thumbnails thumbnails-align-' . $align . '"><tr>';
 
   $column_now = 0;
+  $image_index = 0;
 
   foreach ($images as $image)
   {
-    if ($column_now == 0) $result .= '<tr>';
+    if ($column_now == 0 && $image_index != 0) {
+      $result .= '</tr><tr>';
+    }
+
+    // special trick for the last image when columns > 1:
+    // add empty cells, so that the last image is at right.
+    if ($column_now == 0 &&
+        $image_index == count($images) - 1 &&
+        !isset($image['colspan'])) {
+      $result .= str_repeat('<td></td>', $columns - 1);
+    }
 
     if (isset($image['colspan']))
       $colspan = ' colspan="' . (int)$image['colspan'] . '"'; else
@@ -788,14 +801,18 @@ function castle_thumbs($images, $columns=1, $align='right')
     }
     $result .= '</td>';
 
+    // increase $column_now
     if (isset($image['colspan']))
       $column_now += (int)$image['colspan']; else
       $column_now++;
+    if ($column_now >= $columns) {
+      $column_now = 0;
+    }
 
-    if ($column_now >= $columns) { $result .= '</tr>'; $column_now = 0; }
+    $image_index++;
   }
 
-  $result .= '</table>';
+  $result .= '</tr></table>';
 
   return $result;
 }
