@@ -73,7 +73,9 @@ And you can draw them using our 2D drawing API:
 
     <p>Of course you can also create your own instances
     of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>
-    to have more fonts.
+    to have more fonts. See
+    <?php echo a_href_page('the tutorial chapter about text and fonts for more',
+    'tutorial_text'); ?>.
 
   <li><p>To draw an <b>image</b>, use
     <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>.
