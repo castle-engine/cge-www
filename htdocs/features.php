@@ -136,7 +136,7 @@ echo castle_thumbs(array(
   array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
 //  array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
 //  array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
-  array('filename' => 'rendered_texture_with_background', 'titlealt' => 'RenderedTexture'),
+  array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture'),
   array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
 ), THUMBS_COLS);
 ?>
