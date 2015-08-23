@@ -13,6 +13,8 @@
     )
   );
 
+  define('THUMBS_COLS', 2);
+
   /*  echo flattr_button(); */
 ?>
 
@@ -37,7 +39,7 @@ echo castle_thumbs(array(
   array('filename' => 'dragon_old_spine.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in Spine'),
   array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in view3dscene'),
   array('filename' => 'hydra_battles_screen_best.png', 'titlealt' => '&quot;Hydra Battles&quot; - isometric RTS'),
-));
+), THUMBS_COLS);
 ?>
 
 <ul>
@@ -88,8 +90,11 @@ echo castle_thumbs(array(
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => 'android2.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
-));
+  array('filename' => 'android12glued.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
+  array('filename' => 'plugin_4.png', 'titlealt' => 'A couple of web browser plugin instances'),
+  array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash with Googe Games integration'),
+  array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash with Googe Games achievements'),
+), THUMBS_COLS);
 ?>
 
 <ul>
@@ -114,7 +119,14 @@ echo castle_thumbs(array(
   array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Bump mapping and shadow maps from multiple light sources'),
   array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering mode'),
   array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor on a scene with shadowmaps'),
-));
+  array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+  array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
+  array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+//  array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
+//  array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
+  array('filename' => 'rendered_texture_with_background', 'titlealt' => 'RenderedTexture'),
+  array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'multiple_viewports: interactive scene, with shadows and mirror'),
+), THUMBS_COLS);
 ?>
 
 <ul>
@@ -184,7 +196,7 @@ echo castle_thumbs(array(
 
 <?php
 echo castle_thumbs(array(
-));
+), THUMBS_COLS);
 ?>
 
 <ul>
@@ -202,7 +214,12 @@ echo castle_thumbs(array(
 
 <?php
 echo castle_thumbs(array(
-));
+  array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
+  array('filename' => 'rift_2.png', 'titlealt' => 'Fixed-camera game'),
+  array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - split-screen coop game'),
+  array('filename' => 'model_3d_viewer.png', 'titlealt' => 'Lazarus model_3d_viewer example'),
+  array('filename' => 'little_things_screen_7.png', 'titlealt' => '&quot;Little Things&quot; game with screen effects'),
+), THUMBS_COLS);
 ?>
 
 <ul>
@@ -287,7 +304,7 @@ For example, post a a screenshot to our
 We will happily use the best screenshots to showcase our engine here.
 This is the time where you can show your cool work environment
 (maybe a peek at your editor), or show us a glance of your
-new game / tool you develop :)
+new game / tool you develop&nbsp;:)
 </div>
 </div>
 
