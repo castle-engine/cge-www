@@ -7,6 +7,9 @@ $toc = new TableOfContents(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
     new TocItem('Preparing your 3D models to render fast', 'models'),
+      new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
+      new TocItem('Do not instantiate too many TCastleScenes', 'scenes', 1),
+      new TocItem('Occlusion query', 'scenes', 1),
     new TocItem('Optimizing collisions', 'collisions'),
     new TocItem('Memory', 'memory'),
     new TocItem('Profiling', 'profiling'),
@@ -144,9 +147,11 @@ obvious. Exactly what matters most depends on your GPU a lot &mdash;
 modern GPUs can consume a huge number of vertexes very fast, as long
 as they are provided to them in a proper way.</p>
 
+<?php echo $toc->html_section(); ?>
+
 <p>In our engine, the "shape" is the unit of information we provide to
 GPU. It is a VRML/X3D shape. In most cases, it also corresponds to the
-3D object you design in your 3D modeller, e.g. Blender 3D object in
+3D object you design in your 3D modeler, e.g. Blender 3D object in
 simple cases is exported to a single VRML/X3D shape (although it may
 be split into a couple of shapes if you use different
 materials/textures on it, as VRML/X3D is a little more limited (and
@@ -169,6 +174,26 @@ also more GPU friendly)).</p>
 <p>A rule of thumb is to keep your number of shapes in a scene between
 100 and 1000. But that's really just a rule of thumb, different level
 designs will definitely have different considerations.
+
+<p>You can also look at the number of triangles in your shape.
+Only a few triangles for a shape is not optimal &mdash; we will waste
+resources by creating a lot of VBOs, each with only a few triangles (the engine cannot
+yet combine the shapes automatically). Instead, merge your shapes &mdash;
+to have hundreds or thousands of triangles in a single shape.
+
+<?php echo $toc->html_section(); ?>
+
+<p>You usually do not need to create too many <code>TCastleScene</code> instances.
+
+<ul>
+  <li><p>To reduce memory usage, you can place the same <code>TCastleScene</code> (or <code>TCastlePrecalculatedAnimation</code>) instance many times within <code>Scenemanager.Items</code>, usually wrapped in a different <code>T3DTransform</code>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+
+    <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
+
+  <li><p>To make speed really better, you can often combine many <code>TCastleScene</code> instances into one. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>. This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; octrees (used for collision routines and frustum culling) will work Ok. Right now, we have an octree only inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
+</ul>
+
+<?php echo $toc->html_section(); ?>
 
 <p>The engine allows you to easily define custom culling methods
 or use hardware occlusion query (see examples and docs).
