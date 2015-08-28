@@ -37,12 +37,13 @@ and <code>sample.wav</code> in the same directory, and you're fine.</p>
 <?php echo pascal_highlight(
 'uses ..., CastleSoundEngine;
 
-...
+... // use this at initialization:
 var
   Buffer: TSoundBuffer;
-
 ...
   Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
+
+... // in game, call this to play a sound:
   SoundEngine.PlaySound(Buffer, ...);'); ?>
 
 <p>See

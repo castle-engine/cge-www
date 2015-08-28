@@ -50,17 +50,17 @@ begin
   end;
 end;
 
-...
-{ Note: if you use Lazarus, you can create TCastleOnScreenMenu by dropping
-  it on a form and you can initialize many properties by Object Inspector. }
-OnScreenMenu1 := TCastleOnScreenMenu.Create(Application);
-OnScreenMenu1.Items.Add(\'New game\');
-OnScreenMenu1.Items.Add(\'Quit\');
-OnScreenMenu1.OnClick := @EventHandler.OnScreenMenu1Click;
-OnScreenMenu1.Position := Vector2Integer(100, 100);
-// Maybe also adjust OnScreenMenu1.PositionRelativeMenu*
+... // use this at initialization:
+  { Note: if you use Lazarus, you can create TCastleOnScreenMenu by dropping
+    it on a form and you can initialize many properties by Object Inspector. }
+  OnScreenMenu1 := TCastleOnScreenMenu.Create(Application);
+  OnScreenMenu1.Items.Add(\'New game\');
+  OnScreenMenu1.Items.Add(\'Quit\');
+  OnScreenMenu1.OnClick := @EventHandler.OnScreenMenu1Click;
+  OnScreenMenu1.Position := Vector2Integer(100, 100);
+  // Maybe also adjust OnScreenMenu1.PositionRelativeMenu*
 
-Window.Controls.Insert(0, OnScreenMenu1);'); ?>
+  Window.Controls.Insert(0, OnScreenMenu1);'); ?>
 
 <p>There is an example of this in <code>examples/lazarus/model_3d_with_2d_controls/</code> example in
 engine sources.</p>
@@ -88,23 +88,23 @@ Like this:</p>
 var
   GameMenu: TCastleOnScreeMenu;
   GameMenuClosed: boolean;
-...
+
+... // use this at initialization:
   { somewhere at the beginning prepare the menu }
   GameMenu := TCastleOnScreeMenu.Create(...);
   { see example above for how to initialize and implement TCastleOnScreeMenu.
     Make sure that one of the menu items, like "Back",
     sets GameMenuClosed := true when clicked. }
 
-...
-{ when you want to actually show it }
-SceneManager.Paused := true;
-GameMenuClosed := false;
-Window.Controls.Add(GameMenu);
-repeat
-  Application.ProcessMessage(true, true);
-until GameMenuClosed;
-Window.Controls.Remove(GameMenu);
-SceneManager.Paused := false;'); ?>
+... // use this when you want to actually show menu:
+  SceneManager.Paused := true;
+  GameMenuClosed := false;
+  Window.Controls.Add(GameMenu);
+  repeat
+    Application.ProcessMessage(true, true);
+  until GameMenuClosed;
+  Window.Controls.Remove(GameMenu);
+  SceneManager.Paused := false;'); ?>
 
 <p>As the scene manager handles a lot of stuff automatically,
 processing events and calling Update methods of all 3D objects periodically,

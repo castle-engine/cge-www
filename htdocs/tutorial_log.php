@@ -45,10 +45,10 @@ To use it yourself, just call
 <?php echo pascal_highlight(
 'uses ..., CastleLog;
 
-...
+... // place this in your initialization:
 InitializeLog(\'1.0.0\'); // parameter describes program version, will be logged
 
-...
+... // then use this wherever you want:
 WritelnLog(\'My Category\', \'My Log Message\');'); ?>
 
 <p><code>'My Category'</code> is useful to easily spot your messages later. There are

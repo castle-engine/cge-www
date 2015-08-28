@@ -22,7 +22,7 @@ per second.
 <p>Do it like this:
 
 <?php echo pascal_highlight(
-'// in a loop:
+'for .... do // in a loop, grab screenshot each frame
 begin
   SceneManager.MainScene.IncreaseTime(FrameTime);
   SceneManager.Camera.Update(FrameTime, true, DummyBooleanInitializedToTrue);

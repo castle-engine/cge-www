@@ -3,30 +3,37 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Using existing creatures / items classes');
 ?>
 
-<p>For starters, you can just use the existing creature and item classes in
+<p>You can use the existing creature and item classes in
 <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
 <?php api_link('CastleItems', 'CastleItems.html'); ?> units.
-There is no ObjectPascal code you need to write &mdash; simply create
-<code>resource.xml</code> files describing your creatures/items
-and referencing their 3D models/animations.
-See <?php echo a_href_page('creating resources guide', 'creating_data_resources'); ?>.
+To do this, define your resources (creatures/items) in the <code>resource.xml</code>
+files, and call
+
+<?php echo pascal_highlight(
+'Resources.LoadFromFiles;'); ?>
+
+<p>(from unit <code>CastleResources</code>) at initialization.
+That's i! <b>See <code>castle_game_engine/examples/fps_game/data/</code>
+for sample creatures/items</b>. You can copy their <code>resource.xml</code> files
+(and accompanying 3D models) to your project, as a starting point.
+
+<p>See <?php echo a_href_page('creating resources guide', 'creating_data_resources'); ?>
+ for the detailed documentation what can be used in <code>resource.xml</code> file.
 To add initial creatures/items on the level, place on the level 3D model
 special "placeholder" items,
 see <?php echo a_href_page('creating levels guide', 'creating_data_levels'); ?>.
 
 <h2>Creating creatures / items during the game</h2>
 
-<p>If you want to create new creatures or items dynamically during the game,
-a little code will be necessary.
-
-<p>First, let's create (spawn) a new creature at an arbitrary position.
+<p>Let's create (spawn) a new creature at an arbitrary position using Object Pascal
+code.
 This assumes we have a creature named <code>Knight</code>, that is there
 must be a <code>resource.xml</code> file with <code>name="Knight"</code>.
 
 <?php echo pascal_highlight(
 'uses ..., CastleVectors, CastleCreatures;
 
-...
+procedure SpawnMyCreature;
 var
   Position, Direction: TVector3Single;
   CreatureResource: TCreatureResource;
@@ -38,7 +45,11 @@ begin
   { CreateCreature creates TCreature instance and adds it to SceneManager.Items.
     We could store CreateCreature result, but in this case we just ignore it. }
   CreatureResource.CreateCreature(SceneManager.Items, Position, Direction);
-end;'); ?>
+end;
+
+// Remember to actually call SpawnMyCreature
+// from wherever you want in your game.
+// For example, from the OnPress event.'); ?>
 
 <p>Creating an item is similar, except that we have an intermediate step
 where we get
@@ -50,6 +61,7 @@ where we get
 <?php echo pascal_highlight(
 'uses ..., CastleVectors, CastleItems;
 
+procedure SpawnMyItemOnLevel;
 var
   Position: TVector3Single;
   ItemResource: TItemResource;
@@ -72,7 +84,11 @@ begin
   { You could instead add the item directly to someone\'s inventory, like this: }
   // Player.PickItem(Item);
   // Player.PickItem(ItemResource.CreateItem(1));
-end;'); ?>
+end;
+
+// Remember to actually call SpawnMyItemOnLevel
+// from wherever you want in your game.
+// For example, from the OnPress event.'); ?>
 
 <h2>Overview of existing resource classes</h2>
 

@@ -52,21 +52,19 @@ files are:</p>
     you can also extend our classes to create your own types.
 </ul>
 
-<p>There really isn't much code here. Just add</p>
+<p>To make the engine aware of such <i>resources</i> just add</p>
 
 <?php echo pascal_highlight(
-'uses ..., CastleResources;
+'Resources.LoadFromFiles;'); ?>
 
-...
-Resources.LoadFromFiles;'); ?>
-
-<p>to your program. This will cause all
+<p>call (from unit <code>CastleResources</code>) to your program. This will cause all
 information about the creatures and items automatically
 loaded.
-You usually want to do it
+
+<p>You usually want to call <code>Resources.LoadFromFiles</code>
 before loading the level, this way loading the level will be able
 to automatically add initial creatures/items from placeholders.
-It is best to also list necessary creatures in <code>level.xml</code>
+It is best to list necessary creatures in <code>level.xml</code>
 file in <code>&lt;prepare_resources&gt;</code> element,
 to have them prepared (list there both the initial creatures
 and the creatures you will spawn by code during the game).

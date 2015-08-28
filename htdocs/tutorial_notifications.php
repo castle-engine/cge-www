@@ -20,10 +20,10 @@ with <?php echo a_href_page('CastleScript writeln()', 'castle_script'); ?>
 <?php echo pascal_highlight(
 'uses ..., CastleGameNotifications;
 
-...
+... // use this at initialization:
 Window.Controls.Add(Notifications);
 
-...
+... // then use this whenever you want:
 Notifications.Show(\'Show some message\');'); ?>
 
 <p>But you're not forced to use global <code>Notifications</code>

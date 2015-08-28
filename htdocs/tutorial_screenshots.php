@@ -6,14 +6,19 @@ tutorial_header('Screenshots');
 <p>Making a screenshot is very easy:
 
 <?php echo pascal_highlight(
-'var
+'procedure TakeScreenshot;
+var
   Image: TRGBImage;
 begin
   Image := Control.SaveScreen;
   try
     SaveImage(Image, \'screenshot_name.png\');
   finally FreeAndNil(Image) end;
-end;'); ?>
+end;
+
+// Call TakeScreenshot
+// from wherever you want in your game.
+// For example, from the OnPress event.'); ?>
 
 <p><?php api_link('TRGBImage', 'CastleImages.TRGBImage.html'); ?>, and it's ancestor
 <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?> and many other similar
