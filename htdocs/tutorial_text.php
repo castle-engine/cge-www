@@ -55,13 +55,15 @@ has a lot of methods and properties.
   <li>You can simply print the text
     (<?php api_link('Print', 'CastleFonts.TCastleFont.html#Print'); ?>).
   <li>You can scale the font
-    (<?php api_link('Scale', 'CastleFonts.TCastleFont.html#Scale'); ?>)
+    (<?php api_link('Scale', 'CastleFonts.TCastleFont.html#Scale'); ?>).
   <li>You can add an outline around it
     (<?php api_link('Outline', 'CastleFonts.TCastleFont.html#Outline'); ?>,
     <?php api_link('OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor'); ?>).
   <li>You can measure the text
     (<?php api_link('TextWidth', 'CastleFonts.TCastleFont.html#TextWidth'); ?>,
-    <?php api_link('TextHeight', 'CastleFonts.TCastleFont.html#TextHeight'); ?>).
+    <?php api_link('TextHeight', 'CastleFonts.TCastleFont.html#TextHeight'); ?>,
+    <?php api_link('TextSize', 'CastleFonts.TCastleFont.html#TextSize'); ?>,
+    <?php api_link('RowHeight', 'CastleFonts.TCastleFont.html#RowHeight'); ?>...).
   <li>You can print a multi-line text, with optional line wrapping
     (<?php api_link('PrintRect', 'CastleFonts.TCastleFont.html#PrintRect'); ?>,
     <?php api_link('PrintRectMultiline', 'CastleFonts.TCastleFont.html#PrintRectMultiline'); ?>,
@@ -154,10 +156,9 @@ of the characters (including all the possible international characters)
 that you want to display. Like this:
 
 <?php echo pascal_highlight(
-'uses ..., CastleStringUtils, CastleUnicode;
+'uses ..., CasteFonts, CastleStringUtils, CastleUnicode;
 
-....
-
+function CreateMyFont: TCastleFont;
 var
   Characters: TUnicodeCharList;
 begin
@@ -165,9 +166,8 @@ begin
   try
     Characters.Add(SimpleAsciiCharacters);
     Characters.Add(\'string containing all my weird chars, in UTF-8:)\');
-    Font := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true,
+    Result := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true,
       Characters);
-    // .... then use Font however you like
   finally FreeAndNil(Characters) end;
 end;'); ?>
 
