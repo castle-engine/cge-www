@@ -27,18 +27,23 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 
     <p>Properties of this transformation hierarchy:
     <ul>
-      <li>Changing this tree dynamically has absolutely zero cost.
+      <li><p>Changing this tree dynamically has absolutely zero cost.
         This includes changing transformations of items
         (moving, rotating, scaling them),
         or completely rearranging the tree (adding, removing items).
         It is fast and can be done often.
-      <li>Downside: do not make this tree too deep and complicated.
+      <li><p>Downside: do not make this tree too deep and complicated.
         This tree needs to be traversed each time you render
         or check collisions with the 3D world.
         Although we successfully use it with hundreds of transformations,
         but be careful &mdash; at some point the processing time will become
         noticeable.
-      <li>Summary: absolutely dynamic tree, but don't make it too deep
+      <!--
+      <li><p>3D collisions, and the "frustum culling" rendering optimization,
+        consider every 3D object in turn. It you have a lot of 3D objects,
+        this is not efficient.
+      -->
+      <li><p>Summary: absolutely dynamic tree, but don't make it too deep
         and complicated.
     </ul>
   </li>
@@ -54,6 +59,10 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     most notably <code>Transform</code>
     (see <?php echo a_href_page('X3D grouping component',
     'x3d_implementation_grouping'); ?>).
+
+    <p>See example code <code>castle_game_engine/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr</code>
+    for how to load multiple 3D model files into a single X3D graph
+    (single <code>TX3DRootNode</code>).
 
     <p>This hierarchy is also automatically reflected as (a little flattened
     a simplified)
@@ -72,10 +81,16 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
         Rebuilding this tree right now is poorly optimized
         (it may improve in the future, but there's a limit to how much it can
         be done).
-      <li>Upside: you can go wild with the transformation level here,
+
+      <li><p>Upside: you can go wild with the transformation level here,
         the actual rendering and many other read-only operations look only at flatter
         TCastleScene.Shapes.
-      <li>Summary: somewhat less dynamic (very optimized
+
+      <li><p>3D collisions, and the "<i>frustum culling</i>" rendering optimization,
+        use a tree (like an octree) to minimize the number of calculations.
+        This is very efficient if you have a lot of 3D shapes.
+
+      <li><p>Summary: somewhat less dynamic (very optimized
         for some specific changes, like changing transformations of existing
         objects, but poorly optimized for general rearranging at runtime).
         Rendering and processing is always lighting fast,
