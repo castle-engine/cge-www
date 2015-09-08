@@ -152,6 +152,7 @@ $castle_sitemap = array(
       'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/'),
       'engine_doc' => array('title' => 'Internals documentation'),
       'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
+      'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),
     ),
   ),
 
