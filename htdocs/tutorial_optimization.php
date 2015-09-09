@@ -7,6 +7,7 @@ $toc = new TableOfContents(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
     new TocItem('Preparing your 3D models to render fast', 'models'),
+      new TocItem('Easy things to check', 'small', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
       new TocItem('Do not instantiate too many TCastleScenes', 'scenes', 1),
       new TocItem('Occlusion query', 'scenes', 1),
@@ -146,6 +147,28 @@ Also, the simpler models (no shadows etc.), the better. That's fairly
 obvious. Exactly what matters most depends on your GPU a lot &mdash;
 modern GPUs can consume a huge number of vertexes very fast, as long
 as they are provided to them in a proper way.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<ul>
+  <li><p>If the player can see the geometry faces only from one side,
+    then <i>backface culling</i> should be <b>on</b>.
+    This is the default case (X3D nodes like <code>IndexedFaceSet</code>
+    have their <code>solid</code> field equal <code>TRUE</code> by default).
+    It avoids useless drawing of the other side of the faces.
+
+  <li><p>Optimizing texture usage deserves a whole book.
+    This includes:
+    <ul>
+      <li>Use texture compression (makes GPU memory usage more efficient),
+      <li>Use texture atlases
+        (try to reuse the whole X3D <code>Appearance</code> in fact) &mdash;
+        avoids switching them when rendering,
+      <li>Don't set too high <code>TextureProperties.anisotropicDegree</code>
+        when not needed. <code>anisotropicDegree</code> should only be set to
+        values &gt; 1 when it makes a visual difference in your case.
+    </ul>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
