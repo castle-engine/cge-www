@@ -142,7 +142,45 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   <li><p><?php echo x3d_node_link('TextureProperties'); ?>
 
     <p><code>minificationFilter</code>, <code>magnificationFilter</code>,
-    <code>anisotropicDegree</code> are supported. <i>TODO</i>: rest is not.
+    <code>anisotropicDegree</code> fields are supported.
+
+    <p><i>TODO</i>: the rest
+    of the <code>TextureProperties</code> fields are not supported yet.
+    In particular, if you're looking for a way to use GPU compressed textures,
+    <a href="#section_dds">simply place the GPU compressed texture data in DDS files</a>
+    (it's a better idea than using the
+    <code>TextureProperties.textureCompression</code> field).
+
+    <p>Note <b>a common mistake when using the <code>TextureProperties</code> node:
+    texture filtering gets ugly</b>. This is a common mistake,
+    because the X3D specification makes the behaviour unexpected:
+    <code>TextureProperties</code> node by default has
+    <code>magnificationFilter</code> and
+    <code>minificationFilter</code> fields set to <code>"FASTEST"</code>,
+    which instructs us (and every other valid X3D browser) to use
+    the most ugly filtering (without mipmaps, without even linear filtering).
+    To avoid it, always override these fields to <code>"DEFAULT"</code>.
+    For example, instead of using this:
+
+<pre class="vrml_code">
+&lt;TextureProperties anisotropicDegree="4"/&gt;
+</pre>
+
+    <p>use this:
+
+<pre class="vrml_code">
+&lt;TextureProperties
+  anisotropicDegree="4"
+  magnificationFilter="DEFAULT"
+  minificationFilter="DEFAULT" //&gt;
+</pre>
+
+    <p>The <code>"DEFAULT"</code> above means to use the browser-specific texture
+    filtering modes, for us this means to use values in
+    <?php api_link('Scene.Attributes.MinificationFilter', 'CastleRenderer.TRenderingAttributes.html#MinificationFilter'); ?>,
+    <?php api_link('Scene.Attributes.MagnificationFilter', 'CastleRenderer.TRenderingAttributes.html#MagnificationFilter'); ?>
+    which by default are nice
+    (<code>minLinearMipmapLinear</code>, <code>magLinear</code>).
 </ul>
 
 <?php echo $toc->html_section(); ?>
