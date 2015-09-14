@@ -84,7 +84,7 @@ echo castle_thumbs(array(
     and to use fonts even when <i>FreeType</i> library is not available.
     You can also use colorful fonts from a texture.
     Font rendering can allow international characters in UTF-8.
-    See <?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and unit
+    See <?php echo a_href_page('tutorial about text and fonts', 'tutorial_text'); ?> and unit
     <?php api_link('CastleFonts', 'CastleFonts.html'); ?>.
     </li>
 

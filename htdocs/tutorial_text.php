@@ -26,7 +26,7 @@ So you can simply draw text like this:
 'UIFont.Print(10, 10, Yellow, \'Some text to print\');'); ?>
 
 <p>You should place such drawing code inside a render method,
-for examples inside the
+for example inside the
  <?php api_link('OnRender event of TCastleWindowCustom',
  'CastleWindow.TCastleWindowCustom.html#OnRender'); ?> or
  <?php api_link('OnRender event of TCastleControlCustom',
@@ -140,7 +140,7 @@ texturefont2pascal --size 20 MyFontFile.ttf
 
 <p>The disadvantages are of course that you cannot easily edit the TTF anymore,
 you will need to rerun the <code>texturefont2pascal</code> command
-and recompile your program to see a new font.
+and recompile your program to see the new font.
 
 <?php echo $toc->html_section(); ?>
 
