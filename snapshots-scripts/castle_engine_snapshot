@@ -24,7 +24,7 @@ do_compile_tool ()
   cd "${CASTLE_ENGINE_PATH}"
   scripts/clean_everything.sh
 
-  cd castle_game_engine/tools/
+  cd castle_game_engine/tools/build-tool/
   ./castle-engine_compile.sh
   mv -f castle-engine "${CASTLE_BINARY_PATH}"
 }
