@@ -110,7 +110,7 @@ a <?php api_link('TTextureFontData', 'CastleFonts.TTextureFontData.html'); ?>
  constructor. This allows to create the font data at runtime
  or <b>to use the font data embedded in a Pascal source code</b>.
 You can use the <code>texturefont2pascal</code> program (compile it from
-<code>castle_game_engine/examples/fonts/texturefont2pascal.lpr</code>)
+<code>castle_game_engine/tools/texturefont2pascal/texturefont2pascal.lpr</code>)
 to convert a TTF file into a Pascal unit:
 
 <pre>
