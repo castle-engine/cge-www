@@ -631,7 +631,7 @@ cd view3dscene/
 formats to VRML/X3D.
 
 <ul>
-  <li><p>Formats <b>Collada, 3DS, MD3, Wavefront OBJ and GEO</b>
+  <li><p>Formats <b>Collada, Spine JSON, 3DS, MD3, Wavefront OBJ and GEO</b>
     are always converted <b>to X3D</b>.</p>
 
   <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
