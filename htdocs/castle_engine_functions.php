@@ -26,8 +26,8 @@ if (CASTLE_OFFLINE)
 define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
 
-define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
-//define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
+//define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
+define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
 
 function reference_link()
 {
@@ -127,7 +127,7 @@ $castle_sitemap = array(
           'tutorial_network' => array('title' => 'Network and downloading'),
           'tutorial_recording_movies' => array('title' => 'Recording movies'),
           'tutorial_log' => array('title' => 'Logging'),
-          'tutorial_user_prefs' => array('title' => 'User preferences'),
+          'tutorial_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
           'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'tutorial_optimization' => array('title' => 'Optimization and profiling'),
           'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
