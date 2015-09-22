@@ -38,6 +38,8 @@ begin
   Window.OpenAndRun;
 
   { save your own data like this: }
+  Config.SetValue(\'my_parameter\', MyParameter);
+  // or like this:
   Config.SetDeleteValue(\'my_parameter\', MyParameter, \'default_value\');
 
   { save config to file }
