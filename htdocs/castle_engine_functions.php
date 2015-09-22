@@ -26,8 +26,8 @@ if (CASTLE_OFFLINE)
 define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
 define('KAMBI_NO_HOME_LINK', true);
 
-//define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
-define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
+define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
+//define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
 
 function reference_link()
 {
