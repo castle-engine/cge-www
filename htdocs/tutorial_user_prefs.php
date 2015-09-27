@@ -5,10 +5,8 @@ tutorial_header('Persistent data (user preferences, savegames)');
 
 <p>To manage persistent data, like user preferences
 or a simple <i>save game</i> values,
-use <?php api_link('CastleConfig', 'CastleConfig.html'); ?>.
-Some engine components automatically use it
-to load and save user preferences (like whether the sound is enabled),
-you can also use it for your own custom parameters. A simple example:</p>
+use <?php api_link('CastleConfig', 'CastleConfig.html'); ?> unit
+with a <code>UserConfig</code> singleton inside. A simple example:</p>
 
 <?php echo pascal_highlight(
 'uses SysUtils, CastleWindow, CastleConfig;
@@ -24,26 +22,30 @@ end;
 
 begin
   { make sure application name is correct by setting OnGetApplicationName,
-    this is used by Config.Load to determine config file location. }
+    this is used by UserConfig.Load to determine config file location. }
   OnGetApplicationName := @MyGetApplicationName;
 
   { load config from file }
-  Config.Load;
+  UserConfig.Load;
+  // SoundEngine.LoadFromConfig(UserConfig); // load sound parameters (enabled, volume...)
+  // InputsAll.LoadFromConfig(UserConfig); // load keyboard shortcuts configuration
 
   { load your own data like this: }
-  MyParameter := Config.GetValue(\'my_parameter\', \'default_value\');
+  MyParameter := UserConfig.GetValue(\'my_parameter\', \'default_value\');
 
   { ... do the main part of your program }
   Window := TCastleWindow.Create(Application);
   Window.OpenAndRun;
 
   { save your own data like this: }
-  Config.SetValue(\'my_parameter\', MyParameter);
+  UserConfig.SetValue(\'my_parameter\', MyParameter);
   // or like this:
-  Config.SetDeleteValue(\'my_parameter\', MyParameter, \'default_value\');
+  UserConfig.SetDeleteValue(\'my_parameter\', MyParameter, \'default_value\');
 
   { save config to file }
-  Config.Save;
+  // SoundEngine.SaveToConfig(UserConfig); // save sound configuration
+  // InputsAll.SaveToConfig(UserConfig); // save keyboard shortcuts configuration
+  UserConfig.Save;
 end.'); ?>
 
 <p>To load and save config values, you should use <code>GetValue</code>
@@ -64,13 +66,40 @@ methods:
 <p>See the <?php api_link('TCastleConfig', 'CastleXMLConfig.TCastleConfig.html'); ?>
  for a documentation of our extensions.
 
-<p>While you can load and save the config data at any time,
-you can also register
- http://wiki.freepascal.org/xmlconf
+<p>Some engine components provide ready methods to load / save
+their configuration into a
+<?php api_link('TCastleConfig', 'CastleXMLConfig.TCastleConfig.html'); ?> instance
+(for example into the <code>UserConfig</code>). These include:
 
-    Of course you can also use this for your game specific purposes,
-    as Config is just standard FPC TXMLConfig class (with some extensions,
-    see CastleXMLConfig unit).
+<ul>
+  <li><?php api_link('SoundEngine', 'CastleSoundEngine.html#SoundEngine'); ?>
+    &mdash; can load/save sound enabled state, sound volume and other parameters.
+    See
+    <?php api_link('TSoundEngine.LoadFromConfig', 'CastleSoundEngine.TSoundEngine.html#LoadFromConfig'); ?>,
+    <?php api_link('TSoundEngine.SaveToConfig', 'CastleSoundEngine.TSoundEngine.html#SaveToConfig'); ?>.
+
+  <li><?php api_link('InputsAll', 'CastleInputs.html#InputsAll'); ?>
+    &mdash; input shortcuts (named key and mouse shortcuts) customizations. See
+    <?php api_link('TInputShortcutList.LoadFromConfig', 'CastleInputs.TInputShortcutList.html#LoadFromConfig'); ?>,
+    <?php api_link('TInputShortcutList.SaveToConfig', 'CastleInputs.TInputShortcutList.html#SaveToConfig'); ?>.
+</ul>
+
+<p>Note that the engine does <b>not</b> automatically
+call the load / save methods mentioned above. We used to call them automatically
+(in engine version &lt;= 5.2.0), but this automatization was more trouble
+than gain. <small>(It meant that <code>UserConfig.Load</code> could, often by surprise
+to the developer, override the sound parameters set by
+<code>SoundEngine.ParseParameters</code> or explicit
+<code>SoundEngine.Enabled := false</code> code.)</small>
+So you're supposed to call them yourself (see example above) if you want to save
+these values as user preferences.
+
+<p>While you can load and save the config data at any time,
+you can also register your own load and save listeners using
+the
+<?php api_link('TCastleConfig.AddLoadListener', 'CastleXMLConfig.TCastleConfig.html#AddLoadListener'); ?>,
+<?php api_link('TCastleConfig.AddSaveListener', 'CastleXMLConfig.TCastleConfig.html#AddSaveListener'); ?>
+ mechanism. This sometimes allows to decentralize your code better.
 
 <?php
 tutorial_footer();
