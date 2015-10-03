@@ -150,16 +150,9 @@ glViewImage you can give it as parameters a list of images to browse.
     <p>E.g. run <code>glViewImage ~/my_images/</code> to display
     all images in <code>~/my_images/</code> directory.
 
-  <li><p>A filename mask &mdash; glViewImage will display all images
-    matching given mask, where <code>'?'</code> matches any char and
-    <code>'*'</code> matches any number of any chars.
-    Of course, users of bash and similar non-Windows shells can utilize
-    shell filename expansion instead.
-
-    <p>E.g. run <code>glViewImage ~/my_images/*.png</code> to display
-    all PNG images in directory <code>~/my_images/</code>.
-    Or just run <code>glViewImage ~/my_image.png</code>
-    to display only one image in file <code>~/my_image.png</code>.
+  <li><p>A filename &mdash; glViewImage will display this image,
+    and also allow to browse (by previous/next) other images in the same
+    directory.
 
   <li><p><code>@&lt;filename&gt;</code> &mdash; glViewImage will read
     image filenames from file <code>&lt;filename&gt;</code>,
