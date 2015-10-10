@@ -154,8 +154,10 @@ do_engine_examples ()
 do_test_castle_window ()
 {
   cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/
-  # Clean so we can be sure# that new -dCASTLE_WINDOW_xxx will be taken into account.
+  # Clean so we can be sure
+  # that new -dCASTLE_WINDOW_xxx will be taken into account.
   make clean-window
+  make -C ../view3dscene/ generate-code
 
   # note that we compile directly, not using compile.sh, since compile.sh
   # now uses castle-engine that does not allow passing -dXXX
