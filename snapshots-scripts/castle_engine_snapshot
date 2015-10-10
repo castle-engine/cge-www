@@ -227,11 +227,11 @@ do_docs ()
 do_svn_update
 do_compile_tool
 do_compile_snapshot_programs
-do_tovrmlx3d_tests
 do_engine_examples
 do_castlewindow_backends_compile
 do_engine_tests
 do_docs
+do_tovrmlx3d_tests # looong, so make it at end
 
 echo '---------------------------------------------------------------'
 echo 'Setting www-data permissions:'
