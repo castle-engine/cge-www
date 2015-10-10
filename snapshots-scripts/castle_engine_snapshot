@@ -159,7 +159,7 @@ do_test_castle_window ()
 
   # note that we compile directly, not using compile.sh, since compile.sh
   # now uses castle-engine that does not allow passing -dXXX
-  fpc -dRELEASE "$@" @castle-fpc.cfg ../view3dscene/view3dscene.lpr
+  fpc -dRELEASE "$@" @castle-fpc.cfg ../view3dscene/code/view3dscene.lpr
 }
 
 do_castlewindow_backends_compile ()
