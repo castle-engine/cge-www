@@ -18,13 +18,19 @@ with <?php echo a_href_page('CastleScript writeln()', 'castle_script'); ?>
  function, so you can print to it from VRML/X3D scripts.
 
 <?php echo pascal_highlight(
-'uses ..., CastleGameNotifications;
+'// make sure you have these units on "uses" clause:
+uses ..., CastleGameNotifications, CastleColors, CastleRectangles;
 
-... // use this at initialization:
+// use this at initialization:
+// (adjust anchors and colors to your taste)
+Notifications.TextAlignment := hpMiddle;
+Notifications.Anchor(hpMiddle);
+Notifications.Anchor(vpBottom, 5);
+Notifications.Color := Yellow;
 Window.Controls.Add(Notifications);
 
-... // then use this whenever you want:
-Notifications.Show(\'Show some message\');'); ?>
+// use this whenever you want to show a notification:
+Notifications.Show(\'You picked 10 ammo!\');'); ?>
 
 <p>But you're not forced to use global <code>Notifications</code>
 from unit <code>CastleGameNotifications</code>. You may as well create
