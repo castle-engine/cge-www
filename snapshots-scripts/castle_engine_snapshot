@@ -129,6 +129,8 @@ do_tovrmlx3d_tests ()
   ./compile.sh
   ./run_tests.sh /tmp/view3dscene_run_tests_output.txt /tmp/view3dscene_run_tests_output_verbose.txt
   diff -u /tmp/view3dscene_run_tests_output.txt run_tests_valid_output.txt
+  # remove OpenAL trash from outpt
+  sed --in-place=.bak -e '/ALSA lib/d' -e '/AL lib/d' /tmp/view3dscene_run_tests_output.txt
   rm -f /tmp/view3dscene_run_tests_output.txt
 }
 
