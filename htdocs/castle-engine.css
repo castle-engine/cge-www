@@ -140,8 +140,16 @@ dl.vrml_ver_differences > dt {
 }
 
 .program_image_link {
-  min-height: 380px;
+  min-height: 450px;
 }
+
+/* Small devices (tablets, 768px and up), see http://getbootstrap.com/css/ */
+/* @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { */
+/* @media (min-width: 768px) and (max-width: 992px) { */
+/*   .program_image_link { */
+/*     min-height: 0 !important; */
+/*   } */
+/* } */
 
 .program_image_link_title { font-size: larger; }
 

@@ -34,10 +34,10 @@ castle_header('Castle Game Engine',
     <div class="main_link">
       <p><b>For players:</b></p>
       <?php
-        $featured_game_page_name = 'http://michaliskambi.itch.io/hydra-battles';
-        $featured_game_screenshot_name = 'hydra_battles_screen_best';
-        $featured_game_name = 'Hydra Battles';
-        $featured_game_description = 'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/castle-engine/hydra-battles">Source code on GitHub</a>.';
+        $featured_game_page_name = 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash';
+        $featured_game_screenshot_name = 'dragon_squash_screen_1';
+        $featured_game_name = 'Dragon Squash';
+        $featured_game_description = 'Full-featured Android game where you defend beautiful animated castles from the dragons. With Google Games integration. Install for free from Google Play!';
       ?>
       <p><?php echo a_href_page('<img src="images/main_link_size/' . $featured_game_screenshot_name .'.png" alt="' . $featured_game_name . '" />', $featured_game_page_name); ?>
       <p class="program_image_link_title"><?php echo a_href_page('<b>' . $featured_game_name . '</b>', $featured_game_page_name); ?></p>

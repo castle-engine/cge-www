@@ -49,6 +49,14 @@ games from Michalis Kamburelis itch.io profile</a>.
 <?php echo main_list_item("Games"); ?>
 
 <div class="row">
+  <?php program_image_link('Dragon Squash',
+    'Full-featured Android game where you defend beautiful animated castles from the dragons. With Google Games integration. Install for free from Google Play!',
+    'dragon_squash_screen_1.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash'); ?>
+
+  <?php program_image_link('Dragon Spine',
+    'Fly your dragon in a dark comic setting. Demo of Spine animations inside Castle Game Engine on Android. Available for free from Google Play, the source code is inside the engine examples (<code>2d_spine_game</code>).',
+    'castle_spine_screen_3.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.castlespine'); ?>
+
   <?php program_image_link('Hydra Battles',
     'Isometric RTS game for 2 players, with some twists. <a href="https://github.com/castle-engine/hydra-battles">Source code on GitHub</a>.',
     "hydra_battles_screen_best.png", 'http://michaliskambi.itch.io/hydra-battles'); ?>
