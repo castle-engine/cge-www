@@ -524,29 +524,30 @@ or <code>false</code> if <code>loop_code</code> did not get executed even once.<
 They all take a float type, and return a float type unless otherwise noted:</p>
 
 <ul>
-  <li><?php func('Sin', 'Sin'); ?>,
-      <?php func('Cos', 'Cos'); ?>,
-      <?php func('Tan', 'Tan'); ?>,
-      <?php func('CoTan', 'CoTan'); ?>
-  <li><?php func('ArcSin', 'ArcSin'); ?>,
-      <?php func('ArcCos', 'ArcCos'); ?>,
-      <?php func('ArcTan', 'ArcTan'); ?>,
-      <?php func('ArcCoTan', 'ArcCoTan'); ?>
-  <li><?php func('SinH', 'SinH'); ?>,
-      <?php func('CosH', 'CosH'); ?>,
-      <?php func('TanH', 'TanH'); ?>,
-      <?php func('CoTanH', 'CoTanH'); ?>
-  <li><?php func('Log2', 'Log2'); ?> (same as <code>Log(2, x)</code>),
-      <?php func('Ln', 'Ln'); ?>,
-      <?php func('Log', 'Log'); ?>,
-      <?php func('Power2', 'Power2'); ?> (same as <code>Power(2, x) = 2^x</code>),
-      <?php func('Exp', 'Exp'); ?> (same as <code>Power(enat, x) = enat^x</code>),
-      <?php func('Power', 'Power'); ?>,
-      <?php func('Sqr', 'Sqr'); ?>,
-      <?php func('Sqrt', 'Sqrt'); ?><br>
-  <li><?php func('Sgn', 'Sgn'); ?> (returns integer), <?php func('Abs', 'Abs'); ?>
-  <li><?php func('Max', 'Max'); ?>, <?php func('Min', 'Min'); ?>
+  <li><?php func('sin', 'sin'); ?>,
+      <?php func('cos', 'cos'); ?>,
+      <?php func('tan', 'tan'); ?>,
+      <?php func('cotan', 'cotan'); ?>
+  <li><?php func('arcsin', 'arcsin'); ?>,
+      <?php func('arccos', 'arccos'); ?>,
+      <?php func('arctan', 'arctan'); ?>,
+      <?php func('arccotan', 'arccotan'); ?>
+  <li><?php func('sinh', 'sinh'); ?>,
+      <?php func('cosh', 'cosh'); ?>,
+      <?php func('tanh', 'tanh'); ?>,
+      <?php func('cotanh', 'cotanh'); ?>
+  <li><?php func('log2', 'log2'); ?> (same as <code>log(2, x)</code>),
+      <?php func('ln', 'ln'); ?>,
+      <?php func('log', 'log'); ?>,
+      <?php func('power2', 'power2'); ?> (same as <code>power(2, x) = 2^x</code>),
+      <?php func('exp', 'exp'); ?> (same as <code>power(enat, x) = enat^x</code>),
+      <?php func('power', 'power'); ?>,
+      <?php func('sqr', 'sqr'); ?>,
+      <?php func('sqrt', 'sqrt'); ?><br>
+  <li><?php func('sgn', 'sgn'); ?> (returns integer), <?php func('abs', 'abs'); ?>
+  <li><?php func('max', 'max'); ?>, <?php func('min', 'min'); ?>
     (any number of arguments &gt;= 1 allowed; works on either floats or ints)
+  <li><?php func('lerp', 'lerp(fraction, a, b)'); ?>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -687,7 +688,9 @@ only on 3-component vectors).
  also work (make max/min on corresponding vector components).
 
 <p>You can also add, subtract, multiply by scalar, divide by scalar,
-compare vectors by normal operators.</p>
+compare vectors by normal operators.
+Linear interpolation by <?php func('lerp', 'lerp(fraction, vector1, vector2)'); ?>
+ on vectors also works.</p>
 
 <p>Color functions: <?php func('grayscale', 'grayscale(v)'); ?>
  takes a vec3f, treats it
@@ -771,7 +774,9 @@ supported, so this is also the number of rows.</p>
 
 <p>You can add, subtract, negate, multiply (by another matrix, or by scalar,
 or by vector on the right side), divide (by scalar),
-compare matrix using normal operators.</p>
+compare matrix using normal operators.
+Linear interpolation by <?php func('lerp', 'lerp(fraction, matrix1, matrix2)'); ?>
+ on matrices also works.</p>
 
 <?php echo $toc->html_section(); ?>
 
