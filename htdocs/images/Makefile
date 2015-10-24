@@ -51,8 +51,7 @@ all: $(ALL_TARGETS)
 # ----------------------------------------------------------------------------
 # making thumb_size
 
-thumb_size/glplotter_screen_demo%: \
-  original_size/glplotter_screen_demo%
+thumb_size/glplotter%: original_size/glplotter%
 	convert $< -emboss 5.0 -geometry 200x150 $@
 
 thumb_size/%: original_size/%
@@ -61,9 +60,9 @@ thumb_size/%: original_size/%
 # ----------------------------------------------------------------------------
 # making program_link_size
 
-# glplotter_screen_demo_1.png requires scaling with emboss,
+# glplotter screns require scaling with emboss,
 # otherwise look just black.
-program_link_size/glplotter_screen_demo_1.png: original_size/glplotter_screen_demo_1.png
+program_link_size/glplotter%.png: original_size/glplotter%.png
 	convert $< -emboss 15.0 -geometry 300x300 $@
 
 program_link_size/%: original_size/%
