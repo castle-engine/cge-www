@@ -23,6 +23,38 @@
 <?php echo pretty_heading('CastleScript language', NULL,
 'Simple scripting language for Castle Game Engine'); ?>
 
+<?php
+  $toc = new TableOfContents(
+    array(
+      new TocItem('Introduction', 'intro'),
+      new TocItem('Writing scripts inside X3D Script URLs', 'script_urls'),
+      new TocItem('Examples', 'examples'),
+      new TocItem('Syntax', 'syntax'),
+      new TocItem('Types and constants', 'types_constants', 1),
+      new TocItem('Programs and expressions', 'programs_expressions', 1),
+      new TocItem('Built-in functions', 'built_in_functions'),
+      new TocItem('Type conversion', 'functions_conversion', 1),
+      new TocItem('Control flow', 'functions_control_flow', 1),
+      new TocItem('Number (integer and float) functions', 'functions_number', 1),
+      new TocItem('Random numbers functions', 'functions_random', 2),
+      new TocItem('Boolean functions', 'functions_boolean', 1),
+      new TocItem('String functions', 'functions_string', 1),
+      new TocItem('Array functions', 'functions_array', 1),
+      new TocItem('Curves', 'functions_curves', 2),
+      new TocItem('Vector functions', 'functions_vector', 1),
+      new TocItem('Rotation functions', 'functions_rotation', 2),
+      new TocItem('Matrix functions', 'functions_matrix', 1),
+      new TocItem('Image functions', 'functions_image', 1),
+      new TocItem('X3D node functions', 'functions_node', 1),
+      new TocItem('Precise grammar', 'precise_grammar')
+    )
+  );
+?>
+
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
 <p><code>CastleScript</code> (previously "KambiScript")
 is a simple scripting language used in
 our <i>Castle Game Engine</i>. You can use it in VRML/X3D <code>Script</code>
@@ -70,34 +102,6 @@ simply because the language is a closed data-processing language
 <?php func_ref('writeln', 'writeln(string)'); ?>, and they
 expose functionality that is possible anyway with
 pure non-scripted X3D).</p>
-
-<?php
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Writing scripts inside X3D Script URLs', 'script_urls'),
-      new TocItem('Examples', 'examples'),
-      new TocItem('Syntax', 'syntax'),
-      new TocItem('Types and constants', 'types_constants', 1),
-      new TocItem('Programs and expressions', 'programs_expressions', 1),
-      new TocItem('Built-in functions', 'built_in_functions'),
-      new TocItem('Type conversion', 'functions_conversion', 1),
-      new TocItem('Control flow', 'functions_control_flow', 1),
-      new TocItem('Number (integer and float) functions', 'functions_number', 1),
-      new TocItem('Random numbers functions', 'functions_random', 2),
-      new TocItem('Boolean functions', 'functions_boolean', 1),
-      new TocItem('String functions', 'functions_string', 1),
-      new TocItem('Array functions', 'functions_array', 1),
-      new TocItem('Vector functions', 'functions_vector', 1),
-      new TocItem('Rotation functions', 'functions_rotation', 2),
-      new TocItem('Matrix functions', 'functions_matrix', 1),
-      new TocItem('Image functions', 'functions_image', 1),
-      new TocItem('X3D node functions', 'functions_node', 1),
-      new TocItem('Precise grammar', 'precise_grammar')
-    )
-  );
-?>
-
-<?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -658,6 +662,55 @@ this may be comfortable sometimes.</p>
 
 <p>You can glue (concatenate) two or more arrays by the "+" operator.</p>
 
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'glplotter_screen_hermite_tense.png', 'titlealt' => 'hermine_tense_spline example'),
+  array('filename' => 'glplotter_screen_hermite_tense_scaled.png', 'titlealt' => 'hermine_tense_spline example, scaled by x'),
+));
+?>
+
+<p>An array can be used to define a curve which can then be evaluated.
+This is cool for designing curves, for example for movement or some game balance!
+Since the curve is a function, you can easily combine it with other
+functions.
+
+<p>For example this is a simple "three increasing bumps" function:
+
+<pre>
+hermite_tense_spline(x, true,
+  array(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+  array(0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 0.0))
+</pre>
+
+<p>You can easily scale it up, as the x increases:
+
+<pre>
+(1 + x * 0.1) *
+hermite_tense_spline(x, true,
+  array(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+  array(0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 0.0))
+</pre>
+
+<p>The available curves functions are:
+
+<ul>
+  <li><?php echo func('catmull_rom_spline',     'catmull_rom_spline(x: <span class="type">float</span>, loop: <span class="type">boolean</span>, arguments: <span class="type">array of float</span>, values: <span class="type">array of float</span>): returns <span class="type">float</span>'); ?>
+  <li><?php echo func('hermite_spline',             'hermite_spline(x: <span class="type">float</span>, loop: <span class="type">boolean</span>, arguments: <span class="type">array of float</span>, values: <span class="type">array of float</span>, tangents: <span class="type">array of float</span>): returns <span class="type">float</span>'); ?>
+  <li><?php echo func('hermite_tense_spline', 'hermite_tense_spline(x: <span class="type">float</span>, loop: <span class="type">boolean</span>, arguments: <span class="type">array of float</span>, values: <span class="type">array of float</span>): returns <span class="type">float</span>'); ?>
+</ul>
+
+<p><!--The parameters should be self-explanatory.--> Try these functions with
+latest <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> to see
+the curves shapes when rendered.
+For the detailed documentation, see the corresponding ObjectPascal API
+documentation
+ <?php api_link('CatmullRomSpline', 'CastleCurves.html#CatmullRomSpline'); ?>,
+ <?php api_link('HermiteSpline', 'CastleCurves.html#HermiteSpline'); ?>,
+ <?php api_link('HermiteTenseSpline', 'CastleCurves.html#HermiteTenseSpline'); ?>
+ and the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline">wikipedia about Hermite
+and Catmull-Rom splines</a>.
 
 <?php echo $toc->html_section(); ?>
 

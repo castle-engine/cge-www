@@ -435,3 +435,5 @@ div.quote {
 .bottom-widget {
   margin: 0.5em 0;
 }
+
+.kscript_func_docs .type { color: blue; }
