@@ -82,7 +82,7 @@ castle_thumbs(array(
 
     <p>Some demo screenshots are on the right. They show the same view with/and without SSAO. (The comparison is somewhat unfair, as "without SSAO" versions just have GLSL shaders turned off. But the point is that they don\'t have smooth shadows (occlusion)).</p></li>
 
-  <li><p>New <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a> release supports all <a href="http://castle-engine.sourceforge.net/x3d_extensions.php">VRML/X3D extensions</a> of our engine. Thanks go to Joerg "MUFTI" Scheurich.</p></li>
+  <li><p>New <a href="http://wdune.ourproject.org/">White Dune</a> release supports all <a href="http://castle-engine.sourceforge.net/x3d_extensions.php">VRML/X3D extensions</a> of our engine. Thanks go to Joerg "MUFTI" Scheurich.</p></li>
 
   <li><p>Documentation of our "VRML / X3D implementation status" was refactored, each X3D component has now separate page with support details. This should make it easier to read and find needed things. <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/x3d_implementation_status.html">See the SVN documentation here</a>.
 
@@ -124,7 +124,7 @@ castle_thumbs(array(
 )) . '
 <p>Basic support for X3D NURBS is implemented. <code>NurbsPatchSurface</code> and <code>NurbsCurve</code> nodes are handled following X3D specification.</p>
 
-<p>As a background info: the core of our NURBS implementation (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/src/3d/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
+<p>As a background info: the core of our NURBS implementation (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_game_engine/src/3d/nurbs.pas">nurbs unit</a>) is adapted from the <a href="http://wdune.ourproject.org/">White_dune</a> source code. (Licensed on GPL &gt;= 2, just like our engine, so no problem here.)</p>
 
 <p>For the next engine release, this NURBS support will be extended. I would like to cover X3D NURBS component up to level 2 and also implement most important VRML 97 NURBS nodes for compatibility (they are similar but a little incompatible to X3D ones).</p>
 

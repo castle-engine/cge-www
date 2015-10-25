@@ -369,7 +369,7 @@ web3d.org examples</a>.</p>"),
 'Various exciting news about development of our engine:
 
 <ul>
-  <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a>,
+  <li><p><a href="http://wdune.ourproject.org/">White dune</a>,
     free software VRML 97 modeler,
     can export normal VRML animations
     (expressed in terms of VRML interpolators) to our ' .

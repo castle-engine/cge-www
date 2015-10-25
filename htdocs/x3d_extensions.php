@@ -81,7 +81,7 @@ $toc = new TableOfContents(array(
     <p>Our extensions are identified by URN like "<code>urn:castle-engine.sourceforge.net:node:KambiTriangulation</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</code>" is recognized.</p>
   </li>
 
-  <li><p><a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
+  <li><p><a href="http://wdune.ourproject.org/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
 
   <li><p>Some extensions are <a href="#section_ext_avalon">designed for compatibility with InstantPlayer</a>.</p></li>
 </ul>

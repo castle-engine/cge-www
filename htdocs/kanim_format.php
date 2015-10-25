@@ -39,7 +39,7 @@ since Blender cannot export animations with interpolators to VRML.</p>
 
 <p>On the positive side, there is at least one open-source
 program that <i>can</i> create animations with interpolators:
-<a href="http://vrml.cip.ica.uni-stuttgart.de/dune/">White Dune</a>.
+<a href="http://wdune.ourproject.org/">White Dune</a>.
 <i>White dune</i> has even an exporter to Kanim format,
 given a VRML animation by interpolators it generates a Kanim file
 and corresponding VRML files for each frame.</p>
