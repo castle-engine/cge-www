@@ -16,9 +16,8 @@ $toc = new TableOfContents(
 
 <p>To draw some text you need an instance of the
 <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> class.
-To make it easy, two global instances of this class are already created for you:
-<?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
-<?php api_link('UIFontSmall', 'CastleControls.html#UIFontSmall'); ?>
+To make it easy, one global instance of this class is already created for you:
+<?php api_link('UIFont', 'CastleControls.html#UIFont'); ?>
  (part of <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
 So you can simply draw text like this:
 
@@ -41,9 +40,13 @@ you can also use
  <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
  that manages the drawing for you.
  You can customize it's font using
- <?php api_link('the Font property', 'CastleControls.TUIControlFont.html#Font'); ?>.
- Some other controls from
- <?php api_link('CastleControls', 'CastleControls.html'); ?>
+ <?php api_link('CustomFont', 'CastleControls.TUIControlFont.html#CustomFont'); ?>,
+ <?php api_link('FontSize', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
+ and
+ <?php api_link('SmallFont', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
+ properties.
+ Many other UI controls (see for example unit
+ <?php api_link('CastleControls', 'CastleControls.html'); ?>)
  descend from
  <?php api_link('TUIControlFont', 'CastleControls.TUIControlFont.html'); ?>.
  and thus may have their font customized, for example
@@ -55,7 +58,8 @@ has a lot of methods and properties.
   <li>You can simply print the text
     (<?php api_link('Print', 'CastleFonts.TCastleFont.html#Print'); ?>).
   <li>You can scale the font
-    (<?php api_link('Scale', 'CastleFonts.TCastleFont.html#Scale'); ?>).
+    (<?php api_link('Scale', 'CastleFonts.TCastleFont.html#Scale'); ?>,
+     <?php api_link('Size', 'CastleFonts.TCastleFont.html#Size'); ?>).
   <li>You can add an outline around it
     (<?php api_link('Outline', 'CastleFonts.TCastleFont.html#Outline'); ?>,
     <?php api_link('OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor'); ?>).
@@ -75,7 +79,7 @@ has a lot of methods and properties.
 <?php echo $toc->html_section(); ?>
 
 <p><?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> is actually
-an abstract class representing font that can be drawn.
+an abstract class representing some font that can be drawn.
 To create a new font, you create an instance of a non-abstract class,
 most often the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
  class &mdash; it draws font glyphs from a texture, and can be loaded from a TTF font.

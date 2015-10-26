@@ -60,11 +60,10 @@ about the <code>Player</code> and <code>Player</code>'s inventory.
 And you can draw them using our 2D drawing API:
 
 <ul>
-  <li><p>To draw a <b>text</b>, you can use ready global fonts
-    <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?> and
-    <?php api_link('UIFontSmall', 'CastleControls.html#UIFontSmall'); ?>
+  <li><p>To draw a <b>text</b>, you can use ready global font
+    <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?>
     (in <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
-    These are instances of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>.
+    This is an instance of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>.
     For example, you can show player's health like this:
 
 <?php echo pascal_highlight(
