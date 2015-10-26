@@ -16,7 +16,7 @@ castle_header('Castle Game Engine',
       <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
       <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
       <p><!--The engine is where all the magic actually happens :)-->
-      Free open-source game engine for <a href="http://www.freepascal.org/">Free Pascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
+      Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
     </div>
   </div>
 
