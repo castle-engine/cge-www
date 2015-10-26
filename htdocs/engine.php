@@ -37,8 +37,8 @@
 ));
 ?>
 
-<p>An open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-3D/2D game engine for ObjectPascal.
+<p>A free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+3D/2D game engine for modern ObjectPascal.
 
 <ul>
   <li>We support of lot of 3D and 2D formats

@@ -6,7 +6,7 @@ global $main_page;
 $main_page = true;
 
 castle_header('Castle Game Engine',
-  'A free/open-source 3D (game) engine. Written in clean Object Pascal code, with an excellent support for the VRML / X3D (and other) 3D data formats. Cross-platform, using OpenGL, many advanced 3D features (shadows, mirrors) available.');
+  'Free open-source 3D game engine. Supports a lot of 2D and 3D data formats, including VRML / X3D, Collada, Spine... Cross-platform, for standalone (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin... Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.');
 ?>
 
 <div class="row">
@@ -16,7 +16,7 @@ castle_header('Castle Game Engine',
       <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
       <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
       <p><!--The engine is where all the magic actually happens :)-->
-      Open-source (LGPL) game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
+      Free open-source game engine for <a href="http://www.freepascal.org/">Free Pascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
     </div>
   </div>
 
