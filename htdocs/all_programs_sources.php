@@ -177,7 +177,7 @@ notes near some programs below.
   //echo_src_archive('lets_take_a_walk', '3.0.0');
   echo_src_archive('malfunction', 'malfunction', '4.0.1');
   echo_src_archive('kambi_lines', 'kambi-lines', '4.0.1');
-  echo_src_archive('glplotter and gen_function', 'glplotter', '4.0.1');
+  echo_src_archive_2('glplotter and gen_function', 'glplotter', 'glplotter', '4.0.1');
   //echo_src_archive('gen_function', '4.0.1');
   echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', '4.1.1');
   echo_src_archive('bezier_curves', 'bezier-curves', '4.0.1');
