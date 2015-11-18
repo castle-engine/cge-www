@@ -93,14 +93,15 @@ for a simple example of creating fonts.
 In the basic version, you simply use
 <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?> constructor
 to load a font from a TTF file (or any other font format supported by the
-FreeType2 library). Remember to install the FreeType2 library (on Windows,
-place appropriate FreeType2 DLL alongside the exe, you can get the DLL
-from
- <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/external_libraries/">our external_libraries repo</a>).
-So you construct a font like this:
+FreeType2 library). So you construct a font like this:
 
 <?php echo pascal_highlight(
 'MyNewFont := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
+
+<p>Remember to install the FreeType2 library for this to work. On Windows,
+place appropriate FreeType2 DLL alongside the exe, you can get the DLL
+from <code>castle_game_engine/tools/build-tool/data/external_libraries/</code> directory
+of the engine.
 
 <p>Note that you can also assign the new font as the global <code>UIFont</code>,
 so it will be by default used by all standard UI controls:
