@@ -35,16 +35,19 @@ and <code>sample.wav</code> in the same directory, and you're fine.</p>
 <p>To play a sound using direct code, do this:</p>
 
 <?php echo pascal_highlight(
-'uses ..., CastleSoundEngine;
+'// add this to your uses clause:
+uses ..., CastleSoundEngine;
 
-... // use this at initialization:
+// use this at initialization:
 var
   Buffer: TSoundBuffer;
-...
-  Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
+procedure LoadSoundBuffers;
+begin
+  Buffer := SoundEngine.LoadBuffer(ApplicationData(\'sample.wav\'));
+end;
 
-... // in game, call this to play a sound:
-  SoundEngine.PlaySound(Buffer, ...);'); ?>
+// during the game, call this to play a sound:
+SoundEngine.PlaySound(Buffer);'); ?>
 
 <p>See
 <?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>
