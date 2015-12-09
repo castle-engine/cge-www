@@ -69,6 +69,11 @@ cd tests/
 ./test_castle_game_engine -a
 
 # ----------------------------------------------------------------------------
+# Test at least compilation of all Android components:
+# uncomment them in castle_game_engine/examples/2d_dragon_spine_android_game/
+# and recompile it.
+
+# ----------------------------------------------------------------------------
 # Test view3dscene VRML/X3D loading/saving/rendering
 
 cd view3dscene/
