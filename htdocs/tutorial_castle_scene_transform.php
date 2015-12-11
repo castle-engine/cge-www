@@ -22,7 +22,7 @@ in particular you can add:
 
   <li><p><?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>:
     descendant of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
-    especially suitable for 2D, for example a <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>
+    especially suitable for 2D, for example a <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
     animation.
 
   <li><p><?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>,

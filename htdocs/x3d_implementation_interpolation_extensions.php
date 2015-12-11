@@ -125,7 +125,7 @@ cubic Bezier curve instead of linear interpolation, and simplifying parameters
 for rotations in 2D.
 
 <p>These nodes are particularly useful when converting
-<a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>
+<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
 animations with <i>curve</i> interpolation to X3D.
 That is because Spine uses cubic Bezier curves for interpolation too,
 with controls points defined in a similar way.

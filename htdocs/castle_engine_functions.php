@@ -148,8 +148,8 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'Reference', 'url' => reference_link()),
-      'android' => array('title' => 'Android', 'url' => 'http://sourceforge.net/p/castle-engine/wiki/Android%20development/'),
-      'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/'),
+      'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
+      'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
       'engine_doc' => array('title' => 'Internals documentation'),
       'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
       'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),
@@ -599,7 +599,7 @@ function echo_footer ()
 
 define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
 
-define('WIKI_URL',            'https://sourceforge.net/p/castle-engine/wiki/');
+define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wiki');
 define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/');
 define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');

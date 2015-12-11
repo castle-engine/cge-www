@@ -65,7 +65,7 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 
   <li><p>' . api_link('TUIState', 'CastleUIState.TUIState.html', false) . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
 
-  <li><p>New option <code>android_project</code> was added to our <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
+  <li><p>New option <code>android_project</code> was added to our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
 
   <li><p><b>Getting and setting fields of X3D nodes</b> has now clean API. Just use <code>LightNode.Intensity := 0.5</code> instead of ugly <code>LightNode.FdIntensity.Send(0.5)</code>.
 

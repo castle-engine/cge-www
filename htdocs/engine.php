@@ -43,7 +43,7 @@
 <ul>
   <li>We support of lot of 3D and 2D formats
     (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
-    <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a>...),
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>...),
   <li>we're portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...),
   <li>we provide optimized rendering with a lot of graphic effects,
   <li>and we have a great API for managing your game world. <!-- (including high-level classes like ready-to-use creature AI).-->
@@ -94,7 +94,7 @@ including the sources for many example programs and engine tools.
     <p>To develop your own programs, you can either add
     the engine unit output path to your <code>fpc.cfg</code> file,
     or you can compile your own projects using our
-    <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
     <!--
     If you know what you're doing, we also provide <code>castle-fpc.cfg</code> config
     in the engine sources,

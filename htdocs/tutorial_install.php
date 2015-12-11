@@ -46,7 +46,7 @@ engine source code with examples', 'engine'); ?>.
             package.</li>
         </ul>
       <li><p>Or compile your projects using our
-        <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+        <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
         Edit and debug them using whatever tool you like.
       <li><p>Or compile the engine with <code>make</code>
         and add the engine unit output path (like <code>.../castle_game_engine/units/i386-linux/</code>)
@@ -83,8 +83,8 @@ with .exe files that you compile with our engine.</p>
 <p>If you are interested in developing for Android or iOS, you will want
 to later read also
 <ul>
-  <li><a href="http://sourceforge.net/p/castle-engine/wiki/Android%20development/">Developing for Android</a>
-  <li><a href="http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">Developing for iOS (iPhone, iPad)</a>
+  <li><a href="https://github.com/castle-engine/castle-engine/wiki/Android">Developing for Android</a>
+  <li><a href="https://github.com/castle-engine/castle-engine/wiki/iOS">Developing for iOS (iPhone, iPad)</a>
 </ul>
 
 <p>Now we'll start creating our own game from scratch.</p>

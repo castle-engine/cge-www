@@ -46,7 +46,7 @@ echo castle_thumbs(array(
   <li><p>We support a wide range of formats for 3D and 2D data.
     <ul>
       <li>Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. VRML/X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a></b> and many others.</p></li>
+      <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others.</p></li>
     </ul>
     <p>Our <?php echo a_href_page('tutorial', 'tutorial_intro'); ?> describes a lot of ways to use 3D and 2D objects,
     for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
@@ -113,13 +113,13 @@ echo castle_thumbs(array(
   <li><p>You can compile and package your games as
     <ul>
       <li><b>standalone</b> (Linux, Windows, Mac OS X, FreeBSD, more... 32-bit and 64-bit),
-      <li><b>mobile</b> (<a href="https://sourceforge.net/p/castle-engine/wiki/Android%20development/">Android</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">iOS</a>),
-      <li><b>web browser plugin</b> (Linux, Windows, <a href="https://sourceforge.net/p/castle-engine/wiki/Web%20plugin%20development/">for browsers supporting NPAPI</a>).
+      <li><b>mobile</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
+      <li><b>web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>).
     </ul>
 
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'tutorial_mobile'); ?>.
 
-  <li><p>We have a <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
+  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -233,7 +233,7 @@ echo castle_thumbs(array(
     </ul>
     <p><?php echo a_href_page('Engine tutorial', 'tutorial_resources_extending'); ?> contains detailed information about this.
 
-  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://sourceforge.net/p/castle-engine/wiki/Spine/">Spine</a> which is very cool for creating 2D animations.
+  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> which is very cool for creating 2D animations.
 
   <li>Octrees are used for various <b>collision detection</b> tasks.
     For dynamic scenes, a hierarchy of octrees is used, allowing accurate

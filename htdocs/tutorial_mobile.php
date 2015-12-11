@@ -30,19 +30,19 @@ it seems a good moment to talk about them.
 some special tools. Everything is explained on these platform-specific pages:
 
 <ul>
-  <li><a href="http://sourceforge.net/p/castle-engine/wiki/Android%20development/">Developing for Android</a>
-  <li><a href="http://sourceforge.net/p/castle-engine/wiki/iOS%20Development/">Developing for iOS (iPhone, iPad)</a>
+  <li><a href="https://github.com/castle-engine/castle-engine/wiki/Android">Developing for Android</a>
+  <li><a href="https://github.com/castle-engine/castle-engine/wiki/iOS">Developing for iOS (iPhone, iPad)</a>
 </ul>
 
 <p>Compiling and packaging cross-platform games is greatly
-simplified if you use our <a href="https://sourceforge.net/p/castle-engine/wiki/Build%20tool/">build tool</a>.
+simplified if you use our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
 In particular for Android, our build tool nicely hides from you
 a lot of complexity with managing an Android project.
 So be sure to give it a try!
 
 <p>Rendering on mobile platforms uses OpenGLES. Our OpenGLES renderer
 can handle almost everything the same as a desktop OpenGL renderer,
-but <a href="https://sourceforge.net/p/castle-engine/wiki/OpengLES,%20Android%20and%20iOS%20TODOs/">there
+but <a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">there
 are some things not implemented yet in the OpenGLES version</a>.
 
 <?php echo $toc->html_section(); ?>
