@@ -100,7 +100,7 @@ type
 procedure TGame2DControls.GLContextOpen;
 begin
   inherited;
-  FMyImage := TGLImage.Create(ApplicationData('map_tile.png'));
+  FMyImage := TGLImage.Create(ApplicationData(\'map_tile.png\'));
 end;
 
 procedure TGame2DControls.GLContextClose;
