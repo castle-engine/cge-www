@@ -40,10 +40,7 @@ type
   end;
 
 procedure TGame2DControls.Render;
-var
-  Player: TPlayer;
 begin
-  Player := Window.SceneManager.Player;
   { ... }
 end;
 
@@ -55,9 +52,10 @@ var
   Controls2D := TGame2DControls.Create(Application);
   Window.Controls.Add(Controls2D);'); ?>
 
-<p>Inside <code>TGame2DControls.Render</code> you have the full knowledge about the world,
-about the <code>Player</code> and <code>Player</code>'s inventory.
-And you can draw them using our 2D drawing API:
+<p>Inside <code>TGame2DControls.Render</code> you have the full knowledge about the world.
+For example, you can access the player of your 3D game using <code>Window.SceneManager.Player</code>
+(see <?php echo a_href_page('tutorial about Player for FPS game', 'tutorial_player'); ?>).
+You can draw them using our 2D drawing API:
 
 <ul>
   <li><p>To draw a <b>text</b>, you can use ready global font
@@ -84,7 +82,60 @@ And you can draw them using our 2D drawing API:
     <p>Note that <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is an OpenGL resource &mdash;
     which means that usually you create it in <code>GLContextOpen</code>
     and destroy in <code>GLContextClose</code> methods of your <code>TUIControl</code>
-    descendant.
+    descendant. Like the example below:
+
+<?php echo pascal_highlight(
+'uses ..., CastleGLImages, CastleUIControls;
+
+type
+  TGame2DControls = class(TUIControl)
+  private
+    FMyImage: TGLImage;
+  public
+    procedure Render; override;
+    procedure GLContextOpen; override;
+    procedure GLContextClose; override;
+  end;
+
+procedure TGame2DControls.GLContextOpen;
+begin
+  inherited;
+  FMyImage := TGLImage.Create(ApplicationData('map_tile.png'));
+end;
+
+procedure TGame2DControls.GLContextClose;
+begin
+  FreeAndNil(FMyImage);
+  inherited;
+end;
+
+procedure TGame2DControls.Render;
+begin
+  inherited;
+  FMyImage.Draw(100, 200);
+end;'); ?>
+
+  <li><p>Note about <b>UI scaling</b> and <code>TGLImage</code>.
+    In engine version 5.3.0, we add to UI system parents, anchoring,
+    and automatic UI scaling.
+
+    <p>If you would like your own 2D controls to honor this system,
+    your render method will need to take them into account.
+    This unfortunately complicates it a little more (especially
+    UI scaling for now is a little tiresome, we'll try to improve
+    it in future versions). The <code>Render</code> method needs
+    to be changed to:
+
+<?php echo pascal_highlight(
+'procedure TGame2DControls.Render;
+begin
+  inherited;
+  FMyImage.Draw(
+    ScreenRect.Left   + Round(100 * UIScale),
+    ScreenRect.Bottom + Round(200 * UIScale),
+    Round(FMyImage.Width  * UIScale),
+    Round(FMyImage.Height * UIScale));
+end;'); ?>
 
   <li><p><?php api_link('DrawRectangle', 'CastleGLUtils.DrawRectangle.html'); ?>
     allows to easily draw 2D <b>rectangle</b> filled with color.
