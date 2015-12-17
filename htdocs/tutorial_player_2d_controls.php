@@ -74,10 +74,21 @@ You can draw them using our 2D drawing API:
     <?php echo a_href_page('the tutorial chapter about text and fonts for more',
     'tutorial_text'); ?>.
 
+    <p><b>Note that in simple cases, you don't need to render the text this way.
+    You can instead use ready control
+    <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
+    (see <?php echo a_href_page('the tutorial about text', 'tutorial_text'); ?>).
+    But drawing font yourself is often more flexible.
+
   <li><p>To draw an <b>image</b>, use
     <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>.
     It has methods <code>Draw</code> and <code>Draw3x3</code> to draw the image,
     intelligently stretching it, optionally preserving unstretched corners.
+
+    <p><b>Note that in simple cases, you don't need to render the image this way.
+    You can instead use ready control
+    <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>.
+    But drawing image yourself is often more flexible.
 
     <p>Note that <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is an OpenGL resource &mdash;
     which means that usually you create it in <code>GLContextOpen</code>
@@ -120,21 +131,22 @@ end;'); ?>
     and automatic UI scaling.
 
     <p>If you would like your own 2D controls to honor this system,
-    your render method will need to take them into account.
-    This unfortunately complicates it a little more (especially
-    UI scaling for now is a little tiresome, we'll try to improve
-    it in future versions). The <code>Render</code> method needs
-    to be changed to:
+    your <code>Render</code> method will need to take them into account,
+    and you should also override the <code>Rect</code> method.
+    Use helpers like <code>ScreenRect</code> or <code>UIScale</code>
+    to translate/scale your control correctly.
 
 <?php echo pascal_highlight(
-'procedure TGame2DControls.Render;
+'function TGame2DControls.Rect: TRectangle;
+begin
+  Result := Rectangle(Left, Bottom, FMyImage.Width, FMyImage.Height);
+  Result := Result.ScaleAround0(UIScale);
+end;
+
+procedure TGame2DControls.Render;
 begin
   inherited;
-  FMyImage.Draw(
-    ScreenRect.Left   + Round(100 * UIScale),
-    ScreenRect.Bottom + Round(200 * UIScale),
-    Round(FMyImage.Width  * UIScale),
-    Round(FMyImage.Height * UIScale));
+  FMyImage.Draw(ScreenRect);
 end;'); ?>
 
   <li><p><?php api_link('DrawRectangle', 'CastleGLUtils.DrawRectangle.html'); ?>
