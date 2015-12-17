@@ -76,7 +76,7 @@ You can draw them using our 2D drawing API:
 
     <p><b>Note that in simple cases, you don't need to render the text this way.
     You can instead use ready control
-    <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
+    <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?></b>
     (see <?php echo a_href_page('the tutorial about text', 'tutorial_text'); ?>).
     But drawing font yourself is often more flexible.
 
@@ -87,7 +87,7 @@ You can draw them using our 2D drawing API:
 
     <p><b>Note that in simple cases, you don't need to render the image this way.
     You can instead use ready control
-    <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>.
+    <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>.</b>
     But drawing image yourself is often more flexible.
 
     <p>Note that <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is an OpenGL resource &mdash;
