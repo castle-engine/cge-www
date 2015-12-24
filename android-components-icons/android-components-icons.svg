@@ -244,9 +244,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.175"
-     inkscape:cx="827.29561"
-     inkscape:cy="519.76191"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="2167.5461"
+     inkscape:cy="818.25651"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -500,13 +500,13 @@
         <image
            sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/Android_Robot_200.png"
            xlink:href="Android_Robot_200.png"
-           y="235.61407"
-           x="658.74097"
-           id="image4084"
-           style="image-rendering:optimizeQuality"
-           preserveAspectRatio="none"
+           width="252.29523"
            height="295.18542"
-           width="252.29523" />
+           preserveAspectRatio="none"
+           style="image-rendering:optimizeQuality"
+           id="image4084"
+           x="658.74097"
+           y="235.61407" />
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -575,13 +575,13 @@
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/giftiz.png"
          xlink:href="giftiz.png"
-         width="578.67743"
-         height="194.18704"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image5102"
+         y="-99.401596"
          x="-694.82703"
-         y="-99.401596" />
+         id="image5102"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="194.18704"
+         width="578.67743" />
     </g>
     <g
        id="g3908"
@@ -612,23 +612,23 @@
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/GameAnalytics-Logo-400x113.png"
          xlink:href="GameAnalytics-Logo-400x113.png"
-         width="496.63715"
-         height="140.3"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image5038"
+         y="413.00507"
          x="2177.1428"
-         y="413.00507" />
+         id="image5038"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="140.3"
+         width="496.63715" />
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/google-analytics-logo.png"
          xlink:href="google-analytics-logo.png"
-         width="629.93616"
-         height="98.362122"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image5172"
+         y="623.14783"
          x="2186.6426"
-         y="623.14783" />
+         id="image5172"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="98.362122"
+         width="629.93616" />
     </g>
     <g
        id="g3878"
@@ -639,13 +639,13 @@
         <image
            sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/google_play_games.png"
            xlink:href="google_play_games.png"
-           y="228.8669"
-           x="1523.8854"
-           id="image3844"
-           style="image-rendering:optimizeQuality"
-           preserveAspectRatio="none"
+           width="198.6179"
            height="198.6179"
-           width="198.6179" />
+           preserveAspectRatio="none"
+           style="image-rendering:optimizeQuality"
+           id="image3844"
+           x="1523.8854"
+           y="228.8669" />
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -669,13 +669,13 @@
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/Google_Play_logo.png"
          xlink:href="Google_Play_logo.png"
-         y="-77.852135"
-         x="501.85709"
-         id="image6183"
-         style="image-rendering:optimizeQuality"
-         preserveAspectRatio="none"
+         width="562"
          height="129"
-         width="562" />
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         id="image6183"
+         x="501.85709"
+         y="-77.852135" />
       <text
          sodipodi:linespacing="125%"
          id="text6186"
@@ -701,82 +701,78 @@
    id="tspan3431"
    style="font-weight:bold">In-app Purchases</tspan></tspan></text>
     </g>
-    <g
-       id="g3899"
-       transform="translate(-36.568542,920.07566)">
-      <image
-         sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/admob.png"
-         xlink:href="admob.png"
-         width="393"
-         height="96"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3901"
-         x="2154.8276"
-         y="-580.14996" />
-      <image
-         sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/chartboost.png"
-         xlink:href="chartboost.png"
-         width="524.05078"
-         height="102.66492"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3963"
-         x="2119.2749"
-         y="-449.29318" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3966"
-         y="-645.71783"
-         x="2147.2771"
-         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           y="-645.71783"
-           x="2147.2771"
-           id="tspan3968"
-           sodipodi:role="line">Advertisements:</tspan></text>
-      <rect
-         ry="74.696701"
-         y="-741.92352"
-         x="2053.8796"
-         height="807.76941"
-         width="815.8548"
-         id="rect4973"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.69999999;stroke-dasharray:none;stroke-opacity:1" />
-      <image
-         sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/heyzap-logo-550x204.png"
-         xlink:href="heyzap-logo-550x204.png"
-         width="397.54797"
-         height="145.28572"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3644"
-         x="2150.7144"
-         y="-312.42352" />
-      <image
-         sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/startapp.jpg"
-         xlink:href="startapp.jpg"
-         width="511.89243"
-         height="115.02523"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3805"
-         x="2115.9783"
-         y="-145.41914" />
-    </g>
+    <image
+       sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/admob.png"
+       xlink:href="admob.png"
+       width="393"
+       height="96"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image3901"
+       x="2118.259"
+       y="339.92569" />
+    <image
+       sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/chartboost.png"
+       xlink:href="chartboost.png"
+       width="524.05078"
+       height="102.66492"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image3963"
+       x="2082.7063"
+       y="470.78247" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2110.7085"
+       y="274.35782"
+       id="text3966"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3968"
+         x="2110.7085"
+         y="274.35782">Advertisements:</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.69999999;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4973"
+       width="815.8548"
+       height="807.76941"
+       x="2017.3112"
+       y="178.15213"
+       ry="74.696701" />
+    <image
+       sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/heyzap-logo-550x204.png"
+       xlink:href="heyzap-logo-550x204.png"
+       width="397.54797"
+       height="145.28572"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image3644"
+       x="2112.1255"
+       y="629.87549" />
+    <image
+       sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/startapp.jpg"
+       xlink:href="startapp.jpg"
+       width="511.89243"
+       height="115.02523"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       id="image3805"
+       x="2077.3894"
+       y="809.00171" />
     <g
        id="g3944"
        transform="translate(1741.503,-432.34529)">
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/mobile120.png"
          xlink:href="mobile120.png"
-         width="314.0101"
-         height="314.0101"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3867"
+         y="388.26053"
          x="-1589.1982"
-         y="388.26053" />
+         id="image3867"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="314.0101"
+         width="314.0101" />
       <text
          sodipodi:linespacing="125%"
          id="text3870"
@@ -840,13 +836,13 @@
       <image
          sodipodi:absref="/home/michalis/sources/castle-engine/trunk/www/android-components-icons/OpenAL_logo.png"
          xlink:href="OpenAL_logo.png"
-         width="497.85715"
-         height="270.50238"
-         preserveAspectRatio="none"
-         style="image-rendering:optimizeQuality"
-         id="image3706"
+         y="-273.88147"
          x="2289.6177"
-         y="-273.88147" />
+         id="image3706"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="270.50238"
+         width="497.85715" />
       <rect
          ry="77.143898"
          y="-334.57639"
