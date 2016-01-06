@@ -223,10 +223,10 @@ $castle_sitemap = array(
           'x3d_implementation_cubemaptexturing'     => array('title' => 'Cube map environmental texturing'),
         )
       ),
-      'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
       'castle_script' => array('title' => 'CastleScript language reference'),
       'kanim_format' => array('title' => 'Kanim (precalculated animations) file format'),
       'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
+      'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
     ),
   ),
 

@@ -14,12 +14,6 @@
   }
 ?>
 
-<?php if (!IS_GEN_LOCAL) { ?>
-  <div class="useful_link" style="float: right"><a href="kambiscript_language.chm">This
-  CastleScript reference in CHM format</a></div>
-<?php }
-?>
-
 <?php echo pretty_heading('CastleScript language', NULL,
 'Simple scripting language for Castle Game Engine'); ?>
 
