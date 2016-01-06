@@ -168,6 +168,18 @@ as they are provided to them in a proper way.</p>
         when not needed. <code>anisotropicDegree</code> should only be set to
         values &gt; 1 when it makes a visual difference in your case.
     </ul>
+
+  <li><p>To optimize CPU usage by animations:
+
+    <ul>
+      <li>If your model has animations but is often not visible (outside
+        of view frustum), then consider using <code>Scene.AnimateOnlyWhenVisible := true</code>
+        (see <?php api_link('TCastleSceneCore.AnimateOnlyWhenVisible',
+        'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>.
+
+      <li>If your model has deep transformations hierarchy, consider
+        using global <code>OptimizeExtensiveTransformations := true</code>.
+    </ul>
 </ul>
 
 <?php echo $toc->html_section(); ?>
