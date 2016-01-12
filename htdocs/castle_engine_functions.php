@@ -436,9 +436,6 @@ function echo_header_bonus ()
   $geshi = new GeSHi();
   $geshi->enable_classes();
   //$geshi->set_overall_class('sourcecode'); // not needed anymore
-  /* looks like we need to set_language before get_stylesheet,
-     otherwise not everything necessary is output. */
-  $geshi->set_language('delphi');
 
   ?>
 
@@ -455,7 +452,16 @@ function echo_header_bonus ()
 <script type="text/javascript" src="castle-engine.js"></script>
 
 <style type="text/css"><!--
-<?php echo $geshi->get_stylesheet(false); ?>
+<?php
+/* looks like we need to set_language before get_stylesheet,
+   otherwise not everything necessary is output. */
+$geshi->set_language('delphi');
+echo $geshi->get_stylesheet(false);
+$geshi->set_language('VRML / X3D');
+echo $geshi->get_stylesheet(false);
+$geshi->set_language('C');
+echo $geshi->get_stylesheet(false);
+?>
  -->
 </style>
 
@@ -921,7 +927,7 @@ function pascal_highlight($source)
 {
   global $geshi;
   $geshi->set_source($source);
-  $geshi->set_language('delphi');
+  $geshi->set_language('delphi'); // tested: order of set_source, set_language doesn't matter
   return $geshi->parse_code();
 }
 
@@ -931,14 +937,20 @@ function x3d_spec_latest_url($component_name)
     $component_name . '.html';
 }
 
-/* unused now:
 function vrmlx3d_highlight($source)
 {
   global $geshi;
   $geshi->set_source($source);
-  $geshi->set_language('Bash');
+  $geshi->set_language('VRML / X3D');
   return $geshi->parse_code();
 }
-*/
+
+function glsl_highlight($source)
+{
+  global $geshi;
+  $geshi->set_source($source);
+  $geshi->set_language('C'); // don't use glSlang, for some reason it's broken for me
+  return $geshi->parse_code();
+}
 
 ?>

@@ -40,32 +40,60 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>For complete demos and tests of these features,
+<p>For complete demos of features discussed here,
 see the <code>shaders</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
+You can open them with various <i>Castle Game Engine</i> X3D tools,
+in particular with <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
+
+</p>
 
 <?php echo $toc->html_section(); ?>
 
 <p><?php echo x3d_node_link('ComposedShader'); ?> and
 <?php echo x3d_node_link('ShaderPart'); ?> nodes
 allow you to write shaders in the <a href="http://www.opengl.org/documentation/glsl/">OpenGL shading language (GLSL)</a>.
+These are standard X3D nodes to replace the default browser rendering with shaders.
+
+<p>If you're interested in shaders, we strongly encourage you to
+try also <?php echo a_href_page('our compositing shaders extensions for X3D, with <code>Effect</code> and related nodes',
+'compositing_shaders') ?>. They allow to write shader code that can cooperate
+with standard browser rendering, and define rendering effects that can be
+easily reused and combined.
 
 <?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Examples below are in the classic (VRML) encoding.
-Add inside the <code>Appearance</code> node code like</p>
+To use shaders add inside the <code>Appearance</code> node code like</p>
 
-<pre class="vrml_code">
-shaders ComposedShader {
+<?php echo vrmlx3d_highlight(
+'shaders ComposedShader {
   language "GLSL"
   parts [
     ShaderPart { type "VERTEX"   url "my_shader.vs" }
     ShaderPart { type "FRAGMENT" url "my_shader.fs" }
   ]
-}
-</pre>
+}'); ?>
+
+<p>The simplest <i>vertex shader code</i> to place inside <code>my_shader.vs</code> file
+would be:
+
+<?php echo glsl_highlight(
+'void main(void)
+{
+  gl_Position = ftransform();
+}'); ?>
+
+<p>The simplest <i>fragment shader code</i> to place inside <code>my_shader.fs</code> file
+would be:
+
+<?php echo glsl_highlight(
+'void main(void)
+{
+  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); /* red */
+}'); ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -76,9 +104,31 @@ the <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>.
 In the simplest case, just start the URL with "<code>data:text/plain,</code>"
 and then write your shader code.</p>
 
-<p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/shaders_inlined.x3dv">Example: shaders_inlined.x3dv</a>.</p>
+<p>A simplest example:</p>
 
-<p>Only in the X3D XML encoding: you can also place
+<?php echo vrmlx3d_highlight(
+'shaders ComposedShader {
+  language "GLSL"
+  parts [
+    ShaderPart { type "VERTEX"
+      url "data:text/plain,
+      void main(void)
+      {
+        gl_Position = ftransform();
+      }" }
+
+    ShaderPart { type "FRAGMENT"
+      url "data:text/plain,
+      void main(void)
+      {
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); /* red */
+      }" }
+  ]
+}'); ?>
+
+<p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/shaders_inlined.x3dv">Another example: shaders_inlined.x3dv</a>.</p>
+
+<p>In case of the X3D XML encoding, you can also place
 shader source code inside the CDATA.</p>
 
 <p>As an extension (but compatible at least with
@@ -92,17 +142,16 @@ But it's better to use "<code>data:text/plain,</code>" mentioned above.
 <p>You can set uniform variables for your shaders from VRML/X3D,
 just add lines like</p>
 
-<pre class="vrml_code">
-inputOutput SFVec3f UniformVariableName 1 0 0
-</pre>
+<?php echo vrmlx3d_highlight(
+'inputOutput SFVec3f UniformVariableName 1 0 0'); ?>
 
-to your ComposedShader node. These uniforms may also be modified by
+<p>to your ComposedShader node. These uniforms may also be modified by
 events (when they are <code>inputOutput</code> or <code>inputOnly</code>),
 for example here's a simple way to pass the current time (in seconds)
 to your shader:
 
-<pre class="vrml_code">
-# somewhere within Appearance:
+<?php echo vrmlx3d_highlight(
+'# somewhere within Appearance:
 shaders DEF MyShader ComposedShader {
   language "GLSL"
   parts [
@@ -113,24 +162,28 @@ shaders DEF MyShader ComposedShader {
 }
 
 # somewhere within grouping node (e.g. at the top-level of VRML/X3D file) add:
+DEF MyProximitySensor ProximitySensor { size 10000000 10000000 10000000 }
 DEF MyTimer TimeSensor { loop TRUE }
-ROUTE MyTimer.time TO MyShader.time
+ROUTE MyProximitySensor.enterTime TO MyTimer.startTime
+ROUTE MyTimer.elapsedTime TO MyShader.time'); ?>
 
-# Note that by default, TimeSensor.time values will be huge,
-# which will cause precision problems for shaders.
-# You can use our extension:
-KambiNavigationInfo { timeOriginAtLoad TRUE }
-# or use a different TimeSensor field to measure time.
-</pre>
+<p>The <code>ProximitySensor</code> node above is useful to make
+time start ticking from zero when you open VRML/X3D, which makes the float
+values in <code>MyTimer.elapsedTime</code> increase from zero.
+Which is usually useful, and avoids having precision problems
+with huge values of <code>MyTimer.time</code>. See <?php echo a_href_page('notes
+about VRML / X3D time origin', 'x3d_time_origin_considered_uncomfortable'); ?>
+ for more details.
 
-<p>Many field types may be passed to appropriate GLSL uniform
+<p>Most field types may be passed to appropriate GLSL uniform
 values. You can even set GLSL vectors and matrices.
 You can use VRML/X3D multiple-value fields to set
-GLSL array types.</p>
-
-<p>TODO: we support all mappings between VRML/X3D and GLSL types
-for uniform values (that are mentioned in X3D spec),
-except <code>SFImage</code> and <code>MFImage</code>.</p>
+GLSL array types.
+We support all mappings between VRML/X3D and GLSL types
+for uniform values (that are mentioned in X3D spec).
+<i>TODO: except the (rather obscure) <code>SFImage</code> and <code>MFImage</code>
+types, that cannot be mapped to GLSL now.</i>
+</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -141,10 +194,17 @@ bound texture unit. This means that you can pass in a natural way
 texture node to a GLSL <code>sampler2D</code>, <code>sampler3D</code>,
 <code>samplerCube</code>, <code>sampler2DShadow</code> and such.</p>
 
-<pre class="vrml_code">
-shaders ComposedShader {
+<?php echo vrmlx3d_highlight(
+'shaders ComposedShader {
   language "GLSL"
   parts [
+    ShaderPart { type "VERTEX"
+      url "data:text/plain,
+      void main(void)
+      {
+        gl_Position = ftransform();
+      }" }
+
     ShaderPart { type "FRAGMENT" url
     "data:text/plain,
 
@@ -162,8 +222,7 @@ shaders ComposedShader {
   ]
   initializeOnly SFNode texture_one ImageTexture { url "one.png" }
   initializeOnly SFNode texture_two ImageTexture { url "two.png" }
-}
-</pre>
+}'); ?>
 
 <p>A full working version of this example can be found
 in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
@@ -188,7 +247,7 @@ not be used or depended upon in the long run.</p>
 <p>Note that for now you have to pass textures in VRML/X3D fields
 (<code>initializeOnly</code> or <code>inputOutput</code>).
 TODO: Using <code>inputOnly</code> event to pass texture node to GLSL shader
-does not work.</p>
+temporarily does not work, just use <code>initializeOnly</code> or <code>inputOutput</code> instead.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -315,25 +374,23 @@ On older GPUs, you will not be able to use geometry shaders at all.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>Unfortunately, ATI graphic cards have problems with geometry shader inputs.
-When the input array may be indexed by a variale (not a constant),
+When the input array may be indexed by a variable (not a constant),
 it has to be declared with an explicit size.
 Otherwise you get shader compilation errors
 <i>'[' : array must be redeclared with a size before being indexed with a variable</i>.
 The input size actually depends
 on the input primitive, so in general you have to write:</p>
 
-<pre class="vrml_code">
-in float my_variable[gl_in.length()];
-</pre>
+<?php echo glsl_highlight(
+'in float my_variable[gl_in.length()];'); ?>
 
 <p>Unfortunately, the above syntax does not work on NVidia,
 that does not know that <code>gl_in.length()</code> is constant.
 On the other hand, NVidia doesn't require input array declaration.
 So you have to write:</p>
 
-<pre class="vrml_code">
-in float my_variable[];
-</pre>
+<?php echo glsl_highlight(
+'in float my_variable[];'); ?>
 
 <p>That's very cool, right? We know how to do it on ATI, but it doesn't
 work on NVidia. We know how to do it on NVidia, but it doesn't work on ATI.
@@ -344,9 +401,8 @@ our engine allows you to use a macro <code>CASTLE_GEOMETRY_INPUT_SIZE</code>
 that expands to appropriate text (or nothing) for current GPU.
 So you can just write:</p>
 
-<pre class="vrml_code">
-in float my_variable[CASTLE_GEOMETRY_INPUT_SIZE];
-</pre>
+<?php echo glsl_highlight(
+'in float my_variable[CASTLE_GEOMETRY_INPUT_SIZE];'); ?>
 
 <?php echo $toc->html_section(); ?>
 
