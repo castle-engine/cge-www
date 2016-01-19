@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Quick 2D game (window events)');
+tutorial_header('Quick 2D game (getting to know window events)');
 
 $toc = new TableOfContents(
   array(
@@ -188,13 +188,15 @@ var
   SecondsPassed: Single;
 begin
   SecondsPassed := CastleControl1.Fps.UpdateSecondsPassed;
-  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
   Y := Y + SecondsPassed * 100.0;
   if CastleControl1.KeysPressed[K_Left] then
     X := X - SecondsPassed * 50.0;
   if CastleControl1.KeysPressed[K_Right] then
     X := X + SecondsPassed * 50.0;
-end;'); ?>
+end;');
+
+  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
+?>
 
   <li><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
@@ -215,7 +217,6 @@ var
   SecondsPassed: Single;
 begin
   SecondsPassed := Container.Fps.UpdateSecondsPassed;
-  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
   Y := Y + SecondsPassed * 100.0;
   if Container.KeysPressed[K_Left] then
     X := X - SecondsPassed * 50.0;
@@ -225,7 +226,10 @@ end;
 
 // ... at initialization, right after assigninig Window.OnRender, do this:
   Window.OnPress := @WindowPress;
-  Window.OnUpdate := @WindowUpdate;'); ?>
+  Window.OnUpdate := @WindowUpdate;');
+
+// PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
+?>
 </ol>
 
 <?php echo $toc->html_section(); ?>

@@ -42,12 +42,15 @@ conflicts in the keymap and handle them however you like (see
 <code>GameControlsMenu</code> unit in <?php echo a_href_page('"The Castle 1"', 'castle'); ?> sources
 for example).
 
-<p>The state of keys on the global keymap (<code>CastleInputs.InputsAll</code>) is
-automatically saved/loaded to the config file, if you use
-<code>Config.Save</code> / <code>Config.Load</code> mentioned in chapter <?php echo a_href_page('User preferences',
-'tutorial_user_prefs'); ?>.
+<p>The state of keys on the global keymap (<code>CastleInputs.InputsAll</code>) can
+be saved/loaded to the config file, if you call
+<?php api_link('InputsAll.SaveToConfig(UserConfig)', 'CastleInputs.TInputShortcutList.html#SaveToConfig'); ?> and
+<?php api_link('InputsAll.LoadFromConfig(UserConfig)', 'CastleInputs.TInputShortcutList.html#LoadFromConfig'); ?>.
+See the chapter <?php echo a_href_page('User preferences',
+'tutorial_user_prefs'); ?> for more information about this.
 
-<p>You can also create new <code>TInputShortcut</code> descendants, global (added to
+<p>You can also create new <code>TInputShortcut</code> descendants.
+Then can be global (added to
 InputsAll, saved to config file and such) or local. See <code>CastleInputs</code>
 unit API docs. You can easily handle them by overriding
 <code>TUIControl.Press</code> or <code>TCastleControl.EventPress</code> or
