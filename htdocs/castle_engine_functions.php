@@ -1,4 +1,5 @@
-<?php
+<?php /* -*- mode: kambi-php -*- */
+
 /* PHP functions common for castle-engine WWW pages. */
 
 /* You can temporarily change this (but don't commit!) to true.
@@ -105,8 +106,9 @@ $castle_sitemap = array(
         'sub' => array(
           'tutorial_intro' => array('title' => 'Introduction'),
           'tutorial_install' => array('title' => 'Download, install, try demos'),
-          'tutorial_opengl_context' => array('title' => 'First program: display an empty window'),
-          'tutorial_load_3d' => array('title' => 'Simple loading of 3D models'),
+          'tutorial_opengl_context' => array('title' => 'Display a window'),
+          'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (window events)'),
+          'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),
           'tutorial_game_level' => array('title' => 'Loading game level'),
           'tutorial_castle_scene_transform' => array('title' => 'Adding a simple moving object'),
           'tutorial_player' => array('title' => 'Player'),
@@ -952,5 +954,3 @@ function glsl_highlight($source)
   $geshi->set_language('C'); // don't use glSlang, for some reason it's broken for me
   return $geshi->parse_code();
 }
-
-?>

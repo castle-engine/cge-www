@@ -1,5 +1,6 @@
-<?php /* -*- mode: php -*- (This page should be edited in php mode,
-                            mmm mode is too slowish for this page). */
+<?php /* -*- mode: kambi-php -*-
+  (This page should be edited in php mode,
+  mmm mode is too slowish for this page). */
 
 /* Copyright 2001-2014 Michalis Kamburelis.
 

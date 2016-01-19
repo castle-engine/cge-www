@@ -1,4 +1,5 @@
-<?php /* -*- mode: php -*- */
+<?php /* -*- mode: kambi-php -*- */
+
 /* PHP functions for handling news, and actual $news array.
    This is a common file for everything that deals with displaying
    news as an RSS feed and HTML content. */
@@ -255,5 +256,3 @@ foreach ($news as &$log_entry)
   $log_entry['link'] = CURRENT_URL . 'news.php?id=' . $log_entry['id'];
 }
 unset($log_entry);
-
-?>

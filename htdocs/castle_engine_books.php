@@ -1,4 +1,4 @@
-<?php
+<?php /* -*- mode: kambi-php -*- */
 
 /* Global information about books. During bootstrap, every book
    will be extended with 'chapters' list (based on castle_sitemap). */

@@ -11,7 +11,6 @@ $toc = new TableOfContents(
 );
 ?>
 
-
 <p>Mobile platforms (Android, iOS) differ
 from desktop platforms (Windows, Linux, Mac OS X, FreeBSD...) in many aspects.
 Our engine hides a lot of these differences from you by giving you
