@@ -10,14 +10,26 @@ engine source code with examples', 'engine'); ?>.
 
 <ul>
   <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms:</b>
-    In Lazarus install the package <code>castle_game_engine/packages/castle_components.lpk</code>.
-    It will also automatically install the package <code>castle_base</code>,
-    as a dependency.
-    Then, open and compile (but do not install) the package
-    <code>castle_game_engine/packages/castle_window.lpk</code>.
+    <ol>
+      <li>In Lazarus, open and <b>compile the package <code>castle_base.lpk</code></b>
+        You will find it in the <code>castle_game_engine/packages/</code> subdirectory.
+        <!--
+        (You <i>can, but do not have to, install this package</i> now.
+        It's enough to compile it now, to make it "known" by Lazarus.)
+        -->
 
-    <p>Once packages are successfully installed, Lazarus restarts, and you
-    should see the <i>"Castle"</i> tab with our components.
+      <li>Then open and <b>compile the package <code>castle_window.lpk</code></b>.
+        (You <i>should not</i> install this package.)
+
+      <li>Finally, open and <b>install the package <code>castle_components.lpk</code></b>.
+        (It will also automatically install the package <code>castle_base</code>,
+        as a dependency. That's cool.)
+    </ol>
+
+    <p>Once <code>castle_components.lpk</code> is successfully installed,
+    Lazarus restarts, and you should see the <i>"Castle"</i> tab
+    with our components.
+
     <!--
      at the top (TODO: screenshot). Sorry,
     we don't have icons for our components yet, so it looks a little
@@ -36,8 +48,9 @@ engine source code with examples', 'engine'); ?>.
     <ol>
       <li><p>Use Lazarus just to manage a custom application:
         <ul>
-          <li>Once, compile (do not install) the package
-            <code>castle_game_engine/packages/castle_window.lpk</code>, like in previous version.
+          <li>Once, compile (do not install) the packages
+            <code>castle_base.lpk</code> and then
+            <code>castle_window.lpk</code> (from <code>castle_game_engine/packages/</code> subdirectory).
           <li>Create new project using Lazarus <i>"New Project"</i> menu item.</li>
           <li>Choose <i>"Custom Application"</i> (or <i>"Project-&gt;Simple Program"</i>).</li>
           <li>Using <i>"Project->Project Inspector"</i> window add a <i>"New Requirement"</i>
@@ -45,6 +58,9 @@ engine source code with examples', 'engine'); ?>.
           <li>Then add another requirement and choose <code>castle_window</code>
             package.</li>
         </ul>
+        In this case, you will not design your forms visually using Lazarus.
+        But you will still use Lazarus as a powerful Object Pascal IDE,
+        to edit and compile and debug your programs.
       <li><p>Or compile your projects using our
         <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
         Edit and debug them using whatever tool you like.

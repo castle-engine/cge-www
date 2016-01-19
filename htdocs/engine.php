@@ -72,11 +72,12 @@ including the sources for many example programs and engine tools.
 
 <ul>
   <li><p><b>For <a href="http://lazarus.freepascal.org/">Lazarus</a></b>:
-    install the package <code>castle_game_engine/packages/castle_components.lpk</code>.
-    It will also automatically install the package <code>castle_base</code>,
-    as a dependency.
-    Then, open and compile (but do not install) the package
-    <code>castle_game_engine/packages/castle_window.lpk</code>.
+    <ol>
+      <li>Open and <b>compile the package <code>castle_base.lpk</code></b>
+        You will find it in the <code>castle_game_engine/packages/</code> subdirectory.
+      <li>Then open and <b>compile the package <code>castle_window.lpk</code></b>.
+      <li>Finally, open and <b>install the package <code>castle_components.lpk</code></b>.
+    </ol>
 
     <p>Then just compile and run from Lazarus any example you want
     (in <code>examples</code> subdirectory), just open the <code>xxx.lpi</code>
