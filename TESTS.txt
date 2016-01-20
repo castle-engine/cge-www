@@ -132,6 +132,9 @@ fpc fpmake.pp
 ./fpmake build --nofpccfg --verbose
 
 # ----------------------------------------------------------------------------
+# Test scripts/check_units_dependencies
+
+# ----------------------------------------------------------------------------
 # Test compilation of known programs using my engine, as some
 # compatibility check:
 

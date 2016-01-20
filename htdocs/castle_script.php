@@ -600,9 +600,7 @@ guaranteed to work in the long run.</i> In the future, all Unicode character cod
 will be accepted here, and rendered if present in the font.
 Currently, our font rendering is limited to 256-character encodings.</p>
 
-<p><?php func('shortcut', 'shortcut(name)'); ?> is a function
-only available in games (technically: only in programs using <code>CastleInputs</code>
-unit). It returns a nice string describing the named key/mouse shortcut
+<p><?php func('shortcut', 'shortcut(name)'); ?> returns a nice string describing the named key/mouse shortcut
 in the game. It's useful if you want to show a message describing some
 shortcut, for example <code>writeln('Hint: you can open this door using the ' +
 shortcut('interact'))</code>. Depending on user current key definitions,
