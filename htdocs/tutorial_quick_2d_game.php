@@ -16,7 +16,7 @@ echo castle_thumbs(array(
   array('filename' => 'basketball.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it!'),
   array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
   array('filename' => 'fly_over_river_screen_26.png', 'titlealt' => 'Simple &quot;River Ride&quot; clone done in 1-hour gamejam'),
-), THUMBS_COLS);
+));
 ?>
 
 <p>Before we dive into 3D, we can take a quick stab at basic stuff
