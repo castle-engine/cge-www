@@ -35,7 +35,7 @@ done in a 1-hour game-jam</a> ! :)
 <p>Create an instance of <?php api_link('TGLImageManaged', 'CastleGLImages.TGLImageManaged.html'); ?>, and load an image there. <?php api_link('TGLImageManaged', 'CastleGLImages.TGLImageManaged.html'); ?> allows to load and display the image on screen.
 
 <ol>
-  <li><b>If you use Lazarus form with
+  <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
     Create and destroy the image in the form's <code>OnCreate</code> and
     <code>OnDestroy</code> events, like this:
@@ -102,9 +102,9 @@ end;
 
 end.'); ?>
 
-  <li><b>If you use
+  <li><p><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
-    In the simplest case, just create and destroy the image like this:</p>
+    In the simplest case, just create and destroy the image like this:
 
 <?php echo pascal_highlight(
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
@@ -127,11 +127,11 @@ end.'); ?>
 <?php api_link('TGLImageManaged.Draw', 'CastleGLImages.TGLImageManaged.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
 
 <ol>
-  <li><b>If you use Lazarus form with
+  <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
     Select the <code>TCastleControl</code> instance,
     and double click to create code for an event <code>OnRender</code>.
-    Put there the following code:</p>
+    Put there the following code:
 
 <?php echo pascal_highlight(
 '// Also: add to your form private section a declaration of: "X, Y: Single;"
@@ -141,9 +141,9 @@ begin
   Image.Draw(X, Y);
 end;'); ?>
 
-  <li><b>If you use
+  <li><p><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
-    Change your program like this:</p>
+    Change your program like this:
 
 <?php echo pascal_highlight(
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
@@ -187,10 +187,10 @@ to any computer speed. For example, to move by 100 pixels per second,
 we will increase our position by <code>CastleControl1.Fps.UpdateSecondsPassed * 100.0</code>.
 
 <ol>
-  <li><b>If you use Lazarus form with
+  <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
     double click to create an event <code>OnUpdate</code>
-    on <code>TCastleControl</code>, and put there the following code:</p>
+    on <code>TCastleControl</code>, and put there the following code:
 
 <?php echo pascal_highlight(
 'procedure TForm1.CastleControl1Update(Sender: TObject);
@@ -198,10 +198,10 @@ begin
   Y := Y + CastleControl1.Fps.UpdateSecondsPassed * 100.0;
 end;'); ?>
 
-  <li><b>If you use
+  <li><p><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
     Assign a <code>Window.OnUpdate</code> callback (analogous to
-    <code>Window.OnRender</code> above):</p>
+    <code>Window.OnRender</code> above):
 
 <?php echo pascal_highlight(
 'procedure WindowUpdate(Container: TUIContainer);
@@ -220,11 +220,11 @@ You can also check which keys are pressed inside the <code>OnUpdate</code> event
 to update movement constantly. Examples below show both ways.
 
 <ol>
-  <li><b>If you use Lazarus form with
+  <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
     double click to create an event <code>OnPress</code>
     on <code>TCastleControl</code>. Change the <code>OnPress</code> and
-    <code>OnUpdate</code> like below.</p>
+    <code>OnUpdate</code> like below.
 
 <?php echo pascal_highlight(
 'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
@@ -249,11 +249,11 @@ end;');
   // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
 ?>
 
-  <li><b>If you use
+  <li><p><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
     Assign a <code>Window.OnPress</code> callback (analogous to
     <code>Window.OnRender</code> above). Change the <code>OnPress</code> and
-    <code>OnUpdate</code> like below.</p>
+    <code>OnUpdate</code> like below.
 
 <?php echo pascal_highlight(
 '// Also add to the uses clause unit CastleKeysMouse
