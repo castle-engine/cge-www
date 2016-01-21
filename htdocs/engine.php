@@ -34,6 +34,7 @@
     array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
     array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
     array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
+    array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
 ));
 ?>
 
