@@ -13,7 +13,8 @@ $toc = new TableOfContents(
 );
 
 echo castle_thumbs(array(
-  array('filename' => 'basketball.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it!'),
+  array('filename' => 'basketball_2d_game_lazarus.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it very soon!'),
+  array('filename' => 'basketball_2d_game_window.png', 'titlealt' => 'The simplest basketball game ever created'),
   array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
   array('filename' => 'fly_over_river_screen_26.png', 'titlealt' => 'Simple &quot;River Ride&quot; clone done in 1-hour gamejam'),
 ));
@@ -36,26 +37,70 @@ done in a 1-hour game-jam</a> ! :)
 <ol>
   <li><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
-    Here we create and destroy the image in the form's <code>OnCreate</code> and
-    <code>OnDestroy</code> events. Select the form in Lazarus (click on it in the <i>form
-    designer</i> or <i>object inspector</i>), and double click
-    on appropriate events to create code for <code>OnCreate</code> and <code>OnDestroy</code> events.
-    Put there the following code:</p>
+    Create and destroy the image in the form's <code>OnCreate</code> and
+    <code>OnDestroy</code> events, like this:
+    <ul>
+      <li>Select the form in Lazarus (click on it in the <i>form
+        designer</i> or <i>object inspector</i> &mdash; be sure to <b>select the
+        form, not the TCastleControl instance</b>).
+      <li>Then double click
+        on appropriate events to create code for <code>OnCreate</code> and <code>OnDestroy</code>.
+        Put there the following code:
+    </ul>
 
 <?php echo pascal_highlight(
-'// Also: add to your uses clause: SysUtils, CastleGLImages, CastleFilesUtils
+'// Also: add to your uses clause: CastleGLImages, CastleFilesUtils
 
 // Also: add to your form private section a declaration of: "Image: TGLImageManaged"
 
-procedure TForm1.Form1Create(Sender: TObject);
+procedure TForm1.FormCreate(Sender: TObject);
 begin
   Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
 end;
 
-procedure TForm1.Form1Destroy(Sender: TObject);
+procedure TForm1.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(Image);
 end;'); ?>
+
+    <p>If effect, your whole unit code should look like this:
+
+<?php echo pascal_highlight(
+'unit laz_unit1;
+{$mode objfpc}{$H+}
+interface
+
+uses Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
+  CastleControl, CastleGLImages, CastleFilesUtils;
+
+type
+  TForm1 = class(TForm)
+    CastleControl1: TCastleControl;
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    Image: TGLImageManaged;
+  public
+    { public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+{$R *.lfm}
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(Image);
+end;
+
+end.'); ?>
 
   <li><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
@@ -69,9 +114,10 @@ var
 begin
   Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
   try
+    Window := TCastleWindow.Create(Application);
     Window.Open;
     Application.Run;
-  finalization FreeAndNil(Image) end;
+  finally FreeAndNil(Image) end;
 end.'); ?>
 </ol>
 
@@ -83,8 +129,9 @@ end.'); ?>
 <ol>
   <li><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
-    double click to create an event <code>OnRender</code>
-    on <code>TCastleControl</code>, and put there the following code:</p>
+    Select the <code>TCastleControl</code> instance,
+    and double click to create code for an event <code>OnRender</code>.
+    Put there the following code:</p>
 
 <?php echo pascal_highlight(
 '// Also: add to your form private section a declaration of: "X, Y: Single;"
@@ -103,7 +150,8 @@ end;'); ?>
 var
   Window: TCastleWindow;
   Image: TGLImageManaged;
-  X, Y: Single;
+  X: Single = 0.0;
+  Y: Single = 0.0;
 
 procedure WindowRender(Container: TUIContainer);
 begin
@@ -113,10 +161,11 @@ end;
 begin
   Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
   try
+    Window := TCastleWindow.Create(Application);
     Window.OnRender := @WindowRender;
     Window.Open;
     Application.Run;
-  finalization FreeAndNil(Image) end;
+  finally FreeAndNil(Image) end;
 end.'); ?>
 </ol>
 
@@ -181,7 +230,7 @@ to update movement constantly. Examples below show both ways.
 'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
 begin
   if Event.IsKey(K_Space) then
-    Y -= 100.0;
+    Y -= 200.0;
 end;
 
 // new extended OnUpdate handler
@@ -191,10 +240,10 @@ var
 begin
   SecondsPassed := CastleControl1.Fps.UpdateSecondsPassed;
   Y := Y + SecondsPassed * 100.0;
-  if CastleControl1.KeysPressed[K_Left] then
-    X := X - SecondsPassed * 50.0;
-  if CastleControl1.KeysPressed[K_Right] then
-    X := X + SecondsPassed * 50.0;
+  if CastleControl1.Pressed[K_Left] then
+    X := X - SecondsPassed * 200.0;
+  if CastleControl1.Pressed[K_Right] then
+    X := X + SecondsPassed * 200.0;
 end;');
 
   // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
@@ -207,10 +256,12 @@ end;');
     <code>OnUpdate</code> like below.</p>
 
 <?php echo pascal_highlight(
-'procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
+'// Also add to the uses clause unit CastleKeysMouse
+
+procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
 begin
   if Event.IsKey(K_Space) then
-    Y -= 100.0;
+    Y -= 200.0;
 end;
 
 // new extended OnUpdate handler
@@ -220,15 +271,15 @@ var
 begin
   SecondsPassed := Container.Fps.UpdateSecondsPassed;
   Y := Y + SecondsPassed * 100.0;
-  if Container.KeysPressed[K_Left] then
-    X := X - SecondsPassed * 50.0;
-  if Container.KeysPressed[K_Right] then
-    X := X + SecondsPassed * 50.0;
+  if Container.Pressed[K_Left] then
+    X := X - SecondsPassed * 200.0;
+  if Container.Pressed[K_Right] then
+    X := X + SecondsPassed * 200.0;
 end;
 
 // ... at initialization, right after assigninig Window.OnRender, do this:
-  Window.OnPress := @WindowPress;
-  Window.OnUpdate := @WindowUpdate;');
+  Window.OnUpdate := @WindowUpdate;
+  Window.OnPress := @WindowPress;');
 
 // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
 ?>
