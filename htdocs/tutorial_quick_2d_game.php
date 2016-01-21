@@ -91,7 +91,7 @@ end.'); ?>
 
 procedure TForm1.CastleControl1Render(Sender: TObject);
 begin
-  Image.Draw(Round(X), Round(Y));
+  Image.Draw(X, Y);
 end;'); ?>
 
   <li><b>If you use
@@ -107,7 +107,7 @@ var
 
 procedure WindowRender(Container: TUIContainer);
 begin
-  Image.Draw(Round(X), Round(Y));
+  Image.Draw(X, Y);
 end;
 
 begin
@@ -121,9 +121,11 @@ end.'); ?>
 </ol>
 
 <p>As you can guess, we can now move the image by simply changing the <code>X</code>,
-<code>Y</code> variables. They are floating-point values. This is usually
-comfortable to internally change them at any speed, but for display we need
-to round them.
+<code>Y</code> variables. Note that we defined
+<code>X</code>, <code>Y</code> as floating-point values
+(<code>Single</code> type), not just integers, because floating-point values
+are more comfortable to animate (you can easily change them at any speed).
+When necessary for rendering, they will internally be rounded to whole pixels anyway.
 
 <?php echo $toc->html_section(); ?>
 
