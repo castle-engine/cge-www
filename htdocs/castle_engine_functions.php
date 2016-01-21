@@ -669,29 +669,29 @@ function echo_standard_program_download(
   /* Hardcode $os_arch_list for now.
      It used to be configurable, but it was more trouble than it was worth. */
   $os_arch_list = array(
+    'win-i386',
     'linux-i386',
     'linux-x86_64',
-    'win-i386',
     $macosx_arch);
 
   $os_arch_caption = array(
+    'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
-    'win-i386'     => ' Windows<br/>(32 bit, works on 64-bit too)',
     $macosx_arch   => ' Mac OS X<br/>(32 bit)',
   );
 
   $os_arch_extension = array(
+    'win-i386'     => '.zip',
     'linux-i386'   => '.tar.gz',
     'linux-x86_64' => '.tar.gz',
-    'win-i386'     => '.zip',
     $macosx_arch   => $macosx_dmg ? '.dmg' : '.tar.gz',
   );
 
   $os_arch_icon = array(
+    'win-i386'     => 'win',
     'linux-i386'   => 'linux32',
     'linux-x86_64' => 'linux64',
-    'win-i386'     => 'win',
     $macosx_arch   => 'macosx'
   );
 
