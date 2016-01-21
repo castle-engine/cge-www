@@ -92,14 +92,17 @@ including the sources for many example programs and engine tools.
     Or execute <code>xxx_compile.sh</code> scripts to compile particular
     examples.
 
-    <p>To develop your own programs, you can either add
-    the engine unit output path to your <code>fpc.cfg</code> file,
-    or you can compile your own projects using our
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
-    <!--
-    If you know what you're doing, we also provide <code>castle-fpc.cfg</code> config
-    in the engine sources,
-    -->
+    <p>If you don't want to use Lazarus to compile your programs,
+    you have a couple of options. First of all, we advice using our
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    to compile and package your games. Other option is to compile the engine
+    units by executing <code>make</code>,
+    and then add the path with compiled units to your <code>fpc.cfg</code> file (by
+    adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
+    to <code>fpc.cfg</code>).
+    Final option is to use the <code>castle-fpc.cfg</code>
+    and create <code>xxx_compile.sh</code> scripts (see examples) to compile
+    your programs like that.
 </ul>
 
 <!--
@@ -130,8 +133,8 @@ of each program, and the
 <a href="<?php echo reference_link(); ?>">reference</a>
 also lists the libraries in the introduction section.
 -->
-In short, you will most likely want to have <i>libpng, zlib, gtkglext,
-OpenAL, and vorbisfile</i>.</p>
+In short, you will most likely want to have <i>LibPng, ZLib, GtkGLExt,
+OpenAL, FreeType, and VorbisFile</i>.</p>
 
 <ul>
   <li><i>On Linux and FreeBSD</i> you should install these libraries
