@@ -106,6 +106,7 @@ echo castle_thumbs(array(
   array('filename' => 'plugin_4.png', 'titlealt' => 'A couple of web browser plugin instances'),
   array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash with Googe Games integration'),
   array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash with Googe Games achievements'),
+  array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
 ), THUMBS_COLS);
 ?>
 
@@ -120,6 +121,8 @@ echo castle_thumbs(array(
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'tutorial_mobile'); ?>.
 
   <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
+
+  <li><p>Out-of-the-box <b>integration with an incredible number of services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine">Android Project Components</a> documentation.
 </ul>
 
 <?php echo $toc->html_section(); ?>
