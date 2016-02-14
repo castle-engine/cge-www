@@ -61,7 +61,7 @@ methods:
   <li>to load/save from an URL (not just a filename),
   <li>to encrypt/decrypt contents, which may be useful as a simple protection
     against cheaters (if you want this, just set the simple <code>BlowFishKeyPhrase</code> property).
-  <li>to add "loader" functions (<code>GetValue</code>, <code>GetVector</code> etc.)
+  <li>to add "loader" functions (<code>GetValue</code>, <code>GetVector3</code> etc.)
     that require the presence of given attribute in the XML file.
     They raise an exception when the attribute is missing or invalid.
     This is useful if you want to somewhat validate the XML file
