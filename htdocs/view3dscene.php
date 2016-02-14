@@ -529,7 +529,7 @@ view3dscene my_model.kanim \
   <li><p>To control the look of your screenshot, you often want to
     use VRML/X3D nodes like <code>Viewpoint</code>, <code>NavigationInfo</code>,
     <code>Background</code>. For example, take a look at
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p>
 
     <p>You can use <code>--viewpoint</code> command-line option (see below)
     to choose a different viewpoint for screenshot.</p>
@@ -545,7 +545,7 @@ view3dscene my_model.kanim \
     (documented at <?php echo a_href_page("standard options
     understood by our OpenGL programs", "opengl_options") ?>).
     For example, take a look at
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
     script.</p></li>
 
   <li><p>To make your screenshot look best, you may want to use anti-aliasing,
@@ -553,7 +553,7 @@ view3dscene my_model.kanim \
 
     <p>Take a look at the example how to make
     a screenshot from animation in
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/rift/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
+    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/">screenshot_for_kambi_www/</a>
     directory.</p></li>
 
   <li><p>To <b>take a screenshot on a stripped-down Unix server</b>,
