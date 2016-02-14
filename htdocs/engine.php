@@ -144,6 +144,10 @@ OpenAL, FreeType, and VorbisFile</i>.</p>
     (if you're under Debian or similar distribution) to be able to compile
     programs that link to these libraries.
 
+  <li><i>On Windows</i> download DLLs from <a href="http://castle-engine.sourceforge.net/miscella/win32_dlls.zip">here (32-bit libraries zipped)</a> or <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/external_libraries/i386-win32/">here (directory with 32-bit libraries)</a> or <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/external_libraries/x86_64-win64/">here (directory with 64-bit libraries)</a>. Place all dlls in program's exe directory (or put them somewhere on $PATH).
+
+<?php
+/*
   <li><i>On Windows</i> get the DLL files from the engine sources you just downloaded.
     They are in:
     <ul>
@@ -155,7 +159,8 @@ OpenAL, FreeType, and VorbisFile</i>.</p>
     These DLLs are already included in binary archives of my programs,
     but are not included in source archives (since they are only useful for Windows).
     -->
-
+*/
+?>
   <li><i>On Mac OS X</i>: <?php echo a_href_page('Mac OS X requirements are listed here',
     'macosx_requirements'); ?>.
 </ul>
