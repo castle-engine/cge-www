@@ -421,6 +421,8 @@ div.quote {
   box-sizing: content-box !important;
 }
 
+/* Others ------------------------------------------------------------------- */
+
 #disqus_thread {
   max-width: 800px;
   /* margin-left: auto; */
@@ -437,3 +439,5 @@ div.quote {
 }
 
 .kscript_func_docs .type { color: blue; }
+
+.xml_highlight_comment { color: #808080; font-style: italic; }

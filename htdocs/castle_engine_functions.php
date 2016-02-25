@@ -919,9 +919,22 @@ function xml_highlight($source)
   $source = str_replace('&', '&amp;', $source);
   $source = str_replace('<', '&lt;', $source);
   $source = str_replace('>', '&gt;', $source);
+  $source = str_replace('&lt;!--', '<span class="xml_highlight_comment">&lt;!--', $source);
+  $source = str_replace('--&gt;', '--&gt;</span>', $source);
   $source = '<pre class="xml">' . $source . '</pre>';
+
+  // replace [[http:xxx|yyy] with <a href="http:xxx">yyy</a>
+  $source = preg_replace('/\\[\\[(https?:.+)\\|(.+)\\]\\]/',
+    '<a href="\\1">\\2</a>', $source);
+
+  // replace [[http:xxx] with <a href="http:xxx">xxx</a>
+  $source = preg_replace('/\\[\\[(https?:.+)\\]\\]/',
+    '<a href="\\1">\\1</a>', $source);
+
+  // replace [[xxx|yyy] with <a href="CASTLE_REFERENCE_URL/xxx">yyy</a>
   $source = preg_replace('/\\[\\[(.+)\\|(.+)\\]\\]/',
     '<a href="' . CASTLE_REFERENCE_URL . '\\1">\\2</a>', $source);
+
   return $source;
 }
 
