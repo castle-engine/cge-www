@@ -195,6 +195,8 @@ do_engine_tests ()
 {
   echo '---------------------------------------------------------------'
   echo 'Runing tests (auto-tests, with engine in -dRELEASE mode):'
+  
+  # TODO: hm, actually this doesn't recompile engine with -dRELEASE now.
 
   cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/tests/
   make clean -C  ../
