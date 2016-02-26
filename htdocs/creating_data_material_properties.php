@@ -95,11 +95,22 @@ with links to documentation for every attribute.</p>
         (without leading "tc"). Generating them requires various tools:
 
         - PVRTexToolCLI (get it from [[https://community.imgtec.com/developers/powervr/tools/pvrtextool/]])
+
         - AMDCompressCLI (get it from [[http://developer.amd.com/tools-and-sdks/graphics-development/amdcompress/]])
           This is a new, maintained alternative to the old "ATI Compressonator".
-          On non-Windows, it can be installed and runs without problems
-          under Wine (install with "wine start xxx.msi".
+          On non-Windows, it can be installed and run under Wine
+          (install with "wine start xxx.msi".
           You may also need to do "winetricks vcrun2005".)
+          On some Wine versions it works cool (even installation from msi!),
+          unfortunately on others --- it doesn\'t work at all
+          (use "ATI Compressonator" then).
+
+        - ATI Compressonator (get it from [[http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/]])
+          On non-Windows, it can be run under Wine
+          (You will need to do "winetricks vcrun2005" first.
+          Installing it is troublesome under Wine, but a working installed dir can
+          be copied from your Windows installation.
+          We use it as a fallback in case AMDCompressCLI is not available.)
 
         Two most common RGBA compressions for mobiles are listed below. -->
       <format name="Pvrtc1_4bpp_RGBA"/>
