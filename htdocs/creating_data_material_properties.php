@@ -94,11 +94,14 @@ with links to documentation for every attribute.</p>
         Format names are the same as TTextureCompression enum names
         (without leading "tc"). Generating them requires various tools:
 
-        - PVRTexToolCLI (get it from [[https://community.imgtec.com/developers/powervr/tools/pvrtextool/]] )
-        - AMD Compressonator (get it from [[http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/]] )
-          (on non-Windows, we run it through wine)
+        - PVRTexToolCLI (get it from [[https://community.imgtec.com/developers/powervr/tools/pvrtextool/]])
+        - AMDCompressCLI (get it from [[http://developer.amd.com/tools-and-sdks/graphics-development/amdcompress/]])
+          This is a new, maintained alternative to the old "ATI Compressonator".
+          On non-Windows, it can be installed and runs without problems
+          under Wine (install with "wine start xxx.msi".
+          You may also need to do "winetricks vcrun2005".)
 
-        Two most common compressions for RGBA formats are listed below. -->
+        Two most common RGBA compressions for mobiles are listed below. -->
       <format name="Pvrtc1_4bpp_RGBA"/>
       <format name="ATITC_RGBA_InterpolatedAlpha"/>
     </formats>
