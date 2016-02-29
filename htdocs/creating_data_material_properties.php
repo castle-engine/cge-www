@@ -162,10 +162,18 @@ and work even when the GPU texture compression algorithm is not supported
 by the given device. Very useful on Android, with the price: you should
 distribute all compression variants.
 
-<p>Note that GPU compression algorithms have their limitations.
-They may resize your texture (to the power of two), some may even force
-it to be square. Be sure your code supports it. Usually, this is Ok
-for 3D textures and texture atlases, but not OK for GUI images.
+<p>Note that some GPU compression algorithms have particular limitations.
+They often require your texture to have a "power of two" size, some even require
+it to be square (PVRTC1 on Apple devices &mdash; blame Apple here).
+We do not forcefully resize your texture, as it could break your texture coordinates.
+<!--
+(depending on the input format, your texture may be addressed using various
+coordinates &mdash; e.g. most 3D formats use texture coords in 0..1 range,
+but Spine atlases address using original coords from the top).-->
+Instead, we require your textures to already have the necessary size.
+Usually, the compression is OK for 3D textures and texture atlases
+(as they are usually created already with power-of-2 sizes),
+but not OK for GUI images.
 Use the &lt;include&gt; / &lt;exclude&gt; elements to select only the sensible
 subset of your data textures.
 Include / exclude work just like in <code>CastleEngineManifest.xml</code>, documented in
