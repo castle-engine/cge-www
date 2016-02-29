@@ -118,24 +118,36 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     <ul>
       <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/">PVRTexToolCLI</a>
 
-      <li><p><a href="http://developer.amd.com/tools-and-sdks/graphics-development/amdcompress/">AMDCompressCLI</a>
-
-        <p>On non-Windows, it can be installed and run under Wine.
-        Install with "wine start xxx.msi".
-        You may also need to do "winetricks vcrun2005".
-        On some Wine versions it works cool (even installation from msi!),
-        unfortunately on others &mdash; it doesn't work at all
-        (use "ATI Compressonator" then).</p>
-
       <li><p><a href="http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/">ATI Compressonator</a></p>
-
-        <p>We use it as a fallback in case AMDCompressCLI is not available.</p>
 
         <p>On non-Windows, it can be run under Wine
         You will need to do "winetricks vcrun2005" first.
         Installing it is troublesome under Wine, but a working installed dir can
         be copied from your Windows installation.</p>
       </li>
+
+      <li><p>Not used for now:
+        <a href="http://developer.amd.com/tools-and-sdks/graphics-development/amdcompress/">AMDCompressCLI</a>
+
+        <p>We have it implemented, but it's broken unfortunately,
+        so it's disabled by default.
+        Messes up colors in ATITC* texture compression modes.
+        Also, on non-Windows, running in under wine is even more
+        troublesome than running ATI Compressonator...
+        Please send complaints to AMD, maybe one day they'll release
+        a tool that can correctly compress to ATITC*, from command-line,
+        cross-platform.
+
+        <!--
+
+        <p>On non-Windows, it can be installed and run under Wine.
+        Install with "wine start xxx.msi".
+        You may also need to do "winetricks vcrun2005"
+        and/or "winetricks vcrun2015".
+        On some Wine versions it works cool (even installation from msi!),
+        unfortunately on others &mdash; it doesn't work at all.</p>
+
+        -->
     </ul>
 
   <li><p>In game, trying to load an uncompressed texture URL will automatically
