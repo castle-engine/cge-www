@@ -18,6 +18,11 @@ define('CASTLE_OFFLINE', isset($_SERVER['SERVER_NAME']) && (
     $_SERVER['SERVER_NAME'] == 'localhost'
   )
 );
+if (CASTLE_OFFLINE) {
+  /* Helpful for debugging, to see PHP warnings, notices. */
+  error_reporting(E_ALL);
+  ini_set('display_errors', 'stderr');
+}
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');

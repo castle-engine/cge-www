@@ -6,7 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Usage', 'usage'),
     new TocItem('Example material_properties.xml file', 'example'),
-    new TocItem('How does the automatic texture compression work'),
+    new TocItem('How does the automatic texture compression work', 'texture_compression'),
   )
 );
 ?>
