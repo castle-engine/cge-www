@@ -69,9 +69,9 @@ on/off by <?php api_link('TPlayer.RenderOnTop', 'CastlePlayer.TPlayer.html#Rende
 <p>Aside from special <?php api_link('TPlayer.RenderOnTop', 'CastlePlayer.TPlayer.html#RenderOnTop'); ?>
  behavior, the 3D objects
 that are children of player are rendered and processed just like all other 3D
-stuff. For example, they can be animated (by using
-<code>TCastlePrecalculatedAnimation</code> or by using <code>TCastleScene</code> with
-<code>TCastleScene.ProcessEvents := true</code>).
+stuff. For example, they can be animated (by <code>TCastleScene</code> with
+<code>TCastleScene.ProcessEvents := true</code> and
+<code>TCastleScene.PlayAnimation</code> method).
 
 <p>Note that the player 3D objects <b>do not</b> make the player
 collision sphere (aka camera radius) larger. If you want to make the

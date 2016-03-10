@@ -221,7 +221,7 @@ to have hundreds or thousands of triangles in a single shape.
 <p>You usually do not need to create too many <code>TCastleScene</code> instances.
 
 <ul>
-  <li><p>To reduce memory usage, you can place the same <code>TCastleScene</code> (or <code>TCastlePrecalculatedAnimation</code>) instance many times within <code>Scenemanager.Items</code>, usually wrapped in a different <code>T3DTransform</code>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+  <li><p>To reduce memory usage, you can place the same <code>TCastleScene</code> (or <code>TCastlePrecalculatedAnimation</code>) instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <code>T3DTransform</code>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
 
     <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
 
