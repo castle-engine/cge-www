@@ -197,13 +197,13 @@ These names are not invented by us, they are the names used for <a href="<?php e
     <p>Specify the shadows behavior for the <i>shadow volumes</i> algorithm.</p>
 
     <ul>
-      <li><p>To see the shadows, it is necessary to choose
+      <li><p>To see the shadows, it is necessary to <b>choose
         one light in the scene (probably the brightest, main light)
         and set it's fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code>
-        both to <code>TRUE</code>. That's it. Everything by default
-        is a shadow caster.</p></li>
+        both to <code>TRUE</code>. That's it.</b> Everything by default
+        is a shadow caster (as long as it's 2-manifold, see below).</p></li>
 
-      <li><p>Demo VRML/X3D models that use dynamic shadows volumes are
+      <li><p><b>Demo VRML/X3D models that use dynamic shadow volumes</b> are
         inside our <?php echo a_href_page('VRML/X3D demo models',
         'demo_models'); ?>, see subdirectory <code>shadow_volumes/</code>.
 
@@ -211,13 +211,13 @@ These names are not invented by us, they are the names used for <a href="<?php e
         <!-- this is somewhat copied and modified text from
              castle-development.php about creatures. -->
 
-        <p>For shadow volumes to work, all parts of the model
-        that are shadow casters should sum to a number of 2-manifold parts.
+        <p>For shadow volumes, <b>all shapes of the model
+        that are shadow casters must be 2-manifold</b>.
         This means that every edge has exactly 2 (not more, not less)
         neighbor faces, so the whole shape is a closed volume.
         Also, faces must be oriented consistently (e.g. CCW outside).
         This requirement is often quite naturally satisfiable for natural
-        objects. Also, consistent ordering allows you to use backface culling
+        objects. Note that the consistent ordering allows you to use backface culling
         (<code>solid=TRUE</code> in VRML/X3D), which
         is a good thing on it's own.</p>
 
@@ -227,11 +227,13 @@ These names are not invented by us, they are the names used for <a href="<?php e
         <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html">chapter "Shadow Volumes"</a>
         (inside <?php echo a_href_page("engine documentation",'engine_doc'); ?>)
         for description.
+        <!--
         Since <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
         3.12.0, your model must be perfectly 2-manifold to cast any shadows
         for shadow volumes.
+        -->
 
-        <p>You can inspect whether your model is detected as a 2-manifold
+        <p>You can inspect whether your shapes are detected as a 2-manifold
         by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
         see menu item <i>Help -&gt; Manifold Edges Information</i>.
         To check which edges are actually detected as border you can use
@@ -246,11 +248,50 @@ These names are not invented by us, they are the names used for <a href="<?php e
         &mdash; in some cases <i>Recalculate normals outside</i>
         (this actually changes vertex order in Blender)
         may be needed to reorder them properly.
+
+      <li><p>Remember that <b>each shape must be 2-manifold</b> (since engine 5.3.0).
+        It's not enough (it's also not necessary) for the whole scene
+        to be 2-manifold. This has advantages and disadvantages.
+
+        <ul>
+          <li><p><i>Advantage:</i> We prepare and render shadow volumes per-shape,
+            so we work efficiently with dynamic models.
+            Transforming a shape (move, rotate...),
+            or changing the active shapes (e.g. by changing <code>Switch.whichChoice</code>)
+            has zero cost, no data needs to be recalculated.
+
+          <li><p><i>Advantage:</i> We can avoid rendering per-shape. We can reject shadow volume
+            rendering for shape if we know shape's shadow
+            will never be visible from the current camera view.
+
+          <li><p><i>Advantage:</i> Not the whole scene needs to be 2-manifold.
+            If a shape is 2-manifold, it casts shadow.
+            Your scene can have both 2-manifold and non-2-manifold shapes,
+            it will work Ok, just only a subset of shapes will cast shadows.
+
+          <li><p><i>Disadvantage:</i> The whole shape must be 2-manifold.
+            If you depended previously on the fact
+            that you can build 2-manifold model from multiple non-2-manifold shapes &mdash; it
+            will not work anymore. <!--This is especially constraining because in X3D,
+            shape must have the same material (color, transparency etc.).
+            You may need to use textures with alpha channel and more tricks
+            now to satisfy the 2-manifold requirement.
+            -->
+
+          <!--
+          <li>Also there's no more ShareManifoldAndBorderEdges method, which means that rendering
+            shadow volumes using TCastlePrecalculatedAnimation performance drops.
+            But luckily, TCastlePrecalculatedAnimation is deprecated now.
+            But in exchange, you can load KAnim/MD3 and everything to TCastleScene,
+            and rendering shadow volumes using TCastleScene is now superb.
+          -->
+        </ul>
       </li>
 
-      <li><p>Shadow casters may be transparent (have material with
+      <li><p><b>Shadow casters may be transparent</b> (have material with
         <code>transparency</code> &gt; 0), this is handled perfectly.
 
+<!--
         <p>However, note that <i>all opaque shapes must
         be 2-manifold</i> and separately <i>all transparent shapes must
         be 2-manifold</i>. For example, it's Ok to have some transparent
@@ -258,6 +299,7 @@ These names are not invented by us, they are the names used for <a href="<?php e
         box composed from two separate VRML/X3D shapes: one shape defining
         one box face as transparent, the other shape defining
         the rest of box faces as opaque.
+        -->
 
         <!--p>(For programmers: reasoning may be found in
         <code>TCastleScene.RenderSilhouetteShadowVolume</code> comments,
