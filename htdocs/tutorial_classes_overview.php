@@ -125,7 +125,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <ul>
           <li><?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> (3D model, with rendering, collisions and everything)
           <li><?php api_link('TCastlePrecalculatedAnimation', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html'); ?>
-            (<?php api_link('TCastlePrecalculatedAnimation.Scenes', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html#Scenes'); ?>
+            (deprecated; <?php api_link('TCastlePrecalculatedAnimation.Scenes', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html#Scenes'); ?>
             keeps a list of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>.)
           <li><?php api_link('T3DList', 'Castle3D.T3DList.html'); ?> (list of T3D instances)
             <ul>

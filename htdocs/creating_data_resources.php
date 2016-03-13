@@ -63,14 +63,14 @@ with links to documentation for every attribute.
        and define <model> element. Below we only show all possible attributes,
        in practice you will not want to set them all. -->
   <model url="main.x3d">
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.x3d"         time_sensor="TimeSensorIdle" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.x3d" time_sensor="TimeSensorIdleToWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.x3d"         time_sensor="TimeSensorWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] url="fire_missile.x3d" time_sensor="TimeSensorFireMissile" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       url="attack.x3d"       time_sensor="TimeSensorAttack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          url="die.x3d"          time_sensor="TimeSensorDie" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     url="die_back.x3d"     time_sensor="TimeSensorDieBack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         url="hurt.x3d"         time_sensor="TimeSensorHurt" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.x3d"         animation_name="TimeSensorIdle" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.x3d" animation_name="TimeSensorIdleToWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.x3d"         animation_name="TimeSensorWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] url="fire_missile.x3d" animation_name="TimeSensorFireMissile" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       url="attack.x3d"       animation_name="TimeSensorAttack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          url="die.x3d"          animation_name="TimeSensorDie" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     url="die_back.x3d"     animation_name="TimeSensorDieBack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         url="hurt.x3d"         animation_name="TimeSensorHurt" />
   </model>
 
   <attack
@@ -182,60 +182,76 @@ creatures/items animations (before using in the actual game), you
 can load their <code>resource.xml</code> using the <i>"Add resource..."</i> button and
 directly play loaded animations.
 
-<p>There are three approaches to indicate animations
+<p>There are two approaches to indicate animations
 in <code>&lt;model&gt;</code> element in <code>resource.xml</code> file.
 Which one to choose depends on what 3D
 modeler / exporter you use to design your models:
 
 <ol>
-  <li><p>The best way (best for memory and loading time, which is really
-    important in these situations) is to use a single X3D model, with many
-    X3D TimeSensors representing different animations. You declare it in
-    resource.xml file like this:
+  <li><p>The best way (low memory usage and short loading time)
+    is to use a single model (X3D, Spine JSON, etc.), with many animations inside.
+    Each animation is just a named X3D <code>TimeSensor</code> node,
+    exactly like with our
+    <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+    method.You declare it in resource.xml file like this:
 
 <?php echo xml_highlight(
 '<model url="model.x3d">
-  <stand time_sensor="TimeSensorStand"/>
-  <walk time_sensor="TimeSensorWalk"/>
+  <stand animation_name="TimeSensorStand"/>
+  <walk  animation_name="TimeSensorWalk"/>
 </model>'); ?>
 
-    <p>This is nice if your 3D modeler / exporter can record multiple
-    animations inside a single X3D file, and each animation is controlled
+    <p>This is nice if your authoring software can store multiple
+    animations inside a single file, and each animation is controlled
     by a different X3D TimeSensor node. This is the most natural way to
     record multiple animations in a single X3D file. We will detect
     animation length from the TimeSensor.cycleInterval, and we'll simulate
     sending appropriate time and fraction_changed from this TimeSensor to
     activate the desired moment of the desired animation.
 
-    <p>Unfortunately, I don't know of any open-source 3D modeler / exporter
-    right now that can nicely produce such multiple animations in a single
-    X3D file. I plan to extend Blender X3D exporter to allow this in the
-    future.
+    <p>If your model is a <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
+    2D animation file, then our loader will
+    automatically convert them to X3D TimeSensors when reading,
+    and things will work perfectly our of the box.
+    So you can just use Spine animation names.
 
-  <li><p>You can also use a separate X3D model for each animation state, like this:
+    <p>For 3D models: Unfortunately, I don't know of any open-source 3D
+    modeler / exporter right now that can nicely produce such multiple
+    animations in a single X3D file.
+    I plan to extend Blender X3D exporter to allow this in the future.
+
+  <li><p>You can also use a separate model (X3D, KAnim, MD3...) for each animation state, like this:
 
 <?php echo xml_highlight(
 '<model>
-  <stand url="stand.x3d" time_sensor="MainTimeSensor"/>
-  <walk url="walk.x3d" time_sensor="MainTimeSensor"/>
+  <stand url="stand.x3d" animation_name="MainTimeSensor"/>
+  <walk  url="walk.x3d"  animation_name="MainTimeSensor"/>
 </model>'); ?>
 
-  <li><p>You can also use a precalculated animation for each animation,
+    <p>You can omit the <code>animation_name</code>,
+    it is then assumed to be just <code>'animation'</code>,
+    which the default animation name we read from KAnim and MD3 files.
+    If you use X3D files, the animation name should just match the
+    TimeSensor node name (given like <code>&lt;TimeSensor DEF="MyAnimation"&gt;</code>
+    in X3D XML files).
+
+    <p>This allows to play animation defined by X3D nodes.
+
+    <p>You can also use KAnim for each animation,
     from <?php echo a_href_page('KAnim', 'kanim_format'); ?> or MD3 (Quake 3 engine format) file. This is
     useful if your 3D modeler / exporter cannot produce animated X3D files
     at all, but it can export to kanim (see <?php echo a_href_page('our Blender to KAnim
     exporter', 'blender'); ?>) or MD3. In the worst case, you can also just export a
     couple of still frames and write the xxx.kanim file in a text editor,
     because the kanim format is a trivial XML file that just describes a
-    transition between a couple of still 3D models. Internally, we'll use
-    TCastlePrecalculatedAnimation for each animation state.
+    transition between a couple of still 3D models.
 
     <p>Example:
 
 <?php echo xml_highlight(
 '<model>
   <stand url="stand.kanim"/>
-  <walk url="walk.kanim"/>
+  <walk  url="walk.kanim"/>
 </model>'); ?>
 
     <p>This is probably the most comfortable approach to export animations
@@ -244,51 +260,11 @@ modeler / exporter you use to design your models:
     single X3D file.
 </ol>
 
-<p>To describe above three cases in more precise manner for developers:</p>
-
-<ul>
-  <li><p>(Case 3. above) When animation state, like <code>&lt;stand&gt;</code> or <code>&lt;walk&gt;</code>,
-    doesn't have a <code>time_sensor</code> attribute &mdash; then it must have
-    <code>url</code> attribute, and we use precalculated animation,
-    TCastlePrecalculatedAnimation, to play it. Suitable for kanim and
-    X3D animations. Suitable also when the model is just a still 3D
-    model, as then TCastlePrecalculatedAnimation simply renders it.
-
-  <li><p>(Case 2. above) Otherwise, if an animation state like <code>&lt;stand&gt;</code> or
-    <code>&lt;walk&gt;</code> has both <code>time_sensor</code> and <code>url</code>, then we load it to a
-    TCastleScene and use appropriate TimeSensor to play the animation.
-
-  <li><p>(Case 1. above) Otherwise, if an animation state like <code>&lt;stand&gt;</code> or
-    <code>&lt;walk&gt;</code> has only <code>time_sensor</code>, then we use a 3D model defined at
-    <code>&lt;model&gt;</code> element to choose and play appropriate animation. This also
-    means using TCastleScene and appropriate TimeSensor to play it,
-    but this time it's a single TCastleScene potentially shared by various
-    animations.
-</ul>
-
-<p>In some situations, we have to know the animation duration (for
-example, to know when <code>&lt;attack&gt;</code> animation ends and we should get back
-to <code>&lt;stand&gt;</code> or <code>&lt;walk&gt;</code> state).
-
-<ul>
-  <li><p>For TCastlePrecalculatedAnimation, the animation always starts from
-    the local time 0, goes to the last time (time of last <code>&lt;frame&gt;</code> in
-    kanim file). Then it eventually goes backward, it backwards="true"
-    in kanim file. So we know the duration by looking at frames time and
-    backwards property: TimeEnd + (if Backwards then TimeEnd-TimeBegin
-    else 0).
-
-    <p>So using backwards="true" in KAnim works, useful for some animations
-    when you do some gesture and then go back to original position by
-    reversing this gesture &mdash; e.g. dog-like creature biting.
-
-  <li><p>For TCastleScene and TimeSensor: in this case, X3D
-    TimeSensor.cycleInterval gives us animation duration.
-</ul>
-
 <p>The looping is done automatically for animations that require it (like
-walk). So using loop attribute in kanim file, or loop field for
-TimeSensor is not necessary (it's ignored).
+walk). The value of <code>loop</code> attribute in KAnim file,
+or <code>TimeSensor.loop</code> field in X3D, is ignored.
+
+<!--
 
 <p><i>Design notes about X3D TimeSensor usage</i>: All creatures of a given kind
 must share the same resources. E.g. imagine you have a creature type
@@ -302,7 +278,6 @@ activating them by TimeSensor.startTime: in the latter case, all
 werewolves visible on the level would be forced to be in the same
 state (and moment) of the animation.
 
-<!--
 
   <li><p>When you want to use this creature on particular level(s),
     you should add it to <code>prepare_resources</code> in <code>level.xml</code>
