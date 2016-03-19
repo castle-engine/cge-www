@@ -492,22 +492,25 @@ and Monte Carlo path tracing.
     is useless. It was added here only for completeness.
   </dd>
 
+<?php /*
   <dt><span class="command_line_option">--octree-max-depth &lt;integer&gt;</span><br>
       <span class="command_line_option">--octree-leaf-capacity &lt;integer&gt;</span></dt>
 
   <dd><p>These parameters control octree generation.
     By default
-    <code>--octree-max-depth</code>=<?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ?> and
-    <code>--octree-leaf-capacity</code>=<?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ?>.
+    <code>--octree-max-depth</code>=< ?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ? > and
+    <code>--octree-leaf-capacity</code>=< ?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ? >.
     You can also specify octree propeties inside VRML/X3D file:
     use <code>KambiNavigationInfo.octreeVisibleTriangles</code>
     (see <?php echo a_href_page_hashlink('octree properties extension',
     'x3d_extensions', 'section_ext_octree_properties'); ?>).
 
-    <?php /* Niniejsze drzewo ósemkowe nie zawsze będzie absolutnie optymalne,
+    <!-- Niniejsze drzewo ósemkowe nie zawsze będzie absolutnie optymalne,
     ale zazwyczaj będzie naprawdę dobre i nie będzie zajmowało zbyt dużo
     miejsca w pamięci (około 10 MB na scenach do 100 000 trójkątów -
-    nie jest tak źle). Ale jeśli chcesz zmusić */ ?></dd>
+    nie jest tak źle). Ale jeśli chcesz zmusić --></dd>
+
+*/ ?>
 </dl>
 
 <p>See also <?php echo a_href_page(
