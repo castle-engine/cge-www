@@ -8,6 +8,7 @@
       new TocItem('Detailed requirements', 'requirements_detailed'),
       new TocItem('Window size', 'window_size'),
       new TocItem('Sound notes', 'sound'),
+      new TocItem('Log', 'log'),
       new TocItem('Other command-line options', 'command_line'),
       new TocItem('Details about items in the game', 'items_details'),
       new TocItem('Version numbers', 'versioning'),
@@ -93,19 +94,19 @@ probably stop any other programs that play some music.
 
 <?php echo $toc->html_section(); ?>
 
-Other command-line options, not mentioned in this file before:
-<ul>
-  <li><p><code>--debug-log</code>
+Look at log output.
+<a href="http://castle-engine.sourceforge.net/tutorial_log.php">Here
+we describe where log output is.</a>
+When sending bug reports, it may be useful to attach generated log
+to your report &mdash; it will show some things about your
+OpenGL, OpenAL, and what happened during the game.
 
-    <p>This will output a lot of info on stdout.
-    When sending bug reports, it may be useful to attach generated log
-    to your report &mdash; it will show some things about your
-    OpenGL, OpenAL, and what happened during the game.
+<?php echo $toc->html_section(); ?>
 
-  <li><p>See <?php echo a_href_page('some general notes about command-line
-    options understood by all my programs', 'common_options'); ?>.
-    In particular, <code>castle --help</code> will show full list
-    of all available command-line options.</li>
+<p>See <?php echo a_href_page('some general notes about command-line
+options understood by all my programs', 'common_options'); ?>.
+In particular, <code>castle --help</code> will show full list
+of all available command-line options.</li>
 
 <?php /*
   <li><p><code>--no-shadows</code>
