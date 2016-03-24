@@ -452,14 +452,6 @@ case "$1" in
     binary_set_unix_permissions
     ;;
 
-  bezier_curves)
-    binary_add_doc bezier_curves.html $DOC_FILES_GL_PARAMS
-    binary_add_exec_and_data bezier_curves
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
-    binary_add_gpl2
-    binary_set_unix_permissions
-    ;;
-
   *)
     echo "pack_binary.sh: Invalid 1st param \"$1\""
     exit 1

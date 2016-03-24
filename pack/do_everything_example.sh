@@ -3,12 +3,6 @@ set -eu
 
 # An example of running many pack_xxx.sh
 
-# ./pack_binary.sh bezier_curves macosx i386
-# ./pack_binary.sh bezier_curves linux i386
-# ./pack_binary.sh bezier_curves win i386
-# ./pack_binary.sh bezier_curves linux x86_64
-# ./pack_pascal_src.sh bezier_curves
-
 # ./pack_binary.sh castle macosx i386
 # ./pack_binary.sh castle linux i386
 # ./pack_binary.sh castle win i386

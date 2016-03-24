@@ -58,7 +58,6 @@ version_call view3dscene
 version_call rayhunter
 version_call glViewImage
 version_call glplotter
-version_call bezier_curves
 version_call glinformation
 version_call gen_function
 version_call mountains_of_fire

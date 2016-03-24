@@ -117,8 +117,6 @@ games from Michalis Kamburelis itch.io profile</a>.
 <ul>
   <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
     just a toy allowing you to plot Bezier curves in 3D -->
-  <li><?php echo a_href_page('bezier_curves', 'bezier_curves'); ?> &mdash;
-    plotting rational Bezier curves
   <li> <?php echo a_href_page("glinformation", "glinformation") ?> &mdash;
     output information about OpenGL installed on your system.
   <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;

@@ -180,7 +180,6 @@ notes near some programs below.
   echo_src_archive_2('glplotter and gen_function', 'glplotter', 'glplotter', '4.0.1');
   //echo_src_archive('gen_function', '4.0.1');
   echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', '4.1.1');
-  echo_src_archive('bezier_curves', 'bezier-curves', '4.0.1');
   echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', 'glinformation', '4.0.1');
 ?>
 </ul>

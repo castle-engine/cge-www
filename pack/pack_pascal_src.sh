@@ -209,12 +209,6 @@ case "$1" in
     pascal_src_archive_end gen_function
     ;;
 
-  bezier_curves)
-    mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"bezier_curves/
-    pascal_src_archive_end bezier_curves
-    ;;
-
   malfunction)
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"malfunction/

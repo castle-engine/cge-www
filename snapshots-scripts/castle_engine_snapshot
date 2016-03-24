@@ -38,7 +38,6 @@ move_all_programs ()
 
   mkdir -p "$OUT_PATH"
 
-  mv bezier_curves/bezier_curves"$EXT" "$OUT_PATH"
   mv castle/castle"$EXT" "$OUT_PATH"
   mv glinformation/glinformation"$EXT" "$OUT_PATH"
   mv glinformation/glinformation_glut"$EXT" "$OUT_PATH"

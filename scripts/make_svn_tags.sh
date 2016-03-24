@@ -20,7 +20,6 @@ do_svn_tag ()
     -m "Tagging the $VERSION version of '$NAME'."
 }
 
-# do_svn_tag bezier_curves
 # do_svn_tag castle
 # do_svn_tag glplotter
 # do_svn_tag glinformation

@@ -266,7 +266,6 @@ $castle_sitemap = array(
           'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
         ),
       ),
-      'bezier_curves' => array('title' => 'bezier_curves'),
       'glinformation' => array('title' => 'glinformation'),
       'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
 
