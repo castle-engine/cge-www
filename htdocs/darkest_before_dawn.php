@@ -72,17 +72,16 @@ automatically propose to install it.
 
 <h2>Source code</h2>
 
-<p>The full source code is available in the SVN repository,
-and can be downloaded like this:
+<p>The full
+<a href="https://github.com/castle-engine/darkest-before-dawn">source code and data are available on GitHub</a>.
 
-<pre><?php echo sf_checkout_link(true, 'darkest_before_dawn'); ?></pre>
-
-<p>See the <code>README.txt</code> for compilation instructions.
+<p>See the <code>README.md</code> for compilation instructions.
 For a standalone compilation all you need is the
 <a href="http://castle-engine.sourceforge.net/engine.php">engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.
 To compile the Android version, you will need Android SDK, NDK, and FPC set
-up as a cross-compiler to Android+Arm.
+up as a cross-compiler to Android+Arm. See the <i>Castle Game Engine</i>
+docs for details.
 
 <h2>License</h2>
 

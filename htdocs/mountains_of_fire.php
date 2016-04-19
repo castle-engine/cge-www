@@ -141,10 +141,7 @@ Try it now!
 
 <?php echo $toc->html_section(); ?>
 
-<p>The full source code is available in the SVN repository,
-and can be downloaded like this:
-
-<pre><?php echo sf_checkout_link(true, 'mountains_of_fire'); ?></pre>
+<p>The full <a href="https://github.com/castle-engine/mountains-of-fire">source code and data are available on GitHub</a>.
 
 <p>The exact source code for version <?php echo VERSION_MOUNTAINS_OF_FIRE; ?>
  is also available as a tar.gz archive: <a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-src.tar.gz">download "Mountains Of Fire" <?php echo VERSION_MOUNTAINS_OF_FIRE; ?> sources</a>.
