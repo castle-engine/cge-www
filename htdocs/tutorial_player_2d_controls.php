@@ -90,20 +90,7 @@ You can draw them using our 2D drawing API:
     <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>.</b>
     But drawing image yourself is often more flexible.
 
-    <p>Note that <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is an OpenGL resource &mdash;
-    which means that usually you create it in <code>GLContextOpen</code>
-    and destroy in <code>GLContextClose</code> methods of your <code>TUIControl</code>
-    descendant. The example below shows this technique.
-
-    <p>In non-trivial cases, sometimes this requirement of
-    <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> is too cumbersome,
-    and coding correct <code>GLContextOpen</code> and <code>GLContextClose</code> methods
-    is uncomfortable. In this case, you can simply use
-    <?php api_link('TGLImageManaged', 'CastleGLImages.TGLImageManaged.html'); ?>
-    that can be created and destroyed at any point within your application (and it's instance
-    can "survive" the recreation of OpenGL context).
-
-    <p>Here's a promised example of optimal
+    <p>Here's a simple example of
     <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> creation and destruction:
 
 <?php echo pascal_highlight(
@@ -114,18 +101,18 @@ type
   private
     FMyImage: TGLImage;
   public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
     procedure Render; override;
-    procedure GLContextOpen; override;
-    procedure GLContextClose; override;
   end;
 
-procedure TGame2DControls.GLContextOpen;
+constructor TGame2DControls.Create(AOwner: TComponent);
 begin
   inherited;
   FMyImage := TGLImage.Create(ApplicationData(\'map_tile.png\'));
 end;
 
-procedure TGame2DControls.GLContextClose;
+destructor TGame2DControls.Destroy;
 begin
   FreeAndNil(FMyImage);
   inherited;

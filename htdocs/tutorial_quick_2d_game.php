@@ -4,7 +4,7 @@ tutorial_header('Quick 2D game (getting to know window events)');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Loading image (TGLImageManaged class)', 'load'),
+    new TocItem('Loading image (TGLImage class)', 'load'),
     new TocItem('Drawing image (OnRender event)', 'draw'),
     new TocItem('Moving image (OnUpdate event)', 'update'),
     new TocItem('Reacting to user input (OnPress event)', 'press'),
@@ -32,7 +32,7 @@ done in a 1-hour game-jam</a> ! :)
 
 <?php echo $toc->html_section(); ?>
 
-<p>Create an instance of <?php api_link('TGLImageManaged', 'CastleGLImages.TGLImageManaged.html'); ?>, and load an image there. <?php api_link('TGLImageManaged', 'CastleGLImages.TGLImageManaged.html'); ?> allows to load and display the image on screen.
+<p>Create an instance of <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>, and load an image there. <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> allows to load and display the image on screen.
 
 <ol>
   <li><p><b>If you use Lazarus form with
@@ -51,11 +51,11 @@ done in a 1-hour game-jam</a> ! :)
 <?php echo pascal_highlight(
 '// Also: add to your uses clause: CastleGLImages, CastleFilesUtils
 
-// Also: add to your form private section a declaration of: "Image: TGLImageManaged"
+// Also: add to your form private section a declaration of: "Image: TGLImage"
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
+  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -79,7 +79,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-    Image: TGLImageManaged;
+    Image: TGLImage;
   public
     { public declarations }
   end;
@@ -92,7 +92,7 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
+  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -110,9 +110,9 @@ end.'); ?>
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
   Window: TCastleWindow;
-  Image: TGLImageManaged;
+  Image: TGLImage;
 begin
-  Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
+  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
   try
     Window := TCastleWindow.Create(Application);
     Window.Open;
@@ -124,7 +124,7 @@ end.'); ?>
 <?php echo $toc->html_section(); ?>
 
 <p>Next we want to draw this image. To do this, we want to call
-<?php api_link('TGLImageManaged.Draw', 'CastleGLImages.TGLImageManaged.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
+<?php api_link('TGLImage.Draw', 'CastleGLImages.TGLImage.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
 
 <ol>
   <li><p><b>If you use Lazarus form with
@@ -149,7 +149,7 @@ end;'); ?>
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
   Window: TCastleWindow;
-  Image: TGLImageManaged;
+  Image: TGLImage;
   X: Single = 0.0;
   Y: Single = 0.0;
 
@@ -159,7 +159,7 @@ begin
 end;
 
 begin
-  Image := TGLImageManaged.Create(ApplicationData(\'my_image.png\'));
+  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
   try
     Window := TCastleWindow.Create(Application);
     Window.OnRender := @WindowRender;
