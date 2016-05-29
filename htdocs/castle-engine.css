@@ -312,19 +312,22 @@ span.news_title a { color: black; }
 
 /* --------------------------------------------------------------------------- */
 
-table.donations { border-collapse: collapse; width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-table.donations td {
-  border: medium solid #888;
+.donation_option {
+  border-top: 1pt solid #888;
+  border-bottom: 1pt solid #888;
+  border-left: 2pt solid #888;
+  border-right: 2pt solid #888;
   text-align: center;
-  width: 30%;
+  margin-top: 0em;
+  margin-bottom: 0em;
 }
 
-table.donations td p {
+.donations form,
+.donations p {
   margin-left: 0.5em;
   margin-right: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em
 }
 
 div.quote {
