@@ -163,7 +163,7 @@ $castle_sitemap = array(
     ),
   ),
 
-  'vrml_x3d' => array('hint' => 'Our extensions and status of VRML/X3D implementation', 'title' => 'VRML / X3D', 'title-for-header-menu' => 'VRML/X3D' /* shorter title */,
+  'vrml_x3d' => array('hint' => 'Scene graph of our engine - our extensions and status of VRML/X3D implementation', 'title' => 'Scene Graph (X3D)',
     'sidebar' => true,
     'sub' => array(
       'demo_models' => array('title' => 'Demo models'),

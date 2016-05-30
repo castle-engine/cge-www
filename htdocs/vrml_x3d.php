@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
-  vrmlx3d_header('What is VRML / X3D');
+  vrmlx3d_header('Scene graph (X3D)');
 
   echo castle_thumbs(array(
     array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
@@ -14,6 +14,8 @@
 
   echo pretty_heading($page_title);
 ?>
+
+<p>The engine core is a <i>scene graph</i> using nodes defined by the X3D specification.
 
 <p>Simply put, X3D (and it's older version, VRML) is a file format for 3D models.
 You will find that virtually any 3D modelling program can export to it,
