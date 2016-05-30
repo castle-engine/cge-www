@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_header('Donate', NULL, array('forum', 'donate'));
+  castle_header('Donate', NULL, array('donate'));
   echo pretty_heading($page_title);
 ?>
 

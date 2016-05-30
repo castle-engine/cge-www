@@ -239,11 +239,9 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum',
-    'sub' => array(
-      'donate' => array('title' => 'Donate'),
-    ),
-  ),
+  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
+
+  'donate' => array('title' => 'Donate'),
 
   'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'Games and Tools',
     'sub' => array(
