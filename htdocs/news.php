@@ -48,19 +48,22 @@ if ($next_item !== NULL || $previous_item !== NULL)
   $older_newer_bar .= '</div>';
 }
 
+$follow_us_html = '<div class="panel-follow-us">
+  <b>Hint:</b>
+  <a href="https://www.facebook.com/castleengine">Facebook</a>,
+  <a href="https://plus.google.com/b/101185352355602218697/">Google+</a> and
+  <a href="https://twitter.com/castleengine">Twitter</a> have
+  the latest news about the engine development!
+</div>';
+
 echo $older_newer_bar .
+  $follow_us_html .
   '<div class="castle_rss_link"><a href="news_feed.php">RSS</a></div>';
 if ($item === $news[0])
-  echo '<h2>Latest news:</h2>';
+  echo '<h2>Latest news:</h2>'; else
+  echo '<br>';
 echo '<div class="news_item">' . news_to_html($item) . '</div>';
-
-echo '<div class="panel-footer">
-  <b>Follow us:</b>
-  Follow us on <a href="https://plus.google.com/b/101185352355602218697/">Google+</a>,
-  <a href="https://www.facebook.com/castleengine">Facebook</a> or
-  <a href="https://twitter.com/castleengine">Twitter</a> to get latest news about
-  the engine development.
-</div>';
+echo $follow_us_html;
 
 echo disqus_form();
 

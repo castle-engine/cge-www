@@ -301,6 +301,19 @@ span.news_title a { color: black; }
   font-weight: bold
 }
 
+/* based on Bootstrap panel-footer */
+.panel-follow-us {
+  background-color: #f5f5f5;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: larger;
+}
+
 /* header ------------------------------------------------------------------- */
 
 .header_breadcrumbs {
