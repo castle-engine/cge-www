@@ -234,7 +234,8 @@ should do the trick. This is necessary for successful linking.</p>
 
 <p>The linker must know the location of fink and X11
 libraries. If you have installed fink and X11 in standard locations,
-you can simply add these lines to your <code>/etc/fpc.cfg</code> file:</p>
+you can simply add these lines to your <code>/etc/fpc.cfg</code> file
+(<?php echo FPC_CFG_DOCS; ?>):</p>
 
 <pre>
 -Fl/sw/lib/

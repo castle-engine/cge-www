@@ -6,14 +6,15 @@ $toc = new TableOfContents(
   array(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
-    new TocItem('Preparing your 3D models to render fast', 'models'),
+    new TocItem('Making your games run fast', 'models'),
       new TocItem('Easy things to check', 'small', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
       new TocItem('Do not instantiate too many TCastleScenes', 'scenes', 1),
-      new TocItem('Occlusion query', 'scenes', 1),
-    new TocItem('Optimizing collisions', 'collisions'),
-    new TocItem('Memory', 'memory'),
-    new TocItem('Profiling', 'profiling'),
+      new TocItem('Consider using occlusion query', 'occlusion_query', 1),
+      new TocItem('Optimize collisions', 'collisions', 1),
+      new TocItem('Optimize animations', 'animations', 1),
+    new TocItem('Profile (measure speed and memory usage)', 'profiling'),
+    new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
   )
 );
 ?>
@@ -266,21 +267,60 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We do not have any engine-specific tool to measure memory usage or
-detect memory problems, as there are plenty of them available with
-FPC+Lazarus already. To simply see the memory usage, just use process
-monitor that comes with your OS. To detect memory leaks, be sure to
-use FPC <code>HeapTrc.pas</code> (compile with <code>-gl -gh</code>). See also Lazarus units
-like <code>LeakInfo</code>. Finally, you can use full-blown memory profilers like
-valgrind's massif with FPC code (see section "Profiling" lower in this
-tutorial).
+<p>There are some <code>TCastleScene</code> features that are usually turned on,
+but in some special cases may be avoided:
+
+<ul>
+  <li>Do not enable <code>ProcessEvents</code> if the scene should remain static.
+  <li>Do not add <code>ssDynamicCollisions</code> to <code>Scene.Spatial</code> if you don't need better collisions than versus scene bounding box.
+  <li>Do not add <code>ssRendering</code> to <code>Scene.Spatial</code> if the scene is always small on the screen, and so it's usually either completely visible or invisible. <code>ssRendering</code> adds frustum culling per-shape.
+</ul>
+
+<p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. In particular for games with complicated <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> animations.
+
+<p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
+
+<p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <code>CastleLog</code> docs and tutorial) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use any FPC tools to profile your code, for memory and
+<p>You can compile your
+application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+using <code>--mode=valgrind</code> to get an executable ready to be tested
+with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
+
+<p>You can use any FPC tool to profile your code, for memory and
 speed. There's a small document about it in engine sources, see
-<code>castle_game_engine/doc/profiling_howto.txt</code> . See also
+<code>castle_game_engine/doc/profiling_howto.txt</code> See also
 <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC wiki about profiling</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p><b>To detect memory leaks, it's easiest to compile with FPC options
+<code>-gl -gh</code>.</b> <!--This automatically uses the special units
+<code>HeapTrc</code> and <code>LineInfo</code> in your program.-->
+At the program's exit, you will get a very useful report about
+the allocated and not freed memory blocks, with a stack track to the allocation call.
+Consider adding this to your <code>fpc.cfg</code>
+file (<?php echo FPC_CFG_DOCS; ?>):
+
+<pre>
+#IFDEF DEBUG
+-gh
+-gl
+#ENDIF
+</pre>
+
+
+<p>We do not have any engine-specific tool to measure memory usage or
+detect memory problems, as there are plenty of them available with
+FPC+Lazarus already. To simply see the memory usage, just use process
+monitor that comes with your OS. See also Lazarus units
+like <code>LeakInfo</code>.
+
+<p>You can use full-blown memory profilers like
+valgrind's massif with FPC code (see section <i>"Profiling"</i> on this
+page about valgrind).
 
 <?php
 tutorial_footer();

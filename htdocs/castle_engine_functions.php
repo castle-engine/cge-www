@@ -55,6 +55,8 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   (this web page) is also included inside
   (look in the <code>documentation/</code> subdirectory) for offline viewing.');
 
+define('FPC_CFG_DOCS', 'see <a href="http://www.freepascal.org/docs-html/user/usersu10.html">FPC documentation <i>"Configuration file"</i> to know where you can find your <code>fpc.cfg</code> file</a>');
+
 /* Complete sitemap of our website.
    This determines a lot of navigational stuff: header menu, sidebar,
    breadcrumbs.

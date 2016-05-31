@@ -10,7 +10,7 @@
       new TocItem('Documentation', 'docs'),
       new TocItem('Other useful downloads', 'other_downloads'),
       new TocItem('FPC (Free Pascal Compiler) version required', 'fpc_ver'),
-      new TocItem('Get the latest sources from SVN or GIT', 'svn'),
+      new TocItem('Get the latest sources from GIT or SVN', 'bleeding_edge'),
       new TocItem('License', 'license'),
     )
   );
@@ -85,25 +85,28 @@ including the sources for many example programs and engine tools.
     project file and compile/run as any other program.
 
   <li><p><b>For command-line FPC</b>:
-    Compile the engine with simple "<code>make</code>" inside the
-    <code>castle_game_engine/</code> directory
-    (uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>).
-    Compile examples <!-- (the ones that do not require Lazarus) -->
+    First, try compiling the examples <!-- (the ones that do not require Lazarus) -->
     by simple "<code>make examples</code>".
     Or execute <code>xxx_compile.sh</code> scripts to compile particular
     examples.
 
-    <p>If you don't want to use Lazarus to compile your programs,
-    you have a couple of options. First of all, we advice using our
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-    to compile and package your games. Other option is to compile the engine
-    units by executing <code>make</code>,
-    and then add the path with compiled units to your <code>fpc.cfg</code> file (by
-    adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
-    to <code>fpc.cfg</code>).
-    Final option is to use the <code>castle-fpc.cfg</code>
-    and create <code>xxx_compile.sh</code> scripts (see examples) to compile
-    your programs like that.
+    <p>If you don't want to use Lazarus to compile your own programs,
+    you have a couple of options.
+    <ol>
+      <li>First of all, we advice using our
+        <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+        to compile and package your games.
+      <li>Other option is to compile the engine
+        units by executing <code>make</code> inside the
+        <code>castle_game_engine/</code> directory
+        (uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>).
+        Then add the path with compiled units to your <code>fpc.cfg</code> file by
+        adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
+        (<?php echo FPC_CFG_DOCS; ?>).
+      <li>Final option is to use the <code>castle-fpc.cfg</code>
+        and create <code>xxx_compile.sh</code> scripts (see examples) to compile
+        your programs like that.
+    </ol>
 </ul>
 
 <!--
@@ -255,15 +258,16 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can also get the latest (<i>bleeding edge, work in progress!</i>)
-engine sources from
-<a href="https://sourceforge.net/projects/castle-engine/">our SourceForge project</a> SVN by:</p>
-
-<pre><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
-
-<p>Or you can get them from <a href="https://github.com/castle-engine/castle-engine">our GitHub project</a> (auto-synchronized with SVN), like this:
+<p>You can get the latest (<i>bleeding edge, work in progress!</i>)
+engine sources from <a href="https://github.com/castle-engine/castle-engine">our GitHub project</a>.
+For example run this:
 
 <pre>git clone https://github.com/castle-engine/castle-engine.git</pre>
+
+<p>Or you can get them from <a href="https://sourceforge.net/projects/castle-engine/">our SourceForge project</a>
+SVN (auto-synchronized with GitHub GIT), like this:
+
+<pre><?php echo sf_checkout_link(true, 'castle_game_engine'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 

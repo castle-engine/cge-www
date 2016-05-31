@@ -65,8 +65,8 @@ engine source code with examples', 'engine'); ?>.
         <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
         Edit and debug them using whatever tool you like.
       <li><p>Or compile the engine with <code>make</code>
-        and add the engine unit output path (like <code>.../castle_game_engine/units/i386-linux/</code>)
-        to your <code>fpc.cfg</code> file.
+        and add the engine unit output path (like <code>.../castle-engine/units/i386-linux/</code>)
+        to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>).
     </ol>
   </li>
 </ul>
