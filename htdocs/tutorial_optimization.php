@@ -13,6 +13,7 @@ $toc = new TableOfContents(
       new TocItem('Consider using occlusion query', 'occlusion_query', 1),
       new TocItem('Optimize collisions', 'collisions', 1),
       new TocItem('Optimize animations', 'animations', 1),
+      new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
   )
@@ -281,6 +282,20 @@ but in some special cases may be avoided:
 <p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
 
 <p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <code>CastleLog</code> docs and tutorial) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
+
+<?php echo $toc->html_section(); ?>
+
+<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the begginnig, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything references by your scenes to GPU.
+
+<p>Enable some (or all)
+
+<ul>
+  <li><code>LogTextureLoading</code>
+  <li><code>LogAllLoading</code>
+  <li><code>TextureMemoryProfiler.Enabled</code>
+</ul>
+
+<p>to get extensive information in the log file about all the loading that is happening. This is usually <i>a lot</i> of information, so you probably don't want to see it always.
 
 <?php echo $toc->html_section(); ?>
 
