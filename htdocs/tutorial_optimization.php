@@ -7,13 +7,14 @@ $toc = new TableOfContents(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
     new TocItem('Making your games run fast', 'models'),
-      new TocItem('Easy things to check', 'small', 1),
+      new TocItem('Backface culling', 'culling', 1),
+      new TocItem('Textures', 'textures', 1),
+      new TocItem('Animations', 'animations', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
       new TocItem('Do not instantiate too many TCastleScenes', 'scenes', 1),
-      new TocItem('Consider using occlusion query', 'occlusion_query', 1),
-      new TocItem('Optimize collisions', 'collisions', 1),
-      new TocItem('Optimize animations', 'animations', 1),
+      new TocItem('Collisions', 'collisions', 1),
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
+      new TocItem('Consider using occlusion query', 'occlusion_query', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
   )
@@ -152,36 +153,59 @@ as they are provided to them in a proper way.</p>
 
 <?php echo $toc->html_section(); ?>
 
+<p>If the player can see the geometry faces only from one side,
+then <i>backface culling</i> should be <b>on</b>.
+This is the default case (X3D nodes like <code>IndexedFaceSet</code>
+have their <code>solid</code> field equal <code>TRUE</code> by default).
+It avoids useless drawing of the other side of the faces.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Optimize textures to increase the speed and lower GPU memory usage:
+
 <ul>
-  <li><p>If the player can see the geometry faces only from one side,
-    then <i>backface culling</i> should be <b>on</b>.
-    This is the default case (X3D nodes like <code>IndexedFaceSet</code>
-    have their <code>solid</code> field equal <code>TRUE</code> by default).
-    It avoids useless drawing of the other side of the faces.
+  <li>Use texture compression (makes GPU memory usage more efficient).
+    You can do it very easily by <?php echo a_href_page('using <i>material properties</i> and auto-compressing the textures using our build tool', 'creating_data_material_properties'); ?>.
+  <li>Use texture atlases
+    (try to reuse the whole X3D <code>Appearance</code> in fact).
+    This avoids texture switching when rendering, so the scene renders faster.
+    When exporting from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>,
+    be sure to use atlases.
+  <li>Use spite sheets (<code>TSprite</code> class) instead of separate images
+    (like <code>TGLVideo2D</code> class). This again avoids
+    texture switching when rendering, making the scene render faster.
+    It also allows to easily use any texture size (not necessarily a power of two)
+    for the frame size, and still compress the whole sprite,
+    so it cooperates well with texture compression.
+  <li>Don't set too high <code>TextureProperties.anisotropicDegree</code>
+    if not needed. <code>anisotropicDegree</code> should only be set to
+    values &gt; 1 when it makes a visual difference in your case.
+</ul>
 
-  <li><p>Optimizing texture usage deserves a whole book.
-    This includes:
-    <ul>
-      <li>Use texture compression (makes GPU memory usage more efficient),
-      <li>Use texture atlases
-        (try to reuse the whole X3D <code>Appearance</code> in fact) &mdash;
-        avoids switching them when rendering,
-      <li>Don't set too high <code>TextureProperties.anisotropicDegree</code>
-        when not needed. <code>anisotropicDegree</code> should only be set to
-        values &gt; 1 when it makes a visual difference in your case.
-    </ul>
+<?php echo $toc->html_section(); ?>
 
-  <li><p>To optimize CPU usage by animations:
+<p>There are some <code>TCastleScene</code> features that are usually turned on,
+but in some special cases may be avoided:
 
-    <ul>
-      <li>If your model has animations but is often not visible (outside
-        of view frustum), then consider using <code>Scene.AnimateOnlyWhenVisible := true</code>
-        (see <?php api_link('TCastleSceneCore.AnimateOnlyWhenVisible',
-        'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>.
+<ul>
+  <li>Do not enable <code>ProcessEvents</code> if the scene should remain static.
+  <li>Do not add <code>ssDynamicCollisions</code> to <code>Scene.Spatial</code> if you don't need better collisions than versus scene bounding box.
+  <li>Do not add <code>ssRendering</code> to <code>Scene.Spatial</code> if the scene is always small on the screen, and so it's usually either completely visible or invisible. <code>ssRendering</code> adds frustum culling per-shape.
+</ul>
 
-      <li>If your model has deep transformations hierarchy, consider
-        using global <code>OptimizeExtensiveTransformations := true</code>.
-    </ul>
+<p>Various techniques to optimize animations include:
+
+<ul>
+  <li><p>If your model has animations but is often not visible (outside
+    of view frustum), then consider using <code>Scene.AnimateOnlyWhenVisible := true</code>
+    (see <?php api_link('TCastleSceneCore.AnimateOnlyWhenVisible',
+    'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>.
+
+  <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. In particular for games with complicated <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> animations or other "deep transformations hierarchy".
+
+  <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
+
+  <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <code>CastleLog</code> docs and tutorial) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -232,11 +256,6 @@ to have hundreds or thousands of triangles in a single shape.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The engine allows you to easily define custom culling methods
-or use hardware occlusion query (see examples and docs).
-
-<?php echo $toc->html_section(); ?>
-
 <p>We build an octree (looking at exact triangles in your 3D model)
 for precise collision detection with a level.
 For other objects, we use bounding volumes
@@ -268,23 +287,6 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>There are some <code>TCastleScene</code> features that are usually turned on,
-but in some special cases may be avoided:
-
-<ul>
-  <li>Do not enable <code>ProcessEvents</code> if the scene should remain static.
-  <li>Do not add <code>ssDynamicCollisions</code> to <code>Scene.Spatial</code> if you don't need better collisions than versus scene bounding box.
-  <li>Do not add <code>ssRendering</code> to <code>Scene.Spatial</code> if the scene is always small on the screen, and so it's usually either completely visible or invisible. <code>ssRendering</code> adds frustum culling per-shape.
-</ul>
-
-<p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. In particular for games with complicated <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> animations.
-
-<p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
-
-<p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <code>CastleLog</code> docs and tutorial) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
-
-<?php echo $toc->html_section(); ?>
-
 <p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the begginnig, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything references by your scenes to GPU.
 
 <p>Enable some (or all)
@@ -296,6 +298,12 @@ but in some special cases may be avoided:
 </ul>
 
 <p>to get extensive information in the log file about all the loading that is happening. This is usually <i>a lot</i> of information, so you probably don't want to see it always.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The engine allows you to easily define custom culling methods
+or use hardware occlusion query (see examples and docs). This may help
+a lot in large scenes (city or indoors).
 
 <?php echo $toc->html_section(); ?>
 
