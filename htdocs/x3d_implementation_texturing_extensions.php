@@ -286,12 +286,12 @@ See <?php echo a_href_page('Cube map environmental texturing component',
   <li><code>BOUNDS2D</code>:
     Automatically generate nice 2D texture coordinates, based on the local
     bounding box of given shape. This texture mapping is precisely defined
-    by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/geometry3D.html#IndexedFaceSet"><code>IndexedFaceSet</code> description</a>.
+    by the VRML/X3D standard at <a href="<?php echo x3d_spec_latest_url('geometry3D'); ?>#IndexedFaceSet"><code>IndexedFaceSet</code> description</a>.
 
   <li><code>BOUNDS3D</code>:
     Automatically generate nice 3D texture coordinates, based on the local
     bounding box of given shape. This texture mapping is precisely defined
-    by the VRML/X3D standard at <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/texture3D.html#Texturecoordinategeneration"><i>Texturing3D</i> component,
+    by the VRML/X3D standard at <a href="<?php echo x3d_spec_latest_url('texture3D'); ?>#Texturecoordinategeneration"><i>Texturing3D</i> component,
     section "Texture coordinate generation for primitive objects"</a>.
 </ol>
 
