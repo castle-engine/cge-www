@@ -1,7 +1,7 @@
 <?php
   require_once 'x3d_implementation_common.php';
   require_once 'x3d_extensions_functions.php';
-  x3d_extensions_header('Text', 'text', 'utils',
+  x3d_extensions_header('Text', 'text', 'text',
     'Extensions introduced in <a href="' . CURRENT_URL . '">Castle Game Engine</a> related to text.');
 
   $toc = new TableOfContents(
