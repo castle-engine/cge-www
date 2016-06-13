@@ -153,7 +153,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Note <b>a common mistake when using the <code>TextureProperties</code> node:
     texture filtering gets ugly</b>. This is a common mistake,
-    because the X3D specification makes the behaviour unexpected:
+    because the X3D specification makes the behavior unexpected:
     <code>TextureProperties</code> node by default has
     <code>magnificationFilter</code> and
     <code>minificationFilter</code> fields set to <code>"FASTEST"</code>,

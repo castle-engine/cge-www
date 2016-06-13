@@ -18,8 +18,8 @@
 <p>The engine core is a <i>scene graph</i> using nodes defined by the X3D specification.
 
 <p>Simply put, X3D (and it's older version, VRML) is a file format for 3D models.
-You will find that virtually any 3D modelling program can export to it,
-for exampe <a href="http://www.blender.org/">Blender</a> includes
+You will find that virtually any 3D modeling program can export to it,
+for example <a href="http://www.blender.org/">Blender</a> includes
 VRML and X3D exporters (and <?php echo
 a_href_page('we also have our own customized exporter', 'blender'); ?>).</p>
 

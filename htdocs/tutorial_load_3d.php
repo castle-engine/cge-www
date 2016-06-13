@@ -94,7 +94,7 @@ be obtained from this scene.</p>
 
 <h2>What is a "Scene Manager"?</h2>
 
-<p><i>Scene manager</i> contains the whole knowlegle about your game 3D world.
+<p><i>Scene manager</i> contains the whole knowledge about your game 3D world.
 It is essential to add all your 3D stuff to a scene manager.
 An instance of scene manager (class
 <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>)

@@ -216,7 +216,7 @@ These names are not invented by us, they are the names used for <a href="<?php e
         This means that every edge has exactly 2 (not more, not less)
         neighbor faces, so the whole shape is a closed volume.
         Also, faces must be oriented consistently (e.g. CCW outside).
-        This requirement is often quite naturally satisfiable for natural
+        This requirement is often quite naturally satisfied for natural
         objects. Note that the consistent ordering allows you to use backface culling
         (<code>solid=TRUE</code> in VRML/X3D), which
         is a good thing on it's own.</p>
@@ -408,7 +408,7 @@ These names are not invented by us, they are the names used for <a href="<?php e
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>TextureCoordinateGenerator.mode</code> in worlspace docs are at the
+  <p><?php echo a_href_page('<code>TextureCoordinateGenerator.mode</code> in worldspace docs are at the
   "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -1186,7 +1186,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     method. (Although this is planned to be fixed using
     <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
     The bottom line is: <i>You are well advised to try
-    to express all transformations using stardard <code>Transform</code> node</i>.
+    to express all transformations using standard <code>Transform</code> node</i>.
 
     <p>This node may be useful
     when you really have no choice (for example, when converting from
@@ -1286,11 +1286,11 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>The <code>"texCoord"</code> field may contain a texture-generating node.
     Very useful to quickly test various texture coordinate generators
-    (e.g. for cube env mapping) on teapot.
+    (e.g. for cube environment mapping) on teapot.
     When <code>texCoord</code> is not present but texture coordinates
     are required (because appearance specifies a texture),
     we will generate default texture coords (using the same
-    alrgorithm as for <code>IndexedFaceSet</code>).</p>
+    algorithm as for <code>IndexedFaceSet</code>).</p>
 
     <p>The <code>"solid"</code> field has standard meaning: if true (default),
     it's assumed

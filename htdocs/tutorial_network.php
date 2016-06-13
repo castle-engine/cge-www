@@ -121,7 +121,7 @@ also find useful classes
 
       <li>Use this to convert URL back to a FileName.
       When the URL is a <code>file:</code> protocol, it will decode back
-      the simple filename. Right now, URL without protcol is also
+      the simple filename. Right now, URL without protocol is also
       returned back as a simple filename. When the URL uses a different
       protocol (like <code>http</code>), returns empty string.
 
@@ -177,7 +177,7 @@ also find useful classes
     can be accessed (from the Android app) using the URL
     <code>assets:/my_texture.png</code>.
 
-    <p>Usage of <code>assets:/</code> protocol to access Anroid assets by URLs is
+    <p>Usage of <code>assets:/</code> protocol to access Android assets by URLs is
     consistent <a href="http://qt-project.org/doc/qt-5.1/qtdoc/platform-notes-android.html#assets-file-system">at least with Qt</a>.
     See also <a href="http://developer.android.com/tools/projects/index.html">Android
     docs for more information about assets and project layout</a>.
@@ -193,7 +193,7 @@ it gives you a ready
 
 <p>If you use Lazarus with
 <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
-we advise to use our dialog componets:
+we advise to use our dialog components:
 <?php api_link('TCastleOpenDialog', 'CastleDialogs.TCastleOpenDialog.html'); ?>,
 <?php api_link('TCastleSaveDialog', 'CastleDialogs.TCastleSaveDialog.html'); ?>,
 <?php api_link('TCastleOpen3DDialog', 'CastleDialogs.TCastleOpen3DDialog.html'); ?>,

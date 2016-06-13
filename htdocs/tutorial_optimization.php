@@ -287,7 +287,7 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the begginnig, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything references by your scenes to GPU.
+<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything referenced by your scenes to GPU.
 
 <p>Enable some (or all)
 
