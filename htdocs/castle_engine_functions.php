@@ -109,6 +109,14 @@ $castle_sitemap = array(
   'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Download and Documentation', 'title-for-header-menu' => 'Download and Documentation',
     'sidebar' => true,
     'sub' => array(
+      /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
+      /*   'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html', */
+      /*   'sub' => array('pascal_intro_pdf' =>  array( */
+      /*       'title' => 'PDF version', */
+      /*       'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.pdf', */
+      /*     ), */
+      /*   ) */
+      /* ), */
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
           'tutorial_intro' => array('title' => 'Introduction'),

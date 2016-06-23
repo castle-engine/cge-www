@@ -182,7 +182,7 @@ you have appropriate libraries installed on your system.
   <li><?php echo a_href_page('Tutorial', 'tutorial_intro') ?></li>
   <li><i>Alternative tutorial:</i>
     <a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">the slides</a>
-    and <a href="https://github.com/castle-engine/cge-tutorial">the examples (sample data and code)</a>.
+    and <a href="https://github.com/castle-engine/cge-tutorial">their examples (sample data and code)</a>.
     This is a tutorial presented live by Michalis during
     the <i>Web3d&nbsp;2015 conference</i>.
     It shows (from the ground up) the creation of a simple 3D FPS game and 2D game.
@@ -192,6 +192,14 @@ you have appropriate libraries installed on your system.
   <li><a href="<?php echo reference_link(); ?>">API reference</a>
   <li>Mobile development (Android, iOS): the <?php echo a_href_page('tutorial page about mobile development',
     'tutorial_mobile') ?> contains all the information</li>
+</ul>
+
+<p>The engine uses a cross-platform <b>Object Pascal language</b> and tools (<a href="http://freepascal.org/">FPC</a>, <a href="http://www.lazarus-ide.org/">Lazarus</a>). If you'd like to learn the Object Pascal, there are many resources available, in particular:
+
+<ul>
+  <li><p>If you're a programmer, familiar with basic concepts (like variables and classes), we have for you a <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">Quick Introduction to Modern Object Pascal</a> (<a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.pdf">PDF version</a>) (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>).
+  <li><p><a href="http://www.freepascal.org/docs.var">FPC (Free Pascal Compiler) has extensive documentation</a>, including <i>Language reference guide</i> and a reference of RTL and FCL (standard library).
+  <li><p>Many more resources are available on <a href="http://wiki.freepascal.org/">FPC and Lazarus Wiki</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
