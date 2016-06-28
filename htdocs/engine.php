@@ -194,10 +194,10 @@ you have appropriate libraries installed on your system.
     'tutorial_mobile') ?> contains all the information</li>
 </ul>
 
-<p>The engine uses a cross-platform <b>Object Pascal language</b> and tools (<a href="http://freepascal.org/">FPC</a>, <a href="http://www.lazarus-ide.org/">Lazarus</a>). If you'd like to learn the Object Pascal, there are many resources available, in particular:
+<p>The engine uses a cross-platform <b>Object Pascal language</b> and tools (<a href="http://freepascal.org/">FPC</a>, <a href="http://www.lazarus-ide.org/">Lazarus</a>). If you'd like to learn about the Object Pascal:
 
 <ul>
-  <li><p>If you're a programmer, familiar with basic concepts (like variables and classes), we have for you a <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">Quick Introduction to Modern Object Pascal</a> (<a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.pdf">PDF version</a>) (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>).
+  <li><p>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">Quick Introduction to Modern Object Pascal</a> (<a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.pdf">PDF version</a>) (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>). If you're a programmer, already familiar with common concepts like variables and classes, then this quick Pascal guide may be very useful to you:)
   <li><p><a href="http://www.freepascal.org/docs.var">FPC (Free Pascal Compiler) has extensive documentation</a>, including <i>Language reference guide</i> and a reference of RTL and FCL (standard library).
   <li><p>Many more resources are available on <a href="http://wiki.freepascal.org/">FPC and Lazarus Wiki</a>.
 </ul>
