@@ -227,7 +227,7 @@ Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
     <p>Or you can change them to one of your own images. Like this:
 
 <?php echo pascal_highlight(
-'Theme.Images[tiActiveFrame] := LoadImage(ApplicationData(\'frame.png\'), []);
+'Theme.Images[tiActiveFrame] := LoadImage(ApplicationData(\'frame.png\'));
 Theme.OwnsImages[tiActiveFrame] := true;
 Theme.Corners[tiActiveFrame] := Vector4Integer(1, 1, 1, 1);'); ?>
 
