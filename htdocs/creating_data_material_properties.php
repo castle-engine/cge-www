@@ -7,6 +7,7 @@ $toc = new TableOfContents(
     new TocItem('Usage', 'usage'),
     new TocItem('Example material_properties.xml file', 'example'),
     new TocItem('How does the automatic texture compression work', 'texture_compression'),
+    new TocItem('How does the automatic downscaling work', 'texture_scale'),
   )
 );
 ?>
@@ -22,7 +23,7 @@ a given material or texture. Right now this allows to define things like:
   <li>footsteps,</li>
   <li>toxic ground (hurts player),</li>
   <li>bump mapping,</li>
-  <li>texture GPU-compressed alternatives.</li>
+  <li>texture GPU-compressed alternatives, and downscaled alternatives.</li>
 </ul>
 
 <p>See <?php api_link('TMaterialProperties', 'CastleMaterialProperties.TMaterialProperties.html'); ?> docs.
@@ -72,20 +73,27 @@ with links to documentation for every attribute.</p>
 
   <!-- And more <property> elements... -->
 
-  <!-- Automatically compressed texture rules are defined below.
+  <!-- Automatically compressed and downscaled texture rules are defined below.
        See the description below. -->
-  <auto_compressed_textures>
-    <formats>
+  <auto_generated_textures>
+    <compress>
       <!-- Automatically compressed texture formats.
         Format names are the same as TTextureCompression enum names
         (without leading "tc").
         Two most common RGBA compressions for mobiles are listed below. -->
       <format name="Pvrtc1_4bpp_RGBA"/>
       <format name="ATITC_RGBA_InterpolatedAlpha"/>
-    </formats>
+    </compress>
+
+    <!-- Automatically downscaled texture versions.
+        Value smallest="1" is the default, it means that no downscaling is done.
+        Value smallest="2" says to generate downscaled
+        versions (of uncompressed, and all compressed formats)
+        of size 1/2. -->
+    <scale smallest="1" />
 
     <!-- Rules that determine which textures are automatically
-         compressed, by including / excluding appropriate paths. -->
+         compressed and downscaled, by including / excluding appropriate paths. -->
 
     <include path="spells/*" recursive="True" />
     <include path="castles/*" recursive="True" />
@@ -94,12 +102,12 @@ with links to documentation for every attribute.</p>
     <exclude path="*.jpg" />
     <exclude path="spells/gui/*" />
     <exclude path="*/gui_hud.png" />
-  </auto_compressed_textures>
+  </auto_generated_textures>
 </properties>'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Textures inside folders mentioned in <code>&lt;auto_compressed_textures&gt;</code>
+<p>Textures inside folders mentioned in <code>&lt;auto_generated_textures&gt;</code>
 will have GPU-compressed alternative versions automatically generated.
 This allows to easily reduce the GPU texture memory usage,
 which is especially crucial on mobile devices. The compressed
@@ -108,9 +116,10 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
 (that can be used on the current device).
 
 <ol>
-  <li><p>Running <code>castle-engine auto-compress-textures</code> will generate
-    the GPU-compressed counterparts. See <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
-    They will be generated inside auto_compressed subdirectories
+  <li><p>Running <code>castle-engine auto-generate-textures</code> will generate
+    the GPU-compressed (and optionally scaled down) counterparts.
+    See <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
+    They will be generated inside the <code>auto_generated</code> subdirectories
     of your data files.
 
     <p>This process underneath may call various external tools:
@@ -179,6 +188,49 @@ subset of your data textures.
 Include / exclude work just like in <code>CastleEngineManifest.xml</code>, documented in
 <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
 We first include matching files, then exclude matching.
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you use the <code>&lt;scale&gt;</code> element in the <code>material_properties.xml</code> file,
+you can generate alternative downscaled versions of the textures.
+The <code>castle-engine auto-generate-textures</code> call with generate
+them, using a high-quality scaling algorithm.
+<!-- (for now: using the external
+<a href="http://www.imagemagick.org/">ImageMagick</a> tools).-->
+
+<p>These textures will be automatically used if you set the global
+<?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable in your code.
+
+<p>The attribute <code>smallest</code> of the <code>&lt;scale&gt;</code> element
+is interpreted analogous to <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable, so
+
+<ul>
+  <li><code>&lt;scale smallest="1" /&gt;</code> (default) means that no downscaling actually occurs,
+  <li><code>&lt;scale smallest="2" /&gt;</code> means that textures are scaled to 1/2 of their size,<!-- (for 2D textures, their area shrinks to 1/4),-->
+  <li><code>&lt;scale smallest="3" /&gt;</code> means that each size is scaled to 1/4 and so on.
+</ul>
+
+<p>The advantages of downscaling this way:
+
+<ul>
+  <li><p>For uncompressed textures, this downscaling is high-quality.
+
+    <p>Unlike the fast
+    scaling at run-time which is done by <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>.
+    Note that the runtime scaling can still be performed by
+    <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>,
+    if you set it.
+    The effects of
+    <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>
+    and
+    <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>
+    cummulate.
+
+  <li><p>For compressed textures, this is the only way to get downscaled texture
+    versions that can be chosen at runtime. We cannot downscale compressed textures
+    at runtime, so <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>
+    has no effect on compressed textures.
+</ul>
 
 <?php
 creating_data_footer();
