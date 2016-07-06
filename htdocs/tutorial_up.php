@@ -17,6 +17,11 @@ creature/player is facing.
       <li>When exporting from Blender (levels, creatures etc.), let it
         rotate the model, i.e. change +Z to +Y. This is actually the
         default for X3D exporter since some time.
+        You can verify that it happens by checking that in the exporter settings that:
+        <ul>
+          <li><i>Forward</i> = Z Forward</li>
+          <li><i>Up</i> = Y Up</li>
+        </ul>
 
       <li>Make sure your <code>Viewpoint</code> indicates +Y as up vector. This is
         actually the default VRML/X3D value.
@@ -31,7 +36,11 @@ creature/player is facing.
     <ol>
       <li>When exporting from Blender (levels, creatures etc.), always
         select to <i>not</i> rotate the model, i.e. keep Blender's original
-        coordinate system.
+        coordinate system. To do this, set in the exporter settings:
+        <ul>
+          <li><i>Forward</i> = Y Forward</li>
+          <li><i>Up</i> = Z Up</li>
+        </ul>
 
       <li>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
         generate a <code>Viewpoint</code> in your level that makes gravity working in Z
