@@ -101,7 +101,7 @@ number of frames per second that we managed to render.</b> Caveats:
 </ul>
 
 <p><b><i>"Frame time"</i> measures how much frames we
-would get, if we ignore the time spent outside <code>OnDraw</code> events.</b>
+would get, if we ignore the time spent outside <code>OnRender</code> events.</b>
 Use <i>"frame time"</i>... with caution. But it's often
 useful to compare it with <i>"real
 time"</i> (with <code>LimitFPS</code> feature turned off),
@@ -111,7 +111,7 @@ detection and creature AI). Caveats:
 
 <ul>
   <li><p>Modern GPUs work in parallel to the CPU. So <i>"how much time CPU spent
-    in OnDraw"</i> doesn't necessarily relate to <i>"how much time GPU spent on
+    in OnRender"</i> doesn't necessarily relate to <i>"how much time GPU spent on
     performing your drawing commands"</i>.
 </ul>
 
@@ -126,19 +126,19 @@ rendering faster, but you managed to do a useful work in the meantime.
 that <i>"frame time"</i> grows higher. Why? Because when the CPU is idle
 (which is often if <code>LimitFPS</code> is small), then GPU has a free time to
 finish rendering previous frame. So the GPU does the work for free,
-outside of <code>OnDraw</code> time, when your CPU is busy with something
+outside of <code>OnRender</code> time, when your CPU is busy with something
 else. OTOH when CPU works on producing new frames, then you have to
-wait inside <code>OnDraw</code> until previous frame finishes.
+wait inside <code>OnRender</code> until previous frame finishes.
 
 <p>In other words, improvements to <i>"frame time"</i> must be taken with a
-grain of salt. We spend less time in <code>OnDraw</code> event: this does not
+grain of salt. We spend less time in <code>OnRender</code> event: this does not
 necessarily mean that we really render faster.
 
 <p>Still, often <i>"frame time"</i> does reflect the speed of GPU rendering.
 
 <p>If you turn off <code>LimitFPS</code>, and compare <i>"frame time"</i> with
 <i>"real time"</i>,
-you can see how much time was spent outside <code>OnDraw</code>. Usually, <i>"frame
+you can see how much time was spent outside <code>OnRender</code>. Usually, <i>"frame
 time"</i> will be close to <i>"real time"</i>. If the gap is large, it may mean
 that you have a bottleneck in non-rendering code (like collision
 detection and creature AI).
@@ -294,15 +294,16 @@ for a wide range of scenes.
 
 <p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything referenced by your scenes to GPU.
 
-<p>Enable some (or all)
+<p>Enable some (or all) of these flags to get extensive information in the log about all the loading that is happening:
 
 <ul>
   <li><code>LogTextureLoading</code>
   <li><code>LogAllLoading</code>
   <li><code>TextureMemoryProfiler.Enabled</code>
+  <li><code>LogRenderer</code> (from <code>CastleRenderer</code> unit)
 </ul>
 
-<p>to get extensive information in the log file about all the loading that is happening. This is usually <i>a lot</i> of information, so you probably don't want to see it always.
+<p>Beware: This is usually <i>a lot</i> of information, so you probably don't want to see it always. Dumping this information to the log will often cause a <b>tremendous slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
 <?php echo $toc->html_section(); ?>
 
