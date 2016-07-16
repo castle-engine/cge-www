@@ -95,7 +95,10 @@ including the sources for many example programs and engine tools.
     <ol>
       <li>First of all, we advice using our
         <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-        to compile and package your games.
+        to compile and package your games. The build tool reads the project
+        configuration from the <code>CastleEngineManifest.xml</code> file.
+        <!-- First compile the build tool itself (<code>./tools/build-tool/castle-engine_compile.sh</code>), -->
+        <!-- move  -->
       <li>Other option is to compile the engine
         units by executing <code>make</code> inside the
         <code>castle_game_engine/</code> directory
