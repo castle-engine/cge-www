@@ -1,7 +1,17 @@
 <?php
 require_once 'castle_engine_functions.php';
 tutorial_header('Persistent data (user preferences, savegames)');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Storing user preferences locally (UserConfig)', 'user_config'),
+    new TocItem('Storing user preferences in the cloud', 'cloud'),
+  )
+);
 ?>
+
+<?php echo $toc->html_toc(); ?>
+<?php echo $toc->html_section(); ?>
 
 <p>To manage persistent data, like user preferences
 or a simple <i>save game</i> values,
@@ -106,6 +116,47 @@ the
 <?php api_link('TCastleConfig.AddLoadListener', 'CastleXMLConfig.TCastleConfig.html#AddLoadListener'); ?>,
 <?php api_link('TCastleConfig.AddSaveListener', 'CastleXMLConfig.TCastleConfig.html#AddSaveListener'); ?>
  mechanism. This sometimes allows to decentralize your code better.
+
+<?php echo $toc->html_section(); ?>
+
+<p>On Android, our engine allows to easily upload and download
+the savegames using the <a href="https://developers.google.com/games/services/common/concepts/savedgames">Google Play Games "Saved Games"</a>
+feature. To use this feature:
+
+<ol>
+  <li><p>Turn on the <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine#google_play_games">Google Play Games integration</a>
+    for your project.
+
+  <li><p>Create and initialize the
+    <?php api_link('TGooglePlayGames', 'CastleGooglePlayGames.TGooglePlayGames.html'); ?>
+    instance in your code. Be sure to pass parameter <code>SaveGames</code>
+    as <code>true</code> to the <code>TGooglePlayGames.Initialize</code>
+    call.
+
+  <li><p>Connect player to the Google Play Games at runtime,
+    using <?php api_link('TGooglePlayGames.RequestSignedIn', 'CastleGooglePlayGames.TGooglePlayGames.html#RequestSignedIn'); ?> method,
+    and / or passing <code>AutoStartSignInFlow</code> as <code>true</code>
+    to the <code>TGooglePlayGames.Initialize</code> call.
+
+    <p>You can wait for the sign-in to happen by the
+    <?php api_link('TGooglePlayGames.OnSignedInChanged', 'CastleGooglePlayGames.TGooglePlayGames.html#OnSignedInChanged'); ?>
+    event, or just observe the
+    <?php api_link('TGooglePlayGames.SignedIn', 'CastleGooglePlayGames.TGooglePlayGames.html#SignedIn'); ?>
+    property.
+
+  <li><p>Then load and save games using the
+    <?php api_link('TGooglePlayGames.SaveGameLoad', 'CastleGooglePlayGames.TGooglePlayGames.html#SaveGameLoad'); ?> and
+    <?php api_link('TGooglePlayGames.SaveGameSave', 'CastleGooglePlayGames.TGooglePlayGames.html#SaveGameSave'); ?>
+    methods. They represent the "savegame contents" as a simple string,
+    and you can use the <code>UserConfig.SaveToString</code>
+    and <code>UserConfig.LoadFromString</code> methods
+    to trivially upload / download the <code>UserConfig</code>
+    contents to the cloud!
+
+  <li><p>If you want to allow user to choose a "slot" where to save the game,
+    or from which to load the game, you can use a ready dialog by calling
+    <?php api_link('TGooglePlayGames.ShowSaveGames', 'CastleGooglePlayGames.TGooglePlayGames.html#ShowSaveGames'); ?>.
+</ol>
 
 <?php
 tutorial_footer();
