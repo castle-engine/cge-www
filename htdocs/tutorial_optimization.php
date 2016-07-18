@@ -145,11 +145,15 @@ detection and creature AI).
 
 <?php echo $toc->html_section(); ?>
 
-<p>The less vertexes and faces you can have, the better.
-Also, the simpler models (no shadows etc.), the better. That's fairly
-obvious. Exactly what matters most depends on your GPU a lot &mdash;
-modern GPUs can consume a huge number of vertexes very fast, as long
-as they are provided to them in a proper way.</p>
+<p>First of all, watch the number of vertexes and faces of the models you load.
+Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ menu item <i>Help -&gt; Scene Information</i> for this.
+
+<p>Graphic effects dealing with <i>dynamic and detailed lighting</i>,
+like <i>shadows</i> or <i>bump mapping</i>, have a cost.
+So use them only if necessary. In case of static scenes,
+try to "bake" such lighting effects to regular textures (use e.g. Blender
+<i>Bake</i> functionality), instead of activating a costly runtime effect.
 
 <?php echo $toc->html_section(); ?>
 
@@ -172,7 +176,7 @@ It avoids useless drawing of the other side of the faces.
     Or you can do it at runtime, by <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>.
     Both of these approaches have their strengths, and can be combined.
   <li>Use texture atlases
-    (try to reuse the whole X3D <code>Appearance</code> in fact).
+    (try to reuse the whole X3D <code>Appearance</code> across many X3D shapes, if possible).
     This avoids texture switching when rendering, so the scene renders faster.
     When exporting from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>,
     be sure to use atlases.
@@ -204,9 +208,14 @@ but in some special cases may be avoided:
   <li><p>If your model has animations but is often not visible (outside
     of view frustum), then consider using <code>Scene.AnimateOnlyWhenVisible := true</code>
     (see <?php api_link('TCastleSceneCore.AnimateOnlyWhenVisible',
-    'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>.
+    'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>).
 
-  <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. In particular for games with complicated <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> animations or other "deep transformations hierarchy".
+  <li><p>If the model is small, and not updating it's animations every frame will not be noticeable, then consider setting <code>Scene.AnimateSkipTicks</code>
+    to something larger than 0 (try 1 or 2).
+    (see <?php api_link('TCastleSceneCore.AnimateSkipTicks',
+    'CastleSceneCore.TCastleSceneCore.html#AnimateSkipTicks'); ?>).
+
+  <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
 
@@ -215,8 +224,11 @@ but in some special cases may be avoided:
 
 <?php echo $toc->html_section(); ?>
 
+<p>Modern GPUs can "consume" a huge number of vertexes very fast,
+as long as they are provided to them in a single "batch" or "draw call".</p>
+
 <p>In our engine, the "shape" is the unit of information we provide to
-GPU. It is a VRML/X3D shape. In most cases, it also corresponds to the
+GPU. It is simply a VRML/X3D shape. In most cases, it also corresponds to the
 3D object you design in your 3D modeler, e.g. Blender 3D object in
 simple cases is exported to a single VRML/X3D shape (although it may
 be split into a couple of shapes if you use different
@@ -256,7 +268,7 @@ to have hundreds or thousands of triangles in a single shape.
 
     <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
 
-  <li><p>To make speed really better, you can often combine many <code>TCastleScene</code> instances into one. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>. This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; octrees (used for collision routines and frustum culling) will work Ok. Right now, we have an octree only inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
+  <li><p>To improve the speed, you can often combine many <code>TCastleScene</code> instances into one. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>. This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; octrees (used for collision routines and frustum culling) will work Ok. Right now, we have an octree only inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
 </ul>
 
 <?php echo $toc->html_section(); ?>
