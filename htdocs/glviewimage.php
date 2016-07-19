@@ -46,15 +46,20 @@ a very limited image editor.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><code>glViewImage</code> was originally developed to test and demonstrate
+<p><code>glViewImage</code> was originally developed to demonstrate
 the power of image handling inside our <?php echo a_href_page(
-'Castle Game Engine', 'engine'); ?> , but it became quite usable
-utility on it's own. Viewed image can be quickly scaled and moved,
-you can browse images list, you can test how image looks when tiled
-(to test is it good for a texture or desktop wallpaper),
-you can see how alpha channel of the image looks on various background colors.
-The ability to load and save even some uncommon image formats (DDS, RGBE)
-is also very useful.</p>
+'Castle Game Engine', 'engine'); ?>. It became quite useful utility on it's own, with the following features:
+
+<ul>
+  <li><b>Load and save many image formats</b>, including some "exotic" ones: <b>DDS, RGBE</b>.
+  <li>Easily <b>scale and move</b> around the image (use keys or mouse dragging and mouse wheel).
+  <li><b>Browse</b> all the images within a single directory (use keys <code>N</code>, <code>P</code> for next, previous).
+  <li>Test how image looks when <b>tiled</b> (to test is it good for a texture or desktop wallpaper).
+  <li>See how <b>alpha channel</b> of the image looks (menu <i>View -&gt; Use Image Alpha Channel</i>, <i>View -&gt; Background Color</i>),
+  <li>Edit image to <b>mirror, rotate, resize, make grayscale</b> and so on.
+  <li>Perform <b>alpha bleeding</b> (fixes the artifacts when scaling textures with transparent parts).
+  <li>You can browse all <b>subimages (like mipmaps, or layers of 3D textures)</b> within a composite image formats (like DDS).
+</ul>
 
 <p>Many image formats are supported:
 
