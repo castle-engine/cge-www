@@ -574,13 +574,12 @@ core types (numbers, booleans) to string may be done by the
 <p><?php func('writeln', 'writeln(my_string)'); ?> outputs a string.
 How exactly it is displayed depends on the application:
 normal 3D browsers (like <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
-display it on the console (standard error output),
+display it on the console (standard error output, if <code>--debug-log</code> is used),
 games (like <?php echo a_href_page('The Castle', 'castle'); ?>)
 display it as in-game notification.
-(As a developer, you can configure how this is handled,
+As a developer, you can configure how this is handled,
 see <code>OnScriptMessage</code> in <code>CastleScript</code> unit.
-By default, it results in <code>OnWarning</code>, that by default is simply ignored.
-Although my programs usually take care to do something more useful with it.)</p>
+By default, it results in <code>CastleLog.WritelnLog</code>, see the tutorial about logging.</p>
 
 <p>Most array functions can also treat the string as an array of characters.
 We do not have a special type for a "character" &mdash; we just use a string with length 1.
