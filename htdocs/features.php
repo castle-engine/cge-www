@@ -68,13 +68,17 @@ echo castle_thumbs(array(
 
   <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
-    (png, jpg, ppm, bmp, just for starters), included is also support for
+    (<b>PNG, JPG, PPM, BMP, and much more</b>), included is also support for
     <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
     RGBE format (Radiance HDR format).
-    See <?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and units
-    <?php api_link('CastleImages', 'CastleImages.html'); ?>,
-    <?php api_link('CastleGLImages', 'CastleGLImages.html'); ?>,
-    <?php api_link('CastleDDS', 'CastleDDS.html'); ?>.
+    See:
+    <ul>
+      <li><?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and
+      <li><?php api_link('CastleImages', 'CastleImages.html'); ?> (reading, writing, processing images on CPU),
+      <li><?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> (rendering and other processing of images on GPU).
+    </ul>
+    <!--,
+    < ?php api_link('CastleDDS', 'CastleDDS.html'); ? > --!>
     </li>
 
   <li>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
