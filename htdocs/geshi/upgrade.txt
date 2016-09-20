@@ -1,0 +1,6 @@
+git clone https://github.com/michaliskambi/geshi-1.0
+
+(fork of https://github.com/GeSHi/geshi-1.0 to add vrmlx3d highlighter)
+
+# copy from src only the geshi/ and geshi.php
+# (do NOT copy contrib/ and docs/, following http://qbnz.com/highlighter/geshi-doc.html#installing-geshi )
