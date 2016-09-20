@@ -184,7 +184,8 @@ end;'); ?>
 
   <li><p>For <b>simple screen fade effects</b>, you have procedures inside
     <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
-    like <?php api_link('GLFadeRectangle', 'CastleGLUtils.html#GLFadeRectangle'); ?>.
+    like <?php api_link('GLFadeRectangleDark', 'CastleGLUtils.html#GLFadeRectangleDark'); ?>
+    and <?php api_link('GLFadeRectangleLight', 'CastleGLUtils.html#GLFadeRectangleLight'); ?>.
     This allows you to draw
     a rectangle representing fade out (when player is in pain).
     And <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
@@ -199,13 +200,17 @@ end;'); ?>
 
 <?php echo pascal_highlight(
 'if Player.Dead then
-  GLFadeRectangle(ContainerRect, Red, 1.0) else
-  GLFadeRectangle(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
+  GLFadeRectangleDark(ContainerRect, Red, 1.0) else
+  GLFadeRectangleDark(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
 
     <p>Note that <code>Player.FadeOutIntensity</code> will be 0 when there is no pain, which cooperates
     nicely with <code>GLFadeRectangle</code> definition that will do nothing when 4th parameter is 0.
     That is why we carelessly always call <code>GLFadeRectangle</code> &mdash; when player is not dead,
     and is not in pain (<code>Player.FadeOutIntensity</code> = 0) then nothing will actually happen.
+
+    <p>There is also a full-featured UI control that draws an effect with
+    blending (possibly modulated by an image):
+    <?php api_link('TCastleFlashEffect', 'CastleFlashEffect.TCastleFlashEffect.html'); ?>.
 
   <li><p>Use the <code>Theme</code> global variable
     (instance of <?php api_link('TCastleTheme', 'CastleControls.TCastleTheme.html'); ?>)
