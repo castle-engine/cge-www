@@ -54,20 +54,33 @@ using our effects.</p>
 <p>You can open the example models with any of our engine tools, like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
 
+<p>I'm incredibly happy to note that we have <i>two</i> independent
+implementations of this concept now:
+
+<ol>
+  <li>Inside
+    <?php echo a_href_page('Castle Game Engine', 'engine'); ?> and
+    <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+    By Michalis Kamburelis, the author of this paper.
+  <li>Inside <a href="http://freewrl.sourceforge.net/">FreeWRL</a>,
+    another excellent VRML / X3D browser.
+    By Doug Sanden.
+</ol>
+
 <?php echo $toc->html_section(); ?>
 
 <ol>
-  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>. This is my Ph.D. thesis, enjoy :)</li>
+  <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>. This is my Ph.D. thesis, enjoy :)
+    <br>(Note that the Ph.D. thesis was not yet formally "defended". Mostly due to my lack of time to finalize it...)
+  </li>
   <li><a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>. Exactly the same content as above HTML version, just in PDF &mdash; probably much better for printing.</li>
   <li><?php echo current_www_a_href_size('Slides from my presentation (on TPCG11) about the compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
   <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
   <li>My paper about this idea was also accepted to the <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>. I don't have permission to redistribute it here publicly, but basically it's a shortcut of my Ph.D. thesis. Anyway, you can buy it from <a href="http://diglib.eg.org/EG/DL/LocalChapterEvents/TPCG/TPCG11">EG digital library (along with other papers from TPCG11 proceedings)</a>.</li>
-  <li>Of course, you can also get the sources of above documents:
+  <li>You can also get the sources of above documents from the <a href="https://github.com/castle-engine/cge-documentation/">GitHub repository on https://github.com/castle-engine/cge-documentation/</a>.
     <ul>
-      <li>My Ph.D. thesis sources (in DocBook) can be downloaded from SVN URL:<br/>
-        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/documentation/compositing_shaders_doc/</code></li>
-      <li>Slides and conference paper (in TeX) are alongside, on SVN URL:<br/>
-        <code>http://svn.code.sf.net/p/castle-engine/code/trunk/documentation/compositing_shaders/</code></li>
+      <li>The Ph.D. thesis sources (in DocBook) is inside <code>compositing_shaders_doc/</code> subdirectory.</li>
+      <li>Slides and conference paper (in TeX) are alongside, in the <code>compositing_shaders/</code> subdirectory.</li>
     </ul>
   </li>
 </ol>
