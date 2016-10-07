@@ -158,7 +158,7 @@ by <?php api_link('TSound.Release', 'CastleSoundAllocator.TSound.html#Release');
 <h2>Predefined sounds</h2>
 
 <p>Some engine components already define some sound names. To make them
-defined, just use the appropriate names in your sounds XML file described above.
+played, just use the appropriate names in your sounds XML file described above.
 They will be automatically found and played by engine components.
 
 <p>See <i>"Common sounds"</i> section in
