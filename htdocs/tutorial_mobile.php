@@ -102,8 +102,8 @@ var
 
 implementation
 
-uses SysUtils, CastleWindow, CastleScene, CastleControls,
-  CastleFilesUtils, CastleSceneCore, CastleKeysMouse;
+uses SysUtils, CastleWindow, CastleScene, CastleControls, CastleLog,
+  CastleFilesUtils, CastleSceneCore, CastleKeysMouse, CastleColors;
 
 var
   ExampleImage: TCastleImageControl;
@@ -134,7 +134,7 @@ end;
 procedure WindowRender(Container: TUIContainer);
 begin
   // ... custom rendering code
-  // UIFont.Print(10, 10, Yellow, Format(\'FPS: %f\', [Container.Fps.RealTime]));
+  UIFont.Print(10, 10, Yellow, Format(\'FPS: %f\', [Container.Fps.RealTime]));
 end;
 
 procedure WindowUpdate(Container: TUIContainer);
@@ -157,6 +157,8 @@ initialization
     It is useful to make sure it is correct (as early as possible)
     as our log routines use it. }
   OnGetApplicationName := @MyGetApplicationName;
+
+  InitializeLog;
 
   { initialize Application callbacks }
   Application.OnInitialize := @ApplicationInitialize;
