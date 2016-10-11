@@ -71,7 +71,7 @@ with links to documentation for every attribute.</p>
     [[CastleMaterialProperties.TMaterialProperty.html#NormalMap|normal_map]]="test_normal_map.png"
     [[CastleMaterialProperties.TMaterialProperty.html#AlphaChannel|alpha_channel]]="SIMPLE_YES_NO" />
 
-  <!-- And more <property> elements... -->
+  <!-- You can use as many <property> elements as you like... -->
 
   <!-- Automatically compressed and downscaled texture rules are defined below.
        See the description below. -->
@@ -103,6 +103,14 @@ with links to documentation for every attribute.</p>
     <exclude path="spells/gui/*" />
     <exclude path="*/gui_hud.png" />
   </auto_generated_textures>
+
+  <!-- You can use as many <auto_generated_textures> elements as you like,
+       to specify different properties (compression, downscaling) for different
+       texture groups.
+
+       Just make sure that no image falls into more than one <auto_generated_textures>
+       group (use include/exclude to make the groups disjoint).
+       You will get a clean warning in case it happens, so don\'t worry:) -->
 </properties>'); ?>
 
 <?php echo $toc->html_section(); ?>
@@ -191,8 +199,8 @@ We first include matching files, then exclude matching.
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you use the <code>&lt;scale&gt;</code> element in the <code>material_properties.xml</code> file,
-you can generate alternative downscaled versions of the textures.
+<p>If you use the <code>&lt;scale&gt;</code> element in the <code>&lt;auto_generated_textures&gt;</code> group,
+we will generate alternative downscaled versions of the textures.
 The <code>castle-engine auto-generate-textures</code> call with generate
 them, using a high-quality scaling algorithm.
 <!-- (for now: using the external
