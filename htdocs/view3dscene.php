@@ -909,45 +909,6 @@ is only useful for converting). More precisely:
     Editing your scene (or creating a VRML/X3D file that includes the original
     scene, by <code>Inline</code> node, and only adds some customization)
     is much more flexible.
-
-  <dt>--detail-quadric-slices &lt;integer&gt;<br>
-      --detail-quadric-stacks &lt;integer&gt;<br>
-      --detail-rect-divisions &lt;integer&gt;
-  <dd><p>
-    These options control triangulating. Two <code>--detail-quadric-xxx</code>
-    options control triangulating of spheres, cones and cylinders:
-    how many <i>slices</i> (like slices of a pizza)
-    and how many <i>stacks</i> (like stacks of a tower) to create.
-    The 3rd option, <code>--detail-rect-divisions</code>, says how
-    we triangulate faces of cubes. It's best to test how your models
-    look in <i>wireframe</i> mode to see how these options work.
-
-    <p>Note that my programs do two different variants of triangulation,
-    and they automatically decide which variant to use in each case:
-
-    <ol>
-      <li>Normal triangulation, that is intended to improve the
-        approximation of quadrics as triangle meshes.
-        This is used for collision detection and for ray-tracer.
-
-      <li>The so-called <i>over-triangulation</i> (it's my term,
-        used in various places in my code and documentation and
-        printed messages), that is intended to improve the effect
-        of Gouraud shading. This is used when rendering models with OpenGL.
-
-        <p>In this variant we do some more triangulation than in
-        "normal" triangulation. E.g. in normal triangulation
-        we don't divide cones and cylinders into stacks,
-        and we don't divide cube faces (because this doesn't give
-        any better approximation of an object). But when
-        <i>over-triangulating</i>, we do such dividing, because
-        it improves how objects look with OpenGL shading.
-    </ol>
-
-    <p><i>Deprecated:</i> instead of using this option,
-    consider adding/editing <?php echo a_href_page_hashlink(
-    'a <code>KambiTriangulation</code> node in your scene',
-    'x3d_extensions', 'section_ext_kambi_triangulation'); ?>.
 </dl>
 
 <?php section(); ?>

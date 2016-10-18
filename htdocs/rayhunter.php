@@ -476,22 +476,6 @@ and Monte Carlo path tracing.
     <p>Argument 0 (the default) for this options means that
     rendering should proceed normally, from the beginning of the image.
 
-  <dt><span class="command_line_option">--detail-quadric-slices &lt;integer&gt;</span><br>
-      <span class="command_line_option">--detail-quadric-stacks &lt;integer&gt;</span><br>
-      <span class="command_line_option">--detail-rect-divisions &lt;integer&gt;</span></dt>
-
-  <dd><p>These options control the triangulation.
-    view3dscene has exactly the same options, and they are documented
-    in detail in <?php echo a_href_page_hashlink(
-    "view3dscene <code>--detail-*</code> options documentation",
-    "view3dscene", "command_line_options_detail"); ?>.
-
-    <p>Notes specific to <code>rayhunter</code>: note that <code>rayhunter</code>
-    never does so-called <i>over-triangulating</i>.
-    This also means that option <code>--detail-rect-divisions</code>
-    is useless. It was added here only for completeness.
-  </dd>
-
 <?php /*
   <dt><span class="command_line_option">--octree-max-depth &lt;integer&gt;</span><br>
       <span class="command_line_option">--octree-leaf-capacity &lt;integer&gt;</span></dt>

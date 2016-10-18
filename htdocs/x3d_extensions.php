@@ -31,7 +31,6 @@ $toc = new TableOfContents(array(
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <code>Fog</code> and <code>LocalFog</code> nodes)', 'ext_fog_volumetric', 1),
   new TocItem('Inline nodes allow to include 3D models in other handled formats (Collada, 3DS, MD3, Wavefront OBJ, others) and any VRML/X3D version', 'ext_inline_for_all', 1),
-  new TocItem('Specify triangulation (node <code>KambiTriangulation</code>)', 'ext_kambi_triangulation', 1),
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
   new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient', 1),
   new TocItem('Mirror material (field <code>mirror</code> for <code>Material</code> node)', 'ext_material_mirror', 1),
@@ -78,7 +77,7 @@ $toc = new TableOfContents(array(
 
     <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <code>EXTERNPROTO</code> mechanism whenever possible, so that even demos of our extensions (mostly inside <code>castle_extensions/</code> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
 
-    <p>Our extensions are identified by URN like "<code>urn:castle-engine.sourceforge.net:node:KambiTriangulation</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiTriangulation</code>" is recognized.</p>
+    <p>Our extensions are identified by URN like "<code>urn:castle-engine.sourceforge.net:node:KambiOctreeProperties</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiOctreeProperties</code>" is recognized.</p>
   </li>
 
   <li><p><a href="http://wdune.ourproject.org/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
@@ -818,79 +817,6 @@ end;
     <p>This also works for jumping to scenes by clicking on an
     <code>Anchor</code> node &mdash; you can make an <code>Anchor</code> to any
     VRML/X3D version, or a Collada, 3DS, etc. file.
-
-<?php echo $toc->html_section(); ?>
-
-    <?php
-    echo castle_thumbs(array(
-      array('filename' => "kambi_triangulation_demo.png", 'titlealt' => 'KambiTriangulation demo screenshot'),
-    ));
-    ?>
-
-    <p>New node:
-
-    <?php echo node_begin("KambiTriangulation : X3DChildNode");
-      $node_format_fd_type_pad=8;
-      $node_format_fd_name_pad=15;
-      $node_format_fd_def_pad=5;
-      echo
-      node_field('SFInt32', '[in,out]', "quadricSlices", "-1", "{-1} + [3, infinity)") .
-      node_field('SFInt32', '[in,out]', "quadricStacks", "-1", "{-1} + [2, infinity)") .
-      node_field('SFInt32', '[in,out]', "rectDivisions", "-1", "[-1, infinity)") .
-      node_end();
-    ?>
-
-    <p>This node affects rendering of subsequent <code>Sphere</code>,
-    <code>Cylinder</code>, <code>Cone</code> and <code>Cube</code> nodes.
-    For VRML  1.0 you can delimit the effect of this node by
-    using <code>Separator</code>
-    node, just like with other VRML "state changing" nodes.
-    For VRML 2.0 every grouping node (like <code>Group</code>)
-    always delimits this, so it only affects nodes within
-    it's parent grouping node (like many other VRML 2.0 nodes,
-    e.g. <code>DirectionalLight</code> or sensors).
-
-    <p>When rendering sphere, cylinder, cone or cube we
-    will triangulate (divide the surfaces into triangles)
-    with settings specified in last <code>KambiTriangulation</code> node.
-    <code>quadricSlices</code> divides like pizza slices,
-    <code>quadricStacks</code> divides like tower stacks,
-    <code>rectDivisions</code> divides rectangular surfaces
-    of a <code>Cube</code>. More precise description of this triangulation
-    is given at <?php echo a_href_page_hashlink(
-    'description of <code>--detail-...</code> options in view3dscene documentation',
-    'view3dscene', 'command_line_options_detail') ?>.
-    Comments given there about so-called <i>over-triangulating</i>
-    apply also here.
-
-    <p>Special value -1 for each of these fields means
-    that the program can use it's default value.
-    In case of <?php echo a_href_page("view3dscene", "view3dscene") ?> and
-    <?php echo a_href_page("rayhunter", "rayhunter") ?>
-    they will use values specified by command-line options
-    <code>--detail-...</code> (or just compiled-in
-    values (see source code) if you didn't specify <code>--detail-...</code>
-    options).
-
-    <p>Note that this node gives only a <i>hints</i> to the renderer.
-    Various algorithms and programs may realize triangulation differently,
-    and then hints given by this node may be interpreted somewhat
-    differently or just ignored.
-    <!-- np. program może ustalać jakość triangulacji w zależności
-    od odległości obiektu od patrzącego i wtedy zaimplementowanie
-    obsługi tego węzła wiązałoby się z dodatkowymi komplikacjami -->
-    That said, this node is useful when you're designing some
-    VRML models and you want to fine-tune the compromise
-    between OpenGL rendering speed and quality of some objects.
-    Generally, triangulate more if the object is large or you
-    want to see light effects (like light spot) looking good.
-    If the object is small you can triangulate less, to get
-    better rendering time.
-
-    <p>Test VRML file:
-    see <?php echo a_href_page('our VRML/X3D demo models',
-    'demo_models'); ?>, file
-    <code>vrml_2/castle_extensions/kambi_triangulation.wrl</code>.
 
 <?php echo $toc->html_section(); ?>
 

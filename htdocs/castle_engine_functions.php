@@ -197,7 +197,11 @@ $castle_sitemap = array(
               'x3d_implementation_shape_extensions' => array('title' => 'Extensions'),
             ),
           ),
-          'x3d_implementation_geometry3d'           => array('title' => 'Geometry3D'                      ),
+          'x3d_implementation_geometry3d'           => array('title' => 'Geometry3D',
+            'sub' => array(
+              'x3d_implementation_geometry3d_extensions' => array('title' => 'Extensions'),
+            ),
+          ),
           'x3d_implementation_geometry2d'           => array('title' => 'Geometry2D'                      ),
           'x3d_implementation_text'                 => array('title' => 'Text',
             'sub' => array(
