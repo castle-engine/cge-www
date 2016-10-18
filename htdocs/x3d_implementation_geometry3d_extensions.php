@@ -17,7 +17,7 @@
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => "kambi_triangulation_demo.png", 'titlealt' => 'KambiTriangulation demo screenshot'),
+  array('filename' => "kambi_triangulation_demo.png", 'titlealt' => 'Triangulation demo screenshot'),
 ));
 ?>
 
