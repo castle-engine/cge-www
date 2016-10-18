@@ -521,8 +521,7 @@ and Monte Carlo path tracing.
 <ul>
   <li><p><i>Only for <code>classic</code> ray-tracer :</i><br>
     Implemented light model is as close as possible to the
-    <a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/concepts.html#4.14">
-    light model outlined in VRML 97 specification</a>.
+    <a href="<?php echo x3d_spec_latest_url('lighting'); ?>">light model outlined in VRML 2.0 / X3D specification</a>.
     Some modifications were needed because I have recursive
     ray-tracing (while VRML 97 specifies only local
     light model). Also VRML 1.0 models require different treating

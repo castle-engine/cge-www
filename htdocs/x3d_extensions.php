@@ -125,7 +125,7 @@ Some other extensions may be able supported for other reasons:
 </table>
 </div>
 
-<p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/x3d/specifications/vrml/">you can find the official VRML / X3D specifications here</a>.</p>
+<p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/standards">you can find the official VRML / X3D specifications here</a>.</p>
 
 <p><b>Examples</b>: VRML/X3D models that use these extensions may be found
 in <?php echo a_href_page("our VRML/X3D demo models",
@@ -166,7 +166,7 @@ others) are full of demos of our extensions.</p>
   <li><code>WIREFFRAME</code>: render as a wireframe.
     The rendering model matches the <code>IndexedLineSet</code> specification,
     in particular: the shape is not lit.
-    <b>For now this is only honored by the <code>Box</code> node.
+    <b>For now this is only honored by the <code>Box</code>, <code>Sphere</code> nodes.
     It will be extended to all geometry nodes when necessary in the future.</b>
   </li>
 </ul>
@@ -707,10 +707,10 @@ end;
     are available (and behave exactly like they should) also for VRML 1.0
     authors:
     <ul>
-      <li><a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#Background">Background</a>
-      <li><a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#Fog">Fog</a>
-      <li><a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#WorldInfo">WorldInfo</a>
-      <li><a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#NavigationInfo">NavigationInfo</a>
+      <li><a href="<?php echo x3d_spec_latest_url('enveffects'); ?>#Background">Background</a>
+      <li><a href="<?php echo x3d_spec_latest_url('enveffects'); ?>#Fog">Fog</a>
+      <li><a href="<?php echo x3d_spec_latest_url('core'); ?>#WorldInfo">WorldInfo</a>
+      <li><a href="<?php echo x3d_spec_latest_url('navigation'); ?>#NavigationInfo">NavigationInfo</a>
     </ul>
 
     <p>If you're missing an orthographic viewpoint in VRML 2.0,

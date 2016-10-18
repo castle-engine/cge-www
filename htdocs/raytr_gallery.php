@@ -126,7 +126,7 @@ You can <?php echo current_www_a_href_size("download this model",
 
 Main feature of this rendering is to demonstrate that
  <?php echo a_href_page("rayhunter", "rayhunter"); ?>
- handles <a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#Fog">VRML Fog node</a>.
+ handles X3D <code>Fog</code> node.
 
 <?php echo castle_thumbs(array(
   array('filename' => 'forest.png', 'titlealt' => ''),

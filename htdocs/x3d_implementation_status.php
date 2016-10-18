@@ -130,8 +130,7 @@ on <?php echo a_href_page('VRML/X3D extensions', 'x3d_extensions'); ?>.
 <p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
 
 <p><i>No limits</i>:
-<a href="http://web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/conformance.html#7.3.3">
-VRML 97 and X3D specifications define various limits</a>
+VRML 97 and X3D specifications define various limits
 that must be satisfied by conforming browsers.
 For example, only 500 children per Group
 need to be supported, only SFString with 30,000 characters has to be

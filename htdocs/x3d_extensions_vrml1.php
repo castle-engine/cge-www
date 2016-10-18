@@ -38,8 +38,8 @@ $toc = new TableOfContents(array(
 
     Lights that have a position, i.e. <code>PointLight</code> and <code>SpotLight</code>
     nodes, have the field <code>attenuation</code>. The meaning of this
-    field is <a href="http://www.web3d.org/x3d/specifications/vrml/ISO-IEC-14772-VRML97/part1/nodesRef.html#PointLight">
-    exactly the same as in VRML 97</a>.
+    field is <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/lighting.html#PointLight">
+    exactly the same as in VRML 2.0 / X3D</a>.
     I allow this for VRML 1.0 because this is really useful,
     and because the default value of this field (1,0,0)
     assures that standard VRML 1.0 files are interpreted correctly.
