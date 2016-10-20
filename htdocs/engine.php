@@ -42,12 +42,15 @@
 3D/2D game engine for modern ObjectPascal.
 
 <ul>
-  <li>We support of lot of 3D and 2D formats
+  <li>A lot of 3D and 2D formats
     (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>, Collada, Wavefront OBJ, MD3,
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>...),
-  <li>we're portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...),
-  <li>we provide optimized rendering with a lot of graphic effects,
-  <li>and we have a great API for managing your game world. <!-- (including high-level classes like ready-to-use creature AI).-->
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>...).
+  <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
+  <li>Optimized rendering with a lot of graphic effects.
+  <li>Build and edit your scene graph (X3D) at runtime.
+    <!--Load and save images and X3D graph as needed.-->
+    You can create various processing and visualization tools!
+  <li>Many optional components, like a comfortable API for typical 3D games with creatures and items.
 </ul>
 
 <p>Contents of this page:
