@@ -71,13 +71,12 @@ downloaded below.</p>
 
     <p><a href="http://www.freepascal.org/">FPC (Free Pascal Compiler)</a>
     is required for compilation, <?php echo a_href_page_hashlink('see
-    information about minimal FPC version', 'engine', 'section_fpc_ver'); ?>
+    information about minimal FPC version', 'documentation', 'section_fpc_ver'); ?>
     (in short: use latest stable FPC version).
 */ ?>
 
   <li><p><b>Install required libraries</b>. See
-    <?php echo a_href_page_hashlink('engine download page', 'engine',
-    'section_download_src'); ?> for the list of libraries we use,
+    <?php echo a_href_page_hashlink('engine documentation', 'documentation'); ?> for the list of libraries we use,
     and see download page of each particular program.
 
   <li><p><b>Optionally install required program data</b>. In most cases you don't

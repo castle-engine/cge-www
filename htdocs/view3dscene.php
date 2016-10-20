@@ -31,8 +31,15 @@
   ));
 ?>
 
-<p>view3dscene is a VRML / X3D browser, and a viewer for other 3D model
-formats.</p>
+<p><b>view3dscene</b> is a VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ...).</p>
+
+<p>Explore the virtual world with collisions, gravity, animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert models to VRML/X3D.</p>
+
+<?php echo_standard_program_download('view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true); ?>
+
+<p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
+
+<p>Documentation:</p>
 
 <?php
   $toc = new TableOfContents(
@@ -53,9 +60,6 @@ formats.</p>
 ?>
 
 <?php section(false); ?>
-
-<?php echo_standard_program_download('view3dscene', 'view3dscene',
-  VERSION_VIEW3DSCENE, true); ?>
 
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <code>view3dscene</code> program inside.

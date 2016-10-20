@@ -94,7 +94,7 @@ define('FPC_CFG_DOCS', 'see <a href="http://www.freepascal.org/docs-html/user/us
 */
 global $castle_sitemap;
 $castle_sitemap = array(
-  MAIN_PAGE_BASENAME       => array('title' => 'Intro',
+  MAIN_PAGE_BASENAME       => array('title' => 'Download',
     /* 'sub' and 'sidebar' of this will be calculated by news.php page,
        since it may be time-consuming (requires reading large $news table). */
   ),
@@ -104,9 +104,9 @@ $castle_sitemap = array(
        since it may be time-consuming (requires reading large $news table). */
   ),
 
-  'features' => array('title' => 'Features', 'title-for-header-menu' => 'Features'),
+  'features' => array('title' => 'Features'),
 
-  'engine' => array('hint' => 'Download and documentation for developers', 'title' => 'Download and Documentation', 'title-for-header-menu' => 'Download and Documentation',
+  'documentation' => array('title' => 'Documentation',
     'sidebar' => true,
     'sub' => array(
       /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
@@ -302,9 +302,9 @@ function _castle_bootstrap()
   kambi_bootstrap();
   global $castle_sitemap;
   castle_sitemap_book_correct('tutorial',
-    $castle_sitemap['engine']['sub']['tutorial_intro']['sub']);
+    $castle_sitemap['documentation']['sub']['tutorial_intro']['sub']);
   castle_sitemap_book_correct('creating_data',
-    $castle_sitemap['engine']['sub']['creating_data_intro']['sub']);
+    $castle_sitemap['documentation']['sub']['creating_data_intro']['sub']);
 }
 
 /* Call this immediately, to modify $castle_sitemap even before calling

@@ -8,7 +8,6 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Download', 'download'),
       new TocItem('About', 'about'),
       new TocItem('Development', 'development'),
       new TocItem('Authors', 'authors'),
@@ -28,11 +27,6 @@
   ));
 ?>
 
-<p>Contents:
-<?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
 <div class="download jumbotron">
 <?php
   if (IS_GEN_LOCAL)
@@ -42,18 +36,16 @@
   } else
   {
     ?>
-    <div class="download_title">Download VRML/X3D demo models:</div>
-    <span style="padding-right: 1em;">
-      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As tar.gz archive', 'demo_models-' . VERSION_DEMO_MODELS . '.tar.gz'); ?>
-    </span>
-    <span style="padding-left: 1em;">
-      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>As zip archive<br>(easier to unpack<br>on Windows)', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
-    </span>
+    <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download VRML / X3D demo models', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
     <?php echo download_donate_footer(); ?>
     <?php
   }
 ?>
 </div>
+
+<p>Documentation:
+
+<?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 

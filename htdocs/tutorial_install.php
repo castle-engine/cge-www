@@ -6,7 +6,7 @@ tutorial_header('Download and install the engine, try the demos');
 <h2>Short usage instructions</h2>
 
 <p>If you haven't done it yet, <?php echo a_href_page('download the
-engine source code with examples', 'engine'); ?>.
+engine source code with examples', 'index'); ?>.
 
 <ul>
   <li><p><b>If you want to develop using <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms:</b>
@@ -73,8 +73,9 @@ engine source code with examples', 'engine'); ?>.
 
 <h2>Make sure you have installed the necessary libraries</h2>
 
-The required libraries are mentioned near the <?php
-echo a_href_page_hashlink('engine download', 'engine', 'section_download_src'); ?>.
+The required libraries are mentioned at the <?php
+echo a_href_page_hashlink('"Getting Started" section of the documentation',
+'documentation', 'section_getting_started'); ?>.
 <!--
 <a
 href="http://castle-engine.sourceforge.net/apidoc/html/introduction.html#SectionLibraries">Requirements

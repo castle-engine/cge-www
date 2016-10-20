@@ -66,11 +66,11 @@ wait only once for "Loading creatures").
 <?php
 /* <p><i>History and plans:</i> This game is a little old now,
 and it doesn't really use the capabilities of latest
-<?php echo a_href_page('Castle Game Engine', 'engine'); ?> versions.
+<?php echo a_href_page('Castle Game Engine', 'index'); ?> versions.
 This game was initially developed for
 <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
 competition. It was at the beginning of 2006, at a time when
-<?php echo a_href_page('our engine', 'engine'); ?>
+<?php echo a_href_page('our engine', 'index'); ?>
  didn't even have a version number yet :) <!-- (So, before 1.0.0 engine release.) -->
 A new game, that actually uses the current capabilities
 of our engine (we developed a lot of new features since 2006...), is planned.

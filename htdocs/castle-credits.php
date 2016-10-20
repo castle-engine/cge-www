@@ -38,7 +38,7 @@ projection effect and started gravity for arrows implementation.</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo a_href_page('Castle Game Engine', 'engine'); ?>.
+  <li><p><?php echo a_href_page('Castle Game Engine', 'index'); ?>.
     The base of our game.
 
     <p>We also used some engine tools and accompanying programs:

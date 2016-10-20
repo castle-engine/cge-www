@@ -31,7 +31,7 @@
 by Michalis Kamburelis during the
 <a href="http://tensquaregames.com/">TenSquareGames</a> gamejam on 23-24th
 of November 2013. It is the first game made using
-<?php echo a_href_page('Castle Game Engine', 'engine'); ?> specifically
+<?php echo a_href_page('Castle Game Engine', 'index'); ?> specifically
 for Android (although it can be compiled as a normal, standalone
 game for Linux, Windows etc. too).
 

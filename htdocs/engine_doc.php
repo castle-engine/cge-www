@@ -2,7 +2,7 @@
   define('CASTLE_GITHUB_NAME', 'cge-documentation');
 
   require_once 'castle_engine_functions.php';
-  castle_header("Engine internals documentation", NULL, array('engine'));
+  castle_header("Engine internals documentation", NULL, array('documentation'));
 ?>
 
 <?php echo pretty_heading('Engine internals documentation', NULL,

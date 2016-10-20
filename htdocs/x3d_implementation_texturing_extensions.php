@@ -328,7 +328,7 @@ Developers: see
 <?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>,
 default tolerance values used by X3D renderer are 5 and 0.01.
 There is also a special program in <?php echo a_href_page('engine sources',
-'engine'); ?> (see <code>examples/images_videos/detect_alpha_simple_yes_no.lpr</code>
+'index'); ?> (see <code>examples/images_videos/detect_alpha_simple_yes_no.lpr</code>
 file) if you want to use this algorithm yourself.
 You can also see the results for your textures if you run view3dscene
 with <code>--debug-log</code> option.

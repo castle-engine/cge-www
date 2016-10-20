@@ -48,7 +48,7 @@ a very limited image editor.</p>
 
 <p><code>glViewImage</code> was originally developed to demonstrate
 the power of image handling inside our <?php echo a_href_page(
-'Castle Game Engine', 'engine'); ?>. It became quite useful utility on it's own, with the following features:
+'Castle Game Engine', 'index'); ?>. It became quite useful utility on it's own, with the following features:
 
 <ul>
   <li><b>Load and save many image formats</b>, including some "exotic" ones: <b>DDS, RGBE</b>.

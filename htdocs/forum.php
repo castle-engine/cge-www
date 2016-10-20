@@ -57,7 +57,7 @@ proposed tasks:</p>
   <li>Brag about our engine on blogs and social platforms :)
   <li><?php echo a_href_page('Donate', 'donate'); ?>.
   <li>Create a page on <a href="http://en.wikipedia.org/">Wikipedia</a> about our
-    <?php echo a_href_page('Castle Game Engine', 'engine'); ?> and/or
+    <?php echo a_href_page('Castle Game Engine', 'index'); ?> and/or
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
     Maybe only a page about view3dscene for starters?
     <!--
@@ -109,7 +109,7 @@ proposed tasks:</p>
 <p>For ObjectPascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:
 
 <ul>
-  <li><p>Use our <?php echo a_href_page('engine', 'engine'); ?>
+  <li><p>Use our <?php echo a_href_page('engine', 'index'); ?>
     to make your next game, of course! :) And make it great :)
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute

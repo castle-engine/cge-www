@@ -6,11 +6,11 @@ global $castle_books;
 $castle_books = array(
   'tutorial' => array(
     'title' => 'Tutorial',
-    'path' => array('engine', 'tutorial_intro'),
+    'path' => array('documentation', 'tutorial_intro'),
   ),
   'creating_data' => array(
     'title' => 'Guide to creating game data',
-    'path' => array('engine', 'creating_data_intro'),
+    'path' => array('documentation', 'creating_data_intro'),
   ),
 );
 

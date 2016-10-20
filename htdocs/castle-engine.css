@@ -172,8 +172,12 @@ a.screenshot:hover img { border: 2pt solid #888; }
 }
 */
 
+.main-page-thumbnail {
+    width: 100%;
+}
+
 div.download {
-  display: inline-block;
+    display: inline-block;
 }
 
 .download_title { font-weight: bold; margin-bottom: 1em; }
@@ -182,6 +186,19 @@ div.download table td { text-align: center;
   padding-left: 1em; padding-right: 1em; }
 div.download table a { display: block; text-decoration: none; }
 div.download table a img { border: 0px none; }
+
+.centered-download-wrapper {
+    text-align: center;
+}
+.centered-download-wrapper .download {
+    display: inline-block;
+}
+.download-hints {
+    margin-top: 0.5em;
+}
+.download-hints p {
+    font-size: 87% !important;
+}
 
 /* Table like X3D specification, used for multi-texturing clarifications
    on x3d_implementation_texturing.php */

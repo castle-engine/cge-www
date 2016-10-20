@@ -22,7 +22,7 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Since <?php echo a_href_page('engine', 'engine'); ?> version 4.1.0
+<p>Since <?php echo a_href_page('engine', 'index'); ?> version 4.1.0
 (<?php echo a_href_page('view3dscene', 'view3dscene'); ?> 3.13.0),
 our applications can have a native look on Mac OS X (Carbon), and do not need
 any extra dependencies (like X11 and GTK).
@@ -88,7 +88,7 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
         <code>castle_game_engine/src/window/castlewindow_cocoa.inc</code>,
         based on
         <code>castle_game_engine/src/window/castlewindow_backend_template.inc</code>.
-        See <?php echo a_href_page('engine sources', 'engine'); ?>.
+        See <?php echo a_href_page('engine sources', 'index'); ?>.
         See at other "backends" (like GTK, WinAPI, Xlib, LCL)
         for examples how to implement such thing, everything is inside
         <code>src/window/</code> dir.

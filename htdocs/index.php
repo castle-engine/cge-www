@@ -9,46 +9,64 @@ castle_header('Castle Game Engine',
   'Free open-source 3D game engine. Supports a lot of 2D and 3D data formats, including VRML / X3D, Collada, Spine... Cross-platform, for standalone (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin... Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.');
 ?>
 
+<!-- Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p -->
+
 <div class="row">
-  <div class="col-md-4">
-    <div class="main_link">
-      <p><b>For developers:</b></p>
-      <p><a href="engine.php"><img src="images/main_link_size/castle_game_engine_icon.png" alt="Castle Game Engine icon" /></a></p>
-      <p class="program_image_link_title"><a href="engine.php"><b>Castle Game Engine</b></a></p>
-      <p><!--The engine is where all the magic actually happens :)-->
-      Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p>
-    </div>
-  </div>
+    <div class="col-sm-8">
+        <p>A free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+        3D/2D game engine for modern Object Pascal.</p>
 
-  <div class="col-md-4">
-    <div class="main_link">
-      <p><b>For 3D modelers:</b></p>
-      <p><a href="view3dscene.php"><img src="images/main_link_size/castle_sunset.png" alt="view3dscene" /></a></p>
-      <p class="program_image_link_title"><a href="view3dscene.php"><b>view3dscene</b></a></p>
-      <p>VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ...). Explore the virtual world with collisions, gravity, animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert models to VRML/X3D.</p>
-      <p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
-    </div>
-  </div>
+        <ul>
+            <li>A lot of 3D and 2D formats
+              (VRML / X3D<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, Wavefront OBJ, MD3,
+              <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...).
+            <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
+            <li>Optimized rendering with a lot of graphic effects.
+            <li>Build and edit your scene graph (X3D) at runtime.
+              <!--Load and save images and X3D graph as needed.-->
+              You can create various processing and visualization tools!
+            <li>Many optional components, like a comfortable API for typical 3D games with creatures and items.
+        </ul>
 
-  <div class="col-md-4">
-    <div class="main_link">
-      <p><b>For players:</b></p>
-      <?php
-        $featured_game_page_name = 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash';
-        $featured_game_screenshot_name = 'dragon_squash_screen_1';
-        $featured_game_name = 'Dragon Squash';
-        $featured_game_description = 'Full-featured Android game where you defend beautiful animated castles from the dragons. With Google Games integration. Install for free from Google Play!';
-      ?>
-      <p><?php echo a_href_page('<img src="images/main_link_size/' . $featured_game_screenshot_name .'.png" alt="' . $featured_game_name . '" />', $featured_game_page_name); ?>
-      <p class="program_image_link_title"><?php echo a_href_page('<b>' . $featured_game_name . '</b>', $featured_game_page_name); ?></p>
-      <p><?php echo $featured_game_description; ?></p>
-    </div>
+        <div class="centered-download-wrapper">
+            <div class="download jumbotron">
+                <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download "Castle Game Engine"', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
 
-    <div class="main_link">
-      <p class="program_image_link_title"><a href="all_programs.php"><b>More games</b></a></p>
-      <p>... and other tools using our engine.</p>
+                <div class="download-hints">
+                    <p>Recommended: download also <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
+
+                    <p>See the <?php echo a_href_page('documentation', 'documentation'); ?> for the quick <i>"Getting Started"</i> instructions.<br>
+                    We also have
+                    <?php echo a_href_page('tutorial', 'tutorial_intro'); ?>,
+                    <a href="<?php echo reference_link(); ?>">reference</a>,
+                    <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">modern Object Pascal introduction</a>
+                    and a lot more:)
+                    </p>
+                </div>
+
+                <?php echo download_donate_footer(); ?>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="col-sm-4">
+        <img src="images/original_size/dragon_large.png"
+            alt="Dragon 2D animation designed in Spine"
+            title="Dragon 2D animation designed in Spine"
+            class="main-page-thumbnail" />
+        <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
+        <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
+        <!--     title="Bump mapping and shadow maps from multiple light sources" -->
+        <!--     class="main-page-thumbnail" -->
+        <!--     style="margin-bottom: 0.5em" /> -->
+        <!-- <img src="images/original_size/barna29_nice_shadows.png" -->
+        <!--     alt="Real-time water with caustics, reflections, shadows" -->
+        <!--     title="Real-time water with caustics, reflections, shadows" -->
+        <!--     class="main-page-thumbnail" /> -->
+        <!-- <img src="images/original_size/castle_spine_screen_9.png" -->
+        <!--     alt="Dragon 2D animation designed in Spine" -->
+        <!--     title="Dragon 2D animation designed in Spine" -->
+        <!--     class="main-page-thumbnail" /> -->
+    </div>
 </div>
 
 <div class="row">

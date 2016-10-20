@@ -59,7 +59,7 @@ implementations of this concept now:
 
 <ol>
   <li>Inside
-    <?php echo a_href_page('Castle Game Engine', 'engine'); ?> and
+    <?php echo a_href_page('Castle Game Engine', 'index'); ?> and
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
     By Michalis Kamburelis, the author of this paper.
   <li>Inside <a href="http://freewrl.sourceforge.net/">FreeWRL</a>,

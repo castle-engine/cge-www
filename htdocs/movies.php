@@ -1,6 +1,6 @@
 <?php
   require_once 'castle_engine_functions.php';
-  castle_header("Demo movies", NULL, array('engine'));
+  castle_header("Demo movies", NULL, array('documentation'));
 
   echo pretty_heading("Demo movies");
 ?>
