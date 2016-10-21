@@ -100,7 +100,7 @@ and gives you the same native look through <a href="http://www.lazarus.freepasca
         for pointers.
 	If you're a developer familiar with Mac OS X
 	native toolkit and
-	<a href="http://www.freepascal.org/">FreePascal</a>, your help
+	<a href="http://www.freepascal.org/">Free Pascal Compiler</a>, your help
 	will be much appreciated.
     </ul>
 
@@ -223,7 +223,7 @@ or similar file for comfort).
 <?php echo $toc->html_section(); ?>
 
 <p>To actually compile our programs on Mac OS X, developers may need to install
-a little more stuff. Of course <a href="http://freepascal.org/">FreePascal Compiler</a>
+a little more stuff. Of course <a href="http://freepascal.org/">Free Pascal Compiler</a>
 is required. For comfortable RAD development, you may also consider
 <a href="http://www.lazarus.freepascal.org/">Lazarus</a> (FPC is already included
 inside Lazarus installations, if you choose normal packages).</p>

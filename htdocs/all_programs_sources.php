@@ -24,14 +24,14 @@ downloaded below.</p>
 <ol>
   <li><p><b>Download</b> the sources that interest you,
     and additionally download
-    <?php echo a_href_page('Castle Game Engine', 'the engine'); ?> sources.
+    <?php echo a_href_page('Castle Game Engine', 'index'); ?> sources.
     Unpack them anywhere you like.</li>
 
   <li><b>Compile</b> the program:
 
     <ul>
       <li>
-        <p>You can <b>compile using Lazarus</b>.
+        <p>You can <b>compile using Lazarus</b>.</p>
         <ol>
           <li>Install <a href="http://lazarus.freepascal.org/">Lazarus</a>
             (along with <a href="http://freepascal.org/">Free Pascal Compiler</a>).
@@ -43,7 +43,7 @@ downloaded below.</p>
 
       <li><p>Or you can <b>use our
         <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-        to compile.</b>
+        to compile.</b></p>
         <ol>
           <li>Install the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
             (along with <a href="http://freepascal.org/">Free Pascal Compiler</a>).
@@ -75,8 +75,8 @@ downloaded below.</p>
     (in short: use latest stable FPC version).
 */ ?>
 
-  <li><p><b>Install required libraries</b>. See
-    <?php echo a_href_page_hashlink('engine documentation', 'documentation'); ?> for the list of libraries we use,
+  <li><p><b>Install the required libraries</b>. See
+    <?php echo a_href_page('engine documentation', 'documentation'); ?> for the list of libraries we use,
     and see download page of each particular program.
 
   <li><p><b>Optionally install required program data</b>. In most cases you don't

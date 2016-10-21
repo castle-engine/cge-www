@@ -215,7 +215,7 @@ Commented out, below is development info.
 
 <h2>For curious, a few words about implementation</h2>
 
-Compiled with <a href="http://www.freepascal.org/">FreePascal</a>.
+Compiled with <a href="http://www.freepascal.org/">Free Pascal Compiler</a>.
 PNG format handled using <a href="http://www.libpng.org">libpng</a>.
 JPEG handled using
 <a href="http://www.nomssi.de/pasjpeg/pasjpeg.html">pasjpeg</a>

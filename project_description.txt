@@ -21,7 +21,7 @@ Also home of view3dscene - our full-featured VRML/X3D browser. And also home of 
     Screen-space effects in GLSL
     3D sound using OpenAL
     Portable (Linux, Windows, Mac OS X, FreeBSD...)
-    Source code in clean ObjectPascal (for FreePascal)
+    Source code in clean ObjectPascal (for Free Pascal Compiler)
     Includes Lazarus components for RAD development
 
 - https://flattr.com/thing/398312/Castle-Game-Engine
