@@ -1034,8 +1034,9 @@ pass(5);
       I don't have time to check all the tests.
       If someone wants to do the work and do the remaining
       tests (and document results just like above),
-      please contact us by
-      <?php echo MAILING_LIST_LINK; ?>.</i>
+      please <a href="<?php echo FORUM_URL; ?>">contact us through the forum</a>.
+    </td>
+  </tr>
 </table>
 
 <?php

@@ -35,6 +35,13 @@ if (CASTLE_OFFLINE)
   define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/'); else
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
 
+// other constants
+define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
+define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wiki');
+define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
+define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
+define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
+
 function reference_link()
 {
   return CASTLE_REFERENCE_URL . 'index.html';
@@ -165,6 +172,7 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'Reference', 'url' => reference_link()),
+      'helping' => array('title' => 'How to help in engine development'),
       'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
       'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
       'engine_doc' => array('title' => 'Internals documentation'),
@@ -257,7 +265,7 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum'),
+  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum', 'url' => FORUM_URL),
 
   'donate' => array('title' => 'Donate'),
 
@@ -624,16 +632,6 @@ function echo_footer ()
     echo_google_analytics_tracking();
   }
 }
-
-define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
-
-define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wiki');
-define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
-define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/');
-define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
-
-define('MAILING_LIST_LINK', '<a href="' . MAILING_LIST_URL . '">castle-engine-main mailing list</a>');
-define('FORUM_LINK', '<a href="' . FORUM_URL . '">forum</a>');
 
 /* Return SVN URL to appropriate path with repository trunk.
    If $prefix_command is true then also will add 'svn checkout ' text

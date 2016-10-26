@@ -217,7 +217,7 @@ as hosted on SourceForge.</p>
 downloads</a> use all the power and speed of SF mirrors,
 development is done inside
 publicly
-visible SVN repository, we have a public " . MAILING_LIST_LINK . ",
+visible SVN repository, we have a public mailing list,
 we have trackers for bugs,
 feature requests,
 patches,

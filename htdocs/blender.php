@@ -2,7 +2,7 @@
   define('CASTLE_GITHUB_NAME', 'cge-blender');
 
   require_once 'castle_engine_functions.php';
-  castle_header("Blender X3D exporter (with Kambi modifications)",
+  castle_header("Blender exporters",
     NULL, array('blender'));
 
 function echo_svn_blender_file($filename)
@@ -12,21 +12,30 @@ function echo_svn_blender_file($filename)
 ?>
 
 <?php
-  echo pretty_heading('Blender X3D exporter', NULL,
-    'with Kambi modifications');
+  echo pretty_heading('Blender exporters');
 ?>
 
 <p><a href="http://www.blender.org/">Blender</a> is a magnificent
 free open-source 3D modelling software. Latest Blender version already
 includes an X3D exporter, so you can export your content and open it with
-our engine tools like <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
+our engine. You can try it with <?php echo a_href_page('view3dscene', 'view3dscene') ?>.</p>
+
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/wiki/Blender">We documented some hints about exporting to X3D from Blender here</a>
+</div>
+
+
+<?php /*
 We publish here some improvements / fixes / documentation for
 Blender's X3D exporter.</p>
+*/ ?>
+
+<?php /*
 
 <h2>X3D exporter, for Blender &gt;= 2.68a</h2>
 
 <ul>
-  <li><p><?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ?>:
+  <li><p>< ?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ? >:
     Download the actual exporter.
 
     <p>Copy it over (overwrite) the original Blender exporter,
@@ -38,24 +47,10 @@ Blender's X3D exporter.</p>
     Blender standard X3D exporter. The only feature our exporter script
     has over the standard exporter is the magic treatment of images named
     <code>xxx_normalmap</code>, and we don't really advice using this
-    (better use <?php echo a_href_page('material_properties.xml',
-    'creating_data_material_properties'); ?>).
+    (better use < ?php echo a_href_page('material_properties.xml',
+    'creating_data_material_properties'); ? >).
 
-<?php /*
-  TODO: below should be fixed in 2.62, but make sure.
-  The default seems triangulate=off anyway now, so this is good.
-
-    <p>Note that for 2.58 exporter, I advice to use <i>Triangulate=Off</i>.
-    There are some problems with triangulation: it cannot preserve vertex sharing
-    in case of some UVs or vertex colors (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27773&amp;group_id=9&amp;atid=498">#27773, in svn it now forces Normals=On</a>),
-    it cannot preserve creaseAngle (<a href="http://projects.blender.org/tracker/?func=detail&amp;aid=27769&amp;group_id=9&amp;atid=127">#27769</a>).
-    Using <i>Normals=On</i> makes <i>Triangulate=On</i> better,
-    but sometimes normals are still incorrect in my experience. I try to investigate
-    and submit to Blender relevant patches or bugs, for now with official 2.58
-    it's safer to just use <i>Triangulate=Off</i> in my experience.
-*/ ?>
-
-  <li><p><?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ?>:
+  <li><p>< ?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ? >:
     Detailed notes how the exporter (both original distributed in Blender
     and modified by me) works, how you should setup your model.
     At the end, contains notes about our modifications.
@@ -67,89 +62,32 @@ he has time.
 Also feel free to take my notes, and use/convert them for documentation
 anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
+*/ ?>
 
-<h2>KAnim exporter, for Blender &gt;= 2.68a</h2>
+<p>However, the standard <i>Blender X3D exporter</i> cannot handle animations for now.
+As a workaround, you can use the exporter below to export animations to
+a <?php echo a_href_page("KAnim (Castle Game Engine animations) format",
+'kanim_format'); ?>. The <code>.kanim</code> files can be read by our engine
+and will play animations. Thanks to the simplicity of the kanim format,
+this approach supports every kind of Blender animation (transform, through armature or not,
+deform in any way, fluids, physics, material animations...).
 
-<p>Export Blender animation to
-<?php echo a_href_page("KAnim (Castle Game Engine animations) format",
-  'kanim_format'); ?>:</p>
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_kanim.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download KAnim exporter</a>
+</div>
 
-<ul>
-  <li><p><?php echo_svn_blender_file('blender25_x3d/export_kanim.py') ?>:
-    Download the KAnim exporter.</p>
+<p>Install it like every other Blender addon:</p>
 
-    <p>Install it like every other Blender addon:</p>
-    <ol>
-      <li>Use comfortable <i>File -&gt;
-        User Preferences (opens new window) -&gt; Addons (tab)
-        -&gt; Install Addon... (button at the bottom)</i>.
-        Or just copy the file directly to the
-        <code>scripts/addons/</code> directory.
-      <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export KAnim"</i>
-        in the Addons window.
-    </ol>
-  </li>
-</ul>
+<ol>
+  <li>Use the comfortable <i>File -&gt; User Preferences (opens new window) -&gt; Addons (tab)
+    -&gt; Install Addon... (button at the bottom)</i>.
+    Or just copy the file directly to the
+    <code>scripts/addons/</code> directory.
+  <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export KAnim"</i>
+    in the Addons window.
+</ol>
 
-<h2>VRML 97 (2.0) and KAnim exporters, for Blender 2.4x</h2>
-
-<p>(Please note that I don't use exporters below anymore,
-they probably will not work with Blender 2.5x or newer,
-and I probably will not update them. X3D is the future,
-and X3D exporter above should be your preferred option.
-We also hope one day to see animation export to X3D,
-and then our "KAnim hack" will no longer be useful.)</p>
-
-<ul>
-  <li><p>Script <?php echo_svn_blender_file('kambi_vrml97_export.py') ?>
-    (requires accompanying <?php echo_svn_blender_file('kambi_vrml97_export_base.py') ?>) :</p>
-
-    <p>Customized version of <code>vrml97_export.py</code> script
-    (distributed with newer Blender versions, originally from
-    <a href="http://kimballsoftware.com/blender/">here</a>).
-    Various customizations to improve exporting VRML 2.0 (aka 97) models:
-    creaseAngle exporting (from Blender's set smooth/set solid/auto smooth/degr
-    controls), full texture filename (including possibly relative path prefix)
-    is written, corrected twoside detection,
-    Background is proper VRML, also the model is <i>not</i>
-    rotated to change +Z axis to +Y.
-    Search for "Kambi" string inside files to know more.</p>
-
-    <p>The essential exporter class is inside
-    <code>kambi_vrml97_export_base.py</code>, to be shared by <code>kanim_export.py</code>.</p>
-
-    <p>May not work with Blender &lt; 2.44.</p>
-
-    <p>TODO: some fixes here should be submitted and hopefully merged into
-    VRML 2.0 exporter included with Blender.
-  </li>
-
-  <li>
-    <p><?php echo_svn_blender_file('vrml_97_exporter_notes.txt') ?> :</p>
-
-    <p>Some details important for anyone who exports VRML 2.0 from Blender,
-    using original or our script versions. Also explains some
-    reasoning behind changes in <code>kambi_vrml97_export[_base].py</code>
-    as compared to original exporter.</p>
-  </li>
-
-  <li>
-    <p><?php echo_svn_blender_file('kanim_export.py') ?>
-    (requires accompanying <?php echo_svn_blender_file('kambi_vrml97_export_base.py') ?>) :</p>
-
-    <p>Exporter to
-    <?php echo a_href_page("kanim (Castle Game Engine animations) format",
-      'kanim_format'); ?>. Thanks to Grzegorz Hermanowicz for starting this !</p>
-  </li>
-</ul>
-
-<h2>Subversion</h2>
-
-<p>You can grab all this stuff from SVN:
-<pre>
-<?php echo sf_checkout_link(true, 'blender'); ?>
-</pre>
-
+<p>Tested with <i>Blender &gt;= 2.68</i>.
 
 <?php
   castle_footer();
