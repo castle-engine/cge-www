@@ -54,7 +54,7 @@ all: $(ALL_TARGETS)
 # see http://www.imagemagick.org/Usage/thumbnails/#cut
 # http://www.imagemagick.org/discourse-server/viewtopic.php?t=21324
 teaser_size/%: original_size/%
-	convert $< -thumbnail 400x200^ -gravity North -extent 400x200 $@
+	convert $< -thumbnail 600x300^ -gravity North -extent 600x300 $@
 
 # ----------------------------------------------------------------------------
 # making thumb_size
