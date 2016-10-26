@@ -36,8 +36,11 @@
     <ol>
       <li>Open and <b>compile the package <code>castle_base.lpk</code></b>
         You will find it in the <code>castle_game_engine/packages/</code> subdirectory.
+        Use the Lazarus menu item <i>"Package -&gt; Open Package File (.lpk)"</i>
+        to open the package file, press <i>"Compile"</i> in dialog that appears.
       <li>Then open and <b>compile the package <code>castle_window.lpk</code></b>.
       <li>Finally, open and <b>install the package <code>castle_components.lpk</code></b>.
+        In package window, the option to <i>"Install"</i> package is under the <i>"Use"</i> button.
     </ol>
 
     <p>Then just compile and run from Lazarus any example you want
@@ -45,7 +48,7 @@
     project file and compile/run as any other program.
 
   <li><p><b>For command-line FPC users</b>:
-    First, try compiling the examples <!-- (the ones that do not require Lazarus) -->
+    First, compile the examples <!-- (the ones that do not require Lazarus) -->
     by simple "<code>make examples</code>".
     Or execute <code>xxx_compile.sh</code> scripts to compile particular
     examples.

@@ -187,8 +187,16 @@ div.download table td { text-align: center;
 div.download table a { display: block; text-decoration: none; }
 div.download table a img { border: 0px none; }
 
+.centered-wrapper {
+    text-align: center;
+}
+.centered {
+    display: inline-block;
+    text-align: left;
+}
 .centered-download-wrapper {
     text-align: center;
+    margin-top: 1em;
 }
 .centered-download-wrapper .download {
     display: inline-block;

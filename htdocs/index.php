@@ -1,4 +1,6 @@
 <?php
+define('CASTLE_GITHUB_NAME', 'castle-engine');
+
 require_once 'castle_engine_functions.php';
 require_once 'news_common.php';
 
@@ -13,20 +15,26 @@ castle_header('Castle Game Engine',
 
 <div class="row">
     <div class="col-sm-8">
-        <p>A free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-        3D/2D game engine for modern Object Pascal.</p>
+        <div class="centered-wrapper">
+            <div class="centered">
+                <h1>Castle Game Engine</h1>
 
-        <ul>
-            <li>A lot of 3D and 2D formats
-              (VRML / X3D<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, Wavefront OBJ, MD3,
-              <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...).
-            <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
-            <li>Optimized rendering with a lot of graphic effects.
-            <li>Build and edit your scene graph (X3D) at runtime.
-              <!--Load and save images and X3D graph as needed.-->
-              You can create various processing and visualization tools!
-            <li>Many optional components, like a comfortable API for typical 3D games with creatures and items.
-        </ul>
+                <p>A free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+                3D/2D game engine for modern Object Pascal.</p>
+
+                <ul>
+                    <li>A lot of 3D and 2D formats supported
+                      (VRML / X3D<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, Wavefront OBJ, MD3,
+                      <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...).
+                    <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
+                    <li>Optimized rendering with a lot of graphic effects.
+                    <li>Build and edit your scene graph (X3D) at runtime.
+                      <!--Load and save images and X3D graph as needed.-->
+                      You can create various processing and visualization tools!
+                    <li>Many optional components, like a comfortable API for standard 3D games with creatures and items.
+                </ul>
+            </div>
+        </div>
 
         <div class="centered-download-wrapper">
             <div class="download jumbotron">
