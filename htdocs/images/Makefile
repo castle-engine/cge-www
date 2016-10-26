@@ -8,9 +8,10 @@
 #   info (echoes some info, nothing is really done)
 
 # ALL_ORIGINAL is a space-separated list of original images.
-# ALL_MEDIUM is a space-separated list of target medium-sized images.
+# ALL_THUMB is a space-separated list of target thumb-sized images.
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
-ALL_MEDIUM:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
+ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
+ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 
 # Only a small number of images needs "program_link_size"
 # (used for images on all_programs.php), so list here explicitly
@@ -42,11 +43,18 @@ ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 
 .PHONY: all clean info
 
-ALL_TARGETS := $(ALL_MEDIUM) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK) \
+ALL_TARGETS := $(ALL_TEASER) $(ALL_THUMB) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK) \
   castle_game_engine_icon.png \
   main_link_size/castle_game_engine_icon.png
 
 all: $(ALL_TARGETS)
+
+# making teaser_size ---------------------------------------------------------
+
+# see http://www.imagemagick.org/Usage/thumbnails/#cut
+# http://www.imagemagick.org/discourse-server/viewtopic.php?t=21324
+teaser_size/%: original_size/%
+	convert $< -thumbnail 400x200^ -gravity North -extent 400x200 $@
 
 # ----------------------------------------------------------------------------
 # making thumb_size
@@ -76,7 +84,7 @@ main_link_size/%: original_size/%
 
 # engine icon processing -----------------------------------------------------
 
-ENGINE_ICON := ../../../castle_game_engine/doc/logo/castle_game_engine_icon.svg
+ENGINE_ICON := ../../../castle-engine/doc/logo/castle_game_engine_icon.svg
 
 # Generate PNG versions from SVG.
 # Note that for WWW engine icon, we generate non-transparent PNG file.

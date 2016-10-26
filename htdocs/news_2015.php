@@ -1,13 +1,13 @@
 <?php
 
 /* next news images:
-  A       0       ?           www/htdocs/images/original_size/chrome.png
-  A       0       ?           www/htdocs/images/original_size/dragon_squash_plugin.png
-  A       0       ?           www/htdocs/images/original_size/firefox.png
-  A       0       ?           www/htdocs/images/original_size/fly_over_river_screen_26.png
-  A       0       ?           www/htdocs/images/original_size/plugin_4.png
-  A       0       ?           www/htdocs/images/original_size/plugin_windows_chrome.png
-  A       0       ?           www/htdocs/images/original_size/plugin_windows_ff.png
+  A       0       ?           images/original_size/chrome.png
+  A       0       ?           images/original_size/dragon_squash_plugin.png
+  A       0       ?           images/original_size/firefox.png
+  A       0       ?           images/original_size/fly_over_river_screen_26.png
+  A       0       ?           images/original_size/plugin_4.png
+  A       0       ?           images/original_size/plugin_windows_chrome.png
+  A       0       ?           images/original_size/plugin_windows_ff.png
 */
 
 array_push($news,
@@ -17,16 +17,17 @@ array_push($news,
           'day' => 5,
           'short_description' => '',
           'guid' => '2015-07-05',
+          'images' => array(
+            array('filename' => 'enemies_and_shadows.png', 'titlealt' => 'Enemies and Shadows - screen from Web3d 2015 tutorial'),
+            array('filename' => 'texture_memory_profiler_3.png', 'titlealt' => 'Texture memory profiler in action'),
+            array('filename' => 'hydra_battles_screen_best.png', 'titlealt' => 'Hydra Battles, an isometric RTS game using Castle Game Engine'),
+            array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash - Android game integration with Google Games (title, sign-in)'),
+            array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash - Android game integration with Google Games (leaderboards)'),
+            array('filename' => 'dragon_squash_game_over.png', 'titlealt' => 'Dragon Squash - Game Over screen, with some new font features'),
+          ),
           'description' =>
-castle_thumbs(array(
-  array('filename' => 'enemies_and_shadows.png', 'titlealt' => 'Enemies and Shadows - screen from Web3d 2015 tutorial'),
-  array('filename' => 'texture_memory_profiler_3.png', 'titlealt' => 'Texture memory profiler in action'),
-  array('filename' => 'hydra_battles_screen_best.png', 'titlealt' => 'Hydra Battles, an isometric RTS game using Castle Game Engine'),
-  array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash - Android game integration with Google Games (title, sign-in)'),
-  array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash - Android game integration with Google Games (leaderboards)'),
-  array('filename' => 'dragon_squash_game_over.png', 'titlealt' => 'Dragon Squash - Game Over screen, with some new font features'),
-)) .
-'<p>We\'re proud to present new <b>Castle Game Engine release 5.2.0</b>!
+'<p>We\'re proud to present new <b>Castle Game Engine release 5.2.0</b>!</p>
+<!-- teaser -->
 
 <div class="download jumbotron">
 <a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Download Castle Game Engine 5.2.0!</a>
@@ -106,11 +107,12 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
           'day' => 11,
           'short_description' => '',
           'guid' => '2015-01-11',
+          'images' => array(
+            array('filename' => 'android_emulator.png', 'titlealt' => '&quot;Dragon Spine&quot; running in an Android emulator'),
+          ),
           'description' =>
-castle_thumbs(array(
-  array('filename' => 'android_emulator.png', 'titlealt' => '&quot;Dragon Spine&quot; running in an Android emulator'),
-)) .
-'<p>Castle Game Engine version 5.1.2 was just released! This release brings a couple of fixes and improvements to the engine.
+'<p>Castle Game Engine version 5.1.2 was just released! This release brings a couple of fixes and improvements to the engine.</p>
+<!-- teaser -->
 
 <div class="download jumbotron">
 <a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Download Castle Game Engine 5.1.2!</a>

@@ -7,24 +7,25 @@ array_push($news,
           'day' => 30,
           'short_description' => '',
           'guid' => '2014-12-30',
+          'images' => array(
+            array('filename' => 'goblins-ffd_0.png', 'titlealt' => 'Spine animation with female skin'),
+            array('filename' => 'android_emulator.png', 'titlealt' => '&quot;Dragon Spine&quot; running in an Android emulator'),
+            array('filename' => 'spine_spinosaurus_0.png', 'titlealt' => 'GUI in Spine'),
+            array('filename' => 'android1.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
+          //  array('filename' => 'android_text.png', 'titlealt' => 'Text node on Android'),
+            array('filename' => 'primitives_3.png', 'titlealt' => 'Text with shadow'),
+            array('filename' => 'android_little_things.png', 'titlealt' => '&quot;Little Things&quot; game on Android'),
+            array('filename' => 'android_tasty_reflections.png', 'titlealt' => '&quot;Tasty Reflections&quot; game on Android'),
+          //  array('filename' => 'named_animation_knight.png', 'titlealt' => 'Named animations on 3D model'),
+            array('filename' => 'play_named_animation_fixed.png', 'titlealt' => 'Named animations on example Spine model'),
+            array('filename' => 'venice_named_animation.png', 'titlealt' => 'Named animations on Venice character'),
+          //  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => '&quot;Mountains Of Fire&quot; game screen'),
+          //  array('filename' => 'hotel_nuclear_screen_5.png', 'titlealt' => '&quot;Hotel Nuclear&quot; game screen'),
+            array('filename' => 'sunny_street_final_0.png', 'titlealt' => 'New selection indicator'),
+          ),
           'description' =>
-castle_thumbs(array(
-  array('filename' => 'android_emulator.png', 'titlealt' => '&quot;Dragon Spine&quot; running in an Android emulator'),
-  array('filename' => 'goblins-ffd_0.png', 'titlealt' => 'Spine animation with female skin'),
-  array('filename' => 'spine_spinosaurus_0.png', 'titlealt' => 'GUI in Spine'),
-  array('filename' => 'android1.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
-//  array('filename' => 'android_text.png', 'titlealt' => 'Text node on Android'),
-  array('filename' => 'primitives_3.png', 'titlealt' => 'Text with shadow'),
-  array('filename' => 'android_little_things.png', 'titlealt' => '&quot;Little Things&quot; game on Android'),
-  array('filename' => 'android_tasty_reflections.png', 'titlealt' => '&quot;Tasty Reflections&quot; game on Android'),
-//  array('filename' => 'named_animation_knight.png', 'titlealt' => 'Named animations on 3D model'),
-  array('filename' => 'play_named_animation_fixed.png', 'titlealt' => 'Named animations on example Spine model'),
-  array('filename' => 'venice_named_animation.png', 'titlealt' => 'Named animations on Venice character'),
-//  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => '&quot;Mountains Of Fire&quot; game screen'),
-//  array('filename' => 'hotel_nuclear_screen_5.png', 'titlealt' => '&quot;Hotel Nuclear&quot; game screen'),
-  array('filename' => 'sunny_street_final_0.png', 'titlealt' => 'New selection indicator'),
-)) .
-'<p>We proudly present, after 7 months of work, the next official release of our engine:)
+'<p>We proudly present, after 7 months of work, the next official release of our engine:)</p>
+<!-- teaser -->
 
 <div class="download jumbotron">
 <a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Download Castle Game Engine 5.1.1!</a>
@@ -87,41 +88,42 @@ castle_thumbs(array(
           'day' => 1,
           'short_description' => '',
           'guid' => '2014-05-01',
+          'images' => array(
+            array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
+            array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
+            array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => '&quot;Darkest Before the Dawn&quot; - title screen'),
+
+            array('filename' => 'font_from_image_screen_0.png', 'titlealt' => 'Font from colorful image'),
+            array('filename' => 'font_from_texture.png', 'titlealt' => 'Font from image and ttf files'),
+            array('filename' => 'compare_anti_aliasing.png', 'titlealt' => 'Compare font with and without antialiasing'),
+
+            array('filename' => 'android_cubemap_1.png', 'titlealt' => 'Cubemap reflections on Android'),
+            array('filename' => 'android_progress_bar.png', 'titlealt' => 'Loading progress bar on Android'),
+            array('filename' => 'android_message.png', 'titlealt' => 'Modal message box on Android'),
+
+            array('filename' => 'little_things_screen_0.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_10.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_2.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_4.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_5.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_7.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+            array('filename' => 'little_things_screen_8.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
+
+            array('filename' => 'new_walk_shortcuts.png', 'titlealt' => 'Tooltip with summary of new view3dscene AWSD controls'),
+
+            array('filename' => 'orcs_and_volcanoes_screen-intro.png', 'titlealt' => 'Orcs and Volcanoes - intro screen'),
+            array('filename' => 'orcs_and_volcanoes_08.png', 'titlealt' => 'Orcs and Volcanoes'),
+            array('filename' => 'orcs_and_volcanoes_04.png', 'titlealt' => 'Orcs and Volcanoes'),
+
+            array('filename' => 'fps_game_fancy_item_box_2.png', 'titlealt' => 'Custom image under selected item, 2.'),
+            array('filename' => 'view3dscene_tooltip_rounded.png', 'titlealt' => 'view3dscene tooltips with rounded corners.'),
+            array('filename' => 'view3dscene_message_buttons.png', 'titlealt' => 'Message dialog with nice buttons.'),
+            array('filename' => 'castle_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
+            array('filename' => 'view3dscene_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
+          ),
           'description' =>
-castle_thumbs(array(
-  array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
-  array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Screenshot from &quot;Darkest Before the Dawn&quot;'),
-  array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => '&quot;Darkest Before the Dawn&quot; - title screen'),
-
-  array('filename' => 'font_from_image_screen_0.png', 'titlealt' => 'Font from colorful image'),
-  array('filename' => 'font_from_texture.png', 'titlealt' => 'Font from image and ttf files'),
-  array('filename' => 'compare_anti_aliasing.png', 'titlealt' => 'Compare font with and without antialiasing'),
-
-  array('filename' => 'android_cubemap_1.png', 'titlealt' => 'Cubemap reflections on Android'),
-  array('filename' => 'android_progress_bar.png', 'titlealt' => 'Loading progress bar on Android'),
-  array('filename' => 'android_message.png', 'titlealt' => 'Modal message box on Android'),
-
-  array('filename' => 'little_things_screen_0.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_10.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_2.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_4.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_5.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_7.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-  array('filename' => 'little_things_screen_8.png', 'titlealt' => 'Screenshot from &quot;Little Things&quot;'),
-
-  array('filename' => 'new_walk_shortcuts.png', 'titlealt' => 'Tooltip with summary of new view3dscene AWSD controls'),
-
-  array('filename' => 'orcs_and_volcanoes_screen-intro.png', 'titlealt' => 'Orcs and Volcanoes - intro screen'),
-  array('filename' => 'orcs_and_volcanoes_08.png', 'titlealt' => 'Orcs and Volcanoes'),
-  array('filename' => 'orcs_and_volcanoes_04.png', 'titlealt' => 'Orcs and Volcanoes'),
-
-  array('filename' => 'fps_game_fancy_item_box_2.png', 'titlealt' => 'Custom image under selected item, 2.'),
-  array('filename' => 'view3dscene_tooltip_rounded.png', 'titlealt' => 'view3dscene tooltips with rounded corners.'),
-  array('filename' => 'view3dscene_message_buttons.png', 'titlealt' => 'Message dialog with nice buttons.'),
-  array('filename' => 'castle_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
-  array('filename' => 'view3dscene_scrollbar.png', 'titlealt' => 'New dialog look with a nice scrollbar and button.'),
-)) .
-'<p>We\'re proud to announce the release of <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> version 5.0.0 :)
+'<p>We\'re proud to announce the release of <i>Castle Game Engine</i> version 5.0.0:)</p>
+<!-- teaser -->
 
 <p>We also release <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> 3.14.0, our 3D model browser (packed with many graphic effects) and converter. And, for fun, checkout also a new 1.2.0 release of <a href="' . CURRENT_URL . 'darkest_before_dawn.php">Darkest Before the Dawn</a>, a small scary game for Android, Linux and Windows &mdash; of course done using our engine.
 

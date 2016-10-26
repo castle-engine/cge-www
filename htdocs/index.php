@@ -77,41 +77,26 @@ castle_header('Castle Game Engine',
     </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-4">
-    <div class="main-widgets">
-      <div class="bottom-widget">
-      <b style="font-size: larger;"><?php echo last_news_to_html(); ?></b>
-      </div>
-
-      <div class="bottom-widget">
-      <?php echo facebook_button(); ?>
-      </div>
-
-      <div class="bottom-widget">
-      <?php echo googleplus_badge(); ?>
-      </div>
-
-      <!--
-      <div class="bottom-widget">
-      <div><?php echo twitter_widget(); ?></div>
-      </div>
-
-      <div class="bottom-widget">
-      <?php echo youtube_subscribe(false); ?>
-      </div>
-
-      <div class="bottom-widget">
-      <?php echo flattr_button(false); ?>
-      </div>
-      -->
-    </div>
-  </div>
-  <div class="col-md-8">
-    <?php echo disqus_form(); ?>
-  </div>
-</div>
+<?php
+function echo_news()
+{
+    global $news;
+    echo '<div class="news-row-wrapper">';
+        echo '<div class="row-title">News:</div>';
+        echo '<div class="row">';
+            for ($i = 0; $i < 4; $i++) {
+                echo '<div class="col-md-3">';
+                    if (isset($news[$i])) {
+                        echo news_to_html($news[$i], false, true);
+                    }
+                echo '</div>';
+            }
+        echo '</div>';
+    echo '</div>';
+}
+echo_news();
+?>
 
 <?php
-  castle_footer();
+castle_footer();
 ?>

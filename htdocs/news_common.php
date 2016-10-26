@@ -68,55 +68,73 @@ function castle_news_date_long($news_item)
 
 function news_to_html($news_item, $full_description = true, $link_to_self = false)
 {
-  if ($full_description)
-  {
-    $description = $news_item['description'];
-  } else
-  if ($news_item['short_description'] != '')
-  {
-    $description = $news_item['short_description'];
-  } else
-  {
-    $description = $news_item['description'];
-    $teaser_delimiter = strpos($description, TEASER_DELIMITER_BEGIN);
-    if ($teaser_delimiter !== FALSE)
-    {
-      $teaser_delimiter_end = strpos($description, TEASER_DELIMITER_END);
-
-      $teaser_closing_str = substr($description,
-        $teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN),
-        $teaser_delimiter_end -
-        ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
-
-      $description = substr($description, 0, $teaser_delimiter) .
-        '<p><a href="' . CURRENT_URL . 'news.php?item=' .
-        $news_item['id'] . '">[read more]</a></p>' .
-        $teaser_closing_str;
-    }
-  }
-
+  /* calculate $title */
   $title = $news_item['title'];
-  if ($link_to_self)
-    $title = '<a href="' . CURRENT_URL . 'news.php?item=' .
-      $news_item['id'] . '">' . $title . '</a>';
+  // use short_title if applicable
+  if (!$full_description && !empty($item['short_title'])) {
+    $title = $item['short_title'];
+  }
   $title = '<span class="news_title">' . $title . '</span>';
 
-  return '<p>' . $title . '<br/><span class="news_date">(' .
-    castle_news_date_long($news_item) . ')</span></p>' .
-    $description;
-}
+  /* calculate $date */
+  $date = castle_news_date_long($news_item);
+  $date = '<span class="news_date">' . $date . '</span>';
 
-function last_news_to_html()
-{
-  global $news;
-  $item = $news[0];
+  /* calculate $description, return result */
+  if ($full_description) {
+    $description = $news_item['description'];
 
-  if (!empty($item['short_title']))
-    $title = $item['short_title']; else
-    $title = $item['title'];
+    /* add images to $description */
+    if (isset($news_item['images'])) {
+      $description = castle_thumbs($news_item['images']) . $description;
+    }
 
-  return '<a href="' . CURRENT_URL . 'news.php?item=' . $item['id'] . '">Latest release: ' .
-    castle_news_date_long($item) . ':<br/>' . $title . '</a>';
+    return '<p>' . $title . '<br/></p>' . $date . $description;
+  } else {
+    if ($news_item['short_description'] != '') {
+      $description = $news_item['short_description'];
+    } else {
+      $description = $news_item['description'];
+      $teaser_delimiter = strpos($description, TEASER_DELIMITER_BEGIN);
+      if ($teaser_delimiter !== FALSE)
+      {
+        $teaser_delimiter_end = strpos($description, TEASER_DELIMITER_END);
+
+        $teaser_closing_str = substr($description,
+          $teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN),
+          $teaser_delimiter_end -
+          ($teaser_delimiter + strlen(TEASER_DELIMITER_BEGIN)));
+
+        $description = substr($description, 0, $teaser_delimiter) .
+          /*
+          '<p><a href="' . CURRENT_URL . 'news.php?item=' .
+          $news_item['id'] . '">[read more]</a></p>' .
+          */
+          $teaser_closing_str;
+      }
+    }
+
+    $result = '<p class="news_title_wrapper">' . $title . '</p>' .
+      '<p class="news_date_wrapper">' . $date . '</p>';
+
+    /* add images to $result */
+    if (isset($news_item['images'][0])) {
+      $image = $news_item['images'][0];
+      $result = '<img
+        class="news-teaser-image"
+        src="' . CURRENT_URL . 'images/teaser_size/' . $image['filename'] . '"
+        alt="' . $image['titlealt'] . '"
+      />' . $result;
+    }
+
+    // wrap in a link if needed
+    if ($link_to_self) {
+      $result = '<a href="' . CURRENT_URL . 'news.php?item=' .
+        $news_item['id'] . '">' . $result . '</a>';
+    }
+
+    return $result;
+  }
 }
 
 function castle_news_date_short($news_item)
@@ -183,6 +201,8 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
    It is in format accepted by rss_generator class, but also has some
    extras for news_to_html:
 
+   - short_title: used instead of title, if defined, for short view.
+
    - year, month, day fields (shown at some places,
      and pubDate timestamp will be auto-generated based on them)
 
@@ -204,6 +224,9 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
 
    - link: do not give it here.
      We'll set link to the URL like xxx/news.php?id=xxx.
+
+   - images: list of images, like arguments to castle_thumbs.
+     1st image is the main one.
 
    - description: HTML full description. (also used by rss_generator.)
    - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)

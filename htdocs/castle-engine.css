@@ -187,6 +187,8 @@ div.download table td { text-align: center;
 div.download table a { display: block; text-decoration: none; }
 div.download table a img { border: 0px none; }
 
+/* main page stuff ----------------------------------------------------------- */
+
 .centered-wrapper {
     text-align: center;
 }
@@ -207,6 +209,65 @@ div.download table a img { border: 0px none; }
 .download-hints p {
     font-size: 87% !important;
 }
+
+.news-row-wrapper {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.news-row-wrapper .col-md-3 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.news-row-wrapper .row-title,
+.news-row-wrapper .row {
+    width: 1200px;
+    max-width: 100%;
+    display: inline-block;
+    text-align: left;
+}
+.news-row-wrapper .news-teaser-image {
+    display: block;
+    width: 100%;
+}
+.news-row-wrapper a {
+    display: block;
+    color: black;
+    border-width: thin;
+    border-style: solid;
+    /* border-radius: 4px; */
+    border-color: #dcdcdc;
+
+    /* http://www.cssmatic.com/box-shadow */
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
+}
+.news-row-wrapper a:hover,
+.news-row-wrapper a:focus {
+    /* background: #efe; */
+    text-decoration: none;
+    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
+}
+.news-row-wrapper span.news_title {
+    color: #337ab7;
+    font-weight: bold;
+    text-decoration: none;
+}
+.news-row-wrapper a:hover span.news_title,
+.news-row-wrapper a:focus span.news_title {
+    color: #409ae7;
+}
+.news-row-wrapper .news_title_wrapper {
+    padding: 0.25em 0.75em;
+}
+.news-row-wrapper .news_date_wrapper {
+    padding: 0.25em 0.75em;
+}
+
+/* x3d specification-like table ---------------------------------------------- */
 
 /* Table like X3D specification, used for multi-texturing clarifications
    on x3d_implementation_texturing.php */
