@@ -85,7 +85,7 @@ function echo_news()
         echo '<div class="row-title">News:</div>';
         echo '<div class="row">';
             for ($i = 0; $i < 4; $i++) {
-                echo '<div class="col-md-3">';
+                echo '<div class="col-sm-3">';
                     if (isset($news[$i])) {
                         echo news_to_html($news[$i], false, true);
                     }

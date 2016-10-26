@@ -210,6 +210,8 @@ div.download table a img { border: 0px none; }
     font-size: 87% !important;
 }
 
+/* news on main page --------------------------------------------------------- */
+
 .news-row-wrapper {
     text-align: center;
     margin-top: 1em;
@@ -239,17 +241,17 @@ div.download table a img { border: 0px none; }
     border-color: #dcdcdc;
 
     /* http://www.cssmatic.com/box-shadow */
-    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
-    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.25);
 }
 .news-row-wrapper a:hover,
 .news-row-wrapper a:focus {
     /* background: #efe; */
     text-decoration: none;
-    -webkit-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
-    box-shadow: 0px 4px 10px 2px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5);
 }
 .news-row-wrapper span.news_title {
     color: #337ab7;
@@ -262,10 +264,27 @@ div.download table a img { border: 0px none; }
 }
 .news-row-wrapper .news_title_wrapper {
     padding: 0.25em 0.75em;
+    /* in usual cases, it will make columns equal height */
+    min-height: 6em;
 }
 .news-row-wrapper .news_date_wrapper {
     padding: 0.25em 0.75em;
 }
+
+/*
+from
+https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
+@media only screen and (min-width : 768px) {
+    .news-row-wrapper .row {
+        display: table;
+    }
+    .news-row-wrapper .row [class*="col-"] {
+        float: none;
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+*/
 
 /* x3d specification-like table ---------------------------------------------- */
 
