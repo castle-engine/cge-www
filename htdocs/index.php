@@ -82,7 +82,7 @@ function echo_news()
 {
     global $news;
     echo '<div class="news-row-wrapper">';
-        echo '<div class="row-title">News:</div>';
+        echo '<div class="row-title">LATEST NEWS:</div>';
         echo '<div class="row">';
             for ($i = 0; $i < 4; $i++) {
                 echo '<div class="col-sm-3">';
