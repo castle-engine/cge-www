@@ -581,15 +581,6 @@ function common_header($a_page_title, $page_lang,
 function common_footer()
 {
   global $s_quick_links, $main_page, $relative_path_to_root;
-
-  /* This is html text with copyright of these pages. */
-  define('PAGE_COPYRIGHT',
-  '<span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
-This page is considered part of documentation of my programs,
-and you are free to modify and further distribute it on terms of
-<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.
-</span>');
-
 ?>
 
 <?php

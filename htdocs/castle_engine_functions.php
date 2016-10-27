@@ -612,13 +612,16 @@ function echo_footer ()
   ?>
 
   <div class="panel-footer">
-    <p><?php echo PAGE_COPYRIGHT; ?>
+    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
+    Some images copyright <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a> and Paweł Wojciechowicz.
+    You can redistribute this on terms of the
+    <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.
 
-    <p><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
+    <p><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>.
 
-    <p><small>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+    <p>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
     Like every other frickin' website on the Internet.
-    Blink twice if you understand.</small>
+    Blink twice if you understand.
   </div>
 
   <?php

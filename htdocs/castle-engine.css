@@ -129,7 +129,12 @@ span.command_line_option {
 } */
 
 dt { font-weight: bold; }
-span.page_copyright { font-size: smaller }
+
+.panel-footer {
+    font-size: smaller;
+    margin-top: 2rem;
+}
+
 span.version_number { font-size: small }
 
 .rss_link {
