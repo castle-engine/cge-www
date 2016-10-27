@@ -5,6 +5,13 @@
 /* .content { margin: 0px; padding: 0.4em; } */
 /* Bootstrap takes care of above now */
 
+.fixed-width-content {
+    width: 1200px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 object.movie_thumbnail {
   width: 200px;
   height: 167px;
@@ -19,13 +26,36 @@ div.thumbs_cell_with_text_or_movie {
   text-align: center;
 }
 
-.thumbnails {
-  clear: right;
-}
-.thumbnails-align-right {
-  float: right;
+table.thumbnails {
   /* Avoids wide thumbnail column until images load */
   max-width: 250px;
+}
+table.thumbnails-align-right {
+  /* this is added to work nicely with Flattr images,
+     that are on some pages (like castle.php) directly above this table
+     and also aligned to the right. */
+  clear: right;
+  float: right;
+}
+table.thumbnails-align-left {
+  clear: left;
+  float: left;
+}
+div.thumbnails-align-left {
+  text-align: left;
+}
+div.thumbnails-align-right {
+  text-align: right;
+}
+div.thumbnails-align-center {
+  text-align: center;
+}
+div.thumbnails {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+div.thumbnails a {
+  display: inline-block;
 }
 
 /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
@@ -174,6 +204,7 @@ a.screenshot:hover img { border: 2pt solid #888; }
 
 .main-page-thumbnail {
     width: 100%;
+    margin-bottom: 1rem;
 }
 @media only screen and (max-width : 767px) {
     .main-page-thumbnail {

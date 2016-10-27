@@ -72,7 +72,7 @@ shines from the outside (and that's how louvers cast shadows on the whole room).
   array('filename' => 'office-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-3-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-4-classic-filt.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Graz</b>. I used model <code>graz.mgf</code>, also from
 <a href="http://www.cs.kuleuven.ac.be/~graphics/RENDERPARK/">RenderPark</a>
@@ -84,7 +84,7 @@ note also two blueish mirrors hanging on the walls.
   array('filename' => 'graz-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-3-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-4-classic-filt.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Sibenik</b>. I used <code>sibenik.3ds</code> model from
 <a href="http://hdri.cgtechniques.com/~sibenik2/">
@@ -99,7 +99,7 @@ because two model's walls share the same place on the same plane
   array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'sibenik-wlight-2-classic-filt.png', 'titlealt' => ''),
   array('filename' => 'sibenik-wlight-3-classic-filt.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 
 <p><b>Spoon in a watery soup</b>.
@@ -114,7 +114,7 @@ you can see some rays are transmitted completely inside underwater.
 
 <?php echo castle_thumbs(array(
   array('filename' => 'zupa-wlight-classic-filt.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Forest</b>. Model that I made using
 <a href="http://www.blender3d.org">Blender</a>,
@@ -130,7 +130,7 @@ Main feature of this rendering is to demonstrate that
 
 <?php echo castle_thumbs(array(
   array('filename' => 'forest.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Mirror fun</b>. Using Blender I placed an alien
 (<?php echo a_href_page('you may have seen this guy elsewhere', 'castle'); ?>)
@@ -147,7 +147,7 @@ time both walls act as mirrors (stronger mirrors, 0.9) and so the reflection is 
   array('filename' => 'alien_mirror_blender_rendering.png', 'titlealt' => ''),
   array('filename' => 'alien_one_mirror_2.png', 'titlealt' => ''),
   array('filename' => 'alien_two_mirrors_2.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p>You can download corresponding blender and VRML data files from <?php
   echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
@@ -179,7 +179,7 @@ properties so that classic and path tracer results are similar.
 <?php echo path_tracer_params_descr(2, 0.5, 4, 10, 1); ?>
 <?php echo castle_thumbs(array(
   array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Office and graz</b>. Same models and camera settings as the renderings
 in the <i>classic</i> section before.
@@ -200,7 +200,7 @@ and scaled to 400 x 300.</p>
   array('filename' => 'graz-wlight-1-path.png', 'titlealt' => ''),
   array('filename' => 'office-wlight-1-path-filt.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-1-path-filt.png', 'titlealt' => ''),
-), 2, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Cornell Box</b>. Here you can find
 <a href="http://www.graphics.cornell.edu/online/box/">detailed description
@@ -236,7 +236,7 @@ also a good idea :)
   array('filename' => 'box-path-samp1x10-depth3.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp1x10-rroul0.8.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp1x10-depth2-rroul0.5.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <p><b>Various number of samples per pixel :</b>
 From left to right images below were rendered with
@@ -251,7 +251,7 @@ See <?php echo a_href_page("rayhunter docs", "rayhunter"); ?>
   array('filename' => 'box-path-samp10x1-depth2-rroul0.5.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp10x10-depth2-rroul0.5.png', 'titlealt' => ''),
-), 1000, ''); ?>
+), 'auto', 'left'); ?>
 
 <?php
   castle_footer();

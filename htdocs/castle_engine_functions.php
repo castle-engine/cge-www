@@ -748,7 +748,7 @@ function echo_standard_program_download(
   /* <!-- This helps Michalis to spend more time on developing our engine, our tools and games :) Details about how you can donate are here</a>.<--> */
 }
 
-/* Return <table> with image links.
+/* Return html (<table> or <div>) with image links.
 
    Each $images array item is another associative array:
    - filename (name of the file, with extension, without path).
@@ -761,21 +761,18 @@ function echo_standard_program_download(
    - linktarget (string) - optional URL (full URL!) where the link leads.
      If not specified, the link leads to full image size.
 
-   $align is empty or 'right'.
+   $align is 'left', 'center' or 'right'.
 
-   $columns specifies number of columns of the table.
+   $columns may be an int, it then specifies number of columns of the table.
    We will automatically divide $images into rows with $columns images
    (the last row may be left shorter).
 
-   The table uses absolute links (starting with CURRENT_URL).
+   $columns may also be a string 'auto', in which case we will put images
+   in a div, and we will fit as many images as the parent width allows.
+
+   The generated links are absolute (starting with CURRENT_URL).
    The important work is always done directly (without need for CSS classes),
-   so $castle_force_absolute_url makes content suitable
-   for inclusion also in HTML RSS feeds.
-   (Maybe it will be conditional on global variable
-   $castle_force_absolute_url = true in the future.
-   If global variable $castle_force_absolute_url = false
-   and resource exists locally (is_file_available_locally) then
-   only local link will be done.)
+   so this content is suitablefor inclusion also in HTML RSS feeds.
 */
 function castle_thumbs($images, $columns=1, $align='right')
 {
@@ -783,38 +780,43 @@ function castle_thumbs($images, $columns=1, $align='right')
     return '';
   }
 
-  /* style="clear: right" is added to work nicely with Flattr images,
-     that are on some pages (like castle.php) directly above this table
-     and also aligned to the right. */
-  $result = '<table class="thumbnails thumbnails-align-' . $align . '"><tr>';
+  if ($columns === 'auto') {
+    $result = '<div class="thumbnails thumbnails-align-' . $align . '">';
+  } else {
+    $result = '<table class="thumbnails thumbnails-align-' . $align . '"><tr>';
+  }
 
   $column_now = 0;
   $image_index = 0;
 
   foreach ($images as $image)
   {
-    if ($column_now == 0 && $image_index != 0) {
-      $result .= '</tr><tr>';
+    if ($columns !== 'auto') {
+      if ($column_now == 0 && $image_index != 0) {
+        $result .= '</tr><tr>';
+      }
+
+      // special trick for the last image when columns > 1:
+      // add empty cells, so that the last image is at right.
+      if ($column_now == 0 &&
+          $image_index == count($images) - 1 &&
+          !isset($image['colspan'])) {
+        $result .= str_repeat('<td></td>', $columns - 1);
+      }
+
+      if (isset($image['colspan']))
+        $colspan = ' colspan="' . (int)$image['colspan'] . '"'; else
+        $colspan = '';
+
+      $result .= '<td' . $colspan . '>';
     }
 
-    // special trick for the last image when columns > 1:
-    // add empty cells, so that the last image is at right.
-    if ($column_now == 0 &&
-        $image_index == count($images) - 1 &&
-        !isset($image['colspan'])) {
-      $result .= str_repeat('<td></td>', $columns - 1);
-    }
-
-    if (isset($image['colspan']))
-      $colspan = ' colspan="' . (int)$image['colspan'] . '"'; else
-      $colspan = '';
-
-    $result .= '<td' . $colspan . '>';
     if (isset($image['html']))
     {
       $result .= $image['html'];
     } else
     {
+      $thumb_size = ($columns !== 'auto' ? 'thumb_size' : 'thumb_const_height_size');
       if (isset($image['linktarget']))
         $linktarget = $image['linktarget']; else
         $linktarget = CURRENT_URL . 'images/original_size/' . $image['filename'];
@@ -823,11 +825,14 @@ function castle_thumbs($images, $columns=1, $align='right')
              class="screenshot"
              title="' . $image['titlealt'] . '"><img
             style="float: right"
-            src="' . CURRENT_URL . 'images/thumb_size/' . $image['filename'] . '"
+            src="' . CURRENT_URL . 'images/' . $thumb_size . '/' . $image['filename'] . '"
             alt="' . $image['titlealt'] . '"
           /></a>';
     }
-    $result .= '</td>';
+
+    if ($columns !== 'auto') {
+      $result .= '</td>';
+    }
 
     // increase $column_now
     if (isset($image['colspan']))
@@ -840,7 +845,11 @@ function castle_thumbs($images, $columns=1, $align='right')
     $image_index++;
   }
 
-  $result .= '</tr></table>';
+  if ($columns !== 'auto') {
+    $result .= '</tr></table>';
+  } else {
+    $result .= '</div>';
+  }
 
   return $result;
 }

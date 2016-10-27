@@ -13,10 +13,10 @@
     )
   );
 
-  define('THUMBS_COLS', 2);
-
   /*  echo flattr_button(); */
 ?>
+
+<div class="fixed-width-content">
 
 <img src="images/castle_game_engine_icon.png"
     alt="Castle Game Engine icon"
@@ -29,19 +29,6 @@
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'fps_game_screen_18.png', 'titlealt' => 'FPS game demo'),
-  array('filename' => 'fps_game_blender.png', 'titlealt' => 'FPS game demo - design of level in Blender'),
-  array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
-  array('filename' => 'dragon_new_game.png', 'titlealt' => '&quot;Dragon Squash&quot; game'),
-  array('filename' => 'dragon_new_spine.png', 'titlealt' => '&quot;Dragon Squash&quot; animation in Spine'),
-  array('filename' => 'dragon_old_spine.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in Spine'),
-  array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in view3dscene'),
-  array('filename' => 'hydra_battles_screen_best.png', 'titlealt' => '&quot;Hydra Battles&quot; - isometric RTS'),
-), THUMBS_COLS);
-?>
-
 <ul>
   <li><p>We support a wide range of formats for 3D and 2D data.
     <ul>
@@ -52,6 +39,14 @@ echo castle_thumbs(array(
     for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
 
   <li>We have an optimized <b>renderer for OpenGL and OpenGLES2</b>.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'fps_game_screen_18.png', 'titlealt' => 'FPS game demo'),
+      array('filename' => 'fps_game_blender.png', 'titlealt' => 'FPS game demo - design of level in Blender'),
+      array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
+    ), 'auto', 'left');
+    ?>
 
   <li>You can use <b>any 3D modeler</b> to design your 3D and 2D data.
     <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
@@ -65,6 +60,15 @@ echo castle_thumbs(array(
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
     interactive animation interpolated at runtime,
     or precalculated animation for fast playback.</li>
+
+    <?php
+    echo castle_thumbs(array(
+      //array('filename' => 'dragon_new_game.png', 'titlealt' => '&quot;Dragon Squash&quot; game'),
+      array('filename' => 'dragon_new_spine.png', 'titlealt' => '&quot;Dragon Squash&quot; animation in Spine'),
+      array('filename' => 'dragon_old_spine.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in Spine'),
+      array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in view3dscene'),
+    ), 'auto', 'left');
+    ?>
 
   <li>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
@@ -104,16 +108,6 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'android12glued.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
-  array('filename' => 'plugin_4.png', 'titlealt' => 'A couple of web browser plugin instances'),
-  array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash with Googe Games integration'),
-  array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash with Googe Games achievements'),
-  array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
-), THUMBS_COLS);
-?>
-
 <ul>
   <li><p>You can compile and package your games as
     <ul>
@@ -122,41 +116,54 @@ echo castle_thumbs(array(
       <li><b>web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>).
     </ul>
 
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'android12glued.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
+      array('filename' => 'plugin_4.png', 'titlealt' => 'A couple of web browser plugin instances'),
+    ), 'auto', 'left');
+    ?>
+
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'tutorial_mobile'); ?>.
 
   <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
 
   <li><p>Out-of-the-box <b>integration with an incredible number of services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine">Android Project Components</a> documentation.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash with Googe Games integration'),
+      array('filename' => 'dragon_squash_achievements.png', 'titlealt' => 'Dragon Squash with Googe Games achievements'),
+      array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
+    ), 'auto', 'left');
+    ?>
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain with water reflecting environment using cubemap'),
-  array('filename' => 'barna29_nice_shadows.png', 'titlealt' => 'Real-time water with caustics, reflections, shadows'),
-  array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Bump mapping and shadow maps from multiple light sources'),
-  array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering mode'),
-  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor on a scene with shadow maps'),
-  array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
-  array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
-  array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
-//  array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
-//  array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
-  array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture'),
-  array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'Multiple viewports, interactive scene, shadow volumes and cube-map reflections'),
-), THUMBS_COLS);
-?>
-
 <ul>
   <li><b>Scene manager</b> is used for centralized 3D world handling,
     with <b>custom viewports</b> possible.</li>
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'Multiple viewports, interactive scene, shadow volumes and cube-map reflections'),
+      array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering mode'),
+    ), 'auto', 'left');
+    ?>
 
   <li>Shadows by <b>shadow maps</b>.
     <?php echo a_href_page('Our shadow maps are very comfortable to use',
     'x3d_extensions_shadow_maps'); ?>, and shadows from multiple light
     sources are correctly rendered.
     We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Bump mapping and shadow maps from multiple light sources'),
+      array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor on a scene with shadow maps'),
+      array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+    ), 'auto', 'left');
+    ?>
 
   <li>Shadows by <b>shadow volumes</b> (full implementation,
     with z-fail / z-pass switching, silhouette detection etc. &mdash;
@@ -192,6 +199,14 @@ echo castle_thumbs(array(
         or exhance with <code>Effect</code>, see links above).</li>
     </ul>
 
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain with water reflecting environment using cubemap'),
+      array('filename' => 'barna29_nice_shadows.png', 'titlealt' => 'Real-time water with caustics, reflections, shadows'),
+      array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
+    ), 'auto', 'left');
+    ?>
+
   <li><b><?php echo a_href_page('Screen-space effects', 'x3d_extensions_screen_effects'); ?></b> in GLSL are
     very easy to define and use, in pure X3D or in Pascal code.
 
@@ -212,6 +227,15 @@ echo castle_thumbs(array(
         on mobile platforms).
     </ul>
 
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
+    //  array('filename' => 'tex3d_smoke.png', 'titlealt' => 'Fog from 3D noise'),
+    //  array('filename' => 'rendered_texture_mirror_2.png', 'titlealt' => 'Mirrors by RenderedTexture, by Victor Amat'),
+      array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture'),
+    ), 'auto', 'left');
+    ?>
+
   <li>Speeding up rendering by <b>hardware occlusion query</b>,
     a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
     more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
@@ -226,11 +250,6 @@ echo castle_thumbs(array(
 </ul>
 
 <?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
-), THUMBS_COLS);
-?>
 
 <ul>
   <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games.
@@ -262,17 +281,6 @@ echo castle_thumbs(array(
 </ul>
 
 <?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
-  array('filename' => 'rift_2.png', 'titlealt' => 'Fixed-camera game'),
-  array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - split-screen coop game'),
-  array('filename' => 'model_3d_viewer.png', 'titlealt' => 'Lazarus model_3d_viewer example'),
-  array('filename' => 'little_things_screen_7.png', 'titlealt' => '&quot;Little Things&quot; game with screen effects'),
-  array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
-), THUMBS_COLS);
-?>
 
 <ul>
   <li>Comfortable <b><?php echo a_href_page('3D sound engine', 'tutorial_sound'); ?></b>,
@@ -318,6 +326,14 @@ echo castle_thumbs(array(
     Castle Game Engine organization</a>).
     </li>
 
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'),
+      array('filename' => 'rift_2.png', 'titlealt' => 'Fixed-camera game'),
+      array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - split-screen coop game'),
+    ), 'auto', 'left');
+    ?>
+
   <li>We have ready window classes (<code>TCastleWindow</code>)
     and Lazarus components (<code>TCastleControl</code>) to make simple
     VRML/X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
@@ -343,6 +359,14 @@ echo castle_thumbs(array(
     (e.g. to write ray-tracers).
 
   <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler. We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'model_3d_viewer.png', 'titlealt' => 'Lazarus model_3d_viewer example'),
+      array('filename' => 'little_things_screen_7.png', 'titlealt' => '&quot;Little Things&quot; game with screen effects'),
+      array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
+    ), 'auto', 'left');
+    ?>
 </ul>
 
 <!--
@@ -365,6 +389,8 @@ This is the time where you can show your cool work environment
 new game / tool you develop&nbsp;:)
 </div>
 </div>
+
+</div> <!-- class="fixed-width-content" -->
 
 <?php
   castle_footer();

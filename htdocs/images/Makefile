@@ -11,6 +11,7 @@
 # ALL_THUMB is a space-separated list of target thumb-sized images.
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
+ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIGINAL))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 
 # Only a small number of images needs "program_link_size"
@@ -43,7 +44,12 @@ ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 
 .PHONY: all clean info
 
-ALL_TARGETS := $(ALL_TEASER) $(ALL_THUMB) $(ALL_PROGRAM_LINK) $(ALL_OS_ICONS) $(ALL_MAIN_LINK) \
+ALL_TARGETS := $(ALL_TEASER) \
+  $(ALL_THUMB) \
+  $(ALL_THUMB_CONST_HEIGHT) \
+  $(ALL_PROGRAM_LINK) \
+  $(ALL_OS_ICONS) \
+  $(ALL_MAIN_LINK) \
   castle_game_engine_icon.png \
   main_link_size/castle_game_engine_icon.png
 
@@ -64,6 +70,15 @@ thumb_size/glplotter%: original_size/glplotter%
 
 thumb_size/%: original_size/%
 	convert $< -geometry 200x150 $@
+
+# ----------------------------------------------------------------------------
+# making thumb_const_height_size
+
+thumb_const_height_size/glplotter%: original_size/glplotter%
+	convert $< -emboss 5.0 -geometry x200 $@
+
+thumb_const_height_size/%: original_size/%
+	convert $< -geometry x200 $@
 
 # ----------------------------------------------------------------------------
 # making program_link_size

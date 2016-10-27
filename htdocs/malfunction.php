@@ -17,6 +17,7 @@
 
 <?php
   echo pretty_heading("malfunction", VERSION_MALFUNCTION);
+  echo $toc->html_toc();
   echo default_program_thumbnail("malfunction");
 ?>
 
