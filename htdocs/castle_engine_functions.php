@@ -561,7 +561,7 @@ function echo_header_bonus ()
 
 <script type="text/javascript" src="castle-engine.js"></script>
 
-<style type="text/css"><!--
+<style type="text/css">
 <?php
 /* looks like we need to set_language before get_stylesheet,
    otherwise not everything necessary is output. */
@@ -572,7 +572,6 @@ echo $geshi->get_stylesheet(false);
 $geshi->set_language('C');
 echo $geshi->get_stylesheet(false);
 ?>
- -->
 </style>
 
 <?php
