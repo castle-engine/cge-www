@@ -9,7 +9,7 @@ $castle_books = array(
     'path' => array('documentation', 'tutorial_intro'),
   ),
   'creating_data' => array(
-    'title' => 'Guide to creating game data',
+    'title' => 'Creating Game Data',
     'path' => array('documentation', 'creating_data_intro'),
   ),
 );
