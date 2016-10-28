@@ -202,15 +202,7 @@ $castle_sitemap = array(
     'sidebar' => true,
     'sub' => array(
       'demo_models' => array('title' => 'Demo models'),
-      'x3d_extensions' => array('title' => 'Extensions',
-        'sub' => array(
-          'compositing_shaders' => array('title' => 'Compositing Shaders'),
-          'x3d_extensions_screen_effects' => array('title' => 'Screen Effects'),
-          'x3d_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
-          'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
-        ),
-      ),
-      'x3d_implementation_status' => array('title' => 'X3D Components',
+      'x3d_implementation_status' => array('title' => 'Standard X3D Components',
         'sub' => array(
           'x3d_implementation_core'                 => array('title' => 'Core'                            ),
           'x3d_implementation_time'                 => array('title' => 'Time'                            ),
@@ -273,6 +265,15 @@ $castle_sitemap = array(
           'x3d_implementation_cubemaptexturing'     => array('title' => 'Cube map environmental texturing'),
         )
       ),
+      'x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
+        'sub' => array(
+          'compositing_shaders' => array('title' => 'Compositing Shaders'),
+          'x3d_extensions_screen_effects' => array('title' => 'Screen Effects'),
+          'x3d_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
+          'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
+        ),
+      ),
+     'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
       'castle_script' => array('title' => 'CastleScript language reference'),
       'kanim_format' => array('title' => 'Kanim (precalculated animations) file format'),
       'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),

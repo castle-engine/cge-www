@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("Components");
+  vrmlx3d_header("Standard X3D Components");
 
   $toc = new TableOfContents(
     array(
