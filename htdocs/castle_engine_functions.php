@@ -64,6 +64,9 @@ define('S_INSTALLATION_INSTRUCTIONS_SHORT',
 
 define('FPC_CFG_DOCS', 'see <a href="http://www.freepascal.org/docs-html/user/usersu10.html">FPC documentation <i>"Configuration file"</i> to know where you can find your <code>fpc.cfg</code> file</a>');
 
+global $site_title;
+$site_title = 'Castle Game Engine';
+
 /* Complete sitemap of our website.
    This determines a lot of navigational stuff: header menu, sidebar,
    breadcrumbs.
@@ -114,6 +117,14 @@ $castle_sitemap = array(
   'features' => array('title' => 'Features'),
 
   'documentation' => array('title' => 'Documentation',
+    'dropdown' => array(
+      'documentation' => array('title' => 'Getting Started'),
+      'tutorial_intro' => array('title' => 'Tutorial'),
+      'creating_data_intro' => array('title' => 'Creating Game Data'),
+      'reference' => array('title' => 'API Reference', 'url' => reference_link()),
+      'modern_pascal_introduction' => array('title' => 'Modern Pascal Language', 'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html'),
+      'documentation_more' => array('title' => 'More...'),
+    ),
     'sidebar' => true,
     'sub' => array(
       /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
@@ -124,6 +135,7 @@ $castle_sitemap = array(
       /*     ), */
       /*   ) */
       /* ), */
+      'documentation' => array('title' => 'Getting Started'),
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
           'tutorial_intro' => array('title' => 'Introduction'),
@@ -171,13 +183,18 @@ $castle_sitemap = array(
           'creating_data_sound' => array('title' => 'Sound'),
         )
       ),
-      'reference' => array('title' => 'Reference', 'url' => reference_link()),
-      'helping' => array('title' => 'How to help in engine development'),
-      'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
-      'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
-      'engine_doc' => array('title' => 'Internals documentation'),
-      'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
-      'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),
+      'reference' => array('title' => 'API Reference', 'url' => reference_link()),
+      'modern_pascal_introduction' => array('title' => 'Modern Pascal Language', 'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html'),
+      'documentation_more' => array('title' => 'More...',
+        'sub' => array(
+          'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
+          'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
+          'helping' => array('title' => 'Helping in engine development'),
+          'engine_doc' => array('title' => 'Internals documentation'),
+          'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
+          'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),
+        )
+      ),
     ),
   ),
 
@@ -393,20 +410,81 @@ function _castle_header_menu($current_page)
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
-    $result .= '<li role="presentation" ';
-    if ($menu_item_page == $current_page)
-      $result .= ' class="active"';
-    $result .= '><a href="';
-    if (isset($menu_item['url']))
-      $result .= $menu_item['url']; else
+    // output <li ...>
+    $result .= '<li role="presentation" class="';
+    if ($menu_item_page == $current_page) {
+      $result .= ' active';
+    }
+    if (isset($menu_item['dropdown'])) {
+      $result .= ' dropdown';
+    }
+    $result .= '">';
+
+    // output <a href="..."
+    $result .= '<a href="';
+    if (isset($menu_item['dropdown'])) {
+      $result .= '#';
+    } else
+    if (isset($menu_item['url'])) {
+      $result .= $menu_item['url'];
+    } else {
       $result .= en_page_url($menu_item_page);
+    }
     $result .= '"';
-    if (isset($menu_item['hint']))
+
+    // output optional <a> dropdown attributes
+    if (isset($menu_item['dropdown'])) {
+      $result .= ' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"';
+    }
+
+    // output title="..."
+    if (isset($menu_item['hint'])) {
       $result .= ' title="' . $menu_item['hint'] . '"';
-    if (isset($menu_item['title-for-header-menu']))
-      $title = $menu_item['title-for-header-menu']; else
-      $title = $menu_item['title'];
-    $result .= '>' . $title . '</a></li>';
+    }
+
+    // output <a> content
+    $result .= '>';
+    if (isset($menu_item['title-for-header-menu'])) {
+      $result .= $menu_item['title-for-header-menu'];
+    } else {
+      $result .= $menu_item['title'];
+    }
+    if (isset($menu_item['dropdown'])) {
+      $result .= ' <span class="caret"></span>';
+    }
+    $result .=  '</a>';
+
+    // output dropdown contents
+    if (isset($menu_item['dropdown'])) {
+      $result .= '<ul class="dropdown-menu">';
+      foreach ($menu_item['dropdown'] as $dropdown_item_page => $dropdown_item) {
+        $result .= '<li>';
+
+        // output <a href="..."
+        $result .= '<a href="';
+        if (isset($dropdown_item['url'])) {
+          $result .= $dropdown_item['url'];
+        } else {
+          $result .= en_page_url($dropdown_item_page);
+        }
+        $result .= '"';
+
+        // output <a> content
+        $result .= '>';
+        if (isset($dropdown_item['title-for-header-menu'])) {
+          $result .= $dropdown_item['title-for-header-menu'];
+        } else {
+          $result .= $dropdown_item['title'];
+        }
+        $result .=  '</a>';
+
+        $result .= '</li>';
+      }
+      $result .= '</ul>';
+    }
+
+    // finish </li>
+    $result .= '</li>';
   }
   unset($menu_item);
   unset($menu_item_page);
@@ -598,6 +676,12 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
 function castle_footer()
 {
   echo disqus_form();
+
+  ?>
+  <script type="text/javascript">
+  jQuery('.dropdown-toggle').dropdown();
+  </script>
+  <?php
 
   global $castle_sidebar;
   if (empty($castle_sidebar))

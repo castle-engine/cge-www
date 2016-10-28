@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
 
-  castle_header("Castle Game Engine - Features", NULL, array('features'));
+  castle_header("Features", NULL, array('features'));
 
   $toc = new TableOfContents(
     array(

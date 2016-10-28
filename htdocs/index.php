@@ -7,7 +7,7 @@ require_once 'news_common.php';
 global $main_page;
 $main_page = true;
 
-castle_header('Castle Game Engine',
+castle_header('Download',
   'Free open-source 3D game engine. Supports a lot of 2D and 3D data formats, including VRML / X3D, Collada, Spine... Cross-platform, for standalone (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin... Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.');
 ?>
 
@@ -43,7 +43,7 @@ castle_header('Castle Game Engine',
                 <div class="download-hints">
                     <p>Recommended: download also <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
 
-                    <p>See the <?php echo a_href_page('documentation', 'documentation'); ?> for the quick <i>"Getting Started"</i> instructions.<br>
+                    <p>See the <?php echo a_href_page('"Getting Started"', 'documentation'); ?> documentation.<br>
                     We also have
                     <?php echo a_href_page('tutorial', 'tutorial_intro'); ?>,
                     <a href="<?php echo reference_link(); ?>">reference</a>,
