@@ -98,8 +98,8 @@ have to actually send your 3D model source.--></p>
 <p>Most of the 3D models here were created by Kambi (Michalis Kamburelis).
 Simple test models were simply manually crafted in a text editor.
 The more complicated meshes were created in
-<a href="http://www.blender3d.org/">Blender</a> (usually using our
-<?php echo a_href_page('modified Blender exporters', 'blender'); ?>),
+<a href="http://www.blender3d.org/">Blender</a> (see
+our <?php echo a_href_page('Blender exporting documentation', 'creating_data_blender'); ?>),
 you will find the .blend source files inside.
 For 2D art I usually use <a href="http://www.gimp.org/">GIMP</a>.
 Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>

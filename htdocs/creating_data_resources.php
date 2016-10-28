@@ -241,7 +241,7 @@ modeler / exporter you use to design your models:
     from <?php echo a_href_page('KAnim', 'kanim_format'); ?> or MD3 (Quake 3 engine format) file. This is
     useful if your 3D modeler / exporter cannot produce animated X3D files
     at all, but it can export to kanim (see <?php echo a_href_page('our Blender to KAnim
-    exporter', 'blender'); ?>) or MD3. In the worst case, you can also just export a
+    exporter', 'creating_data_blender'); ?>) or MD3. In the worst case, you can also just export a
     couple of still frames and write the xxx.kanim file in a text editor,
     because the kanim format is a trivial XML file that just describes a
     transition between a couple of still 3D models.

@@ -288,13 +288,17 @@ There are also various other small lacks.
 Many features of VRML/X3D and our engine are not used intensively enough,
 because there isn't any way to express them and export from Blender.
 
-<p>We have <?php echo a_href_page('our own customized Blender X3D exporter',
-'blender'); ?>, so you can start from this.
-Preferably, changes should be reported and applied to
+<p>Preferably, changes should be reported and applied to
 the <a href="http://www.blender.org/">Blender</a> sources.
+But, eventually, we can also host our custom X3D exporter.
+
+<p>See also our <?php echo a_href_page('Blender exporting notes',
+'creating_data_blender'); ?>.
+
+<!--
 Only stuff really specific to our engine (cooperation between Blender
 and some specific features of our engine) should be left inside our
-custom exporter.</p>
+custom exporter.--></p>
 
 <?php echo $toc->html_section(); ?>
 

@@ -17,11 +17,8 @@ constantly improving. We want to use these tools, not reinvent them.
 trivial: grab <a href="http://www.blender.org/">Blender</a> (or any other 3D modeller of choice), and
 export to X3D. You can try opening your models in
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
- to see which features get exported correctly. In case of Blender, <a
-href="http://castle-engine.sourceforge.net/blender_stuff.php">you can
-use our custom Blender X3D exporter (although standard Blender X3D
-exporter is also fine since some time), and see notes how does it
-work</a>.
+ to see which features get exported correctly. See also
+<?php echo a_href_page('our Blender exporting hints', 'creating_data_blender'); ?>.
 
 <p>You may encounter some features that are not exported from your 3D
 modeller in a satisfactory way. Fortunately, that's when the strength
