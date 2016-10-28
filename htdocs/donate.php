@@ -72,8 +72,8 @@
 <div class="col-sm-6">
 
 <div class="jumbotron">
-<p><?php /* This seems like a good place to beg for donations :)
-So here goes: */ ?> Hi,
+<a href="images/michalis_IMG_20140927_223048.jpg" class="donate-photo" title="That's me:)"><img src="images/michalis_IMG_20140927_223048.jpg" /></a>
+<p>Hi,
 <p>I'm Michalis Kamburelis
 (<?php echo michalis_mailto('email'); ?>,
 <a href="https://plus.google.com/106323096891653345103">google+</a>).

@@ -228,6 +228,18 @@ div.download table td { text-align: center;
 div.download table a { display: block; text-decoration: none; }
 div.download table a img { border: 0px none; }
 
+.donate-photo {
+    float: right;
+    width: 300px;
+    max-width: 50%;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+.donate-photo img {
+    width: 100%;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {
