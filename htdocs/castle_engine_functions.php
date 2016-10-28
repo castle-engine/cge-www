@@ -181,6 +181,7 @@ $castle_sitemap = array(
           'creating_data_player' => array('title' => 'Player configuration'),
           'creating_data_material_properties' => array('title' => 'Material properties configuration'),
           'creating_data_sound' => array('title' => 'Sound'),
+          'creating_data_blender' => array('title' => 'Blender'),
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
@@ -321,8 +322,6 @@ $castle_sitemap = array(
       'all_programs_sources' => array('title' => 'All Programs Sources'),
     ),
   ),
-
-  'blender' => array('title' => 'Blender X3D exporter', 'hint' => 'Customized Blender X3D exporter', 'title-for-header-menu' => 'Blender'),
 );
 
 function _castle_bootstrap()
