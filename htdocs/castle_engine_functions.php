@@ -189,10 +189,12 @@ $castle_sitemap = array(
         'sub' => array(
           'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
           'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
+          'fpc_and_lazarus' => array('title' => 'Supported FPC and Lazarus versions'),
           'helping' => array('title' => 'Helping in engine development'),
           'engine_doc' => array('title' => 'Internals documentation'),
           'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
           'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),
+          'license' => array('title' => 'License'),
         )
       ),
     ),

@@ -1,7 +1,18 @@
 <?php
 require_once 'castle_engine_functions.php';
 tutorial_header('Simple loading of 3D models');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('How to do it', 'how'),
+    new TocItem('Explanation: What is a "Scene Manager"', 'create'),
+    new TocItem('Try some impressive 3D models', 'demo_models'),
+  )
+);
 ?>
+
+<?php echo $toc->html_toc(); ?>
+<?php echo $toc->html_section(); ?>
 
 <p>We will now load a 3D model from file using the <code>TCastleScene</code> class,
 and display it.
@@ -92,7 +103,7 @@ can remove it if you know that your level is, and always will be, static).</p>
 (like initial camera position, initial headlight status and such) can
 be obtained from this scene.</p>
 
-<h2>What is a "Scene Manager"?</h2>
+<?php echo $toc->html_section(); ?>
 
 <p><i>Scene manager</i> contains the whole knowledge about your game 3D world.
 It is essential to add all your 3D stuff to a scene manager.
@@ -122,6 +133,29 @@ There are special classes available (<code>TCastleControlCustom</code> or
 instance (or maybe zero, or maybe more than one scene manager instance,
 maybe a custom scene manager class...).
 </p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>An important strength of our engine is that you can express a lot
+of stuff inside your data, that is inside
+<?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?> models.
+So many features of our engine
+(<?php echo a_href_page('shaders','x3d_implementation_shaders'); ?>,
+ <?php echo a_href_page('screen effects', 'x3d_extensions_screen_effects'); ?>,
+ <?php echo a_href_page('mirrors', 'x3d_implementation_cubemaptexturing'); ?>
+ and many many more) don't have any special Object Pascal examples,
+because they are simply not needed. For simple uses, you just define what you
+need inside VRML/X3D file (of course, for advanced usage you can do a lot more
+with Object Pascal code, and you can always build/modify VRML/X3D graph
+by Object Pascal code).
+So <b>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></b>
+ and try opening them with any engine example program (like the one you just created,
+or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+&mdash; you will find that everything just works,
+not requiring a single line of Object Pascal code.</p>
+
+<p><b>Our model viewer <?php echo a_href_page('view3dscene', 'view3dscene'); ?></b>
+ allows to test your models before loading them to your games.
 
 <?php
 tutorial_footer();
