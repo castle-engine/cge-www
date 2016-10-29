@@ -16,34 +16,43 @@ software are ready for this &mdash; e.g. Blender X3D exporter by default
 rotates models to change +Z axis (traditional "up" vector in Blender) to
 the +Y axis. So things <i>just work</i>.
 
-<h2>Quick guide for <a href="http://www.blender.org/">Blender</a></h2>
+<h2>How to use <a href="http://www.blender.org/">Blender</a> with up = Y or Z conventions</h2>
 
 <ul>
-  <li><p>If you want to follow "+Y is up" convention (easier,
+  <li><p>If you want to follow <i>"+Y axis is up"</i> convention (easier,
     i.e. you don't really need to do anything):
 
     <ol>
-      <li>When exporting from Blender (levels, creatures etc.), let it
-        rotate the model, i.e. change +Z to +Y. This is actually the
-        default for X3D exporter since some time.
-        You can verify that it happens by checking that in the exporter settings that:
+      <li><p>When exporting from Blender (levels, creatures etc.), let it
+        rotate the model, i.e. change +Z to +Y.
+        This is the default behavior of the X3D exporter.
+        You can verify that it happens by checking in the exporter settings that:
         <ul>
           <li><i>Forward</i> = Z Forward</li>
           <li><i>Up</i> = Y Up</li>
         </ul>
 
-      <li>Make sure your X3D <code>Viewpoint</code> indicates +Y as up vector. This is
-        actually the default VRML/X3D value.
+      <li><p>Make sure the <code>Viewpoint</code> node in X3D (default camera)
+        indicates +Y as the up vector.
+        This is the default X3D value. You can always
+        just remove the Blender's camera and setup the default camera position
+        by code.
 
-      <li>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at default
+        <p>You can also set the viewpoint using the
+        <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+        <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>.
+        Paste the generated <code>Viewpoint</code> code into your X3D file
+        (or into an X3D "wrapper" file, that includes another X3D using the <code>Inline</code> node).
+
+      <li><p>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at the default value:
         <code>otUpYDirectionMinusZ</code>.
     </ol>
   </li>
 
-  <li><p>If you want to follow "+Z is up" convention:
+  <li><p>If you want to follow <i>"+Z axis is up"</i> convention:
 
     <ol>
-      <li>When exporting from Blender (levels, creatures etc.), always
+      <li><p>When exporting from Blender (levels, creatures etc.), always
         select to <i>not</i> rotate the model, i.e. keep Blender's original
         coordinate system. To do this, set in the exporter settings:
         <ul>
@@ -51,11 +60,17 @@ the +Y axis. So things <i>just work</i>.
           <li><i>Up</i> = Z Up</li>
         </ul>
 
-      <li>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
-        generate a <code>Viewpoint</code> in your level that makes gravity working in Z
-        axis.
+      <li><p>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
+        generate a <code>Viewpoint</code> in your level that makes gravity
+        working in the Z axis.
 
-      <li>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <code>otUpZDirectionX</code>.
+        <p>You can set the viewpoint using the
+        <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+        <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>, just make
+        sure to set earlier the <i>"Navigation -&gt; Walk and Fly Settings -&gt;
+        Change Gravity Up Vector"</i> to <code>0 0 1</code>.
+
+      <li><p>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
     </ol>
   </li>
 </ul>
