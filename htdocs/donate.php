@@ -72,7 +72,7 @@
 <div class="col-sm-6">
 
 <div class="jumbotron">
-<a href="images/michalis_IMG_20140927_223048.jpg" class="donate-photo" title="That's me:)"><img src="images/michalis_IMG_20140927_223048.jpg" /></a>
+<a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png" /></a>
 <p>Hi,
 <p>I'm Michalis Kamburelis
 (<?php echo michalis_mailto('email'); ?>,
