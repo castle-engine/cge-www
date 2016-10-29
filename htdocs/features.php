@@ -77,7 +77,8 @@
     RGBE format (Radiance HDR format).
     See:
     <ul>
-      <li><?php echo a_href_page('tutorial about drawing 2D stuff', 'tutorial_player_2d_controls'); ?> and
+      <li><?php echo a_href_page('tutorial about standard 2D controls', 'tutorial_2d_user_interface'); ?>,
+      <li><?php echo a_href_page('tutorial about drawing custom 2D stuff', 'tutorial_player_2d_controls'); ?>,
       <li><?php api_link('CastleImages', 'CastleImages.html'); ?> (reading, writing, processing images on CPU),
       <li><?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> (rendering and other processing of images on GPU).
     </ul>
