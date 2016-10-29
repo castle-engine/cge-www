@@ -33,7 +33,7 @@ for example inside the
 inside the overridden <?php api_link('TUIControl.Render',
   'CastleUIControls.TUIControl.html#Render'); ?> implementation.
 See <?php echo a_href_page('the tutorial about 2D drawing',
-  'tutorial_player_2d_controls'); ?> for a general info about 2D rendering.
+  'tutorial_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
 
 <p>Instead of directly drawing the text,
 you can also use

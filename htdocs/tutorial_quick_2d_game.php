@@ -20,11 +20,13 @@ echo castle_thumbs(array(
 ));
 ?>
 
+<?php /*
 <div class="jumbotron">
 <p><span class="label label-warning">Warning</span> This tutorial page uses features available only in the <b>unstable <a href="https://github.com/castle-engine/castle-engine">engine version on GitHub</a></b>. Do not read this if you use the <b>stable engine version</b> (downloaded as zip or tar.gz from our pages), or be prepared to make some modifications.
 
 <p>In particular, in the stable engine version, the <code>TGLImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="http://castle-engine.sourceforge.net/tutorial_player_2d_controls.php">Details are explained here</a>.
 </div>
+*/ ?>
 
 <p>Before we dive into 3D, we can take a quick stab at basic stuff
 you can do with our new context. Let's draw some images and handle basic
@@ -296,7 +298,7 @@ end;
 <p>If you want to go more into the direction of 2D games, here are some starting points:
 
 <ul>
-  <li><p>See the <?php echo a_href_page('tutorial about displaying 2D controls - player HUD', 'tutorial_player_2d_controls'); ?>. It has a nice overview of 2D drawing capabilities.
+  <li><p>See the <?php echo a_href_page('tutorial about drawing your own 2D controls', 'tutorial_2d_ui_custom_drawn'); ?>. It has a nice overview of 2D drawing capabilities. You can also use the <?php echo a_href_page('standard 2D controls', 'tutorial_2d_user_interface'); ?> with a lot of ready functionality.
 
     <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> (instead of simply attaching to window callbacks).
 

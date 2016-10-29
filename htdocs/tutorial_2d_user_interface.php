@@ -8,7 +8,7 @@ TODO: finish this.
 Design simple window with an image and two buttons. "Attack the zombie?"
 
 - parents hierarchy, relative coords
-- tuicontrol rectangle as parent invisible
+- tuicontrolrectangle as parent invisible
 - tcastlelabel, TCastleImage control, tcastlebutton, tcastleshape and tcastlerectangle as common ui controls
 
 Note that *Every* control can be a parent for more controls. So you can place children controls e.g. inside the TCastleBytton, to make a button contain any UI you like.
@@ -22,7 +22,9 @@ castlebutton is very flexible, you can really adjust it
 
 - remember that Tabstract castle viewport (tcastl scene manager, t2dscene manager, tcastleviewport) are 2d controls too. You CAN go wild and insert this way animations from x3d / spine on top of your UI, it works as always, and we have no problems with multiple vscene managers.
 
-- you may find it useful to use TCastleuistate to organize your application states. In this case, you will usually create ui in start, and pass Free AtStop as owner (or free manually in stop).
+- Special UIs:
+  - you may find it useful to use TCastleuistate to organize your application states. In this case, you will usually create ui in start, and pass Free AtStop as owner (or free manually in stop).
+  - you can use tuicontrolrectangle fullscreen to capture keys
 
 <?php
 tutorial_footer();

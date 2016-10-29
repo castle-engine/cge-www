@@ -3,19 +3,24 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Loading game level');
 ?>
 
-<p>Instead of loading level by directly using
-<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
-there is a more
-comfortable and feature-rich way to load a level for a game: call the
+<p>We could load a game level by directly using the
+<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+ class, described in the previous chapters. Same goes for the game creatures,
+and actually for everything else you need to display in the game.
+ <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+ is really versatile:)
+
+<p>However, we also have a more comfortable way to manage typical levels,
+creatures and items in the game.
+To load a level call the
 <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> method. Under the hood,
 <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
- does everything mentioned in previous chapter &mdash; the
-new 3D model is loaded, and added to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and set
+ uses <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
+ adding it to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and setting
 as
 <?php api_link('SceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>.
-But it also does some additional work, like
-detecting a "placeholders" in your 3D model, which should be replaced
-with creatures and items.</p>
+It also does something extra: it detects a "placeholders" in your 3D model,
+which should be replaced with creatures and items.</p>
 
 <p>It is also integrated with <?php api_link('CastleLevels', 'CastleLevels.html'); ?> definition of what a "level"
 is: namely, it's a <code>level.xml</code> file referencing a 3D model and
@@ -124,6 +129,13 @@ Levels.LoadFromFiles;
 SceneManager.LoadLevel(\'pits\');
 
 Application.Run; // this goes after preparing level (and everything else)'); ?>
+
+  <li><p>If you use
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+    to write cross-platform (portable to mobile) games, do this in
+    <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>
+    handler (or later).
+    See <?php echo a_href_page('tutorial about writing cross-platform games', 'tutorial_mobile'); ?>.
 
   <li><p>If you use Lazarus
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,

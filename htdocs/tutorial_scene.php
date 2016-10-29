@@ -3,15 +3,41 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Transform, animate, build a scene');
 ?>
 
-TODO: finish this.
+<p>In the last chapter, we created a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
+This is a very powerful class in our engine, it represents any non-trivial 3D or 2D object.
+You often load it's contents from the file using the <?php api_link('Load', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method.
+To actually make it visible (and animated, and sometimes even interactive), you need to also add it to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>.</p>
 
-<p>In the last chapter, you created a TCastleScene instance. This is a very powerful class in our engine, it represents any non-trivial 3D or 2D object. You often load it's contents from the file using the <a>Load</a> method. To actually make it visible (and animated, and sometimes even interactive), you need to also add it to the SceneManager.Items.</p>
+<p>In this chapter, we will extend a little the code from the previous chapter, to add more functionality around the scene.
 
 <h2>Transform</h2>
 
-<p><a>TCastleScene</a> and <a>TCastleSceneManager are packed with useful features. First of all, you can group and transform (move, rotate, scale) scenes using the T3DTransform class.
+<p>You can group and transform (move, rotate, scale) scenes using the <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> class.</p>
 
-<p>As a simple example, let's add an animated dragon to our scene.
+<ol>
+  <li><p>Add the <?php api_link('Castle3D', 'Castle3D.T3DTransform.html'); ?> unit to your <code>uses</code> clause.</p></li>
+
+  <li><p>Declare variable <code>Transform: T3DTransform;</code> at the same place where you declared <code>Scene: TCastleScene;</code> in the previous chapter.
+
+  <li><p>
+
+  <b>If you use Lazarus form with
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
+
+    <p>Declare the <code>Scene</code> and <code>Transform</code>
+    variables inside the form <code><b>private</b></code> section:
+
+<?php echo pascal_highlight(
+'TForm1 = class(TForm)
+...
+private
+
+  Scene: TCastleScene;
+...'); ?>
+
+    <p>
+<p>
+As a simple example, let's add an animated dragon to our scene.
 At the beginnig (right <i>after</i> you initialized your world,
 usually by
 <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>)
@@ -20,8 +46,8 @@ you add your objects to the world:
 <?php echo pascal_highlight(
 '// add to global variables:
 var
-  DragonTransform: T3DTransform;
-  Dragon: TCastleScene;
+  Transform: T3DTransform;
+  Scene: TCastleScene;
 
 // ... somewhere after SceneManager.LoadLevel do:
 

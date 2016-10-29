@@ -4,54 +4,61 @@ tutorial_header('Simple loading of 3D models');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('How to do it', 'how'),
+    new TocItem('Get sample 3D model', 'model'),
+    new TocItem('Write the code!', 'code'),
     new TocItem('Explanation: What is a "Scene Manager"', 'create'),
     new TocItem('Try some impressive 3D models', 'demo_models'),
   )
 );
 ?>
 
+<p>We will now load a 3D model from file using the <code>TCastleScene</code> class,
+and display it.</p>
+
 <?php echo $toc->html_toc(); ?>
+
 <?php echo $toc->html_section(); ?>
 
-<p>We will now load a 3D model from file using the <code>TCastleScene</code> class,
-and display it.
-This is one approach to load a simple 3D game level
-(you will see a better way later to load a game level
-that integrates with items and creatures out-of-the-box).</p>
+<p>Note that a 3D model doesn't have to be static.
+It can include animated stuff, interactions,
+3D sounds, scripts, and more.
+<?php echo a_href_page('Our scene graph based on X3D is really quite powerful', 'vrml_x3d'); ?>.
 
-<p>Note that this 3D model doesn't have to be static
-&mdash; it can already include animated stuff, interactions,
-3D sounds, scripts, and such.
-<?php echo a_href_page('VRML / X3D is really quite powerful', 'vrml_x3d'); ?>.
+<p>A sample 3D model may be found inside the engine examples,
+in <code>examples/3d_rendering_processing/data/car.x3d</code> file.
+My advice is to copy now the whole directory <code>data</code> from there into your
+own project directory (so you have files like <code>data/car.x3d</code>).
+The name <code>data</code> is somewhat special, it cooperates with the default
+behavior of our <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+ function.
 
-<p>A sample 3D model may be found inside engine examples,
-in <code>examples/3d_rendering_processing/models/bridge_final.x3dv</code>.
-You can also download
+<p>You can also download
 <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
-<!--
-You can open them first with
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.--></p>
+And you can open all the models with
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
+to see how do they look like before loading them into your game.</p>
 
-<p>If you want to make your own 3D model, go ahead &mdash; generally use any
+<p>And if you want to make your own 3D model, go ahead &mdash; generally use any
 3D modeler and export to any 3D format we can handle, preferably X3D.
 See <?php echo a_href_page('our guide to creating game data', 'creating_data_intro'); ?> for more information about preparing 3D data.</p>
+
+<?php echo $toc->html_section(); ?>
 
 <ol>
   <li><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
-    To load a 3D model, double click to create an event <code>OnOpen</code>
-    on <code>TCastleControl</code>, and put there the following code:</p>
+    To load a 3D model, double click to create an event <code>OnCreate</code>
+    on your <code>TForm1</code> class, and put there the following code:</p>
 
 <?php echo pascal_highlight(
 '// also add to your uses clauses these units: CastleSceneCore, CastleScene;
 
-procedure TForm1.CastleControl1Open(Sender: TObject);
+procedure TForm1.FormCreate(Sender: TObject);
 var
   Scene: TCastleScene;
 begin
   Scene := TCastleScene.Create(Application);
-  Scene.Load(\'my_scene.x3d\');
+  Scene.Load(\'car.x3dv\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
@@ -70,7 +77,7 @@ var
   Scene: TCastleScene;
 begin
   Scene := TCastleScene.Create(Application);
-  Scene.Load(\'my_scene.x3d\');
+  Scene.Load(\'car.x3dv\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 

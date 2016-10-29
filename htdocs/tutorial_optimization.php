@@ -56,7 +56,7 @@ difference between <code>FrameTime</code> and <code>RealTime</code> shortly.</p>
 
   <li>You can also simply display them on an OpenGL context (see the
     <?php echo a_href_page('example about designing your own <code>TGame2DControls</code>
-    in earlier chapter', 'tutorial_player_2d_controls'); ?>).
+    in earlier chapter', 'tutorial_2d_ui_custom_drawn'); ?>).
 </ul>
 
 <?php echo $toc->html_section(); ?>
