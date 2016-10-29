@@ -7,6 +7,15 @@ tutorial_header('Which way is up?');
 and, consequently, which vector corresponds to the "direction" the
 creature/player is facing.
 
+<h2>The short answer</h2>
+
+<p>By default, our engine follows the convention that "up" is in +Y axis.
+
+<p>This is consistent with X3D. And exporters from 3D authoring
+software are ready for this &mdash; e.g. Blender X3D exporter by default
+rotates models to change +Z axis (traditional "up" vector in Blender) to
+the +Y axis. So things <i>just work</i>.
+
 <h2>Quick guide for <a href="http://www.blender.org/">Blender</a></h2>
 
 <ul>
@@ -23,7 +32,7 @@ creature/player is facing.
           <li><i>Up</i> = Y Up</li>
         </ul>
 
-      <li>Make sure your <code>Viewpoint</code> indicates +Y as up vector. This is
+      <li>Make sure your X3D <code>Viewpoint</code> indicates +Y as up vector. This is
         actually the default VRML/X3D value.
 
       <li>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at default
