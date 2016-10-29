@@ -143,7 +143,7 @@ $castle_sitemap = array(
           'tutorial_window' => array('title' => 'Display a window'),
           'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (getting to know window events)'),
           'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),
-          'tutorial_scene' => array('title' => 'Transform, animate, build a scene'),
+          'tutorial_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'tutorial_mobile' => array('title' => 'Developing mobile (and cross-platform) games'),
           'tutorial_up' => array('title' => 'Which way is up?'),
           'tutorial_high_level_3d_classes' => array('title' => 'High-level classes to create 3D games',

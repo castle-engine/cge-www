@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Transform, animate, build a scene');
+tutorial_header('Transform, animate, duplicate, build a scene');
 ?>
 
 <p>In the last chapter, we created a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
@@ -78,8 +78,6 @@ end;'); ?>
  and <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>
  to build any transformation hierarchy that is comfortable.
 
-<p>Note: Do not be confused by the names of some classes starting with <code>T3D...</code>. These classes can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. At some point, we will migrate to better names...
-
 <h2>Play animation</h2>
 
 <p>Once you load a model, you can also play a "named animation" on it, using the <a>PlayAnimation method. Open the model with <a>view3dscene</a> and look at the <i>Animation -> Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (VRML / X3D, Spine, KAnim, MD3). See also the HasAnimation, AnimationDuration, ForceAnimationPose methods.
@@ -113,12 +111,14 @@ TODO: screen with named anims.
  (for example, a tree) many times to your scene manager hierarchy.
 This allows to reuse it's data completely, which is the best for performance/memory!
 
-For example, let's make 4 cars moving along the road. You will need 4 instances of <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> , but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> !
+<p>For example, let's make 4 cars moving along the road. You will need 4 instances of <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> , but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> !
 
 
   --
   TODO: example
   ---
+
+<p>Note that all 4 cars are in the same state (they display the same animation etc.). If you need them to be different, then you will need 4 different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them using the <a>Clone</a> method, or you can load the X3D tree using the Load3D and then load it to each scene using the Load(RootNode.DeepCopy, ...) method.
 
 <h2>Building or editing the scene</h2>
 
@@ -184,25 +184,30 @@ a TCastleScene class that shows the animated creature.
 
 <p>What about 2D?
 
-<p>Well, basically: nothing. You can load 2D models (from VRML / X3D, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <a>TCastleSceneManager</a>
+<p>Well, basically: you don't need to learn anything new. You can load 2D models (from VRML / X3D, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <a>TCastleSceneManager</a>.
 
-<p>However, usually it's better to use
+<p>Do not be discouraged by the names of some classes starting with <code>T3D...</code>. These classes can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. (At some point, we will migrate to better names...)
+
+<p>However, usually it's better to use a specialized 2D classes:
 
 <ul>
   <li><p><?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>:
     descendant of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
     especially suitable for 2D scenes.</p>
 
-    <p>It has a little better Z-sorting settings, so that blending "just works".</p>
+    <p>It has a little better default Z-sorting settings,
+    so that blending "just works".</p>
   </li>
 
   <li><p>And <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>:
     descendant of <a href="">TCastleSceneManager</a>
     especially suitable for 2D world.
 
-    <p>It has a little better default camera and projection.
+    <p>It has a little better default camera and projection setttings.
     Also, it is by default Transparent = true, so you can see the background
     underneath (although you can change it to false if you want of course).
+    This way, it can be easily used as a 2D user-interface control,
+    to show something animating over a GUI.
     </p>
   </li>
 </ul>
