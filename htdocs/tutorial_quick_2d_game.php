@@ -303,6 +303,8 @@ end;
 
   <li><p>If you would like to display a series of images, not a static image, you can use <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?> (show image sequence from many separate images or a video) or <?php api_link('TSprite', 'CastleGLImages.TSprite.html'); ?> (show image sequence from a sprite sheet &mdash; one large image containing many animation frames).
 
+    <p>See e.g. <a href="https://gitlab.com/michaliskambi/muuu">our game "Muuu"</a> for a demo of using sprite animations.
+
   <li><p>If you want to use smooth and efficient animations, instead of using a series of images, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it using <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and do many other fancy stuff with it.
 
     <p><b>Just follow the rest of this tutorial, knowing that everything applies also to 2D, not just 3D:)</b>
