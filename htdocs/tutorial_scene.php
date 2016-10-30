@@ -10,7 +10,7 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 
 <p>In this chapter, we will extend a little the code from the previous chapter, to add more functionality around the scene.
 
-<p><b>A complete program using the code shown here is in the engine examples</b>, in the <code>examples/3d_rendering_and_processing/car_moving_along_the_road_demo.lpr</code>.
+<p><b>A complete program using the code shown here is in the engine examples</b>, in the <code>examples/3d_rendering_and_processing/cars_demo.lpr</code>.
 
 <h2>Transform</h2>
 

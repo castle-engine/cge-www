@@ -6,10 +6,15 @@ $toc = new TableOfContents(
   array(
     new TocItem('Get sample 3D model', 'model'),
     new TocItem('Write the code!', 'code'),
+    new TocItem('Set the camera', 'camera'),
     new TocItem('Explanation: What is a "Scene Manager"', 'create'),
     new TocItem('Try some impressive 3D models', 'demo_models'),
   )
 );
+
+echo castle_thumbs(array(
+  array('filename' => 'cars_demo_0.png', 'titlealt' => 'Car 3D model'),
+));
 ?>
 
 <p>We will now load a 3D model from file using the <code>TCastleScene</code> class,
@@ -28,7 +33,7 @@ It can include animated stuff, interactions,
 in <code>examples/3d_rendering_processing/data/car.x3d</code> file.
 My advice is to copy now the whole directory <code>data</code> from there into your
 own project directory (so you have files like <code>data/car.x3d</code>).
-The name <code>data</code> is somewhat special, it cooperates with the default
+The name <code>data</code> is special, it cooperates with the default
 behavior of our <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
  function.
 
@@ -109,6 +114,54 @@ can remove it if you know that your level is, and always will be, static).</p>
  of scene manager, this means that some central settings
 (like initial camera position, initial headlight status and such) can
 be obtained from this scene.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>To control the initial camera view, one option is to use
+the <?php api_link('SceneManager.RequiredCamera.SetView',
+'CastleCameras.TCamera.html#SetView'); ?> method.
+This takes three vectors &mdash; position, look direction and look up vector.
+Simply add the <?php api_link('CastleVectors',
+'CastleVectors.html'); ?> unit to your uses clause,
+and call this:
+
+<?php echo pascal_highlight(
+'Window.SceneManager.RequiredCamera.SetView(
+  Vector3Single(-7.83,  6.15, -7.55),
+  Vector3Single( 0.47, -0.30,  0.82),
+  Vector3Single( 0.16,  0.95,  0.25)
+);'); ?>
+
+<p><b>Note: setting camera to the hardcoded values in code, like above,
+is not usually the best choice</b>. We did it just to show you how to control
+the camera by code.
+
+<p>A better choice would be to place an
+X3D <code>Viewpoint</code> node inside the <code>car.x3d</code> file to
+define the initial camera view. We could have generated this
+<code>Viewpoint</code> using the
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+<i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
+or by setting the camera in Blender before exporting this X3D file.
+In fact, I used <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ to find out the correct numbers to put in the code above.
+
+<p><b>Note that you have a lot of options to control the camera</b>.
+You can assign a specific camera descendant to
+<?php api_link('SceneManager.Camera',
+'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
+By default, it is
+<?php api_link('TUniversalCamera',
+'CastleCameras.TUniversalCamera.html'); ?>, which by default is in the "Examine"
+mode, but you can change it by setting
+<?php api_link('(SceneManager.Camera as TUniversalCamera).NavigationType',
+'CastleCameras.TUniversalCamera.html#NavigationType'); ?>.
+You can change the <?php api_link('SceneManager.Camera.Input',
+'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
+key and mouse operations.
+
+<p>You can also control it from X3D by using the <code>NavigationInfo</code>
+node.
 
 <?php echo $toc->html_section(); ?>
 
