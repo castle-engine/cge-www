@@ -28,13 +28,12 @@ echo castle_thumbs(array(
 </div>
 */ ?>
 
-<p>Before we dive into 3D, we can take a quick stab at basic stuff
-you can do with our new context. Let's draw some images and handle basic
-inputs.
+<p>Before we dive into full-featured "scene managers" and 3D,
+let's take a quick look at the simple things you can do with our window.
+Let's draw some images and handle inputs.
 
-<p>Many engine examples demonstrate this.
-You can take a look e.g. at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-over-river">our "River Ride" clone
-done in a 1-hour game-jam</a> ! :)
+<p>For a demo of a game using simplest 2D image drawing,
+take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-over-river">our "River Ride" clone done in a 1-hour game-jam</a> ! :)
 
 <?php echo $toc->html_toc(); ?>
 
@@ -295,7 +294,7 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you want to go more into the direction of 2D games, here are some starting points:
+<p>If you want to go more into the direction of 2D games:
 
 <ul>
   <li><p>See the <?php echo a_href_page('tutorial about drawing your own 2D controls', 'tutorial_2d_ui_custom_drawn'); ?>. It has a nice overview of 2D drawing capabilities. You can also use the <?php echo a_href_page('standard 2D controls', 'tutorial_2d_user_interface'); ?> with a lot of ready functionality.
@@ -306,7 +305,9 @@ end;
 
   <li><p>If you want to use smooth and efficient animations, instead of using a series of images, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it using <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and do many other fancy stuff with it.
 
-    <p>See the <i>Web3d2015 Castle Game Engine tutorial</i> (<a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">the slides are here</a>, and <a href="https://github.com/castle-engine/cge-tutorial">the examples (sample data and code) are here</a>). It's 2nd part shows nicely this.
+    <p><b>Just follow the rest of this tutorial, knowing that everything applies also to 2D, not just 3D:)</b>
+
+    <p>See the <i>Web3d2015 Castle Game Engine tutorial</i> (<a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">the slides are here</a>, and <a href="https://github.com/castle-engine/cge-tutorial">the examples (sample data and code) are here</a>). It's 2nd part shows nicely the usage of <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>.
 
     <p>See also the example <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code>.
 </ul>
