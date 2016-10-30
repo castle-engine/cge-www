@@ -10,7 +10,7 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 
 <p>In this chapter, we will extend a little the code from the previous chapter, to add more functionality around the scene.
 
-<p><b>A complete program using the code shown here is in the engine examples</b>, in the <code>examples/3d_rendering_and_processing/cars_demo.lpr</code>.
+<p><b>A complete program using the code shown here is in the engine examples</b>, in the <code>examples/3d_rendering_and_processing/cars_demo.lpr</code>. If you get lost or are unsure where to place some code snippet, just look there:)
 
 <h2>Transform</h2>
 
@@ -19,55 +19,78 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 <ol>
   <li><p>Add the <?php api_link('Castle3D', 'Castle3D.html'); ?> unit to your <code>uses</code> clause.</p></li>
 
-  <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>, and add a <code>Transform: T3DTransform;</code>.</p></li>
+  <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>, and add a <code>CarTransform: T3DTransform;</code>.</p></li>
 
-  <li><p>Create both scenes, placing <code>CarScene</code> as a child of <code>Transform</code>, and place <code>Transform</code> and <code>RoadScene: TCastleScene;</code> as children of <code>SceneManager.Items</code>.
+  <li><p>Create both scenes, placing <code>CarScene</code> as a child of <code>CarTransform</code>, and place <code>CarTransform</code> and <code>RoadScene: TCastleScene;</code> as children of <code>SceneManager.Items</code>.
 
     <p>The complete code doing this, using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, looks like this:
 
 <?php echo pascal_highlight(
-'
-TODO---------------------
+'uses SysUtils, CastleVectors, Castle3D,
+  CastleFilesUtils, CastleWindow, CastleSceneCore, CastleScene;
 
-// add to global variables:
 var
-  Transform: T3DTransform;
-  Scene: TCastleScene;
+  Window: TCastleWindow;
+  CarScene, RoadScene: TCastleScene;
+  CarTransform: T3DTransform;
+begin
+  Window := TCastleWindow.Create(Application);
 
-// ... somewhere after SceneManager.LoadLevel do:
+  CarScene := TCastleScene.Create(Application);
+  CarScene.Load(ApplicationData(\'car.x3d\'));
+  CarScene.Spatial := [ssRendering, ssDynamicCollisions];
+  CarScene.ProcessEvents := true;
 
-DragonTransform := T3DTransform.Create(Application);
-DragonTransform.Translation := Vector3Single(1, 2, 3); // initial translation
-SceneManager.Items.Add(DragonTransform);
+  CarTransform := T3DTransform.Create(Application);
+  CarTransform.Add(CarScene);
 
-Dragon := TCastleScene.Create(Application);
-DragonTransform.Add(Dragon);
-Dragon.Load(ApplicationData(\'dragon.x3dv\'));
-Dragon.ProcessEvents := true; // enable animations and interactions within dragon.x3dv'); ?>
+  RoadScene := TCastleScene.Create(Application);
+  RoadScene.Load(ApplicationData(\'road.x3d\'));
+  RoadScene.Spatial := [ssRendering, ssDynamicCollisions];
+  RoadScene.ProcessEvents := true;
+
+  Window.SceneManager.Items.Add(CarTransform);
+  Window.SceneManager.Items.Add(RoadScene);
+  Window.SceneManager.MainScene := RoadScene;
+
+  Window.Open;
+  Application.Run;
+end.
+'); ?>
 
     <p>If, instead of <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, you use <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
 
-    <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
+    <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
   </li>
-</ol>
 
-<p>To make the car actually moving, we should now update the <?php api_link('T3DTransform.Translation', 'Castle3D.T3DTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).
+  <li><p>To make the car actually moving, we should now update the <?php api_link('T3DTransform.Translation', 'Castle3D.T3DTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).</p>
+
+    <p>Before opening the window, assign:</p>
 
 <?php echo pascal_highlight(
-' TODO ------------------------
-procedure WindowUpdate(Container: TUIContainer);
-// or (in case of Lazarus control): procedure TForm1.CastleControl1Update(Sender: TObject);
+'Window.OnUpdate := @WindowUpdate;'); ?>
+
+    <p>At the beginning of your program (but <i>after the definition of <code>Transform</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
+
+<?php echo pascal_highlight(
+'procedure WindowUpdate(Container: TUIContainer);
 var
-  SecondsPassed: Single;
+  T: TVector3Single;
 begin
-  // Note: use CastleControl1.Container.Fps.UpdateSecondsPassed in case of Lazarus control
-  SecondsPassed := Container.Fps.UpdateSecondsPassed;
-  // Move the dragon to the right.
-  // Thanks to multiplying by SecondsPassed, it is a time-based operations,
-  // and will always move 10 units / per second.
-  DragonTransform.Translation := DragonTransform.Translation +
-    Vector3Single(10, 0, 0) * SecondsPassed;
-end;'); ?>
+  T := CarTransform.Translation;
+  { Thanks to multiplying by SecondsPassed, it is a time-based operation,
+    and will always move 40 units / per second along the -Z axis. }
+  T := T + Vector3Single(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
+  { Wrap the Z position, to move in a loop }
+  if T[2] < -70.0 then
+    T[2] := 50.0;
+  CarTransform.Translation := T;
+end;
+'); ?>
+
+    <p>You will also need to add <code>CastleUIControls</code> to the uses clause.</p>
+  </li>
+</ol>
 
 <p>That's it, you have a moving object in your world, and the movement in 100% controlled by your code!
 
