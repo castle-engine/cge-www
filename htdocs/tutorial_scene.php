@@ -53,10 +53,16 @@ begin
   Window.SceneManager.Items.Add(RoadScene);
   Window.SceneManager.MainScene := RoadScene;
 
+  // nice camera to see the road
+  Window.SceneManager.RequiredCamera.SetView(
+    Vector3Single(-43.30, 27.23, -80.74),
+    Vector3Single(  0.60, -0.36,   0.70),
+    Vector3Single(  0.18,  0.92,   0.32)
+  );
+
   Window.Open;
   Application.Run;
-end.
-'); ?>
+end.'); ?>
 
     <p>If, instead of <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, you use <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
 
@@ -70,7 +76,7 @@ end.
 <?php echo pascal_highlight(
 'Window.OnUpdate := @WindowUpdate;'); ?>
 
-    <p>At the beginning of your program (but <i>after the definition of <code>Transform</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
+    <p>At the beginning of your program (but <i>after the definition of the <code>CarTransform</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
 
 <?php echo pascal_highlight(
 'procedure WindowUpdate(Container: TUIContainer);
@@ -85,8 +91,7 @@ begin
   if T[2] < -70.0 then
     T[2] := 50.0;
   CarTransform.Translation := T;
-end;
-'); ?>
+end;'); ?>
 
     <p>You will also need to add <code>CastleUIControls</code> to the uses clause.</p>
   </li>
@@ -103,29 +108,72 @@ end;
 
 <h2>Play animation</h2>
 
-<p>Once you load a model, you can also play a "named animation" on it, using the <a>PlayAnimation method. Open the model with <a>view3dscene</a> and look at the <i>Animation -> Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (VRML / X3D, Spine, KAnim, MD3). See also the HasAnimation, AnimationDuration, ForceAnimationPose methods.
+<p>Once you load a scene, you can play a "named animation" on it, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (VRML / X3D, Spine, KAnim, MD3).
 
-TODO: screen with named anims.
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'cars_named_animations.png', 'titlealt' => 'Car animation in view3dscene'),
+  array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Dragon animations in view3dscene'),
+), 'auto', 'left');
+?>
 
-  --
-  TODO: example code.
-  ---
+<p>To play the animation called <code>wheels_turning</code> on our sample car model,
+do this sometime after loading the <code>CarScene</code>:
+
+<?php echo pascal_highlight(
+'CarScene.PlayAnimation(\'wheels_turning\', paForceLooping);'); ?>
+
+<p>You should see now that the wheels of the car are turning. <i>Tip:</i> If you can't easily see the wheels, remember that you can move around in the scene using mouse dragging and mouse wheel. See <?php echo a_href_page('view3dscene', 'view3dscene'); ?> documentation of the <i>"Examine"</i> camera mode. Of course you can configure or disable the default camera navigation in your games (see previous tutorial chapter for links).
+
+<p>There are many other useful methods related to  "named animations". See the
+<?php api_link('HasAnimation', 'CastleSceneCore.TCastleSceneCore.html#HasAnimation'); ?>,
+<?php api_link('ForceAnimationPose', 'CastleSceneCore.TCastleSceneCore.html#ForceAnimationPose'); ?> and
+<?php api_link('AnimationDuration', 'CastleSceneCore.TCastleSceneCore.html#AnimationDuration'); ?> methods.
+And if these are not enough, note that the animation is just an X3D <code>TimeSensor</code> node.
+You can access the underlying node using the <?php api_link('AnimationTimeSensor', 'CastleSceneCore.TCastleSceneCore.html#AnimationTimeSensor'); ?> method, and use or even edit this animation as you wish.
 
 <h2>Control the existence of object</h2>
 
-<p>Any object descending from T3D, including TCastleScene and T3DTransform, has properties <a>Exists, Collides and Pickable. Setting Exists to false makes the object behave like it would not be present in the SceneManager.Items tree at all --- it's not visible, it's not collidable.
+<p>Any object descending from <?php api_link('T3D', 'Castle3D.T3D.html'); ?>, including
+<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> and
+<?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>, has properties
+<?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?>,
+<?php api_link('Collides', 'Castle3D.T3D.html#Collides'); ?> and
+<?php api_link('Pickable', 'Castle3D.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?> to false makes the object behave like it would not be present in the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
 
-<p>The example below toggles the visibility of the car when user presses the 'c' key:
+<p>For example, you can toggle the visibility of the car when user presses the <code>'c'</code> key, like this:
 
-  --
-  TODO: example
-  ---
+<ol>
+  <li><p>Add unit <?php api_link('CastleKeysMouse', 'CastleKeysMouse'); ?> to your uses clause.</p></li>
 
-<p>In some cases, instead of changing the Exists property, it may be easier to override the GetExists function. By default it simply returns the Exists property, but you can change it to decide using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out, or something like that. By changing the return value of GetExists, you can make the object change it's state every frame, at really zero cost.
+  <li><p>Before opening the window, assign:</p></li>
 
-  <p>Note that changing the SceneManager.Items contents is also almost-zero cost. It only has the tiny overhead of list management. So you can remove and add objects during your game freely.
+<?php echo pascal_highlight(
+'Window.OnPress := @WindowPress;'); ?>
 
-  <p>To make the game fast, only avoid <i>loading from 3D model files</i> (calling <code>TCastleScene.Load(URL, ...)</code>) during the game. If you need such functionality, it's better to keep some scenes precreated, like a <i>pool</i>. Or you can load the X3D graph using the Load3D function, and then use <a>TCastleSceneCore.Load(TX3DRootNode, ...) overloaded version at runtime.
+  <li><p>At the beginning of your program (but <i>after the definition of the <code>CarTransform</code> global variable</i>), define the <code>WindowPress</code> procedure:</p>
+
+<?php echo pascal_highlight(
+'procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
+begin
+  if Event.IsKey(\'c\') then
+    CarTransform.Exists := not CarTransform.Exists;
+end;'); ?>
+  </li>
+</ol>
+
+<p><b>Advanced hints:</b></p>
+
+<ul>
+  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'Castle3D.T3D.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
+
+  <li><p>Note that simply changing the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
+
+  <li><p>The one thing you should <i>not</i> do during the game, if you hope to have a good performance: <i>do not load from 3D model files</i> during the game (e.g. do not call <?php api_link('TCastleSceneCore.Load(URL, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method).</p>
+
+    <p>If you want to add scenes dynamically during the game, it's better to load a <i>pool</i> of scenes at the initialization (and prepare them for rendering using the <?php api_link('TCastleScene.PrepareResources', 'CastleScene.TCastleScene.html#PrepareResources'); ?> method). Then add/remove such already-prepared scenes during the game. You can efficiently initialize many scenes from the same 3D model using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method, or load an X3D graph once using the <?php api_link('Load3D', 'X3DLoad.html#Load3D'); ?> function and then use repeatedly the <?php api_link('TCastleSceneCore.Load(TX3DRootNode, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> overloaded version.</p>
+  </li>
+</ul>
 
 <h2>Many instances of same 3D object</h2>
 
