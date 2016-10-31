@@ -7,7 +7,9 @@ tutorial_header('Transformation hierarchy');
 in a hierarchy. We have two transformation hierarchies in our engine:</p>
 
 <ol>
-  <li><p><?php api_link('TCastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
+  <li><p><b>The "outer" tree containing scenes:</b>
+
+    <p><?php api_link('TCastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
     is a tree containing 3D scenes. A scene is an instance of
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> class,
     which is probably <b>the</b> most important class in our engine.
@@ -64,6 +66,8 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
   </li>
 
   <li>
+    <p><b>The "inner" tree inside every scene, containing X3D nodes:</b></p>
+
     <p>Inside <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
     there is a transformation hierarchy of X3D nodes,
     starting in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>.
@@ -72,7 +76,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     automatically builds a tree of X3D nodes based on 3D model contents.
     You can also build (or process) the X3D nodes tree by code.
     There are various grouping and transforming nodes,
-    most notably <code>Transform</code>
+    most notably <?php api_link('Transform node (TTransformNode)', 'X3DNodes.TTransformNode.html'); ?>
     (see <?php echo a_href_page('X3D grouping component',
     'x3d_implementation_grouping'); ?>). Everything you see
     is expressed as a combination of X3D nodes &mdash; meshes, materials,
