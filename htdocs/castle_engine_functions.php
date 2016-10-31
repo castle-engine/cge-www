@@ -139,7 +139,6 @@ $castle_sitemap = array(
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
           'tutorial_intro' => array('title' => 'Introduction'),
-          'tutorial_install' => array('title' => 'Download, install, try demos'),
           'tutorial_window' => array('title' => 'Display a window'),
           'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (getting to know window events)'),
           'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),

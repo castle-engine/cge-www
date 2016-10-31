@@ -3,10 +3,16 @@ require_once 'castle_engine_functions.php';
 tutorial_header('Tutorial introduction');
 ?>
 
-<p>This tutorial shows how to make a simple 3D first-person game using
-our <?php echo a_href_page('Castle Game Engine', 'index'); ?>. We'll
+<p>This tutorial shows all the major parts of the
+<?php echo a_href_page('Castle Game Engine', 'index'); ?>.
+<!-- engine,
+demonstrating how to make simple games and applications using -->
+<!-- shows how to make a simple 3D first-person game using -->
+<!-- We'll
 explain the basics of our engine, show you some examples and
-mention the most important classes.</p>
+mention the most important classes. --></p>
+
+<?php /*
 
 <p>Throughout this tutorial you will see a links to our
 <a href="<?php echo reference_link(); ?>">reference</a>, and you will
@@ -19,6 +25,8 @@ just dive straight into the source.</p>
 <p>The <?php echo a_href_page('overview of engine classes', 'tutorial_classes_overview'); ?>
  may also be useful as a quick cheatsheet &mdash; summary of the most important
 classes and concepts of our engine.</p>
+
+*/ ?>
 
 <p>Contents:
 

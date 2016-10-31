@@ -61,6 +61,25 @@ that will be able to display 3D content. There are two ways of doing this:
     editor. The only real requirement is having a
     <a href="http://www.freepascal.org/">Free Pascal Compiler</a> installed.
 
+    <p>To create an application using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> in Lazarus:</p>
+
+    <ul>
+      <li>Create new project using Lazarus <i>"New Project"</i> menu item.</li>
+      <li>Choose <i>"Custom Application"</i> (or <i>"Project-&gt;Simple Program"</i>).</li>
+      <li>Using <i>"Project->Project Inspector"</i> window add a <i>"New Requirement"</i>
+        and choose <code>castle_base</code> package.</li>
+      <li>Then add another requirement and choose <code>castle_window</code>
+        package.</li>
+      <li>In this approach, you will not design your forms visually using Lazarus.
+        But you will still use Lazarus as a powerful Object Pascal IDE,
+        to edit and compile and debug your programs.</li>
+    </ul>
+
+    <p>If you don't use Lazarus,
+    see the <?php echo a_href_page('getting started', 'documentation'); ?>
+    for a description how to compile your project,
+    so that FPC can find our units like <code>CastleWindow</code>.
+
     <!--
     The left column of this tutorial will follow this way. We'll still be
     using Lazarus to compile our program, simply because it's the easiest
@@ -81,9 +100,7 @@ begin
   Window.OpenAndRun;
 end.'); ?>
 
-    <p>See the previous chapter for description how to compile your project,
-    so that FPC can find our units like <code>CastleWindow</code>.
-    Press "Run" and behold, a black window :)</p>
+    <p>Compile and run this program and behold, a black window :)</p>
 
 <!--
     <p><i>Note</i>: Above we set global <?php api_link('Application',
