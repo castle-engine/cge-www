@@ -352,9 +352,15 @@ end;'); ?>
   </li>
 </ol>
 
-<p>Note: in this case, it would probably be simpler to add these 2 walls (boxes) to the <code>road.x3d</code> file in Blender. Thus, you would not need to deal with them in code. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm! See for example TODO
+<p>Note: in this case, it would probably be simpler to add these 2 walls (boxes) to the <code>road.x3d</code> file in Blender. Thus, you would not need to deal with them in code. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
 
 <p>To construct a more flexible mesh than just <i>a box</i>, you can use a universal and powerful <code>IndexedFaceSet</code> node instead of a simple <code>Box</code>. For <code>IndexedFaceSet</code>, you explicitly specify the positions of the vertexes, and how they connect to form faces.
+
+<p>See the examples:</p>
+<ul>
+  <li><code>examples/3d_rendering_processing/build_3d_object_by_code.lpr</code> (rather simple example)</li>
+  <li><code>examples/3d_rendering_processing/build_3d_tunnel.lpr</code> (a cool example generating a tunnel mesh).</li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
