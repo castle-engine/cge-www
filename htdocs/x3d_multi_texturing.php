@@ -17,6 +17,23 @@
 
 <?php echo pretty_heading('X3D MultiTexturing problems and proposed solutions'); ?>
 
+<p>The X3D specification has, unfortunately,
+numerous problems related to it's multi-texturing nodes
+(<code>MultiTexture</code>,
+<code>MultiTextureCoordinate</code>,
+<code>MultiTextureTransform</code>).
+We have documented these problems below, along with the tests on various
+X3D browsers, and with the proposed solutions,
+to encourage X3D authors to fix the specification.
+
+<p>This page also documents a problem related to single-texturing behavior,
+that is connected with some multi-texturing troubles:
+<a href="#section_default_texture_mode">"What happens when you have a color
+texture, and a color material?"</a> This is the <i>one and only place</i>
+where our engine deliberately does something different from X3D specification,
+because we feel that the X3D specification behavior is really not useful.
+<i>In our engine, the texture color is by default multiplied by the material color</i>.
+
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
