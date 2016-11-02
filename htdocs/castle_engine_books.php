@@ -84,7 +84,20 @@ function book_bar($book_name)
   global $castle_books;
   global $page_basename;
 
-  $this_info = $castle_books[$book_name]['chapters'][$page_basename];
+  if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
+    $this_info = $castle_books[$book_name]['chapters'][$page_basename];
+  } else {
+    /* This happens when the current page is the ToC page of the book,
+       not part of the book. */
+    // first chapter of book,
+    // http://stackoverflow.com/questions/1921421/get-the-first-element-of-an-array
+    $first_chapter = array_keys(array_slice($castle_books[$book_name]['chapters'], 0, 1));
+    $this_info = array(
+      'number' => NULL,
+      'previous' => NULL,
+      'next' => $first_chapter[0],
+    );
+  }
 
   $result = '<div class="book-header">
     <div class="book-previous">';
@@ -118,11 +131,17 @@ function book_header($book_name, $a_page_title, $subheading_text)
 {
   global $castle_books;
   global $page_basename;
-  $number = $castle_books[$book_name]['chapters'][$page_basename]['number'];
+  if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
+    $number = $castle_books[$book_name]['chapters'][$page_basename]['number'];
+  } else {
+    /* This happens when the current page is the ToC page of the book,
+       not part of the book. */
+    $number = '';
+  }
   $a_page_title = $number . $a_page_title;
 
   castle_header($a_page_title .
-    ' | ' . $castle_books[$book_name]['title'], 
+    ' | ' . $castle_books[$book_name]['title'],
     NULL, $castle_books[$book_name]['path']);
   echo book_bar($book_name);
   echo pretty_heading($a_page_title, NULL, $subheading_text);

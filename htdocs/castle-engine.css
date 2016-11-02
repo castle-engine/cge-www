@@ -1,3 +1,10 @@
+@media only screen and (max-width : 767px) {
+    .col-sm-3.well {
+        /* vertical margin from sidebar, on small devices when sidebar is at bottom */
+        margin-top: 1em;
+    }
+}
+
 .fixed-width-content {
     width: 1200px;
     max-width: 100%;

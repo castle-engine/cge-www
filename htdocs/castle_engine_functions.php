@@ -138,7 +138,6 @@ $castle_sitemap = array(
       'documentation' => array('title' => 'Getting Started'),
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
-          'tutorial_intro' => array('title' => 'Introduction'),
           'tutorial_window' => array('title' => 'Display a window'),
           'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (getting to know window events)'),
           'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),
@@ -172,9 +171,8 @@ $castle_sitemap = array(
           'tutorial_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
         ),
       ),
-      'creating_data_intro' => array('title' => 'Creating game data',
+      'creating_data_intro' => array('title' => 'Creating Game Data',
         'sub' => array(
-          'creating_data_intro' => array('title' => 'Introduction'),
           'creating_data_3d' => array('title' => '3D models'),
           'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
           'creating_data_levels' => array('title' => 'Levels'),
@@ -673,7 +671,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     $rendered .=
     '<div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-sm-push-3">
           ' . _castle_breadcrumbs($path);
   }
 
@@ -699,7 +697,7 @@ function castle_footer()
   if (empty($castle_sidebar)) {
     echo '</div>';
   } else {
-    echo '</div><div class="col-sm-3 well">' .$castle_sidebar. '</div></div></div>';
+    echo '</div><div class="col-sm-3 col-sm-pull-9 well">' .$castle_sidebar. '</div></div></div>';
   }
 
   common_footer();
