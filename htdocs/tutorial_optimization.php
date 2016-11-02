@@ -85,7 +85,7 @@ number of frames per second that we managed to render.</b> Caveats:
   <li><p>Make sure to have an animation that constantly updates your
     screen. E.g. keep camera moving, or have something animated on the
     screen, or set
-    <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowBase.html#AutoRedisplay'); ?>
+    <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?>
     to <code>true</code>.
     Otherwise, we will not refresh the screen (no point to
     redraw the same thing), and "<i>real time</i>" will drop to almost zero if

@@ -188,7 +188,7 @@ also find useful classes
 <p>If you use
 <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
 it gives you a ready
-<?php api_link('TCastleWindowBase.FileDialog', 'CastleWindow.TCastleWindowBase.html#FileDialog'); ?>
+<?php api_link('TCastleWindowCustom.FileDialog', 'CastleWindow.TCastleWindowCustom.html#FileDialog'); ?>
  that takes and returns URLs.
 
 <p>If you use Lazarus with

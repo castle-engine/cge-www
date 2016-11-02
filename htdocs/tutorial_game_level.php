@@ -110,7 +110,7 @@ That's because loading level wants to prepare resources for OpenGL rendering.
   <li><p>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
     make sure that
-    <?php api_link('Open method', 'CastleWindow.TCastleWindowBase.html#Open'); ?>
+    <?php api_link('Open method', 'CastleWindow.TCastleWindowCustom.html#Open'); ?>
     was already called.
     By the way, you can also initialize progress interface, to see nice progress
     bar when loading level. Like this:

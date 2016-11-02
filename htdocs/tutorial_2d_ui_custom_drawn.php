@@ -177,10 +177,10 @@ end;'); ?>
     or (as a rectangle) as
     <?php api_link('TUIControl.ContainerRect', 'CastleUIControls.TUIControl.html#ContainerRect'); ?>.
     The container size is also available as container properties, like
-    <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
-    <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>
+    <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowCustom.html#Width'); ?> x
+    <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowCustom.html#Height'); ?>
     or (as a rectangle)
-    <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowBase.html#Rect'); ?>.
+    <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowCustom.html#Rect'); ?>.
 
   <li><p>For <b>simple screen fade effects</b>, you have procedures inside
     <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
