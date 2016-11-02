@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_extensions_functions.php';
 
-  castle_header('Shadow Maps extensions', NULL,
+  castle_header('Shadow Maps', NULL,
     array('vrml_x3d', 'x3d_extensions', 'x3d_extensions_shadow_maps'));
 
 $toc = new TableOfContents(array(
@@ -16,7 +16,7 @@ $toc = new TableOfContents(array(
   new TocItem('Automatically generated shadow maps', 'generated_shadow_map', 1),
   new TocItem('Projective texture mapping', 'texture_projective', 1),
   new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
-  new TocItem('Optionally specify shadow casters (<code>KambiAppearance.shadowCaster</code>)', 'shadow_caster'),
+  new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
 ));
 ?>
 

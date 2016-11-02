@@ -276,6 +276,7 @@ $castle_sitemap = array(
           'compositing_shaders' => array('title' => 'Compositing Shaders'),
           'x3d_extensions_screen_effects' => array('title' => 'Screen Effects'),
           'x3d_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
+          'x3d_extensions_shadow_volumes' => array('title' => 'Shadow Volumes'),
           'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
         ),
       ),
