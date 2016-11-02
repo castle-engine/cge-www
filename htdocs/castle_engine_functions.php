@@ -671,7 +671,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
     $rendered .=
     '<div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9 col-sm-push-3">
+        <div class="col-sm-9 col-sm-push-3 content-near-sidebar">
           ' . _castle_breadcrumbs($path);
   }
 
@@ -697,7 +697,7 @@ function castle_footer()
   if (empty($castle_sidebar)) {
     echo '</div>';
   } else {
-    echo '</div><div class="col-sm-3 col-sm-pull-9 well">' .$castle_sidebar. '</div></div></div>';
+    echo '</div><div class="col-sm-3 col-sm-pull-9 well sidebar">' .$castle_sidebar. '</div></div></div>';
   }
 
   common_footer();

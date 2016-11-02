@@ -1,7 +1,15 @@
 @media only screen and (max-width : 767px) {
-    .col-sm-3.well {
-        /* vertical margin from sidebar, on small devices when sidebar is at bottom */
+    .sidebar {
+        /* vertical margin between sidebar and content,
+           on small devices when sidebar is at bottom */
         margin-top: 1em;
+    }
+}
+
+@media only screen and (min-width : 768px) {
+    .content-near-sidebar {
+        /* horizontal margin from sidebar */
+        /* padding-left: 2em; */
     }
 }
 
