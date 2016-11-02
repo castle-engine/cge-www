@@ -83,13 +83,20 @@ number of frames per second that we managed to render.</b> Caveats:
     Change them to zero to disable the "limit fps" feature.
 
   <li><p>Make sure to have an animation that constantly updates your
-    screen. E.g. keep camera moving, or have something animated on the
-    screen, or set
-    <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?>
-    to <code>true</code>.
+    screen.
     Otherwise, we will not refresh the screen (no point to
     redraw the same thing), and "<i>real time</i>" will drop to almost zero if
     you look at a static scene.
+    Since the engine version 6.0.0,
+    <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?>
+    is by default <code>true</code>, so this is already OK by default.
+    <!-- this is probably already OK. -->
+    <!--
+    If not, then set <code>AutoRedisplay</code> to <code>true</code>,
+    E.g. keep camera moving, or have something animated on the
+    screen, or set
+    .
+    -->
 
   <li><p>Note that the monitor will actually drop some frames above it's
     frequency, like 80. This <i>may</i> cause you to observe that above some
@@ -102,8 +109,7 @@ number of frames per second that we managed to render.</b> Caveats:
 
 <p><b><i>"Frame time"</i> measures how much frames we
 would get, if we ignore the time spent outside <code>OnRender</code> events.</b>
-Use <i>"frame time"</i>... with caution. But it's often
-useful to compare it with <i>"real
+It's often useful to compare it with <i>"real
 time"</i> (with <code>LimitFPS</code> feature turned off),
 as it may then tell you whether the
 bottleneck is in rendering or outside of rendering (like collision
