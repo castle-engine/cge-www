@@ -125,8 +125,8 @@ begin
 end;'); ?>
 
   <li><p>Note about <b>UI scaling</b> and <code>TGLImage</code>.
-    In engine version 5.3.0, we add to UI system parents, anchoring,
-    and automatic UI scaling.
+    In engine version 6.0.0, we have added to the UI system <i>parents</i>, <i>anchoring</i>,
+    and <i>automatic UI scaling</i>.
 
     <p>If you would like your own 2D controls to honor this system,
     your <code>Render</code> method will need to take them into account,

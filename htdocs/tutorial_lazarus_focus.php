@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Sidenote about the focus of TCastleControl');
+tutorial_header('How to handle the focus of TCastleControl');
 ?>
 
 <p>These notes are interesting to you only if you use

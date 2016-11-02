@@ -255,7 +255,7 @@ These names are not invented by us, they are the names used for <a href="<?php e
         (this actually changes vertex order in Blender)
         may be needed to reorder them properly.
 
-      <li><p>Remember that <b>each shape must be 2-manifold</b> (since engine 5.3.0).
+      <li><p>Remember that <b>each shape must be 2-manifold</b> (since <i>Castle Game Engine 6.0.0</i>).
         It's not enough (it's also not necessary) for the whole scene
         to be 2-manifold. This has advantages and disadvantages.
 

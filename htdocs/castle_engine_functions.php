@@ -143,7 +143,6 @@ $castle_sitemap = array(
           'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),
           'tutorial_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'tutorial_mobile' => array('title' => 'Developing mobile (and cross-platform) games'),
-          'tutorial_up' => array('title' => 'Which way is up?'),
           'tutorial_high_level_3d_classes' => array('title' => 'High-level classes to create 3D games',
             'sub' => array(
               'tutorial_game_level' => array('title' => 'Loading game level'),
@@ -166,9 +165,14 @@ $castle_sitemap = array(
           'tutorial_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
           'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'tutorial_optimization' => array('title' => 'Optimization and profiling'),
-          'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
-          'tutorial_lazarus_focus' => array('title' => 'Sidenote about the focus of TCastleControl'),
           'tutorial_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
+          'tutorial_miscellaneous' => array('title' => 'Miscellaneous knowledge',
+            'sub' => array(
+              'tutorial_up' => array('title' => 'Which way is up?'),
+              'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
+              'tutorial_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControl'),
+            )
+          ),
         ),
       ),
       'creating_data_intro' => array('title' => 'Creating Game Data',
