@@ -64,7 +64,7 @@ castle_header('Download',
         <img src="images/original_size/dragon_large.png"
             alt="Dragon 2D animation designed in Spine"
             title="Dragon 2D animation designed in Spine"
-            class="main-page-thumbnail" />
+            class="main-page-thumbnail hidden-xs" />
         <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
         <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
         <!--     title="Bump mapping and shadow maps from multiple light sources" -->

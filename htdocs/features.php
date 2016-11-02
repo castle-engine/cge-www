@@ -64,7 +64,7 @@
     <?php
     echo castle_thumbs(array(
       //array('filename' => 'dragon_new_game.png', 'titlealt' => '&quot;Dragon Squash&quot; game'),
-      array('filename' => 'dragon_new_spine.png', 'titlealt' => '&quot;Dragon Squash&quot; animation in Spine'),
+      //array('filename' => 'dragon_new_spine.png', 'titlealt' => '&quot;Dragon Squash&quot; animation in Spine'),
       array('filename' => 'dragon_old_spine.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in Spine'),
       array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Old &quot;Dragon Squash&quot; animation in view3dscene'),
     ), 'auto', 'left');

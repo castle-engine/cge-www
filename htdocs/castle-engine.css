@@ -211,11 +211,6 @@ a.screenshot:hover img { border: 2pt solid #888; }
     width: 100%;
     margin-bottom: 1rem;
 }
-@media only screen and (max-width : 767px) {
-    .main-page-thumbnail {
-        display: none;
-    }
-}
 
 div.download {
     display: inline-block;
