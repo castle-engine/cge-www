@@ -639,8 +639,11 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
 
   /* make sidebar */
   if ($sidebarroot_page !== NULL && $sidebarroot_info !== NULL)
-    $castle_sidebar = _castle_sidebar($sidebarroot_page, $sidebarroot_info); else
+  {
+    $castle_sidebar = _castle_sidebar($sidebarroot_page, $sidebarroot_info);
+  } else {
     $castle_sidebar = '';
+  }
 
   $rendered = '
   <nav class="navbar navbar-default">
@@ -663,12 +666,16 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
   }
 
   // make sure to start container-fluid for bootstrap container
-  if (empty($castle_sidebar))
-    $rendered .=  _castle_breadcrumbs($path) . '<div class="content container-fluid">'; else
-    $rendered .= '<div class="content container-fluid">
+  if (empty($castle_sidebar)) {
+    $rendered .=  _castle_breadcrumbs($path) .
+    '<div class="container-fluid">';
+  } else {
+    $rendered .=
+    '<div class="container-fluid">
       <div class="row">
-        <div class="col-md-9">
-          <div class="content container-fluid">' . _castle_breadcrumbs($path);
+        <div class="col-sm-9">
+          ' . _castle_breadcrumbs($path);
+  }
 
 //  $rendered .= google_custom_search_results();
 
@@ -679,16 +686,21 @@ function castle_footer()
 {
   echo disqus_form();
 
-  ?>
+  /* This should be done after jQuery JS loaded.
+     But, actually it's not needed, it seems.
+  ? >
   <script type="text/javascript">
   jQuery('.dropdown-toggle').dropdown();
   </script>
-  <?php
+  < ?php
+  */
 
   global $castle_sidebar;
-  if (empty($castle_sidebar))
-    echo '</div>'; else
-    echo '</div></div><div class="col-sm-3 well">' .$castle_sidebar. '</div></div></div>';
+  if (empty($castle_sidebar)) {
+    echo '</div>';
+  } else {
+    echo '</div><div class="col-sm-3 well">' .$castle_sidebar. '</div></div></div>';
+  }
 
   common_footer();
 }

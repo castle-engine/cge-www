@@ -1,10 +1,3 @@
-/* No body margins, we want our header and sidebar closely at window border.
-   Instead use class "content" to add some nice padding between
-   window border and actual text. */
-/* body { margin: 0px; padding: 0px; } */
-/* .content { margin: 0px; padding: 0.4em; } */
-/* Bootstrap takes care of above now */
-
 .fixed-width-content {
     width: 1200px;
     max-width: 100%;

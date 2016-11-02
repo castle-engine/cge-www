@@ -7,6 +7,10 @@ require_once 'news_common.php';
 global $main_page;
 $main_page = true;
 
+/* disable disqus on main page, looks dirty */
+global $disqus_form_already_done;
+$disqus_form_already_done = true;
+
 castle_header('Download',
   'Free open-source 3D game engine. Supports a lot of 2D and 3D data formats, including VRML / X3D, Collada, Spine... Cross-platform, for standalone (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin... Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.');
 ?>
