@@ -713,7 +713,7 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
   </nav>';
 
   if (defined('CASTLE_GITHUB_NAME')) {
-    $rendered .= '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
+    $rendered .= '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="hidden-xs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
   }
 
   // make sure to start container-fluid for bootstrap container
