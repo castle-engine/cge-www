@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Creatures and items');
+tutorial_header('Defining creatures and items');
 ?>
 
 <p>Since we are using <?php api_link('TGameSceneManager.LoadLevel',

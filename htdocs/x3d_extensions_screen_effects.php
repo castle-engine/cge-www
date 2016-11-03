@@ -3,7 +3,7 @@
   require_once 'x3d_extensions_functions.php';
 
   castle_header('Screen Effects', NULL,
-    array('vrml_x3d', 'x3d_extensions', 'x3d_extensions_screen_effects'));
+    array('vrml_x3d', 'x3d_larger_extensions', 'x3d_extensions_screen_effects'));
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),

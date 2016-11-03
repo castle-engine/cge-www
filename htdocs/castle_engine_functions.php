@@ -147,16 +147,20 @@ $castle_sitemap = array(
             'sub' => array(
               'tutorial_game_level' => array('title' => 'Loading game level'),
               'tutorial_player' => array('title' => 'Player'),
-              'tutorial_resources' => array('title' => 'Creatures and items'),
-              'tutorial_resources_using_existing' => array('title' => 'Using existing creatures/items classes'),
-              'tutorial_resources_extending' => array('title' => 'Extending existing creatures/items classes'),
+              'tutorial_resources' => array('title' => 'Defining creatures and items'),
+              'tutorial_resources_using_existing' => array('title' => 'Using creatures and items'),
+              'tutorial_resources_extending' => array('title' => 'Extending creatures and items classes'),
             ),
           ),
-          'tutorial_2d_user_interface' => array('title' => 'Standard 2D controls: user interface'),
-          'tutorial_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
-          'tutorial_text' => array('title' => 'Text and fonts'),
-          'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),
-          'tutorial_notifications' => array('title' => 'Notifications'),
+          'tutorial_user_interface_and_2d_drawing' => array('title' => 'User interface and direct 2D drawing',
+            'sub' => array(
+              'tutorial_2d_user_interface' => array('title' => 'Standard 2D controls: user interface'),
+              'tutorial_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
+              'tutorial_text' => array('title' => 'Text and fonts'),
+              'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),
+              'tutorial_notifications' => array('title' => 'Notifications'),
+            )
+          ),
           'tutorial_sound' => array('title' => 'Sound'),
           'tutorial_screenshots' => array('title' => 'Screenshots'),
           'tutorial_network' => array('title' => 'Network and downloading'),
@@ -235,8 +239,8 @@ $castle_sitemap = array(
           'x3d_implementation_lighting'             => array('title' => 'Lighting'                        ),
           'x3d_implementation_texturing'            => array('title' => 'Texturing',
             'sub' => array(
-              'x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
               'x3d_implementation_texturing_extensions' => array('title' => 'Extensions'),
+              'x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
             ),
           ),
           'x3d_implementation_interpolation'        => array('title' => 'Interpolation',
@@ -544,6 +548,46 @@ function _castle_breadcrumbs($path)
   return $result;
 }
 
+function _castle_find_in_sitemap($path)
+{
+  global $castle_sitemap;
+
+  $path_itemsub = $castle_sitemap;
+  $result = NULL;
+
+  foreach ($path as $path_item) {
+    if (!isset($path_itemsub[$path_item])) {
+      throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+    }
+    $result = $path_itemsub[$path_item];
+
+    if (isset($result['sub'])) {
+      $path_itemsub = $result['sub'];
+    } else {
+      $path_itemsub = NULL;
+    }
+  }
+
+  return $result;
+}
+
+function castle_toc_from_sitemap()
+{
+  global $castle_page_path;
+  $page_map = _castle_find_in_sitemap($castle_page_path);
+  if (!isset($page_map['sub'])) {
+    throw new ErrorException('Requested castle_toc_from_sitemap for page that does not have "subitems" according to castle_sitemap');
+  }
+
+  $result = '<ul>';
+  foreach ($page_map['sub'] as $menu_item_page => $menu_item) {
+    $result .=  '<li><a href="' . en_page_url($menu_item_page) . '">' .
+      $menu_item['title'] . '</a></li>';
+  }
+  $result .= '</ul>';
+  return $result;
+}
+
 function echo_header_bonus ()
 {
   global $geshi;
@@ -593,7 +637,8 @@ if ($main_page) echo facebook_header();
 
 /* $path is a list of page names, a path in the tree of $castle_sitemap,
    to the current page. The $page_basename is added at the end,
-   if not already there. */
+   if not already there.
+   It will be set as global $castle_page_path. */
 function castle_header($a_page_title, $meta_description = NULL, $path = array())
 {
   common_header($a_page_title, LANG_EN, $meta_description);
@@ -601,11 +646,14 @@ function castle_header($a_page_title, $meta_description = NULL, $path = array())
   global $castle_sidebar;
   global $castle_sitemap;
   global $page_basename;
+  global $castle_page_path;
 
   /* make sure $path ends with $page_basename.
      This way, we also make sure $path is never empty. */
-  if (count($path) == 0 || $path[count($path) - 1] != $page_basename)
+  if (count($path) == 0 || $path[count($path) - 1] != $page_basename) {
     $path[] = $page_basename;
+  }
+  $castle_page_path = $path;
 
   /* traverse $castle_sitemap, along the $path.
      Find which items should be used for a sidebar, if any. */

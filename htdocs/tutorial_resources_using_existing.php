@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Using existing creatures / items classes');
+tutorial_header('Using creatures and items');
 ?>
 
 <p>You can use the existing creature and item classes in

@@ -26,17 +26,7 @@ It's just X3D, so you simply declare them in your X3D files, and engine
 takes care of all the rendering and processing.
 
 <p>Contents:
-
-<?php
-$current_sitemap = $castle_sitemap
-    ['vrml_x3d']['sub']['x3d_larger_extensions']['sub'];
-echo '<ul>';
-foreach ($current_sitemap as $menu_item_page => $menu_item) {
-    echo '<li><a href="' . en_page_url($menu_item_page) . '">' .
-        $menu_item['title'] . '</a></li>';
-}
-echo '</ul>';
-?>
+<?php echo castle_toc_from_sitemap(); ?>
 
 <p>Not that the <i>smaller extensions</i> are documented earlier,
 alongside the respective X3D components.

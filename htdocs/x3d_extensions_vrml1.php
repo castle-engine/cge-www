@@ -3,7 +3,7 @@
   require_once 'x3d_extensions_functions.php';
 
   castle_header('VRML 1.0 (old) extensions', NULL,
-    array('vrml_x3d', 'x3d_extensions', 'x3d_extensions_vrml1'));
+    array('vrml_x3d', 'x3d_larger_extensions', 'x3d_extensions_vrml1'));
 
 $toc = new TableOfContents(array(
   new TocItem('Lights can be global', 'ext_global'),

@@ -5,6 +5,24 @@ tutorial_header('Standard 2D controls: user interface');
 
 TODO: finish this.
 
+
+<p>Our <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
+ <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
+ have a list of 2D controls visible
+of the screen. By default, the only thing present there is a scene
+manager (since scene manager acts as a 2D viewport through which you
+see the 3D world).<!--; that's right &mdash; the 3D stuff is "within" the 2D
+stuff--> This way the scene manager (it's viewport) is visible on the
+window, which in turn means that the 3D world is visible too.
+
+<p>You can add your own 2D controls using the <code>Window.Controls.Add</code>
+method. There are many predefined GUI controls available in our engine,
+look for <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
+ descendants, for example in
+<?php api_link('CastleControls', 'CastleControls.html'); ?>
+ unit. You can also derive your own controls with ease.
+
+
 Design simple window with an image and two buttons. "Attack the zombie?"
 
 - parents hierarchy, relative coords
@@ -20,7 +38,13 @@ castlebutton is very flexible, you can really adjust it
 - check size with calculated width/height. Do not just use button width/height, it is left as set when using autosize. Also, for some controls it's not available until the first resize event.
 - use ui scaling as needed. ScreeRect gives rect after scaling, Rect gives size after scaling too, and font has size after scaling too, generally everything else is unscaled. Everything you set is unscaled.
 
+<h2>Viewport is also a 2D control</h2>
+
 - remember that Tabstract castle viewport (tcastl scene manager, t2dscene manager, tcastleviewport) are 2d controls too. You CAN go wild and insert this way animations from x3d / spine on top of your UI, it works as always, and we have no problems with multiple vscene managers.
+
+Example with adding scene manager by hand. Two times.
+
+Example with adding 2d scene manager. Inside a button?
 
 <h2>Wrapping it up</h2>
 

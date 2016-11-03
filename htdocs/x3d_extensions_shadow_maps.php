@@ -3,7 +3,7 @@
   require_once 'x3d_extensions_functions.php';
 
   castle_header('Shadow Maps', NULL,
-    array('vrml_x3d', 'x3d_extensions', 'x3d_extensions_shadow_maps'));
+    array('vrml_x3d', 'x3d_larger_extensions', 'x3d_extensions_shadow_maps'));
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),

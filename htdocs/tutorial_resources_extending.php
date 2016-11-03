@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Extending existing creatures / items classes');
+tutorial_header('Extending creatures and items classes');
 ?>
 
 <p>You can derive descendants of <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
@@ -91,7 +91,7 @@ This is the most flexible way to customize everything about a creature/item.
 <p>You usually override two classes to define a new creature/item:
 
 <ol>
-  <li><p>The resource class (descendant of <code>T3DResource</code>,
+  <li><p><b>The resource class</b> (descendant of <code>T3DResource</code>,
     like <code>TCreatureResource</code>
     or <code>TItemResource</code>). The resource class defines
     the shared information for the whole creature/item kind.
@@ -195,8 +195,8 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
     to load the value of this property. See existing units
     like <code>CastleCreatures</code> and <code>CastleItems</code> for a lot of examples.
 
-  <li><p>The second class will be used to represent a single occurrence
-    of this creature/item in the 3D world. This has a reference
+  <li><p>The <b>second class will be used to represent a single occurrence
+    of this creature/item</b> in the 3D world. This has a reference
     to the appropriate resource (for shared information)
     and can have it's own properties, specific to this current instance.
     For example, creatures have their current <code>Life</code>.
