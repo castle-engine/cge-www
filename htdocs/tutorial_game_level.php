@@ -1,6 +1,11 @@
 <?php
 require_once 'castle_engine_functions.php';
 tutorial_header('Loading game level');
+
+echo castle_thumbs(array(
+  array('filename' => 'fps_game_screen_18.png', 'titlealt' => 'FPS game demo'),
+  array('filename' => 'fps_game_blender.png', 'titlealt' => 'FPS game demo - design of level in Blender'),
+));
 ?>
 
 <p>We could load a game level by directly using the
