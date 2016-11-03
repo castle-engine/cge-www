@@ -633,7 +633,7 @@ if ($main_page) echo facebook_header();
 
 global $social_share_image;
 if (!empty($social_share_image)) {
-  echo '<meta property="og:image" content="' . $social_share_image . '"/>';
+  echo '<meta property="og:image" content="' . CURRENT_URL . $social_share_image . '"/>';
 }
 ?>
 
