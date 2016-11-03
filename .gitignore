@@ -1,5 +1,7 @@
 *~
 htdocs/code-samples/notifications
 htdocs/code-samples/on_screen_menu
+htdocs/code-samples/standard_2d_ui
+htdocs/code-samples/standard_2d_ui_toggle_exists
 htdocs/code-samples/*.o
 htdocs/code-samples/*.ppu
