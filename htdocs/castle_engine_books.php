@@ -47,7 +47,8 @@ function castle_sitemap_book_correct($book_name, &$sitemap_book_sub)
             'previous' => $previous_basename,
             'next' => NULL);
     $chapter['title'] =
-      $castle_books[$book_name]['chapters'][$chapter_basename]['number'] .
+      // Do not show chapter numbers now.
+      //$castle_books[$book_name]['chapters'][$chapter_basename]['number'] .
       $chapter['title'];
     $previous_basename = $chapter_basename;
 
@@ -62,7 +63,8 @@ function castle_sitemap_book_correct($book_name, &$sitemap_book_sub)
                 'previous' => $previous_basename,
                 'next' => NULL);
         $subchapter['title'] =
-          $castle_books[$book_name]['chapters'][$subchapter_basename]['number'] .
+          // Do not show chapter numbers now.
+          //$castle_books[$book_name]['chapters'][$subchapter_basename]['number'] .
           $subchapter['title'];
         $previous_basename = $subchapter_basename;
 
@@ -89,8 +91,8 @@ function book_bar($book_name)
   } else {
     /* This happens when the current page is the ToC page of the book,
        not part of the book. */
-    // first chapter of book,
-    // http://stackoverflow.com/questions/1921421/get-the-first-element-of-an-array
+    /* Get the first chapter of the book,
+       http://stackoverflow.com/questions/1921421/get-the-first-element-of-an-array */
     $first_chapter = array_keys(array_slice($castle_books[$book_name]['chapters'], 0, 1));
     $this_info = array(
       'number' => NULL,
@@ -105,7 +107,9 @@ function book_bar($book_name)
   {
     $previous_info = $castle_books[$book_name]['chapters'][$this_info['previous']];
     $result .= a_href_page('Previous: ' .
-      $previous_info['number'] . $previous_info['title'], $this_info['previous']);
+      // Do not show chapter numbers now.
+      //$previous_info['number'] .
+      $previous_info['title'], $this_info['previous']);
   } else
     $result .= '&nbsp;';
 
@@ -115,7 +119,9 @@ function book_bar($book_name)
   {
     $next_info = $castle_books[$book_name]['chapters'][$this_info['next']];
     $result .= a_href_page('Next: ' .
-      $next_info['number'] . $next_info['title'], $this_info['next']);
+      // Do not show chapter numbers now.
+      //$next_info['number'] .
+      $next_info['title'], $this_info['next']);
   } else
     $result .= '&nbsp;';
 
@@ -131,17 +137,18 @@ function book_header($book_name, $a_page_title, $subheading_text)
 {
   global $castle_books;
   global $page_basename;
-  if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
-    $number = $castle_books[$book_name]['chapters'][$page_basename]['number'];
-  } else {
-    /* This happens when the current page is the ToC page of the book,
-       not part of the book. */
-    $number = '';
-  }
-  $a_page_title = $number . $a_page_title;
 
-  castle_header($a_page_title .
-    ' | ' . $castle_books[$book_name]['title'],
+  // Do not show chapter numbers now.
+  // if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
+  //   $number = $castle_books[$book_name]['chapters'][$page_basename]['number'];
+  // } else {
+  //   /* This happens when the current page is the ToC page of the book,
+  //      not part of the book. */
+  //   $number = '';
+  // }
+  // $a_page_title = $number . $a_page_title;
+
+  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'],
     NULL, $castle_books[$book_name]['path']);
   echo book_bar($book_name);
   echo pretty_heading($a_page_title, NULL, $subheading_text);
