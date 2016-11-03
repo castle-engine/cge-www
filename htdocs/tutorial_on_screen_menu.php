@@ -1,69 +1,60 @@
 <?php
 require_once 'castle_engine_functions.php';
 tutorial_header('On-screen menu');
+
+echo castle_thumbs(array(
+  array('filename' => 'on_screen_menu_castle_screen_0.png', 'titlealt' => 'On-screen menu in &quot;The Castle&quot; - main menu'),
+  array('filename' => 'on_screen_menu_castle_screen_1.png', 'titlealt' => 'On-screen menu in &quot;The Castle&quot; - configure controls'),
+  array('filename' => 'on_screen_menu_castle_screen_2.png', 'titlealt' => 'On-screen menu in &quot;The Castle&quot; - pause menu'),
+  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor in &quot;view3dscene&quot; - also an on-screen menu'),
+  array('filename' => 'terrain1.png', 'titlealt' => 'Terrain parameters (from engine &quot;terrain&quot; demo) are also an on-screen menu'),
+));
 ?>
 
-<p>Our <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
- <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
- have a list of 2D controls visible
-of the screen. By default, the only thing present there is a scene
-manager (since scene manager acts as a 2D viewport through which you
-see the 3D world).<!--; that's right &mdash; the 3D stuff is "within" the 2D
-stuff--> This way the scene manager (it's viewport) is visible on the
-window, which in turn means that the 3D world is visible too.
+<p>The <?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
+ is a <i>user interface control</i>
+ (<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> descendant)
+ displaying an on-screen menu.
+All the menu items are displayed vertically on the screen.
+You can click on menu items, or choose them using the keyboard.
+Each menu item is a full-featured UI control.
+In the common case, a menu item is an instance of
+<?php api_link('TCastleMenuButton', 'CastleOnScreenMenu.TCastleMenuButton.html'); ?>,
+ which descends from <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html') ?>
+ so you have available the event <?php api_link('OnClick', 'CastleControls.TCastleButton.html#OnClick') ?>.
+ In general, menu item is <i>any</i> UI control.
 
-<p>You can add your own 2D controls using the <code>Window.Controls.Add</code>
-method. There are many predefined GUI controls available in our engine,
-look for <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
- descendants, for example in
-<?php api_link('CastleControls', 'CastleControls.html'); ?>
- unit. You can also derive your own controls with ease.
+<p>Menu items may also have attached an <i>"accessory"</i> which
+is often used as an extra label (like a <i>"Yes"</i> / <i>"No"</i> state of some configuration option),
+a slider (e.g. to control sound volume or texture quality).
+In general, an <i>"accessory"</i> is just a child UI control of
+the menu-item, and can be any UI control
+(<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>).
+So you can really insert any convoluted things inside the on-screen menu:)
 
-<p>For a simple on-screen menu, where all the menu items are displayed
-vertically on the screen, use the
- <?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
- control. For
-Lazarus: drop <code>TCastleOnScreenMenu</code> on the form. For TCastleWindow: just
-create <code>TCastleOnScreenMenu</code> instance. Fill it's
-<?php api_link('TCastleOnScreenMenu.Items', 'CastleOnScreenMenu.TCastleOnScreenMenu.html#Items'); ?>
- property (each
-line is a menu entry), and assign a handler for the
-<?php api_link('TCastleOnScreenMenu.OnClick', 'CastleOnScreenMenu.TCastleOnScreenMenu.html#OnClick'); ?>
- event (to react when user chose menu item, by clicking or pressing enter
-key). Inside <code>OnClick</code> event, the
-<?php api_link('TCastleOnScreenMenu.CurrentItem', 'CastleOnScreenMenu.TCastleOnScreenMenu.html#CurrentItem'); ?>
- property tells you which item was clicked. You
-also have to add this to controls list.
+<p>You create and insert the on-screen menu instance
+ <a href="tutorial_2d_user_interface.php">just like all other UI controls</a>.
+ <!--When using Lazarus forms, you can also drop the <code>TCastleOnScreenMenu</code> on the form.-->
 
-<?php echo pascal_highlight(
-'uses ..., CastleOnScreenMenu;
+<p>Once created, you should add menu items using the
+<?php api_link('TCastleOnScreenMenu.Add', 'CastleOnScreenMenu.TCastleOnScreenMenu.html#Add'); ?>
+ method. It has a couple of overloaded versions. In the simplest case,
+ you can use the <code>Add(string)</code> or
+ <code>Add(string, TNotifyEvent)</code>
+ methods, that add a simplest menu item, and optionally register your
+ callback to handle it's <i>click</i> event.
 
-var
-  Window: TCastleWindow;
-  OnScreenMenu1: TCastleOnScreenMenu;
+<p>A simplest example program:</p>
 
-procedure TEventHandler.OnScreenMenu1Click(Sender: TObject);
-begin
-  case OnScreenMenu1.CurrentItem of
-    0: // ... load new game
-    1: // ... quit
-  end;
-end;
+<?php echo pascal_highlight(file_get_contents('code-samples/on_screen_menu.lpr')); ?>
 
-... // use this at initialization:
-  { Note: if you use Lazarus, you can create TCastleOnScreenMenu by dropping
-    it on a form and you can initialize many properties by Object Inspector. }
-  OnScreenMenu1 := TCastleOnScreenMenu.Create(Application);
-  OnScreenMenu1.Items.Add(\'New game\');
-  OnScreenMenu1.Items.Add(\'Quit\');
-  OnScreenMenu1.OnClick := @EventHandler.OnScreenMenu1Click;
-  OnScreenMenu1.Position := Vector2Integer(100, 100);
-  // Maybe also adjust OnScreenMenu1.PositionRelativeMenu*
-
-  Window.Controls.Insert(0, OnScreenMenu1);'); ?>
-
-<p>There is an example of this in <code>examples/lazarus/model_3d_with_2d_controls/</code> example in
-engine sources.</p>
+<p>There are examples of using this class in
+<ul>
+  <li><code>examples/lazarus/model_3d_with_2d_controls/</code></li>
+  <li><code>examples/2d_standard_ui/</code>
+  <li><code>examples/terrain/</code>
+  <li>Inside <a href="https://github.com/castle-engine/castle-game/">The Castle</a> game.</li>
+</ul>
 
 <h2>On-screen menu over a 3D world</h2>
 
