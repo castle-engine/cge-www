@@ -630,6 +630,11 @@ echo googleplus_header();
    from FB (and G+?) lead to main page --- I actually don't want this. */
 global $main_page;
 if ($main_page) echo facebook_header();
+
+global $social_share_image;
+if (!empty($social_share_image)) {
+  echo '<meta property="og:image" content="' . $social_share_image . '"/>';
+}
 ?>
 
   <?php

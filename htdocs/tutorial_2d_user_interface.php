@@ -1,5 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
+$social_share_image = 'images/original_size/zombie_fighter_0.png';
 tutorial_header('Standard 2D controls: user interface');
 
 $toc = new TableOfContents(
