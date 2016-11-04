@@ -254,14 +254,18 @@ function disqus_form()
   if (!empty($disqus_form_already_done)) return '';
   $disqus_form_already_done = true;
 
-  /* From https://castle-engine.disqus.com/admin/settings/universalcode/ */
+  /* From https://castle-engine.disqus.com/admin/settings/universalcode/
+
+     For Disqus, use the final website URL, even when looking at localhost
+     or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
+
   return "
     <div id=\"disqus_thread\"></div>
     <script type=\"text/javascript\">
       var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
       var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
       var disqus_title = '" . htmlspecialchars($page_title) . "';
-      var disqus_url = '" . DISQUS_WEBSITE_URL . $this_page_name . "';
+      var disqus_url = '" . CASTLE_FINAL_URL . $this_page_name . "';
       (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

@@ -18,7 +18,11 @@ define('CASTLE_OFFLINE', isset($_SERVER['SERVER_NAME']) && (
     $_SERVER['SERVER_NAME'] == 'localhost'
   )
 );
-if (CASTLE_OFFLINE) {
+define('CASTLE_PREVIEW', isset($_SERVER['SERVER_NAME']) && (
+    $_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl'
+  )
+);
+if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
   /* Helpful for debugging, to see PHP warnings, notices. */
   error_reporting(E_ALL);
   ini_set('display_errors', 'stderr');
@@ -28,12 +32,15 @@ if (CASTLE_OFFLINE) {
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
 if (CASTLE_OFFLINE) {
   define('CURRENT_URL', '');
-} else {
+} else
+if (CASTLE_PREVIEW) {
+  define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
+} else
+{
   define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
 }
-/* For Disqus, use the final website URL, even when looking at localhost
-   or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
-define('DISQUS_WEBSITE_URL', 'http://castle-engine.sourceforge.net/');
+/* The final (not testing, offline, or preview) website URL. */
+define('CASTLE_FINAL_URL', 'http://castle-engine.sourceforge.net/');
 define('KAMBI_NO_HOME_LINK', true);
 if (CASTLE_OFFLINE) {
   define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
