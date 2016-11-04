@@ -221,8 +221,13 @@ $toc = new TableOfContents(
         see <?php echo a_href_page('X3D cubemap texturing component docs', 'x3d_implementation_cubemaptexturing'); ?>),
       <li><b>3D textures</b> (see <?php echo a_href_page('X3D 3D texturing component docs', 'x3d_implementation_texturing3d'); ?>),
       <li><b>compressed textures</b> (supporting both desktop and mobile
-        compression formats, like S3TC, ATITC, PVRTC, ETC).
-        <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleImages.html#LoadImagePreprocess">You can replace image URLs at runtime, to switch uncompressed texture files with compressed depending on GPU</a>.
+        compression formats, like S3TC, ATITC, PVRTC, ETC).<br>
+        <b>The compressed and/or downscaled texture versions may be automatically generated and used</b>,
+        you simply declare them in <a href="creating_data_material_properties.php">the material_properties.xml file</a>
+        and use <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">our build tool</a> to regenerate all texures at building.
+        <!-- ?php api_link('Alternatively, you can replace image URLs at runtime,
+          to switch uncompressed texture files with compressed depending on GPU',
+          'CastleImages.html#LoadImagePreprocess'); ?-->
       <li><b>anisotropic filtering</b> (just use <a href="<?php echo x3d_spec_latest_url('texturing'); ?>#TextureProperties">TextureProperties.anisotropicDegree</a> in X3D),
       <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.html#TextureMemoryProfiler">GPU texture memory profiler</a>,
         extremely valuable to optimize your texture memory usage (important

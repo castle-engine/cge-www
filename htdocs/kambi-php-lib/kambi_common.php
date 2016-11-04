@@ -40,9 +40,6 @@
      local HTML versions by command-line php)
    - CURRENT_URL (URL to main directory of these very web pages,
      must be finished by "/")
-   - CURRENT_URL_SHORT (Short server name, corresponding to CURRENT_URL,
-     used only to show to humans (when making links
-     from offline to online page).
    - You may want to define KAMBI_NO_HOME_LINK (value is ignored,
      for now always define to true) to suppress automatic
      writing of main page link in common_header and common_footer.

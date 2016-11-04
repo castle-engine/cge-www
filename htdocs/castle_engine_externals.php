@@ -248,7 +248,7 @@ function disqus_form()
 {
   global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
 
-  if (CASTLE_OFFLINE || HTML_VALIDATION || IS_GEN_LOCAL) return '';
+  if (HTML_VALIDATION || IS_GEN_LOCAL) return '';
 
   /* only show it once. This allows to insert this earlier for news */
   if (!empty($disqus_form_already_done)) return '';
@@ -261,7 +261,7 @@ function disqus_form()
       var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
       var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
       var disqus_title = '" . htmlspecialchars($page_title) . "';
-      var disqus_url = '" . CURRENT_URL . $this_page_name . "';
+      var disqus_url = '" . DISQUS_WEBSITE_URL . $this_page_name . "';
       (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

@@ -26,14 +26,20 @@ if (CASTLE_OFFLINE) {
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
-if (CASTLE_OFFLINE)
-  define('CURRENT_URL', ''); else
+if (CASTLE_OFFLINE) {
+  define('CURRENT_URL', '');
+} else {
   define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
-define('CURRENT_URL_SHORT', 'castle-engine.sf.net');
+}
+/* For Disqus, use the final website URL, even when looking at localhost
+   or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
+define('DISQUS_WEBSITE_URL', 'http://castle-engine.sourceforge.net/');
 define('KAMBI_NO_HOME_LINK', true);
-if (CASTLE_OFFLINE)
-  define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/'); else
+if (CASTLE_OFFLINE) {
+  define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
+} else {
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
+}
 
 // other constants
 define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.

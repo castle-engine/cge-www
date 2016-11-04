@@ -128,8 +128,8 @@ If you don't have time to work on them, but you badly need them, consider also
 
     <p>We already have a native look and feel, and easy installation,
     under Mac OS X, see
-    <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news</a>
-    and <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/macosx_requirements.html">docs for Mac OS X situation in SVN</a>.
+    <a href="<?php echo CURRENT_URL; ?>news.php?id=devel-2013-04-19">relevant news</a>
+    and <a href="<?php echo CURRENT_URL; ?>macosx_requirements.php">docs for Mac OS X</a>.
     Our programs no longer have to use X11 and GTK under Mac OS X.
     Still, current solution is not optimal:
     we use LCL with Carbon under the hood. Carbon is deprecated and only

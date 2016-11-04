@@ -131,10 +131,10 @@ Try it now!
     is on the left of the keyboard, then you want the left screen part
     to show human view (as human is controlled by mouse).
 
-  <li><p><a href="http://castle-engine.sourceforge.net/opengl_options.php">Usual window size and fullscreen options</a>.
+  <li><p><a href="opengl_options.php">Usual window size and fullscreen options</a>.
     By default we start in fullscreen.
 
-  <li><p><a href="http://castle-engine.sourceforge.net/openal.php#section_options">Usual sound options</a>.
+  <li><p><a href="openal.php#section_options">Usual sound options</a>.
     For example <code>--no-sound</code>.
 
   <li><p><code>--debug-log</code>, <code>--debug-speed</code>
@@ -149,7 +149,7 @@ Try it now!
 
 <p>See the <code>README.txt</code> for compilation instructions.
 For a standalone compilation all you need is the
-<a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>
+<a href="index.php">Castle Game Engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.
 
 <?php echo $toc->html_section(); ?>
@@ -158,8 +158,7 @@ and <a href="http://www.freepascal.org/">FPC</a>.
 The rest of the game data is licensed on Creative Commons (various
 versions, see AUTHORS.txt files in the source code for details).
 The underlying Castle Game Engine is licensed on more permissive
-<a href="http://castle-engine.sourceforge.net/engine.php#section_license">GNU
-LGPL with static linking exception</a>.
+<a href="license.php">GNU LGPL with static linking exception</a>.
 
 <p>The game was originally developed
 during the weekend gamejam (<a href="https://www.facebook.com/tsgcompo">TSG compo</a>)
