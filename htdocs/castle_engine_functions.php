@@ -2,8 +2,7 @@
 
 /* PHP functions common for castle-engine WWW pages. */
 
-/* You can temporarily change this (but don't commit!) to true.
-   This removes *some* stuff that embeds online content on our webpages,
+/* CASTLE_OFFLINE removes *some* stuff that embeds online content on our webpages,
    see castle_engine_externals.php.
    It also sets CURRENT_URL to '', which means that things that normally
    refer using absolute URL will instead refer to local copy
@@ -30,19 +29,18 @@ if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
-if (CASTLE_OFFLINE) {
+if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
+  /* When CURRENT_URL empty to use relative links from the current address.
+     This affects things that (potentially) land in RSS content,
+     like news and thumbnail sources and links. */
   define('CURRENT_URL', '');
-} else
-if (CASTLE_PREVIEW) {
-  define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
-} else
-{
+} else {
   define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
 }
 /* The final (not testing, offline, or preview) website URL. */
 define('CASTLE_FINAL_URL', 'http://castle-engine.sourceforge.net/');
 define('KAMBI_NO_HOME_LINK', true);
-if (CASTLE_OFFLINE) {
+if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
   define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
 } else {
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
@@ -744,6 +742,10 @@ function castle_header($a_page_title, array $parameters = array())
       ' . _castle_header_menu($path[0]) . '
     </div>
   </nav>';
+
+  if (CASTLE_PREVIEW) {
+    $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_FINAL_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
+  }
 
   if (defined('CASTLE_GITHUB_NAME')) {
     $rendered .= '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="hidden-xs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
