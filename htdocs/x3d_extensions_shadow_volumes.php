@@ -250,7 +250,7 @@ actually brighter.</p>
 <p><i>To be deprecated some day: currently
 <code>shadowVolumes</code> and <code>shadowVolumesMain</code> are the only
 way to get shadow volumes. However, we plan in the future to instead
-make our <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
+make our <a href="x3d_extensions_shadow_maps.php#section_light_shadows_on_everything">X3DLightNode.shadows field (currently only for shadow maps)</a>
 usable also for shadow volumes. The <code>shadowVolumes*</code> will become
 deprecated then.</i></p>
 

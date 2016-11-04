@@ -78,7 +78,7 @@ automatically propose to install it.
 
 <p>See the <code>README.md</code> for compilation instructions.
 For a standalone compilation all you need is the
-<a href="http://castle-engine.sourceforge.net/engine.php">engine</a>
+<a href="index.php">engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.
 To compile the Android version, you will need Android SDK, NDK, and FPC set
 up as a cross-compiler to Android+Arm. See the <i>Castle Game Engine</i>
@@ -90,8 +90,7 @@ docs for details.
 The rest of the game data is licensed on Creative Commons (various
 versions, see AUTHORS.txt files in the source code for details).
 The underlying Castle Game Engine is licensed on more permissive
-<a href="http://castle-engine.sourceforge.net/engine.php#section_license">GNU
-LGPL with static linking exception</a>.
+<a href="license.php">GNU LGPL with static linking exception</a>.
 
 <?php
   castle_footer();

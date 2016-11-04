@@ -229,7 +229,7 @@ $toc = new TableOfContents(
           to switch uncompressed texture files with compressed depending on GPU',
           'CastleImages.html#LoadImagePreprocess'); ?-->
       <li><b>anisotropic filtering</b> (just use <a href="<?php echo x3d_spec_latest_url('texturing'); ?>#TextureProperties">TextureProperties.anisotropicDegree</a> in X3D),
-      <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.html#TextureMemoryProfiler">GPU texture memory profiler</a>,
+      <li><?php api_link('GPU texture memory profiler', 'CastleGLImages.html#TextureMemoryProfiler'); ?>,
         extremely valuable to optimize your texture memory usage (important
         on mobile platforms).
     </ul>

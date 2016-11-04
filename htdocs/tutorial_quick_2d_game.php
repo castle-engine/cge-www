@@ -24,7 +24,7 @@ echo castle_thumbs(array(
 <div class="jumbotron">
 <p><span class="label label-warning">Warning</span> This tutorial page uses features available only in the <b>unstable <a href="https://github.com/castle-engine/castle-engine">engine version on GitHub</a></b>. Do not read this if you use the <b>stable engine version</b> (downloaded as zip or tar.gz from our pages), or be prepared to make some modifications.
 
-<p>In particular, in the stable engine version, the <code>TGLImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="http://castle-engine.sourceforge.net/tutorial_player_2d_controls.php">Details are explained here</a>.
+<p>In particular, in the stable engine version, the <code>TGLImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="tutorial_player_2d_controls.php">Details are explained here</a>.
 </div>
 */ ?>
 

@@ -301,7 +301,7 @@ your auto-generated X3D content separated from hand-written X3D code
 files around the demo models.
 
 <p>You can adjust the parameters how the octree is created. You can
-<a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_octree_properties">set octree
+<a href="x3d_extensions.php#section_ext_octree_properties">set octree
 parameters in VRML/X3D file</a> or by ObjectPascal code.
 Although in practice I usually find that the default values are really good.
 <!--found that the default values are optimal

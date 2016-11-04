@@ -57,8 +57,8 @@ for a skeleton code using this approach. Feel free to use it as a start of your
 projects. Other examples of this approach can be found
 in most new projects/examples of our engine. For example see
 <code>castle_game_engine/examples/2d_spine_game/</code> code.
-Or <a href="http://castle-engine.sourceforge.net/darkest_before_dawn.php">Darkest Before the Dawn</a>
-source code (see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/darkest_before_dawn/code/game.pas">game.pas of Darkest Before the Dawn</a>).
+Or <a href="darkest_before_dawn.php">Darkest Before the Dawn</a>
+source code (see <a href="https://github.com/castle-engine/darkest-before-dawn/blob/master/code/game.pas">game.pas of Darkest Before the Dawn</a>).
 
 <p>The idea is to:
 
