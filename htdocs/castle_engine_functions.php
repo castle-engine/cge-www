@@ -29,12 +29,19 @@ if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
 
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
-if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
-  /* When CURRENT_URL empty to use relative links from the current address.
+if (CASTLE_OFFLINE) {
+  /* When CURRENT_URL empty then use relative links from the current address.
      This affects things that (potentially) land in RSS content,
      like news and thumbnail sources and links. */
   define('CURRENT_URL', '');
-} else {
+} else
+if (CASTLE_PREVIEW) {
+  /* Although CURRENT_URL = '' would also work OK usuallly,
+     but the og:image contents should be an absolute URL (Facebook warns
+     about it otherwise). */
+  define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
+} else
+{
   define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
 }
 /* The final (not testing, offline, or preview) website URL. */
