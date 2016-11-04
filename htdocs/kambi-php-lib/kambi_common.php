@@ -478,7 +478,7 @@ if (empty($relative_path_to_root)) {
      for <meta name="keywords" ...>)
    - 'bonus_head_html' (extra HTML content to put inside <head>)
 */
-function common_header($a_page_title, $parameters = array())
+function common_header($a_page_title, array $parameters = array())
 {
   global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename,
     $relative_path_to_root, $site_title;

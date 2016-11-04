@@ -133,7 +133,12 @@ function book_bar($book_name)
   return $result;
 }
 
-function book_header($book_name, $a_page_title, $subheading_text)
+/* Echo a header.
+
+   $parameters allowed fields:
+   - 'social_share_image'
+   - 'subheading_text' */
+function book_header($book_name, $a_page_title, array $parameters = array())
 {
   global $castle_books;
   global $page_basename;
@@ -148,10 +153,18 @@ function book_header($book_name, $a_page_title, $subheading_text)
   // }
   // $a_page_title = $number . $a_page_title;
 
-  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'], array(
+  /* call castle_header with proper params */
+  $castle_header_parameters = array(
     'path' => $castle_books[$book_name]['path']
-  ));
+  );
+  if (isset($parameters['social_share_image'])) {
+    $castle_header_parameters['social_share_image'] = $parameters['social_share_image'];
+  }
+  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'],
+    $castle_header_parameters);
+
   echo book_bar($book_name);
+  $subheading_text = isset($parameters['subheading_text']) ? $parameters['subheading_text'] : '';
   echo pretty_heading($a_page_title, NULL, $subheading_text);
 }
 
@@ -161,9 +174,14 @@ function book_footer($book_name)
   castle_footer();
 }
 
-function tutorial_header($a_page_title, $subheading_text = '')
+/* Echo a header.
+
+   $parameters allowed fields same as for book_header:
+   - 'social_share_image'
+   - 'subheading_text' */
+function tutorial_header($a_page_title, array $parameters = array())
 {
-  book_header('tutorial', $a_page_title, $subheading_text);
+  book_header('tutorial', $a_page_title, $parameters);
 }
 
 function tutorial_footer()
@@ -171,9 +189,14 @@ function tutorial_footer()
   book_footer('tutorial');
 }
 
-function creating_data_header($a_page_title, $subheading_text = '')
+/* Echo a header.
+
+   $parameters allowed fields same as for book_header:
+   - 'social_share_image'
+   - 'subheading_text' */
+function creating_data_header($a_page_title, array $parameters = array())
 {
-  book_header('creating_data', $a_page_title, $subheading_text);
+  book_header('creating_data', $a_page_title, $parameters);
 }
 
 function creating_data_footer()

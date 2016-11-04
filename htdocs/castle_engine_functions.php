@@ -630,14 +630,6 @@ echo googleplus_header();
    from FB (and G+?) lead to main page --- I actually don't want this. */
 global $main_page;
 if ($main_page) echo facebook_header();
-
-global $social_share_image;
-if (!empty($social_share_image)) {
-  echo '<meta property="og:image" content="' . CURRENT_URL . $social_share_image . '"/>';
-}
-?>
-
-  <?php
 }
 
 /* Echo a header.
@@ -653,12 +645,16 @@ if (!empty($social_share_image)) {
    - 'social_share_image' (string, name of image in images/original_size/
      to be used as Facebook share image (og:image))
 */
-function castle_header($a_page_title, $parameters = array())
+function castle_header($a_page_title, array $parameters = array())
 {
   /* call common_header with proper params */
   $common_header_parameters = array();
   if (isset($parameters['meta_description'])) {
     $common_header_parameters['meta_description'] = $parameters['meta_description'];
+  }
+  if (!empty($parameters['social_share_image'])) {
+    $common_header_parameters['bonus_head_html'] =
+      '<meta property="og:image" content="' . CURRENT_URL . 'images/original_size/' . $parameters['social_share_image'] . '"/>';
   }
   common_header($a_page_title, $common_header_parameters);
 

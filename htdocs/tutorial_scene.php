@@ -1,7 +1,8 @@
 <?php
 require_once 'castle_engine_functions.php';
-$social_share_image = 'images/original_size/cars_demo_2.png';
-tutorial_header('Transform, animate, duplicate, build a scene');
+tutorial_header('Transform, animate, duplicate, build a scene', array(
+  'social_share_image' => 'cars_demo_2.png',
+));
 
 $toc = new TableOfContents(
   array(

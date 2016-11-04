@@ -1,6 +1,8 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Creating Game Data', 'for games using Castle Game Engine');
+creating_data_header('Creating Game Data', array(
+  'subheading_text' => 'for games using Castle Game Engine'
+));
 ?>
 
 <p>This guide discusses various aspects of preparing game data for use
