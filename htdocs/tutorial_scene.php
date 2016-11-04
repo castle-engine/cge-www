@@ -369,16 +369,24 @@ end;'); ?>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>You can use many scene manager instances, just create your own <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instances. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> to get a window that does <b>not</b> have the default scene manager created for you &mdash; sometimes it's easier to dynamically create, add and remove as many scene managers as you want.</p>
+  <li>
+    <p>You can use many scene manager instances. Just create your own <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> to get a window that does <b>not</b> have the default scene manager created for you &mdash; sometimes it's easier to dynamically create, add and remove as many scene managers as you want.</p>
 
-    <p>This way you can easily divide your world into <i>"layers"</i>. The scene managers order is determined by their 2D order (you insert them using methods like
+    <p>You can display multiple scene managers, each showing different set of objects, on top of each other. This way you can easily divide your world into <i>"layers"</i>. The scene managers order is determined by their 2D order (you insert them using methods like
 <?php api_link('InsertFront', 'CastleUIControls.TUIControl.html#InsertFront'); ?>,
 <?php api_link('InsertBack', 'CastleUIControls.TUIControl.html#InsertBack'); ?>). This way you explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
 
     <p> When using multiple scene managers on top of each other, remember that the <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> by default renders a background covering everything underneath. You can disable this background by setting <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleAbstractViewport.html#Transparent'); ?> to <code>false</code>. The 2D scene manager, in <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, has already <code>Transparent</code> = <code>true</code> by default.</p>
   </li>
 
-  <li><p>You can also make alternative views into the same world. For this, use <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> , that points to a <code>TCastleSceneManager</code> for information about the world (but has it's own camera). See the example in the engine <code>examples/3d_rendering_processing/multiple_viewports.lpr</code>.</p>
+  <li><p>You can also make alternative views into the same world (same scene manager). For this, use <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> , that points to a <code>TCastleSceneManager</code> for information about the world (but has it's own camera).
+
+    <p>For examples of this, see:
+    <ul>
+      <li>The <a href="tutorial_2d_user_interface.php">chapter about user interface</a> shows how to set additional viewport.</li>
+      <li>Engine example <code>examples/3d_rendering_processing/multiple_viewports.lpr</code></li>
+      <li>Engine example <code>examples/fps_game/fps_game.lpr</code></li>
+    </ul>
   </li>
 </ul>
 
@@ -417,7 +425,7 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 
 <?php echo $toc->html_section(); ?>
 
-<p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from VRML / X3D, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <a>TCastleSceneManager</a>.
+<p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from VRML / X3D, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
 
 <p>Do not be discouraged by the names of some classes starting with <code>T3D...</code> prefix, like <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>. These classes can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> to transform your 2D scenes, it works perfectly. (At some point, we will migrate to better names...)</p>
 
@@ -433,7 +441,7 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
   </li>
 
   <li><p><?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>:
-    descendant of <a href="">TCastleSceneManager</a>
+    descendant of <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
     especially suitable for 2D world.
 
     <p>It has a little more comfortable default camera and projection settings for 2D.

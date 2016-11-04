@@ -173,18 +173,24 @@ is already created and available in the <code>SceneManager</code> property
 of the <code>TCastleControl</code> or <code>TCastleWindow</code> instance.
 
 <p>By default <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
- also acts as a
-viewport filling the whole window. So the whole OpenGL context is
-filled to show your 3D world. In more complex scenarios you can have
-many smaller viewports inside your window using <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
- (see <a
-href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom
-viewports notes</a>, and <code>examples/3d_rendering_processing/multiple_viewports.lpr</code>
-and <code>examples/fps_game/fps_game.lpr</code> examples).
+ also acts as a viewport filling the whole window. So the whole window shows
+ your 3D world. In more complex scenarios you can have
+many smaller viewports inside your window using <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>.
 You can also turn off scene manager from being a viewport
 (setting <?php api_link('TCastleSceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
  to <code>false</code>), and then scene manager is really
 <b>only</b> something that keeps track of 3D world, and nothing more.</p>
+
+<p>For examples of using viewports, see:
+<ul>
+  <li>The <a href="tutorial_2d_user_interface.php">chapter about user interface</a> shows how to set additional viewport.</li>
+  <li>Engine example <code>examples/3d_rendering_processing/multiple_viewports.lpr</code></li>
+  <li>Engine example <code>examples/fps_game/fps_game.lpr</code></li>
+</ul>
+
+<!--See also <a
+href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom
+viewports notes</a, and ).-->
 
 <p>In more advanced
 scenarios you may need to create and manage scene manager yourself.
