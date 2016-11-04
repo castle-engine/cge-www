@@ -31,9 +31,14 @@ if (isset($_GET['id']) || isset($_GET['item']))
 /* set $page_basename explicitly */
 $page_basename = 'news.php?id=' . $item['id'];
 
-castle_header($item['title'] . ' | News', array(
+$castle_header_parameters = array(
   'path' =>  array('news', $page_basename)
-));
+);
+/* use the first news image as social_share_image, if possible */
+if (isset($item['images'][0]['filename'])) {
+  $castle_header_parameters['social_share_image'] = $item['images'][0]['filename'];
+}
+castle_header($item['title'] . ' | News', $castle_header_parameters);
 
 /* Calculate $older_newer_bar.
    Remember that naming "previous / next" in the array is a little reversed,
