@@ -7,7 +7,13 @@ tutorial_header('Standard 2D controls: user interface', array(
 $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'introduction'),
-    // todo rest of toc
+    new TocItem('Using the 2D controls', 'usage'),
+    new TocItem('Parents and anchors', 'parents_and_anchors'),
+    new TocItem('User-interface scaling (Container.UIScaling)', 'scaling'),
+    new TocItem('Other TUIControl features', 'other_features'),
+    new TocItem('Taking control of the 2D viewport and scene manager', 'viewport'),
+    new TocItem('Wrapping it up (in a custom TUIControl descendant)', 'wrapping'),
+    new TocItem('User-interface state (TUIState)', 'ui_state'),
   )
 );
 
@@ -73,7 +79,7 @@ often used controls are:
 
 <p>These are just the basic UI classes. Find the <code>TUIControl</code> in our <?php api_link('class hierarchy', 'ClassHierarchy.html'); ?> diagram and look at all it's descendants to discover more:)
 
-<h2>Using the 2D controls</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>You simply create an instance of any class you like, and add it as a children
 of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
@@ -99,7 +105,7 @@ to toggles the visibility of a rectangle:
 
 <?php echo pascal_highlight(file_get_contents('code-samples/standard_2d_ui_toggle_exists.lpr')); ?>
 
-<h2>Parents and anchors</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>Every UI control may have children, which are positioned relative to their parent.
 The children are always drawn on top of their parent.
@@ -232,7 +238,7 @@ even <a>TCastleWindow</a> in the same comfortable way as when you design
 a Lazarus form with standard Lazarus LCL components. Contributions
 or <a href="">donations</a> towards this goal are welcome!
 
-<h2>Use user-interface scaling</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>You can use the <a>UIScaling</a> to automatically adjust all the UI
 controls sizes. You activate it like this:
@@ -264,7 +270,7 @@ in the real device pixels (and with the anchors and parent
 transformations already applied). More about this in the later
 chapter.
 
-<h2>Miscellaneous</h2>
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>You can use <a>KeepInFront</a> to force a control to be in
@@ -298,7 +304,7 @@ TODO:
 show update() method too,
 ----
 
-<h2>Taking control of the scene manager and viewport</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>Note that by default, the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
  <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
@@ -320,7 +326,8 @@ The key to understand this is that <i>the scene manager serves by default two pu
     You can deactivate this feature of scene manager by setting <a>SceneManager.DefaultViewport</a>
     to <code>false</code>, then the scene manager is used <i>only</i> to store the information about your
     world, and you <i>must</i> use at least one <a>TCastleViewport</a> to actually see anything.
-</li>
+  </li>
+</ol>
 
 <p>On the other hand, <a>TCastleViewport</a> always serves only one purpose: it's a viewport,
 and it always refers to some <a>TCastleSceneManager</a> instance to know what to show inside.
@@ -345,7 +352,7 @@ with any crazy animation inside you want:)
 
 <p>// TODO: example
 
-<h2>Wrapping it up</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>When you make a non-trivial composition of UI controls, it's a good
 idea to wrap them in a parent UI control class. For this, you derive a
@@ -376,7 +383,7 @@ version of the previous code, that now wraps
 
 <p>// TODO: example
 
-<h2>User-interface state</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>To go even one step further, you may consider organizing larger
 games into "states". The idea is that the game is always within some
