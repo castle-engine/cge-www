@@ -1,30 +1,31 @@
 <?php
-  define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
-  define('CASTLE_GITHUB_NAME', 'darkest-before-dawn');
+define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
+define('CASTLE_GITHUB_NAME', 'darkest-before-dawn');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("Darkest Before the Dawn", NULL,
-    array('all_programs', 'darkest_before_dawn'));
+require_once 'castle_engine_functions.php';
+castle_header("Darkest Before the Dawn", array(
+  'path' => array('all_programs', 'darkest_before_dawn')
+));
 
-  define('VERSION_DARKEST_BEFORE_DAWN', '1.2.0');
+define('VERSION_DARKEST_BEFORE_DAWN', '1.2.0');
 
-  /* echo '<div style="float: right; width: 400px;">'; */
-  /* echo googleplus_button(); */
-  /* echo facebook_button(); */
-  /* echo flattr_button(); */
-  /* echo '</div>'; */
+/* echo '<div style="float: right; width: 400px;">'; */
+/* echo googleplus_button(); */
+/* echo facebook_button(); */
+/* echo flattr_button(); */
+/* echo '</div>'; */
 
-  echo pretty_heading('Darkest Before the Dawn', VERSION_DARKEST_BEFORE_DAWN);
-  echo castle_thumbs(array(
-    array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Darkest Before the Dawn - game screen 1'),
-    array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Darkest Before the Dawn - game screen 2'),
-    array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => 'Darkest Before the Dawn - title screen'),
-    /* array('html' => */
-    /*   '<div class="social_button">' . googleplus_button() . '</div>' . */
-    /*   '<div class="social_button">' . facebook_button() . '</div>' . */
-    /*   '<div class="social_button" style="margin: 0">' . flattr_button() . '</div>' */
-    /* ), */
-  ));
+echo pretty_heading('Darkest Before the Dawn', VERSION_DARKEST_BEFORE_DAWN);
+echo castle_thumbs(array(
+  array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Darkest Before the Dawn - game screen 1'),
+  array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Darkest Before the Dawn - game screen 2'),
+  array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => 'Darkest Before the Dawn - title screen'),
+  /* array('html' => */
+  /*   '<div class="social_button">' . googleplus_button() . '</div>' . */
+  /*   '<div class="social_button">' . facebook_button() . '</div>' . */
+  /*   '<div class="social_button" style="margin: 0">' . flattr_button() . '</div>' */
+  /* ), */
+));
 ?>
 
 <p><i>Darkest Before the Dawn</i> is a tiny game developed

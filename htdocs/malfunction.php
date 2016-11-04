@@ -1,24 +1,23 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'malfunction');
+define('CASTLE_GITHUB_NAME', 'malfunction');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("malfunction", 'Small 3d game. ' .
-    'You fly a spaceship and try to shoot down all alien ships.',
-    array('all_programs'));
+require_once 'castle_engine_functions.php';
+castle_header("malfunction", array(
+  'meta_description' => 'Small 3D game. You fly a spaceship and shoot down alien ships.',
+  'path' => array('all_programs')
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Download', 'download'),
-      new TocItem('Optional command-line options', 'options'),
-      new TocItem('Things used when developing this game', 'external_resources')
-    )
-  );
-?>
+$toc = new TableOfContents(
+  array(
+    new TocItem('Download', 'download'),
+    new TocItem('Optional command-line options', 'options'),
+    new TocItem('Things used when developing this game', 'external_resources')
+  )
+);
 
-<?php
-  echo pretty_heading("malfunction", VERSION_MALFUNCTION);
-  echo $toc->html_toc();
-  echo default_program_thumbnail("malfunction");
+echo pretty_heading("malfunction", VERSION_MALFUNCTION);
+echo $toc->html_toc();
+echo default_program_thumbnail("malfunction");
 ?>
 
 <p>If you want, you can dream that you're a saviour of galaxy

@@ -640,19 +640,38 @@ if (!empty($social_share_image)) {
   <?php
 }
 
-/* $path is a list of page names, a path in the tree of $castle_sitemap,
-   to the current page. The $page_basename is added at the end,
-   if not already there.
-   It will be set as global $castle_page_path. */
-function castle_header($a_page_title, $meta_description = NULL, $path = array())
+/* Echo a header.
+   Set various global variables about this page.
+
+   $parameters fields:
+   - 'meta_description' (like for common_header)
+   - 'path' (array of strings;
+     a list of page names, a path in the tree of $castle_sitemap,
+     to the current page.
+     The $page_basename is added at the end, if not already there.
+     It will be set as global $castle_page_path.)
+   - 'social_share_image' (string, name of image in images/original_size/
+     to be used as Facebook share image (og:image))
+*/
+function castle_header($a_page_title, $parameters = array())
 {
-  common_header($a_page_title, LANG_EN, $meta_description);
+  /* call common_header with proper params */
+  $common_header_parameters = array();
+  if (isset($parameters['meta_description'])) {
+    $common_header_parameters['meta_description'] = $parameters['meta_description'];
+  }
+  common_header($a_page_title, $common_header_parameters);
 
   global $castle_sidebar;
   global $castle_sitemap;
   global $page_basename;
   global $castle_page_path;
 
+  /* calculate $castle_page_path and $path */
+  $path = array();
+  if (isset($parameters['path'])) {
+    $path = $parameters['path'];
+  }
   /* make sure $path ends with $page_basename.
      This way, we also make sure $path is never empty. */
   if (count($path) == 0 || $path[count($path) - 1] != $page_basename) {

@@ -1,7 +1,8 @@
 <?php
-  require_once "castle_engine_functions.php";
-  castle_header("Small gallery of images rendered using rayhunter", NULL,
-    array('all_programs', 'rayhunter', 'raytr_gallery'));
+require_once "castle_engine_functions.php";
+castle_header("Small gallery of images rendered using rayhunter", array(
+  'path' => array('all_programs', 'rayhunter', 'raytr_gallery')
+));
 
 function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
   $prim_samples, $direct_samples)
@@ -16,13 +17,13 @@ function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
   return $result;
 }
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('General notes', 'notes'),
-      new TocItem('Images rendered using classic raytracer', 'classic_images'),
-      new TocItem('Images rendered using path tracer', 'path_images')
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('General notes', 'notes'),
+    new TocItem('Images rendered using classic raytracer', 'classic_images'),
+    new TocItem('Images rendered using path tracer', 'path_images')
+  )
+);
 ?>
 
 <?php echo pretty_heading($page_title); ?>

@@ -1,34 +1,34 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'view3dscene');
+define('CASTLE_GITHUB_NAME', 'view3dscene');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("view3dscene",
-    'view3dscene is a lightweight browser for X3D and VRML 3D models, and a viewer for various other 3D model formats (3DS, MD3, Wavefront OBJ, and Collada, Spine JSON). It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Rendering is done using OpenGL. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from 3DS, MD3, Collada, Spine and other formats to X3D and pretty-print VRML and X3D files. ' .
-    'Free software. For Linux, Mac OS X and Windows.');
+require_once 'castle_engine_functions.php';
+castle_header("view3dscene", array(
+  'meta_description' => 'view3dscene is a lightweight browser for X3D and VRML 3D models, and a viewer for various other 3D model formats (3DS, MD3, Wavefront OBJ, and Collada, Spine JSON). It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Rendering is done using OpenGL. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from 3DS, MD3, Collada, Spine and other formats to X3D and pretty-print VRML and X3D files. Free software. For Linux, Mac OS X and Windows.'
+));
 
-  function section($make_hr = true)
-  {
-    if ($make_hr)
-      echo "<hr class=\"ruler_between_sections\">";
-    global $toc;
-    echo $toc->html_section();
-  }
+function section($make_hr = true)
+{
+  if ($make_hr)
+    echo "<hr class=\"ruler_between_sections\">";
+  global $toc;
+  echo $toc->html_section();
+}
 
-  echo flattr_button();
+echo flattr_button();
 
-  echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
-  echo castle_thumbs(array(
-    array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
-    array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
-    array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
+echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
+echo castle_thumbs(array(
+  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
+  array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
+  array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
 //    array('filename' => 'view3dscene_2.0.0_screen_demo.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with mountains sky'),
-    array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some fog by texture layers'),
-    array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => '&quot;view3dscene&quot; rendering Tremulous creature from MD3'),
+  array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some fog by texture layers'),
+  array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => '&quot;view3dscene&quot; rendering Tremulous creature from MD3'),
 //    array('filename' => 'view3dscene_screen_demo_2.png', 'titlealt' => '&quot;view3dscene&quot; in the middle of ray-tracing'),
 //    array('filename' => 'view3dscene_screen_demo_3.png', 'titlealt' => '&quot;view3dscene&quot; with ProximitySensor visualization'),
-    array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
+  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
 //    array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
-  ));
+));
 ?>
 
 <p><b>view3dscene</b> is a VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ...).</p>

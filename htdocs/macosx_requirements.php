@@ -1,20 +1,22 @@
 <?php
-  require_once "castle_engine_functions.php";
-  castle_header("Dependencies of our programs on Mac OS X", NULL, array('all_programs'));
+require_once "castle_engine_functions.php";
+castle_header("Dependencies of our programs on Mac OS X", array(
+  'path' => array('all_programs')
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Mac OS X applications using Carbon (native look)', 'carbon'),
-        new TocItem('Developers: Technical details', 'carbon_details', 1),
-        new TocItem('Console', 'console', 1),
-      new TocItem('Mac OS X applications using X Windows (and optionally GTK2)', 'gtk'),
-        new TocItem('Dependencies to install', 'requirements', 1),
-        new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
-      new TocItem('Developers: creating Mac OS X applications', 'creating_apps'),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Mac OS X applications using Carbon (native look)', 'carbon'),
+      new TocItem('Developers: Technical details', 'carbon_details', 1),
+      new TocItem('Console', 'console', 1),
+    new TocItem('Mac OS X applications using X Windows (and optionally GTK2)', 'gtk'),
+      new TocItem('Dependencies to install', 'requirements', 1),
+      new TocItem('Developers: additional stuff to install/configure', 'developers_libs', 1),
+    new TocItem('Developers: creating Mac OS X applications', 'creating_apps'),
+  )
+);
 
-  echo pretty_heading($page_title);
+echo pretty_heading($page_title);
 ?>
 
 <p>Contents:

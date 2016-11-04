@@ -1,8 +1,10 @@
 <?php
-  require_once 'castle_engine_functions.php';
-  castle_header("Demo movies", NULL, array('documentation'));
+require_once 'castle_engine_functions.php';
+castle_header("Demo movies", array(
+  'path' => array('documentation')
+));
 
-  echo pretty_heading("Demo movies");
+echo pretty_heading("Demo movies");
 ?>
 
 <p>Various videos about our engine are at</p>

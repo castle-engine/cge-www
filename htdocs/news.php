@@ -31,8 +31,9 @@ if (isset($_GET['id']) || isset($_GET['item']))
 /* set $page_basename explicitly */
 $page_basename = 'news.php?id=' . $item['id'];
 
-castle_header($item['title'] . ' | News', NULL,
-  array('news', $page_basename));
+castle_header($item['title'] . ' | News', array(
+  'path' =>  array('news', $page_basename)
+));
 
 /* Calculate $older_newer_bar.
    Remember that naming "previous / next" in the array is a little reversed,

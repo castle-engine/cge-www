@@ -1,7 +1,8 @@
 <?php
-  require_once "castle_engine_functions.php";
-  castle_header("Standard command-line options", NULL,
-    array('all_programs'));
+require_once "castle_engine_functions.php";
+castle_header("Standard command-line options", array(
+  'path' => array('all_programs')
+));
 ?>
 
 <h2>Standard command-line options</h2>

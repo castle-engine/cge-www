@@ -1,20 +1,21 @@
 <?php
-  require_once "castle_engine_functions.php";
+require_once "castle_engine_functions.php";
+castle_header("The Castle &mdash; additional notes", array(
+  'path' => array('all_programs', 'castle')
+));
 
-  castle_header("The Castle &mdash; additional notes", NULL, array('all_programs', 'castle'));
-
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Detailed requirements', 'requirements_detailed'),
-      new TocItem('Window size', 'window_size'),
-      new TocItem('Sound notes', 'sound'),
-      new TocItem('Log', 'log'),
-      new TocItem('Other command-line options', 'command_line'),
-      new TocItem('Details about items in the game', 'items_details'),
-      new TocItem('Version numbers', 'versioning'),
-      new TocItem('Debug menu, debug options', 'debug_menu_options'),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Detailed requirements', 'requirements_detailed'),
+    new TocItem('Window size', 'window_size'),
+    new TocItem('Sound notes', 'sound'),
+    new TocItem('Log', 'log'),
+    new TocItem('Other command-line options', 'command_line'),
+    new TocItem('Details about items in the game', 'items_details'),
+    new TocItem('Version numbers', 'versioning'),
+    new TocItem('Debug menu, debug options', 'debug_menu_options'),
+  )
+);
 ?>
 
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash;

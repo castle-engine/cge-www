@@ -1,10 +1,9 @@
 <?php
-  require_once "castle_engine_functions.php";
-  castle_header("kambi_mgf2inv",
-    'Modified version of mgf2inv converter, this converts mgf files to ' .
-    'VRML / Inventor and adds non-standard ' .
-    'fields describing physical properties of materials.', array('all_programs')
-    );
+require_once "castle_engine_functions.php";
+castle_header("kambi_mgf2inv", array(
+  'meta_description' => 'Modified version of mgf2inv converter, this converts mgf files to VRML / Inventor and adds non-standard fields describing physical properties of materials.',
+  'path' => array('all_programs')
+));
 ?>
 
 <?php echo pretty_heading("kambi_mgf2inv"); ?>

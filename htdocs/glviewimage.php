@@ -1,34 +1,30 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'glviewimage');
+define('CASTLE_GITHUB_NAME', 'glviewimage');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("glViewImage",
-    "glViewImage - a small image viewer using OpenGL. " .
-    "Can handle various image formats (PNG, JPEG, BMP, PPM, RGBE). " .
-    "Has some nice features that allow you to scale images and test " .
-    "are they &quot;tileable&quot;.",
-    array('all_programs'));
+require_once 'castle_engine_functions.php';
+castle_header("glViewImage", array(
+  'path' => array('all_programs'),
+  'meta_description' => 'Image viewer using Castle Game Engine. Handles various image formats - common ones (PNG, JPEG, BMP, PPM) and some exotic (DDS, RGBE). Includes some specialized editing functions - to scale, to perform alpha bleeding (fix alpha on textures with transparency)',
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Download', 'download'),
-      new TocItem('Features', 'features'),
-      new TocItem('Running', 'run'),
-      new TocItem('Special keys', 'keys'),
-      new TocItem('Command-line options', 'command_line_options'),
-      new TocItem('Image saving notes', 'saving'),
-      new TocItem(DEPENDS, 'depends'),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Download', 'download'),
+    new TocItem('Features', 'features'),
+    new TocItem('Running', 'run'),
+    new TocItem('Special keys', 'keys'),
+    new TocItem('Command-line options', 'command_line_options'),
+    new TocItem('Image saving notes', 'saving'),
+    new TocItem(DEPENDS, 'depends'),
+  )
+);
+
+echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE);
+echo castle_thumbs(array(
+  array('filename' => 'glviewimage_welcome.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
+  array('filename' => 'glviewimage_dds.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
+));
 ?>
-
-<?php
-  echo pretty_heading("glViewImage", VERSION_GLVIEWIMAGE);
-  echo castle_thumbs(array(
-    array('filename' => 'glviewimage_welcome.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
-    array('filename' => 'glviewimage_dds.png', 'titlealt' => 'Screenshot from &quot;glViewImage&quot;'),
-  ));
- ?>
 
 <p><code>glViewImage</code> is an image viewer, converter and even
 a very limited image editor.</p>

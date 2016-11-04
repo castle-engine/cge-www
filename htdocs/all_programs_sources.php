@@ -1,6 +1,8 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('All Programs Sources | Castle Game Engine', NULL, array('all_programs'));
+castle_header('All Programs Sources | Castle Game Engine', array(
+  'path' => array('all_programs')
+));
 echo pretty_heading('All Programs Sources');
 
 $toc = new TableOfContents(

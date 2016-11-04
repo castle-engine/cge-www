@@ -1,18 +1,20 @@
 <?php
-  require_once 'castle_engine_functions.php';
-  castle_header('X3D MultiTexturing problems', NULL, array('vrml_x3d', 'x3d_implementation_status'));
+require_once 'castle_engine_functions.php';
+castle_header('X3D MultiTexturing problems', array(
+  'path' => array('vrml_x3d', 'x3d_implementation_status')
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Tests', 'tests'),
-      new TocItem('Details about browsers tested', 'tests_details', 1),
-      new TocItem('Problems and proposed solutions', 'problems_solutions'),
-      new TocItem('Proposed improved MultiTexture.mode specification', 'proposed_mode'),
-      new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
-      new TocItem('Related single-texturing problem: RGB texture color by default modulates material color', 'default_texture_mode'),
-    ));
+$toc = new TableOfContents(
+  array(
+    new TocItem('Tests', 'tests'),
+    new TocItem('Details about browsers tested', 'tests_details', 1),
+    new TocItem('Problems and proposed solutions', 'problems_solutions'),
+    new TocItem('Proposed improved MultiTexture.mode specification', 'proposed_mode'),
+    new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
+    new TocItem('Related single-texturing problem: RGB texture color by default modulates material color', 'default_texture_mode'),
+  ));
 
-  $tests_url = sf_checkout_link(false, 'demo_models/multi_texturing/');
+$tests_url = sf_checkout_link(false, 'demo_models/multi_texturing/');
 ?>
 
 <?php echo pretty_heading('X3D MultiTexturing problems and proposed solutions'); ?>

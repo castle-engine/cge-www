@@ -1,10 +1,11 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'glinformation');
+define('CASTLE_GITHUB_NAME', 'glinformation');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("glinformation",
-    'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.',
-    array('all_programs'));
+require_once 'castle_engine_functions.php';
+castle_header("glinformation", array(
+  'path' => array('all_programs'),
+  'meta_description' => 'Output OpenGL information. This tiny program queries your OpenGL implementation (which is normally related to your graphic card model and drivers), printing information about your OpenGL version and features.',
+));
 ?>
 
 <?php echo pretty_heading("glinformation", VERSION_GLINFORMATION); ?>

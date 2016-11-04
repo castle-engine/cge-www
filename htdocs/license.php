@@ -2,7 +2,9 @@
 define('CASTLE_GITHUB_NAME', 'castle-engine');
 
 require_once 'castle_engine_functions.php';
-castle_header("License", NULL, array('documentation'));
+castle_header("License", array(
+  'path' => array('documentation')
+));
 
 echo '<img src="images/castle_game_engine_icon.png"
   alt="Castle Game Engine icon"

@@ -1,24 +1,23 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'kambi-lines');
+define('CASTLE_GITHUB_NAME', 'kambi-lines');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("kambi_lines",
-    "kambi_lines - small game in OpenGL based on old DOS 'Color Lines'.",
-    array('all_programs'));
-?>
+require_once 'castle_engine_functions.php';
+castle_header("kambi_lines", array(
+  'meta_description' => "A small game in OpenGL based on old DOS 'Color Lines'.",
+  'path' => array('all_programs')
+));
 
-<?php
-  echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
-  echo default_program_thumbnail("kambi_lines");
+echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
+echo default_program_thumbnail("kambi_lines");
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Download', 'download'),
-      new TocItem('Game rules', 'rules'),
-      new TocItem('Some detailed game rules', 'detailed_rules'),
-      new TocItem('Source code', 'source'),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Download', 'download'),
+    new TocItem('Game rules', 'rules'),
+    new TocItem('Some detailed game rules', 'detailed_rules'),
+    new TocItem('Source code', 'source'),
+  )
+);
 ?>
 
 <p>This is my version of an old game known as "Color Lines".

@@ -1,38 +1,36 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'rayhunter');
+define('CASTLE_GITHUB_NAME', 'rayhunter');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("rayhunter",
-    "rayhunter - simple raytracer. Classic ray tracer " .
-    "and basic Monte Carlo path tracer implemented. Open-source, portable " .
-    "(for Linux, FreeBSD, Mac OS X and Windows).",
-    array('all_programs'));
-  require_once "octree_consts.php";
+require_once 'castle_engine_functions.php';
+castle_header("rayhunter", array(
+  'meta_description' => 'A simple raytracer. Classic ray tracer and basic Monte Carlo path tracer implemented. Open-source, portable (for Linux, FreeBSD, Mac OS X and Windows).',
+  'path' => array('all_programs')
+));
+require_once "octree_consts.php";
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Download', 'download'),
-      new TocItem('Required command-line options', 'required_options'),
-      new TocItem('Optional command-line options', 'optional_options'),
-      new TocItem('Some notes about 3d models handling by this ray-tracer', 'vrml_interpretation'),
-      new TocItem('Advantages over using ray-tracer built in view3dscene', 'adv_over_view3dscene')
-    )
-  );
-?>
+$toc = new TableOfContents(
+  array(
+    new TocItem('Download', 'download'),
+    new TocItem('Required command-line options', 'required_options'),
+    new TocItem('Optional command-line options', 'optional_options'),
+    new TocItem('Some notes about 3d models handling by this ray-tracer', 'vrml_interpretation'),
+    new TocItem('Advantages over using ray-tracer built in view3dscene', 'adv_over_view3dscene')
+  )
+);
 
-<?php echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
+echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
 
-  echo castle_thumbs(array(
-    array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
-    array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
-    array('filename' => 'forest.png', 'titlealt' => ''),
-    array('filename' => 'alien_two_mirrors_2.png', 'titlealt' => ''),
-    array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
-    array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),
-    array('filename' => 'graz-wlight-1-path-filt.png', 'titlealt' => ''),
-    array('html' => '<div class="thumbs_cell_with_text_or_movie">More sample images in '
-      . a_href_page("rayhunter gallery.","raytr_gallery") . '</div>'),
-  ));
+echo castle_thumbs(array(
+  array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
+  array('filename' => 'sibenik-wlight-1-classic-filt.png', 'titlealt' => ''),
+  array('filename' => 'forest.png', 'titlealt' => ''),
+  array('filename' => 'alien_two_mirrors_2.png', 'titlealt' => ''),
+  array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
+  array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),
+  array('filename' => 'graz-wlight-1-path-filt.png', 'titlealt' => ''),
+  array('html' => '<div class="thumbs_cell_with_text_or_movie">More sample images in '
+    . a_href_page("rayhunter gallery.","raytr_gallery") . '</div>'),
+));
 ?>
 
 <p><code>rayhunter</code> is a command-line program that takes

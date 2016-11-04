@@ -1,26 +1,27 @@
 <?php
-  define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
-  define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
+define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
+define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("Mountains Of Fire", NULL,
-    array('all_programs', 'mountains_of_fire'));
+require_once 'castle_engine_functions.php';
+castle_header("Mountains Of Fire", array(
+  'path' => array('all_programs', 'mountains_of_fire')
+));
 
-  /* echo '<div style="float: right; width: 400px;">'; */
-  /* echo googleplus_button(); */
-  /* echo facebook_button(); */
-  /* echo flattr_button(); */
-  /* echo '</div>'; */
+/* echo '<div style="float: right; width: 400px;">'; */
+/* echo googleplus_button(); */
+/* echo facebook_button(); */
+/* echo flattr_button(); */
+/* echo '</div>'; */
 
-  echo pretty_heading('Mountains Of Fire', VERSION_MOUNTAINS_OF_FIRE);
-  echo castle_thumbs(array(
-    array('filename' => 'mountains_of_fire_screen_0.png', 'titlealt' => 'Mountains Of Fire - game screen 1'),
-    array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - game screen 2'),
+echo pretty_heading('Mountains Of Fire', VERSION_MOUNTAINS_OF_FIRE);
+echo castle_thumbs(array(
+  array('filename' => 'mountains_of_fire_screen_0.png', 'titlealt' => 'Mountains Of Fire - game screen 1'),
+  array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - game screen 2'),
 //    array('filename' => 'mountains_of_fire_screen_2.png', 'titlealt' => 'Mountains Of Fire - game screen 3'),
-    array('filename' => 'mountains_of_fire_screen_3.png', 'titlealt' => 'Mountains Of Fire - game screen 4'),
-    array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => 'Mountains Of Fire - game screen 5'),
+  array('filename' => 'mountains_of_fire_screen_3.png', 'titlealt' => 'Mountains Of Fire - game screen 4'),
+  array('filename' => 'mountains_of_fire_screen_4.png', 'titlealt' => 'Mountains Of Fire - game screen 5'),
 //    array('filename' => 'mountains_of_fire_screen_5.png', 'titlealt' => 'Mountains Of Fire - game screen 6'),
-  ));
+));
 ?>
 
 <p>

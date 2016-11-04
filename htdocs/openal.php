@@ -1,15 +1,17 @@
 <?php
-  require_once "castle_engine_functions.php";
-  castle_header('OpenAL (3D Sound)', NULL, array('all_programs'));
+require_once "castle_engine_functions.php";
+castle_header('OpenAL (3D Sound)', array(
+  'path' => array('all_programs')
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Developers API', 'api'),
-      new TocItem('Installing OpenAL', 'install'),
-      new TocItem('Command-line options respected by all my programs that use OpenAL',
-        'options'),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Developers API', 'api'),
+    new TocItem('Installing OpenAL', 'install'),
+    new TocItem('Command-line options respected by all my programs that use OpenAL',
+      'options'),
+  )
+);
 ?>
 
 <?php echo pretty_heading($page_title, NULL); ?>

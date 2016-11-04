@@ -1,29 +1,29 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'castle-game');
+define('CASTLE_GITHUB_NAME', 'castle-game');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("The Castle", NULL, array('all_programs', 'castle'));
+require_once 'castle_engine_functions.php';
+castle_header("The Castle", array(
+  'path' => array('all_programs', 'castle')
+));
 
-  echo flattr_button();
-?>
+echo flattr_button();
 
-<?php
-  echo pretty_heading('The Castle', VERSION_CASTLE);
-  echo castle_thumbs(array(
-    array('filename' => 'castle_screen_demo_1.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
-    array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
-    array('filename' => 'castle_screen_demo_5.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
-  ));
+echo pretty_heading('The Castle', VERSION_CASTLE);
+echo castle_thumbs(array(
+  array('filename' => 'castle_screen_demo_1.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+  array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+  array('filename' => 'castle_screen_demo_5.png', 'titlealt' => 'Image from &quot;The Castle&quot;'),
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Overview', 'overview'),
-      new TocItem('Download', 'download'),
-      new TocItem('Installing', 'install', 1),
-      new TocItem('Uninstalling', 'uninstall', 1),
-      new TocItem('Movies', 'movies'),
-    ));
-
+$toc = new TableOfContents(
+  array(
+    new TocItem('Overview', 'overview'),
+    new TocItem('Download', 'download'),
+    new TocItem('Installing', 'install', 1),
+    new TocItem('Uninstalling', 'uninstall', 1),
+    new TocItem('Movies', 'movies'),
+  )
+);
 ?>
 
 <?php echo $toc->html_toc(); ?>

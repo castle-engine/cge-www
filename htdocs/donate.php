@@ -1,7 +1,9 @@
 <?php
-  require_once 'castle_engine_functions.php';
-  castle_header('Donate', NULL, array('donate'));
-  echo pretty_heading($page_title);
+require_once 'castle_engine_functions.php';
+castle_header('Donate', array(
+  'path' => array('donate')
+));
+echo pretty_heading($page_title);
 ?>
 
 <div class="row">

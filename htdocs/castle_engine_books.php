@@ -148,8 +148,9 @@ function book_header($book_name, $a_page_title, $subheading_text)
   // }
   // $a_page_title = $number . $a_page_title;
 
-  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'],
-    NULL, $castle_books[$book_name]['path']);
+  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'], array(
+    'path' => $castle_books[$book_name]['path']
+  ));
   echo book_bar($book_name);
   echo pretty_heading($a_page_title, NULL, $subheading_text);
 }

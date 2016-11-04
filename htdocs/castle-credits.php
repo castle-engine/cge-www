@@ -1,16 +1,18 @@
 <?php
-  require_once "castle_engine_functions.php";
+require_once "castle_engine_functions.php";
 
-  castle_header("The Castle &mdash; credits", NULL, array('all_programs', 'castle'));
+castle_header("The Castle &mdash; credits", array(
+  'path' => array('all_programs', 'castle')
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Authors', 'authors'),
-      new TocItem('Software used when developing this game', 'software_used'),
-      new TocItem('Data used in this game', 'data_used'),
-      new TocItem('DOOM E1M1 bonus level', 'doom', 1),
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Authors', 'authors'),
+    new TocItem('Software used when developing this game', 'software_used'),
+    new TocItem('Data used in this game', 'data_used'),
+    new TocItem('DOOM E1M1 bonus level', 'doom', 1),
+  )
+);
 ?>
 
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash; credits</h1>

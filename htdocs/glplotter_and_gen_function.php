@@ -1,11 +1,11 @@
 <?php
-  define('CASTLE_GITHUB_NAME', 'glplotter');
+define('CASTLE_GITHUB_NAME', 'glplotter');
 
-  require_once 'castle_engine_functions.php';
-  castle_header("glplotter and gen_function",
-    'glplotter &mdash; program for plotting graphs in OpenGL, and ' .
-    'gen_function &mdash; for generating function graphs',
-    array('all_programs'));
+require_once 'castle_engine_functions.php';
+castle_header("glplotter and gen_function", array(
+  'path' => array('all_programs'),
+  'meta_description' => 'Plotting and generating graphs.'
+));
 ?>
 
 <h1>glplotter

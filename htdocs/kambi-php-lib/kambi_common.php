@@ -466,26 +466,26 @@ if (empty($relative_path_to_root)) {
   $relative_path_to_root = '';
 }
 
-/* $meta_description :string/NULL = krótki opis strony,
-   o ile nie będzie NULL będzie wypisany jako <meta name="Description" ...>
+/* Echo a header.
+   Sets also global $page_basename, if not already set.
 
-   $meta_keywords :string/NULL = dodatkowe keywords strony rozdzielone ",",
-   o ile nie będzie NULL to będzie wypisany jako <meta name="Keywords" ...>.
-
-   $bonus_header_tags = beda wypisane tuz przed </head>.
-   Moga zawierac rozne rzeczy specyficzne dla strony,
-   np. jej deklaracje <style>, <script> i inne (bede rozszerzal ta liste
-   gdy znajde do tego powody).
-
-   Sets global $page_basename, if not already set.
+   $parameters fields:
+   - 'lang' (use HTML language code,
+     like 'en' or 'pl'; default 'en'; can use LANG_XX constants)
+   - 'meta_description' (short page description, for <meta name="description" ...>,
+     shown e.g. by search engines)
+   - 'meta_keywords' (extra page keywords, separated by commas,
+     for <meta name="keywords" ...>)
+   - 'bonus_head_html' (extra HTML content to put inside <head>)
 */
-function common_header($a_page_title, $page_lang,
-  $meta_description = NULL, $meta_keywords = NULL, $bonus_header_tags = '')
+function common_header($a_page_title, $parameters = array())
 {
   global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename,
     $relative_path_to_root, $site_title;
 
   $page_title = $a_page_title;
+
+  $page_lang = isset($parameters['lang']) ? $parameters['lang'] : LANG_EN;
 
   kambi_bootstrap();
 
@@ -517,11 +517,13 @@ function common_header($a_page_title, $page_lang,
 <meta name="Author" content="Michalis Kamburelis">
 
 <?php
-  if (!is_null($meta_keywords))
-  { echo "<meta name=\"Keywords\" content=\"$meta_keywords\">\n"; }
+  if (!empty($parameters['meta_keywords'])) {
+    echo '<meta name="Keywords" content="' . $parameters['meta_keywords'] . '">' . "\n";
+  }
 
-  if (!is_null($meta_description))
-  { echo "<meta name=\"Description\" content=\"$meta_description\">\n"; }
+  if (!empty($parameters['meta_description'])) {
+    echo '<meta name="Description" content="' . $parameters['meta_description'] . '">' . "\n";
+  }
 
   if (! ($main_page || IS_GEN_LOCAL))
   {
@@ -568,7 +570,9 @@ if (!empty($site_title)) {
 
 <?php
   echo_header_bonus();
-  echo $bonus_header_tags;
+  if (isset($parameters['bonus_head_html'])) {
+      echo $parameters['bonus_head_html'];
+  }
 ?>
 </head>
 <body <?php if (!empty($extra_body_classes)) echo 'class="' . $extra_body_classes . '"'; ?>>

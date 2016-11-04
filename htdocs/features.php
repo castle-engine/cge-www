@@ -1,19 +1,20 @@
 <?php
-  require_once 'castle_engine_functions.php';
+require_once 'castle_engine_functions.php';
+castle_header("Features", array(
+  'path' => array('features')
+));
 
-  castle_header("Features", NULL, array('features'));
+$toc = new TableOfContents(
+  array(
+    new TocItem('Many 3D and 2D data formats', 'data'),
+    new TocItem('Portable: standalone, mobile, web browser plugin', 'portable'),
+    new TocItem('Graphic features and effects (shadows, bump mapping...)', 'graphic'),
+    new TocItem('Scene manager and comfortable API', 'api'),
+    new TocItem('And much more!', 'api'),
+  )
+);
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Many 3D and 2D data formats', 'data'),
-      new TocItem('Portable: standalone, mobile, web browser plugin', 'portable'),
-      new TocItem('Graphic features and effects (shadows, bump mapping...)', 'graphic'),
-      new TocItem('Scene manager and comfortable API', 'api'),
-      new TocItem('And much more!', 'api'),
-    )
-  );
-
-  /*  echo flattr_button(); */
+/*  echo flattr_button(); */
 ?>
 
 <div class="fixed-width-content">

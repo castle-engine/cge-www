@@ -1,19 +1,19 @@
 <?php
-  require_once 'castle_engine_functions.php';
+require_once 'castle_engine_functions.php';
 
-  castle_header("lets_take_a_walk",
-    "lets_take_a_walk - A small toy ".
-    "demonstrating rendering 3d graphic and spatial sound.",
-    array('all_programs'));
+castle_header("lets_take_a_walk", array(
+  'path' => array('all_programs'),
+  'meta_description' => 'A small toy demonstrating rendering 3D graphic and spatial sound with Castle Game Engine.',
+));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Download', 'download'),
-      new TocItem('Optional command-line options', 'options'),
-      new TocItem('Requirements', 'depends'),
-      new TocItem('Things used when making this game', 'credits')
-    )
-  );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Download', 'download'),
+    new TocItem('Optional command-line options', 'options'),
+    new TocItem('Requirements', 'depends'),
+    new TocItem('Things used when making this game', 'credits')
+  )
+);
 ?>
 
 <?php
