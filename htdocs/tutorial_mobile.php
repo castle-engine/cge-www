@@ -9,6 +9,10 @@ $toc = new TableOfContents(
     new TocItem('Prepare for differences in input handling', 'input'),
   )
 );
+
+echo castle_thumbs(array(
+  array('filename' => 'android12glued.png', 'titlealt' => 'Various Android applications developed using Castle Game Engine'),
+));
 ?>
 
 <p>Mobile platforms (Android, iOS) differ
