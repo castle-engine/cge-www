@@ -10,7 +10,8 @@ $toc = new TableOfContents(
     new TocItem('Using the 2D controls', 'usage'),
     new TocItem('Parents and anchors', 'parents_and_anchors'),
     new TocItem('User-interface scaling (Container.UIScaling)', 'scaling'),
-    new TocItem('Other TUIControl features', 'other_features'),
+    new TocItem('Query sizes', 'sizes'),
+    new TocItem('Adjust theme', 'theme'),
     new TocItem('Taking control of the 2D viewport and scene manager', 'viewport'),
     new TocItem('Wrapping it up (in a custom TUIControl descendant)', 'wrapping'),
     new TocItem('User-interface state (TUIState)', 'ui_state'),
@@ -131,7 +132,9 @@ it's often a good idea to use a new instance of an
 <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>
  as a parent.
 
-<p>Controls are positioned relative to parent, using the <a>Left</a> and <a>Bottom</a> properties
+<p>Controls are positioned relative to parent, using the
+<?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
+<?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties
 by default. Remember that our engine in 2D uses a mathematical coordinate system,
 where the Y grows from zero (bottom) to maximum height (at the top).
 This is contrary to a common convention of various GUI libraries to designate <code>Top</code> as zero,
@@ -240,7 +243,7 @@ or <a href="">donations</a> towards this goal are welcome!
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use the <a>UIScaling</a> to automatically adjust all the UI
+<p>You can use the <?php api_link('UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?> to automatically adjust all the UI
 controls sizes. You activate it like this:
 
 <?php echo pascal_highlight('Window.Container.UIReferenceWidth := 1024;
@@ -272,37 +275,70 @@ chapter.
 
 <?php echo $toc->html_section(); ?>
 
-<ul>
-  <li><p>You can use <a>KeepInFront</a> to force a control to be in
-    front of other controls, even the ones added with <a>InsertFront</a>
-    (unless they will also have KeepInFront = true...)</p>
-  </li>
+<p>You can check the resulting size of the control
+with <a>CalculatedWidth</a> <a>CalculatedHeight</a>. Many controls,
+like <a>TCastleButton</a>, expose also properties
+called <a>Width</a> and <a>Height</a>, but they are only to set
+an <i>explicit</i> size of the control (if you have disabled
+auto-sizing using <a>TCastleButton.AutoSize
+or</a> <a>TCastleButton.AutoSizeWidth</a> or such). They will not be
+updated when the control auto-sizing mechanism calculates the actual
+size. There is also the <a>CalcultedRect</a> property, that also
+contains the control position (but note that it's valid only after
+the control, and all it's parents, is part of a window that already
+received a Resize event; you may need to wait for the Resize event
+to actually use this value).</p>
 
-  <li><p>To adjust the look of some controls, you can adjust the theme
-    images. Note that each button has already highly configurable look,
-    even without using the theme, by it's custom images.</p>
-  </li>
+<?php echo $toc->html_section(); ?>
 
-  <li><p>Always check the resulting size of the control
-    with <a>CalculatedWidth</a> <a>CalculatedHeight</a>. Many controls,
-    like <a>TCastleButton</a>, expose also properties
-    called <a>Width</a> and <a>Height</a>, but they are only to set
-    an <i>explicit</i> size of the control (if you have disabled
-    auto-sizing using <a>TCastleButton.AutoSize
-    or</a> <a>TCastleButton.AutoSizeWidth</a> or such). They will not be
-    updated when the control auto-sizing mechanism calculates the actual
-    size. There is also the <a>CalcultedRect</a> property, that also
-    contains the control position (but note that it's valid only after
-    the control, and all it's parents, is part of a window that already
-    received a Resize event; you may need to wait for the Resize event
-    to actually use this value).</p>
-  </li>
-</ul>
+<!--li><p>You can use <a>KeepInFront</a> to force a control to be in
+front of other controls, even the ones added with <a>InsertFront</a>
+(unless they will also have KeepInFront = true...)</p>
+</li-->
 
-----------
-TODO:
-show update() method too,
-----
+<p>To adjust the look of some controls, you can adjust the theme.
+<!-- Note that each button has already highly configurable look,
+even without using the theme, by it's custom images.</p-->
+
+<p>Use the <code>Theme</code> global variable
+(instance of <?php api_link('TCastleTheme', 'CastleControls.TCastleTheme.html'); ?>).
+For example, image type <code>tiButtonNormal</code> is the normal
+(not pressed or disabled) button look.
+
+<p>You can change it to one of your own images. Like this:
+
+<?php echo pascal_highlight(
+'Theme.Images[tiButtonNormal] := LoadImage(ApplicationData(\'custom_button_normal.png\'));
+Theme.OwnsImages[tiButtonNormal] := true;
+Theme.Corners[tiButtonNormal] := Vector4Integer(1, 1, 1, 1);'); ?>
+
+<p>Note that we also adjust the <code>Corners</code>.
+The image will be drawn stretched, using the
+<?php api_link('Draw3x3', 'CastleGLImages.TGLImageCore.html#Draw3x3'); ?>
+ to intelligently stretch taking the corners into account.</p>
+
+<p>If you prefer to embed the image inside your application
+executable, you can do it using the <code>image2pascal</code>
+tool (compile it from the engine sources in <code>tools/image2pascal/</code>).
+You can then assign it like this:
+
+<?php echo pascal_highlight(
+'Theme.Images[tiButtonNormal] := CustomButtonNormal;
+Theme.OwnsImages[tiButtonNormal] := false;
+Theme.Corners[tiButtonNormal] := Vector4Integer(1, 1, 1, 1);'); ?>
+
+<p>Note that we set <code>OwnsImages</code> to <code>false</code>
+in this case. The instance of <code>CustomButtonNormal</code>
+will be automatically freed in the <code>finalization</code>
+section of the unit generated by the <code>image2pascal</code>.
+
+
+<!--?php echo pascal_highlight(
+'Theme.Draw(Rectangle(10, 10, 100, 100), tiActiveFrame);'); ?-->
+
+<p>All of the standard 2D controls are drawn using theme images.
+This way the look of your game is defined by a set of images,
+that can be easily changed by artists.
 
 <?php echo $toc->html_section(); ?>
 
