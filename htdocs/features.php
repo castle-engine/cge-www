@@ -149,7 +149,8 @@ $toc = new TableOfContents(
     <?php
     echo castle_thumbs(array(
       array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'Multiple viewports, interactive scene, shadow volumes and cube-map reflections'),
-      array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering mode'),
+      array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
+      //array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering mode'),
     ), 'auto', 'left');
     ?>
 
