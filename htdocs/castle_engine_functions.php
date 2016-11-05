@@ -157,11 +157,11 @@ $castle_sitemap = array(
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
           'tutorial_window' => array('title' => 'Display a window'),
-          'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (getting to know window events)'),
-          'tutorial_load_3d' => array('title' => 'Load and display a 3D model'),
+          'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
+          'tutorial_load_3d' => array('title' => 'Loading, displaying a scene'),
           'tutorial_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
-          'tutorial_mobile' => array('title' => 'Developing mobile (and cross-platform) games'),
-          'tutorial_high_level_3d_classes' => array('title' => 'High-level classes to create 3D games',
+          'tutorial_mobile' => array('title' => 'Mobile and cross-platform games'),
+          'tutorial_high_level_3d_classes' => array('title' => 'High-level classes for games',
             'sub' => array(
               'tutorial_game_level' => array('title' => 'Loading game level'),
               'tutorial_player' => array('title' => 'Player'),
@@ -170,9 +170,9 @@ $castle_sitemap = array(
               'tutorial_resources_extending' => array('title' => 'Extending creatures and items classes'),
             ),
           ),
-          'tutorial_user_interface_and_2d_drawing' => array('title' => 'User interface and direct 2D drawing',
+          'tutorial_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
             'sub' => array(
-              'tutorial_2d_user_interface' => array('title' => 'Standard 2D controls: user interface'),
+              'tutorial_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
               'tutorial_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'tutorial_text' => array('title' => 'Text and fonts'),
               'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),

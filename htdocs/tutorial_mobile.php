@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Developing mobile games');
+tutorial_header('Mobile and cross-platform games');
 
 $toc = new TableOfContents(
   array(

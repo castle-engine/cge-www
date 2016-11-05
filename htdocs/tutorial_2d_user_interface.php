@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Standard 2D controls: user interface', array(
+tutorial_header('User interface, standard controls, viewports', array(
   'social_share_image' => 'zombie_fighter_0.png',
 ));
 
