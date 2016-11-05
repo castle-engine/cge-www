@@ -5,5 +5,6 @@ htdocs/code-samples/standard_2d_ui
 htdocs/code-samples/standard_2d_ui_toggle_exists
 htdocs/code-samples/custom_2d_control
 htdocs/code-samples/custom_2d_control_finished
+htdocs/code-samples/two_viewports
 htdocs/code-samples/*.o
 htdocs/code-samples/*.ppu
