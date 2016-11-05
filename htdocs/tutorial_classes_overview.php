@@ -107,7 +107,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <p><i>How to use</i>: you can create camera instance (or drop on form),
         and then assign to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> (or <?php api_link('TCastleViewport.Camera', 'CastleSceneManager.TCastleViewport.html#Camera'); ?>).
         You can also do nothing, and let the automatic creation of camera
-        happen at the nearest rendering (more precisely, at <code>ApplyProjection</code>).
+        happen at the nearest rendering or at <code>RequiredCamera</code> call.
         It will create a camera using
         <?php api_link('TCastleSceneManager.CreateDefaultCamera', 'CastleSceneManager.TCastleSceneManager.html#CreateDefaultCamera'); ?>
         and assign it to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>
