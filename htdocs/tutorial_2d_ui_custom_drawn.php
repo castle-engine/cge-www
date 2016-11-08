@@ -10,6 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Text', 'text', 1),
     new TocItem('Rectangles, circles, other shapes', 'shapes', 1),
     new TocItem('Images', 'images', 1),
+    new TocItem('Animations from images (movies, sprite sheets)', 'animations', 1),
     new TocItem('Player inventory', 'inventory', 1),
     new TocItem('Screen fade effects', 'screen_fade', 1),
     new TocItem('Coordinates and window (container) sizes', 'coordinates_and_sizes'),
@@ -205,6 +206,12 @@ end;'); ?>
 similar to the
 <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
  control</i>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you would like to display a series of images, not a static image, you can use <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?> (show image sequence from many separate images or a video) or <?php api_link('TSprite', 'CastleGLImages.TSprite.html'); ?> (show image sequence from a sprite sheet &mdash; one large image containing many animation frames).
+
+<p>See e.g. <a href="https://gitlab.com/michaliskambi/muuu">our game "Muuu"</a> for a demo of using sprite animations.
 
 <?php echo $toc->html_section(); ?>
 
