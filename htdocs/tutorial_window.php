@@ -65,7 +65,7 @@ that will be able to display 3D content. There are two ways of doing this:
 
     <ul>
       <li>Create new project using Lazarus <i>"New Project"</i> menu item.</li>
-      <li>Choose <i>"Custom Application"</i> (or <i>"Project-&gt;Simple Program"</i>).</li>
+      <li>Choose <i>"Project-&gt;Simple Program"</i> (or <i>"Custom Application"</i> in older Lazarus versions).</li>
       <li>Using <i>"Project->Project Inspector"</i> window add a <i>"New Requirement"</i>
         and choose <code>castle_base</code> package.</li>
       <li>Then add another requirement and choose <code>castle_window</code>
