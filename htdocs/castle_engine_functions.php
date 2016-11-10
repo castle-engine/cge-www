@@ -1167,6 +1167,13 @@ function pascal_highlight($source)
   return $geshi->parse_code();
 }
 
+function pascal_highlight_file($file_name)
+{
+  // trim, to avoid final newline
+  $source = trim(file_get_contents('code-samples/custom_2d_control.lpr'));
+  return pascal_highlight($source);
+}
+
 function x3d_spec_latest_url($component_name)
 {
   return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .

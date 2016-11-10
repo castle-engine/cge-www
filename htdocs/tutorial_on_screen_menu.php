@@ -46,7 +46,7 @@ So you can really insert any convoluted things inside the on-screen menu:)
 
 <p>A simplest example program:</p>
 
-<?php echo pascal_highlight(file_get_contents('code-samples/on_screen_menu.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/on_screen_menu.lpr'); ?>
 
 <p>There are examples of using this class in
 <ul>

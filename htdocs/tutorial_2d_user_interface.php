@@ -18,11 +18,21 @@ $toc = new TableOfContents(
   )
 );
 
+// TODO all the <a> below fix and check all links
+?>
+
+<p>Using our engine you can create nice user-interface for your applications.
+<!-- It's appearance and behavior is very customizable,
+as you often want a custom-looking UI in your games. -->
+
+<p><b>A complete program using the concepts shown here is in the engine
+examples</b>, in the <code>examples/2d_standard_ui/zombie_fighter/</code>
+directory.</p>
+
+<?php
 echo castle_thumbs(array(
   array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
 ), 'auto', 'left');
-
-// TODO all the <a> below fix and check all links
 ?>
 
 <?php echo $toc->html_toc(); ?>
@@ -93,7 +103,7 @@ or <code>Window</code> a parent of your UI control.
 
 <p>An example below shows a simple button and a label:
 
-<?php echo pascal_highlight(file_get_contents('code-samples/standard_2d_ui.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/standard_2d_ui.lpr'); ?>
 
 <p>Remember that at any time, you can add and remove the controls.
 You can also make a control temporarily "not existing"
@@ -104,7 +114,7 @@ just like it would not be present on the controls list at all) by flipping it's
 <p>Here's the previous example expanded, showing how to handle button click,
 to toggles the visibility of a rectangle:
 
-<?php echo pascal_highlight(file_get_contents('code-samples/standard_2d_ui_toggle_exists.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/standard_2d_ui_toggle_exists.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -390,7 +400,7 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<?php echo pascal_highlight(file_get_contents('code-samples/two_viewports.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/two_viewports.lpr'); ?>
 
 <p>This means that you can mix static user-interface with animations freely. The viewport may contain
 a TCastleScene with animation. For example, you can design an animation in Spine, load it to TCastleScene,

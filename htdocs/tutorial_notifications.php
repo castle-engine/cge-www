@@ -19,7 +19,7 @@ notifications to it, and it is also automatically set up to cooperate
 with the <?php echo a_href_page('CastleScript writeln()', 'castle_script'); ?>
  function, so you can print to it from VRML/X3D scripts.
 
-<?php echo pascal_highlight(file_get_contents('code-samples/notifications.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/notifications.lpr'); ?>
 
 <p>Remember that you're not forced to use the global <code>Notifications</code>
 from unit <code>CastleGameNotifications</code>, especially if you don't like the

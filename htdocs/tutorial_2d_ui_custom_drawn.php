@@ -72,7 +72,7 @@ since various games have wildly different needs.
 <p>Here's a simple start of a 2D control class definition and usage.
 It shows the player health by simply writing it out as text.</p>
 
-<?php echo pascal_highlight(file_get_contents('code-samples/custom_2d_control.lpr')); ?>
+<?php echo pascal_highlight_file('code-samples/custom_2d_control.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
