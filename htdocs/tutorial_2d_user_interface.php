@@ -98,7 +98,7 @@ often used controls are:
 
   <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside (actually, by inserting other UI controls as children, it may contain <i>anything</i> inside). The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
 
-  <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?> - Image. May stretch the content, or adjust to the content size. Image may be partially transparent, with blending or alpha-testing. Image can be rotated or clipped by an arbitrary line. Image may be "tinted" (multiplied) by given color. Undernath, the image is a full-featured <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>, so you can process it in a myriad of ways.<!--, and load from a myriad sources (e.g. you can load here a dynamically generated <a href="">screenshot, not only an image file).--></li>
+  <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?> - Image. May stretch the content, or adjust to the content size. Image may be partially transparent, with blending or alpha-testing. Image can be rotated or clipped by an arbitrary line. Image may be "tinted" (multiplied) by given color. Underneath, the image is a full-featured <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>, so you can process it in a myriad of ways.<!--, and load from a myriad sources (e.g. you can load here a dynamically generated <a href="">screenshot, not only an image file).--></li>
 
   <li><?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> - Rectangle filled with solid color. Good for a general-purpose background. The color may be partially transparent, in which case the content underneath is still visible.</li>
 
@@ -186,7 +186,7 @@ The children are always drawn on top of their parent.
     so in 3D you get <i>one additional dimension</i>, Z, going "outside" of the screen,
     while X and Y axes are oriented the same in 2D and 3D).
 
-    <p>Usually, instead of assignining the positions using the
+    <p>Usually, instead of assigning the positions using the
     <?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
     <?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties,
     it's better to <b>use <i>anchors</i></b>. Anchors specify the position of some border (or center)
@@ -311,9 +311,9 @@ where the sizes of the screen (in pixels) vary wildly.
 <p>This means that the whole user interface will be scaled, by the
 same ratio as if we would try to fit a <code>1024 x 768</code> area
 inside the user's window. The proportions will not be distorted, but
-things will get smaller or larger as necessary to accomodate to the
+things will get smaller or larger as necessary to accommodate to the
 larger window size. If you use anchors correctly, things will
-accomodate nicely to the various aspect ratios too.
+accommodate nicely to the various aspect ratios too.
 
 <p>The fact that things are scaled is largely hidden from you. You get and set
 the
@@ -340,7 +340,7 @@ transformations already applied). More about this in the
 with <?php api_link('CalculatedWidth', 'CastleUIControls.TUIControl.html#CalculatedWidth'); ?>
  and <?php api_link('CalculatedHeight', 'CastleUIControls.TUIControl.html#CalculatedHeight'); ?>.
 
-<p>Baware: Many controls,
+<p>Beware: Many controls,
 like <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, expose also properties
 called <?php api_link('Width', 'CastleControls.TCastleButton.html#Width'); ?> and
  <?php api_link('Height', 'CastleControls.TCastleButton.html#Height'); ?>, but they are only to set
