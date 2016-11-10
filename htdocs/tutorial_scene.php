@@ -204,10 +204,17 @@ end;'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Note that it's allowed to add the same instance of the
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'cars_demo_2.png', 'titlealt' => 'Many car instances'),
+));
+?>
+
+<p>It's allowed to add the same instance of the
 <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
  many times to your scene manager hierarchy.
-This allows to reuse it's data completely, which is the best for performance and memory!
+This allows to reuse it's data completely, which is great for both performance
+and the memory usage.
 
 <p>For example, let's make 20 cars moving along the road! You will need 20 instances of <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>, but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. The modifications to the code are straightforward, just change <code>CarTransform</code> into an array:
 
@@ -262,6 +269,12 @@ end;'); ?>
 <p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method.
 
 <?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'cars_demo_3.png', 'titlealt' => 'Cars, surrounded by a wall build in code'),
+));
+?>
 
 <p>Up to now, we have treated <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> as a kind of <i>"black box"</i>, that can be loaded from file and then changed using only high-level methods like <code>PlayAnimation</code>. But you have much more flexibility.</p>
 

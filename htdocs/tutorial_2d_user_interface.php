@@ -32,6 +32,7 @@ directory.</p>
 <?php
 echo castle_thumbs(array(
   array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
+  array('filename' => 'two_viewports.png', 'titlealt' => 'Scene manager with custom viewport'),
 ), 'auto', 'left');
 ?>
 
@@ -117,6 +118,12 @@ to toggles the visibility of a rectangle:
 <?php echo pascal_highlight_file('code-samples/standard_2d_ui_toggle_exists.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
+));
+?>
 
 <p>Every UI control may have children, which are positioned relative to their parent.
 The children are always drawn on top of their parent.
