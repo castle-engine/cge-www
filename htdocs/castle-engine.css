@@ -252,25 +252,8 @@ div.download table a img { border: 0px none; }
     margin-right: 2rem;
 }
 
-/* do not make it narrower near thumbnails */
-pre.delphi { clear: both; }
-
-.source_code_with_download_link pre.delphi:first-child {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.source_code_with_download_link pre.delphi:last-child a {
+a.download_code {
     text-decoration: underline;
-}
-
-.source_code_with_download_link pre.delphi:last-child {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-top: none;
-    margin-top: 0;
 }
 
 /* main page stuff ----------------------------------------------------------- */
