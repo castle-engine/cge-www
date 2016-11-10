@@ -13,6 +13,7 @@ $toc = new TableOfContents(
     new TocItem('Query sizes', 'sizes'),
     new TocItem('Adjust theme', 'theme'),
     new TocItem('Taking control of the 2D viewport and scene manager', 'viewport'),
+    new TocItem('Insert animation (full scene manager) into a button', 'button_with_scene_manager', 1),
     new TocItem('Wrapping it up (in a custom TUIControl descendant)', 'wrapping'),
     new TocItem('User-interface state (TUIState)', 'ui_state'),
   )
@@ -32,7 +33,11 @@ directory.</p>
 <?php
 echo castle_thumbs(array(
   array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
-  array('filename' => 'two_viewports.png', 'titlealt' => 'Scene manager with custom viewport'),
+  //array('filename' => 'two_viewports.png', 'titlealt' => 'Scene manager with custom viewport'),
+  //array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
+  array('filename' => 'button_with_2d_scene_manager.png', 'titlealt' => '2D animated scene inside a button'),
+  //array('filename' => 'zombie_fighter_1.png', 'titlealt' => 'Multiple viewports and basic game UI'),
+  array('filename' => 'zombie_fighter_2.png', 'titlealt' => 'UI dialog, in a state over the game UI'),
 ), 'auto', 'left');
 ?>
 
@@ -409,14 +414,32 @@ echo castle_thumbs(array(
 
 <?php echo pascal_highlight_file('code-samples/two_viewports.lpr'); ?>
 
-<p>This means that you can mix static user-interface with animations freely. The viewport may contain
-a TCastleScene with animation. For example, you can design an animation in Spine, load it to TCastleScene,
-insert it to T2DSceneManager, which you can then insert inside a TCastleButton. Thus you can have a button
-with any crazy animation inside you want:)
+<?php echo $toc->html_section(); ?>
 
-<p>// TODO: example
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'button_with_2d_scene_manager.png', 'titlealt' => '2D animated scene inside a button'),
+));
+?>
+
+<p>As the viewport may contain a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+ with animation, and any viewport (including a scene manager)
+is just a 2D user-interface control,<!-- that can be children of other controls,-->
+you can mix user-interface with animations freely.
+For example, you can design an animation in Spine, load it to <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>,
+insert it to <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, which you can then insert inside a
+<?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>. Thus you can have a button
+ with any crazy animation inside you want:)
+
+<?php echo pascal_highlight_file('code-samples/button_with_2d_scene_manager.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
+));
+?>
 
 <p>When you make a non-trivial composition of UI controls, it's a good
 idea to wrap them in a parent UI control class. For this, you derive a
@@ -431,7 +454,7 @@ initialize and add all the child controls. You can even register
 private methods to handle the events of private controls inside,
 e.g. you can internally handle button clicks inside your new class.
 
-<p>This way you get a new class, like TMyZombieDialog, that is a
+<p>This way you get a new class, like TZombieDialog, that is a
 full-featured UI control. It hides the complexity of the UI inside,
 and it exposes only as much as necessary to the outside world. It has
 a fully functional Update method to react to time passing, it can
@@ -442,12 +465,85 @@ Window.Controls, or it can be used as a child of other UI controls, to
 create even more complex stuff. It can be aligned within parent using
 the normal Anchor() methods.
 
-<p>Example below shows the TZombieDialog class. , which is a reworked
-version of the previous code, that now wraps
+<p>Example below shows the <code>TZombieDialog</code>, which is a reworked
+version of the previous UI example, that now wraps the dialog UI inside
+a neat reusable class.
 
-<p>// TODO: example
+<?php echo pascal_highlight('uses SysUtils, Classes, CastleControls, CastleUtils, CastleFilesUtils,
+  CastleColors, CastleUIControls;
+
+type
+  TZombieDialog = class(TCastleRectangleControl)
+  private
+    InsideRect: TCastleRectangleControl;
+    Image: TCastleImageControl;
+    LabelStats: TCastleLabel;
+    ButtonRun, ButtonFight: TCastleButton;
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+constructor TZombieDialog.Create(AOwner: TComponent);
+begin
+  inherited;
+
+  Width := 400;
+  Height := 500;
+  Color := HexToColor(\'5f3939\');
+
+  InsideRect := TCastleRectangleControl.Create(Self);
+  InsideRect.Width := CalculatedWidth - 10;
+  InsideRect.Height := CalculatedHeight - 10;
+  InsideRect.Color := Silver;
+  InsideRect.Anchor(hpMiddle);
+  InsideRect.Anchor(vpMiddle);
+  InsertFront(InsideRect);
+
+  Image := TCastleImageControl.Create(Self);
+  // ... see previous example for the rest of Image initialization
+  InsideRect.InsertFront(Image);
+
+  LabelStats := TCastleLabel.Create(Self);
+  // ... see previous example for the rest of LabelStats initialization
+  InsideRect.InsertFront(LabelStats);
+
+  ButtonRun := TCastleButton.Create(Self);
+  // ... see previous example for the rest of ButtonRun initialization
+  InsideRect.InsertFront(ButtonRun);
+
+  ButtonFight := TCastleButton.Create(Self);
+  // ... see previous example for the rest of ButtonFight initialization
+  InsideRect.InsertFront(ButtonFight);
+end;
+
+var
+  SimpleBackground: TCastleSimpleBackground;
+  Dialog: TZombieDialog;
+
+procedure ApplicationInitialize;
+begin
+  Window.Container.UIReferenceWidth := 1024;
+  Window.Container.UIReferenceHeight := 768;
+  Window.Container.UIScaling := usEncloseReferenceSize;
+
+  SimpleBackground := TCastleSimpleBackground.Create(Application);
+  SimpleBackground.Color := Black;
+  Window.Controls.InsertFront(SimpleBackground);
+
+  Dialog := TZombieDialog.Create(Application);
+  Dialog.Anchor(hpMiddle);
+  Dialog.Anchor(vpMiddle);
+  Window.Controls.InsertFront(Dialog);
+end;'); ?>
 
 <?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'zombie_fighter_1.png', 'titlealt' => 'Multiple viewports and basic game UI'),
+  array('filename' => 'zombie_fighter_2.png', 'titlealt' => 'UI dialog, in a state over the game UI'),
+));
+?>
 
 <p>To go even one step further, you may consider organizing larger
 games into "states". The idea is that the game is always within some
@@ -496,12 +592,14 @@ this example).
 <p>To actually change the state using the "stack" mechanism, use the
 Push() and Pop() methods. See the API reference for details.
 
-<p>The example below shows a simple implementation of TMainMenuState,
-TGameState, TAskDialogState. The TAskDialogState is activated when you
-press the zombie head in the TGameState, it then shows our
-TMyZombieDialog created previously.
+<p>The example below shows a simple implementation of TStateMainMenu,
+TStatePlay, TStateAskDialog. The TStateAskDialog is activated when you
+press the zombie head in the TStatePlay, it then shows our
+TZombieDialog created previously.
 
-<p>// TODO: example
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/TODO">Explore the "zombie_fighter" example on GitHub</a>
+</div>
 
 <?php
 tutorial_footer();

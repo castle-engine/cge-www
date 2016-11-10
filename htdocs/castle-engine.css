@@ -65,6 +65,10 @@ div.thumbnails {
 div.thumbnails a {
   display: inline-block;
 }
+table.thumbnails-align-right {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
 
 /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
 pre {
@@ -247,6 +251,9 @@ div.download table a img { border: 0px none; }
     margin-left: 2rem;
     margin-right: 2rem;
 }
+
+/* do not make it narrower near thumbnails */
+pre.delphi { clear: both; }
 
 .source_code_with_download_link pre.delphi:first-child {
     border-bottom-left-radius: 0;
