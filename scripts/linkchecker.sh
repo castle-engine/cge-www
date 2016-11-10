@@ -11,14 +11,9 @@ set -eu
 
 do_linkchecker ()
 {
-  linkchecker --config=/home/michalis/sources/castle-engine/trunk/www/scripts/linkchecker.conf "$@"
+  linkchecker --config=`pwd`/linkchecker.conf "$@"
 }
 
 do_linkchecker http://127.0.0.1/~michalis/castle-engine/
 
-# Ignore
-#   images/kambi_lines/
-#     It's Ok that they are missing: when actually generating kambi_lines,
-#     they will be available.
-
-do_linkchecker --ignore-url=images/kambi_lines/ *.html
+# do_linkchecker *.html
