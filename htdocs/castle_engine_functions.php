@@ -1171,7 +1171,11 @@ function pascal_highlight_file($file_name)
 {
   // trim, to avoid final newline
   $source = trim(file_get_contents($file_name));
-  return pascal_highlight($source);
+  $result = '<div class="source_code_with_download_link">';
+  $result .= pascal_highlight($source);
+  $result .= '<pre class="delphi"><a class="coMULTI" href="' . htmlspecialchars($file_name) . '">// This is a complete source code that you can compile. Download it!</a></pre>';
+  $result .= '</div>';
+  return $result;
 }
 
 function x3d_spec_latest_url($component_name)
