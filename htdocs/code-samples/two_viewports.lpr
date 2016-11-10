@@ -8,10 +8,16 @@ var
   ViewportRect: TCastleRectangleControl;
   Viewport: TCastleViewport;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowCustom.Create(Application);
   Window.Container.UIReferenceWidth := 1024;
   Window.Container.UIReferenceHeight := 768;
   Window.Container.UIScaling := usEncloseReferenceSize;
+
+  { Add a black background underneath. You must always draw on
+    the whole window area, otherwise it's contents are undefined.
+    In this program, we don't have a full-size viewport filling the whole
+    screen, so we use TCastleSimpleBackground to clear the screen. }
+  Window.Controls.InsertFront(TCastleSimpleBackground.Create(Application));
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(ApplicationData('level1.x3d'));
