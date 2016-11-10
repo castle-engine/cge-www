@@ -14,8 +14,8 @@ function echo_svn_blender_file($filename)
 
 <p><a href="http://www.blender.org/">Blender</a> is a magnificent
 free open-source 3D modelling software. Latest Blender versions
-include a good X3D exporter, so you can export your content from Blender
-and open it with our engine.
+include a working X3D exporter, so you can export your content from Blender
+out-of-the-box and open it with our engine.
 We advice testing the X3D models by opening them with
 <?php echo a_href_page('view3dscene', 'view3dscene') ?>.</p>
 
@@ -23,6 +23,14 @@ We advice testing the X3D models by opening them with
     <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/wiki/Blender">Some hints about exporting from Blender to X3D are here</a>
 </div>
 
+<p>We have our own X3D exporter version, which is based on the Blender X3D exporter
+and adds some small fixes. In time, we hope to have them submitted to official Blender code.
+Install this by copying over (overwriting) the original Blender exporter,
+which is in <code>&lt;blender-installation-dir&gt;/2.XX/scripts/addons/io_scene_x3d/export_x3d.py</code>.
+
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/export_x3d.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download our X3D exporter</a>
+</div>
 
 <?php /*
 We publish here some improvements / fixes / documentation for
@@ -63,8 +71,8 @@ anywhere on Blender site, wiki etc. Permission to use my notes
 on any license required for official Blender wiki / docs contents is granted.</p>
 */ ?>
 
-<p>The standard <i>Blender X3D exporter</i> cannot handle animations for now.
-As a workaround, you can use the exporter below to export animations to
+<p>The <i>Blender X3D exporter</i> cannot handle animations for now.
+To solve this, use the exporter below to export animations to
 a <?php echo a_href_page("KAnim (Castle Game Engine animations) format",
 'kanim_format'); ?>. The <code>.kanim</code> files can be read by our engine
 and will play animations. Thanks to the simplicity of the kanim format,
