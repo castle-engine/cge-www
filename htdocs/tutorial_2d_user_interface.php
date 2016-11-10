@@ -21,6 +21,14 @@ $toc = new TableOfContents(
 ?>
 
 <p>Using our engine you can create nice user-interface for your applications.
+The look and behavior of everything is very customizable,
+as you often want a special-looking UI in your games.
+Our user-interface is rendered inside a container like
+<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
+<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+and of course works without any modifications on all the platforms
+we support &mdash; desktop, mobile...
+
 <!-- It's appearance and behavior is very customizable,
 as you often want a custom-looking UI in your games. -->
 
@@ -43,18 +51,20 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>The whole rectangle of our game window is handled by <i>2D user-interface controls</i>.
+<p>Our game window is covered by <i>2D user-interface controls</i>.
 All of the classes representing a user-interface control descend from
 the <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> class.
 They can render, they can handle inputs, they can perform any time-dependent task, and much more.
 
 <p>All of the currently used controls are added to the list of
-<?php api_link('Window.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
- (if you use <code>TCastleWindow</code>) or
-<?php api_link('CastleControl1.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
- (if you use Lazarus forms with <code>TCastleControl</code>).
-They are ordered from the back to front. But usually you don't need to remember that,
-as you add them using the aptly-named methods <code>InsertFront</code> or <code>InsertBack</code>,
+<?php api_link('TCastleWindowCustom.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
+ (if you use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>) or
+<?php api_link('TCastleControlCustom.Controls', 'CastleControl.TCastleControlCustom.html#Controls'); ?>
+ (if you use Lazarus forms with <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>).
+The controls on this list are ordered from the back to front. But usually you don't need to remember that,
+as you add them using the aptly-named methods
+<?php api_link('InsertFront', 'CastleUIControls.TChildrenControls.html#InsertFront'); ?> or
+<?php api_link('InsertBack', 'CastleUIControls.TChildrenControls.html#InsertBack'); ?>,
 indicating the visual "front" (<i>in front of other controls</i>) or "back".
 The <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> can be arranged
  in hierarchy: one instance of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
@@ -74,19 +84,19 @@ Most of your rendering and input handling should be done inside some
 into the 3D world, and it's also a descendant of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>.
 It makes sense, if you think about it: inside a 2D screen, you create a 2D viewport, that allows
 to view the 3D world inside.
-So, truly, everything is a descendant of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
- is our engine, and we advice you to follow this approach when creating your own games.
+So, almost everything is "inside" some <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
+ in our engine.<!--, and we advice you to follow this approach when creating your own games.-->
 
 <p>While <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> is basically
- an entry to render <i>anything</i>, in this chapter we will focus in the most traditional
+ a way to render <i>anything</i>, in this chapter we will focus on the most traditional
 use of this class: to create simple 2D user interfaces. Our engine includes a large number of
-<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> to this end. The most
+<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> descendants for this. The most
 often used controls are:
 
 <ul>
   <li><?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?> - Label with text. As with all our text controls, the font family and size is customizable (see <a href="tutorial_text.php">chapter about text</a>). May have a frame. May be multiline. May contain some <?php api_link('HTML tags', 'CastleControls.TCastleLabel.html#Html'); ?>.</li>
 
-  <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside. The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
+  <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside (actually, by inserting other UI controls as children, it may contain <i>anything</i> inside). The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
 
   <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?> - Image. May stretch the content, or adjust to the content size. Image may be partially transparent, with blending or alpha-testing. Image can be rotated or clipped by an arbitrary line. Image may be "tinted" (multiplied) by given color. Undernath, the image is a full-featured <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>, so you can process it in a myriad of ways.<!--, and load from a myriad sources (e.g. you can load here a dynamically generated <a href="">screenshot, not only an image file).--></li>
 
@@ -100,8 +110,8 @@ often used controls are:
 <?php echo $toc->html_section(); ?>
 
 <p>You simply create an instance of any class you like, and add it as a children
-of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
- or <?php api_link('CastleControl1.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>
+of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindowCustom.html#Controls'); ?>,
+ <?php api_link('CastleControl.Controls', 'CastleControl.TCastleControlCustom.html#Controls'); ?>
  or another (parent) <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>.
  Note that <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> is a descendant
  of the standard <code>TComponent</code> property, so you can use the standard "ownership"
@@ -120,7 +130,7 @@ just like it would not be present on the controls list at all) by flipping it's
  property.
 
 <p>Here's the previous example expanded, showing how to handle button click,
-to toggles the visibility of a rectangle:
+to toggle the visibility of a rectangle:
 
 <?php echo pascal_highlight_file('code-samples/standard_2d_ui_toggle_exists.lpr'); ?>
 
@@ -135,66 +145,72 @@ echo castle_thumbs(array(
 <p>Every UI control may have children, which are positioned relative to their parent.
 The children are always drawn on top of their parent.
 (Although the parent has an additional chance to draw over the children in it's
-RenderOverChildren method, but that's only for really special purposes.)
+<?php api_link('RenderOverChildren', 'CastleUIControls.TUIControl.html#RenderOverChildren'); ?> method, but that's rarely used.)
 
-<p>The children also receive input events (key and mouse presses) first.
-So the innermost children get the first chance to process an event
-(like a click), and only if they do not handle it (their
-<?php api_link('Press', 'CastleUIControls.TUIControl.html#Press'); ?> method will return <code>false</code>)
-then the event is passed to the parent. If no UI control processes a press event,
-it is passed to the
-<?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
-<?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?>.
+<ul>
+  <li><p>The <b>children receive input events (key and mouse presses) before their parent</b>.
+    So the innermost children get the first chance to process an event
+    (like a click), and only if they do not handle it (their
+    <?php api_link('Press', 'CastleUIControls.TInputListener.html#Press'); ?> method will return <code>false</code>)
+    then the event is passed to the parent. If no UI control processes a press event,
+    it is passed to the
+    <?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
+    <?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?>.
 
-<p>Note that the input events are only send to the controls under the pointer
-(mouse or touch position). Although this is configurable using
-the <?php api_link('CapturesEventsAtPosition', 'CastleUIControls.TUIControl.html#CapturesEventsAtPosition'); ?>
- method, but usually it's saner to leave it at default.
-A useful trick to capture the events from the whole window is to use a
-<?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>
- with
-<?php api_link('FullSize', 'CastleUIControls.TUIControlSizeable.html#FullSize'); ?>
- = <code>true</code>, this will capture mouse clicks and key presses from everything.
+    <p>Note that the <b>input events are only send to the controls under the pointer</b>
+    (mouse or touch position). Although this is configurable using
+    the <?php api_link('CapturesEventsAtPosition', 'CastleUIControls.TUIControl.html#CapturesEventsAtPosition'); ?>
+     method, but usually it's saner to leave it at default.
+    A useful trick to capture the events from the whole window is to use a
+    <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>
+     with
+    <?php api_link('FullSize', 'CastleUIControls.TUIControlSizeable.html#FullSize'); ?>
+     = <code>true</code>, this will capture mouse clicks and key presses from everything.
 
-<p>Any control can be a parent. For example, you can insert arbitrary images and labels
-inside a <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, to make it's content look in any way you want.
-If you want to group a couple of controls, but don't have a natural "parent" control,
-it's often a good idea to use a new instance of an
-<?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>
- as a parent.
+  <li><p><b>Any control can be a parent</b>. For example, you can insert arbitrary images and labels
+    inside a <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, to make it's content look in any way you want.
+    If you want to group a couple of controls, but don't have a natural "parent" control,
+    it's often a good idea to use a new instance of an
+    <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>
+     as a parent.
 
-<p>Controls are positioned relative to parent, using the
-<?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
-<?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties
-by default. Remember that our engine in 2D uses a mathematical coordinate system,
-where the Y grows from zero (bottom) to maximum height (at the top).
-This is contrary to a common convention of various GUI libraries to designate <code>Top</code> as zero,
-and make Y grow downward. We decided to follow the convention <i>Y grows up</i>
-for a couple of reasons, mostly because it more naturally matches the 3D axis
-(in 3D, our engine also follows the convention that <i>Y grows up</i> by default).
+  <li><p><b>Controls are positioned relative to the parent</b>, using just the
+    <?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
+    <?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties
+    by default. Remember that our engine in 2D uses a coordinate system
+    where the Y grows from zero (bottom) to maximum height (at the top).
+    This is contrary to a convention of various GUI libraries that designate <code>Top</code> as zero,
+    and make Y grow downward. We decided to follow the convention <i>Y grows up</i>
+    for a couple of reasons, mostly because it naturally matches the 3D situation too
+    (in 3D, our engine also follows the convention that <i>Y grows up</i> by default;
+    so in 3D you get <i>one additional dimension</i>, Z, going "outside" of the screen,
+    while X and Y axes are oriented the same in 2D and 3D).
 
-<p>Usually, instead of assignining the positions using the
-<?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
-<?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties,
-it's better to use <i>anchors</i>. Anchors specify the position of some border (or center)
-of the control, relative to some border (or center) of it's parent.
-When the parent control is resized (e.g. when user resizes the window),
-children are automatically repositioned correctly.
-This usually avoids the need to react to window size changes in callbacks like
- <?php api_link('Window.OnResize', 'CastleWindow.TCastleWindowCustom.html#OnResize'); ?>
- or <?php api_link('TUIControl.Resize', 'CastleUIControls.TUIControl.html#Resize'); ?> implementations.
+    <p>Usually, instead of assignining the positions using the
+    <?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
+    <?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?> properties,
+    it's better to <b>use <i>anchors</i></b>. Anchors specify the position of some border (or center)
+    of the control, relative to some border (or center) of it's parent.
+    When the parent control is resized (e.g. when user resizes the window),
+    children are automatically repositioned correctly.
+    This usually avoids the need to react to window size changes in callbacks like
+     <?php api_link('Window.OnResize', 'CastleWindow.TCastleWindowCustom.html#OnResize'); ?>
+     or <?php api_link('TUIControl.Resize', 'CastleUIControls.TInputListener.html#Resize'); ?> implementations.</p>
+  </li>
 
-<p>Note that the parent does <b>not</b> clip the visibility of the children.
-That is, we assume that you will set the size of children small enough to make them fit
-within the parent. If you don't, the result will be a little unintuitive: the overflowing
-contents of children will be drawn outside of the rectangle of the parent, but they will
-not receive input (like clicks). For this reason, it's best to make children actually fit
-within the parent.
+  <li><p>Note that <b>the parent does not clip the visibility of the children</b>.
+    That is, we assume that you will set the size of children small enough to make them fit
+    within the parent. If you don't, the result will be a little unintuitive: the overflowing
+    contents of children will be drawn outside of the rectangle of the parent, but they will
+    not receive input (like mouse clicks). For this reason, it's best to make children actually fit
+    within the parent.
 
-<p>If you actually want to clip the children, use the
- <?php api_link('TScissor', 'CastleGLUtils.TScissor.html'); ?>.
-The <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>
- implementation is a good example of how to use it properly.
+    <p>If you actually want to clip the children, use the
+     <?php api_link('TScissor', 'CastleGLUtils.TScissor.html'); ?>.
+    The <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>
+     implementation is a good example of how to use it properly.</p>
+  </li>
+</ul>
 
 <p>With all this knowledge about parents and anchors, let's make a simple dialog box,
 showing off what we learned, and something extra (note the use of <code>TCastleLabel.Html</code>
@@ -206,7 +222,8 @@ or you can set it as the <code>Application.OnInitialize</code> callback followin
 <a href="tutorial_mobile.php">chapter about developing cross-platform applications</a>.
 
 <p>If in doubt, <b>take a look at the <code>examples/2d_standard_ui/zombie_fighter/game.pas</code>
-code that contains the final application we will make in this tutorial!</b></p>
+code that contains the final application we will make in this tutorial!</b>
+It uses the <code>ApplicationInitialize</code> procedure.</p>
 
 <?php echo pascal_highlight('uses SysUtils, CastleControls, CastleUtils, CastleFilesUtils,
   CastleColors, CastleUIControls;
@@ -274,7 +291,7 @@ yet</b>. It's on the roadmap to make a visual designer integrated with
 Lazarus, so you could design the inside of
 <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> and
 even <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
- in the same comfortable way as when you design
+ in the same comfortable way as you design
 a Lazarus form with standard Lazarus LCL components. Contributions
 or <a href="donate.php">donations</a> towards this goal are welcome!
 
@@ -314,28 +331,31 @@ or <i>scaled</i>) control size. In particular the
 <?php api_link('ScreenRect', 'CastleUIControls.TUIControl.html#ScreenRect'); ?>
  method (very useful for custom drawing) returns the control rectangle
 in the real device pixels (and with the anchors and parent
-transformations already applied). More about this in the later
-chapter.
+transformations already applied). More about this in the
+<a href="tutorial_2d_ui_custom_drawn.php">chapter about custom-drawn UI controls</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>You can check the resulting size of the control
 with <?php api_link('CalculatedWidth', 'CastleUIControls.TUIControl.html#CalculatedWidth'); ?>
- and <?php api_link('CalculatedHeight', 'CastleUIControls.TUIControl.html#CalculatedHeight'); ?>. Many controls,
+ and <?php api_link('CalculatedHeight', 'CastleUIControls.TUIControl.html#CalculatedHeight'); ?>.
+
+<p>Baware: Many controls,
 like <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, expose also properties
 called <?php api_link('Width', 'CastleControls.TCastleButton.html#Width'); ?> and
  <?php api_link('Height', 'CastleControls.TCastleButton.html#Height'); ?>, but they are only to set
 an <i>explicit</i> size of the control (if you have disabled
 auto-sizing using <?php api_link('TCastleButton.AutoSize', 'CastleControls.TCastleButton.html#AutoSize'); ?>
  or <?php api_link('TCastleButton.AutoSizeWidth', 'CastleControls.TCastleButton.html#AutoSizeWidth'); ?>
- or such). They will not be
-updated when the control auto-sizing mechanism calculates the actual
-size. There is also the <?php api_link('CalculatedRect', 'CastleUIControls.TUIControl.html#CalculatedRect'); ?>
- property, that also
-contains the control position (but note that it's valid only after
-the control, and all it's parents, is part of a window that already
-received a Resize event; you may need to wait for the Resize event
-to actually use this value).</p>
+ or such). They will not be updated when the control auto-sizing mechanism calculates the actual
+size. So <i>do not use <code>Width</code> or <code>Height</code> properties to query the size of a button.
+Always use the <code>CalculatedWidth</code> or <code>CalculatedHeight</code> properties instead.</i>
+
+<p>You can also use the <?php api_link('CalculatedRect', 'CastleUIControls.TUIControl.html#CalculatedRect'); ?>
+ property, it contains the control position and size. But note that it's
+valid only after the control, and all it's parents, is part of a window that already
+received a <code>Resize</code> event. So you may need to wait for the <code>Resize</code> event
+to actually use this value.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -345,6 +365,10 @@ front of other controls, even the ones added with <a>InsertFront</a>
 </li-->
 
 <p>To adjust the look of some controls, you can adjust the theme.
+All of the standard 2D controls are drawn using theme images.
+This way the look of your game is defined by a set of images,
+that can be easily customized.
+
 <!-- Note that each button has already highly configurable look,
 even without using the theme, by it's custom images.</p-->
 
@@ -365,10 +389,13 @@ The image will be drawn stretched, using the
 <?php api_link('Draw3x3', 'CastleGLImages.TGLImageCore.html#Draw3x3'); ?>
  to intelligently stretch taking the corners into account.</p>
 
+<p>You can see the default images used in the engine sources, in <code>src/ui/opengl/gui-images/</code>
+subdirectory. Feel free to base your images on them.</p>
+
 <p>If you prefer to embed the image inside your application
 executable, you can do it using the <code>image2pascal</code>
 tool (compile it from the engine sources in <code>tools/image2pascal/</code>).
-You can then assign it like this:
+You can then assign new image like this:
 
 <?php echo pascal_highlight(
 'Theme.Images[tiButtonNormal] := CustomButtonNormal;
@@ -383,10 +410,6 @@ section of the unit generated by the <code>image2pascal</code>.
 <!--?php echo pascal_highlight(
 'Theme.Draw(Rectangle(10, 10, 100, 100), tiActiveFrame);'); ?-->
 
-<p>All of the standard 2D controls are drawn using theme images.
-This way the look of your game is defined by a set of images,
-that can be easily changed by artists.
-
 <?php echo $toc->html_section(); ?>
 
 <?php
@@ -396,7 +419,7 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<p>Note that by default, the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
+<p>By default, the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
  <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
  already contain one item on their <code>Controls</code> list: the default
  <?php api_link('SceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
@@ -416,13 +439,14 @@ The key to understand this is that <i>the scene manager serves by default two pu
   <li>It is also a default viewport, that instantiates a camera to view this world.
     This works because
     <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> is a descendant of the
-    <?php api_link('TAbstractCastleViewport', 'CastleSceneManager.TAbstractCastleViewport.html'); ?>.
+    <?php api_link('TCastleAbstractViewport', 'CastleSceneManager.TCastleAbstractViewport.html'); ?>.
     You can deactivate this feature of scene manager by setting the
     <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
     to <code>false</code>, then the scene manager is used <i>only</i> to store the information about your
     world, and you <i>must</i> use at least one
     <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
-    to actually see anything.
+    to actually see anything 3D (or anything 2D rendered using
+    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>).
   </li>
 </ol>
 
@@ -469,7 +493,7 @@ you can mix user-interface with animations freely.
 For example, you can design an animation in Spine, load it to <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>,
 insert it to <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, which you can then insert inside a
 <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>. Thus you can have a button
- with any crazy animation inside you want:)
+ with any crazy animation inside:)
 
 <?php echo pascal_highlight_file('code-samples/button_with_2d_scene_manager.lpr'); ?>
 
@@ -482,30 +506,37 @@ echo castle_thumbs(array(
 ?>
 
 <p>When you make a non-trivial composition of UI controls, it's a good
-idea to wrap them in a parent UI control class. For this, you derive a
+idea to wrap them in a parent UI control class.
+
+<p>For this, you can derive a
 new descendant of your top-most UI class. The top-most UI class can be
-something specific, like the <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> if your whole UI
-is a parent of a simple rectangle, or it can be our universal "UI
-control with size" class <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>, or it can be even our
-abstract <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> (in this last case, you will have full
-flexibility, but you will need to carefully define it's Rect
-overridden method). In the constructor of your new class, you
+
+<ol>
+  <li>something specific, like the <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> if your whole UI
+    is inside a simple rectangle,
+  <li>or it can be our universal <i>"UI control with size"</i> <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>,
+  <li>or it can be our abstract <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> (in this last case
+    you will need to carefully override it's
+    <?php api_link('TUIControl.Rect', 'CastleUIControls.TUIControl.html#Rect'); ?> method).
+</ol>
+
+<p>In the constructor of your new class, you
 initialize and add all the child controls. You can even register
 private methods to handle the events of private controls inside,
 e.g. you can internally handle button clicks inside your new class.
 
-<p>This way you get a new class, like TZombieDialog, that is a
+<p>This way you get a new class, like <code>TZombieDialog</code>, that is a
 full-featured UI control. It hides the complexity of the UI inside,
 and it exposes only as much as necessary to the outside world. It has
-a fully functional Update method to react to time passing, it can
+a fully functional <code>Update</code> method to react to time passing, it can
 handle inputs and so on.
 
-<p>The new UI control can be then be inserted directly to the
-Window.Controls, or it can be used as a child of other UI controls, to
+<p>The new UI control can be inserted directly to the
+<code>Window.Controls</code>, or it can be used as a child of other UI controls, to
 create even more complex stuff. It can be aligned within parent using
-the normal Anchor() methods.
+the normal <?php api_link('Anchor', 'CastleUIControls.TUIControl.html#Anchor'); ?> methods.
 
-<p>Example below shows the <code>TZombieDialog</code>, which is a reworked
+<p>Example below implements the <code>TZombieDialog</code> class, which is a reworked
 version of the previous UI example, that now wraps the dialog UI inside
 a neat reusable class.
 
@@ -591,10 +622,11 @@ state, and the state is also reflected by some user-interface. We have
 a ready class <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
  in our engine that helps you take care of that.
 
-<p>The idea is that you create many descendants of the class
-<?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>. Each one represents a different state, like <code>TStateMainMenu</code>,
-<code>TStatePlay</code>, <code>TStatePause</code> and so on. In the usual scenario, you create a
-single instance of each of these classes, at the beginning of your
+<p>In the typical usecase, you create many descendants of the class
+<?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>. Each descendant represents a different state,
+like <code>TStateMainMenu</code>,
+<code>TStatePlay</code>, <code>TStatePause</code> and so on. Usually you create a
+single instance for each of these classes, at the beginning of your
 game (e.g. in <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?> handler).
 
 <p>Each such class contains the user-interface appropriate in the
@@ -602,25 +634,27 @@ given state. As <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
  is itself a special <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
  descendant, it
 can act as a parent (always filling the whole window) for other UI
-controls. You can add children controls there
+controls. You can add children controls:
 
 <ul>
-  <li><p>in the constructor,</p></li>
+  <li><p>In the state constructor.</p></li>
 
-  <li><p>or you can add them in every <?php api_link('Start', 'CastleUIState.TUIState.html#Start'); ?>
-    call (in which case, you
-    should remove them in the <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> call; you can set the controls' owner
-    to special <?php api_link('FreeAtStop', 'CastleUIState.TUIState.html#FreeAtStop'); ?> component,
+  <li><p>Or you can add them in every <?php api_link('Start', 'CastleUIState.TUIState.html#Start'); ?>
+    call, overriding it. In this case, you
+    should remove the controls in the <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> method.
+    Or you can set the controls' owner
+    to a special <?php api_link('FreeAtStop', 'CastleUIState.TUIState.html#FreeAtStop'); ?> component,
     to make them freed and removed automatically at the next
-    <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> call),</p></li>
+    <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> call.</p></li>
 
-  <li><p>for advanced uses, if you will use the state stack, you can
-    also add / remove stuff in the
+  <li><p>For advanced uses, if you will use the state stack, you can
+    also add / remove children in the
     <?php api_link('Resume', 'CastleUIState.TUIState.html#Resume'); ?> and
     <?php api_link('Pause', 'CastleUIState.TUIState.html#Pause'); ?> calls.</p></li>
 </ul>
 
-<p>During the game you use class methods and properties to change the
+<p>During the game you use <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
+ class methods and properties to change the
 current state. Most importantly, you can simply change to a new state
 by setting "<?php api_link('TUIState.Current', 'CastleUIState.TUIState.html#Current'); ?> := NewState;". This will call
 <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> on the
@@ -639,8 +673,8 @@ inputs, be sure to set <?php api_link('InterceptInput', 'CastleUIState.TUIState.
 (<code>TStatePause</code> in this example).
 
 <p>To actually change the state using the "stack" mechanism, use the
-<?php api_link('Push', 'CastleUIState.TUIState.html#Push'); ?> and
-<?php api_link('Pop', 'CastleUIState.TUIState.html#Pop'); ?> methods.
+<?php api_link('TUIState.Push', 'CastleUIState.TUIState.html#Push'); ?> and
+<?php api_link('TUIState.Pop', 'CastleUIState.TUIState.html#Pop'); ?> methods.
 
 <p>The example game <code>zombie_fighter</code> shows a simple implementation of <code>TStateMainMenu</code>,
 <code>TStatePlay</code>, <code>TStateAskDialog</code>. The <code>TStateAskDialog</code> is activated when you
