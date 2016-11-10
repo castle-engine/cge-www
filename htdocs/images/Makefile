@@ -66,10 +66,10 @@ teaser_size/%: original_size/%
 # making thumb_size
 
 thumb_size/glplotter%: original_size/glplotter%
-	convert $< -emboss 5.0 -geometry 200x150 $@
+	convert $< -emboss 5.0 -geometry 200x $@
 
 thumb_size/%: original_size/%
-	convert $< -geometry 200x150 $@
+	convert $< -geometry 200x $@
 
 # ----------------------------------------------------------------------------
 # making thumb_const_height_size
