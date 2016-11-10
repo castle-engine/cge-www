@@ -1170,7 +1170,7 @@ function pascal_highlight($source)
 function pascal_highlight_file($file_name)
 {
   // trim, to avoid final newline
-  $source = trim(file_get_contents('code-samples/custom_2d_control.lpr'));
+  $source = trim(file_get_contents($file_name));
   return pascal_highlight($source);
 }
 
