@@ -8,7 +8,7 @@
 
 <p>In short, <b>for single-player games, the current
 idea of time origin ("January 1, 1970") in VRML / X3D is uncomfortable</b>.
-Castle Game Engine complies with VRML/X3D standard in this regard anyway,
+<i>Castle Game Engine</i> complies with VRML/X3D standard in this regard anyway,
 although you can change the behavior to more sane (in my opinion)
 by using <?php echo a_href_page_hashlink(
   'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',

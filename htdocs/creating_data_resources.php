@@ -220,7 +220,7 @@ modeler / exporter you use to design your models:
     animations in a single X3D file.
     I plan to extend Blender X3D exporter to allow this in the future.
 
-  <li><p>You can also use a separate model (X3D, KAnim, MD3...) for each animation state, like this:
+  <li><p>You can also use a separate model (X3D, castle-anim-arames, MD3...) for each animation state, like this:
 
 <?php echo xml_highlight(
 '<model>
@@ -230,28 +230,22 @@ modeler / exporter you use to design your models:
 
     <p>You can omit the <code>animation_name</code>,
     it is then assumed to be just <code>'animation'</code>,
-    which the default animation name we read from KAnim and MD3 files.
+    which the default animation name we read from castle-anim-frames and MD3 files.
     If you use X3D files, the animation name should just match the
     TimeSensor node name (given like <code>&lt;TimeSensor DEF="MyAnimation"&gt;</code>
     in X3D XML files).
 
     <p>This allows to play animation defined by X3D nodes.
 
-    <p>You can also use KAnim for each animation,
-    from <?php echo a_href_page('KAnim', 'kanim_format'); ?> or MD3 (Quake 3 engine format) file. This is
-    useful if your 3D modeler / exporter cannot produce animated X3D files
-    at all, but it can export to kanim (see <?php echo a_href_page('our Blender to KAnim
-    exporter', 'creating_data_blender'); ?>) or MD3. In the worst case, you can also just export a
-    couple of still frames and write the xxx.kanim file in a text editor,
-    because the kanim format is a trivial XML file that just describes a
-    transition between a couple of still 3D models.
+    <p>You can also use <?php echo a_href_page('castle-anim-frames format', 'castle_animation_frames'); ?>
+    or MD3 (Quake 3 engine format) for an animation.
 
     <p>Example:
 
 <?php echo xml_highlight(
 '<model>
-  <stand url="stand.kanim"/>
-  <walk  url="walk.kanim"/>
+  <stand url="stand.castle-anim-frames"/>
+  <walk  url="walk.castle-anim-frames"/>
 </model>'); ?>
 
     <p>This is probably the most comfortable approach to export animations
@@ -261,7 +255,7 @@ modeler / exporter you use to design your models:
 </ol>
 
 <p>The looping is done automatically for animations that require it (like
-walk). The value of <code>loop</code> attribute in KAnim file,
+walk). The value of <code>loop</code> attribute in castle-anim-frames file,
 or <code>TimeSensor.loop</code> field in X3D, is ignored.
 
 <!--

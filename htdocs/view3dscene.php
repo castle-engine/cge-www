@@ -171,9 +171,10 @@ flawlessly :) So give it a try!
     and finally <a href="http://web3d.org/x3d/specifications/">
     the official X3D specifications</a>.
 
-  <li><p><b><?php echo a_href_page(
-    "Kanim (Castle Game Engine animations)", 'kanim_format'); ?></b> format
-    is handled, animation is played.</p>
+  <li><p><b><?php echo a_href_page('Castle Animation Frames
+    (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
+    formerly known as <code>kanim</code>.
+    Animation is played.</p>
 
   <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
     (<code>.dae</code> extension).

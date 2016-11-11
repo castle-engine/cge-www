@@ -27,7 +27,7 @@ WIN32_DLLS_OPENAL='OpenAL32.dll wrap_oal.dll'
 WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
-DOC_FILES_X3D='kanim_format.html
+DOC_FILES_X3D='castle_animation_frames.html
   castle_script.html
   demo_models.html
   compositing_shaders.html

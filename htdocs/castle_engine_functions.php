@@ -304,7 +304,7 @@ $castle_sitemap = array(
       ),
      'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
       'castle_script' => array('title' => 'CastleScript language reference'),
-      'kanim_format' => array('title' => 'Kanim (precalculated animations) file format'),
+      'castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
       'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
       'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
     ),
