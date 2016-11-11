@@ -73,14 +73,14 @@ on any license required for official Blender wiki / docs contents is granted.</p
 
 <p>The <i>Blender X3D exporter</i> cannot handle animations for now.
 To solve this, use the exporter below to export animations to
-a <?php echo a_href_page("KAnim (Castle Game Engine animations) format",
-'kanim_format'); ?>. The <code>.kanim</code> files can be read by our engine
-and will play animations. Thanks to the simplicity of the kanim format,
+a <?php echo a_href_page("Castle Animation Frames format",
+'castle_animation_frames'); ?>. The <code>.castle-anim-frames</code> files can be read by our engine
+and will play animations. Thanks to the simplicity of the <code>.castle-anim-frames</code> format,
 this approach supports every kind of Blender animation (transform, through armature or not,
 deform in any way, fluids, physics, material animations...).
 
 <div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_kanim.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download KAnim exporter</a>
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download Castle Animation Frames exporter</a>
 </div>
 
 <p>Install it like every other Blender addon:</p>
@@ -90,7 +90,7 @@ deform in any way, fluids, physics, material animations...).
     -&gt; Install Addon... (button at the bottom)</i>.
     Or just copy the file directly to the
     <code>scripts/addons/</code> directory.
-  <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export KAnim"</i>
+  <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export Castle Animation Frames"</i>
     in the Addons window.
 </ol>
 
