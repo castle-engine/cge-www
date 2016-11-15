@@ -62,10 +62,13 @@ to the models. Sometimes I added <?php echo a_href_page_hashlink(
 
 <p><b>Office</b>. I used <code>office.mgf</code> model
 from collection of models of the
-<a href="http://www.cs.kuleuven.ac.be/~graphics/RENDERPARK/">RenderPark project</a>
-(you can download this collection from
-<a href="ftp://ftp.cs.kuleuven.ac.be/pub/graphics/software/RenderPark/Scenes.tar.gz">
-here</a>). One faint light is under the desk light, the other light
+<a href="http://graphics.cs.kuleuven.be/renderpark/">RenderPark project</a>.
+You can download this collection from
+<a href="http://graphics.cs.kuleuven.be/renderpark/download.html">here</a>
+(go to <i>HTTP download area</i> there in case ftp doesn't work).
+The model is also part of <a href="http://radsite.lbl.gov/mgf/scenes.html">MGF Example Scenes</a>.
+
+<p>One faint light is under the desk light, the other light
 shines from the outside (and that's how louvers cast shadows on the whole room).
 
 <?php echo castle_thumbs(array(
@@ -76,7 +79,7 @@ shines from the outside (and that's how louvers cast shadows on the whole room).
 ), 'auto', 'left'); ?>
 
 <p><b>Graz</b>. I used model <code>graz.mgf</code>, also from
-<a href="http://www.cs.kuleuven.ac.be/~graphics/RENDERPARK/">RenderPark</a>
+<a href="http://graphics.cs.kuleuven.be/renderpark/">RenderPark</a>
 scenes collection. Four bright lights are placed right under the ceiling,
 note also two blueish mirrors hanging on the walls.
 
