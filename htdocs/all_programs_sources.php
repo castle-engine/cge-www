@@ -87,7 +87,7 @@ downloaded below.</p>
     to detect data directory. It will automatically
     use current directory, if the data is there.
 
-    <p>But you can also move/symlink data to <code>$HOME/.local/share/xxx</code>
+    <p>On Unix you can also move/symlink data to <code>$HOME/.local/share/xxx</code>
     or <code>/usr/local/share/xxx</code> or <code>/usr/share/xxx</code>.
     You can do this easily by executing <code>make install</code> inside program
     directory.
@@ -102,7 +102,7 @@ Everything is open source,
 <?php
 function older_engine_version($older_version)
 {
-  echo sf_download($older_version . ' version',
+  echo sf_download('Castle Game Engine version ' . $older_version,
     'castle_game_engine-' . $older_version . '-src.tar.gz');
 }
 ?>
@@ -142,25 +142,28 @@ notes near some programs below.
 
     if ($engine_ver == VERSION_CASTLE_GAME_ENGINE)
     {
-      echo '<br/>These tar.gz sources are compatible with latest engine ';
+      echo '. These tar.gz sources are compatible with the latest ';
       older_engine_version($engine_ver);
       echo '.';
     } else
     {
-      echo '<br/>These tar.gz sources were tested with engine ';
+      echo '. These tar.gz sources were tested with the ';
       older_engine_version($engine_ver);
-      echo ', use SVN or GIT to get sources that are guaranteed to be compatible with latest engine version.';
     }
 
     ?>
 
-    <p>Download from SourceForge SVN by:</p>
+    <p>Alternatively, download the latest unstable <i>"bleeding-edge"</i> sources from GIT or SVN. They are guaranteed to be compatible with the latest Castle Game Engine version from <a href="https://github.com/castle-engine/castle-engine/">GitHub</a>.
 
-    <pre><?php echo sf_checkout_link(true, $internal_name); ?></pre>
-
-    <p>Download from GitHub GIT (<a href="https://github.com/castle-engine/<?php echo $github_name; ?>">see also GitHub repository page</a>) by:</p>
-
-    <pre>git clone https://github.com/castle-engine/<?php echo $github_name; ?>.git</pre>
+    <p>You can download the <i>"bleeding-edge"</i> sources:
+    <ul>
+      <li><p>From GitHub:</p>
+        <pre>git clone <a href="https://github.com/castle-engine/<?php echo $github_name; ?>">https://github.com/castle-engine/<?php echo $github_name; ?></a>.git</pre>
+      </li>
+      <li><p>Or from SourceForge SVN:</p>
+        <pre><?php echo sf_checkout_link(true, $internal_name); ?></pre>
+      </li>
+    </ul>
   </li>
 
   <?php
