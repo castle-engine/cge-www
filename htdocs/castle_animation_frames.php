@@ -7,8 +7,8 @@ vrmlx3d_header("Castle Animation Frames (castle-anim-frames) file format");
 $toc = new TableOfContents(
   array(
     new TocItem('What it is', 'what'),
+    new TocItem('Advantages and disadvantages', 'good_and_bad'),
     new TocItem('Exact format specification', 'specification'),
-    new TocItem('Shortcomings of this format', 'shortcomings'),
   )
 );
 
@@ -22,29 +22,29 @@ echo pretty_heading($page_title);
 
 <p>Files with extension <code>*.castle-anim-frames</code>
 (older version: <code>*.kanim</code>)
-represent <i>"Castle Game Engine's Animation Frames"</i>.
-These are XML files that describe animation as a sequence of 3D states
-(3D files).
-Animation shows the transition from the first model to the last.
-Where models are structurally equal, intermediate frames are
-created by linear interpolation to show smooth changes.</p>
-
-<p><b>When possible, it's better to use animation straight from an
-X3D file, using X3D events and interpolators.</b>
-But this format is useful if your favorite 3D modeler (like Blender)
-cannot export X3D animation with interpolators.
-It has also the additional advantage that is handles <i>any</i>
-kind of animation you can produce (transform,
-through armature or not, deform in any way,
-fluids, physics, material animations...).
+represent <i>"Castle Game Engine's Animation Frames"</i>.</p>
 
 <div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_kanim.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download castle-anim-frames exporter</a>
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download castle-anim-frames Blender exporter</a>
 </div>
+
+<p>More information about <a href="creating_data_blender.php">exporting animations from Blender is available here</a>.</p>
 
 <p><a href="http://wdune.ourproject.org/">White Dune</a>
 also can generate <code>*.kanim</code> files
 from an VRML animation by interpolators.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The format is a series of static 3D frames. They can be inlined in a large XML file (in which case they must follow X3D XML encoding), or they can be external files (in which case they can be any 3D format supported by the <i>Castle Game Engine</i>). Animation shows the transition from the first frame to the last. Where models are <i>structurally equal</i>, intermediate frames are created by a linear interpolation to show smooth changes.
+
+<p>All the advantages and disadvantages of this format come from this simplicity. On one hand, it can be used to transfer <i>any</i> Blender animation to Castle Game Engine. On the other hand, it can be quite heavy: <i>loading large animations takes some time</i>, and they eat a significant amount of memory.</p>
+
+<p>Some of these disadvantages may be mitigated in the future (as we will internally convert it to better X3D interpolator nodes). But it will always remain somewhat "heavy solution".</p>
+
+<p>At the same time, it will always remain something that <i>can handle any Blender animation, right now</i>. As opposed to X3D exporter (that currently cannot export Blender animation at all, and in the future will support a limited subset of Blender possibilities).</p>
+
+<p>A temporary disadvantage (TODO) is that right now we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D <code>Switch</code> and <code>IntegerSequencer</code>. Once we improve this, the runtime memory usage will be <i>somewhat</i> better, and animation will be always perfectly smooth at runtime, and the collision detection will account for dynamic changes OK.
 
 <!--p>If you work with 3D modeler that can export proper VRML animation
 with interpolators, then you don't need to use Kanim format.
@@ -152,43 +152,6 @@ of animation handling in our VRML engine documentation</a>.</p-->
 
 &lt;/animation&gt;
 </pre>
-
-<?php /*
-
-<hr/> <?php echo $toc->html_section(); ?>
-
-<p>As I mentioned above, kanim format is obsolete.
-Some things that cannot be achieved using kanim (and probably never
-will be, as we would advice everyone to use VRML/X3D interpolators
-for all your needs):</p>
-
-<ul>
-  <li><p>Our collision detection uses the first (or both first and last)
-    frame. Octrees are not updated between frames.
-    So collision detection, mouse picking,
-    ray-tracer look only at the 1st animation frame,
-    because our octree represents only this frame.</p>
-
-    <p>Use instead VRML/X3D interpolators, when octree is properly managed.</p>
-  </li>
-
-  <li><p>Background animations do not work (we use MainScene.Background always).</p>
-
-    <p>Use instead VRML/X3D interpolators, when background is fast updated.
-    Note that you can use our
-    <?php echo a_href_page('ColorSetInterpolator (extension to the interpolation component)',
-    'x3d_implementation_interpolation'); ?> to animate sets of colors like
-    <code>skyColor</code>, <code>groundColor</code>.
-    See our <?php echo a_href_page('VRML/X3D demo models',
-    'demo_models'); ?>
-    (look inside <code>background/background_animate*</code>) for demos.</p>
-  </li>
-
-  <li><p>Some view3dscene features, like saving to VRML/X3D and
-    "Remove Selected Geometry/Face", only work on the 1st animation frame.</p></li>
-</ul>
-
-*/ ?>
 
 <?php
   vrmlx3d_footer();
