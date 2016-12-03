@@ -2,7 +2,9 @@
 define('CASTLE_GITHUB_NAME', 'cge-blender');
 
 require_once 'castle_engine_functions.php';
-creating_data_header('Creating data in Blender');
+creating_data_header('Creating data in Blender', array(
+  'social_share_image' => 'blender_castle_anim_frames_export.png',
+));
 
 $toc = new TableOfContents(
   array(
@@ -13,6 +15,12 @@ $toc = new TableOfContents(
     new TocItem('Rendering Skyboxes and Static Cube Environment Maps', 'render_skybox'),
   )
 );
+
+echo castle_thumbs(array(
+  array('filename' => 'blender_castle_anim_frames_install.png', 'titlealt' => 'Installation of castle-anim-frames Export Script in Blender'),
+  array('filename' => 'blender_castle_anim_frames_export.png', 'titlealt' => 'Options of Exporting to castle-anim-frames'),
+  array('filename' => 'lizardman_animations.png', 'titlealt' => 'Lizardman Animations Exported from Blender'),
+));
 ?>
 
 <?php echo $toc->html_toc(); ?>

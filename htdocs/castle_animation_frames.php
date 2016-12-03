@@ -2,7 +2,9 @@
 require_once 'castle_engine_functions.php';
 require_once 'x3d_implementation_common.php';
 
-vrmlx3d_header("Castle Animation Frames (castle-anim-frames) file format");
+vrmlx3d_header("Castle Animation Frames (castle-anim-frames) file format", array(
+  'social_share_image' => 'blender_castle_anim_frames_export.png',
+));
 
 $toc = new TableOfContents(
   array(
@@ -13,6 +15,12 @@ $toc = new TableOfContents(
 );
 
 echo pretty_heading($page_title);
+
+echo castle_thumbs(array(
+  array('filename' => 'blender_castle_anim_frames_install.png', 'titlealt' => 'Installation of castle-anim-frames Export Script in Blender'),
+  array('filename' => 'blender_castle_anim_frames_export.png', 'titlealt' => 'Options of Exporting to castle-anim-frames'),
+  array('filename' => 'lizardman_animations.png', 'titlealt' => 'Lizardman Animations Exported from Blender'),
+));
 ?>
 
 <p>Contents:
