@@ -193,7 +193,7 @@ modeler / exporter you use to design your models:
     Each animation is just a named X3D <code>TimeSensor</code> node,
     exactly like with our
     <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
-    method.You declare it in resource.xml file like this:
+    method. You declare it in resource.xml file like this:
 
 <?php echo xml_highlight(
 '<model url="model.x3d">

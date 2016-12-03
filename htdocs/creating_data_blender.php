@@ -8,8 +8,9 @@ $toc = new TableOfContents(
   array(
     new TocItem('Export to X3D', 'x3d'),
     new TocItem('Export to Castle Animation Frames (castle-anim-frames)', 'castle_anim_frames'),
-    new TocItem('Hints about exporting animations to castle-anim-frames', 'castle_anim_frames_hints', 1),
-    new TocItem('Rendering skyboxes and static cube environment maps', 'render_skybox'),
+    new TocItem('Actions and Frames', 'actions_and_frames', 1),
+    new TocItem('Exporting Various Animations Types to castle-anim-frames', 'castle_anim_frames_hints', 1),
+    new TocItem('Rendering Skyboxes and Static Cube Environment Maps', 'render_skybox'),
   )
 );
 ?>
@@ -103,6 +104,21 @@ and will play animations.
 
 <?php echo $toc->html_section(); ?>
 
+<p><i>Actions</i> are Blender containers for animations. Each Blender object may have many actions, like <i>walk</i>, <i>run</i>, <i>die</i>... A new action is automatically created on an object (if needed) when you insert a keyframe.
+
+<p>In Blender, <i>it matters to which object you attach an action</i>. Action describes the complete animation of a given Blender object. If you try to reuse the same action on two different objects, you will find that they animate (move, rotate...) the same way. If you want every object to animate in a different way, <i>you will usually use an action only on a single object</i>. I explain this, to make it clear that <i>Blender actions do not span multiple objects</i>, which is a little different than what we need (we want to export a series of animations, and each animation should just apply to the whole scene).
+
+<p>When exporting the animation, you can select an object to <i>export all the actions of this object</i>. <b>If your scene includes an armature with some actions, we automatically select it as the object from which to take actions</b> (you can deselect it, if desired). The range of exported frames is determined by the minimum and maximum keyframe set in this action (that's how Blender calculates <code>action.frame_range</code> in Python).<!--  All other objects will animate according to their current actions, but this special object will have different action  -->
+
+<p>When you don't select any such object then we export the whole animation (from <i>Start</i> to <i>End</i> frames that you set on the <i>Timeline</i>). The resulting animation will be called just "<code>animation</code>" in this case (this is useful if you run animations from code, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method). This is perfectly reasonable in many situations:
+<ul>
+  <li>if you don't have actions in your scene (if your animation is ruled only by physics), <!--, like <i>Rigid Body</i> or <i>Cloth</i> or <i>Particles</i-->
+  <li>or if you just want to export the current actions of all the objects,
+  <li>or if you configured the animation using Blender's NLA editor.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>Thanks to the simplicity of the <code>.castle-anim-frames</code> format,
 <b>this format exports every kind of Blender animation to our engine</b>:
 
@@ -136,7 +152,7 @@ and will play animations.
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can render a set of six images that can be used as a skybox (<code>Background</code> in X3D) or a cube map texture (<code>ComposedCubeMapTexture</code> in X3D). We have a small Python script for Blender that renders the images to the appropriate names following the X3D conventions (front, back, top,....), and a simple X3D test scenes that allow to test that the resulting images indeed work as a skybox or a cubemap texture (e.g. you can open them in view3dscene).
+<p>You can render a set of six images that can be used as a skybox (<code>Background</code> in X3D, see <a href="x3d_implementation_environmentaleffects.php">documentation of the <i>Environmental effects component</i></a>) or a cube map texture (<code>ComposedCubeMapTexture</code> in X3D, see <a href="x3d_implementation_cubemaptexturing.php">documentation of the <i>Cube map environmental texturing component</i></a>). We have a small Python script for Blender that renders the images to the appropriate names following the X3D conventions (front, back, top,....), and a simple X3D test scenes that allow to test that the resulting images indeed work as a skybox or a cubemap texture (e.g. you can open them in view3dscene).
 
 <div class="download jumbotron">
     <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/cge-blender/tree/master/render_skybox"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download render_skybox.py script, and test files</a>
