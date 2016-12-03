@@ -154,7 +154,7 @@ and will play animations.
 
 <p>TODO: Right now the interpolation is not done using the proper X3D interpolators at runtime, like <code>PositionInterpolator</code>. Instead we interpolate (create intermediate frames) at the load time, then put the resulting frames inside a <code>Switch</code> node, animated using the <code>IntegerSequencer</code>. The nodes inside all <code>Switch</code> nodes are shared smartly, but still the memory usage is much higher than it could be.
 
-<p>For the sake of the collision detection, the whole animation is always treated as it's bounding box. Calculating detailed collision trees for every animation frame would be too time-consuming. TODO: We can improve it one day to collide as a <i>different</i> bounding box, corresponding to the current animation frame, not to the whole animation.
+<p>For the sake of the collision detection, each animation is treated as it's bounding box. Calculating detailed collision trees for every animation frame would be too time-consuming. TODO: We can improve it one day to collide as a <i>different</i> bounding box, corresponding to the current animation frame, not to the whole animation.
 
 <?php echo $toc->html_section(); ?>
 

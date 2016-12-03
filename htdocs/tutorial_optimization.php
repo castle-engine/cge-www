@@ -286,7 +286,7 @@ like boxes and spheres. This means that the number of shapes doesn't
 matter much for collision speed. However, number of triangles still
 matters for level.
 
-<p>Use X3D Collision node to easily mark unneeded shapes as
+<p>Use X3D <code>Collision</code> node to easily mark unneeded shapes as
 non-collidable or to provide a simpler "proxy" mesh to use for
 collisions with complicated objects. See
 <code>demo_models/vrml_2/collisions_final.wrl</code>
@@ -299,6 +299,11 @@ quite easy actually. And thanks to using X3D Inline node, you can keep
 your auto-generated X3D content separated from hand-written X3D code
 &mdash; that's the reason for xxx_final.x3dv and xxx.x3d pairs of
 files around the demo models.
+
+<p>To wrap something in simpler collisions in code,
+you can build appropriate <code>Collision</code> node by code.
+See helpers like
+<?php api_link('TCollisionNode.CollideAsBox', 'X3DNodes.TCollisionNode.html#CollideAsBox'); ?>.
 
 <p>You can adjust the parameters how the octree is created. You can
 <a href="x3d_extensions.php#section_ext_octree_properties">set octree
