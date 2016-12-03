@@ -154,6 +154,16 @@ of animation handling in our VRML engine documentation</a>.</p-->
                        // must be specified in the strictly increasing order
                        // of their "time".
                        // This is understood to be in seconds.
+
+      bounding_box_center="0 0 0"
+      bounding_box_size="-1 -1 -1"
+                       // Bounding box of this animation frame.
+                       // Used for collision detection.
+                       // Empty if not specified, or if any size
+                       // component is negative.
+                       //
+                       // This is consistent with X3D bboxSize/Center
+                       // fields definition e.g. at X3D Group node.
     /&gt;
 
     // For example, assume that the second &lt;frame&gt; node follows.

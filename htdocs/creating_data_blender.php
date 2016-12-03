@@ -144,11 +144,9 @@ and will play animations.
 
 <p>The <code>castle-anim-frames</code> exporter uses the X3D exporter (the original one, provided with Blender, or our custom one if installed) to export the static data. So if something doesn't look like you want after exporting, consult the advices above about using the X3D exporter. You can always export, as a test, a single frame of your animation to X3D, to check does it look OK.
 
-<p>TODO:
-<ul>
-  <li>Right now the interpolation is not done using the proper X3D interpolators at runtime, like <code>PositionInterpolator</code>. Instead we interpolate (create intermediate frames) at the load time, then put the resulting frames inside a <code>Switch</code> node, animated using the <code>IntegerSequencer</code>. The nodes inside all <code>Switch</code> nodes are shared smartly, but still the memory usage is much higher than it could be.
-  <li>Also, detailed collision structures are only generated for the 1st frame. Otherwise, initializing collisions for a long series of animation frames would be really time-consuming. We have to implement actual conversion from a series of nodes -&gt; interpolators to have proper collisions with castle-anim-frames contents. It's probably best to leave <code>TCastleScene.Spatial</code> empty for now when loading <code>castle-anim-frames</code>, this way the collisions will be resolved with the animation bounding box. Or set the <code>TCastleScene.Collides</code> to <code>false</code>, and use other scenes with invisible colliders to account for this.
-</ul>
+<p>TODO: Right now the interpolation is not done using the proper X3D interpolators at runtime, like <code>PositionInterpolator</code>. Instead we interpolate (create intermediate frames) at the load time, then put the resulting frames inside a <code>Switch</code> node, animated using the <code>IntegerSequencer</code>. The nodes inside all <code>Switch</code> nodes are shared smartly, but still the memory usage is much higher than it could be.
+
+<p>For the sake of the collision detection, the whole animation is always treated as it's bounding box. Calculating detailed collision trees for every animation frame would be too time-consuming. TODO: We can improve it one day to collide as a <i>different</i> bounding box, corresponding to the current animation frame, not to the whole animation.
 
 <?php echo $toc->html_section(); ?>
 
