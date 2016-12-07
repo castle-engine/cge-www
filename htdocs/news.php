@@ -57,7 +57,7 @@ if ($next_item !== NULL || $previous_item !== NULL)
 $follow_us_html = '<div class="panel-follow-us">
   <b>Hint:</b>
   <a href="https://www.facebook.com/castleengine">Facebook</a>,
-  <a href="https://plus.google.com/b/101185352355602218697/">Google+</a> and
+  <a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a> and
   <a href="https://twitter.com/castleengine">Twitter</a> have
   the latest news about the engine development!
 </div>';
