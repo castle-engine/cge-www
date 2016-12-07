@@ -50,8 +50,9 @@ difference between <code>FrameTime</code> and <code>RealTime</code> shortly.</p>
     the time may slow your OpenGL context drastically</i>. Same warning goes
     about writing them to the console with <code>Writeln</code> &mdash; don't call it too
     often, or your rendering will be slower. It's simplest to use
-    Lazarus <code>TTimer</code> to update it only once per second or such. Actually,
-    these properties show you an average from last second, so
+    <?php api_link('TCastleTimer', 'CastleControls.TCastleTimer.html'); ?> or
+    Lazarus <code>TTimer</code> to update it e.g. only once per second.
+    Actually, these properties show you an average from last second, so
     there's not even a reason to redraw them more often.
 
   <li>You can also simply display them on an OpenGL context (see the
