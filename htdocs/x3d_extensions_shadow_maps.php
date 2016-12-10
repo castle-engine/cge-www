@@ -308,7 +308,7 @@ $toc = new TableOfContents(array(
   <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
 
-  <p>TODO: for <code>DirectionLight</code>, auto-calculating best
+  <p>TODO: for <code>DirectionalLight</code>, auto-calculating best
   <code>projectionRectangle</code> and <code>projectionLocation</code>
   is not implemented yet.
 
