@@ -308,10 +308,6 @@ $toc = new TableOfContents(array(
   <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
 
-  <p>TODO: for <code>DirectionalLight</code>, auto-calculating best
-  <code>projectionRectangle</code> and <code>projectionLocation</code>
-  is not implemented yet.
-
   <?php
   echo castle_thumbs(array(
     array('filename' => 'tex_projected_spot_0.png', 'titlealt' => 'SpotLight projecting texture'),
@@ -420,6 +416,7 @@ $toc = new TableOfContents(array(
     array('filename' => 'scale_bias_right.png', 'titlealt' => 'Correct bias/scale'),
     array('filename' => 'scale_bias_too_large.png', 'titlealt' => 'Too large bias/scale'),
     array('filename' => 'scale_bias_too_small.png', 'titlealt' => 'Too small bias/scale'),
+    array('filename' => 'lights_editor_new_shadows.png', 'titlealt' => 'Lights editor with bias and scale'),
   ));
   ?>
 
@@ -437,6 +434,13 @@ $toc = new TableOfContents(array(
 
   <p>Images on the right show the effects of various
   <code>scale</code> and <code>bias</code> values.
+
+  <p><b>You can adjust the <code>bias</code>, <code>scale</code>
+  and <code>size</code> interactively in
+  <?php echo a_href_page("view3dscene", "view3dscene") ?>.</b>
+  Using the <i>Edit->Lights Editor</i> feature, you can configure
+  the <code>defaultShadowMap</code> parameters for a given light,
+  and immediately see the results.
 
   <p>For an OpenGL implementation<!-- of "classic" shadow maps,-->
   that offsets the geometry rendered into the shadow map,
