@@ -62,15 +62,15 @@ with links to documentation for every attribute.
   <!-- See lower on this page for explanation how to export animations
        and define <model> element. Below we only show all possible attributes,
        in practice you will not want to set them all. -->
-  <model url="main.x3d">
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.x3d"         animation_name="TimeSensorIdle" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.x3d" animation_name="TimeSensorIdleToWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.x3d"         animation_name="TimeSensorWalk" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] url="fire_missile.x3d" animation_name="TimeSensorFireMissile" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       url="attack.x3d"       animation_name="TimeSensorAttack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          url="die.x3d"          animation_name="TimeSensorDie" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     url="die_back.x3d"     animation_name="TimeSensorDieBack" />
-    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         url="hurt.x3d"         animation_name="TimeSensorHurt" />
+  <model url="main.castle-anim-frames">
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.castle-anim-frames"         animation_name="Idle" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.castle-anim-frames" animation_name="IdleToWalk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.castle-anim-frames"         animation_name="Walk" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#FireMissileAnimation|fire_missile]] url="fire_missile.castle-anim-frames" animation_name="FireMissile" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#AttackAnimation|attack]]       url="attack.castle-anim-frames"       animation_name="Attack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieAnimation|die]]          url="die.castle-anim-frames"          animation_name="Die" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#DieBackAnimation|die_back]]     url="die_back.castle-anim-frames"     animation_name="DieBack" />
+    <[[CastleCreatures.TWalkAttackCreatureResource.html#HurtAnimation|hurt]]         url="hurt.castle-anim-frames"         animation_name="Hurt" />
   </model>
 
   <attack
@@ -163,19 +163,23 @@ like. See <?php api_link('T3DCustomTransform.MiddleHeight', 'Castle3D.T3DCustomT
 
 <?php echo $toc->html_section(); ?>
 
-<p>3D resources, like creatures and items, display various 3D
-animations. Depending on the creature state, like standing / attacking
-/ dying, we may want to display different animation of the given
-creature instance. We define these animations using the <code>&lt;model&gt;</code>
-element of creature/item <code>resource.xml</code> file.
+<p>Resources, like creatures and items, always display an animation
+appropriate to their current state. For example, a creature state may be
+<i>"standing"</i> or <i>"attacking"</i> or <i>"dying"</i>,
+and it will cause appropriate animation.
+A developer can also add additional animation types to the creature or item
+(by creating a <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceAnimation.html'); ?>
+ instance and adding it to a
+<?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?> descendant).
 
-<p>As a developer, you can
-also create <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceAnimation.html'); ?>
- instance adding it to a
-<?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?> descendant,
- this way you can add new animations for your own/extended resources.
-At this point, I highly advice you compile and run the
-<code>examples/resource_animations</code> example program from the engine sources.
+<p>Inside the <code>&lt;model&gt;</code> element of the creature/item
+<code>resource.xml</code> file you specify from where to load particular
+animations. <!--Depending on your 3D authoring software and exporter,-->
+You can use separate 3D files for each animation, or a single 3D file
+for all of the animations, or any combination of the above.
+
+<p>You can see the example of all the approaches inside the
+<code>examples/resource_animations</code> demo.
 The <code>data/</code> subdirectory of it shows examples of how you can define <code>&lt;model&gt;</code>,
 discussed below. It is also a great program to test your own
 creatures/items animations (before using in the actual game), you
@@ -189,11 +193,13 @@ modeler / exporter you use to design your models:
 
 <ol>
   <li><p>The best way (low memory usage and short loading time)
-    is to use a single model (X3D, Spine JSON, etc.), with many animations inside.
-    Each animation is just a named X3D <code>TimeSensor</code> node,
-    exactly like with our
-    <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
-    method. You declare it in resource.xml file like this:
+    is to use a single model with many animations inside.
+    All the important 3D model formats support it:
+    <?php echo a_href_page('X3D', 'vrml_x3d'); ?>,
+    <?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine JSON</a>, etc.).
+
+    <p>You declare it in resource.xml file like this:
 
 <?php echo xml_highlight(
 '<model url="model.x3d">
@@ -201,7 +207,15 @@ modeler / exporter you use to design your models:
   <walk  animation_name="TimeSensorWalk"/>
 </model>'); ?>
 
-    <p>This is nice if your authoring software can store multiple
+    <p>What exactly is an <i>"animation"</i> depends on the initial format,
+    but internally an animation is always a single named
+    X3D <code>TimeSensor</code> node. Our method
+    <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+    recognizes the same animations. And you can see these animations in the
+    <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    menu <i>Animation -&gt; Named Animations</i>.
+
+    <!--p>This is nice if your authoring software can store multiple
     animations inside a single file, and each animation is controlled
     by a different X3D TimeSensor node. This is the most natural way to
     record multiple animations in a single X3D file. We will detect
@@ -214,13 +228,9 @@ modeler / exporter you use to design your models:
     automatically convert them to X3D TimeSensors when reading,
     and things will work perfectly our of the box.
     So you can just use Spine animation names.
+    -->
 
-    <p>For 3D models: Unfortunately, I don't know of any open-source 3D
-    modeler / exporter right now that can nicely produce such multiple
-    animations in a single X3D file.
-    I plan to extend Blender X3D exporter to allow this in the future.
-
-  <li><p>You can also use a separate model (X3D, castle-anim-arames, MD3...) for each animation state, like this:
+  <li><p>You can also use a separate model for each animation state, like this:
 
 <?php echo xml_highlight(
 '<model>
@@ -230,15 +240,11 @@ modeler / exporter you use to design your models:
 
     <p>You can omit the <code>animation_name</code>,
     it is then assumed to be just <code>'animation'</code>,
-    which the default animation name we read from castle-anim-frames and MD3 files.
+    which the default animation name we read from <?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>
+    and MD3 (Quake 3 engine format) files.
     If you use X3D files, the animation name should just match the
     TimeSensor node name (given like <code>&lt;TimeSensor DEF="MyAnimation"&gt;</code>
     in X3D XML files).
-
-    <p>This allows to play animation defined by X3D nodes.
-
-    <p>You can also use <?php echo a_href_page('castle-anim-frames format', 'castle_animation_frames'); ?>
-    or MD3 (Quake 3 engine format) for an animation.
 
     <p>Example:
 
@@ -247,11 +253,6 @@ modeler / exporter you use to design your models:
   <stand url="stand.castle-anim-frames"/>
   <walk  url="walk.castle-anim-frames"/>
 </model>'); ?>
-
-    <p>This is probably the most comfortable approach to export animations
-    from Blender to our engine. <b>For now</b> &mdash; in the future we
-    hope to extend Blender X3D exporter to store whole animation inside a
-    single X3D file.
 </ol>
 
 <p>The looping is done automatically for animations that require it (like
