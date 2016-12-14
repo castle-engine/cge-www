@@ -75,19 +75,16 @@ of animation handling in our VRML engine documentation</a>.</p-->
 
 <?php echo $toc->html_section(); ?>
 
-<p>File format is simple:
-
 <pre>
-
-&lt;?xml version="1.0"?&gt;
-&lt;animations              // Root node should be "animations".
+<b>&lt;?xml version="1.0"?&gt;</b>
+<b>&lt;animations</b>             // Root node should be "animations".
                         // It should contain any number (at least one)
                         // "animation" nodes inside.
                         // For backward compatibility,
                         // old (single-animation) files may also
                         // use "animation" as the root node.
 
-  &lt;animation              // A single animation.
+  <b>&lt;animation</b>              // A single animation.
                           // All it's attributes are optional
                           // (default values are shown below).
                           // Some of it's attributes should be treated like a
@@ -96,10 +93,10 @@ of animation handling in our VRML engine documentation</a>.</p-->
                           // but more specialized programs (like "The Castle"
                           // game) may ignore them, since "they know better".
 
-    name="animation"      // Animation name.
+    <b>name="animation"</b>      // Animation name.
                           // To be used e.g. with TCastleScene.PlayAnimation.
 
-    scenes_per_time="30"  // If the animation will be "baked":
+    <b>scenes_per_time="30"</b>  // If the animation will be "baked":
                           //
                           // Suggested number of scenes per time to be generated.
                           // This is a hint for the renderer &mdash; by default it's
@@ -111,7 +108,7 @@ of animation handling in our VRML engine documentation</a>.</p-->
                           // without any smoothing of transitions with
                           // intermediate scenes.
 
-    equality_epsilon="0.001"
+    <b>equality_epsilon="0.001"</b>
                           // If the animation will be "baked":
                           //
                           // Epsilon to use when comparing animation frames
@@ -123,26 +120,26 @@ of animation handling in our VRML engine documentation</a>.</p-->
                           // sure that user will not notice such small move
                           // anyway.
 
-    loop="false"          // Should the animation loop? This is a hint for
+    <b>loop="false"</b>          // Should the animation loop? This is a hint for
                           // the renderer, and may be ignored. Allowed values
                           // are "false" and "true", not case-sensitive.
                           // When this animation is used for creature/item in game,
                           // this is <b>ignored</b>.
 
-    backwards="false"     // Should the animation go backwards after going
+    <b>backwards="false"</b>     // Should the animation go backwards after going
                           // forward? Allowed values
                           // are "false" and "true", not case-sensitive.
                           // When this animation is used for creature/item in game,
                           // this is <b>not ignored</b>.
-  &gt;
+  <b>&gt;</b>
 
     // A number of &lt;frame&gt; nodes should follow. At least one is required.
     // Note that exactly one &lt;frame&gt; node will actually define a still scene,
     // you need at least 2 frames if you want a real animation.
 
-    &lt;frame
+    <b>&lt;frame</b>
 
-      url="file_1.x3d" // This specifies the URL from which to load this
+      <b>url="file_1.x3d"</b> // This specifies the URL from which to load this
                        // animation frame. Any 3D file format is allowed here:
                        // most of all, VRML/X3D, but also
                        // <?php echo a_href_page_hashlink(
@@ -157,14 +154,14 @@ of animation handling in our VRML engine documentation</a>.</p-->
                        // scene graph encoded in XML (with top-level &lt;X3D&gt;
                        // element).
 
-      time="0.0"       // This is a required attribute specifying a
+      <b>time="0.0"</b>       // This is a required attribute specifying a
                        // time of this frame. For now, all frames
                        // must be specified in the strictly increasing order
                        // of their "time".
                        // This is understood to be in seconds.
 
-      bounding_box_center="0 0 0"
-      bounding_box_size="-1 -1 -1"
+      <b>bounding_box_center="0 0 0"
+      bounding_box_size="-1 -1 -1"</b>
                        // Bounding box of this animation frame.
                        // Used for collision detection.
                        // Empty if not specified, or if any size
@@ -172,18 +169,17 @@ of animation handling in our VRML engine documentation</a>.</p-->
                        //
                        // This is consistent with X3D bboxSize/Center
                        // fields definition e.g. at X3D Group node.
-    /&gt;
+    <b>/&gt;</b>
 
     // For example, assume that the second &lt;frame&gt; node follows.
     // So this defines an animation that changes from
     // file_1.x3d and file_2.x3d in exactly 1 second.
 
-    &lt;frame url="file_2.x3d" time="1.0" /&gt;
-
-  &lt;/animation&gt;
+    <b>&lt;frame url="file_2.x3d" time="1.0" /&gt;</b>
+  <b>&lt;/animation&gt;</b>
 
   // More animations follow, if you want:
-  &lt;animation name="another_animation"&gt;
+  <b>&lt;animation name="another_animation"&gt;
     &lt;frame url="another_animation_frame_0.x3d" time="0.0" /&gt;
     &lt;frame url="another_animation_frame_1.x3d" time="1.0" /&gt;
   &lt;/animation&gt;
@@ -192,8 +188,7 @@ of animation handling in our VRML engine documentation</a>.</p-->
     &lt;frame url="yet_another_animation_frame_0.x3d" time="0.0" /&gt;
     &lt;frame url="yet_another_animation_frame_1.x3d" time="1.0" /&gt;
   &lt;/animation&gt;
-
-&lt;/animations&gt;
+&lt;/animations&gt;</b>
 </pre>
 
 <?php
