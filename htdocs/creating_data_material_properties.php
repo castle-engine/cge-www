@@ -69,7 +69,7 @@ with links to documentation for every attribute.</p>
   <property
     [[CastleMaterialProperties.TMaterialProperty.html#TextureBaseName|texture_base_name]]="test_texture_2"
     [[CastleMaterialProperties.TMaterialProperty.html#NormalMap|normal_map]]="test_normal_map.png"
-    [[CastleMaterialProperties.TMaterialProperty.html#AlphaChannel|alpha_channel]]="SIMPLE_YES_NO" />
+    [[CastleMaterialProperties.TMaterialProperty.html#AlphaChannel|alpha_channel]]="TEST" />
 
   <!-- You can use as many <property> elements as you like... -->
 

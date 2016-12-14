@@ -98,7 +98,7 @@ Text3D : X3DGeometryNode {
 
 X3DTexture2DNode : X3DAppearanceChildNode {
   ... all normal X3DTexture2DNode fields ...
-  SFString   []            alphaChannel  "AUTO"      # ["AUTO"|"SIMPLE_YES_NO"|"FULL_RANGE"]
+  SFString   []            alphaChannel  "AUTO"      # ["AUTO"|"NONE"|"TEST"|"BLENDING"]
 }
 
 KambiInline : Inline {
