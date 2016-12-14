@@ -357,7 +357,7 @@ $toc = new TableOfContents(array(
     node_field('SFString', '[in,out]', 'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
     node_field('SFInt32' , '[]',       'size',              '128') .
     node_field('SFNode'  , '[]',       'light',             'NULL', 'any light node') .
-    node_field('SFFloat' , '[in,out]', 'scale',             '1.1') .
+    node_field('SFFloat' , '[in,out]', 'scale',             '4.0') .
     node_field('SFFloat' , '[in,out]', 'bias',              '4.0') .
     node_field('SFString', '[]',       'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
     node_end();
