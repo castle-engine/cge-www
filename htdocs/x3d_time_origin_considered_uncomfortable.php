@@ -9,13 +9,13 @@
 <p>In short, <b>for single-player games, the current
 idea of time origin ("January 1, 1970") in VRML / X3D is uncomfortable</b>.
 <i>Castle Game Engine</i> complies with VRML/X3D standard in this regard anyway,
-although you can change the behavior to more sane (in my opinion)
+although you can change it
 by using <?php echo a_href_page_hashlink(
   'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',
   'x3d_extensions',
-  'section_ext_time_origin_at_load'); ?>, also precalculated animations (from
-<?php echo a_href_page('Kanim', 'kanim_format'); ?> and MD3 formats)
-will always start playing from their begin-time, usually 0.0.</p>
+  'section_ext_time_origin_at_load'); ?>. Also the (deprecated now)
+  <?php api_link('TCastlePrecalculatedAnimation', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html'); ?>
+  animations will always start playing from their begin-time, usually 0.0.</p>
 
 <p><b>What's the problem?</b>
 VRML/X3D have an idea that time stored in <code>SFTime</code>

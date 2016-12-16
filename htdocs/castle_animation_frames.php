@@ -55,17 +55,17 @@ from an VRML animation by interpolators.</p>
 <p>A temporary disadvantage (TODO) is that right now we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D <code>Switch</code> and <code>IntegerSequencer</code>. Once we improve this, the runtime memory usage will be <i>somewhat</i> better, and animation will be always perfectly smooth at runtime, and the collision detection will account for dynamic changes OK.
 
 <!--p>If you work with 3D modeler that can export proper VRML animation
-with interpolators, then you don't need to use Kanim format.
+with interpolators, then you don't need to use Castle-Anim-Frames format.
 Our engine handles events and interpolators perfectly.
 Internally, they may even be converted (after loading) to precalculated
 animations.</p-->
 
-<!--p>There's also a crude converter from kanim format to VRML/X3D
-interpolators in our engine examples (see <code>examples/vrml/tools/kanim_to_interpolators</code>).
+<!--p>There's also a crude converter from castle-anim-frames format to VRML/X3D
+interpolators in our engine examples (see <code>examples/vrml/tools/castle_anim_frames_to_interpolators</code>).
 It's a little crude (works only when you animate only a single mesh),
 but may be enough for simple uses. So this is one way to generate an animated
-VRML/X3D file from Blender: export from Blender to kanim, then convert
-kanim to VRML/X3D.</p-->
+VRML/X3D file from Blender: export from Blender to castle-anim-frames, then convert
+castle-anim-frames to VRML/X3D.</p-->
 
 <!--p>For more technical insight, see
 <a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.animation.html">description

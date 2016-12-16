@@ -224,7 +224,11 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
-  <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D animations. (No point doing this if your animation is from KAnim or M3D, they are already "baked".) TODO: the API for doing this should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
+  <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D intepolation nodes.
+
+    <p>Note that there's no point doing this if your animation is from castle-anim-frames or M3D, they are already "baked". Although this baking will become optional (not forced) in the future.
+
+    <p>TODO: The API for "baking" should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
 
   <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <code>CastleLog</code> docs and tutorial) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 </ul>

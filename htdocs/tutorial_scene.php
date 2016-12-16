@@ -133,7 +133,9 @@ end;'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Once you load a scene, you can play a "named animation" on it, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (VRML / X3D, Spine, KAnim, MD3).
+<p>Once you load a scene, you can play a "named animation" on it, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>,
+<?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
+<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, MD3).
 
 <?php
 echo castle_thumbs(array(

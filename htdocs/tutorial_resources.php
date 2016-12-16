@@ -19,13 +19,14 @@ in the game data. Their contents looks like this:</p>
 
 <resource
   name="MyCreatureName"
-  type="WalkAttack">
+  type="WalkAttack"
+  url="my_creature.castle-anim-frames">
   <model>
-    <idle         url="idle.kanim"   />
-    <walk         url="walk.kanim"   />
-    <attack       url="attack.kanim" />
-    <die          url="die.kanim"    />
-    <hurt         url="hurt.kanim"   />
+    <idle   animation_name="idle"   />
+    <walk   animation_name="walk"   />
+    <attack animation_name="attack" />
+    <die    animation_name="die"    />
+    <hurt   animation_name="hurt"   />
   </model>
 </resource>'); ?>
 

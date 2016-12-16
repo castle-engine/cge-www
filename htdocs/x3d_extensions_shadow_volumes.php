@@ -140,7 +140,7 @@ to be 2-manifold. This has advantages and disadvantages:
   <li>Also there's no more ShareManifoldAndBorderEdges method, which means that rendering
     shadow volumes using TCastlePrecalculatedAnimation performance drops.
     But luckily, TCastlePrecalculatedAnimation is deprecated now.
-    But in exchange, you can load KAnim/MD3 and everything to TCastleScene,
+    But in exchange, you can load castle-anim-frames/MD3 and everything to TCastleScene,
     and rendering shadow volumes using TCastleScene is now superb.
   -->
 </ul>

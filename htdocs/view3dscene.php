@@ -260,15 +260,10 @@ flawlessly :) So give it a try!
     Note that this works only when <i>Collision
     detection</i> is on (as it requires octree).</p></li>
 
-  <li><p><i>Precalculated animations</i> are played from
-    <?php echo a_href_page("Kanim", 'kanim_format'); ?> or MD3 files
-    (and you can convert any interactive VRML/X3D animation to precalculated one).</p>
-
-    <p>Note that for now, for precalculated animations
-    some features (collision checking, mouse picking,
-    ray-tracer &mdash; everything that requires some octree) always use the
-    <i>first animation frame</i>,
-    regardless of current animation frame displayed.</p>
+  <li><p><i>Baked animations</i> are played from
+    <?php echo a_href_page('Castle Animation Frames
+    (castle-anim-frames) format', 'castle_animation_frames'); ?> or MD3 files
+    (and you can convert any interactive VRML/X3D animation to a baked one).</p>
 
   <li><p>There are menu items and <a href="#section_screenshot">command-line
     options to catch screenshots and movies
@@ -507,7 +502,7 @@ view3dscene my_model.wrl --screenshot 0 output.png
     25 frames per second:
 
 <pre>
-view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
+view3dscene my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
 </pre>
 
     <p>To get this as a sequence of images, just use <code>output@counter(4).png</code>
@@ -517,7 +512,7 @@ view3dscene my_model.kanim --screenshot-range 0 0.04 50 output.avi
   <li><p>Example of more complicated use:
 
 <pre>
-view3dscene my_model.kanim \
+view3dscene my_model.castle-anim-frames \
   --screenshot-range 0 0.04 50 output@counter(1).avi \
   --screenshot-range 10 0.04 50 output@counter(1).avi
 </pre>
