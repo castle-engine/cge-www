@@ -10,25 +10,25 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Coordinate'); ?>,
-    <?php echo x3d_node_link('Color'); ?>,
-    <?php echo x3d_node_link('ColorRGBA'); ?>,
+  <li><p><?php echo x3d_node_link('Coordinate'); ?>,<br>
+    <?php echo x3d_node_link('Color'); ?>,<br>
+    <?php echo x3d_node_link('ColorRGBA'); ?>,<br>
     <?php echo x3d_node_link('Normal'); ?></p>
 
   <li><p>Triangles, lines and points:
 
-    <p><?php echo x3d_node_link('IndexedTriangleSet'); ?>,
-    <?php echo x3d_node_link('TriangleSet'); ?>,
-    (also analogous <code>IndexedQuadSet</code>, <code>QuadSet</code>
+    <p><?php echo x3d_node_link('IndexedTriangleSet'); ?>,<br>
+    <?php echo x3d_node_link('TriangleSet'); ?>,<br>
+    (see also analogous <code>IndexedQuadSet</code>, <code>QuadSet</code>
     from <?php echo a_href_page('CAD geometry', 'x3d_implementation_cadgeometry'); ?> component).
 
-    <p><?php echo x3d_node_link('IndexedTriangleFanSet'); ?>,
-    <?php echo x3d_node_link('TriangleFanSet'); ?>,
-    <?php echo x3d_node_link('IndexedTriangleStripSet'); ?>,
+    <p><?php echo x3d_node_link('IndexedTriangleFanSet'); ?>,<br>
+    <?php echo x3d_node_link('TriangleFanSet'); ?>,<br>
+    <?php echo x3d_node_link('IndexedTriangleStripSet'); ?>,<br>
     <?php echo x3d_node_link('TriangleStripSet'); ?>
 
-    <p><?php echo x3d_node_link('LineSet'); ?>,
-    <?php echo x3d_node_link('IndexedLineSet'); ?>
+    <p><?php echo x3d_node_link('LineSet'); ?>,<br>
+    <?php echo x3d_node_link('IndexedLineSet'); ?><br>
 
     <p><?php echo x3d_node_link('PointSet'); ?>
 

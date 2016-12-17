@@ -9,13 +9,13 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Shape'); ?>,
-    <?php echo x3d_node_link('Appearance'); ?>,
+  <li><p><?php echo x3d_node_link('Shape'); ?>,<br>
+    <?php echo x3d_node_link('Appearance'); ?>,<br>
     <?php echo x3d_node_link('Material'); ?></p>
 
     <p>Fully implemented.</li>
 
-  <li><p><?php echo x3d_node_link('LineProperties'); ?>.
+  <li><p><?php echo x3d_node_link('LineProperties'); ?>.<br>
     Fullly implemented.
 
     <p>Allows to change line width and type (pattern).

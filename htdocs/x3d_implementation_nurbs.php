@@ -30,10 +30,10 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Full support for <?php echo x3d_node_link('NurbsPatchSurface'); ?>,
-<?php echo x3d_node_link('NurbsCurve'); ?>,
-<?php echo x3d_node_link('NurbsPositionInterpolator'); ?>,
-<?php echo x3d_node_link('NurbsSurfaceInterpolator'); ?>,
+<p>Full support for <?php echo x3d_node_link('NurbsPatchSurface'); ?>,<br>
+<?php echo x3d_node_link('NurbsCurve'); ?>,<br>
+<?php echo x3d_node_link('NurbsPositionInterpolator'); ?>,<br>
+<?php echo x3d_node_link('NurbsSurfaceInterpolator'); ?>,<br>
 <?php echo x3d_node_link('NurbsOrientationInterpolator'); ?>.</p>
 
 <p>Any &gt;= 2 value of order is allowed (X3D spec requires only 2,3,4 support).</p>

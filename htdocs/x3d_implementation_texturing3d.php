@@ -15,18 +15,18 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('TextureTransformMatrix3D'); ?>,
-      <?php echo x3d_node_link('TextureTransform3D'); ?>,<br/>
+  <li><p><?php echo x3d_node_link('TextureTransformMatrix3D'); ?>,<br>
+      <?php echo x3d_node_link('TextureTransform3D'); ?>,<br>
 
-      <?php echo x3d_node_link('TextureCoordinate3D'); ?>,
-      <?php echo x3d_node_link('TextureCoordinate4D'); ?>,<br/>
+      <?php echo x3d_node_link('TextureCoordinate3D'); ?>,<br>
+      <?php echo x3d_node_link('TextureCoordinate4D'); ?>,<br>
 
-      <?php echo x3d_node_link('ImageTexture3D'); ?>,
-      <?php echo x3d_node_link('ComposedTexture3D'); ?>,
+      <?php echo x3d_node_link('ImageTexture3D'); ?>,<br>
+      <?php echo x3d_node_link('ComposedTexture3D'); ?>,<br>
       <?php echo x3d_node_link('PixelTexture3D'); ?></p>
 
     <p>3D textures, coordinates for 3D textures, transforming
-    coordinates for 3D textures &mdash; all done.</p>
+    coordinates for 3D textures &mdash; all supported.</p>
 
     <p>Note that 3D and 4D (homogeneous) coordinates, and transformations
     in 3D space / by 4x4 matrix, may be used to transform 2D textures as well.

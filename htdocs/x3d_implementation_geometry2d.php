@@ -12,7 +12,8 @@ component to render 2D shapes as well.</p>
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Rectangle2D'); ?>, <?php echo x3d_node_link('Circle2D'); ?>
+  <li><p><?php echo x3d_node_link('Rectangle2D'); ?>,<br>
+    <?php echo x3d_node_link('Circle2D'); ?>
 </ul>
 
 <?php

@@ -17,8 +17,8 @@
     a regular <code>Group</code>. Our <code>Group</code> already has all the optimizations
     possible, you can just use it and refrain from changing it's contents.)</p></li>
 
-  <li><p><?php echo x3d_node_link('Switch'); ?>,
-         <?php echo x3d_node_link('Group'); ?>,
+  <li><p><?php echo x3d_node_link('Switch'); ?>,<br>
+         <?php echo x3d_node_link('Group'); ?>,<br>
          <?php echo x3d_node_link('Transform'); ?></p>
 
     <p>Including special optimizations for animating transformations.</p></li>

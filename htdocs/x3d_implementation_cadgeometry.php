@@ -11,14 +11,14 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('IndexedQuadSet'); ?>,
+  <li><p><?php echo x3d_node_link('IndexedQuadSet'); ?>,<br>
     <?php echo x3d_node_link('QuadSet'); ?></p>
 
     <p>See <?php echo a_href_page('Rendering component', 'x3d_implementation_rendering'); ?>.</p></li>
 
-  <li><p><?php echo x3d_node_link('CADAssembly'); ?>,
-    <?php echo x3d_node_link('CADFace'); ?>,
-    <?php echo x3d_node_link('CADLayer'); ?>,
+  <li><p><?php echo x3d_node_link('CADAssembly'); ?>,<br>
+    <?php echo x3d_node_link('CADFace'); ?>,<br>
+    <?php echo x3d_node_link('CADLayer'); ?>,<br>
     <?php echo x3d_node_link('CADPart'); ?></p>
 
     <p>All these nodes are specialized grouping nodes.

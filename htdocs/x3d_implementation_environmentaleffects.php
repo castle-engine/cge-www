@@ -10,9 +10,9 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Background'); ?>,
-    <?php echo x3d_node_link('TextureBackground'); ?>,
-    <?php echo x3d_node_link('Fog'); ?>,
+  <li><p><?php echo x3d_node_link('Background'); ?>,<br>
+    <?php echo x3d_node_link('TextureBackground'); ?>,<br>
+    <?php echo x3d_node_link('Fog'); ?>,<br>
     <?php echo x3d_node_link('LocalFog'); ?></p></li>
 
   <li><p><?php echo x3d_node_link('FogCoordinate'); ?> is also supported.

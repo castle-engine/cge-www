@@ -18,9 +18,9 @@ following latest X3D spec:</p>
 <ul>
   <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p></li>
 
-  <li><p><?php echo x3d_node_link('Sphere'); ?>,
-         <?php echo x3d_node_link('Box'); ?>,
-         <?php echo x3d_node_link('Cone'); ?>,
+  <li><p><?php echo x3d_node_link('Sphere'); ?>,<br>
+         <?php echo x3d_node_link('Box'); ?>,<br>
+         <?php echo x3d_node_link('Cone'); ?>,<br>
          <?php echo x3d_node_link('Cylinder'); ?></p>
 
     <p>Including support for <code>solid</code> field (added in X3D),

@@ -34,9 +34,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('ImageTexture'); ?>,
-    <?php echo x3d_node_link('TextureTransform'); ?>,
-    <?php echo x3d_node_link('TextureCoordinate'); ?>,
+  <li><p><?php echo x3d_node_link('ImageTexture'); ?>,<br>
+    <?php echo x3d_node_link('TextureTransform'); ?>,<br>
+    <?php echo x3d_node_link('TextureCoordinate'); ?>,<br>
     <?php echo x3d_node_link('PixelTexture'); ?></p>
 
     <p><i>Note</i>: ImageTexture allows various texture formats,
@@ -89,8 +89,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         'section_ext_movie_from_image_sequence'); ?>.
     </ul>
 
-  <li><?php echo x3d_node_link('MultiTexture'); ?>,
-      <?php echo x3d_node_link('MultiTextureCoordinate'); ?>,
+  <li><?php echo x3d_node_link('MultiTexture'); ?>,<br>
+      <?php echo x3d_node_link('MultiTextureCoordinate'); ?>,<br>
       <?php echo x3d_node_link('MultiTextureTransform'); ?>
 
     <p>Support for all fields (unless mentioned below).

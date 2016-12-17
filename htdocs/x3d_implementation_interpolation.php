@@ -22,14 +22,14 @@
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('ColorInterpolator'); ?>,
-    <?php echo x3d_node_link('PositionInterpolator'); ?>,
-    <?php echo x3d_node_link('PositionInterpolator2D'); ?>,
-    <?php echo x3d_node_link('ScalarInterpolator'); ?>,
+  <li><p><?php echo x3d_node_link('ColorInterpolator'); ?>,<br>
+    <?php echo x3d_node_link('PositionInterpolator'); ?>,<br>
+    <?php echo x3d_node_link('PositionInterpolator2D'); ?>,<br>
+    <?php echo x3d_node_link('ScalarInterpolator'); ?>,<br>
     <?php echo x3d_node_link('OrientationInterpolator'); ?></p>
 
-    <p><?php echo x3d_node_link('CoordinateInterpolator'); ?>,
-    <?php echo x3d_node_link('CoordinateInterpolator2D'); ?>,
+    <p><?php echo x3d_node_link('CoordinateInterpolator'); ?>,<br>
+    <?php echo x3d_node_link('CoordinateInterpolator2D'); ?>,<br>
     <?php echo x3d_node_link('NormalInterpolator'); ?></p>
 
     <p>Interpolation of <code>OrientationInterpolator</code> correctly goes through

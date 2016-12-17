@@ -32,7 +32,8 @@
     <p><i>TODO</i>: <code>parameter</code> field is ignored.</p>
     </li>
 
-  <li><p><?php echo x3d_node_link('Inline'); ?>, (VRML 97) <code>InlineLoadControl</code></p>
+  <li><p><?php echo x3d_node_link('Inline'); ?>,<br>
+    (VRML 97) <code>InlineLoadControl</code></p>
 
     <p>Yes, this includes handling of <code>InlineLoadControl</code> features
     to react to <code>load</code>, <code>url</code> and generate <code>children</code>

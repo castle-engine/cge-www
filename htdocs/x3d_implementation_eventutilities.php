@@ -35,12 +35,12 @@ Don Brutzman!</p>
 <?php echo $toc->html_section(); ?>
 
 <p>We support all nodes from this component:
-<?php echo x3d_node_link('BooleanFilter'); ?>,
-<?php echo x3d_node_link('BooleanToggle'); ?>,
-<?php echo x3d_node_link('BooleanTrigger'); ?>,
-<?php echo x3d_node_link('IntegerTrigger'); ?>,
-<?php echo x3d_node_link('TimeTrigger'); ?>,
-<?php echo x3d_node_link('BooleanSequencer'); ?>,
+<?php echo x3d_node_link('BooleanFilter'); ?>,<br>
+<?php echo x3d_node_link('BooleanToggle'); ?>,<br>
+<?php echo x3d_node_link('BooleanTrigger'); ?>,<br>
+<?php echo x3d_node_link('IntegerTrigger'); ?>,<br>
+<?php echo x3d_node_link('TimeTrigger'); ?>,<br>
+<?php echo x3d_node_link('BooleanSequencer'); ?>,<br>
 <?php echo x3d_node_link('IntegerSequencer'); ?>.
 
 <p>You may also want to look at related <?php echo a_href_page_hashlink(

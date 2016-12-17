@@ -66,7 +66,14 @@ function x3d_status_footer()
 function x3d_node_link($node_name)
 {
   global $x3d_component_url;
-  return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
+  $s = '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
     $node_name . '</a></code>';
+  /* TODO, waits for time when API reference for nodes will be more useful.
+  $node_name_pascal = 'T' . $node_name . 'Node';
+  $s .= '<small>' .
+    api_link(' (API reference)', 'X3DNodes.' . $node_name_pascal . '.html', false) .
+    '</small>';
+  */
+  return $s;
 }
 ?>

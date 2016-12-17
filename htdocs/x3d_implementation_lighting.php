@@ -19,8 +19,8 @@
 <p>Supported nodes:</p>
 
 <ul>
-  <li><?php echo x3d_node_link('DirectionalLight'); ?>,
-    <?php echo x3d_node_link('PointLight'); ?>,
+  <li><?php echo x3d_node_link('DirectionalLight'); ?>,<br>
+    <?php echo x3d_node_link('PointLight'); ?>,<br>
     <?php echo x3d_node_link('SpotLight'); ?>
 
     <p><i>Note</i>: VRML 2.0 <code>SpotLight.beamWidth</code>

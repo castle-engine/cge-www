@@ -22,7 +22,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Text'); ?>,
+  <li><p><?php echo x3d_node_link('Text'); ?>,<br>
     <?php echo x3d_node_link('FontStyle'); ?>
 
     <p>Most important properties

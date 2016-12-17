@@ -17,16 +17,16 @@ Both skeletal and skinned animation is supported.</p>
 <p>Supported nodes:</p>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Humanoid'); ?>,
-    <?php echo x3d_node_link('Joint'); ?>,
-    <?php echo x3d_node_link('Segment'); ?>,
-    <?php echo x3d_node_link('Site'); ?>,
+  <li><p><?php echo x3d_node_link('Humanoid'); ?>,<br>
+    <?php echo x3d_node_link('Joint'); ?>,<br>
+    <?php echo x3d_node_link('Segment'); ?>,<br>
+    <?php echo x3d_node_link('Site'); ?>,<br>
     <?php echo x3d_node_link('Displacer'); ?> (VRML 2.0 (97) version)
 
-    <p><?php echo x3d_node_link('HAnimHumanoid'); ?>,
-    <?php echo x3d_node_link('HAnimJoint'); ?>,
-    <?php echo x3d_node_link('HAnimSegment'); ?>,
-    <?php echo x3d_node_link('HAnimSite'); ?>,
+    <p><?php echo x3d_node_link('HAnimHumanoid'); ?>,<br>
+    <?php echo x3d_node_link('HAnimJoint'); ?>,<br>
+    <?php echo x3d_node_link('HAnimSegment'); ?>,<br>
+    <?php echo x3d_node_link('HAnimSite'); ?>,<br>
     <?php echo x3d_node_link('HAnimDisplacer'); ?> (X3D version)
 
     <p>As you see, X3D version has exactly the same nodes, working the same way,
