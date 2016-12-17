@@ -88,6 +88,11 @@ svn diff # check, fix or commit differences
 # Fake some BuggyXxx vars to be true, in particular BuggyVbo being true,
 # and check rendering works.
 
+# check PlayAnimation in view3dscene:
+# - load balls animation, check loop/non-loop works
+# - check that restarting the current animations works Ok, resets time.
+# TODO: this check could be automated.
+
 # ----------------------------------------------------------------------------
 # Test Lazarus compilation:
 # - Recompile castle_game_engine packages
