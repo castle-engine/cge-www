@@ -71,7 +71,7 @@ about the available X3D nodes and their fields.</p>
     through special X3D nodes.
   </li>
 
-  <li><p>In any case, the <a href="http://web3d.org/x3d/specifications/">X3D specifications</a> are your ultimate resource to learn what you can do with X3D.</p>
+  <li><p>In any case, the <a href="http://www.web3d.org/standards">X3D specifications</a> are your ultimate resource to learn what you can do with X3D.</p>
 
     <!--
     The older versions were called VRML (VRML 1.0, then VRML 2.0 also

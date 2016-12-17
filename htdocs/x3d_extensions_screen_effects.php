@@ -87,7 +87,7 @@ they process the rendered screen in the given order.</p>
 Right now our engine supports only GLSL (OpenGL shading language) shaders
 inside <code>ComposedShader</code> nodes, see <?php echo a_href_page(
 'the general overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>
- and <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/shaders.html">X3D
+ and <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/shaders.html">X3D
 "Programmable shaders component" specification</a> and of course
 the <a href="http://www.opengl.org/documentation/glsl/">GLSL documentation</a>.</p>
 

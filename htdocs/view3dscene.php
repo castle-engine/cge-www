@@ -168,7 +168,7 @@ flawlessly :) So give it a try!
     features. See also <?php echo a_href_page('VRML/X3D extensions',
     'x3d_extensions'); ?>, <?php
       echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>,
-    and finally <a href="http://web3d.org/x3d/specifications/">
+    and finally <a href="http://www.web3d.org/standards">
     the official X3D specifications</a>.
 
   <li><p><b><?php echo a_href_page('Castle Animation Frames
@@ -897,7 +897,7 @@ is only useful for converting). More precisely:
   <dt>--navigation EXAMINE|WALK|FLY|NONE...
   <dd><p>Set initial navigation type. Default is <code>EXAMINE</code>.
     This can be overridden in particular VRML/X3D scene by using the
-    <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
+    <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
     node. Valid values for this option are the navigation type names
     for VRML/X3D <code>NavigationInfo.type</code>, see link above.</p>
 

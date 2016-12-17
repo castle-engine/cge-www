@@ -64,7 +64,7 @@ Of course at the next engine release, the new one will replace the old one :)</p
     <ul>
       <li><p><i>' . news_a_href_page('castle', 'castle') . ' 1.0.0 release</i> is planned very soon. This will not include any new user-visible new features, but will incorporate all the engine bugfixes and speed improvements from last engine versions. The idea is to signal that "castle" is mostly finished now, and we\'re ready for new challenges :) A new large game using our engine is planned (since quite some time already :)</p></li>
 
-      <li><p><i>' . news_a_href_page('view3dscene', 'view3dscene') . ' 3.8.0</i> is planned to include <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/sound.html">X3D Sound component</a> implementation. At least the basic stuff, that works easily using our current OpenAL framework and allocator.</p></li>
+      <li><p><i>' . news_a_href_page('view3dscene', 'view3dscene') . ' 3.8.0</i> is planned to include <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/sound.html">X3D Sound component</a> implementation. At least the basic stuff, that works easily using our current OpenAL framework and allocator.</p></li>
 
       <li><p><i>' . news_a_href_page('view3dscene', 'view3dscene') . ' 3.9.0</i> is planned to have a more modern renderer, where <i>everything</i> rendered in 3D goes through VBO. This should make a performance boost for newer GPUs, also making some dynamic scenes work much faster. For older GPUs, the old rendering method (using locked vertex arrays and display lists) will be kept (and hopefully auto-selected).</p>
 
@@ -309,7 +309,7 @@ castle_thumbs(array(
 
         <p><small>Developers: engine has a new camera class, TUniversalCamera, that is created by default for VRML/X3D scenes and offers a functionality of both Examine and Walk navigation methods. If you previously used something like <code>"(SceneManager.Camera as TWalkCamera)"</code> to access Walk-specific properties, you may need to use now <code>"(SceneManager as TUniversalCamera).Walk"</code> to use them. Or just try to use the basic <code>TCamera</code> features, without downcasting to specific camera descendants.</small></p></li>
 
-      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <code>NavigationInfo.transitionType</code>, <code>NavigationInfo.transitionTime</code> fields (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#NavigationInfo">X3D spec</a>).</p></li>
+      <li><p><i>Smooth transitions</i> between viewpoints are implemented. They also follow X3D <code>NavigationInfo.transitionType</code>, <code>NavigationInfo.transitionTime</code> fields (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#NavigationInfo">X3D spec</a>).</p></li>
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
@@ -318,10 +318,10 @@ castle_thumbs(array(
 
   <li><p>New sensors implemented:<br/>
     <b><code>PlaneSensor</code></b>
-      (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
+      (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
        <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">support details</a>,
        demos in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
-    <b><code>StringSensor</code></b> (<a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://castle-engine.sourceforge.net/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
+    <b><code>StringSensor</code></b> (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://castle-engine.sourceforge.net/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
   <li><p><b>Shadow maps</b> (<a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<code>Box</code>, <code>Sphere</code> etc.) are fixed now (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
@@ -445,7 +445,7 @@ castle_thumbs(array(
   <li>Extensions to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
   <li>view3dscene <i>Edit -&gt; Merge Close Vertexes</i> menu item, that makes close vertexes to be perfectly equal.</li>
   <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
-  <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
+  <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
   <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=14">reporting</a>.</li>
   <li>Better menu behavior with GTK2 backend.</li>
   <li>Our procedural terrain demo (<code>examples/vrml/terrain/</code> in sources) can export the terrain to X3D (<code>ElevationGrid</code>) now.</li>
@@ -470,7 +470,7 @@ castle_thumbs(array(
 '<p>New ' . news_a_href_page('view3dscene 3.5.2', 'view3dscene') . ' is released today:</p>
 
 <ul>
-  <li><p>New feature in this release is the support for <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/networking.html#IMPORTStatement">X3D IMPORT and EXPORT statements</a>.
+  <li><p>New feature in this release is the support for <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/networking.html#IMPORTStatement">X3D IMPORT and EXPORT statements</a>.
 
     <p>This allows to attach routes to VRML/X3D nodes inside inline files, thus allowing communication between the nodes inside and outside of the inlined file. Available in both classic and XML encodings. Some more <a href="http://castle-engine.sourceforge.net/x3d_implementation_networking.php">support details is here</a>.
 
@@ -631,7 +631,7 @@ castle_thumbs(array(
 
 '<p>Nearly all existing programs (examples and normal games) are now happily converted to the new <i>scene manager</i> approach. Scene manager interface got a lot of improvements by the way, <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/KambiSceneManager.TKamSceneManager.html">check the docs</a>. This means that engine 2.0.0 is coming along nicely and will soon be released :)</p>
 
-<p>In particular, ' . news_a_href_page('The Castle', 'castle') . ' source code is converted to use the scene manager. This means that finally you can construct <i>"The Castle"</i> interactive levels by VRML/X3D events, using VRML/X3D time, touch sensors, key sensors, proximity sensors (see <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/index.html">X3D spec</a> for sensor nodes docs), scripts in ' . news_a_href_page('KambiScript', 'kambi_script') . ' and such. To celebrate this, I plan to add a little eye-candy to castle\'s "Fountain" level, and then officially release the final <b>"The Castle 1.0.0"</b> along with <b>engine 2.0.0</b>. After that, work on "The Castle 2" may begin :)</p>
+<p>In particular, ' . news_a_href_page('The Castle', 'castle') . ' source code is converted to use the scene manager. This means that finally you can construct <i>"The Castle"</i> interactive levels by VRML/X3D events, using VRML/X3D time, touch sensors, key sensors, proximity sensors (see X3D specification for sensor nodes docs), scripts in ' . news_a_href_page('KambiScript', 'kambi_script') . ' and such. To celebrate this, I plan to add a little eye-candy to castle\'s "Fountain" level, and then officially release the final <b>"The Castle 1.0.0"</b> along with <b>engine 2.0.0</b>. After that, work on "The Castle 2" may begin :)</p>
 
 <p>More teasers about the <i>Castle 1.0.0</i> release and plans for <i>Castle 2</i> in later post hopefully next week.</p>
 

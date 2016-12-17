@@ -49,7 +49,7 @@
       <li><p><b>Both <code>importedDEF</code> (preferred) and
         <code>exportedDEF</code> (obsolete) are supported.</b></p>
 
-        <p>For the XML encoding, note that the <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19776-1.2-X3DEncodings-XML/Part01/concepts.html#IMPORT_EXPORTStatementSyntax">X3D XML encoding
+        <p>For the XML encoding, note that the <a href="http://www.web3d.org/documents/specifications/19776-1/V3.3/Part01/concepts.html#IMPORT_EXPORTStatementSyntax">X3D XML encoding
         spec</a> errorneously talks about <code>exportedDEF</code>
         attribute of the <code>&lt;IMPORT&gt;</code> element.
         It should be called <code>importedDEF</code>,

@@ -229,7 +229,7 @@ at runtime. Four core types are available:</p>
     fields, they will have to fit within 32-bit.)</p>
 
     <p>Specifically for comfortable processing of
-    <a href="http://web3d.org/x3d/specifications/ISO-IEC-19775-1.2-X3D-AbstractSpecification/Part01/components/keyboard.html#KeySensor">X3D
+    <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/keyboard.html#KeySensor">X3D
     KeySensor node</a> events <code>actionKeyPress/Release</code>
     you have 20 key constants available: <code>ACTION_KEY_F1</code>,
     ... <code>ACTION_KEY_F12</code>, <code>ACTION_KEY_HOME</code>, etc.

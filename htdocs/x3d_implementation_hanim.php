@@ -70,7 +70,7 @@ in one model):
 
     <p><a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality
     has a nice overview of how the X3D nodes should be set up</a>,
-    see also the X3D and <a href="http://www.web3d.org/x3d/specifications/ISO-IEC-19774-HumanoidAnimation/">latest H-Anim</a>
+    see also the X3D and <a href="http://www.web3d.org/standards/h-anim">latest H-Anim</a>
     specifications of course.</p>
 
     <p>One nice open-source modeller that can create such humanoids is
