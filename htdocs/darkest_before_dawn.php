@@ -50,10 +50,12 @@ automatically propose to install it.
 
   <br><br>
 
-  Or download a standalone version:
+  Or download:
+
   <table><tbody><tr>
     <td style="padding-left: 0"><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-linux-i386.tar.gz" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
     <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-win32.zip" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
+    <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-release.apk" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Android" src="images/os_icons/android.png"><br> &nbsp;<br>Android</a></td>
   </tr></tbody></table>
 </div>
 
