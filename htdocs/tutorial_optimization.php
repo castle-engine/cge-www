@@ -15,6 +15,7 @@ $toc = new TableOfContents(
       new TocItem('Collisions', 'collisions', 1),
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
       new TocItem('Consider using occlusion query', 'occlusion_query', 1),
+      new TocItem('Blending', 'blending', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
   )
@@ -338,6 +339,39 @@ for a wide range of scenes.
 <p>The engine allows you to easily define custom culling methods
 or use hardware occlusion query (see examples and docs). This may help
 a lot in large scenes (city or indoors).
+
+<?php echo $toc->html_section(); ?>
+
+<p><i>Blending (partial transparency)</i> is used when you have a texture with
+a smooth alpha channel or use <code>Material.transparency</code>.
+Note that the engine detects the texture alpha channel type automatically
+<a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">but you can also specify it explicitly using the
+<code>alphaChannel</code> field in X3D</a>.
+
+<p>Correctly rendering blending, in a general case, is a little costly.
+The transparent shapes have to be sorted in back-to-front order every frame.
+Hints to make it better:
+
+<ul>
+  <li><p>If possible, minimize the overhead of sorting by simply not having
+    too many transparent shapes.
+
+  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php api_link('TBlendingSort', 'CastleBoxes.html#TBlendingSort'); ?> values for explanation. Sorting is not necessary if you never see multiple partially-transparent shapes on the same screen pixel.
+
+    <p>Sorting is also not necessary <a href="x3d_extensions.php#section_ext_blending">if you use a <code>blendMode</code> for transparent shapes that makes the order of rendering irrelevant</a>. So, if you can, consider changing <code>blendMode</code> <i>and</i> turning off sorting.
+
+  <li><p>Consider do you really need transparency by blending. Maybe you can work with transparency by <i>alpha testing</i>? <i>Alpha testing</i> means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, <i>alpha testing</i> cooperates nicely with <a href="x3d_extensions_shadow_maps.php">shadow maps</a>.
+
+    <p>Whether the <i>alpha testing</i> looks good depends on your usecase, on your textures.
+
+    <p>To use alpha-testing, you can:</p>
+
+    <ol>
+      <li>Either make the alpha channel of your texture non-smooth, that is: every pixel should have alpha value equal to 0 or 1, never something in between.</li>
+      <li>Or you can force using alpha testing by <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">using <code>alphaChannel "TEST"</code> in X3D</a></li>
+    </ol>
+  </li>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
