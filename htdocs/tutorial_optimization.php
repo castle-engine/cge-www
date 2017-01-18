@@ -225,7 +225,7 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
-  <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D intepolation nodes.
+  <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
 
     <p>Note that there's no point doing this if your animation is from castle-anim-frames or M3D, they are already "baked". Although this baking will become optional (not forced) in the future.
 
@@ -342,32 +342,43 @@ a lot in large scenes (city or indoors).
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>Blending (partial transparency)</i> is used when you have a texture with
-a smooth alpha channel or use <code>Material.transparency</code>.
-Note that the engine detects the texture alpha channel type automatically
-<a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">but you can also specify it explicitly using the
+<p>We use <i>alpha blending</i> to render partially transparent
+shapes. Blending is used automatically if you have a texture with
+a smooth alpha channel, or if your <code>Material.transparency</code>
+is less than 1.
+
+<p>Note: Just because your texture has <i>some</i> alpha channel,
+it doesn't mean that we use blending. By default, the engine
+analyses the alpha channel contents, to determine whether it indicates
+alpha blending (<i>smooth</i> alpha channel), alpha testing (all alpha
+values are either "0" or "1"), or maybe it's opaque (all alpha values equal "1").
+<a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">You
+can always explicitly specify the texture alpha channel treatment using the
 <code>alphaChannel</code> field in X3D</a>.
 
-<p>Correctly rendering blending, in a general case, is a little costly.
-The transparent shapes have to be sorted in back-to-front order every frame.
-Hints to make it better:
+<p>Rendering blending is a little costly, in a general case.
+The transparent shapes have to be sorted every frame.
+Hints to make it faster:
 
 <ul>
-  <li><p>If possible, minimize the overhead of sorting by simply not having
-    too many transparent shapes.
+  <li><p>If possible, do not use many transparent shapes.
+    This will keep the cost of sorting minimal.
 
-  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php api_link('TBlendingSort', 'CastleBoxes.html#TBlendingSort'); ?> values for explanation. Sorting is not necessary if you never see multiple partially-transparent shapes on the same screen pixel.
+  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php api_link('TBlendingSort', 'CastleBoxes.html#TBlendingSort'); ?> for the explanation of possible <code>BlendingSort</code> values. Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel, otherwise sorting is a waste of time.
 
-    <p>Sorting is also not necessary <a href="x3d_extensions.php#section_ext_blending">if you use a <code>blendMode</code> for transparent shapes that makes the order of rendering irrelevant</a>. So, if you can, consider changing <code>blendMode</code> <i>and</i> turning off sorting.
+  <li><p>Sorting is also not necessary if you use some <i>blending modes</i> that make the order of rendering partially-transparent shapes irrelevant. For example, blending mode with <code>srcFactor = "src_alpha"</code> and <code>destFactor = "one"</code>. <a href="x3d_extensions.php#section_ext_blending">You can use a <code>blendMode</code> field in X3D to set a specific blending mode</a>. Of course, it will look differently, but maybe acceptably?
 
-  <li><p>Consider do you really need transparency by blending. Maybe you can work with transparency by <i>alpha testing</i>? <i>Alpha testing</i> means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, <i>alpha testing</i> cooperates nicely with <a href="x3d_extensions_shadow_maps.php">shadow maps</a>.
+    <p>So, consider changing the blending mode <i>and</i> then turning off sorting.
 
-    <p>Whether the <i>alpha testing</i> looks good depends on your usecase, on your textures.
+  <li><p>Finally, consider do you really need transparency by <i>blending</i>. Maybe you can work with a transparency by <i>alpha testing</i>? <i>Alpha testing</i> means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, <i>alpha testing</i> cooperates nicely with <a href="x3d_extensions_shadow_maps.php">shadow maps</a>.
+
+    <p>Whether the <i>alpha testing</i> looks good depends on your use-case, on your textures.
 
     <p>To use alpha-testing, you can:</p>
 
     <ol>
-      <li>Either make the alpha channel of your texture non-smooth, that is: every pixel should have alpha value equal to 0 or 1, never something in between.</li>
+      <li>Either make the alpha channel of your texture non-smooth, that is: every pixel should have alpha value equal to 0 or 1, never something in between. For example, in GIMP, increase the contrast (to maximum) of the alpha channel mask.</li>
+
       <li>Or you can force using alpha testing by <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">using <code>alphaChannel "TEST"</code> in X3D</a></li>
     </ol>
   </li>
