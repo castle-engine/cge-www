@@ -38,7 +38,7 @@ $toc = new TableOfContents(array(
   new TocItem('Specify octree properties (node <code>KambiOctreeProperties</code>, various fields <code>octreeXxx</code>)', 'ext_octree_properties', 1),
   new TocItem('Interpolate sets of colors (node <code>ColorSetInterpolator</code>)', 'ext_color_set_interpolator', 1),
 
-  new TocItem('Extensions compatible with <i>InstantPlayer</i> (<i>InstantReality</i> ', 'ext_avalon', 1),
+  new TocItem('Extensions compatible with <i>InstantPlayer</i> from <i>InstantReality</i>', 'ext_avalon', 1),
 
   new TocItem('Blending factors (node <code>BlendMode</code> and field <code>Appearance.blendMode</code>)', 'ext_blending', 2),
   new TocItem('Transform by explicit 4x4 matrix (<code>MatrixTransform</code> node)', 'ext_matrix_transform', 2),
@@ -81,7 +81,7 @@ $toc = new TableOfContents(array(
 
   <li><p><a href="http://wdune.ourproject.org/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
 
-  <li><p>Some extensions are <a href="#section_ext_avalon">designed for compatibility with InstantPlayer</a>.</p></li>
+  <li><p>Some extensions are <a href="#section_ext_avalon">compatible with InstantPlayer and InstantReality</a>.</p></li>
 </ul>
 
 <!--
@@ -826,12 +826,12 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
 <?php echo $toc->html_section(); ?>
 
-    <p>We handle some InstantPlayer extensions.
-    See <a href="http://instant-reality.com/">instant-reality</a>
+    <p>We handle some InstantReality extensions.
+    See <a href="http://instant-reality.com/">InstantReality webpage</a>
     and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
-    specifications of InstantPlayer extensions</a>.
+    specifications of InstantReality extensions</a>.
 
-    <p>Please note that I implemented this all looking at InstantPlayer
+    <p>Please note that I implemented this all looking at InstantReality
     specifications, which are quite terse. Please report
     any incompatibilities.
 
@@ -883,10 +883,10 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
   }
 </pre>
 
-    <p>BlendMode is compatible with InstantPlayer:
+    <p>BlendMode is compatible with InstantReality:
     <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
-    BlendMode specification of InstantPlayer</a>. We support a subset
-    of InstantPlayer fields.
+    BlendMode specification of InstantReality</a>. We support a subset
+    of InstantReality fields.
 
 <?php echo $toc->html_section(); ?>
 
@@ -920,7 +920,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     <p>Logger, extremely useful debugger when playing with
     VRML / X3D routes and events. This is based on,
     and should be quite compatible,
-    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">InstantPlayer <code>Logger</code> node</a>.
+    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">InstantReality <code>Logger</code> node</a>.
     (Except our interpretation of <code>logFile</code>, which is probably
     quite different, see below.)</p>
 
@@ -942,7 +942,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>The idea is simple: whatever is sent to <code>write</code>
     input event is logged on the console. <code>write</code> event has special type,
-    called <code>XFAny</code> (also following InstantPlayer) that allows to receive <i>any</i>
+    called <code>XFAny</code> (also following InstantReality) that allows to receive <i>any</i>
     VRML field type.</p>
 
     <p>Other properties allow to control logging better.
@@ -968,7 +968,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     is predictable, and should never overwrite your data.
 
     <p>These security measures were added by my implementation &mdash;
-    InstantPlayer spec simply says that <code>logFile</code> is the name of the file,
+    InstantReality spec simply says that <code>logFile</code> is the name of the file,
     I don't know how they handled security problems with logFile.
 
 <?php echo $toc->html_section(); ?>
@@ -983,8 +983,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     shaders and such.
 
     <p><i>Compatibility with
-    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">InstantPlayer Teapot</a></i>:
-    we support <code>size</code> and <code>solid</code> fields from InstantPlayer.
+    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">InstantReality Teapot</a></i>:
+    we support <code>size</code> and <code>solid</code> fields from InstantReality.
     The geometry orientation and dimensions is the same (although our actual mesh
     tries to be a little better :) ).
     Fields <code>texCoord</code> and <code>manifold</code> are our own (Kambi engine)
@@ -1037,7 +1037,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">InstantPlayer Plane node</a>.
+    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">InstantReality Plane node</a>.
     You should instead use <code>Rectangle2D</code> node from X3D 3.2 when possible,
     this is implemented only for compatibility.</p>
 
