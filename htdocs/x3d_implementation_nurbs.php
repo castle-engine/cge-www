@@ -44,7 +44,7 @@ ignoring <code>trimmingContour</code>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Also basic VRML 97 NURBS nodes (defined in <i>VRML 97 Amendment 1</i> specification) are handled: <code>NurbsSurface</code>, <code>NurbsCurve</code>, <code>NurbsPositionInterpolator</code>.</p>
+<p>Also basic VRML 97 NURBS nodes (defined in <a href="http://www.web3d.org/documents/specifications/14772-1/V2.1/index.html"><i>VRML 97 Amendment 1</i> specification</a>) are handled: <code>NurbsSurface</code>, <code>NurbsCurve</code>, <code>NurbsPositionInterpolator</code>.</p>
 
 <p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.</p>
 

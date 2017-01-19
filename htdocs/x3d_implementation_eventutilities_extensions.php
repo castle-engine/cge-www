@@ -16,7 +16,8 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>A simple event utility for setting/observing a boolean value in various
+<p><code>Toggler</code> <?php echo x3d_node_api_link('Toggler'); ?>
+ is simple event utility for setting/observing a boolean value in various
 ways. Something like a standard X3D <code>BooleanToggle</code> on steroids.</p>
 
 <?php echo node_begin("Toggler  : X3DChildNode");

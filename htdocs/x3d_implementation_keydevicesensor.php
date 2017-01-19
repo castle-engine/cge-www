@@ -24,7 +24,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>All: <?php echo x3d_node_link('KeySensor'); ?> and
+<p>Both nodes of this component are supported:
+<?php echo x3d_node_link('KeySensor'); ?> and
 <?php echo x3d_node_link('StringSensor'); ?>.
 
 <p><i>TODO</i>: for now, only 8-bit ASCII characters are passed

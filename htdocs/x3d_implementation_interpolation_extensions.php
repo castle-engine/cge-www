@@ -18,8 +18,9 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>As an extension, we add the <code>ColorSetInterpolator</code> node,
-that generates <code>MFColor</code> values.</p>
+<p>As an extension, we add the <code>ColorSetInterpolator</code>
+<?php echo x3d_node_api_link('ColorSetInterpolator'); ?>
+ node, that generates <code>MFColor</code> values.</p>
 
 <?php echo
   node_begin('ColorSetInterpolator : X3DInterpolatorNode');
@@ -53,8 +54,9 @@ or <code>Color.color</code> values.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>As an extension, we add the <code>VectorInterpolator</code> node,
-that generates <code>MFFloat</code> values. This is
+<p>As an extension, we add the <code>VectorInterpolator</code>
+<?php echo x3d_node_api_link('VectorInterpolator'); ?>
+ node, that generates <code>MFFloat</code> values. This is
 <a href="http://doc.instantreality.org/documentation/nodetype/VectorInterpolator/">compatible with InstantReality</a>.</p>
 
 <?php echo
@@ -116,13 +118,19 @@ standard X3D interpolator nodes (that use linear interpolation between values)
 and to X3D <code>Spline*Interpolator</code> nodes (that use Catmull-Rom splines),
 but these ones use <i>cubic Bezier curves</i>.
 
-<p><code>CubicBezierPositionInterpolator</code> is equivalent to standard
-<?php echo x3d_node_link('PositionInterpolator'); ?>, except using
-cubic Bezier curve instead of linear interpolation.
-<code>CubicBezier2DOrientationInterpolator</code> is equivalent to standard
-<?php echo x3d_node_link('OrientationInterpolator'); ?>, except using
-cubic Bezier curve instead of linear interpolation, and simplifying parameters
-for rotations in 2D.
+<ol>
+  <li><code>CubicBezierPositionInterpolator</code>
+    <?php echo x3d_node_api_link('CubicBezierPositionInterpolator'); ?>
+     is equivalent to standard
+    <?php echo x3d_node_link('PositionInterpolator'); ?>, except using
+     cubic Bezier curve instead of linear interpolation.
+  <li><code>CubicBezier2DOrientationInterpolator</code>
+    <?php echo x3d_node_api_link('CubicBezier2DOrientationInterpolator'); ?>
+     is equivalent to standard
+    <?php echo x3d_node_link('OrientationInterpolator'); ?>, except using
+     cubic Bezier curve instead of linear interpolation, and simplifying parameters
+    for rotations in 2D.
+</ol>
 
 <p>These nodes are particularly useful when converting
 <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
