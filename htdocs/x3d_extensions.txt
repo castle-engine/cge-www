@@ -285,3 +285,24 @@ ShaderTexture : X3DTextureNode {
   MFNode   []       effects         []          # [Effect]; defined in X3DTextureNode
   SFString []       defaultTexCoord "BOUNDS2D"  # ["BOUNDS2D"|"BOUNDS3D"]
 }
+
+# See http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_blending
+BlendMode {
+  SFString   [in,out]      srcFactor   "src_alpha"  # [none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]
+  SFString   [in,out]      destFactor  "one_minus_src_alpha"  # [none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]
+  SFColor    [in,out]      color       1 1 1
+  SFFloat    [in,out]      colorTransparency  0
+}
+
+# See http://castle-engine.sourceforge.net/x3d_implementation_eventutilities_extensions.php
+Toggler  : X3DChildNode {
+  SFBool     [in,out]      status      FALSE
+  SFBool     [in,out]      notStatus   TRUE
+  XFAny      [in]          toggle                  # the type/value send here is ignored
+  XFAny      [in]          set                     # the type/value send here is ignored
+  XFAny      [in]          reset                   # the type/value send here is ignored
+  SFBool     [out]         changed                 # always sends TRUE
+  SFBool     [out]         on                      # always sends TRUE
+  SFBool     [out]         off                     # always sends TRUE
+  SFBool     [in,out]      enabled     TRUE
+}
