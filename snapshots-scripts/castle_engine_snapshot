@@ -219,10 +219,6 @@ do_docs ()
   echo '---------------------------------------------------------------'
   echo 'Making docs:'
   "${CASTLE_BINARY_PATH}"castle_engine_snapshot_remake_docs
-
-  echo '---------------------------------------------------------------'
-  echo 'Making reference using PasDoc:'
-  "${CASTLE_BINARY_PATH}"castle_engine_snapshot_remake_reference
 }
 
 # main code ------------------------------------------------------------------

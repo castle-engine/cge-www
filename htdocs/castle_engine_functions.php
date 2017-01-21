@@ -48,7 +48,7 @@ if (CASTLE_PREVIEW) {
 define('CASTLE_FINAL_URL', 'http://castle-engine.sourceforge.net/');
 define('KAMBI_NO_HOME_LINK', true);
 if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
-  define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/reference/html/');
+  define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
 } else {
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
 }
