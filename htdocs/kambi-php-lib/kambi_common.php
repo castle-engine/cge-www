@@ -198,9 +198,14 @@ define_if_needed('IS_GEN_LOCAL', false);
 define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
 define_if_needed('HTML_VALIDATION', false);
 
-if (IS_GEN_LOCAL)
-{
-  $dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH) . 'www/htdocs/';
+if (IS_GEN_LOCAL) {
+  $engine_trunk_dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
+  if ($engine_trunk_dir === FALSE) {
+    // assuming that current dir is cge-www
+    $dir = 'htdocs/';
+  } else {
+    $dir = $engine_trunk_dir . 'www/htdocs/';
+  }
   chdir($dir) or exit("Cannot change directory to \"$dir\"");
 }
 
