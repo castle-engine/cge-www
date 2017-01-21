@@ -2,7 +2,6 @@
 set -eu
 
 # Source this script for mk_offline_docs bash function.
-# Needs CASTLE_ENGINE_PATH defined to work.
 #
 # Create offline version of a subset of our WWW page.
 #
@@ -28,7 +27,12 @@ mk_offline_docs ()
   local OUTPUT_FILE_SUBDIR
   local SOURCE_PHP
 
-  local CASTLE_ENGINE_HTDOCS="$CASTLE_ENGINE_PATH"www/htdocs/
+  # Use htdocs from current dir, or require $CASTLE_ENGINE_PATH to be defined
+  if [ -d htdocs ]; then
+    local CASTLE_ENGINE_HTDOCS=`pwd`/htdocs/
+  else
+    local CASTLE_ENGINE_HTDOCS="$CASTLE_ENGINE_PATH"www/htdocs/
+  fi
 
   for OUTPUT_FILE in "$@"; do
     if `stringoper IsSuffix .html "$OUTPUT_FILE"`; then
