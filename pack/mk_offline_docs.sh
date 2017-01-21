@@ -35,8 +35,12 @@ mk_offline_docs ()
   fi
 
   for OUTPUT_FILE in "$@"; do
-    if `stringoper IsSuffix .html "$OUTPUT_FILE"`; then
-      SOURCE_PHP=`stringoper ChangeFileExt "$OUTPUT_FILE" .php`
+    # Like ExtractFileExt from $OUTPUT_FILE --- get (last) extension, including the dot
+    local OUTPUT_FILE_EXTENSION=".${OUTPUT_FILE##*.}"
+
+    if [ "$OUTPUT_FILE_EXTENSION" = '.html' ]; then
+      # change $OUTPUT_FILE extension from .html to .php
+      SOURCE_PHP="`basename "$OUTPUT_FILE" .html`".php
       echo -n "Offline docs: ${OUTPUT_FILE}: "
       php -q "${CASTLE_ENGINE_HTDOCS}${SOURCE_PHP}" --gen-local --locally-avail "$@" > "${OUTPUT_PATH}${OUTPUT_FILE}"
       echo 'done.'
@@ -52,7 +56,7 @@ mk_offline_docs ()
         fi
       fi
     else
-      OUTPUT_FILE_SUBDIR=`stringoper ExtractFilePath "${OUTPUT_FILE}"`
+      OUTPUT_FILE_SUBDIR="`dirname "${OUTPUT_FILE}"`"/
       mkdir -p "${OUTPUT_PATH}${OUTPUT_FILE_SUBDIR}"
       cp "${CASTLE_ENGINE_HTDOCS}${OUTPUT_FILE}" "${OUTPUT_PATH}${OUTPUT_FILE_SUBDIR}"
       echo 'Offline docs:' "${OUTPUT_FILE}" ': created by copying'
