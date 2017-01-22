@@ -172,30 +172,6 @@ do_castlewindow_backends_compile ()
   do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_TEMPLATE
 }
 
-# ----------------------------------------------------------------------------
-
-do_engine_tests ()
-{
-  echo '---------------------------------------------------------------'
-  echo 'Runing tests (auto-tests, with engine in -dRELEASE mode):'
-
-  # TODO: hm, actually this doesn't recompile engine with -dRELEASE now.
-
-  cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/tests/
-  make clean -C  ../
-  make       -C  ../
-  ./compile_console.sh -dNO_WINDOW_SYSTEM
-  ./test_castle_game_engine -a
-
-  echo '---------------------------------------------------------------'
-  echo 'Runing tests (auto-tests, with engine in -dDEBUG mode):'
-
-  make clean -C  ../
-  # let engine be compiled by compile_console.sh, in debug mode
-  ./compile_console.sh -dNO_WINDOW_SYSTEM
-  ./test_castle_game_engine -a
-}
-
 # main code ------------------------------------------------------------------
 
 do_svn_update
@@ -203,7 +179,6 @@ do_compile_tool
 do_compile_snapshot_programs
 do_engine_examples
 do_castlewindow_backends_compile
-do_engine_tests
 
 echo '---------------------------------------------------------------'
 echo 'Setting www-data permissions:'
