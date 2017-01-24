@@ -660,8 +660,10 @@ if ($main_page) echo facebook_header();
      to the current page.
      The $page_basename is added at the end, if not already there.
      It will be set as global $castle_page_path.)
-   - 'social_share_image' (string, name of image in images/original_size/
-     to be used as Facebook share image (og:image))
+   - 'social_share_image' (string,
+     name of image to be used as Facebook share image (og:image);
+     relative to in images/original_size/ , unless it's an absolute URL,
+     with a protocol like http[s] etc.)
 */
 function castle_header($a_page_title, array $parameters = array())
 {
@@ -671,8 +673,14 @@ function castle_header($a_page_title, array $parameters = array())
     $common_header_parameters['meta_description'] = $parameters['meta_description'];
   }
   if (!empty($parameters['social_share_image'])) {
+    $social_share_image_result = parse_url($parameters['social_share_image']);
+    if (isset($social_share_image_result['scheme'])) {
+      $social_share_image_url = $parameters['social_share_image'];
+    } else {
+      $social_share_image_url = CURRENT_URL . 'images/original_size/' . $parameters['social_share_image'];
+    }
     $common_header_parameters['bonus_head_html'] =
-      '<meta property="og:image" content="' . CURRENT_URL . 'images/original_size/' . $parameters['social_share_image'] . '"/>';
+      '<meta property="og:image" content="' . $social_share_image_url . '"/>';
   }
   common_header($a_page_title, $common_header_parameters);
 
