@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('User interface and direct 2D drawing');
+tutorial_header('User interface and 2D drawing');
 ?>
 
 <p>Contents:

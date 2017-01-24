@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Simple loading of 3D models');
+tutorial_header('Loading, displaying a scene (simple loading of 3D models)');
 
 $toc = new TableOfContents(
   array(

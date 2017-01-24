@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Display a window');
+tutorial_header('Start: Display a window');
 ?>
 
 <p>You need to initialize a rectangular area on the screen

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-tutorial_header('Quick 2D game (getting to know window events)');
+tutorial_header('Quick 2D game (basic window events)');
 
 $toc = new TableOfContents(
   array(

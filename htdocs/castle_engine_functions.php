@@ -156,7 +156,7 @@ $castle_sitemap = array(
       'documentation' => array('title' => 'Getting Started'),
       'tutorial_intro' => array('title' => 'Tutorial',
         'sub' => array(
-          'tutorial_window' => array('title' => 'Display a window'),
+          'tutorial_window' => array('title' => 'Start: Display a window'),
           'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
           'tutorial_load_3d' => array('title' => 'Loading, displaying a scene'),
           'tutorial_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
