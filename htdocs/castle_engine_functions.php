@@ -599,7 +599,14 @@ function castle_toc_from_sitemap()
 
   $result = '<ul>';
   foreach ($page_map['sub'] as $menu_item_page => $menu_item) {
-    $result .=  '<li><a href="' . en_page_url($menu_item_page) . '">' .
+
+    if (isset($menu_item['url'])) {
+      $menu_item_url = $menu_item['url'];
+    } else {
+      $menu_item_url = en_page_url($menu_item_page);
+    }
+
+    $result .=  '<li><a href="' . $menu_item_url . '">' .
       $menu_item['title'] . '</a></li>';
   }
   $result .= '</ul>';
