@@ -33,7 +33,6 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \
-  main_link_size/castle_game_engine_icon.png \
   main_link_size/darkest_before_dawn_2.png \
   main_link_size/mountains_of_fire_screen_1.png \
   main_link_size/hydra_battles_screen_best.png \
@@ -50,8 +49,7 @@ ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_PROGRAM_LINK) \
   $(ALL_OS_ICONS) \
   $(ALL_MAIN_LINK) \
-  castle_game_engine_icon.png \
-  main_link_size/castle_game_engine_icon.png
+  castle_game_engine_icon.png
 
 all: $(ALL_TARGETS)
 
@@ -99,24 +97,8 @@ main_link_size/%: original_size/%
 
 # engine icon processing -----------------------------------------------------
 
-ENGINE_ICON := ../../../castle-engine/doc/logo/castle_game_engine_icon.svg
-
-# Generate PNG versions from SVG.
-# Note that for WWW engine icon, we generate non-transparent PNG file.
-# That's because IE on M$, well, you guessed it --- it can't reliably handle
-# PNG transparency. So non-transparent PNG is safer.
-
-castle_game_engine_icon.png: $(ENGINE_ICON)
-	inkscape --export-width=256 --export-height=256 \
-	  --export-background=#FFFFFF \
-	  --export-background-opacity=1.0 \
-	  $< --export-png=$@
-
-main_link_size/castle_game_engine_icon.png: $(ENGINE_ICON)
-	inkscape --export-width=256 --export-height=256 \
-	  --export-background=#efdfae \
-	  --export-background-opacity=1.0 \
-	  $< --export-png=$@
+castle_game_engine_icon.png: ../../../castle-engine/doc/logo/castle_game_engine_icon.png
+	cp -f $< $@
 
 # OS icons -------------------------------------------------------------------
 
