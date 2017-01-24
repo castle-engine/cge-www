@@ -11,7 +11,7 @@ $toc = new TableOfContents(
     new TocItem('Portable: standalone, mobile, web browser plugin', 'portable'),
     new TocItem('Graphic features and effects (shadows, bump mapping...)', 'graphic'),
     new TocItem('Scene manager and comfortable API', 'api'),
-    new TocItem('And much more!', 'api'),
+    new TocItem('And much more!', 'more'),
   )
 );
 
@@ -35,7 +35,7 @@ $toc = new TableOfContents(
   <li><p>We support a wide range of formats for 3D and 2D data.
     <ul>
       <li>Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. VRML/X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others.</p></li>
+      <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others.</li>
     </ul>
     <p>Our <?php echo a_href_page('tutorial', 'tutorial_intro'); ?> describes a lot of ways to use 3D and 2D objects,
     for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
@@ -61,7 +61,7 @@ $toc = new TableOfContents(
   <li><b>Animations</b> are supported,
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
     interactive animation interpolated at runtime,
-    or precalculated animation for fast playback.</li>
+    or precalculated animation for fast playback.
 
     <?php
     echo castle_thumbs(array(
@@ -85,7 +85,7 @@ $toc = new TableOfContents(
       <li><?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> (rendering and other processing of images on GPU).
     </ul>
     <!--,
-    < ?php api_link('CastleDDS', 'CastleDDS.html'); ? > --!>
+    < ?php api_link('CastleDDS', 'CastleDDS.html'); ? > -->
     </li>
 
   <li>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
@@ -145,7 +145,7 @@ $toc = new TableOfContents(
 
 <ul>
   <li><b>Scene manager</b> is used for centralized 3D world handling,
-    with <b>custom viewports</b> possible.</li>
+    with <b>custom viewports</b> possible.
 
     <?php
     echo castle_thumbs(array(
@@ -159,7 +159,7 @@ $toc = new TableOfContents(
     <?php echo a_href_page('Our shadow maps are very comfortable to use',
     'x3d_extensions_shadow_maps'); ?>, and shadows from multiple light
     sources are correctly rendered.
-    We also have experimental <i>Variance Shadow Maps</i> implementation.</li>
+    We also have experimental <i>Variance Shadow Maps</i> implementation.
 
     <?php
     echo castle_thumbs(array(
@@ -333,7 +333,6 @@ $toc = new TableOfContents(
     games we have developed using Castle Game Engine', 'all_programs'); ?> and their
     sources (for example <a href="https://github.com/castle-engine/">on GitHub
     Castle Game Engine organization</a>).
-    </li>
 
     <?php
     echo castle_thumbs(array(
@@ -367,7 +366,7 @@ $toc = new TableOfContents(
     without any rendering (like TCastleSceneCore), these are of course useful too
     (e.g. to write ray-tracers).
 
-  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler. We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p></li>
+  <li><p>The engine is developed for the <a href="http://freepascal.org/">Free Pascal Compiler</a>, an open-source cross-platform compiler. We have <a href="http://lazarus.freepascal.org/">Lazarus</a> components for RAD development, although the core engine doesn't depend on Lazarus LCL and you can develop full games with pure FPC (we have our own OpenGL window management unit, if you want). The whole engine is 100% clean Object Pascal code.</p>
 
     <?php
     echo castle_thumbs(array(
