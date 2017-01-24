@@ -14,7 +14,7 @@ echo '<img src="images/castle_game_engine_icon.png"
 echo pretty_heading("More documentation");
 ?>
 
-<p>To learn the engine, our most important documents are:</p>
+<p>To <b>learn the engine</b>, our most important documents are:</p>
 
 <ul>
   <li><?php echo a_href_page('Manual', 'manual_intro') ?>, including
@@ -30,8 +30,8 @@ echo pretty_heading("More documentation");
 </ul>
 
 
-<p>The engine uses a cross-platform <b>Object Pascal language</b> and tools (<a href="http://freepascal.org/">FPC</a>, <a href="http://www.lazarus-ide.org/">Lazarus</a>).<br>
-If you'd like to learn about the Object Pascal:
+<p>The engine uses a cross-platform <i>Object Pascal language</i> and tools (<a href="http://freepascal.org/">FPC</a>, <a href="http://www.lazarus-ide.org/">Lazarus</a>).<br>
+If you'd like to <b>learn the Object Pascal</b>:
 
 <ul>
   <li>We have a <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">Quick Introduction to Modern Object Pascal</a> (<a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.pdf">PDF version</a>) (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>). If you're a programmer, already familiar with common concepts like variables and classes, then this quick Pascal guide may be very useful to you:)
@@ -39,7 +39,7 @@ If you'd like to learn about the Object Pascal:
   <li>Many more resources are available on <a href="http://wiki.freepascal.org/">FPC and Lazarus Wiki</a>.
 </ul>
 
-<p>More documentation about the engine is available:
+<p>Even <b>more documentation about the engine</b> is available:
 <?php echo castle_toc_from_sitemap(); ?>
 
 <?php
