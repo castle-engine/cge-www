@@ -33,10 +33,13 @@ $toc = new TableOfContents(
 
 <ul>
   <li><p>We support a wide range of formats for 3D and 2D data.
+
     <ul>
-      <li>Our main scene format is <b><?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. VRML/X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li>While VRML/X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D/2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others.</li>
+      <li><p>Our main scene format is <b><?php echo a_href_page('X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
+      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others. We also fully support older versions of the X3D standard: <b>VRML 1.0</b> and <b>VRML 2.0</b>.
+      </li>
     </ul>
+
     <p>Our <?php echo a_href_page('tutorial', 'tutorial_intro'); ?> describes a lot of ways to use 3D and 2D objects,
     for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
 
@@ -50,18 +53,23 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>You can use <b>any 3D modeler</b> to design your 3D and 2D data.
+  <li><p>You can use <b>any 3D modeler</b> to design your 3D and 2D data.
     <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
-    In part, that's because VRML and X3D are open and popular 3D
-    formats, and decent exporters for them exist in practically every 3D
-    authoring tool. For detecting
+    In part, that's because X3D (and it's predecessor, VRML) is an open and popular 3D format,
+    and decent exporters for it exist in practically every 3D authoring tool.
+    For detecting
     <?php echo a_href_page('"placeholders" on levels', 'creating_data_levels'); ?>
     you can configure the detection method to match your authoring tool.
 
-  <li><b>Animations</b> are supported,
+    <p>In case of Blender,
+    we have a <a href="creating_data_blender.php">description of how to create and export data</a>
+    along with some custom exporters (but to export the static 3D data from Blender,
+    you can just use the standard X3D exporter!).
+
+  <li><p><b>Animations</b> are supported,
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
     interactive animation interpolated at runtime,
-    or precalculated animation for fast playback.
+    or a "precalculated" animation (for fastest playback, but at the cost of using more memory).
 
     <?php
     echo castle_thumbs(array(
@@ -99,7 +107,7 @@ $toc = new TableOfContents(
     <?php api_link('CastleFonts', 'CastleFonts.html'); ?>.
     </li>
 
-  <li><b>Saving</b> the current state of 3D/2D world (VRML/X3D node graph)
+  <li><b>Saving</b> the current state of 3D/2D world (X3D node graph)
     to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
     You can even use it to make your own 3D modeller on top of our engine.
     Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
@@ -188,7 +196,7 @@ $toc = new TableOfContents(
         (see <?php api_link('CastleGLShaders', 'CastleGLShaders.html'); ?> unit).
         But usually you don't need to use them, because...</li>
       <li>You can
-        <?php echo a_href_page('design and control GLSL shaders inside VRML/X3D',
+        <?php echo a_href_page('design and control GLSL shaders inside X3D',
         'x3d_implementation_shaders'); ?>.
         So GLSL shaders are fully available
         for model designers, programmer doesn't have to do anything.</li>
@@ -296,7 +304,7 @@ $toc = new TableOfContents(
     using <?php echo a_href_page('OpenAL', 'openal'); ?>,
     with intelligent sound source management,
     supporting WAV and OggVorbis formats.
-    Includes <?php echo a_href_page('VRML/X3D integration ("Sound" component of X3D specification)', 'x3d_implementation_sound'); ?>, so content creators
+    Includes <?php echo a_href_page('X3D integration ("Sound" component of X3D specification)', 'x3d_implementation_sound'); ?>, so content creators
     can define sound sources themselves.</li>
 
   <li><?php echo a_href_page('view3dscene', 'view3dscene'); ?> tool to view
@@ -344,7 +352,7 @@ $toc = new TableOfContents(
 
   <li>We have ready window classes (<code>TCastleWindow</code>)
     and Lazarus components (<code>TCastleControl</code>) to make simple
-    VRML/X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
+    X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;
     we have various <b>Lazarus components</b>.</li>
 
@@ -416,7 +424,7 @@ UNUSED:
     dialogs</b> that are implemented using native controls (GTK 2 or WinAPI).</li>
 
   <li><b>Collada, 3DS, MD3, Wavefront OBJ, Spine</b> file formats are also supported.
-    They are internally converted into the VRML/X3D nodes graph,
+    They are internally converted into the X3D nodes graph,
     which means that they get all the optimizations for rendering,
     and 3D content from all file formats can be mixed (for 3D editing tools
     and such).</li>
