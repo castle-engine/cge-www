@@ -85,11 +85,18 @@ they process the rendered screen in the given order.</p>
 <code>"shaders"</code> field. This works exactly like the standard X3D
 <code>"Appearance.shaders"</code>, by selecting a first supported shader.
 Right now our engine supports only GLSL (OpenGL shading language) shaders
-inside <code>ComposedShader</code> nodes, see <?php echo a_href_page(
-'the general overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>
- and <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/shaders.html">X3D
-"Programmable shaders component" specification</a> and of course
-the <a href="http://www.opengl.org/documentation/glsl/">GLSL documentation</a>.</p>
+inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
+
+<ul>
+  <li><?php echo a_href_page('The overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>.
+  <li><a href="https://www.opengl.org/sdk/docs/man4/">The GLSL function reference</a>.
+    Be careful: the reference linked here describes both GLSL and OpenGL API.
+    You can ignore the functions named <code>glXxx</code>,
+    they are part of the OpenGL API,
+    and they not useful to a shader author.
+  <li><a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL description at Wikipedia</a> and
+    <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">GLSL description at Khronos wiki</a>.
+</ul>
 
 <p>The shader inside <code>ScreenEffect</code> is always linked with a library
 of useful GLSL functions:.</p>

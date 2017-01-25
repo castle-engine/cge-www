@@ -52,8 +52,19 @@ in particular with <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 
 <p><?php echo x3d_node_link('ComposedShader'); ?> and
 <?php echo x3d_node_link('ShaderPart'); ?> nodes
-allow you to write shaders in the <a href="http://www.opengl.org/documentation/glsl/">OpenGL shading language (GLSL)</a>.
+allow you to write shaders in the <i>OpenGL shading language (GLSL)</i>.
 These are standard X3D nodes to replace the default browser rendering with shaders.
+To learn GLSL, see:
+
+<ul>
+  <li><a href="https://www.opengl.org/sdk/docs/man4/">The GLSL function reference</a>.
+    Be careful: the reference linked here describes both GLSL and OpenGL API.
+    You can ignore the functions named <code>glXxx</code>,
+    they are part of the OpenGL API,
+    and they not useful to a shader author.
+  <li><a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL description at Wikipedia</a> and
+    <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">GLSL description at Khronos wiki</a>.
+</ul>
 
 <p>If you're interested in shaders, we strongly encourage you to
 try also <?php echo a_href_page('our compositing shaders extensions for X3D, with <code>Effect</code> and related nodes',
