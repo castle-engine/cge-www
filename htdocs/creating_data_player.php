@@ -11,7 +11,7 @@ with links to documentation for every attribute.
   <li><i>Every</i> attribute is optional, so in practice
     there's no need to specify them all in your files. Use only the ones
     where you need to change the defaults.
-  <li>See <?php echo a_href_page('tutorial about player', 'tutorial_player'); ?>
+  <li>See <?php echo a_href_page('the manual chapter "Player"', 'manual_player'); ?>
     for notes how to use this from your game code.
 </ul>
 

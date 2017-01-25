@@ -1,1 +1,1 @@
-<?php header('Location: tutorial_2d_ui_custom_drawn.php'); ?>
+<?php header('Location: manual_2d_ui_custom_drawn.php');

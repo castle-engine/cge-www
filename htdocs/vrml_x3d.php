@@ -36,7 +36,7 @@ and open them with our
     for 3D applications. <!-- It is the way to build and modify
     the 3D content in your applications. -->
     Every X3D node corresponds to a Pascal class with appropriate fields,
-    and you can freely <a href="tutorial_scene.php#section_building_and_editing">create and modify X3D nodes at runtime</a>.
+    and you can freely <a href="manual_scene.php#section_building_and_editing">create and modify X3D nodes at runtime</a>.
     <!--
     The fact that it has an associated file format
     (actually, more than once &mdash; XML encoding, classic encoding...)

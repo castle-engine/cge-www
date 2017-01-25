@@ -5,7 +5,7 @@ creating_data_header('Sound');
 
 <p>Below is a sample sound configuration,
 with links to documentation for every attribute.
-See <?php echo a_href_page('tutorial about sounds', 'tutorial_sound'); ?>
+See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
  for information how to initialize sound repository from such XML configuration.
 </p>
 

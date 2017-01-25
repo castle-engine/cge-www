@@ -1,1 +1,1 @@
-<?php header('Location: tutorial_window.php'); ?>
+<?php header('Location: manual_window.php'); ?>

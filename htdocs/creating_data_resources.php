@@ -26,7 +26,7 @@ with links to documentation for every attribute.
     (indicating <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
     class), there are other resource types (for creatures and items)
     with a little different properties.
-  <li>See <?php echo a_href_page('tutorial about resources', 'tutorial_resources'); ?>
+  <li>See <?php echo a_href_page('manual about resources', 'manual_resources'); ?>
     for information how to initialize resources (creatures and items) from such files.
 </ul>
 

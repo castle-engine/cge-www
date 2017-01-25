@@ -19,7 +19,7 @@ with links to documentation for every attribute.
 <ul>
   <li>(Almost) every attribute is optional, so in practice
     there's no need to specify them all in your <code>level.xml</code> files.
-  <li>See <?php echo a_href_page('tutorial about level', 'tutorial_game_level'); ?>
+  <li>See <?php echo a_href_page('manual chapter "Loading game level"', 'manual_game_level'); ?>
     for information how to initialize levels from such files.
 </ul>
 

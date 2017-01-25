@@ -40,8 +40,8 @@ $toc = new TableOfContents(
       </li>
     </ul>
 
-    <p>Our <?php echo a_href_page('tutorial', 'tutorial_intro'); ?> describes a lot of ways to use 3D and 2D objects,
-    for example see <?php echo a_href_page('simple loading of 3D models', 'tutorial_load_3d'); ?>.
+    <p>Our <?php echo a_href_page('manual', 'manual_intro'); ?> describes a lot of ways to use 3D and 2D objects,
+    for example see <?php echo a_href_page('simple loading of 3D models', 'manual_load_3d'); ?>.
 
   <li>We have an optimized <b>renderer for OpenGL and OpenGLES2</b>.
 
@@ -87,8 +87,8 @@ $toc = new TableOfContents(
     RGBE format (Radiance HDR format).
     See:
     <ul>
-      <li><?php echo a_href_page('tutorial about standard 2D controls', 'tutorial_2d_user_interface'); ?>,
-      <li><?php echo a_href_page('tutorial about drawing custom 2D stuff', 'tutorial_player_2d_controls'); ?>,
+      <li><?php echo a_href_page('manual about standard 2D controls', 'manual_2d_user_interface'); ?>,
+      <li><?php echo a_href_page('manual about drawing custom 2D stuff', 'manual_player_2d_controls'); ?>,
       <li><?php api_link('CastleImages', 'CastleImages.html'); ?> (reading, writing, processing images on CPU),
       <li><?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> (rendering and other processing of images on GPU).
     </ul>
@@ -103,7 +103,7 @@ $toc = new TableOfContents(
     and to use fonts even when <i>FreeType</i> library is not available.
     You can also use colorful fonts from a texture.
     Font rendering can allow international characters in UTF-8.
-    See <?php echo a_href_page('tutorial about text and fonts', 'tutorial_text'); ?> and unit
+    See <?php echo a_href_page('manual about text and fonts', 'manual_text'); ?> and unit
     <?php api_link('CastleFonts', 'CastleFonts.html'); ?>.
     </li>
 
@@ -134,7 +134,7 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'tutorial_mobile'); ?>.
+  <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_mobile'); ?>.
 
   <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
 
@@ -274,7 +274,7 @@ $toc = new TableOfContents(
       <li>You can extend it in many ways.
       <li>You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from <?php api_link('T3D', 'Castle3D.T3D.html'); ?>.
     </ul>
-    <p><?php echo a_href_page('Engine tutorial', 'tutorial_resources_extending'); ?> contains detailed information about this.
+    <p><?php echo a_href_page('Engine manual', 'manual_resources_extending'); ?> contains detailed information about this.
 
   <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> which is very cool for creating 2D animations.
 
@@ -300,7 +300,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>Comfortable <b><?php echo a_href_page('3D sound engine', 'tutorial_sound'); ?></b>,
+  <li>Comfortable <b><?php echo a_href_page('3D sound engine', 'manual_sound'); ?></b>,
     using <?php echo a_href_page('OpenAL', 'openal'); ?>,
     with intelligent sound source management,
     supporting WAV and OggVorbis formats.

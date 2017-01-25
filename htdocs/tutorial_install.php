@@ -1,1 +1,1 @@
-<?php header('Location: documentation.php'); ?>
+<?php header('Location: documentation.php');

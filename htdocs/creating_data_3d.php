@@ -30,9 +30,9 @@ See <code>examples/fps_game/</code> data for comments,
 especially the level file
 <code>examples/fps_game/data/example_level/example_level_final.x3dv</code>.
 
-<p>Orientation: see <?php echo a_href_page('Which way is up?', 'tutorial_up'); ?>
+<p>Orientation: see <?php echo a_href_page('Which way is up?', 'manual_up'); ?>
  chapter of the
-tutorial for in-depth discussion how you should orient your model. In
+manual for in-depth discussion how you should orient your model. In
 short, use standard orientation of your 3D modeller, and the developer
 can make the engine adjust to it. If you use Blender, just use
 standard Blender orientation (+Z is up, follow the names like "top",

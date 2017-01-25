@@ -26,7 +26,7 @@ Contents:
 <?php echo $toc->html_section(); ?>
 
 <p>For developers, the decription how to use 3D sound in <i>Castle Game Engine</i>
-is in <?php echo a_href_page('tutorial about sound', 'tutorial_sound'); ?>.
+is in <?php echo a_href_page('manual about sound', 'manual_sound'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

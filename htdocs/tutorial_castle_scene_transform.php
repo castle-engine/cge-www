@@ -1,1 +1,1 @@
-<?php header('Location: tutorial_scene.php'); ?>
+<?php header('Location: manual_scene.php');

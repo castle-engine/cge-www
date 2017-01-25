@@ -137,7 +137,7 @@ $castle_sitemap = array(
   'documentation' => array('title' => 'Documentation',
     'dropdown' => array(
       'documentation' => array('title' => 'Getting Started'),
-      'tutorial_intro' => array('title' => 'Tutorial'),
+      'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Pascal Language', 'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html'),
@@ -154,45 +154,45 @@ $castle_sitemap = array(
       /*   ) */
       /* ), */
       'documentation' => array('title' => 'Getting Started'),
-      'tutorial_intro' => array('title' => 'Tutorial',
+      'manual_intro' => array('title' => 'Manual',
         'sub' => array(
-          'tutorial_window' => array('title' => 'Start: Display a window'),
-          'tutorial_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
-          'tutorial_load_3d' => array('title' => 'Loading, displaying a scene'),
-          'tutorial_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
-          'tutorial_mobile' => array('title' => 'Mobile and cross-platform games'),
-          'tutorial_high_level_3d_classes' => array('title' => 'High-level classes for games',
+          'manual_window' => array('title' => 'Start: Display a window'),
+          'manual_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
+          'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
+          'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
+          'manual_mobile' => array('title' => 'Mobile and cross-platform games'),
+          'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
             'sub' => array(
-              'tutorial_game_level' => array('title' => 'Loading game level'),
-              'tutorial_player' => array('title' => 'Player'),
-              'tutorial_resources' => array('title' => 'Defining creatures and items'),
-              'tutorial_resources_using_existing' => array('title' => 'Using creatures and items'),
-              'tutorial_resources_extending' => array('title' => 'Extending creatures and items classes'),
+              'manual_game_level' => array('title' => 'Loading game level'),
+              'manual_player' => array('title' => 'Player'),
+              'manual_resources' => array('title' => 'Defining creatures and items'),
+              'manual_resources_using_existing' => array('title' => 'Using creatures and items'),
+              'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
             ),
           ),
-          'tutorial_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
+          'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
             'sub' => array(
-              'tutorial_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
-              'tutorial_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
-              'tutorial_text' => array('title' => 'Text and fonts'),
-              'tutorial_on_screen_menu' => array('title' => 'On-screen menu'),
-              'tutorial_notifications' => array('title' => 'Notifications'),
+              'manual_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
+              'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
+              'manual_text' => array('title' => 'Text and fonts'),
+              'manual_on_screen_menu' => array('title' => 'On-screen menu'),
+              'manual_notifications' => array('title' => 'Notifications'),
             )
           ),
-          'tutorial_sound' => array('title' => 'Sound'),
-          'tutorial_screenshots' => array('title' => 'Screenshots'),
-          'tutorial_network' => array('title' => 'Network and downloading'),
-          'tutorial_recording_movies' => array('title' => 'Recording movies'),
-          'tutorial_log' => array('title' => 'Logging'),
-          'tutorial_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
-          'tutorial_key_mouse' => array('title' => 'Key/mouse shortcuts'),
-          'tutorial_optimization' => array('title' => 'Optimization and profiling'),
-          'tutorial_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
-          'tutorial_miscellaneous' => array('title' => 'Miscellaneous knowledge',
+          'manual_sound' => array('title' => 'Sound'),
+          'manual_screenshots' => array('title' => 'Screenshots'),
+          'manual_network' => array('title' => 'Network and downloading'),
+          'manual_recording_movies' => array('title' => 'Recording movies'),
+          'manual_log' => array('title' => 'Logging'),
+          'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
+          'manual_key_mouse' => array('title' => 'Key/mouse shortcuts'),
+          'manual_optimization' => array('title' => 'Optimization and profiling'),
+          'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
+          'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
             'sub' => array(
-              'tutorial_up' => array('title' => 'Which way is up?'),
-              'tutorial_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
-              'tutorial_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControl'),
+              'manual_up' => array('title' => 'Which way is up?'),
+              'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
+              'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControl'),
             )
           ),
         ),
@@ -354,8 +354,8 @@ function _castle_bootstrap()
 {
   kambi_bootstrap();
   global $castle_sitemap;
-  castle_sitemap_book_correct('tutorial',
-    $castle_sitemap['documentation']['sub']['tutorial_intro']['sub']);
+  castle_sitemap_book_correct('manual',
+    $castle_sitemap['documentation']['sub']['manual_intro']['sub']);
   castle_sitemap_book_correct('creating_data',
     $castle_sitemap['documentation']['sub']['creating_data_intro']['sub']);
 }

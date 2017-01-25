@@ -4,9 +4,9 @@
    will be extended with 'chapters' list (based on castle_sitemap). */
 global $castle_books;
 $castle_books = array(
-  'tutorial' => array(
-    'title' => 'Tutorial',
-    'path' => array('documentation', 'tutorial_intro'),
+  'manual' => array(
+    'title' => 'Manual',
+    'path' => array('documentation', 'manual_intro'),
   ),
   'creating_data' => array(
     'title' => 'Creating Game Data',
@@ -179,14 +179,14 @@ function book_footer($book_name)
    $parameters allowed fields same as for book_header:
    - 'social_share_image'
    - 'subheading_text' */
-function tutorial_header($a_page_title, array $parameters = array())
+function manual_header($a_page_title, array $parameters = array())
 {
-  book_header('tutorial', $a_page_title, $parameters);
+  book_header('manual', $a_page_title, $parameters);
 }
 
-function tutorial_footer()
+function manual_footer()
 {
-  book_footer('tutorial');
+  book_footer('manual');
 }
 
 /* Echo a header.
