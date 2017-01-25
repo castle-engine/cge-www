@@ -57,6 +57,8 @@ automatically propose to install it.
     <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-win32.zip" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
     <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-release.apk" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Android" src="images/os_icons/android.png"><br> &nbsp;<br>Android</a></td>
   </tr></tbody></table>
+
+  <?php echo download_donate_footer(); ?>
 </div>
 
 <div style="margin-top: 2em;">

@@ -179,6 +179,8 @@ you have appropriate libraries installed on your system.
 
 <p>It's really easy, and if you have any questions &mdash; please <a href="<?php echo FORUM_URL; ?>">ask on the forum</a>!
 </div>
+
+<?php echo download_donate_footer(); ?>
 </div>
 
 <?php
