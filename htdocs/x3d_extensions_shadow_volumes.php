@@ -56,7 +56,7 @@ with <i>shadow maps</i>):</p>
 
   <li><p><b>It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in totally different ways.</b> On one hand, shadow volumes are more expensive as they require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, there is no need for a costly per-pixel shader over every shadow receiver (as in shadow maps).</p></li>
 
-  <li><p>Our current shadow volumes implementation allows for only <b>one light casting shadow volumes</b>. (This may be improved some day. Give us a shout at the forum if needed. Contributions or <a href="donate.php">donations</a> toward this goal are welcome.)<!-- But shadow volumes become impractical anyway for more than a couple of lights, as each additional light requires an extra rendering pass.)--></p></li>
+  <li><p>Our current shadow volumes implementation allows for only <b>one light casting shadow volumes</b>. (This may be improved some day. Give us a shout at the forum if needed and <a href="donate.php">support the engine development</a> to make this happen sooner.)<!-- But shadow volumes become impractical anyway for more than a couple of lights, as each additional light requires an extra rendering pass.)--></p></li>
 
   <li><p>Note that <b>it's perfectly fine to use both shadow volumes and shadow maps in a single scene</b>. <!--So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.--></p></li>
 

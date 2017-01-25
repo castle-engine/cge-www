@@ -292,8 +292,8 @@ Lazarus, so you could design the inside of
 <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> and
 even <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
  in the same comfortable way as you design
-a Lazarus form with standard Lazarus LCL components. Contributions
-or <a href="donate.php">donations</a> towards this goal are welcome!
+a Lazarus form with standard Lazarus LCL components.
+<a href="donate.php">Support the engine development</a> to make this happen sooner!
 
 <?php echo $toc->html_section(); ?>
 

@@ -59,6 +59,7 @@ define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wi
 define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
 define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
+define('PATREON_URL',         'https://www.patreon.com/preview/b86e359f8dee497a9c0e7bb822a17c9e');
 
 function reference_link()
 {
@@ -314,7 +315,8 @@ $castle_sitemap = array(
 
   'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum', 'url' => FORUM_URL),
 
-  'donate' => array('title' => 'Donate'),
+  // Do not show, for now we focus on Patreon funding.
+  // 'donate' => array('title' => 'Donate'),
 
   'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'Games and Tools',
     'sub' => array(
@@ -760,7 +762,10 @@ function castle_header($a_page_title, array $parameters = array())
           Castle Game Engine
         </a>
       </div>
-      ' . google_custom_search_box() . '
+      ' .
+      // TODO: No idea now where to place this, so it doesn't interfere with "patreon"
+      // google_custom_search_box() .
+      '
       ' . _castle_header_menu($path[0]) . '
     </div>
   </nav>';
@@ -863,8 +868,9 @@ function download_donate_footer()
 {
   return '
     <hr/>
-      <div style="float: left">' . paypal_button(false) . '</div>
-      <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>';
+      Please <a href="' . PATREON_URL . '">support the engine development on Patreon!</a>';
+      /* <div style="float: left">' . paypal_button(false) . '</div> */
+      /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>'; */
 }
 
 /* This echoes a list to download for all platforms where I compile

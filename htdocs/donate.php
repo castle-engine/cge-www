@@ -1,5 +1,10 @@
 <?php
 require_once 'castle_engine_functions.php';
+header('Location: ' . PATREON_URL);
+die();
+
+/* For now, don't show the rest of this page. We only redirect to Patreon. */
+
 castle_header('Donate', array(
   'path' => array('donate')
 ));
