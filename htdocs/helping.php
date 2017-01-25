@@ -15,7 +15,6 @@ $toc = new TableOfContents(
     new TocItem('For everyone', 'everyone'),
     new TocItem('For 3D worlds creators', 'creators'),
     new TocItem('For ObjectPascal developers', 'developers'),
-      new TocItem('Proposed (larger) development tasks', 'development_tasks', 1),
     new TocItem('For Blender experts', 'blender'),
     new TocItem('For Linux distros package maintainers', 'distros'),
   ));
@@ -91,186 +90,24 @@ proposed tasks:</p>
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.
+
+  <li><p>Contribute code! Remove a bug, add a feature! (Not the other way around:)
+
+    <p>Code changes are best submitted as
+    <a href="https://github.com/castle-engine/castle-engine/pulls">pull requests on GitHub</a>.
+    <i>Pull requests</i> are really easy for you to create (fork our <a href="https://github.com/castle-engine/castle-engine/">repository</a>,
+    commit stuff to your fork,
+    then create a pull request by clicking on GitHub),
+    and for me to apply.
+
+    <p>If you prefer to do things the traditional way,
+    you can also just create a patch file (versus recent GIT or SVN state)
+    and <a href="https://github.com/castle-engine/castle-engine/issues">create
+    a new issue with the patch file attached</a>.
+
+    <p>If you're looking for a feature to implement, <a href="planned_features.php">take
+    a look at our planned features</a>.
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Many areas of the engine could use the help of an interested developer.
-If you'd like to join, or just send some patches improving something,
-please contact us, for example through <a href="<?php echo FORUM_URL; ?>">forum</a>.
-
-<p id="large_planned_features">Below are some ideas for development.
-Some of them are not trivial, although they may be easy
-if you have an expertise in a particular area (or you're willing to gain
-such expertise :) This list isn't exhaustive of course, there are many things
-we want to achieve, and you most likely have even more ideas of your own.
-If you don't have time to work on them, but you badly need them, consider also
-<?php echo a_href_page('donating', 'donate'); ?> to a particular goal.
-
-<ul>
-  <li>
-    <p><b>Scripting in JavaScript</b></p>
-    <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
-  </li>
-
-  <li>
-    <p><b>Physics integration</b></p>
-    <p>Integrate our engine with a physics engine. Most probably Bullet, which will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually ODE. Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
-  </li>
-
-  <li>
-    <p><b>WWW browser plugin</b></p>
-    <p>Most probably using <a href="https://developer.mozilla.org/en-US/docs/Plugins">NPAPI, the cross-browser API for plugins</a>. Our CastleWindow code will become handy for this, as it can deal with WinAPI / XWindows window handle (this is what we get from plugin to initialize our plugin viewport).</p>
-  </li>
-
-  <li>
-    <p><b>Use Cocoa under Mac OS X</b></p>
-
-    <p>We already have a native look and feel, and easy installation,
-    under Mac OS X, see
-    <a href="<?php echo CURRENT_URL; ?>news.php?id=devel-2013-04-19">relevant news</a>
-    and <a href="<?php echo CURRENT_URL; ?>macosx_requirements.php">docs for Mac OS X</a>.
-    Our programs no longer have to use X11 and GTK under Mac OS X.
-    Still, current solution is not optimal:
-    we use LCL with Carbon under the hood. Carbon is deprecated and only
-    32-bit (Cocoa should be used instead), and depending on LCL has it's
-    own problems (mouse look is not smooth with LCL message loop).
-
-    <p>The proposed task is to implement nice Cocoa backend
-    in <code>CastleWindow</code> unit. Contributions are welcome.
-    This is an easy and rewarding task for a developer interested in Mac OS X.
-  </li>
-
-  <li>
-    <p><b>Support Material.mirror field for OpenGL rendering</b></p>
-    <p>An easy way to make planar (on flat surfaces) mirrors. Just set Material.mirror field to something > 0 (setting it to 1.0 means it's a perfect mirror, setting it to 0.5 means that half of the visible color is coming from the mirrored image, and half from normal material color).</p>
-    <p>Disadvantages: This will require an additional rendering pass for such shape (so expect some slowdown for really large scenes). Also your shape will have to be mostly planar (we will derive a single plane equation by looking at your vertexes).</p>
-    <p>Advantages: The resulting mirror image looks perfect (there's no texture pixelation or anything), as the mirror is actually just a specially rendered view of a scene. The mirror always shows the current scene (there are no problems with dynamic scenes, as mirror is rendered each time).</p>
-    <p>This will be some counterpart to current way of making mirrors by RenderedTexture (on flat surfaces) or GeneratedCubeMap (on curvy surfaces).</p>
-  </li>
-
-  <li>
-    <p><b>Advanced networking support</b></p>
-    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="http://castle-engine.sourceforge.net/news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
-
-    <p>Things missing are listed below (some of them may done by adding
-    integration with <a href="http://lnet.wordpress.com/">LNet</a> or
-    <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
-    intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>).
-
-    <ol>
-      <li><p><b>Support for <code>https</code></b>. By sending patches to add it to
-        FpHttpClient. Or by using LNet or Synapse (they both include https
-        support).
-
-      <li><p><b>Support for <code>ftp</code></b>. By using LNet or Synapse, unless
-        something ready in FPC appears in the meantime.
-        Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
-
-      <li><p><b>Support for HTTP basic authentication</b>. This can be done in our
-        CastleDownload unit. Although it would be cleaner to implement it
-        at FpHttpClient level, see
-        <a href="http://bugs.freepascal.org/view.php?id=24335">this
-        proposal</a>.
-        Or maybe just use LNet or Synapse, I'm sure they have some support
-        for it.
-
-      <li><p><b>Ability to cancel the ongoing download</b>.
-        Add a "cancel" button to CastleWindowProgress for this.
-        See the task below (background downloading) for ideas how to do it.
-
-      <li><p><b>Ability to download resources in the background</b>,
-        while the game is running. Technically this is connected to the previous
-        point: being able to reliably cancel the download.
-
-        <p>There is a question how to do it.
-        We can use <code>TThread</code> for downloads,
-        maybe even a couple of threads each for a separate download.
-        We can use API that doesn't block (like LNet or Sockets,
-        with Timeout > 0).
-        We can do both.
-
-        <p>Using separate thread(s) for download seems like a good idea,
-        the synchronization is not difficult as the thread needs only
-        to report when it finished work.
-
-        <p>The difficult part is reliably breaking the download.
-        Using something like <code>TThread.Terminate</code> will not do anything
-        good while the thread is hanging waiting for socket data
-        (<code>TThread.Terminate</code> is a graceful way to close the thread,
-        it only works as often as the thread explicitly checks
-        <code>TThread.Terminated</code>). Hacks like <code>Windows.TerminateThread</code>
-        are 1. OS-specific 2. very dirty,
-        as <code>TThread.Execute</code> has no change to release allocated memory
-        and such.
-        The bottom line: <i>merely using TThread does <b>not</b> give
-        you a reliable and clean way to break the thread execution at any time</i>.
-
-        <p>This suggests that you <i>have</i> to use non-blocking
-        API (so LNet or Sockets is the way to go,
-        FpHttpClient and Synapse are useless for this)
-        if you want to reliably break the download.
-        Using it inside a separate thread may still be a good idea,
-        to not hang the main event loop to process downloaded data.
-        So the correct answer seems <i>use LNet/Sockets (not
-        FpHttpClient/Synapse), with non-blocking API, within a TThread;
-        thanks to non-blocking API you can guarantee checking
-        <code>TThread.Terminated</code> at regular intervals</i>.
-
-        <p>I'm no expert in threads and networking, so if anyone has
-        any comments about this (including just comfirming my analysis)
-        please let me (Michalis) know :)
-
-        <!--
-        http://wiki.freepascal.org/Example_of_multi-threaded_application:_array_of_threads
-        http://www.freepascal.org/docs-html/rtl/classes/tthread.html
-        http://stackoverflow.com/questions/4044855/how-to-kill-a-thread-in-delphi
-        http://stackoverflow.com/questions/1089482/a-proper-way-of-destroying-a-tthread-object
-        http://stackoverflow.com/questions/3788743/correct-thread-destroy
-        -->
-
-      <li><p><b>Support X3D <code>LoadSensor</code> node</b>.
-
-      <li><p><b>Caching on disk of downloaded data</b>.
-        Just like WWW browsers, we should be able to cache
-        resources downloaded from the Internet.
-        <ul>
-          <li>Store each resource under a filename in cache directory.
-          <li>Add a function like ApplicationCache, similar existing ApplicationData
-            and ApplicationConfig, to detect cache directory.
-            For starters, it can be ApplicationConfig (it cannot be
-            ApplicationData, as ApplicationData may be read-only).
-            Long-term, it should be something else (using the same
-            directory as for config files may not be adviced,
-            e.g. to allow users to backup config without backuping cache).
-            See standards suitable for each OS (for Linux, and generally Unix
-            (but not Mac OS X) see <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a>;
-            specific Microsoft, Apple specs may be available
-            for Windows and Mac OS X).
-          <li>Probably it's best to store a resource under a filename
-            calculated by MD5 hash on the URL.
-          <li>For starters, you can just make the max cache life
-            a configurable variable for user.
-            Long-term: Like WWW browsers, we should honor various HTTP headers that
-            say when/how long cache can be considered valid,
-            when we should at least check with server if something changed,
-            when we should just reload the file every time.
-          <li>Regardless of above, a way to reload file forcibly disregarding
-            the cache should be available (like Ctrl+Shift+R in WWW browsers).
-          <li>A setting to control max cache size on disk, with some reasonable
-            default (look at WWW browsers default settings) should be available.
-        </ul>
-
-        <p>Note: don't worry about caching in memory, we have this already,
-        for all URLs (local files, data URIs, network resources).
-  </ol>
-</ul>
-
-<p>I'm sure you can find other ideas for development.
-Is there something you miss from our game engine?
-Is there a particular feature you miss from 3D formats (X3D, Collada etc.)
-support?
-Some useful tool, or maybe a useful example?
 
 <?php echo $toc->html_section(); ?>
 
