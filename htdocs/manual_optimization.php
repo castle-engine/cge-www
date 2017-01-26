@@ -18,6 +18,8 @@ $toc = new TableOfContents(
       new TocItem('Blending', 'blending', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
+      new TocItem('Detect memory leaks with HeapTrc (-gh)', 'heaptrc', 1),
+      new TocItem('Other tools', 'memory_other', 1),
   )
 );
 ?>
@@ -398,13 +400,13 @@ speed. There's a small document about it in engine sources, see
 
 <?php echo $toc->html_section(); ?>
 
-<p><b>To detect memory leaks, it's easiest to compile with FPC options
-<code>-gl -gh</code>.</b> <!--This automatically uses the special units
+<?php echo $toc->html_section(); ?>
+
+<p>To detect memory leaks, we advice to regularly compile your code with
+FPC options <code>-gl -gh</code>. <!--This automatically uses the special units
 <code>HeapTrc</code> and <code>LineInfo</code> in your program.-->
-At the program's exit, you will get a very useful report about
-the allocated and not freed memory blocks, with a stack track to the allocation call.
-Consider adding this to your <code>fpc.cfg</code>
-file (<?php echo FPC_CFG_DOCS; ?>):
+There are many ways to do this, for example you can
+add this to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
 
 <pre>
 #IFDEF DEBUG
@@ -413,6 +415,54 @@ file (<?php echo FPC_CFG_DOCS; ?>):
 #ENDIF
 </pre>
 
+<p>Then all the programs compiled in debug mode (with
+<code>castle-engine compile --mode=debug</code>,
+or with an explicit FPC option <code>-dDEBUG</code>)
+will automatically check for memory leaks.
+
+<p>The end result is that at the program's exit, you will get a very useful
+report about the allocated and not freed memory blocks,
+with a stack trace to the allocation call.
+This allows to easily detect and fix memory leaks.
+
+<p>If everything is OK, the output looks like this:
+
+<pre>
+Heap dump by heaptrc unit
+12161 memory blocks allocated : 2290438/2327696
+12161 memory blocks freed     : 2290438/2327696
+0 unfreed memory blocks : 0
+True heap size : 1212416
+True free heap : 1212416
+</pre>
+
+<p>But when you have a memory leak, it tells you about it,
+and tells you where the relevant memory was allocated, like this:
+
+<pre>
+Heap dump by heaptrc unit
+4150 memory blocks allocated : 1114698/1119344
+4099 memory blocks freed     : 1105240/1109808
+51 unfreed memory blocks : 9458
+True heap size : 851968
+True free heap : 834400
+Should be : 835904
+Call trace for block $00007F9B14E42980 size 44
+  $0000000000402A83 line 162 of xxx.lpr
+  ...
+</pre>
+
+<p>Note: when you exit with <code>Halt</code>,
+you will always have some memory leaks, that's unavoidable for now.
+You can ignore the "<i>Heap dump by heaptrc unit</i>" output in this case.
+<!-- the OS cleans up the memory of a terminated program anyway. -->
+
+<p>Note: In the future, we may add "-gh" automatically
+to the options added by the build tool in the debug mode.
+So programs compiled with <code>castle-engine compile --mode=debug</code>
+will automatically show this output.
+
+<?php echo $toc->html_section(); ?>
 
 <p>We do not have any engine-specific tool to measure memory usage or
 detect memory problems, as there are plenty of them available with
@@ -421,8 +471,8 @@ monitor that comes with your OS. See also Lazarus units
 like <code>LeakInfo</code>.
 
 <p>You can use full-blown memory profilers like
-valgrind's massif with FPC code (see section <i>"Profiling"</i> on this
-page about valgrind).
+valgrind's massif with FPC code (see section <i>"Profiling"</i> above
+on this page about valgrind).
 
 <?php
 manual_footer();
