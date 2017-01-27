@@ -1,10 +1,10 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Manual introduction');
+manual_header('Castle Game Engine Manual');
 ?>
 
-<p>This manual shows all the major parts of the
-<?php echo a_href_page('Castle Game Engine', 'index'); ?>.
+<!-- <p>This manual shows all the major parts of the -->
+<!-- < ?php echo a_href_page('Castle Game Engine', 'index'); ? >. -->
 <!-- engine,
 demonstrating how to make simple games and applications using -->
 <!-- shows how to make a simple 3D first-person game using -->
