@@ -512,6 +512,18 @@ span.news_title a { color: black; }
 .header_breadcrumbs a       { color: #5EB2E5; }
 .header_breadcrumbs a:hover { color: #39C; }
 
+.nav-tabs {
+  /* Separate brand from menu items on navbar */
+  clear: both;
+}
+/* Extra padding for navbar-collapse not needed, as we already have padding
+   from container-fluid.
+   This customization is necessary because of above "clear: both" on nav-tabs. */
+.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* --------------------------------------------------------------------------- */
 
 .donation_option {

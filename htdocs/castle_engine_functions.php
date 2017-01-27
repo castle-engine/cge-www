@@ -437,12 +437,15 @@ function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
-  $result = '<ul class="nav nav-tabs" style="clear: both">';
+  $result = '
+    <!-- Uncomment this for toggable navbar -->
+    <!--div class="collapse navbar-collapse" id="main-navbar-collapse-1" -->
+    <ul class="nav nav-tabs">';
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
     // output <li ...>
-    $result .= '<li role="presentation" class="';
+    $result .= '<li class="';
     if ($menu_item_page == $current_page) {
       $result .= ' active';
     }
@@ -520,7 +523,10 @@ function _castle_header_menu($current_page)
   unset($menu_item);
   unset($menu_item_page);
 
-  $result .= '</ul>';
+  $result .= '
+    </ul>
+    <!-- Uncomment this for toggable navbar -->
+    <!--/div-->';
 
   return $result;
 }
@@ -761,6 +767,15 @@ function castle_header($a_page_title, array $parameters = array())
   $rendered = '
   <nav class="navbar navbar-default">
     <div class="container-fluid">
+      <!-- Uncomment this for toggable navbar -->
+      <!--
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      -->
       <div class="navbar-header">
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           <img alt="" src="images/header_icon.png">
