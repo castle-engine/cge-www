@@ -776,6 +776,15 @@ function castle_header($a_page_title, array $parameters = array())
         <span class="icon-bar"></span>
       </button>
       -->
+
+      <ul class="nav nav-tabs navbar-right">
+        <li><a href="' . PATREON_URL . '" class="navbar-link">Support the engine on<br><img class="patreon-logo" src="images/patreonlogoorange_45px.png" alt="Patreon" /></a></li>
+      </ul>
+
+      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="images/patreonlogoorange.png" alt="Patreon" /></a></button-->
+
+      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="images/patreonlogoorange.png" alt="Patreon" /></a></p-->
+
       <div class="navbar-header">
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           <img alt="" src="images/header_icon.png">
@@ -790,6 +799,7 @@ function castle_header($a_page_title, array $parameters = array())
       '
       ' . _castle_header_menu($path[0]) . '
     </div>
+
     ' . $github_ribbon . '
   </nav>';
 

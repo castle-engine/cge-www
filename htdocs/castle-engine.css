@@ -514,7 +514,7 @@ span.news_title a { color: black; }
 
 .nav-tabs {
   /* Separate brand from menu items on navbar */
-  clear: both;
+  clear: left;
 }
 /* Extra padding for navbar-collapse not needed, as we already have padding
    from container-fluid.
@@ -522,6 +522,19 @@ span.news_title a { color: black; }
 .navbar-collapse {
   padding-left: 0;
   padding-right: 0;
+}
+
+.nav-tabs.navbar-right {
+  border-bottom: 0 none;
+  /* In default bootstrap, it is aligned to right only when
+     "min-width: @grid-float-breakpoint".
+     We want it always, as we don't use collapsing, so @grid-float-breakpoint
+     doesn't apply to us. */
+  float: right;
+}
+.patreon-logo {
+  height: 45px;
+  margin-top: 5px;
 }
 
 /* --------------------------------------------------------------------------- */

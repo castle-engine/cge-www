@@ -1,5 +1,5 @@
 <?php
-define('CASTLE_GITHUB_NAME', 'castle-engine');
+// define('CASTLE_GITHUB_NAME', 'castle-engine');
 
 require_once 'castle_engine_functions.php';
 require_once 'news_common.php';
