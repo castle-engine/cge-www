@@ -93,7 +93,7 @@ games from Michalis Kamburelis itch.io profile</a>.
 <div class="row">
   <?php program_image_link('view3dscene',
     'VRML / X3D browser, and a viewer for other 3D model formats
-    (Collada, 3DS, MD3, Wavefront OBJ, some others).
+    (Collada, 3DS, MD3, Wavefront OBJ, Spine...).
     Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
     Convert various models to VRML/X3D.',
     "view3dscene_2.0.0_screen_demo.png",

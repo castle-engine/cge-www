@@ -165,7 +165,7 @@ function facebook_header()
     <meta property="og:type" content="game" />
     <meta property="og:image" content="http://castle-engine.sourceforge.net/images/castle_game_engine_icon.png" />
     <meta property="og:url" content="http://castle-engine.sourceforge.net/" />
-    <meta property="og:description" content="An open-source 3D game engine, developed in modern Object Pascal, with excellent support for VRML X3D and many graphic effects. Also hosting view3dscene, our browser for VRML/X3D, Collada and other 3D models." />
+    <meta property="og:description" content="Free open-source 3D and 2D game engine with an excellent support for many formats (X3D, VRML, Spine...). Cross-platform: desktop, mobile (Android, iOS), web plugin. Many graphic effects: shadows, mirrors, shader effects. Using modern Object Pascal. The engine is the basis for view3dscene (our VRML / X3D browser), and numerous games." />
   ';
 }
 

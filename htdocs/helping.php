@@ -59,8 +59,8 @@ proposed tasks:</p>
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> or such.
   <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
   <li><p>Look into improving our documentation.
-    Our <?php echo a_href_page('VRML / X3D documentation', 'vrml_x3d'); ?>
-    is large, and always wants to be larger. Contributions describing
+    Our <?php echo a_href_page('scene graph (X3D) documentation', 'vrml_x3d'); ?>
+    is large, and wants to be larger. Contributions describing
     how something works, or how to do something practical, are welcome.
 
     <p><a href="<?php echo WIKI_URL; ?>">You can

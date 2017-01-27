@@ -12,7 +12,7 @@ global $disqus_form_already_done;
 $disqus_form_already_done = true;
 
 castle_header('Download', array(
-  'meta_description' => 'Free open-source 3D game engine. Supports a lot of 2D and 3D data formats, including VRML / X3D, Collada, Spine... Cross-platform, for standalone (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin... Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
+  'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin. Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
 ));
 ?>
 

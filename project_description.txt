@@ -26,7 +26,11 @@ Also home of view3dscene - our full-featured VRML/X3D browser. And also home of 
 
 - https://flattr.com/thing/398312/Castle-Game-Engine
 
-An open-source 3D game engine with an excellent support for VRML / X3D and many advanced graphic effects. Written in clean Object Pascal. The engine is the basis for our view3dscene (VRML / X3D browser), and "The Castle" (FPS game). Previously known as "Kambi VRML game engine".
+  An open-source 3D game engine with an excellent support for VRML / X3D and many advanced graphic effects. Written in clean Object Pascal. The engine is the basis for our view3dscene (VRML / X3D browser), and "The Castle" (FPS game). Previously known as "Kambi VRML game engine".
+
+  (CGE of Flattr not available anymore? If I'll find it, I would update it to:)
+
+  Free open-source 3D and 2D game engine with an excellent support for many formats (X3D, VRML, Spine...). Cross-platform: desktop, mobile (Android, iOS), web plugin. Many graphic effects: shadows, mirrors, shader effects. Using modern Object Pascal. The engine is the basis for view3dscene (our VRML / X3D browser), and numerous games.
 
 ------------------------------------------------------------------------------
 Description of project vrmlengine, used on

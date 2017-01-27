@@ -183,7 +183,7 @@ and Monte Carlo path tracing.
 
     <p>Anything that my code can read (see
     <?php echo a_href_page("view3dscene docs", "view3dscene"); ?>)
-    is accepted here. VRML / X3D are the best formats,
+    is accepted here. X3D and VRML are the best formats,
     we also read Collada and 3DS lights, for all other formats: only
     the headlight will shine over the scene.
 

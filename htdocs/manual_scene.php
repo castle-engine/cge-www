@@ -133,7 +133,7 @@ end;'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Once you load a scene, you can play a "named animation" on it, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (<?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?>,
+<p>Once you load a scene, you can play a "named animation" on it, using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (<?php echo a_href_page('X3D, VRML', 'vrml_x3d'); ?>,
 <?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
 <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, MD3).
 
@@ -440,7 +440,7 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 
 <?php echo $toc->html_section(); ?>
 
-<p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from VRML / X3D, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
+<p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from X3D, VRML, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
 
 <p>Do not be discouraged by the names of some classes starting with <code>T3D...</code> prefix, like <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>. These classes can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> to transform your 2D scenes, it works perfectly. (At some point, we will migrate to better names...)</p>
 

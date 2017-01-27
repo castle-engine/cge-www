@@ -8,7 +8,7 @@ PROFILE Interchange
 # This file will *not* be used by Castle Game Engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.
 #
-# This file may be used by other VRML / X3D browsers so that they are able
+# This file may be used by other VRML and X3D browsers so that they are able
 # to partially understand these extension nodes, or at least omit them
 # gracefullly.
 
