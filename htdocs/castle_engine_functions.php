@@ -752,6 +752,12 @@ function castle_header($a_page_title, array $parameters = array())
     $castle_sidebar = '';
   }
 
+  if (defined('CASTLE_GITHUB_NAME')) {
+    $github_ribbon = '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="github-ribbon"><img src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
+  } else {
+    $github_ribbon = '';
+  }
+
   $rendered = '
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -769,14 +775,11 @@ function castle_header($a_page_title, array $parameters = array())
       '
       ' . _castle_header_menu($path[0]) . '
     </div>
+    ' . $github_ribbon . '
   </nav>';
 
   if (CASTLE_PREVIEW) {
     $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_FINAL_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
-  }
-
-  if (defined('CASTLE_GITHUB_NAME')) {
-    $rendered .= '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="hidden-xs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
   }
 
   // make sure to start container-fluid for bootstrap container

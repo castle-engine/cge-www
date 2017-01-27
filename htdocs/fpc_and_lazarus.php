@@ -1,6 +1,4 @@
 <?php
-define('CASTLE_GITHUB_NAME', 'castle-engine');
-
 require_once 'castle_engine_functions.php';
 castle_header("Supported FPC and Lazarus versions", array(
   'path' => array('documentation'),

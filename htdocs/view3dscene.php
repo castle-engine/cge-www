@@ -37,7 +37,7 @@ echo castle_thumbs(array(
 
 <?php echo_standard_program_download('view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true); ?>
 
-<p>Don't forget to also <a href="demo_models.php">download our collection of demo models</a>.</p>
+<p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>
 
 <p>Documentation:</p>
 
