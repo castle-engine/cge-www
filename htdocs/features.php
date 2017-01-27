@@ -21,8 +21,8 @@ $toc = new TableOfContents(
 <div class="fixed-width-content">
 
 <img src="images/castle_game_engine_icon.png"
-    alt="Castle Game Engine icon"
-    style="float: right; clear: right; margin-top: 1em;" />
+  alt="Castle Game Engine icon"
+  class="engine-icon" />
 
 <?php echo pretty_heading('Castle Game Engine Features'); ?>
 

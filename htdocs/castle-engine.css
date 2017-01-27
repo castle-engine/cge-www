@@ -550,6 +550,15 @@ div.quote {
   margin-top: 60px;
 }
 
+.engine-icon {
+  float: right;
+  clear: right;
+  margin-top: 1em;
+}
+.has-github-ribbon .engine-icon {
+  margin-top: 60px;
+}
+
 /* books (manual and such) ------------------------------------------------- */
 
 .book-header {

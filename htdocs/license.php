@@ -7,7 +7,7 @@ castle_header("License", array(
 
 echo '<img src="images/castle_game_engine_icon.png"
   alt="Castle Game Engine icon"
-  style="float: right; clear: right; margin-top: 1em;" />';
+  class="engine-icon" />';
 
 echo pretty_heading($page_title);
 ?>

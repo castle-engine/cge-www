@@ -9,7 +9,7 @@ castle_header("Getting Started", array(
 
 echo '<img src="images/castle_game_engine_icon.png"
   alt="Castle Game Engine icon"
-  style="float: right; clear: right; margin-top: 1em;" />';
+  class="engine-icon" />';
 
 //echo pretty_heading('Castle Game Engine Documentation', VERSION_CASTLE_GAME_ENGINE, 'Getting Started');
 echo pretty_heading('Getting Started');
