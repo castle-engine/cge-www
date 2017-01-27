@@ -24,19 +24,19 @@ castle_header('Download', array(
             <div class="centered">
                 <h1>Castle Game Engine</h1>
 
-                <p>A free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-                3D/2D game engine for modern Object Pascal.</p>
+                <p>The free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+                3D and 2D game engine using modern Object Pascal!</p>
 
                 <ul>
                     <li>A lot of 3D and 2D formats supported
-                      (VRML / X3D<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, Wavefront OBJ, MD3,
+                      (X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
                       <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...).
                     <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
-                    <li>Optimized rendering with a lot of graphic effects.
+                    <li>Optimized rendering with a lot of graphic effects (shadows, mirrors, bump mapping, shader effects...).
                     <li>Build and edit your scene graph (X3D) at runtime.
                       <!--Load and save images and X3D graph as needed.-->
-                      You can create various processing and visualization tools!
-                    <li>Many optional components, like a comfortable API for standard 3D games with creatures and items.
+                      Create processing and visualization tools!
+                    <li>Many optional components, like a comfortable API for 3D games with creatures (with ready AI).
                 </ul>
             </div>
         </div>
