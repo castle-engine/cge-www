@@ -2,7 +2,7 @@
   (This page should be edited in php mode,
   mmm mode is too slowish for this page). */
 
-/* Copyright 2001-2016 Michalis Kamburelis.
+/* Copyright 2001-2017 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
