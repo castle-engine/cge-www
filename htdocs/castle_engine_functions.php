@@ -161,16 +161,6 @@ $castle_sitemap = array(
           'manual_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
           'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
           'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
-          'manual_mobile' => array('title' => 'Mobile and cross-platform games'),
-          'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
-            'sub' => array(
-              'manual_game_level' => array('title' => 'Loading game level'),
-              'manual_player' => array('title' => 'Player'),
-              'manual_resources' => array('title' => 'Defining creatures and items'),
-              'manual_resources_using_existing' => array('title' => 'Using creatures and items'),
-              'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
-            ),
-          ),
           'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
             'sub' => array(
               'manual_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
@@ -179,6 +169,21 @@ $castle_sitemap = array(
               'manual_on_screen_menu' => array('title' => 'On-screen menu'),
               'manual_notifications' => array('title' => 'Notifications'),
             )
+          ),
+          'manual_mobile' => array('title' => 'Mobile and cross-platform games',
+            'sub' => array(
+              'manual_build_tool' => array('title' => 'Build Tool', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
+              'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml examples', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
+            ),
+          ),
+          'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
+            'sub' => array(
+              'manual_game_level' => array('title' => 'Loading game level'),
+              'manual_player' => array('title' => 'Player'),
+              'manual_resources' => array('title' => 'Defining creatures and items'),
+              'manual_resources_using_existing' => array('title' => 'Using creatures and items'),
+              'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
+            ),
           ),
           'manual_sound' => array('title' => 'Sound'),
           'manual_screenshots' => array('title' => 'Screenshots'),
