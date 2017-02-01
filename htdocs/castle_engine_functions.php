@@ -700,8 +700,7 @@ function castle_header($a_page_title, array $parameters = array())
     $common_header_parameters['meta_description'] = $parameters['meta_description'];
   }
   if (!empty($parameters['social_share_image'])) {
-    $social_share_image_result = parse_url($parameters['social_share_image']);
-    if (isset($social_share_image_result['scheme'])) {
+    if (kambi_url_absolute($parameters['social_share_image'])) {
       $social_share_image_url = $parameters['social_share_image'];
     } else {
       $social_share_image_url = CURRENT_URL . 'images/original_size/' . $parameters['social_share_image'];

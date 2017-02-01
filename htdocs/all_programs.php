@@ -103,6 +103,11 @@ games from Michalis Kamburelis itch.io profile</a>.
     'Image viewer, handles many image formats (including some exotic ones: DDS, RGBE).',
     "glviewimage_dds.png", 'glviewimage'); ?>
 
+  <?php program_image_link("Curves Tool",
+    "Design a 2D curve, save it as XML, and use it in your own programs, e.g. to move something (camera, another object) along a smooth designed trajectory.",
+    'castle_curves.png',
+    "https://github.com/castle-engine/castle-engine/wiki/Curves-tool"); ?>
+
   <?php program_image_link('glplotter',
     'Plotting graphs (e.g. of functions).',
     "glplotter_screen_demo_1.png", 'glplotter_and_gen_function'); ?>

@@ -345,6 +345,12 @@ function current_www_a_href_size($link_title, $f_name)
     . (IS_GEN_LOCAL ? '': " (" . readable_file_size($f_name) . ")") . "</a>";
 }
 
+function kambi_url_absolute($url)
+{
+  $parse_url_result = parse_url($url);
+  return isset($parse_url_result['scheme']);
+}
+
 /* URL of desired page, i.e. page_name z doklejonym
    rozszerzeniem i ew. poprzedzone CURRENT_URL (jeśli strona
    generowana z IS_GEN_LOCAL odwołuje się do czegoś niedostępnego lokalnie).
@@ -373,9 +379,7 @@ function page_url($page_name, $hash_link, &$url_comment)
 
   $result = $page_name;
 
-  $parse_url_result = parse_url($result);
-
-  if (!isset($parse_url_result['scheme'])) {
+  if (!kambi_url_absolute($result)) {
     $already_has_extension = strpos($page_name, '.php') !== FALSE;
     if (!is_page_available_locally($result))
     {
