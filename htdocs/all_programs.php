@@ -49,8 +49,18 @@ games from Michalis Kamburelis itch.io profile</a>.
 <?php echo main_list_item("Games"); ?>
 
 <div class="row">
+  <?php program_image_link('Fire Madness',
+    'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is also available on GitHub<a>.',
+    'fire_madness.png',
+    'http://opengameart.org/forumtopic/fire-madness-top-down-shooter-bullet-hell'); ?>
+
+  <?php program_image_link('Escape from the Universe',
+    'Action shooter in the outer space with an incredible randomized storyline. For mobile devices.',
+    'escape_universe.png',
+    'http://cat-astrophe-games.com/'); ?>
+
   <?php program_image_link('Dragon Squash',
-    'Full-featured Android game where you defend beautiful animated castles from the dragons. With Google Games integration. Install for free from Google Play!',
+    'Android game where you defend beautiful animated castles. With Google Games integration and dragons.',
     'dragon_squash_screen_1.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash'); ?>
 
   <?php program_image_link('Dragon Spine',
