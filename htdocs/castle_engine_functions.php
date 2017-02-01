@@ -200,14 +200,20 @@ $castle_sitemap = array(
       ),
       'creating_data_intro' => array('title' => 'Creating Game Data',
         'sub' => array(
-          'creating_data_3d' => array('title' => '3D models'),
+          'creating_data_export' => array('title' => 'Exporting 3D and 2D models',
+            'sub' => array(
+              'creating_data_blender' => array('title' => 'Blender'),
+              'creating_data_3dsmax' => array('title' => '3ds Max'),
+              'creating_data_maya' => array('title' => 'Maya'),
+              'creating_data_spine' => array('title' => 'Spine', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Spine'),
+            )
+          ),
           'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
           'creating_data_levels' => array('title' => 'Levels'),
           'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
           'creating_data_player' => array('title' => 'Player configuration'),
           'creating_data_material_properties' => array('title' => 'Material properties configuration'),
           'creating_data_sound' => array('title' => 'Sound'),
-          'creating_data_blender' => array('title' => 'Blender'),
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),

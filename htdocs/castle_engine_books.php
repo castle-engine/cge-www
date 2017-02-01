@@ -50,7 +50,11 @@ function castle_sitemap_book_correct($book_name, &$sitemap_book_sub)
       // Do not show chapter numbers now.
       //$castle_books[$book_name]['chapters'][$chapter_basename]['number'] .
       $chapter['title'];
-    $previous_basename = $chapter_basename;
+    // If the chapter is an external URL link (like creating_data_spine),
+    // omit it from next/previous navigation.
+    if (empty($chapter['url'])) {
+      $previous_basename = $chapter_basename;
+    }
 
     if (isset($chapter['sub']))
     {
@@ -66,7 +70,11 @@ function castle_sitemap_book_correct($book_name, &$sitemap_book_sub)
           // Do not show chapter numbers now.
           //$castle_books[$book_name]['chapters'][$subchapter_basename]['number'] .
           $subchapter['title'];
-        $previous_basename = $subchapter_basename;
+        // If the chapter is an external URL link (like creating_data_spine),
+        // omit it from next/previous navigation.
+        if (empty($subchapter['url'])) {
+          $previous_basename = $subchapter_basename;
+        }
 
         $subchapter_number++;
       }

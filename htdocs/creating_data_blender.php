@@ -2,7 +2,7 @@
 define('CASTLE_GITHUB_NAME', 'cge-blender');
 
 require_once 'castle_engine_functions.php';
-creating_data_header('Creating data in Blender', array(
+creating_data_header('Exporting from Blender', array(
   'social_share_image' => 'blender_castle_anim_frames_export.png',
 ));
 
