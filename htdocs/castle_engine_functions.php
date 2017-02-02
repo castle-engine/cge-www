@@ -170,12 +170,6 @@ $castle_sitemap = array(
               'manual_notifications' => array('title' => 'Notifications'),
             )
           ),
-          'manual_mobile' => array('title' => 'Mobile and cross-platform games',
-            'sub' => array(
-              'manual_build_tool' => array('title' => 'Build Tool', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
-              'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml examples', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
-            ),
-          ),
           'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
             'sub' => array(
               'manual_game_level' => array('title' => 'Loading game level'),
@@ -183,6 +177,17 @@ $castle_sitemap = array(
               'manual_resources' => array('title' => 'Defining creatures and items'),
               'manual_resources_using_existing' => array('title' => 'Using creatures and items'),
               'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
+            ),
+          ),
+          'manual_mobile' => array('title' => 'Mobile and cross-platform games',
+            'sub' => array(
+              'manual_build_tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
+              'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
+              'manual_android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
+              //'manual_android_faq' => array('title' => 'Android FAQ (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-FAQ'),
+              'manual_android_components' => array('title' => 'Android integration components (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine'),
+              'manual_ios' => array('title' => 'iOS (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
+              //'manual_web_plugin' => array('title' => 'Web Plugin (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Web-Plugin'),
             ),
           ),
           'manual_sound' => array('title' => 'Sound'),
@@ -210,7 +215,7 @@ $castle_sitemap = array(
               'creating_data_blender' => array('title' => 'Blender'),
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
-              'creating_data_spine' => array('title' => 'Spine', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Spine'),
+              'creating_data_spine' => array('title' => 'Spine (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Spine'),
             )
           ),
           'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
@@ -225,8 +230,8 @@ $castle_sitemap = array(
       'modern_pascal_introduction' => array('title' => 'Modern Pascal Language', 'url' => 'http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html'),
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
-          'android' => array('title' => 'Android', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
-          'ios' => array('title' => 'iOS (iPhone, iPad)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
+          // 'android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
+          // 'ios' => array('title' => 'iOS (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
           'fpc_and_lazarus' => array('title' => 'Supported FPC and Lazarus versions'),
           'planned_features' => array('title' => 'Planned features'),
           'helping' => array('title' => 'Helping in engine development'),
