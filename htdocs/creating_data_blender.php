@@ -1,5 +1,6 @@
 <?php
-define('CASTLE_GITHUB_NAME', 'cge-blender');
+// It covers the "next" manual link...
+//define('CASTLE_GITHUB_NAME', 'cge-blender');
 
 require_once 'castle_engine_functions.php';
 creating_data_header('Exporting from Blender', array(
