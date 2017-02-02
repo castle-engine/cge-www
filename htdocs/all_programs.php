@@ -106,7 +106,8 @@ games from Michalis Kamburelis itch.io profile</a>.
     (Collada, 3DS, MD3, Wavefront OBJ, Spine...).
     Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
     Convert various models to VRML/X3D.',
-    "view3dscene_2.0.0_screen_demo.png",
+    //"view3dscene_2.0.0_screen_demo.png",
+    'castle_sunset.png',
     'view3dscene'); ?>
 
   <?php program_image_link('glViewImage',

@@ -32,7 +32,8 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
   program_link_size/castle_spine_screen_3.png \
   program_link_size/castle_curves.png \
   program_link_size/escape_universe.png \
-  program_link_size/fire_madness.png
+  program_link_size/fire_madness.png \
+  program_link_size/castle_sunset.png
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \
