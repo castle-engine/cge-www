@@ -153,6 +153,7 @@ PROTO KambiNavigationInfo [
   field SFNode  octreeDynamicCollisions    NULL
   field SFNode  octreeVisibleTriangles     NULL
   field SFNode  octreeCollidableTriangles  NULL
+  field SFNode  octreeStaticCollisions     NULL
   exposedField SFNode  headlightNode       NULL
 ] {
   NavigationInfo {

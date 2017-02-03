@@ -113,7 +113,7 @@ KambiNavigationInfo : NavigationInfo {
   SFNode []            octreeRendering            NULL    # only KambiOctreeProperties node
   SFNode []            octreeDynamicCollisions    NULL    # only KambiOctreeProperties node
   SFNode []            octreeVisibleTriangles     NULL    # only KambiOctreeProperties node
-  SFNode []            octreeCollidableTriangles  NULL    # only KambiOctreeProperties node
+  SFNode []            octreeStaticCollisions     NULL    # only KambiOctreeProperties node
   SFFloat    [in,out]      headBobbing             0.02   # [0, 1)
   SFFloat    [in,out]      headBobbingTime         0.5    # > 0
   SFNode     [in,out]      headlightNode           NULL   # [X3DLightNode]

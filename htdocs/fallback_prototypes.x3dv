@@ -176,6 +176,7 @@ PROTO KambiNavigationInfo [
   initializeOnly SFNode  octreeDynamicCollisions    NULL
   initializeOnly SFNode  octreeVisibleTriangles     NULL
   initializeOnly SFNode  octreeCollidableTriangles  NULL
+  initializeOnly SFNode  octreeStaticCollisions     NULL
   inputOutput    SFNode  headlightNode              NULL
 ] {
   NavigationInfo {

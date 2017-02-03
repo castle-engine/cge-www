@@ -335,7 +335,7 @@ octrees, we add new fields to <code>Shape</code> node:</p>
   node_field('SFNode', '[]', "octreeRendering", "NULL", "only KambiOctreeProperties node") .
   node_field('SFNode', '[]', "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
   node_field('SFNode', '[]', "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
-  node_field('SFNode', '[]', "octreeCollidableTriangles", "NULL", "only KambiOctreeProperties node") .
+  node_field('SFNode', '[]', "octreeStaticCollisions", "NULL", "only KambiOctreeProperties node") .
   node_end();
 ?>
 
