@@ -114,12 +114,12 @@ a <?php api_link('TTextureFontData', 'CastleFonts.TTextureFontData.html'); ?>
  instance to the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
  constructor. This allows to create the font data at runtime
  or <b>to use the font data embedded in a Pascal source code</b>.
-You can use the <code>texturefont2pascal</code> program (compile it from
-<code>castle_game_engine/tools/texturefont2pascal/texturefont2pascal.lpr</code>)
+You can use the <code>texture-font-to-pascal</code> program (compile it from
+<code>castle_game_engine/tools/texture-font-to-pascal/texture-font-to-pascal.lpr</code>)
 to convert a TTF file into a Pascal unit:
 
 <pre>
-texturefont2pascal --size 20 MyFontFile.ttf
+texture-font-to-pascal --size 20 MyFontFile.ttf
 </pre>
 
 <p>In response, it will create a unit called
@@ -144,7 +144,7 @@ texturefont2pascal --size 20 MyFontFile.ttf
 </ul>
 
 <p>The disadvantages are of course that you cannot easily edit the TTF anymore,
-you will need to rerun the <code>texturefont2pascal</code> command
+you will need to rerun the <code>texture-font-to-pascal</code> command
 and recompile your program to see the new font.
 
 <?php echo $toc->html_section(); ?>
@@ -176,12 +176,12 @@ begin
   finally FreeAndNil(Characters) end;
 end;'); ?>
 
-<p>If you use <code>texturefont2pascal</code> utility to embed fonts in
+<p>If you use <code>texture-font-to-pascal</code> utility to embed fonts in
 Pascal sources then just use it's parameter <code>--sample-text</code>
 to provide the additional (beyond simple ASCII) chars. Like this:
 
 <pre>
-texturefont2pascal --size 20 MyFontFile.ttf --sample-text 'string containing all my weird chars, in UTF-8:)'
+texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text 'string containing all my weird chars, in UTF-8:)'
 </pre>
 
 <p>Note that you need to make sure to provide the sample characters encoded
@@ -189,7 +189,7 @@ in UTF-8.
 Make sure your source code is in UTF-8 (edit it using an UTF-8
 capable editor, consider adding an UTF-8 BOM,
 consider using <code>{$CODEPAGE UTF8}</code>,
-see <a href="http://www.freepascal.org/docs-html/prog/progsu88.html">FPC source codepage</a> option). If you use <code>texturefont2pascal</code> then make
+see <a href="http://www.freepascal.org/docs-html/prog/progsu88.html">FPC source codepage</a> option). If you use <code>texture-font-to-pascal</code> then make
 sure that your command-line, and/or your script interpreter, correcly
 handle UTF-8 (on Linux, this should be a breeze, since everything works with UTF-8
 out of the box; on modern Windows it should also work).
