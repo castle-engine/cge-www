@@ -10,7 +10,7 @@ creating_data_header('Exporting from Maya', array(
 <p>The simplest option to export static meshes to our engine from the latest Maya version is to export as an <i>OBJ</i> format.
 
 <ul>
-  <li>You may need to enable it first, by going to the <i>Windows -&gt; Settings/Preferences -&gt; Plug-in Manager</i>. Find the <code>objExport.mll</code> on the list, and check <i>Loaded</i> (,aybe <i>Auto load</i> too, to have it active always).
+  <li>You may need to enable it first, by going to the <i>Windows -&gt; Settings/Preferences -&gt; Plug-in Manager</i>. Find the <code>objExport.mll</code> on the list, and check <i>Loaded</i> (check <i>Auto load</i> too, to have it active always).
   <li>Then you can export using the <i>File -&gt; Export All...</i> menu item, and choosing <i>OBJExport</i> as the file type.
   <li>See the screenshots below for help.
 </ul>
