@@ -208,7 +208,7 @@ $toc = new TableOfContents(
         and programmable pipelines. In the latter case,
         the whole shading is expressed through GLSL shaders
         (that you can override with <code>ComposedShader</code>
-        or exhance with <code>Effect</code>, see links above).</li>
+        or enhance with <code>Effect</code>, see links above).</li>
     </ul>
 
     <?php
@@ -333,6 +333,16 @@ $toc = new TableOfContents(
     See <?php api_link('TVideo', 'CastleVideos.TVideo.html'); ?>,
     <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?>
     and related classes.
+
+  <li>You can read <b>maps</b> designed using
+    <a href="http://www.mapeditor.org/">Tiled Map Editor</a>.
+    A default visualization (as a 2D control) is included in the engine,
+    but you can also read the map information and display it on your own,
+    in 2D or 3D. See the <code>examples/tiled/</code> in the engine code.</li>
+
+  <li>You can convert a spritesheet from Cocos2D or Starling formats into X3D.
+    See the program <code>tools/sprite-sheet-to-x3d</code> distributed
+    as part of the engine.</li>
 
   <li>We have <b>many example programs</b>. Browse the engine
     <code>castle_game_engine/examples/</code> subdirectory.
