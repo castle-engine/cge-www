@@ -328,7 +328,7 @@ Also, brew has now FPC 3.0.0, while MacPorts only 2.6.4.
 
   You can also install gtkglext using brew, and reference it like above.
   TODO: untested.
-  You can even mix MacPorts and brew -- use gtkglext from MacPorts, fpc from brew.
+  You can even mix MacPorts and brew - - use gtkglext from MacPorts, fpc from brew.
 -->
 
 <?php echo $toc->html_section(); ?>
