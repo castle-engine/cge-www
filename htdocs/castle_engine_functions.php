@@ -70,7 +70,7 @@ function reference_link()
 /* PHP file relative path from current file to "our root"
    (where kambi-php-lib/ is a subdirectory).
    The original PHP file that handles the request can define it at the beginning,
-   and require using
+   and require this file (...functions.php) using:
 
      require_once $castle_php_relative_path . 'castle_engine_functions.php';
 
