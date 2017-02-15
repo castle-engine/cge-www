@@ -53,14 +53,13 @@ if (true ||
     define('WP_HOME','http://127.0.0.1/~michalis/castle-engine/wp');
     define('WP_SITEURL', WP_HOME);
 } else {
-    define('DB_NAME', 'TODO');
-    define('DB_USER', 'TODO');
-    define('DB_PASSWORD', 'TODO');
-    define('DB_HOST', 'TODO');
+    // wp-config-production.php contains DB user and passwords.
+    // Not in repository, for security.
+    require_once 'wp-config-production.php';
 
     define('WP_DEBUG', false);
 
-    define('WP_HOME', 'http://castle-engine.sourceforge.net/wp/');
+    define('WP_HOME', 'http://castle-engine.sourceforge.net/wp');
     define('WP_SITEURL', WP_HOME);
 }
 
