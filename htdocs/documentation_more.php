@@ -23,7 +23,7 @@ echo pretty_heading("More documentation");
   <li><?php echo a_href_page('Guide to creating game data', 'creating_data_intro') ?></li>
   <li><a href="<?php echo reference_link(); ?>">API reference</a></li>
   <li><p>We also have a <i>tutorial</i> as a series of slides.
-    <a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">Download the slides</a>
+    <a href="https://castle-engine.sourceforge.io/miscella/cge_tutorial_slides.pdf">Download the slides</a>
     and <a href="https://github.com/castle-engine/cge-tutorial">the accompaning example data and code</a>.
     <!-- This is a tutorial presented live by Michalis during     the <i>Web3d&nbsp;2015 conference</i>. -->
     <!-- This tutorial shows the creation of a simple 3D FPS game and 2D game. -->

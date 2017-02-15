@@ -19,7 +19,7 @@ array_push($news,
     prototypes (both <code>PROTO</code> and <code>EXTERNPROTO</code>),
     VRML 2.0 lights are correctly handled,
     handling of colors for <code>IndexedFaceSet</code> and <code>IndexedLineSet</code>,
-    <a href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
   <li>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
     released: most things mentioned above were actually implemented in the base
     engine units, also: x86-64 port.</li>
@@ -29,7 +29,7 @@ array_push($news,
     exporter and kanim exporter', 'blender') . ".</li>
   <li>Updated version of " . news_a_href_page('VRML engine documentation',
     'engine_doc') . " is available, with a
-    <a href=\"http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
+    <a href=\"https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">chapter
     about shadows implementation.</a></li>
 </ul>",
           'description' =>
@@ -43,7 +43,7 @@ array_push($news,
     eye candy graphical effects, for now enjoy VRML 2.0 and shadows :)</p></li>
 
   <li><p>Shadows improvements (see also
-    <a href=\"http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">new chapter
+    <a href=\"https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/chapter.shadows.html\">new chapter
     in documentation about shadows</a>) :</p>
 
     <ul>
@@ -102,7 +102,7 @@ array_push($news,
     done.</li>
   <li>NavigationInfo.speed is now handled correctly (it sets speed per second)</li>
   <li><a
-    href=\"http://castle-engine.sourceforge.net/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
+    href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_text3d\">Text3D extension</a>.</li>
 </ul>
 
 <p>" . news_a_href_page('Kambi VRML game engine 1.2.0', 'kambi_vrml_game_engine') . "
@@ -166,7 +166,7 @@ implementation.</p>
   <li>" . news_a_href_page('Kambi VRML game engine 1.1.1',
     'kambi_vrml_game_engine') . " released: changes needed by
     view3dscene and glplotter above.</li>
-  <li><a href=\"http://castle-engine.sourceforge.net/news_feed.php\">RSS
+  <li><a href=\"https://castle-engine.sourceforge.io/news_feed.php\">RSS
     feed</a> listing all changes is available now.
     <small>SouceForge already made RSS feeds for our project,
     but they didn't allow me HTML code there, and HTML links

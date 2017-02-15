@@ -13,7 +13,7 @@
   header('Content-type: application/rss+xml; charset=utf-8');
 
   $rss = new rss_generator('News about the Castle Game Engine');
-  $rss->link = 'http://castle-engine.sourceforge.net/';
+  $rss->link = 'https://castle-engine.sourceforge.io/';
   $rss->description = 'All the news about the Castle Game Engine - changes, releases and more.';
   echo $rss->get($news);
 */

@@ -649,7 +649,7 @@ formats to VRML/X3D.
     The only slightly more involved conversion is done for NURBS nodes
     (<code>NurbsCurve</code>, <code>NurbsSurface</code> in VRML 2,
     <code>NurbsPatchSurface</code> in X3D, <code>NurbsPositionInterpolator</code>)
-    as <a href="http://castle-engine.sourceforge.net/x3d_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
+    as <a href="https://castle-engine.sourceforge.io/x3d_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
 </ul>
 
 <p>You can also change the X3D encoding (from classic to XML or the other way

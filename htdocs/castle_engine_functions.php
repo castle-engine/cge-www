@@ -42,10 +42,10 @@ if (CASTLE_PREVIEW) {
   define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
 } else
 {
-  define('CURRENT_URL', 'http://castle-engine.sourceforge.net/');
+  define('CURRENT_URL', 'https://castle-engine.sourceforge.io/');
 }
 /* The final (not testing, offline, or preview) website URL. */
-define('CASTLE_FINAL_URL', 'http://castle-engine.sourceforge.net/');
+define('CASTLE_FINAL_URL', 'https://castle-engine.sourceforge.io/');
 define('KAMBI_NO_HOME_LINK', true);
 if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
   define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
@@ -438,7 +438,7 @@ function _castle_sidebar($page, $pageinfo)
 /*
   $result .= '
     <div style="text-align: center; width: 200px; margin-right: auto; margin-left: auto; padding: 0.1em; border: medium outset #FFF;">
-    <p><a href="http://castle-engine.sourceforge.net/donate.php">Donate</a></p>
+    <p><a href="https://castle-engine.sourceforge.io/donate.php">Donate</a></p>
     <p>' . flattr_button(false) . '</p>
     <p>' . paypal_button() . '</p>
     </div>';
@@ -884,7 +884,8 @@ function echo_footer ()
   /* Insert tracking code */
   if ( (!IS_GEN_LOCAL) &&
        isset($_SERVER["HTTP_HOST"]) &&
-       ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net') )
+       ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
+        $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io') )
   {
     echo_piwik_tracking();
     echo_google_analytics_tracking();

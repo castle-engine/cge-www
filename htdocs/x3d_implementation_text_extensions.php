@@ -104,8 +104,8 @@ EXTERNPROTO Text3D [
   exposedField SFFloat maxExtent
   exposedField SFFloat depth
   exposedField SFBool solid
-] [ "urn:castle-engine.sourceforge.net:node:Text3D",
-    "http://castle-engine.sourceforge.net/fallback_prototypes.wrl#Text3D" ]
+] [ "urn:castle-engine.sourceforge.io:node:Text3D",
+    "https://castle-engine.sourceforge.io/fallback_prototypes.wrl#Text3D" ]
 </pre>
 
     <p>This way other VRML browsers should be able to

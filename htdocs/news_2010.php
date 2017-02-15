@@ -15,7 +15,7 @@ castle_thumbs(array(
 ), 1) .
 '<p>I just implemented animating skinned humanoids, following the H-Anim specification. This is implemented in our engine, and in particular can be used by our ' . news_a_href_page('view3dscene', 'view3dscene') . '.</p>
 
-<p><a href="http://castle-engine.sourceforge.net/x3d_implementation_hanim.php">Documentation of current H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="http://castle-engine.sourceforge.net/x3d_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
+<p><a href="https://castle-engine.sourceforge.io/x3d_implementation_hanim.php">Documentation of current H-Anim support is here</a> (when the view3dscene with this will be officially released, it will be <a href="https://castle-engine.sourceforge.io/x3d_implementation_hanim.php">moved to stable H-Anim support docs</a>).</p>
 
 <p>As usual, you can test the latest development version by downloading binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. Sample models are <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>.</p>
 
@@ -24,18 +24,18 @@ castle_thumbs(array(
 <p>Other improvements in our engine and ' . news_a_href_page('view3dscene', 'view3dscene') . ':</p>
 
 <ul>
-  <li><code>MultiGeneratedTextureCoordinate</code> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li><code>MultiGeneratedTextureCoordinate</code> node introduced, to better define the <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
   <li>Fix Collada-&gt;VRML conversion (thanks to Simon from ' . news_a_href_page('forum', 'forum') . ').</li>
   <li>Zoom improved, to prevent going too far away from object by zoom-in.</li>
-  <li>Help wanted: if you\'re familiar with Mac OS X (and FreePascal), I outlined <a href="http://castle-engine.sourceforge.net/macosx_requirements.php">here how you can help</a>.</li>
+  <li>Help wanted: if you\'re familiar with Mac OS X (and FreePascal), I outlined <a href="https://castle-engine.sourceforge.io/macosx_requirements.php">here how you can help</a>.</li>
   <li>Fixed <code>view3dscene --screenshot</code> modal box on invalid filename.</li>
   <li>When local geometry (like coordinates) is often changed, shape changes into "dynamic" state: it\'s octree will be very simple, so we will not waste time on rebuilding it.</li>
   <li>Make a nice warning when more than one value specified for SFNode field value in X3D encoding.</li>
 
   <li>Engine terrain demo works also on GPUs without GLSL support.</li>
   <li>Fixes for rendering Walk/Fly tooltips in view3dscene on some GPUs.</li>
-  <li>Engine documentation improved a lot, I talked about this in details in <a href="http://castle-engine.sourceforge.net/news.php?item=2010-12-2-development_news__major_improvements_to_engine_api_reference__future_plans">previous news post</a>.</li>
+  <li>Engine documentation improved a lot, I talked about this in details in <a href="https://castle-engine.sourceforge.io/news.php?item=2010-12-2-development_news__major_improvements_to_engine_api_reference__future_plans">previous news post</a>.</li>
   <!--li>Memory leaks when reading invalid XML files fixed.</li-->
 
 </ul>
@@ -100,24 +100,24 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
 <ul>
   <li><p><b>Screen effects</b> is a new eye-candy feature in our engine. Try the <i>View -&gt; Screen Effects</i> menu in ' . news_a_href_page('view3dscene', 'view3dscene') . ' for various effects that can be applied on any 3D scene.</p>
 
-    <p>For people who know a little <a href="http://www.opengl.org/documentation/glsl/">GLSL (OpenGL Shading Language)</a>, this is quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that processes the screen in any way you like, given the color and depth buffer. <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">Documentation and examples of defining your own screen effects are here.</a></p>
+    <p>For people who know a little <a href="http://www.opengl.org/documentation/glsl/">GLSL (OpenGL Shading Language)</a>, this is quite powerful toy for designing your own screen effects. You can define a simple GLSL shader in VRML/X3D file, that processes the screen in any way you like, given the color and depth buffer. <a href="https://castle-engine.sourceforge.io/x3d_extensions_screen_effects.php">Documentation and examples of defining your own screen effects are here.</a></p>
 
-    <p><small>Developers: Screen effects may also be defined (and controlled) directly from the Object Pascal source code. You only have to override <a href="http://castle-engine.sourceforge.net/apidoc/html/KambiSceneManager.TKamAbstractViewport.html#ScreenEffects">TKamAbstractViewport.GetScreenEffects and TKamAbstractViewport.ScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code (' . news_a_href_page('in engine sources in examples/vrml/', 'kambi_vrml_game_engine') . ') for a simple example. And see <a href="' . sf_checkout_link(false, 'view3dscene/v3dscenescreeneffects.pas' ). '">v3dscenescreeneffects.pas</a> for more involved example straight from the ' . news_a_href_page('view3dscene', 'view3dscene') . ' sources.</small></p>
+    <p><small>Developers: Screen effects may also be defined (and controlled) directly from the Object Pascal source code. You only have to override <a href="https://castle-engine.sourceforge.io/apidoc/html/KambiSceneManager.TKamAbstractViewport.html#ScreenEffects">TKamAbstractViewport.GetScreenEffects and TKamAbstractViewport.ScreenEffectsCount</a> and return your own effects there. See multiple_viewports example source code (' . news_a_href_page('in engine sources in examples/vrml/', 'kambi_vrml_game_engine') . ') for a simple example. And see <a href="' . sf_checkout_link(false, 'view3dscene/v3dscenescreeneffects.pas' ). '">v3dscenescreeneffects.pas</a> for more involved example straight from the ' . news_a_href_page('view3dscene', 'view3dscene') . ' sources.</small></p>
 
     <!--p>Also, the old <i>Change Scene Colors</i> (color modulators inside engine sources) are removed. This was a poor idea, with ugly implementation and little use. New Screen Effects allow much more effects, with a modern implementation.</p-->
   </li>
 
-  <li><p><b>New nodes</b> implemented: <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">drag sensors (<code>PlaneSensor, SphereSensor, CylinderSensor</code>)</a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_implementation_rendering.php"><code>ClipPlane</code>, <code>ColorRGBA</code></a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_implementation_navigation.php"><code>Billboard</code>, <code>ViewpointGroup</code></a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_toggler">Toggler</a>.</p>
+  <li><p><b>New nodes</b> implemented: <a href="https://castle-engine.sourceforge.io/x3d_implementation_pointingdevicesensor.php">drag sensors (<code>PlaneSensor, SphereSensor, CylinderSensor</code>)</a>,
+    <a href="https://castle-engine.sourceforge.io/x3d_implementation_rendering.php"><code>ClipPlane</code>, <code>ColorRGBA</code></a>,
+    <a href="https://castle-engine.sourceforge.io/x3d_implementation_navigation.php"><code>Billboard</code>, <code>ViewpointGroup</code></a>,
+    <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_toggler">Toggler</a>.</p>
   </li>
 
   <li><p>Major <b>improvements and fixes to existing nodes</b>:
     <code>Transform</code> (and similar nodes from H-Anim) animation is greatly optimized.
     Also changing <code>Transform</code> node containing light sources works fast now.
-    Many <a href="http://castle-engine.sourceforge.net/x3d_implementation_time.php"><code>TimeSensor</code></a>,
-    <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a>,
+    Many <a href="https://castle-engine.sourceforge.io/x3d_implementation_time.php"><code>TimeSensor</code></a>,
+    <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a>,
     <code>OrthoViewpoint</code> improvements.
     <!--Events mechanism is optimized for many fields.-->
     See ' . news_a_href_page('news archive for details', 'news') . '.</p></li>
@@ -125,7 +125,7 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
   <li><p><b>Camera improvements</b>: Examine camera now honors <code>Viewpoint</code>
     nodes. Switching navigation mode preserves camera view.
     Smooth transitions (following <code>NavigationInfo.transitionType, NavigationInfo.transitionTime</code> fields)
-    are done. <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">headBobbingDistance
+    are done. <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_head_bobbing">headBobbingDistance
     is renamed into much more suitable headBobbingTime and expressed in seconds</a>.
     Mouse wheel is supported for zooming in Examine mode.</p>
   </li>
@@ -136,12 +136,12 @@ announced in more details on our ' . news_a_href_page('news', 'news') . '.</p-->
     Nice "%s warnings" button.</p></li>
 
   <li><p>Primitives (<code>Box, Cone, Cylinder, Sphere</code>) have the
-    <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">texCoord</a>
-    field and work with <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a>,
-    multi-texturing, <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> etc.</p>
+    <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord">texCoord</a>
+    field and work with <a href="https://castle-engine.sourceforge.io/x3d_extensions_shadow_maps.php">shadow maps</a>,
+    multi-texturing, <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> etc.</p>
   </li>
 
-  <li><p>New functions for <a href="http://castle-engine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
+  <li><p>New functions for <a href="https://castle-engine.sourceforge.io/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
 </ul>
 
 <p>Our website and documentation also got a lot of improvements.
@@ -205,7 +205,7 @@ castle_thumbs(array(
 
   <li><p><b>Engine documentation and examples</b>:</p>
     <ul>
-      <li>' . news_a_href_page('Documentation', 'engine_doc') . ': many updates, first of all a <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/chapter.scene_manager.html">new short chapter about scene manager</a> (based on my old news post).</li>
+      <li>' . news_a_href_page('Documentation', 'engine_doc') . ': many updates, first of all a <a href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/chapter.scene_manager.html">new short chapter about scene manager</a> (based on my old news post).</li>
       <li>' . news_a_href_page('API reference', 'reference') . ': many improvements, a lot of documentation improved for English and PasDoc, and regenerated with <a href="http://pasdoc.sipsolutions.net/">PasDoc 0.12.1</a></li>
       <li>Nice bridge model for <code>kambi_vrml_game_engine/examples/vrml/</code></li>
     </ul></li>
@@ -243,7 +243,7 @@ castle_thumbs(array(
 
     <p>Also related to sensors: fixed behavior when multiple pointing-device sensors are siblings (and so should be simultaneously activated).</p></li>
 
-  <li><p>New functions for <a href="http://castle-engine.sourceforge.net/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
+  <li><p>New functions for <a href="https://castle-engine.sourceforge.io/kambi_script.php#section_functions_rotation"><b>KambiScript to handle rotations</b></a>.</p></li>
 
   <li><p>Changing <b><code>Transform</code> node containing light sources</b> is greatly optimized now.</p>
 
@@ -255,7 +255,7 @@ castle_thumbs(array(
 
   <li><p>Warnings after loading a model are signaled by a <b>"%d warnings" button</b> by ' . news_a_href_page('view3dscene', 'view3dscene') . '. This way warnings are still clearly visible (the button only disappears after you use it on this model), but don\'t make an "obstacle" (modal box) to viewing the model.</p></li>
 
-  <li><p>I added to NURBS implementation status page notes about <a href="http://castle-engine.sourceforge.net/x3d_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.</p></li>
+  <li><p>I added to NURBS implementation status page notes about <a href="https://castle-engine.sourceforge.io/x3d_implementation_nurbs.php#section_homogeneous_coordinates">control points in homogeneous coordinates</a>, thanks to Stephen H. France for noticing the problem and Joerg Scheurich (from White Dune) for offering an explanation.</p></li>
 
   <li><p>Smooth camera transitions under Windows are fixed.</p></li>
 
@@ -313,19 +313,19 @@ castle_thumbs(array(
 
       <li><p><i>All camera moving and rotating speeds are now expressed inside the engine in nice units/per second</i>.</p>
 
-        <p>Also, <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>, and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
+        <p>Also, <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_head_bobbing">headBobbingDistance is renamed into much more suitable headBobbingTime</a>, and is also expressed in seconds now (divide by 50 to get the same behavior with old values).</p></li>
     </ul></li>
 
   <li><p>New sensors implemented:<br/>
     <b><code>PlaneSensor</code></b>
       (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/pointingsensor.html#PlaneSensor">X3D spec</a>,
-       <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">support details</a>,
-       demos in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
-    <b><code>StringSensor</code></b> (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="http://castle-engine.sourceforge.net/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
+       <a href="https://castle-engine.sourceforge.io/x3d_implementation_pointingdevicesensor.php">support details</a>,
+       demos in <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_svn">SVN</a> kambi_vrml_test_suite/x3d/plane_sensor*.x3dv),<br/>
+    <b><code>StringSensor</code></b> (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/keyboard.html#StringSensor">X3D spec</a>, <a href="https://castle-engine.sourceforge.io/x3d_implementation_keydevicesensor.php">support details</a>, <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/x3d/string_sensor.x3dv">demo</a>).</p></li>
 
-  <li><p><b>Shadow maps</b> (<a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<code>Box</code>, <code>Sphere</code> etc.) are fixed now (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
+  <li><p><b>Shadow maps</b> (<a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_shadow_maps">receiveShadows, shadows fields</a>) <b>for primitives</b> (<code>Box</code>, <code>Sphere</code> etc.) are fixed now (<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/primitives.x3dv">demo</a>).</p></li>
 
-  <li><p>Victor Amat updated the demo using our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get <b>mirrors on a flat surface</b>. See kambi_vrml_test_suite/x3d/rendered_texture/chess.x3dv in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN kambi_vrml_test_suite</a>.</p></li>
+  <li><p>Victor Amat updated the demo using our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to get <b>mirrors on a flat surface</b>. See kambi_vrml_test_suite/x3d/rendered_texture/chess.x3dv in <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_svn">SVN kambi_vrml_test_suite</a>.</p></li>
 
   <li><p>Various <b>fixes to <code>TimeSensor</code></b> and other stuff, thanks to Stephen H. France for reporting!</p></li>
 </ol>
@@ -350,16 +350,16 @@ castle_thumbs(array(
     <ul>
       <li><b>ClipPlane</b> node is handled.
       <li><b>ColorRGBA</b> node is handled. Also related VRML 1.0 Material-per-vertex/face is now much faster.<!-- (uses <code>glColorMaterial</code>).-->
-      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b></a> output events are implemented.
+      <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_rendered_texture"><b>RenderedTexture.rendering, viewing, projection</b></a> output events are implemented.
       <li><b>TimeSensor.enabled, cycleTime</b> are now handled correctly.
-      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_toggler"><b>Toggler</b></a> node (simple event utility) from InstantReality is handled.
+      <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_toggler"><b>Toggler</b></a> node (simple event utility) from InstantReality is handled.
     </ul>
 
-  <li><p>Stephen H. France prepared <b><a href="http://castle-engine.sourceforge.net/abbreviated_x3d_specs_for_users.chm">X3D specification including Kambi extensions</a> and <a href="http://castle-engine.sourceforge.net/kambiscript_language.chm">KambiScript reference</a></b> in the CHM format. The CHM format makes them easy to browse and search. Thanks!</p>
+  <li><p>Stephen H. France prepared <b><a href="https://castle-engine.sourceforge.io/abbreviated_x3d_specs_for_users.chm">X3D specification including Kambi extensions</a> and <a href="https://castle-engine.sourceforge.io/kambiscript_language.chm">KambiScript reference</a></b> in the CHM format. The CHM format makes them easy to browse and search. Thanks!</p>
 
   <li><p><b>Primitives</b>: more nodes (boxes, spheres, cones, cylinders) are now processed by converting them to <code>IndexedFaceSet</code> or similar low-level geometry. (This is called the <i>"proxy mechanism"</i> in sources.) And the whole mechanism is now much more efficient, so e.g. <code>Extrusion</code>, <code>Teapot</code>, NURBS curves and surfaces are processed now faster.</p>
 
-    <p>The immediate gain from it is that Box, Cone, Cylinder, Sphere <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">get the "texCoord" field</a>. In particular they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly, and they can be shadow map receivers (although this last thing still needs a little work).</p>
+    <p>The immediate gain from it is that Box, Cone, Cylinder, Sphere <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord">get the "texCoord" field</a>. In particular they can use our bump mapping features, they work with multi-texturing and 3D textures fully correctly, and they can be shadow map receivers (although this last thing still needs a little work).</p>
 
     <!--p>Developers: this makes a little incompatible change. TVRMLShape.Geometry/State now may return something more temporary. Most code should work out-of-the-box without changes (and work faster!), but if you e.g. played with removing the geometry nodes &mdash; you should consider using TVRMLShape.OriginalGeometry node instead, see also TVRMLScene.RemoveShapeGeometry.</p-->
   </li>
@@ -386,25 +386,25 @@ castle_thumbs(array(
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
   array('filename' => 'rendered_texture_mirror.png', 'titlealt'=> 'Flat mirrors by RenderedTexture'),
 )) .
-'<p>New ' . news_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
+'<p>New ' . news_a_href_page('view3dscene 3.6.0', 'view3dscene') . ' release focuses on the improvements to our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_shadow_maps">Shadow Maps extensions</a>:</p>
 
 <ul>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_receive_shadows">Apperance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_receive_shadows">Apperance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
   <li>Light sources\' <code>projectionNear</code>, <code>projectionFar</code> and such are automatically calculated now to suitable values, as long as you use high-level <code>X3DLightNode.shadows</code> or <code>Apperance.receiveShadows</code> fields.</li>
   <li>Incompatible changes: <code>DirectionalLight.projectionRectangle</code> order changed, to match standard <code>OrthoViewpoint.fieldOfView</code> order. Also, <code>projection*</code> parameters are zero by default (which indicates that they should be automatically calculated).</li>
   <li>Easy menu items to control shadow maps, see the new <i>View -&gt; Shadow Maps -&gt; ...</i> submenu.</li>
-  <li>New <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
-  <li>Extensions to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
-  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="http://castle-engine.sourceforge.net/rayhunter.php">rayhunter (version 1.3.2)</a> with <code>--ortho</code> option).</li>
-  <li>See also <a href="http://castle-engine.sourceforge.net/news.php#2010-7-9-development_news__many_shadow_maps_improvements__castle_fountain__more">previous news item</a> for some more details about new stuff implemented.
+  <li>New <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
+  <li>Extensions to <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds</a>.</li>
+  <li>Picking and ray-tracing with orthogonal projection fixed. (See also new <a href="https://castle-engine.sourceforge.io/rayhunter.php">rayhunter (version 1.3.2)</a> with <code>--ortho</code> option).</li>
+  <li>See also <a href="https://castle-engine.sourceforge.io/news.php#2010-7-9-development_news__many_shadow_maps_improvements__castle_fountain__more">previous news item</a> for some more details about new stuff implemented.
 </ul>
 
-<p>Also, <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d_slides.pdf">the slides from my Web3D 2010 talk about Shadow Maps</a> (and the <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">paper</a>) are available now.</p>
+<p>Also, <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d_slides.pdf">the slides from my Web3D 2010 talk about Shadow Maps</a> (and the <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d.pdf">paper</a>) are available now.</p>
 
-<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <code>x3d/rendered_texture</code> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite (new version 2.8.0)</a>.</p>
+<p>In other news: Victor Amat just send me a very nice demo that uses our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> to implement beautiful mirrors on a flat surface. See the models inside <code>x3d/rendered_texture</code> in <a href="https://castle-engine.sourceforge.io/kambi_vrml_test_suite.php">Kambi VRML test suite (new version 2.8.0)</a>.</p>
 
-<p>All the shadow maps improvements are actually implemented inside our <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">engine (new version 2.1.0)</a>.</p>
+<p>All the shadow maps improvements are actually implemented inside our <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">engine (new version 2.1.0)</a>.</p>
 '),
 
     array('title' => 'Development news: Many shadow maps improvements, castle fountain, more',
@@ -422,12 +422,12 @@ castle_thumbs(array(
   array('filename' => 'castle_fountain_1.png', 'titlealt' => 'Fountain water'),
   array('filename' => 'castle_fountain_2.png', 'titlealt' => 'Fountain close-up view'),
 ), 2) .
-'<p>First of all, my paper <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted for the <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our new shadow mapping extensions, with many improvements over the old ones previously implemented in our engine. You can read the paper online, you can also <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">read the new shadow mapping extensions documentation</a>.</p>
+'<p>First of all, my paper <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a> got accepted for the <a href="http://conferences.web3d.org/web3d2010/">Web3D 2010 Conference</a>. Wee, I\'m going to Los Angeles :) This paper presents our new shadow mapping extensions, with many improvements over the old ones previously implemented in our engine. You can read the paper online, you can also <a href="https://castle-engine.sourceforge.io/x3d_extensions_shadow_maps.php">read the new shadow mapping extensions documentation</a>.</p>
 
 <p>The improvements already implemented are:</p>
 
 <ul>
-  <li>First of all, <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php#section_receive_shadows"><code>Apperance.receiveShadows</code> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
+  <li>First of all, <a href="https://castle-engine.sourceforge.io/x3d_extensions_shadow_maps.php#section_receive_shadows"><code>Apperance.receiveShadows</code> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
   <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <code>receiveShadows</code> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
   <li>New <code>ProjectedTextureCoordinate</code> node, that replaces deprecated now <code>TextureCoordinateGenerator.mode = "PROJECTION"</code>.</li>
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
@@ -442,9 +442,9 @@ castle_thumbs(array(
 <p>Other features implemented:</p>
 
 <ul>
-  <li>Extensions to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
+  <li>Extensions to <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_head_bobbing">control head-bobbing in VRML/X3D worlds (docs from nightly builds)</a>.</li>
   <li>view3dscene <i>Edit -&gt; Merge Close Vertexes</i> menu item, that makes close vertexes to be perfectly equal.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_teapot">Teapot</a> mesh is much improved, thanks go to Victor Amat.</li>
   <li>Picking and ray-tracer in orthogonal projection (<a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#OrthoViewpoint">like by OrthoViewpoint</a>) fixed.</li>
   <li>Workaround nasty <a href="http://ati.cchtml.com/show_bug.cgi?id=1815">fglrx bug</a>, thanks Simon for <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=14">reporting</a>.</li>
   <li>Better menu behavior with GTK2 backend.</li>
@@ -472,7 +472,7 @@ castle_thumbs(array(
 <ul>
   <li><p>New feature in this release is the support for <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/networking.html#IMPORTStatement">X3D IMPORT and EXPORT statements</a>.
 
-    <p>This allows to attach routes to VRML/X3D nodes inside inline files, thus allowing communication between the nodes inside and outside of the inlined file. Available in both classic and XML encodings. Some more <a href="http://castle-engine.sourceforge.net/x3d_implementation_networking.php">support details is here</a>.
+    <p>This allows to attach routes to VRML/X3D nodes inside inline files, thus allowing communication between the nodes inside and outside of the inlined file. Available in both classic and XML encodings. Some more <a href="https://castle-engine.sourceforge.io/x3d_implementation_networking.php">support details is here</a>.
 
   <li><p>Particular setup with nested PROTOs was expanded incorrectly, fixed now.
 
@@ -534,7 +534,7 @@ castle_thumbs(array(
   <li>2D controls framework: <code>TKamGLButton</code>, <code>TKamGLImage</code>, better <code>TGLMenu</code> and more. Viewports are also 2D controls.</li>
   <li>Engine sources reorganized into more intuitive <code>src/</code>, <code>examples/</code> etc. directories.</li>
   <li>Much more components registered on the Lazarus palette. (This will be extended in next releases.)</li>
-  <li>Engine is licensed now on the terms of <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
+  <li>Engine is licensed now on the terms of <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_license">the GNU Lesser General Public License (with "static linking exception")</a>.</li>
 </ul>
 
 <p>For more details about the changes, see ' . news_a_href_page('the news archive', 'news'). '.</p>
@@ -585,7 +585,7 @@ castle_thumbs(array(
     'html' => (!HTML_VALIDATION ? '<object width="370" height="227"><param name="movie" value="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9qx-Ry2PRWM&amp;hl=pl_PL&amp;fs=1&amp;" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="370" height="227"></embed></object>' : '')),
 ), 2) .
 
-'<p>Our procedural terrain demo (see <code>kambi_vrml_game_engine/examples/vrml/terrain</code> in <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
+'<p>Our procedural terrain demo (see <code>kambi_vrml_game_engine/examples/vrml/terrain</code> in <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_svn">SVN</a>) got a lot of improvements this week:</p>
 
 <ul>
   <li><i>Heterogeneous</i> terrain (idea from <a href="http://www.kenmusgrave.com/dissertation.html">Ken Musgrave</a>) implemented, this makes more realistic terrain (smooth valleys, noisy mountains).</li>

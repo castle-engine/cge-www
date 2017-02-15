@@ -1,5 +1,5 @@
 # Specification of extensions from
-# http://castle-engine.sourceforge.net/x3d_extensions.php
+# https://castle-engine.sourceforge.io/x3d_extensions.php
 # in the format comfortable for white dune scripts
 # and also for out own castle_game_engine/src/x3d/doc/generate_x3d_nodes_to_pascal.lpr .
 #
@@ -241,14 +241,14 @@ ProjectedTextureCoordinate : X3DTextureCoordinateNode {
   SFNode     [in,out]      projector   NULL        # [SpotLight, DirectionalLight, X3DViewpointNode]
 }
 
-# See http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php
+# See https://castle-engine.sourceforge.io/x3d_extensions_screen_effects.php
 ScreenEffect : X3DChildNode {
   SFBool     [in,out]      enabled     TRUE
   SFBool     [in,out]      needsDepth  FALSE
   MFNode     [in,out]      shaders     []        # [X3DShaderNode]
 }
 
-# See http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php
+# See https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php
 ColorSetInterpolator : X3DInterpolatorNode {
   ... all normal X3DInterpolatorNode fields ...
   MFColor  [in,out]  keyValue           []
@@ -261,7 +261,7 @@ VectorInterpolator : X3DInterpolatorNode {
   MFFloat  [out]     value_changed
 }
 
-# See http://castle-engine.sourceforge.net/compositing_shaders.php for Effect etc. docs
+# See https://castle-engine.sourceforge.io/compositing_shaders.php for Effect etc. docs
 
 Effect : X3DChildNode {
   SFString   []            language    ""      # ["CG"|"GLSL"|"HLSL"] ; allowed values like ComposedShader.language
@@ -286,7 +286,7 @@ ShaderTexture : X3DTextureNode {
   SFString []       defaultTexCoord "BOUNDS2D"  # ["BOUNDS2D"|"BOUNDS3D"]
 }
 
-# See http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_blending
+# See https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_blending
 BlendMode {
   SFString   [in,out]      srcFactor   "src_alpha"  # [none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]
   SFString   [in,out]      destFactor  "one_minus_src_alpha"  # [none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]
@@ -294,7 +294,7 @@ BlendMode {
   SFFloat    [in,out]      colorTransparency  0
 }
 
-# See http://castle-engine.sourceforge.net/x3d_implementation_eventutilities_extensions.php
+# See https://castle-engine.sourceforge.io/x3d_implementation_eventutilities_extensions.php
 Toggler  : X3DChildNode {
   SFBool     [in,out]      status      FALSE
   SFBool     [in,out]      notStatus   TRUE

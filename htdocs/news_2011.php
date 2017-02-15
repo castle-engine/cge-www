@@ -22,17 +22,17 @@ castle_thumbs(array(
   array('filename' => 'www_main_page_2011_12_before.png', 'titlealt' => 'Front page before 2011-12-30'),
   array('filename' => 'www_main_page_2011_12_after.png', 'titlealt' => 'Front page after 2011-12-30'),
 )) .
-'<p>We\'re proud to release new <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a>, our VRML/X3D browser and viewer for other 3D models, and <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a>, our 3D game engine (used under the hood by view3dscene and other programs here).</p>
+'<p>We\'re proud to release new <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene 3.11.0</a>, our VRML/X3D browser and viewer for other 3D models, and <a href="https://castle-engine.sourceforge.io/engine.php">Castle Game Engine 3.0.0</a>, our 3D game engine (used under the hood by view3dscene and other programs here).</p>
 
-<p><b>New features in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.11.0</a> for users</b>:</p>
+<p><b>New features in <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene 3.11.0</a> for users</b>:</p>
 
 <ul>
-  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), multiple polygon lists, objects sharing, double-sided information, 1.5 specification support. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
+  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), multiple polygon lists, objects sharing, double-sided information, 1.5 specification support. See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
 
     <p>Test Collada models may be found e.g. in <a href="http://collada.org/owl/">COLLADA Test Model Bank</a>. <a href="http://www.blender.org/">Blender</a>, and other 3D modelers, include exporters to Collada.</p>
   </li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes).</p>
+  <li><p><a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are supported (see here for docs and examples)</a>. Tested on NVidia and ATI GPUs (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> for some history about fglrx fixes).</p>
   </li>
 
   <li><p><i>"Limit FPS"</i> option implemented, to not exhaust CPU. This way all our programs and games allow the OS and CPU to rest, to allow other applications to run normally and do not exhaust battery life on laptops.</p>
@@ -40,7 +40,7 @@ castle_thumbs(array(
     <p>This is configurable by view3dscene menu item <i>"File -&gt; Preferences -&gt; Frames Per Second Limit ..."</i>. Default is 100. For developers, this is configurable by <code>TGLApplication.LimitFPS</code> property.</p>
   </li>
 
-  <li><p>Many improvements to our <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders extensions</a>. This is a way to implement reusable effects using the GLSL (<i>OpenGL shading language</i>). Effects implemented this way seamlessly cooperate with each other and with standard renderer shaders (so you have standard lighting, texturing and such for free).</p>
+  <li><p>Many improvements to our <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">compositing shaders extensions</a>. This is a way to implement reusable effects using the GLSL (<i>OpenGL shading language</i>). Effects implemented this way seamlessly cooperate with each other and with standard renderer shaders (so you have standard lighting, texturing and such for free).</p>
 
     <p>My Ph.D. thesis, describing the whole idea, is also published on the page linked above :)</p>
   </li>
@@ -53,26 +53,26 @@ castle_thumbs(array(
 
   <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to allow using it repeatedly, and to work with <code>IndexedTriangleSet</code>.</li>
 
-  <li>Fixes and improvements to <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">shader rendering</a>.</li>
+  <li>Fixes and improvements to <a href="https://castle-engine.sourceforge.io/x3d_implementation_lighting.php#section_per_pixel_lighting">shader rendering</a>.</li>
 
   <li><code>--viewpoint</code> command-line option to choose a different viewpoint as the default (initial) one. Especially useful in combination with <code>--screenshot</code> option.</li>
 
   <li>Many improvements to shadow maps: generation fixed and optimized (for shadow maps, we render model with shaders and many fixed-function features, like lighting, turned <i>off</i>), <i>Variance Shadow Maps</i> improvements (they work quite stable now on newer GPUs).</li>
 
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now.</li>
 
   <li><i>"Edit -&gt; H-Anim Joints Visualization"</i> now asks for visualization size. Some H-Anim with VRML 97 fixes.</li>
 
-  <li><a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <code>shaders</code> and <code>compositing_shaders</code> subdirectories.
+  <li><a href="https://castle-engine.sourceforge.io/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <code>shaders</code> and <code>compositing_shaders</code> subdirectories.
 </ul>
 
-<p>For engine 3.0.0, I have to admit that we didn\'t implement all planned features. Most importantly: easy AI, and engine tutorials, are postponed to next engine 3.1.0 release. However, we still have many <b>new features in <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine 3.0.0</a> for developers</b>:</p>
+<p>For engine 3.0.0, I have to admit that we didn\'t implement all planned features. Most importantly: easy AI, and engine tutorials, are postponed to next engine 3.1.0 release. However, we still have many <b>new features in <a href="https://castle-engine.sourceforge.io/engine.php">Castle Game Engine 3.0.0</a> for developers</b>:</p>
 
 <ul>
-  <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
+  <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
 
   <li><p>Note: This engine release <i>breaks compatibility</i> with earlier versions. Although there is no major change of the engine design (our scene manager design in engine 2.x was really good, and we want to push using it even further in engine 3.x). But there are a lot of renames around important units and classes. And some small things were redesigned more heavily.</p>
-    <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="http://castle-engine.sourceforge.net/forum.php">ask on our forum</a>.</p>
+    <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="https://castle-engine.sourceforge.io/forum.php">ask on our forum</a>.</p>
   </li>
 
   <li><p>Examples completely reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
@@ -90,7 +90,7 @@ castle_thumbs(array(
       <li>New engine name &mdash; castle, not kambi.
     </ul>
 
-    <p>See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-10-13-rename">previous news for detailed reasoning and explanation</a>, and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">see renaming details document</a> for even more details. If you want to port existing games to engine 3.0.0, you will want to perform the same renames in your code.</p>
+    <p>See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-10-13-rename">previous news for detailed reasoning and explanation</a>, and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">see renaming details document</a> for even more details. If you want to port existing games to engine 3.0.0, you will want to perform the same renames in your code.</p>
   <li>Improvements to work with latest OpenGL &gt;= 3. We use standard OpenGL features, instead of extensions, when possible. We don\'t fully work in OpenGL 3.0 forward-compatible context <i>yet</i>, but we\'re close to it now.
   <li>Notifications (GLNotifications, these messages <i>"You picked up Potion Of Life"</i> etc. you see in FPS games) were reimplemented. There are now TUIControl descendants, so can be used just like our other 2D controls. They are also visible on the Lazarus component palette now.</li>
   <li>TBox3D and TQuaternion records remade into old-style object. Previous procedures Box3DXxx(Box, ...) have to be changed now to Box.Xxx(...). This results in nicer API, method names may be shorter and look cleaner.</li>
@@ -101,13 +101,13 @@ castle_thumbs(array(
 
 <ul>
   <li>New <a href="https://sourceforge.net/p/castle-engine/">castle-engine project page on SourceForge</a> uses new Allura platform, with <a href="https://sourceforge.net/p/castle-engine/discussion/">new forum</a>, <a href="https://sourceforge.net/p/castle-engine/wiki/">new wiki</a> and <a href="https://sourceforge.net/p/castle-engine/tickets/">new tickets system (bug tracking)</a>.</li>
-  <li>Main page reworked into three elegant panels directing users to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab <a href="http://castle-engine.sourceforge.net/news.php">"News"</a>. See before/after images on the side of this news post.</li>
+  <li>Main page reworked into three elegant panels directing users to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab <a href="https://castle-engine.sourceforge.io/news.php">"News"</a>. See before/after images on the side of this news post.</li>
   <li>Nice OS icons for download links.</li>
   <li>Google +1 button on the main page.</li>
-  <li><a href="http://castle-engine.sourceforge.net/engine.php">Engine sources</a> and <a href="http://castle-engine.sourceforge.net/demo_models.php">demo_models</a> are now offered as zip archives too (in addition to tar.gz), to make it easier to unpack them on Windows.</li>
+  <li><a href="https://castle-engine.sourceforge.io/engine.php">Engine sources</a> and <a href="https://castle-engine.sourceforge.io/demo_models.php">demo_models</a> are now offered as zip archives too (in addition to tar.gz), to make it easier to unpack them on Windows.</li>
 </ul>
 
-<p>Other programs are released too, to give them small improvements and update their sources to be compatible with latest engine 3 API. In particular, <a href="http://castle-engine.sourceforge.net/glviewimage.php">glViewImage 1.4.0</a> is improved with new image formats support.
+<p>Other programs are released too, to give them small improvements and update their sources to be compatible with latest engine 3 API. In particular, <a href="https://castle-engine.sourceforge.io/glviewimage.php">glViewImage 1.4.0</a> is improved with new image formats support.
 </p>
 '),
 
@@ -129,7 +129,7 @@ castle_thumbs(array(
 )) .
 '<p>Hi everyone, here\'s a summary of improvements done to the engine in last month.</p>
 
-<p>Remember you can check all new features of <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. To get new engine examples, you can download <a href="http://castle-engine.sourceforge.net/engine.php">engine</a> from SVN. Have fun!</p>
+<p>Remember you can check all new features of <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> immediately by downloading a binary from our <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>. To get new engine examples, you can download <a href="https://castle-engine.sourceforge.io/engine.php">engine</a> from SVN. Have fun!</p>
 
 <ol>
   <li>Two large examples added to engine sources:
@@ -151,15 +151,15 @@ castle_thumbs(array(
           <li>Unfortunately, on some older GPUs, they may exhibit really weird behavior and uncover wild OpenGL bugs.
           <li>In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
         </ul>
-        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="http://castle-engine.sourceforge.net/forum.php">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
+        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="https://castle-engine.sourceforge.io/forum.php">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
       </li>
     </ul>
   </li>
   <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now always white. (Previously it was textured &mdash; which was hardly visible in many cases.)</li>
   <li>Saving viewpoint in some specific configurations (when look direction was close to +Z) fixed.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
-  <li>Fixes to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <code>base/castlecolors.pas</code> unit.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
+  <li>Fixes to <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <code>base/castlecolors.pas</code> unit.</li>
 </ol>
 '),
 
@@ -179,27 +179,27 @@ castle_thumbs(array(
   array('filename' => 'cellular_texturing_sphere.png', 'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'),
 )) .
 '<ol>
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are implemented in our engine and view3dscene</a>.</p>
+  <li><p><a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry"><b>Geometry shaders</b> are implemented in our engine and view3dscene</a>.</p>
 
-    <p>Geometry shaders are executed between the vertex and fragment shader. They can change the primitive type (like triangles to points), explode a single primitive into many (maybe adding some intermediate vertexes), remove some primitives and more. We support geometry shaders following modern GLSL version &gt;= 1.50 (since OpenGL 3.2). See the <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">documentation</a> for more details and links to example X3D files.</p>
+    <p>Geometry shaders are executed between the vertex and fragment shader. They can change the primitive type (like triangles to points), explode a single primitive into many (maybe adding some intermediate vertexes), remove some primitives and more. We support geometry shaders following modern GLSL version &gt;= 1.50 (since OpenGL 3.2). See the <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry">documentation</a> for more details and links to example X3D files.</p>
 
-    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="http://castle-engine.sourceforge.net/forum.php">forum</a>. Nice demos may be included in our <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>.</p>
+    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="https://castle-engine.sourceforge.io/forum.php">forum</a>. Nice demos may be included in our <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a>.</p>
   </li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Michalis Ph.D. thesis, describing the "compositing shaders" idea, is published here :)</a>. There are HTML and PDF versions (45 pages for A4) with the same content.</p>
+  <li><p><a href="https://castle-engine.sourceforge.io/compositing_shaders.php">Michalis Ph.D. thesis, describing the "compositing shaders" idea, is published here :)</a>. There are HTML and PDF versions (45 pages for A4) with the same content.</p>
 
-    <p>Various improvements to the idea were implemented lately, most of all: extensions for <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php#section_geometry">geometry shaders</a>. They are described in the <a href="http://castle-engine.sourceforge.net/compositing_shaders_doc/html/chapter.geometry_shaders.html">Chapter 6. "Extensions for geometry shaders"</a>. This allows to write <i>robust geometry shaders</i>, that cooperate with renderer internal effects by using special <code>geometryVertexXxx</code> functions.</p>
+    <p>Various improvements to the idea were implemented lately, most of all: extensions for <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php#section_geometry">geometry shaders</a>. They are described in the <a href="https://castle-engine.sourceforge.io/compositing_shaders_doc/html/chapter.geometry_shaders.html">Chapter 6. "Extensions for geometry shaders"</a>. This allows to write <i>robust geometry shaders</i>, that cooperate with renderer internal effects by using special <code>geometryVertexXxx</code> functions.</p>
 
     <p>As always, comments and tests of our <i>compositing shaders</i> idea are most welcome!</p>
   </li>
 
-  <li><p>Various new demos added to <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <code>demo_models/compositing_shaders/cellular_texturing*.x3dv</code>.</p>
+  <li><p>Various new demos added to <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <code>demo_models/compositing_shaders/cellular_texturing*.x3dv</code>.</p>
   </li>
 
-  <li><p>Various small fixes and enhancements to <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previously you could only use there texture/light-specific plugs, like <code>PLUG_light_scale</code> (for light source) and <code>PLUG_texture_color</code> (for texture). Now you can also use there:</p>
+  <li><p>Various small fixes and enhancements to <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previously you could only use there texture/light-specific plugs, like <code>PLUG_light_scale</code> (for light source) and <code>PLUG_texture_color</code> (for texture). Now you can also use there:</p>
     <ul>
-      <li>plugs using other user-defined plugs. See new <code>texture_effect.x3dv</code> example (in SVN of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>).</li>
-      <li>plugs using shape plugs (like <code>PLUG_vertex_object_space</code>). See new <code>texture_coord_generate.x3dv</code> (in SVN of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>).</li>
+      <li>plugs using other user-defined plugs. See new <code>texture_effect.x3dv</code> example (in SVN of <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a>).</li>
+      <li>plugs using shape plugs (like <code>PLUG_vertex_object_space</code>). See new <code>texture_coord_generate.x3dv</code> (in SVN of <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a>).</li>
     </ul>
   </li>
 </ol>'),
@@ -215,7 +215,7 @@ castle_thumbs(array(
   array('filename' => 'view_3d_model_advanced.png', 'titlealt' => '&quot;view_3d_model_advanced&quot; example from engine sources'),
 )) .
 '<ol>
-  <li><p><code>--viewpoint</code> command-line option was implemented for <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <code>--screenshot</code> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
+  <li><p><code>--viewpoint</code> command-line option was implemented for <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <code>--screenshot</code> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
 
   <li><p>Shadow map generation improved: for shadow maps, we render model with shaders turned <i>off</i>. This is consistent with <i>Variance Shadow Maps</i> (that requires using custom shader, so user shaders are also ignored at shadow map capture). It avoids problems with shaders writing to <code>gl_FragDepth</code> and accidentally breaking shadow map content. Thanks to Victor Amat for pointing this out!</p></li>
 
@@ -255,7 +255,7 @@ castle_thumbs(array(
 '<p>Hi everyone,</p>
 
 <ol>
-  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="http://castle-engine.sourceforge.net/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
+  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="https://castle-engine.sourceforge.io/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
 
     <ul>
       <li><p>Most old URLs will still work, appropriate redirects are done to go to the new castle-engine website.
@@ -284,7 +284,7 @@ svn switch --relocate https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/
     </ul>
   </li>
 
-  <li><p>I was at <a href="http://www.eguk.org.uk/TPCG11/">TPCG11</a> conference and gave a talk about <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">our "Compositing Shaders in X3D" idea</a> this month. I think it went quite good :) <a href="http://castle-engine.sourceforge.net/compositing_shaders_slides.pdf">Slides from the presentation are available</a>.</p></li>
+  <li><p>I was at <a href="http://www.eguk.org.uk/TPCG11/">TPCG11</a> conference and gave a talk about <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">our "Compositing Shaders in X3D" idea</a> this month. I think it went quite good :) <a href="https://castle-engine.sourceforge.io/compositing_shaders_slides.pdf">Slides from the presentation are available</a>.</p></li>
 
   <li><p>Various small website improvements, like nice OS icons for download links (we use <a href="http://www.webdevstuff.com/95/free-operating-system-icons.html">CC icons from here</a>), added Google +1 button on the main page.</p></li>
 </ol>'
@@ -322,20 +322,20 @@ castle_thumbs(array(
 
     <p>Looking back, I should have just made more creative name than just slapping "Kambi" (my last name) + VRML (technology) + "Game Engine" :) For example, <a href="http://www.ogre3d.org/">Ogre</a> has a nice name, that also immediately suggests the engine icon &mdash; ogre\'s head, used also in many Ogre3D examples. I like it.</p>
 
-    <p>We already have a nice engine icon that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="http://castle-engine.sourceforge.net/castle.php">"The Castle"</a>. So the new name <i>"Castle Game Engine"</i> seems sensible. No more "VRML" in the name, no more "Kambi" in the name. New name has nice connection with engine icon. When googling "castle game engine", we already hit our engine page (because of "The Castle" game).</p>
+    <p>We already have a nice engine icon that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="https://castle-engine.sourceforge.io/castle.php">"The Castle"</a>. So the new name <i>"Castle Game Engine"</i> seems sensible. No more "VRML" in the name, no more "Kambi" in the name. New name has nice connection with engine icon. When googling "castle game engine", we already hit our engine page (because of "The Castle" game).</p>
 
-    <p>Nothing is set in stone yet, so if you have an idea for an even cooler name &mdash; please write e.g. on <a href="http://castle-engine.sourceforge.net/forum.php">forum</a>.</p>
+    <p>Nothing is set in stone yet, so if you have an idea for an even cooler name &mdash; please write e.g. on <a href="https://castle-engine.sourceforge.io/forum.php">forum</a>.</p>
 
     <p>The engine rename means also renaming many identifiers (as the idea is to get rid of VRML prefix), so this will be a large breakage of API compatibility.</p>
 
-    <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="http://castle-engine.sourceforge.net/forum.php">through forum</a>) if you have any questions.</p>
+    <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="https://castle-engine.sourceforge.io/forum.php">through forum</a>) if you have any questions.</p>
 
     <p>Of course, old URLs will continue to work for a long time. I\'ll set appropriate redirects wherever possible.</p>
 
     <p>We also take this opportunity to migrate to the new SourceForge project management <a href="https://sourceforge.net/p/allura/">Allura, aka SF 2.0</a>. The new SourceForge project page is on <a href="https://sourceforge.net/p/castle-engine/">https://sourceforge.net/p/castle-engine/</a> (although old-style URL <a href="http://sourceforge.net/projects/castle-engine/">http://sourceforge.net/projects/castle-engine/</a> also works). You can see there a Wiki (hopefully will work better than HostedApp MediaWiki), new "Discussion" forum (possibly we will use it, instead of PhpBB hosted forum).
   </li>
 
-  <li><p><b>Important user-visible improvements</b> in the <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">engine</a> and <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a>:</p>
+  <li><p><b>Important user-visible improvements</b> in the <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">engine</a> and <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a>:</p>
     <ul>
       <li>Loading of many scenes is now ~2 times faster :), and is done immediately. That is because we fixed octree creation, it was mistakenly done <i>twice</i>, and the 2nd time was on-demand.</li>
       <li>More image formats supported (without the need for installing any external program or library). We use excellent <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a> to load and save various image formats now. This improves reading of some formats (PCX, JPG), and introduces some new formats (GIF, TGA, XPM, PSD).
@@ -344,7 +344,7 @@ castle_thumbs(array(
       <li>New view3dscene menu item to take a screenshot with transparent background, <i>Display -&gt; Screenshot To Image (Transparent Background)</i>. (<a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=164">Requested on forum</a>).</li>
       <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to allow using it repeatedly, and to work with <code>IndexedTriangleSet</code>.</li>
       <li>Fixed "pure shader renderer" on shapes that have textures with full (not only 0/1) alpha channel. In some situations, they were mistakenly drawn with additional alpha test, and effectively some parts of them were invisible. This bug slipped in 3.10.0 release.</li>
-      <li><a href="http://castle-engine.sourceforge.net/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">Collada importer improvements, this was mentioned in detail in previous news</a>. Static stuff from Collada models is read almost fully.</li>
+      <li><a href="https://castle-engine.sourceforge.io/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">Collada importer improvements, this was mentioned in detail in previous news</a>. Static stuff from Collada models is read almost fully.</li>
     </ul>
   </li>
 
@@ -440,7 +440,7 @@ castle_thumbs(array(
 
 <p>Note that Blender currently writes incorrect normals (disregarding <i>"Auto Smooth Angle"</i>), this makes some models exported from Blender (Collada as well as X3D) have incorrect shading.<!-- (Todo: link to #bugreport).--></p>
 
-<p>Also, <a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.0.1</a> have been released, with minor fixes and updates, including better webpage text.</p>'),
+<p>Also, <a href="https://castle-engine.sourceforge.io/demo_models.php">VRML/X3D demo models 3.0.1</a> have been released, with minor fixes and updates, including better webpage text.</p>'),
 
     array('title' => 'view3dscene 3.10.1, engine 2.5.1 released: XML output',
           'year' => 2011,
@@ -454,13 +454,13 @@ castle_thumbs(array(
   array('filename' => 'xmlportals_to_x3d_barricade_0.png', 'titlealt' => 'Testing model for xmlportals_to_x3d'),
   array('filename' => 'xmlportals_to_x3d_barricade_2.png', 'titlealt' => 'Portals visualized by xmlportals_to_x3d'),
 )) .
-'<p>We present new releases of <b><a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.10.1</a></b>, our VRML/X3D browser and 3D models viewer, and <b><a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.5.1</a></b>, the engine underneath.</p>
+'<p>We present new releases of <b><a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene 3.10.1</a></b>, our VRML/X3D browser and 3D models viewer, and <b><a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">Kambi VRML game engine 2.5.1</a></b>, the engine underneath.</p>
 
 <ul>
-  <li>The main new feature of <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> is the ability to save files in X3D XML encoding (in addition to previous VRML/X3D classic encoding). This allows you to convert between X3D encodings.</li>
-  <li><a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> can also convert from VRML 2 to X3D (necessary if you want to save VRML 2 to X3D XML, optional if you want to save VRML 2 to X3D classic).</li>
+  <li>The main new feature of <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> is the ability to save files in X3D XML encoding (in addition to previous VRML/X3D classic encoding). This allows you to convert between X3D encodings.</li>
+  <li><a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> can also convert from VRML 2 to X3D (necessary if you want to save VRML 2 to X3D XML, optional if you want to save VRML 2 to X3D classic).</li>
   <li>All conversions are available through three <i>File -&gt; Save As...</i> menu items in view3dscene.</li>
-  <li>All conversions can also be done in batch mode, by new command-line options <code>--write</code>, <code>--write-encoding</code>, <code>--write-force-x3d</code>. Old <code>--write-to-vrml</code> option becomes deprecated (it\'s a shortcut for <code>--write --write-encoding=classic</code>). <a href="http://castle-engine.sourceforge.net/view3dscene.php#section_converting">Documentation of conversion options is here.</a></li>
+  <li>All conversions can also be done in batch mode, by new command-line options <code>--write</code>, <code>--write-encoding</code>, <code>--write-force-x3d</code>. Old <code>--write-to-vrml</code> option becomes deprecated (it\'s a shortcut for <code>--write --write-encoding=classic</code>). <a href="https://castle-engine.sourceforge.io/view3dscene.php#section_converting">Documentation of conversion options is here.</a></li>
   <li>Independent <code>tovrmlx3d</code> binary is also provided inside view3dscene release, to perform conversion in batch mode. It\'s usually better to use this than <code>view3dscene --write</code>, because <code>tovrmlx3d</code> is not linked to GUI libraries (so can work on stripped-down systems) and has simpler command-line options (it\'s purpose is only to convert).</li>
   <li>Various small improvements to classic encoding output were also done. We better treat X3D <code>META</code> (adding ourselves to <code>META</code> <code>generator/source</code> fields, moving previous (different) values to <code>generator-previous/source-previous</code>). We have better, consistent newlines around <code>SFNode/MFNode</code> fields. Command-line conversion does not "expand" <code>receiveShadows</code> and <code>defaultShadowMap</code> fields.</li>
 </ul>
@@ -479,9 +479,9 @@ castle_thumbs(array(
 <p>Also minor website improvements:</p>
 
 <ul>
-  <li>Large <a href="http://castle-engine.sourceforge.net/forum.php">"Helping in the engine development" section on the forum page.</a></li>
-  <li>Some new screenshots on <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> page. The "tower" screenshot, that served as our "iconic" screenshot on various sites, is updated with a sunset lighting and sky.</li>
-  <li>Separate <a href="http://castle-engine.sourceforge.net/donate.php">"Donate" page</a>.</li>
+  <li>Large <a href="https://castle-engine.sourceforge.io/forum.php">"Helping in the engine development" section on the forum page.</a></li>
+  <li>Some new screenshots on <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> page. The "tower" screenshot, that served as our "iconic" screenshot on various sites, is updated with a sunset lighting and sky.</li>
+  <li>Separate <a href="https://castle-engine.sourceforge.io/donate.php">"Donate" page</a>.</li>
 </ul>'),
 
     array('title' => 'view3dscene 3.10.0, engine 2.5.0, demo models 3.0.0 released',
@@ -510,30 +510,30 @@ castle_thumbs(array(
   /* ColorSetInterpolator */
   array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
 ), 2) .
-'<p>We\'re proud to release a new stable versions of <b><a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a></b>, our VRML/X3D browser and other 3D models viewer, and <b><a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine</a></b>, which is at the core of view3dscene and where all the magic is actually implemented :)</p>
+'<p>We\'re proud to release a new stable versions of <b><a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a></b>, our VRML/X3D browser and other 3D models viewer, and <b><a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">Kambi VRML game engine</a></b>, which is at the core of view3dscene and where all the magic is actually implemented :)</p>
 
 <p>Important new features:</p>
 
 <ul>
   <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
 
-    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). You can switch <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu, to have <i>everything</i> rendered through shaders (make sure you have a good GPU).
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">Compositing Shaders extensions</a>). You can switch <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> menu, to have <i>everything</i> rendered through shaders (make sure you have a good GPU).
 
     <ul>
-      <li><p>All the <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">lighting is calculated per-pixel</a> in shader rendering (we use the <i>Phong shading</i>). This means you see much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :) Also light\'s attenuation, radius, <code>SpotLight.beamWidth</code> are precisely rendered now.</p>
+      <li><p>All the <a href="https://castle-engine.sourceforge.io/x3d_implementation_lighting.php#section_per_pixel_lighting">lighting is calculated per-pixel</a> in shader rendering (we use the <i>Phong shading</i>). This means you see much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :) Also light\'s attenuation, radius, <code>SpotLight.beamWidth</code> are precisely rendered now.</p>
 
-      <li><p>Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Now bump mapping works under all lighting and texturing conditions, works with two-sided lighting, and takes all normal VRML/X3D lights into account.</p>
+      <li><p>Our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Now bump mapping works under all lighting and texturing conditions, works with two-sided lighting, and takes all normal VRML/X3D lights into account.</p>
 
         <p>This also allows us to make bump mapping "enabled" by default. (You can control it by <i>View -&gt; Bump Mapping</i> menu of view3dscene of course.)</p>
       </li>
 
-      <li><p>The <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+      <li><p>The <a href="https://castle-engine.sourceforge.io/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
 
         <p>Shadow maps also work now with all the multi-texturing possibilities. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
       </li>
     </ul>
 
-  <li><p>Another big news is our <b>compositing shaders</b> extensions. The <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models.</p>
+  <li><p>Another big news is our <b>compositing shaders</b> extensions. The <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models.</p>
 
     <p>My paper about this was accepted for <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>, and will be available here publicly later.</p></li>
 
@@ -541,29 +541,29 @@ castle_thumbs(array(
     <ul>
       <li>Conversion of 3DS, GEO, Wavefront OBJ, MD3, Collada reimplemented to produce X3D&nbsp;3.2.</li>
       <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name.</li>
-      <li>We read normalmap (aka bumpmap) information from 3DS and Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
+      <li>We read normalmap (aka bumpmap) information from 3DS and Wavefront OBJ models. This is naturally converted to <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul>
   </li>
 
-  <li><p>We also release <b>grand new version of our <a href="http://castle-engine.sourceforge.net/demo_models.php">VRML/X3D demo models 3.0.0</a></b> (previously called <i>Kambi VRML test suite</i>). A ton of new models were added, and many were improved &mdash; the whole archive is 65 megabytes now (compared to previous 41 megabytes).
+  <li><p>We also release <b>grand new version of our <a href="https://castle-engine.sourceforge.io/demo_models.php">VRML/X3D demo models 3.0.0</a></b> (previously called <i>Kambi VRML test suite</i>). A ton of new models were added, and many were improved &mdash; the whole archive is 65 megabytes now (compared to previous 41 megabytes).
 
     <p>Most of the stuff is reorganized into directories named after features (like <code>shadow_maps</code>, <code>shaders</code> etc.) as opposed to versions (like <code>vrml_2</code>, <code>x3d</code>). Brand new models are mainly in the <code>compositing_shaders</code> and <code>shadow_volumes</code> directories, but also explore other directories &mdash; the new layout should allow you to discover some old-but-hard-to-find gems inside :) The idea is that new directory names indicate features, so you can immediately see the features of engine and view3dscene.</p>
 
-  <li><p>We also release <b>(in source only) <a href="http://castle-engine.sourceforge.net/castle.php">castle</a> version 0.9.2</b>. This is for developers, so you have <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_download_src">castle sources compatible with latest engine</a>.</p></li>
+  <li><p>We also release <b>(in source only) <a href="https://castle-engine.sourceforge.io/castle.php">castle</a> version 0.9.2</b>. This is for developers, so you have <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_download_src">castle sources compatible with latest engine</a>.</p></li>
 
-  <li><p>Our <a href="http://castle-engine.sourceforge.net/blender.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <code>normalMap</code> features.</p></li>
+  <li><p>Our <a href="https://castle-engine.sourceforge.io/blender.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <code>normalMap</code> features.</p></li>
 
   <li><p><b>Other new features and fixes</b>:</p>
     <ul>
       <li>X3D light source "global" field is correctly supported now.</li>
-      <li>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
-      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_vector_interpolator"><code>VectorInterpolator</code> extension</a> implemented to animate MFFloat sets, for example to animate <code>ElevationGrid.set_height</code>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</li>
-      <li><code>LineProperties</code> node implemented (<a href="http://castle-engine.sourceforge.net/x3d_implementation_shape.php">see Shape component support</a>).</li>
+      <li>You have much more options for customizing the headlight, by new <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
+      <li><a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php#section_vector_interpolator"><code>VectorInterpolator</code> extension</a> implemented to animate MFFloat sets, for example to animate <code>ElevationGrid.set_height</code>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</li>
+      <li><a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</li>
+      <li><code>LineProperties</code> node implemented (<a href="https://castle-engine.sourceforge.io/x3d_implementation_shape.php">see Shape component support</a>).</li>
       <li>Transform animation optimizations.</li>
       <li>Various prototype speed and memory optimizations.</li>
-      <li>Crude implementation of <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bitmanagement">some BitManagement nodes</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">heigthMap for bump mapping</a> should be placed within alpha channel of normalmap image, and <i>parallax bump mapping</i> works now much more efficient.</li>
+      <li>Crude implementation of <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bitmanagement">some BitManagement nodes</a>.</li>
+      <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">heigthMap for bump mapping</a> should be placed within alpha channel of normalmap image, and <i>parallax bump mapping</i> works now much more efficient.</li>
       <li>view3dscene has new <i>File -&gt; Preferences</i> persistent settings for line width (controls all line visualization, like wireframe, bounding box, <code>LineSet</code> etc.), point size and default background color.</li>
       <li>VRML 1.0 <code>PerspectiveCamera.heightAngle</code> and <code>OrthographicCamera.height</code> support.</li>
       <li>Shadow maps <i>PCF 4 bilinear</i> fixes &mdash; it was too dark.</li>
@@ -576,11 +576,11 @@ castle_thumbs(array(
 
 <!--p>This long news message is still only a shortcut of new features :)
 For some more in-depth information, see also previous "development news"
-(<a href="http://castle-engine.sourceforge.net/news.php?id=2011-6-20-development_news__lights_improvements__shadow_volumes_in_demo_models__hunter%27s_mark__more">2011-6-20</a>,
- <a href="http://castle-engine.sourceforge.net/news.php?id=2011-6-1-development_news__many_shader_pipeline_improvements__many_3ds_wavefront_etc._converters_improvements__more">2011-6-01</a>,
- <a href="http://castle-engine.sourceforge.net/news.php?id=2011-4-21-development_news__engine_2.4.4_fixes_release__colorsetinterpolator">2011-4-21</a>,
- <a href="http://castle-engine.sourceforge.net/news.php?id=2011-4-9-development_news__finishing_shader_rendering__steep_parallax_bump_mapping_reimplemented__engine_2.4.1_fixes_release">2011-4-09</a>,
- <a href="http://castle-engine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">2011-3-08</a>).</p>
+(<a href="https://castle-engine.sourceforge.io/news.php?id=2011-6-20-development_news__lights_improvements__shadow_volumes_in_demo_models__hunter%27s_mark__more">2011-6-20</a>,
+ <a href="https://castle-engine.sourceforge.io/news.php?id=2011-6-1-development_news__many_shader_pipeline_improvements__many_3ds_wavefront_etc._converters_improvements__more">2011-6-01</a>,
+ <a href="https://castle-engine.sourceforge.io/news.php?id=2011-4-21-development_news__engine_2.4.4_fixes_release__colorsetinterpolator">2011-4-21</a>,
+ <a href="https://castle-engine.sourceforge.io/news.php?id=2011-4-9-development_news__finishing_shader_rendering__steep_parallax_bump_mapping_reimplemented__engine_2.4.1_fixes_release">2011-4-09</a>,
+ <a href="https://castle-engine.sourceforge.io/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">2011-3-08</a>).</p>
 -->
 '),
 
@@ -604,20 +604,20 @@ castle_thumbs(array(
   array('filename' => 'hunters_mark_ingamemenu.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - menu in game'),
   array('filename' => 'hunters_mark_credits.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - credits'),
 ), 2) .
-'<p>Work on next <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> and <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">engine</a> release continues. I hope to release the next versions before the end of this month (it\'s already much delayed according to my plans, sorry :). Some highlights from this month\'s work:</p>
+'<p>Work on next <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> and <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">engine</a> release continues. I hope to release the next versions before the end of this month (it\'s already much delayed according to my plans, sorry :). Some highlights from this month\'s work:</p>
 
 <ul>
   <li><p>All the lights, including headlight, are now correctly passed to the shader pipeline renderer. This means that using spot light as a headlight looks good now if you use <i>View-&gt;Shader-&gt;Enable For Everything</i>, the spot is calculated nicely.</p></li>
 
-  <li><p>You have much more options for customizing the headlight, by new <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
+  <li><p>You have much more options for customizing the headlight, by new <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
 
     <p>Old <code>KambiHeadLight</code> node is deprecated and ignored now. It was exposing headlight in a way that was a little alien to other VRML/X3D lights, and is no longer comfortable to implement.</p></li>
 
-  <li><p><code>SpotLight.beamWidth</code> is handled perfectly and precisely with shader pipeline. <a href="http://castle-engine.sourceforge.net/x3d_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
+  <li><p><code>SpotLight.beamWidth</code> is handled perfectly and precisely with shader pipeline. <a href="https://castle-engine.sourceforge.io/x3d_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
 
-  <li><p>Shadow volumes demos are moved to <code>demo_models/shadow_volumes/</code> (will be part of next release of <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <code>PlaneSensor</code> and <code>SphereSensor</code> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
+  <li><p>Shadow volumes demos are moved to <code>demo_models/shadow_volumes/</code> (will be part of next release of <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <code>PlaneSensor</code> and <code>SphereSensor</code> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
 
-    <p>Old and mostly useless demo <code>examples/shadow_volume_test/</code> is removed, all the fun can now be performed by opening the files from <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> (or any other 3D browser from engine examples).</p></li>
+    <p>Old and mostly useless demo <code>examples/shadow_volume_test/</code> is removed, all the fun can now be performed by opening the files from <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> (or any other 3D browser from engine examples).</p></li>
 
   <li><p>Bartha Rolland (aka B42iso) has made a small game called <i>Hunter\'s Mark</i> using our engine :) The screenshots are visible on the side of this news post. An excerpt from the mail:</p>
 
@@ -628,11 +628,11 @@ castle_thumbs(array(
     <p>Cool :)</p>
     </li>
 
-  <li><p>Our <a href="http://castle-engine.sourceforge.net/blender.php">Blender X3D exporter</a> was updated to set correct <code>creaseAngle</code> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
+  <li><p>Our <a href="https://castle-engine.sourceforge.io/blender.php">Blender X3D exporter</a> was updated to set correct <code>creaseAngle</code> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <code>TKamSceneManager.InitializeLights</code> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <code>TVRMLGLScene.GlobalLights</code>, and you can easily make all global lights shine on everything through <code>TKamSceneManager.UseGlobalLights</code>.
 
-    <p>This works even for VRML 1.0 (<a href="http://castle-engine.sourceforge.net/x3d_extensions_vrml1.php#section_ext_global">because VRML 1.0 lights can also be global</a>, this is another extension of our engine).</p>
+    <p>This works even for VRML 1.0 (<a href="https://castle-engine.sourceforge.io/x3d_extensions_vrml1.php#section_ext_global">because VRML 1.0 lights can also be global</a>, this is another extension of our engine).</p>
 
     <p>The old dirty idea of "light set" (load lights from special xxx_lights files into special <code>TVRMLGLLightSet</code> class) is removed. This was ugly and complicated. Now, just place your lights inside normal scene (like a level), and use <code>UseGlobalLights</code> to shine on everything. More elaborate scenarios are possible through InitializeLights.</p></li>
 </ul>
@@ -649,16 +649,16 @@ castle_thumbs(array(
   array('filename' => 'light_street_lights_radius_shaders.png', 'titlealt' => 'Lights with radius with shader rendering'),
   array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
 )) .
-'<p>Work on next <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> release continues. Some highlights from May:</p>
+'<p>Work on next <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> release continues. Some highlights from May:</p>
 
 <ul>
-  <li><p><a href="http://castle-engine.sourceforge.net/blender.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
+  <li><p><a href="https://castle-engine.sourceforge.io/blender.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
 
   <li><p>Lights improvements:</p>
     <ul>
       <li>Lights attenuation is correctly rendered in shader pipeline.</li>
       <li>X3D light source "global" field is correctly supported now. (Previously, we were following VRML 97 spec, where directional lights are never global and point/spot lights are always global.)</li>
-      <li>Light radius is correctly and precisely (per-pixel) checked in shader pipeline. This allows to use light "radius" for much more dramatic effects, compare 2 screenshots from light_street_lights_radius demo (source model in <a href="http://castle-engine.sourceforge.net/demo_models.php">demo models</a> SVN).</li>
+      <li>Light radius is correctly and precisely (per-pixel) checked in shader pipeline. This allows to use light "radius" for much more dramatic effects, compare 2 screenshots from light_street_lights_radius demo (source model in <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a> SVN).</li>
     </ul></li>
 
   <li><p>Other shader pipeline improvements:</p>
@@ -672,13 +672,13 @@ castle_thumbs(array(
     <ul>
       <li>Conversion of 3DS, GEO, Wavefront OBJ and MD3 reimplemented to produce X3D (instead of old VRML 1.0).</li>
       <li>When loading 3DS and Wavefront OBJ, we try harder to find matching texture name: we search for texture filename ignoring case (useful if you\'re on case-sensitive file-system, like usually on Unix), we look inside textures/ subdirectory, we try to strip basename from filename in case it was absolute. If original texture filename was not found, but we found a suitable alternative, we use it (notifying you about this by a warning, so you know what going on &mdash; we used somewhat different texture filename).</li>
-      <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
+      <li>We read normalmap (aka bumpmap) information from 3DS or Wavefront OBJ models. This is naturally converted to <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions for VRML/X3D</a>.</li>
     </ul></li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_vector_interpolator"><code>VectorInterpolator</code> extension</a> implemented to animate MFFloat sets, for example to animate <code>ElevationGrid.set_height</code>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</p></li>
+  <li><p><a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php#section_vector_interpolator"><code>VectorInterpolator</code> extension</a> implemented to animate MFFloat sets, for example to animate <code>ElevationGrid.set_height</code>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</p></li>
 </ul>
 
-<p>You may also be interested in <a href="http://castle-engine.sourceforge.net/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">is available here</a>.</p>
+<p>You may also be interested in <a href="https://castle-engine.sourceforge.io/compositing_shaders_sem_dokt_polish.pdf">slides, in Polish, about our "compositing shaders" idea</a>. Information in English <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">is available here</a>.</p>
 
 <p>As usual, you can try everything by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">our snapshots</a>.</p>
 '),
@@ -694,7 +694,7 @@ castle_thumbs(array(
   array('filename' => 'vrml_with_2d_controls_example.png', 'titlealt' => 'vrml_with_2d_controls - our engine Lazarus example, 3D scene with our 2D controls in OpenGL context.'),
   array('filename' => 'point_set_colors.png', 'titlealt' => 'PointSet, with coordinates and colors animated (the latter by our ColorSetInterpolator). From Jens van Schelve from www.ssbwindsystems.de.'),
 )) .
-'<p>In the last weeks, we have made a couple of small bugfix releases of <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">our engine for developers</a>. Only minimal bugfixes and small improvements:</p>
+'<p>In the last weeks, we have made a couple of small bugfix releases of <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">our engine for developers</a>. Only minimal bugfixes and small improvements:</p>
 
 <ul>
   <li><i>Engine 2.4.2</i>: Fixes the <code>kambi_glwindow</code> package compilation with Lazarus 0.9.30 (correct include path). Default <code>TWalkCamera.GravityUp</code> is now set to +Y (previously was zero, causing errors with cameras that weren\'t initialized by <code>TWalkCamera.Init</code>).</li>
@@ -702,9 +702,9 @@ castle_thumbs(array(
   <li><i>Engine 2.4.4</i>: TGLMenu improvements (Items, OnClick, some other useful stuff available and published). See <code>examples/lazarus/vrml_with_2d_controls</code> for demo.</li>
 </ul>
 
-<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="http://castle-engine.sourceforge.net/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
+<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
 
-<p>Also, we added a <a href="http://castle-engine.sourceforge.net/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</p>
+<p>Also, we added a <a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</p>
 '),
 
     array('title' => 'Development news: Finishing shader rendering, steep parallax bump mapping reimplemented, engine 2.4.1 fixes release',
@@ -719,7 +719,7 @@ castle_thumbs(array(
 )) .
 '<p>The work on finishing new shader renderer continues :) Bottom of this post contains more details.</p>
 
-<p><i>Parallax bump mapping</i> (including <i>steep parallax bump mapping with optional self-shadowing</i>) has been reimplemented for the new shader pipeline. (See <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions docs</a>.) Specifying height maps for parallax bump mapping is different now: they should be passed as the alpha channel of a normal map texture. This is something that can be:</p>
+<p><i>Parallax bump mapping</i> (including <i>steep parallax bump mapping with optional self-shadowing</i>) has been reimplemented for the new shader pipeline. (See <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">our bump mapping extensions docs</a>.) Specifying height maps for parallax bump mapping is different now: they should be passed as the alpha channel of a normal map texture. This is something that can be:</p>
 
 <ol>
   <li>trivially easily created (in <a href="http://code.google.com/p/gimp-normalmap/">GIMP normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>),</li>
@@ -728,7 +728,7 @@ castle_thumbs(array(
 
 <p>The old method for passing <code>heightMap</code> (by a separate <code>Apperance.heightMap</code> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the height-map in the alpha channel of the normal-map. The new method feels easier for both texture creators and for the implementation.</p>
 
-<p>In another news, we released <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine version 2.4.1</a>. This is a bugfix release, compared to 2.4.0 there are no new features, only most critical fixes (ported from SVN work):</p>
+<p>In another news, we released <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">Kambi VRML game engine version 2.4.1</a>. This is a bugfix release, compared to 2.4.0 there are no new features, only most critical fixes (ported from SVN work):</p>
 
 <ul>
   <li>fix FPC 2.2.4 and older compilation (like for Lazarus 0.9.28) (thanks to Stephen H. France for reporting this and other issues),</li>
@@ -774,21 +774,21 @@ castle_thumbs(array(
 <ol>
   <li><p>We have a new <b>shiny method of rendering everything through shaders</b> (OpenGL Shading Language, aka GLSL). All of the standard X3D rendering features, as well as our extensions, are available in this rendering mode. This results in much better look of many scenes.</p>
 
-    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">Compositing Shaders extensions</a>). For testing purposes, you can switch to <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> menu. The results should be the same (or better) than current renderer.
+    <p>By default, the shader rendering is used only for shapes that require it &mdash; shapes that are shadow map receivers, use bump mapping, or have an explicit shader source code assigned (by <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php">the ComposedShader node</a>, or by the new <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">Compositing Shaders extensions</a>). For testing purposes, you can switch to <i>"View -&gt; Shaders -&gt; Enable For Everything"</i> in <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> menu. The results should be the same (or better) than current renderer.
 
     <ul>
       <li><p>All the <i>lighting is calculated per-pixel</i> in shader rendering (we use the <i>Phong shading</i>). This is targeted at high-end GPUs anyway, so for now I decided that there\'s no point in making alternative per-vertex lighting (<i>Gouraud shading</i>). This means you should expect much nicer specular and spot light highlights. Try to make some smooth and curvy metallic surfaces to appreciate it :)</p>
 
         <p>Note that shapes that don\'t need any shader effects are still by default rendered through the fixed-function pipeline. So the performance of simple scenes should not suffer on low-end GPUs.</p></li>
 
-      <li><p>Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping works under all lighting and texturing conditions, and takes all normal VRML/X3D lights into account.</p>
+      <li><p>Our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">bump mapping</a> effect is very nicely unified within the new rendering process. Previously we used special bump mapping shaders, limited to common situations. Now bump mapping works under all lighting and texturing conditions, and takes all normal VRML/X3D lights into account.</p>
 
         <p>We also make bump mapping "enabled" by default.</p>
 
         <p>Our bump mapping works also with two-side lighting now.</p>
       </li>
 
-      <li><p>The <a href="http://castle-engine.sourceforge.net/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
+      <li><p>The <a href="https://castle-engine.sourceforge.io/x3d_extensions_shadow_maps.php">shadow maps</a> implementation is also nicely unified with new rendering. This gives a huge improvement, as now we take into account the shadows in the correct place of the lighting equation, scaling down only the contribution of the obscured light. So the shadows maps work fully correctly with multiple lights and multiple shadow maps over the same shape.</p>
 
         <p>Shadow maps also work now with all the multi-texturing possibilities. And, in general, they work with every VRML/X3D lights/materials/textures settings.</p>
       </li>
@@ -797,7 +797,7 @@ castle_thumbs(array(
     <p>New <i>"View -&gt; Shaders"</i> submenu allows to choose when shaders are used:</p>
 
     <ul>
-      <li><i>Disable</i> means <i>never</i>. Our effects will not work, standard ComposedShader will not work, shadow maps will not work. Also, <a href="http://castle-engine.sourceforge.net/x3d_extensions_screen_effects.php">screen effects</a> (that always require shaders) are off.</li>
+      <li><i>Disable</i> means <i>never</i>. Our effects will not work, standard ComposedShader will not work, shadow maps will not work. Also, <a href="https://castle-engine.sourceforge.io/x3d_extensions_screen_effects.php">screen effects</a> (that always require shaders) are off.</li>
       <li><i>Enable When Required</i> means that we use fixed-function pipeline for the shapes that don\'t use any shader effects, and shader pipeline for shapes that do.</li>
       <li><i>Enable For Everything</i> means that we use shader pipeline for all the shapes. You will see beautiful per-pixel lighting on everything. On the other hand, rendering may be slower, unless you have really brand new GPU.</li>
     </ul>
@@ -811,11 +811,11 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p>Another big news is our <b>compositing shaders</b> extensions. The <a href="http://castle-engine.sourceforge.net/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models.</p>
+  <li><p>Another big news is our <b>compositing shaders</b> extensions. The <a href="https://castle-engine.sourceforge.io/compositing_shaders.php">short introduction to our &quot;compositing shaders&quot; idea is here</a>, including the screenshots and information where to find the demo models.</p>
 
     <p>I wrote a paper about this that will be submitted for the <a href="http://www.web3d2011.org/">Web3D 2011 conference</a>, and will be available here publicly later (I don\'t think I should make it public before being accepted). Drop me a mail if you\'d like to get a peek at my paper PDF earlier.</p></li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/demo_models.php">"Kambi VRML test suite" will be renamed to "VRML / X3D demo models"</a> upon the next release. The SVN already has many improvements:</p>
+  <li><p><a href="https://castle-engine.sourceforge.io/demo_models.php">"Kambi VRML test suite" will be renamed to "VRML / X3D demo models"</a> upon the next release. The SVN already has many improvements:</p>
 
     <ul>
       <li>New directory layout, to emphasize foremost what features are tested (shadow_maps, shaders etc.)</li>
@@ -826,9 +826,9 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p><a href="http://castle-engine.sourceforge.net/blender.php">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
+  <li><p><a href="https://castle-engine.sourceforge.io/blender.php">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
 
-  <li><p>For developers using FPC 2.2.4 (or older): a bug slipped into the last engine sources, preventing compilation with FPC 2.2.4 or older. A fixed version of the sources is released, see <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_fpc_ver">FPC version notes</a> and <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php#section_engine_src">engine sources</a>. Thanks to Stephen H. France for reporting this!</p></li>
+  <li><p>For developers using FPC 2.2.4 (or older): a bug slipped into the last engine sources, preventing compilation with FPC 2.2.4 or older. A fixed version of the sources is released, see <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_fpc_ver">FPC version notes</a> and <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php#section_engine_src">engine sources</a>. Thanks to Stephen H. France for reporting this!</p></li>
 
   <li><p>view3dscene has new <i>File -&gt; Preferences</i> persistent settings for line width (controls all line visualization, like wireframe, bounding box, <code>LineSet</code> etc.), point size and default background color.</p></li>
 
@@ -849,37 +849,37 @@ castle_thumbs(array(
   array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
   array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
 ), 1) .
-'<p>We\'re proud to release a new version of <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene 3.9.0</a>, our VRML/X3D (and other 3D models) browser. As usual, the new release is accompanied by new <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.4.0</a> (where all the magic actually happens) and new <a href="http://castle-engine.sourceforge.net/kambi_vrml_test_suite.php">Kambi VRML test suite 2.11.0</a> releases.</p>
+'<p>We\'re proud to release a new version of <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene 3.9.0</a>, our VRML/X3D (and other 3D models) browser. As usual, the new release is accompanied by new <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">Kambi VRML game engine 2.4.0</a> (where all the magic actually happens) and new <a href="https://castle-engine.sourceforge.io/kambi_vrml_test_suite.php">Kambi VRML test suite 2.11.0</a> releases.</p>
 
 <ol>
   <li><p>The main new feature of this release is a <b>new modern renderer</b>. It opens the door for pure shader rendering in the next release, which hopefully will blow your mind :) Features already implemented while improving the renderer:</p>
 
     <ul>
       <li>GLSL attributes from VRML/X3D nodes: support for <code>FloatVertexAttribute</code>, <code>Matrix3VertexAttribute</code>, <code>Matrix4VertexAttribute</code> nodes.</li>
-      <li>LocalFog support. This allows you to limit (or turn off) fog for particular shapes. Our <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_fog_volumetric">volumetric fog</a> extensions are available for this type of fog, as well as normal <code>Fog</code>.</li>
-      <li>FogCoordinate node support (explicit per-vertex fog intensities). <a href="http://castle-engine.sourceforge.net/x3d_implementation_environmentaleffects.php">Support details are here</a>.</li>
-      <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
+      <li>LocalFog support. This allows you to limit (or turn off) fog for particular shapes. Our <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_fog_volumetric">volumetric fog</a> extensions are available for this type of fog, as well as normal <code>Fog</code>.</li>
+      <li>FogCoordinate node support (explicit per-vertex fog intensities). <a href="https://castle-engine.sourceforge.io/x3d_implementation_environmentaleffects.php">Support details are here</a>.</li>
+      <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
       <li><code>ElevationGrid.creaseAngle</code> is now working correctly (previously only all smooth or all flat normals were possible for ElevationGrid).</li>
-      <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<code>data:text/plain,</code>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). See <a href="http://castle-engine.sourceforge.net/x3d_implementation_shaders.php">examples in our docs here</a>, also the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
+      <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<code>data:text/plain,</code>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). See <a href="https://castle-engine.sourceforge.io/x3d_implementation_shaders.php">examples in our docs here</a>, also the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
     </ul>
 
     <p>With the new renderer, you should enjoy better speed on many scenes &mdash; in some cases the improvement is large (although, admittedly, in some cases it\'s not really noticeable). If you\'re curious, some (not impressive, but also not bad) <a href="http://svn.code.sf.net/p/castle-engine/code/branches/view3dscene-old-renderer-for-comparison/STATS.txt">results are here</a>.</p>
 
-    <p>For programmers, a description of how the new renderer works is available in our <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.vrml_arrays.html">documentation (section "Geometry Arrays")</a>. You can grab it in PDF or other formats from <a href="http://castle-engine.sourceforge.net/vrml_engine_doc.php">here</a>.</p></li>
+    <p>For programmers, a description of how the new renderer works is available in our <a href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/section.vrml_arrays.html">documentation (section "Geometry Arrays")</a>. You can grab it in PDF or other formats from <a href="https://castle-engine.sourceforge.io/vrml_engine_doc.php">here</a>.</p></li>
 
-  <li><p>Another new feature are <b>multiple viewports</b>. This was <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">already implemented in our engine</a>, now it\'s used in view3dscene. Just open any scene, and try the new <i>Display -&gt; 1/2/4 viewports</i> menu items, and you will see what I mean. Hope you like this :) Remember that the main (upper-left) viewport is still the central one, for example it controls the headlight.</p>
+  <li><p>Another new feature are <b>multiple viewports</b>. This was <a href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">already implemented in our engine</a>, now it\'s used in view3dscene. Just open any scene, and try the new <i>Display -&gt; 1/2/4 viewports</i> menu items, and you will see what I mean. Hope you like this :) Remember that the main (upper-left) viewport is still the central one, for example it controls the headlight.</p>
 
-    <p>Thanks to Jens van Schelve for suggesting this. A cool fact: the guys at <a href="http://www.ssbwindsystems.de/">SSB Wind Systems</a> are using our <a href="http://castle-engine.sourceforge.net/view3dscene.php">view3dscene</a> to visualize wind turbine simulations :) You can see a screenshot of their simulation output on the right.</p></li>
+    <p>Thanks to Jens van Schelve for suggesting this. A cool fact: the guys at <a href="http://www.ssbwindsystems.de/">SSB Wind Systems</a> are using our <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a> to visualize wind turbine simulations :) You can see a screenshot of their simulation output on the right.</p></li>
 
   <li><p>Other important new features / fixes:</p>
     <ul>
-      <li>The <b>screenshot options work now more reliably</b> on modern GPUs (that have <i>Framebuffer Object</i>). This allows to hide the window during screenshot process on all the platforms, and capture larger image sizes reliably. See <a href="http://castle-engine.sourceforge.net/view3dscene.php#section_screenshot"><code>--screenshot</code> and <code>--screenshot-range</code> options documentation</a>.</li>
-      <li><code>TouchSensor.hitTexCoord_changed</code> implemented, <code>hitNormal_changed</code> improved to generate smooth normals. See <a href="http://castle-engine.sourceforge.net/x3d_implementation_pointingdevicesensor.php">support details here</a>.</li>
+      <li>The <b>screenshot options work now more reliably</b> on modern GPUs (that have <i>Framebuffer Object</i>). This allows to hide the window during screenshot process on all the platforms, and capture larger image sizes reliably. See <a href="https://castle-engine.sourceforge.io/view3dscene.php#section_screenshot"><code>--screenshot</code> and <code>--screenshot-range</code> options documentation</a>.</li>
+      <li><code>TouchSensor.hitTexCoord_changed</code> implemented, <code>hitNormal_changed</code> improved to generate smooth normals. See <a href="https://castle-engine.sourceforge.io/x3d_implementation_pointingdevicesensor.php">support details here</a>.</li>
       <li>For programmers, an improved TVRMLShape.LocalTriangulate callback is available. See <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=25">this forum thread for more information</a>.</li>
     </ul>
   </li>
 
-  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="http://castle-engine.sourceforge.net/donate.php">Donate page</a>.</p></li>
+  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="https://castle-engine.sourceforge.io/donate.php">Donate page</a>.</p></li>
 
   <li><p>At the end: I decided to <b>deprecate some of our old extensions</b>. As far as I know noone used them, and they are rather useless in the light of new features:</p>
 
@@ -907,7 +907,7 @@ castle_thumbs(array(
 
 <ul>
   <li>GLSL attributes from VRML/X3D nodes: support for <code>FloatVertexAttribute</code>, <code>Matrix3VertexAttribute</code>, <code>Matrix4VertexAttribute</code> nodes.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_bump_mapping">Bump mapping extensions</a> support for every shape (including X3D triangle/quad sets/strips/fans).</li>
   <li><code>ElevationGrid.creaseAngle</code> is now working correctly (previously only all smooth or all flat normals were possible for ElevationGrid).</li>
   <li><code>FogCoordinate</code> node support (explicit per-vertex fog intensities).</li>
   <li>Loading GLSL shader source from data URI. For example, you can prefix inline shader source with line "<code>data:text/plain,</code>", which is a spec-conforming method of putting shader source inline (even though you can still omit it for our engine). For a demo, see the "GLSL Vertex Shader" example in <a href="http://freewrl.sourceforge.net/examples.html">FreeWRL examples</a>.</li>
@@ -936,7 +936,7 @@ castle_thumbs(array(
 
 <p>If you want to mute / unmute sound, you can use <i>File -&gt; Preferences -&gt; Sound</i> menu item of view3dscene. There\'s also <i>File -&gt; Preferences -&gt; Sound Device</i> choice. ' . news_a_href_page('Command-line options for controlling sound are documented here', 'openal') . '.</p>
 
-<p>For developers, as usual we release a <b>new <a href="http://castle-engine.sourceforge.net/kambi_vrml_game_engine.php">Kambi VRML game engine 2.3.0</a></b>. Besides sound in VRML/X3D, you will notice a new shiny SoundEngine (instance of TALSoundEngine, in ALSoundEngine unit) that makes using OpenAL a breeze from ObjectPascal code. Sample usage:</p>
+<p>For developers, as usual we release a <b>new <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">Kambi VRML game engine 2.3.0</a></b>. Besides sound in VRML/X3D, you will notice a new shiny SoundEngine (instance of TALSoundEngine, in ALSoundEngine unit) that makes using OpenAL a breeze from ObjectPascal code. Sample usage:</p>
 
 <pre>
 var Buffer: TALBuffer;
@@ -945,9 +945,9 @@ Buffer := SoundEngine.LoadBuffer(\'sample.wav\');
 SoundEngine.PlaySound(Buffer, ...); // see TALSoundEngine.PlaySound parameters
 </pre>
 
-<p>See the <a href="http://castle-engine.sourceforge.net/reference.php">engine reference</a>, in particular <a href="http://castle-engine.sourceforge.net/apidoc/html/ALSoundEngine.TALSoundEngine.html">TALSoundEngine class reference</a>, for details. You can try adding this code spinnet to any example in engine sources, e.g. to the <code>examples/vrml/scene_manager_demos.lpr</code>.</p>
+<p>See the <a href="https://castle-engine.sourceforge.io/reference.php">engine reference</a>, in particular <a href="https://castle-engine.sourceforge.io/apidoc/html/ALSoundEngine.TALSoundEngine.html">TALSoundEngine class reference</a>, for details. You can try adding this code spinnet to any example in engine sources, e.g. to the <code>examples/vrml/scene_manager_demos.lpr</code>.</p>
 
-<p><b>Animating skinned H-Anim humanoids</b> is also implemented. You can use view3dscene to open e.g. <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>. The <a href="http://castle-engine.sourceforge.net/x3d_implementation_hanim.php">details about H-Anim support are here</a>. The new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i> may be useful too.</p>
+<p><b>Animating skinned H-Anim humanoids</b> is also implemented. You can use view3dscene to open e.g. <a href="http://www.seamless3d.com/browser_test/index.html">"Lucy" examples</a> from Seamless3D, also "The famous boxman" linked from the bottom of <a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality H-Anim overview</a>. The <a href="https://castle-engine.sourceforge.io/x3d_implementation_hanim.php">details about H-Anim support are here</a>. The new view3dscene menu item <i>"Edit -&gt; Add Humanoids Joints Visualization"</i> may be useful too.</p>
 
 <p>See also the video below. At first you see InstantReality results and then the view3dscene. Thanks to Peter "griff" Griffith for testing and creating this video!</p>
 
@@ -956,9 +956,9 @@ SoundEngine.PlaySound(Buffer, ...); // see TALSoundEngine.PlaySound parameters
 <p>Some <b>other notable features</b> implemented:</p>
 
 <ul>
-  <li><code>MultiGeneratedTextureCoordinate</code> node introduced, to better define the <a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
-  <li><a href="http://castle-engine.sourceforge.net/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
-  <li><a href="http://castle-engine.sourceforge.net/reference.php">Engine reference for developers</a> improved a lot.</li>
+  <li><code>MultiGeneratedTextureCoordinate</code> node introduced, to better define the <a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord">Box/Cone/Cylinder/Sphere.texCoord</a>.</li>
+  <li><a href="https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_tex_coord_bounds">Texture coord generation dependent on bounding box (TextureCoordinateGenerator.mode = BOUNDS*)</a>. This allowed fixing shadow maps implementation for the case when shape has a texture but no explicit texture coordinate node.</li>
+  <li><a href="https://castle-engine.sourceforge.io/reference.php">Engine reference for developers</a> improved a lot.</li>
 </ul>
 
 <p>Also <b>' . news_a_href_page('castle 0.9.0', 'castle') . ' is released</b>. This doesn\'t bring any new user-visible features, however internally a lot of stuff was simplified and ported to our engine 2.x line.</p>')

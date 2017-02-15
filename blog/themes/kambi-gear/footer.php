@@ -8,7 +8,8 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
 
 <?php
   /* Kambi: insert SF logo */
-  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net')
+  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
+      $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io')
   {
   ?>
     <a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
@@ -22,7 +23,8 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
 			<?php
 
   /* Kambi: insert piwik code on SourceForge */
-  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net')
+  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
+      $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io')
   {
 ?>
 

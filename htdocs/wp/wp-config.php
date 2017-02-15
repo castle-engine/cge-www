@@ -58,7 +58,7 @@ if ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
 
     define('WP_DEBUG', false);
 
-    define('WP_HOME', 'http://castle-engine.sourceforge.net/wp');
+    define('WP_HOME', 'https://castle-engine.sourceforge.io/wp');
     define('WP_SITEURL', WP_HOME);
 }
 

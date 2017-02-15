@@ -33,11 +33,11 @@ $toc = new TableOfContents(array(
     padding: 0.3em;
     width: 80%;
     margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
-  see also my paper <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
+  see also my paper <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
   (accepted for Web3D 2010 conference). PDF linked here has some absolutely minor
   corrections (for <code style="background-color: transparent;">projection*</code> fields and fixed URLs)
   compared to the conference version.
-  <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d_slides.pdf">The slides
+  <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d_slides.pdf">The slides
   from the presentation</a> are also available.</p>
 
   <p>Specification below comes from
@@ -305,7 +305,7 @@ $toc = new TableOfContents(array(
   This will work perfectly for shadow receivers marked by the
   <code>receiveShadows</code> field.
   <b>This feature was not "invented" at the time of submitting the
-  <a href="http://castle-engine.sourceforge.net/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
+  <a href="https://castle-engine.sourceforge.io/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
 
   <?php

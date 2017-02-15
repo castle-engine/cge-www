@@ -187,7 +187,7 @@ shader:</p>
     Note that using <code>gl_FragCoord.st</code> as a pixel position
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
-    when you use <a href="http://castle-engine.sourceforge.net/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
+    when you use <a href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <code>screen_position()</code>
     will cooperate nicely with custom viewports.</p></li>
 

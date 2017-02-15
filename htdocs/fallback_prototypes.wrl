@@ -2,7 +2,7 @@
 
 # This VRML file specifies "fallback" prototypes for extensions
 # of Castle Game Engine,
-# [http://castle-engine.sourceforge.net/x3d_extensions.php].
+# [https://castle-engine.sourceforge.io/x3d_extensions.php].
 #
 # This file will *not* be used by Castle Game Engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.

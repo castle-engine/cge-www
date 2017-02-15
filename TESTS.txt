@@ -56,7 +56,7 @@ make clean -C ..
 
 # ----------------------------------------------------------------------------
 # Test that older FPC works too. For this, switch to oldest FPC promised to work
-# on http://castle-engine.sourceforge.net/engine.php#section_fpc_ver, and repeat
+# on https://castle-engine.sourceforge.io/engine.php#section_fpc_ver, and repeat
 # at least quick non-Lazarus tests:
 
 ./compile_all_programs.sh

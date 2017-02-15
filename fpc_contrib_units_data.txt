@@ -33,7 +33,7 @@ Description:An open-source cross-platform 3D and 2D game engine. Features includ
   <li>Build tool to easily compile and package our programs for various platforms, including creating Android apk packages.</li>
 </ul>
 Download: http://downloads.sf.net/castle-engine/castle_game_engine-5.1.1-src.tar.gz
-Homepage: http://castle-engine.sourceforge.net/engine.php
+Homepage: https://castle-engine.sourceforge.io/engine.php
 Supported OSes: Unix, Win, Android, iOS...
 (I wanted to write:
 Tested on Linux, Mac OS X, Windows, Android, iOS, others. Works probably on many other modern OSes, in particular any Unix, supported by FPC.

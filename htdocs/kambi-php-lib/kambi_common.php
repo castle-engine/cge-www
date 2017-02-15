@@ -23,7 +23,7 @@
    ============================================================
 
    This is a common functions library, shared by both
-   http://castle-engine.sourceforge.net/ and
+   https://castle-engine.sourceforge.io/ and
    http://michalis.ii.uni.wroc.pl/~michalis/
    websites.
 

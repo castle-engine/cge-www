@@ -34,7 +34,7 @@ array_push($news,
 </div>
 
 <p>Be sure to also check out
-<a href="http://castle-engine.sourceforge.net/miscella/cge_tutorial_slides.pdf">the slides</a>
+<a href="https://castle-engine.sourceforge.io/miscella/cge_tutorial_slides.pdf">the slides</a>
 and <a href="https://github.com/michaliskambi/cge-tutorial">examples (data and code)</a>
 from a tutorial about our engine given during the recent <i>Web3d&nbsp;2015 conference</i>.
 They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
@@ -42,14 +42,14 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 <p>The 5.2.0 release brings various improvements to the engine capabilities and API:
 
 <ol>
-  <li><p><b>GPU texture memory profiler</b> is now available. This tells you exactly which textures are worth optimizing (maybe scale them down, maybe compress for GPU, maybe remove alpha channel or convert to grayscale...). See <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGLImages.html#TextureMemoryProfiler">TextureMemoryProfiler</a> documentation.
+  <li><p><b>GPU texture memory profiler</b> is now available. This tells you exactly which textures are worth optimizing (maybe scale them down, maybe compress for GPU, maybe remove alpha channel or convert to grayscale...). See <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleGLImages.html#TextureMemoryProfiler">TextureMemoryProfiler</a> documentation.
 
   <li><p>Many improvements related to <b>texture GPU compression</b> (especially important on mobile platforms, where texture memory is precious):
 
     <ul>
       <li>New compression formats available: ATITC, PVRTC, ETC (in addition to previous S3TC formats).
       <li>Many more functions now accept GPU-compressed images.
-      <li><a href="http://castle-engine.sourceforge.net/apidoc/html/CastleImages.html#LoadImagePreprocess">LoadImagePreprocess</a> allows to replace image URLs at runtime, to switch uncompressed texture files with compressed.
+      <li><a href="https://castle-engine.sourceforge.io/apidoc/html/CastleImages.html#LoadImagePreprocess">LoadImagePreprocess</a> allows to replace image URLs at runtime, to switch uncompressed texture files with compressed.
     </ul>
   </li>
 
@@ -72,7 +72,7 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 
   <li><p>By default we use fcl-image <b>built-in handling of PNG</b> format. This removes the need to use/distribute extra libraries for handling PNG on any platform.
 
-  <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="http://castle-engine.sourceforge.net/tutorial_log.php">See the updated tutorial link about logging for details.</a>
+  <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="https://castle-engine.sourceforge.io/tutorial_log.php">See the updated tutorial link about logging for details.</a>
 
   <li><p>' . api_link('TCastle2DControl', 'CastleControl.TCastle2DControl.html', false) . ' component for easily creating 2D games. Already contains a ready T2DSceneManager.
 
@@ -133,13 +133,13 @@ OnMotion: TControlInputMotionEvent
 OnUpdate: TNotifyEvent
 </pre>
 
-     <p>These should be used to watch open/close of context, to watch key/mouse events and to perform continuous updates. For detailed documentation of them, see <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleControl.TCastleControlCustom.html">TCastleControlCustom</a> reference.</p>
+     <p>These should be used to watch open/close of context, to watch key/mouse events and to perform continuous updates. For detailed documentation of them, see <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleControl.TCastleControlCustom.html">TCastleControlCustom</a> reference.</p>
 
     <p>Some previously published stuff on <code>TCastleControl</code> is deprecated now and will be removed in next release (sorry, we have to break compatibility &mdash; this old stuff really doesn\'t make much sense, all new code should use new events). Also, the deprecated <code>OnPaint</code> was fixed &mdash; just in case you\'re using it (but please switch to using <code>OnRender</code> soon!).
 
-  <li><p>The beginning of the <a href="http://castle-engine.sourceforge.net/tutorial_intro.php">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
+  <li><p>The beginning of the <a href="https://castle-engine.sourceforge.io/tutorial_intro.php">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
 
-    <p>Also, the tutorial chapter <a href="http://castle-engine.sourceforge.net/tutorial_castle_scene_transform.php">"Adding a simple moving object" was added</a>.
+    <p>Also, the tutorial chapter <a href="https://castle-engine.sourceforge.io/tutorial_castle_scene_transform.php">"Adding a simple moving object" was added</a>.
 
   <li>Also, as you probably see, the website got a total facelift, using HTML5 and Bootstrap style. Various pages and menus were rearranged to be more helpful. I hope you enjoy the new website &mdash; please leave a note in the comments :)
 
