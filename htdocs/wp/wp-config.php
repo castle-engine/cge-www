@@ -19,8 +19,7 @@
  */
 
 /* CGE development and production settings */
-if (true ||
-    $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
+if ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
     $_SERVER['SERVER_NAME'] == 'localhost') {
 
     /** The name of the database for WordPress */
