@@ -6,7 +6,7 @@ castle_header("The Castle", array(
   'path' => array('all_programs', 'castle')
 ));
 
-echo flattr_button();
+// echo flattr_button(); - Flattr not used now
 
 echo pretty_heading('The Castle', VERSION_CASTLE);
 echo castle_thumbs(array(

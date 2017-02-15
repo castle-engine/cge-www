@@ -70,9 +70,9 @@ automatically propose to install it.
 <?php echo facebook_button(); ?>
 </div>
 
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;">
-<?php echo flattr_button(false); ?>
-</div>
+<!-- <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;"> -->
+<?php /* echo flattr_button(false); */ ?>
+<!-- </div> -->
 </div>
 
 <h2>Source code</h2>

@@ -14,7 +14,7 @@ function section($make_hr = true)
   echo $toc->html_section();
 }
 
-echo flattr_button();
+// echo flattr_button();
 
 echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
 echo castle_thumbs(array(

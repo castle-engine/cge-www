@@ -673,7 +673,7 @@ echo $geshi->get_stylesheet(false);
 </style>
 
 <?php
-echo flattr_header();
+/* echo flattr_header(); - Flattr not used now */
 echo googleplus_header();
 
 /* Don't use facebook_header on other pages, as it makes all links

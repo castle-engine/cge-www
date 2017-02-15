@@ -37,13 +37,18 @@ echo pretty_heading($page_title);
     Send funds to this address: <code>LSQzhb96SiBejZW5VSV5ebzeRE67XGg16W</code></p>
   </div> <!-- donation_option -->
 
+  <?php /* Flattr not used now
+
   <div class="donation_option">
-    <p><?php echo flattr_button(false); ?>
+    <p>
+    < ?php echo flattr_button(false); ? >
 
     <p><b>Donate using <a href="http://flattr.com/">Flattr</a>.</b><br>
     Just click on a button above, everything will be explained.
     Click the button again to subscribe for a longer time.</p>
   </div> <!-- donation_option -->
+
+  */ ?>
 
   <div class="donation_option">
     <p><b>Sponsor the development of a specific feature.</b><br>

@@ -5,34 +5,36 @@
 
 /* Flattr -------------------------------------------------------------------- */
 
-function flattr_header()
-{
-  if (CASTLE_OFFLINE) return '';
-  return '<script type="text/javascript">
-/* <![CDATA[ */
-    (function() {
-        var s = document.createElement(\'script\'), t = document.getElementsByTagName(\'script\')[0];
-        s.type = \'text/javascript\';
-        s.async = true;
-        s.src = \'http://api.flattr.com/js/0.6/load.js?mode=auto\';
-        t.parentNode.insertBefore(s, t);
-    })();
-/* ]]> */
-</script>';
-}
+// Flattr not used anymore.
 
-function flattr_button($align = true)
-{
-  if (CASTLE_OFFLINE) return '';
-  $result = '';
-  if ($align) $result .= '<div style="float: right; margin: 1em;">';
-  $result .= '
-    <a class="FlattrButton" style="display:none;" href="http://castle-engine.sourceforge.net/"></a>
-    <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
-    <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: 0" /></a></noscript>';
-  if ($align) $result .= '</div>';
-  return $result;
-}
+// function flattr_header()
+// {
+//   if (CASTLE_OFFLINE) return '';
+//   return '<script type="text/javascript">
+// /* <![CDATA[ */
+//     (function() {
+//         var s = document.createElement(\'script\'), t = document.getElementsByTagName(\'script\')[0];
+//         s.type = \'text/javascript\';
+//         s.async = true;
+//         s.src = \'http://api.flattr.com/js/0.6/load.js?mode=auto\';
+//         t.parentNode.insertBefore(s, t);
+//     })();
+// /* ]]> */
+// </script>';
+// }
+
+// function flattr_button($align = true)
+// {
+//   if (CASTLE_OFFLINE) return '';
+//   $result = '';
+//   if ($align) $result .= '<div style="float: right; margin: 1em;">';
+//   $result .= '
+//     <a class="FlattrButton" style="display:none;" href="http://castle-engine.sourceforge.net/"></a>
+//     <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
+//     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: 0" /></a></noscript>';
+//   if ($align) $result .= '</div>';
+//   return $result;
+// }
 
 /* Google+ ------------------------------------------------------------------- */
 
