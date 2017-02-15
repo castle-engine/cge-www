@@ -1,4 +1,4 @@
 #!/bin/bash
 set -eu
 
-gunzip -c db-backup.sql.gz | mysql cgewp -u cgewp --password=devpassword
+gunzip -c "$CASTLE_WORDPRESS_BACKUP_FILE" | mysql cgewp -u cgewp --password=devpassword
