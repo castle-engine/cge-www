@@ -1,0 +1,15 @@
+/*
+ Theme Name:   Castle Game Engine Theme
+ Description:  Castle Game Engine Theme, child of Twenty Seventeen
+ Author:       Michalis Kamburelis
+ Template:     twentyseventeen-for-cge
+ Version:      1.0.0
+ Text Domain:  cge
+*/
+
+/* Fix submit button look, after "Twenty Seventeen" is mixed with CGE theme */
+.search-form .search-submit {
+    max-height: 2.5em;
+    top: auto;
+    color: white;
+}

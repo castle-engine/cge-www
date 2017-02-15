@@ -30,10 +30,11 @@ if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
 /* Constants that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
 if (CASTLE_OFFLINE) {
-  /* When CURRENT_URL empty then use relative links from the current address.
-     This affects things that (potentially) land in RSS content,
-     like news and thumbnail sources and links. */
-  define('CURRENT_URL', '');
+  /* Set my localhost development address.
+     This is necessary (we cannot anymore leave the CURRENT_URL empty,
+     to make links relative), because stuff will also be included by Wordpress,
+     which may have URL in any subdirectory, like "2017/02/12/hello-world/". */
+  define('CURRENT_URL', 'http://127.0.0.1/~michalis/castle-engine/');
 } else
 if (CASTLE_PREVIEW) {
   /* Although CURRENT_URL = '' would also work OK usuallly,
@@ -66,9 +67,30 @@ function reference_link()
   return CASTLE_REFERENCE_URL . 'index.html';
 }
 
-/* This set_include_path is needed on SourceForge, otherwise
-   includes from within kambi-php-lib sometimes fail. */
-set_include_path('.:kambi-php-lib/:geshi/');
+/* PHP file relative path from current file to "our root"
+   (where kambi-php-lib/ is a subdirectory).
+   The original PHP file that handles the request can define it at the beginning,
+   and require using
+
+     require_once $castle_php_relative_path . 'castle_engine_functions.php';
+
+   This may be used to set include path correctly.
+*/
+global $castle_php_relative_path;
+if (empty($castle_php_relative_path)) {
+  $castle_php_relative_path = '';
+}
+
+/* Set path to include PHP files.
+   - Because some time ago on SourceForge, requiring kambi-php-lib/kambi_common.php
+     was not reliable without this (sometimes fails, sometimes not).
+     Using set_include_path to include the kambi-php-lib/ fixed the issue.
+   - Bacause we actually depend on it for geshi. */
+global $castle_php_relative_path;
+set_include_path(get_include_path() .
+  PATH_SEPARATOR . $castle_php_relative_path . 'kambi-php-lib/' .
+  PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
+
 require_once 'kambi-php-lib/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
@@ -651,13 +673,13 @@ function echo_header_bonus ()
   title="Castle Game Engine - News Feed"
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
-<link type="text/css" rel="stylesheet" media="all" href="castle-engine.css">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?>castle-engine.css">
 
 <?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
-  <link type="text/css" rel="stylesheet" media="all" href="<?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
+  <link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?><?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
 <?php } ?>
 
-<script type="text/javascript" src="castle-engine.js"></script>
+<script type="text/javascript" src="<?php echo CURRENT_URL; ?>castle-engine.js"></script>
 
 <style type="text/css">
 <?php
@@ -774,7 +796,7 @@ function castle_header($a_page_title, array $parameters = array())
   }
 
   if (defined('CASTLE_GITHUB_NAME')) {
-    $github_ribbon = '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="github-ribbon"><img src="images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
+    $github_ribbon = '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="github-ribbon"><img src="' . CURRENT_URL . 'images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>';
   } else {
     $github_ribbon = '';
   }
@@ -793,16 +815,16 @@ function castle_header($a_page_title, array $parameters = array())
       -->
 
       <ul class="nav nav-tabs navbar-right">
-        <li><a href="' . PATREON_URL . '" class="navbar-link">Support the engine on<br><img class="patreon-logo" src="images/patreonlogoorange_45px.png" alt="Patreon" /></a></li>
+        <li><a href="' . PATREON_URL . '" class="navbar-link">Support the engine on<br><img class="patreon-logo" src="' . CURRENT_URL . 'images/patreonlogoorange_45px.png" alt="Patreon" /></a></li>
       </ul>
 
-      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="images/patreonlogoorange.png" alt="Patreon" /></a></button-->
+      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . CURRENT_URL . 'images/patreonlogoorange.png" alt="Patreon" /></a></button-->
 
-      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="images/patreonlogoorange.png" alt="Patreon" /></a></p-->
+      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . CURRENT_URL . 'images/patreonlogoorange.png" alt="Patreon" /></a></p-->
 
       <div class="navbar-header">
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
-          <img alt="" src="images/header_icon.png">
+          <img alt="" src="' . CURRENT_URL . 'images/header_icon.png">
         </a>
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           Castle Game Engine
@@ -992,7 +1014,7 @@ function echo_standard_program_download(
     {
       echo '<td>';
       echo sf_download(
-        '<img src="images/os_icons/' .
+        '<img src="' . CURRENT_URL . 'images/os_icons/' .
         /* This size should be synched with images/Makefile rule */
         $os_arch_icon[$os_arch] . '.png" width="64" height="64" alt="' .
         $os_arch_caption[$os_arch] . '"><br/>' .
@@ -1077,9 +1099,11 @@ function castle_thumbs($images, $columns=1, $align='right')
     } else
     {
       $thumb_size = ($columns !== 'auto' ? 'thumb_size' : 'thumb_const_height_size');
-      if (isset($image['linktarget']))
-        $linktarget = $image['linktarget']; else
+      if (isset($image['linktarget'])) {
+        $linktarget = $image['linktarget'];
+      } else {
         $linktarget = CURRENT_URL . 'images/original_size/' . $image['filename'];
+      }
       $result .= '
           <a href="' . $linktarget . '"
              class="screenshot"

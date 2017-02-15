@@ -351,9 +351,11 @@ function kambi_url_absolute($url)
   return isset($parse_url_result['scheme']);
 }
 
-/* URL of desired page, i.e. page_name z doklejonym
-   rozszerzeniem i ew. poprzedzone CURRENT_URL (jeśli strona
-   generowana z IS_GEN_LOCAL odwołuje się do czegoś niedostępnego lokalnie).
+/* URL of desired page, which is a page_name with added extension (.php)
+   and prefixed with CURRENT_URL.
+   Right now, we just prefix all links with CURRENT_URL, making them absolute,
+   so they work from any URL of our website equall well (even from Wordpress,
+   which may have URL like /wp/ or /wp/2017/hello-world/ or such).
 
    $page_name: string, nie zawiera extension, basename strony.
 
@@ -380,19 +382,28 @@ function page_url($page_name, $hash_link, &$url_comment)
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
+    /* add an extension */
     $already_has_extension = strpos($page_name, '.php') !== FALSE;
     if (!is_page_available_locally($result))
     {
-      if (!$already_has_extension)
-        $result = CURRENT_URL . $result . '.php';
+      if (!$already_has_extension) {
+        $result .= '.php';
+      }
+
+      /* add "online docs" */
       str_append_part_to1st($url_comment, ', ', 'online docs');
     } else
     if (!$already_has_extension)
     {
-      if (IS_GEN_PAGE_HREFS_TO_HTML)
-        $result .= '.html'; else
+      if (IS_GEN_PAGE_HREFS_TO_HTML) {
+        $result .= '.html';
+      } else {
         $result .= '.php';
+      }
     }
+
+    /* add URL, to make it absolute */
+    $result = CURRENT_URL . $result;
   }
 
   if ($hash_link != '') {
@@ -463,15 +474,6 @@ function kambi_bootstrap()
 
 /* header ============================================================ */
 
-/* URL relative path from this page to root, where kambi-php-lib/
-   is a subdirectory.
-   If a particular page is not within root directory,
-   then change this before calling common_header. */
-global $relative_path_to_root;
-if (empty($relative_path_to_root)) {
-  $relative_path_to_root = '';
-}
-
 /* Echo a header.
    Sets also global $page_basename, if not already set.
 
@@ -486,8 +488,8 @@ if (empty($relative_path_to_root)) {
 */
 function common_header($a_page_title, array $parameters = array())
 {
-  global $page_title, $s_quick_links, $main_page, $this_page_name, $page_basename,
-    $relative_path_to_root, $site_title;
+  global $page_title, $s_quick_links, $main_page, $this_page_name,
+    $page_basename, $site_title, $castle_wordpress;
 
   $page_title = $a_page_title;
 
@@ -506,18 +508,26 @@ function common_header($a_page_title, array $parameters = array())
       case LANG_EN: $SBackToMain = 'back to main page'; break;
     }
     $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
-      $SBackToMain, $relative_path_to_root . MAIN_PAGE_BASENAME));
+      $SBackToMain, CURRENT_URL . MAIN_PAGE_BASENAME));
   }
 
   if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
 
 ?>
 <!DOCTYPE html>
-<?php echo "<html lang=\"" .$page_lang. "\">\n"; ?>
+<html <?php
+if ($castle_wordpress) {
+  language_attributes();
+  echo ' class="no-js no-svg"';
+} else {
+  /* when $castle_wordpress, then Wordpress adds lang= in language_attributes() call */
+  echo 'lang="' . $page_lang . '"';
+}
+?>>
 
 <head>
 <!-- meta suggested by bootstrap, but generally sensible -->
-<meta charset="utf-8">
+<meta charset="<?php if ($castle_wordpress) bloginfo('charset'); else echo 'utf-8'; ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="Author" content="Michalis Kamburelis">
@@ -540,32 +550,40 @@ function common_header($a_page_title, array $parameters = array())
     }
     $page_url = page_url(MAIN_PAGE_BASENAME, '', $url_comment);
     echo "<link rel=\"Start\"
-                type=\"text/html\"
                 href=\"$page_url\"
+                type=\"text/html\"
                 title=\"$main_page_title$url_comment\">\n";
   }
 
-  $extra_body_classes = '';
+  $extra_body_classes = array();
   if (defined('CASTLE_GITHUB_NAME')) {
-    $extra_body_classes .= 'has-github-ribbon';
+    $extra_body_classes[] = 'has-github-ribbon';
   }
 
+  if ($castle_wordpress) {
+    echo '<link rel="profile" href="http://gmpg.org/xfn/11">'; // as twentyseventeen does
+    wp_head();
+  }
 ?>
 
-<title><?php
-echo $page_title;
-if (!empty($site_title)) {
-  echo ' | ' . $site_title;
-}
-?></title>
+<?php if (!$castle_wordpress) { ?>
+
+  <title><?php
+  echo $page_title;
+  if (!empty($site_title)) {
+    echo ' | ' . $site_title;
+  }
+  ?></title>
+
+<?php } ?>
 
 <!-- Bootstrap -->
-<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
 <!-- Colorbox -->
-<link href="<?php echo $relative_path_to_root; ?>kambi-php-lib/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -581,7 +599,15 @@ if (!empty($site_title)) {
   }
 ?>
 </head>
-<body <?php if (!empty($extra_body_classes)) echo 'class="' . $extra_body_classes . '"'; ?>>
+
+<body <?php
+if ($castle_wordpress) {
+  body_class($extra_body_classes);
+} else {
+  if (count($extra_body_classes) != 0) {
+    echo 'class="' . implode(' ', $extra_body_classes) . '"';
+  }
+} ?>>
 
 <?php
   if ( (!defined('KAMBI_NO_HOME_LINK')) &&
@@ -595,7 +621,7 @@ if (!empty($site_title)) {
 
 function common_footer()
 {
-  global $s_quick_links, $main_page, $relative_path_to_root;
+  global $s_quick_links, $main_page, $castle_wordpress;
 ?>
 
 <?php
@@ -606,18 +632,22 @@ function common_footer()
 <?php };
 
   echo_footer();
+
+  if ($castle_wordpress) {
+    wp_footer();
+  }
 ?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/js/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/js/jquery.min.js" type="text/javascript"></script>
 <!-- Include colorbox after jQuery is known -->
-<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo $relative_path_to_root; ?>kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

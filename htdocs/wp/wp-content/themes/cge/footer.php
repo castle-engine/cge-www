@@ -1,0 +1,1 @@
+<?php castle_footer();
