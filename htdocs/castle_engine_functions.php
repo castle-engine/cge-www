@@ -933,11 +933,16 @@ function sf_download($title, $file_name)
 
 function download_donate_footer()
 {
-  return '
+  return /* '
     <hr/>
-      Please <a href="' . PATREON_URL . '">support the engine development on Patreon!</a>';
+      Please <a href="' . PATREON_URL . '">support the engine development on Patreon!</a>'; */
+
       /* <div style="float: left">' . paypal_button(false) . '</div> */
+
       /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>'; */
+
+    '<a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL .
+    '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Suppport on Patreon</a>';
 }
 
 /* This echoes a list to download for all platforms where I compile

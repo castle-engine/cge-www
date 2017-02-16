@@ -692,3 +692,14 @@ div.quote {
 .kscript_func_docs .type { color: blue; }
 
 .xml_highlight_comment { color: #808080; font-style: italic; }
+
+.centered-download-wrapper .btn-primary {
+  width: 80%;
+}
+.btn-patreon {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1em;
+  display: block;
+  width: 80%;
+}
