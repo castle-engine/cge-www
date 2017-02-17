@@ -99,7 +99,7 @@ function echo_news()
         echo '</div>';
     echo '</div>';
 }
-echo_news();
+//echo_news();
 ?>
 
 <?php
