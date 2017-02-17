@@ -26,7 +26,9 @@ Procedure to update WWW content
   1. testing is described in TESTS.txt
   2. compiling and packing releases is described in pack/README.txt
 
-- When release is packed, it's nice to tag it in SVN.
+- When release is packed, it's nice to tag it on GitHub.
+
+  Old notes:
   See scripts/make_svn_tags.sh --- leave uncommented only
   the lines for newly released programs, and run it.
 

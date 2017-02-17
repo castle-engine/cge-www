@@ -18,7 +18,7 @@ Procedure to release a program:
   - castle_game_engine/src/base/castleversion.inc
   - castle_game_engine/tools/CastleEngineManifest.xml
     (and recompile castle-engine tool:
-         cd ~/sources/castle-engine/trunk/castle_game_engine/tools
+         cd ~/sources/castle-engine/castle-engine/tools/build-tool
          ./castle-engine_compile.sh
          mv -f castle-engine ~/bin/
          castle-engine -v # check
