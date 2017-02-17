@@ -7,7 +7,8 @@ to make sure that everything is in top-quality-shape before release:
 
 # Test are there no files with accidental svn:executable attrib
 # (may happen if commiting from FAT filesystems on Unix):
-find . -executable -type f | grep -v ".sh$" | grep -v "~$"
+cd ../castle-engine/
+find . '(' -type d -name .git -prune -false ')' -or '(' -executable -type f -print ')' | grep -v ".sh$" | grep -v "~$"
 
 # Search and remove not needed empty dirs from SVN repo
 # (they sometimes are left, as I use git-svn, which leaves them in repo,
