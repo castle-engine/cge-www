@@ -110,7 +110,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>We already have a native look and feel, and easy installation,
     under Mac OS X, see
-    <a href="<?php echo CURRENT_URL; ?>news.php?id=devel-2013-04-19">relevant news</a>
+    <a href="<?php echo CURRENT_URL; ?>old_news.php?id=devel-2013-04-19">relevant news</a>
     and <a href="<?php echo CURRENT_URL; ?>macosx_requirements.php">docs for Mac OS X</a>.
     Our programs no longer have to use X11 and GTK under Mac OS X.
     Still, current solution is not optimal:
@@ -135,7 +135,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li>
     <p><b>Advanced networking support</b></p>
-    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="https://castle-engine.sourceforge.io/news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
+    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="https://castle-engine.sourceforge.io/old_news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
 
     <p>Things missing are listed below (some of them may done by adding
     integration with <a href="http://lnet.wordpress.com/">LNet</a> or

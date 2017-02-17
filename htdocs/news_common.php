@@ -151,7 +151,7 @@ function castle_sitemap_add_news()
   foreach ($news as $news_item)
   {
     $castle_sitemap['news']['sidebar'] = true;
-    $castle_sitemap['news']['sub']['news.php?id=' . $news_item['id']] =
+    $castle_sitemap['news']['sub']['old_news.php?id=' . $news_item['id']] =
       array('title' =>  '(' . castle_news_date_short($news_item) . ') ' .
         $news_item['title']);
   }
@@ -223,7 +223,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
      characters for HTML or XML attributes or content.
 
    - link: do not give it here.
-     We'll set link to the URL like xxx/news.php?id=xxx.
+     We'll set link to the URL like xxx/old_news.php?id=xxx.
 
    - images: list of images, like arguments to castle_thumbs.
      1st image is the main one.
@@ -231,7 +231,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
    - description: HTML full description. (also used by rss_generator.)
    - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
    - alternative_id: if set, then it's an alternative id (may be used in URLs
-     like https://castle-engine.sourceforge.io/news.php?id=XXX).
+     like https://castle-engine.sourceforge.io/old_news.php?id=XXX).
      Useful when original id is too long, but I don't want to change it
      (as this would affect RSS readers that would see new id).
 
@@ -276,6 +276,6 @@ foreach ($news as &$log_entry)
 
   $log_entry['id'] = $log_entry['guid'];
 
-  $log_entry['link'] = CURRENT_URL . 'news.php?id=' . $log_entry['id'];
+  $log_entry['link'] = CURRENT_URL . 'old_news.php?id=' . $log_entry['id'];
 }
 unset($log_entry);

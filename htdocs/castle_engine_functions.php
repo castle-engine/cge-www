@@ -150,8 +150,8 @@ $castle_sitemap = array(
        since it may be time-consuming (requires reading large $news table). */
   ),
 
-  'news'                   => array('title' => 'News',
-    /* 'sub' and 'sidebar' of this will be calculated by news.php page,
+  'news'                   => array('title' => 'News', 'url' => CURRENT_URL . 'wp/',
+    /* 'sub' and 'sidebar' of this will be calculated by old_news.php page,
        since it may be time-consuming (requires reading large $news table). */
   ),
 

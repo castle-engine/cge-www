@@ -27,7 +27,7 @@ castle_thumbs(array(
 <p><b>New features in <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene 3.11.0</a> for users</b>:</p>
 
 <ul>
-  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), multiple polygon lists, objects sharing, double-sided information, 1.5 specification support. See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
+  <li><p>Huge improvements to <a href="http://collada.org/">Collada</a> support. Rendering and converting Collada to X3D supports now: textures, normals, cameras, light sources, all primitives (triangle strips, fans, lines and more), multiple polygon lists, objects sharing, double-sided information, 1.5 specification support. See <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-7-31-development_news__huge_collada_import_improvements">earlier news about Collada</a> for a complete description of new Collada features handled.</p>
 
     <p>Test Collada models may be found e.g. in <a href="http://collada.org/owl/">COLLADA Test Model Bank</a>. <a href="http://www.blender.org/">Blender</a>, and other 3D modelers, include exporters to Collada.</p>
   </li>
@@ -69,7 +69,7 @@ castle_thumbs(array(
 <p>For engine 3.0.0, I have to admit that we didn\'t implement all planned features. Most importantly: easy AI, and engine tutorials, are postponed to next engine 3.1.0 release. However, we still have many <b>new features in <a href="https://castle-engine.sourceforge.io/engine.php">Castle Game Engine 3.0.0</a> for developers</b>:</p>
 
 <ul>
-  <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
+  <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
 
   <li><p>Note: This engine release <i>breaks compatibility</i> with earlier versions. Although there is no major change of the engine design (our scene manager design in engine 2.x was really good, and we want to push using it even further in engine 3.x). But there are a lot of renames around important units and classes. And some small things were redesigned more heavily.</p>
     <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="https://castle-engine.sourceforge.io/forum.php">ask on our forum</a>.</p>
@@ -90,7 +90,7 @@ castle_thumbs(array(
       <li>New engine name &mdash; castle, not kambi.
     </ul>
 
-    <p>See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-10-13-rename">previous news for detailed reasoning and explanation</a>, and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">see renaming details document</a> for even more details. If you want to port existing games to engine 3.0.0, you will want to perform the same renames in your code.</p>
+    <p>See <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-10-13-rename">previous news for detailed reasoning and explanation</a>, and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_3.0.txt">see renaming details document</a> for even more details. If you want to port existing games to engine 3.0.0, you will want to perform the same renames in your code.</p>
   <li>Improvements to work with latest OpenGL &gt;= 3. We use standard OpenGL features, instead of extensions, when possible. We don\'t fully work in OpenGL 3.0 forward-compatible context <i>yet</i>, but we\'re close to it now.
   <li>Notifications (GLNotifications, these messages <i>"You picked up Potion Of Life"</i> etc. you see in FPS games) were reimplemented. There are now TUIControl descendants, so can be used just like our other 2D controls. They are also visible on the Lazarus component palette now.</li>
   <li>TBox3D and TQuaternion records remade into old-style object. Previous procedures Box3DXxx(Box, ...) have to be changed now to Box.Xxx(...). This results in nicer API, method names may be shorter and look cleaner.</li>
@@ -255,7 +255,7 @@ castle_thumbs(array(
 '<p>Hi everyone,</p>
 
 <ol>
-  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="https://castle-engine.sourceforge.io/news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
+  <li><p>The first news is that you can see <i>"Castle Game Engine"</i> title slapped everywhere around the webpages&nbsp;:), instead of old <i>"Kambi VRML game engine"</i>. That\'s right: as <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">announced previously</a>, we rename our engine to a new, better name.</p>
 
     <ul>
       <li><p>Most old URLs will still work, appropriate redirects are done to go to the new castle-engine website.
@@ -344,7 +344,7 @@ castle_thumbs(array(
       <li>New view3dscene menu item to take a screenshot with transparent background, <i>Display -&gt; Screenshot To Image (Transparent Background)</i>. (<a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=164">Requested on forum</a>).</li>
       <li>Fixed <i>"Edit -&gt; Remove Selected Face"</i> to allow using it repeatedly, and to work with <code>IndexedTriangleSet</code>.</li>
       <li>Fixed "pure shader renderer" on shapes that have textures with full (not only 0/1) alpha channel. In some situations, they were mistakenly drawn with additional alpha test, and effectively some parts of them were invisible. This bug slipped in 3.10.0 release.</li>
-      <li><a href="https://castle-engine.sourceforge.io/news.php?id=2011-7-31-development_news__huge_collada_import_improvements">Collada importer improvements, this was mentioned in detail in previous news</a>. Static stuff from Collada models is read almost fully.</li>
+      <li><a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-7-31-development_news__huge_collada_import_improvements">Collada importer improvements, this was mentioned in detail in previous news</a>. Static stuff from Collada models is read almost fully.</li>
     </ul>
   </li>
 
@@ -576,11 +576,11 @@ castle_thumbs(array(
 
 <!--p>This long news message is still only a shortcut of new features :)
 For some more in-depth information, see also previous "development news"
-(<a href="https://castle-engine.sourceforge.io/news.php?id=2011-6-20-development_news__lights_improvements__shadow_volumes_in_demo_models__hunter%27s_mark__more">2011-6-20</a>,
- <a href="https://castle-engine.sourceforge.io/news.php?id=2011-6-1-development_news__many_shader_pipeline_improvements__many_3ds_wavefront_etc._converters_improvements__more">2011-6-01</a>,
- <a href="https://castle-engine.sourceforge.io/news.php?id=2011-4-21-development_news__engine_2.4.4_fixes_release__colorsetinterpolator">2011-4-21</a>,
- <a href="https://castle-engine.sourceforge.io/news.php?id=2011-4-9-development_news__finishing_shader_rendering__steep_parallax_bump_mapping_reimplemented__engine_2.4.1_fixes_release">2011-4-09</a>,
- <a href="https://castle-engine.sourceforge.io/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">2011-3-08</a>).</p>
+(<a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-6-20-development_news__lights_improvements__shadow_volumes_in_demo_models__hunter%27s_mark__more">2011-6-20</a>,
+ <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-6-1-development_news__many_shader_pipeline_improvements__many_3ds_wavefront_etc._converters_improvements__more">2011-6-01</a>,
+ <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-4-21-development_news__engine_2.4.4_fixes_release__colorsetinterpolator">2011-4-21</a>,
+ <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-4-9-development_news__finishing_shader_rendering__steep_parallax_bump_mapping_reimplemented__engine_2.4.1_fixes_release">2011-4-09</a>,
+ <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">2011-3-08</a>).</p>
 -->
 '),
 
@@ -702,7 +702,7 @@ castle_thumbs(array(
   <li><i>Engine 2.4.4</i>: TGLMenu improvements (Items, OnClick, some other useful stuff available and published). See <code>examples/lazarus/vrml_with_2d_controls</code> for demo.</li>
 </ul>
 
-<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="https://castle-engine.sourceforge.io/news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
+<p>Of course, in the meantime work continues on finishing the engine 2.5.0 with pure shader rendering pipeline :) See <a href="https://castle-engine.sourceforge.io/old_news.php?id=2011-3-8-development_news__beautiful_shader_rendering__compositing_shaders_extensions__shadow_maps__blender_x3d_exporter_mods__and_more">news post from last month</a> for details.</p>
 
 <p>Also, we added a <a href="https://castle-engine.sourceforge.io/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</p>
 '),

@@ -464,6 +464,6 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p><b>The caustics demo</b> (you seen a movie of this <a href="' . CURRENT_URL . 'news.php?id=2012-07-10">in earlier news</a>) is now committed to our <a href="' . CURRENT_URL . 'demo_models.php">demo models</a>. Many thanks to Victor Amat! I hope to use these ideas to make such water available out-of-the-box for all games using our engine (right now you will have to adjust shaders for your specific case).</p></li>
+  <li><p><b>The caustics demo</b> (you seen a movie of this <a href="' . CURRENT_URL . 'old_news.php?id=2012-07-10">in earlier news</a>) is now committed to our <a href="' . CURRENT_URL . 'demo_models.php">demo models</a>. Many thanks to Victor Amat! I hope to use these ideas to make such water available out-of-the-box for all games using our engine (right now you will have to adjust shaders for your specific case).</p></li>
 </ol>')
 );
