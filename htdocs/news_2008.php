@@ -335,7 +335,7 @@ Jordi R. Cardona!)</a>.</p>"),
           'description' =>
 
 castle_thumbs(array(
-  array('filename' => 'laetitia_sprints_demo.png', 'titlealt' => 'Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator', 'linktarget' => CURRENT_URL .  'movies/laetitia_sprints.avi'),
+  array('filename' => 'laetitia_sprints_demo.png', 'titlealt' => 'Laetitia Sprints by X3D TimeSensor + CoordinateInterpolator', 'url_full' => CURRENT_URL .  'movies/laetitia_sprints.avi'),
 ))
 . "
 

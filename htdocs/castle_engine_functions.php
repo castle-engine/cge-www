@@ -1052,8 +1052,6 @@ function echo_standard_program_download(
      and we simply put this html into cell content.
    - colspan (int) - colspan of table cell. It's your responsibility to make it
      look sensible then.
-   - linktarget (string) - optional URL (full URL!) where the link leads.
-     If not specified, the link leads to full image size.
 
    $align is 'left', 'center' or 'right'.
 
@@ -1115,13 +1113,8 @@ function castle_thumbs($images, $columns=1, $align='right')
         CURRENT_URL . 'images/original_size/' . $image['filename'];
       $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :
         CURRENT_URL . 'images/' . $thumb_size . '/' . $image['filename'];
-      if (isset($image['linktarget'])) {
-        $linktarget = $image['linktarget'];
-      } else {
-        $linktarget = $url_full;
-      }
       $result .= '
-          <a href="' . $linktarget . '"
+          <a href="' . $url_full . '"
              class="screenshot"
              title="' . $image['titlealt'] . '"><img
             style="float: right"
