@@ -1,4 +1,5 @@
 *~
+htdocs/wp/.htaccess
 htdocs/wp/wp-config-production.php
 htdocs/code-samples/notifications
 htdocs/code-samples/on_screen_menu
