@@ -16,7 +16,7 @@ echo pretty_heading($page_title);
 (FPC)</a> to use our engine.
 <b>We always support and advice the latest stable (from
 <a href="http://www.freepascal.org/">freepascal.org</a>)
-release of FPC (currently 3.0.0).</b>
+release of FPC (currently 3.0.2).</b>
 Usually, we also support a couple of older FPC releases.
 Currently (for engine 6.0.0) <b>FPC versions &gt;= 2.6.2 are supported</b>.
 
