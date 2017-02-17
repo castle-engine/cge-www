@@ -52,14 +52,12 @@ if ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
     define('WP_HOME','http://127.0.0.1/~michalis/castle-engine/wp');
     define('WP_SITEURL', WP_HOME);
 } else {
-    // wp-config-production.php contains DB user and passwords.
-    // Not in repository, for security.
-    require_once 'wp-config-production.php';
-
     define('WP_DEBUG', false);
 
-    define('WP_HOME', 'https://castle-engine.sourceforge.io/wp');
-    define('WP_SITEURL', WP_HOME);
+    // wp-config-production.php contains DB user and passwords.
+    // Not in repository, for security.
+    // Included at end, so it may even override WP_DEBUG.
+    require_once 'wp-config-production.php';
 }
 
 /** Database Charset to use in creating database tables. */
