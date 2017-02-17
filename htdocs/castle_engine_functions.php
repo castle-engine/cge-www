@@ -60,7 +60,7 @@ define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wi
 define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
 define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
-define('PATREON_URL',         'https://www.patreon.com/preview/b86e359f8dee497a9c0e7bb822a17c9e');
+define('PATREON_URL',         'http://patreon.com/castleengine');
 
 function reference_link()
 {
