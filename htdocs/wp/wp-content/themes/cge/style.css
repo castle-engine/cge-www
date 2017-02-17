@@ -12,6 +12,12 @@
   - Remove dropdown-toggle to dropdown-toggle-twentyseventeen
 */
 
+/* CGE additions */
+
+.news_date .edit-link {
+    margin-left: 1em;
+}
+
 /*--------------------------------------------------------------
 2.0 Accessibility
 --------------------------------------------------------------*/

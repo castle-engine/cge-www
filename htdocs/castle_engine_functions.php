@@ -1038,8 +1038,15 @@ function echo_standard_program_download(
 /* Return html (<table> or <div>) with image links.
 
    Each $images array item is another associative array:
-   - filename (name of the file, with extension, without path).
-     Assumed to exist within original_size and medium_size subdirs.
+   - filename: name of the image file (with extension, without path).
+     Must exist within original_size/ of our images, and be generated
+     to our other sizes (like thumb_size and thumb_const_height_size).
+     You can omit this,
+     if you instead provide ready URLs in filename_full and filename_thumbnail.
+   - url_full: URL to the full-size image file.
+     If missing, we will derive it from 'filename'.
+   - url_thumb: URL to the thumb-size image file.
+     If missing, we will derive it from 'filename'.
    - titlealt - text used for both title and alt.
    - html - if set, the rest (except colspan) is ignored,
      and we simply put this html into cell content.
@@ -1104,17 +1111,21 @@ function castle_thumbs($images, $columns=1, $align='right')
     } else
     {
       $thumb_size = ($columns !== 'auto' ? 'thumb_size' : 'thumb_const_height_size');
+      $url_full = isset($image['url_full']) ? $image['url_full'] :
+        CURRENT_URL . 'images/original_size/' . $image['filename'];
+      $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :
+        CURRENT_URL . 'images/' . $thumb_size . '/' . $image['filename'];
       if (isset($image['linktarget'])) {
         $linktarget = $image['linktarget'];
       } else {
-        $linktarget = CURRENT_URL . 'images/original_size/' . $image['filename'];
+        $linktarget = $url_full;
       }
       $result .= '
           <a href="' . $linktarget . '"
              class="screenshot"
              title="' . $image['titlealt'] . '"><img
             style="float: right"
-            src="' . CURRENT_URL . 'images/' . $thumb_size . '/' . $image['filename'] . '"
+            src="' . $url_thumb . '"
             alt="' . $image['titlealt'] . '"
           /></a>';
     }
