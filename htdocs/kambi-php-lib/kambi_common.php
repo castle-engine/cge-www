@@ -204,7 +204,7 @@ if (IS_GEN_LOCAL) {
     // assuming that current dir is cge-www
     $dir = 'htdocs/';
   } else {
-    $dir = $engine_trunk_dir . 'www/htdocs/';
+    $dir = $engine_trunk_dir . '../cge-www/htdocs/';
   }
   chdir($dir) or exit("Cannot change directory to \"$dir\"");
 }

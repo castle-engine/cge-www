@@ -10,7 +10,8 @@ case "$1" in
   demo_models)
     mk_archive_begin
 
-    cp -R "$CASTLE_ENGINE_PATH"demo_models/ .
+    cp -R "$CASTLE_ENGINE_PATH"../demo-models/ .
+    mv demo-models demo_models
     dircleaner . clean -d .svn -f '*.blend1' -f '*.blend2'
     make -C demo_models/shadow_maps/sunny_street/ clean
 

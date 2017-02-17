@@ -49,34 +49,27 @@ cp_omitting_old_and_private ()
     '(' -type f -exec cp '{}' "$TARGET_DIR"'{}' ';' ')'
 }
 
-# This adds to archive (managed by mk_archive) some things:
-# - Some (zero, one or more) program-specific directories.
+# Add to archive (managed by mk_archive) one or more directories.
 #
-# Also it cleans some things in the archive:
-# - *.pas and *.inc files are lowercased
-# - permissions: all files except *.sh have 644, all dirs and *.sh files 755.
+# Arguments are a list of program-specific directories that should be copied
+# to the archive. Every directory must be specified with full
+# (absolute) filename. Every such directory will be copied to
+# the subdirectory in the archive, e.g. directory /usr/foor/bar/
+# will create bar/ subdirectory inside the archive.
 #
-# Rest of args:
-#   List of program-specific directories that should be copied
-#   to archive. Every such directory must be specified with full
-#   (absolute) filename. Every such directory will be copied to
-#   the subdirectory in the archive, e.g. directory /usr/foor/bar/
-#   will create bar/ subdirectory inside the archive.
-#   Remarks:
-#   - Directories in the archive will be cleaned using
-#       dircleaner . clean
-#     and
-#       make clean
-#     I.e. original directories will not be cleaned, only dirs in the archive.
-#     If you have anything that should be cleaned that dircleaner
-#     will not clean --- you will have to clean this manually before/after
-#     executing pascal_src_add_standard, or add to Makefile "clean" command inside.
-#   - old/ and private/ subdirs in directory will not be copied to the
-#     archive.
-#   - Every *.pas and *.inc files will be made lowercase,
-#     so you don't have to worry about that
-#   - Also files and dirs will always get UNIX permissions 644 (files)
-#     and 755 (dirs), so you don't have to worry about that too.
+# Notes:
+# - Directories in the archive will be cleaned using
+#     dircleaner . clean
+#   and
+#     make clean
+#   I.e. original directories will not be cleaned, only dirs in the archive.
+#   If you have anything that should be cleaned that dircleaner
+#   will not clean --- you will have to clean this manually before/after
+#   executing pascal_src_add_standard, or add to Makefile "clean" command inside.
+# - old/ and private/ subdirs in directory will not be copied to the
+#   archive.
+# - Also files and dirs will always get UNIX permissions 644 (files)
+#   and 755 (dirs), so you don't have to worry about that too.
 pascal_src_add_standard ()
 {
   # copy program-specific directories
@@ -154,11 +147,13 @@ pascal_src_archive_end ()
 case "$1" in
   # Update engine sources archive.
   # Archive contains files and subdirs inside
-  # "$CASTLE_ENGINE_PATH"castle_game_engine/
+  # "$CASTLE_ENGINE_PATH"
   castle_game_engine)
     mk_archive_begin
 
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"castle_game_engine/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"
+
+    mv "$MK_ARCHIVE_TEMP_PATH"castle-engine "$MK_ARCHIVE_TEMP_PATH"castle_game_engine
 
     make -C "$MK_ARCHIVE_TEMP_PATH"castle_game_engine/ cleanmore
 
@@ -175,55 +170,55 @@ case "$1" in
 
   rayhunter)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"rayhunter/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../rayhunter/
     pascal_src_archive_end rayhunter
     ;;
 
   view3dscene)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"view3dscene/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../view3dscene/
     pascal_src_archive_end view3dscene
     ;;
 
   glviewimage)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glviewimage/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glviewimage/
     pascal_src_archive_end glviewimage
     ;;
 
   glplotter)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glplotter/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glplotter/
     pascal_src_archive_end glplotter
     ;;
 
   glinformation)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"glinformation/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glinformation/
     pascal_src_archive_end glinformation
     ;;
 
   gen_function)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"gen_function/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../gen_function/
     pascal_src_archive_end gen_function
     ;;
 
   malfunction)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"malfunction/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../malfunction/
     pascal_src_archive_end malfunction
     ;;
 
   kambi_lines)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"kambi_lines/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../kambi_lines/
     pascal_src_archive_end kambi_lines
     ;;
 
   castle)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"castle/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../castle/
     $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"castle clean clean_private clean_binaries
     pascal_src_archive_end castle
     ;;

@@ -45,7 +45,8 @@ Procedure to release a program:
   - make sure you're using correct FPC version (fpc -l).
     This will be actually checked by pack_binary, so also make sure
     that $REQUIRED_FPC_VERSION inside pack_binary.sh is Ok.
-  - cd ~/sources/castle-engine/trunk/ && ./clean_everything.sh
+  - cd ~/sources/castle-engine/castle-engine/ && make clean
+    and make clean inside particular programs
   - compile program with release settings: see compile.sh scripts in program dirs
   - move executable to $EXEC_PATH/os-architecture/ defined in pack_binary.sh
 

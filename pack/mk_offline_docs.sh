@@ -31,7 +31,7 @@ mk_offline_docs ()
   if [ -d htdocs ]; then
     local CASTLE_ENGINE_HTDOCS=`pwd`/htdocs/
   else
-    local CASTLE_ENGINE_HTDOCS="$CASTLE_ENGINE_PATH"www/htdocs/
+    local CASTLE_ENGINE_HTDOCS="$CASTLE_ENGINE_PATH"../cge-www/htdocs/
   fi
 
   for OUTPUT_FILE in "$@"; do
