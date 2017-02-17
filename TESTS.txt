@@ -10,9 +10,7 @@ to make sure that everything is in top-quality-shape before release:
 cd ../castle-engine/
 find . '(' -type d -name .git -prune -false ')' -or '(' -executable -type f -print ')' | grep -v ".sh$" | grep -v "~$"
 
-# Search and remove not needed empty dirs from SVN repo
-# (they sometimes are left, as I use git-svn, which leaves them in repo,
-# as git is unable to deal with directories):
+# Search and remove not needed empty dirs.
 find-empty-dirs
 
 # ----------------------------------------------------------------------------
@@ -71,8 +69,14 @@ cd tests/
 
 # ----------------------------------------------------------------------------
 # Test at least compilation of all Android components:
-# uncomment them in castle_game_engine/examples/2d_dragon_spine_android_game/
+# uncomment them in ../castle-engine/examples/2d_dragon_spine_android_game/
 # and recompile it.
+#
+# It's OK to not test at this point:
+# - "google_analytics" (they require special JSON,
+#   it's tested along with "Escape from the Universe" regularly anyway.
+# - "heyzap" is also tested regularly along with "Escape from the Universe",
+#   and it cannot be compiled together with other ad components.
 
 # ----------------------------------------------------------------------------
 # Test view3dscene VRML/X3D loading/saving/rendering
@@ -83,10 +87,13 @@ svn diff # check, fix or commit differences
 # (You may also uncomment longer mk_screnshot tests in run_test_once.sh
 # and rerun run_tests.sh)
 
-# Use $define OpenGLES in base/castleconf.inc, check OpenGLES desktop rendering
+# Use $define OpenGLES in ../castle-engine/base/castleconf.inc,
+# check OpenGLES desktop rendering
 # works on some sample models from view3dscene.
 
-# Fake some BuggyXxx vars to be true, in particular BuggyVbo being true,
+# Fake some BuggyXxx vars to be true,
+# in ../castle-engine/src/base/opengl/castleglversion.pas
+# in particular BuggyVbo being true,
 # and check rendering works.
 
 # check PlayAnimation in view3dscene:
@@ -108,7 +115,7 @@ svn diff # check, fix or commit differences
 # Make sure Lazarus packages have all units included.
 
   # This can be tested by
-  cd castle_game_engine/
+  cd ../castle-engine/
   make clean
   make examples # (merely "make" doesn't place unit files along sources, and for this test we actually want it)
   # Now compile our packages from Lazarus,
@@ -116,7 +123,7 @@ svn diff # check, fix or commit differences
   # This will leave only ppu files of units that don't belong to packages,
   # but were compiled during "make", thus providing us with a simple
   # way to check what is possibly missing from package:
-  find . -iname '*.ppu'
+  find . -iname '*.ppu' | grep -v "./examples/" | grep -v "./tools/" | grep -v "./tests/" | grep -v "./packages/"
 
   # Should find only files
   # - inside packages/../lib/
@@ -130,7 +137,7 @@ svn diff # check, fix or commit differences
 
 # ----------------------------------------------------------------------------
 # Test fpmake compilation system.
-# Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/2.4.4/
+# Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/3.0.2/
 
 fpc fpmake.pp
 ./fpmake build -v
@@ -138,7 +145,7 @@ fpc fpmake.pp
 ./fpmake build --nofpccfg --verbose
 
 # ----------------------------------------------------------------------------
-# Test scripts/check_units_dependencies
+# Test ../cge-scripts/check_units_dependencies
 
 # ----------------------------------------------------------------------------
 # Test compilation of known programs using my engine, as some
