@@ -32,20 +32,63 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <ul>
   <li>
     <p><b>Physics</b></p>
+
     <p>Integrate our engine with a physics engine.
     Most preferably <a href="http://bulletphysics.org/">Bullet</a>, although this will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually <a href="http://www.ode.org/">ODE</a> (much simpler C API). Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
+
+    <p>Implementing this feature will most likely be split into a couple of small releases:</p>
+
+    <ol>
+      <li><p>Basic integration with a physics engine, to add collisions and rigid body physics at the TCastleScene level (whole scene as a single rigid body). So e.g. player could collide with a whole scene using a physics engine, without our custom octrees. Gravity could work using physics engine.
+      <li><p>Allow using rigid body physics X3D component. This means that a single rigid body may be a shape, or group of shapes, in X3D. So a scene becomes a (possibly interconnected) set of many rigid bodies.
+      <li><p>Add to Blender exporter ability to mark rigid body stuff in X3D.
+      <li><p>Soft body, liquids, other special features.
+    </ol>
   </li>
 
   <li><p><b>Visual designing of the castle components</b>
+
     <p>Inside a Lazarus form. Like <i>GLScene</i> and <i>FireMonkey 3d</i>.
 
+    <p>Implementing this feature will most likely be split into a couple of small releases:</p>
+
+    <ol>
+      <li><p>Visually design 2D controls within <code>TCastleControl</code>.
+      <li><p>Visually design T3D hierarchy in <code>SceneManager.Items</code>.
+        So you could look and move whole <code>TCastleScene</code> instances.
+      <li><p>Make published, and editable through Lazarus, various properties
+        currently only public. E.g. we need to figure out some way to edit
+        vectors and matrices in Lazarus (they are records/old-style objects
+        internally).
+      <li><p>Design X3D nodes hierarchy (inside the TCastleScene) visually,
+        which means you can edit shapes, materials, textures...
+    </ol>
+
   <li><p><b>Delphi compatibility</b>
+
+    <p>This will most likely mean <i>Delphi 10 Berlin</i>,
+    as Borland made that version available for free some time ago.
+
+    <p>Unless someone wants to sponsor another Delphi version,
+    then I would gladly port to it too.
+    (I'm afraid that Delphi costs a <i>lot</i> for me,
+    so I cannot afford to buy it on my own.)<!-- Especially since, personally,
+    FPC + Lazarus rock for me, since a long time. And they work on Linux
+    natively.)-->
 
   <li><p><b>view3dscene as an Android application</b>
 
   <li><p><b>Terrain designer</b>
 
     <p>Easily design a height map (X3D <?php api_link('ElevationGrid', 'X3DNodes.TElevationGridNode.html'); ?> node, with trees, rocks, grass). Saved and loaded as an X3D file.
+
+    <p>Implementing this feature will most likely be split into a couple of small releases:</p>
+
+    <ol>
+      <li><p>Edit the heights.</li>
+      <li><p>Edit the grass and trees and rocks.</li>
+      <li><p>Efficiently render huge amounts of grass and trees and rocks.</li>
+    </ol>
 
   <li><p><b>Blender X3D exporter improvements</b>
 
@@ -79,16 +122,27 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Vulkan renderer. Maybe Metal renderer. Maybe Direct3D renderer.
 
-  <li><p><b>Animations blending</b>
+  <li><p><b>Larger scene processing and rendering improvements:</b>
 
-    To smoothly fade in/out animation,
-    with cross-fade between animations,
-    for things played by
-    <?php api_link('TCastleScene.PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>.
+    <ol>
+      <li><p><b>Animations blending</b>
 
-  <li><p><b>Batching</b>
+        <p>To smoothly fade in/out animation,
+        with cross-fade between animations,
+        for things played by
+        <?php api_link('TCastleScene.PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>.
 
-    <p>Batching of shapes that have equal appearance for start, to optimize the rendering,
+      <li><p><b>Batching</b>
+
+        <p>Batching of shapes that have equal appearance for start, to optimize the rendering.
+
+      <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
+
+        <p>This would make the whole scene manager a single graph of X3D nodes,
+        allowing for more sharing in code.
+        The T3DTranform would be just like TTransforNode, but a little diferently
+        optimized (but it would become toggable).
+    </ol>
 
   <li><p><b>WebGL (HTML5) support</b>
 
