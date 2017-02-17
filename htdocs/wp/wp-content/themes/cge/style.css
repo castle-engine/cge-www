@@ -18,6 +18,27 @@
     margin-left: 1em;
 }
 
+/* Separator between posts on:
+  - search results http://127.0.0.1/~michalis/castle-engine/wp/?s=release
+  - monthly posts list http://127.0.0.1/~michalis/castle-engine/wp/2017/02/
+  - all posts list http://127.0.0.1/~michalis/castle-engine/wp/page/2/
+*/
+.blog .site-main > article,
+.archive .site-main > article,
+.search .site-main > article {
+    padding-bottom: 0;
+}
+.blog .site-main > article::after,
+.archive .site-main > article::after,
+.search .site-main > article::after {
+    content: "";
+    margin-top: 2em;
+    background: #aaa;
+    height: 1px;
+    display: block;
+    border-bottom: 2em transparent white;
+}
+
 /*--------------------------------------------------------------
 2.0 Accessibility
 --------------------------------------------------------------*/
@@ -2686,11 +2707,13 @@ img.alignright {
 		width: 58%;
 	}
 
+/* customized above
 	.blog .site-main > article,
 	.archive .site-main > article,
 	.search .site-main > article {
 		padding-bottom: 4em;
 	}
+*/
 
 	.navigation.pagination {
 		clear: both;
