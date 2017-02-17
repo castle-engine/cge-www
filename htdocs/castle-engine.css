@@ -471,7 +471,11 @@ span.old_news_date { font-weight: bold; }
 div.old_news_item { border-bottom: medium groove #555; }
 
 span.news_title { font-weight: bold; text-decoration: underline; }
-span.news_date { color: #888; }
+span.news_date {
+    color: #767676;
+    font-size: 1.0rem;
+    padding-bottom: 0.25em;
+}
 div.news_item span.news_title { font-size: larger; }
 
 /* turn off normal link decoration inside news_title */
