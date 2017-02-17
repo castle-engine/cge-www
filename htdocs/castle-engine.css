@@ -14,6 +14,7 @@
 }
 
 .fixed-width-content {
+    /* Like Wordpress .wrap */
     width: 1200px;
     max-width: 100%;
     margin-left: auto;
