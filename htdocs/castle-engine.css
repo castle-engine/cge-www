@@ -701,7 +701,7 @@ div.quote {
 .centered-download-wrapper .btn-primary {
   width: 80%;
 }
-.btn-patreon {
+.jumbotron .btn-patreon {
   margin-right: auto;
   margin-left: auto;
   margin-top: 1em;
