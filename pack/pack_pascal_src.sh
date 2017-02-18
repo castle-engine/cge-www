@@ -24,7 +24,7 @@ set -eu
 # SOURCE_DIRS must contain a list of dirs inside current dir,
 # like '.' or './' or 'x3d/ opengl/'.
 #
-# While copying omits old/ and private/ and .svn/ subdirs.
+# While copying omits old, private,.svn, .git subdirs.
 #
 # TARGET_DIR dir must exist. TARGET_DIR may be relative or absolute path,
 # it does not have to (but may) contain trailing PathDelim.
@@ -44,6 +44,7 @@ cp_omitting_old_and_private ()
   find $SOURCE_DIRS \
     '(' '(' '(' -type d -name 'old' ')' -or \
             '(' -type d -name '.svn' ')' -or \
+            '(' -type d -name '.git' ')' -or \
             '(' -type d -name 'private' ')' ')' -prune ')' -or \
     '(' -type d '(' -name '.' -or -exec mkdir "$TARGET_DIR"'{}' ';' ')' ')' -or \
     '(' -type f -exec cp '{}' "$TARGET_DIR"'{}' ';' ')'

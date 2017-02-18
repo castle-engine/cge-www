@@ -245,15 +245,17 @@ cp-if-exists ()
 binary_add_freedesktop ()
 {
   local EXEC_BASENAME="$1"
+  local DESKTOP_PATH="$2"
+
   case "$TARGET_OS" in
     linux|freebsd)
       mkdir "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/install.sh                 "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/install_thumbnailer.sh     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".desktop "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".png     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".svg     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
-      cp-if-exists "${CASTLE_ENGINE_PATH}${ARCHIVE_BASE_BASENAME}"/desktop/"${EXEC_BASENAME}".xml     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH"install.sh                 "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH"install_thumbnailer.sh     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH""${EXEC_BASENAME}".desktop "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH""${EXEC_BASENAME}".png     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH""${EXEC_BASENAME}".svg     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
+      cp-if-exists "$DESKTOP_PATH""${EXEC_BASENAME}".xml     "$BINARY_ARCHIVE_TEMP_PATH"desktop/
       ;;
   esac
 }
@@ -301,7 +303,7 @@ binary_set_unix_permissions ()
 # tutaj wartosci 't' jest zupelnie nieobowiazkowe i zalezy od tego czy ten
 # konkretny program tego chce.
 #
-# Zawsze robimy czyszczenie przez `dircleaner . clean -d .svn'
+# Zawsze robimy czyszczenie przez `dircleaner . clean -d .svn -d .git'
 binary_add_exec_and_data ()
 {
   # parse params
@@ -340,7 +342,7 @@ binary_add_exec_and_data ()
     # I have to clear this attrib if I want to remove it by dircleaner.
     attrib.exe -R /s
   fi
-  dircleaner . clean -d .svn
+  dircleaner . clean -d .svn -d .git
 
   # Check areFilenamesLower.
   # Do it after the dircleaner --- otherwise areFilenamesLower could complain
@@ -381,7 +383,7 @@ case "$1" in
     binary_add_exec_and_data view3dscene
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
     binary_add_gpl2
-    binary_add_freedesktop view3dscene
+    binary_add_freedesktop view3dscene "$CASTLE_ENGINE_PATH"../view3dscene/desktop/
     binary_set_unix_permissions
     binary_add_executable tovrmlx3d
     ;;
@@ -399,7 +401,7 @@ case "$1" in
     binary_add_exec_and_data glViewImage
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
-    binary_add_freedesktop glViewImage
+    binary_add_freedesktop glViewImage "$CASTLE_ENGINE_PATH"../glviewimage/desktop/
     binary_set_unix_permissions
     ;;
 
@@ -429,7 +431,7 @@ case "$1" in
   malfunction)
     binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
     binary_add_exec_and_data malfunction \
-      "$CASTLE_ENGINE_PATH"malfunction/ \
+      "$CASTLE_ENGINE_PATH"../malfunction/ \
       'data/' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
@@ -444,7 +446,7 @@ case "$1" in
       images/kambi_lines/ball_red_white_1.png \
       images/kambi_lines/red_white_combo.png
     binary_add_exec_and_data kambi_lines \
-      "$CASTLE_ENGINE_PATH"kambi_lines/ \
+      "$CASTLE_ENGINE_PATH"../kambi_lines/ \
       'images/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB

@@ -38,8 +38,15 @@ Procedure to release a program:
     generated_versions.sh (this makes version number for binary and
     source archives created by pack_binary and pack_pascal_src)
 
-- Make sure you did `svn update' of program sources.
-  And make sure no local modifications remain - `svn status' should return empty.
+- Make sure you have the latest program sources (git pull --rebase...).
+  And make sure no local modifications remain - `git status' should return empty.
+
+- Compile build tool first, as some programs use it by default for compilation.
+
+  cd ~/sources/castle-engine/castle-engine/tools/build-tool
+  ./castle-engine_compile.sh
+  mv castle-engine ~/bin/
+  castle-engine -v # check
 
 - Recompile the program with *release* settings:
   - make sure you're using correct FPC version (fpc -l).
