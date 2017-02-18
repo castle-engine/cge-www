@@ -37,11 +37,7 @@ echo castle_thumbs(array(
 
 <?php
 echo_standard_program_download(
-  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
-  array(
-    'win-i386',
-    'linux-i386',
-    'linux-x86_64')
+  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true
 );
 ?>
 
