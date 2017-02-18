@@ -4,7 +4,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("X3D and VRML demo models");
+  vrmlx3d_header("Demo models");
 
   $toc = new TableOfContents(
     array(
@@ -28,19 +28,28 @@
 ?>
 
 <div class="download jumbotron">
-<?php
-  if (IS_GEN_LOCAL)
-  {
-    echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '" class="btn btn-primary btn-lg">Download VRML/X3D demo models from our WWW page</a></p>';
-  } else
-  {
-    ?>
-    <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download VRML / X3D demo models', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
-    <?php echo download_donate_footer(); ?>
+    <!-- We use a div with min-width,
+         to make sure the text "Support on Patreon"
+         fits on the button. -->
+    <div style="display: block; min-width: 20em; text-align: center;">
+
     <?php
-  }
-?>
+    if (IS_GEN_LOCAL)
+    {
+      echo '<p><a href="' . CURRENT_URL . $this_page_name .
+        '" class="btn btn-primary btn-lg">Download demo models from our WWW page</a></p>';
+    } else
+    {
+      ?>
+
+      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download demo models', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
+
+      <?php echo download_donate_footer(); ?>
+      <?php
+    }
+    ?>
+
+    </div>
 </div>
 
 <p>Documentation:
@@ -49,24 +58,24 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is our collection of demonstration, example and test 3D models.
-Most of them are in X3D and VRML (1.0, 2.0 aka VRML 97) formats,
-although other 3D formats handled by
- <?php echo a_href_page('view3dscene', 'view3dscene'); ?> are also included.
-Some models are impressive demos of a particular feature,
-and some models are plain boring tests of implementation details.
-They show what can be achieved with VRML/X3D and what we can handle.
-At the beginning of many files (remember that you can open wrl/x3dv/x3d files
-in normal text editor too) you can find some
+<p>This is our collection of demo 3D models.
+Some are impressive 3D models, some (most) are simple models demonstrating some
+technical feature.
+Most of the models are in X3D and VRML formats,
+but in general various formats handled by
+ <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and
+ <?php echo a_href_page('Castle Game Engine', 'index'); ?> are used.
+At the beginning of most files (remember that you can open X3D files
+in normal text editor too) you can find
 comments explaining what this file demonstrates.
 
 <p>These models were created to test
 <?php echo a_href_page('our Castle Game Engine', 'index'); ?>,
 but many of them should also be handled by other conforming
-VRML/X3D browsers.</p>
+X3D and VRML browsers.</p>
 
 <p>Files inside <code>warnings/</code> subdirectories are deliberately invalid
-in some ways. Good VRML/X3D browser should display a sensible warning
+in some ways. Good X3D browser should display a sensible warning
 message and (when possible) continue (omitting only the problematic part).</p>
 
 <?php echo $toc->html_section(); ?>

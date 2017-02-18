@@ -73,11 +73,12 @@ Procedure to update WWW content
 - good practice after large changes is to check
   linkchecker.sh and validate_html.sh
 
-- if it's important change, you may wish to add entry to news_common.php
+- if it's important change, you may wish to add entry to our Wordpress
+  in https://castle-engine.sourceforge.io/wp/
 
-- if you change some content managed inside SVN:
-  - commit your changes, of course
-  - svn update on SF within htdocs/
+- if you change some content managed inside GIT:
+  - commit and push your changes, of course
+  - git pull --rebase on SF within cge-www
 
 - if may be good to fix old links leading to
   http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/ now
