@@ -366,52 +366,39 @@ function kambi_url_absolute($url)
    isn't of much use.
 
    $hash_link, jeżeli różny od '', to będzie dopisany (i poprzedzony hashem)
-   do URLa strony.
-
-   Pod $url_comment zwraca komentarz do URLa w postaci "" (pusty string) lub
-   " <i>(komentarz)</i>" (zwróć uwagę na spację na początku),
-   np. " <i>(nie-lokalny link)</i>". Powinieneś gdzieś pokazać ten url_comment
-   użytkownikowi bo on zawiera generalnie ważne informacje. */
-function page_url($page_name, $hash_link, &$url_comment)
+   do URLa strony. */
+function page_url($page_name, $hash_link)
 {
-  /* init $url_comment to empty. Everywhere in this function we will
-     append things to $url_comment using
-       str_append_part_to1st($url_comment, ', ', $next_part) */
-  $url_comment = '';
-
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
     /* add an extension */
     $already_has_extension = strpos($page_name, '.php') !== FALSE;
+    $add_url = true;
     if (!is_page_available_locally($result))
     {
       if (!$already_has_extension) {
         $result .= '.php';
       }
-
-      /* add "online docs" */
-      str_append_part_to1st($url_comment, ', ', 'online docs');
     } else
     if (!$already_has_extension)
     {
       if (IS_GEN_PAGE_HREFS_TO_HTML) {
         $result .= '.html';
+        $add_url = false; // the only case when we don't add URL prefix
       } else {
         $result .= '.php';
       }
     }
 
     /* add URL, to make it absolute */
-    $result = CURRENT_URL . $result;
+    if ($add_url) {
+      $result = CURRENT_URL . $result;
+    }
   }
 
   if ($hash_link != '') {
     $result .= '#' . $hash_link;
-  }
-
-  if ($url_comment != '') {
-    $url_comment = " <i>($url_comment)</i>";
   }
 
   return $result;
@@ -420,16 +407,15 @@ function page_url($page_name, $hash_link, &$url_comment)
 /* Simpler version of page_url. */
 function en_page_url($page_name, $hash_link = '')
 {
-  $url_comment = '';
-  return page_url($page_name, $hash_link, $url_comment);
+  return page_url($page_name, $hash_link);
 }
 
 /* Internal, aby zapewnić wspólną implementację dla a_href_page i
    a_href_page_hashlink. */
 function a_href_page_core($link_title, $page_name, $hash_link)
 {
-  $page_url = page_url($page_name, $hash_link, $url_comment);
-  return "<a href=\"$page_url\">$link_title$url_comment</a>";
+  $page_url = page_url($page_name, $hash_link);
+  return "<a href=\"$page_url\">$link_title</a>";
 }
 
 /* Zwraca href do tej strony, coś w rodzaju <a href=$page_url>$link_title</a>,
@@ -548,11 +534,11 @@ if ($castle_wordpress) {
       case LANG_PL: $main_page_title = 'Strona główna'; break;
       case LANG_EN: $main_page_title = 'Main page'; break;
     }
-    $page_url = page_url(MAIN_PAGE_BASENAME, '', $url_comment);
+    $page_url = page_url(MAIN_PAGE_BASENAME, '');
     echo "<link rel=\"Start\"
                 href=\"$page_url\"
                 type=\"text/html\"
-                title=\"$main_page_title$url_comment\">\n";
+                title=\"$main_page_title\">\n";
   }
 
   $extra_body_classes = array();
