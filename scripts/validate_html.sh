@@ -13,7 +13,7 @@ cd ../htdocs/
 
 for PHP_NAME in *.php; do
   case "$PHP_NAME" in
-    news_????.php) 
+    news_????.php)
       # Ignore news_????.php, they can't be even processed by PHP
       ;;
     *)
