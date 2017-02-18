@@ -1010,7 +1010,7 @@ function echo_standard_program_download(
        in the locally generated page (since it changes to often).
        Instead, we can place a link to the WWW page. */
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '" class="btn btn-primary btn-lg">Download ' . $prog_nice_name . ' from it\'s WWW page</a>.</p>';
+      '" class="btn btn-primary btn-lg">Download ' . $prog_nice_name . ' from our WWW page</a></p>';
   } else
   {
     echo '<div class="download_title">' . $nice_name_start . ':</div>

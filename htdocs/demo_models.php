@@ -32,7 +32,7 @@
   if (IS_GEN_LOCAL)
   {
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
-      '" class="btn btn-primary btn-lg">Download VRML/X3D demo models from it\'s WWW page</a>.</p>';
+      '" class="btn btn-primary btn-lg">Download VRML/X3D demo models from our WWW page</a></p>';
   } else
   {
     ?>
