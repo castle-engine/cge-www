@@ -34,8 +34,15 @@ a very limited image editor.</p>
   echo $toc->html_section();
 ?>
 
-<?php echo_standard_program_download('glViewImage', 'glviewimage',
-  VERSION_GLVIEWIMAGE, true); ?>
+<?php
+echo_standard_program_download(
+  'glViewImage', 'glviewimage', VERSION_GLVIEWIMAGE, true,
+  array(
+    'win-i386',
+    'linux-i386',
+    'linux-x86_64')
+);
+?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>

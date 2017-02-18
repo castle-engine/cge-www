@@ -35,7 +35,15 @@ echo castle_thumbs(array(
 
 <p>Explore the virtual world with collisions, gravity, animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert models to VRML/X3D.</p>
 
-<?php echo_standard_program_download('view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true); ?>
+<?php
+echo_standard_program_download(
+  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
+  array(
+    'win-i386',
+    'linux-i386',
+    'linux-x86_64')
+);
+?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>
 

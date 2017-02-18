@@ -952,9 +952,14 @@ function download_donate_footer()
 
    If $prog_version is '' then the whole -version part will be omitted
    (i.e. $prog_version = '' causes also the dash '-' before version
-   to disappear, since this is what you usually want). */
+   to disappear, since this is what you usually want).
+
+   $os_arch_list is the list of supported OS/architectures.
+   Leave NULL (default) to use the default set of OS/architectures hardcoded
+   inside. */
 function echo_standard_program_download(
-  $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false)
+  $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false,
+  $os_arch_list = NULL)
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
 
@@ -969,35 +974,33 @@ function echo_standard_program_download(
     $nice_name_start .= ' (' . $prog_version . ')';
   */
 
-  $macosx_arch = $macosx_dmg ? 'macosx' : 'macosx-i386';
-
-  /* Hardcode $os_arch_list for now.
-     It used to be configurable, but it was more trouble than it was worth. */
-  $os_arch_list = array(
-    'win-i386',
-    'linux-i386',
-    'linux-x86_64',
-    $macosx_arch);
+  if ($os_arch_list === NULL) {
+    $os_arch_list = array(
+      'win-i386',
+      'linux-i386',
+      'linux-x86_64',
+      'macosx-i386');
+  }
 
   $os_arch_caption = array(
     'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
-    $macosx_arch   => ' Mac OS X<br/>(32 bit)',
+    'macosx-i386'  => ' Mac OS X<br/>(32 bit)',
   );
 
   $os_arch_extension = array(
     'win-i386'     => '.zip',
     'linux-i386'   => '.tar.gz',
     'linux-x86_64' => '.tar.gz',
-    $macosx_arch   => $macosx_dmg ? '.dmg' : '.tar.gz',
+    'macosx-i386'  => $macosx_dmg ? '.dmg' : '.tar.gz',
   );
 
   $os_arch_icon = array(
     'win-i386'     => 'win',
     'linux-i386'   => 'linux32',
     'linux-x86_64' => 'linux64',
-    $macosx_arch   => 'macosx'
+    'macosx-i386'  => 'macosx'
   );
 
   echo '<div class="download jumbotron">';
@@ -1017,6 +1020,11 @@ function echo_standard_program_download(
       <table><tr>';
     foreach ($os_arch_list as $os_arch)
     {
+      // for Mac OS X dmg, there is no "-i386" in the filename
+      $os_arch_filename = $os_arch;
+      if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
+        $os_arch_filename = 'macosx';
+      }
       echo '<td>';
       echo sf_download(
         '<img src="' . CURRENT_URL . 'images/os_icons/' .
@@ -1024,7 +1032,7 @@ function echo_standard_program_download(
         $os_arch_icon[$os_arch] . '.png" width="64" height="64" alt="' .
         $os_arch_caption[$os_arch] . '"><br/>' .
         $os_arch_caption[$os_arch],
-        $arch_name_start . $os_arch . $os_arch_extension[$os_arch]);
+        $arch_name_start . $os_arch_filename . $os_arch_extension[$os_arch]);
       echo '</td>' . "\n";
     }
     echo "</tr></table>\n";
