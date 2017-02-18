@@ -35,42 +35,6 @@ div.thumbs_cell_with_text_or_movie {
   text-align: center;
 }
 
-table.thumbnails {
-  /* Avoids wide thumbnail column until images load */
-  max-width: 250px;
-}
-table.thumbnails-align-right {
-  /* this is added to work nicely with Flattr images,
-     that are on some pages (like castle.php) directly above this table
-     and also aligned to the right. */
-  clear: right;
-  float: right;
-}
-table.thumbnails-align-left {
-  clear: left;
-  float: left;
-}
-div.thumbnails-align-left {
-  text-align: left;
-}
-div.thumbnails-align-right {
-  text-align: right;
-}
-div.thumbnails-align-center {
-  text-align: center;
-}
-div.thumbnails {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-div.thumbnails a {
-  display: inline-block;
-}
-table.thumbnails-align-right {
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-}
-
 /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
 pre {
   white-space: pre-wrap;
@@ -707,4 +671,65 @@ div.quote {
   margin-top: 1em;
   display: block;
   width: 80%;
+}
+
+/* div.thumbnails ------------------------------------------------------------ */
+
+div.thumbnails-align-left {
+    text-align: left;
+}
+div.thumbnails-align-right {
+    text-align: right;
+}
+div.thumbnails-align-center {
+    text-align: center;
+}
+div.thumbnails {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+div.thumbnails a {
+    display: inline-block;
+}
+
+@media screen and ( min-width: 600px ) {
+    table.thumbnails {
+        /* Avoids wide thumbnail column until images load */
+        max-width: 250px;
+    }
+    table.thumbnails-align-right {
+        /* this is added to work nicely with Flattr images,
+           that are on some pages (like castle.php) directly above this table
+           and also aligned to the right. */
+        clear: right;
+        float: right;
+
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    table.thumbnails-align-left {
+        clear: left;
+        float: left;
+    }
+}
+
+@media screen and ( max-width: 600px ) {
+    table.thumbnails {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    table.thumbnails::after {
+        clear: both;
+    }
+    table.thumbnails a.screenshot {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 210px;
+    }
+    table.thumbnails img {
+        /* images are very small, this looks bad */
+        /* width: 100%; */
+        max-width: 100%;
+    }
 }
