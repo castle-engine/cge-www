@@ -106,7 +106,7 @@ OpenGL, OpenAL, and what happened during the game.
 <p>See <?php echo a_href_page('some general notes about command-line
 options understood by all my programs', 'common_options'); ?>.
 In particular, <code>castle --help</code> will show full list
-of all available command-line options.</li>
+of all available command-line options.
 
 <?php /*
   <li><p><code>--no-shadows</code>
@@ -126,7 +126,6 @@ of all available command-line options.</li>
     In other cases, just turning off menu option "Video options -> Shadows"
     is a sufficient way to speed up rendering.
   </li> */ ?>
-</ul>
 
 <?php echo $toc->html_section(); ?>
 

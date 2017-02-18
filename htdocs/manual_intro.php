@@ -10,7 +10,7 @@ demonstrating how to make simple games and applications using -->
 <!-- shows how to make a simple 3D first-person game using -->
 <!-- We'll
 explain the basics of our engine, show you some examples and
-mention the most important classes. --></p>
+mention the most important classes.</p -->
 
 <?php /*
 

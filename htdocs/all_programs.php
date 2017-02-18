@@ -50,7 +50,7 @@ games from Michalis Kamburelis itch.io profile</a>.
 
 <div class="row">
   <?php program_image_link('Fire Madness',
-    'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is also available on GitHub<a>.',
+    'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is also available on GitHub</a>.',
     'fire_madness.png',
     'http://opengameart.org/forumtopic/fire-madness-top-down-shooter-bullet-hell'); ?>
 

@@ -1030,11 +1030,9 @@ pass(5);
 ?>
 
   <tr>
-    <td colspan="5"><i>That's enough for now...
-      I don't have time to check all the tests.
-      If someone wants to do the work and do the remaining
-      tests (and document results just like above),
-      please <a href="<?php echo FORUM_URL; ?>">contact us through the forum</a>.
+    <td colspan="5"><i>Do you want to check the remaining tests?
+      Please speak up on <a href="<?php echo FORUM_URL; ?>">forum</a>,
+      we'll gladly finish this testing.</i>
     </td>
   </tr>
 </table>

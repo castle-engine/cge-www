@@ -1282,7 +1282,11 @@ function pascal_highlight_file($file_name)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('delphi');
-  $geshi->set_footer_content('<br><a class="download_code" href="' . htmlspecialchars($file_name) . '">// This is a complete source code that you can compile. Download it!</a>');
+  /* Unfortunately, tidy says that this isn't OK, putting <div>
+     (with set_footer_content) inside a <pre> */
+  if (!HTML_VALIDATION) {
+    $geshi->set_footer_content('<br><a class="download_code" href="' . htmlspecialchars($file_name) . '">// This is a complete source code that you can compile. Download it!</a>');
+  }
   return $geshi->parse_code();
 }
 

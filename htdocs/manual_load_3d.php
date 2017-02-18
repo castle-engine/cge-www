@@ -50,7 +50,7 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
 <?php echo $toc->html_section(); ?>
 
 <ol>
-  <li><b>If you use Lazarus form with
+  <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
     To load a 3D model, double click to create an event <code>OnCreate</code>
     on your <code>TForm1</code> class, and put there the following code:</p>
@@ -71,7 +71,7 @@ begin
   CastleControl1.SceneManager.MainScene := Scene;
 end;'); ?>
 
-  <li><b>If you use
+  <li><p><b>If you use
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
     To load a 3D model, change your program code to this:</p>
 

@@ -39,7 +39,7 @@ A similar effect (sans collisions0 can be achieved using a Switch node with Shap
 but sometimes using this field is just simpler, since you can avoid editing
 the X3D file (which could be prepared by another tool, and editing them
 could be unhandy). With our engine, you could always process the X3D graph
-by code, and "silently" wrap the Shape in a Switch at loading --- but this
+by code, and "silently" wrap the Shape in a Switch at loading - - - but this
 is still some work, and it uses non-zero memory to add an extra layer in X3D graph.
 Using this field is just simpler.
 

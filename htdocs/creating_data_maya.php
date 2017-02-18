@@ -5,7 +5,7 @@ creating_data_header('Exporting from Maya', array(
 ));
 ?>
 
-<p><i>Maya</i> doesn't support exporting to X3D now. The <a href="http://rawkee.sourceforge.net/">RawKee</a> project developed Maya plugins to add X3D export, but their plugins are only for the older Maya versions (&lt= 2008).
+<p><i>Maya</i> doesn't support exporting to X3D now. The <a href="http://rawkee.sourceforge.net/">RawKee</a> project developed Maya plugins to add X3D export, but their plugins are only for the older Maya versions (&lt;= 2008).
 
 <p>The simplest option to export static meshes to our engine from the latest Maya version is to export as an <i>OBJ</i> format.
 
