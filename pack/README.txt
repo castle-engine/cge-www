@@ -69,4 +69,4 @@ Procedure to release a program:
 
 - make sure to update engine version to "X.<odd> (unstable)" for release
 
-After doing this, follow SF update procedure on ../NOTES.txt .
+After doing this, follow SF update procedure on ../README.md .

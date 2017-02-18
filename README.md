@@ -26,7 +26,7 @@ Procedure to update WWW content
   1. testing is described in TESTS.txt
   2. compiling and packing releases is described in pack/README.txt
 
-- When release is packed, it's nice to tag it on GitHub.
+- When release is packed, it's nice to tag it, see scripts/make_tags.sh script.
 
   Old notes:
   See scripts/make_svn_tags.sh --- leave uncommented only
@@ -38,6 +38,7 @@ Procedure to update WWW content
   - Move older versions to subdirs in old_versions
     (Do it first, to avoid showing on SF project summary "last changes list"
     these moves as "latest actions")
+
   - Upload to
     sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
     Under diname: program_name/
@@ -54,6 +55,7 @@ Procedure to update WWW content
     ```
 
     (following https://sourceforge.net/p/forge/documentation/SCP/)
+    See scripts/upload_example.sh
 
   - Only for view3dscene: On https://sourceforge.net/projects/castle-engine/files/
     mark new view3dscene released files as default downloads for given OS.
