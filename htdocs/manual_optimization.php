@@ -395,8 +395,10 @@ with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
 
 <p>You can use any FPC tool to profile your code, for memory and
 speed. There's a small document about it in engine sources, see
-<code>castle_game_engine/doc/profiling_howto.txt</code> See also
-<a href="http://wiki.lazarus.freepascal.org/Profiling">FPC wiki about profiling</a>.
+<code>castle_game_engine/doc/old_notes/profiling_howto.txt</code>
+(TODO: it should be moved to our wiki at some point).
+See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
+wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
 
