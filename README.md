@@ -146,14 +146,21 @@ Announcing release
 - Post on facebook, google+, twitter.
 
 - Post to community on g+:
+
+  FPC/Lazarus:
   https://plus.google.com/communities/114860965042324270757
   As Castle Game Engine:
   https://plus.google.com/b/101185352355602218697/communities/114860965042324270757
   Use tags #FreePascal #ObjectPascal #GameDevelopment
 
+  Delphi:
+  https://plus.google.com/b/101185352355602218697/communities/103113685381486591754
+
 - Post to community on FB:
   https://www.facebook.com/groups/LazarusFPCDevForum/?ref=browser
   We cannot post as Castle Game Engine to community? So just post as Michalis.
+
+  https://www.facebook.com/groups/DelphiDevelopers/
 
 - really large new features may cause updates of project description.
   Change project_description.txt text, and see there for a list of places
@@ -178,5 +185,5 @@ Announcing release
   when it was justified, as a large release and focused on devs).
   These lists aren't normally for announcements from external projects.
 
-- watch http://planet.objpas.org/ and http://planetdev.freegamedev.net/ ,
-  they aggregate our news feed
+- watch http://planet.objpas.org/ (not active anymore?) and
+  http://planetdev.freegamedev.net/ , they aggregate our news feed.
