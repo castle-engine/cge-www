@@ -12,11 +12,12 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 
 <aside id="secondary" class="widget-area" role="complementary">
     <div class="panel-follow-us">
-        Follow us on
-        <a href="https://www.facebook.com/castleengine">Facebook</a>,
-        <a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a> or
-        <a href="https://twitter.com/castleengine">Twitter</a> to get
-        the latest news about the engine development!
+        Follow us to get the latest news about the engine development:
+        <ul>
+          <li><a href="https://www.facebook.com/castleengine">Facebook</a>
+          <li><a href="https://twitter.com/castleengine">Twitter</a>
+          <li><a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a>
+        </ul>
     </div>
 
     <?php dynamic_sidebar( 'sidebar-1' ); ?>
