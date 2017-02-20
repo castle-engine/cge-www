@@ -1,13 +1,12 @@
 Short project description, used on:
-- https://www.ohloh.net/p/castle-engine
+- https://www.openhub.net/p/castle-engine
 
-Cross-platform 3D game engine in Object Pascal (FPC, Lazarus). Extensible system of 3D objects, with out-of-the-box levels, items, intelligent creatures and more. Processing and optimized OpenGL rendering of 3D models (in X3D, VRML, Collada and other formats). Animation, collision detection, 3D sound. Many graphic features like shadows, bump mapping, mirrors, screen effects, shaders. Also home of view3dscene, a full-featured VRML/X3D browser and viewer for other 3D models.
+Cross-platform 3D and 2D game engine using modern Object Pascal language (FPC, Lazarus). Very cross-platform (standalone: Windows, Linux, Mac OS X, more; mobile: Android, iOS; web browser plugin). Extensible system of 3D objects, with out-of-the-box levels, items, intelligent creatures and more. Processing and optimized rendering of 3D and 2D models (in X3D, VRML, Collada, Spine JSON and other formats). Animation, collision detection, 3D sound. Many graphic features like shadows, bump mapping, mirrors, screen effects, shaders. Also home of view3dscene, a full-featured VRML/X3D browser and viewer for other 3D and 2D models.
 
 - https://sourceforge.net/projects/castle-engine/
-  Summary: 3D game engine focused on X3D and beautiful graphic effects.
-  Description: Cross-platform 3D game engine in Object Pascal. Extensible system of 3D objects, with out-of-the-box levels, items, intelligent creatures and more. Rendering and processing of 3D models in X3D, VRML, Collada and other formats. Latest graphic effects including shadows, shaders, mirrors, screen effects. Animation, collision detection, 3D sound.
-
-Also home of view3dscene - our full-featured VRML/X3D browser. And also home of various games developed using the engine, like "The Castle".
+  Summary: Game engine supporting many 3D/2D formats and graphic effects
+  Description:
+  Cross-platform 3D and 2D game engine for Object Pascal. Rendering and processing of game assets in X3D, VRML, Collada, Spine and other formats. Many graphic effects including shadows, shaders, mirrors, screen effects. Animation, collision detection, 3D sound. Extensible system of 3D objects, with out-of-the-box levels, items, intelligent creatures and more. Desktop, mobile, web plugin. Also home of view3dscene - our full-featured VRML/X3D browser.
 
   Features:
     Many 3D formats supported: X3D, VRML, Collada, MD3, 3DS, more
@@ -20,23 +19,16 @@ Also home of view3dscene - our full-featured VRML/X3D browser. And also home of 
     Bump mapping, with steep parallax bump mapping with self-shadowing
     Screen-space effects in GLSL
     3D sound using OpenAL
-    Portable (Linux, Windows, Mac OS X, FreeBSD...)
+    Portable (Windows, Linux, Mac OS X, mobile platforms: Android, iOS, web browser plugin)
+    Build tool to easily package games for (e.g. produces ready Android apk from sources)
     Source code in clean ObjectPascal (for Free Pascal Compiler)
     Includes Lazarus components for RAD development
-
-- https://flattr.com/thing/398312/Castle-Game-Engine
-
-  An open-source 3D game engine with an excellent support for VRML / X3D and many advanced graphic effects. Written in clean Object Pascal. The engine is the basis for our view3dscene (VRML / X3D browser), and "The Castle" (FPS game). Previously known as "Kambi VRML game engine".
-
-  (CGE of Flattr not available anymore? If I'll find it, I would update it to:)
-
-  Free open-source 3D and 2D game engine with an excellent support for many formats (X3D, VRML, Spine...). Cross-platform: desktop, mobile (Android, iOS), web plugin. Many graphic effects: shadows, mirrors, shader effects. Using modern Object Pascal. The engine is the basis for view3dscene (our VRML / X3D browser), and numerous games.
 
 ------------------------------------------------------------------------------
 Description of project vrmlengine, used on
 - https://sourceforge.net/projects/vrmlengine/
 - http://cia.vc/stats/project/vrmlengine
-- https://www.ohloh.net/p/vrmlengine
+- https://www.openhub.net/p/vrmlengine
 
 The "Kambi VRML game engine" is renamed to "Castle Game Engine" (short name castle-engine). For commits and all current information see castle-engine project.
 
@@ -51,3 +43,10 @@ Dead websites where we used to have info about our project:
   (same thing as https://fundry.com/project/91-kambi-vrml-game-engine)
 - http://cia.vc/stats/project/castle-engine
   (broken because of http://code.google.com/p/cia-vc/issues/detail?id=50 anyway)
+- https://flattr.com/thing/398312/Castle-Game-Engine
+
+  An open-source 3D game engine with an excellent support for VRML / X3D and many advanced graphic effects. Written in clean Object Pascal. The engine is the basis for our view3dscene (VRML / X3D browser), and "The Castle" (FPS game). Previously known as "Kambi VRML game engine".
+
+  (CGE of Flattr not available anymore? If I'll find it, I would update it to:)
+
+  Free open-source 3D and 2D game engine with an excellent support for many formats (X3D, VRML, Spine...). Cross-platform: desktop, mobile (Android, iOS), web plugin. Many graphic effects: shadows, mirrors, shader effects. Using modern Object Pascal. The engine is the basis for view3dscene (our VRML / X3D browser), and numerous games.
