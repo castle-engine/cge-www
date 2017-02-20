@@ -57,10 +57,10 @@ Procedure to update WWW content
     (following https://sourceforge.net/p/forge/documentation/SCP/)
     See scripts/upload_example.sh
 
-  - Only for view3dscene: On https://sourceforge.net/projects/castle-engine/files/
-    mark new view3dscene released files as default downloads for given OS.
+  - Only for CGE: On https://sourceforge.net/projects/castle-engine/files/
+    mark new CGE released zp as default download for all OSes.
     This is only for default download on given OS, we suggest here
-    view3dscene as our "default package".
+    CGE as our "default package".
 
   After release:
   - download and compare are the files the same.
