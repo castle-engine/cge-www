@@ -54,7 +54,7 @@ if ($next_item !== NULL || $previous_item !== NULL)
   $older_newer_bar .= '</div>';
 }
 
-$follow_us_html = '<div class="panel-follow-us">
+$follow_us_html = '<div class="panel-follow-us-old">
   <b>Hint:</b>
   <a href="https://www.facebook.com/castleengine">Facebook</a>,
   <a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a> and

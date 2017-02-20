@@ -2226,13 +2226,13 @@ img.alignright {
 
         .has-sidebar:not(.error404) #primary {
                 float: left;
-                width: 58%;
+                width: 73%;
         }
 
         .has-sidebar #secondary {
                 float: right;
                 padding-top: 0;
-                width: 36%;
+                width: 21%;
         }
 
         .error404 #primary {
