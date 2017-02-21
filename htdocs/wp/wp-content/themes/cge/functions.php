@@ -148,16 +148,28 @@ add_shortcode('cgeapi','cgeapi_shortcode');
 /**
  * Replaces 'Continue reading' link from Twenty Seventeen with our own,
  * ending with special arrow character.
+ *
+ * Test it on:
+ * - search: http://127.0.0.1/~michalis/castle-engine/wp/?s=release
+ * - RSS feed: http://127.0.0.1/~michalis/castle-engine/wp/feed/
  */
 function cge_excerpt_more( $link ) {
     if ( is_admin() ) {
         return $link;
     }
 
+    /* translators: %s: Name of current post */
+    if (is_feed()) {
+        $ending = 'Continue reading  ' . cge_continue_suffix();
+        /* Do not add <span class="screen-reader-text"> with title in RSS,
+           it would be visible (in HTML, it's hidden by CSS */
+    } else {
+        $ending = sprintf( __( 'Continue reading  ' . cge_continue_suffix() . '<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ), get_the_title( get_the_ID() ));
+    }
+
     $link = sprintf( '<p class="link-more"><a href="%1$s" class="more-link">%2$s</a></p>',
         esc_url( get_permalink( get_the_ID() ) ),
-        /* translators: %s: Name of current post */
-        sprintf( __( 'Continue reading  ' . cge_continue_suffix() . '<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ), get_the_title( get_the_ID() ) )
+        $ending
     );
     return ' &hellip; ' . $link;
 }
