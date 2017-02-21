@@ -23,19 +23,19 @@ function cge_theme_enqueue_styles()
  */
 function twentyseventeen_time_link()
 {
-	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+    $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
-	$time_string = sprintf( $time_string,
-		get_the_date( DATE_W3C ),
-		get_the_date()
-	);
+    $time_string = sprintf( $time_string,
+        get_the_date( DATE_W3C ),
+        get_the_date()
+    );
 
-	// Wrap the time string in a link, and preface it with 'Posted on'.
-	return sprintf(
-		/* translators: %s: post date */
-		__( '<span class="screen-reader-text">Posted on</span> %s', 'twentyseventeen' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+    // Wrap the time string in a link, and preface it with 'Posted on'.
+    return sprintf(
+        /* translators: %s: post date */
+        __( '<span class="screen-reader-text">Posted on</span> %s', 'twentyseventeen' ),
+        '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+    );
 }
 
 /**
@@ -45,51 +45,51 @@ function twentyseventeen_time_link()
  */
 function cge_gallery_shortcode($output = '', $attr, $instance)
 {
-	$post = get_post();
+    $post = get_post();
 
-	$html5 = current_theme_supports( 'html5', 'gallery' );
-	$atts = shortcode_atts( array(
-		'order'      => 'ASC',
-		'orderby'    => 'menu_order ID',
-		'id'         => $post ? $post->ID : 0,
-		'itemtag'    => $html5 ? 'figure'     : 'dl',
-		'icontag'    => $html5 ? 'div'        : 'dt',
-		'captiontag' => $html5 ? 'figcaption' : 'dd',
-		'columns'    => 3,
-		'size'       => 'thumbnail',
-		'include'    => '',
-		'exclude'    => '',
-		'link'       => ''
-	), $attr, 'gallery' );
+    $html5 = current_theme_supports( 'html5', 'gallery' );
+    $atts = shortcode_atts( array(
+        'order'      => 'ASC',
+        'orderby'    => 'menu_order ID',
+        'id'         => $post ? $post->ID : 0,
+        'itemtag'    => $html5 ? 'figure'     : 'dl',
+        'icontag'    => $html5 ? 'div'        : 'dt',
+        'captiontag' => $html5 ? 'figcaption' : 'dd',
+        'columns'    => 3,
+        'size'       => 'thumbnail',
+        'include'    => '',
+        'exclude'    => '',
+        'link'       => ''
+    ), $attr, 'gallery' );
 
-	$id = intval( $atts['id'] );
+    $id = intval( $atts['id'] );
 
-	if ( ! empty( $atts['include'] ) ) {
-		$_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+    if ( ! empty( $atts['include'] ) ) {
+        $_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
 
-		$attachments = array();
-		foreach ( $_attachments as $key => $val ) {
-			$attachments[$val->ID] = $_attachments[$key];
-		}
-	} elseif ( ! empty( $atts['exclude'] ) ) {
-		$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-	} else {
-		$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
-	}
+        $attachments = array();
+        foreach ( $_attachments as $key => $val ) {
+            $attachments[$val->ID] = $_attachments[$key];
+        }
+    } elseif ( ! empty( $atts['exclude'] ) ) {
+        $attachments = get_children( array( 'post_parent' => $id, 'exclude' => $atts['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+    } else {
+        $attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
+    }
 
-	if ( empty( $attachments ) ) {
-		return '';
-	}
+    if ( empty( $attachments ) ) {
+        return '';
+    }
 
-	if ( is_feed() ) {
-		$output = "\n";
-		foreach ( $attachments as $att_id => $attachment ) {
-			$output .= wp_get_attachment_link( $att_id, $atts['size'], true ) . "\n";
-		}
-		return $output;
-	}
+    if ( is_feed() ) {
+        $output = "\n";
+        foreach ( $attachments as $att_id => $attachment ) {
+            $output .= wp_get_attachment_link( $att_id, $atts['size'], true ) . "\n";
+        }
+        return $output;
+    }
 
-	$columns = intval( $atts['columns'] );
+    $columns = intval( $atts['columns'] );
 
     $images = array();
     foreach ($attachments as $id => $attachment) {
