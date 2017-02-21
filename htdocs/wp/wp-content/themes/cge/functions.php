@@ -1,6 +1,24 @@
 <?php /* -*- mode: kambi-php -*- */
 /* Following https://codex.wordpress.org/Child_Themes */
 
+/* Include main CGE PHP functions (and variables and constants...). */
+
+/* It would be more intuitive to set
+
+     $castle_php_relative_path = '../../../../';
+
+   but the functions.php is included in a special way it seems
+   (probably using eval and not require), so the current directory right now
+   is exactly in the Wordpress root (it is not inside wp-content/themes/cge/).
+   So we only need to go 1 level higher, from Wordpress root to CGE website root.
+*/
+global $castle_php_relative_path;
+$castle_php_relative_path = '../';
+require_once $castle_php_relative_path . 'castle_engine_functions.php';
+
+global $castle_wordpress;
+$castle_wordpress = true;
+
 add_action('wp_enqueue_scripts', 'cge_theme_enqueue_styles');
 function cge_theme_enqueue_styles()
 {
