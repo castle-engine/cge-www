@@ -147,5 +147,8 @@ add_filter( 'excerpt_more', 'cge_excerpt_more', 100 );
 
 function cge_continue_suffix()
 {
-    return '→';
+    return '➤';
+    // https://unicode-table.com/en/sets/arrows-symbols/
+    // http://xahlee.info/comp/unicode_arrows.html
+    //'→';
 }
