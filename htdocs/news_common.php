@@ -74,7 +74,7 @@ function news_to_html($news_item, $full_description = true, $link_to_self = fals
   if (!$full_description && !empty($item['short_title'])) {
     $title = $item['short_title'];
   }
-  $title = '<span class="news_title">' . $title . '</span>';
+  $title = '<span class="h2 news_title' . ($link_to_self ? '' : ' only_anchor') . '">' . $title . '</span>';
 
   /* calculate $date */
   $date = castle_news_date_long($news_item);

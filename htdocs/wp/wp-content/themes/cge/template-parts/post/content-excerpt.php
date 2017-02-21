@@ -17,7 +17,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header">
-      		<?php the_title( sprintf( '<p class="news_title_wrapper"><span class="news_title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></span></p>' ); ?>
+      		<?php the_title( sprintf( '<p class="news_title_wrapper"><span class="h2 news_title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></span></p>' ); ?>
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 			<p class="news_date_wrapper"><span class="news_date">

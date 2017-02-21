@@ -21,9 +21,9 @@
         <header class="entry-header">
                 <?php
                         if ( is_single() ) {
-                                the_title( '<p class="news_title_wrapper"><span class="news_title">', '</span></p>' );
+                                the_title( '<p class="news_title_wrapper"><span class="h2 news_title only_anchor">', '</span></p>' );
                         } else {
-                                the_title( '<p class="news_title_wrapper"><span class="news_title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></span></p>' );
+                                the_title( '<p class="news_title_wrapper"><span class="h2 news_title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></span></p>' );
                         }
 
                         if ( 'post' === get_post_type() ) :

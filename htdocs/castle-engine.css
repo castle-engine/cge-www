@@ -441,10 +441,22 @@ span.news_date {
     font-size: 1.0rem;
     padding-bottom: 0.25em;
 }
-div.news_item span.news_title { font-size: larger; }
+
+/* commented, size of this is set by "h2" class */
+/* span.news_title { font-size: larger; } */
+
+/* normal underline, with color same as link color
+   (otherwise, Bootstrap causes a black underline under a blue link) */
+span.news_title a { text-decoration: underline; }
 
 /* turn off normal link decoration inside news_title */
-span.news_title a { color: black; }
+span.news_title.only_anchor a {
+  color: black;
+  text-decoration: none;
+}
+span.news_title.only_anchor {
+  text-decoration: none;
+}
 
 .castle_rss_link {
   float: right;
