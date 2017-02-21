@@ -13,7 +13,11 @@
    So we only need to go 1 level higher, from Wordpress root to CGE website root.
 */
 global $castle_php_relative_path;
-$castle_php_relative_path = '../';
+if (is_admin()) {
+    $castle_php_relative_path = '../../';
+} else {
+    $castle_php_relative_path = '../';
+}
 require_once $castle_php_relative_path . 'castle_engine_functions.php';
 
 global $castle_wordpress;
