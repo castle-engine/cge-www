@@ -431,10 +431,36 @@ function a_href_page_hashlink($link_title, $page_name, $hash_link)
   return a_href_page_core($link_title, $page_name, $hash_link);
 }
 
-/* Sets global $page_basename and $this_page_name, if not already set.
+/* Make sure that global variables $page_basename and $this_page_name are set.
    It is Ok (harmless) to call this more than once during page request
-   (useful, since we call it from common_header but "Castle Game Engine"
-   also wants to call it earlier). */
+   (useful, since we call it from common_header but castle_engine_functions.php
+   also wants to call it earlier).
+
+   - $this_page_name is a global variable containing the end part of URL
+     of this page (the thing after CURRENT_URL).
+     Like "view3dscene.php".
+     The idea is that glueing CURRENT_URL . $this_page_name,
+     or CASTLE_FINAL_URL . $this_page_name,
+     always gives you a real URL to the current page.
+
+     Is is always calculated and set by this function.
+
+     TODO: It is not properly set when we're inside Wordpress yet,
+     but in the future it will be (to something like "wp/xxx/xxx").
+
+   - $page_basename is a name of this page used for navigation purposes.
+     If not set, it is calculated by this function as $this_page_name
+     with the ".php" extension stripped, so it's like "view3dscene".
+     You can set it explicitly (before calling kambi_bootstrap)
+     to anything you like.
+
+     It can be anything matching your usage of $page_basename.
+     CGE has a "sitemap" that defines a menu, breadcrumbs etc.
+     The place of the current page in a sitemap is decided by searching
+     sitemap for this $page_basename.
+     So, in practice, on CGE: $page_basename is anything that is known
+     by a CGE sitemap.
+*/
 function kambi_bootstrap()
 {
   global $this_page_name, $page_basename;
