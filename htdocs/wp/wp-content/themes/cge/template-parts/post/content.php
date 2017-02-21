@@ -43,7 +43,7 @@
                 <?php
                         /* translators: %s: Name of current post */
                         the_content( sprintf(
-                                __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ),
+                                __( 'Continue reading ' . cge_continue_suffix() . '<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ),
                                 get_the_title()
                         ) );
 
@@ -64,7 +64,7 @@
         if ( !is_single() ) :
             echo '<a href="' . esc_url( get_permalink() ) . '#comments">Comment on this post';
             comments_number('',  ' (1 comment now)', ' (% comments now)');
-            echo '</a>';
+            echo ' ' . cge_continue_suffix() . '</a>';
         endif;
         ?>
 
