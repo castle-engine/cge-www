@@ -4,7 +4,10 @@ set -eu
 PROJ=/home/project-web/castle-engine/
 
 # others cannot do anything
-find "$PROJ" -exec chmod 'o-rwX' '{}' ';'
+chmod -R 'o-rwx' "$PROJ"
+
+# it seems on SourceForge we need to allow everyone to .htaccess
+find "$PROJ"htdocs/ -type f -name .htaccess -execdir chmod 'o+r' '{}' ';'
 
 # no need for this anymore
 # securefile ()
