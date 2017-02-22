@@ -200,13 +200,13 @@ also lists the libraries in the introduction section.
       <li>(64-bit) <code>castle_game_engine/tools/build-tool/data/external_libraries/x86_64-win64/</code> .
     </ul>
 
-    <p>You can modify your $PATH environment variable to include the directory
+    <p>You can just copy the DLL files to every directory
+    with <code>.exe</code> files that you compile with our engine.</p>
+
+    <p>Or you can modify your $PATH environment variable to include the directory
     where these libraries are. Google "<i>windows how to modify path</i>" if you're not sure how to do this.
     Remember to restart the appropriate programs, to make them use the new
     value of $PATH.
-
-    <p>Or you just copy the DLL files to every directory
-    with <code>.exe</code> files that you compile with our engine.</p>
 
     <p>Be sure to use the DLL files corresponding to your compiler &mdash; if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits, and you should use DLLs for 32-bits. <i>Even if you work on 64-bit Windows.</i>
 
