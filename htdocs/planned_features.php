@@ -66,15 +66,21 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>Delphi compatibility</b>
 
-    <p>This will most likely mean <i>Delphi 10 Berlin</i>,
-    as Borland made that version available for free some time ago.
+    <p>As for the Delphi version:
+    <ul>
+      <li><p>This will be <i>Delphi 10 Berlin</i>,
+        as Borland made that version available for free some time ago.
 
-    <p>Unless someone wants to sponsor another Delphi version,
-    then I would gladly port to it too.
-    (I'm afraid that Delphi costs a <i>lot</i> for me,
-    so I cannot afford to buy it on my own.)<!-- Especially since, personally,
-    FPC + Lazarus rock for me, since a long time. And they work on Linux
-    natively.)-->
+      <li><p>If someone will sponsor another Delphi version,
+        then I will gladly port to it too.
+
+        <p>I'm afraid that Delphi costs a <i>lot</i>,
+        so I cannot afford to buy it on my own. Especially since, personally,
+        I work on Linux with FPC + Lazarus.
+
+      <li><p>Of course, patches to add/fix support for other Delphi version
+        are always accepted.
+    </ul>
 
   <li><p><b>view3dscene as an Android application</b>
 
@@ -142,6 +148,11 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         allowing for more sharing in code.
         The T3DTranform would be just like TTransforNode, but a little diferently
         optimized (but it would become toggable).
+
+      <li><p><b>Make TCastleScene descend from T3DTranform?</b>
+
+        <p>Also, allow <code>SceneManager.MainScene</code> to have some transformation
+        (right now, it's not 100% correct).
     </ol>
 
   <li><p><b>WebGL (HTML5) support</b>
