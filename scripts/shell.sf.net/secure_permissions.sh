@@ -19,6 +19,10 @@ find "$PROJ"htdocs \
 find "$PROJ"htdocs \
   -type d -exec chmod 'o-rwX' '{}' ';'
 
+mkdir -p \
+  "$PROJ"cge-www/htdocs/wp/wp-content/cache/ \
+  "$PROJ"cge-www/htdocs/wp/wp-content/uploads/
+
 chmod -R g+w \
   "$PROJ"cge-www/htdocs/wp/wp-content/cache/ \
   "$PROJ"cge-www/htdocs/wp/wp-content/uploads/
