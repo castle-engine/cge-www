@@ -1082,7 +1082,7 @@ function echo_standard_program_download(
    The important work is always done directly (without need for CSS classes),
    so this content is suitablefor inclusion also in HTML RSS feeds.
 */
-function castle_thumbs($images, $columns=1, $align='right')
+function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
 {
   if (count($images) == 0) {
     return '';
@@ -1092,6 +1092,10 @@ function castle_thumbs($images, $columns=1, $align='right')
     $result = '<div class="thumbnails thumbnails-align-' . $align . '">';
   } else {
     $result = '<table class="thumbnails thumbnails-align-' . $align . '"><tr>';
+  }
+
+  if ($thumb_size === NULL) {
+    $thumb_size = ($columns !== 'auto' ? 'thumb_size' : 'thumb_const_height_size');
   }
 
   $column_now = 0;
@@ -1124,7 +1128,6 @@ function castle_thumbs($images, $columns=1, $align='right')
       $result .= $image['html'];
     } else
     {
-      $thumb_size = ($columns !== 'auto' ? 'thumb_size' : 'thumb_const_height_size');
       $url_full = isset($image['url_full']) ? $image['url_full'] :
         CURRENT_URL . 'images/original_size/' . $image['filename'];
       $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :

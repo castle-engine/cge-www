@@ -12,6 +12,7 @@
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
 ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIGINAL))
+ALL_SMALL_THUMB_CONST_HEIGHT:=$(subst original_size,small_thumb_const_height_size,$(wildcard original_size/lazarus-install-*.png))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 
 # Only a small number of images needs "program_link_size"
@@ -53,6 +54,7 @@ ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_PROGRAM_LINK) \
   $(ALL_OS_ICONS) \
   $(ALL_MAIN_LINK) \
+  $(ALL_SMALL_THUMB_CONST_HEIGHT) \
   castle_game_engine_icon.png
 
 all: $(ALL_TARGETS)
@@ -83,6 +85,12 @@ thumb_const_height_size/%: original_size/%
 	convert $< -geometry x200 $@
 
 # ----------------------------------------------------------------------------
+# making thumb_const_height_size
+
+small_thumb_const_height_size/%: original_size/%
+	convert $< -geometry x100 $@
+
+# ----------------------------------------------------------------------------
 # making program_link_size
 
 # glplotter screns require scaling with emboss,
@@ -101,7 +109,7 @@ main_link_size/%: original_size/%
 
 # engine icon processing -----------------------------------------------------
 
-castle_game_engine_icon.png: ../../../castle-engine/doc/logo/castle_game_engine_icon.png
+castle_game_engine_icon.png: ../../../castle-engine/doc/pasdoc/logo/castle_game_engine_icon.png
 	cp -f $< $@
 
 # OS icons -------------------------------------------------------------------
