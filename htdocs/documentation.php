@@ -116,6 +116,8 @@ echo castle_thumbs(array(
 ), 'auto', 'left', 'small_thumb_const_height_size');
 ?>
 
+<a href="https://www.youtube.com/watch?v=rCPEOw8700c">Watch the movie showing the Lazarus installation process.</a>
+
 <?php echo $toc->html_section(); ?>
 
 <p>If you don't use Lazarus (only command-line FPC):
