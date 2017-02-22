@@ -3,7 +3,9 @@ set -eu
 
 PROJ=/home/project-web/castle-engine/
 
-# others cannot do anything
+# others cannot do anything.
+# Note: it seems on SourceForge this is ignored on dirs,
+# that are always forced world-readable?
 chmod -R 'o-rwx' "$PROJ"
 
 # it seems on SourceForge we need to allow everyone to .htaccess
