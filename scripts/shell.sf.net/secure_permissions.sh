@@ -1,6 +1,24 @@
 #!/bin/bash
 set -eu
 
-find /home/project-web/castle-engine/htdocs -type f -exec chmod 'o-wx' '{}' ';'
-find /home/project-web/castle-engine/htdocs -mindepth 1 \
-  -type d -exec chmod 'o-w' '{}' ';'
+securefile ()
+{
+  ls -Flah "$1"
+  chmod o-rwX "$1"
+  ls -Flah "$1"
+}
+
+PROJ=/home/project-web/castle-engine/
+
+# securefile "$PROJ"cge-www/htdocs/wp/wp-config-production.php
+# securefile "$PROJ"cge-www/sourceforge_tests/test_out_mail.php
+
+# others cannot do anything
+find "$PROJ"htdocs \
+  -type f -exec chmod 'o-rwX' '{}' ';'
+find "$PROJ"htdocs \
+  -type d -exec chmod 'o-rwX' '{}' ';'
+
+chmod -R g+w \
+  "$PROJ"cge-www/htdocs/wp/wp-content/cache/ \
+  "$PROJ"cge-www/htdocs/wp/wp-content/uploads/
