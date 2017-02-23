@@ -39,7 +39,9 @@ if (CASTLE_OFFLINE) {
 if (CASTLE_PREVIEW) {
   /* Although CURRENT_URL = '' would also work OK usuallly,
      but the og:image contents should be an absolute URL (Facebook warns
-     about it otherwise). */
+     about it otherwise).
+     Later: for Wordpress, we actually want this to be always absolute URL.
+      */
   define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
 } else
 {
@@ -48,7 +50,7 @@ if (CASTLE_PREVIEW) {
 /* The final (not testing, offline, or preview) website URL. */
 define('CASTLE_FINAL_URL', 'https://castle-engine.sourceforge.io/');
 define('KAMBI_NO_HOME_LINK', true);
-if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
+if (CASTLE_OFFLINE) {
   define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
 } else {
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
@@ -994,7 +996,7 @@ function echo_standard_program_download(
     'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
-    'macosx-i386'  => ' Mac OS X<br/>(32 bit)',
+    'macosx-i386'  => ' Mac OS X<br/>(all versions, 32 or 64-bit)',
   );
 
   $os_arch_extension = array(
