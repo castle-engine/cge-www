@@ -30,8 +30,31 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <h2>Future plans</h2>
 
 <ul>
-  <li>
-    <p><b>Physics</b></p>
+  <li><p><b>Delphi compatibility</b>
+
+    <p>As for the Delphi version:
+    <ul>
+      <li><p>This will be <i>Delphi 10 Berlin</i>,
+        as Borland made that version available for free some time ago.
+
+      <li><p>If someone will sponsor another Delphi version,
+        then I will gladly port to it too.
+
+        <p>I'm afraid that Delphi costs a <i>lot</i>,
+        so I cannot afford to buy it on my own. Especially since, personally,
+        I work on Linux with FPC + Lazarus.
+
+      <li><p>Of course, patches to add/fix support for other Delphi version
+        are always accepted.
+    </ul>
+
+    <p>Michalis is still an open-source fanatic, and most of the engine development
+    happens on Linux, so don't worry &mdash; the FPC is still, and forever, first:)
+    But Delphi compatibility will be quite easy to add,
+    and I may improve some APIs BTW (like a vector3 API),
+    and it will open us to more developers.
+
+  <li><p><b>Physics</b></p>
 
     <p>Integrate our engine with a physics engine.
     Most preferably <a href="http://bulletphysics.org/">Bullet</a>, although this will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually <a href="http://www.ode.org/">ODE</a> (much simpler C API). Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
@@ -63,24 +86,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
       <li><p>Design X3D nodes hierarchy (inside the TCastleScene) visually,
         which means you can edit shapes, materials, textures...
     </ol>
-
-  <li><p><b>Delphi compatibility</b>
-
-    <p>As for the Delphi version:
-    <ul>
-      <li><p>This will be <i>Delphi 10 Berlin</i>,
-        as Borland made that version available for free some time ago.
-
-      <li><p>If someone will sponsor another Delphi version,
-        then I will gladly port to it too.
-
-        <p>I'm afraid that Delphi costs a <i>lot</i>,
-        so I cannot afford to buy it on my own. Especially since, personally,
-        I work on Linux with FPC + Lazarus.
-
-      <li><p>Of course, patches to add/fix support for other Delphi version
-        are always accepted.
-    </ul>
 
   <li><p><b>view3dscene as an Android application</b>
 
