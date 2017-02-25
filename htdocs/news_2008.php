@@ -95,7 +95,7 @@ castle_thumbs(array(
 ))
 . "
 
-<p>I implemented a demo of <a href=\"http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
+<p>I implemented a demo of <a href=\"https://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer\">Precomputed Radiance Transfer</a> using our engine.</p>
 
 <p>In a few words, this is a technique to make very cool self-shadowing by soft shadows under dynamic lighting. (Actually it's possible to go much further, see the papers about PRT <a href=\"http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/radiance_transfer/README.txt\">linked from my README</a>). You can see the screenshots on the right: 1st shows normal OpenGL lighting (without PRT), 2nd shows the simple ambient occlusion per-vertex (this is, in some sense, a special case of PRT), and the 3rd screenshot shows PRT technique in all it's glory.</p>
 
@@ -119,7 +119,7 @@ PRT. There's also <code>precompute_radiance_transfer</code> to process
 any 3D model (readable by my engine &mdash; VRML, X3D, 3DS, Wavefront,
 Collada...) into a VRML model that can be displayed using
 <code>radiance_transfer</code> with PRT effects. There's also <code>show_sh</code>
-program to view 25 first <a href=\"http://en.wikipedia.org/wiki/Spherical_harmonics\">spherical harmonics</a> (this will be useful if you'll want to understand how PRT works :) )."),
+program to view 25 first <a href=\"https://en.wikipedia.org/wiki/Spherical_harmonics\">spherical harmonics</a> (this will be useful if you'll want to understand how PRT works :) )."),
 
     array('title' => 'view3dscene 3.1, engine 1.5 release: Scripting, VRML browser components, and more',
           'year' => 2008,

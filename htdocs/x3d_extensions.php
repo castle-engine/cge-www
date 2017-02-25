@@ -450,7 +450,7 @@ end;
     ?>
 
     <p>The field <code>radianceTransfer</code> specifies per-vertex values for
-    <a href="http://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer">Precomputed
+    <a href="https://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer">Precomputed
     Radiance Transfer</a>. For each vertex, a vector of N triples is specified
     (this describes the radiance transfer of this vertex).
     We use Vec3f, since our transfer is for RGB (so we need 3 values

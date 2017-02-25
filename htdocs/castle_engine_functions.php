@@ -62,7 +62,7 @@ define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wi
 define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
 define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
-define('PATREON_URL',         'http://patreon.com/castleengine');
+define('PATREON_URL',         'https://patreon.com/castleengine');
 
 function reference_link()
 {
@@ -904,9 +904,9 @@ function echo_footer ()
     You can redistribute this on terms of the
     <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.</span>
 
-    <p><a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>.
+    <p><a href="https://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>.
 
-    <p>We use <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+    <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
     Like every other frickin' website on the Internet.
     Blink twice if you understand.
   </div>

@@ -44,7 +44,7 @@ because we feel that the X3D specification behavior is really not useful.
 <p>X3D multi-texturing tests are available in SVN repository under
 <code><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/">http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/multi_texturing/</a></code> .
 You can browse this by WWW browser or do <code>svn checkout</code> on this URL.
-<a href="http://sourceforge.net/projects/castle-engine/files/demo_models/multi_texturing_tests.zip/download">You can also download zip with all multi-texturing test files</a>.
+<a href="https://sourceforge.net/projects/castle-engine/files/demo_models/multi_texturing_tests.zip/download">You can also download zip with all multi-texturing test files</a>.
 For ease of browsing / downloading, everything there is self-contained,
 i.e. these test files do not refer to any files outside.
 

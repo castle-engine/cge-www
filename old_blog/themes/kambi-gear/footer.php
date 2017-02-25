@@ -12,7 +12,7 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
       $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io')
   {
   ?>
-    <a href="http://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
+    <a href="https://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
   <?php
   }
 ?>

@@ -725,8 +725,8 @@ of components, so there is no <code>vector_set_count</code>.
 
 <p>Standard vector math utilities are available:
 <?php func('vector_length(v)', 'vector_length(v)'); ?>, <?php func('vector_sqr_length(v)', 'vector_sqr_length(v)'); ?>,
-<?php func('vector_dot(v1,v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="http://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
-<?php func('vector_cross(v1,v2)', 'vector_cross(v1, v2)'); ?> (see <a href="http://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
+<?php func('vector_dot(v1,v2)', 'vector_dot(v1, v2)'); ?>  (see <a href="https://en.wikipedia.org/wiki/Dot_product">vector dot product in wikipedia</a>),
+<?php func('vector_cross(v1,v2)', 'vector_cross(v1, v2)'); ?> (see <a href="https://en.wikipedia.org/wiki/Cross_product">vector cross product in wikipedia</a>,
 only on 3-component vectors).
 <?php func('max', 'max(vector1, vector2)'); ?>,
 <?php func('min', 'min(vector1, vector2)'); ?>
@@ -783,7 +783,7 @@ on vectors.</p>
     (for <code>orientation_to_up</code>).</p></li>
 
   <li><p><?php func('slerp', 'slerp(value, rotation1, rotation2)'); ?>
-    calculates a <a href="http://en.wikipedia.org/wiki/Slerp">spherical linear interpolation</a>
+    calculates a <a href="https://en.wikipedia.org/wiki/Slerp">spherical linear interpolation</a>
     between two rotations. For <code>value</code> = 0 the result
     is <code>rotation1</code>, for <code>value</code> = 1 the result
     is <code>rotation2</code>, and between (and outside) the result is a nicely interpolated

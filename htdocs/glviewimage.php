@@ -75,7 +75,7 @@ the power of image handling inside our <?php echo a_href_page(
     libraries necessary (fcl-image is compiled inside our programs).
   </li>
 
-  <li><b>DDS</b>: <a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
+  <li><b>DDS</b>: <a href="https://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
     Draw Surface</a>. This image format may be used for advanced
     texturing, as it can store textures compressed for GPUs,
     possibly with mipmaps, cube maps, volume textures.

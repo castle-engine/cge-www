@@ -4,7 +4,7 @@
     'This component provides extensive textures support.
      2D textures may be loaded from image files (<code>ImageTexture</code>),
      movie files (<code>MovieTexture</code>) or encoded directly in VRML/X3D files
-     (<code>PixelTexture</code>, also <code>ImageTexture</code> with <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data</a> urls).
+     (<code>PixelTexture</code>, also <code>ImageTexture</code> with <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data</a> urls).
      Multiple textures may be overlayed on a single polygon in a variety
      of ways. Texture coordinates may be explicitly provided or automatically
      calculated, and may be transformed.');
@@ -198,7 +198,7 @@ and solutions (used in our engine, and proposed for future X3D spec) are here.',
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="http://en.wikipedia.org/wiki/DirectDraw_Surface">DirectDraw
+<p><a href="https://en.wikipedia.org/wiki/DirectDraw_Surface">DirectDraw
 Surface (DDS) image format</a> is supported. This format allows to store textures
 compressed for GPU (S3TC), storing mipmaps, cube maps, and volume (3D) textures.
 A number of technical details about DDS implementation are below, but in short:

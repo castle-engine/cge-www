@@ -111,7 +111,7 @@ would be:
 <p>You can directly write the shader source code inside an URL field
 (instead of putting it in an external file).
 The best way to do this, following the standards, is to use
-the <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>.
+the <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a>.
 In the simplest case, just start the URL with "<code>data:text/plain,</code>"
 and then write your shader code.</p>
 

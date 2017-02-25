@@ -203,7 +203,7 @@ shader:</p>
     <p>You can query depth information at any pixel for various effects.
     Remember that you are not limited to querying the depth of the current
     pixel, you can also query the pixels around (for example,
-    for <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a>).
+    for <a href="https://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a>).
     The "Flashlight" effect in
     <?php echo a_href_page('view3dscene', 'view3dscene') ?>
     queries a couple of pixels in the middle of the screen to estimate

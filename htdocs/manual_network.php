@@ -154,7 +154,7 @@ also find useful classes
     This allows you to pack your data into a single file,
     which is sometimes desired (it may be easier to distribute),
     and <code>data</code> URIs are very handy for this. See
-    <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data: URI specification</a>.
+    <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data: URI specification</a>.
 
     <p>Our engine includes a tool <code>to_data_uri</code> (see inside
     <code>castle_game_engine/examples/tools/</code>)
@@ -206,20 +206,20 @@ mentioned earlier.
 
 <h2>Notes about terminology: URI vs URL</h2>
 
-<p><a href="http://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
+<p><a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
 is a more general term. URI uniquely identifies a resource but does not
 necessarily tell us how to load (download) or save (upload) it.
 We have many routines in <?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
  unit that process URIs (strings), they use the more general term <code>URI</code>.
 They complement standard FPC <code>URIParser</code> routines.
 
-<p><a href="http://en.wikipedia.org/wiki/Uniform_resource_locator">URL</a>
+<p><a href="https://en.wikipedia.org/wiki/Uniform_resource_locator">URL</a>
 is a specific type of URI that also tells you how to load or save the resource.
 For example <code>http</code> and <code>file</code> protocols define URLs.
 Most of our routines that load or save use the term <code>URL</code>.
 
 <p>Things get a little more cloudy when you realize there's also
-<a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI scheme</a>.
+<a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data URI scheme</a>.
 It's not precisely an URL (it's not an address of a resource),
 but you <i>can</i> load it (since the URI itself contains the resource).
 And we support it fully (our
@@ -232,7 +232,7 @@ and X3D and VRML) allow placing <i>data URIs</i> inside fields called <code>url<
 
 <p>If you enjoy reading about Internet terminology,
 note that we use in our engine also
-<a href="http://en.wikipedia.org/wiki/Uniform_resource_name">URNs</a>
+<a href="https://en.wikipedia.org/wiki/Uniform_resource_name">URNs</a>
 (another subtype of URI). They are used by X3D external prototypes,
 see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 

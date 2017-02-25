@@ -332,7 +332,7 @@ castle_thumbs(array(
 
     <p>Of course, old URLs will continue to work for a long time. I\'ll set appropriate redirects wherever possible.</p>
 
-    <p>We also take this opportunity to migrate to the new SourceForge project management <a href="https://sourceforge.net/p/allura/">Allura, aka SF 2.0</a>. The new SourceForge project page is on <a href="https://sourceforge.net/p/castle-engine/">https://sourceforge.net/p/castle-engine/</a> (although old-style URL <a href="http://sourceforge.net/projects/castle-engine/">http://sourceforge.net/projects/castle-engine/</a> also works). You can see there a Wiki (hopefully will work better than HostedApp MediaWiki), new "Discussion" forum (possibly we will use it, instead of PhpBB hosted forum).
+    <p>We also take this opportunity to migrate to the new SourceForge project management <a href="https://sourceforge.net/p/allura/">Allura, aka SF 2.0</a>. The new SourceForge project page is on <a href="https://sourceforge.net/p/castle-engine/">https://sourceforge.net/p/castle-engine/</a> (although old-style URL <a href="https://sourceforge.net/projects/castle-engine/">http://sourceforge.net/projects/castle-engine/</a> also works). You can see there a Wiki (hopefully will work better than HostedApp MediaWiki), new "Discussion" forum (possibly we will use it, instead of PhpBB hosted forum).
   </li>
 
   <li><p><b>Important user-visible improvements</b> in the <a href="https://castle-engine.sourceforge.io/kambi_vrml_game_engine.php">engine</a> and <a href="https://castle-engine.sourceforge.io/view3dscene.php">view3dscene</a>:</p>

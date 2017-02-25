@@ -76,7 +76,7 @@ castle_thumbs(array(
     </ol>
   </li>
 
-  <li><p>Victor Amat implemented demos of <a href="http://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <code>GeneratedShadowMap</code>. The complete examples, with shaders, are available inside our <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
+  <li><p>Victor Amat implemented demos of <a href="https://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a> using our <code>GeneratedShadowMap</code>. The complete examples, with shaders, are available inside our <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/kambi_vrml_test_suite/shadow_maps/">shadow_maps/ directory in kambi_vrml_test_suite (SVN only right now)</a>. Many thanks!</p>
 
     <p>Be sure to test these examples with view3dscene from <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly builds</a>, as various problems reported by Victor (related to generating shadow maps) were fixed along the way.</p>
 

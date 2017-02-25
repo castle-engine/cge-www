@@ -94,7 +94,7 @@ and Monte Carlo path tracing.
         we recursively check refracted ray (when <code>Material</code>
         has <code>transparency</code> &gt; 0) and reflected ray
         (when <code>Material</code> has <code>mirror</code> &gt; 0).
-        Wikipedia has <a href="http://en.wikipedia.org/wiki/Ray-tracing">
+        Wikipedia has <a href="https://en.wikipedia.org/wiki/Ray-tracing">
         a nice article about ray-tracing</a> that describes
         Whitted-style ray-tracing.</dd>
 

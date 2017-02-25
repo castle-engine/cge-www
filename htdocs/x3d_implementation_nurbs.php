@@ -71,7 +71,7 @@ is <code>(x/weight, y/weight, z/weight)</code>.</p>
 
 <p>This may be a little confusing, if you're used to normal NURBS
 equation definition like from <a href="http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/NURBS-def.html">here</a>
-or <a href="http://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at wikipedia</a>.
+or <a href="https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at wikipedia</a>.
 Instead of usual equation:</p>
 
 <pre>P(u) = (sum of basis * control point * weight) / (sum of basis * weight)</pre>

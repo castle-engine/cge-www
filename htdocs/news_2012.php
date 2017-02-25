@@ -557,7 +557,7 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p>Victor Amat send us some very nice 3D model of <b><a href="http://en.wikipedia.org/wiki/Barcelona_Pavilion">German Pavillion in the Universal Expo of Barcelona of 1929</a></b>, see the screenshots on the right, with very nice water and reflections.
+  <li><p>Victor Amat send us some very nice 3D model of <b><a href="https://en.wikipedia.org/wiki/Barcelona_Pavilion">German Pavillion in the Universal Expo of Barcelona of 1929</a></b>, see the screenshots on the right, with very nice water and reflections.
 
     <p>And, also from Victor Amat, a nice <b>soft shadows demo based on shadow maps</b>. It\'s an adaptation from nVidia SDK 9, but using a PoissonDisk sampler instead of a jittered grid pattern. You can see a screenshot from it on the side. The source X3D file is inside <a href="https://castle-engine.sourceforge.io/demo_models.php">demo models</a> SVN, see subdirectory <code>demo_models/shadow_maps/soft_shadow_poisson_sampling/</code>. Thousand thanks!
 
