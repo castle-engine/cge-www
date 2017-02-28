@@ -11,3 +11,11 @@ htdocs/code-samples/two_viewports
 htdocs/code-samples/button_with_2d_scene_manager
 htdocs/code-samples/*.o
 htdocs/code-samples/*.ppu
+htdocs/vrml_engine_doc/output/
+htdocs/vrml_engine_doc/*.tar.gz
+htdocs/apidoc/html/
+htdocs/apidoc/*.tar.gz
+htdocs/compositing_shaders_doc/html/
+htdocs/compositing_shaders_doc/*.pdf
+htdocs/compositing_shaders_doc/*.fo
+htdocs/wp/wp-content/uploads/
