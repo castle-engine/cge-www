@@ -18,8 +18,11 @@
  * @package WordPress
  */
 
-/* CGE development and production settings */
-if ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
+/* CGE development and production settings.
+   When using WP command-line, $_SERVER['SERVER_NAME'] is not defined,
+   for now assume the development in this case. */
+if ((!isset($_SERVER['SERVER_NAME'])) ||
+    $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
     $_SERVER['SERVER_NAME'] == 'localhost') {
 
     /** The name of the database for WordPress */
