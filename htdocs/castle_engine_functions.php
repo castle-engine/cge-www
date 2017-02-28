@@ -747,16 +747,21 @@ function castle_header($a_page_title, array $parameters = array())
   }
   common_header($a_page_title, $common_header_parameters);
 
+  $path = array();
+  if (isset($parameters['path'])) {
+    $path = $parameters['path'];
+  }
+  echo_castle_header_suffix($path);
+}
+
+function echo_castle_header_suffix($path, $enable_sidebar = true)
+{
   global $castle_sidebar;
   global $castle_sitemap;
   global $page_basename;
   global $castle_page_path;
 
   /* calculate $castle_page_path and $path */
-  $path = array();
-  if (isset($parameters['path'])) {
-    $path = $parameters['path'];
-  }
   /* make sure $path ends with $page_basename.
      This way, we also make sure $path is never empty. */
   if (count($path) == 0 || $path[count($path) - 1] != $page_basename) {
@@ -771,29 +776,31 @@ function castle_header($a_page_title, array $parameters = array())
   $sidebarroot_info = NULL;
   $sidebarroot_sidebar = false;
   $sidebarroot_sub = $castle_sitemap;
-  while (!$sidebarroot_sidebar)
-  {
-    $sidebarroot_num ++;
-    if ($sidebarroot_num == count($path))
+  if ($enable_sidebar) {
+    while (!$sidebarroot_sidebar)
     {
-      /* end of path, nothing wants sidebar */
-      $sidebarroot_page = NULL;
-      $sidebarroot_info = NULL;
-      break;
-    } else
-    {
-      $sidebarroot_page = $path[$sidebarroot_num];
+      $sidebarroot_num ++;
+      if ($sidebarroot_num == count($path))
+      {
+        /* end of path, nothing wants sidebar */
+        $sidebarroot_page = NULL;
+        $sidebarroot_info = NULL;
+        break;
+      } else
+      {
+        $sidebarroot_page = $path[$sidebarroot_num];
 
-      if (!isset($sidebarroot_sub[$sidebarroot_page]))
-        throw new ErrorException('No page named ' . $sidebarroot_page . ' at current level of castle_sitemap');
+        if (!isset($sidebarroot_sub[$sidebarroot_page]))
+          throw new ErrorException('No page named ' . $sidebarroot_page . ' at current level of castle_sitemap');
 
-      $sidebarroot_info = $sidebarroot_sub[$sidebarroot_page];
-      $sidebarroot_sidebar =
-        isset($sidebarroot_info['sidebar']) &&
-              $sidebarroot_info['sidebar'];
-      if (isset($sidebarroot_info['sub']))
-        $sidebarroot_sub = $sidebarroot_info['sub']; else
-        $sidebarroot_sub = NULL;
+        $sidebarroot_info = $sidebarroot_sub[$sidebarroot_page];
+        $sidebarroot_sidebar =
+          isset($sidebarroot_info['sidebar']) &&
+                $sidebarroot_info['sidebar'];
+        if (isset($sidebarroot_info['sub']))
+          $sidebarroot_sub = $sidebarroot_info['sub']; else
+          $sidebarroot_sub = NULL;
+      }
     }
   }
 
