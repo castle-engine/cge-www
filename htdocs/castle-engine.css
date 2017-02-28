@@ -275,9 +275,10 @@ a.download_code {
     display: inline-block;
     text-align: left;
 }
-.news-row-wrapper .news-teaser-image {
+.news-row-wrapper img.wp-post-image {
     display: block;
     width: 100%;
+    height: auto; /* otherwise, the HTML contains an explicit height in pixels of the original image */
 }
 .news-row-wrapper a {
     display: block;

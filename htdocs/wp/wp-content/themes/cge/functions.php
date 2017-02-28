@@ -186,3 +186,11 @@ function cge_continue_suffix()
     // http://xahlee.info/comp/unicode_arrows.html
     //'→';
 }
+
+/* Add an image size.
+   See https://developer.wordpress.org/reference/functions/add_image_size/
+   Force size 600x300 (regardless of original aspect ratio),
+   if necessary the image will be cropped using the top part.
+   Hint: force regeneration by
+   https://wordpress.org/plugins/regenerate-thumbnails/ */
+add_image_size('news-teaser', 600, 300, array('center', 'top'));
