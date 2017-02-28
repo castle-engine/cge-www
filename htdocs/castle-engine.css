@@ -317,7 +317,7 @@ a.download_code {
 @media only screen and (min-width : 768px) {
     .news-row-wrapper .news_title_wrapper {
         /* in usual cases, it will make columns equal height */
-        min-height: 6em;
+        min-height: 4em;
     }
 }
 
