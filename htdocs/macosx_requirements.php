@@ -6,7 +6,7 @@ castle_header("Mac OS X notes and requirements", array(
 
 $toc = new TableOfContents(
   array(
-    new TocItem('GUI libraries: Carbon or X11 + GTK + GtkGlExt', 'options'),
+    new TocItem('GUI libraries: Carbon? X11? X11 + GTK + GtkGlExt?', 'options'),
     new TocItem('Advantages and disadvantages of using Carbon', 'carbon'),
     new TocItem('How to see the console', 'console'),
     new TocItem('Other libraries that may be required', 'other_libs'),
@@ -47,16 +47,19 @@ $toc = new TableOfContents(
 
   <li><p>Alternatively, you can create your windows using our own
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-    class.
+    class. Our <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+    can use various <i>backends</i> under the hood:
 
-    <p>By default, on Mac OS X, this means that your applications
-    will use <i>X11, GTK and GtkGLExt</i> libraries. These are <i>not</i> installed
-    by default on Mac OS X, at least <i>not all of them</i>.
-    To install them:
+    <ul>
+      <li><p>The default backend on Mac OS X is <code>CASTLE_WINDOW_XLIB</code>.
+        It's easiest to setup,
+        although it does not look pretty, and does not show a menu bar
+        (<?php api_link('TCastleWindowCustom.MainMenu', 'CastleWindow.TCastleWindowCustom.html#MainMenu'); ?>).
+        <!-- or native dialog boxes -->
+        <!-- (< ?php api_link('TCastleWindowCustom.FileDialog', 'CastleWindow.TCastleWindowCustom.html#FileDialog'); ? >) -->
 
-    <ol>
-      <li><b>X11</b> may be found on your Mac OS X install CD.
-        Install it, and run before executing our programs.
+        <p>It requires installing <b>X11</b>, which may be found on your Mac OS X install CD.
+        <!-- Install it, and run before executing our programs. -->
         Our programs will appear as part of "<i>X11 server</i>" on your desktop.
 
         <!--
@@ -77,7 +80,19 @@ $toc = new TableOfContents(
         to use given X display.</i></p></li
         -->
 
-      <li><p><b>GTK and GtkGLExt</b> can be installed using
+      <li><p>Alternatively,
+        you can switch the backend to <code>CASTLE_WINDOW_GTK_2</code>.
+        Do this by adding this line to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
+
+        <pre>-dCASTLE_WINDOW_GTK_2</pre>
+
+        <p>This looks better (the program will still be part
+        of the "<i>X11 server</i>", but it will have a nice menu bar and dialog
+        windows using GTK).
+
+        <p>In addition to <b>X11</b> (see above), your
+        application will use <b>GTK and GtkGLExt</b> libraries.
+        Install them using
         <a href="https://www.macports.org/">MacPorts</a>,
         <a href="https://brew.sh/">Homebrew</a> or
         <a href="http://www.finkproject.org/">Fink</a>.
@@ -96,26 +111,32 @@ $toc = new TableOfContents(
 
         <p>It is <i>not</i> necessary to use any fink packages from unstable
         branch.</p></li-->
-    </ol>
 
-    <p>Or, you can switch the backend of
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-    to use Lazarus under the hood, and this way we will use <i>Carbon</i> instead.
-    This means that <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-    will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
-    internally.
-    To do this, use the package <code>alternative_castle_window_based_on_lcl.lpk</code>
-    instead of <code>castle_window.lpk</code>.
-    This will give you <code>CastleWindow</code> unit that uses LCL and requires
-    the <i>castle_components</i> package.
-    If you open an existing source code,
-    like view3dscene, you will have to change the dependencies in Lazarus <i>Project inspector</i>
-    to use <code>alternative_castle_window_based_on_lcl</code> instead of <code>castle_window</code>.
-    <!--
-    We hope to make it easier in the future by using the <i>"Provides"</i> option of Lazarus packages,
-    but right now it doesn't do what we want &mdash; it can not "pull" extra depencies
-    present in alternative package but not present in original.
-    -->
+      <li><p>Alternatively, you can switch the backend of
+        <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+        to <code>CASTLE_WINDOW_LCL</code>.
+        This uses Lazarus under the hood, and this way we will use <i>Carbon</i> instead.
+        This means that <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+        will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
+        internally.
+
+        <p>This looks nice and native.
+
+        <p>To do this, use the package <code>alternative_castle_window_based_on_lcl.lpk</code>
+        instead of <code>castle_window.lpk</code>.
+        This will give you <code>CastleWindow</code> unit that uses LCL and requires
+        the <i>castle_components</i> package.
+        If you open an existing source code,
+        like view3dscene, you will have to change the dependencies in Lazarus <i>Project inspector</i>
+        to use <code>alternative_castle_window_based_on_lcl</code> instead of <code>castle_window</code>.
+
+        <!--
+        We hope to make it easier in the future by using the <i>"Provides"</i> option of Lazarus packages,
+        but right now it doesn't do what we want &mdash; it can not "pull" extra depencies
+        present in alternative package but not present in original.
+        -->
+    </ul>
+  </li>
 </ol>
 
 <?php echo $toc->html_section(); ?>
