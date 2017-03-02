@@ -36,15 +36,18 @@ version_call ()
 {
   PROGRAM_BINARY="$1"
   shift 1
+  PROGRAM_NAME=`stringoper ExtractFileName $PROGRAM_BINARY`
 
   if which "$PROGRAM_BINARY" > /dev/null; then
-    PROGRAM_NAME=`stringoper ExtractFileName $PROGRAM_BINARY`
     PROGRAM_VERSION=`$PROGRAM_BINARY --version`
     version_explicit "$PROGRAM_NAME" "$PROGRAM_VERSION"
   else
-    OLD_VERSION_VAR_NAME="GENERATED_VERSION_${PROGRAM_NAME}"
+    PROGRAM_NAME_UPPER=`stringoper UpperCase $PROGRAM_NAME`
+    OLD_VERSION_VAR_NAME="GENERATED_VERSION_${PROGRAM_NAME_UPPER}"
     # Dynamic variable name in bash, see http://stackoverflow.com/questions/16553089/bash-dynamic-variable-names
-    OLD_VERSION=${!OLD_VERSION_VAR_NAME}
+    # OLD_VERSION=${!OLD_VERSION_VAR_NAME}
+    # Above doesn't work with bash 4.4.11(1)
+    eval "OLD_VERSION=\${${OLD_VERSION_VAR_NAME}}"
     echo "Warning: Cannot execute ${PROGRAM_BINARY}. Will keep old version ${OLD_VERSION}"
     version_explicit "$PROGRAM_NAME" "$OLD_VERSION"
   fi
