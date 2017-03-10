@@ -135,6 +135,8 @@ svn diff # check, fix or commit differences
   #   ./window/unix/castleglx.ppu (required only for CastleWindow Xlib backend --- hm, maybe add?)
   #   ./images/fftwutils.ppu (for now, only used by one non-Lazarus example; may be added to castle_base package later.)
 
+# For every lpk, check "More -> Show Missing Files" in Lazarus.
+
 # ----------------------------------------------------------------------------
 # Test fpmake compilation system.
 # Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/3.0.2/
