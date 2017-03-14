@@ -155,3 +155,15 @@ fpc fpmake.pp
 
 ra_castle (roomarranger)
 rrtankticks
+
+# ----------------------------------------------------------------------------
+# Make sure released zip/tar.gz don't contain any unwanted binary files.
+# Allowed binaries below:
+
+$ find -iname *.jar
+./tools/build-tool/data/android/integrated/gradle/wrapper/gradle-wrapper.jar
+./tools/build-tool/data/android/base/gradle/wrapper/gradle-wrapper.jar
+
+$ find -iname *.so
+./tools/build-tool/data/android/integrated-components/ogg_vorbis/app/src/main/jni/armeabi-v7a/libtremolo.so
+./tools/build-tool/data/android/integrated-components/sound/app/src/main/jni/armeabi-v7a/libopenal.so
