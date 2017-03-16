@@ -373,7 +373,7 @@ and rendering, regardless of initial texture contents.
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated.'
       . (!HTML_VALIDATION ?
-      '<iframe width="200" height="167" src="https://www.youtube.com/embed/fG1owuqwcmc" frameborder="0" allowfullscreen></iframe>'
+      '<iframe width="200" height="167" src="https://www.youtube.com/embed/6ecZInTrfak" frameborder="0" allowfullscreen></iframe>'
       : '')
       . '</div>'),
   ));

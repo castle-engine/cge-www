@@ -12,7 +12,7 @@
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine.'
       . (!HTML_VALIDATION ?
-      '<iframe width="200" height="167" src="https://www.youtube.com/embed/6ecZInTrfak" frameborder="0" allowfullscreen></iframe>'
+      '<iframe width="200" height="167" src="https://www.youtube.com/embed/fG1owuqwcmc" frameborder="0" allowfullscreen></iframe>'
       : '')
       . '</div>'),
   ));
