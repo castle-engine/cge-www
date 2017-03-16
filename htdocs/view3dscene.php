@@ -929,15 +929,18 @@ is only useful for converting). More precisely:
 to record movies (by <code>--screenshot-range</code> option)
 you have to install <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
 and make sure it's available on $PATH.
+
 <ul>
   <li><i>Linux and FreeBSD</i> users should find <code>ffmpeg</code> package
-    suitable for their distribution,
+    suitable for their distribution.
+  <li><i>Windows</i> users can install
+    <a href="http://ffmpeg.zeranoe.com/builds/">FFmpeg Windows Builds</a>.
+    Remember to add bin/ directory to your $PATH after unpacking.
   <li><i>Mac OS X</i> users can install <code>ffmpeg</code> using
-    <a href="http://www.finkproject.org/">fink</a> (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),
-  <li>finally <i>Windows</i> users may try these
-    <a href="http://ffmpeg.zeranoe.com/builds/">FFmpeg Windows Builds</a>
-    (<a href="http://ffmpeg.zeranoe.com/">see here for more information about
-    ffmpeg on Windows</a>). Remember to add bin/ directory to your $PATH after unpacking.
+    <a href="https://brew.sh/">HomeBrew</a>,
+    <a href="https://www.macports.org/">MacPorts</a> or
+    <a href="http://www.finkproject.org/">Fink</a>.
+    <!-- (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),-->
 </ul>
 
 <p>Also <code>convert</code> program from
