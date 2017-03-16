@@ -373,7 +373,7 @@ and rendering, regardless of initial texture contents.
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated.'
       . (!HTML_VALIDATION ?
-      '<object class="youtube_thumbnail_video"><param name="movie" value="https://www.youtube.com/v/6ecZInTrfak"> </param> <embed src="https://www.youtube.com/v/6ecZInTrfak" type="application/x-shockwave-flash" width="200" height="167"> </embed> </object>'
+      '<iframe width="200" height="167" src="https://www.youtube.com/embed/fG1owuqwcmc" frameborder="0" allowfullscreen></iframe>'
       : '')
       . '</div>'),
   ));
