@@ -71,7 +71,7 @@ version_call mountains_of_fire
 # glinformation_glut doesn't accept --version, but it should be considered
 # to have the same version as glinformation.
 version_explicit 'glinformation_glut' `glinformation --version`
-version_explicit 'castle_game_engine' `castle-engine --version`
+version_explicit 'castle_game_engine' `castle-engine --version | sed -e "s/^castle-engine //" `
 version_explicit demo_models 3.7.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
