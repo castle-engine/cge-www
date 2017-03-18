@@ -149,6 +149,17 @@ and recompile your program to see the new font.
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'test_local_characters.png', 'titlealt' => 'Testing local (international) characters'),
+));
+?>
+
+<p>(<b>A complete program using the concepts discussed below is in the engine examples</b>,
+in the <code>examples/fonts/test_local_characters/</code>.
+The main code is in <code>game.pas</code> unit there.
+Check it out!)
+
 <p>All font routines (printing, measuring) expect
 the international characters to be encoded using UTF-8.
 To draw the international characters (anything beyond basic English ASCII set)
@@ -170,28 +181,30 @@ begin
   Characters := TUnicodeCharList.Create;
   try
     Characters.Add(SimpleAsciiCharacters);
-    Characters.Add(\'string containing all my weird chars, in UTF-8:)\');
-    Result := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true,
-      Characters);
+    { below is a string containing all my international chars, in UTF-8 }
+    Characters.Add(\'你好世界ΓειασουκόσμεЗдравствуймир\');
+    Result := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true, Characters);
   finally FreeAndNil(Characters) end;
 end;'); ?>
 
-<p>If you use <code>texture-font-to-pascal</code> utility to embed fonts in
-Pascal sources then just use it's parameter <code>--sample-text</code>
-to provide the additional (beyond simple ASCII) chars. Like this:
-
-<pre>
-texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text 'string containing all my weird chars, in UTF-8:)'
-</pre>
-
-<p>Note that you need to make sure to provide the sample characters encoded
-in UTF-8.
+<p>Make sure to provide the sample characters encoded in UTF-8.
+In the example above, they are simply hardcoded in the Pascal source file,
+so make sure that compiler understands it as UTF-8 data.
 Make sure your source code is in UTF-8 (edit it using an UTF-8
 capable editor, consider adding an UTF-8 BOM,
 consider using <code>{$CODEPAGE UTF8}</code>,
-see <a href="http://www.freepascal.org/docs-html/prog/progsu88.html">FPC source codepage</a> option). If you use <code>texture-font-to-pascal</code> then make
-sure that your command-line, and/or your script interpreter, correcly
-handle UTF-8 (on Linux, this should be a breeze, since everything works with UTF-8
+see <a href="http://www.freepascal.org/docs-html/prog/progsu88.html">FPC source codepage</a> option).
+
+<p>If you use the <code>texture-font-to-pascal</code> utility to embed fonts in
+Pascal sources (see above) then use it's parameter <code>--sample-text</code>
+to provide the additional (beyond simple ASCII) chars. Like this:
+
+<pre>
+texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text '你好世界ΓειασουκόσμεЗдравствуймир'
+</pre>
+
+<p>And make sure that your command-line, and/or your script interpreter, correcly
+handles UTF-8 (on Linux, this should be a breeze, since everything works with UTF-8
 out of the box; on modern Windows it should also work).
 
 <?php
