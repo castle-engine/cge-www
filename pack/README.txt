@@ -67,6 +67,6 @@ Procedure to release a program:
   if any drastic change, investigate why (possibly it's as expected,
   possibly we packed too little / too much).
 
-- make sure to update engine version to "X.<odd> (unstable)" for release
+- make sure to update engine version to "X.<odd> (unstable)" after release
 
 After doing this, follow SF update procedure on ../README.md .
