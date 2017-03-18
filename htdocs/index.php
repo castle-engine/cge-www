@@ -62,10 +62,13 @@ castle_header('Download', array(
         </div>
     </div>
     <div class="col-sm-4">
+        <!-- iframe class="hidden-xs main-page-thumbnail" width="560" height="315" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allowfullscreen></iframe -->
+
         <img src="images/original_size/dragon_large.png"
             alt="Dragon 2D animation designed in Spine"
             title="Dragon 2D animation designed in Spine"
             class="main-page-thumbnail hidden-xs" />
+
         <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
         <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
         <!--     title="Bump mapping and shadow maps from multiple light sources" -->
@@ -90,7 +93,7 @@ if ( !isset($wp_did_header) ) {
     //require_once 'index.php';
     $wp_did_header = true;
     // Load the WordPress library.
-    require_once('wp-load.php' );
+    require_once('wp-load.php');
     chdir('..');
 }
 
