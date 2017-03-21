@@ -167,3 +167,9 @@ $ find -iname *.jar
 $ find -iname *.so
 ./tools/build-tool/data/android/integrated-components/ogg_vorbis/app/src/main/jni/armeabi-v7a/libtremolo.so
 ./tools/build-tool/data/android/integrated-components/sound/app/src/main/jni/armeabi-v7a/libopenal.so
+
+# Android --------------------------------------------------------------------
+
+make strip-precompiled-libraries
+cd examples/2d_dragon_spine_android_game/
+make release-android
