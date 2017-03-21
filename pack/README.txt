@@ -14,9 +14,9 @@ Procedure to release a program:
 
   For the engine, update version numbers in these files:
   - make sure to update to "X.<even>" for release
-  - all castle_game_engine/packages/*.lpk
-  - castle_game_engine/src/base/castleversion.inc
-  - castle_game_engine/tools/CastleEngineManifest.xml
+  - all ../../castle-engine/packages/*.lpk
+  - ../../castle-engine/src/base/castleversion.inc
+  - ../../castle-engine/tools/build-tool/CastleEngineManifest.xml
     (and recompile castle-engine tool:
          cd ~/sources/castle-engine/castle-engine/tools/build-tool
          ./castle-engine_compile.sh
