@@ -143,6 +143,17 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         for things played by
         <?php api_link('TCastleScene.PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>.
 
+        <p>Animation cross-fade time for
+        <a href="creating_data_resources.php">creatures from resource.xml files</a>
+        could be configured using a CastleScript expression,
+        so values like this could be possible:
+
+<pre>
+fade_duration="0.5"
+fade_duration="animation_duration * 0.1"
+fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 0.5)"
+</pre>
+
       <li><p><b>Batching</b>
 
         <p>Batching of shapes that have equal appearance for start, to optimize the rendering.
