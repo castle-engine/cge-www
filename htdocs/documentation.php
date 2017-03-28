@@ -129,12 +129,20 @@ To compile the engine and applications without the help of Lazarus,
 you have a couple of options:
 
 <ol>
-  <li><p>Use simple shell scripts that call FPC with proper
-    command-line options. They pass to FPC file <code>castle-fpc.cfg</code>
+  <li><p>We advice using our
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    to compile and package your games. The build tool reads the project
+    configuration from the <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
+    It provides a lot of cool options, e.g. it can easily
+    package your Android game, or prepare compressed versions of your textures.
+    <!-- First compile the build tool itself (<code>./tools/build-tool/castle-engine_compile.sh</code>), -->
+    <!-- move  -->
+
+  <li><p>Or you can use a simple shell script that calls FPC with proper
+    command-line options. Make sure to pass to FPC file <code>castle-fpc.cfg</code>
     that contains engine paths and compilation options.
-    Just try compiling any example program this way.
-    A good examples to try at the beginning is
-    <code>examples/fps_game/fps_game.lpr</code>, so do
+    Just try compiling any example program this way, for example to compile
+    <code>examples/fps_game/fps_game.lpr</code> do this:
 
 <pre>
 cd examples/fps_game/
@@ -148,22 +156,16 @@ cd examples/fps_game/
 
     <!-- you can also do <code>make examples</code> at top-level -->
 
-  <li><p>Once you get friendly with the engine, we highly advice using our
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-    to compile and package your games. The build tool reads the project
-    configuration from the <code>CastleEngineManifest.xml</code> file.
-    It provides a lot of cool options, e.g. can easily
-    package your Android game, or prepare compressed versions of your textures.
-    <!-- First compile the build tool itself (<code>./tools/build-tool/castle-engine_compile.sh</code>), -->
-    <!-- move  -->
-
   <li><p>Other option is to compile the engine
     units by executing <code>make</code> inside the
     <code>castle_game_engine/</code> directory.
-    This  uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
-    Then add the path with compiled units to your <code>fpc.cfg</code> file by
+    This uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
+
+    <p>Then add the path with compiled units to your <code>fpc.cfg</code> file by
     adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
-    (<?php echo FPC_CFG_DOCS; ?>).
+    (<?php echo FPC_CFG_DOCS; ?>). And then, just use our units in your game code,
+    and compile it in any way you like (like <code>fpc&nbsp;mygame.lpr</code>
+    on the command-line).
 </ol>
 
 <!--
