@@ -217,6 +217,11 @@ flawlessly :) So give it a try!
     <a href="http://esotericsoftware.com/">Spine</a> is a powerful program
     for 2D game animations.</p>
 
+  <li><p><b>STL (Standard Triangle Language, aka STereoLithography)</b>.
+    <a href="https://en.wikipedia.org/wiki/STL_%28file_format%29">STL</a> is a simple
+    popular 3D format used in 3D printing.
+    We support both ASCII and binary formats.</p>
+
   <li><p><b><a href="http://local.wasp.uwa.edu.au/~pbourke/dataformats/geo/">Videoscape
     GEO</a></b> (<code>.geo</code> extension).
     Very basic support for this very old 3D format.
