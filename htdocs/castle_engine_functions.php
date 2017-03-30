@@ -41,8 +41,8 @@ if (CASTLE_PREVIEW) {
      but the og:image contents should be an absolute URL (Facebook warns
      about it otherwise).
      Later: for Wordpress, we actually want this to be always absolute URL.
-      */
-  define('CURRENT_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/');
+  */
+  define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
 } else
 {
   define('CURRENT_URL', 'https://castle-engine.sourceforge.io/');
@@ -51,7 +51,7 @@ if (CASTLE_PREVIEW) {
 define('CASTLE_FINAL_URL', 'https://castle-engine.sourceforge.io/');
 define('KAMBI_NO_HOME_LINK', true);
 if (CASTLE_OFFLINE) {
-  define('CASTLE_REFERENCE_URL', 'http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
+  define('CASTLE_REFERENCE_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
 } else {
   define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
 }
