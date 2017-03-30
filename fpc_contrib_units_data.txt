@@ -1,40 +1,37 @@
 Name: Castle Game Engine
-Version: 5.1.1
+Version: 6.0.2
 Category: graphics
 Author: Michalis Kamburelis
 E-mail: michalis.kambi@gmail.com
 Description:An open-source cross-platform 3D and 2D game engine. Features include:
 <ul>
-  <li>Optimized OpenGL rendering of models in X3D, VRML 2.0 (97) and VRML 1.0 formats. Including support for advanced VRML/X3D features like prototypes and events (user can interact with the 3D world).</li>
-  <li>Collada, 3DS, MD3, Wavefront OBJ, Spine file formats are also supported. They are internally converted into the VRML/X3D nodes graph, which means that they get all the optimizations for rendering, and 3D content from all file formats can be mixed (for 3D editing tools and such).</li>
-  <li>Saving the current state of VRML/X3D node graph to standardized XML and classic encodings. You can even use it to make your own 3D modeller on top of our engine. Various conversions between 3D model formats and limited editing capabilities are provided out-of-the-box by our tools.</li>
-  <li>Animations are supported, in two flavors: interactive animation interpolated at runtime, or precalculated animation for fast playback.</li>
-  <li>Octrees are used for various collision detection tasks.</li>
-  <li>Scene manager for centralized 3D world handling, with custom viewports possible.</li>
-  <li>Extensible system of 3D objects. You have ready, comfortable management of creatures, items, levels and players.</li>
-  <li>Shadows by both shadow volumes (full implementation, with z-fail / z-pass switching, silhouette detection etc.) and shadow maps.</li>
-  <li>Bump mapping is trivially easy to use. Various algorithms are available: from the classic bump mapping (take normal from the texture), through the parallax bump mapping, up to the steep parallax bump mapping with self-shadowing.</li>
-  <li>Shaders. There are classes to easily use ARB fragment / vertex programs and GLSL shaders. Most important, you can add and control GLSL shaders from VRML. So GLSL shaders are fully available for model designers, programmer doesn't have to do anything. We have developed special extensions to composite shader effects.</li>
-  <li>Screen-space effects in GLSL.</li>
-  <li>Advanced texturing, following X3D standard: multi-texturing, cube map texturing (can be loaded from separate files, DDS files, or captured during runtime), 3D textures, S3TC compressed textures, anisotropic filtering.</li>
-  <li>Speeding up rendering by hardware occlusion query, a simple approach and more involved Coherent Hierarchical Culling.</li>
-  <li>CastleWindow unit is available to easily create windows with OpenGL context. The intention of this unit is to be something like glut, but magnitudes better - using clean ObjectPascal, for start. Also it allows you to easily create menu bars, open/save file and similar dialogs that are implemented using native controls (GTK (1.0 or 2.0, and yes, GTK 2.0 version is perfectly stable and advised) or WinAPI).</li>
-  <li>Reading and writing of images in various formats, processing them and using as OpenGL textures. Besides many common image formats (png, jpg, ppm, bmp, just for starters), included is also support for DDS (textures with compression, mipmaps, 3d, cube maps) and RGBE format (Radiance HDR format).</li>
-  <li>Easy and fast rendering of text in 2D and 3D, with fonts loaded from any format supported by FreeType (like ttf) or embedded in Pascal code, with international characters in UTF-8.</li>
-  <li>Comfortable 3D sound engine, using OpenAL, with intelligent sound source management, supporting WAV and OggVorbis formats. Includes VRML/X3D integration, so content creators can define sound sources themselves.</li>
-  <li>Basic 2D controls rendered through OpenGL (buttons, panels, tooltips, menus etc.) are available. Good for games, where making a custom-looking GUI (that fits with your game theme) is important.</li>
+  <li>Optimized <b>OpenGL</b> rendering of models in <b>X3D and VRML</b> formats.</li>
+  <li><b>Many other asset formats supported: Collada, 3DS, MD3, Wavefront OBJ, Spine, STL...</b>. They are internally converted into the VRML/X3D nodes graph, which means that they get all the optimizations for rendering, and 3D content from all file formats can be mixed (for 3D editing tools and such).</li>
+  <li><b>Saving</b> the current state of VRML/X3D node graph to standardized XML and classic encodings. You can even use it to make your own 3D modeller on top of our engine. Various conversions between 3D model formats and limited editing capabilities are provided out-of-the-box by our tools.</li>
+  <li><b>Animations</b> are supported, in two flavors: interactive animation interpolated at runtime, or precalculated animation for fast playback.</li>
+  <li>Octrees are used for various <b>collision detection</b> tasks.</li>
+  <li><b>Scene manager</b> for centralized 3D world handling. With <b>custom viewports</b> possible.</li>
+  <li>Extensible system of 3D objects. You have ready, comfortable management of <b>creatures, items, levels and players</b>.</li>
+  <li><b>Shadows</b> by shadow volumes and shadow maps.</li>
+  <li><b>Bump mapping</b>, from the classic bump mapping (take normal from the texture), up to the steep parallax bump mapping with self-shadowing.</li>
+  <li><b>Shaders, shader effects and shader compositing</b>.</li>
+  <li><b>Screen-space effects</b> in GLSL.</li>
+  <li><b>Advanced texturing</b>: multi-texturing, cube map texturing (can be loaded from separate files, DDS files, or captured during runtime), 3D textures, GPU compressed textures, anisotropic filtering.</li>
+  <li>Speeding up rendering by <b>hardware occlusion query</b>, two approaches.</li>
+  <li><b>Reading and writing of images in various formats, processing them and using as OpenGL textures</b>. Besides many common image formats (png, jpg, ppm, bmp, just for starters), included is also support for DDS (textures with compression, mipmaps, 3d, cube maps) and RGBE format (Radiance HDR format).</li>
+  <li><b>Easy and fast rendering of text in 2D and 3D</b>, with fonts loaded from any format supported by FreeType (like ttf) or embedded in Pascal code, with international characters in UTF-8.</li>
+  <li>Comfortable <b>3D sound engine</b>, using OpenAL, with intelligent sound source management, supporting WAV and OggVorbis formats. Includes VRML/X3D integration, so content creators can define sound sources themselves.</li>
+  <li>Many <b>2D controls</b> rendered through OpenGL (buttons, images, panels, tooltips, menus etc.) are available. Good for games, where making a custom-looking GUI (that fits with your game theme) is important.</li>
   <li>Anti-aliasing (initializing OpenGL multi-sampling) is covered.</li>
-  <li>Simple ray-tracer is implemented.</li>
-  <li>Playing movie files. This includes loading and saving as image sequence or "real" movie files (ffmpeg is needed to encode / decode movie files). While the implementation is limited to a small movies for now (as memory consumption is large), it's perfect for flame or smoke animation in games. We even have a simple movie editor as an example program in engine sources.</li>
-  <li>The engine is portable. Currently tested and used on Linux, FreeBSD, Mac OS X and Windows (all i386), and Linux on x86_64. Porters/testers for other OS/processors are welcome, the engine should be able to run on all modern OSes supported by FPC.</li>
-  <li>There are many example programs, look in sources <tt>castle_game_engine/examples/</tt> subdirectory.</li>
-  <li>Engine components are independent when possible. For example, you can only take model loading and processing code, and write the rendering yourself. Or you can use our OpenGL rendering, but still initialize OpenGL context yourself (no requirement to do it by our CastleWindow unit). And so on. Of course, ultimately you can just use everything from our engine, nicely integrated - but the point is that you don't have to.</li>
-  <li>Android, iOS support.</li>
-  <li>Build tool to easily compile and package our programs for various platforms, including creating Android apk packages.</li>
+  <li><b>Playing movie files</b>.</li>
+  <li>The engine is <b>portable (Windows, Linux, FreeBSD, Mac OS X...)</b>.</li>
+  <li>Mobile (<b>Android, iOS</b>) support.</li>
+  <li>Many <b>example programs</b>.</li>
+  <li><b>Build tool</b> to easily compile and package our programs for various platforms, including creating Android apk packages.</li>
 </ul>
-Download: http://downloads.sf.net/castle-engine/castle_game_engine-5.1.1-src.tar.gz
-Homepage: https://castle-engine.sourceforge.io/engine.php
-Supported OSes: Unix, Win, Android, iOS...
+Download: http://downloads.sf.net/castle-engine/castle_game_engine-6.0.2-src.zip
+Homepage: http://castle-engine.sourceforge.io/
+Supported OSes: Linux, Win, Android,iOS...
 (I wanted to write:
 Tested on Linux, Mac OS X, Windows, Android, iOS, others. Works probably on many other modern OSes, in particular any Unix, supported by FPC.
 .. but field on form has limit on length).
