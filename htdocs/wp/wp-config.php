@@ -57,6 +57,9 @@ if ((!isset($_SERVER['SERVER_NAME'])) ||
 } else {
     define('WP_DEBUG', false);
 
+    // Michalis, following https://codex.wordpress.org/Administration_Over_SSL
+    define('FORCE_SSL_ADMIN', true);
+
     // wp-config-production.php contains DB user and passwords.
     // Not in repository, for security.
     // Included at end, so it may even override WP_DEBUG.
