@@ -162,7 +162,7 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
         <p>This would make the whole scene manager a single graph of X3D nodes,
         allowing for more sharing in code.
-        The T3DTranform would be just like TTransforNode, but a little diferently
+        The T3DTranform would be just like TTransformNode, but a little diferently
         optimized (but it would become toggable).
 
       <li><p><b>Make TCastleScene descend from T3DTranform?</b>
@@ -215,7 +215,16 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
   <li>
     <p><b>Particle systems</b>
-    <p>With a designer, probably. Probably following the X3D "particle system" component, so it will be saved and loaded as an X3D file.
+    <p>With a designer, probably.
+
+    <p>Probably following the X3D "particle system" component, so it will be saved and loaded as an X3D file.
+
+    <p>Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
+
+    <p>It would be nice to be able to export Blender particle engine to it, but possibly it's not really doable (different particle physics in Blender than X3D, we should go with own designer following more X3D).
+
+    <!-- Use ARB_point_sprite? -->
+
   </li>
 
 <?php /*
@@ -362,6 +371,9 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         <p>Note: don't worry about caching in memory, we have this already,
         for all URLs (local files, data URIs, network resources).
   </ol>
+
+  <li>
+    <p><b>Easy way to use 3rd-person camera movement in your games</b>
 </ul>
 
 <?php castle_footer(); ?>
