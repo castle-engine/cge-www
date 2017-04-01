@@ -51,7 +51,7 @@ $toc = new TableOfContents(
     can use various <i>backends</i> under the hood:
 
     <ul>
-      <li><p>The default backend on Mac OS X is <code>CASTLE_WINDOW_XLIB</code>.
+      <li><p>The <b>default backend on Mac OS X is <code>CASTLE_WINDOW_XLIB</code></b>.
         It's easiest to setup,
         although it does not look pretty, and does not show a menu bar
         (<?php api_link('TCastleWindowCustom.MainMenu', 'CastleWindow.TCastleWindowCustom.html#MainMenu'); ?>).
@@ -92,7 +92,7 @@ $toc = new TableOfContents(
         -->
 
       <li><p>Alternatively,
-        you can switch the backend to <code>CASTLE_WINDOW_GTK_2</code>.
+        <b>you can switch the backend to <code>CASTLE_WINDOW_GTK_2</code></b>.
         Do this by adding this line to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
 
         <pre>-dCASTLE_WINDOW_GTK_2</pre>
@@ -123,9 +123,9 @@ $toc = new TableOfContents(
         <p>It is <i>not</i> necessary to use any fink packages from unstable
         branch.</p></li-->
 
-      <li><p>Alternatively, you can switch the backend of
+      <li><p>Alternatively, <b>you can switch the backend of
         <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-        to <code>CASTLE_WINDOW_LCL</code>.
+        to <code>CASTLE_WINDOW_LCL</code></b>.
         This uses Lazarus under the hood, and this way we will use <i>Carbon</i> instead.
         This means that <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
         will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
