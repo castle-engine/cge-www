@@ -58,11 +58,12 @@ $toc = new TableOfContents(
         <!-- or native dialog boxes -->
         <!-- (< ?php api_link('TCastleWindowCustom.FileDialog', 'CastleWindow.TCastleWindowCustom.html#FileDialog'); ? >) -->
 
-        <p>It requires installing <a href="https://www.xquartz.org/">XQuartz</a>
-        (go ahead, it's really trivial). On older Mac OS X, you can can install
-        <i>X11 Server</a> from your Mac OS X install CD.
-        (<a href="https://support.apple.com/en-us/HT201341">For newer Mac OS X, XQuartz is the way to go</a>.)
-        <!-- Install it, and run before executing our programs. -->
+        <p>It requires installing <a href="https://www.xquartz.org/">XQuartz</a>.
+        (On older Mac OS X versions, install instead
+        <i>X11 Server</i> from your Mac OS X install CD.
+        <a href="https://support.apple.com/en-us/HT201341">For newer Mac OS X, XQuartz is the way to go</a>.)
+
+        <p><!-- Install it, and run before executing our programs. -->
         Our programs will appear as part of "<i>X11 server</i>" on your desktop.
 
         <p>To compile, you also need to add this line to your <code>fpc.cfg</code> file
