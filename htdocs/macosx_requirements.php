@@ -58,9 +58,19 @@ $toc = new TableOfContents(
         <!-- or native dialog boxes -->
         <!-- (< ?php api_link('TCastleWindowCustom.FileDialog', 'CastleWindow.TCastleWindowCustom.html#FileDialog'); ? >) -->
 
-        <p>It requires installing <b>X11</b>, which may be found on your Mac OS X install CD.
+        <p>It requires installing <a href="https://www.xquartz.org/">XQuartz</a>
+        (go ahead, it's really trivial). On older Mac OS X, you can can install
+        <i>X11 Server</a> from your Mac OS X install CD.
+        (<a href="https://support.apple.com/en-us/HT201341">For newer Mac OS X, XQuartz is the way to go</a>.)
         <!-- Install it, and run before executing our programs. -->
         Our programs will appear as part of "<i>X11 server</i>" on your desktop.
+
+        <p>To compile, you also need to add this line to your <code>fpc.cfg</code> file
+        (<?php echo FPC_CFG_DOCS; ?>):</p>
+
+<pre>
+-Fl/usr/X11/lib/
+</pre>
 
         <!--
         If you start our program outside of X11
@@ -355,28 +365,27 @@ Also, brew has now FPC 3.0.0, while MacPorts only 2.6.4.
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>As of fink 0.29.21 (on Mac OS X 10.6.7), you should additionally install
-    the fink "<code>pango1-xft2-shlibs</code>" package. Simple "<code>fink install pango1-xft2-shlibs</code>"
-    should do the trick. This is necessary for successful linking.</p>
-
-  <li><p>For libraries installed by fink, you may have to add them to your libs
-    path by command like
+  <li><p>To use the libraries installed by fink, you may have to add them to your libraries
+    path. Execute a command like this (in the same shell (terminal), before executing our
+    programs):
 
 <pre>
 export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 </pre>
 
-    <p>before executing programs. (you can add this to your <code>.bashrc</code>
-    or similar file for comfort).
+    <p>You can add this line to your <code>~/.bashrc</code> to have it automatically
+    done.
 
-  <li><p>For developers: The linker must know the location of fink and X11
-    libraries. If you have installed fink and X11 in standard locations,
-    you can simply add these lines to your <code>/etc/fpc.cfg</code> file
-    (<?php echo FPC_CFG_DOCS; ?>):</p>
+  <li><p>To compile applications using GTK (<code>CASTLE_WINDOW_GTK_2</code> backend),
+    <!-- as of fink 0.29.21 (on Mac OS X 10.6.7), --> you should additionally install
+    the fink "<code>pango1-xft2-shlibs</code>" package. Simple "<code>fink install pango1-xft2-shlibs</code>"
+    should do the trick. This is necessary for successful linking.</p>
+
+  <li><p>If you use any libraries from fink, the linker must know their locations.
+    Add this line to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):</p>
 
 <pre>
 -Fl/sw/lib/
--Fl/usr/X11/lib/
 </pre>
 </ul>
 
