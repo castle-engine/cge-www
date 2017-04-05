@@ -22,3 +22,4 @@ check_url_success https://castle-engine.sourceforge.io/wp/feed/
 check_url_success https://castle-engine.sourceforge.io/wp/2017/02/18/castle-game-engine-6-0-release/
 check_url_success https://castle-engine.sourceforge.io/wp/2017/02/
 check_url_success https://castle-engine.sourceforge.io/wp/?s=release
+check_url_success https://castle-engine.sourceforge.io/latest.zip
