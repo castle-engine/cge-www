@@ -1,3 +1,8 @@
 # Otherwise server returns text/plain and the chm
 # contents are displayed as a text file.
 AddType application/octet-stream .chm
+
+# Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
+# further, to a known latest version).
+# Se https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
+Redirect "/latest.zip" "/latest.zip.php"
