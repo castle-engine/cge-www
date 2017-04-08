@@ -36,15 +36,15 @@ $toc = new TableOfContents(
 
 <!-- sudo xcodebuild -license # press "q" and type "agree" -->
 
-<p>This is covered in more detail at FPC/Lazarus site:
+<p>This is covered in more details in the FPC / Lazarus documentation:
 
 <ul>
+  <li><a href="http://freepascal.stack.nl/down/i386/macosx-netherlands.html">FPC installation instructions for Mac OS X</a>
   <li><a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Installing_Lazarus_and_Free_Pascal">OS X Programming Tips -&gt; Installing the Apple Developer Tools</a> and
   <li><a href="http://wiki.lazarus.freepascal.org/Installing_Lazarus_on_MacOS_X#Prerequisites:_Apple_Developer_Tools">Installing Lazarus on MacOS X -&gt; Prerequisites: Apple Developer Tools</a>
-  <li><a href="http://freepascal.stack.nl/down/i386/macosx-netherlands.html">FPC installation instructions for Mac OS X</a>
 </ul>
 
-<p>It seems that the latest Mac OS X doesn't include gdb (a debugger, user underneath by Lazarus). You can install it e.g. using HomeBrew: "<code>brew install gdb</code>". See <a href="http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer">GDB on OS X</a>.
+<p>Also, it seems that the latest Mac OS X doesn't include gdb (a debugger, user underneath by Lazarus). Lazarus will warn you about this on the 1st run. You can install GDB e.g. using <a href="https://brew.sh/">HomeBrew</a>, just execute <code>brew install gdb</code>. See <a href="http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer">GDB on OS X</a>.
 
 <!-- TODO: do we need codesigning? -->
 
