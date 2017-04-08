@@ -957,7 +957,7 @@ See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> uses a standard OS console
+<p>view3dscene uses a standard OS console
 for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will not see this
 console if you run the program using the bundle (by double-clicking on the app
 in Finder, or in dock...).
