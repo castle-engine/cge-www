@@ -6,6 +6,7 @@ castle_header("Mac OS X notes and requirements", array(
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Compiling on Mac OS X', 'compiling'),
     new TocItem('GUI libraries: Carbon? X11? X11 + GTK + GtkGlExt?', 'options'),
     new TocItem('Advantages and disadvantages of using Carbon', 'carbon'),
     new TocItem('How to see the console', 'console'),
@@ -26,6 +27,26 @@ $toc = new TableOfContents(
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The FPC compiler needs the <i>XCode command-line developer tools</i> installed. In short, open <i>/Applications/Utilities/Terminal</i> and execute <code>xcode-select --install</code>.
+
+<!-- <p>Old notes: You may also need to accept license: -->
+
+<!-- sudo xcodebuild -license # press "q" and type "agree" -->
+
+<p>This is covered in more detail at FPC/Lazarus site:
+
+<ul>
+  <li><a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Installing_Lazarus_and_Free_Pascal">OS X Programming Tips -&gt; Installing the Apple Developer Tools</a> and
+  <li><a href="http://wiki.lazarus.freepascal.org/Installing_Lazarus_on_MacOS_X#Prerequisites:_Apple_Developer_Tools">Installing Lazarus on MacOS X -&gt; Prerequisites: Apple Developer Tools</a>
+  <li><a href="http://freepascal.stack.nl/down/i386/macosx-netherlands.html">FPC installation instructions for Mac OS X</a>
+</ul>
+
+<p>It seems that the latest Mac OS X doesn't include gdb (a debugger, user underneath by Lazarus). You can install it e.g. using HomeBrew: "<code>brew install gdb</code>". See <a href="http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer">GDB on OS X</a>.
+
+<!-- TODO: do we need codesigning? -->
 
 <?php echo $toc->html_section(); ?>
 
