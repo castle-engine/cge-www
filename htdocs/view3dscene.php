@@ -59,6 +59,7 @@ echo_standard_program_download(
         new TocItem('Other options', 'other_options', 1),
         new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
+        new TocItem('How to see the console on Mac OS X', 'console', 1),
     )
   );
   echo $toc->html_toc();
@@ -953,6 +954,20 @@ and make sure it's available on $PATH.
 package must be available on $PATH for some miscellaneous image formats to work.
 See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
  for a list of image formats handled.
+
+<?php echo $toc->html_section(); ?>
+
+<p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> uses a standard OS console
+for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will not see this
+console if you run the program using the bundle (by double-clicking on the app
+in Finder, or in dock...).
+
+<p>To see the console output, run view3dscene from terminal:
+
+<pre>
+cd directory-where-you-installed-view3dscene/
+./view3dscene.app/Contents/MacOS/view3dscene
+</pre>
 
 <?php
   castle_footer();

@@ -9,7 +9,6 @@ $toc = new TableOfContents(
     new TocItem('Compiling on Mac OS X', 'compiling'),
     new TocItem('GUI libraries: Carbon? X11? X11 + GTK + GtkGlExt?', 'options'),
     new TocItem('Advantages and disadvantages of using Carbon', 'carbon'),
-    new TocItem('How to see the console', 'console'),
     new TocItem('Other libraries that may be required', 'other_libs'),
     new TocItem('Notes specific to particular Mac OS X package managers', 'package_managers'),
       new TocItem('Consider installing FPC and Lazarus through them too', 'fpc_and_laz', 1),
@@ -256,20 +255,6 @@ $toc = new TableOfContents(
         (GTK etc. from fink).
     </ul>
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> uses a standard OS console
-for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will not see this
-console if you run the program using the bundle (by double-clicking on the app
-in Finder, or in dock...).
-
-<p>To see the console output, run view3dscene from terminal:
-
-<pre>
-cd directory-where-you-installed-view3dscene/
-./view3dscene.app/Contents/MacOS/view3dscene
-</pre>
 
 <?php echo $toc->html_section(); ?>
 
