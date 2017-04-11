@@ -111,6 +111,18 @@ $toc = new TableOfContents(
         to use given X display.</i></p></li
         -->
 
+        <p>If, when running our applications, you get an error
+        that <i>glX extension not found</i>:
+        Check do you have a <code>/usr/X11R6</code> symlink (e.g. by running
+        <code>ls /usr/X11R6</code> in the terminal).
+        Some versions of XQuartz
+        seem to not install it (<a href="http://bugs.freepascal.org/view.php?id=31651">see here</a>).
+        You should be able to fix it on your system b
+
+        <pre>
+sudo ln -s /usr/X11 /usr/X11R6
+</pre>
+
       <li><p>Alternatively,
         <b>you can switch the backend to <code>CASTLE_WINDOW_GTK_2</code></b>.
         Do this by adding this line to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
