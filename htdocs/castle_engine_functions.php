@@ -934,11 +934,13 @@ function echo_footer ()
 /* Return SVN URL to appropriate path with repository trunk.
    If $prefix_command is true then also will add 'svn checkout ' text
    at the beginning. */
-function sf_checkout_link($prefix_command, $path)
+function sf_checkout_link($prefix_command, $path, $force_https = false)
 {
   return
     ($prefix_command ? 'svn checkout ' : '') .
-    'http://svn.code.sf.net/p/castle-engine/code/trunk/' . $path;
+    ($force_https ? 'https' : 'http' ).
+    '://svn.code.sf.net/p/castle-engine/code/trunk/' .
+    $path;
 }
 
 /* Makes a link to a download from SourceForge file release system. */
