@@ -1399,8 +1399,9 @@ body:not(.twentyseventeen-front-page) .entry-header {
 }
 
 .comment-author {
-        font-size: 16px;
-        font-size: 1rem;
+        /* CGE: do not make comment fonts so small */
+        /* font-size: 16px; */
+        /* font-size: 1rem; */
         margin-bottom: 0.4em;
         position: relative;
         z-index: 2;
@@ -1423,8 +1424,9 @@ body:not(.twentyseventeen-front-page) .entry-header {
 
 .comment-metadata {
         color: #767676;
-        font-size: 10px;
-        font-size: 0.625rem;
+        /* CGE: do not make comment fonts so small */
+        /* font-size: 10px; */
+        /* font-size: 0.625rem; */
         font-weight: 800;
         letter-spacing: 0.1818em;
         text-transform: uppercase;
@@ -1441,8 +1443,9 @@ body:not(.twentyseventeen-front-page) .entry-header {
 
 .comment-body {
         color: #333;
-        font-size: 14px;
-        font-size: 0.875rem;
+        /* CGE: do not make comment fonts so small */
+        /* font-size: 14px; */
+        /* font-size: 0.875rem; */
         margin-bottom: 4em;
 }
 
@@ -1474,8 +1477,9 @@ body:not(.twentyseventeen-front-page) .entry-header {
 .no-comments,
 .comment-awaiting-moderation {
         color: #767676;
-        font-size: 14px;
-        font-size: 0.875rem;
+        /* CGE: do not make comment fonts so small */
+        /* font-size: 14px; */
+        /* font-size: 0.875rem; */
         font-style: italic;
 }
 
