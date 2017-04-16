@@ -525,7 +525,7 @@ function common_header($a_page_title, array $parameters = array())
       case LANG_EN: $SBackToMain = 'back to main page'; break;
     }
     $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
-      $SBackToMain, CURRENT_URL . MAIN_PAGE_BASENAME . '.php'));
+      $SBackToMain, MAIN_PAGE_BASENAME));
   }
 
   if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
