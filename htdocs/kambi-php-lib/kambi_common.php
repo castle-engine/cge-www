@@ -359,14 +359,19 @@ function kambi_url_absolute($url)
 
    $page_name: string, nie zawiera extension, basename strony.
 
-   Eventually, if $page_name already contains a .php extension, then we will
-   not add any new php/html extension at the end.
+   Eventually, $page_name may already contain a .php extension,
+   then we will not add any new php/html extension at the end.
    Remember that this disables local html generation,
    and so generally should not be used, as it means that page_url
    isn't of much use.
 
-   $hash_link, jeżeli różny od '', to będzie dopisany (i poprzedzony hashem)
-   do URLa strony. */
+   Eventually, $page_name may be an absolute URL,
+   in which case we don't add any extension and generally don't
+   process it in any way (besides eventually adding $hash_link).
+
+   $hash_link is an anchor name.
+   If non-empty, it will be added to the URL, after a hash (#) sign.
+*/
 function page_url($page_name, $hash_link)
 {
   $result = $page_name;
@@ -520,7 +525,7 @@ function common_header($a_page_title, array $parameters = array())
       case LANG_EN: $SBackToMain = 'back to main page'; break;
     }
     $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
-      $SBackToMain, CURRENT_URL . MAIN_PAGE_BASENAME));
+      $SBackToMain, CURRENT_URL . MAIN_PAGE_BASENAME . '.php'));
   }
 
   if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
