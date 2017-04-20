@@ -11,7 +11,7 @@ check_url_success ()
   # tries=1, to warn me as soon as 1 failure occurs.
   # See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=181150,
   # tries=1 means to try once it seems.
-  wget --no-check-certificate --output-document --tries=1 /dev/null "$@" "${URL}"
+  wget --no-check-certificate --tries=1 --output-document /dev/null "$@" "${URL}"
 }
 
 check_url_success https://castle-engine.sourceforge.io/
