@@ -8,7 +8,10 @@ check_url_success ()
   URL="$1"
   shift 1
   echo "Checking ${URL}"
-  wget --no-check-certificate --output-document /dev/null "$@" "${URL}"
+  # tries=1, to warn me as soon as 1 failure occurs.
+  # See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=181150,
+  # tries=1 means to try once it seems.
+  wget --no-check-certificate --output-document --tries=1 /dev/null "$@" "${URL}"
 }
 
 check_url_success https://castle-engine.sourceforge.io/
