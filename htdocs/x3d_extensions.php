@@ -48,6 +48,7 @@ $toc = new TableOfContents(array(
   new TocItem('Plane (<code>Plane</code> node)', 'ext_plane', 2),
   new TocItem('Boolean value toggler (<code>Toggler</code> node)', 'ext_toggler', 2),
   new TocItem('Interpolate sets of floats (node <code>VectorInterpolator</code>)', 'ext_vector_interpolator', 2),
+  new TocItem('Advanced shading with textures (<code>CommonSurfaceShader</code>)', 'ext_common_surface_shader', 2),
 
   new TocItem('Extensions compatible with BitManagement / BS Contact', 'ext_bitmanagement', 1),
 
@@ -1056,6 +1057,11 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p><?php echo a_href_page('<code>VectorInterpolator</code> docs are at the
     "Interpolation component - extensions" page', 'x3d_implementation_interpolation_extensions'); ?>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+    <p><?php echo a_href_page('<code>CommonSurfaceShaders</code> docs are at the
+    "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 

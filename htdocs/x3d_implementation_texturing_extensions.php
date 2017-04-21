@@ -6,6 +6,7 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Advanced shading with textures (<code>CommonSurfaceShader</code>)', 'ext_common_surface_shader'),
       new TocItem('Bump mapping (<code>normalMap</code>, <code>heightMap</code>, <code>heightMapScale</code> fields of <code>Appearance</code>)', 'ext_bump_mapping'),
       new TocItem('Texture automatically rendered from a viewpoint (<code>RenderedTexture</code> node)', 'ext_rendered_texture'),
       new TocItem('Generate texture coordinates on primitives (<code>Box/Cone/Cylinder/Sphere/Extrusion/Text.texCoord</code>)', 'ext_tex_coord'),
@@ -19,6 +20,140 @@
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The <code>CommonSurfaceShader</code> node can be used inside the <code>Appearance.shaders</code> field, to request an advanced shading for the given shape. The rendering follows the standard <a href="https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model">Blinn–Phong shading model</a>, with the additional feature that <b>all parameters can be adjusted using the textures</b>.
+
+<p>This allows to vary the shading parameters on a surface. For example you can use <i>specular maps</i> to vary the brightness of the light reflections.
+<!-- surface specularity (<i>brightness</i> of light reflections; not to be confused with <i>shininess</i>, that says how <i>focused</i> are light reflections, and also can be adjusted). --> You can use <i>normal maps</i> to vary the normal vectors throughout the surface (simulating tiny features of a surface, aka <i>bump mapping</i>).
+
+<p>The node can be considered a <i>"material on steroids"</i>, replacing the material and texture information provided in the standard <code>Appearance.texture</code> and <code>Appearance.material</code> fields. It is not a <i>normal "shader" node</i>, as it does not allow you to write an explicit shader code (for this, see <a href="x3d_implementation_shaders.php">programmable shaders nodes</a> or our <a href="compositing_shaders.php">compositing shaders extension</a>). But it is placed on the <code>Appearance.shaders</code> list, as an alternative to other shader nodes, and it does determine <i>shading</i>.
+
+<p>Most of the shading parameters are specified using five fields:
+<ul>
+  <li><code>xxxFactor</code> (usually of <code>SFFloat</code> or <code>SFVec3f</code> type, which means: a single float value or a 3D vector):<br>
+    Determines the shading parameter <code>xxx</code>.
+  <li><code>xxxTexture</code> (<code>SFNode</code> type, usually you can place any <code>X3DTextureNode</code> here):<br>
+    The texture to vary the shading shading parameter <code>xxx</code> throughout the surface. If specified, this is multiplied with the <code>xxxFactor</code>.
+  <li><code>xxxTextureCoordinatesId</code> (<code>SFInt32</code>, by default <code>0</code>):<br>
+    Which texture coordinates determine the <code>xxxTexture</code> placement. Ignored if <code>xxxTexture</code> not assigned.
+  <li><code>xxxTextureChannelMask</code> (<code>SFString</code>, various defaults):<br>
+    A mask that says which texture channels determine the shading parameter. Ignored if <code>xxxTexture</code> not assigned.
+  <li><code>xxxTextureId</code> (<code>SFInt32</code>, by default <code>-1</code>):<br>
+    Ignored by our implementation.<!-- The texture unit number is always assigned automatically in our implementation. -->
+</ul>
+
+<p>More information:
+
+<ul>
+  <li><a href="http://doc.instantreality.org/tutorial/commonsurfaceshader/">Instant Reality tutorial</a>, nicely presenting the most important features, and linking to other useful resources.
+  <li>The <code>CommonSurfaceShader</code> node was designed by Instant Reality. See the <a href="http://doc.instantreality.org/documentation/nodetype/CommonSurfaceShader/">Instant Reality specification of CommonSurfaceShader</a>.
+  <li>The node is also implemented in X3DOM. See <a href="https://doc.x3dom.org/author/Shaders/CommonSurfaceShader.html">X3DOM specification of the CommonSurfaceShader (they added some fields)</a>.
+  <li>It's a really neat design, and Michalis would like to see it <a href="http://www.web3d.org/wiki/index.php/X3D_version_4.0_Development">available as part of the X3D 4.0 standard</a> :) Since <i>Castle Game Engine</i> 6.2.0, it is the adviced way to use normalmaps, deprecating our <a href="x3d_implementation_texturing_extensions.php#section_ext_bump_mapping">previous extensions for bump mapping</a>.
+</ul>
+
+<p>The list of all the fields is below. We do not yet support everything &mdash; only the <b>fields marked bold</b>.
+
+<pre>
+CommonSurfaceShader :  X3DShaderNode {
+  SFFloat         [in,out]     alphaFactor                      1
+  SFInt32         [in,out]     alphaTextureId                   -1
+  SFInt32         [in,out]     alphaTextureCoordinatesId        0
+  SFString        [in,out]     alphaTextureChannelMask          "a"
+  SFNode          [in,out]     alphaTexture                     NULL # Allowed: X3DTextureNode
+
+  <b>SFVec3f         [in,out]     ambientFactor                    0.2 0.2 0.2</b>
+  SFInt32         [in,out]     ambientTextureId                 -1
+  SFInt32         [in,out]     ambientTextureCoordinatesId      0
+  SFString        [in,out]     ambientTextureChannelMask        "rgb"
+  SFNode          [in,out]     ambientTexture                   NULL # Allowed: X3DTextureNode
+
+  <b>SFVec3f         [in,out]     diffuseFactor                    0.8 0.8 0.8</b>
+  SFInt32         [in,out]     diffuseTextureId                 -1
+  SFInt32         [in,out]     diffuseTextureCoordinatesId      0
+  SFString        [in,out]     diffuseTextureChannelMask        "rgb"
+  <b>SFNode          [in,out]     diffuseTexture                   NULL # Allowed: X3DTextureNode</b>
+
+  # Added in X3DOM
+  SFNode          [in,out]     diffuseDisplacementTexture       NULL # Allowed: X3DTextureNode
+
+  # Added in X3DOM
+  SFString        [in,out]     displacementAxis                 "y"
+  SFFloat         [in,out]     displacementFactor               0
+  SFInt32         [in,out]     displacementTextureId            -1
+  SFInt32         [in,out]     displacementTextureCoordinatesId 0
+  SFNode          [in,out]     displacementTexture              NULL # Allowed: X3DTextureNode
+
+  <b>SFVec3f         [in,out]     emissiveFactor                   0 0 0</b>
+  SFInt32         [in,out]     emissiveTextureId                -1
+  SFInt32         [in,out]     emissiveTextureCoordinatesId     0
+  SFString        [in,out]     emissiveTextureChannelMask       "rgb"
+  SFNode          [in,out]     emissiveTexture                  NULL # Allowed: X3DTextureNode
+
+  SFVec3f         [in,out]     environmentFactor                1 1 1
+  SFInt32         [in,out]     environmentTextureId             -1
+  SFInt32         [in,out]     environmentTextureCoordinatesId  0
+  SFString        [in,out]     environmentTextureChannelMask    "rgb"
+  SFNode          [in,out]     environmentTexture               NULL # Allowed: X3DEnvironmentTextureNode
+
+  # Added in X3DOM
+  SFNode          [in,out]     multiDiffuseAlphaTexture             NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     multiEmmisiveAmbientIntensityTexture NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     multiSpecularShininessTexture        NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     multiVisibilityTexture               NULL # Allowed: X3DTextureNode
+
+  SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only alllowed value for now
+  SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only alllowed value for now
+  SFInt32         [in,out]     normalTextureId                  -1
+  SFInt32         [in,out]     normalTextureCoordinatesId       0
+  SFString        [in,out]     normalTextureChannelMask         "rgb"
+  SFVec3f         []           normalScale                      2 2 2
+  SFVec3f         []           normalBias                       -1 -1 -1
+  <b>SFNode          [in,out]     normalTexture                    NULL # Allowed: X3DTextureNode</b>
+
+  SFVec3f         [in,out]     reflectionFactor                 0 0 0
+  SFInt32         [in,out]     reflectionTextureId              -1
+  SFInt32         [in,out]     reflectionTextureCoordinatesId   0
+  SFString        [in,out]     reflectionTextureChannelMask     "rgb"
+  SFNode          [in,out]     reflectionTexture                NULL # Allowed: X3DTextureNode
+
+  <b>SFFloat         [in,out]     shininessFactor                  0.2</b>
+  SFInt32         [in,out]     shininessTextureId               -1
+  SFInt32         [in,out]     shininessTextureCoordinatesId    0
+  SFString        [in,out]     shininessTextureChannelMask      "a"
+  SFNode          [in,out]     shininessTexture                 NULL # Allowed: X3DTextureNode
+
+  <b>SFVec3f         [in,out]     specularFactor                   0 0 0</b>
+  SFInt32         [in,out]     specularTextureId                -1
+  SFInt32         [in,out]     specularTextureCoordinatesId     0
+  SFString        [in,out]     specularTextureChannelMask       "rgb"
+  SFNode          [in,out]     specularTexture                  NULL # Allowed: X3DTextureNode
+
+  SFVec3f         [in,out]     transmissionFactor               0 0 0
+  SFInt32         [in,out]     transmissionTextureId            -1
+  SFInt32         [in,out]     transmissionTextureCoordinatesId 0
+  SFString        [in,out]     transmissionTextureChannelMask   "rgb"
+  SFNode          [in,out]     transmissionTexture              NULL # Allowed: X3DTextureNode
+
+  # Additional fields (not in alphabetical order)
+
+  # Affects how normal maps work
+  SFInt32         [in,out]     tangentTextureCoordinatesId      -1
+  SFInt32         [in,out]     binormalTextureCoordinatesId     -1
+
+  # Affects how alphaTexture contents are treated
+  SFBool          [in,out]     invertAlphaTexture               FALSE
+
+  SFFloat         [in,out]     relativeIndexOfRefraction        1
+
+  SFFloat         [in,out]     fresnelBlend                     0
+
+  MFBool          []           textureTransformEnabled          [FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE]
+}
+</pre>
+
+The node also contains everything inherited from the standard <code>X3DShaderNode</code>, like <code>isSelected</code> and <code>isValid</code> output events.
 
 <?php echo $toc->html_section(); ?>
 
