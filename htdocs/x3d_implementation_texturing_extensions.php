@@ -30,6 +30,8 @@
 
 <p>The node can be considered a <i>"material on steroids"</i>, replacing the material and texture information provided in the standard <code>Appearance.texture</code> and <code>Appearance.material</code> fields. It is not a <i>normal "shader" node</i>, as it does not allow you to write an explicit shader code (for this, see <a href="x3d_implementation_shaders.php">programmable shaders nodes</a> or our <a href="compositing_shaders.php">compositing shaders extension</a>). <!-- And it is used regardless if the actual implementation uses shaders (e.g. it is also used in old fixed-function GPU pipeline on ancient GPUs). --> But it is placed on the <code>Appearance.shaders</code> list, as an alternative to other shader nodes, and it does determine <i>shading</i>.
 
+<p><b>The tests of this feature are inside <a href="https://github.com/castle-engine/demo-models/tree/master/bump_mapping/common_surface_shader">demo models bump_mapping/common_surface_shader</a>.</b>
+
 <p>Most of the shading parameters are specified using five fields:
 <ul>
   <li><code>xxxFactor</code> (usually of <code>SFFloat</code> or <code>SFVec3f</code> type, which means: a single float value or a 3D vector):<br>
@@ -57,7 +59,7 @@
 
 <pre>
 CommonSurfaceShader :  X3DShaderNode {
-  SFFloat         [in,out]     alphaFactor                      1
+  <b>SFFloat         [in,out]     alphaFactor                      1</b>
   SFInt32         [in,out]     alphaTextureId                   -1
   SFInt32         [in,out]     alphaTextureCoordinatesId        0
   SFString        [in,out]     alphaTextureChannelMask          "a"
@@ -103,8 +105,8 @@ CommonSurfaceShader :  X3DShaderNode {
   SFNode          [in,out]     multiSpecularShininessTexture        NULL # Allowed: X3DTextureNode
   SFNode          [in,out]     multiVisibilityTexture               NULL # Allowed: X3DTextureNode
 
-  SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only alllowed value for now
-  SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only alllowed value for now
+  <b>SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only alllowed value for now</b>
+  <b>SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only alllowed value for now</b>
   SFInt32         [in,out]     normalTextureId                  -1
   SFInt32         [in,out]     normalTextureCoordinatesId       0
   SFString        [in,out]     normalTextureChannelMask         "rgb"
@@ -112,7 +114,7 @@ CommonSurfaceShader :  X3DShaderNode {
   SFVec3f         []           normalBias                       -1 -1 -1
   <b>SFNode          [in,out]     normalTexture                    NULL # Allowed: X3DTextureNode</b>
 
-  SFVec3f         [in,out]     reflectionFactor                 0 0 0
+  <b>SFVec3f         [in,out]     reflectionFactor                 0 0 0 # Used only by (classic) ray-tracer for now</b>
   SFInt32         [in,out]     reflectionTextureId              -1
   SFInt32         [in,out]     reflectionTextureCoordinatesId   0
   SFString        [in,out]     reflectionTextureChannelMask     "rgb"
@@ -130,7 +132,7 @@ CommonSurfaceShader :  X3DShaderNode {
   SFString        [in,out]     specularTextureChannelMask       "rgb"
   SFNode          [in,out]     specularTexture                  NULL # Allowed: X3DTextureNode
 
-  SFVec3f         [in,out]     transmissionFactor               0 0 0
+  <b>SFVec3f         [in,out]     transmissionFactor               0 0 0 # Used only by (path) ray-tracer for now</b>
   SFInt32         [in,out]     transmissionTextureId            -1
   SFInt32         [in,out]     transmissionTextureCoordinatesId 0
   SFString        [in,out]     transmissionTextureChannelMask   "rgb"
@@ -213,14 +215,19 @@ CommonSurfaceShader {
     auto-detect it (to make it "alpha" when
     it comes from the same source as normalTexture, otherwise "red").
 
-    <p>Note the <code>displacementFactor</code>
+  <li><p>The <code>displacementFactor</code>
     is used only if <code>displacementTexture</code> is non-nil.
     It is ignored when <code>displacementTexture</code> is not assigned.
     This is in contrast to many other <code>xxxFactor</code> fields,
     that work regardless of the texture existence.
 
-    <p>Note the <code>displacementFactor</code> is by default
-    quite large. Consider making it smaller.
+  <li><p>The <code>displacementFactor</code> is actually divided by 255.0.
+    So the amount of displacement in object space that is simulated is by default 1.0.
+
+    <p>This is usually still too large, so if you use displacement
+    (if your <code>normalTexture</code> has displacement in the alpha channel,
+    and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method)
+    then always adjust it. Values between 1 and 10 are usually sensible.
 </ul>
 
 <?php echo $toc->html_section(); ?>
