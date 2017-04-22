@@ -216,8 +216,14 @@ CommonSurfaceShader {
     it comes from the same source as normalTexture, otherwise "red").
 
   <li><p>The <code>displacementFactor</code>
-    is used only if <code>displacementTexture</code> is non-nil.
-    It is ignored when <code>displacementTexture</code> is not assigned.
+    is used only if you have a displacement defined by a texture.
+    Right now this means:
+    if your <code>normalTexture</code> has displacement in the alpha channel,
+    and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method.
+    In the future it will mean:
+    if <code>displacementTexture</code> is non-nil.
+
+    <p>The <code>displacementFactor</code> is ignored when <code>displacementTexture</code> is not assigned.
     This is in contrast to many other <code>xxxFactor</code> fields,
     that work regardless of the texture existence.
 
@@ -225,9 +231,9 @@ CommonSurfaceShader {
     So the amount of displacement in object space that is simulated is by default 1.0.
 
     <p>This is usually still too large, so if you use displacement
-    (if your <code>normalTexture</code> has displacement in the alpha channel,
-    and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method)
-    then always adjust it. Values between 1 and 10 are usually sensible.
+    then always adjust it. Values of <code>displacementFactor</code>
+    between 1 and 10 (producing displacements of 1/255 or 10/255)
+    are usually sensible.
 </ul>
 
 <?php echo $toc->html_section(); ?>
