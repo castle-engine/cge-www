@@ -23,6 +23,14 @@
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+  echo castle_thumbs(array(
+    array('filename' => "common_surface_shader_1.png", 'titlealt' => 'CommonSurfaceShader with bump mapping'),
+    array('filename' => "common_surface_shader_2.png", 'titlealt' => 'CommonSurfaceShader with steep parallax bump mapping and self-shadowing'),
+    array('filename' => "common_surface_shader_3.png", 'titlealt' => 'CommonSurfaceShader defining a mirror for ray-tracer'),
+  ));
+?>
+
 <p>The <code>CommonSurfaceShader</code> node can be used inside the <code>Appearance.shaders</code> field, to request an advanced shading for the given shape. The rendering follows the standard <a href="https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model">Blinn–Phong shading model</a>, with the additional feature that <b>all parameters can be adjusted using the textures</b>.
 
 <p>This allows to vary the shading parameters on a surface. For example you can use <i>specular maps</i> to vary the brightness of the light reflections.
