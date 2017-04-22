@@ -2,7 +2,8 @@
   require_once 'x3d_implementation_common.php';
   require_once 'x3d_extensions_functions.php';
   x3d_extensions_header('Texturing', 'texturing', 'texturing',
-    'Extensions introduced in <a href="' . CURRENT_URL . '">Castle Game Engine</a> related to texturing.');
+    'Extensions introduced in <a href="' . CURRENT_URL . '">Castle Game Engine</a> related to texturing.',
+    "common_surface_shader_1.png");
 
   $toc = new TableOfContents(
     array(
