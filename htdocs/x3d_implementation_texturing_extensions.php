@@ -49,7 +49,7 @@
 <ul>
   <li><a href="http://doc.instantreality.org/tutorial/commonsurfaceshader/">Instant Reality tutorial</a>, nicely presenting the most important features, and linking to other useful resources.
   <li>The <code>CommonSurfaceShader</code> node was designed by Instant Reality. See the <a href="http://doc.instantreality.org/documentation/nodetype/CommonSurfaceShader/">Instant Reality specification of CommonSurfaceShader</a>.
-  <li>The node is also implemented in X3DOM. See <a href="https://doc.x3dom.org/author/Shaders/CommonSurfaceShader.html">X3DOM specification of the CommonSurfaceShader (they added some fields)</a>.
+  <li>The node is also implemented in X3DOM. See <a href="https://doc.x3dom.org/author/Shaders/CommonSurfaceShader.html">X3DOM specification of the CommonSurfaceShader (they added some fields)</a>. Watch out: some of the default values they put in the <i>"Fields"</i> section are wrong. The default values in that lengthy line <code>&lt;CommonSurfaceShader...</code> at the top of the page are OK.
   <li>It's a really neat design, and Michalis would like to see it <a href="http://www.web3d.org/wiki/index.php/X3D_version_4.0_Development">available as part of the X3D 4.0 standard</a> :) Since <i>Castle Game Engine</i> 6.2.0, it is the adviced way to use normalmaps, deprecating our <a href="x3d_implementation_texturing_extensions.php#section_ext_bump_mapping">previous extensions for bump mapping</a>.
 </ul>
 
@@ -80,7 +80,7 @@ CommonSurfaceShader :  X3DShaderNode {
 
   # Added in X3DOM
   SFString        [in,out]     displacementAxis                 "y"
-  SFFloat         [in,out]     displacementFactor               0
+  <b>SFFloat         [in,out]     displacementFactor               255.0</b>
   SFInt32         [in,out]     displacementTextureId            -1
   SFInt32         [in,out]     displacementTextureCoordinatesId 0
   SFNode          [in,out]     displacementTexture              NULL # Allowed: X3DTextureNode
@@ -98,7 +98,7 @@ CommonSurfaceShader :  X3DShaderNode {
   SFNode          [in,out]     environmentTexture               NULL # Allowed: X3DEnvironmentTextureNode
 
   # Added in X3DOM
-  SFNode          [in,out]     multiDiffuseAlphaTexture             NULL # Allowed: X3DTextureNode
+  <b>SFNode          [in,out]     multiDiffuseAlphaTexture             NULL # Allowed: X3DTextureNode</b>
   SFNode          [in,out]     multiEmmisiveAmbientIntensityTexture NULL # Allowed: X3DTextureNode
   SFNode          [in,out]     multiSpecularShininessTexture        NULL # Allowed: X3DTextureNode
   SFNode          [in,out]     multiVisibilityTexture               NULL # Allowed: X3DTextureNode
@@ -153,7 +153,75 @@ CommonSurfaceShader :  X3DShaderNode {
 }
 </pre>
 
-The node also contains everything inherited from the standard <code>X3DShaderNode</code>, like <code>isSelected</code> and <code>isValid</code> output events.
+<p>The node also contains everything inherited from the standard <code>X3DShaderNode</code>, like <code>isSelected</code> and <code>isValid</code> output events.
+
+<p>Notes to the specific fields above:
+
+<ul>
+  <li><p>You can pack some attributes in a single texture, and use it in multiple X3D fields by the DEF/USE mechanism.
+
+    <p>Make sure to use <code>xxxTextureChannelMask</code> fields to pick appropriate information from appropriate channels. The defaults are often sensible, e.g. <code>diffuseTexture</code> is from <code>"rgb"</code> while <code>alphaTexture</code> is from <code>"a"</code>, so you can trivially create RGBA texture and put it in both fields. Usually you will want to use different channels for each information.
+
+  <li><p>TODO: The current implementation always uses <code>diffuseTexture</code>
+    as combined <code>diffuseTexture</code> (rgb) + <code>alphaTexture</code> (a).
+    To keep forward compatibility, if you have an alpha channel
+    in <code>diffuseTexture</code>, always place <i>the same</i>
+    texture as <code>alphaTexture</code>.
+    This will make your models work exactly the same once we implement
+    proper <code>alphaTexture</code> handling.
+
+    <p><i>In X3D classic encoding:</i>
+
+<pre>
+CommonSurfaceShader {
+  diffuseTexture DEF MyTexture ImageTexture { ... }
+  alphaTexture USE MyTexture
+}
+</pre>
+
+    <p><i>In X3D XML encoding:</i>
+
+<pre>
+&lt;CommonSurfaceShader&gt;
+  &lt;ImageTexture containerField="diffuseTexture" DEF="MyTexture" ...&gt;...&lt;/ImageTexture&gt;
+  &lt;ImageTexture containerField="alphaTexture" USE="MyTexture" /&gt;
+&lt;/CommonSurfaceShader&gt;
+</pre>
+
+    <p>Alternatively, put your texture inside <code>multiDiffuseAlphaTexture</code>.
+
+  <li><p>TODO: The current implementation always uses <code>normalTexture</code>
+    as combined <code>normalTexture</code> (rgb) + <code>displacementTexture</code> (a).
+
+    <p>Similar advice as above follows:
+    To keep forward compatibility, if you have an alpha channel
+    in <code>normalTexture</code>, always place <i>the same</i>
+    texture as <code>displacementTexture</code>.
+    This will make your models work exactly the same once we implement
+    proper <code>displacementTexture</code> handling.
+
+    <p>See the above example for how to share the same texture in two
+    different fields.
+
+    <p>Note that <code>displacementTexture</code> does not have
+    a suitable <code>displacementTextureChannelMask</code>.
+    Right now, we assume it's in alpha,
+    while <a href="https://sourceforge.net/p/x3dom/mailman/message/34696950/">X3DOM assumes it's in the red channel</a>.
+    In the future, we will
+    <!-- add <code>displacementTextureChannelMask</code>, -->
+    <!-- with suitable default value to  -->
+    auto-detect it (to make it "alpha" when
+    it comes from the same source as normalTexture, otherwise "red").
+
+    <p>Note the <code>displacementFactor</code>
+    is used only if <code>displacementTexture</code> is non-nil.
+    It is ignored when <code>displacementTexture</code> is not assigned.
+    This is in contrast to many other <code>xxxFactor</code> fields,
+    that work regardless of the texture existence.
+
+    <p>Note the <code>displacementFactor</code> is by default
+    quite large. Consider making it smaller.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
