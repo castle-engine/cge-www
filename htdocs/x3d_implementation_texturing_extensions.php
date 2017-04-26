@@ -53,6 +53,7 @@
     A mask that says which texture channels determine the shading parameter. Ignored if <code>xxxTexture</code> not assigned.
   <li><code>xxxTextureId</code> (<code>SFInt32</code>, by default <code>-1</code>):<br>
     Ignored by our implementation.<!-- The texture unit number is always assigned automatically in our implementation. -->
+    (We're also not sure what they do &mdash; they are not explained in <a href="http://dx.doi.org/10.1145/1836049.1836051">the paper</a>.)
 </ul>
 
 <p>More information:
