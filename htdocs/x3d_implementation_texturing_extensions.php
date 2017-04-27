@@ -287,7 +287,8 @@ results, you can place some dynamic light source in the scene
 &mdash; the bump mapping effect is then obvious.</p>
 
 <p>You can additionally specify a height map.
-Since version 3.10.0 of view3dscene (2.5.0 of engine), this height map
+Since version 3.10.0 of <?php echo a_href_page("view3dscene", "view3dscene") ?>
+ (2.5.0 of engine), this height map
 is specified within the alpha channel of the <code>normalMap</code> texture.
 This leads to easy and efficient implementation, and also it is easy
 for texture creators: in <a href="http://code.google.com/p/gimp-normalmap/">GIMP
@@ -302,7 +303,7 @@ exists, then we also look at the <code>heightMapScale</code> field.
 This allows you to tweak the perceived height of bumps
 for parallax mapping.</p>
 
-<p>Since version 3.10.0 of view3dscene (2.5.0 of engine),
+<p>Since version 3.10.0 of <?php echo a_href_page("view3dscene", "view3dscene") ?> (2.5.0 of engine),
 new shader pipeline allows the bump mapping to cooperate with
 all normal VRML/X3D lighting and multi-texturing settings.
 So the same lights and textures are used for bump mapping lighting
@@ -556,8 +557,9 @@ default tolerance values used by X3D renderer are 5 and 0.01.
 There is also a special program in <?php echo a_href_page('engine sources',
 'index'); ?> (see <code>examples/images_videos/image_identify.lpr</code>
 demo) if you want to use this algorithm yourself.
-You can also see the results for your textures if you run view3dscene
-with <code>--debug-log</code> option.
+You can also see the results for your textures if you run
+<?php echo a_href_page("view3dscene", "view3dscene") ?>
+ with <code>--debug-log</code> option.
 
 <p>Sometimes you want to override results of this automatic detection.
 For example, maybe your texture has some pixels using full range alpha
