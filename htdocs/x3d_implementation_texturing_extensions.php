@@ -215,35 +215,55 @@ CommonSurfaceShader {
     <p>See the above example for how to share the same texture in two
     different fields.
 
-    <p>Note that <code>displacementTexture</code> does not have
-    a suitable <code>displacementTextureChannelMask</code>.
-    Right now, we assume it's in alpha,
-    while <a href="https://sourceforge.net/p/x3dom/mailman/message/34696950/">X3DOM assumes it's in the red channel</a>.
-    In the future, we will
-    <!-- add <code>displacementTextureChannelMask</code>, -->
-    <!-- with suitable default value to  -->
-    auto-detect it (to make it "alpha" when
-    it comes from the same source as normalTexture, otherwise "red").
+  <li><p>About the <i>displacement</i> meaning and usage:</p>
 
-  <li><p>The <code>displacementFactor</code>
-    is used only if you have a displacement defined by a texture.
-    Right now this means:
-    if your <code>normalTexture</code> has displacement in the alpha channel,
-    and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method.
-    In the future it will mean:
-    if <code>displacementTexture</code> is non-nil.
+    <ul>
+      <li><p>We use the <code>displacementFactor</code>
+        and <code>displacementTexture</code>
+        to control how much the bump mapping <i>parallax</i>
+        affects what you see.
 
-    <p>The <code>displacementFactor</code> is ignored when <code>displacementTexture</code> is not assigned.
-    This is in contrast to many other <code>xxxFactor</code> fields,
-    that work regardless of the texture existence.
+        <p>So the displacement happens relative to the surface normal vector.
 
-  <li><p>The <code>displacementFactor</code> is actually divided by 255.0.
-    So the amount of displacement in object space that is simulated is by default 1.0.
+        <p>To try it out, enable one of the <i>View -&gt; Bump Mapping -&gt; ... Parallax</i>
+        methods in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+        You can try it on the
+        <a href="https://github.com/castle-engine/demo-models/blob/master/bump_mapping/common_surface_shader/steep_parallax.x3dv">common_surface_shader/steep_parallax.x3dv</a> example.
+        Play around with different <code>displacementFactor</code> values
+        and observe how do they affect what you see.
+        </p>
 
-    <p>This is usually still too large, so if you use displacement
-    then always adjust it. Values of <code>displacementFactor</code>
-    between 1 and 10 (producing displacements of 1/255 or 10/255)
-    are usually sensible.
+      <li><p>Note that <code>displacementTexture</code> does not have
+        a suitable <code>displacementTextureChannelMask</code>.
+        Right now, we assume it's always in the alpha channel,
+        while <a href="https://sourceforge.net/p/x3dom/mailman/message/34696950/">X3DOM assumes it's in the red channel</a>.
+        In the future, we will
+        <!-- add <code>displacementTextureChannelMask</code>, -->
+        <!-- with suitable default value to  -->
+        auto-detect it (to make it "alpha" when
+        it comes from the same source as normalTexture, otherwise "red").
+
+      <li><p>The <code>displacementFactor</code>
+        is used only if you have a displacement defined by a texture.
+        Right now this means:
+        if your <code>normalTexture</code> has displacement in the alpha channel,
+        and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method.
+        In the future it will mean:
+        if <code>displacementTexture</code> is non-nil.
+
+        <p>The <code>displacementFactor</code> is ignored when <code>displacementTexture</code> is not assigned.
+        This is in contrast to many other <code>xxxFactor</code> fields,
+        that work regardless of the texture existence.
+
+      <li><p>The <code>displacementFactor</code> is actually divided by 255.0.
+        So the amount of displacement in object space that is simulated is by default 1.0.
+
+        <p>This is usually still too large, so if you use displacement
+        then always adjust it. Values of <code>displacementFactor</code>
+        between 1 and 10 (producing displacements of 1/255 or 10/255)
+        are usually sensible.
+    </ul>
+  </li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
