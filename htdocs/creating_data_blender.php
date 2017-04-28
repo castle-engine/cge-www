@@ -39,12 +39,15 @@ We advice testing the X3D models by opening them with
 </div>
 
 <p>We have our own X3D exporter version, which is based on the Blender X3D exporter
-and adds some small fixes. In time, we hope to have them submitted to official Blender code.
-Install this by copying over (overwriting) the original Blender exporter,
-which is in <code>&lt;blender-installation-dir&gt;/2.XX/scripts/addons/io_scene_x3d/export_x3d.py</code>.
+and adds some fixes and also <b>support for <a href="x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a> exporting</b>.
+In time, we want to submit these modifications to the official Blender code.
+For now, install our modifications by copying two files over (overwriting) the original Blender exporter,
+which is in <code>&lt;blender-installation-dir&gt;/2.XX/scripts/addons/io_scene_x3d/</code>.
 
 <div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/export_x3d.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download our X3D exporter</a>
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/export_x3d.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download 1st file of our X3D exporter (export_x3d.py)</a>
+    &nbsp;
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/__init__.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download 2nd file of our X3D exporter (__init__.py)</a>
 </div>
 
 <?php /*
