@@ -77,9 +77,9 @@ CommonSurfaceShader :  X3DShaderNode {
 
   <b>SFVec3f         [in,out]     ambientFactor                    0.2 0.2 0.2</b>
   SFInt32         [in,out]     ambientTextureId                 -1
-  SFInt32         [in,out]     ambientTextureCoordinatesId      0
+  <b>SFInt32         [in,out]     ambientTextureCoordinatesId      0
   SFString        [in,out]     ambientTextureChannelMask        "rgb"
-  SFNode          [in,out]     ambientTexture                   NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     ambientTexture                   NULL # Allowed: X3DTextureNode</b>
 
   <b>SFVec3f         [in,out]     diffuseFactor                    0.8 0.8 0.8</b>
   SFInt32         [in,out]     diffuseTextureId                 -1
@@ -118,7 +118,7 @@ CommonSurfaceShader :  X3DShaderNode {
   <b>SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only alllowed value for now</b>
   <b>SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only alllowed value for now</b>
   SFInt32         [in,out]     normalTextureId                  -1
-  SFInt32         [in,out]     normalTextureCoordinatesId       0
+  <b>SFInt32         [in,out]     normalTextureCoordinatesId       0</b>
   SFString        [in,out]     normalTextureChannelMask         "rgb"
   SFVec3f         []           normalScale                      2 2 2
   SFVec3f         []           normalBias                       -1 -1 -1
@@ -132,15 +132,15 @@ CommonSurfaceShader :  X3DShaderNode {
 
   <b>SFFloat         [in,out]     shininessFactor                  0.2</b>
   SFInt32         [in,out]     shininessTextureId               -1
-  SFInt32         [in,out]     shininessTextureCoordinatesId    0
+  <b>SFInt32         [in,out]     shininessTextureCoordinatesId    0
   SFString        [in,out]     shininessTextureChannelMask      "a"
-  SFNode          [in,out]     shininessTexture                 NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     shininessTexture                 NULL # Allowed: X3DTextureNode</b>
 
   <b>SFVec3f         [in,out]     specularFactor                   0 0 0</b>
   SFInt32         [in,out]     specularTextureId                -1
-  SFInt32         [in,out]     specularTextureCoordinatesId     0
+  <b>SFInt32         [in,out]     specularTextureCoordinatesId     0
   SFString        [in,out]     specularTextureChannelMask       "rgb"
-  SFNode          [in,out]     specularTexture                  NULL # Allowed: X3DTextureNode
+  SFNode          [in,out]     specularTexture                  NULL # Allowed: X3DTextureNode</b>
 
   <b>SFVec3f         [in,out]     transmissionFactor               0 0 0 # Used only by (path) ray-tracer for now</b>
   SFInt32         [in,out]     transmissionTextureId            -1
