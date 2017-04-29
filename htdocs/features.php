@@ -36,7 +36,7 @@ $toc = new TableOfContents(
 
     <ul>
       <li><p>Our main scene format is <b><?php echo a_href_page('X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others. We also fully support older versions of the X3D standard: <b>VRML 1.0</b> and <b>VRML 2.0</b>.
+      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, STL, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others. We also fully support older versions of the X3D standard: <b>VRML 1.0</b> and <b>VRML 2.0</b>.
       </li>
     </ul>
 
@@ -183,12 +183,14 @@ $toc = new TableOfContents(
     See <?php echo a_href_page_hashlink('shadow volumes documentation', 'x3d_extensions',
     'section_ext_shadows'); ?>.
 
-  <li><b><?php echo a_href_page_hashlink('Bump mapping',
-    'x3d_extensions', 'section_ext_bump_mapping'); ?></b> is trivially
-    easy to use. Various algorithms are available: from
-    the classic bump mapping (take normal from the texture),
-    through the parallax bump mapping,
-    up to the steep parallax bump mapping with self-shadowing.</li>
+  <li><b><?php echo a_href_page_hashlink('Bump mapping (normal maps), specular maps, shininess maps and more',
+    'x3d_implementation_texturing_extensions', 'section_ext_common_surface_shader'); ?></b>
+    are avaiable.
+    Our <a href="creating_data_blender.php">custom Blender X3D exporter</a>
+    can automatically generate the necessary information.</li>
+    Various <i>bump mapping algorithms</i>
+    are implemented: from the classic bump mapping (take normal from the texture),
+    up to the <i>steep parallax bump mapping with self-shadowing</i>.
 
   <li><b>Shaders</b>:
     <ul>
@@ -319,10 +321,17 @@ $toc = new TableOfContents(
     your game theme) is important.
     See <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.</li>
 
-  <li>Simple <b>ray-tracer</b> is implemented
-    (<?php echo a_href_page("see the gallery","raytr_gallery"); ?>,
-    developers see
-    <?php api_link('CastleRayTracer', 'CastleRayTracer.html'); ?> unit).</li>
+  <li>Although the main focus of the engine is real-time rendering,
+    we have also implemented a <b>software ray-tracer</b>, just to show that it's
+    possible! Two ray-tracing algorithms may be used:
+    deterministic (classic Whitted-style ray-tracer)
+    or Monte Carlo <i>path tracing</i>.
+    All the engine 3D formats are supported, with smooth normals, textures,
+    reflections, shadows...
+    See <?php echo a_href_page("the gallery","raytr_gallery"); ?>
+    and the
+    <?php api_link('CastleRayTracer', 'CastleRayTracer.html'); ?> unit.
+  </li>
 
   <li>Playing <b>movie files</b>. This includes loading and saving
     as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
