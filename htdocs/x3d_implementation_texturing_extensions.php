@@ -224,6 +224,8 @@ CommonSurfaceShader {
         affects what you see.
 
         <p>So the displacement happens relative to the surface normal vector.
+        We ignore the <code>displacementAxis</code> for now,
+        in the future we may allow something like <code>displacementAxis="NORMAL"</code>.
 
         <p>To try it out, enable one of the <i>View -&gt; Bump Mapping -&gt; ... Parallax</i>
         methods in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
