@@ -39,7 +39,7 @@
 
 <p>The node can be considered a <i>"material on steroids"</i>, replacing the material and texture information provided in the standard <code>Appearance.texture</code> and <code>Appearance.material</code> fields. It is not a <i>normal "shader" node</i>, as it does not allow you to write an explicit shader code (for this, see <a href="x3d_implementation_shaders.php">programmable shaders nodes</a> or our <a href="compositing_shaders.php">compositing shaders extension</a>). <!-- And it is used regardless if the actual implementation uses shaders (e.g. it is also used in old fixed-function GPU pipeline on ancient GPUs). --> But it is placed on the <code>Appearance.shaders</code> list, as an alternative to other shader nodes, and it does determine <i>shading</i>.
 
-<p><b>The tests of this feature are inside <a href="https://github.com/castle-engine/demo-models/tree/master/bump_mapping/common_surface_shader">demo models bump_mapping/common_surface_shader</a>. </b> It has some manually crafted files, and also X3D exported from Blender using <a href="creating_data_blender.php">our Blender exporter that can handle CommonSurfaceShader</a>.
+<p><b>The tests of this feature are inside <a href="https://github.com/castle-engine/demo-models/tree/master/common_surface_shader">demo models bump_mapping/common_surface_shader</a>. </b> It has some manually crafted files, and also X3D exported from Blender using <a href="creating_data_blender.php">our Blender exporter that can handle CommonSurfaceShader</a>.
 
 <p>Most of the shading parameters are specified using five fields:
 <ul>
@@ -92,7 +92,7 @@ CommonSurfaceShader :  X3DShaderNode {
 
   # Added in X3DOM
   SFString        [in,out]     displacementAxis                 "y"
-  <b>SFFloat         [in,out]     displacementFactor               255.0</b>
+  SFFloat         [in,out]     displacementFactor               255.0
   SFInt32         [in,out]     displacementTextureId            -1
   SFInt32         [in,out]     displacementTextureCoordinatesId 0
   SFNode          [in,out]     displacementTexture              NULL # Allowed: X3DTextureNode
@@ -123,6 +123,9 @@ CommonSurfaceShader :  X3DShaderNode {
   SFVec3f         []           normalScale                      2 2 2
   SFVec3f         []           normalBias                       -1 -1 -1
   <b>SFNode          [in,out]     normalTexture                    NULL # Allowed: X3DTextureNode</b>
+
+  # Added in Castle Game Engine
+  <b>SFFloat         [in,out]     normalTextureParallaxHeight      0</b>
 
   <b>SFVec3f         [in,out]     reflectionFactor                 0 0 0 # Used only by (classic) ray-tracer for now</b>
   SFInt32         [in,out]     reflectionTextureId              -1
@@ -200,71 +203,39 @@ CommonSurfaceShader {
 &lt;/CommonSurfaceShader&gt;
 </pre>
 
+    <p>Note that X3DOM implementation of <code>CommonSurfaceShader</code>
+    seems to have the same bug: the <code>diffuseTexture</code> is used for <i>both difffuse + alpha</i>,
+    and <code>alphaTexture</code> is ignored.
+    So, the buggy behaviors happen to be compatible... but please don't depend on it.
+    Sooner or later, one or both implementations will be fixed,
+    and then the <code>alphaTexture</code> will be respected correctly.
+
     <p>Alternatively, put your texture inside <code>multiDiffuseAlphaTexture</code>.
+    Note that X3DOM seems to not support <code>multiDiffuseAlphaTexture</code>
+    (although it's in their specification).
 
-  <li><p>TODO: The current implementation always uses <code>normalTexture</code>
-    as combined <code>normalTexture</code> (rgb) + <code>displacementTexture</code> (a).
+  <li><p>Our engine adds a new field, <code>normalTextureParallaxHeight</code>,
+    as an extension. Setting this field to non-zero means that:
 
-    <p>Similar advice as above follows:
-    To keep forward compatibility, if you have an alpha channel
-    in <code>normalTexture</code>, always place <i>the same</i>
-    texture as <code>displacementTexture</code>.
-    This will make your models work exactly the same once we implement
-    proper <code>displacementTexture</code> handling.
+    <ol>
+      <li><p>The alpha channel of the <code>normalTexture</code> should be
+        interpreted as a height map. This is the same thing as
+        "displacement map", but is used for a different purpose.
 
-    <p>See the above example for how to share the same texture in two
-    different fields.
+        <p>If the <code>normalTexture</code> doesn't have an alpha channel,
+        the <code>normalTextureParallaxHeight</code> is ignored.
 
-  <li><p>About the <i>displacement</i> meaning and usage:</p>
+      <li><p>It is used to simulate that the surface has some depth,
+        using the <i>parallax bump mapping</i> effect.
+    </ol>
 
-    <ul>
-      <li><p>We use the <code>displacementFactor</code>
-        and <code>displacementTexture</code>
-        to control how much the bump mapping <i>parallax</i>
-        affects what you see.
-
-        <p>So the displacement happens relative to the surface normal vector.
-        We ignore the <code>displacementAxis</code> for now,
-        in the future we may allow something like <code>displacementAxis="NORMAL"</code>.
-
-        <p>To try it out, enable one of the <i>View -&gt; Bump Mapping -&gt; ... Parallax</i>
-        methods in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
-        You can try it on the
-        <a href="https://github.com/castle-engine/demo-models/blob/master/bump_mapping/common_surface_shader/steep_parallax.x3dv">common_surface_shader/steep_parallax.x3dv</a> example.
-        Play around with different <code>displacementFactor</code> values
-        and observe how do they affect what you see.
-        </p>
-
-      <li><p>Note that <code>displacementTexture</code> does not have
-        a suitable <code>displacementTextureChannelMask</code>.
-        Right now, we assume it's always in the alpha channel,
-        while <a href="https://sourceforge.net/p/x3dom/mailman/message/34696950/">X3DOM assumes it's in the red channel</a>.
-        In the future, we will
-        <!-- add <code>displacementTextureChannelMask</code>, -->
-        <!-- with suitable default value to  -->
-        auto-detect it (to make it "alpha" when
-        it comes from the same source as normalTexture, otherwise "red").
-
-      <li><p>The <code>displacementFactor</code>
-        is used only if you have a displacement defined by a texture.
-        Right now this means:
-        if your <code>normalTexture</code> has displacement in the alpha channel,
-        and you use <i>View -&gt; Bump Mapping -&gt; ... Parallax</i> method.
-        In the future it will mean:
-        if <code>displacementTexture</code> is non-nil.
-
-        <p>The <code>displacementFactor</code> is ignored when <code>displacementTexture</code> is not assigned.
-        This is in contrast to many other <code>xxxFactor</code> fields,
-        that work regardless of the texture existence.
-
-      <li><p>The <code>displacementFactor</code> is actually divided by 255.0.
-        So the amount of displacement in object space that is simulated is by default 1.0.
-
-        <p>This is usually still too large, so if you use displacement
-        then always adjust it. Values of <code>displacementFactor</code>
-        between 1 and 10 (producing displacements of 1/255 or 10/255)
-        are usually sensible.
-    </ul>
+    <p>You can control the exact effect type in view3dscene using
+    the <i>View -&gt; Bump Mapping -&gt; ... Parallax</i>
+    menu options in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+    You can try it on the
+    <a href="https://github.com/castle-engine/demo-models/blob/master/common_surface_shader/steep_parallax.x3dv">common_surface_shader/steep_parallax.x3dv</a> example.
+    Play around with different <code>normalTextureParallaxHeight</code> values
+    and observe how do they affect what you see.
   </li>
 </ul>
 
