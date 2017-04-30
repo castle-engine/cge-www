@@ -13,7 +13,8 @@ do_svn_update ()
   # Do sync2git, to use freshest SVN contents.
   # This is also useful when you manually call this refresh.
   cd ~/sources/sync2git/
-  for PROJECT_NAME in /etc/sync2git/projects/*; do
+  for PROJECT_DIR in /etc/sync2git/projects/*; do
+    PROJECT_NAME="`basename \"${PROJECT_DIR}\"`"
     ./sync2git "${PROJECT_NAME}"
   done
 
