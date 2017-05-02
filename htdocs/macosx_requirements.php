@@ -117,7 +117,7 @@ $toc = new TableOfContents(
         <code>ls /usr/X11R6</code> in the terminal).
         Some versions of XQuartz
         seem to not install it (<a href="http://bugs.freepascal.org/view.php?id=31651">see here</a>).
-        You should be able to fix it on your system b
+        You can fix it on your system by:
 
         <pre>
 sudo ln -s /usr/X11 /usr/X11R6
