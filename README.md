@@ -170,6 +170,10 @@ Announcing release
     http://wiki.freepascal.org/Developing_with_Graphics
     http://wiki.freepascal.org/Graphics_libraries
 
+  Also FSF wiki has descriptions:
+    https://directory.fsf.org/wiki/Castle_Game_Engine
+    https://directory.fsf.org/wiki/View3dscene # or sthg like that
+
 - http://www.web3d.org/news/submit/
   ... but it's pretty much ignored, giving up on this.
   As well as submitting to web3d.org list of progs.
