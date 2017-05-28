@@ -52,7 +52,7 @@ castle_header('Download', array(
                     We also have
                     <?php echo a_href_page('manual', 'manual_intro'); ?>,
                     <a href="<?php echo reference_link(); ?>">reference</a>,
-                    <a href="http://michalis.ii.uni.wroc.pl/~michalis/modern_pascal_introduction/modern_pascal_introduction.html">modern Object Pascal introduction</a>
+                    <a href="http://castle-engine.io/modern_pascal_introduction.html">modern Object Pascal introduction</a>
                     and a lot more:)
                     </p>
                 </div>
