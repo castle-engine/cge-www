@@ -30,6 +30,10 @@ manual_header('Logging');
     <code>c:/Documents and Settings/USERNAME/Local settings/Application Data/xxx/xxx.log</code> or
     <code>c:/c:/Users/USERNAME/AppData/Local/xxx/xxx.log</code> depending on your Windows version.
 
+  <li><p><i>On Android</i> it goes to the standard device log.
+    It that can be viewed using various Android tools,
+    like <code>adb logcat</code>.
+
   <li><p>You can pass a parameter to <code>InitializeLog</code>
     to generate log to any stream.
 </ul>
