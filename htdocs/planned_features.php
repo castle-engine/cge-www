@@ -34,25 +34,41 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>As for the Delphi version:
     <ul>
-      <li><p>This will be <i>Delphi 10 Berlin</i>,
-        as Borland made that version available for free some time ago.
+      <li><p>This will the free version of Delphi available as
+        <a href="https://www.embarcadero.com/products/delphi/starter">Delphi Starter Edition</a>.
+        I'll port (and maintain compatibility) with the latest
+        <i>Delphi Starter Edition</i> available
+        (as Embarcadero seems willing to update the <i>Delphi Starter Edition</i>
+        with each new version of Delphi, which is quite great).
+
+        <!--
+         &mdash; kudos to them for
+        allowing us hobbyists to allow using Delphi,
+        just as in the good old days!
+        -->
 
       <li><p>If someone will sponsor another Delphi version,
         then I will gladly port to it too.
 
-        <p>I'm afraid that Delphi costs a <i>lot</i>,
-        so I cannot afford to buy it on my own. Especially since, personally,
-        I work on Linux with FPC + Lazarus.
+        <p>I'm afraid that any commercial edition of Delphi
+        <a href="https://www.embarcadero.com/app-development-tools-store/delphi">costs a <i>lot</i></a>,
+        so I cannot afford to buy it on my own.
+
+        <p>Especially since, personally, I work on Linux with FPC + Lazarus.
 
       <li><p>Of course, patches to add/fix support for other Delphi version
         are always accepted.
     </ul>
 
-    <p>Michalis is still an open-source fanatic, and most of the engine development
-    happens on Linux, so don't worry &mdash; the FPC is still, and forever, first:)
-    But Delphi compatibility will be quite easy to add,
+    <p>Michalis is still an open-source fanatic,
+    and most of the engine development happens on Linux, so don't worry
+    &mdash; the FPC still gets, and will forever get, a first-class support.
+    But I think that Delphi compatibility will open up the engine to many
+    new developers, and it's also relatively easy to add.
+    <!--
     and I may improve some APIs BTW (like a vector3 API),
     and it will open us to more developers.
+    -->
 
   <li><p><b>Physics</b></p>
 
