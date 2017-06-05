@@ -21,6 +21,19 @@
     margin-right: auto;
 }
 
+.media-responsive {
+  max-width: 100%;
+}
+
+.features-page h1,
+.features-page h2,
+.features-page h3 {
+  /* text-align: center; */
+  border-bottom: thin solid #DDD;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 object.movie_thumbnail {
   width: 200px;
   height: 167px;

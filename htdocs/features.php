@@ -7,9 +7,10 @@ castle_header("Features", array(
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Many 3D and 2D data formats', 'data'),
-    new TocItem('Portable: standalone, mobile, web browser plugin', 'portable'),
-    new TocItem('Graphic features and effects (shadows, bump mapping...)', 'graphic'),
+    new TocItem('Demo reel', 'demo'),
+    new TocItem('Many 3D and 2D formats supported (X3D, Collada, Spine...)', 'data'),
+    new TocItem('Portable (standalone, mobile, web browser plugin)', 'portable'),
+    new TocItem('Graphic features and effects (shadows, mirrors, bump mapping...)', 'graphic'),
     new TocItem('Scene manager and comfortable API', 'api'),
     new TocItem('And much more!', 'more'),
   )
@@ -18,16 +19,20 @@ $toc = new TableOfContents(
 /*  echo flattr_button(); */
 ?>
 
-<div class="fixed-width-content">
+<div class="fixed-width-content features-page">
 
-<img src="images/castle_game_engine_icon.png"
-  alt="Castle Game Engine icon"
-  class="engine-icon" />
+<!-- <img src="images/castle_game_engine_icon.png" -->
+<!--   alt="Castle Game Engine icon" -->
+<!--   class="engine-icon" /> -->
 
 <?php echo pretty_heading('Castle Game Engine Features'); ?>
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<iframe class="media-responsive" width="853" height="480" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allowfullscreen></iframe>
 
 <?php echo $toc->html_section(); ?>
 
@@ -80,7 +85,22 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>Reading and writing of <b>images</b> in various formats, processing them
+  <li><p>We can <b>save (aka "serialize")</b> the current state of the world
+    to an X3D file, which can then be read back by our engine.
+    <!--
+    file (standardized XML and classic encodings).-->
+    <!-- is also fully supported and tested.-->
+    You can use it e.g. to make a full-featured 3D editor on top of our engine!
+    See <?php api_link('TCastleSceneCore.Save', 'CastleSceneCore.TCastleSceneCore.html#Save'); ?>
+    and <?php api_link('Save3D', 'X3DNodes.html#Save3D'); ?> for basic methods
+    to do this.
+
+    <p>Various <?php echo a_href_page_hashlink('conversions between 3D model
+    formats', 'view3dscene', 'section_converting'); ?>
+    and even some editing capabilities are provided out-of-the-box by our tools.
+    </li>
+
+  <li><p>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
     (<b>PNG, JPG, PPM, BMP, and much more</b>), included is also support for
     <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
@@ -96,24 +116,15 @@ $toc = new TableOfContents(
     < ?php api_link('CastleDDS', 'CastleDDS.html'); ? > -->
     </li>
 
-  <li>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
+  <li><p><p>Handling of <b>fonts</b>. We can read fonts in many formats (like .ttf)
     using <i>FreeType</i> library, and render them at any size, with anti-aliasing
     or not. Fonts can also be embedded inside a Pascal source code,
     which allows us to provide default fonts (available as-is),
     and to use fonts even when <i>FreeType</i> library is not available.
     You can also use colorful fonts from a texture.
-    Font rendering can allow international characters in UTF-8.
+    Font rendering allows international characters in UTF-8.
     See <?php echo a_href_page('manual about text and fonts', 'manual_text'); ?> and unit
     <?php api_link('CastleFonts', 'CastleFonts.html'); ?>.
-    </li>
-
-  <li><b>Saving</b> the current state of 3D/2D world (X3D node graph)
-    to standardized XML and classic encodings.<!-- is also fully supported and tested.-->
-    You can even use it to make your own 3D modeller on top of our engine.
-    Various <?php echo a_href_page_hashlink('conversions between 3D model formats', 'view3dscene', 'section_converting'); ?>
-    and limited editing capabilities are provided out-of-the-box by our tools.
-    See <?php api_link('Save3D', 'X3DNodes.html#Save3D'); ?> procedure
-    for the basic way to save 3D data.
     </li>
 </ul>
 
