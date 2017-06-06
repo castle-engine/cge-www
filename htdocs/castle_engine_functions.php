@@ -217,7 +217,7 @@ $castle_sitemap = array(
               'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
               'manual_android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
               //'manual_android_faq' => array('title' => 'Android FAQ (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-FAQ'),
-              'manual_android_components' => array('title' => 'Android integration components (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine'),
+              'manual_android_services' => array('title' => 'Android integration services (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine'),
               'manual_ios' => array('title' => 'iOS (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
               //'manual_web_plugin' => array('title' => 'Web Plugin (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Web-Plugin'),
             ),
