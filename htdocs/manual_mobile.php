@@ -39,9 +39,12 @@ some special tools. Everything is explained on these platform-specific pages:
 
 <p>Compiling and packaging cross-platform games is greatly
 simplified if you use our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
-In particular for Android, our build tool nicely hides from you
-a lot of complexity with managing an Android project.
-So be sure to give it a try!
+For Android and iOS, our build tool nicely hides from you
+a lot of complexity with creating a platform-specific application.
+<ul>
+  <li>For Android, you get a ready working <code>xxx.apk</code> file.
+  <li>For iOS, you get a ready project that can be installed using XCode.
+</ul>
 
 <p>Rendering on mobile platforms uses OpenGLES. Our OpenGLES renderer
 can handle almost everything the same as a desktop OpenGL renderer,
@@ -85,10 +88,12 @@ source code (see <a href="https://github.com/castle-engine/darkest-before-dawn/b
    OpenGL context, and show loading progress,
    like <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
 
-   <p>The unit should expose the <code>Window</code> instance,
+   <p>The initialization <b>must assign the <?php api_link('Applcation.MainWindow', 'CastleWindow.TCastleApplication.html#MainWindow'); ?></b> instance,
    that will be used by platform-specific program/library code.
    It should descend from <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> class
-   (in most cases, just use the standard <?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?> class,
+   (in most cases, just use the standard
+   <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
+   <?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?> classes,
    although you can also derive your own window classes).
 
 <?php echo pascal_highlight(
@@ -181,9 +186,9 @@ end.'); ?>
       <li>Do not call <code>Window.Open</code> or <code>Window.Close</code> or
         <code>Application.Run</code>.
 
-      <li><p>Do not create more than one <code>Window</code>.
+      <li><p>Do not create more than one <code>TCastleWindowCustom</code> instance.
         If you want your game to be truly portable to <b>any</b> device &mdash;
-        you have to limit yourself to using only one <code>Window</code>.
+        you have to limit yourself to use only one window.
         For normal games that's probably natural anyway.
 
         <p>Note that the engine still supports, and will always support,
@@ -193,21 +198,34 @@ end.'); ?>
         There's no way to do it portably, for Android, iOS, web browser plugin...
     </ul>
 
-  <li>Merely use the Game unit from .lpr files that are specific to platform.
+  <li><p>Create a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>. It can be as simple as this:
 
-    <p>Android .lpr file (like <code>my_fantastic_game_android.lpr</code>)
-    should define a library, and may be as simple as this:
+<?php echo xml_full_highlight(
+'<?xml version="1.0" encoding="utf-8"?>
+<project name="my-cool-game" game_units="Game">
+</project>'); ?>
 
-<?php echo pascal_highlight(
-'{$mode objfpc}{$H+}
-library my_fantastic_game_android;
-uses CastleAndroidNativeAppGlue, Game;
-exports ANativeActivity_onCreate;
-end.'); ?>
+    <p>Compile and run it on your desktop using this on the command-line:
 
-    <p>Desktop .lpr file (like <code>my_fantastic_game_standalone.lpr</code>)
-    should define a program that opens the window
-    and runs the application. It may be as simple as this:
+    <pre>castle-engine compile
+castle-engine run</pre>
+
+    <p>If you have installed <a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can also build and run for Android:
+
+    <pre>castle-engine package --os=android --cpu=arm
+castle-engine install --os=android --cpu=arm
+castle-engine run --os=android --cpu=arm</pre>
+
+    <p>If you have installed <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">FPC cross-compiler for iOS</a> then you can also build for iOS:
+
+    <pre>castle-engine package --target=iOS
+# And open in XCode the project inside
+# castle-engine-output/ios/xcode_project/
+# to compile and run on device or simulator.</pre>
+
+  <li><p>Optionally, to be able to run and debug the project from Lazarus,
+    you can also create a desktop program file file like <code>my_fantastic_game_standalone.lpr</code>.
+    It may be as simple as this:
 
 <?php echo pascal_highlight(
 '{$mode objfpc}{$H+}
@@ -215,8 +233,13 @@ end.'); ?>
 program my_fantastic_game_standalone;
 uses CastleWindow, Game;
 begin
-  Window.OpenAndRun;
+  Application.MainWindow.OpenAndRun;
 end.'); ?>
+
+    <p>You can even generate a simple program skeleton (<code>lpr</code> and <code>lpi</code> files)
+    using
+
+    <pre>castle-engine generate-program</pre>
 
     <p>Desktop .lpr file can do some more useful stuff,
     for example initialize window to be fullscreen, read command-line parameters,
@@ -228,7 +251,9 @@ end.'); ?>
     to benefit from Lazarus editor, code tools, integrated debugger...
     Using our build tool does not prevent using Lazarus at all!
     <ul>
-      <li>Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
+      <li>If you did not create the <core>lpi</core> file using
+        <code>castle-engine generate-program</code>, you can create it manually:
+        Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
         option. Or (if you already have the <code>xxx.lpr</code> file) create
         the project using <i>Project -&gt; New Project From File...</i>.
       <li>Add to the project requirements packages <code>castle_base</code> and <code>castle_window</code>

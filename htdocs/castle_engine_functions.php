@@ -701,6 +701,8 @@ $geshi->set_language('VRML / X3D');
 echo $geshi->get_stylesheet(false);
 $geshi->set_language('C');
 echo $geshi->get_stylesheet(false);
+$geshi->set_language('XML');
+echo $geshi->get_stylesheet(false);
 ?>
 </style>
 
@@ -1263,9 +1265,6 @@ function api_link($title, $href, $output = true)
    elements) to lead to different URL). */
 function xml_highlight($source)
 {
-  // $geshi = new GeSHi($source, 'xml');
-  // return $geshi->parse_code();
-
   $source = str_replace('&', '&amp;', $source);
   $source = str_replace('<', '&lt;', $source);
   $source = str_replace('>', '&gt;', $source);
@@ -1286,6 +1285,14 @@ function xml_highlight($source)
     '<a href="' . CASTLE_REFERENCE_URL . '\\1">\\2</a>', $source);
 
   return $source;
+}
+
+function xml_full_highlight($source)
+{
+  global $geshi;
+  $geshi->set_source($source);
+  $geshi->set_language('xml');
+  return $geshi->parse_code();
 }
 
 function pascal_highlight($source)
