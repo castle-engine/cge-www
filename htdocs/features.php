@@ -149,7 +149,7 @@ $toc = new TableOfContents(
 
   <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
 
-  <li><p>Out-of-the-box <b>integration with an incredible number of services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine">Android Project Components</a> documentation.
+  <li><p>Out-of-the-box <b>integration with an incredible number of services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
 
     <?php
     echo castle_thumbs(array(
