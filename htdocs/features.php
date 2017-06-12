@@ -158,6 +158,12 @@ $toc = new TableOfContents(
       array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
     ), 'auto', 'left');
     ?>
+
+  <li><p>The engine can be compiled into a <b>library useful from other programming languages</b>.
+    This does not expose the complete engine API (for now), but it does expose a simple 3D model loading,
+    rendering, animation, interaction. So you can e.g. make your own VRML / X3D browser.
+    We have an example in engine sources <code>examples/library/qt_library_tester/</code>
+    that shows how the engine can be <b>embedded in a C++ Qt application</b>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
