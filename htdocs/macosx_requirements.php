@@ -123,6 +123,13 @@ $toc = new TableOfContents(
 sudo ln -s /usr/X11 /usr/X11R6
 </pre>
 
+        <p>Alternative fix (<a href="https://lists.apple.com/archives/x11-users/2015/Oct/msg00012.html">see here</a>):
+
+        <pre>
+sudo /usr/libexec/x11-select /opt/X11
+sudo chmod a+rX /usr/X11/ /usr/X11R6/
+</pre>
+
       <li><p>Alternatively,
         <b>you can switch the backend to <code>CASTLE_WINDOW_GTK_2</code></b>.
         Do this by adding this line to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
