@@ -11,23 +11,7 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
-<h2>Incoming in the next release</h2>
-
-<ul>
-  <li>
-    <p><b>Easy iOS recompilation</b>
-
-    <p>The goal is to easily recompile any project for
-    iOS using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool "castle-engine"</a>.
-    Just like it's trivial right now to compile for Android and desktop platforms.
-
-    <p>Also, as much as possible of existing "services", like
-    <?php api_link('TInAppPurchases', 'CastleInAppPurchases.TInAppPurchases.html'); ?> API,
-    should work out-of-the-box on the iOS.
-  </li>
-</ul>
-
-<h2>Future plans</h2>
+<h2>Incoming in the next release (6.4.0)</h2>
 
 <ul>
   <li><p><b>Delphi compatibility</b>
@@ -69,7 +53,28 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     and I may improve some APIs BTW (like a vector3 API),
     and it will open us to more developers.
     -->
+  </li>
 
+  <li><p><b>Basic visual designing of the castle components</b>
+
+    <p>See below for "visual designing" description. I plan to <i>start</i>
+    it for the 6.4.0 release.
+
+  <li><p><b>API improvements</b>
+
+    <ul>
+      <li><p>Ultra-flexible <code>TCastleTransform</code> class
+        instead of most current <code>T3D*</code> classes.
+        Also an ancestor of <code>TCastleScene</code>.
+
+      <li><p>Possibly: vector API improvements, using <code>TVector3</code>
+        as an advanced record, instead of current <code>TVector3Single</code>.
+    </ul>
+</ul>
+
+<h2>Future plans</h2>
+
+<ul>
   <li><p><b>Physics</b></p>
 
     <p>Integrate our engine with a physics engine.
@@ -85,7 +90,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     </ol>
   </li>
 
-  <li><p><b>Visual designing of the castle components</b>
+  <li><p><b>Ful visual designing of the castle components</b>
 
     <p>Inside a Lazarus form. Like <i>GLScene</i> and <i>FireMonkey 3d</i>.
 
@@ -121,8 +126,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Current Blender X3D exporter doesn't support animations,
     configuring collisions (X3D <?php api_link('Collision', 'X3DNodes.TCollisionNode.html'); ?> node),
-    multitexturing,
-    natural normalmap export,
     3D sound sources and more.
     We would like to fix it!:) This will be useful for everyone using Blender and X3D,
     not only with our engine.
@@ -130,12 +133,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>See also our page about <a href="creating_data_blender.php">creating data in Blender</a>
     and <a href="https://github.com/castle-engine/castle-engine/wiki/Blender">hints
     about exporting from Blender to X3D</a>.
-
-    <p>While doing this, we may also implement <a href="https://doc.x3dom.org/author/Shaders/CommonSurfaceShader.html">CommonSurfaceShader</a> node,
-    which is an InstantReality / X3DOM extension for specifying normalmaps.
-    This could replace <?php echo a_href_page('our current bump mapping X3D extension',
-    'x3d_implementation_texturing_extensions'); ?>,
-    and be used by the Blender exporter.</p>
 
   <li><p><b>Android Cardboard (VR)</b>
 
@@ -147,7 +144,11 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>More renderers</b>
 
-    <p>Vulkan renderer. Maybe Metal renderer. Maybe Direct3D renderer.
+    <p>Vulkan renderer.
+
+    <p>Maybe Metal renderer. Only <i>maybe</i>, as it's an API used by only one platform &mdash; iOS. So far, OpenGLES serves us good on iOS. In practice, this depends on the future, how much will Metal matter in a few years.
+
+    <p>Maybe Direct3D renderer. Only <i>maybe</i>, as it's an API used only on Windows. So far, OpenGL serves us good. The rare platforms where OpenGL had problems on Windows are 1. really old right now (really old Intel GPUs), 2. we can consider using an OpenGLES->Direct3D bridge, like ANGLE, for them.
 
   <li><p><b>Larger scene processing and rendering improvements:</b>
 
@@ -390,6 +391,20 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
   <li>
     <p><b>Easy way to use 3rd-person camera movement in your games</b>
+
+  <li><p><b>iOS improvements:</b>
+
+    <ul>
+      <li><p><i>Services on iOS</i>.
+        For now, most of <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">our services</a> are only on Android.
+        Most of them are possible also on iOS, e.g.
+        <?php api_link('TInAppPurchases', 'CastleInAppPurchases.TInAppPurchases.html'); ?>,
+        or <i>Apple Game Center</i> as an equivalent to <i>Google Play Games</i> from Android.
+
+      <li><p><i>Package the vorbisfile library</i>. To be able to read OggVorbis sound files.
+
+      <li><p><i>Enable texture compression</i>. Because of Apple's weird implementation of PVRTC format (only square textures are allowed), for now we disabled texture compression on iOS. This should be done better, at least to enable the texture compression of other formats.
+    </ul>
 </ul>
 
 <?php castle_footer(); ?>
