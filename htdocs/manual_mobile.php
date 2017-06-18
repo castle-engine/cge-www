@@ -224,7 +224,7 @@ castle-engine run --os=android --cpu=arm</pre>
 # to compile and run on device or simulator.</pre>
 
   <li><p>Optionally, to be able to run and debug the project from Lazarus,
-    you can also create a desktop program file file like <code>my_fantastic_game_standalone.lpr</code>.
+    you can also create a desktop program file like <code>my_fantastic_game_standalone.lpr</code>.
     It may be as simple as this:
 
 <?php echo pascal_highlight(
