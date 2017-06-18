@@ -63,5 +63,5 @@ set -eu
 # ./pack_binary.sh malfunction linux x86_64
 # ./pack_pascal_src.sh malfunction
 
-# ./pack_pascal_src.sh castle_game_engine
-# ./pack_other.sh demo_models
+./pack_pascal_src.sh castle_game_engine
+./pack_other.sh demo_models

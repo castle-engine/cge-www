@@ -35,5 +35,5 @@ do_tag ()
 # do_tag rayhunter
 do_tag view3dscene
 # do_tag malfunction
-# do_tag_custom castle-engine castle_game_engine
-# do_tag_custom demo-models demo_models
+do_tag_custom castle-engine castle_game_engine
+do_tag_custom demo-models demo_models
