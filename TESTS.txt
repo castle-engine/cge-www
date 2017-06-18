@@ -8,7 +8,9 @@ to make sure that everything is in top-quality-shape before release:
 # Test are there no files with accidental svn:executable attrib
 # (may happen if commiting from FAT filesystems on Unix):
 cd ../castle-engine/
-find . '(' -type d -name .git -prune -false ')' -or '(' -executable -type f -print ')' | grep -v ".sh$" | grep -v "~$"
+find . '(' -type d -name .git -prune -false ')' -or \
+       '(' -type f '(' -iname '*.sh' -or -iname '*~' -or -iname 'gradlew' ')' ')' -or \
+       '(' -executable -type f -print ')'
 
 # Search and remove not needed empty dirs.
 find-empty-dirs
