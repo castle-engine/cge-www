@@ -71,7 +71,7 @@ cd tests/
 
 # ----------------------------------------------------------------------------
 # Test at least compilation of all Android components:
-# uncomment them in ../castle-engine/examples/2d_dragon_spine_android_game/
+# uncomment them in ../castle-engine/examples/2d_dragon_spine_game/
 # and recompile it.
 #
 # It's OK to not test at this point:
