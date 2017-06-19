@@ -21,9 +21,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
       <li><p>This will the free version of Delphi available as
         <a href="https://www.embarcadero.com/products/delphi/starter">Delphi Starter Edition</a>.
         I'll port (and maintain compatibility) with the latest
-        <i>Delphi Starter Edition</i> available
-        (as Embarcadero seems willing to update the <i>Delphi Starter Edition</i>
-        with each new version of Delphi, which is quite great).
+        <i>Delphi Starter Edition</i> available.
+        Embarcadero seems willing to update the <i>Delphi Starter Edition</i>
+        with each new version of Delphi, which is quite great.
 
         <!--
          &mdash; kudos to them for
@@ -31,25 +31,24 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         just as in the good old days!
         -->
 
-      <li><p>If someone will sponsor another Delphi version,
-        then I will gladly port to it too.
+      <li><p>Of course, bugreports and patches to fix support for any other Delphi version
+        are also always welcome.
+
+      <li><p>If someone wants to sponsor another Delphi version,
+        then I can maintain a port to it too.
 
         <p>I'm afraid that any commercial edition of Delphi
         <a href="https://www.embarcadero.com/app-development-tools-store/delphi">costs a <i>lot</i></a>,
         so I cannot afford to buy it on my own.
-
-        <p>Especially since, personally, I work on Linux with FPC + Lazarus.
-
-      <li><p>Of course, patches to add/fix support for other Delphi version
-        are always accepted.
+        Especially since, personally, I usually work on Linux with FPC + Lazarus these days:)
     </ul>
 
+    <!--
     <p>Michalis is still an open-source fanatic,
     and most of the engine development happens on Linux, so don't worry
     &mdash; the FPC still gets, and will forever get, a first-class support.
     But I think that Delphi compatibility will open up the engine to many
     new developers, and it's also relatively easy to add.
-    <!--
     and I may improve some APIs BTW (like a vector3 API),
     and it will open us to more developers.
     -->
@@ -57,10 +56,21 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>Basic visual designing of the castle components</b>
 
-    <p>See below for "visual designing" description. I plan to <i>start</i>
-    it for the 6.4.0 release.
+    <p>During the 6.4.0 development, I plan to <i>start</i>
+    visual editing of engine 3D and 2D things within Lazarus and Delphi.
+    This "start" means:
+    1. designing the scenes and transformations
+    under <code>SceneManager.Items</code> and 2. designing the 2D controls under
+    <code>TCastleControl.Controls</code>.
+    <!-- You can read more about my plans for "visual designing" below, -->
+    <!-- for this release I really only want to <i>start</i> it. -->
 
-  <li><p><b>API improvements</b>
+    <p>This will be for both Lazarus and Delphi, of course.
+    In general, everything I do from now on will be for both Lazarus and Delphi,
+    I want to treat them both as "first-class" support.
+
+  <li><p><b>API improvements</b>. I plan to attempt
+    some long-planned API upgrades. These include:
 
     <ul>
       <li><p>Ultra-flexible <code>TCastleTransform</code> class
