@@ -70,9 +70,6 @@ Procedure to update WWW content
 - good practice after large changes is to check
   linkchecker.sh and validate_html.sh
 
-- if it's important change, you may wish to add entry to our Wordpress
-  in https://castle-engine.sourceforge.io/wp/
-
 - if you change some content managed inside GIT:
   - commit and push your changes, of course
   - git pull --rebase on SF within cge-www
@@ -106,6 +103,13 @@ Procedure to update WWW content
 Announcing release
 ------------------
 
+- Regular annoucements sites:
+  - Our Wordpress: https://castle-engine.sourceforge.io/wp/
+  - Patreon: https://www.patreon.com/castleengine
+  - Facebook: https://facebook.com/castleengine/
+  - Google+: https://plus.google.com/+CastleGameEngineX3d/
+  - Twitter: https://twitter.com/castleengine
+
 - engine source code release means updating FPC contrib units info
   (see fpc_contrib_units_data.txt,
   http://www.freepascal.org/contrib/contribs.html).
@@ -132,15 +136,17 @@ Announcing release
   http://www.lazarus.freepascal.org/index.php/topic,19686.0.html).
 
 - x3d-public mailing list
+
 - if new VRML extensions: remember to post to Joerg about them
+
 - http://www.lazarus.freepascal.org/
   Examples on:
   http://forum.lazarus.freepascal.org/index.php?topic=26927.msg166141
   http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
+
 - Post new topic on our forum, to encourage some discussion.
   Possibly resign from it? Posting on our g+ page is easier,
   and there are also instant comments.
-- Post on facebook, google+, twitter.
 
 - Post to community on g+:
 
