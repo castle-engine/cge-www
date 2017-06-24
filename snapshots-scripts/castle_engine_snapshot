@@ -182,6 +182,7 @@ do_castlewindow_backends_compile ()
 
 # main code ------------------------------------------------------------------
 
+/usr/local/fpclazarus/setup.sh default
 do_svn_update
 do_compile_tool
 do_compile_snapshot_programs
