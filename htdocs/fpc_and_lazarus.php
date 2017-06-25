@@ -14,11 +14,15 @@ echo pretty_heading($page_title);
 
 <p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
 (FPC)</a> to use our engine.
-<b>We always support and advice the latest stable (from
+We always support and advice the latest stable (from
 <a href="http://www.freepascal.org/">freepascal.org</a>)
-release of FPC (currently 3.0.2).</b>
+release of FPC (currently 3.0.2).
 Usually, we also support a couple of older FPC releases.
-Currently (for engine 6.0.0) <b>FPC versions &gt;= 2.6.2 are supported</b>.
+
+<ul>
+  <li>The <b>latest stable (6.2) engine version supports FPC versions &gt;= 2.6.2</b>.
+  <li>The <b>next engine version (<a href="https://github.com/castle-engine/castle-engine">you can get it right now from GitHub</a>) supports FPC versions &gt;= 3.0.0</b>.
+</ul>
 
 <p>You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
@@ -27,7 +31,7 @@ with a visual classes library (LCL).
 Our engine components can be used together with Lazarus forms
 (although we also have an alternative window classes, independent from
 Lazarus LCL).
-<b>Any Lazarus version based on FPC &gt;= 2.6.2 is supported now.</b></p>
+<b>Currently, we don't have any special requirements on the Lazarus version.</b></p>
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
