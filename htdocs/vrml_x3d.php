@@ -21,7 +21,7 @@
 You will find that virtually any 3D modeling program can export to it,
 for example <a href="http://www.blender.org/">Blender</a> includes
 an X3D exporter (see also <?php echo
-a_href_page('our Blending exporting notes', 'creating_data_blender'); ?>).</p>
+a_href_page('our Blender exporting notes', 'creating_data_blender'); ?>).</p>
 
 <p>To start the fun, just create some X3D models
 (or download them from the Internet, or grab our
