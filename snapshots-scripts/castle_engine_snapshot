@@ -52,7 +52,8 @@ do_compile_tool ()
 
   cd castle_game_engine/tools/build-tool/
   ./castle-engine_compile.sh
-  mv -f castle-engine "${CASTLE_BINARY_PATH}"
+  # add directory with precompiled castle-engine tool to $PATH
+  export PATH="${PATH}":`pwd`
 }
 
 # ----------------------------------------------------------------------------
