@@ -41,6 +41,10 @@ do_compile_tool ()
   ./dircleaner_compile.sh
   mv -f dircleaner "${CASTLE_BIN_PATH}"
 
+  cd "${CASTLE_ENGINE_PATH}"castle_game_engine/tools/image-to-pascal/
+  ./image-to-pascal_compile.sh
+  mv -f image-to-pascal "${CASTLE_BIN_PATH}"
+
   echo '---------------------------------------------------------------'
   echo 'Cleaning everything (except binaries of tools compiled above)'
 
