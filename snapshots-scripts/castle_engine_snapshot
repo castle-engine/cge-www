@@ -141,33 +141,6 @@ do_compile_snapshot_programs ()
 
 # ----------------------------------------------------------------------------
 
-# Not done anymore, compositing_shaders is finished now,
-# final PDF version is in SVN.
-#
-# echo '---------------------------------------------------------------'
-# echo 'Regenerate papers PDF:'
-# cd "${CASTLE_ENGINE_PATH}"papers/compositing_shaders/
-# make clean
-# make
-# mv -f compositing_shaders.pdf ~/public_html/
-
-# ----------------------------------------------------------------------------
-
-do_engine_examples ()
-{
-  echo '---------------------------------------------------------------'
-  echo 'Runing tests (clean and compile everything with examples):'
-
-  cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/
-  make clean
-  # make examples-laz first, to avoid creating .ppu colliding with Lazarus.
-  make examples-laz
-  make
-  make examples
-}
-
-# ----------------------------------------------------------------------------
-
 do_test_castle_window ()
 {
   cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/
@@ -211,7 +184,6 @@ do_castlewindow_backends_compile ()
 . /usr/local/fpclazarus/bin/setup.sh default
 do_compile_tool
 do_compile_snapshot_programs
-do_engine_examples
 do_castlewindow_backends_compile
 
 echo '---------------------------------------------------------------'
