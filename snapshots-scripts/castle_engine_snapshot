@@ -1,10 +1,26 @@
 #!/bin/bash
 set -eu
 
+# Script run by Jenkins (Automatic Cloud Builds of Castle Game Engine projects) on
+# https://michalis.ii.uni.wroc.pl/jenkins/ to update CGE snapshots
+# visible on http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/ .
+# Parts of this script are really specific to the Jenkins
+# and michalis.ii.uni.wroc.pl server configuration.
+#
 # Rebuild programs in "${CASTLE_ENGINE_PATH}"
 # (does a full rebuild, updating from SVN and cleaning to make
 # a full build with newest sources),
 # then move resulting binaries to "${CASTLE_SNAPSHOTS_PATH}" subdir.
+
+export CASTLE_SNAPSHOTS_PATH="/var/www/castle-engine-snapshots/"
+
+# prepare output path and log file
+export OUTPUT_PATH="${CASTLE_SNAPSHOTS_PATH}"`date +%F`/
+mkdir -p "$OUTPUT_PATH"
+
+# castle-engine (used to compile some stuff) uses this,
+# also some "cd" commands may use it.
+export CASTLE_ENGINE_PATH=`pwd`
 
 # ----------------------------------------------------------------------------
 
@@ -190,8 +206,8 @@ do_engine_examples
 do_castlewindow_backends_compile
 
 echo '---------------------------------------------------------------'
-echo 'Setting www-data permissions:'
+echo 'Setting snapshots permissions:'
 
-public_html_setup_permissions.sh
+chmod a+rX "${CASTLE_SNAPSHOTS_PATH}"
 
 echo "----------- That's all folks :)"
