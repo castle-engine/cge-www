@@ -48,7 +48,7 @@ do_compile_tool ()
   echo 'Compiling tools for snapshots'
 
   CASTLE_BIN_PATH="${CASTLE_ENGINE_PATH}"snapshots-bin/
-  mkdir "${CASTLE_BIN_PATH}"
+  mkdir -p "${CASTLE_BIN_PATH}"
   export PATH="${PATH}":"${CASTLE_BIN_PATH}"
 
   cd "${CASTLE_ENGINE_PATH}"castle_game_engine/tools/build-tool/
