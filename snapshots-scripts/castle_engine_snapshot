@@ -51,13 +51,13 @@ do_compile_tool ()
   mkdir "${CASTLE_BIN_PATH}"
   export PATH="${PATH}":"${CASTLE_BIN_PATH}"
 
-  cd castle_game_engine/tools/build-tool/
+  cd "${CASTLE_ENGINE_PATH}"castle_game_engine/tools/build-tool/
   ./castle-engine_compile.sh
-  mv castle-engine "${CASTLE_BIN_PATH}"
+  mv -f castle-engine "${CASTLE_BIN_PATH}"
 
-  cd castle_game_engine/examples/tools/
+  cd "${CASTLE_ENGINE_PATH}"castle_game_engine/examples/tools/
   ./dircleaner_compile.sh
-  mv dircleaner "${CASTLE_BIN_PATH}"
+  mv -f dircleaner "${CASTLE_BIN_PATH}"
 
   echo '---------------------------------------------------------------'
   echo 'Cleaning everything (except binaries of tools compiled above)'
