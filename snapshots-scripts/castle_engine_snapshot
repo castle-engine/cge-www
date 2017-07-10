@@ -24,19 +24,21 @@ export CASTLE_ENGINE_PATH=`pwd`
 
 # ----------------------------------------------------------------------------
 
-do_svn_update ()
-{
-  # Do sync2git, to use freshest SVN contents.
-  # This is also useful when you manually call this refresh.
-  cd ~/sources/sync2git/
-  for PROJECT_DIR in /etc/sync2git/projects/*; do
-    PROJECT_NAME="`basename \"${PROJECT_DIR}\"`"
-    ./sync2git "${PROJECT_NAME}"
-  done
+# Jenkins does svn update now.
 
-  cd "${CASTLE_ENGINE_PATH}"
-  svn up
-}
+# do_svn_update ()
+# {
+#   # Do sync2git, to use freshest SVN contents.
+#   # This is also useful when you manually call this refresh.
+#   cd ~/sources/sync2git/
+#   for PROJECT_DIR in /etc/sync2git/projects/*; do
+#     PROJECT_NAME="`basename \"${PROJECT_DIR}\"`"
+#     ./sync2git "${PROJECT_NAME}"
+#   done
+
+#   cd "${CASTLE_ENGINE_PATH}"
+#   svn up
+# }
 
 # ----------------------------------------------------------------------------
 
@@ -199,7 +201,6 @@ do_castlewindow_backends_compile ()
 # main code ------------------------------------------------------------------
 
 . /usr/local/fpclazarus/bin/setup.sh default
-do_svn_update
 do_compile_tool
 do_compile_snapshot_programs
 do_engine_examples
