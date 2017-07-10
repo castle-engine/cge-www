@@ -45,15 +45,25 @@ export CASTLE_ENGINE_PATH=`pwd`
 do_compile_tool ()
 {
   echo '---------------------------------------------------------------'
-  echo 'Compiling castle-engine tool'
+  echo 'Compiling tools for snapshots'
 
-  cd "${CASTLE_ENGINE_PATH}"
-  scripts/clean_everything.sh
+  CASTLE_BIN_PATH="${CASTLE_ENGINE_PATH}"snapshots-bin/
+  mkdir "${CASTLE_BIN_PATH}"
+  export PATH="${PATH}":"${CASTLE_BIN_PATH}"
 
   cd castle_game_engine/tools/build-tool/
   ./castle-engine_compile.sh
-  # add directory with precompiled castle-engine tool to $PATH
-  export PATH="${PATH}":`pwd`
+  mv castle-engine "${CASTLE_BIN_PATH}"
+
+  cd castle_game_engine/examples/tools/
+  ./dircleaner_compile.sh
+  mv dircleaner "${CASTLE_BIN_PATH}"
+
+  echo '---------------------------------------------------------------'
+  echo 'Cleaning everything (except binaries of tools compiled above)'
+
+  cd "${CASTLE_ENGINE_PATH}"
+  scripts/clean_everything.sh
 }
 
 # ----------------------------------------------------------------------------
