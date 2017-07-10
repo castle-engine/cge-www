@@ -20,7 +20,7 @@ mkdir -p "$OUTPUT_PATH"
 
 # castle-engine (used to compile some stuff) uses this,
 # also some "cd" commands may use it.
-export CASTLE_ENGINE_PATH=`pwd`
+export CASTLE_ENGINE_PATH=`pwd`/
 
 # ----------------------------------------------------------------------------
 
