@@ -137,9 +137,6 @@ do_compile_snapshot_programs ()
   # Create "latest" link, comfortable for users.
   rm -f "${CASTLE_SNAPSHOTS_PATH}"latest
   ln -s `date +%F` "${CASTLE_SNAPSHOTS_PATH}"latest
-
-  # This will be redone at the end, but make sure now it's done --- in case something fails later
-  public_html_setup_permissions.sh
 }
 
 # ----------------------------------------------------------------------------
