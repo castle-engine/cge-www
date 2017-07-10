@@ -1,0 +1,75 @@
+#!/bin/bash
+set -eu
+
+# Test compilation of various CGE CastleWindow backends.
+
+# Test the LCL backend.
+# This requires a bit different code than standard do_test_one_backend implementation.
+# Parameters: OS CPU
+do_test_one_backend_lcl ()
+{
+  LAZBUILD_OPTIONS="--os=$1 --cpu=$2"
+  lazbuild $LAZBUILD_OPTIONS alternative_castle_window_based_on_lcl.lpk
+
+  # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
+  sed 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>' \
+    --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
+  lazbuild $LAZBUILD_OPTIONS examples/3d_rendering_processing/view_3d_model_advanced.lpi
+
+  # Restore original view_3d_model_advanced.lpi
+  sed 's|<PackageName Value="alternative_castle_window_based_on_lcl"/>|<PackageName Value="castle_window"/>' \
+    --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
+}
+
+# Test a single backend.
+# Parameters: OS CPU backend-name
+do_test_one_backend ()
+{
+  if [ "$3" = 'CASTLE_WINDOW_LCL' ]; then
+    do_test_one_backend_lcl $1 $2
+  else
+    # Always clean to be sure that new -dCASTLE_WINDOW_xxx
+    # will be taken into account.
+
+    FPC_OPTIONS="-T$1 -P$2"
+
+    make clean
+    fpc -dDEBUG   $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+    make clean
+    fpc -dRELEASE $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+  fi
+}
+
+# Test all CastleWindow backends.
+do_test_all_backends ()
+{
+  do_test_one_backend linux i386 CASTLE_WINDOW_GTK_2
+  do_test_one_backend linux i386 CASTLE_WINDOW_XLIB
+  do_test_one_backend linux i386 CASTLE_WINDOW_TEMPLATE
+  # Note that CASTLE_WINDOW_LIBRARY backend will not really work
+  # with a standalone application, but it should compile OK.
+  do_test_one_backend linux i386 CASTLE_WINDOW_LIBRARY
+  do_test_one_backend linux i386 CASTLE_WINDOW_LCL
+
+  do_test_one_backend win32 i386 CASTLE_WINDOW_WINAPI
+  do_test_one_backend win32 i386 CASTLE_WINDOW_GTK_2
+  do_test_one_backend win32 i386 CASTLE_WINDOW_TEMPLATE
+  do_test_one_backend win32 i386 CASTLE_WINDOW_LIBRARY
+  do_test_one_backend win32 i386 CASTLE_WINDOW_LCL
+
+  do_test_one_backend win64 x86_64 CASTLE_WINDOW_WINAPI
+  # GTK2 units not available for win64?
+  # do_test_one_backend win64 x86_64 CASTLE_WINDOW_GTK_2
+  do_test_one_backend win64 x86_64 CASTLE_WINDOW_TEMPLATE
+  do_test_one_backend win64 x86_64 CASTLE_WINDOW_LIBRARY
+  do_test_one_backend win64 x86_64 CASTLE_WINDOW_LCL
+}
+
+. /usr/local/fpclazarus/bin/setup.sh default
+do_test_all_backends
+. /usr/local/fpclazarus/bin/setup.sh 3.0.0
+do_test_all_backends
+. /usr/local/fpclazarus/bin/setup.sh 3.0.2
+do_test_all_backends
+. /usr/local/fpclazarus/bin/setup.sh trunk
+do_test_all_backends

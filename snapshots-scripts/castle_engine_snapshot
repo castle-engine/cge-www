@@ -24,24 +24,6 @@ export CASTLE_ENGINE_PATH=`pwd`/
 
 # ----------------------------------------------------------------------------
 
-# Jenkins does svn update now.
-
-# do_svn_update ()
-# {
-#   # Do sync2git, to use freshest SVN contents.
-#   # This is also useful when you manually call this refresh.
-#   cd ~/sources/sync2git/
-#   for PROJECT_DIR in /etc/sync2git/projects/*; do
-#     PROJECT_NAME="`basename \"${PROJECT_DIR}\"`"
-#     ./sync2git "${PROJECT_NAME}"
-#   done
-
-#   cd "${CASTLE_ENGINE_PATH}"
-#   svn up
-# }
-
-# ----------------------------------------------------------------------------
-
 do_compile_tool ()
 {
   echo '---------------------------------------------------------------'
@@ -139,52 +121,11 @@ do_compile_snapshot_programs ()
   ln -s `date +%F` "${CASTLE_SNAPSHOTS_PATH}"latest
 }
 
-# ----------------------------------------------------------------------------
-
-do_test_castle_window ()
-{
-  cd  "${CASTLE_ENGINE_PATH}"castle_game_engine/
-  # Clean so we can be sure
-  # that new -dCASTLE_WINDOW_xxx will be taken into account.
-  make clean-window
-  make -C ../view3dscene/ generate-code
-
-  # note that we compile directly, not using compile.sh, since compile.sh
-  # now uses castle-engine that does not allow passing -dXXX
-  fpc -dRELEASE "$@" @castle-fpc.cfg ../view3dscene/code/view3dscene.lpr
-}
-
-do_castlewindow_backends_compile ()
-{
-  echo '---------------------------------------------------------------'
-  echo 'Check CastleWindow backends compilation:'
-
-  cd  "${CASTLE_ENGINE_PATH}"
-  scripts/clean_everything.sh
-
-  do_test_castle_window -dCASTLE_WINDOW_GTK_2
-  do_test_castle_window -dCASTLE_WINDOW_XLIB
-  do_test_castle_window -dCASTLE_WINDOW_GLUT
-  do_test_castle_window -dCASTLE_WINDOW_TEMPLATE
-
-  do_test_castle_window -Twin32 -dCASTLE_WINDOW_WINAPI
-  do_test_castle_window -Twin32 -dCASTLE_WINDOW_GTK_2
-  do_test_castle_window -Twin32 -dCASTLE_WINDOW_GLUT
-  do_test_castle_window -Twin32 -dCASTLE_WINDOW_TEMPLATE
-
-  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_WINAPI
-  # GTK2 units not available for win64?
-  # do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_GTK_2
-  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_GLUT
-  do_test_castle_window -Twin64 -Px86_64 -dCASTLE_WINDOW_TEMPLATE
-}
-
 # main code ------------------------------------------------------------------
 
 . /usr/local/fpclazarus/bin/setup.sh default
 do_compile_tool
 do_compile_snapshot_programs
-do_castlewindow_backends_compile
 
 echo '---------------------------------------------------------------'
 echo 'Setting snapshots permissions:'
