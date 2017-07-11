@@ -24,12 +24,12 @@ do_test_one_backend_lcl ()
   lazbuild $LAZBUILD_OPTIONS packages/alternative_castle_window_based_on_lcl.lpk
 
   # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
-  sed 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>|' \
+  sed -e 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>|' \
     --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
   do_run lazbuild $LAZBUILD_OPTIONS examples/3d_rendering_processing/view_3d_model_advanced.lpi
 
   # Restore original view_3d_model_advanced.lpi
-  sed 's|<PackageName Value="alternative_castle_window_based_on_lcl"/>|<PackageName Value="castle_window"/>|' \
+  sed -e 's|<PackageName Value="alternative_castle_window_based_on_lcl"/>|<PackageName Value="castle_window"/>|' \
     --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
 }
 
