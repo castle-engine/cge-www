@@ -9,7 +9,7 @@ set -eu
 do_test_one_backend_lcl ()
 {
   LAZBUILD_OPTIONS="--os=$1 --cpu=$2"
-  lazbuild $LAZBUILD_OPTIONS alternative_castle_window_based_on_lcl.lpk
+  lazbuild $LAZBUILD_OPTIONS packages/alternative_castle_window_based_on_lcl.lpk
 
   # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
   sed 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>' \
