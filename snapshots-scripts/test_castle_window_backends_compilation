@@ -3,6 +3,15 @@ set -eu
 
 # Test compilation of various CGE CastleWindow backends.
 
+# Run the command in parameters, reporting it to console too.
+do_run ()
+{
+  echo '---------------------------------------------------------'
+  echo 'Running:'
+  echo "$@"
+  "$@"
+}
+
 # Test the LCL backend.
 # This requires a bit different code than standard do_test_one_backend implementation.
 # Parameters: OS CPU
@@ -17,7 +26,7 @@ do_test_one_backend_lcl ()
   # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
   sed 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>' \
     --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
-  lazbuild $LAZBUILD_OPTIONS examples/3d_rendering_processing/view_3d_model_advanced.lpi
+  do_run lazbuild $LAZBUILD_OPTIONS examples/3d_rendering_processing/view_3d_model_advanced.lpi
 
   # Restore original view_3d_model_advanced.lpi
   sed 's|<PackageName Value="alternative_castle_window_based_on_lcl"/>|<PackageName Value="castle_window"/>' \
@@ -37,9 +46,9 @@ do_test_one_backend ()
     FPC_OPTIONS="-T$1 -P$2"
 
     make clean
-    fpc -dDEBUG   $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+    do_run fpc -dDEBUG   $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
     make clean
-    fpc -dRELEASE $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+    do_run fpc -dRELEASE $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
   fi
 }
 
