@@ -88,14 +88,14 @@ do_compile_snapshot_programs ()
   export CASTLE_FPC_OPTIONS=-Twin32
   export CASTLE_ENGINE_TOOL_OPTIONS=--os=win32
   scripts/compile_all_programs.sh
-  move_all_programs '.exe' win-i386
+  move_all_programs '.exe' windows-i386
   export CASTLE_FPC_OPTIONS=''
   export CASTLE_ENGINE_TOOL_OPTIONS=''
 
   export CASTLE_FPC_OPTIONS='-Twin64 -Px86_64'
   export CASTLE_ENGINE_TOOL_OPTIONS='--os=win64 --cpu=x86_64'
   scripts/compile_all_programs.sh
-  move_all_programs '.exe' win-x86_64
+  move_all_programs '.exe' windows-x86_64
   export CASTLE_FPC_OPTIONS=''
   export CASTLE_ENGINE_TOOL_OPTIONS=''
 
