@@ -88,16 +88,23 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
   <li><p><b>Physics</b></p>
 
     <p>Integrate our engine with a physics engine.
-    Most preferably <a href="http://bulletphysics.org/">Bullet</a>, although this will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). Eventually <a href="http://www.ode.org/">ODE</a> (much simpler C API). Allow to easily use it in new games for programmers. Allow to use it in VRML/X3D models by following the X3D "Rigid body physics" component.</p>
+
+    <ul>
+      <li><p>Most preferably <a href="http://bulletphysics.org/">Bullet</a>, although this will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). <i>Johny Ray Worrall</i> has started working on a physics abstraction layer in Pascal, that will allow us to use Bullet as well as other libraries underneath, I plan to use it :)
+      <li><p>There is a popular <a href="http://www.ode.org/">ODE</a> (much simpler C API, <a href="http://disq.us/url?url=http%3A%2F%2Fwww.bvbcode.com%2Fcn%2Fpwd19hez-1586203%3Ak7d0d8FVtll17Vc0PB1IGOdmFm8&cuid=3390112">old Pascal header here</a>).
+      <li><p>There is a <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a>, a cool physics engine entirely implemented in Object Pascal, supporting all the platforms and compilers that matter to us.</p></li>
+    </ul>
 
     <p>Implementing this feature will most likely be split into a couple of small releases:</p>
 
     <ol>
       <li><p>Basic integration with a physics engine, to add collisions and rigid body physics at the TCastleScene level (whole scene as a single rigid body). So e.g. player could collide with a whole scene using a physics engine, without our custom octrees. Gravity could work using physics engine.
       <li><p>Allow using rigid body physics X3D component. This means that a single rigid body may be a shape, or group of shapes, in X3D. So a scene becomes a (possibly interconnected) set of many rigid bodies.
+      <li><p>Allow using it easily on scenes that were not designed with X3D rigid bodies nodes. Maybe by implementing helpers to easily setup the X3D rigid bodies nodes.
       <li><p>Add to Blender exporter ability to mark rigid body stuff in X3D.
       <li><p>Soft body, liquids, other special features.
     </ol>
+
   </li>
 
   <li><p><b>Ful visual designing of the castle components</b>
