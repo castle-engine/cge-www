@@ -248,6 +248,7 @@ $castle_sitemap = array(
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
               'creating_data_spine' => array('title' => 'Spine (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Spine'),
+              'creating_data_dragon_bones' => array('title' => 'Dragon Bones'),
             )
           ),
           'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
