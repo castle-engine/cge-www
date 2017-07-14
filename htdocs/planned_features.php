@@ -107,7 +107,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   </li>
 
-  <li><p><b>Ful visual designing of the castle components</b>
+  <li><p><b>Full visual designing of the castle components</b>
 
     <p>Inside a Lazarus form. Like <i>GLScene</i> and <i>FireMonkey 3d</i>.
 
@@ -236,6 +236,12 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
           <li><p>Offer to switch between <i>Gouraud</i> and <i>Phong</i> shaders,
             on both OpenGL and OpenGLES, in the shader pipeline.
         </ul>
+
+      <li><b>Distance field fonts</b>
+
+        <p>See <a href="https://github.com/libgdx/libgdx/wiki/Distance-field-fonts">about Distance field fonts</a>.
+        See code from <a href="https://github.com/neurolabusc/OpenGLCoreTutorials">Chris Rorden</a> showing
+        how to do it in Lazarus.
     </ol>
 
   <li><p><b>WebGL (HTML5) support</b>
