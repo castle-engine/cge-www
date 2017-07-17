@@ -139,6 +139,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
       <li><p>Efficiently render huge amounts of grass and trees and rocks.</li>
     </ol>
 
+    <p>Implement nice shaders to show it, like
+    <a href="https://www.getlazarus.org/videos/bareterrain/#learning_resources">this BareGame example</a>.
+
   <li><p><b>Blender X3D exporter improvements</b>
 
     <p>Current Blender X3D exporter doesn't support animations,
