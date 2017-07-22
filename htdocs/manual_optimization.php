@@ -7,6 +7,8 @@ $toc = new TableOfContents(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
     new TocItem('Making your games run fast', 'models'),
+      new TocItem('Basic rule: use small and static geometry, as much as possible', 'basic', 1),
+      new TocItem('Compile in "release" mode for speed', 'release_mode', 1),
       new TocItem('Backface culling', 'culling', 1),
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
@@ -155,6 +157,8 @@ detection and creature AI).
 
 <?php echo $toc->html_section(); ?>
 
+<?php echo $toc->html_section(); ?>
+
 <p>First of all, watch the number of vertexes and faces of the models you load.
 Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
  menu item <i>Help -&gt; Scene Information</i> for this.
@@ -164,6 +168,46 @@ like <i>shadows</i> or <i>bump mapping</i>, have a cost.
 So use them only if necessary. In case of static scenes,
 try to "bake" such lighting effects to regular textures (use e.g. Blender
 <i>Bake</i> functionality), instead of activating a costly runtime effect.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Both Lazarus and our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+support the idea of "build modes".
+
+<ul>
+  <li><p>When you're in the middle of development and you're testing the game for bugs,
+    use the <code>debug</code> mode,
+    that adds a lot of run-time checks to your code. This allows to get
+    a clear and nice error when you e.g. access an invalid array index.
+    If you use our
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>,
+    just pass the <code>--mode=debug</code> command-line parameter to it.
+
+    <p>Our vectors are also like arrays, so doing stuff like <code>MyVector[2] := 123.0;</code>
+    is also checked (it's valid if <code>MyVector</code> is a 3D or 4D vector, invalid if it's a 2D vector).
+    Actually, this simple case is checked at compile-time with the new vector API
+    in Castle Game Engine 6.3,
+    <!-- (since the index "2" is a constant and
+    compiler knows that the range of indexes for each vector type).-->
+    but more convoluted cases are still checked at run-time.
+
+  <li><p>When you need the maximum speed (when you want to build a <i>"final"</i>
+    version for the player, or when you check / compare / profile the speed),
+    always use the <code>release</code> mode.
+
+    <p>The code runs <b>much faster</b> in release mode.
+    The speed difference may be really noticeable. As of Castle Game Engine 6.3,
+    the ray-tracer is <i>1.9 times slower in development mode vs release mode</i>.
+    The speed differences of a typical game are usually not that drastic
+    (since you don't spend 100% of your time calculating math expressions,
+    unlike a ray-tracer), but significant differences are still expected,
+    esp. if you measure the performance of a particular calculation
+    (not just looking at game FPS).
+
+    <p>So in most cases it's really important that you measure the speed only of the
+    <b>release</b> build of your game, and this is the version that you want to provide
+    to your players.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
