@@ -1308,6 +1308,9 @@ function pascal_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('delphi'); // tested: order of set_source, set_language doesn't matter
+  if (!HTML_VALIDATION) {
+    $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
+  }
   return $geshi->parse_code();
 }
 

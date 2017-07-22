@@ -10,6 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Text', 'text', 1),
     new TocItem('Rectangles, circles, other shapes', 'shapes', 1),
     new TocItem('Images', 'images', 1),
+    new TocItem('Complete example code showing above features', 'comple_code_finished', 1),
     new TocItem('Animations from images (movies, sprite sheets)', 'animations', 1),
     new TocItem('Player inventory', 'inventory', 1),
     new TocItem('Screen fade effects', 'screen_fade', 1),
@@ -206,6 +207,13 @@ end;'); ?>
 similar to the
 <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
  control</i>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Here's a complete source code that shows the above features.
+You can download and compile it right now!
+
+<?php echo pascal_highlight_file('code-samples/custom_2d_control_finished.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
