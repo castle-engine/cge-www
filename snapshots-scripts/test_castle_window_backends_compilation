@@ -20,7 +20,9 @@ do_test_one_backend_lcl ()
   # Clean compiled units to not conflict with Lazarus build
   make clean
 
-  LAZBUILD_OPTIONS="--os=$1 --cpu=$2"
+  # Use separate --primary-config-path,
+  # to not mistakenly use units from castle_game_engine_build workspace.
+  LAZBUILD_OPTIONS="--os=$1 --cpu=$2 --primary-config-path=${WORKSPACE}/.michalis-lazarus-in-workspace/${FPCLAZARUS_REAL_VERSION}"
   lazbuild $LAZBUILD_OPTIONS packages/alternative_castle_window_based_on_lcl.lpk
 
   # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
