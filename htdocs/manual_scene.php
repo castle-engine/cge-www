@@ -50,44 +50,7 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 
     <p>The complete code doing this, using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, looks like this:
 
-<?php echo pascal_highlight(
-'uses SysUtils, CastleVectors, Castle3D,
-  CastleFilesUtils, CastleWindow, CastleSceneCore, CastleScene;
-
-var
-  Window: TCastleWindow;
-  CarScene, RoadScene: TCastleScene;
-  CarTransform: T3DTransform;
-begin
-  Window := TCastleWindow.Create(Application);
-
-  CarScene := TCastleScene.Create(Application);
-  CarScene.Load(ApplicationData(\'car.x3d\'));
-  CarScene.Spatial := [ssRendering, ssDynamicCollisions];
-  CarScene.ProcessEvents := true;
-
-  CarTransform := T3DTransform.Create(Application);
-  CarTransform.Add(CarScene);
-
-  RoadScene := TCastleScene.Create(Application);
-  RoadScene.Load(ApplicationData(\'road.x3d\'));
-  RoadScene.Spatial := [ssRendering, ssDynamicCollisions];
-  RoadScene.ProcessEvents := true;
-
-  Window.SceneManager.Items.Add(CarTransform);
-  Window.SceneManager.Items.Add(RoadScene);
-  Window.SceneManager.MainScene := RoadScene;
-
-  // nice camera to see the road
-  Window.SceneManager.RequiredCamera.SetView(
-    Vector3Single(-43.30, 27.23, -80.74),
-    Vector3Single(  0.60, -0.36,   0.70),
-    Vector3Single(  0.18,  0.92,   0.32)
-  );
-
-  Window.Open;
-  Application.Run;
-end.'); ?>
+    <?php echo pascal_highlight_file('code-samples/scene_transform.lpr'); ?>
 
     <p>If, instead of <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, you use <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
 
