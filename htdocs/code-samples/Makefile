@@ -7,4 +7,4 @@ all:
 
 .PHONY: clean
 clean:
-	rm -Rf *.o *.ppu $(PROGRAM_BINARIES)
+	rm -Rf *.o *.ppu $(PROGRAM_BINARIES) castle-engine-output/
