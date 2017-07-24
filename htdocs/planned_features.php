@@ -328,10 +328,12 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
       <li><p><b>Ability to cancel the ongoing download</b>.
         Add a "cancel" button to CastleWindowProgress for this.
         See the task below (background downloading) for ideas how to do it.
+        See the <code>TDownload</code> plans in the comments of <code>CastleDownload.pas</code>.
 
       <li><p><b>Ability to download resources in the background</b>,
         while the game is running. Technically this is connected to the previous
         point: being able to reliably cancel the download.
+        See the <code>TDownload</code> plans in the comments of <code>CastleDownload.pas</code>.
 
         <p>There is a question how to do it.
         We can use <code>TThread</code> for downloads,
