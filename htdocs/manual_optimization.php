@@ -175,7 +175,7 @@ try to "bake" such lighting effects to regular textures (use e.g. Blender
 support the idea of "build modes".
 
 <ul>
-  <li><p>When you're in the middle of development and you're testing the game for bugs,
+  <li><p>When you're in the middle of the development and you're testing the game for bugs,
     use the <code>debug</code> mode,
     that adds a lot of run-time checks to your code. This allows to get
     a clear and nice error when you e.g. access an invalid array index.
