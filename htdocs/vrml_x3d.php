@@ -71,7 +71,7 @@ about the available X3D nodes and their fields.</p>
     through special X3D nodes.
   </li>
 
-  <li><p>In any case, the <a href="http://www.web3d.org/standards">X3D specifications</a> are your ultimate resource to learn what you can do with X3D.</p>
+  <li><p><a href="http://www.web3d.org/standards">The X3D specifications</a> are your ultimate resource to learn X3D. You will most likely want to browse <a href="<?php echo x3d_spec_latest_url('../Architecture'); ?>">X3D Architecture and base components specification</a>, which describes the available X3D <i>nodes</i>. The nodes are grouped into <i>components</i>.</p>
 
     <!--
     The older versions were called VRML (VRML 1.0, then VRML 2.0 also
