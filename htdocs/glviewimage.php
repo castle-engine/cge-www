@@ -5,7 +5,7 @@ require_once 'castle_engine_functions.php';
 castle_header("glViewImage", array(
   'social_share_image' => 'glviewimage_welcome.png',
   'path' => array('all_programs'),
-  'meta_description' => 'Image viewer using Castle Game Engine. Handles various image formats - common ones (PNG, JPEG, BMP, PPM) and some exotic (DDS, RGBE). Includes some specialized editing functions - to scale, to perform alpha bleeding (fix alpha on textures with transparency)',
+  'meta_description' => 'Image viewer using Castle Game Engine. Handles various image formats - common ones (PNG, JPEG, BMP, PPM) and some exotic (KTX, DDS, RGBE). Includes some specialized editing functions - to scale, to perform alpha bleeding (fix alpha on textures with transparency)',
 ));
 
 $toc = new TableOfContents(
@@ -51,14 +51,14 @@ the power of image handling inside our <?php echo a_href_page(
 'Castle Game Engine', 'index'); ?>. It became quite useful utility on it's own, with the following features:
 
 <ul>
-  <li><b>Load and save many image formats</b>, including some "exotic" ones: <b>DDS, RGBE</b>.
+  <li><b>Load and save many image formats</b>, including some "exotic" ones: <b>KTX, DDS, RGBE</b>.
   <li>Easily <b>scale and move</b> around the image (use keys or mouse dragging and mouse wheel).
   <li><b>Browse</b> all the images within a single directory (use keys <code>N</code>, <code>P</code> for next, previous).
   <li>Test how image looks when <b>tiled</b> (to test is it good for a texture or desktop wallpaper).
   <li>See how <b>alpha channel</b> of the image looks (menu <i>View -&gt; Use Image Alpha Channel</i>, <i>View -&gt; Background Color</i>),
   <li>Edit image to <b>mirror, rotate, resize, make grayscale</b> and so on.
   <li>Perform <b>alpha bleeding</b> (fixes the artifacts when scaling textures with transparent parts).
-  <li>You can browse all <b>subimages (like mipmaps, or layers of 3D textures)</b> within a composite image formats (like DDS).
+  <li>You can browse all <b>subimages (like mipmaps, or layers of 3D textures)</b> within a composite image formats (like KTX, DDS).
 </ul>
 
 <p>Many image formats are supported:
@@ -86,6 +86,12 @@ the power of image handling inside our <?php echo a_href_page(
     is also supported. <?php echo a_href_page_hashlink(
     'Details about using DDS format for textures in our engine are here.',
     'x3d_implementation_texturing', 'section_dds'); ?>
+  </li>
+
+  <li><b>KTX</b>: <a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">Khronos
+    Texture format</a>. An alternative to DDS. <?php echo a_href_page_hashlink(
+    'Details about using KTX format for textures in our engine are here.',
+    'x3d_implementation_texturing', 'section_ktx'); ?>
   </li>
 
   <li><b>RGBE</b>: simple HDR (high dynamic range) format.
@@ -194,7 +200,7 @@ It means that if you will load RGBE image to glViewImage and then
 you will save it (even to the RGBE format again)
 then you loose RGBE precision (and clamp color values above 1.0).
 
-<p>Also, S3TC compressed images (from DDS files) will be always decompressed,
+<p>Also, S3TC compressed images (from KTX, DDS files) will be always decompressed,
 and saving them back will always make uncompressed files.
 
 <?php echo $toc->html_section(); ?>

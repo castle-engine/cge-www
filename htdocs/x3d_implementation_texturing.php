@@ -16,6 +16,7 @@
       new TocItem('Supported image file formats', 'support_formats'),
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
       new TocItem('DDS (DirectDraw Surface) support details', 'dds'),
+      new TocItem('KTX (Khronos Texture) support details', 'ktx'),
     ));
 ?>
 
@@ -40,7 +41,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <?php echo x3d_node_link('PixelTexture'); ?></p>
 
     <p><i>Note</i>: ImageTexture allows various texture formats,
-    including JPEG, PNG, GIF, BMP, PPM, RGBE.
+    including JPEG, PNG, GIF, BMP, PPM, RGBE, DDS, KTX.
     See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
     documentation for more detailed list.
 
@@ -256,6 +257,20 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
 </ol>
 
 <p>If DDS file includes mipmaps, and mipmaps are required for texture minification filter, we will use DDS mipmaps (instead of generating mipmaps automatically). Works for all 2D, 3D, cubemap DDS files.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Since <i>Castle Game Engine 6.3</i> we support
+<a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">Khronos KTX</a> format,
+which is in many ways an alternative to DDS.
+KTX offers similar features as DDS, with more OpenGL-friendly specification
+(which is good for us, as DDS is rather Direct3D-friendly).
+
+<p>However, for now, we don't support all the KTX options.
+We only read a single 2D or 3D image from the KTX (so no mipmaps, no cubemaps).
+And we don't yet read GPU-compressed data from KTX.
+This will most probably change <i>fast</i>, as Michalis really likes KTX much more than DDS :)
+So don't hesitate to submit bugreports with sample KTX files that you would like to see supported.
 
 <?php
   x3d_status_footer();
