@@ -103,7 +103,8 @@ $toc = new TableOfContents(
   <li><p>Reading and writing of <b>images</b> in various formats, processing them
     and using as OpenGL textures. Besides many common image formats
     (<b>PNG, JPG, PPM, BMP, and much more</b>), included is also support for
-    <b>DDS</b> (textures with compression, mipmaps, 3d, cube maps) and
+    <b>Khronos KTX</b> and <b>DDS</b> (textures
+    with compression, mipmaps, 3d, cube maps) and
     RGBE format (Radiance HDR format).
     See:
     <ul>
