@@ -15,8 +15,8 @@
       new TocItem('Supported nodes', 'support'),
       new TocItem('Supported image file formats', 'support_formats'),
       new TocItem('Clarifications to X3D multi-texturing specification', 'multi_texturing'),
-      new TocItem('DDS (DirectDraw Surface) support details', 'dds'),
-      new TocItem('KTX (Khronos Texture) support details', 'ktx'),
+      new TocItem('DDS (Texture format) support details', 'dds'),
+      new TocItem('KTX (Khronos Texture format) support details', 'ktx'),
     ));
 ?>
 
@@ -41,7 +41,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <?php echo x3d_node_link('PixelTexture'); ?></p>
 
     <p><i>Note</i>: ImageTexture allows various texture formats,
-    including JPEG, PNG, GIF, BMP, PPM, RGBE, DDS, KTX.
+    including JPEG, PNG, GIF, BMP, PPM, RGBE, KTX, DDS.
     See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
     documentation for more detailed list.
 
@@ -173,7 +173,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 &lt;TextureProperties
   anisotropicDegree="4"
   magnificationFilter="DEFAULT"
-  minificationFilter="DEFAULT" //&gt;
+  minificationFilter="DEFAULT" /&gt;
 </pre>
 
     <p>The <code>"DEFAULT"</code> above means to use the browser-specific texture
@@ -188,8 +188,10 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <p>See <?php echo a_href_page("glViewImage", "glviewimage") ?> features
 for the full list of 2D image formats we can handle.
-See <a href="#section_dds">lower on this page for details about DDS format
-support</a>.</p>
+
+<p>See also lower on this page for details about
+<a href="#section_dds">DDS format
+support</a> and <a href="#section_ktx">KTX format support</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -246,6 +248,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
     DXT3 / DXT5 are always treated like a texture with full range
     alpha channel (so they will be rendered with blending).</p>
 
+    <p>Texture compression formats commonly used on mobile platforms are supported
+    as well: ATITC, PVRTC, ETC1.
+
     <p>Both normal (2D) textures and cube maps may be compressed. (There is no compression possible for 3D textures &mdash; neither DDS format allows it, nor do common graphic cards.)</p></li>
 
   <li><p>Reading float textures from DDS is for now not supported.
@@ -260,17 +265,39 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
 
 <?php echo $toc->html_section(); ?>
 
-<p>Since <i>Castle Game Engine 6.3</i> we support
-<a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">Khronos KTX</a> format,
-which is in many ways an alternative to DDS.
-KTX offers similar features as DDS, with more OpenGL-friendly specification
-(which is good for us, as DDS is rather Direct3D-friendly).
+<p>Since <i>Castle Game Engine 6.3</i> we support <a href="https://www.khronos.org/opengles/sdk/tools/KTX/">Khronos KTX texture format</a>. KTX is in many ways an alternative to DDS, with a clean specification, supporting the same features (GPU compression, 2D and 3D textures...). The <a href="https://www.khronos.org/opengles/sdk/tools/KTX/">KTX Khronos page</a> has links to various tools that can create KTX files, and to the <a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">KTX specification</a>.
 
-<p>However, for now, we don't support all the KTX options.
-We only read a single 2D or 3D image from the KTX (so no mipmaps, no cubemaps).
-And we don't yet read GPU-compressed data from KTX.
-This will most probably change <i>fast</i>, as Michalis really likes KTX much more than DDS :)
-So don't hesitate to submit bugreports with sample KTX files that you would like to see supported.
+<p>The features of KTX that we support:
+
+<ul>
+  <li><p><b>1D, 2D and 3D images (textures)</b>.
+
+  <li><p><b>Various uncompressed texture formats</b>.
+    RGB + alpha, RGB, luminance, luminance + alpha, luminance 16-bit, luminance float32 texture...
+    RGB can be swapped as BGR (it doesn't matter for performance in practice, either way).
+
+    <p>More uncompressed formats can be trivially added, just submit a bugreport with a sample KTX file.
+
+  <li><p><b>Texture arrays</b>. Programmers: iterate over <?php api_link('TCompositeImage.Images', 'CastleCompositeImage.TCompositeImage.html#Images'); ?> to access all the items of the array.
+
+  <li><p><b>Configurable orientation</b>. KTX data may be specified in <i>top-to-bottom</i> or <i>bottom-to-top</i> order. For 3D images, the slices can additionally be in <i>front-to-back</i> or <i>back-to-front</i> order. This is specified by a special <code>KTXorientation</code> field inside the KTX file (see the KTX specification for details) and we support it fully.
+
+  <li><p><b>GPU-compressed data</b>, like
+    <ul>
+      <li>S3TC (DXT* formats, often available on desktops),
+      <li>ATITC (ATI compression, available on some mobile devices),
+      <li>PVRTC (PowerVR compression, available on some mobile devices),
+      <li>ETC1 (Ericsson compression, ofen available on mobile devices, but without alpha support).
+      <li>More compresssed formats can be trivially added, just submit a bugreport with a sample KTX file.
+    </ul>
+</ul>
+
+<p>We don't support (yet &mdash; to change this, submit bugreports with sample KTX files):
+
+<ul>
+  <li>mipmaps,
+  <li>cubemaps.
+</ul>
 
 <?php
   x3d_status_footer();

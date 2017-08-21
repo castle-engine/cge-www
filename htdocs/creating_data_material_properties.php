@@ -133,7 +133,9 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     <p>This process underneath may call various external tools:
 
     <ul>
-      <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/">PVRTexToolCLI</a>
+      <li><p><a href="https://developer.nvidia.com/gpu-accelerated-texture-compression"><code>nvcompress</code> from NVidia Texture Tools</a>. Cross-platform (Windows, Linux...), free and open source. On Debian and derivatives (like Ubuntu) install them simply by <code>sudo apt-get install libnvtt-bin</code>.
+
+      <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
 
       <li><p><a href="http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/">ATI Compressonator</a></p>
 
@@ -144,7 +146,7 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
       </li>
 
       <li><p>Not used for now:
-        <a href="http://developer.amd.com/tools-and-sdks/graphics-development/amdcompress/">AMDCompressCLI</a>
+        <a href="http://gpuopen.com/gaming-product/compressonator/"><code>AMDCompressCLI</code> from AMD Compress</a>
 
         <p>We have it implemented, but it's broken unfortunately,
         so it's disabled by default.
@@ -153,7 +155,14 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
         troublesome than running ATI Compressonator...
         Please send complaints to AMD, maybe one day they'll release
         a tool that can correctly compress to ATITC*, from command-line,
-        cross-platform.
+        and is cross-platform.
+
+        <p>Update on 2017-08: Possibly things are better now:
+        <a href="http://gpuopen.com/compressonator-is-going-open-source/">AMD Compress</a> is now open-source. It is <a href="https://github.com/GPUOpen-Tools/Compressonator">available on GitHub</a>.
+        See <a href="http://gpuopen.com/gaming-product/compressonator/">new AMD Compress page</a>.
+
+        <p>It is still Windows-only, but possibly it's working better now.
+        TODO: someone needs to check the latest version of AMD Compress.
 
         <!--
 
