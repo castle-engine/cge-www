@@ -251,6 +251,10 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
     <p>But this waits for the possibility from FPC to recompile to web (that is, JS or WebAsembly, probably through LLVM). Then our engine will jump on to the web platform. (Unlike the <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">current web plugin</a>, which is soon deprecated by all browsers, unfortunately.)
 
+  <li><p><b>glTF format support</b>
+
+    <p>It is an excellent 3D format from Khronos, that can be read and rendered efficiently. There are existing exporters to glTF from Blender and other software available.
+
   <li>
     <p><b>Scripting in JavaScript</b></p>
     <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
