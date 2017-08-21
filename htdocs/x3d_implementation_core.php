@@ -48,6 +48,23 @@ UNIT length km 1000
     </ul>
 
     <p>Length conversion is also possible. This is less useful IMHO &mdash; you can as well just wrap your model in a Transform with some scale. Actually, that's exactly our implementation of "UNIT length" for now &mdash; we simply add appropriate scale (calculated looking at length unit of inlined model (inner), and looking at length unit of inlining model (outer)).
+
+  <li><p>We support "metadata" nodes for passing additional, custom data
+    in the X3D graph.
+
+    <ul>
+      <li><?php echo x3d_node_link('MetadataBoolean'); ?>,
+      <li><?php echo x3d_node_link('MetadataDouble'); ?>,
+      <li><?php echo x3d_node_link('MetadataFloat'); ?>,
+      <li><?php echo x3d_node_link('MetadataInteger'); ?>,
+      <li><?php echo x3d_node_link('MetadataSet'); ?>,
+      <li><?php echo x3d_node_link('MetadataString'); ?>
+    </ul>
+
+    <p>Our engine does not do anything with this data.
+    You can use these nodes in your own applications to "carry"
+    some information between the software that generates your X3D files
+    to your final application.
   </li>
 
 </ul>
