@@ -87,11 +87,17 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <ul>
   <li><p><b>Physics</b></p>
 
-    <p>Integrate our engine with a physics engine.
+    <p>Integrate our engine with a physics engine. Which one?
 
     <ul>
-      <li><p>Most preferably <a href="http://bulletphysics.org/">Bullet</a>, although this will require proper translation of Bullet API to C and then to FPC (as Buller is in C++, it's not readily usable from anything other than C++). <i>Johny Ray Worrall</i> has started working on a physics abstraction layer in Pascal, that will allow us to use Bullet as well as other libraries underneath, I plan to use it :)
+      <li><p><a href="http://bulletphysics.org/">Bullet</a>?
+
+        <p>It is quite full-featured, e.g. there's soft body, not only rigid body.
+
+        <p>Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see <a href="https://code.google.com/archive/p/bullet/issues/43">this old Google Code issue</a> and <a href="https://github.com/bulletphysics/bullet3/issues/130">this GitHub issue</a>, but it's rather minimalistic (only rigid body), although it may be a good start.
+
       <li><p>There is a popular <a href="http://www.ode.org/">ODE</a> (much simpler C API, <a href="http://disq.us/url?url=http%3A%2F%2Fwww.bvbcode.com%2Fcn%2Fpwd19hez-1586203%3Ak7d0d8FVtll17Vc0PB1IGOdmFm8&cuid=3390112">old Pascal header here</a>).
+
       <li><p>There is a <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a>, a cool physics engine entirely implemented in Object Pascal, supporting all the platforms and compilers that matter to us.</p></li>
     </ul>
 
