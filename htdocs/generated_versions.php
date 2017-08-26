@@ -5,7 +5,7 @@
   define('VERSION_KAMBI_LINES', '1.1.7');
   define('VERSION_VIEW3DSCENE', '3.17.0');
   define('VERSION_RAYHUNTER', '1.3.4');
-  define('VERSION_GLVIEWIMAGE', '1.6.0');
+  define('VERSION_GLVIEWIMAGE', '1.7.0');
   define('VERSION_GLPLOTTER', '1.2.5');
   define('VERSION_GLINFORMATION', '1.2.2');
   define('VERSION_GEN_FUNCTION', '1.0.5');
