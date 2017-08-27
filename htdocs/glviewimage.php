@@ -37,7 +37,13 @@ a very limited image editor.</p>
 
 <?php
 echo_standard_program_download(
-  'glViewImage', 'glviewimage', VERSION_GLVIEWIMAGE, true
+  'glViewImage', 'glviewimage', VERSION_GLVIEWIMAGE, true,
+  array(
+    'win-i386',
+    'linux-i386',
+    'linux-x86_64'
+    // TODO: macosx version of glViewImage 1.7.0 not ready
+  )
 );
 ?>
 
