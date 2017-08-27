@@ -140,15 +140,19 @@ notes near some programs below.
       sf_download('Sources of '.$title,
         $internal_name . '-' . $version . '-src.tar.gz');
 
-    if ($engine_ver == VERSION_CASTLE_GAME_ENGINE)
-    {
+    if ($engine_ver == VERSION_CASTLE_GAME_ENGINE) {
       echo '. These tar.gz sources are compatible with the latest ';
       older_engine_version($engine_ver);
       echo '.';
     } else
-    {
+    if ($engine_ver != '') {
       echo '. These tar.gz sources were tested with the ';
       older_engine_version($engine_ver);
+    } else
+    if ($engine_ver == 'github') {
+      echo '. These tar.gz sources were tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a> (TODO: as soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
+    } else {
+      throw new Exception('Invalid engine_ver');
     }
 
     ?>
@@ -176,7 +180,7 @@ notes near some programs below.
   }
 
   echo_src_archive('view3dscene', 'view3dscene', '6.2');
-  echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', '6.0');
+  echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', 'github');
   echo_src_archive('castle', 'castle-game', '4.1.1');
   echo_src_archive('rayhunter', 'rayhunter', '4.0.1');
   //echo_src_archive('lets_take_a_walk', '3.0.0');
