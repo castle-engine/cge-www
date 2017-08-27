@@ -292,12 +292,14 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
     </ul>
 </ul>
 
-<p>We don't support (yet &mdash; to change this, submit bugreports with sample KTX files):
+<p>We don't support (yet):
 
 <ul>
   <li>mipmaps,
   <li>cubemaps.
 </ul>
+
+<p>Both of these features are quite trivial to implement now, so please ask if you need them :)
 
 <?php
   x3d_status_footer();
