@@ -145,13 +145,14 @@ notes near some programs below.
       older_engine_version($engine_ver);
       echo '.';
     } else
+    if ($engine_ver == 'github') {
+      echo '. These tar.gz sources were tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a> (TODO: as soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
+    } else
     if ($engine_ver != '') {
       echo '. These tar.gz sources were tested with the ';
       older_engine_version($engine_ver);
     } else
-    if ($engine_ver == 'github') {
-      echo '. These tar.gz sources were tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a> (TODO: as soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
-    } else {
+    {
       throw new Exception('Invalid engine_ver');
     }
 
