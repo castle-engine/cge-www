@@ -54,21 +54,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     -->
   </li>
 
-  <li><p><b>Basic visual designing of the castle components</b>
-
-    <p>During the 6.4.0 development, I plan to <i>start</i>
-    visual editing of engine 3D and 2D things within Lazarus and Delphi.
-    This "start" means:
-    1. designing the scenes and transformations
-    under <code>SceneManager.Items</code> and 2. designing the 2D controls under
-    <code>TCastleControl.Controls</code>.
-    <!-- You can read more about my plans for "visual designing" below, -->
-    <!-- for this release I really only want to <i>start</i> it. -->
-
-    <p>This will be for both Lazarus and Delphi, of course.
-    In general, everything I do from now on will be for both Lazarus and Delphi,
-    I want to treat them both as "first-class" support.
-
   <li><p><b>API improvements</b>. I plan to attempt
     some long-planned API upgrades. These include:
 
@@ -113,7 +98,13 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   </li>
 
-  <li><p><b>Full visual designing of the castle components</b>
+  <li><p><b>Visual designing of the castle components</b>
+
+    <p>Editing of engine 3D and 2D things within Lazarus and Delphi.
+    For a "start":
+    1. designing the scenes and transformations
+    under <code>SceneManager.Items</code> and 2. designing the 2D controls under
+    <code>TCastleControl.Controls</code>.
 
     <p>Inside a Lazarus form. Like <i>GLScene</i> and <i>FireMonkey 3d</i>.
 
