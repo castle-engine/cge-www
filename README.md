@@ -137,7 +137,15 @@ Announcing release
 
 - x3d-public mailing list
 
-- if new VRML extensions: remember to post to Joerg about them
+- if new VRML/X3D extensions implemented:
+  remember to post to Joerg (White Dune) about them
+
+- if new VRML/X3D nodes supported:
+  - remember to post to Don Brutzman about them,
+    to update "node inventory spreadsheet"
+      http://www.web3d.org/specifications/X3dNodeInventoryComparison.xlsx
+      http://www.web3d.org/specifications/X3dNodeInventoryComparison.pdf
+  - update http://www.web3d.org/wiki/index.php/Player_support_for_X3D_components
 
 - http://www.lazarus.freepascal.org/
   Examples on:
