@@ -43,6 +43,8 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         Especially since, personally, I usually work on Linux with FPC + Lazarus these days:)
     </ul>
 
+    <p><a href="https://castle-engine.sourceforge.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
+
     <!--
     <p>Michalis is still an open-source fanatic,
     and most of the engine development happens on Linux, so don't worry
@@ -60,10 +62,26 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <ul>
       <li><p>Ultra-flexible <code>TCastleTransform</code> class
         instead of most current <code>T3D*</code> classes.
-        Also an ancestor of <code>TCastleScene</code>.
+        The unit <code>Castle3D</code> will be replaced by a new unit
+        <code>CastleTransform</code> with the <code>TCastleTransform</code> class,
+        that will perform the tasks of current <code>T3D</code>,
+        <code>T3DCustomTransform</code>,
+        <code>T3DTransform</code>,
+        <code>T3DOrient</code> classes.
+        So it's more flexible, and has a name that does not (falsely) suggest
+        it's only for 3D games.
 
-      <li><p>Possibly: vector API improvements, using <code>TVector3</code>
+
+        <p>Also <code>TCastleTransform</code> will be an ancestor
+        of <code>TCastleScene</code>.
+        So you will be able to change <code>Translation</code>,
+        <code>Rotation</code> etc. of a
+        <code>TCastleScene</code> directly, without the need to "wrap"
+        it inside <code>TCastleTransform</code> container.
+
+      <li><p>Vector API improvements, using <code>TVector3</code>
         as an advanced record, instead of current <code>TVector3Single</code>.
+        <a href="https://castle-engine.sourceforge.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/">This is already done, see here.</a>
     </ul>
 </ul>
 
