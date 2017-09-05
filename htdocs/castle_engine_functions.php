@@ -1330,10 +1330,13 @@ function pascal_highlight_file($file_name)
   return $geshi->parse_code();
 }
 
-function x3d_spec_latest_url($component_name)
+function x3d_spec_latest_url($component_name, $anchor = '')
 {
+  if ($anchor != '') {
+    $anchor = '#' . $anchor;
+  }
   return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .
-    $component_name . '.html';
+    $component_name . '.html' . $anchor;
 }
 
 function vrmlx3d_highlight($source)
