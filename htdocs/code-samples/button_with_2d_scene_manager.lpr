@@ -43,7 +43,7 @@ begin
   SceneManager.ProjectionAutoSize := false;
   SceneManager.ProjectionWidth := 3000;
   SceneManager.ProjectionOriginCenter := true;
-  (SceneManager.RequiredCamera as TUniversalCamera).SetView(
+  SceneManager.RequiredCamera.SetView(
     Vector3Single(0, 500, T2DSceneManager.DefaultCameraZ),
     Vector3Single(0, 0, -1),
     Vector3Single(0, 1, 0));

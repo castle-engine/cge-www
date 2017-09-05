@@ -32,8 +32,11 @@ begin
   SceneManager.Height := 748;
   SceneManager.Items.Add(Scene);
   SceneManager.MainScene := Scene;
-  (SceneManager.RequiredCamera as TUniversalCamera).NavigationType := ntWalk;
-  (SceneManager.RequiredCamera as TUniversalCamera).Walk.MoveSpeed := 10;
+  SceneManager.NavigationType := ntWalk;
+  SceneManager.WalkCamera.MoveSpeed := 10;
+  // In Castle Game Engine <= 6.2 the above 2 lines should be written as:
+  // (SceneManager.RequiredCamera as TUniversalCamera).NavigationType := ntWalk;
+  // (SceneManager.RequiredCamera as TUniversalCamera).Walk.MoveSpeed := 10;
   Window.Controls.InsertFront(SceneManager);
 
   { otherwise, inputs are only passed
@@ -57,11 +60,17 @@ begin
   Viewport.Height := 236;
   Viewport.SceneManager := SceneManager;
   Viewport.Transparent := true;
-  (Viewport.RequiredCamera as TUniversalCamera).NavigationType := ntNone;
-  (Viewport.RequiredCamera as TUniversalCamera).SetView(
+  Viewport.NavigationType := ntNone;
+  Viewport.RequiredCamera.SetView(
     Vector3Single(5, 92.00, 0.99),
     Vector3Single(0, -1, 0),
     Vector3Single(0, 0, 1));
+  // In Castle Game Engine <= 6.2 the above 2 lines should be written as:
+  // (Viewport.RequiredCamera as TUniversalCamera).NavigationType := ntNone;
+  // (Viewport.RequiredCamera as TUniversalCamera).SetView(
+  //   Vector3Single(5, 92.00, 0.99),
+  //   Vector3Single(0, -1, 0),
+  //   Vector3Single(0, 0, 1));
   ViewportRect.InsertFront(Viewport);
 
   Window.OpenAndRun;

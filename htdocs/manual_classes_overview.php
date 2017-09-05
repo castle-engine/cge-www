@@ -96,22 +96,18 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <ul>
           <li><?php api_link('TWalkCamera', 'CastleCameras.TWalkCamera.html'); ?>
           <li><?php api_link('TExamineCamera', 'CastleCameras.TExamineCamera.html'); ?>
-          <li><?php api_link('TUniversalCamera', 'CastleCameras.TUniversalCamera.html'); ?>
-            This refers to
-            <ul>
-              <li><?php api_link('TUniversalCamera.Walk refers to TWalkCamera', 'CastleCameras.TWalkCamera.html'); ?>
-              <li><?php api_link('TUniversalCamera.Examine refers to TExamineCamera', 'CastleCameras.TExamineCamera.html'); ?>
-            </ul>
         </ul>
 
         <p><i>How to use</i>: you can create camera instance (or drop on form),
         and then assign to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> (or <?php api_link('TCastleViewport.Camera', 'CastleSceneManager.TCastleViewport.html#Camera'); ?>).
-        You can also do nothing, and let the automatic creation of camera
-        happen at the nearest rendering or at <code>RequiredCamera</code> call.
-        It will create a camera using
-        <?php api_link('TCastleSceneManager.CreateDefaultCamera', 'CastleSceneManager.TCastleSceneManager.html#CreateDefaultCamera'); ?>
-        and assign it to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>
-        property.
+        You can just let the automatic creation of camera happen,
+        during the nearest rendering or at
+         <?php api_link('SceneManager.RequiredCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
+         <?php api_link('SceneManager.WalkCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
+         <?php api_link('SceneManager.ExamineCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?> call.
       </dd>
     </dl>
 

@@ -150,12 +150,17 @@ In fact, I used <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
 You can assign a specific camera descendant to
 <?php api_link('SceneManager.Camera',
 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
-By default, it is
-<?php api_link('TUniversalCamera',
-'CastleCameras.TUniversalCamera.html'); ?>, which by default is in the "Examine"
-mode, but you can change it by setting
-<?php api_link('(SceneManager.Camera as TUniversalCamera).NavigationType',
-'CastleCameras.TUniversalCamera.html#NavigationType'); ?>.
+If you don't, the camera instance is automatically created when you use
+ <?php api_link('SceneManager.RequiredCamera',
+'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
+ <?php api_link('SceneManager.WalkCamera',
+'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
+ <?php api_link('SceneManager.ExamineCamera',
+'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
+ or anything that underneath requires a camera (e.g. rendering requires a camera).
+You can change the navigation type by setting
+<?php api_link('SceneManager.NavigationType',
+'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
 You can change the <?php api_link('SceneManager.Camera.Input',
 'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
 key and mouse operations.
