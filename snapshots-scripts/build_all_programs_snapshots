@@ -22,6 +22,15 @@ mkdir -p "$OUTPUT_PATH"
 # also some "cd" commands may use it.
 export CASTLE_ENGINE_PATH=`pwd`/
 
+# Do this first, for cleanup to work,
+# this assumes we have castle-engine from previous compilation.
+do_setup_bin ()
+{
+  CASTLE_BIN_PATH="${CASTLE_ENGINE_PATH}"snapshots-bin/
+  mkdir -p "${CASTLE_BIN_PATH}"
+  export PATH="${PATH}":"${CASTLE_BIN_PATH}"
+}
+
 # ----------------------------------------------------------------------------
 
 do_clean ()
@@ -39,10 +48,6 @@ do_compile_tool ()
 {
   echo '---------------------------------------------------------------'
   echo 'Compiling tools'
-
-  CASTLE_BIN_PATH="${CASTLE_ENGINE_PATH}"snapshots-bin/
-  mkdir -p "${CASTLE_BIN_PATH}"
-  export PATH="${PATH}":"${CASTLE_BIN_PATH}"
 
   cd "${CASTLE_ENGINE_PATH}"castle_game_engine/tools/build-tool/
   ./castle-engine_compile.sh
@@ -133,6 +138,7 @@ do_compile_snapshot_programs ()
 # main code ------------------------------------------------------------------
 
 . /usr/local/fpclazarus/bin/setup.sh default
+do_setup_bin
 do_clean
 do_compile_tool
 do_clean
