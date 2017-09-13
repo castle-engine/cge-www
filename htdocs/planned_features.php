@@ -88,34 +88,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <h2>Future plans</h2>
 
 <ul>
-  <li><p><b>Physics</b></p>
-
-    <p>Integrate our engine with a physics engine. Which one?
-
-    <ul>
-      <li><p><a href="http://bulletphysics.org/">Bullet</a>?
-
-        <p>It is quite full-featured, e.g. there's soft body, not only rigid body.
-
-        <p>Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see <a href="https://code.google.com/archive/p/bullet/issues/43">this old Google Code issue</a> and <a href="https://github.com/bulletphysics/bullet3/issues/130">this GitHub issue</a>, but it's rather minimalistic (only rigid body), although it may be a good start.
-
-      <li><p>There is a popular <a href="http://www.ode.org/">ODE</a> (much simpler C API, <a href="http://disq.us/url?url=http%3A%2F%2Fwww.bvbcode.com%2Fcn%2Fpwd19hez-1586203%3Ak7d0d8FVtll17Vc0PB1IGOdmFm8&cuid=3390112">old Pascal header here</a>).
-
-      <li><p>There is a <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a>, a cool physics engine entirely implemented in Object Pascal, supporting all the platforms and compilers that matter to us.</p></li>
-    </ul>
-
-    <p>Implementing this feature will most likely be split into a couple of small releases:</p>
-
-    <ol>
-      <li><p>Basic integration with a physics engine, to add collisions and rigid body physics at the TCastleScene level (whole scene as a single rigid body). So e.g. player could collide with a whole scene using a physics engine, without our custom octrees. Gravity could work using physics engine.
-      <li><p>Allow using rigid body physics X3D component. This means that a single rigid body may be a shape, or group of shapes, in X3D. So a scene becomes a (possibly interconnected) set of many rigid bodies.
-      <li><p>Allow using it easily on scenes that were not designed with X3D rigid bodies nodes. Maybe by implementing helpers to easily setup the X3D rigid bodies nodes.
-      <li><p>Add to Blender exporter ability to mark rigid body stuff in X3D.
-      <li><p>Soft body, liquids, other special features.
-    </ol>
-
-  </li>
-
   <li><p><b>Visual designing of the castle components</b>
 
     <p>Editing of engine 3D and 2D things within Lazarus and Delphi.
@@ -139,6 +111,10 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
       <li><p>Design X3D nodes hierarchy (inside the TCastleScene) visually,
         which means you can edit shapes, materials, textures...
     </ol>
+
+  <li><p><b>Physics</b></p>
+    <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
+  </li>
 
   <li><p><b>view3dscene as an Android application</b>
 

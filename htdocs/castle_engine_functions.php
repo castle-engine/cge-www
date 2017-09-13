@@ -222,6 +222,7 @@ $castle_sitemap = array(
               //'manual_web_plugin' => array('title' => 'Web Plugin (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Web-Plugin'),
             ),
           ),
+          'manual_physics' => array('title' => 'Physics'),
           'manual_sound' => array('title' => 'Sound'),
           'manual_screenshots' => array('title' => 'Screenshots'),
           'manual_network' => array('title' => 'Network and downloading'),
