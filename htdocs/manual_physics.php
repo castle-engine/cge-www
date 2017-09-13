@@ -1,8 +1,8 @@
 <?php
 require_once 'castle_engine_functions.php';
 
-// TODO: this needs to refer to 6.3 docs
-define('CASTLE_REFERENCE_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
+global $castle_apidoc_url;
+$castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/';
 
 manual_header('Physics');
 ?>

@@ -145,7 +145,8 @@ add_shortcode('cge','cge_shortcode');
 
 function cgeapi_shortcode()
 {
-  return CASTLE_REFERENCE_URL;
+  global $castle_apidoc_url;
+  return $castle_apidoc_url;
 }
 add_shortcode('cgeapi','cgeapi_shortcode');
 

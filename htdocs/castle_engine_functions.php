@@ -50,10 +50,11 @@ if (CASTLE_PREVIEW) {
 /* The final (not testing, offline, or preview) website URL. */
 define('CASTLE_FINAL_URL', 'https://castle-engine.sourceforge.io/');
 define('KAMBI_NO_HOME_LINK', true);
+global $castle_apidoc_url;
 if (CASTLE_OFFLINE) {
-  define('CASTLE_REFERENCE_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/');
+  $castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/';
 } else {
-  define('CASTLE_REFERENCE_URL', CURRENT_URL . 'apidoc/html/');
+  $castle_apidoc_url = CURRENT_URL . 'apidoc/html/';
 }
 
 // other constants
@@ -66,7 +67,8 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 
 function reference_link()
 {
-  return CASTLE_REFERENCE_URL . 'index.html';
+  global $castle_apidoc_url;
+  return $castle_apidoc_url . 'index.html';
 }
 
 /* PHP file relative path from current file to "our root"
@@ -1260,7 +1262,8 @@ function depends_ul($depends_array)
 
 function api_link($title, $href, $output = true)
 {
-  $result = '<a href="' . CASTLE_REFERENCE_URL . htmlspecialchars($href) . '">'
+  global $castle_apidoc_url;
+  $result = '<a href="' . $castle_apidoc_url . htmlspecialchars($href) . '">'
     . htmlspecialchars($title) . '</a>';
   if ($output) echo $result;
   return $result;
@@ -1289,9 +1292,10 @@ function xml_highlight($source)
   $source = preg_replace('/\\[\\[(https?:.+)\\]\\]/',
     '<a href="\\1">\\1</a>', $source);
 
-  // replace [[xxx|yyy] with <a href="CASTLE_REFERENCE_URL/xxx">yyy</a>
+  // replace [[xxx|yyy] with <a href="$castle_apidoc_url/xxx">yyy</a>
+  global $castle_apidoc_url;
   $source = preg_replace('/\\[\\[(.+)\\|(.+)\\]\\]/',
-    '<a href="' . CASTLE_REFERENCE_URL . '\\1">\\2</a>', $source);
+    '<a href="' . $castle_apidoc_url . '\\1">\\2</a>', $source);
 
   return $source;
 }
