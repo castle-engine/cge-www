@@ -30,7 +30,7 @@ manual_header('Physics');
     <?php api_link('TPlaneCollider', 'Castle3D.TPlaneCollider.html'); ?>,
     <?php api_link('TBoxCollider', 'Castle3D.TBoxCollider.html'); ?>,
     <?php api_link('TSphereCollider', 'Castle3D.TSphereCollider.html'); ?>,
-    <?php api_link('TMeshCollider', 'CastleSceneCore.TMeshCollider.html'); ?>).
+    <?php api_link('TMeshCollider', 'CastleSceneCore.TMeshCollider.html'); ?>.
   <li><p>Create and configure an instance of <?php api_link('TRigidBody', 'Castle3D.TRigidBody.html'); ?>.
     It should link to the collider from the <?php api_link('TRigidBody.Collider', 'Castle3D.TRigidBody.html#Collider'); ?> property.
   <li><p>Link to your rigid body from the <?php api_link('T3DTransform.RigidBody', 'Castle3D.T3DTransform.html#RigidBody'); ?> property.
