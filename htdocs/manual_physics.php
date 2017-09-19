@@ -7,12 +7,14 @@ $castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/htm
 manual_header('Physics');
 ?>
 
-<iframe width="300" height="168" src="https://www.youtube.com/embed/8k9zX6dPQEU" frameborder="0" allowfullscreen></iframe>
-<iframe width="300" height="168" src="https://www.youtube.com/embed/hIuEGnRm-yM" frameborder="0" allowfullscreen></iframe>
+<p><a href="index.php">Castle Game Engine</a> is integrated with <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a> made by <i>Benjamin 'BeRo' Rosseaux</i>. Read on to learn how to add rigid-body physics to your own games.
 
-<p><a href="index.php">Castle Game Engine</a> is integrated with <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a> made by <i>Benjamin 'BeRo' Rosseaux</i>.
+<div class="thumbnails">
+  <iframe width="300" height="168" src="https://www.youtube.com/embed/8k9zX6dPQEU" frameborder="0" allowfullscreen></iframe>
+  <iframe width="300" height="168" src="https://www.youtube.com/embed/hIuEGnRm-yM" frameborder="0" allowfullscreen></iframe>
+</div>
 
-<p>Note: The feature described below is only available in Castle Game Engine &gt;= 6.3. If you don't want to wait until CGE 6.4 is released, please get the <a href="https://github.com/castle-engine/castle-engine/">CGE version from GitHub</a> to try it <i>now</i>.
+<p>Note: Physics integration is only implemented in Castle Game Engine &gt;= 6.3. For now (until we release the CGE 6.4) you need to use the <a href="https://github.com/castle-engine/castle-engine/">CGE version from GitHub</a> to have this feature.
 
 <h2>Usage</h2>
 
