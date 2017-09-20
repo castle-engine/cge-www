@@ -36,7 +36,7 @@ castle_header('Download', array(
                     <li>Build and edit your scene graph (X3D) at runtime.
                       <!--Load and save images and X3D graph as needed.-->
                       Create processing and visualization tools!
-                    <li>Many optional components, like a comfortable API for 3D games with creatures (with ready AI).
+                    <li>Extensible system for game objects, with physics, creatures with AI and navmesh, and more.
                 </ul>
             </div>
         </div>

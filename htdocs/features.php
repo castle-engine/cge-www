@@ -298,7 +298,14 @@ $toc = new TableOfContents(
 
   <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> which is very cool for creating 2D animations.
 
-  <li>Octrees are used for various <b>collision detection</b> tasks.
+  <li><p><b>Rigid body physics</b>. We are integrated with a powerful <i>Kraft Physics Engine</i> and you can <a href="manual_physics.php">easily use dynamic physics in your games</a>.
+
+    <div class="thumbnails">
+      <iframe width="300" height="168" src="https://www.youtube.com/embed/8k9zX6dPQEU" frameborder="0" allowfullscreen></iframe>
+      <iframe width="300" height="168" src="https://www.youtube.com/embed/hIuEGnRm-yM" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+  <li><p>Octrees are used for various <b>collision detection</b> tasks.
     For dynamic scenes, a hierarchy of octrees is used, allowing accurate
     and fast collision detection even when the scene constantly changes.
     There are many ways to use collision detection,
