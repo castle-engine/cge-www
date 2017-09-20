@@ -27,14 +27,14 @@ manual_header('Physics');
     <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
     this is described <a href="manual_scene.php">in the manual chapter about transforming scene</a>.
+  <li><p>Create and configure an instance of <?php api_link('TRigidBody', 'Castle3D.TRigidBody.html'); ?>.
   <li><p>Create and configure an instance of some <?php api_link('TCollider', 'Castle3D.TCollider.html'); ?> descendant,
     like
     <?php api_link('TPlaneCollider', 'Castle3D.TPlaneCollider.html'); ?>,
     <?php api_link('TBoxCollider', 'Castle3D.TBoxCollider.html'); ?>,
     <?php api_link('TSphereCollider', 'Castle3D.TSphereCollider.html'); ?>,
     <?php api_link('TMeshCollider', 'CastleSceneCore.TMeshCollider.html'); ?>.
-  <li><p>Create and configure an instance of <?php api_link('TRigidBody', 'Castle3D.TRigidBody.html'); ?>.
-    It should link to the collider from the <?php api_link('TRigidBody.Collider', 'Castle3D.TRigidBody.html#Collider'); ?> property.
+    It will be connected to the parent rigid body at construction (the <?php api_link('TRigidBody.Collider', 'Castle3D.TRigidBody.html#Collider'); ?> property will be automatically set when creating the collider).
   <li><p>Link to your rigid body from the <?php api_link('T3DTransform.RigidBody', 'Castle3D.T3DTransform.html#RigidBody'); ?> property.
 </ol>
 
@@ -66,13 +66,12 @@ begin
 
   // Create TCollider (a TBoxCollider, to be more precise, in this case).
   // Note that TBoxCollider assumes that box is centered around (0,0,0) for now
-  Collider := TBoxCollider.Create(Application);
+  Collider := TBoxCollider.Create(RigidBody);
   Collider.Size := Scene.BoundingBox.Size;
   // Collider.Restitution := 0.3;
   // Collider.Density := 100.0;
 
-  // Connect rigid body and collider
-  RigidBody.Collider := Collider;
+  // Connect rigid body
   Transform.RigidBody := RigidBody;
 
   // Add Transform to the scene manager, to make it part of visible 3D world
