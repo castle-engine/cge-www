@@ -122,9 +122,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>glTF is a cool format for 3D models by Khronos. See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
 
-    <p>It supports meshes, advanced materials, animations. The file format is a readable JSON, but additional binary files are used to transfer coordinates, so it's fast to load from disk straight to GPU.
+    <p>It supports meshes, advanced materials, animations. The file format is a readable JSON, but additional binary files are used to transfer coordinates, so it's fast to load from disk straight to GPU. It's also a Khronos format, so it's developed by people who really know what they are doing (the same people develop OpenGL[ES] and WebGL, Vulkan, KTX, Collada ...).
 
-    <p>It's also a Khronos format, which means that it's done by people who really know what they are doing (the same people develop OpenGL[ES] and WebGL, Vulkan, KTX, Collada ...). Because of this, it may become a widely supported 3D format across many 3D software, so we want to support it too &mdash; as a first-class citizen, reading all the features (including animations), and preserving the Efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
+    <p>Because of this, it may (or already is?) become a widely supported 3D format across a range 3D software. So we want to have really good support for it &mdash; reading all the features (including animations), and preserving the efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
 
   <li><p><b>Terrain designer</b>
 
