@@ -124,7 +124,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>It supports meshes, advanced materials, animations. The file format is a readable JSON, but additional binary files are used to transfer coordinates, so it's fast to load from disk straight to GPU. It's also a Khronos format, so it's developed by people who really know what they are doing (the same people develop OpenGL[ES] and WebGL, Vulkan, KTX, Collada ...).
 
-    <p>Because of this, it may (or already is?) become a widely supported 3D format across a range 3D software. So we want to have really good support for it &mdash; reading all the features (including animations), and preserving the efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
+    <p>Because of this, it may (or already is?) become a widely supported 3D format across a range of 3D software. So we want to have really good support for it &mdash; reading all the features (including animations), and preserving the efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
 
   <li><p><b>Terrain designer</b>
 
