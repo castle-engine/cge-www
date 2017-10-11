@@ -208,6 +208,8 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
       <li><p><b>Unify OpenGL and OpenGLES shaders</b>
 
+        <p><b>(2017-10-11 news: this is mostly done now in the <a href="https://github.com/castle-engine/castle-engine/tree/disable-fixed-function-pipeline">disable-fixed-function-pipeline branch</a>. Stay tuned for official announcement soon :)</b></p>
+
         <p>Currently, our desktop OpenGL shaders do always <i>Phong</i> shading.
         To get <i>Gouraud</i> shading on desktop OpenGL,
         you need to use the (old) fixed-function pipeline.
