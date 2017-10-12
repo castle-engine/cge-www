@@ -202,8 +202,8 @@ Usually, the compression is OK for 3D textures and texture atlases
 but not OK for GUI images.
 Use the &lt;include&gt; / &lt;exclude&gt; elements to select only the sensible
 subset of your data textures.
-Include / exclude work just like in <code>CastleEngineManifest.xml</code>, documented in
-<a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
+Include / exclude work just like
+<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">including / excluding data to package inside the <code>CastleEngineManifest.xml</code></a>.
 We first include matching files, then exclude matching.
 
 <?php echo $toc->html_section(); ?>
