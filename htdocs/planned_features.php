@@ -206,41 +206,6 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         <p>Also, allow <code>SceneManager.MainScene</code> to have some transformation
         (right now, it's not 100% correct).
 
-      <li><p><b>Unify OpenGL and OpenGLES shaders</b>
-
-        <p><b>(2017-10-11 news: the issue below is fixed now in the <a href="https://github.com/castle-engine/castle-engine/tree/disable-fixed-function-pipeline">disable-fixed-function-pipeline branch</a>. Stay tuned for official announcement soon :)</b></p>
-
-        <p>Currently, our desktop OpenGL shaders do always <i>Phong</i> shading.
-        To get <i>Gouraud</i> shading on desktop OpenGL,
-        you need to use the (old) fixed-function pipeline.
-        This is somewhat dirty, it would be more natural to be able to switch
-        our shader pipeline between <i>Phong</i> and <i>Gouraud</i> shading.
-
-        <p>Moreover, our desktop OpenGL shaders right now use old
-        GLSL stuff <code>gl_Xxx</code>. This allowed them to work even on old
-        GPUs, but makes the implementation quite complicated,
-        as the mobile OpenGLES shaders cannot use the <code>gl_Xxx</code> variables.
-        So the code of the shader pipeline is complicated,
-        with a lot of conditions to do things differently on (desktop) OpenGL
-        and (mobile) OpenGLES.
-        Right now, all sensible GPUs handle shaders, and for truly ancient GPUs
-        &mdash; we can just fallback on the fixed-function pipeline.
-        So the code can be simplified.
-
-        <p>Moreover, our mobile OpenGLES shaders right now always do <i>Gouraud</i>
-        shading. It would be sensible to allow using <i>Phong</i> shading on
-        selected shapes, even on mobile, as in some cases the performance is
-        acceptable.
-
-        <p>Summing it up:</p>
-
-        <ul>
-          <li><p>Remove the shader pipeline using GLSL <code>gl_Xxx</code> variables.
-            Bring the OpenGL and OpenGLES code paths closer together.
-          <li><p>Offer to switch between <i>Gouraud</i> and <i>Phong</i> shaders,
-            on both OpenGL and OpenGLES, in the shader pipeline.
-        </ul>
-
       <li><b>Distance field fonts</b>
 
         <p>See <a href="https://github.com/libgdx/libgdx/wiki/Distance-field-fonts">about Distance field fonts</a>.
