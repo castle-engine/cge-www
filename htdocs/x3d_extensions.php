@@ -136,44 +136,7 @@ others) are full of demos of our extensions.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>We add a <code>shading</code> field to the <code>Shape</code> node
-(more precisely, to the abstract <code>X3DShapeNode</code>):</p>
-
-<?php echo node_begin("X3DShapeNode (e.g. Shape)");
-
-  echo
-  node_dots('all normal X3DShapeNode fields') .
-  node_field('SFString', '[in,out]', "shading", '"DEFAULT"', '["DEFAULT"|"PHONG"|"WIREFRAME"]') .
-  node_end();
-?>
-
-<p>The allowed values for the <code>shading</code> field:</p>
-
-<ul>
-  <li><code>DEFAULT</code>: use normal browser behavior,
-    whatever that currently is (depends on <i>"Shading -&gt; Enable When Required"</i>
-    in <?php echo a_href_page("view3dscene", "view3dscene") ?>).
-  </li>
-
-  <li><code>PHONG</code>: force per-pixel lighting calculation.
-    For our engine,
-    <?php echo a_href_page_hashlink('this means using modern shader rendering
-    for this particular shape',
-    'x3d_implementation_lighting', 'section_per_pixel_lighting'); ?>.
-  </li>
-
-  <li><code>WIREFFRAME</code>: render as a wireframe.
-    The rendering model matches the <code>IndexedLineSet</code> specification,
-    in particular: the shape is not lit.
-    <b>For now this is only honored by the <code>Box</code>, <code>Sphere</code> nodes.
-    It will be extended to all geometry nodes when necessary in the future.</b>
-  </li>
-</ul>
-
-<p>In the future, we plan to add other options to this field,
-like <code>FLAT</code> and <code>GOURAUD</code>.
-These names are not invented by us, they are the names used for <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>
-(with <code>DEFAULT</code> added by us).</p>
+  <p><?php echo a_href_page('Shape extensions are documented on the "Shape component - extensions" page', 'x3d_implementation_shape_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -181,7 +144,7 @@ These names are not invented by us, they are the names used for <a href="<?php e
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('Bump mapping docs are at the
+  <p><?php echo a_href_page('Bump mapping docs are at the
     "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>

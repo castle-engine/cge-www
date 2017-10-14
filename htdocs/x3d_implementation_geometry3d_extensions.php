@@ -7,6 +7,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Triangulation of primitives (<code>Sphere</code>, <code>Cone</code>, <code>Cylinder</code>, <code>Box</code>, <code>Circle2D</code>)', 'triangulation'),
+      new TocItem('Specify orientation of primitives (<code>Box.ccw</code>)', 'ccw'),
     ));
 ?>
 
@@ -113,6 +114,20 @@ Generally, triangulate more if the object is large or you
 want to see light effects (like light spot) looking good.
 If the object is small you can triangulate less, to get
 better rendering time.
+
+<?php echo $toc->html_section(); ?>
+
+<p>We add <code>Box.ccw</code> field.
+The default <code>TRUE</code> means that box is visible only from the outside.
+You can specify <code>FALSE</code> to make it visible only from the inside.
+Note that you can also use <code>solid FALSE</code> to make it visible from both sides.
+
+<?php echo node_begin("Box");
+  echo
+  node_dots('') .
+  node_field('SFBool', '[]', 'ccw', 'TRUE') .
+  node_end();
+?>
 
 <?php
   x3d_status_footer();
