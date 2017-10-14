@@ -282,43 +282,10 @@ multi-touch doesn't work on desktops and so on.
 (see <?php echo a_href_page('manual chapter about the Player', 'manual_player'); ?>):</p>
 
 <?php echo pascal_highlight(
-'{ 1. Declare a trivial global variable that controls whether
-  input is touch (with multi-touch, without keyboard etc.) or desktop
-  (without multi-touch, with keyboard etc.).
-
-  Using a variable to toggle desktop/touch input,
-  that can even be changed at runtime, is useful in Michalis experience
-  --- it allows to somewhat debug touch input on desktops,
-  by just setting DesktopCamera to false, e.g. when a command-line option
-  like --touch-device is given. }
-
-var
-  DesktopCamera: boolean =
-    {$ifdef ANDROID} false {$else}
-    {$ifdef iOS}     false {$else}
-                     true {$endif} {$endif};
-
-{ 2. Then, somewhere where you initialize the game
-     (probably after SceneManager.LoadLevel?) initialize the input.
-
-     The code below assumes that you initialized Player, and you assigned
-     SceneManager.Player := Player. This way we can be sure that current
-     camera (SceneManager.Camera) is equal to player
-     (SceneManager.Camera = Player.Camera). }
-
-if DesktopCamera then
-begin
-  Player.Camera.MouseLook := true;
-end else
-begin
-  Window.AutomaticTouchInterface := true;
-  { Above will automatically set Window.TouchInterface based on
-    current navigation mode (walk, fly..).
-    It will also set camera MouseDragMode, which is very useful
-    in combination with some touch interface modes.
-    To actually enable the dragging, you still need to do this: }
-  Player.EnableCameraDragging := true;
-end;'); ?>
+'{ At initialization (e.g. Application.OnInitialize callback)
+  do something like this. }
+Window.AutomaticTouchInterface := Application.TouchDevice;
+Player.Camera.MouseLook := not Application.TouchDevice;'); ?>
 
 <?php
 manual_footer();
