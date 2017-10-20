@@ -44,16 +44,12 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>By default we render most shapes using OpenGL fixed-function
-pipeline, and VRML/X3D lights are simply used as OpenGL lights.
-This means that lighting is calculated per-vertex (Gouraud shading).
-This is fast, but not always perfect.</p>
+<p>By default we render most shapes using Gouraud shading (per-vertex lighting
+calculation). This is fast, but not always pretty.</p>
 
-<p>Using the <i>"Shaders-&gt;Enable For Everything"</i> option in view3dscene
-forces everything to be rendered through GLSL shaders, which always
-perform per-pixel lighting.
-This is usually slower but also more beautiful than default
-<i>"Shaders-&gt;Enable When Required"</i>.</p>
+<p>Using the <i>"View -&gt; Phong Shading on Everything"</i> option in view3dscene
+forces everything to be rendered using Phong shading (per-pixel lighting).
+This is sometimes a significant boost to quality.</p>
 
 <ul>
   <li><p>Per-pixel lighting means that local lighting effects,
@@ -61,9 +57,9 @@ This is usually slower but also more beautiful than default
     are precisely rendered.</p></li>
   <li><p>Lights attenuation is also calculated per-pixel,
     this sometimes gives much better results.</li>
-  <li><p>Spot lights <code>beamWidth</code> is correctly applied
-    (for fixed-function rendering, <code>beamWidth</code> could not be perfectly
-    represented by OpenGL spot exponent).</li>
+  <!-- <li><p>Spot lights <code>beamWidth</code> is correctly applied -->
+  <!--   (for fixed-function rendering, <code>beamWidth</code> could not be perfectly -->
+  <!--   represented by OpenGL spot exponent).</li> -->
   <li>
     <?php
       echo castle_thumbs(array(
@@ -82,20 +78,18 @@ This is usually slower but also more beautiful than default
     </p></li>
 </ul>
 
-<p>Note that you can use
-<?php echo a_href_page_hashlink('our extension to force Phong shading on particular
-shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
+<p>You can also <?php echo a_href_page_hashlink('switch to Phong shading for particular shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
+
+<p>Pascal Developers: you can switch to Phong for the whole scene by <code>Scene.Attributes.PhongShading := true</code> or only for a particular shape using <code>Shape.Shading := shPhong</code>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Using shader pipeline (forced on everything by
-<i>"Shaders-&gt;Enable For Everything"</i>, or activated
-automatically for shapes using
-<?php echo a_href_page('shadow maps', 'x3d_extensions_shadow_maps'); ?>
+<p>Using the shader pipeline (right now activated by certain features,
+like <i>Phong Shading</i> or
+ <?php echo a_href_page('shadow maps', 'x3d_extensions_shadow_maps'); ?>
  or
-<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>
- or
- <?php echo a_href_page_hashlink('requesting Phong shading', 'x3d_extensions', 'section_ext_shading'); ?>)
+<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>;
+ may be default in the future)
  requires a good graphic card with latest drivers.
 <!--This means that they work much better than previously (where
 sometimes I used simplified dumb shaders, and sometimes default
@@ -107,8 +101,7 @@ latest drivers from</p>
 <ul>
   <li><a href="http://www.nvidia.com/">NVidia</a>,</li>
   <li><a href="http://www.amd.com/">AMD (Radeon GPUs)</a>,</li>
-  <li><a href="http://downloadcenter.intel.com/">Intel drivers
-    (most cheap GPUs)</a>,</li>
+  <li><a href="http://downloadcenter.intel.com/">Intel drivers (most cheap GPUs)</a>,</li>
   <li>laptop owners may often get more stable drivers from their laptop manufacturer.</li>
 </ul>
 
@@ -120,11 +113,6 @@ you <i>may</i> need to install the proprietary OpenGL drivers to squeeze best
 performance from your NVidia/Radeon GPU. (Although latest <a
 href="http://www.mesa3d.org/">Mesa</a> may also be quite capable
 of handling simpler stuff, even with shaders.)</p>
-
-<p>Note that by default (<i>"Shaders-&gt;Enable When Required"</i>)
-models without effects are still rendered using standard
-fixed-function pipeline. Which means that they still work fast even
-on older hardware.</p>
 
 <?php
   x3d_status_footer();
