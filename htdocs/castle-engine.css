@@ -53,6 +53,17 @@ pre {
   white-space: pre-wrap;
 }
 
+/* Override Bootstrap default:
+   Remove "Courier New", add "Liberation Mono".
+   "Courier New" bold width doesn't match regular "Courier New",
+   this hurts our CommonSurfaceShader view on x3d_implementation_texturing_extensions.php .
+   It is also not nice on Linux according to
+   https://github.com/twbs/bootstrap/issues/18609
+*/
+code, kbd, pre, samp {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+}
+
 a.kscript_func_docs { text-decoration: underline; }
 
 code { background-color: #f0f0f0; }
