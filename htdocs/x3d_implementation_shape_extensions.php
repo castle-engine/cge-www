@@ -79,7 +79,7 @@ Although toggling Switch node is also ultra-fast.
 
     <p>Explicitly specifying the <code>"GOURAUD"</code> indicates that this shape wants to use Gouraud shading, even if the default scene shading is Phong. Note that some features (like bump mapping and shadow maps) will override this and require Phong shading anyway, since it's impossible to realize them with Gouraud shading.
 
-    <p>Note that the <code>"GOURAUD"</code> shading performs only one-sided lighting in the shader pipeline. This means that only one face side receives lighting. TODO: For now, this is always the CCW side, regardless of the front face indicated by the "ccw" field.
+    <p>Note that the <code>"GOURAUD"</code> shading performs only one-sided lighting in the shader pipeline. This means that only one face side receives lighting. By default (when <code>ccw="TRUE"</code>) this is the side oriented in a counter-clockwise fashion, but you can switch this by setting the <code>ccw="FALSE"</code>. The other face will be always black (or invisible, if the backface-culling if used, by <code>solid="TRUE"</code>, which is actually default).
 
   <li><p><code>PHONG</code>: pretty per-pixel lighting calculation.
     This also means always using shader pipeline to render this shape.
