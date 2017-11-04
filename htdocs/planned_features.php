@@ -389,13 +389,13 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
   <li><p><b>iOS improvements:</b>
 
     <ul>
-      <li><p><i>Services on iOS</i>.
+      <li><p>(IN PROGRESS) <i>Services on iOS</i>.
         For now, most of <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">our services</a> are only on Android.
         Most of them are possible also on iOS, e.g.
         <?php api_link('TInAppPurchases', 'CastleInAppPurchases.TInAppPurchases.html'); ?>,
         or <i>Apple Game Center</i> as an equivalent to <i>Google Play Games</i> from Android.
 
-      <li><p><i>Package the vorbisfile library</i>. To be able to read OggVorbis sound files.
+      <li><p>(DONE) <i>Package the vorbisfile library</i>. To be able to read OggVorbis sound files.
 
       <li><p><i>Enable texture compression</i>. Because of Apple's weird implementation of PVRTC format (only square textures are allowed), for now we disabled texture compression on iOS. This should be done better, at least to enable the texture compression of other formats.
     </ul>

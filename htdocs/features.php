@@ -160,6 +160,8 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
+  <li><p><b><a href="https://github.com/castle-engine/castle-engine/wiki/iOS-Services">Integration with services on iOS</a></b>, like Apple Game Center.
+
   <li><p>The engine can be compiled into a <b>library useful from other programming languages</b>.
     This does not expose the complete engine API (for now), but it does expose a simple 3D model loading,
     rendering, animation, interaction. So you can e.g. make your own VRML / X3D browser.

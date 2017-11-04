@@ -1,4 +1,5 @@
 *~
+.DS_Store
 htdocs/wp/.htaccess
 htdocs/wp/wp-config-production.php
 htdocs/code-samples/notifications
