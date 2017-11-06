@@ -116,7 +116,11 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
   </li>
 
-  <li><p><b>view3dscene as an Android application</b>
+  <li><p><b>Mobile view3dscene (as Android and iOS application)</b>
+
+    <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
+
+    <p>I have not decided yet whether it would be based on our <a href="https://github.com/castle-engine/view3dscene">view3dscene source code</a>, as desktop "view3dscene" contains a ton of GUI features that would not work comfortably on Android / iOS. Instead, we can develop a simple application that allows to open files, switch navigation type, turn on/off collisions and make screenshots (features that are available through the current view3dscene toolbar).
 
   <li><p><b>glTF format support</b>
 
