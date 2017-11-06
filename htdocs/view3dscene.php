@@ -81,14 +81,14 @@ The documentation (this web page) is also included inside, for offline viewing
  contains a lot of interesting models,
 you can open them all with <code>view3dscene</code>.</p>
 
-<p><i>For Linux:</i> Install also <a href="http://projects.gnome.org/gtkglext/">gtkglext</a>
-on your system using your package manager.
-If you want to hear 3D sound in some VRML/X3D worlds, install also
-<?php echo a_href_page('OpenAL', 'openal'); ?> and
-<a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
-libraries. <i>For Windows:</i> All useful libraries
-are already included in the archive, so you don't have to do anything.
-<?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.</p>
+<p>Requirements:
+<ul>
+  <li><i>For Linux:</i> Install also <a href="http://projects.gnome.org/gtkglext/">gtkglext</a> on your system using your package manager. If you want to hear 3D sound in some VRML/X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
+  <li><i>For Windows:</i> All useful libraries are already included in the archive, so you don't have to do anything.
+  <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
+</ul>
+
+<p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a> page.
 
 <?php section(false); ?>
 
