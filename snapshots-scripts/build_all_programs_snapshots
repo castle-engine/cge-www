@@ -71,15 +71,19 @@ move_all_programs ()
 
   mkdir -p "$OUT_PATH"
 
-  mv castle/castle"$EXT" "$OUT_PATH"
-  mv glinformation/glinformation"$EXT" "$OUT_PATH"
-  mv glinformation/glinformation_glut"$EXT" "$OUT_PATH"
-  mv glplotter/gen_function"$EXT" "$OUT_PATH"
-  mv glplotter/glplotter"$EXT" "$OUT_PATH"
-  mv glviewimage/glViewImage"$EXT" "$OUT_PATH"
-  mv kambi_lines/kambi_lines"$EXT" "$OUT_PATH"
-  mv malfunction/malfunction"$EXT" "$OUT_PATH"
-  mv rayhunter/rayhunter"$EXT" "$OUT_PATH"
+  # These programs are not very important, and Jenkins rebuilds them
+  # in a different job anyway.
+  #
+  # mv castle/castle"$EXT" "$OUT_PATH"
+  # mv glinformation/glinformation"$EXT" "$OUT_PATH"
+  # mv glinformation/glinformation_glut"$EXT" "$OUT_PATH"
+  # mv glplotter/gen_function"$EXT" "$OUT_PATH"
+  # mv glplotter/glplotter"$EXT" "$OUT_PATH"
+  # mv glviewimage/glViewImage"$EXT" "$OUT_PATH"
+  # mv kambi_lines/kambi_lines"$EXT" "$OUT_PATH"
+  # mv malfunction/malfunction"$EXT" "$OUT_PATH"
+  # mv rayhunter/rayhunter"$EXT" "$OUT_PATH"
+
   mv view3dscene/view3dscene"$EXT" "$OUT_PATH"
   mv view3dscene/tovrmlx3d"$EXT" "$OUT_PATH"
 }
