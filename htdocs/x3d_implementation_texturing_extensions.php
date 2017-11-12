@@ -542,14 +542,12 @@ automatically. There are three possible situations:
     just like partially transparent materials).
 </ol>
 
-<p>The difference between yes-no and full range alpha channel
-is detected by analyzing alpha channel values.
+<p>The difference between these cases is detected by analyzing alpha channel values.
 Developers: see
-<?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>,
-default tolerance values used by X3D renderer are 5 and 0.01.
+<?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>.
 There is also a special program in <?php echo a_href_page('engine sources',
 'index'); ?> (see <code>examples/images_videos/image_identify.lpr</code>
-demo) if you want to use this algorithm yourself.
+demo) if you want to test this algorithm yourself.
 You can also see the results for your textures if you run
 <?php echo a_href_page("view3dscene", "view3dscene") ?>
  with <code>--debug-log</code> option.
