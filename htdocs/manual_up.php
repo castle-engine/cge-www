@@ -145,17 +145,13 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
     <code>World.GravityUp</code> (from any
     <code>T3D</code> code), these are always equal.
 
-  <li><p>Oriented 3D things, like creatures, player, and items (and anything
-    else derived from <code>T3DOrient</code> class) are always oriented such that their
-    local direction/up is matching the vectors defined by
-    <code>T3DOrient.Orientation</code> property. Although the publicly visible
-    properties like <code>TCreature.Up</code> are automatically set to be <i>usually</i>
-    equal to the <code>World.GravityUp</code> (in case of flying creatures, it may
-    actually be different sometimes). But you still have to set the
-    <code>T3DOrient.Orientation</code> yourself, to make the local creature model
-    correctly match these vectors. You want to set it such that typical up
-    of your creatures changes into <code>World.GravityUp</code> (that is, creature's up
-    remains untransformed).
+  <li><p>If you use <code>TCastleTransform.Direction</code>
+    and <code>TCastleTransform.Up</code> properties to rotate your models
+    (which is the most natural way to transform creatures, player, and items)
+    then they need to know what is your default orientation.
+    That is, how does the model look like when rotation is at zero.
+
+    <p>You configure this using the <code>T3DOrient.Orientation</code> property.
 </ol>
 
 <p>Usually, you want to just set
