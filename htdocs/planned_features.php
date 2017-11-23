@@ -60,7 +60,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     some long-planned API upgrades. These include:
 
     <ul>
-      <li><p>Ultra-flexible <code>TCastleTransform</code> class
+      <li><p>(DONE) Ultra-flexible <code>TCastleTransform</code> class
         instead of most current <code>T3D*</code> classes.
         The unit <code>Castle3D</code> will be replaced by a new unit
         <code>CastleTransform</code> with the <code>TCastleTransform</code> class,
@@ -71,7 +71,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         So it's more flexible, and has a name that does not (falsely) suggest
         it's only for 3D games.
 
-
         <p>Also <code>TCastleTransform</code> will be an ancestor
         of <code>TCastleScene</code>.
         So you will be able to change <code>Translation</code>,
@@ -79,7 +78,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         <code>TCastleScene</code> directly, without the need to "wrap"
         it inside <code>TCastleTransform</code> container.
 
-      <li><p>Vector API improvements, using <code>TVector3</code>
+      <li><p>(DONE) Vector API improvements, using <code>TVector3</code>
         as an advanced record, instead of current <code>TVector3Single</code>.
         <a href="https://castle-engine.sourceforge.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/">This is already done, see here.</a>
     </ul>
