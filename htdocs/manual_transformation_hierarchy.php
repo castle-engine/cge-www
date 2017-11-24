@@ -14,9 +14,12 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> class,
     which is probably <b>the</b> most important class in our engine.
 
-    <p>You can group and transform the scenes using containers like
-    <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and
-    <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>.
+    <p>You can group and transform the scenes using
+    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
+    The <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    is also a descendant of
+    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
+    so you can just transform a scene directly.
     Existing management of creatures
     (<?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>)
     and items on level (<?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?>)
@@ -25,12 +28,6 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     Loading a level by
     <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
     initializes the whole tree for you, but you can also do it by hand.
-
-    <p>Note that you can implement your own 3D objects that are visible
-    (like <code>TCastleScene</code>) and / or that group and transform
-    other objects. The base class is
-    <?php api_link('T3D', 'Castle3D.T3D.html'); ?>. All the classes
-    mentioned above descend from it.
 
     <!--p>The visible leaves of this tree are
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
@@ -46,7 +43,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
         (moving, rotating, scaling them),
         or completely rearranging the tree (adding, removing items),
         or hiding / showing the items (use the
-        <?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?> property).
+        <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> property).
         It is ultimately fast and can be done as often as you need.
 
       <li><p>Downside: do not make this tree too deep and complicated.

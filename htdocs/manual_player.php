@@ -47,7 +47,7 @@ like <code>PreferredHeight</code> (from level's <code>NavigationInfo.avatarSize<
 <h2>3D models relative to player</h2>
 
 <p>Player is a descendant of
-<?php api_link('T3DList', 'Castle3D.T3DList.html'); ?>,
+<?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
 which means that you can add
 additional 3D objects as it's children, like
 <code>Player.Add(Some3DObject)</code>. These 3D objects will always be rendered

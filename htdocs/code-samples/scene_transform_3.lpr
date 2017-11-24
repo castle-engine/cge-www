@@ -1,16 +1,41 @@
 uses SysUtils, CastleVectors,
-  CastleFilesUtils, CastleWindow, CastleSceneCore, CastleScene;
+  CastleFilesUtils, CastleWindow, CastleSceneCore, CastleScene,
+  CastleKeysMouse;
 
 var
   Window: TCastleWindow;
   CarScene, RoadScene: TCastleScene;
+
+procedure WindowUpdate(Container: TUIContainer);
+var
+  T: TVector3;
+begin
+  T := CarScene.Translation;
+  { Thanks to multiplying by SecondsPassed, it is a time-based operation,
+    and will always move 40 units / per second along the -Z axis. }
+  T := T + Vector3(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
+  { Wrap the Z position, to move in a loop }
+  if T[2] < -70.0 then
+    T[2] := 50.0;
+  CarScene.Translation := T;
+end;
+
+procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
+begin
+  if Event.IsKey('c') then
+    CarScene.Exists := not CarScene.Exists;
+end;
+
 begin
   Window := TCastleWindow.Create(Application);
+  Window.OnUpdate := @WindowUpdate;
+  Window.OnPress := @WindowPress;
 
   CarScene := TCastleScene.Create(Application);
   CarScene.Load(ApplicationData('car.x3d'));
   CarScene.Spatial := [ssRendering, ssDynamicCollisions];
   CarScene.ProcessEvents := true;
+  CarScene.PlayAnimation('wheels_turning', paForceLooping);
 
   RoadScene := TCastleScene.Create(Application);
   RoadScene.Load(ApplicationData('road.x3d'));

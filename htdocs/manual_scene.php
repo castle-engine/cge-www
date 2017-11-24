@@ -39,14 +39,12 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can group and transform (move, rotate, scale) scenes using the <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> class. Let's change the program from previous chapter to make the car (one 3D object) move along a road (another 3D object).</p>
+<p>You can group and transform (move, rotate, scale) scenes using the <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> class. Actually, the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> is itself a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, so it can be transformed and can have children. Let's change the program from previous chapter to make the car (one 3D object) move along a road (another 3D object).</p>
 
 <ol>
-  <li><p>Add the <?php api_link('Castle3D', 'Castle3D.html'); ?> unit to your <code>uses</code> clause.</p></li>
+  <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>.</p></li>
 
-  <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>, and add a <code>CarTransform: T3DTransform;</code>.</p></li>
-
-  <li><p>Create both scenes, placing <code>CarScene</code> as a child of <code>CarTransform</code>, and place <code>CarTransform</code> and <code>RoadScene: TCastleScene;</code> as children of <code>SceneManager.Items</code>.
+  <li><p>Create both scenes, placing both <code>CarScene</code> and <code>RoadScene;</code> as children of <code>SceneManager.Items</code>.
 
     <p>The complete code doing this, using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, looks like this:
 
@@ -57,41 +55,38 @@ To actually make it visible (and animated, and sometimes even interactive), you 
     <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
   </li>
 
-  <li><p>To make the car actually moving, we should now update the <?php api_link('T3DTransform.Translation', 'Castle3D.T3DTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).</p>
+  <li><p>To make the car actually moving, we should now update the <?php api_link('TCastleTransform.Translation', 'CastleTransform.TCastleTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).</p>
 
     <p>Before opening the window, assign:</p>
 
 <?php echo pascal_highlight(
 'Window.OnUpdate := @WindowUpdate;'); ?>
 
-    <p>At the beginning of your program (but <i>after the definition of the <code>CarTransform</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
+    <p>At the beginning of your program (but <i>after the definition of the <code>CarScene</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
 
 <?php echo pascal_highlight(
 'procedure WindowUpdate(Container: TUIContainer);
 var
-  T: TVector3Single;
+  T: TVector3;
 begin
-  T := CarTransform.Translation;
+  T := CarScene.Translation;
   { Thanks to multiplying by SecondsPassed, it is a time-based operation,
     and will always move 40 units / per second along the -Z axis. }
-  T := T + Vector3Single(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
+  T := T + Vector3(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
   { Wrap the Z position, to move in a loop }
   if T[2] < -70.0 then
     T[2] := 50.0;
-  CarTransform.Translation := T;
+  CarScene.Translation := T;
 end;'); ?>
-
-    <p>You will also need to add <code>CastleUIControls</code> to the uses clause.</p>
   </li>
 </ol>
 
 <p>That's it, you have a moving object in your world, and the movement in 100% controlled by your code!
 
-<p>Note: An alternative way to transform scenes is the <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?> class. It has the same effect, but the transformation parameters are specified a little differently &mdash; instead of a normal rotation, you specify a <i>direction</i> and <i>up vector</i>, and imagine that you transform something that has a <i>"front"</i> and <i>"up"</i> idea (like a player avatar or a creature).
+<!--p>Note: An alternative way to transform scenes is the <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> class. It has the same effect, but the transformation parameters are specified a little differently &mdash; instead of a normal rotation, you specify a <i>direction</i> and <i>up vector</i>, and imagine that you transform something that has a <i>"front"</i> and <i>"up"</i> idea (like a player avatar or a creature).-->
 
 <p>You can create any complex tree this way, using the
- <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>
- and <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>
+ <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
  to build any transformation hierarchy that is comfortable.
 
 <?php echo $toc->html_section(); ?>
@@ -125,12 +120,13 @@ You can access the underlying node using the <?php api_link('AnimationTimeSensor
 
 <?php echo $toc->html_section(); ?>
 
-<p>Any object descending from <?php api_link('T3D', 'Castle3D.T3D.html'); ?>, including
+<p>Any object descending from <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>, including
 <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> and
-<?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>, has properties
-<?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?>,
-<?php api_link('Collides', 'Castle3D.T3D.html#Collides'); ?> and
-<?php api_link('Pickable', 'Castle3D.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
+<?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, has properties
+<?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?>,
+<?php api_link('Visible', 'CastleTransform.T3D.html#Visible'); ?>,
+<?php api_link('Collides', 'CastleTransform.T3D.html#Collides'); ?> and
+<?php api_link('Pickable', 'CastleTransform.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
 
 <p>For example, you can toggle the visibility of the car when user presses the <code>'c'</code> key, like this:
 
@@ -142,13 +138,13 @@ You can access the underlying node using the <?php api_link('AnimationTimeSensor
 <?php echo pascal_highlight(
 'Window.OnPress := @WindowPress;'); ?>
 
-  <li><p>At the beginning of your program (but <i>after the definition of the <code>CarTransform</code> global variable</i>), define the <code>WindowPress</code> procedure:</p>
+  <li><p>At the beginning of your program (but <i>after the definition of the <code>CarScene</code> global variable</i>), define the <code>WindowPress</code> procedure:</p>
 
 <?php echo pascal_highlight(
 'procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
 begin
   if Event.IsKey(\'c\') then
-    CarTransform.Exists := not CarTransform.Exists;
+    CarScene.Exists := not CarScene.Exists;
 end;'); ?>
   </li>
 </ol>
@@ -156,7 +152,7 @@ end;'); ?>
 <p><b>Advanced hints:</b></p>
 
 <ul>
-  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'Castle3D.T3D.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'Castle3D.T3D.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
+  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'CastleTransform.T3D.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
 
   <li><p>Note that simply changing the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
 
@@ -182,24 +178,24 @@ echo castle_thumbs(array(
 This allows to reuse it's data completely, which is great for both performance
 and the memory usage.
 
-<p>For example, let's make 20 cars moving along the road! You will need 20 instances of <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>, but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. The modifications to the code are straightforward, just change <code>CarTransform</code> into an array:
+<p>For example, let's make 20 cars moving along the road! You will need 20 instances of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. The modifications to the code are straightforward, just add <code>CarTransforms</code> that is an array of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>:
 
 <ol>
-  <li><p>Declare it like <code>CarTransforms: array [1..20] of T3DTransform;</code>.</p>
+  <li><p>Declare it like <code>CarTransforms: array [1..20] of TCastleTransform;</code>.</p>
 
   <li><p>Initialize it like this:</p>
 
 <?php echo pascal_highlight(
 'for I := Low(CarTransforms) to High(CarTransforms) do
 begin
-  CarTransforms[I] := T3DTransform.Create(Application);
-  CarTransforms[I].Translation := Vector3Single(
+  CarTransforms[I] := TCastleTransform.Create(Application);
+  CarTransforms[I].Translation := Vector3(
     -6 + Random(4) * 6, 0, RandomFloatRange(-70, 50));
   CarTransforms[I].Add(CarScene);
   Window.SceneManager.Items.Add(CarTransforms[I]);
 end;'); ?>
 
-    <p>This is the same initialization as before, we only added a randomization of the initial car position. The <?php api_link('RandomFloatRange', 'CastleUtils.html#RandomFloatRange'); ?> function is in the <?php api_link('CastleUtils', 'CastleUtils.html'); ?> unit. There's really nothing magic about the randomization parameters, I just adjusted them experimentally to look right:)</p>
+    <p>We added a randomization of the initial car position. The <?php api_link('RandomFloatRange', 'CastleUtils.html#RandomFloatRange'); ?> function is in the <?php api_link('CastleUtils', 'CastleUtils.html'); ?> unit. There's really nothing magic about the randomization parameters, I just adjusted them experimentally to look right:)</p>
   </li>
 
   <li><p>In every <code>WindowUpdate</code> move all the cars, like this:</p>
@@ -207,14 +203,14 @@ end;'); ?>
 <?php echo pascal_highlight(
 'procedure WindowUpdate(Container: TUIContainer);
 
-  procedure UpdateCarTransform(const CarTransform: T3DTransform);
+  procedure UpdateCarTransform(const CarTransform: TCastleTransform);
   var
-    T: TVector3Single;
+    T: TVector3;
   begin
     T := CarTransform.Translation;
     { Thanks to multiplying by SecondsPassed, it is a time-based operation,
       and will always move 40 units / per second along the -Z axis. }
-    T := T + Vector3Single(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
+    T := T + Vector3(0, 0, -40) * Container.Fps.UpdateSecondsPassed;
     { Wrap the Z position, to move in a loop }
     if T[2] < -70.0 then
       T[2] := 50.0;
@@ -228,7 +224,7 @@ begin
     UpdateCarTransform(CarTransforms[I]);
 end;'); ?>
 
-    <p>This is the same code as before, just done in a loop.</p>
+    <p>As you can see, this code is very similar to what we had before. We just do it in a loop, for each <code>CarTransforms[I]</code>, instead of transforming the <code>CarScene</code>.</p>
   </li>
 </ol>
 
@@ -276,25 +272,25 @@ begin
 
   Material := TMaterialNode.Create;
   { Yellow (we could have also used YellowRGB constant from CastleColors unit) }
-  Material.DiffuseColor := Vector3Single(1, 1, 0);
+  Material.DiffuseColor := Vector3(1, 1, 0);
   Material.Transparency := 0.75;
 
   Appearance := TAppearanceNode.Create;
   Appearance.Material := Material;
 
   Box1 := TBoxNode.Create(\'box_1_geometry\');
-  Box1.Size := Vector3Single(0.5, WallHeight, RoadBox.Sizes[2]);
+  Box1.Size := Vector3(0.5, WallHeight, RoadBox.Sizes[2]);
 
   Shape1 := TShapeNode.Create(\'box_1_shape\');
   Shape1.Appearance := Appearance;
   Shape1.Geometry := Box1;
 
   Transform1 := TTransformNode.Create(\'box_1_transform\');
-  Transform1.Translation := Vector3Single(RoadBox.Data[0][0], WallHeight / 2, RoadBox.Middle[2]);
+  Transform1.Translation := Vector3(RoadBox.Data[0][0], WallHeight / 2, RoadBox.Middle[2]);
   Transform1.AddChildren(Shape1); // use "FdChildren.Add" instead of "AddChildren" in CGE <= 6.2
 
   Box2 := TBoxNode.Create(\'box_2_geometry\');
-  Box2.Size := Vector3Single(0.5, WallHeight, RoadBox.Sizes[2]);
+  Box2.Size := Vector3(0.5, WallHeight, RoadBox.Sizes[2]);
 
   Shape2 := TShapeNode.Create(\'box_2_shape\');
   { Reuse the same Appearance node for another shape.
@@ -303,7 +299,7 @@ begin
   Shape2.Geometry := Box2;
 
   Transform2 := TTransformNode.Create(\'box_2_transform\');
-  Transform2.Translation := Vector3Single(RoadBox.Data[1][0], WallHeight / 2, RoadBox.Middle[2]);
+  Transform2.Translation := Vector3(RoadBox.Data[1][0], WallHeight / 2, RoadBox.Middle[2]);
   Transform2.AddChildren(Shape2);
 
   RootNode := TX3DRootNode.Create;
@@ -317,7 +313,7 @@ end;'); ?>
     <p>Note that to transform X3D nodes we use the <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?> class. We have essentially two transformation trees in our engine:</p>
 
     <ol>
-      <li>The "outer" tree is rooted in <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and shows scenes <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> transformed by <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and friends.</li>
+      <li>The "outer" tree is rooted in <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and shows scenes <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> transformed by <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> and friends.</li>
 
       <li>The "inner" tree is inside every scene. It is rooted in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>, and shows shapes <?php api_link('TShapeNode', 'X3DNodes.TShapeNode.html'); ?>, and is transformed by <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?>.</li>
     </ol>
@@ -375,23 +371,23 @@ end;'); ?>
 These descendants can override methods e.g. to collide or perform AI
 (move itself in the world).
 
-<p>Every object (a descendant of <?php api_link('T3D', 'Castle3D.T3D.html'); ?>,
+<p>Every object (a descendant of <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>,
 like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
-<?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>) "knows"
- it's <?php api_link('World', 'Castle3D.T3D.html#World'); ?>
+<?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) "knows"
+ it's <?php api_link('World', 'CastleTransform.T3D.html#World'); ?>
  so it knows how to move and collide
  within the 3D world. This opens various ways how you can implement <i>"artificial intelligence"</i>
  of a creature, for example:
 
 <ol>
-  <li>Derive your creature class from a <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>
-    or <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?>.
+  <li>Derive your creature class from a <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
+    or <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
   </li>
-  <li>Override it's <?php api_link('Update', 'Castle3D.T3D.html#Update'); ?> method to move the creature.
-    Use <?php api_link('T3D.Move', 'Castle3D.T3D.html#Move'); ?>,
-    <?php api_link('T3D.MoveAllowed', 'Castle3D.T3D.html#MoveAllowed'); ?>,
-    <?php api_link('T3D.Height', 'Castle3D.T3D.html#Height'); ?> and
-    <?php api_link('T3D.LineOfSight', 'Castle3D.T3D.html#LineOfSight'); ?> methods to query the world around you.
+  <li>Override it's <?php api_link('Update', 'CastleTransform.T3D.html#Update'); ?> method to move the creature.
+    Use <?php api_link('T3D.Move', 'CastleTransform.T3D.html#Move'); ?>,
+    <?php api_link('T3D.MoveAllowed', 'CastleTransform.T3D.html#MoveAllowed'); ?>,
+    <?php api_link('T3D.Height', 'CastleTransform.T3D.html#Height'); ?> and
+    <?php api_link('T3D.LineOfSight', 'CastleTransform.T3D.html#LineOfSight'); ?> methods to query the world around you.
   </li>
   <li>As a child of your creature instance, add a
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
@@ -406,7 +402,7 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 
 <p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from X3D, VRML, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
 
-<p>Do not be discouraged by the names of some classes starting with <code>T3D...</code> prefix, like <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?>. These classes can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> to transform your 2D scenes, it works perfectly. (At some point, we will migrate to better names...)</p>
+<p>The <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to transform your 2D scenes, it works perfectly.</p>
 
 <p>Often it's also a good idea to use a specialized 2D classes when they exist:</p>
 

@@ -78,14 +78,14 @@ if you haven't already. Some of the important creature/item classes:
 <p>Everything is designed to give you a lot of properties to set (most
 of them are also settable by <code>resource.xml</code> files) and a
 lot of methods to override. All creatures and items descend from
-common classes in <?php api_link('Castle3D', 'Castle3D.html'); ?> unit,
+common classes in <?php api_link('CastleTransform', 'CastleTransform.html'); ?> unit,
 so see also there for various things that you can override and use.
 
 <p>You can code new creatures/items behaviors by deriving new classes
 from our existing classes in
 <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
 <?php api_link('CastleItems', 'CastleItems.html'); ?> and
-<?php api_link('Castle3D', 'Castle3D.html'); ?> units.
+<?php api_link('CastleTransform', 'CastleTransform.html'); ?> units.
 This is the most flexible way to customize everything about a creature/item.
 
 <p>You usually override two classes to define a new creature/item:
@@ -246,11 +246,11 @@ for I := 1 to 100 do
     prepared to implement something (like creature AI) completely from scratch
     on your own.
 
-    <p>Overriding the really basic classes from <code>Castle3D</code> unit (and optionally
+    <p>Overriding the really basic classes from <code>CastleTransform</code> unit (and optionally
     also <code>CastleResources</code>, if you want your 3D object to be associated with
     a resource) is for advanced usage, when you want to define a 3D
     object within your game that doesn't really fit our creatures/items
-    definitions. <code>Castle3D</code> contains a lot of classes to make it easy
+    definitions. <code>CastleTransform</code> contains a lot of classes to make it easy
     to create your own, dynamic 3D objects.
   </li>
 </ol>

@@ -262,7 +262,8 @@ For example, you can iterate over the inventory list and show the items like thi
 
 <?php echo pascal_highlight(
 'if Player.Dead then
-  GLFadeRectangleDark(ContainerRect, Red, 1.0) else
+  GLFadeRectangleDark(ContainerRect, Red, 1.0)
+else
   GLFadeRectangleDark(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
 
  <p>Note that <code>Player.FadeOutIntensity</code> will be 0 when there is no pain, which cooperates

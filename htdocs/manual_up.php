@@ -44,7 +44,7 @@ the +Y axis. So things <i>just work</i>.
         Paste the generated <code>Viewpoint</code> code into your X3D file
         (or into an X3D "wrapper" file, that includes another X3D using the <code>Inline</code> node).
 
-      <li><p>Leave <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> at the default value:
+      <li><p>Leave <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> at the default value:
         <code>otUpYDirectionMinusZ</code>.
     </ol>
   </li>
@@ -70,7 +70,7 @@ the +Y axis. So things <i>just work</i>.
         sure to set earlier the <i>"Navigation -&gt; Walk and Fly Settings -&gt;
         Change Gravity Up Vector"</i> to <code>0 0 1</code>.
 
-      <li><p>Set <?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
+      <li><p>Set <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
     </ol>
   </li>
 </ul>
@@ -98,7 +98,7 @@ any 3D vector as "up", and pick anything orthogonal to it as
 <p>Our engine supports various such conventions, we do not force you to
 follow any particular one. To make things work smoothly, you want to
 keep the same conventions throughout your process &mdash; be wary of
-this when creating <?php api_link('T3DOrient', 'Castle3D.T3DOrient.html'); ?> instances in the engine, when exporting
+this when creating <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instances in the engine, when exporting
 3D models from Blender, when setting viewpoint (with gravity) in
 whatever way etc.</p>
 
@@ -151,11 +151,11 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
     then they need to know what is your default orientation.
     That is, how does the model look like when rotation is at zero.
 
-    <p>You configure this using the <code>T3DOrient.Orientation</code> property.
+    <p>You configure this using the <code>TCastleTransform.Orientation</code> property.
 </ol>
 
 <p>Usually, you want to just set
-<?php api_link('T3DOrient.DefaultOrientation', 'Castle3D.T3DOrient.html#DefaultOrientation'); ?>, and then
+<?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?>, and then
 it will be used for all your models.
 
 <?php

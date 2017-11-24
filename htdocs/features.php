@@ -294,7 +294,7 @@ $toc = new TableOfContents(
   <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games.
     <ul>
       <li>You can extend it in many ways.
-      <li>You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from <?php api_link('T3D', 'Castle3D.T3D.html'); ?>.
+      <li>You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
     </ul>
     <p><?php echo a_href_page('Engine manual', 'manual_resources_extending'); ?> contains detailed information about this.
 
@@ -312,16 +312,16 @@ $toc = new TableOfContents(
     and fast collision detection even when the scene constantly changes.
     There are many ways to use collision detection,
     for example you can query for collision between a specific
-    <?php api_link('T3D instance', 'Castle3D.T3D.html'); ?> and the rest of the world
+    <?php api_link('T3D instance', 'CastleTransform.T3D.html'); ?> and the rest of the world
     (by methods like
-    <?php api_link('T3D.Move', 'Castle3D.T3D.html#Move'); ?>,
-    <?php api_link('T3D.Ray', 'Castle3D.T3D.html#Ray'); ?>
-    <?php api_link('T3D.Height', 'Castle3D.T3D.html#Height'); ?>)
+    <?php api_link('T3D.Move', 'CastleTransform.T3D.html#Move'); ?>,
+    <?php api_link('T3D.Ray', 'CastleTransform.T3D.html#Ray'); ?>
+    <?php api_link('T3D.Height', 'CastleTransform.T3D.html#Height'); ?>)
     or you can ask the whole world whether it collides with some geometric shape
     (calling methods like
-    <?php api_link('T3D.BoxCollision', 'Castle3D.T3D.html#BoxCollision'); ?>,
-    <?php api_link('T3D.SphereCollision', 'Castle3D.T3D.html#SphereCollision'); ?>
-    <?php api_link('T3D.RayCollision', 'Castle3D.T3D.html#RayCollision'); ?>
+    <?php api_link('T3D.BoxCollision', 'CastleTransform.T3D.html#BoxCollision'); ?>,
+    <?php api_link('T3D.SphereCollision', 'CastleTransform.T3D.html#SphereCollision'); ?>
+    <?php api_link('T3D.RayCollision', 'CastleTransform.T3D.html#RayCollision'); ?>
     on the main 3D world instance: <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>).
     </li>
 </ul>

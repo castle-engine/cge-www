@@ -237,7 +237,7 @@ to update movement constantly. Examples below show both ways.
 'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
 begin
   if Event.IsKey(K_Space) then
-    Y -= 200.0;
+    Y := Y - 200.0;
 end;
 
 // new extended OnUpdate handler
@@ -268,7 +268,7 @@ end;');
 procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
 begin
   if Event.IsKey(K_Space) then
-    Y -= 200.0;
+    Y := Y - 200.0;
 end;
 
 // new extended OnUpdate handler
@@ -301,7 +301,7 @@ end;
 
     <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> (instead of simply attaching to window callbacks).
 
-  <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it using <?php api_link('T3DTransform', 'Castle3D.T3DTransform.html'); ?> and do many other fancy stuff with it.
+  <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it (using it's own properties, like <code>Translation</code>, or by making it a child of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) and do many other fancy stuff with it.
 
     <p><b>Just follow the rest of this manual, knowing that everything applies also to 2D, not just 3D:)</b>
 

@@ -158,7 +158,7 @@ into the ground. This is usually the most comfortable approach.
 
 <p>For flying resources (not using gravity),
 this doesn't matter, basically you can place 0,0,0 wherever you
-like. See <?php api_link('T3DCustomTransform.MiddleHeight', 'Castle3D.T3DCustomTransform.html#MiddleHeight'); ?>
+like. See <?php api_link('TCastleTransform.MiddleHeight', 'CastleTransform.TCastleTransform.html#MiddleHeight'); ?>
  for precise details.
 
 <?php echo $toc->html_section(); ?>

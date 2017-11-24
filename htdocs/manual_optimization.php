@@ -13,7 +13,7 @@ $toc = new TableOfContents(
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
-      new TocItem('Do not instantiate too many TCastleScenes', 'scenes', 1),
+      new TocItem('Share TCastleScenes instances if possible', 'scenes', 1),
       new TocItem('Collisions', 'collisions', 1),
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
       new TocItem('Consider using occlusion query', 'occlusion_query', 1),
@@ -319,14 +319,16 @@ to have hundreds or thousands of triangles in a single shape.
 
 <?php echo $toc->html_section(); ?>
 
-<p>You usually do not need to create too many <code>TCastleScene</code> instances.
-
 <ul>
-  <li><p>To reduce memory usage, you can place the same <code>TCastleScene</code> (or <code>TCastlePrecalculatedAnimation</code>) instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <code>T3DTransform</code>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+  <li><p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
 
     <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
 
-  <li><p>To improve the speed, you can often combine many <code>TCastleScene</code> instances into one. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>. This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; octrees (used for collision routines and frustum culling) will work Ok. Right now, we have an octree only inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
+    <p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method).
+
+  <li><p>In some cases, combining many <code>TCastleScene</code> instances into one helps. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>.
+
+    <p>This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; there will be only one octree (used for collision routines and frustum culling) for the whole scene. Right now, we have an octree inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
 </ul>
 
 <?php echo $toc->html_section(); ?>
