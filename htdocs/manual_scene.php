@@ -54,8 +54,7 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 
     <p>If, instead of <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, you use <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
 
-    <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world. Note: avoid transforming the <code>MainScene</code> (if you do transform it, the default camera position may be incorrect in some cases) &mdash; this will be fixed soon (in CGE 6.6).
-    </p>
+    <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
   </li>
 
   <li><p>To make the car actually moving, we should now update the <?php api_link('T3DTransform.Translation', 'Castle3D.T3DTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).</p>
