@@ -384,9 +384,22 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The engine allows you to easily define custom culling methods
-or use hardware occlusion query (see examples and docs). This may help
-a lot in large scenes (city or indoors).
+<p>The engine by default performs frustum culling, using per-shape
+and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
+flag to the <code>Scene.Spatial</code>, this will be even faster thanks
+to using shapes octree.
+
+<p>Using the <i>hardware occlusion query</i> is often a good idea
+in large city or indoor levels,
+where walls or large buildings can obscure a significant part of your geometry.
+Activate it by simply turnnig on the flag
+<?php api_link('UseOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseOcclusionQuery'); ?>,
+like <code>Scene.Attributes.UseOcclusionQuery := true</code>.
+Note that our simple implementation may sometimes show a lag of 1 frame
+when the object is not rendered, but it should be.
+
+<p>You can also define custom culling methods.
+See the <code>examples/3d_rendering_processing/fog_culling.lpr</code>.
 
 <?php echo $toc->html_section(); ?>
 
