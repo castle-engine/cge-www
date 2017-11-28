@@ -43,7 +43,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
         (moving, rotating, scaling them),
         or completely rearranging the tree (adding, removing items),
         or hiding / showing the items (use the
-        <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> property).
+        <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> property).
         It is ultimately fast and can be done as often as you need.
 
       <li><p>Downside: do not make this tree too deep and complicated.

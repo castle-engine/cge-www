@@ -37,6 +37,7 @@ with links to documentation for every attribute.
   [[CastleResources.T3DResource.html#Name|name]]="RequiredCreatureName"
   type="WalkAttack"
   [[CastleCreatures.TCreatureResource.html#KnockBackSpeed|knockback_speed]]="1.0"
+  [[CastleCreatures.TCreatureResource.html#CollidesWhenDead|collides_when_dead]]="False"
   [[CastleCreatures.TCreatureResource.html#KnockBackDistance|knockback_distance]]="4.0"
   [[CastleCreatures.TCreatureResource.html#Flying|flying]]="False"
   [[CastleCreatures.TCreatureResource.html#SoundDieTiedToCreature|sound_die_tied_to_creature]]="True"

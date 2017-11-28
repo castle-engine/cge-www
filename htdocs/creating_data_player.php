@@ -19,7 +19,7 @@ with links to documentation for every attribute.
 '<?xml version="1.0"?>
 
 <player
-  [[Castle3D.T3DAlive.html#KnockBackSpeed|knockback_speed]]="20.0"
+  [[Castle3D.TAlive.html#KnockBackSpeed|knockback_speed]]="20.0"
   [[CastleCameras.TWalkCamera.html#HeadBobbingTime|head_bobbing_time]]="0.5"
   [[CastlePlayer.TPlayer.html#HeadBobbing|head_bobbing]]="0.02"
   [[CastlePlayer.TPlayer.html#SickProjectionSpeed|sick_projection_speed]]="2.0">

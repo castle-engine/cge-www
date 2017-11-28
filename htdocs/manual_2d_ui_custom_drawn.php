@@ -42,8 +42,8 @@ like current life and inventory. In the <a href="manual_player.php">chapter abou
  <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
  class to automatically store and update your player's life and inventory
 (see <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> and ancestors properties, like
-<?php api_link('T3DAliveWithInventory.Inventory', 'CastleItems.T3DAliveWithInventory.html#Inventory'); ?> and
-<?php api_link('T3DAlive.Life', 'Castle3D.T3DAlive.html#Life'); ?>).
+<?php api_link('TAliveWithInventory.Inventory', 'CastleItems.TAliveWithInventory.html#Inventory'); ?> and
+<?php api_link('TAlive.Life', 'Castle3D.TAlive.html#Life'); ?>).
 But this information is not <i>displayed</i> automatically in any way,
 since various games have wildly different needs.
 <i>Let's draw the information about player ourselves</i>.</p>
@@ -255,7 +255,7 @@ For example, you can iterate over the inventory list and show the items like thi
  <?php api_link('Player.FadeOutColor', 'CastlePlayer.TPlayer.html#FadeOutColor'); ?>,
  <?php api_link('Player.FadeOutIntensity', 'CastlePlayer.TPlayer.html#FadeOutIntensity'); ?>
  representing when player is in pain (and the pain color).
- <?php api_link('Player.Dead', 'Castle3D.T3DAlive.html#Dead'); ?>
+ <?php api_link('Player.Dead', 'Castle3D.TAlive.html#Dead'); ?>
  says when player is dead (this is simply when <code>Life &lt;= 0</code>).
 
  <p>For example you can visualize pain and dead states like this:

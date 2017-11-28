@@ -33,15 +33,15 @@ make examples
 make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
-# define CASTLE_ENGINE_LGPL in ../castle-engine/src/base/castleconf.inc
-make clean
-make
-# revert ../castle_game_engine/src/base/castleconf.inc
-
-# define CONSERVE_TRIANGLE_MEMORY in ../castle_game_engine/src/x3d/octreeconf.inc
-make clean
-make
-# revert ../castle_game_engine/src/x3d/octreeconf.inc
+Test some special compilation options:
+- -dCASTLE_ENGINE_LGPL
+- -dCONSERVE_TRIANGLE_MEMORY
+- -dCASTLE_PNG_DYNAMIC
+For each:
+- # define it in ../castle-engine/src/base/castleconf.inc
+  make clean
+  make
+  # revert ../castle_game_engine/src/base/castleconf.inc
 
 # ----------------------------------------------------------------------------
 # FPCUnit tests
@@ -97,6 +97,9 @@ svn diff # check, fix or commit differences
 # in ../castle-engine/src/base/opengl/castleglversion.pas
 # in particular BuggyVbo being true,
 # and check rendering works.
+
+# Test with EnableFixedFunction := true:
+view3dscene --debug-enable-fixed-function
 
 # check PlayAnimation in view3dscene:
 # - load balls animation, check loop/non-loop works

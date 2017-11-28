@@ -143,7 +143,7 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
     by looking at <code>TCastleSceneManager.GravityUp</code>,
     <code>TCastleSceneManager.Camera.GravityUp</code>, and
     <code>World.GravityUp</code> (from any
-    <code>T3D</code> code), these are always equal.
+    <code>TCastleTransform</code> code), these are all equal.
 
   <li><p>If you use <code>TCastleTransform.Direction</code>
     and <code>TCastleTransform.Up</code> properties to rotate your models

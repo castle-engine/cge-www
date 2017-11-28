@@ -312,16 +312,16 @@ $toc = new TableOfContents(
     and fast collision detection even when the scene constantly changes.
     There are many ways to use collision detection,
     for example you can query for collision between a specific
-    <?php api_link('T3D instance', 'CastleTransform.T3D.html'); ?> and the rest of the world
+    <?php api_link('TCastleTransform instance', 'CastleTransform.TCastleTransform.html'); ?> and the rest of the world
     (by methods like
-    <?php api_link('T3D.Move', 'CastleTransform.T3D.html#Move'); ?>,
-    <?php api_link('T3D.Ray', 'CastleTransform.T3D.html#Ray'); ?>
-    <?php api_link('T3D.Height', 'CastleTransform.T3D.html#Height'); ?>)
+    <?php api_link('TCastleTransform.Move', 'CastleTransform.TCastleTransform.html#Move'); ?>,
+    <?php api_link('TCastleTransform.Ray', 'CastleTransform.TCastleTransform.html#Ray'); ?>
+    <?php api_link('TCastleTransform.Height', 'CastleTransform.TCastleTransform.html#Height'); ?>)
     or you can ask the whole world whether it collides with some geometric shape
     (calling methods like
-    <?php api_link('T3D.BoxCollision', 'CastleTransform.T3D.html#BoxCollision'); ?>,
-    <?php api_link('T3D.SphereCollision', 'CastleTransform.T3D.html#SphereCollision'); ?>
-    <?php api_link('T3D.RayCollision', 'CastleTransform.T3D.html#RayCollision'); ?>
+    <?php api_link('TCastleTransform.BoxCollision', 'CastleTransform.TCastleTransform.html#BoxCollision'); ?>,
+    <?php api_link('TCastleTransform.SphereCollision', 'CastleTransform.TCastleTransform.html#SphereCollision'); ?>
+    <?php api_link('TCastleTransform.RayCollision', 'CastleTransform.TCastleTransform.html#RayCollision'); ?>
     on the main 3D world instance: <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>).
     </li>
 </ul>
