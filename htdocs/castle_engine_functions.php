@@ -260,6 +260,7 @@ $castle_sitemap = array(
           'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
           'creating_data_player' => array('title' => 'Player configuration'),
           'creating_data_material_properties' => array('title' => 'Material properties configuration'),
+          'creating_data_auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),
           'creating_data_sound' => array('title' => 'Sound'),
         )
       ),
