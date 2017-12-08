@@ -18,6 +18,7 @@ $toc = new TableOfContents(
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
       new TocItem('Consider using occlusion query', 'occlusion_query', 1),
       new TocItem('Blending', 'blending', 1),
+      new TocItem('Loading PNG using libpng', 'libpng', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
       new TocItem('Detect memory leaks with HeapTrc (-gh)', 'heaptrc', 1),
@@ -443,6 +444,22 @@ Hints to make it faster:
       <li>Or you can force using alpha testing by <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">using <code>alphaChannel "TEST"</code> in X3D</a></li>
     </ol>
   </li>
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>By default, our engine uses FpImage to load various image formats, including PNG. This is comfortable, as it does not require any external libraries, and thus it instantly works (and in the same way) on all platforms. So you don't need to worry about using <code>libpngXXX.dll</code> on Windows, or linking with <i>libpng</i> on Android or iOS.
+
+<p>However, using external <i>libpng</i> is often much (even 4x) faster. That is because <i>libpng</i> allows to make various transformations during file reading (instead of processing the pixels later), and it doesn't force us to read using 16-bit-per-channel API (like FpImage does). So if you have a lot of PNG files, and want to speed up the loading process, consider switching to using external <i>libpng</i>.
+
+<p>To use external <i>libpng</i> library, just define <code>-dCASTLE_PNG_DYNAMIC</code> when compiling the engine. E.g. define it inside <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml as &lt;custom_options&gt;</a> and use our <a href="https://github.com/castle-engine/castle-engine/wiki/Build%20Tool">build tool</a> to compile your game.
+
+<p>When testing or distributing the game, make sure that you have libpng and zlib available.
+
+<ul>
+  <li>On Linux, FreeBSD, Mac OS X and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.
+  <li>On Windows, the <a href="https://github.com/castle-engine/castle-engine/wiki/Android/Build%20Tool">build tool</a> will make sure to include the appropriate DLLs when you call <code>castle-engine package ...</code>. For testing, you can copy the appropriate DLLs to your game directory yourself, or copy them somewhere on $PATH. At the bottom of the <a href="documentation.php">getting started</a> page we documented from where you can take these DLLs.
+  <li>On Android and iOS, we will still use internal FpImage for now. (Modify <code>castleconf.inc</code> if you want to change it.)
 </ul>
 
 <?php echo $toc->html_section(); ?>
