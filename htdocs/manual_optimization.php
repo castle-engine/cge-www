@@ -334,18 +334,29 @@ to have hundreds or thousands of triangles in a single shape.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We build an octree (looking at exact triangles in your 3D model)
-for precise collision detection with a level.
-For other objects, we use bounding volumes
-like boxes and spheres. This means that the number of shapes doesn't
-matter much for collision speed. However, number of triangles still
-matters for level.
+<p>If you include <code>ssStaticCollisions</code> or <code>ssDynamicCollisions</code>
+inside <code>TCastleScene.Spatial</code>, then we build a spatial structure (octree)
+that performs collisions with the actual triangles of your 3D model.
+This results in very precise collisions, but it can eat an unnecessary
+amount of memory (and, sometimes, take unnecessary amount of time)
+if you have a high-poly mesh.
+Often, many shapes don't need to have such precise collisions
+(e.g. a complicate 3D tree may be approximated using a simple cylinder
+representing tree trunk).
 
-<p>Use X3D <code>Collision</code> node to easily mark unneeded shapes as
-non-collidable or to provide a simpler "proxy" mesh to use for
-collisions with complicated objects. See
-<code>demo_models/vrml_2/collisions_final.wrl</code>
-inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
+<p>Use X3D <code>Collision</code> node to mark some shapes as
+non-collidable or to provide a simpler "proxy" shape to use for
+collisions. Right now, using the <code>Collision</code> requires
+writing X3D code manually, but it's really trivial. You can
+still export your scenes from 3D software, like Blender &mdash;
+you only need to manually write a "wrapper" X3D file around them.
+
+<ul>
+  <li>An example X3D file showing this technique: <a href="https://github.com/castle-engine/wyrd-forest/blob/master/data/tree/oaktree_with_good_collisions.x3dv">tree from "Wyrd Forest" game</a>.
+  <li>More examples are in <code>vrml_2/collisions_final.wrl</code> demo inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
+</ul>
+
+<!--
 It's really trivial
 in X3D, and we support it 100% &mdash; I just wish there was a way to
 easily set it from 3D modelers like Blender. Hopefully we'll get
@@ -354,15 +365,14 @@ quite easy actually. And thanks to using X3D Inline node, you can keep
 your auto-generated X3D content separated from hand-written X3D code
 &mdash; that's the reason for xxx_final.x3dv and xxx.x3d pairs of
 files around the demo models.
+-->
 
-<p>To wrap something in simpler collisions in code,
-you can build appropriate <code>Collision</code> node by code.
-See helpers like
-<?php api_link('TCollisionNode.CollideAsBox', 'X3DNodes.TCollisionNode.html#CollideAsBox'); ?>.
+<p>You can also build a <code>Collision</code> node by code.
+We have a helper method for this: <?php api_link('TCollisionNode.CollideAsBox', 'X3DNodes.TCollisionNode.html#CollideAsBox'); ?>.
 
-<p>You can adjust the parameters how the octree is created. You can
-<a href="x3d_extensions.php#section_ext_octree_properties">set octree
-parameters in VRML/X3D file</a> or by ObjectPascal code.
+<p>Another possible octree optimization is to adjust the parameters how
+the octree is created. You can
+<a href="x3d_implementation_navigation_extensions.php#section_ext_octree_properties">set octree parameters in VRML/X3D file</a> or by ObjectPascal code.
 Although in practice I usually find that the default values are really good.
 <!--found that the default values are optimal
 for a wide range of scenes.
