@@ -106,8 +106,6 @@ end;'); ?>
 
   <li><p>The current implementation doesn't expose any API for joints. Again, they could be designed in Blender and exported to X3D.
 
-  <li><p>The current implementation doesn't allow TCastleTransform with rigid body to be further transformed by parent TCastleTransform. This should be fixed.
-
   <li><p>In the past, I planned integration with other physics engines, through a layer providing a common API. However, right now, I'm extremely satisfied with <a href="https://github.com/BeRo1985/kraft">Kraft</a>. As far as rigid body simulation goes, I think that Kraft may be <i>the</i> physics engine for us, and we may not need anything else... But just in case, here are other options I considered:
 
     <ul>

@@ -228,7 +228,7 @@ end;'); ?>
   </li>
 </ol>
 
-<p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method.
+<p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method. In general, it's best to leave this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't turn on <code>ProcessEvents</code> and thus you don't animate them in any way).
 
 <?php echo $toc->html_section(); ?>
 
