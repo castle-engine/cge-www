@@ -717,7 +717,7 @@ var _bftn_options = {
 //always_show_widget: true // @type {Boolean}
 };
 </script>
-<script src="https://widget.battleforthenet.com/widget.js" async></script>
+<!-- script src="https://widget.battleforthenet.com/widget.js" async></script -->
 
 <?php
 /* echo flattr_header(); - Flattr not used now */
