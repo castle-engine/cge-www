@@ -93,14 +93,13 @@ have to actually send your 3D model source.--></p>
 <p>Feel free to expand, modify, redistribute these test files
 &mdash; they are covered by GNU GPL &gt;= 2 license.</p>
 
-<p>You can always download the very current version of these models from SVN by:</p>
-
-<pre><?php
-  echo sf_checkout_link(true, 'demo_models'); ?></pre>
-
-<p>Or you can get them from <a href="https://github.com/castle-engine/demo-models">our GitHub project</a> (auto-synchronized with SVN), like this:
+<p>You can always download the very current version of these models from <a href="https://github.com/castle-engine/demo-models">our GitHub project</a>, like this:
 
 <pre>git clone https://github.com/castle-engine/demo-models.git</pre>
+
+<p>Or you can get them from SVN  (auto-synchronized with GIT) by:</p>
+
+<pre><?php echo sf_checkout_link(true, 'demo_models'); ?></pre>
 
 <?php echo $toc->html_section(); ?>
 

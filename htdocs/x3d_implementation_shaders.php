@@ -205,40 +205,11 @@ bound texture unit. This means that you can pass in a natural way
 texture node to a GLSL <code>sampler2D</code>, <code>sampler3D</code>,
 <code>samplerCube</code>, <code>sampler2DShadow</code> and such.</p>
 
-<?php echo vrmlx3d_highlight(
-'shaders ComposedShader {
-  language "GLSL"
-  parts [
-    ShaderPart { type "VERTEX"
-      url "data:text/plain,
-      void main(void)
-      {
-        gl_Position = ftransform();
-      }" }
-
-    ShaderPart { type "FRAGMENT" url
-    "data:text/plain,
-
-     uniform sampler2D texture_one;
-     uniform sampler2D texture_two;
-
-     void main()
-     {
-       gl_FragColor = gl_Color *
-         max(
-           texture2D(texture_one, gl_TexCoord[0].st),
-           texture2D(texture_two, gl_TexCoord[1].st));
-     }
-    " }
-  ]
-  initializeOnly SFNode texture_one ImageTexture { url "one.png" }
-  initializeOnly SFNode texture_two ImageTexture { url "two.png" }
-}'); ?>
-
-<p>A full working version of this example can be found
-in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
- (look for file <code>shaders/simple_multitex_shaders.x3dv</code>),
-<a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/simple_multitex_shaders.x3dv">or see it here</a>.
+<p>The simplest demo of using this too combine 2 textures in a shader is
+inside <a href="https://github.com/castle-engine/demo-models/blob/master/shaders/two_textures.x3dv">demo-models/shaders/two_textures.x3dv</a>.
+This demo, along with many more, are inside our
+ <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
+ (look inside the <code>shaders/</code> subdirectory).
 </p>
 
 <p>When using GLSL shaders in X3D you should pass all
