@@ -91,12 +91,12 @@ anywhere.
 
 <?php echo $toc->html_section(); ?>
 
-<p>There are two FPS values available: <i>real FPS</i> and <i>only render FPS</i>.
-<i>Only render FPS</i> is usually larger.
+<p>There are two FPS numbers measured: "<i>real FPS</i>" and "<i>only render FPS</i>".
+"<i>Only render FPS</i>" is usually slightly larger.
 Larger is better, of course: it means that you have smoother animation.
 
 <p><b>Use "<i>real FPS</i>" to measure your overall game speed. This is the actual
-number of frames per second that we managed to render.</b>
+number of frames per second that we managed to display.</b>
 
 <p>Caveats:
 
@@ -138,8 +138,11 @@ number of frames per second that we managed to render.</b>
     (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit).
     Change them to zero to disable the "limit fps" feature.
 
+    <p>You will also likely need to turn off "<i>vertical synchronization</i>"
+    of the GPU to achieve such high FPS.
+
   <li><p>Note that the monitor will actually drop some frames above it's
-    frequency, like 80. This <i>may</i> cause you to observe that above some
+    frequency, like 60. This <i>may</i> cause you to observe that above some
     limit, FPS are easier to gain by optimizations, which may lead you
     to a false judgement about which optimizations are more useful than
     others. <i>To make a good judgement about what is faster / slower,
@@ -158,7 +161,8 @@ Caveats:
     in Render"</i> doesn't necessarily relate to <i>"how much time GPU spent on
     performing your drawing commands"</i>.
 
-    <p>For example: if you set <code>LimitFPS</code> to a small value, you may observe
+    <p>For example: if you set <code>LimitFPS</code> to a small value (like 10),
+    you may observe
     that <i>"only render FPS"</i> grows very high. Why? Because when the CPU is idle
     (which is often if <code>LimitFPS</code> is small), then GPU has a free time to
     finish rendering previous frame. So the GPU does the work for free,
@@ -200,13 +204,14 @@ Caveats:
     This is normal if neither rendering nor collisions are a bottleneck
     &mdash; then we probably just spend time in the <code>Render</code> waiting
     for vertical synchronization to happen, and you can't really achieve more
-    than 60 real FPS in the typical case.
+    than 60 real FPS in the typical case with "<i>vertical synchronization</i>"
+    turned on.
 
     <p>However, if your <i>"real FPS"</i> is much lower than your refresh rate,
     and your <i>"only render FPS"</i> is equal to <i>"real FPS"</i>,
     then you probably can optimize the rendering. (Make smaller models,
     use less demanding shader effects etc.)
-</ul>
+</dl>
 
 <!--p>If you turn off <code>LimitFPS</code>, and compare <i>"only render FPS"</i> with
 <i>"real FPS"</i>,
