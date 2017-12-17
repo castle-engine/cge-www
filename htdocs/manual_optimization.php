@@ -47,8 +47,11 @@ number. Use the
 
 <?php echo $toc->html_section(); ?>
 
-<p>In short, watch the <code>Window.Fps.RealFps</code> value, by displaying it
-anywhere.
+<p>In short, watch the <code>Window.Fps.RealFps</code> value,
+by displaying it anywhere.
+
+<p>Or display the <code>Window.Fps.ToString</code>
+that includes <code>RealFps</code> and some more information.
 
 <p>And make sure that you have
  <?php api_link('TCastleControlCustom.AutoRedisplay', 'CastleControl.TCastleControlCustom.html#AutoRedisplay'); ?> or
@@ -67,7 +70,7 @@ anywhere.
 
   <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value.
 
-    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>.
+    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>. As an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/game.pas">see how examples/physics/physics_3d_demo/game.pas shows the FPS</a>.
 
     <p>Display the value like <code>Format('%f', [Window.Fps.RealFps])</code>. Or, even better (and simpler), use <code>Window.Fps.ToString</code>. The <code>Window.Fps.ToString</code> shows more information, nicely formatted.
 
@@ -149,7 +152,9 @@ number of frames per second that we managed to display.</b>
     of the GPU to achieve arbitrarily high FPS.
 
   <li><p>Note that the monitor will actually drop some frames above it's
-    frequency, like 60. This <i>may</i> cause you to observe that above some
+    frequency, like 60. (This is relevant only if "<i>vertical synchronization</i>" is off.)
+
+    <p>This <i>may</i> cause you to observe that above some
     limit, FPS are easier to gain by optimizations, which may lead you
     to a false judgement about which optimizations are more useful than
     others. <i>To make a good judgement about what is faster / slower,
