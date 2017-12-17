@@ -127,19 +127,26 @@ number of frames per second that we managed to display.</b>
 
   <li><p>If you hope to see higher values than 100 (the default
     <code>LimitFPS</code> value) then turn off "<i>limit FPS</i>" feature.
-    Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    <i>"Preferences -&gt; Frames Per Second"</i> menu
-    item, or (in your own programs) change
-    <?php api_link('LimitFPS global variable', 'CastleControl.html#LimitFPS'); ?>
-    (if you use
-    <?php api_link('CastleControl', 'CastleControl.html'); ?>
-    unit with Lazarus) or change
-    <?php api_link('Application.LimitFPS', 'CastleWindow.TGLApplication.html#LimitFPS'); ?>
-    (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit).
-    Change them to zero to disable the "limit fps" feature.
 
-    <p>You will also likely need to turn off "<i>vertical synchronization</i>"
-    of the GPU to achieve such high FPS.
+    <ul>
+      <li>In games using <code>TCastleWindow</code>
+        (if you use a standard program template, or manually call
+        <code>Window.ParseParameters</code>) you can do it just by passing
+        <code>--no-limit-fps</code> command-line option.
+      <li>Or use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+        <i>"Preferences -&gt; Frames Per Second"</i> menu item.
+      <li>Or (in your own programs) change
+        <?php api_link('LimitFPS global variable', 'CastleControl.html#LimitFPS'); ?>
+        (if you use
+        <?php api_link('CastleControl', 'CastleControl.html'); ?>
+        unit with Lazarus) or change
+        <?php api_link('Application.LimitFPS', 'CastleWindow.TGLApplication.html#LimitFPS'); ?>
+        (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit).
+        Change them to zero to disable the "limit fps" feature.
+    </ul>
+
+    <p>You will also need to turn off "<i>vertical synchronization</i>"
+    of the GPU to achieve arbitrarily high FPS.
 
   <li><p>Note that the monitor will actually drop some frames above it's
     frequency, like 60. This <i>may</i> cause you to observe that above some
