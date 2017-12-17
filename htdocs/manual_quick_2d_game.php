@@ -188,10 +188,10 @@ When necessary for rendering, they will internally be rounded to whole pixels an
 <p>The event <code>OnUpdate</code> is continously called by the engine.
 You should use it to update the state of your world as time passes.
 
-<p>Use the <code>Fps.UpdateSecondsPassed</code> to know how much time has passed
+<p>Use the <code>Fps.SecondsPassed</code> to know how much time has passed
 since the last frame. You should scale all your movement by it, to adjust
 to any computer speed. For example, to move by 100 pixels per second,
-we will increase our position by <code>CastleControl1.Fps.UpdateSecondsPassed * 100.0</code>.
+we will increase our position by <code>CastleControl1.Fps.SecondsPassed * 100.0</code>.
 
 <ol>
   <li><p><b>If you use Lazarus form with
@@ -202,7 +202,7 @@ we will increase our position by <code>CastleControl1.Fps.UpdateSecondsPassed * 
 <?php echo pascal_highlight(
 'procedure TForm1.CastleControl1Update(Sender: TObject);
 begin
-  Y := Y + CastleControl1.Fps.UpdateSecondsPassed * 100.0;
+  Y := Y + CastleControl1.Fps.SecondsPassed * 100.0;
 end;'); ?>
 
   <li><p><b>If you use
@@ -213,7 +213,7 @@ end;'); ?>
 <?php echo pascal_highlight(
 'procedure WindowUpdate(Container: TUIContainer);
 begin
-  Y := Y + Container.Fps.UpdateSecondsPassed * 100.0;
+  Y := Y + Container.Fps.SecondsPassed * 100.0;
 end;
 
 // ... at initialization, right after assigninig Window.OnRender, add:
@@ -245,7 +245,7 @@ procedure TForm1.CastleControl1Update(Sender: TObject);
 var
   SecondsPassed: Single;
 begin
-  SecondsPassed := CastleControl1.Fps.UpdateSecondsPassed;
+  SecondsPassed := CastleControl1.Fps.SecondsPassed;
   Y := Y + SecondsPassed * 100.0;
   if CastleControl1.Pressed[K_Left] then
     X := X - SecondsPassed * 200.0;
@@ -276,7 +276,7 @@ procedure WindowUpdate(Container: TUIContainer);
 var
   SecondsPassed: Single;
 begin
-  SecondsPassed := Container.Fps.UpdateSecondsPassed;
+  SecondsPassed := Container.Fps.SecondsPassed;
   Y := Y + SecondsPassed * 100.0;
   if Container.Pressed[K_Left] then
     X := X - SecondsPassed * 200.0;
