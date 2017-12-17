@@ -62,7 +62,6 @@ define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
 define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wiki');
 define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
-define('TICKETS_TRACKER_URL', 'https://sourceforge.net/p/castle-engine/tickets/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
 function reference_link()
@@ -368,7 +367,7 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'forum' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum', 'url' => FORUM_URL),
+  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Talk with us'),
 
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),

@@ -6,36 +6,35 @@ castle_header('Helping in the engine development', array(
 echo pretty_heading($page_title);
 ?>
 
-<p>We have a ton of TODOs if you're interested in helping the engine development!
-Thank you!:)</p>
+<!--p>We have a ton of TODOs if you're interested in helping the engine development!
+Thank you!:)</p-->
 
 <?php
 $toc = new TableOfContents(
   array(
     new TocItem('For everyone', 'everyone'),
-    new TocItem('For 3D worlds creators', 'creators'),
-    new TocItem('For ObjectPascal developers', 'developers'),
-    new TocItem('For Blender experts', 'blender'),
-    new TocItem('For Linux distros package maintainers', 'distros'),
+    new TocItem('For developers', 'developers'),
+    new TocItem('For 3D artists', 'creators'),
+    new TocItem('For Blender users', 'blender'),
+    new TocItem('For Linux package maintainers', 'distros'),
   ));
 ?>
 
 <?php echo $toc->html_toc(); ?>
 
-<p>If you'd like to help in the development of our engine, here are some
-proposed tasks:</p>
+<!-- <p>If you'd like to help in the development of our engine, here are some -->
+<!-- proposed tasks:</p> -->
 
 <?php echo $toc->html_section(); ?>
 
 <ul>
+  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>.
   <!--li>First of all, don't hesitate to post questions and suggestions
     about anything to our <a href="<?php echo FORUM_URL; ?>">forum</a>.-->
-  <li>Brag about our engine on blogs and social platforms :)
-  <li><?php echo a_href_page('Donate', 'donate'); ?>.
+  <!--?php echo a_href_page('Donate', 'donate'); ?-->
   <li>Create a page on <a href="http://en.wikipedia.org/">Wikipedia</a> about our
-    <?php echo a_href_page('Castle Game Engine', 'index'); ?> and/or
+    <?php echo a_href_page('Castle Game Engine', 'index'); ?> and / or
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
-    Maybe only a page about view3dscene for starters?
     <!--
     Or maybe only about the engine, and just redirect view3dscene there?
     I don't want to create and add it myself, it would not be fair.
@@ -43,53 +42,16 @@ proposed tasks:</p>
     Of course you will get help (you can ask, post your draft etc.
     on our <a href="<?php echo FORUM_URL; ?>">forum</a> and such).
     -->
+  <li>Talk about our engine on blogs and social platforms :)
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you use our tools to create or browse your 3D worlds, you can:
-
-<ul>
-  <li><p>Show off your works on our <a href="<?php echo FORUM_URL; ?>">forum</a>,
-    in any way you like (screenshot, link to model, youtube video etc.).
-    If you use some of <?php echo a_href_page('our engine special VRML/X3D extensions
-    or rendering features', 'x3d_extensions'); ?>, you are strongly
-    encouraged to do so (Michalis loves to see how his work is useful for others :) !
-    But also post about "normal" 3D models that simply look nice in our
-    <?php echo a_href_page('view3dscene', 'view3dscene'); ?> or such.
-  <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
-  <li><p>Look into improving our documentation.
-    Our <?php echo a_href_page('scene graph (X3D) documentation', 'vrml_x3d'); ?>
-    is large, and wants to be larger. Contributions describing
-    how something works, or how to do something practical, are welcome.
-
-    <p><a href="<?php echo WIKI_URL; ?>">You can
-    add your contributions directly to our wiki</a>.
-    (Once we'll get some user content in our wiki,
-    we'll think how to make it more visible.)<!-- &mdash; copy it to the current "static"
-    documentation pages, or maybe make link to wiki more prominent,
-    maybe even move whole current static documentation to wiki.)-->
-
-  <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">nightly
-    builds of our binaries</a>. These are build automatically every night
-    using current SVN code. You can test them and catch eventual bugs
-    before the release. This way you can also preview new features before they
-    are released.
-
-    <p>Bugs can be reported on the <a href="<?php echo FORUM_URL; ?>">forum</a>
-    or in the <a href="<?php echo TICKETS_TRACKER_URL; ?>">tickets tracker</a>.
-</ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p>For ObjectPascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:
+<!--p>For Object Pascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:-->
 
 <ul>
   <li><p>Use our <?php echo a_href_page('engine', 'index'); ?>
     to make your next game, of course! :) And make it great :)
-
-  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
-    to our wiki</a> useful tips or tutorials about using our engine.
 
   <li><p>Contribute code! Remove a bug, add a feature! (Not the other way around:)
 
@@ -105,34 +67,77 @@ proposed tasks:</p>
     and <a href="https://github.com/castle-engine/castle-engine/issues">create
     a new issue with the patch file attached</a>.
 
-    <p>If you're looking for a feature to implement, <a href="planned_features.php">take
-    a look at our planned features</a>.
+    <p>If you're looking for a feature to implement,
+    <a href="planned_features.php">take a look at our planned features</a>.
+
+    <p>If you know your way around OpenGL,
+    see <a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">the list of renderer TODOs</a> &mdash; there's a number of easy and rewarding tasks waiting!
+
+  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
+    to our wiki</a> useful tips or tutorials about using our engine.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>I think that success of our engine is tightly coupled with
-the quality of <a href="http://www.blender.org/">Blender</a> X3D exporter.
-Of course, you can use anything to generate VRML/X3D for use with our engine.
-But if you make FOSS game, you have probably already chosen
+<p>If you use <i>Castle Game Engine</i> or our tools (like view3dscene) to view or play anything
+(a game, or just your 3D or 2D assets):
+
+<ul>
+  <li><p>Show it on our <a href="talk.php">Discord or forum</a>
+    by sharing a screenshot.
+    Michalis loves to see how his work is useful for others :)
+
+  <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
+
+  <li><p>Look into improving our documentation.
+    Our <?php echo a_href_page('scene graph (X3D) documentation', 'vrml_x3d'); ?>
+    is large, and wants to be larger. Contributions describing
+    how something works, or how to do something practical, are welcome.
+
+    <p><a href="<?php echo WIKI_URL; ?>">You can
+    add your contributions directly to our wiki</a>.
+    (Once we'll get some user content in our wiki,
+    we'll think how to make it more visible.)<!-- &mdash; copy it to the current "static"
+    documentation pages, or maybe make link to wiki more prominent,
+    maybe even move whole current static documentation to wiki.)-->
+
+  <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
+    You can test them and catch eventual bugs
+    before the release. This way you can also preview new features before they
+    are released.
+
+    <p>Bugs can be reported on the <a href="<?php echo FORUM_URL; ?>">forum</a>
+    or in the <a href="https://github.com/castle-engine/view3dscene/issues">issues tracker</a>.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you make free software / open-source game, you have probably already chosen
 <a href="http://www.blender.org/">Blender</a> as your main 3D modeller.
+We can <a href="creating_data_blender.php">export from Blender to X3D or castle-anim-frames
+(which is internally a sequence of X3D models)</a>.
+It would be great to improve Blender -&gt; X3D exporter:
 
-<p>Blender is really fantastic. But the current exporter from Blender to X3D
-lacks some important features. For starters, there isn't
-any way to export animation to X3D. At least exporting animation
-of transformations (translation, rotation, scale of objects) would
-already be very useful. Exporting mesh deformation
-(from shape keys, or derived from bone animation) would be great.
-There are also various other small lacks.
-Many features of VRML/X3D and our engine are not used intensively enough,
-because there isn't any way to express them and export from Blender.
+<ul>
+  <li><p>Support animations. <a href="creating_data_blender.php">Right now we support animations using castle-anim-frames</a>, but a direct support inside X3D exporter would be more efficient.
 
-<p>Preferably, changes should be reported and applied to
-the <a href="http://www.blender.org/">Blender</a> sources.
-But, eventually, we can also host our custom X3D exporter.
+    <p>At least exporting animation
+    of transformations (translation, rotation, scale of objects) would
+    already be very useful.
+    Exporting mesh deformation
+    (from shape keys, or derived from bone animation) would be great.
+    Exporting skinned mesh animation (as mesh deformation, or using X3D H-Anim nodes)
+    would be great.
 
-<p>See also our <?php echo a_href_page('Blender exporting notes',
-'creating_data_blender'); ?>.
+  <li><p>Configuring collisions (using X3D <code>Collision</code> node). <a href="manual_optimization.php">As explained in the manual about "optimization"</a>, it's often useful to configure what collides and how.
+
+  <li><p>Export 3D sound sources from Blender.</p>
+</ul>
+
+<p>We have <?php echo a_href_page('our own fork of the Blender X3D exporter',
+'creating_data_blender'); ?>, which can be used to distribute our improvements
+to CGE users. But preferably, changes should be submitted and applied to
+the <a href="http://www.blender.org/">Blender</a> sources as well.
 
 <!--
 Only stuff really specific to our engine (cooperation between Blender
@@ -171,6 +176,6 @@ Some facts in favor of view3dscene, important for package maintainers:
 
 <p>Michalis uses <a href="http://www.debian.org/">Debian</a>,
 and sometimes <a href="http://www.ubuntu.com/">Ubuntu</a>,
-and would love to see his software available in your repositories :)
+and would love to see his software available in all Linux repositories :)
 
 <?php castle_footer(); ?>
