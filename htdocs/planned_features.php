@@ -272,48 +272,44 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
   <li>
     <p><b>Advanced networking support</b></p>
-    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="https://castle-engine.sourceforge.io/old_news.php?id=devel-2013-04-19">relevant news entry</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
+    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="https://castle-engine.sourceforge.io/manual_network.php">the manual</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
 
-    <p>Things missing are listed below (some of them may done by adding
-    integration with <a href="http://lnet.wordpress.com/">LNet</a> or
-    <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
-    intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>).
+    <p>Things missing are listed below:
 
     <ol>
-      <li><p><b>Support for <code>https</code></b>. By sending patches to add it to
-        FpHttpClient. Or by using LNet or Synapse (they both include https
-        support).
+      <li><p><b>Support for <code>https</code></b>.
 
-      <li><p><b>Support for <code>ftp</code></b>. By using LNet or Synapse, unless
-        something ready in FPC appears in the meantime.
-        Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
+        <p>FpHttpClient should be able to handle https in new version (at least in FPC 3.1.1, but possibly in 3.0.x too). See the FPC mailing list and wiki for info. So this is mostly a matter of adding the <code>https</code> to the recognized protocol names in <code>CastleDownload</code>, and testing.
 
-      <li><p><b>Support for HTTP basic authentication</b>. This can be done in our
-        CastleDownload unit. Although it would be cleaner to implement it
-        at FpHttpClient level, see
-        <a href="http://bugs.freepascal.org/view.php?id=24335">this
-        proposal</a>.
-        Or maybe just use LNet or Synapse, I'm sure they have some support
-        for it.
+        <p>Or we can use LNet or Synapse (they both include https support).
 
-      <li><p><b>Ability to cancel the ongoing download</b>.
-        Add a "cancel" button to CastleWindowProgress for this.
-        See the task below (background downloading) for ideas how to do it.
-        See the <code>TDownload</code> plans in the comments of <code>CastleDownload.pas</code>.
+      <li><p>Maybe integrate with
+        <a href="http://lnet.wordpress.com/">LNet</a> or
+        <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
+        intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>.
+        Maybe <a href="http://www.indyproject.org/index.en.aspx">Indy</a>.
 
-      <li><p><b>Ability to download resources in the background</b>,
-        while the game is running. Technically this is connected to the previous
-        point: being able to reliably cancel the download.
-        See the <code>TDownload</code> plans in the comments of <code>CastleDownload.pas</code>.
+        <p>Bear in mind that future engine version should work under both FPC and Delphi,
+        so choosing one library that works under both FPC and Delphi is a plus.
 
-        <p>There is a question how to do it.
-        We can use <code>TThread</code> for downloads,
-        maybe even a couple of threads each for a separate download.
-        We can use API that doesn't block (like LNet or Sockets,
-        with Timeout > 0).
-        We can do both.
+      <li><p><b>Asynchronous downloading</b>.
 
-        <p>Using separate thread(s) for download seems like a good idea,
+        <p>So that you don't need to hang waiting for download.
+
+        <p>The API design is already inside <code>castledownload.pas</code>,
+        look for the line "<i>API for asynchronous downloader is below, not implemented yet</i>".
+
+        <p>Using threading (<code>TThread</code>) to implement this is optional, as you can update the data
+        during the <code>ApplicationProperties.OnUpdate</code> in the main thread
+        (if only you use non-blocking API like LNet).
+        Note that you need to use non-blocking API anyway (as we must be able to cancel
+        the ongoing download, and you cannot instantly unconditionally terminate a running <code>TThread</code>).
+        Using threads may still be reasonable for efficiency (no need to slow down
+        the main thread), but then it should be 100% invisible to
+        the user of <code>TDownload</code> class. From the point of view
+        of engine user, the <code>TDownload</code> must be available in the main thread.
+
+        <!--p>Using separate thread(s) for download seems like a good idea,
         the synchronization is not difficult as the thread needs only
         to report when it finished work.
 
@@ -343,6 +339,7 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         <p>I'm no expert in threads and networking, so if anyone has
         any comments about this (including just comfirming my analysis)
         please let me (Michalis) know :)
+        -->
 
         <!--
         http://wiki.freepascal.org/Example_of_multi-threaded_application:_array_of_threads
@@ -352,9 +349,26 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         http://stackoverflow.com/questions/3788743/correct-thread-destroy
         -->
 
-      <li><p><b>Support X3D <code>LoadSensor</code> node</b>.
 
-      <li><p><b>Caching on disk of downloaded data</b>.
+        <p>This will also enable <i>cancelling the ongoing download</i>.
+        Maybe add a "cancel" button to <code>CastleWindowProgress</code> to cancel
+        ongoing view3dscene downloads.
+
+      <li><p>(Low priority) <b>Support for <code>ftp</code></b>. By using LNet or Synapse, unless
+        something ready in FPC appears in the meantime.
+        Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
+
+      <li><p>(Low priority) <b>Support for HTTP basic authentication</b>. This can be done in our
+        CastleDownload unit. Although it would be cleaner to implement it
+        at FpHttpClient level, see
+        <a href="http://bugs.freepascal.org/view.php?id=24335">this
+        proposal</a>.
+        Or maybe just use LNet or Synapse, I'm sure they have some support
+        for it.
+
+      <li><p>(Low priority) <b>Support X3D <code>LoadSensor</code> node</b>.
+
+      <li><p>(Low priority) <b>Caching on disk of downloaded data</b>.
         Just like WWW browsers, we should be able to cache
         resources downloaded from the Internet.
         <ul>
