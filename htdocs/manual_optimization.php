@@ -5,6 +5,8 @@ manual_header('Optimization and profiling');
 $toc = new TableOfContents(
   array(
     new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
+      new TocItem('The short version: what to watch', 'fpc_short', 1),
+      new TocItem('How to show the FPS value', 'fpc_show', 1),
       new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
     new TocItem('Making your games run fast', 'models'),
       new TocItem('Basic rule: use small and static geometry, as much as possible', 'basic', 1),
@@ -33,53 +35,98 @@ probably start to wonder about the speed and memory usage.</p>
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>The main thing that measures your game speed is the <i>Frames Per Second</i>.
-Engine automatically keeps track of this for you.
-Use the <code>TCastleControl.Fps</code> or <code>TCastleWindow.Fps</code>
-to get an instance of
- <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>,
-and inside you have two important numbers:
- <?php api_link('TFramesPerSecond.FrameTime', 'CastleTimeUtils.TFramesPerSecond.html#FrameTime'); ?> and
- <?php api_link('TFramesPerSecond.RealTime', 'CastleTimeUtils.TFramesPerSecond.html#RealTime'); ?>.
-We will explain the
-difference between <code>FrameTime</code> and <code>RealTime</code> shortly.</p>
+<p>The main tool to measure your game speed is the <i>Frames Per Second (FPS)</i>
+number. Use the
+ <?php api_link('TCastleControlCustom.Fps', 'CastleControl.TCastleControlCustom.html#Fps'); ?> or
+ <?php api_link('TCastleWindowCustom.Fps', 'CastleWindow.TCastleWindowCustom.html#Fps'); ?>
+ to get an instance of
+ <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>.
+ Look at these two numbers:
+ <?php api_link('TFramesPerSecond.RealFps', 'CastleTimeUtils.TFramesPerSecond.html#RealFps'); ?> and
+ <?php api_link('TFramesPerSecond.OnlyRenderFps', 'CastleTimeUtils.TFramesPerSecond.html#OnlyRenderFps'); ?>.
 
-<p>How to show them? However you like:</p>
+<?php echo $toc->html_section(); ?>
+
+<p>In short, watch the <code>Window.Fps.RealFps</code> value, by displaying it
+anywhere.
+
+<p>And make sure that you have
+ <?php api_link('TCastleControlCustom.AutoRedisplay', 'CastleControl.TCastleControlCustom.html#AutoRedisplay'); ?> or
+ <?php api_link('TCastleWindowCustom.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?> set
+ to <code>true</code>, otherwise the meaning of <code>RealFps</code>
+ may not actually indicate the potential speed of your application.
+ It is <code>true</code> by default, so you're already set.
+ <!-- (But note that <a href="view3dscene.php">view3dscene</a>
+ has <code>AutoRedisplay</code> set to <code>false</code> by default.
+ -->
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>If you use <code>TCastleWindow</code>,
-    you can trivially enable <code>TCastleWindow.FpsShowOnCaption</code>
-    to show FPS on your window caption.
+  <li><p>If you use <code>TCastleWindow</code>, you can trivially turn on <code>TCastleWindow.FpsShowOnCaption</code>.
 
-  <li>You can show them on Lazarus label or caption. Just be sure to
-    not update them too often &mdash; <i>updating normal Lazarus controls all
-    the time may slow your OpenGL context drastically</i>. Same warning goes
-    about writing them to the console with <code>Writeln</code> &mdash; don't call it too
-    often, or your rendering will be slower. It's simplest to use
-    <?php api_link('TCastleTimer', 'CastleControls.TCastleTimer.html'); ?> or
-    Lazarus <code>TTimer</code> to update it e.g. only once per second.
-    Actually, these properties show you an average from last second, so
-    there's not even a reason to redraw them more often.
+  <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value.
 
-  <li>You can also simply display them on an OpenGL context (see the
-    <?php echo a_href_page('example about designing your own <code>TGame2DControls</code>
-    in earlier chapter', 'manual_2d_ui_custom_drawn'); ?>).
+    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>OnRender</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>.
+
+    <p>Display the value like <code>Format('%f', [Window.Fps.RealFps])</code>. Or, even better (and simpler), use <code>Window.Fps.ToString</code>. The <code>Window.Fps.ToString</code> shows more information, nicely formatted.
+
+  <li><p>You can show the FPS value on some Lazarus label or form caption.
+
+    <p>Warning: do not change the Lazarus control too often (like every frame).
+    <i>Updating normal Lazarus controls all
+    the time may slow your OpenGL context drastically</i>.
+    Also, do not write to the console (e.g. using <code>Writeln</code>)
+    or anything else (e.g. using our <code>WritelnLog</code>) every frame
+    &mdash; the very fact of doing this will slow down your application a lot.
+
+    <p>If you need to change some Lazarus control,
+    and write the FPS to some log, use a timer
+    (like <?php api_link('TCastleTimer', 'CastleControls.TCastleTimer.html'); ?> or
+    Lazarus <code>TTimer</code>) to write it e.g. only once per second.
+    The <code>RealFps</code> and <code>OnlyRenderFps</code>
+    are actually just an average from the last second,
+    so there's really no need to show them more often.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>There are two FPS values available: <i>frame time</i> and <i>real time</i>.
-<i>Frame time</i> is usually the larger one.
-Larger is better, of course: it means
-that you have smoother animation.
+<p>There are two FPS values available: <i>real FPS</i> and <i>only render FPS</i>.
+<i>Only render FPS</i> is usually larger.
+Larger is better, of course: it means that you have smoother animation.
 
-<p><b>Use "<i>real time</i>" to measure your overall game speed. This is the actual
+<p><b>Use "<i>real FPS</i>" to measure your overall game speed. This is the actual
 number of frames per second that we managed to render.</b> Caveats:
 
 <ul>
-  <li><p>Make sure to turn off "<i>limit FPS</i>" feature, to get maximum number
-    available. Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    "Preferences -&gt; Frames Per Second" menu
+  <li><p>Make sure to have an animation that constantly updates your
+    screen, or use <code>AutoRedisplay</code> = <code>true</code>
+    (it is the default since CGE 6.0, so you're probably already set).
+
+    <p>Otherwise, we may not refresh the screen continously (no point to
+    redraw, if both the scene and camera are completely static).
+    Then "<i>real FPS</i>" will drop to almost zero. This can be detected by looking at
+    <code>Window.Fps.WasSleeping</code>. The output of <code>Window.Fps.ToString</code>
+    also accounts for it, showing <i>"no frames rendered"</i>
+    or <i>"no need to render all frames"</i>.
+
+<!--
+    <p>(However, <a href="view3dscene.php">view3dscene</a> has it set to <code>false</code>,
+    since version 3.18.0.)
+
+    <p>If you don't use <code>AutoRedisplay</code>,
+    then check <code>Window.Fps.WasSleeping</code> value.
+    When it's <code>true</code>, we were not rendering some frames because
+    there was no need to (everything was static - scene and camera).
+    In this case, the <code>RealFps</code> value does not reflect your program
+    speed, and can be ignored (the <code>Window.Fps.ToString</code>
+    will show <code>no need to redraw</code>).
+-->
+
+  <li><p>If you hope to see higher values than 100 (the default
+    <code>LimitFPS</code> value) then turn off "<i>limit FPS</i>" feature.
+    Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    <i>"Preferences -&gt; Frames Per Second"</i> menu
     item, or (in your own programs) change
     <?php api_link('LimitFPS global variable', 'CastleControl.html#LimitFPS'); ?>
     (if you use
@@ -89,35 +136,18 @@ number of frames per second that we managed to render.</b> Caveats:
     (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit).
     Change them to zero to disable the "limit fps" feature.
 
-  <li><p>Make sure to have an animation that constantly updates your
-    screen.
-    Otherwise, we will not refresh the screen (no point to
-    redraw the same thing), and "<i>real time</i>" will drop to almost zero if
-    you look at a static scene.
-    Since the engine version 6.0.0,
-    <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?>
-    is by default <code>true</code>, so this is already OK by default.
-    <!-- this is probably already OK. -->
-    <!--
-    If not, then set <code>AutoRedisplay</code> to <code>true</code>,
-    E.g. keep camera moving, or have something animated on the
-    screen, or set
-    .
-    -->
-
   <li><p>Note that the monitor will actually drop some frames above it's
     frequency, like 80. This <i>may</i> cause you to observe that above some
     limit, FPS are easier to gain by optimizations, which may lead you
     to a false judgement about which optimizations are more useful than
-    others. To make a valuable judgement about what is faster/slower,
-    always compare two versions of your program when only the relevant
-    thing changed &mdash; nothing else.
+    others. <i>To make a good judgement about what is faster / slower,
+    compare two versions of your program when only one thing changes.</i>
 </ul>
 
-<p><b><i>"Frame time"</i> measures how much frames we
+<p><b><i>"Only render FPS"</i> measures how much frames we
 would get, if we ignore the time spent outside <code>OnRender</code> events.</b>
 It's often useful to compare it with <i>"real
-time"</i> (with <code>LimitFPS</code> feature turned off),
+FPS"</i> (with <code>LimitFPS</code> feature turned off),
 as it may then tell you whether the
 bottleneck is in rendering or outside of rendering (like collision
 detection and creature AI). Caveats:
@@ -126,35 +156,39 @@ detection and creature AI). Caveats:
   <li><p>Modern GPUs work in parallel to the CPU. So <i>"how much time CPU spent
     in OnRender"</i> doesn't necessarily relate to <i>"how much time GPU spent on
     performing your drawing commands"</i>.
+
+    <p>So making your CPU busy with something else (like collisions, or
+    waiting) may make your <i>"only render FPS"</i> value lower,
+    while in fact rendering efficiency
+    is the same &mdash; you're just not waiting for the previous frame to finish
+    when starting rendering a new frame.
+    Which is a
+    good thing, actually, if you can spend this time on something useful
+    like collisions. Just don't overestimate it &mdash; you didn't make
+    rendering faster, but you managed to do a useful work in the meantime.
+
+    <p>For example: if you set <code>LimitFPS</code> to a small value, you may observe
+    that <i>"only render FPS"</i> grows higher. Why? Because when the CPU is idle
+    (which is often if <code>LimitFPS</code> is small), then GPU has a free time to
+    finish rendering previous frame. So the GPU does the work for free,
+    outside of <code>OnRender</code> time, when your CPU is busy with something
+    else. OTOH when CPU works on producing new frames, then you have to
+    wait inside <code>OnRender</code> until previous frame finishes.
+
+    <p>In other words, improvements to <i>"only render FPS"</i> must be taken with a
+    grain of salt. We spend less time in <code>OnRender</code> event: this does not
+    necessarily mean that we really render faster.
+
+    <p>Still, often <i>"only render FPS"</i> does reflect the speed of GPU rendering.
 </ul>
 
-<p>So making your CPU busy with something else (like collisions, or
-waiting) makes your <i>"frame time"</i> lower, while in fact rendering time
-is the same &mdash; you're just not clogging you GPU. Which is a
-good thing, actually, if your game can spend this time on something useful
-like collisions. Just don't overestimate it &mdash; you didn't make
-rendering faster, but you managed to do a useful work in the meantime.
-
-<p>For example: if you set <code>LimitFPS</code> to a small value, you may observe
-that <i>"frame time"</i> grows higher. Why? Because when the CPU is idle
-(which is often if <code>LimitFPS</code> is small), then GPU has a free time to
-finish rendering previous frame. So the GPU does the work for free,
-outside of <code>OnRender</code> time, when your CPU is busy with something
-else. OTOH when CPU works on producing new frames, then you have to
-wait inside <code>OnRender</code> until previous frame finishes.
-
-<p>In other words, improvements to <i>"frame time"</i> must be taken with a
-grain of salt. We spend less time in <code>OnRender</code> event: this does not
-necessarily mean that we really render faster.
-
-<p>Still, often <i>"frame time"</i> does reflect the speed of GPU rendering.
-
-<p>If you turn off <code>LimitFPS</code>, and compare <i>"frame time"</i> with
-<i>"real time"</i>,
+<!--p>If you turn off <code>LimitFPS</code>, and compare <i>"only render FPS"</i> with
+<i>"real FPS"</i>,
 you can see how much time was spent outside <code>OnRender</code>. Usually, <i>"frame
-time"</i> will be close to <i>"real time"</i>. If the gap is large, it may mean
+time"</i> will be close to <i>"real FPS"</i>. If the gap is large, it may mean
 that you have a bottleneck in non-rendering code (like collision
 detection and creature AI).
+-->
 
 <?php echo $toc->html_section(); ?>
 
@@ -202,7 +236,7 @@ support the idea of "build modes".
     The speed differences of a typical game are usually not that drastic
     (since you don't spend 100% of your time calculating math expressions,
     unlike a ray-tracer), but significant differences are still expected,
-    esp. if you measure the performance of a particular calculation
+    especially if you measure the performance of a particular calculation
     (not just looking at game FPS).
 
     <p>So in most cases it's really important that you measure the speed only of the
@@ -272,11 +306,13 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
+  <!--
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
 
     <p>Note that there's no point doing this if your animation is from castle-anim-frames or M3D, they are already "baked". Although this baking will become optional (not forced) in the future.
 
     <p>TODO: The API for "baking" should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
+  -->
 
   <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <a href="manual_log.php">manual chapter "Logging"</a>) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 </ul>
@@ -380,7 +416,7 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user. Use <code>TCastleScene.PrepareResources</code> to load everything referenced by your scenes to GPU.
+<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user. Use <code>TCastleSceneManager.PrepareResources</code> to load everything referenced by your scenes to GPU.
 
 <p>Enable some (or all) of these flags to get extensive information in the log about all the loading that is happening:
 
