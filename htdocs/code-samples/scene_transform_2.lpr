@@ -14,8 +14,8 @@ begin
     and will always move 40 units / per second along the -Z axis. }
   T := T + Vector3(0, 0, -40) * Container.Fps.SecondsPassed;
   { Wrap the Z position, to move in a loop }
-  if T[2] < -70.0 then
-    T[2] := 50.0;
+  if T.Z < -70.0 then
+    T.Z := 50.0;
   CarScene.Translation := T;
 end;
 
