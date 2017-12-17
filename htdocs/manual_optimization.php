@@ -67,7 +67,7 @@ anywhere.
 
   <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value.
 
-    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>OnRender</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>.
+    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>.
 
     <p>Display the value like <code>Format('%f', [Window.Fps.RealFps])</code>. Or, even better (and simpler), use <code>Window.Fps.ToString</code>. The <code>Window.Fps.ToString</code> shows more information, nicely formatted.
 
@@ -96,7 +96,9 @@ anywhere.
 Larger is better, of course: it means that you have smoother animation.
 
 <p><b>Use "<i>real FPS</i>" to measure your overall game speed. This is the actual
-number of frames per second that we managed to render.</b> Caveats:
+number of frames per second that we managed to render.</b>
+
+<p>Caveats:
 
 <ul>
   <li><p>Make sure to have an animation that constantly updates your
@@ -145,46 +147,70 @@ number of frames per second that we managed to render.</b> Caveats:
 </ul>
 
 <p><b><i>"Only render FPS"</i> measures how much frames we
-would get, if we ignore the time spent outside <code>OnRender</code> events.</b>
-It's often useful to compare it with <i>"real
-FPS"</i> (with <code>LimitFPS</code> feature turned off),
-as it may then tell you whether the
-bottleneck is in rendering or outside of rendering (like collision
-detection and creature AI). Caveats:
+would get, if we ignore the time spent outside <code>Render</code> events.</b>
+It's useful to compare it with <i>"real FPS"</i>,
+large difference <i>may</i> indicate that you can make some optimizations
+in CPU code (e.g. collision detection or animations) to gain overall speed.
+Caveats:
 
 <ul>
   <li><p>Modern GPUs work in parallel to the CPU. So <i>"how much time CPU spent
-    in OnRender"</i> doesn't necessarily relate to <i>"how much time GPU spent on
+    in Render"</i> doesn't necessarily relate to <i>"how much time GPU spent on
     performing your drawing commands"</i>.
 
-    <p>So making your CPU busy with something else (like collisions, or
-    waiting) may make your <i>"only render FPS"</i> value lower,
-    while in fact rendering efficiency
-    is the same &mdash; you're just not waiting for the previous frame to finish
-    when starting rendering a new frame.
-    Which is a
-    good thing, actually, if you can spend this time on something useful
-    like collisions. Just don't overestimate it &mdash; you didn't make
-    rendering faster, but you managed to do a useful work in the meantime.
-
     <p>For example: if you set <code>LimitFPS</code> to a small value, you may observe
-    that <i>"only render FPS"</i> grows higher. Why? Because when the CPU is idle
+    that <i>"only render FPS"</i> grows very high. Why? Because when the CPU is idle
     (which is often if <code>LimitFPS</code> is small), then GPU has a free time to
     finish rendering previous frame. So the GPU does the work for free,
-    outside of <code>OnRender</code> time, when your CPU is busy with something
-    else. OTOH when CPU works on producing new frames, then you have to
-    wait inside <code>OnRender</code> until previous frame finishes.
+    outside of <code>Render</code> time, when your CPU is busy waiting.
+    OTOH when CPU works on producing new frames, then you have to
+    wait inside <code>Render</code> until previous frame finishes.
 
     <p>In other words, improvements to <i>"only render FPS"</i> must be taken with a
-    grain of salt. We spend less time in <code>OnRender</code> event: this does not
-    necessarily mean that we really render faster.
+    grain of salt. We spend less or more time in <code>Render</code> event:
+    this does not always mean that we render more efficiently.
 
-    <p>Still, often <i>"only render FPS"</i> does reflect the speed of GPU rendering.
+    <p>Still, <i>"only render FPS"</i> is often a useful indicator.
+</ul>
+
+<dl>
+  <dt>If you see a large <i>"only render FPS"</i> value,
+    much larger than <i>"real FPS"</i>...</dt>
+
+  <dd><p>It means that <code>Render</code> is quick.
+    So we probably don't need to wait for the whole previous frame to finish
+    when starting rendering a new frame. To some extent, that's good &mdash;
+    you're probably doing useful work in the meantime on CPU, while GPU is working.
+    Often it means that there is something to gain optimizing the CPU side,
+    like collisions or animations.
+
+    <p><i>No guarantees:
+    It does not mean that you can actually achieve this number of FPS
+    as "real FPS".</i> At some point,
+    decreasing CPU work will just uncover that we have
+    to wait for GPU to finish anyway. In which case, you will observe
+    <i>"only render FPS"</i> grow (which is nothing alarming,
+    it doesn't necessarily mean that rendering is less efficient;
+    it just means that GPU speed becomes a factor too).
+
+  <dt>When <i>"only render FPS"</i> is almost equal to
+    <i>"real FPS"</i>...</dt>
+
+  <dd><p>Then we spend most time in <code>Render</code>.
+    This is normal if neither rendering nor collisions are a bottleneck
+    &mdash; then we probably just spend time in the <code>Render</code> waiting
+    for vertical synchronization to happen, and you can't really achieve more
+    than 60 real FPS in the typical case.
+
+    <p>However, if your <i>"real FPS"</i> is much lower than your refresh rate,
+    and your <i>"only render FPS"</i> is equal to <i>"real FPS"</i>,
+    then you probably can optimize the rendering. (Make smaller models,
+    use less demanding shader effects etc.)
 </ul>
 
 <!--p>If you turn off <code>LimitFPS</code>, and compare <i>"only render FPS"</i> with
 <i>"real FPS"</i>,
-you can see how much time was spent outside <code>OnRender</code>. Usually, <i>"frame
+you can see how much time was spent outside <code>Render</code>. Usually, <i>"frame
 time"</i> will be close to <i>"real FPS"</i>. If the gap is large, it may mean
 that you have a bottleneck in non-rendering code (like collision
 detection and creature AI).
