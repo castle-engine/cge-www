@@ -133,8 +133,7 @@ also find useful classes
     <?php api_link('FilenameToURISafe', 'CastleURIUtils.html#FilenameToURISafe'); ?>,
     <?php api_link('AbsoluteURI', 'CastleURIUtils.html#AbsoluteURI'); ?>,
     <?php api_link('URIToFilenameSafe', 'CastleURIUtils.html#URIToFilenameSafe'); ?>.
-    See <code>castle_game_engine/doc/uri_filename.txt</code> in sources
-    for more internal comments.
+    See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/uri_filename.txt">>doc/miscellaneous_notes/uri_filename.txt</a> for more internal comments.
 
     <p>If you read/write filenames from/to <a href="http://www.lazarus.freepascal.org/">Lazarus</a> classes,
     for example if you use Lazarus <code>TOpenDialog.FileName</code> or
@@ -146,20 +145,24 @@ also find useful classes
 
   <li><p><code>data</code> protocol.
 
-    <p>We can always load resources from <code>data</code> URIs.
-    The <code>data</code> URIs allow you to embed various resources
-    (like textures, sounds, other 3D models) inside a parent file,
-    for example instead of referring to the texture URL from 3D model &mdash;
+    <p><code>data</code> is a special protocol that doesn't refer to
+    an external resource. Instead, the complete data URI <i>contains</i> the contents.
+    <!-- (yes, it's often quite long, longer than normal URLs). -->
+    This allows to embed various resources
+    (like textures, sounds, other 3D models) inside a parent file.
+    For example instead of referring to the texture filename from 3D model &mdash;
     you can embed the actual texture contents inside 3D model file.
-    This allows you to pack your data into a single file,
-    which is sometimes desired (it may be easier to distribute),
-    and <code>data</code> URIs are very handy for this. See
-    <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data: URI specification</a>.
+    This is sometimes a very nice feature (it makes the file easier to distribute).
 
-    <p>Our engine includes a tool <code>to_data_uri</code> (see inside
+    <p>See <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data: URI specification</a>.
+    Our engine includes a tool <code>to_data_uri</code> (see inside
     <code>castle_game_engine/examples/tools/</code>)
     that can turn any file
     into a data URI, and you can use such data URI everywhere where we expect URL.
+
+    <p>Wherever our engine, or X3D, says that it expects a URL &mdash; you can use data URI
+    to provide the contents "right there", without using any additional file.
+    <!-- You can say that the data URI is "self-contained". -->
 
     <p>Demos of using data URI are inside <?php
     echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
