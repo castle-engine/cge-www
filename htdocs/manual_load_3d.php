@@ -63,7 +63,7 @@ var
   Scene: TCastleScene;
 begin
   Scene := TCastleScene.Create(Application);
-  Scene.Load(\'car.x3dv\');
+  Scene.Load(\'car.x3d\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
@@ -82,7 +82,7 @@ var
   Scene: TCastleScene;
 begin
   Scene := TCastleScene.Create(Application);
-  Scene.Load(\'car.x3dv\');
+  Scene.Load(\'car.x3d\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
