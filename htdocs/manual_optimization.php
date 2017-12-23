@@ -47,13 +47,11 @@ number. Use the
 
 <?php echo $toc->html_section(); ?>
 
-<p>In short, watch the <code>Window.Fps.RealFps</code> value,
-by displaying it anywhere.
+<p>In short, watch the <code>Window.Fps.ToString</code> value, by displaying it anywhere.
+It intelligently combines some information, to show you how fast is your application.
 
-<p>Or display the <code>Window.Fps.ToString</code>
-that includes <code>RealFps</code> and some more information.
-
-<p>And make sure that you have
+<p>Eventually, display directly the <code>Window.Fps.RealFps</code> value.
+In this case, it is easiest to have
  <?php api_link('TCastleControlCustom.AutoRedisplay', 'CastleControl.TCastleControlCustom.html#AutoRedisplay'); ?> or
  <?php api_link('TCastleWindowCustom.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?> set
  to <code>true</code>, otherwise the meaning of <code>RealFps</code>
@@ -68,9 +66,9 @@ that includes <code>RealFps</code> and some more information.
 <ul>
   <li><p>If you use <code>TCastleWindow</code>, you can trivially turn on <code>TCastleWindow.FpsShowOnCaption</code>.
 
-  <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value. An an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/portable_game_skeleton/game.pas">see how examples/portable_game_skeleton/game.pas shows the FPS</a>.
+  <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value. An an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/portable_game_skeleton/game.pas">see how examples/portable_game_skeleton/game.pas shows the FPS</a> (search for <code>Container.Fps.ToString</code> there).
 
-    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>. As an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/game.pas">see how examples/physics/physics_3d_demo/game.pas shows the FPS</a>.
+    <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>. As an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/game.pas">see how examples/physics/physics_3d_demo/game.pas shows the FPS</a> (search for <code>Container.Fps.ToString</code> there).
 
     <p>Display the value like <code>Format('%f', [Window.Fps.RealFps])</code>. Or, even better (and simpler), use <code>Window.Fps.ToString</code>. The <code>Window.Fps.ToString</code> shows more information, nicely formatted.
 
@@ -84,7 +82,7 @@ that includes <code>RealFps</code> and some more information.
     &mdash; the very fact of doing this will slow down your application a lot.
 
     <p>If you need to change some Lazarus control,
-    and write the FPS to some log, use a timer
+    or write the FPS to some log, use a timer
     (like <?php api_link('TCastleTimer', 'CastleControls.TCastleTimer.html'); ?> or
     Lazarus <code>TTimer</code>) to write it e.g. only once per second.
     The <code>RealFps</code> and <code>OnlyRenderFps</code>
@@ -109,7 +107,8 @@ number of frames per second that we managed to display.</b>
     (it is the default since CGE 6.0, so you're probably already set).
 
     <p>Otherwise, we may not refresh the screen continously (no point to
-    redraw, if both the scene and camera are completely static).
+    redraw, if both the scene and camera are completely static; this way we let
+    other applications to work more smoothly, and we save your laptop battery).
     Then "<i>real FPS</i>" will drop to almost zero. This can be detected by looking at
     <code>Window.Fps.WasSleeping</code>. The output of <code>Window.Fps.ToString</code>
     also accounts for it, showing <i>"no frames rendered"</i>
@@ -137,15 +136,16 @@ number of frames per second that we managed to display.</b>
         <code>Window.ParseParameters</code>) you can do it just by passing
         <code>--no-limit-fps</code> command-line option.
       <li>Or use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-        <i>"Preferences -&gt; Frames Per Second"</i> menu item.
-      <li>Or (in your own programs) change
+        <i>"Preferences -&gt; Frames Per Second"</i> menu item to set them to zero.
+      <li>Or change
         <?php api_link('LimitFPS global variable', 'CastleControl.html#LimitFPS'); ?>
         (if you use
         <?php api_link('CastleControl', 'CastleControl.html'); ?>
         unit with Lazarus) or change
         <?php api_link('Application.LimitFPS', 'CastleWindow.TGLApplication.html#LimitFPS'); ?>
-        (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit).
-        Change them to zero to disable the "limit fps" feature.
+        (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit)
+        to zero.
+        Changing them to zero disables the "limit fps" feature.
     </ul>
 
     <p>You will also need to turn off "<i>vertical synchronization</i>"
@@ -155,7 +155,7 @@ number of frames per second that we managed to display.</b>
     frequency, like 60. (This is relevant only if "<i>vertical synchronization</i>" is off.)
 
     <p>This <i>may</i> cause you to observe that above some
-    limit, FPS are easier to gain by optimizations, which may lead you
+    threshold, FPS are "easier to gain" by optimizations, which may lead you
     to a false judgement about which optimizations are more useful than
     others. <i>To make a good judgement about what is faster / slower,
     compare two versions of your program when only one thing changes.</i>
@@ -179,7 +179,7 @@ Caveats:
     (which is often if <code>LimitFPS</code> is small), then GPU has a free time to
     finish rendering previous frame. So the GPU does the work for free,
     outside of <code>Render</code> time, when your CPU is busy waiting.
-    OTOH when CPU works on producing new frames, then you have to
+    OTOH when CPU works on producing new frames all the time, then you have to
     wait inside <code>Render</code> until previous frame finishes.
 
     <p>In other words, improvements to <i>"only render FPS"</i> must be taken with a
@@ -205,7 +205,7 @@ Caveats:
     as "real FPS".</i> At some point,
     decreasing CPU work will just uncover that we have
     to wait for GPU to finish anyway. In which case, you will observe
-    <i>"only render FPS"</i> grow (which is nothing alarming,
+    <i>"only render FPS"</i> to drop (which is nothing alarming,
     it doesn't necessarily mean that rendering is less efficient;
     it just means that GPU speed becomes a factor too).
 
