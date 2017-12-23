@@ -11,7 +11,7 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
-<h2>Incoming in the next release (6.4.0)</h2>
+<h2>Incoming in the next release (6.6)</h2>
 
 <ul>
   <li><p><b>Delphi compatibility</b>
@@ -56,47 +56,23 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     -->
   </li>
 
-  <li><p><b>API improvements</b>. I plan to attempt
-    some long-planned API upgrades. These include:
+  <li><p><b>Prototype of a visual editor</b>.
 
-    <ul>
-      <li><p>(DONE) Ultra-flexible <code>TCastleTransform</code> class
-        instead of most current <code>T3D*</code> classes.
-        The unit <code>Castle3D</code> will be replaced by a new unit
-        <code>CastleTransform</code> with the <code>TCastleTransform</code> class,
-        that will perform the tasks of current <code>T3D</code>,
-        <code>T3DCustomTransform</code>,
-        <code>T3DTransform</code>,
-        <code>T3DOrient</code> classes.
-        So it's more flexible, and has a name that does not (falsely) suggest
-        it's only for 3D games.
-
-        <p>Also <code>TCastleTransform</code> will be an ancestor
-        of <code>TCastleScene</code>.
-        So you will be able to change <code>Translation</code>,
-        <code>Rotation</code> etc. of a
-        <code>TCastleScene</code> directly, without the need to "wrap"
-        it inside <code>TCastleTransform</code> container.
-
-      <li><p>(DONE) Vector API improvements, using <code>TVector3</code>
-        as an advanced record, instead of current <code>TVector3Single</code>.
-        <a href="https://castle-engine.sourceforge.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/">This is already done, see here.</a>
-    </ul>
+    <p><a href="https://castle-engine.sourceforge.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">See this post for details.</a>
 </ul>
 
 <h2>Future plans</h2>
 
 <ul>
-  <li><p><b>Visual designing of the castle components</b>
+  <li><p><b>Fully working visual editor (release 6.8)</b>
 
-    <p>Editing of engine 3D and 2D things within Lazarus and Delphi.
-    For a "start":
-    1. designing the scenes and transformations
-    under <code>SceneManager.Items</code> and 2. designing the 2D controls under
-    <code>TCastleControl.Controls</code>.
+    <p>I outlined my details in <a href="https://castle-engine.sourceforge.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">this post</a>.
+    I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
+    and I want to have a standalone editor (like <i>Unity3d</i>),
+    and I want to edit at runtime too.
+    And I think we can do it:)
 
-    <p>Inside a Lazarus form. Like <i>GLScene</i> and <i>FireMonkey 3d</i>.
-
+    <!--
     <p>Implementing this feature will most likely be split into a couple of small releases:</p>
 
     <ol>
@@ -110,8 +86,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
       <li><p>Design X3D nodes hierarchy (inside the TCastleScene) visually,
         which means you can edit shapes, materials, textures...
     </ol>
+    -->
 
-  <li><p><b>Physics</b></p>
+  <li><p><b>More physics</b></p>
     <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
   </li>
 
@@ -120,6 +97,8 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
 
     <p>I have not decided yet whether it would be based on our <a href="https://github.com/castle-engine/view3dscene">view3dscene source code</a>, as desktop "view3dscene" contains a ton of GUI features that would not work comfortably on Android / iOS. Instead, we can develop a simple application that allows to open files, switch navigation type, turn on/off collisions and make screenshots (features that are available through the current view3dscene toolbar).
+
+    <p><a href="https://github.com/castle-engine/view3dscene-mobile">This is already started by Jan Adamec!</a>
 
   <li><p><b>glTF format support</b>
 
