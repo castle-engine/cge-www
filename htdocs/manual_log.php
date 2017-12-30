@@ -50,14 +50,16 @@ To use it yourself, just call
 'uses ..., CastleLog;
 
 ... // place this in your initialization:
-InitializeLog(\'1.0.0\'); // parameter describes program version, will be logged
+InitializeLog;
 
 ... // then use this wherever you want:
-WritelnLog(\'My Category\', \'My Log Message\');'); ?>
+WritelnLog(\'My Log Message\');
+WritelnLog(\'My Category\', \'My Log Message\');
+WritelnWarning(\'My Warning\');'); ?>
 
 <p><code>'My Category'</code> is useful to easily spot your messages later. There are
-no hard rules about it, so you're free to just invent your own
-category names here, whatever works for you.
+no hard rules about it, you're free to just invent your own category names here,
+whatever works for you.
 
 <?php
 manual_footer();
