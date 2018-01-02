@@ -1,1 +1,1 @@
-<?php header('Location: manual_mobile.php');
+<?php header('Location: manual_cross_platform.php');

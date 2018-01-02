@@ -212,7 +212,7 @@ $castle_sitemap = array(
               'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
             ),
           ),
-          'manual_mobile' => array('title' => 'Mobile and cross-platform games',
+          'manual_cross_platform' => array('title' => 'Cross-platform (desktop and mobile) games',
             'sub' => array(
               'manual_build_tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
               'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),

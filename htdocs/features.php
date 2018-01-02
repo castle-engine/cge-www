@@ -146,7 +146,7 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_mobile'); ?>.
+  <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_cross_platform'); ?>.
 
   <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
 

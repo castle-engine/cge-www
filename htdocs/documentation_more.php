@@ -19,7 +19,7 @@ echo pretty_heading("More documentation");
 <ul>
   <li><?php echo a_href_page('Manual', 'manual_intro') ?>, including
     <?php echo a_href_page('classes overview', 'manual_classes_overview') ?> and
-    <?php echo a_href_page('mobile (Android, iOS) notes', 'manual_mobile') ?></li>
+    <?php echo a_href_page('how to develop cross-platform (desktop and mobile) games', 'manual_cross_platform') ?></li>
   <li><?php echo a_href_page('Guide to creating game data', 'creating_data_intro') ?></li>
   <li><a href="<?php echo reference_link(); ?>">API reference</a></li>
   <li><p>We also have a <i>tutorial</i> as a series of slides.

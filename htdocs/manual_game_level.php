@@ -140,7 +140,7 @@ Application.Run; // this goes after preparing level (and everything else)'); ?>
     to write cross-platform (portable to mobile) games, do this in
     <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>
     handler (or later).
-    See <?php echo a_href_page('manual about writing cross-platform games', 'manual_mobile'); ?>.
+    See <?php echo a_href_page('manual about writing cross-platform games', 'manual_cross_platform'); ?>.
 
   <li><p>If you use Lazarus
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,

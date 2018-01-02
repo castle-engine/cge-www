@@ -219,7 +219,7 @@ Below are the contents of the <code>ApplicationInitialize</code> procedure,
 you can just use this code to setup UI in the main program block
 (like in the simple examples above on the same page),
 or you can set it as the <code>Application.OnInitialize</code> callback following the
-<a href="manual_mobile.php">chapter about developing cross-platform applications</a>.
+<a href="manual_cross_platform.php">chapter about developing cross-platform applications</a>.
 
 <p>If in doubt, <b>take a look at the <code>examples/2d_standard_ui/zombie_fighter/game.pas</code>
 code that contains the final application we will make in this manual!</b>
