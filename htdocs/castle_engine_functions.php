@@ -1306,6 +1306,7 @@ function xml_full_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('xml');
+  $geshi->set_footer_content('');
   return $geshi->parse_code();
 }
 
@@ -1350,6 +1351,7 @@ function vrmlx3d_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('VRML / X3D');
+  $geshi->set_footer_content('');
   return $geshi->parse_code();
 }
 
@@ -1358,5 +1360,6 @@ function glsl_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('C'); // don't use glSlang, for some reason it's broken for me
+  $geshi->set_footer_content('');
   return $geshi->parse_code();
 }
