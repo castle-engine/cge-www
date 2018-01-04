@@ -168,22 +168,35 @@ also find useful classes
     echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
     see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
-  <li><p><code>assets</code> protocol (Android only).
+  <li><p><code>castle-android-assets</code> or (deprecated name) <code>assets</code> protocol (Android only).
 
-    <p>Used to access Android asset files from the Android application.
-    Asset files live inside your application's .apk file, together with
-    your compiled game.
-    Typically you just copy/place the asset files to the
-    <code>assets/</code> subdirectory of your Android project,
-    and then build the .apk using normal Android tools.
-    For example, file placed in <code>.../assets/my_texture.png</code>
-    can be accessed (from the Android app) using the URL
-    <code>assets:/my_texture.png</code>.
+    <p>Used to access data files in an Android application.
+    "Asset" files live inside your application's .apk file, together with your compiled game.
+    The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    will copy the <code>data</code> directory of your game to Android assets.
+    For example, file that was in <code>data/my_texture.png</code> in your source code
+    can be accessed (from the Android app) using the URL <code>assets:/my_texture.png</code>.
 
+    <p><i>You should never explicitly use this protocol name</i>,
+    as it does not work on other platforms than Android.
+    Instead, use <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+    to refer to your data files from code. The
+    <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+    will always return an absolute URL to the data file location on current platform.
+    On Android it will start with <code>castle-android-assets:/...</code> but you should treat this
+    as an internal detail.
+    <!--
+    Inside your data, when referrring from one data file to another,
+    e.g. when an 3D file refers to a texture,
+    use relative URLs.
+    -->
+
+    <!--
     <p>Usage of <code>assets:/</code> protocol to access Android assets by URLs is
     consistent <a href="http://qt-project.org/doc/qt-5.1/qtdoc/platform-notes-android.html#assets-file-system">at least with Qt</a>.
     See also <a href="http://developer.android.com/tools/projects/index.html">Android
     docs for more information about assets and project layout</a>.
+    -->
 </ul>
 
 <h2>Dialog windows</h2>
