@@ -2,6 +2,7 @@
 .DS_Store
 htdocs/wp/.htaccess
 htdocs/wp/wp-config-production.php
+htdocs/code-samples/castle-engine-output
 htdocs/code-samples/notifications
 htdocs/code-samples/on_screen_menu
 htdocs/code-samples/standard_2d_ui

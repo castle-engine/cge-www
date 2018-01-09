@@ -5,8 +5,8 @@ interface
 
 implementation
 
-uses SysUtils,
-  CastleWindow, CastleControls, CastleLog, CastleUIControls;
+uses CastleWindow, CastleControls, CastleLog, CastleUIControls,
+  CastleApplicationProperties;
 
 var
   Window: TCastleWindow;
@@ -27,15 +27,10 @@ begin
   Window.Controls.InsertFront(Status);
 end;
 
-function MyGetApplicationName: string;
-begin
-  Result := 'my_fantastic_game';
-end;
-
 initialization
-  { Set OnGetApplicationName, to determine the ApplicationName value.
-    Our log uses ApplicationName, so it's useful to set OnGetApplicationName early. }
-  OnGetApplicationName := @MyGetApplicationName;
+  { Set ApplicationName early, as our log uses it.
+    Optionally you could also set ApplicationProperties.Version here. }
+  ApplicationProperties.ApplicationName := 'my_fantastic_game';
 
   { Start logging. Do this as early as possible,
     to log information and eventual warnings during initialization. }

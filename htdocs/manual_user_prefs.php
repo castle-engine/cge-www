@@ -19,21 +19,16 @@ use <?php api_link('CastleConfig', 'CastleConfig.html'); ?> unit
 with a <code>UserConfig</code> singleton inside. A simple example:</p>
 
 <?php echo pascal_highlight(
-'uses SysUtils, CastleWindow, CastleConfig;
+'uses SysUtils, CastleWindow, CastleConfig, CastleApplicationProperties;
 
 var
   Window: TCastleWindow;
   MyParameter: string;
 
-function MyGetApplicationName: string;
 begin
-  Result := \'my_game_name\';
-end;
-
-begin
-  { make sure application name is correct by setting OnGetApplicationName,
+  { make sure application name is correct,
     this is used by UserConfig.Load to determine config file location. }
-  OnGetApplicationName := @MyGetApplicationName;
+  ApplicationProperties.ApplicationName := \'my_game_name\';
 
   { load config from file }
   UserConfig.Load;
