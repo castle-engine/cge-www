@@ -18,40 +18,7 @@ or a simple <i>save game</i> values,
 use <?php api_link('CastleConfig', 'CastleConfig.html'); ?> unit
 with a <code>UserConfig</code> singleton inside. A simple example:</p>
 
-<?php echo pascal_highlight(
-'uses SysUtils, CastleWindow, CastleConfig, CastleApplicationProperties;
-
-var
-  Window: TCastleWindow;
-  MyParameter: string;
-
-begin
-  { make sure application name is correct,
-    this is used by UserConfig.Load to determine config file location. }
-  ApplicationProperties.ApplicationName := \'my_game_name\';
-
-  { load config from file }
-  UserConfig.Load;
-  // SoundEngine.LoadFromConfig(UserConfig); // load sound parameters (enabled, volume...)
-  // InputsAll.LoadFromConfig(UserConfig); // load keyboard shortcuts configuration
-
-  { load your own data like this: }
-  MyParameter := UserConfig.GetValue(\'my_parameter\', \'default_value\');
-
-  { ... do the main part of your program }
-  Window := TCastleWindow.Create(Application);
-  Window.OpenAndRun;
-
-  { save your own data like this: }
-  UserConfig.SetValue(\'my_parameter\', MyParameter);
-  // or like this:
-  UserConfig.SetDeleteValue(\'my_parameter\', MyParameter, \'default_value\');
-
-  { save config to file }
-  // SoundEngine.SaveToConfig(UserConfig); // save sound configuration
-  // InputsAll.SaveToConfig(UserConfig); // save keyboard shortcuts configuration
-  UserConfig.Save;
-end.'); ?>
+<?php echo pascal_highlight_file('code-samples/user_prefs_demo.lpr'); ?>
 
 <p>To load and save config values, you should use <code>GetValue</code>
 and <code>SetValue</code> (or <code>SetDeleteValue</code>) methods.
