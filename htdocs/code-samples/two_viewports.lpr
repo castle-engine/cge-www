@@ -62,15 +62,15 @@ begin
   Viewport.Transparent := true;
   Viewport.NavigationType := ntNone;
   Viewport.RequiredCamera.SetView(
-    Vector3Single(5, 92.00, 0.99),
-    Vector3Single(0, -1, 0),
-    Vector3Single(0, 0, 1));
+    Vector3(5, 92.00, 0.99),
+    Vector3(0, -1, 0),
+    Vector3(0, 0, 1));
   // In Castle Game Engine <= 6.2 the above 2 lines should be written as:
   // (Viewport.RequiredCamera as TUniversalCamera).NavigationType := ntNone;
   // (Viewport.RequiredCamera as TUniversalCamera).SetView(
-  //   Vector3Single(5, 92.00, 0.99),
-  //   Vector3Single(0, -1, 0),
-  //   Vector3Single(0, 0, 1));
+  //   Vector3(5, 92.00, 0.99),
+  //   Vector3(0, -1, 0),
+  //   Vector3(0, 0, 1));
   ViewportRect.InsertFront(Viewport);
 
   Window.OpenAndRun;

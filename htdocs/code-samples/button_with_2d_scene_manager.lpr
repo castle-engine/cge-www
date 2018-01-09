@@ -44,9 +44,9 @@ begin
   SceneManager.ProjectionWidth := 3000;
   SceneManager.ProjectionOriginCenter := true;
   SceneManager.RequiredCamera.SetView(
-    Vector3Single(0, 500, T2DSceneManager.DefaultCameraZ),
-    Vector3Single(0, 0, -1),
-    Vector3Single(0, 1, 0));
+    Vector3(0, 500, T2DSceneManager.DefaultCameraZ),
+    Vector3(0, 0, -1),
+    Vector3(0, 1, 0));
   Button.InsertFront(SceneManager);
 
   Window.OpenAndRun;
