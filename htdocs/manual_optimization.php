@@ -623,8 +623,9 @@ Call trace for block $00007F9B14E42980 size 44
 you will always have some memory leaks, that's unavoidable for now.
 You can ignore the "<i>Heap dump by heaptrc unit</i>" output in this case.
 <!-- the OS cleans up the memory of a terminated program anyway. -->
+Same thing if your program crashes with an unhandled exception.
 
-<p>Note: In the future, we may add "-gh" automatically
+<p>Note: In the future, we may add <code>-gl -gh</code> automatically
 to the options added by the build tool in the debug mode.
 So programs compiled with <code>castle-engine compile --mode=debug</code>
 will automatically show this output.
