@@ -7,6 +7,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Output events to generate camera matrix (<code>Viewpoint.camera*Matrix</code> events)', 'ext_viewpoint_camera_matrix'),
+      new TocItem('Force vertical field of view (<code>Viewpoint.fieldOfViewForceVertical</code>)', 'ext_viewpoint_force_vertical_fov'),
       new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
       new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight'),
       new TocItem('Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
@@ -83,6 +84,26 @@ in this case, <code>RenderedTexture.viewpoint</code> will generate appropriate
 events (as long as you set <code>cameraMatrixSendAlsoOnOffscreenRendering</code>
 to <code>TRUE</code>). Conceptually, <code>RenderedTexture.viewpoint</code>
 is temporarily bound (although it doesn't send isBound/bindTime events).
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo node_begin('Viewpoint');
+  echo
+  node_field('SFBool', '[in,out]', 'fieldOfViewForceVertical', 'FALSE') .
+  node_end();
+?>
+
+<p>The standard <code>Viewpoint.fieldOfView</code> by default specifies
+a <i>minimum</i> field of view. It will either be the horizontal field of view,
+or vertical field of view &mdash; depending on the current aspect ratio
+(whether your window is taller or wider). Usually, this smart behavior is useful.
+
+<p>However, sometimes you really need to explicitly specify a <i>vertical
+field of view</i>. In this case, you can set <code>fieldOfViewForceVertical</code>
+to <code>TRUE</code>. Now the <code>Viewpoint.fieldOfView</code> is interpreted
+differently: it's always a vertical field of view.
+The horizontal field of view will always be adjusted to follow aspect ratio.
 
 <?php echo $toc->html_section(); ?>
 
