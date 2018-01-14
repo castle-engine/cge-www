@@ -123,6 +123,10 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>Implement nice shaders to show it, like
     <a href="https://www.getlazarus.org/videos/bareterrain/#learning_resources">this BareGame example</a>.
 
+    <p><i>What we have now:</i> The engine includes a unit <code>CastleTerrain</code> to generate terrains in various ways (most notably, from smoothed random noise). We have <code>examples/terrain/</code> demo to play around with it. We have the <a href="https://github.com/castle-engine/wyrd-forest">"Wyrd Forest"</a> game that also uses <code>CastleTerrain</code>, and also includes a simple editor of terrain settings.
+
+    <p><i>What we need:</i> Visual, interactive editor for the <code>ElevationGrid</code> (the thing you get from <code>TTerrain.Node</code> call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
+
   <li><p><b>Blender X3D exporter improvements</b>
 
     <p>Current Blender X3D exporter doesn't support animations,
