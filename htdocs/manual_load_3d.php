@@ -75,24 +75,7 @@ end;'); ?>
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
     To load a 3D model, change your program code to this:</p>
 
-<?php echo pascal_highlight(
-'uses CastleWindow, CastleSceneCore, CastleScene;
-var
-  Window: TCastleWindow;
-  Scene: TCastleScene;
-begin
-  Scene := TCastleScene.Create(Application);
-  Scene.Load(\'car.x3d\');
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
-
-  Window := TCastleWindow.Create(Application);
-  Window.SceneManager.Items.Add(Scene);
-  Window.SceneManager.MainScene := Scene;
-
-  Window.Open;
-  Application.Run;
-end.'); ?>
+    <?php echo pascal_highlight_file('code-samples/view_3d_model_basic.lpr'); ?>
 </ol>
 
 <p>At the beginning we create a new instance of
