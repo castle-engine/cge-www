@@ -140,7 +140,7 @@ the camera can move up and down. The avatar height is taken from
 the standard <code>NavigationInfo.avatarSize</code> (2nd array element).
 Set this to exact 0 to disable head bobbing.
 This must always be &lt; 1. For sensible effects, this should
-be something rather close to 0.
+be something rather close to 0, like 0.02.
 
 <small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbing property.', 'CastleCameras.TWalkCamera.html#HeadBobbing'); ?>)</small></p>
 
