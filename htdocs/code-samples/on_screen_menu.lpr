@@ -22,6 +22,7 @@ end;
 
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   OnScreenMenu1 := TCastleOnScreenMenu.Create(Application);
   OnScreenMenu1.Add('New game', @TEventHandler(nil).NewGameClick);
@@ -30,5 +31,5 @@ begin
   OnScreenMenu1.Anchor(vpMiddle);
   Window.Controls.InsertFront(OnScreenMenu1);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

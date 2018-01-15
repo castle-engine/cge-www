@@ -9,6 +9,7 @@ var
   Scene: T2DScene;
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   Button := TCastleButton.Create(Application);
   Button.Anchor(hpMiddle);
@@ -49,5 +50,5 @@ begin
     Vector3(0, 1, 0));
   Button.InsertFront(SceneManager);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

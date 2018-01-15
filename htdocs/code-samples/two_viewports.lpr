@@ -12,6 +12,7 @@ begin
   Window.Container.UIReferenceWidth := 1024;
   Window.Container.UIReferenceHeight := 768;
   Window.Container.UIScaling := usEncloseReferenceSize;
+  Window.Open;
 
   { Add a black background underneath. You must always draw on
     the whole window area, otherwise it's contents are undefined.
@@ -73,5 +74,5 @@ begin
   //   Vector3(0, 0, 1));
   ViewportRect.InsertFront(Viewport);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

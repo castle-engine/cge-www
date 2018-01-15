@@ -6,6 +6,7 @@ var
   MyButton: TCastleButton;
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   MyButton := TCastleButton.Create(Application);
   MyButton.Caption := 'Click me!';
@@ -20,5 +21,5 @@ begin
   MyLabel.Anchor(vpBottom, 10 + MyButton.CalculatedHeight + 10);
   Window.Controls.InsertFront(MyLabel);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

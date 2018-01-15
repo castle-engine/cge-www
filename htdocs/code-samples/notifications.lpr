@@ -4,6 +4,7 @@ var
   Window: TCastleWindow;
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   Notifications.TextAlignment := hpMiddle;
   Notifications.Anchor(hpMiddle);
@@ -13,5 +14,5 @@ begin
 
   Notifications.Show('You picked 10 ammo!');
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

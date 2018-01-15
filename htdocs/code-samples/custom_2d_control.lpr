@@ -22,6 +22,7 @@ var
   PlayerHUD: TMyPlayerHUD;
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   Player := TPlayer.Create(Window.SceneManager);
   Player.Life := 75; // just to make things interesting
@@ -33,5 +34,5 @@ begin
   PlayerHUD := TMyPlayerHUD.Create(Application);
   Window.Controls.InsertFront(PlayerHUD);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.

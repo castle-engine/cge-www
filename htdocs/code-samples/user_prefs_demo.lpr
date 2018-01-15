@@ -4,32 +4,34 @@ var
   LabelForParameter: TCastleLabel;
   MyParameter: string;
 begin
-  { make sure application name is correct,
+  { set ApplicationName,
     this is used by UserConfig.Load to determine config file location. }
   ApplicationProperties.ApplicationName := 'my_game_name';
 
-  { load config from file }
+  { open Window }
+  Window := TCastleWindow.Create(Application);
+  Window.Open;
+
+  { load UserConfig }
   UserConfig.Load;
 
-  { load data }
+  { load parameter from UserConfig }
   MyParameter := UserConfig.GetValue('my_parameter', 'default_value');
 
-  { do the main part of your program }
-  Window := TCastleWindow.Create(Application);
-
+  { create UI and show show parameter from UserConfig }
   LabelForParameter := TCastleLabel.Create(Application);
   LabelForParameter.Caption := 'My parameter is now equal: ' + MyParameter;
   Window.Controls.InsertFront(LabelForParameter);
 
+  { do the main part of your program }
   // MyParameter := 'some other value'; // test
+  Application.Run;
 
-  Window.OpenAndRun;
-
-  { save data }
+  { save parameter }
   UserConfig.SetValue('my_parameter', MyParameter);
   // or like this:
   UserConfig.SetDeleteValue('my_parameter', MyParameter, 'default_value');
 
-  { save config to file }
+  { save UserConfig }
   UserConfig.Save;
 end.

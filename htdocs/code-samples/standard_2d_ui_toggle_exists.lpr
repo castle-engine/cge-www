@@ -17,6 +17,7 @@ end;
 
 begin
   Window := TCastleWindow.Create(Application);
+  Window.Open;
 
   MyButton := TCastleButton.Create(Application);
   MyButton.Caption := 'Toggle rectangle';
@@ -35,5 +36,5 @@ begin
   MyRect.Anchor(vpMiddle);
   Window.Controls.InsertFront(MyRect);
 
-  Window.OpenAndRun;
+  Application.Run;
 end.
