@@ -30,6 +30,7 @@ begin
   Window := TCastleWindow.Create(Application);
   Window.OnUpdate := @WindowUpdate;
   Window.OnPress := @WindowPress;
+  Window.Open;
 
   CarScene := TCastleScene.Create(Application);
   CarScene.Load(ApplicationData('car.x3d'));
@@ -53,6 +54,5 @@ begin
     Vector3(  0.18,  0.92,   0.32)
   );
 
-  Window.Open;
   Application.Run;
 end.

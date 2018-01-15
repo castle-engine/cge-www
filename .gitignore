@@ -18,6 +18,9 @@ htdocs/code-samples/two_viewports
 htdocs/code-samples/button_with_2d_scene_manager
 htdocs/code-samples/user_prefs_demo
 htdocs/code-samples/view_3d_model_basic
+htdocs/code-samples/scene_transform
+htdocs/code-samples/scene_transform_2
+htdocs/code-samples/scene_transform_3
 
 htdocs/vrml_engine_doc/output/
 htdocs/vrml_engine_doc/*.tar.gz
