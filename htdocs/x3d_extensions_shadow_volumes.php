@@ -9,7 +9,7 @@ castle_header('Shadow Volumes', array(
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Features', 'features'),
-  new TocItem('Requirements: geometry must be 2-manifold', 'requirements'),
+  new TocItem('Requirements: shadow casters geometry must be 2-manifold', 'requirements'),
   new TocItem('Specify what lights cast shadows for shadow volumes (fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> for light nodes)', 'ext_shadows_light'),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
 ));
@@ -52,7 +52,7 @@ with <i>shadow maps</i>):</p>
   <li><p><b>Shadow volumes are much easier to activate...</b> To see the shadows, just choose one light in the scene (probably the brightest one) and set it's fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> both to <code>TRUE</code>. <b>That's it.</b> Compared to shadow maps, you don't need to tweak anything to deal with shadow maps resolution, bias etc.</p>
   </li>
 
-  <li><p><b>... but shadow volumes require your models to be 2-manifold.</b> So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. <!-- &mdash; you will often need to fix scenes to be 2-manifold. --> More about this below.</p></li>
+  <li><p><b>... but shadow volumes require the shadow casters to be 2-manifold.</b> So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. <!-- &mdash; you will often need to fix scenes to be 2-manifold. --> More about this below.</p></li>
 
   <li><p><b>It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in totally different ways.</b> On one hand, shadow volumes are more expensive as they require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, there is no need for a costly per-pixel shader over every shadow receiver (as in shadow maps).</p></li>
 
@@ -65,8 +65,7 @@ with <i>shadow maps</i>):</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>For shadow volumes, <b>all shapes of the model
-that are shadow casters must be 2-manifold</b>.
+<p>For shadow volumes, <b>all shapes that cast shadows must be 2-manifold</b>.
 This means that every edge has exactly 2 (not more, not less)
 neighbor faces, so the whole shape is a closed volume.
 Also, faces must be oriented consistently (e.g. CCW outside).
@@ -107,7 +106,8 @@ Also, remember that faces must be ordered consistently CCW
 (this actually changes vertex order in Blender)
 may be needed to reorder them properly.
 
-<p>Remember that <b>each shape must be 2-manifold</b> (since <i>Castle Game Engine 6.0.0</i>).
+<p>Note that <b>each shape must be 2-manifold</b>.
+<!--(since <i>Castle Game Engine 6.0.0</i>). -->
 It's not enough (it's also not necessary) for the whole scene
 to be 2-manifold. This has advantages and disadvantages:
 
@@ -124,13 +124,18 @@ to be 2-manifold. This has advantages and disadvantages:
 
   <li><p><i>Advantage:</i> Not the whole scene needs to be 2-manifold.
     If a shape is 2-manifold, it casts shadow.
-    Your scene can have both 2-manifold and non-2-manifold shapes,
-    it will work Ok, just only a subset of shapes will cast shadows.
+    If your scene has both 2-manifold and non-2-manifold shapes,
+    it will work OK, just only a subset of shapes (the 2-manifold ones)
+    will cast shadows.
 
   <li><p><i>Disadvantage:</i> The whole shape must be 2-manifold.
+    You cannot create 2-manifold scenes by summing multiple non-2-manifold shapes.
+    <!--
     If you depended (in engine &lt; 6.0.0) on the fact
     that you can build 2-manifold model from multiple non-2-manifold shapes &mdash; it
-    will not work anymore. <!--This is especially constraining because in X3D,
+    will not work anymore.
+    -->
+    <!--This is especially constraining because in X3D,
     shape must have the same material (color, transparency etc.).
     You may need to use textures with alpha channel and more tricks
     now to satisfy the 2-manifold requirement.
