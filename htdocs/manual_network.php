@@ -59,12 +59,16 @@ also find useful classes
     <p>Internally, we use
     <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit</a>,
     which supports <code>http</code> and (since FPC 3.0.2) <code>https</code>.
-    In order for https to work, make sure that OpenSSL library is available.
+
+    <p>In order for the <code>https</code> to work, make sure that
+    OpenSSL library is available.
     On Windows, you will probably want to place the appropriate DLLs alongside
-    your exe file (you can find these DLLs inside the engine
-    <code>tools/build-tool/data/external_libraries/</code> subdirectory,
-    they are also automatically included when packaging your application
-    using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>).
+    your exe file. You can find these DLLs inside the engine
+    <code>tools/build-tool/data/external_libraries/</code> subdirectory.
+    These DLLs are also automatically included when packaging your application
+    using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>,
+    if you include <code>&lt;dependency name="Https" /&gt;</code> in your
+    <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
 
     <!--
     support (using Synapse or LNet,

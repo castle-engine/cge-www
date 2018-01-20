@@ -260,12 +260,6 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
     <p>Things missing are listed below:
 
     <ol>
-      <li><p><b>Support for <code>https</code></b>.
-
-        <p>FpHttpClient should be able to handle https in new version (at least in FPC 3.1.1, but possibly in 3.0.x too). See the FPC mailing list and wiki for info. So this is mostly a matter of adding the <code>https</code> to the recognized protocol names in <code>CastleDownload</code>, and testing.
-
-        <p>Or we can use LNet or Synapse (they both include https support).
-
       <li><p>Maybe integrate with
         <a href="http://lnet.wordpress.com/">LNet</a> or
         <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
