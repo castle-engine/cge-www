@@ -254,10 +254,13 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
   </li>
 
   <li>
-    <p><b>Advanced networking support</b></p>
-    <p>Basic networiking support is done already, we use <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit distributed with FPC</a>, see <a href="https://castle-engine.sourceforge.io/manual_network.php">the manual</a>. Things working: almost everything handles URLs, we support <code>file</code> and <code>data</code> and <code>http</code> URLs.
+    <p>Make a demo showing how to use Castle Game Engine together with <a href="https://github.com/BeRo1985/rnl">RNL - a real-time network library, in Pascal, very suitable for games, by Benjamin Rosseaux</a>.
 
-    <p>Things missing are listed below:
+  <li>
+    <p><b>Advanced networking support</b></p>
+    <p>Basic networking support is working already, see <a href="https://castle-engine.sourceforge.io/manual_network.php">the manual</a>.
+
+    <p>Missing features / ideas:
 
     <ol>
       <li><p>Maybe integrate with
