@@ -10,7 +10,7 @@ if that's all you're interested in.
 
 <p>All loading and saving routines (for 3D models, images, sounds, and all
 other resources) automatically deal with URLs. To actually load network
-URLs (like http) you only need to set
+URLs (like http or https) you only need to set
 <?php api_link('CastleDownload.EnableNetwork', 'CastleDownload.html#EnableNetwork'); ?>
  to <code>true</code>.
 
@@ -45,27 +45,35 @@ also find useful classes
 <h2>Supported protocols</h2>
 
 <ul>
-  <li><p>Support for network protocols: <code>http</code>.
+  <li><p>Downloading from the network: <code>http</code> and <code>https</code>.
 
-    <p>Our engine automatically handles downloading data from the network.
-    Currently, only <code>http</code> is supported (through
-    <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit</a>),
-    although we plan to add other network protocols (like <code>ftp</code>
-    and <code>https</code>) in the future.
-    <!--
-    support (using Synapse or LNet,
-    also FpHttpClient may be extended in the future to enable https).
-    -->
-    All you have to do to enable network usage is set global
-    <?php api_link('CastleDownload.EnableNetwork', 'CastleDownload.html#EnableNetwork'); ?>
-    variable to <code>true</code>. By default it is <code>false</code>,
+    <p>Our engine can automatically download data from the network.
+    All you have to do is set global
+    <?php api_link('EnableNetwork variable (from CastleDownload unit)', 'CastleDownload.html#EnableNetwork'); ?>
+    to <code>true</code>. By default it is <code>false</code>,
     because for now the downloads are not user-friendly &mdash;
     they are blocking (we wait for them to finish, there's no way
     to cancel a download). This will be improved in the future, and eventually
     downloading from network may be enabled by default.
 
-    <p>All of the attributes in various files are URLs,
-    so you can refer from a local files to resources on the network.
+    <p>Internally, we use
+    <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit</a>,
+    which supports <code>http</code> and (since FPC 3.0.2) <code>https</code>.
+    In order for https to work, make sure that OpenSSL library is available.
+    On Windows, you will probably want to place the appropriate DLLs alongside
+    your exe file (you can find these DLLs inside the engine
+    <code>tools/build-tool/data/external_libraries/</code> subdirectory,
+    they are also automatically included when packaging your application
+    using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>).
+
+    <!--
+    support (using Synapse or LNet,
+    also FpHttpClient may be extended in the future to enable https).
+    -->
+
+    <p>Note that (almost) all of the parameters and attributes
+    in the engine API are URLs. So you can refer to network resources
+    (http, https) anywhere, and it should "just work".
 
     <p>For example, your game level data may be actually downloaded from the
     network when loading level. To do this,
@@ -77,7 +85,7 @@ also find useful classes
 <level
   name="pits"
   type="Level"
-  scene="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/fountain/fountain_final.x3dv"
+  scene="https://raw.githubusercontent.com/castle-engine/castle-game/master/data/levels/fountain/fountain_final.x3dv"
   title="The Pits of Azeroth"
   placeholders="blender"
 />'); ?>
@@ -93,7 +101,7 @@ also find useful classes
 
   <li><p><code>file</code> protocol.
 
-    <p>Always (regardless of <code>EnableNetwork</code> value)
+    <p>Always (regardless of the <code>EnableNetwork</code> value)
     we support getting resources from <code>file</code> URLs.
     These are just local filenames encoded as URL.
     <?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
