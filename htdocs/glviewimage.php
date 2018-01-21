@@ -42,7 +42,7 @@ echo_standard_program_download(
     'win-i386',
     'linux-i386',
     'linux-x86_64'
-    // TODO: macosx version of glViewImage 1.7.0 not ready
+    // TODO: macosx version not ready
   )
 );
 ?>

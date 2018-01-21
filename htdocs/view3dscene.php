@@ -32,13 +32,19 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p><b>view3dscene</b> is a VRML / X3D browser, and a viewer for other 3D model formats (Collada, 3DS, MD3, Wavefront OBJ...).</p>
+<p><b>view3dscene</b> is a viewer for many 3D model formats: X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
 
-<p>Explore the virtual world with collisions, gravity, animations, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> Convert models to VRML/X3D.</p>
+<p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D or VRML.</p>
 
 <?php
 echo_standard_program_download(
-  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true
+  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
+  array(
+    'win-i386',
+    'linux-i386',
+    'linux-x86_64'
+    // TODO: macosx version not ready
+  )
 );
 ?>
 
@@ -50,7 +56,7 @@ echo_standard_program_download(
   $toc = new TableOfContents(
     array(
       new TocItem('Downloading and installing', 'install'),
-      new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1),
+      /* new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1), */
       new TocItem('Features', 'features'),
       new TocItem('Navigation with keys &amp; mouse', 'navigation'),
       new TocItem('Command-line options', 'command_line_options'),
@@ -90,10 +96,12 @@ you can open them all with <code>view3dscene</code>.</p>
 
 <p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a> page.
 
-<?php section(false); ?>
+<?php /*
 
-<p>If you use GNOME (or other desktops following
-<a href="http://freedesktop.org/">freedesktop.org</a> specifications),
+< ?php section(false); ? >
+
+<p>If you use GNOME, MATE or other desktops following
+<a href="http://freedesktop.org/">freedesktop.org</a> specifications,
 you can optionally install also view3dscene menu item
 (will be placed in the <i>Graphics</i> menu category), with a nice icon,
 and associate it with appropriate 3D model types.</p>
@@ -143,6 +151,8 @@ seconds of a movie or a simple 2D image...) -->
 And the author of this
 text is using view3dscene thumbnailer all the time, and it works
 flawlessly :) So give it a try!
+
+*/ ?>
 
 <?php section(); ?>
 
