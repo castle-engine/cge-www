@@ -9,8 +9,6 @@ creating_data_header('Exporting from Dragon Bones', array(
 
 <p>Some example models are available in the <a href="https://github.com/DragonBones/Demos">DragonBones Demos</a> repository. You can export them to <i>Spine JSON</i> and test now!
 
-<p><b>(This is only available since engine 6.3. To get it with current stable 6.2, apply <a href="https://github.com/castle-engine/castle-engine/commit/4b1719500d4ebdb1a99d8a5f9b39ac1862a60eec">this patch</a> or just <a href="https://github.com/castle-engine/castle-engine/">get the engine from GitHub</a>.)</b></p>
-
 <?php
 echo castle_thumbs(array(
   array('filename' => 'export-dragon-bones-1.png', 'titlealt' => 'Dragon Bones'),
