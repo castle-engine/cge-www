@@ -7,6 +7,7 @@ castle_header("Features", array(
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Summary', 'summary'),
     new TocItem('Demo reel', 'demo'),
     new TocItem('Many 3D and 2D formats supported (X3D, Collada, Spine...)', 'data'),
     new TocItem('Portable (standalone, mobile, web browser plugin)', 'portable'),
@@ -29,6 +30,23 @@ $toc = new TableOfContents(
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<ul>
+  <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+    <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
+  <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, Mac OS X...) and <b>mobile</b> (Android, iOS).
+  <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
+  <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
+    <!--Load and save images and X3D graph as needed.-->
+    Create 3D processing, visualization tools and CAD applications.
+  <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
+  <li>Access numerous <b>services, like in-app purchases and game services</b> on mobile devices.
+  <li>Create <b>cross-platform user-interface with anchors and automatic scaling</b>.
+</ul>
+
+<p>Read on for details!
 
 <?php echo $toc->html_section(); ?>
 
@@ -136,7 +154,7 @@ $toc = new TableOfContents(
     <ul>
       <li><b>standalone</b> (Linux, Windows, Mac OS X, FreeBSD, more... 32-bit and 64-bit),
       <li><b>mobile</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
-      <li><b>web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>).
+      <li><b>web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
     </ul>
 
     <?php
@@ -148,9 +166,11 @@ $toc = new TableOfContents(
 
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_cross_platform'); ?>.
 
-  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. For example, creating Android apk is a breeze with it.
+  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. Creating complete, ready-to-be-released Android and iOS applications is trivial. We automatically generate an Android apk or iOS XCode project.
 
-  <li><p>Out-of-the-box <b>integration with an incredible number of services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
+  <li><p>Trivial to use <b>integration with many services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
+
+  <li><p>Trivial to use <b><a href="https://github.com/castle-engine/castle-engine/wiki/iOS-Services">integration with many services on iOS</a></b>, like Apple Game Center, in-app purchases, Facebook SDK, Google Analytics and Game Analytics.
 
     <?php
     echo castle_thumbs(array(
@@ -159,8 +179,6 @@ $toc = new TableOfContents(
       array('filename' => 'android-components-icons.png', 'titlealt' => 'Integrations on Android available in Castle Game Engine - in-app purchases, ads, google games and more'),
     ), 'auto', 'left');
     ?>
-
-  <li><p><b><a href="https://github.com/castle-engine/castle-engine/wiki/iOS-Services">Integration with services on iOS</a></b>, like Apple Game Center.
 
   <li><p>The engine can be compiled into a <b>library useful from other programming languages</b>.
     This does not expose the complete engine API (for now), but it does expose a simple 3D model loading,

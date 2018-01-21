@@ -21,43 +21,46 @@ castle_header('Download', array(
 <div class="row">
     <div class="col-sm-8">
         <div class="centered-wrapper">
-            <div class="centered">
-                <h1>Castle Game Engine</h1>
-
-                <p>The free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-                3D and 2D game engine using modern Object Pascal!</p>
-
-                <ul>
-                    <li>A lot of 3D and 2D formats supported
-                      (X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
-                      <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...).
-                    <li>Portable to a lot of platforms (Linux, Windows, Mac OS X, mobile: Android, iOS, web browser plugin...).
-                    <li>Optimized rendering with a lot of graphic effects (shadows, mirrors, bump mapping, shader effects...).
-                    <li>Build and edit your scene graph (X3D) at runtime.
-                      <!--Load and save images and X3D graph as needed.-->
-                      Create processing and visualization tools!
-                    <li>Extensible system for game objects, with physics, creatures with AI and navmesh, and more.
-                </ul>
-            </div>
         </div>
 
         <div class="centered-download-wrapper">
+            <div class="centered">
+                <h1 class="main-title">Castle Game Engine</h1>
+                <p class="main-subtitle">Free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
+                3D and 2D game engine using modern Object Pascal</p>
+            </div>
+
             <div class="download jumbotron">
-                <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download "Castle Game Engine"', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
+                <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
 
                 <div class="download-hints">
-                    <p>Recommended: download also <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
+                    <p>Read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>,
+                    <?php echo a_href_page('manual', 'manual_intro'); ?>
+                    <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
+                    <?php /* <a href="http://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
+                    and the <a href="documentation_more.php">rest of our documentation</a>.<br>
 
-                    <p>See the <?php echo a_href_page('"Getting Started"', 'documentation'); ?> documentation.<br>
-                    We also have
-                    <?php echo a_href_page('manual', 'manual_intro'); ?>,
-                    <a href="<?php echo reference_link(); ?>">reference</a>,
-                    <a href="http://castle-engine.io/modern_pascal_introduction.html">modern Object Pascal introduction</a>
-                    and a lot more:)
-                    </p>
+                    You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
                 </div>
 
                 <?php echo download_donate_footer(); ?>
+            </div>
+        </div>
+
+        <div class="centered-wrapper">
+            <div class="centered">
+                <ul>
+                    <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+                      <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
+                    <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, Mac OS X...) and <b>mobile</b> (Android, iOS).
+                    <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
+                    <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
+                      <!--Load and save images and X3D graph as needed.-->
+                      Create 3D processing, visualization tools and CAD applications.
+                    <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
+                    <li>Access numerous <b>services, like in-app purchases and game services</b> on mobile devices.
+                    <li>Create <b>cross-platform user-interface with anchors and automatic scaling</b>.
+                </ul>
             </div>
         </div>
     </div>
@@ -88,7 +91,7 @@ castle_header('Download', array(
 <?php
 /* Load Wordpress PHP now
    (in global namespace, just like wp-blog-header.php does) */
-if ( !isset($wp_did_header) ) {
+if (!isset($wp_did_header) && !CASTLE_OFFLINE) {
     chdir('wp');
     //require_once 'index.php';
     $wp_did_header = true;
@@ -155,7 +158,9 @@ function echo_news()
         echo '</div>';
     echo '</div>';
 }
-echo_news();
+if (!CASTLE_OFFLINE) {
+  echo_news();
+}
 ?>
 
 <?php
