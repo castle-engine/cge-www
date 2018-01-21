@@ -23,6 +23,9 @@ find-empty-dirs
 #   snapshots-scripts/build_all_programs_snapshots
 # that compiles engine, engine examples, and various tools with bare FPC and lazbuild.
 
+Test compilation methods from "getting started"
+https://castle-engine.sourceforge.io/documentation.php
+
 # Check once that most important stuff works outside Jenkins too.
 cd castle_game_engine/
 make
@@ -36,20 +39,21 @@ make clean # get rid of conflicting files outside Lazarus package output dir
 make examples-laz
 
 Test some special compilation options:
-- -dCASTLE_ENGINE_LGPL
-- -dCONSERVE_TRIANGLE_MEMORY
-- -dCASTLE_PNG_DYNAMIC
+- ../castle-engine/src/base/castleconf.inc
+  - define CASTLE_ENGINE_LGPL
+  - define CASTLE_PNG_DYNAMIC
+  - undefine CASTLE_EMBED_ALL_3D_FONT_VARIATIONS
+- ../castle-engine/src/x3d/octreeconf.inc
+  - define CONSERVE_TRIANGLE_MEMORY
+  - define CONSERVE_TRIANGLE_MEMORY_MORE
 For each:
-- # define it in ../castle-engine/src/base/castleconf.inc
-  make clean
+- make clean
   make
-  # revert ../castle-engine/src/base/castleconf.inc
-
-Test compilation methods from "getting started"
-https://castle-engine.sourceforge.io/documentation.php
+- revert later castleconf.inc , octreeconf.inc
 
 # ----------------------------------------------------------------------------
 # FPCUnit tests
+# (OPTIONAL, AS JENKINS DOES THIS NOW)
 
 cd tests/
 # make in tests.inc CASTLE_ENGINE_TRUNK_AVAILABLE defined (optional; takes a looong time)
@@ -87,6 +91,7 @@ cd tests/
 # ----------------------------------------------------------------------------
 # Test view3dscene VRML/X3D loading/saving/rendering
 
+# (OPTIONAL, AS JENKINS DOES THIS NOW)
 cd view3dscene/
 ./run_tests.sh > run_tests_valid_output.txt 2>&1
 svn diff # check, fix or commit differences

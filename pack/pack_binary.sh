@@ -25,6 +25,7 @@ set -eu
 WIN32_DLLS_PNG_ZLIB='libpng12.dll zlib1.dll'
 WIN32_DLLS_OPENAL='OpenAL32.dll wrap_oal.dll'
 WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
+WIN32_DLLS_HTTPS='openssl/libeay32.dll openssl/ssleay32.dll'
 
 DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
 DOC_FILES_X3D='castle_animation_frames.html
@@ -381,7 +382,7 @@ case "$1" in
   view3dscene)
     binary_add_doc view3dscene.html openal.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
     binary_add_exec_and_data view3dscene
-    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS
+    binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS $WIN32_DLLS_HTTPS
     binary_add_gpl2
     binary_add_freedesktop view3dscene "$CASTLE_ENGINE_PATH"../view3dscene/desktop/
     binary_set_unix_permissions
