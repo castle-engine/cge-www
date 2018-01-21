@@ -18,10 +18,12 @@ find-empty-dirs
 # ----------------------------------------------------------------------------
 # Basic compilation tests
 
-# Remember to switch to latest stable FPC version for this:
+# Make sure Jenkins is clean, everything works.
+# In particular, Jenkins checks
+#   snapshots-scripts/build_all_programs_snapshots
+# that compiles engine, engine examples, and various tools with bare FPC and lazbuild.
 
-./compile_all_programs.sh
-./compile_all_programs.sh lazarus
+# Check once that most important stuff works outside Jenkins too.
 cd castle_game_engine/
 make
 make examples
@@ -41,13 +43,16 @@ For each:
 - # define it in ../castle-engine/src/base/castleconf.inc
   make clean
   make
-  # revert ../castle_game_engine/src/base/castleconf.inc
+  # revert ../castle-engine/src/base/castleconf.inc
+
+Test compilation methods from "getting started"
+https://castle-engine.sourceforge.io/documentation.php
 
 # ----------------------------------------------------------------------------
 # FPCUnit tests
 
 cd tests/
-# make in tests.inc CASTLE_ENGINE_TRUNK_AVAILABLE defined
+# make in tests.inc CASTLE_ENGINE_TRUNK_AVAILABLE defined (optional; takes a looong time)
 ./compile_console.sh
 ./test_castle_game_engine -a
 
@@ -59,8 +64,8 @@ make clean -C ..
 # Test that older FPC works too. For this, switch to oldest FPC promised to work
 # on https://castle-engine.sourceforge.io/engine.php#section_fpc_ver, and repeat
 # at least quick non-Lazarus tests:
+# (OPTIONAL, AS JENKINS DOES THIS NOW)
 
-./compile_all_programs.sh
 cd castle_game_engine/
 make
 make examples
@@ -75,10 +80,9 @@ cd tests/
 # and recompile it.
 #
 # It's OK to not test at this point:
-# - "google_analytics" (they require special JSON,
-#   it's tested along with "Escape from the Universe" regularly anyway.
-# - "heyzap" is also tested regularly along with "Escape from the Universe",
-#   and it cannot be compiled together with other ad components.
+# - "google_analytics" (it requires special JSON,
+#   it's tested along with "Escape from the Universe" regularly anyway.)
+# - "heyzap" cannot be compiled together with other ad components.
 
 # ----------------------------------------------------------------------------
 # Test view3dscene VRML/X3D loading/saving/rendering
@@ -145,6 +149,7 @@ view3dscene --debug-enable-fixed-function
 # ----------------------------------------------------------------------------
 # Test fpmake compilation system.
 # Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/3.0.2/
+# (OPTIONAL, AS JENKINS DOES THIS NOW)
 
 fpc fpmake.pp
 ./fpmake build -v
@@ -157,6 +162,7 @@ fpc fpmake.pp
 # ----------------------------------------------------------------------------
 # Test compilation of known programs using my engine, as some
 # compatibility check:
+# (OPTIONAL, AS JENKINS DOES THIS NOW)
 
 ra_castle (roomarranger)
 rrtankticks

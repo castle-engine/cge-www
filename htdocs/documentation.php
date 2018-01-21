@@ -135,8 +135,20 @@ you have a couple of options:
     configuration from the <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
     It provides a lot of cool options, e.g. it can easily
     package your Android game, or prepare compressed versions of your textures.
+    Try it out on the command-line:
     <!-- First compile the build tool itself (<code>./tools/build-tool/castle-engine_compile.sh</code>), -->
     <!-- move  -->
+
+<pre>
+tools/build-tool/castle-engine_compile.sh
+<span class="xml_highlight_comment"># Line below is just an example for Unix, the goal is to put castle-engine binary on $PATH</span>
+sudo mv tools/build-tool/castle-engine /usr/local/bin
+<span class="xml_highlight_comment"># Line below is just an example for Unix, the goal is to define $CASTLE_ENGINE_PATH</span>
+export CASTLE_ENGINE_PATH=`pwd`
+<span class="xml_highlight_comment"># Test that it works!</span>
+cd examples/fps_game/
+castle-engine compile
+</pre>
 
   <li><p>Or you can use a simple shell script that calls FPC with proper
     command-line options. Make sure to pass to FPC file <code>castle-fpc.cfg</code>
@@ -160,6 +172,13 @@ cd examples/fps_game/
     units by executing <code>make</code> inside the
     <code>castle_game_engine/</code> directory.
     This uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
+
+<pre>
+fpc fpmake.pp
+./fpmake
+<span class="xml_highlight_comment"># If the above doesn't work, you usually need to define FPC units dir</span>
+<span class="xml_highlight_comment"># ./fpmake --globalunitdir=&lt;my-fpc-directory&gt;/units/</span>
+</pre>
 
     <p>Then add the path with compiled units to your <code>fpc.cfg</code> file by
     adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
