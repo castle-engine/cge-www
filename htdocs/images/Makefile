@@ -34,7 +34,10 @@ ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
   program_link_size/castle_curves.png \
   program_link_size/escape_universe.png \
   program_link_size/fire_madness.png \
-  program_link_size/castle_sunset.png
+  program_link_size/castle_sunset.png \
+  program_link_size/mazer.jpg \
+  program_link_size/unholy_society_in_game.jpg \
+  program_link_size/wyrd_forest_screen_0-2.png
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \

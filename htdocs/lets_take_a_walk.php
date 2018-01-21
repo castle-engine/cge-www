@@ -61,12 +61,9 @@ appropriate DLLs are already is the archive.
   */
 ?>
 
-<?php echo_standard_program_download(
-  'lets_take_a_walk', 'lets_take_a_walk', VERSION_LETS_TAKE_A_WALK); ?>
-
-<p><i>Installation</i>: just extract the downloaded archive anywhere.
-Run the game binary (<code>./lets_take_a_walk</code> on Unix,
-<code>lets_take_a_walk.exe</code> on Windows).</p>
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="index.php"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>The game is now available as an example of engine usage in <code>examples/3d_sound_game</code> in Castle Game Engine sources</a>
+</div>
 
 <p>Press F1 in the game to get help.
 

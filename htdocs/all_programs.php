@@ -1,21 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Games and Tools');
-
-/* Some functions ----------------------------------------------------------- */
-
-$main_list_item_num = 0;
-function main_list_item($item_title)
-{
-  global $main_list_item_num;
-  $main_list_item_num++;
-
-  /* The leading <p> is needed for IE to keep appropriate vertical
-     distance. */
-  return "<p><div class=\"main_list_item\">" .
-    "$item_title" .
-    '</div>';
-}
+castle_header('Games and Tools Developed Using Castle Game Engine');
 
 /* Link to program page.
    Image used here for $image_name must have "program_link_size"
@@ -23,44 +8,75 @@ function main_list_item($item_title)
    $page_name may be a complete URL, or a page name for a_href_page. */
 function program_image_link($title, $subtitle, $image_name, $page_name)
 {
-  echo '<div class="col-sm-4"><div class="program_image_link"><p>' .
-    a_href_page("<img src=\"images/program_link_size/$image_name\"
-      alt=\"$title\" />", $page_name) .
-    '</p><p class="program_image_link_title">' .
-    a_href_page("<b>$title</b>", $page_name) .
-    '</p><p>' .
-    $subtitle . '</p></div></div>';
+  $s = '<div class="col-sm-4"><div class="program_image_link">';
+  $s .= '<p>' . a_href_page(
+    "<img src=\"images/program_link_size/$image_name\" alt=\"$title\" />", $page_name) .
+    '</p>';
+  $s .= '<p class="program_image_link_title">' .
+    a_href_page("<b>$title</b>", $page_name) . '</p>' .
+    '<p>' . $subtitle . '</p>' .
+    '</div></div>';
+
+  echo $s;
 }
 
-/* Functions end ------------------------------------------------------------ */
+/* Link to program that doesn't have nice screenshot. */
+function program_link($title, $subtitle, $page_name)
+{
+  $s = '<li><p class="program_image_link_title">' .
+    a_href_page("<b>$title</b>", $page_name) . '</p>' .
+    '<p>' . $subtitle . '</p>' .
+    '</li>';
+  echo $s;
+}
 
-echo pretty_heading($page_title, NULL, 'developed using our engine');
+echo pretty_heading($page_title);
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Games', 'games'),
+    new TocItem('Tools and other applications', 'tools'),
+  ));
+
 ?>
 
-<p><a href="http://michaliskambi.itch.io/">You can also download some of these
-games from Michalis Kamburelis itch.io profile</a>.
+<p><b>Do you want to see your project listed here?</b>
+Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub issue, ...)</a>.
 
-<p>Developers: remember you can
-<?php echo a_href_page('also download sources of all these programs',
-'all_programs_sources'); ?>. They are also available on GitHub,
-<a href="https://github.com/castle-engine/">as part of GitHub Castle Game Engine organization</a>.
-</p>
+<?php echo $toc->html_toc(); ?>
 
-<?php echo main_list_item("Games"); ?>
+<?php echo $toc->html_section(); ?>
 
 <div class="row">
+  <?php program_image_link('The Unholy Society',
+    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>Coming to Steam in 2018</i>, for Windows, Linux and macOS.',
+    'unholy_society_in_game.jpg',
+    'http://store.steampowered.com/app/746750/The_Unholy_Society/');
+  ?>
+
+  <?php program_image_link('Wyrd Forest',
+    'A demo done for <a href="https://www.patreon.com/castleengine">Castle Game Engine supporters on Patreon</a>, featuring terrain editor and planting trees and destructible shooting targets with physics. The <a href="https://github.com/castle-engine/wyrd-forest">source code and binaries are on GitHub</a>.',
+    'wyrd_forest_screen_0-2.png',
+    'https://www.patreon.com/posts/wyrd-forest-demo-15811244');
+  ?>
+
+  <?php program_image_link('Mazer',
+    'A maze generation algorithm and a simple game behind that. By Eugene Loza.',
+    'mazer.jpg',
+    'https://decoherence.itch.io/mazer'); ?>
+
   <?php program_image_link('Fire Madness',
-    'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is also available on GitHub</a>.',
+    'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is available on GitHub</a>. <!--a href="http://opengameart.org/forumtopic/fire-madness-top-down-shooter-bullet-hell">See also the opengameart thread</a-->',
     'fire_madness.png',
-    'http://opengameart.org/forumtopic/fire-madness-top-down-shooter-bullet-hell'); ?>
+    'https://decoherence.itch.io/fire-maddness'); ?>
 
   <?php program_image_link('Escape from the Universe',
-    'Action shooter in the outer space with an incredible randomized storyline. For mobile devices.',
+    'Action shooter in the outer space with an incredible randomized storyline. For mobile devices (Android, iOS).',
     'escape_universe.png',
     'http://cat-astrophe-games.com/'); ?>
 
   <?php program_image_link('Dragon Squash',
-    'Android game where you defend beautiful animated castles. With Google Games integration and dragons.',
+    'Android game where you defend beautiful animated castles. For Android, with Google Games integration and dragons.',
     'dragon_squash_screen_1.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash'); ?>
 
   <?php program_image_link('Dragon Spine',
@@ -84,9 +100,9 @@ games from Michalis Kamburelis itch.io profile</a>.
     "castle_screen_demo_1.png", 'castle'); ?>
 
   <?php program_image_link('lets_take_a_walk',
-    "Small 3D toy, demonstrating rendering integrated with 3D sound using Castle Game Engine.",
+    "Small 3D toy, demonstrating rendering integrated with 3D sound using Castle Game Engine. The source code is now available in <a href=\"https://github.com/castle-engine/castle-engine/tree/master/examples/3d_sound_game\">examples/3d_sound_game/</a> in engine sources.",
     'lets_take_a_walk_screen_demo.png',
-    'lets_take_a_walk'); ?>
+    'index'); ?>
 
   <?php program_image_link('malfunction',
     'Small 3D space-shooter. One of the first games made using (an ancient version of) Castle Game Engine, with VRML models.',
@@ -98,7 +114,21 @@ games from Michalis Kamburelis itch.io profile</a>.
      'kambi_lines_screen_demo.png', 'kambi_lines'); ?>
 </div>
 
-<?php echo main_list_item("Tools"); ?>
+<p>See also:
+
+<ul>
+  <?php program_link("Decoherence game collection on itch.io",
+    'Various games by Eugene Loza, some using Castle Game Engine.',
+    "https://decoherence.itch.io/");
+  ?>
+
+  <?php program_link("Michalis game collection on itch.io",
+    'Various games by Michalis Kamburelis, all using Castle Game Engine. You can <a href="all_programs_sources.php">download sources of all these programs here</a>. They are also available on GitHub, <a href="https://github.com/castle-engine/">as part of GitHub Castle Game Engine organization</a>.',
+    "http://michaliskambi.itch.io/");
+  ?>
+</ul>
+
+<?php echo $toc->html_section(); ?>
 
 <div class="row">
   <?php program_image_link('view3dscene',
@@ -131,25 +161,15 @@ games from Michalis Kamburelis itch.io profile</a>.
 </div>
 
 <ul>
-  <!-- li><?php echo a_href_page("bezcurve3d", "bezcurve3d") ?> - -
-    just a toy allowing you to plot Bezier curves in 3D -->
-  <li> <?php echo a_href_page("glinformation", "glinformation") ?> &mdash;
-    output information about OpenGL installed on your system.
-  <li><?php echo a_href_page("kambi_mgf2inv","kambi_mgf2inv") ?> &mdash;
-    convert MGF to Inventor / VRML 1.0 preserving info about
-    physical material properties.
-</ul>
+  <?php program_link("glinformation",
+    'Output information about OpenGL installed on your system.',
+    "glinformation");
+  ?>
 
-<?php echo main_list_item("Miscellaneous documentation"); ?>
-
-<p>Some miscellaneous documentation applicable to all programs here:
-
-<ul>
-  <li><?php echo a_href_page("Standard command-line options", "common_options"); ?>
-  <li><?php echo a_href_page("Standard command-line options for OpenGL programs", "opengl_options"); ?>
-  <li><?php echo a_href_page('OpenAL notes', 'openal'); ?>
-  <li><?php echo a_href_page('Dependencies on Mac OS X', 'macosx_requirements'); ?>
-  <li><?php echo a_href_page('Versioning scheme', 'versioning'); ?>
+  <?php program_link("wrltodxf",
+    'Convert a VRML, X3D or other 3D model to DXF file.',
+    'https://github.com/rweinzierl10/wrltodxf');
+  ?>
 </ul>
 
 <?php castle_footer(); ?>

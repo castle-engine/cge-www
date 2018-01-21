@@ -175,8 +175,10 @@ dl.vrml_ver_differences > dt {
   max-width: 100%; /* force scaling down on narrow window width, for 3-column layout of all_programs.php */
 }
 
-.program_image_link {
-  min-height: 450px;
+@media only screen and (min-width : 768px) {
+    .program_image_link {
+      min-height: 450px;
+    }
 }
 
 /* Small devices (tablets, 768px and up), see http://getbootstrap.com/css/ */
