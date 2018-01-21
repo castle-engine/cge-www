@@ -180,8 +180,8 @@ notes near some programs below.
       $github_name, $engine_ver);
   }
 
-  echo_src_archive('view3dscene', 'view3dscene', '6.2');
-  echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', 'github');
+  echo_src_archive('view3dscene', 'view3dscene', '6.4');
+  echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', '6.4');
   echo_src_archive('castle', 'castle-game', '4.1.1');
   echo_src_archive('rayhunter', 'rayhunter', '4.0.1');
   //echo_src_archive('lets_take_a_walk', '3.0.0');
