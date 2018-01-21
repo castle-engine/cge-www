@@ -14,8 +14,6 @@ manual_header('Physics');
   <iframe width="300" height="168" src="https://www.youtube.com/embed/hIuEGnRm-yM" frameborder="0" allowfullscreen></iframe>
 </div>
 
-<p>Note: Physics integration is only implemented in Castle Game Engine &gt;= 6.3. For now (until we release the CGE 6.4) you need to use the <a href="https://github.com/castle-engine/castle-engine/">CGE version from GitHub</a> to have this feature.
-
 <h2>Usage</h2>
 
 <p>You can turn any <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instance into a <i>rigid body</i>, which means that it will be affected by gravity and collisions with other rigid bodies. <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, which you use to render 3D objects, is a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, so this implies that <code>TCastleScene</code> can be a <i>rigid body</i> too. Or you can use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
