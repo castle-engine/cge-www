@@ -189,3 +189,7 @@ $ find -iname *.so
 make strip-precompiled-libraries
 cd examples/2d_dragon_spine_game/
 make android
+
+# Should use system-wide Gradle, should show a message like
+#   Local Gradle wrapper ("gradlew") not found, so we will call the Gradle on $PATH.
+#   Make sure you have installed Gradle (e.g. from the Debian "gradle" package), in a version compatible with the Android Gradle plugin (see https://developer.android.com/studio/releases/gradle-plugin.html#updating-gradle ).
