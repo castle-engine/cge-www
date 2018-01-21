@@ -10,7 +10,8 @@ do_tag_custom ()
 
   local VERSION_VARIABLE_NAME="GENERATED_VERSION_${VAR_NAME}"
   VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
-  eval VERSION=${!VERSION_VARIABLE_NAME}
+  # indirect reference in bash, http://tldp.org/LDP/abs/html/ivr.html
+  eval VERSION=\$$VERSION_VARIABLE_NAME
   cd "$CASTLE_ENGINE_PATH"../"$NAME"/
   echo 'Last commit inside '`pwd`
   git log --pretty=oneline HEAD^..HEAD
@@ -28,12 +29,12 @@ do_tag ()
 # do_tag castle
 # do_tag glplotter
 # do_tag glinformation
-# do_tag glviewimage
+do_tag glviewimage
 # do_tag gen_function
 # do_tag kambi_lines
 # do_tag lets_take_a_walk
 # do_tag rayhunter
-# do_tag view3dscene
+do_tag view3dscene
 # do_tag malfunction
-# do_tag_custom castle-engine castle_game_engine
-# do_tag_custom demo-models demo_models
+do_tag_custom castle-engine castle_game_engine
+do_tag_custom demo-models demo_models

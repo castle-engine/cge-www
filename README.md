@@ -55,7 +55,7 @@ Procedure to update WWW content
     See scripts/upload_example.sh
 
   - Only for CGE: On https://sourceforge.net/projects/castle-engine/files/
-    mark new CGE released zp as default download for all OSes.
+    mark new CGE released zip as default download for all OSes.
     This is only for default download on given OS, we suggest here
     CGE as our "default package".
 

@@ -13,6 +13,9 @@ mkdir -p "$FILE_RELEASES_PATH"
 
 WIN32_DLLS_PATH="${CASTLE_ENGINE_PATH}tools/build-tool/data/external_libraries/i386-win32/"
 
+# Change it to gmake on FreeBSD, when needed
+KAMBI_GNU_MAKE=make
+
 # Include version definitions for everything
 . generated_versions.sh
 

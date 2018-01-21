@@ -13,7 +13,7 @@ case "$1" in
     cp -R "$CASTLE_ENGINE_PATH"../demo-models/ .
     mv demo-models demo_models
     dircleaner . clean -d .svn -d .git -f '*.blend1' -f '*.blend2'
-    make -C demo_models/shadow_maps/sunny_street/ clean
+    make -C demo_models/shadow_maps/castle_with_trees/ clean
 
     mk_offline_docs demo_models/ demo_models.html
     mv demo_models/demo_models.html demo_models/README.html

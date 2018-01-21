@@ -74,7 +74,7 @@ EXEC_PATH="$HOME"/castle-engine-release/
 
 # Executables packed are required to be compiled by this FPC version,
 # we will check it.
-REQUIRED_FPC_VERSION=3.0.2
+REQUIRED_FPC_VERSION=3.0.4-r37149
 
 # utils -----------------------------------------------------------------
 

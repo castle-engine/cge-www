@@ -178,12 +178,14 @@ case "$1" in
   view3dscene)
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"../view3dscene/
+    $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"view3dscene clean
     pascal_src_archive_end view3dscene
     ;;
 
   glviewimage)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glviewimage/
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glviewimage
+    $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"glviewimage clean
     pascal_src_archive_end glviewimage
     ;;
 

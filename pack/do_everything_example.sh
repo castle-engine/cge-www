@@ -52,10 +52,10 @@ set -eu
 # ./pack_pascal_src.sh rayhunter
 
 # ./pack_binary.sh view3dscene macosx i386
-# ./pack_binary.sh view3dscene linux i386
-# ./pack_binary.sh view3dscene win i386
-# ./pack_binary.sh view3dscene linux x86_64
-# ./pack_pascal_src.sh view3dscene
+./pack_binary.sh view3dscene linux i386
+./pack_binary.sh view3dscene win i386
+./pack_binary.sh view3dscene linux x86_64
+./pack_pascal_src.sh view3dscene
 
 # ./pack_binary.sh malfunction macosx i386
 # ./pack_binary.sh malfunction linux i386
@@ -63,5 +63,5 @@ set -eu
 # ./pack_binary.sh malfunction linux x86_64
 # ./pack_pascal_src.sh malfunction
 
-# ./pack_pascal_src.sh castle_game_engine
-# ./pack_other.sh demo_models
+./pack_pascal_src.sh castle_game_engine
+./pack_other.sh demo_models
