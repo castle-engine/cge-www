@@ -21,15 +21,14 @@ castle_header('Download', array(
 <div class="row">
     <div class="col-sm-8">
         <div class="centered-wrapper">
-        </div>
-
-        <div class="centered-download-wrapper">
             <div class="centered">
                 <h1 class="main-title">Castle Game Engine</h1>
                 <p class="main-subtitle">Free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
                 3D and 2D game engine using modern Object Pascal</p>
             </div>
+        </div>
 
+        <div class="centered-download-wrapper">
             <div class="download jumbotron">
                 <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
 
