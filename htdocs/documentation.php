@@ -134,7 +134,7 @@ you have a couple of options:
     to compile and package your games. The build tool reads the project
     configuration from the <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
     It provides a lot of cool options, e.g. it can easily
-    package your Android game, or prepare compressed versions of your textures.
+    package your Android or iOS game, or prepare compressed versions of your textures.
     Try it out on the command-line:
     <!-- First compile the build tool itself (<code>./tools/build-tool/castle-engine_compile.sh</code>), -->
     <!-- move  -->
@@ -168,10 +168,12 @@ cd examples/fps_game/
 
     <!-- you can also do <code>make examples</code> at top-level -->
 
-  <li><p>Other option is to compile the engine
+  <li><p>Other option is to compile the engine using <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
+
+    <!--
     units by executing <code>make</code> inside the
     <code>castle_game_engine/</code> directory.
-    This uses <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
+    -->
 
 <pre>
 fpc fpmake.pp
