@@ -38,14 +38,7 @@ echo castle_thumbs(array(
 
 <?php
 echo_standard_program_download(
-  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
-  array(
-    'win-i386',
-    'linux-i386',
-    'linux-x86_64'
-    // TODO: macosx version not ready
-  )
-);
+  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true);
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>
