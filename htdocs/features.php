@@ -225,7 +225,7 @@ $toc = new TableOfContents(
     'x3d_implementation_texturing_extensions', 'section_ext_common_surface_shader'); ?></b>
     are avaiable.
     Our <a href="creating_data_blender.php">custom Blender X3D exporter</a>
-    can automatically generate the necessary information.</li>
+    can automatically generate the necessary information.
     Various <i>bump mapping algorithms</i>
     are implemented: from the classic bump mapping (take normal from the texture),
     up to the <i>steep parallax bump mapping with self-shadowing</i>.

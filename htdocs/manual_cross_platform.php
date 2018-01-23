@@ -154,7 +154,7 @@ one), be sure to set <code>standalone_source</code> in the <code>CastleEngineMan
 to benefit from Lazarus editor, code tools, integrated debugger...
 Using our build tool does not prevent using Lazarus at all!
 <ul>
-  <li>If you did not create the <core>lpi</core> file using
+  <li>If you did not create the <code>lpi</code> file using
     <code>castle-engine generate-program</code>, you can create it manually:
     Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
     option. Or (if you already have the <code>xxx.lpr</code> file) create

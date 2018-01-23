@@ -339,7 +339,7 @@ http://www.opengl.org/wiki/Geometry_Shader
 http://www.opengl.org/wiki/Tutorial4:_Using_Indices_and_Geometry_Shaders_%28C_/SDL%29
  -->
 
-<p>See <a href="https://en.wikipedia.org/w/index.php?title=OpenGL_Shading_Language&direction=prev&oldid=738650243#A_sample_trivial_GLSL_geometry_shader">simple example on Wikipedia of GLSL geometry shader differences before and after GLSL 1.50</a>.</p>
+<p>See <a href="https://en.wikipedia.org/w/index.php?title=OpenGL_Shading_Language&amp;direction=prev&amp;oldid=738650243#A_sample_trivial_GLSL_geometry_shader">simple example on Wikipedia of GLSL geometry shader differences before and after GLSL 1.50</a>.</p>
 
 <p>We have decided to <b>not implement the old style geometry shaders</b>.
 The implementation would complicate the code

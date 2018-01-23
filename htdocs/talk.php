@@ -6,7 +6,7 @@ castle_header('Talk with us');
 
 <div class="row">
     <div class="col-sm-6" style="text-align: right">
-        <iframe style="inline-block" src="https://discordapp.com/widget?id=389676745957310465&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+        <iframe style="inline-block" src="https://discordapp.com/widget?id=389676745957310465&amp;theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
     </div>
     <div class="col-sm-6">
         <p><a href="<?php echo FORUM_URL; ?>" class="btn btn-default btn-lg">Post on our forum</a>
