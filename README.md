@@ -38,21 +38,8 @@ Procedure to update WWW content
 
   - Upload to
     sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
-    Under diname: program_name/
-    scp can be used, like this:
-
-    ```
-    for F in /home/michalis/sources/castle-engine/trunk/www/pack/file_releases/view3dscene-3.15.0-*; do
-      scp "$F" kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/view3dscene/
-    done
-    scp ~/castle-engine-release/view3dscene-3.15.0-macosx.dmg kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/view3dscene/
-    for F in /home/michalis/sources/castle-engine/trunk/www/pack/file_releases/castle_game_engine-5.1.1-src.*; do
-      scp "$F" kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine/castle_game_engine/
-    done
-    ```
-
     (following https://sourceforge.net/p/forge/documentation/SCP/)
-    See scripts/upload_example.sh
+    See pack/upload_sourceforge.sh
 
   - Only for CGE: On https://sourceforge.net/projects/castle-engine/files/
     mark new CGE released zip as default download for all OSes.
@@ -99,6 +86,8 @@ Procedure to update WWW content
 
 - a release of engine or view3dscene or some other tools can also be
   uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
+
+  See pack/upload_itch_io.sh
 
 Announcing release
 ------------------

@@ -1,8 +1,7 @@
 #!/bin/bash
 set -eu
 
-#FILE_RELEASES=../pack/file_releases
-FILE_RELEASES=$HOME/castle-engine-release/file_releases
+FILE_RELEASES=file_releases
 TARGET_DIR=kambi,castle-engine@frs.sourceforge.net:/home/frs/project/c/ca/castle-engine
 
 do_loggging ()
