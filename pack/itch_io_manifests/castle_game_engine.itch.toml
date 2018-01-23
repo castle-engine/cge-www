@@ -1,0 +1,7 @@
+[[actions]]
+name = "manual"
+path = "https://castle-engine.sourceforge.io/documentation.php"
+
+[[actions]]
+name = "forums"
+path = "https://castle-engine.sourceforge.io/talk.php"
