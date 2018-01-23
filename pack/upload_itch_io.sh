@@ -69,7 +69,7 @@ do_view3dscene ()
 {
   VER="${GENERATED_VERSION_VIEW3DSCENE}"
   butler_push view3dscene-windows.itch.toml "${FILE_RELEASES}"/view3dscene-"${VER}"-win-i386.zip        michaliskambi/view3dscene:windows --userversion "${VER}"
-  butler_push view3dscene-linux.itch.toml "${FILE_RELEASES}"/view3dscene-"${VER}"-linux-x86_64.tar.gz michaliskambi/view3dscene:linux   --userversion "${VER}"
+  butler_push view3dscene-linux.itch.toml   "${FILE_RELEASES}"/view3dscene-"${VER}"-linux-x86_64.tar.gz michaliskambi/view3dscene:linux   --userversion "${VER}"
   echo 'Run "butler status michaliskambi/view3dscene" to watch'
 }
 
