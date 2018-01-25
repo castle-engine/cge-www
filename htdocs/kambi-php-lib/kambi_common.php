@@ -636,7 +636,7 @@ if ($castle_wordpress) {
 
 /* footer ============================================================ */
 
-function common_footer()
+function common_footer($js_using_jquery = '')
 {
   global $s_quick_links, $main_page, $castle_wordpress;
 ?>
@@ -665,6 +665,13 @@ function common_footer()
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
+
+<?php
+if ($js_using_jquery) {
+  echo '<script type="text/javascript" src="' . $js_using_jquery . '"></script>';
+}
+?>
+
 </body>
 </html>
 

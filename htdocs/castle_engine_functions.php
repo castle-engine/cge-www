@@ -694,8 +694,6 @@ function echo_header_bonus ()
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?><?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
 <?php } ?>
 
-<script type="text/javascript" src="<?php echo CURRENT_URL; ?>castle-engine.js"></script>
-
 <style type="text/css">
 <?php
 /* looks like we need to set_language before get_stylesheet,
@@ -912,7 +910,7 @@ function castle_footer()
     echo '</div><div class="col-sm-3 col-sm-pull-9 well sidebar">' .$castle_sidebar. '</div></div></div>';
   }
 
-  common_footer();
+  common_footer(CURRENT_URL . 'castle-engine.js');
 }
 
 function echo_footer ()
