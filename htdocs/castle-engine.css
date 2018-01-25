@@ -22,8 +22,8 @@
 }
 
 .media-responsive,
-/* youtube movies on news */
-iframe {
+/* all images, movies responsive */
+img, iframe {
   max-width: 100%;
 }
 
