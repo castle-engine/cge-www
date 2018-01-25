@@ -18,6 +18,7 @@ function section($make_hr = true)
 // echo flattr_button();
 
 echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
+
 echo castle_thumbs(array(
   array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
   array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),

@@ -217,17 +217,6 @@ a.screenshot:hover img { border: 2pt solid #888; }
     margin-bottom: 1rem;
 }
 
-div.download {
-    display: inline-block;
-}
-
-.download_title { font-weight: bold; margin-bottom: 1em; }
-
-div.download table td { text-align: center;
-  padding-left: 1em; padding-right: 1em; }
-div.download table a { display: block; text-decoration: none; }
-div.download table a img { border: 0px none; }
-
 .donate-photo {
     float: right;
     width: 300px;
@@ -716,17 +705,6 @@ div.quote {
 
 .xml_highlight_comment { color: #808080; font-style: italic; }
 
-.centered-download-wrapper .btn-primary {
-  width: 80%;
-}
-.jumbotron .btn-patreon {
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 1em;
-  display: block;
-  width: 80%;
-}
-
 /* div.thumbnails ------------------------------------------------------------ */
 
 div.thumbnails-align-left {
@@ -786,4 +764,35 @@ div.thumbnails a {
         /* width: 100%; */
         max-width: 100%;
     }
+}
+
+/* ---------------------------------------------------------------------------
+   download and jumbotron (but not specific to main page) */
+
+div.download {
+  display: inline-block;
+}
+
+.download_title { font-weight: bold; }
+
+div.download table td { text-align: center;
+  padding-left: 1em; padding-right: 1em; }
+div.download table a { display: block; text-decoration: none; }
+div.download table a img { border: 0px none; }
+
+div.download .download_platform {
+  display: inline-block;
+  margin: 1em;
+}
+
+.centered-download-wrapper .btn-primary {
+  width: 80%;
+}
+
+.jumbotron .btn-patreon {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1em;
+  display: block;
+  width: 80%;
 }

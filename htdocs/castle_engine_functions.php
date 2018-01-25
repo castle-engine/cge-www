@@ -1050,7 +1050,7 @@ function echo_standard_program_download(
   } else
   {
     echo '<div class="download_title">' . $nice_name_start . ':</div>
-      <table><tr>';
+      <div class="download_platforms_list">';
     foreach ($os_arch_list as $os_arch)
     {
       // for Mac OS X dmg, there is no "-i386" in the filename
@@ -1058,7 +1058,7 @@ function echo_standard_program_download(
       if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
         $os_arch_filename = 'macosx';
       }
-      echo '<td>';
+      echo '<div class="download_platform">';
       echo sf_download(
         '<img src="' . CURRENT_URL . 'images/os_icons/' .
         /* This size should be synched with images/Makefile rule */
@@ -1066,9 +1066,9 @@ function echo_standard_program_download(
         $os_arch_caption[$os_arch] . '"><br/>' .
         $os_arch_caption[$os_arch],
         $arch_name_start . $os_arch_filename . $os_arch_extension[$os_arch]);
-      echo '</td>' . "\n";
+      echo '</div>' . "\n";
     }
-    echo "</tr></table>\n";
+    echo "</div>\n";
   }
 
   echo download_donate_footer() . '
