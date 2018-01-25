@@ -21,9 +21,12 @@
     margin-right: auto;
 }
 
-.media-responsive {
+.media-responsive,
+/* youtube movies on news */
+iframe {
   max-width: 100%;
 }
+
 
 .features-page h1,
 .features-page h2,
