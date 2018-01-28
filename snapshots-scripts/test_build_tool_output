@@ -27,10 +27,11 @@ trap finish EXIT
 
 export CASTLE_ENGINE_PATH=`pwd`
 cd "${CASTLE_ENGINE_PATH}/examples/2d_dragon_spine_game/"
+# "${CGE_BUILD_TOOL}" clean # should not be needed
 "${CGE_BUILD_TOOL}" compile --output="${OUTPUT_PATH}"
-"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --fast
-"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=win32 --cpu=i386 --fast
-"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=android --cpu=arm --fast
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}"
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=win32 --cpu=i386
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=android --cpu=arm
 
 # ----------------------------------------------------------------------------
 # check stuff does/doesn't exist
@@ -61,7 +62,7 @@ check_file_not_exists ()
 
 check_dir_not_exists ()
 {
-  if [ ! -d "$1" ]; then
+  if [ -d "$1" ]; then
     echo "Dir should not exist: ${1}"
     exit 1
   fi
