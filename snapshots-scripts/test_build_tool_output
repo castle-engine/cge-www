@@ -2,7 +2,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-. /usr/local/fpclazarus/bin/setup.sh default
+# Not needed, let android_setup.sh set FPC version.
+# . /usr/local/fpclazarus/bin/setup.sh default
+
 . /usr/local/android/android_setup.sh
 
 export CASTLE_ENGINE_PATH=`pwd`
@@ -12,6 +14,7 @@ export OUTPUT_PATH="/tmp/jenkins-test-cge-output-$$/"
 # compile build tool
 
 tools/build-tool/castle-engine_compile.sh
+export CGE_BUILD_TOOL="${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine"
 
 # ----------------------------------------------------------------------------
 # compile 2d_dragon_spine_game to temporary output path
@@ -24,10 +27,10 @@ trap finish EXIT
 
 export CASTLE_ENGINE_PATH=`pwd`
 cd "${CASTLE_ENGINE_PATH}/examples/2d_dragon_spine_game/"
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output="${OUTPUT_PATH}"
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output="${OUTPUT_PATH}" --os=win32 --cpu=i386
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output="${OUTPUT_PATH}"
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output="${OUTPUT_PATH}" --os=android --cpu=arm
+"${CGE_BUILD_TOOL}" compile --output="${OUTPUT_PATH}"
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --fast
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=win32 --cpu=i386 --fast
+"${CGE_BUILD_TOOL}" package --output="${OUTPUT_PATH}" --os=android --cpu=arm --fast
 
 # ----------------------------------------------------------------------------
 # check stuff does/doesn't exist
