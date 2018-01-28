@@ -1,20 +1,36 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
+IFS=$'\n\t'
 
 . /usr/local/fpclazarus/bin/setup.sh default
+. /usr/local/android/android_setup.sh
 
 export CASTLE_ENGINE_PATH=`pwd`
+export OUTPUT_PATH="/tmp/jenkins-test-cge-output-$$/"
+
+# ----------------------------------------------------------------------------
+# compile build tool
 
 tools/build-tool/castle-engine_compile.sh
 
-mkdir /tmp/jenkins-test-cge-output/
+# ----------------------------------------------------------------------------
+# compile 2d_dragon_spine_game to temporary output path
+
+mkdir "${OUTPUT_PATH}"
+function finish {
+  rm -Rf "${OUTPUT_PATH}"
+}
+trap finish EXIT
 
 export CASTLE_ENGINE_PATH=`pwd`
 cd "${CASTLE_ENGINE_PATH}/examples/2d_dragon_spine_game/"
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output=/tmp/jenkins-test-cge-output/
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output=/tmp/jenkins-test-cge-output/ --os=win32 --cpu=i386
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output=/tmp/jenkins-test-cge-output/
-"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output=/tmp/jenkins-test-cge-output/ --os=android --cpu=arm
+"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output="${OUTPUT_PATH}"
+"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" compile --output="${OUTPUT_PATH}" --os=win32 --cpu=i386
+"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output="${OUTPUT_PATH}"
+"${CASTLE_ENGINE_PATH}/tools/build-tool/castle-engine" package --output="${OUTPUT_PATH}" --os=android --cpu=arm
+
+# ----------------------------------------------------------------------------
+# check stuff does/doesn't exist
 
 check_file_exists ()
 {
@@ -48,11 +64,11 @@ check_dir_not_exists ()
   fi
 }
 
-check_file_exists /tmp/jenkins-test-cge-output/castle_spine.exe
-check_file_exists /tmp/jenkins-test-cge-output/castle_spine
-check_file_exists /tmp/jenkins-test-cge-output/castle_spine-1.1-linux-x86_64.tar.gz
-check_file_exists /tmp/jenkins-test-cge-output/castle_spine-1.1-win32-i386.zip
-check_dir_exists /tmp/jenkins-test-cge-output/castle-engine-output
+check_file_exists "${OUTPUT_PATH}"castle_spine.exe
+check_file_exists "${OUTPUT_PATH}"castle_spine
+check_file_exists "${OUTPUT_PATH}"castle_spine-1.1-linux-x86_64.tar.gz
+check_file_exists "${OUTPUT_PATH}"castle_spine-1.1-win32-i386.zip
+check_dir_exists "${OUTPUT_PATH}"castle-engine-output
 
 check_file_not_exists castle_spine.exe
 check_file_not_exists castle_spine
