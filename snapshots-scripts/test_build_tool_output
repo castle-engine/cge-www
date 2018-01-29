@@ -10,6 +10,8 @@ IFS=$'\n\t'
 export CASTLE_ENGINE_PATH=`pwd`
 export OUTPUT_PATH="/tmp/jenkins-test-cge-output-$$/"
 
+make clean # avoid occasional internal errors when recompiling
+
 # ----------------------------------------------------------------------------
 # compile build tool
 
