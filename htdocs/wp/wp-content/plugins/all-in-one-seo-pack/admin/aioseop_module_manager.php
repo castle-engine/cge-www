@@ -65,6 +65,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Module_Manager' ) ) {
 		 */
 		function return_module( $class ) {
 			global $aiosp;
+			/* This is such a strange comparison! Don't know what the intent is. */
 			if ( get_class( $aiosp ) === $class ) {
 				return $aiosp;
 			}
@@ -164,8 +165,13 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Module_Manager' ) ) {
 				return false;
 			}
 			$mod_enable = false;
-			$fm_page    = ( $this->module_settings_update && wp_verify_nonce( $_POST['nonce-aioseop'], 'aioseop-nonce' ) &&
-			                isset( $_REQUEST['page'] ) && trailingslashit( AIOSEOP_PLUGIN_DIRNAME ) . 'modules/aioseop_feature_manager.php' === $_REQUEST['page'] );
+
+			$is_module_page = isset( $_REQUEST['page'] ) && trailingslashit( AIOSEOP_PLUGIN_DIRNAME ) . 'modules/aioseop_feature_manager.php' === $_REQUEST['page'];
+			if ( defined( 'AIOSEOP_UNIT_TESTING' ) ) {
+				// using $_REQUEST does not work because even if the parameter is set in $_POST or $_GET, it does not percolate to $_REQUEST.
+				$is_module_page = ( isset( $_GET['page'] ) && trailingslashit( AIOSEOP_PLUGIN_DIRNAME ) . 'modules/aioseop_feature_manager.php' === $_GET['page'] ) || ( isset( $_POST['page'] ) && trailingslashit( AIOSEOP_PLUGIN_DIRNAME ) . 'modules/aioseop_feature_manager.php' === $_POST['page'] );
+			}
+			$fm_page    = $this->module_settings_update && wp_verify_nonce( $_POST['nonce-aioseop'], 'aioseop-nonce' ) && $is_module_page;
 			if ( $fm_page && ! $this->settings_reset ) {
 				if ( isset( $_POST["aiosp_feature_manager_enable_$mod"] ) ) {
 					$mod_enable = $_POST["aiosp_feature_manager_enable_$mod"];

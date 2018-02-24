@@ -4,7 +4,7 @@
  * Plugin Name: Simple Facebook OG image
  * Plugin URI: https://github.com/denchev/simple-wordpress-ogimage
  * Description: A very simple plugin to enable og:image tag only when you share to Facebook
- * Version: 1.3.3
+ * Version: 1.3.4
  * License: GPL-3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: sfogi
@@ -17,7 +17,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 define('SFOGI_PLUGIN_TITLE', __('Simple Facebook OG image', 'sfogi'));
 
-if( ! function_exists( 'sfogi_get' ) ) {
+if (!function_exists( 'sfogi_get')) {
 
 	/**
 	 * The main plugin logic. Determines the image based on these criterias:
@@ -174,69 +174,75 @@ if( ! function_exists( 'sfogi_get' ) ) {
 
 }
 
-if( ! function_exists( 'sfogi_wp_head' ) ) {
+if (!function_exists( 'sfogi_wp_head')) {
 
 	function sfogi_wp_head() {
 
-		// Attach only to single posts
-		if( is_single() || is_page() ) {
+	    try {
 
-			$og_image 	= sfogi_get();
+            // Attach only to single posts
+            if (is_single() || is_page()) {
 
-			// Found an image? Good. Display it.
-			if( !empty( $og_image ) ) {
+                $og_image = sfogi_get();
 
-				// Get the first (or may be the only) image
-				$image = $og_image[0];
+                // Found an image? Good. Display it.
+                if (!empty($og_image)) {
 
-				// If it is not allowed to offer all suitable images just get the first one but as an array
-				if((int)get_option('sfogi_allow_multiple_og_images') === 0) {
-					$og_image = array_slice($og_image, 0, 1);
-				}
+                    // Get the first (or may be the only) image
+                    $image = sfogi_prepare_image_url($og_image[0]);
 
-				// Apply filters
-				$og_image = apply_filters('sfogi_before_output', $og_image);
+                    // If it is not allowed to offer all suitable images just get the first one but as an array
+                    if ((int)get_option('sfogi_allow_multiple_og_images') === 0) {
+                        $og_image = array_slice($og_image, 0, 1);
+                    }
 
-				// List multiple images to Facebook
-				foreach($og_image as $_image) {
+                    // Apply filters
+                    $og_image = apply_filters('sfogi_before_output', $og_image);
 
-					$_image = sfogi_prepare_image_url( $_image );
-					$_image_secure = sfogi_get_secure_url( $_image );
+                    // List multiple images to Facebook
+                    foreach ($og_image as $_image) {
 
-					echo '<meta property="og:image" content="' . $_image . '">' . "\n";
-					echo '<meta property="og:image:url" content="' . $_image . '">' . "\n";
-					echo '<meta property="og:image:secure_url" content="' . $_image_secure . '">' . "\n";
-				}
+                        $_image = sfogi_prepare_image_url($_image);
+                        $_image_secure = sfogi_get_secure_url($_image);
 
-				// For other medias just display the one image
-				echo '<meta property="twitter:image" content="' . $image . '">' . "\n";
-				// SwiftType - https://swiftype.com/
-				echo '<meta property="st:image" content="' . $image . '">' . "\n";
-				echo '<link rel="image_src" href="' . $image . '">' . "\n";
-			}
-		}
+                        echo '<meta property="og:image" itemprop="image" content="' . $_image . '">' . "\n";
+                        echo '<meta property="og:image:url" content="' . $_image . '">' . "\n";
+                        echo '<meta property="og:image:secure_url" content="' . $_image_secure . '">' . "\n";
+                    }
+
+                    // For other medias just display the one image
+                    echo '<meta property="twitter:image" content="' . $image . '">' . "\n";
+                    // SwiftType - https://swiftype.com/
+                    echo '<meta property="st:image" content="' . $image . '">' . "\n";
+                    echo '<link rel="image_src" href="' . $image . '">' . "\n";
+                }
+            }
+        } catch (Exception $ex) {
+	        do_action('sfogi_handle_exception', $ex);
+        }
 	}
 
 }
 
-if( ! function_exists( 'sfogi_prepare_image_url' ) ) {
-
-	function sfogi_prepare_image_url( $url ) {
+if (!function_exists( 'sfogi_prepare_image_url')) {
+	function sfogi_prepare_image_url($url) {
 
 		$site_url = get_site_url();
 
+		if (is_array($url)) {
+		    throw new Exception("URL must be string.");
+        }
+
 		// Image path is relative and not an absolute one - apply site url
-		if( strpos( $url, $site_url ) === false ) {
+		if (strpos($url, $site_url) === false) {
 
 			// The $url comes from an external URL
-			if( preg_match('{https*://}', $url) ) {
-
+			if (preg_match('{https*://}', $url)) {
 				return $url;
 			}
 
 			// Make sure there is no double /
-			if( substr( $site_url, -1) === '/' && $url[0] === '/') {
-
+			if (substr( $site_url, -1) === '/' && $url[0] === '/') {
 				$site_url = rtrim( $site_url, '/' );
 			}
 
@@ -247,23 +253,21 @@ if( ! function_exists( 'sfogi_prepare_image_url' ) ) {
 	}
 }
 
-if( ! function_exists( 'sfogi_get_secure_url' ) ) {
-
-	function sfogi_get_secure_url( $url ) {
+if (!function_exists( 'sfogi_get_secure_url')) {
+	function sfogi_get_secure_url($url) {
 
 		return str_replace('http://', 'https://', $url);
 	}
 }
 
-if( ! function_exists( 'sfogi_admin_menu' ) ) {
-
+if (!function_exists( 'sfogi_admin_menu')) {
 	function sfogi_admin_menu() {
 
 		add_submenu_page('options-general.php', SFOGI_PLUGIN_TITLE, SFOGI_PLUGIN_TITLE, 'manage_options', 'sfogi', 'sfogi_options_page');
 	}
 }
 
-if( ! function_exists( 'sfogi_options_page' ) ) {
+if (!function_exists( 'sfogi_options_page')) {
 
 	// Create options page in Settings
 	function sfogi_options_page() {
@@ -321,8 +325,7 @@ if( ! function_exists( 'sfogi_options_page' ) ) {
 
 }
 
-if( ! function_exists( 'sfogi_register_settings' ) ) {
-
+if (!function_exists( 'sfogi_register_settings')) {
 	function sfogi_register_settings() {
 		register_setting('sfogi', 'sfogi_default_image');
 		register_setting('sfogi', 'sfogi_allow_multiple_og_images');
@@ -330,8 +333,7 @@ if( ! function_exists( 'sfogi_register_settings' ) ) {
 
 }
 
-if( ! function_exists( 'sfogi_admin_scripts' ) ) {
-
+if (!function_exists( 'sfogi_admin_scripts')) {
 	function sfogi_admin_scripts() {
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
@@ -340,16 +342,14 @@ if( ! function_exists( 'sfogi_admin_scripts' ) ) {
 
 }
 
-if( ! function_exists( 'sfogi_admin_styles' ) ) {
-
+if (!function_exists( 'sfogi_admin_styles')) {
 	function sfogi_admin_styles() {
 		wp_enqueue_style('thickbox');
 	}
 
 }
 
-if( ! function_exists( 'sfogi_preview_callback' ) ) {
-
+if (!function_exists( 'sfogi_preview_callback')) {
 	function sfogi_preview_callback() {
 
 		$og_image = sfogi_get();
@@ -364,16 +364,14 @@ if( ! function_exists( 'sfogi_preview_callback' ) ) {
 	}
 }
 
-if( ! function_exists( 'sfogi_add_meta_boxes' ) ) {
-
+if (!function_exists( 'sfogi_add_meta_boxes')) {
 	function sfogi_add_meta_boxes() {
 
 		add_meta_box('sfogi_preview', SFOGI_PLUGIN_TITLE, 'sfogi_preview_callback', 'post', 'side', 'default');
 	}
 }
 
-if( ! function_exists( 'sfogi_admin_init' ) ) {
-
+if (!function_exists( 'sfogi_admin_init')) {
 	function sfogi_admin_init() {
 		sfogi_register_settings();
 		sfogi_add_meta_boxes();
@@ -382,7 +380,7 @@ if( ! function_exists( 'sfogi_admin_init' ) ) {
 
 add_action('wp_head', 'sfogi_wp_head');
 
-if( is_admin() ) {
+if (is_admin()) {
 	add_action('admin_menu', 'sfogi_admin_menu');
 	add_action('admin_init', 'sfogi_admin_init');
 	add_action('admin_print_scripts', 'sfogi_admin_scripts');

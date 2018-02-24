@@ -105,4 +105,19 @@ class aiosp_common {
 	static function get_upgrade_url() {
 		//put build URL stuff in here
 	}
+
+	/**
+	 * Check whether a url is relative and if it is, make it absolute.
+	 *
+	 * @param string $url URL to check.
+	 *
+	 * @return string
+	 */
+	static function absolutize_url( $url ) {
+		if ( strpos( $url, 'http' ) !== 0 && strpos( $url, '//' ) !== 0 && $url != '/' ) {
+			$url = home_url( $url );
+		}
+		return $url;
+	}
+
 }

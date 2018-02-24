@@ -36,6 +36,9 @@ The plugin will aslo cache the image (if there is a permanent cache plugin insta
 
 == Changelog ==
 
+= 1.3.4 =
+Fix an issue with url normalizer
+
 = 1.3.3 =
 Fix an issue with old PHP version compatibility
 
