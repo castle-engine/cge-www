@@ -923,8 +923,6 @@ function echo_footer ()
     You can redistribute this on terms of the
     <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.</span>
 
-    <p><a href="https://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>.
-
     <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
     Like every other frickin' website on the Internet.
     Blink twice if you understand.
