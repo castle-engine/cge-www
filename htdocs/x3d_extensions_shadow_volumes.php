@@ -79,7 +79,7 @@ is a good thing on it's own.</p>
 <p>In earlier engine/view3dscene versions, it was allowed
 for some part of the model to not be perfectly 2-manifold.
 But some rendering problems are unavoidable in this case. See
-<a href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/chapter.shadows.html">chapter "Shadow Volumes"</a>
+<a href="https://castle-engine.io/vrml_engine_doc/output/xsl/html/chapter.shadows.html">chapter "Shadow Volumes"</a>
 (inside < ?php echo a_href_page("engine documentation",'engine_doc'); ? >)
 for description.
 <!--

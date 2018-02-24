@@ -56,8 +56,8 @@ castle_thumbs(array(
   <li>
     <p><b>Dynamic shadows support is greatly improved</b>, finally
     " . news_a_href_page('view3dscene', 'view3dscene') . " can render
-    with shadows, honoring our <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_shadows\">shadow's extensions</a>.
-    We also have new <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
+    with shadows, honoring our <a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_shadows\">shadow's extensions</a>.
+    We also have new <a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_shadow_caster\">shadowCaster</a> extension.
     Oh, and shadows rendering with
     transparent objects is fixed. Just try the file
     <code>x3d/kambi_extensions/shadows_dynamic.x3dv</code> from
@@ -73,7 +73,7 @@ castle_thumbs(array(
     <code>X3DSequencerNode</code>,
     <code>BooleanSequencer</code>, <code>IntegerSequencer</code> implemented.
 
-    <p><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
+    <p><a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_alpha_channel_detection\">alphaChannel extension field</a> added to all texture nodes.
 
   <li><p>Bugfix for open file dialog under GTK 2.14 (like Ubuntu 8.10).
     Thanks to Graham Seed for reporting.
@@ -110,7 +110,7 @@ $ ./radiance_transfer models/chinchilla_with_prt.wrl.gz
 
 <p>(Update in 2013: Usually, instead of using these commands,
 you should just go and download
-the <a href=\"https://castle-engine.sourceforge.io/engine.php\">latest
+the <a href=\"https://castle-engine.io/engine.php\">latest
 Castle Game Engine release</a> and compile / run the radiance_transfer
 example there.)
 
@@ -202,7 +202,7 @@ castle_thumbs(array(
     fixes were made, to make them more easily usable. Thanks to De-Panther for
     pushing me to implement this :)</p></li>
 
-  <li><p><b><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_script_compiled\">Script
+  <li><p><b><a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_script_compiled\">Script
     protocol \"<code>compiled:</code>\"</a></b> is implemented, to easily link
     VRML scripts with compiled-in (written in ObjectPascal) handlers.</p></li>
 
@@ -266,10 +266,10 @@ is released and some other programs here get minor updates.</p>
 
     <p>Linear interpolators are also implemented.
     Some \"event utilities\" nodes are implemented
-    (including useful <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_avalon\"><code>Logger</code>
+    (including useful <a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_avalon\"><code>Logger</code>
     node from Avalon extensions</a>).
     Events to work with bindable nodes (Background, Fog and such) work.
-    <a href=\"https://castle-engine.sourceforge.io/x3d_implementation_shaders.php\">Routing
+    <a href=\"https://castle-engine.io/x3d_implementation_shaders.php\">Routing
     events to GLSL shaders uniform variables works perfectly.</a>.
     Events to control behavior of <code>Inline</code> (and <code>InlineLoadControl</code>
     for VRML 97) work too.
@@ -278,7 +278,7 @@ is released and some other programs here get minor updates.</p>
     New " . news_a_href_page('Kambi VRML test suite 2.2.0', 'kambi_vrml_test_suite') . "
     has some simple demos of our events implementation.</p></li>
 
-  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_movie_from_image_sequence\">extension
+  <li><p><b>MovieTexture</b> is handled, with very useful <a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_movie_from_image_sequence\">extension
     to load movie from a sequence of images (with possible alpha
     channel)</a>, this is great for pre-rendered animations of flames, smoke etc.
     Normal movie formats are also handled if <a href=\"http://ffmpeg.mplayerhq.hu/\">ffmpeg</a>
@@ -301,12 +301,12 @@ is released and some other programs here get minor updates.</p>
   <li><p>Many other features, including
     <ul>
       <li><code>Extrusion</code> node handling,</li>
-      <li><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_blending\"><code>BlendMode</code> extension</a>,
-      <li><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_kambi_inline\"><code>KambiInline</code> extension
+      <li><a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_blending\"><code>BlendMode</code> extension</a>,
+      <li><a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_kambi_inline\"><code>KambiInline</code> extension
         to automatically replace nodes within inlined content</a>,</li>
-      <li><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_time_origin_at_load\">extension
+      <li><a href=\"https://castle-engine.io/x3d_extensions.php#section_ext_time_origin_at_load\">extension
         to force VRML time-origin to start at loading time</a>, because
-        <a href=\"https://castle-engine.sourceforge.io/x3d_time_origin_considered_uncomfortable.php\">standard
+        <a href=\"https://castle-engine.io/x3d_time_origin_considered_uncomfortable.php\">standard
         VRML time origin is uncomfortable in my opinion,</a></li>
       <li>new X3D Indexed Triangles/Quads primitives (thanks to completely
         reorganized mesh renderer code),</li>
@@ -493,11 +493,11 @@ Below is only a shortcut of the most important changes
 (see " . news_a_href_page('changes_log', 'news') . " for a full list of changes) :</p>
 
 <ul>
-  <li><a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_bump_mapping\">Bump
+  <li><a href=\"https://castle-engine.io/x3d_extensions.php#ext_bump_mapping\">Bump
     mapping</a>. Various bump mapping methods are implemented,
     the most advanced being steep parallax mapping with self-shadowing.</li>
 
-  <li>Shaders support, including <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_shaders\">specifying GLSL
+  <li>Shaders support, including <a href=\"https://castle-engine.io/x3d_extensions.php#ext_shaders\">specifying GLSL
     shaders in VRML</a>. Programmers may easily initialize
     GLSL and ARB assembly shaders.</li>
 
@@ -534,7 +534,7 @@ to bring them up-to-date with current engine state.</p>
 Many long-awaited graphic features implemented:</p>
 
 <ul>
-  <li><p><b>Bump mapping</b>: <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_bump_mapping\">VRML
+  <li><p><b>Bump mapping</b>: <a href=\"https://castle-engine.io/x3d_extensions.php#ext_bump_mapping\">VRML
     renderer allows bump mapping</a>. Various bump mapping methods
     are implemented (best method is auto-detected and used at runtime):
     dot by multitexturing (not normalized and normalized by cube map),
@@ -561,7 +561,7 @@ Many long-awaited graphic features implemented:</p>
   <li><p><b>GLSL shaders support:</b> engine supports easily using
     ARB vertex / fragment programs (assembly shaders) and&nbsp;GLSL.</p>
 
-    <p>You can also <a href=\"https://castle-engine.sourceforge.io/x3d_extensions.php#ext_shaders\">directly
+    <p>You can also <a href=\"https://castle-engine.io/x3d_extensions.php#ext_shaders\">directly
     specify GLSL shaders inside VRML file</a>, which is a great feature
     for VRML authors. Syntax of shaders in VRML follows X3D specification.</p>
 

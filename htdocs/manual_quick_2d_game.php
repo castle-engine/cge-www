@@ -305,7 +305,7 @@ end;
 
     <p><b>Just follow the rest of this manual, knowing that everything applies also to 2D, not just 3D:)</b>
 
-    <p>See also the <i>Web3d2015 Castle Game Engine tutorial</i>: <a href="https://castle-engine.sourceforge.io/miscella/cge_tutorial_slides.pdf">the slides</a>, and <a href="https://github.com/castle-engine/cge-tutorial">the examples (code and sample data)</a>. The 2nd part of this tutorial shows the usage of <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>.
+    <p>See also the <i>Web3d2015 Castle Game Engine tutorial</i>: <a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">the slides</a>, and <a href="https://github.com/castle-engine/cge-tutorial">the examples (code and sample data)</a>. The 2nd part of this tutorial shows the usage of <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>.
 
     <p>See also the example <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code>.
 </ul>

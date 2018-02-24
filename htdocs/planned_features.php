@@ -43,7 +43,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         Especially since, personally, I usually work on Linux with FPC + Lazarus these days:)
     </ul>
 
-    <p><a href="https://castle-engine.sourceforge.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
+    <p><a href="https://castle-engine.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
 
     <!--
     <p>Michalis is still an open-source fanatic,
@@ -58,7 +58,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>Prototype of a visual editor</b>.
 
-    <p><a href="https://castle-engine.sourceforge.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">See this post for details.</a>
+    <p><a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">See this post for details.</a>
 </ul>
 
 <h2>Future plans</h2>
@@ -66,7 +66,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <ul>
   <li><p><b>Fully working visual editor (release 6.8)</b>
 
-    <p>I outlined my details in <a href="https://castle-engine.sourceforge.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">this post</a>.
+    <p>I outlined my details in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">this post</a>.
     I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
     and I want to have a standalone editor (like <i>Unity3d</i>),
     and I want to edit at runtime too.
@@ -258,7 +258,7 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
   <li>
     <p><b>Advanced networking support</b></p>
-    <p>Basic networking support is working already, see <a href="https://castle-engine.sourceforge.io/manual_network.php">the manual</a>.
+    <p>Basic networking support is working already, see <a href="https://castle-engine.io/manual_network.php">the manual</a>.
 
     <p>Missing features / ideas:
 

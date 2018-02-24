@@ -4,7 +4,7 @@ Code and data of Castle Game Engine website
 Layout
 ------
 
-htodcs/ is exactly what goes into https://castle-engine.sourceforge.io/
+htodcs/ is exactly what goes into https://castle-engine.io/
 
 screenshots/ are only a copy (sometimes with better resolution) of the
 same screenshots that are available on SF screenshot page of our project.
@@ -63,7 +63,7 @@ Procedure to update WWW content
 
 - if may be good to fix old links leading to
   http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/ now
-  to go to https://castle-engine.sourceforge.io/ .
+  to go to https://castle-engine.io/ .
   (M-x kam-castle-engine-snapshot-docs-to-normal in Michalis Emacs.)
 
 - if you change some content outside SVN:
@@ -93,7 +93,7 @@ Announcing release
 ------------------
 
 - Regular annoucements sites:
-  - Our Wordpress: https://castle-engine.sourceforge.io/wp/
+  - Our Wordpress: https://castle-engine.io/wp/
   - Patreon: https://www.patreon.com/castleengine
   - Facebook: https://facebook.com/castleengine/
   - Google+: https://plus.google.com/+CastleGameEngineX3d/

@@ -14,7 +14,7 @@ require_once 'castle_engine_functions.php';
    when represented as date/time in all timezones.
    Otherwise people around the world could see actually a different
    day in their RSS readers than the day written on WWW page like
-   [https://castle-engine.sourceforge.io/news.php].
+   [https://castle-engine.io/news.php].
 
    I don't want to write everywhere that my dates are in UTC,
    as since I only want to set dates --- I can make them the same regardless
@@ -231,7 +231,7 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
    - description: HTML full description. (also used by rss_generator.)
    - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
    - alternative_id: if set, then it's an alternative id (may be used in URLs
-     like https://castle-engine.sourceforge.io/old_news.php?id=XXX).
+     like https://castle-engine.io/old_news.php?id=XXX).
      Useful when original id is too long, but I don't want to change it
      (as this would affect RSS readers that would see new id).
 

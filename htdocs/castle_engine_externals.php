@@ -29,7 +29,7 @@
 //   $result = '';
 //   if ($align) $result .= '<div style="float: right; margin: 1em;">';
 //   $result .= '
-//     <a class="FlattrButton" style="display:none;" href="https://castle-engine.sourceforge.io/"></a>
+//     <a class="FlattrButton" style="display:none;" href="https://castle-engine.io/"></a>
 //     <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
 //     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: 0" /></a></noscript>';
 //   if ($align) $result .= '</div>';
@@ -165,8 +165,8 @@ function facebook_header()
     <meta property="fb:admins" content="100000327755900" />
     <meta property="og:title" content="Castle Game Engine" />
     <meta property="og:type" content="game" />
-    <meta property="og:image" content="https://castle-engine.sourceforge.io/images/castle_game_engine_icon.png" />
-    <meta property="og:url" content="https://castle-engine.sourceforge.io/" />
+    <meta property="og:image" content="https://castle-engine.io/images/castle_game_engine_icon.png" />
+    <meta property="og:url" content="https://castle-engine.io/" />
     <meta property="og:description" content="Free open-source 3D and 2D game engine with an excellent support for many formats (X3D, VRML, Spine...). Cross-platform: desktop, mobile (Android, iOS), web plugin. Many graphic effects: shadows, mirrors, shader effects. Using modern Object Pascal. The engine is the basis for view3dscene (our VRML / X3D browser), and numerous games." />
   ';
 }
@@ -193,7 +193,7 @@ function facebook_button()
 ';
 
   return $header .
-//    '<div class="fb-like" data-href="https://castle-engine.sourceforge.io/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
+//    '<div class="fb-like" data-href="https://castle-engine.io/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
       '<div class="fb-like-box" data-href="https://www.facebook.com/castleengine" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>';
 }
 

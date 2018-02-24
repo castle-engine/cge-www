@@ -3,7 +3,7 @@ PROFILE Interchange
 
 # This X3D file specifies "fallback" prototypes for extensions
 # of Castle Game Engine,
-# [https://castle-engine.sourceforge.io/x3d_extensions.php].
+# [https://castle-engine.io/x3d_extensions.php].
 #
 # This file will *not* be used by Castle Game Engine programs
 # (like view3dscene), as they have appropriate nodes simply built-in.
@@ -153,7 +153,7 @@ PROTO Teapot [
   }
 }
 
-# See https://castle-engine.sourceforge.io/x3d_extensions.php#section_ext_time_origin_at_load
+# See https://castle-engine.io/x3d_extensions.php#section_ext_time_origin_at_load
 PROTO KambiNavigationInfo [
 
   # Standard X3D NavigationInfo fields/events

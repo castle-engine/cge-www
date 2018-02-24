@@ -34,7 +34,7 @@ If you'd like to <b>learn the Object Pascal</b>:
 </ul>
 
 <p>We also have a <i>tutorial</i> from the Web3d&nbsp;2015 conference as a series of slides. It shows the creation of a simple 3D FPS game and 2D game.
-<a href="https://castle-engine.sourceforge.io/miscella/cge_tutorial_slides.pdf">Download the slides</a>
+<a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">Download the slides</a>
 and <a href="https://github.com/castle-engine/cge-tutorial">the accompaning example data and code</a>.
 
 <p><b>More documentation about the engine</b>:

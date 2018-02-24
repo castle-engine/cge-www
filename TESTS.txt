@@ -24,7 +24,7 @@ find-empty-dirs
 # that compiles engine, engine examples, and various tools with bare FPC and lazbuild.
 
 Test compilation methods from "getting started"
-https://castle-engine.sourceforge.io/documentation.php
+https://castle-engine.io/documentation.php
 
 # Check once that most important stuff works outside Jenkins too.
 cd castle_game_engine/
@@ -66,7 +66,7 @@ make clean -C ..
 
 # ----------------------------------------------------------------------------
 # Test that older FPC works too. For this, switch to oldest FPC promised to work
-# on https://castle-engine.sourceforge.io/engine.php#section_fpc_ver, and repeat
+# on https://castle-engine.io/engine.php#section_fpc_ver, and repeat
 # at least quick non-Lazarus tests:
 # (OPTIONAL, AS JENKINS DOES THIS NOW)
 

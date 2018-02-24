@@ -69,7 +69,7 @@ $toc = new TableOfContents(array(
 
 <ul>
   <li>
-    <p>Some of our extensions can be declared using VRML / X3D external prototypes (<code>EXTERNPROTO</code>) concept. This allows other VRML / X3D browsers to at least effectively parse them. Moreover, an <code>EXTERNPROTO</code> may specify a fallback URL (<a href="https://castle-engine.sourceforge.io/fallback_prototypes.wrl">https://castle-engine.sourceforge.io/fallback_prototypes.wrl</a> for VRML 2.0 and <a href="https://castle-engine.sourceforge.io/fallback_prototypes.x3dv">https://castle-engine.sourceforge.io/fallback_prototypes.x3dv</a> for X3D). Such fallback URL may point to an alternative implementation, and will allow other VRML / X3D browsers to even partially handle our extensions.</p>
+    <p>Some of our extensions can be declared using VRML / X3D external prototypes (<code>EXTERNPROTO</code>) concept. This allows other VRML / X3D browsers to at least effectively parse them. Moreover, an <code>EXTERNPROTO</code> may specify a fallback URL (<a href="https://castle-engine.io/fallback_prototypes.wrl">https://castle-engine.io/fallback_prototypes.wrl</a> for VRML 2.0 and <a href="https://castle-engine.io/fallback_prototypes.x3dv">https://castle-engine.io/fallback_prototypes.x3dv</a> for X3D). Such fallback URL may point to an alternative implementation, and will allow other VRML / X3D browsers to even partially handle our extensions.</p>
 
     <?php /*
     <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <code>isA</code> and <code>fields</code>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
@@ -77,7 +77,7 @@ $toc = new TableOfContents(array(
 
     <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <code>EXTERNPROTO</code> mechanism whenever possible, so that even demos of our extensions (mostly inside <code>castle_extensions/</code> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
 
-    <p>Our extensions are identified by URN like "<code>urn:castle-engine.sourceforge.io:node:KambiOctreeProperties</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiOctreeProperties</code>" is recognized.</p>
+    <p>Our extensions are identified by URN like "<code>urn:castle-engine.io:node:KambiOctreeProperties</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiOctreeProperties</code>" is recognized.</p>
   </li>
 
   <li><p><a href="http://wdune.ourproject.org/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>

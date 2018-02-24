@@ -37,7 +37,7 @@ header('Location: http://gplusrss.com/rss/feed/c3dd3cd5ec6725d92b8b5b0633b2daa85
   header('Content-type: application/rss+xml; charset=utf-8');
 
   $rss = new rss_generator('News about the Castle Game Engine');
-  $rss->link = 'https://castle-engine.sourceforge.io/';
+  $rss->link = 'https://castle-engine.io/';
   $rss->description = 'All the news about the Castle Game Engine - changes, releases and more.';
   echo $rss->get($news);
 */

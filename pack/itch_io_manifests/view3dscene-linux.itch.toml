@@ -4,8 +4,8 @@ path = "view3dscene/view3dscene"
 
 [[actions]]
 name = "manual"
-path = "https://castle-engine.sourceforge.io/view3dscene.php"
+path = "https://castle-engine.io/view3dscene.php"
 
 [[actions]]
 name = "forums"
-path = "https://castle-engine.sourceforge.io/talk.php"
+path = "https://castle-engine.io/talk.php"

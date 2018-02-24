@@ -56,7 +56,7 @@ MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
     used by the engine, instead of the original ones.
 
     <p>If you want to also use <i>downscaled</i> textures,
-    change the <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleMaterialProperties.html#TextureLoadingScale">TextureLoadingScale</a>
+    change the <a href="https://castle-engine.io/apidoc/html/CastleMaterialProperties.html#TextureLoadingScale">TextureLoadingScale</a>
     global variable. By default it is 1. Setting it to 2 makes your textures
     use 1/2 size (their area will be 1/4, for 2D textures).
 </ol>

@@ -296,7 +296,7 @@ Inside the geometry shader you have functions <code>geometryVertexXxx</code>
 to pass-through or blend input vertexes in any way you like.
 Everything is described in detail in our
 <?php echo a_href_page('compositing shaders documentation', 'compositing_shaders'); ?>,
- in particular see the <a href="https://castle-engine.sourceforge.io/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>.</p>
+ in particular see the <a href="https://castle-engine.io/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>.</p>
 
 <p>Examples of geometry shaders with <code>Effect</code>:</p>
 

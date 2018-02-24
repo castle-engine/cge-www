@@ -8,7 +8,7 @@
 						<?php } ?>
 						<span class="slogan kambi-vrmlengine-para"><?php bloginfo('description'); ?>
                                                   <!-- Kambi+ insert slogan directly with HTML: -->
-                                                  News about the <a href="https://castle-engine.sourceforge.io/">Castle Game Engine</a> development.
+                                                  News about the <a href="https://castle-engine.io/">Castle Game Engine</a> development.
                                                   <!--By Kambi, aka Michalis Kamburelis.-->
                                                 </span>
 					</div>

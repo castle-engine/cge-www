@@ -1,7 +1,7 @@
 [[actions]]
 name = "manual"
-path = "https://castle-engine.sourceforge.io/documentation.php"
+path = "https://castle-engine.io/documentation.php"
 
 [[actions]]
 name = "forums"
-path = "https://castle-engine.sourceforge.io/talk.php"
+path = "https://castle-engine.io/talk.php"

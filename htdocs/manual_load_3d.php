@@ -177,7 +177,7 @@ You can also turn off scene manager from being a viewport
 </ul>
 
 <!--See also <a
-href="https://castle-engine.sourceforge.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom
+href="https://castle-engine.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom
 viewports notes</a, and ).-->
 
 <p>In more advanced

@@ -6,24 +6,14 @@ Copyright <a href="mailto:michalis.kambi%20AT%20gmail.com">Michalis Kamburelis</
 
 <?php _e('Powered by', 'default'); ?> WordPress. Theme "Gear" <?php _e('designed by', 'default'); ?> <a href="http://www.mymobiles.com">My Mobiles</a>, somewhat modified.<!-- Too long: by Kambi for vrmlengine.--><br/>
 
-<?php
-  /* Kambi: insert SF logo */
-  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
-      $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io')
-  {
-  ?>
-    <a href="https://sourceforge.net/projects/castle-engine">Hosted by SourceForge.net</a>
-  <?php
-  }
-?>
-
 				</div>
 				<div class="clear"></div>
 			</div>
 			<?php
 
-  /* Kambi: insert piwik code on SourceForge */
-  if ($_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
+  /* Kambi: insert piwik code */
+  if ($_SERVER["HTTP_HOST"] == 'castle-engine.io' ||
+      $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
       $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io')
   {
 ?>
