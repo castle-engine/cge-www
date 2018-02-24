@@ -45,7 +45,10 @@ if (CASTLE_PREVIEW) {
   define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
 } else
 {
-  define('CURRENT_URL', 'https://castle-engine.io/');
+  /* Define CURRENT_URL to follow the protocol under which we currently are.
+     This way loading font glyphs works on unsecure http://castle-engine.io. */
+  $is_https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+  define('CURRENT_URL', 'http'. ($is_https?'s':'') . '://castle-engine.io/');
 }
 /* The final (not testing, offline, or preview) website URL. */
 define('CASTLE_FINAL_URL', 'https://castle-engine.io/');
