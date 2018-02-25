@@ -112,27 +112,25 @@ function echo_piwik_tracking()
   */
   ?>
 
-<!-- Piwik -->
+
+
+<!-- Matomo -->
 <script type="text/javascript">
   var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDomains", ["*.castle-engine.sourceforge.net","*.castle-engine.io","*.castle-engine.io","*.castle-engine.sourceforge.io"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
   (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://michalis.ii.uni.wroc.pl/piwik-castle-engine/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "1"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+    var u="//castle-engine.io/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<!-- End Piwik Code -->
-
-<noscript>
-<!-- Piwik Image Tracker -->
-<img src="http://michalis.ii.uni.wroc.pl/piwik-castle-engine/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
-<!-- End Piwik -->
-</noscript>
+<noscript><p><img src="//castle-engine.io/piwik/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
 
 <?php
 }
