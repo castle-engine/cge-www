@@ -47,7 +47,27 @@ Procedure to update WWW content
     CGE as our "default package".
 
   After release:
-  - download and compare are the files the same.
+  - Download and compare are the files the same.
+
+- Release on GitHub.
+
+  Upload a new release to
+  https://github.com/castle-engine/castle-engine/releases
+  https://github.com/castle-engine/view3dscene/releases
+  and so on
+  (a tag should already be created in the previous step, by scripts/make_tags.sh script)
+
+  Update the URLs:
+  - CGE_LATEST_DOWNLOAD in htdocs/castle_engine_functions.php
+  - view3dscene links in htdocs/view3dscene.php
+
+  After:
+  - Download and compare are the files the same.
+
+  TODO: uploading dmg on GitHub is not possible.
+  The current solution for view3dscene was to zip the dmg, which is non-standard.
+  Should we just use zip instead of dmg?
+  https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed
 
 - if you modified castle_game_engine:
   - update apidoc/

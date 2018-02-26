@@ -39,7 +39,13 @@ echo castle_thumbs(array(
 
 <?php
 echo_standard_program_download(
-  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true);
+  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
+  array(
+    'win-i386' => 'https://github.com/castle-engine/view3dscene/files/1756759/view3dscene-3.18.0-win-i386.zip',
+    'linux-i386' => 'https://github.com/castle-engine/view3dscene/files/1756756/view3dscene-3.18.0-linux-i386.tar.gz',
+    'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/files/1756757/view3dscene-3.18.0-linux-x86_64.tar.gz',
+    'macosx-i386' => 'https://github.com/castle-engine/view3dscene/files/1756873/view3dscene-3.18.0-macosx.dmg.zip',
+  ));
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>

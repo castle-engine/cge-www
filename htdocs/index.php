@@ -30,7 +30,8 @@ castle_header('Download', array(
 
         <div class="centered-download-wrapper">
             <div class="download jumbotron">
-                <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download', 'castle_game_engine-' . VERSION_CASTLE_GAME_ENGINE . '-src.zip'); ?>
+                <?php echo castle_download_button('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download',
+                  CGE_LATEST_DOWNLOAD); ?>
 
                 <div class="download-hints">
                     <p>Read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>,

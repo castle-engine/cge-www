@@ -67,6 +67,8 @@ define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/cast
 define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
+define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/download/v6.4/castle_game_engine-6.4-src.zip');
+
 function reference_link()
 {
   global $castle_apidoc_url;
@@ -957,11 +959,21 @@ function sf_checkout_link($prefix_command, $path, $force_https = false)
     $path;
 }
 
+function castle_download_button($title, $url)
+{
+  return '<a class="btn btn-primary btn-lg" href="' .
+    htmlspecialchars($url) .  '">' . $title. '</a>';
+}
+
+function sf_download_url($file_name)
+{
+  return 'http://downloads.sourceforge.net/' . SF_UNIX_NAME . '/' . $file_name;
+}
+
 /* Makes a link to a download from SourceForge file release system. */
 function sf_download($title, $file_name)
 {
-  return '<a class="btn btn-primary btn-lg" href="http://downloads.sourceforge.net/' . SF_UNIX_NAME .
-    '/' . $file_name . '">' . $title. '</a>';
+  return castle_download_button($title, sf_download_url($file_name));
 }
 
 function download_donate_footer()
@@ -978,21 +990,23 @@ function download_donate_footer()
     '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Suppport on Patreon</a>';
 }
 
-/* This echoes a list to download for all platforms where I compile
-   my programs. Each item looks like
-     < ?php echo sf_download("Foo for Linux", "foo-version-os-arch.tar.gz"); ? >
-   where $prog_nice_name = Foo, $prog_archive_basename = foo.
+/* This echoes a list to download various versions of the same program.
+     < ?php echo castle_download_button("Foo for Linux", ....); ? >
+   where $prog_nice_name = Foo.
+   The $prog_archive_basename is used to generate download URLs for SourceForge
+   (using sf_download_url), ignored if you supply $os_arch_urls for now.
 
    If $prog_version is '' then the whole -version part will be omitted
    (i.e. $prog_version = '' causes also the dash '-' before version
    to disappear, since this is what you usually want).
 
-   $os_arch_list is the list of supported OS/architectures.
+   $os_arch_urls is the list of supported OS/architectures (keys)
+   and appropriate URLs (values, may be NULL to use SourceForge link).
    Leave NULL (default) to use the default set of OS/architectures hardcoded
-   inside. */
+   inside, and SourceForge download links. */
 function echo_standard_program_download(
   $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false,
-  $os_arch_list = NULL)
+  $os_arch_urls = NULL)
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
 
@@ -1007,12 +1021,13 @@ function echo_standard_program_download(
     $nice_name_start .= ' (' . $prog_version . ')';
   */
 
-  if ($os_arch_list === NULL) {
-    $os_arch_list = array(
-      'win-i386',
-      'linux-i386',
-      'linux-x86_64',
-      'macosx-i386');
+  if ($os_arch_urls === NULL) {
+    $os_arch_urls = array(
+      'win-i386' => NULL,
+      'linux-i386' => NULL,
+      'linux-x86_64' => NULL,
+      'macosx-i386' => NULL,
+    );
   }
 
   $os_arch_caption = array(
@@ -1042,7 +1057,7 @@ function echo_standard_program_download(
   {
     /* Since the download links contain so many things
        (program version, available OSes, availability on servers
-       (camelot ? stoma ? sf ?)), it's safer to not put this information
+       (github ? sf ?)), it's safer to not put this information
        in the locally generated page (since it changes to often).
        Instead, we can place a link to the WWW page. */
     echo '<p><a href="' . CURRENT_URL . $this_page_name .
@@ -1051,21 +1066,27 @@ function echo_standard_program_download(
   {
     echo '<div class="download_title">' . $nice_name_start . ':</div>
       <div class="download_platforms_list">';
-    foreach ($os_arch_list as $os_arch)
+    foreach ($os_arch_urls as $os_arch => $download_url)
     {
-      // for Mac OS X dmg, there is no "-i386" in the filename
-      $os_arch_filename = $os_arch;
-      if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
-        $os_arch_filename = 'macosx';
+      // calculate non-empty $download_url
+      if (empty($download_url)) {
+        // for Mac OS X dmg, there is no "-i386" in the filename
+        $os_arch_filename = $os_arch;
+        if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
+          $os_arch_filename = 'macosx';
+        }
+        $download_url = sf_download_url(
+          $arch_name_start . $os_arch_filename . $os_arch_extension[$os_arch]);
       }
+
       echo '<div class="download_platform">';
-      echo sf_download(
+      echo castle_download_button(
         '<img src="' . CURRENT_URL . 'images/os_icons/' .
         /* This size should be synched with images/Makefile rule */
         $os_arch_icon[$os_arch] . '.png" width="64" height="64" alt="' .
         $os_arch_caption[$os_arch] . '"><br/>' .
         $os_arch_caption[$os_arch],
-        $arch_name_start . $os_arch_filename . $os_arch_extension[$os_arch]);
+        $download_url);
       echo '</div>' . "\n";
     }
     echo "</div>\n";
