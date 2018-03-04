@@ -396,6 +396,9 @@ table.x3dtests tr.x3dtests-results td {
   font-size: smaller;
   padding: 0.1em;
 }
+table.x3dtests .x3dtests-screens {
+  width: 210px;
+}
 
 div.sidebar_title {
   font-size: medium; font-weight: bold;

@@ -64,7 +64,7 @@ function tests_row($name, $description, $test_results)
   global $tests_url;
   global $test_number;
   echo "<tr>
-    <td>
+    <td class=\"x3dtests-screens\">
       <a href=\"${tests_url}${name}_screen.png\"
          class=\"screenshot\"
          title=\"${name}\">
