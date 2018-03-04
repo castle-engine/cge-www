@@ -20,10 +20,10 @@
 
 /* CGE development and production settings.
    When using WP command-line, $_SERVER['SERVER_NAME'] is not defined,
-   for now assume the development in this case. */
-if ((!isset($_SERVER['SERVER_NAME'])) ||
-    $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
-    $_SERVER['SERVER_NAME'] == 'localhost') {
+   assume production in this case (we run cron using cli on production). */
+if ((isset($_SERVER['SERVER_NAME'])) &&
+    ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
+     $_SERVER['SERVER_NAME'] == 'localhost')) {
 
     /** The name of the database for WordPress */
     define('DB_NAME', 'cgewp');
@@ -59,6 +59,10 @@ if ((!isset($_SERVER['SERVER_NAME'])) ||
 
     // Michalis, following https://codex.wordpress.org/Administration_Over_SSL
     define('FORCE_SSL_ADMIN', true);
+
+    // We run cronjob ourselves, see
+    // https://easyengine.io/tutorials/wordpress/wp-cron-crontab/
+    define('DISABLE_WP_CRON', true);
 
     // wp-config-production.php contains DB user and passwords.
     // Not in repository, for security.
