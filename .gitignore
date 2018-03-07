@@ -21,6 +21,7 @@ htdocs/code-samples/view_3d_model_basic
 htdocs/code-samples/scene_transform
 htdocs/code-samples/scene_transform_2
 htdocs/code-samples/scene_transform_3
+htdocs/code-samples/build_scene_lineset_rectangle2d
 
 htdocs/vrml_engine_doc/output/
 htdocs/vrml_engine_doc/*.tar.gz
