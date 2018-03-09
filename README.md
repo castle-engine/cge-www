@@ -86,23 +86,24 @@ Procedure to update WWW content
   to go to https://castle-engine.io/ .
   (M-x kam-castle-engine-snapshot-docs-to-normal in Michalis Emacs.)
 
-- if you change some content outside SVN:
-  (These are some things that are automatically generated and it would
-  be a waste to keep them inside SVN repository... so they have to
+- After updating CGE,
+  update also FPC/Lazarus requirements:
+  http://castle-engine.io/fpc_and_lazarus.php
+
+- if you change some content outside GitHub cge-www repository:
+  (These are some files that are automatically generated and it would
+  be a waste to keep them inside a version control repository... so they have to
   be copied in a normal way.) :
-  - reference and vrml_engine_doc can be automatically uploaded by "make upload"
-    in appropriate dir
-  - upload on SF within htdocs/ all that's needed
-  - make sure that "other" users don't have uncessesary permissions
-    (files created by svn inside .svn and files updated by SVN
-    should get OK permissions from start, but "content outside SVN"
-    may have too permissive permissions after uploading e.g. if I upload
-    by nautilus): run secure_permissions.sh on SF
-  - run mk_sums_md5.sh locally. This calculates md5 sums on your local
-    files.
-  - on SF shell server, run check_sums_md5.sh. This will check md5 sums
-    uploaded in previous step, thus checking that all files (even those
-    ignored by SVN) were uploaded correctly.
+  - reference (API docs) and vrml_engine_doc can be automatically uploaded by
+    "make upload" in the appropriate sources dir.
+  - make sure that "other" users don't have uncessesary permissions:
+    call secure_permissions.sh on server
+  - Old (no longer regularly checked):
+    - run mk_sums_md5.sh locally. This calculates md5 sums on your local
+      files.
+    - on remote server, run check_sums_md5.sh. This will check md5 sums
+      uploaded in previous step, thus checking that all files
+      were uploaded correctly.
 
 - a release of engine or view3dscene or some other tools can also be
   uploaded to http://itch.io/ , see http://michaliskambi.itch.io/

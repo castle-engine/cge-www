@@ -21,7 +21,7 @@ Usually, we also support a couple of older FPC releases.
 
 <ul>
   <li>The <b>latest stable (6.4) engine version supports FPC versions &gt;= 3.0.0</b>.
-  <!-- <li>The <b>next engine version (<a href="https://github.com/castle-engine/castle-engine">you can get it right now from GitHub</a>) supports FPC versions &gt;= 3.0.0</b>. -->
+  <li>The <b>next engine version (<a href="https://github.com/castle-engine/castle-engine">you can get it right now from GitHub</a>) supports FPC versions &gt;= 3.0.2</b>.
 </ul>
 
 <p>You may also find it comfortable
