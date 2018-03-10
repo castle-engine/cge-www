@@ -4,6 +4,7 @@ manual_header('Quick 2D game (basic window events)');
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Finished version', 'finished'),
     new TocItem('Loading image (TGLImage class)', 'load'),
     new TocItem('Drawing image (OnRender event)', 'draw'),
     new TocItem('Moving image (OnUpdate event)', 'update'),
@@ -32,10 +33,19 @@ echo castle_thumbs(array(
 let's take a quick look at the simple things you can do with our window.
 Let's draw some images and handle inputs.
 
-<p>For a demo of a game using simplest 2D image drawing,
-take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-over-river">our "River Ride" clone done in a 1-hour game-jam</a> ! :)
-
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can check out a finished version of the example presented in this chapter:
+
+<ul>
+  <li>Lazarus version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus/quick_2d_game">Engine examples/lazarus/quick_2d_game</a>
+  <li>CastleWindow version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_standard_ui/quick_2d_game">Engine examples/2d_standard_ui/quick_2d_game</a>
+</ul>
+
+<p>For a larger demo of a game using simplest 2D image drawing,
+take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-over-river">our "River Ride" clone done in a 1-hour game-jam</a> ! :)
 
 <?php echo $toc->html_section(); ?>
 
