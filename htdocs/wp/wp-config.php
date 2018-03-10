@@ -60,6 +60,9 @@ if ((isset($_SERVER['SERVER_NAME'])) &&
     // Michalis, following https://codex.wordpress.org/Administration_Over_SSL
     define('FORCE_SSL_ADMIN', true);
 
+    // Michalis, to directly update files (otherwise files must be owned by www-data)
+    define('FS_METHOD','direct');
+
     // We run cronjob ourselves, see
     // https://easyengine.io/tutorials/wordpress/wp-cron-crontab/
     define('DISABLE_WP_CRON', true);
