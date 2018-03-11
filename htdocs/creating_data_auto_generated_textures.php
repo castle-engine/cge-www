@@ -63,9 +63,10 @@ MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is a sample <code>material_properties.xml</code> file
-that
-with links to documentation for every attribute.</p>
+<p>Below is a sample <code>material_properties.xml</code> file
+requesting to compress and downscale some images.
+Texture compression format names are <a href="https://castle-engine.io/apidoc/html/CastleImages.html#TTextureCompression">the same as TTextureCompression enum names but without leading "tc"</a>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
+</p>
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
@@ -81,9 +82,7 @@ with links to documentation for every attribute.</p>
   <auto_generated_textures>
     <compress>
       <!-- Automatically compressed texture formats.
-        Format names are the same as TTextureCompression enum names
-        (without leading "tc").
-        Two most common RGBA compressions for mobiles are listed below. -->
+        Two most common RGBA compressions for mobiles are shown below. -->
       <format name="Pvrtc1_4bpp_RGBA"/>
       <format name="ATITC_RGBA_InterpolatedAlpha"/>
     </compress>
