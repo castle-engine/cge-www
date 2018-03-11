@@ -130,7 +130,10 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     the GPU-compressed (and optionally scaled down) counterparts.
     See <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
     They will be generated inside the <code>auto_generated</code> subdirectories
-    of your data files.
+    of your data files, and additionally a file
+    <code>castle_engine_auto_generated.xml</code> will appear,
+    describing the generated textures for internal purposes (e.g. to smartly
+    update them later).
 
     <p>This process underneath may call various external tools:
 
