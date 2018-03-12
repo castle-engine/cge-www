@@ -558,11 +558,10 @@ application with the <a href="https://github.com/castle-engine/castle-engine/wik
 using <code>--mode=valgrind</code> to get an executable ready to be tested
 with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
 
-<p>You can use any FPC tool to profile your code, for memory and
-speed. There's a small document about it in engine sources, see
-<code>castle_game_engine/doc/miscellaneous_notes/profiling_howto.txt</code>
-(TODO: it should be moved to our wiki at some point).
-See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
+<p><a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Instructions how to use Valgrind with Castle Game Engine applications are here</a>.
+
+<p>In general, you can use any FPC tool to profile your code, for memory and
+speed. See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
 wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
