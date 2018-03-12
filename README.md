@@ -178,10 +178,13 @@ Announcing release
   https://plus.google.com/b/101185352355602218697/communities/103113685381486591754
 
 - Post to community on FB:
-  https://www.facebook.com/groups/LazarusFPCDevForum/?ref=browser
-  We cannot post as Castle Game Engine to community? So just post as Michalis.
 
+  https://www.facebook.com/groups/LazarusFPCDevForum/
   https://www.facebook.com/groups/DelphiDevelopers/
+  https://www.facebook.com/groups/170041353008050/
+
+  (Note that you cannot post as Castle Game Engine to community on FB,
+  just post as Michalis.)
 
 - really large new features may cause updates of project description.
   Change project_description.txt text, and see there for a list of places
