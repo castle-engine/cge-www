@@ -118,6 +118,8 @@ do this sometime after loading the <code>CarScene</code>:
 And if these are not enough, note that the animation is just an X3D <code>TimeSensor</code> node.
 You can access the underlying node using the <?php api_link('AnimationTimeSensor', 'CastleSceneCore.TCastleSceneCore.html#AnimationTimeSensor'); ?> method, and use or even edit this animation as you wish.
 
+<p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/play_animation">play_animation example in engine sources</a> for a demo of <code>PlayAnimation</code> capabilities.
+
 <?php echo $toc->html_section(); ?>
 
 <p>Any object descending from <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>, including
