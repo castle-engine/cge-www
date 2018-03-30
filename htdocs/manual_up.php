@@ -80,23 +80,33 @@ the +Y axis. So things <i>just work</i>.
 <p>There are two common conventions:</p>
 
 <ol>
-  <li>Most 3D modeling software, like <a href="http://www.blender.org/">Blender</a>, prefers the up direction
-    to be +Z, and direction to be +X. This is usually sensible when you
-    think about a flat level, with XY representing the map view, and
-    additional Z adding the height.
+  <li><p>Most 3D modeling software, like <a href="http://www.blender.org/">Blender</a>,
+    prefers the "up" vector to be +Z.
 
-  <li>On the other hand, VRML/X3D and default OpenGL camera prefers the
-    up to be +Y, and direction to be -Z. This makes sense if you think
-    about the screen as being the XY plane, so then if you look straight
-    (in the right-hand coordinate system) you look in -Z direction.
+    <p>This is natural if you think about a level map spread on the XY plane.
+    The Z coordinate is representing the height above the ground.
+
+  <li><p>X3D, default OpenGL camera,
+    and various game engines (Castle Game Engine, Unity3d, Unreal Engine)
+    by default prefer the "up" vector to be +Y.
+    And the "look direction" to be -Z.
+
+    <p>This makes sense if you think about the screen as being the XY plane.
+    So if you look straight (in the right-hand coordinate system)
+    you look in the -Z direction.
+
+    <p>One argument in favor of this is that the default camera makes
+    sense for both 2D and 3D games. For 2D games, X goes to the right,
+    Y goes up, and Z doesn't matter (or is used to position layers relative
+    to each other). For 3D games, again X goes to the right,
+    again Y goes up, and Z represents the depth.
 </ol>
 
-<p>You can also easily imagine other conventions, as you can really pick
-any 3D vector as "up", and pick anything orthogonal to it as
-"direction".</p>
+<p>As you can imagine, other conventions are possible, as you can pick
+any 3D vector as "up", and pick anything orthogonal to it as "direction".</p>
 
-<p>Our engine supports various such conventions, we do not force you to
-follow any particular one. To make things work smoothly, you want to
+<p>Our engine supports various conventions for the "up" vector.
+To make things work smoothly, you want to
 keep the same conventions throughout your process &mdash; be wary of
 this when creating <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instances in the engine, when exporting
 3D models from Blender, when setting viewpoint (with gravity) in
