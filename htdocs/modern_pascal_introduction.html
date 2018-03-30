@@ -1038,7 +1038,17 @@ You can avoid placing enum names in the global namespace by directive <code>{$sc
 <p><strong>About the <code>repeat</code> and <code>while</code> loops</strong>:</p>
 </div>
 <div class="paragraph">
-<p>It may seem that the difference between the <code>while</code> and <code>repeat</code> loops is "cosmetic" (you specify a negated condition, because in <code>while .. do</code> you tell it <em>when to continue</em>, but in <code>repeat .. until</code> you tell it <em>when to stop</em>). Actually there&#8217;s another important difference: in case of <code>repeat</code>, <em>the condition is not checked at the beginning</em>. So the <code>repeat</code> loop always runs at least once.</p>
+<p>There are two differences between these loop types:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The loop condition has an opposite meaning. In <code>while .. do</code> you tell it <em>when to continue</em>, but in <code>repeat .. until</code> you tell it <em>when to stop</em>.</p>
+</li>
+<li>
+<p>In case of <code>repeat</code>, <em>the condition is not checked at the beginning</em>. So the <code>repeat</code> loop always runs at least once.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>About the <code>for I := &#8230;&#8203;</code> loops</strong>:</p>
@@ -2575,10 +2585,10 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </ul>
 </div>
 <div class="paragraph">
-<p>We advice using the <code>FGL</code> unit (if you need to work with the latest stable FPC 3.0.0 and 3.0.2 or even older FPC 2.6.x), or the <code>Generics.Collections</code> unit (only available since FPC 3.1.1, but on the other hand compatible with Delphi). They both offer lists and dictionaries with naming consistent with other parts of the standard library (like the non-generic containers from the <code>Contnrs</code> unit).</p>
+<p>We advice using the <code>FGL</code> unit (if you need to work with the stable FPC 3.0.x or even older FPC 2.6.x), or the <code>Generics.Collections</code> unit (only available since FPC 3.1.1, but on the other hand compatible with Delphi). They both offer lists and dictionaries with naming consistent with other parts of the standard library (like the non-generic containers from the <code>Contnrs</code> unit).</p>
 </div>
 <div class="paragraph">
-<p><strong>In the Castle Game Engine</strong>: We include a local copy of <code>Generics.Collections</code> even for FPC 3.0.0 and 3.0.2. We use the <code>Generics.Collections</code> throughout the engine, and advice you to use <code>Generics.Collections</code> too!</p>
+<p><strong>In the Castle Game Engine</strong>: We include a local copy of <code>Generics.Collections</code> even for FPC 3.0.x. We use the <code>Generics.Collections</code> throughout the engine, and advice you to use <code>Generics.Collections</code> too!</p>
 </div>
 <div class="paragraph">
 <p>Most important classes from the <code>Generics.Collections</code> unit are:</p>
@@ -3714,7 +3724,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>The <code>private</code> visibility specifier means that the field (or method) is not accessible outside of this class. But it allows an exception: all the code defined <em>in the same unit</em> can break this, and access private fields and methods. A C++ programmer would say that in Pascal <em>all classes within a single unit are friends</em>. This is often useful, and doesn&#8217;t break your encapsulation, since it&#8217;s limited to a unit.</p>
 </div>
 <div class="paragraph">
-<p>However, if you create larger units, with many classes (that are not tightly integrated with each other), it&#8217;s safer to use <code>strict private</code>. As you can guess, it means that the field (or method) in not accessible outside of this class&#8201;&#8212;&#8201;period. No exceptions.</p>
+<p>However, if you create larger units, with many classes (that are not tightly integrated with each other), it&#8217;s safer to use <code>strict private</code>. It means that the field (or method) is not accessible outside of this class&#8201;&#8212;&#8201;period. No exceptions.</p>
 </div>
 <div class="paragraph">
 <p>In a similar manner, there&#8217;s <code>protected</code> visibility (visible to descendants, or friends in the same unit) and <code>strict protected</code> (visible to descendants, period).</p>
@@ -4686,7 +4696,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-17 01:54:22 CET
+Last updated 2018-03-29 19:31:11 CEST
 </div>
 </div>
 <!-- Google analytics -->

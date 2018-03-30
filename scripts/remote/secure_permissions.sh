@@ -4,8 +4,11 @@ set -eu
 # Most things should be read-only for other users than michalis
 secure_dir ()
 {
-  chmod -R u=rwX,g=rwX,o=rX  "$1"
-  chown -R michalis:michalis "$1"
+  find "$1" \
+    '(' -user www-data ')' -or \
+    '(' -execdir chmod u=rwX,g=rwX,o=rX '{}' ';' -and \
+        -execdir chown michalis:michalis '{}' ';' \
+    ')'
 }
 secure_dir /home/michalis/cge-www/
 secure_dir /home/michalis/cge-html/
@@ -19,9 +22,13 @@ writeable_dir ()
   # This way:
   # - we do not open this directory for anyone on server
   # - we do not need sudo to call this (unlike chown)
-  chgrp -R www-data "$1"
+  find "$1" \
+    '(' -user www-data ')' -or \
+    '(' -execdir chgrp www-data '{}' ';' ')'
 }
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/cache/
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/uploads/
 # Eventually make whole Wordpress writeable, to allow upgrading through www easily
 writeable_dir /home/michalis/cge-www/htdocs/wp/
+
+echo 'File permissions adjusted OK.'
