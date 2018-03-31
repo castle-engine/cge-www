@@ -274,7 +274,7 @@ $castle_sitemap = array(
         'sub' => array(
           // 'android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
           // 'ios' => array('title' => 'iOS (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
-          'fpc_and_lazarus' => array('title' => 'Supported FPC and Lazarus versions'),
+          'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
           'planned_features' => array('title' => 'Planned features'),
           'helping' => array('title' => 'Helping in engine development'),
           'engine_doc' => array('title' => 'Internals documentation'),
