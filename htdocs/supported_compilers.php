@@ -82,7 +82,7 @@ to hang on to FPC releases available in distros.
 
 <p>We don't officially support using <i>Code Typhon</i>.
 
-<p>Please use proper <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a> instead. I trust that FPC and Lazarus developers are doing great quality job, and they care about making open-source Pascal ecosystem in the right way (which includes respecting copyrights and open-source licences).
+<p>Please use proper <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a> instead. I trust that FPC and Lazarus developers are doing great quality job, and they care about making open-source Pascal ecosystem in the right way. <!-- (which includes respecting copyrights and open-source licences). -->
 
 <p>As for some perceived CodeTyphon advantages:
 
