@@ -16,7 +16,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <ul>
   <li><p><b>Delphi compatibility</b>
 
-    <p>As for the Delphi version:
+    <p>As for the Delphi version: <a href="supported_compilers.php">see here</a>.
+
+    <?php /*
     <ul>
       <li><p>This will the free version of Delphi available as
         <a href="https://www.embarcadero.com/products/delphi/starter">Delphi Starter Edition</a>.
@@ -42,6 +44,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
         so I cannot afford to buy it on my own.
         Especially since, personally, I usually work on Linux with FPC + Lazarus these days:)
     </ul>
+    */ ?>
 
     <p><a href="https://castle-engine.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
 
@@ -100,13 +103,17 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p><a href="https://github.com/castle-engine/view3dscene-mobile">This is already started by Jan Adamec!</a>
 
-  <li><p><b>glTF format support</b>
+  <li><p><b>glTF format support and PBR</b>
 
     <p>glTF is a cool format for 3D models by Khronos. See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
 
     <p>It supports meshes, advanced materials, animations. The file format is a readable JSON, but additional binary files are used to transfer coordinates, so it's fast to load from disk straight to GPU. It's also a Khronos format, so it's developed by people who really know what they are doing (the same people develop OpenGL[ES] and WebGL, Vulkan, KTX, Collada ...).
 
     <p>Because of this, it may (or already is?) become a widely supported 3D format across a range of 3D software. So we want to have really good support for it &mdash; reading all the features (including animations), and preserving the efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
+
+    <p><a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">See this post for my 2018 roadmap -- it includes glTF and PBR.</a>
+
+    <p><a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">See here for documentation what is PBR (Physically-based Rendering) and do I plan to add it to X3D and Castle Game Engine, and thus seamlessly render glTF materials too</a>.
 
   <li><p><b>Terrain designer</b>
 
@@ -178,6 +185,8 @@ fade_duration="animation_duration * 0.1"
 fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 0.5)"
 </pre>
 
+        <p><a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">Animation blending is already working, see here!</a> However, it still has two TODOs for now (it does not yet work for castle-anim-frames or resource.xml).
+
       <li><p><b>Batching</b>
 
         <p>Batching of shapes that have equal appearance for start, to optimize the rendering.
@@ -188,11 +197,6 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         allowing for more sharing in code.
         The T3DTranform would be just like TTransformNode, but a little diferently
         optimized (but it would become toggable).
-
-      <li><p><b>Make TCastleScene descend from T3DTranform?</b>
-
-        <p>Also, allow <code>SceneManager.MainScene</code> to have some transformation
-        (right now, it's not 100% correct).
 
       <li><b>Distance field fonts</b>
 
