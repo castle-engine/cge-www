@@ -15,7 +15,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
     new TocItem('Delphi (coming soon)', 'delphi'),
-    new TocItem('Code Typhon is not supported', 'code_typhon'),
+    new TocItem('Code Typhon', 'code_typhon'),
   )
 );
 
@@ -78,20 +78,11 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We don't officially support using <i>Code Typhon</i>.
+<p>We also support <i>Code Typhon</i>, a fork of Lazarus.
 
-<p>Please use proper <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a> instead. I trust that FPC and Lazarus developers are doing great quality job, and they care about making open-source Pascal ecosystem in the right way. <!-- (which includes respecting copyrights and open-source licences). -->
+<p>Although Michalis slightly suggests that you use proper <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a> instead. I simply have more trust in FPC and Lazarus developers doing great quality job. Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers &mdash; these cover some often-mentioned <i>Code Typhon</i> advantages.
 
-<p>As for some perceived CodeTyphon advantages:
-
-<ul>
-  <li>If you want to easily install packages from 3rd parties (including Castle Game Engine), Lazarus comes now with ready <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>.
-  <li>With <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> you can easily install cross-compilers.
-</ul>
-
-<!-- I strongly believe that this combination is better than using CodeTyphon.
-
-I do not have this trust for CodeTyphon authors. They were doing illegal things (changing copyright notices without caring, see e.g. https://stackoverflow.com/a/36649355 ), and it's unclear whether they stopped this practice. It's clear that they don't want to cooperate with proper FPC and Lazarus authors. -->
+<p>But you are free to use any tool you decide.
 
 <?php
   castle_footer();
