@@ -70,9 +70,7 @@ to hang on to FPC releases available in distros.
 
 <p>We do not work <i>yet</i> with Delphi. <b>But we're working on it!</b> Some base units are already compatible with Delphi, you can test it by opening in Delphi and running <code>examples/delphi/base_tests/base_tests.dpr</code> included in the engine.
 
-<!--
 <p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that Michalis has full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
--->
 
 <p>So, Delphi compatibility is happening. It just takes time. You can <a href="https://www.patreon.com/castleengine">support me</a> to make it happen quicker!
 
