@@ -276,7 +276,11 @@ $castle_sitemap = array(
           // 'ios' => array('title' => 'iOS (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/iOS'),
           'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
           'planned_features' => array('title' => 'Planned features'),
-          'helping' => array('title' => 'Helping in engine development'),
+          'helping' => array('title' => 'Helping in engine development',
+            'sub' => array(
+              'donate_other' => array('title' => 'Donate')
+            ),
+          ),
           'engine_doc' => array('title' => 'Internals documentation'),
           'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
           'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://michalis.ii.uni.wroc.pl/jenkins/'),

@@ -28,7 +28,8 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>.
+  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>
+    or <a href="donate_other.php">donate in other ways</a>.
   <!--li>First of all, don't hesitate to post questions and suggestions
     about anything to our <a href="<?php echo FORUM_URL; ?>">forum</a>.-->
   <!--?php echo a_href_page('Donate', 'donate'); ?-->
