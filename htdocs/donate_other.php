@@ -4,39 +4,47 @@ require_once 'castle_engine_functions.php';
 castle_header('Donate', array(
   'path' => array('documentation', 'documentation_more', 'helping', 'donate_other')
 ));
+
+function donation_option_begin()
+{
+  echo '<div class="jumbotron">';
+}
+
+function donation_option_end()
+{
+  echo '</div>';
+}
+
 echo pretty_heading($page_title);
 ?>
 
-<p>I'm Michalis Kamburelis, and I'm developing this engine since many years now, with a dream to create a great and <b>free and open-source</b> game engine. Whatever option to donate you choose &mdash; <b>thank you</b>!
-
-<!-- <div class="row"> -->
-
-<!-- <div class="col-sm-6"> -->
+<p>I'm Michalis Kamburelis, and I'm developing this engine with a dream to create a great and <b>free and open-source</b> game engine. Whatever option to donate you choose &mdash; <b>thank you</b>!
 
 <div class="donations">
-  <div class="donation_option jumbotron">
-    <p>Our suggested method of donating is to <a href="https://www.patreon.com/castleengine">support us on Patreon</a>. It is OK to just donate and delete your "pledge" instantly after.</p>
-  </div>
+  <?php donation_option_begin(); ?>
+    <p><b>The suggested method of donating is to <a href="https://www.patreon.com/castleengine">support us on Patreon</a>.</b><br>
+    It is totally OK to just donate and delete your pledge right afterwards.</p>
+  <?php donation_option_end(); ?>
 
-  <div class="donation_option jumbotron">
+  <?php donation_option_begin(); ?>
     <?php if (!HTML_VALIDATION) { echo paypal_button(); } ?>
 
     <p><b>Donate using <a href="https://www.paypal.com/">PayPal</a>.</b><br>
     You can pay directly using your credit card, or use a PayPal account.
     <!-- 5 USD or 10 USD would be a suggested amount, -->
     <!-- but in general please just donate any amount you feel appropriate. -->
-  </div> <!-- donation_option -->
+  <?php donation_option_end(); ?>
 
-  <div class="donation_option jumbotron">
+  <?php donation_option_begin(); ?>
     <!-- img src="images/bitcoin_logo.png" alt="Bitcoin logo" style="float: left; margin-right: 1em" / -->
     <p><b>Donate using <a href="http://www.bitcoin.org/">BitCoin</a>.</b><br>
     Send funds to this address: <code>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</code></p>
-  </div> <!-- donation_option -->
+  <?php donation_option_end(); ?>
 
-  <div class="donation_option jumbotron">
+  <?php donation_option_begin(); ?>
     <p><b>Donate using <a href="https://litecoin.org/">LiteCoin</a>.</b><br>
     Send funds to this address: <code>LSQzhb96SiBejZW5VSV5ebzeRE67XGg16W</code></p>
-  </div> <!-- donation_option -->
+  <?php donation_option_end(); ?>
 
   <?php /* Flattr not used now - was not really working.
 
@@ -84,35 +92,31 @@ echo pretty_heading($page_title);
 
 </div> <!-- donations -->
 
-<!-- </div> <\!-- col- -\-> -->
+<?php /*
 
-<!-- <div class="col-sm-6"> -->
+------------------------------------------------------------------------------
+Old text:
+<div class="jumbotron">
+<a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png" /></a>
+<p>Hi,
+<p>I'm Michalis Kamburelis
+(<?php echo michalis_mailto('email'); ?>,
+<a href="https://plus.google.com/106323096891653345103">google+</a>).
+I'm developing this engine since 2007, with a dream to create something <b>great and open-source and (forever) free</b>.
+I guess I spend most of my days (and nights:) developing it throughout these years.
+<p>Since 2016, I don't have any other job, and
+I devote 100% of my life to extend this engine
+and create games around it, as part of the <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a> studio
+that we formed with a friend!
+So I'm really crazy about making cool games and keeping the engine growing and open-source:)
 
-<!-- <div class="jumbotron"> -->
-<!-- <a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png" /></a> -->
-<!-- <p>Hi, -->
-<!-- <p>I'm Michalis Kamburelis -->
-<!-- (<?php echo michalis_mailto('email'); ?>, -->
-<!-- <a href="https://plus.google.com/106323096891653345103">google+</a>). -->
-<!-- I'm developing this engine since 2007, with a dream to create something <b>great and open-source and (forever) free</b>. -->
-<!-- I guess I spend most of my days (and nights:) developing it throughout these years. -->
-<!-- <p>Since 2016, I don't have any other job, and -->
-<!-- I devote 100% of my life to extend this engine -->
-<!-- and create games around it, as part of the <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a> studio -->
-<!-- that we formed with a friend! -->
-<!-- So I'm really crazy about making cool games and keeping the engine growing and open-source:) -->
+<p>So I really depend on your donations.
+Even a small donation matters <b>a lot</b> to me. It allows me
+to continue to improve the awesomeness of our engine,
+and view3dscene, and our games. <b>Thank you!</b></p>
+</div> <!-- jumbotron -->
 
-<!-- <p>So I really depend on your donations. -->
-<!-- Even a small donation matters <b>a lot</b> to me. It allows me -->
-<!-- to continue to improve the awesomeness of our engine, -->
-<!-- and view3dscene, and our games. <b>Thank you!</b></p> -->
-<!-- </div> <\!-- jumbotron -\-> -->
-
-<!-- </div> <\!-- col- -\-> -->
-
-<!-- </div> <\!-- row -\-> -->
-
-<!--
+------------------------------------------------------------------------------
 Old text:
 
 And I'm going to continue doing so, and you don't have to pay
@@ -121,9 +125,8 @@ for any bugfix or a new feature or a new game getting released!
 <p>It would be absolutely great for me to gain some income,
 and be able to live without other jobs, and commit
 100% of my computer time to this engine. So
--->
 
-<?php /*
+------------------------------------------------------------------------------
 Unused donations options:
 
 ------------------------------------------------------------------------------
