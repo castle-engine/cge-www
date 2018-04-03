@@ -11,6 +11,7 @@
     array(
       new TocItem('How to animate things using X3D', 'howto'),
         new TocItem('Connect 3 nodes: a time sensor, an interpolator, and the thing you want to animate', 'nodes_combo', 1),
+        new TocItem('Building an animation in Object Pascal code', 'pascal', 1),
         new TocItem('Notes about looping animations', 'looping_notes', 1),
         new TocItem('Typical animation methods: skeletons, mesh deformations and so on', 'animation_methods', 1),
       new TocItem('Supported nodes', 'support'),
@@ -161,9 +162,24 @@ ROUTE MyInterpolator.value_changed TO MyTransform.translation'); ?>
 
 </ol>
 
-<p>Remember that all of this can be loaded from files,
-or constructed by code. You can create X3D nodes and routes
+<?php echo $toc->html_section(); ?>
+
+<p>Everything described above can be loaded from an X3D file,
+or it can be constructed by code. You can create X3D nodes and routes
 completely programmatically, using Object Pascal.
+
+<div class="jumbotron">
+  <p><a href="code-samples/build_scene_interpolator.lpr">Download and compile
+    build_scene_interpolator.lpr</a>
+
+  <p>This example program creates a sphere animation,
+  by programmatically creating the <code>TimeSensor</code> and all the other
+  X3D nodes we discussed above.
+  It is done completely in Pascal (instead of loading the scene from X3D file,
+  like <code>Scene.Load('example.x3dv')</code>), which allows you to extend
+  this example to do something much cooler (e.g. add it to a procedurally-generated
+  model).</p>
+</div>
 
 <?php echo $toc->html_section(); ?>
 

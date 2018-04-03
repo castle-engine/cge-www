@@ -8,20 +8,21 @@ htdocs/code-samples/*.o
 htdocs/code-samples/*.ppu
 htdocs/code-samples/*.exe
 # particular Unix binaries in htdocs/code-samples
-htdocs/code-samples/notifications
-htdocs/code-samples/on_screen_menu
-htdocs/code-samples/standard_2d_ui
-htdocs/code-samples/standard_2d_ui_toggle_exists
+htdocs/code-samples/build_scene_interpolator
+htdocs/code-samples/build_scene_lineset_rectangle2d
+htdocs/code-samples/button_with_2d_scene_manager
 htdocs/code-samples/custom_2d_control
 htdocs/code-samples/custom_2d_control_finished
-htdocs/code-samples/two_viewports
-htdocs/code-samples/button_with_2d_scene_manager
-htdocs/code-samples/user_prefs_demo
-htdocs/code-samples/view_3d_model_basic
+htdocs/code-samples/notifications
+htdocs/code-samples/on_screen_menu
 htdocs/code-samples/scene_transform
 htdocs/code-samples/scene_transform_2
 htdocs/code-samples/scene_transform_3
-htdocs/code-samples/build_scene_lineset_rectangle2d
+htdocs/code-samples/standard_2d_ui
+htdocs/code-samples/standard_2d_ui_toggle_exists
+htdocs/code-samples/two_viewports
+htdocs/code-samples/user_prefs_demo
+htdocs/code-samples/view_3d_model_basic
 
 htdocs/vrml_engine_doc/output/
 htdocs/vrml_engine_doc/*.tar.gz
