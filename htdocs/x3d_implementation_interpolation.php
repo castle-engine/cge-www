@@ -227,7 +227,9 @@ or get a notification when animation stops.
 
   <li><p>Another animation method is the <b>skinned mesh animation, where we deform meshes by animating bones, and then calculating how these bones pull the mesh</b>. Note that this is different from <?php echo x3d_node_link('CoordinateInterpolator'); ?>: now the animation engine (<i>Castle Game Engine</i>) must be aware of bones, of how do they map onto the vertexes: which bone affects which vertex and with what strength.
 
-    <p>This animation method is part of <a href="x3d_implementation_hanim.php">H-Anim X3D component</a>. The name is a little misleading: better name would be <i>"skinned mesh animation"</i>, it's completely suitable for animating any meshes, not only humanoids.
+    <p>The skinned mesh animation is part of the <a href="x3d_implementation_hanim.php">"H-Anim" X3D component</a>. The name of the component ("H-Anim", short for <i>"humanoid animation"</i>) is a little misleading, as it actually alllows to animate any meshes, not only humanoids. It allows to animate using the <i>"skinned mesh animation"</i> approach. We describe the relevant fields in the <a href="x3d_implementation_hanim.php">"H-Anim" documentation</a>.
+
+    <!--p>(Note: "H-Anim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
 
   <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-engine-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code>, <i>for now</i>.
 
