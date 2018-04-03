@@ -231,11 +231,11 @@ or get a notification when animation stops.
 
     <!--p>(Note: "H-Anim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
 
-  <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-engine-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code>, <i>for now</i>.
+  <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code>, <i>for now</i>.
 
     <p>The approach of <i>node interpolator</i> is extremely flexible (able to animate anything that you can create in Blender, whether it's "structurally equal" or not). It is also extremely fast (as the frames are precalculated in memory). And, it is also slow to load, and can eat a significant amount of memory...
 
-    <p>We expect to improve it at some point, and then loading <code>castle-engine-frames</code> will just result in an X3D graph using interpolators like <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> inside. It will be optional, though (the current method has some advantages, so it will remain available too).
+    <p>We expect to improve it at some point, and then loading <code>castle-anim-frames</code> will just result in an X3D graph using interpolators like <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> inside. It will be optional, though (the current method has some advantages, so it will remain available too).
 </ol>
 
 <p>Note that all of these methods of animations can be "composed", i.e. you can have them all happening at once and within a single file.
@@ -243,12 +243,12 @@ or get a notification when animation stops.
 <ul>
   <li><p>A single <code>TimeSensor</code> node can be connected to multiple interpolators, it can e.g. connect to many <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> nodes.
 
-  <li><p>Running <code>TimeSensor</code> node can also run other <code>TimeSensor</code> nodes. To do this, you can route a couple of fields from one <code>TimeSensor</code> to another: <code>startTime</code>, <code>stopTime</code>. In Pascal code, you would only control the "initial" <code>TimeSensor</code> by <code>PlayAnimation</code>.
+  <li><p>Running one <code>TimeSensor</code> node can also run other <code>TimeSensor</code> nodes. <!--So you can create a "chain" of <code>TimeSensor</code> nodes.--> To do this, you would route a couple of fields from one <code>TimeSensor</code> to another: <code>startTime</code>, <code>stopTime</code>. Once this is set up in X3D, from Pascal code, you only need to start the "main" <code>TimeSensor</code> by <code>Scene.PlayAnimation('MainTimeSensor', ...)</code>.
 
-  <li><p>The <code>castle-engine-frames</code> can be placed as an <code>Inline</code> inside a larger model, maybe even under an animated transformation.
+  <li><p>Also note that the <code>castle-anim-frames</code> file can be inserted into another model using the X3D <code>Inline</code> node. The <code>Inline</code> may be even under a transformation. You can still play the animations from the inlined <code>castle-anim-frames</code> (because internally we use X3D <code>EXPORT</code> mechanism). <a href="https://github.com/castle-engine/demo-models/blob/master/castle-anim-frames/simple/two_animations.x3dv">Here's an example how an X3D file uses Inline to insert castle-anim-frames inside.</a> With this, it's possible to e.g. store the human head as <code>castle-anim-frames</code>, and add it on top of human body with <code>Inline</code>.
 </ul>
 
-<p>The important advice I can give is that, no matter how complicated is your animation inside X3D graph, it's <i>worth to expose the animation through only a single <code>TimeSensor</code>, such that it can be controlled easily as a single animation</i>. This makes the <code>TCastleSceneCore.PlayAnimation</code> method and friends useful for you to control your animations. This way the complexity of the animation system is no longer an issue for you (once you build it), as the engine handles it. You just run a trivial <code>TCastleSceneCore.PlayAnimation</code> method.
+<p>The important advice is that, no matter how complicated is your animation inside X3D graph, it's <i>worth to expose the animation through only a single <code>TimeSensor</code>, such that it can be controlled easily as a single animation</i>. This makes the <code>TCastleSceneCore.PlayAnimation</code> method and friends useful for you to control your animations. This way the complexity of the animation system can be hidden by the engine. Even if the X3D graph is complicated, you just run a trivial <code>TCastleSceneCore.PlayAnimation</code> method.
 
 <?php echo $toc->html_section(); ?>
 
