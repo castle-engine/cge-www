@@ -18,7 +18,17 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>For demos and tests of these features,
+<p>This components allows to read and process keys using X3D nodes.
+
+<p>Note: If you write a game using <i>Castle Game Engine</i>,
+this is probably not the most comfortable way to process keyboard.
+Instead, you probably want to react to
+<?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
+<?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?> or override
+<?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
+See <a href="manual_quick_2d_game.php">the manual describing handling events</a>.
+
+<p>For demos and tests of these nodes,
 see the <code>sensors_key</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 

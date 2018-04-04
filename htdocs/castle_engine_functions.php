@@ -329,7 +329,7 @@ $castle_sitemap = array(
               'x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
             ),
           ),
-          'x3d_implementation_interpolation'        => array('title' => 'Interpolation',
+          'x3d_implementation_interpolation'        => array('title' => 'Interpolation ("how to animate things")',
             'sub' => array(
               'x3d_implementation_interpolation_extensions' => array('title' => 'Extensions'),
             ),
