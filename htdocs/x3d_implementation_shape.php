@@ -54,18 +54,9 @@
     For complicated cases (like when you change diffuse, and specular,
     and emissive...) for each material index -&gt; they will fail.</p>
 
-    <p>This is a wontfix. For OpenGL fixed-function pipeline,
-    changing all <code>glMaterial</code> settings too often (like for
-    a vertex or a face) is prohibitively slow.
-    It's also terribly memory consuming (for
-    <?php echo a_href_page("castle", "castle") ?>, display lists of animations
-    (in the older days when we used display lists)
-    of spider and spider queen were eating 130 MB with naive implementation,
-    vs 10 MB with current implementation).</p>
-
     <p>VRML 2.0 and X3D removed this idea, replacing it with much
-    saner <code>Color</code> and <code>ColorRGBA</code> nodes, that are implemented
-    fully.</p>
+    simpler <code>Color</code> and <code>ColorRGBA</code> nodes,
+    that are implemented fully.</p>
 
 </ul>
 
