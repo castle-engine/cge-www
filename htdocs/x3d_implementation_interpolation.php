@@ -10,7 +10,10 @@
   $toc = new TableOfContents(
     array(
       new TocItem('How to animate things using X3D', 'howto'),
-        new TocItem('Connect 3 nodes: a time sensor, an interpolator, and the thing you want to animate', 'nodes_combo', 1),
+        new TocItem('Basic animation concepts: connect 3 nodes', 'nodes_combo', 1),
+          new TocItem('TimeSensor node', 'nodes_combo_1', 2),
+          new TocItem('Interpolator node, e.g. PositionInterpolator', 'nodes_combo_2', 2),
+          new TocItem('Node with the thing you want to animate, e.g. Transform', 'nodes_combo_3', 2),
         new TocItem('Building an animation in Object Pascal code', 'pascal', 1),
         new TocItem('Notes about looping animations', 'looping_notes', 1),
         new TocItem('How to implement skeletons, mesh deformations, skinned mesh animation...', 'animation_methods', 1),
@@ -25,37 +28,38 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Animation using X3D nodes usually requires using 3 nodes:
+<p>Animation in X3D usually requires connecting 3 nodes, as described below.
 
-<ol>
-  <li><p><a href="<?php echo x3d_spec_latest_url('time', 'TimeSensor'); ?>">TimeSensor</a>
-    node generates <i>output events</i> as time passes.
-    Most importantly, it generates <code>fraction_changed</code> <i>output event</i>,
-    that represents progress within the animation, in the [0..1] range.
+<?php echo $toc->html_section(); ?>
 
-    <p>Note: the actual <i>duration of this animation, in seconds</i>, is specified
-    in the field <code>TimeSensor.cycleInterval</code>. Whatever it is,
-    the <code>TimeSensor.fraction_changed</code> is still generated in
-    the [0..1] range. This way you can easily make animation faster/slower
-    by only changing the <code>TimeSensor.cycleInterval</code> value.
+<p><a href="<?php echo x3d_spec_latest_url('time', 'TimeSensor'); ?>">TimeSensor</a>
+node generates <i>output events</i> as time passes.
+Most importantly, it generates <code>fraction_changed</code> <i>output event</i>,
+that represents progress within the animation, in the [0..1] range.
 
-    <p>How to start the animation?
-    In <i>Castle Game Engine</i>, it's easiest to just use the
-    <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
-    method. It internally does everything necessary to reliably start the
-    indicated <code>TimeSensor</code> node.
-    Just be aware that there are other ways to start an animation,
-    X3D standard allows to make <code>TimeSensor</code> node active at open,
-    or activate it through various other means. But using
-    <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
-    is almost always simpler, <i>and</i> you get some cool extra options that
-    we will mention later.
+<p>Note: the actual <i>duration of this animation, in seconds</i>, is specified
+in the field <code>TimeSensor.cycleInterval</code>. Whatever it is,
+the <code>TimeSensor.fraction_changed</code> is still generated in
+the [0..1] range. This way you can easily make animation faster/slower
+by only changing the <code>TimeSensor.cycleInterval</code> value.
 
-    <p>Consider this X3D file (in classic encoding -- you can save it as
-    <code>test.x3dv</code> file and open with <a href="view3dscene.php">view3dscene</a>
-    or any engine tool):
+<p>How to start the animation?
+In <i>Castle Game Engine</i>, it's easiest to just use the
+<?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+ method. It internally does everything necessary to reliably start the
+indicated <code>TimeSensor</code> node.
+Just be aware that there are other ways to start an animation,
+X3D standard allows to make <code>TimeSensor</code> node active at open,
+or activate it through various other means. But using
+<?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+ is almost always simpler, <i>and</i> you get some cool extra options that
+we will mention later.
 
-    <?php echo vrmlx3d_highlight(
+<p>Consider this X3D file (in classic encoding -- you can save it as
+<code>test.x3dv</code> file and open with <a href="view3dscene.php">view3dscene</a>
+or any engine tool):
+
+<?php echo vrmlx3d_highlight(
 '#X3D V3.2 utf8
 PROFILE Interchange
 
@@ -63,51 +67,53 @@ DEF MyAnimationName TimeSensor {
   cycleInterval 5.0
 }'); ?>
 
-    <p>This animation does not do anything (<code>MyAnimationName</code>
-    output events are not connected to anything). But it can already be started
-    using <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>
-    in the engine. The <code>Scene.AnimationDuration('MyAnimationName')</code>
-    will return 5.0.
+<p>This animation does not do anything (<code>MyAnimationName</code>
+output events are not connected to anything). But it can already be started
+using <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>
+in the engine. The <code>Scene.AnimationDuration('MyAnimationName')</code>
+will return 5.0.
 
-    <p>You can also play it in <a href="view3dscene.php">view3dscene</a>:
-    Open the created <code>test.x3dv</code> file an choose menu item
-    <i>Animation -&gt; Named Animations -&gt; MyAnimationName</i>.
+<p>You can also play it in <a href="view3dscene.php">view3dscene</a>:
+Open the created <code>test.x3dv</code> file an choose menu item
+<i>Animation -&gt; Named Animations -&gt; MyAnimationName</i>.
 
-    <p>Note that we have <i>named</i> the <code>TimeSensor</code> node,
-    by prefixing it with <code>DEF MyAnimationName</code> statement.
-    This is the standard way in X3D to name nodes.
-    The <code>PlayAnimation</code> simply takes this name as a parameter.
-    <!-- This name is also useful for other purposes, e.g. <code>ROUTE</code> -->
-    <!-- statements will use it too. -->
+<p>Note that we have <i>named</i> the <code>TimeSensor</code> node,
+by prefixing it with <code>DEF MyAnimationName</code> statement.
+This is the standard way in X3D to name nodes.
+The <code>PlayAnimation</code> simply takes this name as a parameter.
+<!-- This name is also useful for other purposes, e.g. <code>ROUTE</code> -->
+<!-- statements will use it too. -->
 
-  <li><p>Next we need an interpolator node, like <a href="<?php echo x3d_spec_latest_url('interp', 'PositionInterpolator'); ?>">PositionInterpolator</a>.
-    Every interpolator processes <i>keys</i> in [0..1] range are produces
-    <i>key values</i>. All interpolators have an <i>input event</i>
-    called <code>set_fraction</code> that, as it's name suggests,
-    can be connected with the <code>TimeSensor.fraction_changed</code>
-    output event. In response to receiving the <code>set_fraction</code> input,
-    an interpolator generates an output event called <code>value_changed</code>.
+<?php echo $toc->html_section(); ?>
 
-    <p>The <code>value_changed</code> is calculated by looking where
-    is the received fraction inside <code>key</code> field,
-    and calculating appropriate value by picking a range from <code>keyValue</code>
-    field.
+<p>Next we need an interpolator node, like <a href="<?php echo x3d_spec_latest_url('interp', 'PositionInterpolator'); ?>">PositionInterpolator</a>.
+Every interpolator processes <i>keys</i> in [0..1] range are produces
+<i>key values</i>. All interpolators have an <i>input event</i>
+called <code>set_fraction</code> that, as it's name suggests,
+can be connected with the <code>TimeSensor.fraction_changed</code>
+output event. In response to receiving the <code>set_fraction</code> input,
+an interpolator generates an output event called <code>value_changed</code>.
 
-    <p>The type of values (there are placed in <code>keyValue</code>,
-    and generated by <code>value_changed</code>) depends on the interpolator
-    type. There are many interpolators, most of them are part of "Interpolation"
-    component and listed lower on this page.
+<p>The <code>value_changed</code> is calculated by looking where
+is the received fraction inside <code>key</code> field,
+and calculating appropriate value by picking a range from <code>keyValue</code>
+field.
 
-    <p>For example, in case of <code>PositionInterpolator</code>,
-    each "key value" is a 3D vector (which is called <code>SFVec3f</code>
-    in X3D, "SFVec3f" = <i>"Single Field with a Vector of 3 floats"</i>).
+<p>The type of values (there are placed in <code>keyValue</code>,
+and generated by <code>value_changed</code>) depends on the interpolator
+type. There are many interpolators, most of them are part of "Interpolation"
+component and listed lower on this page.
 
-    <p>This is how we would connect <code>PositionInterpolator</code>
-    to a <code>TimeSensor</code> to create a movement from (0,0,0)
-    to (10,0,0) in 3 seconds, and then a movement from (10,0,0) to (10,10,0)
-    in 1 second:
+<p>For example, in case of <code>PositionInterpolator</code>,
+each "key value" is a 3D vector (which is called <code>SFVec3f</code>
+in X3D, "SFVec3f" = <i>"Single Field with a Vector of 3 floats"</i>).
 
-    <?php echo vrmlx3d_highlight(
+<p>This is how we would connect <code>PositionInterpolator</code>
+to a <code>TimeSensor</code> to create a movement from (0,0,0)
+to (10,0,0) in 3 seconds, and then a movement from (10,0,0) to (10,10,0)
+in 1 second:
+
+<?php echo vrmlx3d_highlight(
 '#X3D V3.2 utf8
 PROFILE Interchange
 
@@ -120,30 +126,32 @@ DEF MyInterpolator PositionInterpolator {
 }
 ROUTE MyAnimationName.fraction_changed TO MyInterpolator.set_fraction'); ?>
 
-    <p>Note that <i>nothing actually moves yet</i>,
-    as there is nothing visible in the scene yet.
+<p>Note that <i>nothing actually moves yet</i>,
+as there is nothing visible in the scene yet.
 
-  <li><p>As a last step, we need to connect the output event of the interpolator,
-    like <code>PositionInterpolator.value_changed</code> to... something.
-    This is where the power of the X3D animation system is most prominent, as you can connect
-    "anything to anything" as long as the type matches.
-    So <code>PositionInterpolator.value_changed</code> can be connected
-    to <i>any input-output field that holds 3D vectors</i> (this is marked like
-    <code>SFVec3f [in,out]</code> in the X3D specification)
-    or <i>any input event that can receive 3D vectors</i> (this is marked like
-    <code>SFVec3f [in]</code> in the X3D specification).
+<?php echo $toc->html_section(); ?>
 
-    <p>For example, note that the <code>translation</code> field of the
-    <a href="<?php echo x3d_spec_latest_url('group', 'Transform'); ?>">Transform</a>
-    node looks suitable. This way you can animate movement of anything visible.
-    Since <code>Transform</code>
-    node may contain other nodes, including visible <a href="<?php echo x3d_spec_latest_url('shape', 'Shape'); ?>">Shape</a> nodes,
-    or a nested <code>Transform</code> (that can also be animated),
-    you can build a lot of complicated animations with this approach.
+<p>As a last step, we need to connect the output event of the interpolator,
+like <code>PositionInterpolator.value_changed</code> to... something.
+This is where the power of the X3D animation system is most prominent, as you can connect
+"anything to anything" as long as the type matches.
+So <code>PositionInterpolator.value_changed</code> can be connected
+to <i>any input-output field that holds 3D vectors</i> (this is marked like
+<code>SFVec3f [in,out]</code> in the X3D specification)
+or <i>any input event that can receive 3D vectors</i> (this is marked like
+<code>SFVec3f [in]</code> in the X3D specification).
 
-    <p>Here's a simple animation of a moving ball:
+<p>For example, note that the <code>translation</code> field of the
+<a href="<?php echo x3d_spec_latest_url('group', 'Transform'); ?>">Transform</a>
+node looks suitable. This way you can animate movement of anything visible.
+Since <code>Transform</code>
+node may contain other nodes, including visible <a href="<?php echo x3d_spec_latest_url('shape', 'Shape'); ?>">Shape</a> nodes,
+or a nested <code>Transform</code> (that can also be animated),
+you can build a lot of complicated animations with this approach.
 
-    <?php echo vrmlx3d_highlight(
+<p>Here's a simple animation of a moving ball:
+
+<?php echo vrmlx3d_highlight(
 '#X3D V3.2 utf8
 PROFILE Interchange
 
@@ -166,8 +174,6 @@ DEF MyTransform Transform {
 }
 ROUTE MyAnimationName.fraction_changed TO MyInterpolator.set_fraction
 ROUTE MyInterpolator.value_changed TO MyTransform.translation'); ?>
-
-</ol>
 
 <?php echo $toc->html_section(); ?>
 
