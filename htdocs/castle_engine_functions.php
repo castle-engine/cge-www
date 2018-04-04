@@ -297,7 +297,11 @@ $castle_sitemap = array(
       'x3d_implementation_status' => array('title' => 'Standard X3D Components',
         'sub' => array(
           'x3d_implementation_core'                 => array('title' => 'Core'                            ),
-          'x3d_implementation_time'                 => array('title' => 'Time'                            ),
+          'x3d_implementation_time'                 => array('title' => 'Time',
+            'sub' => array(
+              'x3d_implementation_time_extensions' => array('title' => 'Extensions'),
+            ),
+          ),
           'x3d_implementation_networking'           => array('title' => 'Networking'                      ),
           'x3d_implementation_grouping'             => array('title' => 'Grouping'                        ),
           'x3d_implementation_rendering'            => array('title' => 'Rendering'                       ),
