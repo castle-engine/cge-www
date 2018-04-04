@@ -13,7 +13,7 @@
         new TocItem('Connect 3 nodes: a time sensor, an interpolator, and the thing you want to animate', 'nodes_combo', 1),
         new TocItem('Building an animation in Object Pascal code', 'pascal', 1),
         new TocItem('Notes about looping animations', 'looping_notes', 1),
-        new TocItem('Typical animation methods: skeletons, mesh deformations and so on', 'animation_methods', 1),
+        new TocItem('How to implement skeletons, mesh deformations, skinned mesh animation...', 'animation_methods', 1),
       new TocItem('Supported nodes', 'support'),
     ));
 ?>
@@ -43,7 +43,7 @@
     In <i>Castle Game Engine</i>, it's easiest to just use the
     <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
     method. It internally does everything necessary to reliably start the
-    <code>TimeSensor</code> node.
+    indicated <code>TimeSensor</code> node.
     Just be aware that there are other ways to start an animation,
     X3D standard allows to make <code>TimeSensor</code> node active at open,
     or activate it through various other means. But using
@@ -72,6 +72,13 @@ DEF MyAnimationName TimeSensor {
     <p>You can also play it in <a href="view3dscene.php">view3dscene</a>:
     Open the created <code>test.x3dv</code> file an choose menu item
     <i>Animation -&gt; Named Animations -&gt; MyAnimationName</i>.
+
+    <p>Note that we have <i>named</i> the <code>TimeSensor</code> node,
+    by prefixing it with <code>DEF MyAnimationName</code> statement.
+    This is the standard way in X3D to name nodes.
+    The <code>PlayAnimation</code> simply takes this name as a parameter.
+    <!-- This name is also useful for other purposes, e.g. <code>ROUTE</code> -->
+    <!-- statements will use it too. -->
 
   <li><p>Next we need an interpolator node, like <a href="<?php echo x3d_spec_latest_url('interp', 'PositionInterpolator'); ?>">PositionInterpolator</a>.
     Every interpolator processes <i>keys</i> in [0..1] range are produces
@@ -204,9 +211,13 @@ to make the first item on the <code>keyValue</code> list equal to the last.
 
 <p>To actually <i>run the animation as looping</i> in <i>Castle Game Engine</i>
 just call <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>.
-There is a field <code>TimeSensor.loop</code>, but you should <i>ignore it</i>
-when using the <code>PlayAnimation</code> method &mdash; it will automatically
-adjust it.
+
+<p>Note: if you read the X3D specification, you may notice a field
+called <code>TimeSensor.loop</code>. <i>Do not touch this field</i>,
+it will be automatically changed each time you use
+the <code>PlayAnimation</code> method. If you generate the X3D files yourself,
+leave <code>TimeSensor.loop</code> initially <code>FALSE</code> (this is the default),
+otherwise the animation will be already playing when you load the file.
 
 <p>The <a href="https://github.com/castle-engine/castle-engine/">Castle Game Engine version in GitHub</a>
 (to be released as version 6.6)
@@ -237,34 +248,42 @@ or get a notification when animation stops.
 
     <p>Optimization hint: if your models have a deep hierarchy of transformations, and a lot of these transformations simultaneously change, it's often beneficial to set global <code>OptimizeExtensiveTransformations</code> to <code>true</code>. See the <a href="manual_optimization.php">manual about optimization</a>. This is only temporary, of course &mdash; in the future we hope to make this optimization automatic. But for now, it sometimes helps (a lot), but sometimes can also cause a slowdown, so it's optional and should be enabled only after testing.
 
-  <li><p>Another animation method is to <b>deform meshes by interpolating between a couple of mesh versions</b>. To do this, you use <?php echo x3d_node_link('CoordinateInterpolator'); ?> node in X3D. It works just like everything we described above. It generates a set of vertexes (<code>MFVec3f</code>) that can be connected e.g. to <code>Coordinate.point</code> field. The <code>Coordinate</code> node may be in turn be placed inside the <code>IndexedFaceSet.coord</code>. See the <a href="<?php echo x3d_spec_latest_url('rendering', 'Coordinate'); ?>">Coordinate</a> and <a href="<?php echo x3d_spec_latest_url('geometry3D', 'IndexedFaceSet'); ?>">IndexedFaceSet</a> nodes specifications.
+  <li><p>Another animation method is to <b>deform meshes by interpolating between a couple of mesh versions</b>. To do this, you use <?php echo x3d_node_link('CoordinateInterpolator'); ?> node in X3D. It works consistently with other interpolators. It generates a <i>set of 3D vectors</i> (<code>MFVec3f</code> field in X3D terms) that can be connected e.g. to <code>Coordinate.point</code> field. The <code>Coordinate</code> node may be in turn be placed inside the <code>IndexedFaceSet.coord</code>. See the <a href="<?php echo x3d_spec_latest_url('rendering', 'Coordinate'); ?>">Coordinate</a> and <a href="<?php echo x3d_spec_latest_url('geometry3D', 'IndexedFaceSet'); ?>">IndexedFaceSet</a> nodes specifications.
 
-    <p>This is similar to how <i>"blend shapes"</i> in Blender work. I.e. we just interpolate between some sets of positions. It's suitable e.g. for facial animations.
+    <p>This is similar to how <i>"blend shapes"</i> in Blender work. We interpolate between some sets of coordinates. It's suitable e.g. for facial animations.
 
-  <li><p>Another animation method is the <b>skinned mesh animation, where we deform meshes by animating bones, and then calculating how these bones pull the mesh</b>. Note that this is different from <?php echo x3d_node_link('CoordinateInterpolator'); ?>: now the animation engine (<i>Castle Game Engine</i>) must be aware of bones, of how do they map onto the vertexes: which bone affects which vertex and with what strength.
+  <li><p>Another animation method is the <b>skinned mesh animation, where we deform meshes by animating bones, and then calculating how these bones pull the mesh</b>. This is different from using <?php echo x3d_node_link('CoordinateInterpolator'); ?>: now the animation engine (<i>Castle Game Engine</i> code) must be aware of bones, of how do they map onto the vertexes: which bone affects which vertex and with what strength.
 
     <p>The skinned mesh animation is part of the <a href="x3d_implementation_hanim.php">"H-Anim" X3D component</a>. The name of the component ("H-Anim", short for <i>"humanoid animation"</i>) is a little misleading, as it actually alllows to animate any meshes, not only humanoids. It allows to animate using the <i>"skinned mesh animation"</i> approach. We describe the relevant fields in the <a href="x3d_implementation_hanim.php">"H-Anim" documentation</a>.
 
     <!--p>(Note: "H-Anim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
 
-  <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code>, <i>for now</i>.
+  <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code> or H-Anim skinned mesh animation, <i>for now</i>.
 
-    <p>The approach of <i>node interpolator</i> is extremely flexible (able to animate anything that you can create in Blender, whether it's "structurally equal" or not). It is also extremely fast (as the frames are precalculated in memory). And, it is also slow to load, and can eat a significant amount of memory...
+    <p>The approach of <i>node interpolator</i> is extremely flexible (able to animate anything that you can create in Blender, whether it's "structurally equal" or not). It is also extremely fast (as the frames are precalculated in memory, so you're actually just rendering static models). However, it may also be slow to load, and it can eat a significant amount of memory.
 
     <p>We expect to improve it at some point, and then loading <code>castle-anim-frames</code> will just result in an X3D graph using interpolators like <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> inside. It will be optional, though (the current method has some advantages, so it will remain available too).
 </ol>
 
-<p>Note that all of these methods of animations can be "composed", i.e. you can have them all happening at once and within a single file.
+<p>Note that these animations techniques are not mutually exclusive. You can, to some extent, use them within a single scene:
 
 <ul>
   <li><p>A single <code>TimeSensor</code> node can be connected to multiple interpolators, it can e.g. connect to many <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> nodes.
 
   <li><p>Running one <code>TimeSensor</code> node can also run other <code>TimeSensor</code> nodes. <!--So you can create a "chain" of <code>TimeSensor</code> nodes.--> To do this, you would route a couple of fields from one <code>TimeSensor</code> to another: <code>startTime</code>, <code>stopTime</code>. Once this is set up in X3D, from Pascal code, you only need to start the "main" <code>TimeSensor</code> by <code>Scene.PlayAnimation('MainTimeSensor', ...)</code>.
 
-  <li><p>Also note that the <code>castle-anim-frames</code> file can be inserted into another model using the X3D <code>Inline</code> node. The <code>Inline</code> may be even under a transformation. You can still play the animations from the inlined <code>castle-anim-frames</code> (because internally we use X3D <code>EXPORT</code> mechanism). <a href="https://github.com/castle-engine/demo-models/blob/master/castle-anim-frames/simple/two_animations.x3dv">Here's an example how an X3D file uses Inline to insert castle-anim-frames inside.</a> With this, it's possible to e.g. store the human head as <code>castle-anim-frames</code>, and add it on top of human body with <code>Inline</code>.
+  <li><p>Also note that the <code>castle-anim-frames</code> file can be inserted into another model using the X3D <code>Inline</code> node. The <code>Inline</code> may be even under a transformation. You can still play the animations from the inlined <code>castle-anim-frames</code> (because internally we use X3D <code>EXPORT</code> mechanism). <a href="https://github.com/castle-engine/demo-models/blob/master/castle-anim-frames/simple/two_animations.x3dv">Here's an example how an X3D file uses Inline to insert castle-anim-frames inside.</a> So you can "compose" your files, e.g. store the human head as <code>castle-anim-frames</code>, and add it on top of a human body with <code>Inline</code>.
 </ul>
 
-<p>The important advice is that, no matter how complicated is your animation inside X3D graph, it's <i>worth to expose the animation through only a single <code>TimeSensor</code>, such that it can be controlled easily as a single animation</i>. This makes the <code>TCastleSceneCore.PlayAnimation</code> method and friends useful for you to control your animations. This way the complexity of the animation system can be hidden by the engine. Even if the X3D graph is complicated, you just run a trivial <code>TCastleSceneCore.PlayAnimation</code> method.
+<p>The important advice is that, no matter how complicated is your animation inside X3D graph, it's <i>worth to control each animation through a central <code>TimeSensor</code>, such that it can be controlled easily as a single animation</i>. This makes the <code>TCastleSceneCore.PlayAnimation</code> method useful for you to control your animations. This way the complexity of the animation system can be hidden by the engine. Even if the X3D graph is complicated, you just run a trivial <code>TCastleSceneCore.PlayAnimation</code> method.
+
+<p>Note that some other higher-level engine routines have the same "concept" of animations as <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>. These include
+<?php api_link('AnimationDuration', 'CastleSceneCore.TCastleSceneCore.html#AnimationDuration'); ?>,
+<?php api_link('ForceAnimationPose', 'CastleSceneCore.TCastleSceneCore.html#ForceAnimationPose'); ?>,
+<?php api_link('HasAnimation', 'CastleSceneCore.TCastleSceneCore.html#HasAnimation'); ?>,
+and the animations <a href="manual_resources.php">used by our CastleCreatures and CastleItems units</a>.
+All these engine methods are capable of handling all the animation types
+described on this page.
 
 <?php echo $toc->html_section(); ?>
 
