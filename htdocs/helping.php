@@ -52,7 +52,7 @@ $toc = new TableOfContents(
 
 <ul>
   <li><p>Use our <?php echo a_href_page('engine', 'index'); ?>
-    to make your next game, of course! :) And make it great :)
+    to make your next fantastic game, of course! :)
 
   <li><p>Contribute code! Remove a bug, add a feature! (Not the other way around:)
 
