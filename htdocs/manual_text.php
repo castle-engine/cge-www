@@ -7,6 +7,7 @@ $toc = new TableOfContents(
     new TocItem('TCastleFont class', 'font'),
     new TocItem('Create a new font', 'create'),
     new TocItem('International characters', 'international'),
+    new TocItem('Localization (translation)', 'localization'),
   )
 );
 ?>
@@ -206,6 +207,14 @@ texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text '你好世界Γε�
 <p>And make sure that your command-line, and/or your script interpreter, correcly
 handles UTF-8 (on Linux, this should be a breeze, since everything works with UTF-8
 out of the box; on modern Windows it should also work).
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can use GetText to localize your game.
+
+<p>GetText is a standard unit in FPC, and it's a translation system used in many projects (both in Pascal and other languages). <a href="http://wiki.lazarus.freepascal.org/Step-by-step_instructions_for_creating_multi-language_applications">Lazarus is also using it and advicing for LCL applications.</a>
+
+<p>The example showing how to use the engine with GetText is in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization">examples/localization/</a>.
 
 <?php
 manual_footer();
