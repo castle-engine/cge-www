@@ -220,6 +220,7 @@ $castle_sitemap = array(
               'manual_notifications' => array('title' => 'Notifications'),
             )
           ),
+          'manual_2d_games' => array('title' => 'Two approaches for rendering 2D Games (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/2D-Games'),
           'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
             'sub' => array(
               'manual_game_level' => array('title' => 'Loading game level'),
