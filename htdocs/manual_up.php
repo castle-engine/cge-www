@@ -36,7 +36,7 @@ you can simply rotate them. You can rotate things in <i>Castle Game Engine</i>
 using the <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html#Rotation">TCastleTransform.Rotation</a>
 property. Note that <a href="https://castle-engine.io/apidoc/html/CastleScene.TCastleScene.html">TCastleScene</a>
 also descends from <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html">TCastleTransform</a>,
-so you directly rotate your scene as well.
+so you can directly rotate a scene.
 
 <p>To rotate each single model from +Z to +Y, just set rotation for every TCastleScene:
 
@@ -47,7 +47,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
 
 <?php echo pascal_highlight_file('code-samples/rotate_1.lpr'); ?>
 
-<p>The aboce option is best if you prefer to "think" in the "+Y coordinates" as soon as possible.
+<p>The above option is best if you prefer to think <i>"+Y direction is up"</i> as soon as possible.
 
 <p>Alternatively, you could rotate a whole group of models (with their local transformations) from +Z to +Y, by using TCastleTransform as a group:
 
