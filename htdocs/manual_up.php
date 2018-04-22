@@ -53,6 +53,8 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
 
 <?php echo pascal_highlight_file('code-samples/rotate_2.lpr'); ?>
 
+<p>Note that you can also rotate things in <i>Castle Game Engine</i> using <a href="https://castle-engine.io/apidoc/html/X3DNodes.TTransformNode.html#Rotation">TTransformNode.Rotation</a>. But in this case, <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html#Rotation">TCastleTransform.Rotation</a> is simpler to use.
+
 <?php echo $toc->html_section(); ?>
 
 <ul>
