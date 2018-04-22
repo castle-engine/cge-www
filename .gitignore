@@ -1,5 +1,7 @@
 *~
 .DS_Store
+*.blend1
+
 htdocs/wp/.htaccess
 htdocs/wp/wp-config-production.php
 
@@ -7,6 +9,7 @@ htdocs/code-samples/castle-engine-output
 htdocs/code-samples/*.o
 htdocs/code-samples/*.ppu
 htdocs/code-samples/*.exe
+
 # particular Unix binaries in htdocs/code-samples
 htdocs/code-samples/build_scene_interpolator
 htdocs/code-samples/build_scene_lineset_rectangle2d
@@ -15,6 +18,8 @@ htdocs/code-samples/custom_2d_control
 htdocs/code-samples/custom_2d_control_finished
 htdocs/code-samples/notifications
 htdocs/code-samples/on_screen_menu
+htdocs/code-samples/rotate_1
+htdocs/code-samples/rotate_2
 htdocs/code-samples/scene_transform
 htdocs/code-samples/scene_transform_2
 htdocs/code-samples/scene_transform_3

@@ -1,13 +1,25 @@
 <?php
 require_once 'castle_engine_functions.php';
 manual_header('Which way is up?');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('The short explanation: +Y is up', 'short'),
+    new TocItem('How to rotate your models from +Z to +Y', 'rotate'),
+    new TocItem('How to use Blender with either up = +Y or +Z conventions', 'blender'),
+    new TocItem('Detailed discussion', 'details'),
+  )
+);
 ?>
 
 <p>There are various conventions for which vector is "up" in 3D world
 and, consequently, which vector corresponds to the "direction" the
 creature/player is facing.
 
-<h2>The short answer</h2>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <p>By default, our engine follows the convention that "up" is in +Y axis.
 
@@ -16,7 +28,32 @@ software are ready for this &mdash; e.g. Blender X3D exporter by default
 rotates models to change +Z axis (traditional "up" vector in Blender) to
 the +Y axis. So things <i>just work</i>.
 
-<h2>How to use <a href="http://www.blender.org/">Blender</a> with up = Y or Z conventions</h2>
+<?php echo $toc->html_section(); ?>
+
+<p>If you have existing models oriented such that +Z is "up",
+but you would like to use the engine default convention that +Y is "up",
+you can simply rotate them. You can rotate things in <i>Castle Game Engine</i>
+using the <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html#Rotation">TCastleTransform.Rotation</a>
+property. Note that <a href="https://castle-engine.io/apidoc/html/CastleScene.TCastleScene.html">TCastleScene</a>
+also descends from <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html">TCastleTransform</a>,
+so you directly rotate your scene as well.
+
+<p>To rotate each single model from +Z to +Y, just set rotation for every TCastleScene:
+
+<?php echo pascal_highlight('// rotate by -90 degrees around X axis
+Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
+
+<p>Here's a complete source code:
+
+<?php echo pascal_highlight_file('code-samples/rotate_1.lpr'); ?>
+
+<p>The aboce option is best if you prefer to "think" in the "+Y coordinates" as soon as possible.
+
+<p>Alternatively, you could rotate a whole group of models (with their local transformations) from +Z to +Y, by using TCastleTransform as a group:
+
+<?php echo pascal_highlight_file('code-samples/rotate_2.lpr'); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>If you want to follow <i>"+Y axis is up"</i> convention (easier,
@@ -75,7 +112,7 @@ the +Y axis. So things <i>just work</i>.
   </li>
 </ul>
 
-<h2>Detailed discussion about the issue</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>There are two common conventions:</p>
 
