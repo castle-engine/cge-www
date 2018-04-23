@@ -128,25 +128,47 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
   <li><p>X3D, default OpenGL camera,
     and various game engines (Castle Game Engine, Unity3d, Unreal Engine)
     by default prefer the "up" vector to be +Y.
-    And the "look direction" to be -Z.
 
     <p>This makes sense if you think about the screen as being the XY plane.
-    So if you look straight (in the right-hand coordinate system)
+    Then if you look straight (in the right-hand coordinate system,
+    as used by X3D, OpenGL and Castle Game Engine)
     you look in the -Z direction.
 
-    <p>One argument in favor of this is that the default camera makes
+    <p>One argument in favor of this convention is that the default camera makes
     sense for both 2D and 3D games. For 2D games, X goes to the right,
     Y goes up, and Z doesn't matter (or is used to position layers relative
     to each other). For 3D games, again X goes to the right,
     again Y goes up, and Z represents the depth.
+    When your game character jumps, the Y coordinate increases &mdash;
+    whether it's a 2D or 3D game.
 </ol>
 
 <p>As you can imagine, other conventions are possible, as you can pick
 any 3D vector as "up", and pick anything orthogonal to it as "direction".</p>
 
-<p>Our engine supports various conventions for the "up" vector.
-To make things work smoothly, you want to
-keep the same conventions throughout your process &mdash; be wary of
+<p>While our engine defaults to the convention "+Y is up",
+it is actually configurable:
+
+<ul>
+  <li><p>Following
+    <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#X3DViewpointNode">the X3D standard about X3DViewpointNode</a>,
+    the gravity is working along <i>the negative Y-axis of
+    the coordinate system of the currently bound X3DViewpointNode node</i>.
+
+  <li><p>In practice, you can just set the viewpoint using the
+    <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+    <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>.
+    Before doing it, you can use the <i>"Navigation -&gt; Walk and Fly Settings -&gt;
+    Change Gravity Up Vector"</i> menu item.
+    The generated <code>Viewpoint</code> node will have correct settings.
+
+  <li><p>Alternatively you can set the camera using <code>TCamera.SetView</code>
+    method with an explicit <code>GravityUp</code> parameter.
+</ul>
+
+<p>To make things work smoothly, you usually want to
+use the same conventions for "up" throughout your asset creation process.
+Be wary of
 this when creating <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instances in the engine, when exporting
 3D models from Blender, when setting viewpoint (with gravity) in
 whatever way etc.</p>
