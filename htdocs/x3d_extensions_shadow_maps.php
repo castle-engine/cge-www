@@ -13,9 +13,9 @@ $toc = new TableOfContents(array(
   new TocItem('Define shadow receivers', 'receive_shadows'),
   new TocItem('The lower-level extensions', 'lower_level'),
   new TocItem('Overview of the lower-level extensions', 'lower_level_overview', 1),
-  new TocItem('Light sources parameters', 'light_parameters', 1),
-  new TocItem('Automatically generated shadow maps', 'generated_shadow_map', 1),
-  new TocItem('Projective texture mapping', 'texture_projective', 1),
+  new TocItem('Optionally specify light projection', 'light_parameters', 1),
+  new TocItem('Optionally specify shadow map parameters (<code>GeneratedShadowMap</code> node)', 'generated_shadow_map', 1),
+  new TocItem('Use projective texturing explicitly to map textures (<code>ProjectedTextureCoordinate</code> node)', 'texture_projective', 1),
   new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
 ));
@@ -82,8 +82,8 @@ $toc = new TableOfContents(array(
   <p><?php echo a_href_page('Our VRML/X3D demo models',
   'demo_models'); ?> contain many demos using shadow maps.
   Download them and open with <?php echo a_href_page('view3dscene',
-  'view3dscene'); ?> files insde <code>shadow_maps</code> subdirectory.
-  See in particular the nice model inside <code>shadow_maps/sunny_street/</code>,
+  'view3dscene'); ?> files insde <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps</a> subdirectory.
+  See in particular the nice model inside <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps/castle_with_trees/</a>,
   that was used for some screenshots visible on this page.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -113,15 +113,14 @@ $toc = new TableOfContents(array(
   and maybe ray-tracer too. <code>shadowCaster</code> (see below) already works
   for all our shadows implementations.</p>
 
-  <p>If you use <?php echo a_href_page('X3D shader nodes, like <code>ComposedShader</code> and related nodes',
+  <p>If you use <?php echo a_href_page('X3D shader nodes, like <code>ComposedShader</code>',
   'x3d_implementation_shaders') ?>, be aware that your custom shaders
-  may be ignored. Browsers have to use internal shaders to produce nice
-  shading for shadow receivers. Use instead
-  <?php echo a_href_page('our compositing shaders extensions for X3D, like <code>Effect</code> and related nodes',
-  'compositing_shaders') ?> to write shader code that can cooperate
-  with other effects (like shadow maps, and much more).
-  Or (less adviced)
-  use the lower-level nodes described below to activate shadow maps more manuallly.</p>
+  are then responsible for performing shadow mapps tests
+  (as your shaders override engine shaders).
+  Use instead
+  <?php echo a_href_page('our compositing shaders extensions for X3D, like <code>Effect</code>',
+  'compositing_shaders') ?>, to write shader code that can cooperate
+  with our shadow maps (and other engine effects).</p>
 
 <?php echo $toc->html_section(); ?>
 
