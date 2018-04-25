@@ -210,11 +210,29 @@ out of the box; on modern Windows it should also work).
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use GetText to localize your game.
+<p>Two approaches to localization are possible:
 
-<p>GetText is a standard unit in FPC, and it's a translation system used in many projects (both in Pascal and other languages). <a href="http://wiki.lazarus.freepascal.org/Step-by-step_instructions_for_creating_multi-language_applications">Lazarus is also using it and advicing for LCL applications.</a>
+<ol>
+  <li>
+    <p><b>Only since Castle Game Engine 6.5:</b>
 
-<p>The example showing how to use the engine with GetText is in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization">examples/localization/</a>.
+    <p>Use our own localization class from the <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.html">CastleLocalization</a> unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleControls.TCastleLabel.html">TCastleLabel</a>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
+
+    <p>For advanced users, the system allows to aid in localizing your custom classes too (see <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#OnUpdateLocalization">OnUpdateLocalization</a>) and to add your own translation formats (see <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#FileLoader">FileLoader</a>).
+
+    <p><i>Thousand thanks go to Benedikt Magnus for developing this!</i>
+
+  <li>
+    <p>Use the standard <a href="https://www.freepascal.org/docs-html/fcl/gettext/index.html">GetText unit from FPC</a>. You use GetText formats for translating (PO, MO), utilizing tools like <a href="https://poedit.net/">PoEdit</a>. The resourcestrings are translated automatically. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/gettext">examples/localization/gettext/</a>.
+
+    <p>GetText is a standard unit in FPC, and it's a translation system used in many projects (both in Pascal and other languages). <a href="http://wiki.lazarus.freepascal.org/Step-by-step_instructions_for_creating_multi-language_applications">Lazarus is also using it and advicing for LCL applications.</a>
+
+    <p>The engine uses resourcestrings for some internally-generated messages, so these can be translated too.
+</ol>
+
+<p>In both cases, you can use a cross-platform <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleSystemLanguage.html">CastleSystemLanguage</a> unit that tells you the preferred user language.
+
+<p>Note that, while both approaches (GetText, our own) provide some infrastructure to aid you in translating (resourcestrings, special handling for UI controls), you can also translate things "explicitly" in both cases. Using the <a href="https://www.freepascal.org/docs-html/fcl/gettext/tmofile.translate.html">TMOFile.Translate('my_id')</a> in GetText, or <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#Items">Localization.Items['my_id']</a> in CastleLocalization.
 
 <?php
 manual_footer();
