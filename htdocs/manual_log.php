@@ -28,7 +28,7 @@ manual_header('Logging');
     that in turn use standard Windows functions,
     it's something like
     <code>c:/Documents and Settings/USERNAME/Local settings/Application Data/xxx/xxx.log</code> or
-    <code>c:/c:/Users/USERNAME/AppData/Local/xxx/xxx.log</code> depending on your Windows version.
+    <code>c:/Users/USERNAME/AppData/Local/xxx/xxx.log</code> depending on your Windows version.
 
   <li><p><i>On Android</i> it goes to the standard device log.
     It that can be viewed using various Android tools,
