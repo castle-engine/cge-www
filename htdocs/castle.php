@@ -172,7 +172,7 @@ You may also want to delete configuration file:</p>
 later in the game.</p>
 
 <?php if (!HTML_VALIDATION) { ?>
-<iframe width="425" height="349" src="http://www.youtube.com/embed/2XgQHo4DrGk" frameborder="0" allowfullscreen></iframe>
+<iframe width="425" height="349" src="https://www.youtube.com/embed/2XgQHo4DrGk" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
 </div>
 
@@ -182,7 +182,7 @@ later in the game.</p>
 Watch if you get stuck, or if you don't want to play the full game!</p>
 
 <?php if (!HTML_VALIDATION) { ?>
-<iframe width="560" height="349" src="http://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="349" src="https://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
 </div>
 
