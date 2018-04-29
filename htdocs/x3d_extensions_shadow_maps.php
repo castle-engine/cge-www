@@ -11,13 +11,13 @@ $toc = new TableOfContents(array(
   new TocItem('Examples', 'examples'),
   new TocItem('Define lights casting shadows on everything', 'light_shadows_on_everything'),
   new TocItem('Define shadow receivers', 'receive_shadows'),
-  new TocItem('The lower-level extensions', 'lower_level'),
-  new TocItem('Overview of the lower-level extensions', 'lower_level_overview', 1),
+  new TocItem('Additional features', 'additional_features'),
   new TocItem('Optionally specify light projection', 'light_parameters', 1),
   new TocItem('Optionally specify shadow map parameters (<code>GeneratedShadowMap</code> node)', 'generated_shadow_map', 1),
   new TocItem('Use projective texturing explicitly to map textures (<code>ProjectedTextureCoordinate</code> node)', 'texture_projective', 1),
-  new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
-  new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
+  new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster', 1),
+  new TocItem('Deprecated: use <code>GeneratedShadowMap</code> and <code>ProjectedTextureCoordinate</code> at each shadow-receiving shape', 'directly', 1),
+  // new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
 ));
 ?>
 
@@ -27,29 +27,6 @@ $toc = new TableOfContents(array(
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
-
-  <div style="border: outset thin black;
-    background: #f8d785;
-    padding: 0.3em;
-    width: 80%;
-    margin: 1em auto;"><p style="margin-top: 0px;">For reasoning behind these extensions,
-  see also my paper <a href="https://castle-engine.io/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
-  (accepted for Web3D 2010 conference). PDF linked here has some absolutely minor
-  corrections (for <code style="background-color: transparent;">projection*</code> fields and fixed URLs)
-  compared to the conference version.
-  <a href="https://castle-engine.io/shadow_maps_x3d_slides.pdf">The slides
-  from the presentation</a> are also available.</p>
-
-  <p>Specification below comes from
-  this paper (section 4). Text below has some additional notes,
-  mostly specific to our engine and implementation.</p>
-
-  <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
-  are <a href="http://www.acm.org/publications/policies/copyright_policy">Copyright 2010 by ACM, Inc.</a>
-  See the link for details, in general non-commercial use is fine,
-  but commercial use usually requires asking ACM for permission.
-  This is a necessary exception from my usual rules of publishing everything on GNU GPL.</p>
-  </div>
 
   <?php
   echo castle_thumbs(array(
@@ -145,82 +122,36 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo $toc->html_section(); ?>
-
-  <p>The following extensions make it possible to precisely setup and control
-  shadow maps. Their use requires a basic knowledge of the shadow map approach,
-  and they are necessarily closely tied to the shadow map workflow.
-  On the other hand, they allow the author to define custom shaders
-  for the scene and control every important detail of the shadow mapping process.</p>
-
-  <p>These lower-level extensions give a complete and flexible system to
-  control the shadow maps, making the <code>Appearance.receiveShadows</code>
-  and <code>X3DLightNode.shadows</code> features only a shortcuts
-  for the usual setup.</p>
-
-  <p>We make a shadow map texture by the <code>GeneratedShadowMap</code> node,
-  and project it on the shadow receiver by
-  <code>ProjectedTextureCoordinate</code>.
-  An example X3D code (in classic encoding) for a shadow map setup:</p>
+  <p>The following extensions make it possible to precisely control
+  the shadow maps (and/or projective texturing) behavior.
+  An example usage:
 
 <pre class="vrml_code">
-  DEF MySpot SpotLight {
-    location 0 0 10
-    direction 0 0 -1
-    <b>projectionNear 1
-    projectionFar 20</b>
-  }
+DEF MySpot SpotLight {
+  location 0 0 10
+  direction 0 0 -1
+  <b>projectionNear 1
+  projectionFar 20
+  defaultShadowMap GeneratedShadowMap {
+    update "ALWAYS"
+    size 1024
+  }</b>
+}
 
-  Shape {
-    appearance Appearance {
-      material Material { }
-      texture <b>GeneratedShadowMap { light USE MySpot update "ALWAYS" }</b>
-    }
-    geometry IndexedFaceSet {
-      texCoord <b>ProjectedTextureCoordinate {
-        projector USE MySpot
-      }</b>
-      # ... other IndexedFaceSet fields
-    }
+Shape {
+  appearance Appearance {
+    <b>receiveShadows MySpot</b>
+    material Material { }
   }
+  geometry IndexedFaceSet {
+    # ... other IndexedFaceSet fields
+  }
+}
 </pre>
 
-  <p>Note that the shadow texture will be applied in a very trivial way,
-  just to generate intensity values (0 - in shadow, 1 - not in shadow).
-  If you want to have some nice shading, you should use GLSL shader
-  to sample the depth texture (like <code>shadow2DProj(shadowMap, gl_TexCoord[0]).r</code>)
-  and do there any shading you want. Using shaders is generally
-  the way to make shadow mapping both beautiful and in one pass (read: fast),
-  and it's the way of the future anyway. You can start from a trivial
-  fragment shader in our examples:
-  <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shadow_maps/shadow_map.fs">shadow_map.fs</a>.
-
-  <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
-  do not affect the lower-level shadow maps. Essentially, when using
-  the lower-level nodes, you directly control the shaders (and everything
-  else) yourself.
-
-  <p>Remember: If you don't want to write your own GLSL shader,
-  and you need nice shadows, then these lower-level extensions are not for you.
-  Instead, you could use easy <code>receiveShadows</code>:</p>
-
-<pre class="vrml_code">
-  DEF MySpot SpotLight {
-    location 0 0 10
-    direction 0 0 -1
-  }
-
-  Shape {
-    appearance Appearance {
-      material Material { }
-      <b>receiveShadows MySpot</b>
-    }
-    geometry IndexedFaceSet {  ....  }
-  }
-</pre>
-
-  <p>Using the <code>receiveShadows</code> approach is simpler,
-  also the browser will use nice internal GLSL shaders automatically.</p>
+  <p>The shadow map will be used by the engine to determine
+  whether the associated light is obscured or not at each screen pixel.
+  Our default shaders will make it look nice out-of-the-box.
 
 <?php echo $toc->html_section(); ?>
 
@@ -274,9 +205,14 @@ $toc = new TableOfContents(array(
   shadow map generation and texture coordinate calculation must know them,
   and use the same values (otherwise results would not be of much use).
 
-  <p>The field <code>defaultShadowMap</code> is meaningful only when some
-  shape uses the <code>receiveShadows</code> feature. This will be described
-  in the <a href="#section_ext_receive_shadows_vs_lower_level">later section</a>.
+  <p>The field <code>defaultShadowMap</code> allows to adjust shadow map parameters.
+  It is used only when the light actually casts shadows using shadow maps
+  (so the light is listed among some shape <code>receiveShadows</code>,
+  or the light has <code>shadows</code> field set <code>TRUE</code>).
+  Leaving the <code>defaultShadowMap</code> as <code>NULL</code> means that an
+  implicit shadow map with default browser settings should be generated
+  for this light. This must behave like <code>update</code> was set to
+  <code>ALWAYS</code>.
 
   <p><code>DirectionalLight</code> gets additional fields to specify orthogonal
   projection rectangle (projection XY sizes) and location for
@@ -355,7 +291,7 @@ $toc = new TableOfContents(array(
     node_field('SFNode'  , '[in,out]', 'metadata',          'NULL', '[X3DMetadataObject]') .
     node_field('SFString', '[in,out]', 'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
     node_field('SFInt32' , '[]',       'size',              '128') .
-    node_field('SFNode'  , '[]',       'light',             'NULL', 'any light node') .
+    node_field('SFNode'  , '[]',       'light',             'NULL', 'any light node; deprecated') .
     node_field('SFFloat' , '[in,out]', 'scale',             '4.0') .
     node_field('SFFloat' , '[in,out]', 'bias',              '4.0') .
     node_field('SFString', '[]',       'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
@@ -393,7 +329,8 @@ $toc = new TableOfContents(array(
   <p>The field <code>size</code> gives the size of the (square) shadow map texture
   in pixels.
 
-  <p>The field <code>light</code> specifies the light node from which to generate the map.
+  <p>The <i>deprecated</i> field <code>light</code> specifies
+  the light node from which to generate the map.
   Ideally, implementation should support all three X3D light source types.
   <code>NULL</code> will prevent the texture from generating.
   It's usually comfortable to <code>"USE"</code> here some existing light node,
@@ -409,6 +346,12 @@ $toc = new TableOfContents(array(
   instanced many times (outside of <code>GeneratedShadowMap.light</code>
   and <code>ProjectedTextureCoordinate.projector</code>), as then it's
   unspecified from which view we will generate the shadow map.
+
+  <p>Note that this field is ignored when the <code>GeneratedShadowMap</code>
+  is placed in a <code>X3DLightNode.defaultShadowMap</code> field.
+  And placing <code>GeneratedShadowMap</code> on
+  <code>X3DLightNode.defaultShadowMap</code> is the only non-deprecated
+  usage for <code>GeneratedShadowMap</code> node now.
 
   <?php
   echo castle_thumbs(array(
@@ -495,7 +438,7 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-  <p>We propose a new <code>ProjectedTextureCoordinate</code> node:
+  <p>We add a new <code>ProjectedTextureCoordinate</code> node:
 
   <?php
     echo node_begin('ProjectedTextureCoordinate : X3DTextureCoordinateNode');
@@ -555,48 +498,6 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-  <p>Placing a light on the <code>receiveShadows</code> list is equivalent to
-  adding the appropriate <code>GeneratedShadowMap</code> to the shape's textures,
-  and adding the appropriate <code>ProjectedTextureCoordinate</code> to the geometry
-  <code>texCoord</code> field. Also, <code>receiveShadows</code> makes
-  the right shading (for example by shaders) automatically used.
-
-  <p>In fact, the <code>receiveShadows</code> feature may be
-  implemented by a simple transformation of the X3D node graph.
-  Since the <code>receiveShadows</code> and <code>defaultShadowMap</code>
-  fields are not exposed (they do not have accompanying
-  input and output events) it's enough to perform such transformation
-  once after loading the scene.
-  Note that the texture nodes of the shadow receivers
-  may have to be internally changed to multi-texture nodes during this operation.
-
-  <p>An author may also <em>optionally</em> specify
-  a <code>GeneratedShadowMap</code> node inside the light's
-  <code>defaultShadowMap</code> field. See the <a href="#section_ext_light_projective">lights extensions section</a>
-  for <code>defaultShadowMap</code> declaration. Note that when
-  <code>GeneratedShadowMap</code>
-  is placed in a <code>X3DLightNode.defaultShadowMap</code> field,
-  then the <code>GeneratedShadowMap.light</code> value is ignored (we always
-  use the light containing <code>defaultShadowMap</code> declaration then).
-
-  <p>Leaving the <code>defaultShadowMap</code> as <code>NULL</code> means that an
-  implicit shadow map with default browser settings should be generated
-  for this light. This must behave like <code>update</code> was set to
-  <code>ALWAYS</code>.
-
-  <p>In effect, to enable the shadows the author must merely
-  specify which shapes receive the shadows (and from which lights)
-  by the <code>Appearance.receiveShadows</code> field. This way the author
-  doesn't have to deal with lower-level tasks:
-
-  <ol>
-    <li>Using <code>GeneratedShadowMap</code> nodes.</li>
-    <li>Using <code>ProjectedTextureCoordinate</code> nodes.</li>
-    <li>Writing own shaders.</li>
-  </ol>
-
-<?php echo $toc->html_section(); ?>
-
   <p>By default, every <code>Shape</code> in the scene casts a shadow.
   This is the most common setup for shadows.
   However it's sometimes useful to explicitly
@@ -627,6 +528,120 @@ $toc = new TableOfContents(array(
   <p>Note that <i>no shadow algorithm can deal with transparency by
   alpha-blending</i>. So these shapes are not treated as shadow casters,
   by any shadow algorithm right now.
+
+<?php echo $toc->html_section(); ?>
+
+  <div style="border: outset thin black;
+    background: #f8d785;
+    padding: 0.3em;
+    width: 80%;
+    margin: 1em auto;"><p style="margin-top: 0px;">For original reasoning behind these extensions,
+  see also my paper <a href="https://castle-engine.io/shadow_maps_x3d.pdf">Shadow maps and projective texturing in X3D</a>
+  (presented at Web3D 2010 conference).
+  <!--
+  This PDF linked here has some absolutely minor
+  corrections (for <code style="background-color: transparent;">projection*</code> fields and fixed URLs)
+  compared to the conference version.
+  -->
+  <a href="https://castle-engine.io/shadow_maps_x3d_slides.pdf">The slides
+  from the presentation</a> are also available.</p>
+
+  <p>Note that the adviced usage of shadow maps
+  (section 4 of the paper) changed since then.
+  The PDF paper talks about usage that is deprecated now,
+  for reasons explained below.</p>
+
+  <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
+  are <a href="http://www.acm.org/publications/policies/copyright_policy">Copyright 2010 by ACM, Inc.</a>
+  See the link for details, in general non-commercial use is fine,
+  but commercial use usually requires asking ACM for permission.
+  This is a necessary exception from my usual rules of publishing everything on GNU GPL.</p>
+  </div>
+
+  <p>For backward compatibility (avoid it in new applications!),
+  you can place <code>GeneratedShadowMap</code> node
+  in the <code>Appearance.texture</code> (possibly inside <code>MultiTexture</code>
+  node).
+  In this case you also need to specify texture coordinates using an explicit
+  <code>ProjectedTextureCoordinate</code> node.
+  An example is below:
+
+<pre class="vrml_code">
+DEF MySpot SpotLight {
+  location 0 0 10
+  direction 0 0 -1
+  <b>projectionNear 1
+  projectionFar 20</b>
+}
+
+Shape {
+  appearance Appearance {
+    material Material { }
+    texture <b>GeneratedShadowMap {
+      light USE MySpot
+      update "ALWAYS"
+      size 1024
+    }</b>
+  }
+  geometry IndexedFaceSet {
+    texCoord <b>ProjectedTextureCoordinate {
+      projector USE MySpot
+    }</b>
+    # ... other IndexedFaceSet fields
+  }
+}
+</pre>
+
+  <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
+  does not affect the shadow map in this case.
+
+  <p>This approach is deprecated now. Reasons:
+
+  <ul>
+    <li><p>Placing the shadow map here is not really consistent with
+      normal <code>Appearance.texture</code> treatment,
+      since the shadow map affects the rendering in a special way
+      (it "masks" the particular light source contribution).
+
+      <p>Shadow map does not mix the fragment color like other textures
+      (that scale the complete resulting color,
+      <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">or only diffuse term if
+      SeparateDiffuseTexture is used</a>).
+
+    <li><p>Placing the shadow map here doesn't work with <a href="https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a>, as it has it's own textures. <code>CommonSurfaceShader.diffuseTexture</code> hides the <code>Appearance.texture</code>.
+  </ul>
+
+<?php /*
+
+< ?php echo $toc->html_section(); ? >
+
+  <p>Placing a light on the <code>receiveShadows</code> list is equivalent to
+  adding the appropriate <code>GeneratedShadowMap</code> to the shape's textures,
+  and adding the appropriate <code>ProjectedTextureCoordinate</code> to the geometry
+  <code>texCoord</code> field. Also, <code>receiveShadows</code> makes
+  the right shading (for example by shaders) automatically used.
+
+  <p>In fact, the <code>receiveShadows</code> feature may be
+  implemented by a simple transformation of the X3D node graph.
+  Since the <code>receiveShadows</code> and <code>defaultShadowMap</code>
+  fields are not exposed (they do not have accompanying
+  input and output events) it's enough to perform such transformation
+  once after loading the scene.
+  Note that the texture nodes of the shadow receivers
+  may have to be internally changed to multi-texture nodes during this operation.
+
+  <p>In effect, to enable the shadows the author must merely
+  specify which shapes receive the shadows (and from which lights)
+  by the <code>Appearance.receiveShadows</code> field. This way the author
+  doesn't have to deal with lower-level tasks:
+
+  <ol>
+    <li>Using <code>GeneratedShadowMap</code> nodes.</li>
+    <li>Using <code>ProjectedTextureCoordinate</code> nodes.</li>
+    <li>Writing own shaders.</li>
+  </ol>
+
+*/ ?>
 
 <?php
   castle_footer();
