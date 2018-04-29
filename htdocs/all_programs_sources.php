@@ -9,8 +9,8 @@ $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'intro'),
     new TocItem('Download', 'download_src'),
-    new TocItem("Getting latest version from SVN", 'svn'),
-    new TocItem("Getting latest version from GIT", 'git'),
+    // new TocItem("Getting latest version from GitHub", 'git'),
+    // new TocItem("Getting latest version from SVN", 'svn'),
   )
 );
 ?>
@@ -100,10 +100,15 @@ Everything is open source,
 <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a> &gt;= 2.
 
 <?php
-function older_engine_version($older_version)
+function sf_download_link($title, $file_name)
 {
-  echo sf_download('Castle Game Engine version ' . $older_version,
-    'castle_game_engine-' . $older_version . '-src.tar.gz');
+  return '<a href="' . sf_download_url($file_name) . '">' . $title . '</a>';
+}
+
+function download_engine_version($engine_version)
+{
+  echo sf_download_link('Castle Game Engine version ' . $engine_version,
+    'castle_game_engine-' . $engine_version . '-src.tar.gz');
 }
 ?>
 
@@ -119,15 +124,8 @@ notes near some programs below.
 
 <?php echo $toc->html_section(); ?>
 
-<ul>
+<dl>
 <?php
-  function echo_src_svnonly($name)
-  {
-    echo '<li><p>' . $name . ': only from Subversion by:<br><code>' .
-        sf_checkout_link(true, $name) . '</code></li>
-      ';
-  }
-
   /* $internal_name is both the basename of the archive and
      the subdirectory name within SVN repository.
      $github_name is the project name on GitHub. */
@@ -136,21 +134,21 @@ notes near some programs below.
     $version_const_name = 'VERSION_' . strtoupper($internal_name);
     $version = constant($version_const_name);
 
-    echo '<li><p>' .
-      sf_download('Sources of '.$title,
+    echo '<dt>' . $title . ' source code:</dt><dd><p><b>Stable version</b>: ' .
+      sf_download_link('Download sources of ' . $title,
         $internal_name . '-' . $version . '-src.tar.gz');
 
     if ($engine_ver == VERSION_CASTLE_GAME_ENGINE) {
-      echo '. These tar.gz sources are compatible with the latest ';
-      older_engine_version($engine_ver);
+      echo '. <br>The stable version is compatible with the latest ';
+      download_engine_version($engine_ver);
       echo '.';
     } else
     if ($engine_ver == 'github') {
-      echo '. These tar.gz sources were tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a> (TODO: as soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
+      echo '. <br>The stable version was tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a>. (As soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
     } else
     if ($engine_ver != '') {
-      echo '. These tar.gz sources were tested with the ';
-      older_engine_version($engine_ver);
+      echo '. <br>The stable version is compatible with the ';
+      download_engine_version($engine_ver);
     } else
     {
       throw new Exception('Invalid engine_ver');
@@ -158,18 +156,10 @@ notes near some programs below.
 
     ?>
 
-    <p>Alternatively, download the latest unstable <i>"bleeding-edge"</i> sources from GIT or SVN. They are guaranteed to be compatible with the latest Castle Game Engine version from <a href="https://github.com/castle-engine/castle-engine/">GitHub</a>.
-
-    <p>You can download the <i>"bleeding-edge"</i> sources:
-    <ul>
-      <li><p>From GitHub:</p>
-        <pre>git clone <a href="https://github.com/castle-engine/<?php echo $github_name; ?>">https://github.com/castle-engine/<?php echo $github_name; ?></a>.git</pre>
-      </li>
-      <li><p>Or from SourceForge SVN:</p>
-        <pre><?php echo sf_checkout_link(true, $internal_name); ?></pre>
-      </li>
-    </ul>
-  </li>
+    <p><b>Unstable (latest) version</b>: You can download it from the GitHub:
+    <a href="https://github.com/castle-engine/<?php echo $github_name; ?>">https://github.com/castle-engine/<?php echo $github_name; ?></a><br>
+    It is compatible with the <a href="https://github.com/castle-engine/castle-engine/">latest Castle Game Engine version from GitHub</a>.
+  </dd>
 
   <?php
   }
@@ -191,7 +181,7 @@ notes near some programs below.
   //echo_src_archive('gen_function', '4.0.1');
   echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', 'glinformation', '4.0.1');
 ?>
-</ul>
+</dl>
 
 <!--
 <p>Note: archives above do not contain user documentation for
@@ -200,7 +190,17 @@ program and read documentation there (if you downloaded binary
 version of program you will also have documentation there).
 -->
 
+<?php /*
+
 <?php echo $toc->html_section(); ?>
+
+<p>All these programs have also their project page on GitHub,
+as part of <a href="https://github.com/castle-engine/">GitHub
+Castle Game Engine organization</a>.
+
+<p>You can download them using a GIT client, SVN client, or as a ZIP.
+
+< ?php echo $toc->html_section(); ? >
 
 <p>You can get all the sources from our Subversion repository.
 If you don't know about Subversion, see
@@ -210,7 +210,7 @@ book about the Subversion</a>.</p>
 
 <p>To download full sources for all projects, do</p>
 
-<pre><?php echo sf_checkout_link(true, ''); ?></pre>
+<pre>< ?php echo sf_checkout_link(true, ''); ? ></pre>
 
 <p>Please note that the full <code>trunk</code> is quite large.
 It contains everything: the core engine sources (<code>castle_game_engine</code> subdirectory),
@@ -230,11 +230,7 @@ You can also download the code from one of
 subdirectories, these contain frozen code from specific versions of my programs,
 so should be 100% stable.</p>
 
-<?php echo $toc->html_section(); ?>
-
-<p>All these programs have also their project page on GitHub,
-as part of <a href="https://github.com/castle-engine/">GitHub
-Castle Game Engine organization</a>.
+*/ ?>
 
 <?php
 castle_footer();

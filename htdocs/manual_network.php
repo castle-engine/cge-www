@@ -178,7 +178,7 @@ also find useful classes
 
     <p>Demos of using data URI are inside <?php
     echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
-    see in particular <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
+    see in particular <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
   <li><p><code>castle-android-assets</code> or (deprecated name) <code>assets</code> protocol (Android only).
 

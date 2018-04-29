@@ -47,9 +47,7 @@ to make HTML version of the document from DocBook sources.
 Additionally you will need <code>fop</code> (version &gt;= 0.9x)
 and <code>ttf-dejavu</code> font if you want to make PDF version.</p>
 
-<p>You can also download the latest version from Subversion by:</p>
-
-<pre><?php echo sf_checkout_link(true, 'documentation/vrml_engine_internals'); ?></pre>
+<p>You can also get the latest version from <a href="https://github.com/castle-engine/cge-documentation">the GitHub repository (in vrml_engine_internals)</a>.
 
 <p>The example VRML 1.0/2.0 models, used for screenshots
 in this work, are available inside <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>

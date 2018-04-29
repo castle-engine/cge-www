@@ -433,8 +433,7 @@ Shape {
   shaders, you must understand the differences:
   for VSM, shadow maps are treated always as <code>sampler2D</code>, with the first
   two components being <code>E(depth)</code> and <code>E(depth^2)</code>.
-  See <a href="http://www.punkuser.net/vsm/">the paper about Variance Shadow Maps</a>,
-  and see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/src/x3d/opengl/glsl/variance_shadow_map_common.fs">example GLSL shader code to handle them</a>.
+  See <a href="http://www.punkuser.net/vsm/">the paper about Variance Shadow Maps</a>.
 
 <?php echo $toc->html_section(); ?>
 

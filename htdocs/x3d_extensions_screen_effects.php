@@ -41,10 +41,10 @@ by processing the rendered image. Demos:</p>
     after loading any 3D scene.
     Note that you can activate many effects at the same time.</p></li>
 
-  <li><p>Try the X3D files <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effects.x3dv">screen_effects.x3dv</a>,
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
-    <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
+  <li><p>Try the X3D files <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effects.x3dv">screen_effects.x3dv</a>,
+    <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_blood_in_the_eyes.x3dv">screen_effect_blood_in_the_eyes.x3dv</a>,
+    <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
+    <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
     <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
     and open files in <code>screen_effects</code> subdirectory there, to see the complete

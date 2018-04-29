@@ -137,7 +137,7 @@ and then write your shader code.</p>
   ]
 }'); ?>
 
-<p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/shaders_inlined.x3dv">Another example: shaders_inlined.x3dv</a>.</p>
+<p><a href="https://github.com/castle-engine/demo-models/blob/master/shaders/shaders_inlined.x3dv">Another example: shaders_inlined.x3dv</a>.</p>
 
 <p>In case of the X3D XML encoding, you can also place
 shader source code inside the CDATA.</p>
@@ -242,7 +242,7 @@ see <?php echo x3d_node_link('FloatVertexAttribute'); ?>,
 You can place them in the <code>attrib</code> field of most geometry nodes
 (like <code>IndexedFaceSet</code>).</p>
 
-<p><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/attributes.x3dv">Example attributes.x3dv</a>,
+<p><a href="https://github.com/castle-engine/demo-models/blob/master/shaders/attributes.x3dv">Example attributes.x3dv</a>,
 showing how to pass elevation grid heights by the shader attributes.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -281,9 +281,9 @@ The type of the primitive may be changed by the geometry shader
 <p>Examples of geometry shaders with <code>ComposedShader</code>:</p>
 
 <ul>
-  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader.x3dv">Download
+  <li><a href="https://github.com/castle-engine/demo-models/blob/master/shaders/geometry_shader.x3dv">Download
     a basic example X3D file with geometry shaders</a></li>
-  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/shaders/geometry_shader_fun_smoothing.x3dv">Another
+  <li><a href="https://github.com/castle-engine/demo-models/blob/master/shaders/geometry_shader_fun_smoothing.x3dv">Another
     example of geometry shaders: geometry_shader_fun_smoothing</a>.</li>
 </ul>
 
@@ -301,9 +301,9 @@ Everything is described in detail in our
 <p>Examples of geometry shaders with <code>Effect</code>:</p>
 
 <ul>
-  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_simple.x3dv">geometry_shader_simple</a></li>
-  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_effects.x3dv">geometry_shader_effects</a></li>
-  <li><a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/compositing_shaders/geometry_shader_optional.x3dv">geometry_shader_optional</a></li>
+  <li><a href="https://github.com/castle-engine/demo-models/blob/master/compositing_shaders/geometry_shader_simple.x3dv">geometry_shader_simple</a></li>
+  <li><a href="https://github.com/castle-engine/demo-models/blob/master/compositing_shaders/geometry_shader_effects.x3dv">geometry_shader_effects</a></li>
+  <li><a href="https://github.com/castle-engine/demo-models/blob/master/compositing_shaders/geometry_shader_optional.x3dv">geometry_shader_optional</a></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>

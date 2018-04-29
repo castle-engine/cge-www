@@ -97,10 +97,6 @@ have to actually send your 3D model source.--></p>
 
 <pre>git clone https://github.com/castle-engine/demo-models.git</pre>
 
-<p>Or you can get them from SVN  (auto-synchronized with GIT) by:</p>
-
-<pre><?php echo sf_checkout_link(true, 'demo_models'); ?></pre>
-
 <?php echo $toc->html_section(); ?>
 
 <p>Most of the 3D models here were created by Kambi (Michalis Kamburelis).
