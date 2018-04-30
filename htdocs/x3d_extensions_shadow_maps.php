@@ -16,7 +16,7 @@ $toc = new TableOfContents(array(
   new TocItem('Optionally specify shadow map parameters (<code>GeneratedShadowMap</code> node)', 'generated_shadow_map', 1),
   new TocItem('Use projective texturing explicitly to map textures (<code>ProjectedTextureCoordinate</code> node)', 'texture_projective', 1),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster', 1),
-  new TocItem('Deprecated: use <code>GeneratedShadowMap</code> and <code>ProjectedTextureCoordinate</code> at each shadow-receiving shape', 'directly', 1),
+  new TocItem('Deprecated: use <code>GeneratedShadowMap</code> and <code>ProjectedTextureCoordinate</code> at each shadow-receiving shape', 'deprecated_at_shape', 1),
   // new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
 ));
 ?>
@@ -426,6 +426,10 @@ Shape {
   you should treat them like a normal grayscale textures
   and use the <code>sampler2D</code> or the <code>samplerCube</code> types.
 
+  <p><i>Usage notes:</i> You should place <code>GeneratedShadowMap</code> node inside light's <code>defaultShadowMap</code> field.
+
+  <p>Alternatively, <a href="#section_deprecated_at_shape">only for backward compatibility</a>, you can also treat <code>GeneratedShadowMap</code> as any other <code>X3DTextureNode</code> and place it inside <code>Appearance.texture</code>.
+
   <p><i>Variance Shadow Maps</i> notes:
   If you turn on <i>Variance Shadow Maps</i> (e.g. by <?php echo a_href_page("view3dscene", "view3dscene") ?>
   menu <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i>), then
@@ -548,8 +552,8 @@ Shape {
   from the presentation</a> are also available.</p>
 
   <p>Note that the adviced usage of shadow maps
-  (section 4 of the paper) changed since then.
-  The PDF paper talks about usage that is deprecated now,
+  (section 4 of the paper) shifted a bit since the paper was written.
+  The PDF paper talks about "low-level nodes", which are deprecated now,
   for reasons explained below.</p>
 
   <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
@@ -599,7 +603,8 @@ Shape {
   <p>This approach is deprecated now. Reasons:
 
   <ul>
-    <li><p>Placing the shadow map here is not really consistent with
+    <li><p>Placing the shadow map in <code>Appearance.texture</code>
+      is not really consistent with
       normal <code>Appearance.texture</code> treatment,
       since the shadow map affects the rendering in a special way
       (it "masks" the particular light source contribution).
@@ -607,7 +612,8 @@ Shape {
       <p>Shadow map does not mix the fragment color like other textures
       (that scale the complete resulting color,
       <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">or only diffuse term if
-      SeparateDiffuseTexture is used</a>).
+      SeparateDiffuseTexture is used</a>,
+      or base color <a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">when we implement PBR</a>).
 
     <li><p>Placing the shadow map here doesn't work with <a href="https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a>, as it has it's own textures. <code>CommonSurfaceShader.diffuseTexture</code> hides the <code>Appearance.texture</code>.
   </ul>
