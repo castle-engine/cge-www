@@ -239,9 +239,11 @@ Shape {
   if and only if <code>projectionRectangle</code> is zero.
   This will work perfectly for shadow receivers marked by the
   <code>receiveShadows</code> field.
+  <!--
   <b>This feature was not "invented" at the time of submitting the
   <a href="https://castle-engine.io/shadow_maps_x3d.pdf">PDF paper to the <i>Web3D 2010 conference</i></a>,
   so it's not documented there.</b>
+  -->
 
   <?php
   echo castle_thumbs(array(
