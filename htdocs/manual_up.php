@@ -106,8 +106,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
         <p>You can set the viewpoint using the
         <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
         <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>, just make
-        sure to set earlier the <i>"Navigation -&gt; Walk and Fly Settings -&gt;
-        Change Gravity Up Vector"</i> to <code>0 0 1</code>.
+        sure to set earlier the <i>"Navigation -&gt; Set Up (and Gravity Up) +Z"</i>.
 
       <li><p>Set <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
     </ol>
@@ -158,8 +157,7 @@ it is actually configurable:
   <li><p>In practice, you can just set the viewpoint using the
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
     <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>.
-    Before doing it, you can use the <i>"Navigation -&gt; Walk and Fly Settings -&gt;
-    Change Gravity Up Vector"</i> menu item.
+    Before doing it, you can use the <i>"Navigation -&gt; Set Up (and Gravity Up) ..."</i> menu item.
     The generated <code>Viewpoint</code> node will have correct settings.
 
   <li><p>Alternatively you can set the camera using <code>TCamera.SetView</code>
@@ -192,8 +190,7 @@ up in +Y, the specification says that up is +Y transformed by the
 <code>Viewpoint</code> node transformation, and we honour it. In short, this means
 that gravity is configurable in VRML/X3D file. You can setup your
 camera in <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
-use <i>"Navigation -> Walk and Fly settings ->
-Change Up Vector"</i>, input any vector you want (like "0 0 1"), then use
+use <i>"Navigation -> Set Up (and Gravity Up) ..."</i>, then use
 <i>"Console -> Print Current Camera..."</i> option, and copy-paste the
 generated code from the console to your VRML/X3D file. This will set a
 <code>Viewpoint</code> with desired up vector, which will be correctly used by our
