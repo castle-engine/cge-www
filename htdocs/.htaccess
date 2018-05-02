@@ -4,5 +4,12 @@ AddType application/octet-stream .chm
 
 # Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
 # further, to a known latest version).
-# Se https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
+# See https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
 Redirect "/latest.zip" "/latest.zip.php"
+
+# Redirect www domain to non-www
+# See https://www.digitalocean.com/community/tutorials/how-to-redirect-www-to-non-www-with-apache-on-ubuntu-14-04
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
