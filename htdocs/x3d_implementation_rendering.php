@@ -15,34 +15,45 @@
     <?php echo x3d_node_link('ColorRGBA'); ?>,<br>
     <?php echo x3d_node_link('Normal'); ?></p>
 
-  <li><p>Triangles, lines and points:
+    <p>These nodes provide information about positions/colors/normal vectors
+    to various geometry nodes. They are used e.g. by various
+    nodes in this component (like <?php echo x3d_node_link2('IndexedTriangleSet', 'rendering'); ?>),
+    and in <a href="x3d_implementation_geometry3d.php">Geometry3D</a> component
+    (like <?php echo x3d_node_link2('IndexedFaceSet', 'geometry3D'); ?>).
+
+  <li><p>Triangles:
 
     <p><?php echo x3d_node_link('IndexedTriangleSet'); ?>,<br>
     <?php echo x3d_node_link('TriangleSet'); ?>,<br>
-    (see also analogous <code>IndexedQuadSet</code>, <code>QuadSet</code>
-    from <?php echo a_href_page('CAD geometry', 'x3d_implementation_cadgeometry'); ?> component).
-
     <p><?php echo x3d_node_link('IndexedTriangleFanSet'); ?>,<br>
     <?php echo x3d_node_link('TriangleFanSet'); ?>,<br>
     <?php echo x3d_node_link('IndexedTriangleStripSet'); ?>,<br>
     <?php echo x3d_node_link('TriangleStripSet'); ?>
 
-    <p><?php echo x3d_node_link('LineSet'); ?>,<br>
-    <?php echo x3d_node_link('IndexedLineSet'); ?><br>
+    <p>Notes:
 
-    <p><?php echo x3d_node_link('PointSet'); ?>
+    <ul>
+      <li><p>If you're looking for quads,
+        use instead <code>IndexedQuadSet</code>, <code>QuadSet</code>
+        from <?php echo a_href_page('CAD geometry component', 'x3d_implementation_cadgeometry'); ?>.
 
-    <p>Support includes the implementation of new X3D fields
-    <code>attrib</code> (per-vertex attributes for shaders)
-    and <code>fogCoord</code> (per-vertex fog depth).
+      <li><p>If you're looking for polygons (with arbitrary number of vertexes for each face),
+        use instead <code>IndexedFaceSet</code> from
+        <a href="x3d_implementation_geometry3d.php">Geometry3D component</a>.
 
-    <p><i>TODO</i>: for <code>TriangleFanSet</code> and <code>TriangleStripSet</code>,
-    a special constraint is present: if you will use colors
-    (colors are always per-vertex on these primitives,
-    according to X3D spec) and request generation of per-face normals
-    at the same time, for the same lit (with material) node,
-    then shading results will be slightly incorrect.
-    Like this:
+      <li><p>The geometry nodes have many fields to specify
+        positions, and various per-vertex information (normal vectors,
+        colors, <code>attrib</code> with per-vertex attributes for shaders,
+        <code>fogCoord</code> with per-vertex fog depth).
+
+      <li><p>The <code>TriangleFanSet</code> and <code>TriangleStripSet</code>
+        nodes
+        have a special limitation: if you will use colors
+        (colors are always per-vertex on these primitives,
+        according to X3D spec) and request generation of per-face normals
+        at the same time, and the shape is lit (has material),
+        then shading results will be slightly incorrect.
+        Like this:
 
 <pre class="vrml_code">
 #X3D V3.0 utf8
@@ -59,41 +70,70 @@ Shape {
 }
 </pre>
 
-    <p>Unfortunately, this is quite unfixable without falling back to
-    worse rendering methods. Shading has to be smooth to interpolate
-    per-vertex colors, and at the same time the same vertex may require
-    different normals on a different faces. So to render this correctly one has
-    to decompose triangle fans and strips into separate triangles
-    (like to <code>IndexedTriangleSet</code>) which means that rendering is
-    non-optimal.
+        <p>Unfortunately, this is unfixable without falling back to
+        worse rendering methods (instead of using triangle fan/strip on GPU).
+        Shading has to be smooth to interpolate
+        per-vertex colors, and at the same time the same vertex may require
+        different normals on different faces.
+        One day we will implement a special fallback for this case
+        (to internally convert fans and strips
+        to <code>IndexedTriangleSet</code> in such special case).
 
-    <p>Ideas how to implement this without sacrificing rendering time
-    are welcome. Eventually, a fallback to internally convert fans and strips
-    to <code>IndexedTriangleSet</code> in such special case will be
-    implemented some day.
+      <li><p>X3D specification doesn't specify what to do
+        for triangle/quad sets when appearance specify a texture but no
+        <code>texCoord</code> is given.
+        Our engine currently takes the <code>IndexedFaceSet</code> approach for
+        automatic generation of texture coords in this case.
+    </ul>
 
-    <p><i>Note</i>: As far as I see, X3D specification doesn't specify what to do
-    for triangle/quad sets when appearance specify a texture but no
-    <code>texCoord</code> is given.
-    Our engine currently takes the <code>IndexedFaceSet</code> approach for
-    automatic generation of texture coords in this case, let me know
-    if this is wrong for whatever reason.
+  <li><p>Lines:
+    <p><?php echo x3d_node_link('LineSet'); ?>,<br>
+    <?php echo x3d_node_link('IndexedLineSet'); ?><br>
+
+  <li><p>Points:
+    <p><?php echo x3d_node_link('PointSet'); ?>
+
+    <p>Using <code>PointSet</code> is the fastest and easiest way to render points.
+    See <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/points_colorrgba.x3dv">an example X3D file</a>. You can write the points in an X3D file or define the nodes using Pascal code, as always, see <a href="x3d_implementation_geometry2d.php">an example how to build X3D graph in Pascal</a>.
+
+    <p>To control the size of the point, set <code>TCastleScene.Attributes.PointSize</code>.
+
+    <p>This uses OpenGL(ES) rendering of points. So:
+    <ul>
+      <li><p>It's really fast (milions of points are not a problem, when placed in one PointSet).
+      <li><p>There are GPU-specific (OpenGL-implementation specific, actually) limits on the possible point sizes. For desktop OpenGL, small sizes like 1-8 are usually supported, but (strictly speaking) only size 1 is absolutely guaranteed to be supported (see <a jref="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGet.xhtml">GL_POINT_SIZE_RANGE</a>). For mobile OpenGLES, controlling the point size is not possible (so it's always like 1).
+      <li><p>Using anti-aliasing <!-- TODO: does Window.AntiAliasing affect this? --> affects how the large points look (as a rect or circle). See <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glPointSize.xml">glPointSize</a> docs.
+    </ul>
+
+    <p>This is the fastest method to render points (fastest to use, and fastest to render) but you need to watch for the limitations mentioned above.
+
+    <p>Note: To display a number of 2D points, you can also use <code>DrawPrimitive2D</code> procedure with <code>Mode</code> = <code>pmPoints</code>. It has a parameter where you specify <code>PointSize</code>. Note that this also uses native OpenGL(ES) points, so controlling the point size is limited, just like noted above.
+
+    <!--p>If you want to have large points and/or control their sizes also on mobile, then instead of PointSet you can create a new <code>Sphere</code> or a new <code>Box</code> shape for each point. But note that it will be much slower, it's not really a good idea for milions of points. You can make it faster by defininig an <code>IndexedFaceSet</code> with a number of spheres or boxes inside, although this requires more coding.-->
 
   <li><p><?php echo x3d_node_link('ClipPlane'); ?></p>
 
-    <p>OpenGL limits the number of clipping planes that may be enabled
-    at the same time on a single shape. This limit is <i>at least six</i>
-    (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
-    at <i>"Max clip planes"</i> line, to know the limit of your GPU).
-    Following X3D spec, we treat the "more global" clipping planes
-    as more important.</p>
+    <p>This node allows to clip the geometry by an arbitrary plane in 3D space.
+    In effect, the geometry is "cut" in the middle, with only one part visible.
 
-    <p>Note that clipping planes are purely visual effect.
-    The clipped geometry is still present for collision detection,
-    picking, bounding volumes etc.</p>
+    <p>Notes:
 
-    <p>TODO: clip planes don't work on background nodes
-    (<code>X3DBackgroundNode</code>) yet.</p>
+    <ul>
+      <li><p>There is a limit on the number of clipping planes that may be enabled
+        at the same time on a single shape. This limit is <i>at least six</i>
+        (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
+        at <i>"Max clip planes"</i> line, to know the limit of your GPU).
+        Following X3D spec, we treat the "more global" clipping planes
+        as more important.</p>
+
+      <li><p>Clipping planes are a purely visual effect.
+        The clipped (invisible) geometry is still taken into account
+        for collision detection,
+        mouse picking, bounding volume calculation etc.</p>
+
+      <li><p>Clipping planes don't affect background nodes
+        (<code>X3DBackgroundNode</code>).</p>
+    </ul>
 </ul>
 
 <?php

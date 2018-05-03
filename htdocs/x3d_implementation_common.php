@@ -73,13 +73,25 @@ function x3d_node_api_link($node_name)
     '</small>';
 }
 
-/* Display name of VRML/X3D node, linked to it's description
-   in X3D specification. This relies that the node's component was previously
+/* Display name of VRML/X3D node,
+   linked to it's description in X3D specification,
+   and linked to Pascal API docs.
+   This relies that the node's component was previously
    declared by x3d_status_header. */
 function x3d_node_link($node_name)
 {
   global $x3d_component_url;
   return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
     $node_name . '</a></code>' . x3d_node_api_link($node_name);
+}
+
+/* Display name of VRML/X3D node,
+   linked to it's description in X3D specification.
+   This uses given $component_name_for_url. */
+function x3d_node_link2($node_name, $component_name_for_url)
+{
+  $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
+  return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
+    $node_name . '</a></code>';
 }
 ?>
