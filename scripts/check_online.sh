@@ -25,3 +25,8 @@ check_url_success https://castle-engine.io/wp/2017/02/18/castle-game-engine-6-0-
 check_url_success https://castle-engine.io/wp/2017/02/
 check_url_success https://castle-engine.io/wp/?s=release
 check_url_success https://castle-engine.io/latest.zip
+
+check_url_success http://www.castle-engine.io/manual_up.php
+check_url_success https://www.castle-engine.io/manual_up.php
+check_url_success http://castle-engine.io/manual_up.php
+check_url_success https://castle-engine.io/manual_up.php
