@@ -1,10 +1,20 @@
 <?php
-  require_once 'x3d_implementation_common.php';
-  x3d_status_header('Geometry2D', 'geometry2D',
-    'This component provides a simple 2D (flat) objects.');
+require_once 'x3d_implementation_common.php';
+x3d_status_header('Geometry2D', 'geometry2D',
+  'This component provides a simple 2D (flat) objects.');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('Example in Pascal', 'example_pascal'),
+  )
+);
 ?>
 
-<h2>Supported nodes</h2>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('Rectangle2D'); ?>
@@ -20,7 +30,7 @@ for 2D graphics you usually want to set the Z coordinate to a constant, like zer
 By default, 2D shapes are placed at Z = 0 (by you can adjust it,
 to control what is visible on top of what).</p>
 
-<h2>Example in Pascal</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>This is an example how to construct in Pascal a scene with
 <code>Rectangle2D</code>, <code>LineSet</code>,

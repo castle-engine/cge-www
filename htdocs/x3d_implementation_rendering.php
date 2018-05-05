@@ -1,13 +1,23 @@
 <?php
-  require_once 'x3d_implementation_common.php';
-  x3d_status_header('Rendering', 'rendering',
-    'This component defines the basic properties of geometric objects,
-     and nodes to render triangles, lines and points.
-     See <i>Geometry3D</i> component for more comfortable
-     geometric objects like polygons and spheres.');
+require_once 'x3d_implementation_common.php';
+x3d_status_header('Rendering', 'rendering',
+  'This component defines the basic properties of geometric objects,
+   and nodes to render triangles, lines and points.
+   See <i>Geometry3D</i> component for more comfortable
+   geometric objects like polygons and spheres.');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('Example in Pascal', 'example_pascal'),
+  )
+);
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('Coordinate'); ?>,<br>
@@ -135,6 +145,13 @@ Shape {
         (<code>X3DBackgroundNode</code>).</p>
     </ul>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>This is an example how to construct in Pascal a scene with
+points in a <code>PointSet</code> and render them or save to file:
+
+<?php echo pascal_highlight_file('code-samples/point_set.lpr'); ?>
 
 <?php
   x3d_status_footer();

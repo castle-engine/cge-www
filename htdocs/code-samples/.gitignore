@@ -1,0 +1,27 @@
+castle-engine-output
+*.o
+*.ppu
+*.exe
+
+# particular Unix binaries
+build_scene_interpolator
+build_scene_lineset_rectangle2d
+button_with_2d_scene_manager
+custom_2d_control
+custom_2d_control_finished
+notifications
+on_screen_menu
+rotate_1
+rotate_2
+scene_transform
+scene_transform_2
+scene_transform_3
+standard_2d_ui
+standard_2d_ui_toggle_exists
+two_viewports
+user_prefs_demo
+view_3d_model_basic
+point_set
+
+# particular example output
+my_points.x3d
