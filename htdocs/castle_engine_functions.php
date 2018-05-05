@@ -295,7 +295,7 @@ $castle_sitemap = array(
     'sidebar' => true,
     'sub' => array(
       'demo_models' => array('title' => 'Demo models'),
-      'x3d_implementation_status' => array('title' => 'Standard X3D Components',
+      'x3d_implementation_status' => array('title' => 'Standard X3D Nodes',
         'sub' => array(
           'x3d_implementation_core'                 => array('title' => 'Core'                            ),
           'x3d_implementation_time'                 => array('title' => 'Time',
@@ -371,7 +371,7 @@ $castle_sitemap = array(
           'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
         ),
       ),
-     'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
+      'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
       'castle_script' => array('title' => 'CastleScript language reference'),
       'castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
       'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),

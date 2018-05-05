@@ -84,7 +84,7 @@ $toc = new TableOfContents(array(
 
   <p>TODO: In the future, this field (<code>shadows</code> on light) and
   <code>receiveShadows</code> field (see below) should be suitable for
-  other shadows implementations too
+  other shadows implementations too.
   We plan to use it for shadow volumes in the future too
   (removing old <code>shadowVolumesMain</code> extensions and such),
   and maybe ray-tracer too. <code>shadowCaster</code> (see below) already works

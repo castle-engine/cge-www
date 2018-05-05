@@ -26,19 +26,25 @@ It is supported, see the details below.
 <ul>
   <li><p><?php echo x3d_node_link('TimeSensor'); ?>:</p>
 
-    <p>Works completely, following X3D 3.2 spec. Except:
+    <p>This node sends events as time passes.
+    It is used to "drive" animations.
+    <a href="x3d_implementation_interpolation.php">The description
+    how to make animations in X3D, combining <code>TimeSensor</code>
+    and interpolator nodes, along with examples in X3D and Pascal,
+    is part of the "X3D Interpolation component".</a>
 
-    <p><i>TODO:</i> We do not gracefully react to enabled := FALSE
-    on active node (see X3D TimeSensor spec
-    "If a set_enabled FALSE event is received while the TimeSensor node is running, the sensor performs the following actions:...").
+    <p>The node is implemented fully, following X3D 3.2 spec. The only exception is:
 
-    <p>In fact, the whole handling of <code>enabled = FALSE</code>
-    is shaky. Some output events will not be generated when
-    not enabled, but it's not a fully spec-compliant implementation.</p>
+    <ul>
+      <li><p><i>TODO:</i> We do not gracefully react to enabled := FALSE
+        on active node (see X3D TimeSensor spec
+        "If a set_enabled FALSE event is received while the TimeSensor node is running, the sensor performs the following actions:...").
+    </ul>
 </ul>
 
-<p><i>Note:</i> "Time origin" in our engine follows VRML/X3D standard
-(time = 0 means "January 1, 1970"), but it can be changed
+<p><i>Note:</i> "Time origin" for all time-related fields and nodes
+follows the X3D standard. So "time = 0" means "January 1, 1970".
+But it can be changed
 by <?php echo a_href_page_hashlink(
 'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',
 'x3d_extensions',

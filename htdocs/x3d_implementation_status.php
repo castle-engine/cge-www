@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("Standard X3D Components");
+  vrmlx3d_header("Standard X3D Nodes");
 
   $toc = new TableOfContents(
     array(
@@ -43,13 +43,16 @@ technical details), about what and how is implemented.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The table below sums up our X3D component support.
-Since the whole X3D standard is divided into components (and it includes
-also all VRML 2.0 features), this is a concise summary of
-our <i>"VRML / X3D implementation status"</i>. Each component has also
-separate page with details about support (both VRML 97 and X3D features). </p>
+<p>The X3D standard is divided into a number of "components".
+(Warning: Do not confuse the term "components" here with the Pascal standard
+<code>TComponent</code> class. These are unrelated.)
 
-<p>A word "practically" below means that the component is not absolutely
+<p>The table below sums up our support for each X3D component.
+This is a concise summary of how we implement X3D and VRML specifications.
+See the page for each component for
+details about supported nodes. </p>
+
+<p>A word "practically" in table below means that the component is not absolutely
 100% supported on given level, but most important
 parts (99% of usage) of given level are covered.</p>
 
@@ -93,12 +96,12 @@ parts (99% of usage) of given level are covered.</p>
 </table>
 
 <p>We practically support <i>Interchange</i> and <i>Interactive</i>
-profiles, and miss only small bits (Networking level 3, Geometry2D level 1)
+profiles, and we miss only small bits (Networking level 3, Geometry2D level 1)
 from <i>Immersive</i>. But bear in mind some limitations:
 
 <ul>
   <li>Although we have scripting, but we do not support yet the most
-    popular scripting language: ECMAScript.
+    popular X3D scripting language: ECMAScript.
   <li>Although we have networking support, but for now it is a little
     user-unfriendly, that's why you have to explicitly enable it by
     <i>Preferences -&gt; Download Resources From Network</i>
