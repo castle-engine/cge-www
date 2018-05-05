@@ -9,7 +9,7 @@ x3d_status_header('Rendering', 'rendering',
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
-    new TocItem('Example in Pascal', 'example_pascal'),
+    new TocItem('Example of creating a PointSet in Pascal', 'example_pascal'),
   )
 );
 ?>
