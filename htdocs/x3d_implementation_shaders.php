@@ -92,9 +92,13 @@ To use shaders add inside the <code>Appearance</code> node code like</p>
 would be:
 
 <?php echo glsl_highlight(
-'void main(void)
+'uniform mat4 castle_ModelViewMatrix;
+uniform mat4 castle_ProjectionMatrix;
+attribute vec4 castle_Vertex;
+
+void main(void)
 {
-  gl_Position = ftransform();
+  gl_Position = castle_ProjectionMatrix * (castle_ModelViewMatrix * castle_Vertex);
 }'); ?>
 
 <p>The simplest <i>fragment shader code</i> to place inside <code>my_shader.fs</code> file
@@ -123,9 +127,13 @@ and then write your shader code.</p>
   parts [
     ShaderPart { type "VERTEX"
       url "data:text/plain,
+      uniform mat4 castle_ModelViewMatrix;
+      uniform mat4 castle_ProjectionMatrix;
+      attribute vec4 castle_Vertex;
+
       void main(void)
       {
-        gl_Position = ftransform();
+        gl_Position = castle_ProjectionMatrix * (castle_ModelViewMatrix * castle_Vertex);
       }" }
 
     ShaderPart { type "FRAGMENT"
