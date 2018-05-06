@@ -46,7 +46,10 @@ if (CASTLE_PREVIEW) {
 } else
 {
   /* Define CURRENT_URL to follow the protocol under which we currently are.
-     This way loading font glyphs works on unsecure http://castle-engine.io. */
+     This way loading font glyphs works on unsecure http://castle-engine.io.
+
+     Later note: This is not really necessary anymore, as we are only on HTTPS.
+     But it's not harmful, so let it stay now. */
   $is_https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
   define('CURRENT_URL', 'http'. ($is_https?'s':'') . '://castle-engine.io/');
 }
