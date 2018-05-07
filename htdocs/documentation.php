@@ -17,6 +17,7 @@ $toc = new TableOfContents(
     new TocItem('Lazarus', 'lazarus', 1),
     new TocItem('Alternative: without Lazarus (bare FPC)', 'bare_fpc', 1),
     new TocItem('Install the libraries', 'libraries'),
+    new TocItem('Read the manual', 'manual'),
   )
 );
 
@@ -219,8 +220,8 @@ also lists the libraries in the introduction section.
   <li><b>On Windows</b> the libraries (DLL files) are in the downloaded engine archive.
     They are in:
     <ul>
-      <li>(32-bit) <code>castle_game_engine/tools/build-tool/data/external_libraries/i386-win32/</code> or
-      <li>(64-bit) <code>castle_game_engine/tools/build-tool/data/external_libraries/x86_64-win64/</code> .
+      <li>(32-bit) <a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/i386-win32">castle_game_engine/tools/build-tool/data/external_libraries/i386-win32/</a> or
+      <li>(64-bit) <a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/x86_64-win64">castle_game_engine/tools/build-tool/data/external_libraries/x86_64-win64/</a> .
     </ul>
 
     <p>You can just copy the DLL files to every directory
@@ -231,7 +232,7 @@ also lists the libraries in the introduction section.
     Remember to restart the appropriate programs, to make them use the new
     value of $PATH.
 
-    <p>Be sure to use the DLL files corresponding to your compiler &mdash; if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits, and you should use DLLs for 32-bits. <i>Even if you work on 64-bit Windows.</i>
+    <p>Be sure to use the DLL files corresponding to your compiler. For example, if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits, and you should use DLLs for 32-bits. <i>Even if you work on a 64-bit Windows.</i>
 
     <!--If in doubt, just try the other ones:)-->
 
@@ -251,6 +252,8 @@ In general, for all OSes, see section
  in the documentation of programs and make sure that
 you have appropriate libraries installed on your system.
 -->
+
+<?php echo $toc->html_section(); ?>
 
 <div class="centered-download-wrapper">
 <div class="download jumbotron">
