@@ -46,6 +46,10 @@ Lazarus LCL).
 <b>Currently, we don't have any special requirements on the Lazarus version.
 Just use Lazarus with a sufficiently up-to-date FPC version.</b></p>
 
+<p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
+
+<p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>.
+
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
 
