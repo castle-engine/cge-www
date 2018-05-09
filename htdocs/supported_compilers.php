@@ -84,7 +84,7 @@ to hang on to FPC releases available in distros.
 
 <p>You can also use <i>Code Typhon</i>, a fork of FPC/Lazarus.
 
-<p>But I (Michalis) advice that you rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects, and working in a transparent fashion.<!-- to make open-source Pascal grow.-->
+<p>But I (Michalis) advice that you rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
 
 <p>Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers &mdash; these cover some often-mentioned <i>Code Typhon</i> advantages.
 
