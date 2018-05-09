@@ -48,6 +48,12 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
 <?php echo $toc->html_section(); ?>
 
 <div class="row">
+  <?php program_image_link('Connect4',
+    'Fun free game for Android. You can plan against a computer, or against a friend over the network. Shows various engine features like localization and 2D scalable UI. <a href="https://castle-engine.io/wp/2018/04/11/connect4-new-android-game-using-castle-game-engine/">By Benedikt Magnus and LanIstAn.</a>',
+    'connect4.png',
+    'https://play.google.com/store/apps/details?id=de.benediktmagnus.viergewinnt.app');
+  ?>
+
   <?php program_image_link('The Unholy Society',
     'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>Coming to Steam in 2018</i>, for Windows, Linux and macOS.',
     'unholy_society_in_game.jpg',
