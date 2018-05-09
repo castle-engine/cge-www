@@ -86,7 +86,7 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
     'dragon_squash_screen_1.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.dragonsquash'); ?>
 
   <?php program_image_link('Dragon Spine',
-    'Fly your dragon in a dark comic setting. Demo of <i>Spine animations</i> and <i>Google Games achievements</i> inside Castle Game Engine on Android. Available for free from Google Play, the source code is inside the engine examples (<code>2d_dragon_spine_android_game</code>).',
+    'Fly your dragon in a dark comic setting. Demo of <i>Spine animations</i> and <i>Google Games achievements</i> inside Castle Game Engine on Android. Available for free from Google Play, the source code is inside the engine examples (<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_dragon_spine_game">2d_dragon_spine_game</a>).',
     'castle_spine_screen_3.png', 'https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.castlespine'); ?>
 
   <?php program_image_link('Hydra Battles',
