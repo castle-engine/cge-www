@@ -82,11 +82,11 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We also support <i>Code Typhon</i>, a fork of Lazarus.
+<p>You can also use <i>Code Typhon</i>, a fork of FPC/Lazarus.
 
-<p>Although Michalis suggests that you use proper <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a> instead. I simply have more trust in FPC and Lazarus developers doing great quality job. Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers &mdash; these cover some often-mentioned <i>Code Typhon</i> advantages.
+<p>But I (Michalis) advice that you rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects, and working in a transparent fashion.<!-- to make open-source Pascal grow.-->
 
-<p>But you are free to use any tool you choose.
+<p>Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers &mdash; these cover some often-mentioned <i>Code Typhon</i> advantages.
 
 <?php
   castle_footer();
