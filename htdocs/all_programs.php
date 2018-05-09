@@ -97,6 +97,12 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
     '3D game with split-screen view where human and worm cooperate to survive. For single player or 2 players.',
     "mountains_of_fire_screen_1.png", 'mountains_of_fire'); ?>
 
+  <?php program_image_link('Little Things',
+    'A pretty 3D game-like experience where you swim towards a sound. Developed during 48h gamejam.',
+    'little_things_screen_7.png',
+    'https://github.com/castle-engine/little-things');
+  ?>
+
   <?php program_image_link('Darkest Before the Dawn',
     'Scary 3D game, for Android and standalone.',
     "darkest_before_dawn_2.png", 'darkest_before_dawn'); ?>
