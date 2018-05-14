@@ -5,7 +5,7 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Support', 'support'),
+      new TocItem('Supported nodes', 'support'),
       new TocItem('Per-pixel lighting', 'per_pixel_lighting'),
       new TocItem('Problems? Get latest GPU drivers', 'latest_gpu_drivers', 1),
     ));
@@ -16,36 +16,95 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>Supported nodes:</p>
+<p>We support all light nodes:
+<ul>
+  <li><?php echo x3d_node_link('DirectionalLight'); ?>,
+  <li><?php echo x3d_node_link('PointLight'); ?>,
+  <li><?php echo x3d_node_link('SpotLight'); ?>.
+</ul>
+
+<p>Lights shine on shapes, making them brighter.
+Only the "lit" shapes (with non-nil material node) are affected by lights.
+
+<p>All these conditions must be satisfied in order for the
+light to shine (contribute to a color) on a given shape:
 
 <ul>
-  <li><?php echo x3d_node_link('DirectionalLight'); ?>,<br>
-    <?php echo x3d_node_link('PointLight'); ?>,<br>
-    <?php echo x3d_node_link('SpotLight'); ?>
+  <li><p>The light node must be in a "traversed" part of the node graph.
+    This means that if the light is inside an inactive <code>Switch</code> or <code>LOD</code> child,
+    it doesn't shine on anything.
+    This is consistent with the general idea that stuff inside inactive
+    <code>Switch</code> or <code>LOD</code> children is never visible.
 
-    <p><i>Note</i>: VRML 2.0 <code>SpotLight.beamWidth</code>
-    idea cannot be translated to a standard
-    OpenGL spotlight, so if you set beamWidth &lt; cutOffAngle then the light
-    will not look exactly VRML 2.0-spec compliant.
-    Honestly I don't see any sensible way to fix this
-    (as long as we talk about real-time rendering using OpenGL).
-    And other open-source VRML implementations rendering to OpenGL
-    also don't seem to do anything better.
+  <li><p>The shape must be within the light <code>radius</code>
+    (in case of <code>PointLight</code>, <code>SpotLight</code>).
 
-    <p>VRML 2.0 spec requires that at least 8 lights
-    are supported. Our engine can support as many lights as are
-    allowed by your OpenGL implementation, which is <i>at least</i> 8.
+  <li><p>If the light has <code>global</code> field set to <code>FALSE</code>,
+    then it only affects the shapes nodes that are sibling to it or below.
+    By default, <code>DirectionalLight</code> has <code>global=FALSE</code>
+    (otherwise it would affect the whole scene),
+    while <code>PointLight</code> and <code>SpotLight</code> have <code>global=TRUE</code>
+    (because they are typically limited by their <code>radius</code> field).
 
-    <p><code>global</code> field from X3D is also supported. The default
-    value of this field is consistent with VRML 2.0 specification
-    (that always wants directional lights non-global, and other lights
-    always global).
-</ul>
+    <p>See the example below. The light <code>L1</code> shines on both sphere and box.
+    The light <code>L2</code> shines only on a sphere.
+    You can easily actually test it: save this example as <code>test.x3dv</code> file,
+    and open it with <a href="view3dscene.php">view3dscene</a>.
+
+<?php echo vrmlx3d_highlight(
+'#X3D V3.2 utf8
+PROFILE Interchange
+
+NavigationInfo {
+  # turn off headlight
+  headlight FALSE
+}
+
+DEF L1 DirectionalLight {
+  color 1 0 0 # red
+}
+
+Shape {
+  # assign Appearance and Material to make the shape lit
+  appearance Appearance {
+    material Material { }
+  }
+  geometry Box { }
+}
+
+Transform {
+  translation 2 0 0
+
+  children [
+    DEF L2 DirectionalLight {
+      color 0 1 0 # green
+    }
+
+    Shape {
+      # assign Appearance and Material to make the shape lit
+      appearance Appearance {
+        material Material { }
+      }
+      geometry Sphere { }
+    }
+  ]
+}'); ?>
+    </ul>
+
+<p>Note that, while your whole scene can have an unlimited number of lights,
+the number of lights that affect a particular shape is limited.
+It is limited to 8 inside the engine (for now).
+In general, having too many lights affect a single shape is costly
+(in "forward rendering mode" that we use), and it's also not necessary
+in normal circumstances.
 
 <?php echo $toc->html_section(); ?>
 
 <p>By default we render most shapes using Gouraud shading (per-vertex lighting
-calculation). This is fast, but not always pretty.</p>
+calculation). This is fast, but not always pretty.
+<a href="x3d_implementation_shape_extensions.php">See the Shape.shading field
+for a description on other shading approaches,
+and how to activate them.</a>
 
 <p>Using the <i>"View -&gt; Phong Shading on Everything"</i> option in view3dscene
 forces everything to be rendered using Phong shading (per-pixel lighting).
