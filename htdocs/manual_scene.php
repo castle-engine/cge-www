@@ -337,8 +337,8 @@ end;'); ?>
 
 <p>See the examples:</p>
 <ul>
-  <li><code>examples/3d_rendering_processing/build_3d_object_by_code.lpr</code> (rather simple example)</li>
-  <li><code>examples/3d_rendering_processing/build_3d_tunnel.lpr</code> (a cool example generating a tunnel mesh).</li>
+  <li><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_object_by_code.lpr">3d_rendering_processing/build_3d_object_by_code.lpr</a> (rather simple example)</li>
+  <li><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_tunnel.lpr">3d_rendering_processing/build_3d_tunnel.lpr</a> (a cool example generating a tunnel mesh).</li>
 </ul>
 
 <?php echo $toc->html_section(); ?>

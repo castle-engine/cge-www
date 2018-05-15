@@ -10,10 +10,19 @@
      Primitives
      <code>Sphere</code>, <code>Box</code>, <code>Cone</code>, <code>Cylinder</code>
      provide the well-known simple 3D objects.');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('Example in Pascal', 'example_pascal'),
+  )
+);
 ?>
 
-<p>We fully support everything, with all the fields,
-following latest X3D spec:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p></li>
@@ -53,6 +62,26 @@ following latest X3D spec:</p>
     Think of a snake, or a human arm or leg, that bends.
     Think of the Blender's <i>Extrude</i> operation applied repeatedly.
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'orthographic_cube_sheared_test.png', 'titlealt' => 'Meshes in orthographic view'),
+));
+?>
+
+<p>Below is a complete example how to construct in Pascal a scene with
+<code>IndexedFaceSet</code> and helper nodes (<code>Coordinate</code>,
+<code>TextureCoordinate</code>, <code>Shape</code>, <code>Transform</code>).
+The scene also uses orthographic projection, thanks to <code>OrthoViewpoint</code>
+node.
+
+<p>(See also other examples:
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_object_by_code.lpr">build_3d_object_by_code.lpr</a>,
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_tunnel.lpr">build_3d_tunnel.lpr</a>).
+
+<?php echo pascal_highlight_file('code-samples/orthographic_cube_sheared_test.lpr'); ?>
 
 <?php
   x3d_status_footer();

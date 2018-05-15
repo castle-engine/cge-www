@@ -22,6 +22,7 @@ two_viewports
 user_prefs_demo
 view_3d_model_basic
 point_set
+orthographic_cube_sheared_test
 
 # particular example output
 my_points.x3d
