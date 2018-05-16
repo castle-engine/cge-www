@@ -7,20 +7,23 @@ castle_header("Engine internals documentation", array(
 ));
 ?>
 
-<?php echo pretty_heading('Engine internals documentation', NULL,
-  'Overview of the engine and VRML, with some information about engine internals'); ?>
+<?php echo pretty_heading('Castle Game Engine internals', NULL,
+  '(Outdated) Overview of the Castle Game Engine and VRML 1.0'); ?>
 
 <p>Most of this documentation was originally written as my master's thesis,
 passed in September 2006. Although I was occasionally updating and adding content
 to this document later.</p>
 
-<p>To be honest, <b>this document isn't the best introduction to the engine</b>.
-It talks too much about engine internals, and too little about engine API
-and features for game developers.
-Also, it doesn't discuss some of the key features added in engine &gt;= 3.
-Also, it discusses many features of VRML 1.0, which is a very ancient 3D format
-nowadays, and doesn't show (in depth) features of VRML 2.0 and modern X3D.
-</p>
+<p><b>Warning: This document isn't a good introduction to the Castle Game Engine (anymore)</b>.
+<ul>
+  <li>It talks too much about engine internals.
+  <li>It shows too little of the engine API (and features) used during normal
+    game creation by a developer. It doesn't even mention
+    many of the key engine features added in engine &gt;= 3.
+  <li>It discusses many features of VRML 1.0, which is a very ancient 3D format
+    nowadays. The document doesn't show (in depth) features of VRML 2.0,
+    modern X3D, and many enhancements of X3D in Castle Game Engine.
+</ul>
 
 <p>View in various formats:</p>
 

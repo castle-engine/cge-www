@@ -1,15 +1,15 @@
 <?php
-  require_once 'x3d_implementation_common.php';
-  x3d_status_header('Geometry3D', 'geometry3D',
-    'This component provides the most commonly used 3D objects.
-     <code>IndexedFaceSet</code> defines a 3D object as a set of polygons,
-     and is the most often method to render 3D data.
-     <code>ElevationGrid</code> allows to easily render a heightfield
-     (like a terrain). <code>Extrusion</code> allows
-     to render a 3D object by extruding a 2D shape along a 3D spine.
-     Primitives
-     <code>Sphere</code>, <code>Box</code>, <code>Cone</code>, <code>Cylinder</code>
-     provide the well-known simple 3D objects.');
+require_once 'x3d_implementation_common.php';
+x3d_status_header('Geometry3D', 'geometry3D',
+  'This component provides the most commonly used 3D objects.
+   <code>IndexedFaceSet</code> defines a 3D object as a set of polygons,
+   and is the most often method to render 3D data.
+   <code>ElevationGrid</code> allows to easily render a heightfield
+   (like a terrain). <code>Extrusion</code> allows
+   to render a 3D object by extruding a 2D shape along a 3D spine.
+   Primitives
+   <code>Sphere</code>, <code>Box</code>, <code>Cone</code>, <code>Cylinder</code>
+   provide the well-known simple 3D objects.');
 
 $toc = new TableOfContents(
   array(
