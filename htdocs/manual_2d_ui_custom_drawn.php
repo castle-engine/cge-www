@@ -120,12 +120,12 @@ begin
 
   R := Rectangle(10, 10, 400, 50);
   { draw background of health bar with a transparent red }
-  DrawRectangle(R, Vector4Single(1, 0, 0, 0.5));
+  DrawRectangle(R, Vector4(1, 0, 0, 0.5));
   { calculate smaller R, to only include current life }
   R := R.Grow(-3);
   R.Width := Round(R.Width * Player.Life / Player.MaxLife);
   { draw the inside of health bar with an opaque red }
-  DrawRectangle(R, Vector4Single(1, 0, 0, 1));
+  DrawRectangle(R, Vector4(1, 0, 0, 1));
 
   UIFont.Print(20, 20, Yellow,
     Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));

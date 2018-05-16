@@ -240,7 +240,7 @@ begin
   Rect := TCastleRectangleControl.Create(Application);
   Rect.Width := 400;
   Rect.Height := 500;
-  Rect.Color := HexToColor(\'5f3939\'); // equivalent: Vector4Single(95/255, 57/255, 57/255, 1.0);
+  Rect.Color := HexToColor(\'5f3939\'); // equivalent: Vector4(95/255, 57/255, 57/255, 1.0);
   Rect.Anchor(hpMiddle);
   Rect.Anchor(vpMiddle);
   Window.Controls.InsertFront(Rect);
