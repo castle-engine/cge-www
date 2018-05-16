@@ -100,13 +100,16 @@ be obtained from this scene.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>To control the initial camera view, one option is to use
-the <?php api_link('SceneManager.RequiredCamera.SetView',
-'CastleCameras.TCamera.html#SetView'); ?> method.
-This takes three vectors &mdash; position, look direction and look up vector.
-Simply add the <?php api_link('CastleVectors',
-'CastleVectors.html'); ?> unit to your uses clause,
-and call this:
+<p>To control the initial camera view:
+
+<ol>
+  <li><p>One option is to <b>control the camera by code</b>:
+    use the <?php api_link('SceneManager.RequiredCamera.SetView',
+    'CastleCameras.TCamera.html#SetView'); ?> method.
+    This takes three vectors &mdash; position, look direction and look up vector.
+    Simply add the <?php api_link('CastleVectors',
+    'CastleVectors.html'); ?> unit to your uses clause,
+    and call this:
 
 <?php echo pascal_highlight(
 'Window.SceneManager.RequiredCamera.SetView(
@@ -115,51 +118,61 @@ and call this:
   Vector3( 0.16,  0.95,  0.25)
 );'); ?>
 
-<p>Instead of <code>SceneManager.RequiredCamera</code> above,
-you could use <code>SceneManager.WalkCamera</code> or
-<code>SceneManager.ExamineCamera</code>
-to force creating camera of the given type.
+    <p>Instead of <code>SceneManager.RequiredCamera</code> above,
+    you could use <code>SceneManager.WalkCamera</code> or
+    <code>SceneManager.ExamineCamera</code>
+    to force creating camera of the given type.
 
-<p><b>You have a lot of options to control the camera from code</b>.
-You can assign a specific camera descendant to
-<?php api_link('SceneManager.Camera',
-'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
-If you don't, the camera instance is automatically created when you use
- <?php api_link('SceneManager.RequiredCamera',
-'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
- <?php api_link('SceneManager.WalkCamera',
-'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
- <?php api_link('SceneManager.ExamineCamera',
-'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
- or anything that underneath requires a camera (e.g. rendering requires a camera).
-You can change the navigation type by setting
-<?php api_link('SceneManager.NavigationType',
-'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
-You can change the <?php api_link('SceneManager.Camera.Input',
-'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
-key and mouse operations (for example, it is common to call
-<code>Window.SceneManager.WalkCamera.Input := [];</code>
-to disable <i>any</i> way for user to control the camera by default,
-useful if you want to code it all yourself).
+    <p>You have a lot of options to control the camera from code:
+    <ul>
+      <li><p>You can assign a specific camera descendant to
+        <?php api_link('SceneManager.Camera',
+        'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
+        If you don't, the camera instance is automatically created when you use
+         <?php api_link('SceneManager.RequiredCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
+         <?php api_link('SceneManager.WalkCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
+         <?php api_link('SceneManager.ExamineCamera',
+        'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
+         or anything that underneath requires a camera (e.g. rendering requires a camera).
+      <li><p>You can change the navigation type by setting
+        <?php api_link('SceneManager.NavigationType',
+        'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
+      <li><p>You can change the <?php api_link('SceneManager.Camera.Input',
+        'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
+        key and mouse operations. For example, you can call
+        <code>Window.SceneManager.WalkCamera.Input := [];</code>
+        to disable <i>any</i> way for user to automatically control the camera,
+        useful if you want to move camera only by your own code.
+    </ul>
 
-<p><b>If you don't want to hardcode the camera position/direction/up
-in code</b>, than you should use a <code>Viewpoint</code>
-or <code>OrthoViewpoint</code> node inside the
-<code>car.x3d</code>  file
-(in general, inside a scene that is set as <code>SceneManager.MainScene</code>)
-to define the initial camera view. You can generate this
-<code>Viewpoint</code> using the
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
-<i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
-or by setting the camera in Blender before exporting this X3D file.
-You can also control the initial camera type using the <code>NavigationInfo</code>
-X3D node (it determines e.g. whether we are in Examine, Walk, Fly or other mode).
+  <li><p><b>You can also set camera defaults (including position/direction/up)
+    in your data (X3D files), instead of hardcoding it in Pascal.</b>
+    Use a <code>Viewpoint</code>
+    or <code>OrthoViewpoint</code> node inside the
+    <code>car.x3d</code>  file
+    (in general, inside a scene that is set as <code>SceneManager.MainScene</code>)
+    to define the initial camera view. You can generate this
+    <code>Viewpoint</code> using the
+    <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+    <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
+    or by setting the camera in Blender before exporting this X3D file.
 
-<p>The camera position/direction/up and navigation type set in X3D file
-(by nodes like <code>Viewpoint</code>,
-or <code>OrthoViewpoint</code>,
-<code>NavigationInfo</code>) serve as defaults when we create a camera instance.
-You can override them all by code, as documented above.
+    <p>You can also control the initial camera type using the <code>NavigationInfo</code>
+    X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.
+
+    <p>The camera position/direction/up and navigation type set in X3D file
+    (by nodes like <code>Viewpoint</code>,
+    or <code>OrthoViewpoint</code>,
+    <code>NavigationInfo</code>) serve as defaults when we create a camera instance.
+    You can override them all by code, as documented above.
+
+  <li><p>Note: remember that simple methods <code>TCastleWindow.Load</code>
+    or <code>TCastleControl.Load</code> forcefully reset (free and recreate)
+    the camera. Do not use them if you want to comfortably control the camera
+    yourself.
+</ol>
 
 <?php echo $toc->html_section(); ?>
 
