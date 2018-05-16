@@ -236,8 +236,8 @@ end;
   (not just by placing "placeholders" on level 3D model) then do this: }
 for I := 1 to 100 do
   WerewolfRookie.CreateCreature(SceneManager.Items,
-    Vector3Single(1, 2, 3) { position }
-    Vector3Single(1, 0, 0) { direction });'); ?>
+    Vector3(1, 2, 3) { position }
+    Vector3(1, 0, 0) { direction });'); ?>
 
     <p>There are many possible classes to override. Overriding
     the more specialized (finished) classes, like <code>TWalkAttackCreature*</code>,

@@ -110,26 +110,17 @@ and call this:
 
 <?php echo pascal_highlight(
 'Window.SceneManager.RequiredCamera.SetView(
-  Vector3Single(-7.83,  6.15, -7.55),
-  Vector3Single( 0.47, -0.30,  0.82),
-  Vector3Single( 0.16,  0.95,  0.25)
+  Vector3(-7.83,  6.15, -7.55),
+  Vector3( 0.47, -0.30,  0.82),
+  Vector3( 0.16,  0.95,  0.25)
 );'); ?>
 
-<p><b>Note: setting camera to the hardcoded values in code, like above,
-is not usually the best choice</b>. We did it just to show you how to control
-the camera by code.
+<p>Instead of <code>SceneManager.RequiredCamera</code> above,
+you could use <code>SceneManager.WalkCamera</code> or
+<code>SceneManager.ExamineCamera</code>
+to force creating camera of the given type.
 
-<p>A better choice would be to place an
-X3D <code>Viewpoint</code> node inside the <code>car.x3d</code> file to
-define the initial camera view. We could have generated this
-<code>Viewpoint</code> using the
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
-<i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
-or by setting the camera in Blender before exporting this X3D file.
-In fact, I used <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
- to find out the correct numbers to put in the code above.
-
-<p><b>Note that you have a lot of options to control the camera</b>.
+<p><b>You have a lot of options to control the camera from code</b>.
 You can assign a specific camera descendant to
 <?php api_link('SceneManager.Camera',
 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
@@ -146,10 +137,29 @@ You can change the navigation type by setting
 'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
 You can change the <?php api_link('SceneManager.Camera.Input',
 'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
-key and mouse operations.
+key and mouse operations (for example, it is common to call
+<code>Window.SceneManager.WalkCamera.Input := [];</code>
+to disable <i>any</i> way for user to control the camera by default,
+useful if you want to code it all yourself).
 
-<p>You can also control it from X3D by using the <code>NavigationInfo</code>
-node.
+<p><b>If you don't want to hardcode the camera position/direction/up
+in code</b>, than you should use a <code>Viewpoint</code>
+or <code>OrthoViewpoint</code> node inside the
+<code>car.x3d</code>  file
+(in general, inside a scene that is set as <code>SceneManager.MainScene</code>)
+to define the initial camera view. You can generate this
+<code>Viewpoint</code> using the
+<?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+<i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
+or by setting the camera in Blender before exporting this X3D file.
+You can also control the initial camera type using the <code>NavigationInfo</code>
+X3D node (it determines e.g. whether we are in Examine, Walk, Fly or other mode).
+
+<p>The camera position/direction/up and navigation type set in X3D file
+(by nodes like <code>Viewpoint</code>,
+or <code>OrthoViewpoint</code>,
+<code>NavigationInfo</code>) serve as defaults when we create a camera instance.
+You can override them all by code, as documented above.
 
 <?php echo $toc->html_section(); ?>
 

@@ -95,7 +95,7 @@ See <?php echo a_href_page('creating game data guide', 'creating_data_intro'); ?
   SoundType: TSoundType;
   ...
   SoundType := SoundEngine.SoundFromName(\'sample\');
-  SoundEngine.Sound3D(SoundType, Vector3Single(1, 2, 3), false { looping });
+  SoundEngine.Sound3D(SoundType, Vector3(1, 2, 3), false { looping });
   SoundEngine.Sound(SoundType, false { looping }); // non-3D sound'); ?>
 
 <p>The

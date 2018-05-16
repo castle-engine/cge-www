@@ -35,11 +35,11 @@ must be a <code>resource.xml</code> file with <code>name="Knight"</code>.
 
 procedure SpawnMyCreature;
 var
-  Position, Direction: TVector3Single;
+  Position, Direction: TVector3;
   CreatureResource: TCreatureResource;
 begin
-  Position := Vector3Single(1, 2, 3);
-  Direction := Vector3Single(1, 0, 0);
+  Position := Vector3(1, 2, 3);
+  Direction := Vector3(1, 0, 0);
 
   CreatureResource := Resources.FindName(\'Knight\') as TCreatureResource;
   { CreateCreature creates TCreature instance and adds it to SceneManager.Items.
@@ -63,11 +63,11 @@ where we get
 
 procedure SpawnMyItemOnLevel;
 var
-  Position: TVector3Single;
+  Position: TVector3;
   ItemResource: TItemResource;
   Item: TInventoryItem;
 begin
-  Position := Vector3Single(1, 2, 3);
+  Position := Vector3(1, 2, 3);
 
   ItemResource := Resources.FindName(\'MedKit\') as TItemResource;
 
