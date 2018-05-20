@@ -29,7 +29,7 @@ class WP_Discord_Post_Post {
 	 */
 	public function send_post( $id, $post ) {
 		// Check if the post has been already published and if it should be processed.
-		if ( ! $this->is_new_post( $post ) ) {
+		if ( ! apply_filters( 'wp_discord_post_is_new_post', $this->is_new_post( $post ) ) ) {
 			return;
 		}
 
@@ -71,12 +71,9 @@ class WP_Discord_Post_Post {
 	 * @return bool
 	 */
 	public function is_new_post( $post ) {
-		$process_old_posts = get_option( 'wp_discord_post_process_old_posts' );
 		$post_date         = strtotime( $post->post_date );
 
 		if ( $post_date < current_time( 'timestamp' ) ) {
-			return 'yes' === $process_old_posts && 'yes' !== get_post_meta( $post->ID, '_wp_discord_post_published', true );
-		} else {
 			return 'yes' !== get_post_meta( $post->ID, '_wp_discord_post_published', true );
 		}
 	}

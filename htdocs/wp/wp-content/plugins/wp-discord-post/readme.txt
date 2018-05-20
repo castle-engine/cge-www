@@ -2,8 +2,8 @@
 Contributors: nicolamustone
 Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7
 Requires at least: 4.4
-Tested up to: 4.9.4
-Stable tag: 1.1.0
+Tested up to: 4.9.6
+Stable tag: 1.1.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,11 +13,11 @@ WP Discord Post uses a Discord bot and Webhook URL to write in a channel in a Di
 
 WP Discord Post is a free plugin for WordPress that uses a Discord bot and Webhook URL to write in your desired channel in your Discord server whenever a new post is published on your blog.
 
-You can configure it by going to Settings > WP Discord post > WP Discord Post and filling in all the details. The fields are all required. Click on the links “Learn more” in the description of the fields to learn how to get the necessary data.
+You can configure it by going to Settings > WP Discord Post and filling in all the details. The fields are all required. Click on the links “Learn more” in the description of the fields to learn how to get the necessary data.
 
-= Compatible with Contact Form 7 =
+= Compatible with Contact Form 7 and Jetpack Contact Form =
 
-WP Discord Post is compatible with Contact Form 7, sending the content of each form to your Discord before it is sent via email as well.
+WP Discord Post is compatible with Contact Form 7 and Jetpack Contact Form, sending the content of each form to your Discord before it is sent via email as well.
 
 = Compatible with WooCommerce =
 
@@ -37,6 +37,18 @@ Make sure to replace `{post_type}` with the slug of the post type that you want 
 add_action( 'publish_book', array( WP_Discord_Post::instance()->post, 'send_post' ), 10, 2 );
 `
 
+= Privacy Info =
+
+This plugin  sends private user data to Discord. Different data are sent based on what features you use:
+
+* Posts: Author name
+* Contact Forms: Any user data collected via the form
+* Orders: Customer full name
+
+Once the data are sent they are under Discord's control and the plugin cannot remove them from their servers.
+
+Learn more about Discord's privacy policy at https://discordapp.com/privacy.
+
 = Developers Resources =
 
 WP Discord Post comes with some hooks that you can use to customize how the plugin works. Here is a list of them:
@@ -49,6 +61,7 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 * `wp_discord_post_request_body_args`
 * `wp_discord_post_request_args`
 * `wp_discord_post_process_old_posts`
+* `wp_discord_post_is_new_post`
 
 **Actions**
 
@@ -70,27 +83,25 @@ In the search field type “WP Discord Post” and click Search Plugins. Once yo
 
 = Manual installation =
 
-The manual installation method involves downloading this plugin plugin and uploading it to your web-server via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
+The manual installation method involves downloading this plugin and uploading it to your web-server via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 = Updating =
 
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
-== Frequently Asked Questions ==
-
-= I don't want my old posts to be sent to Discord when I update them. How can I stop this? =
-
-Add this code to your child theme's functions.php file:
-
-`
-add_filter( 'wp_discord_post_process_old_posts', '__return_false' );
-`
-
 == Changelog ==
+
+= 1.1.2 =
+* Removed option to process old posts because it was causing more troubles than benefits. You can use the filter `wp_discord_post_is_new_post` instead.
+* Added privacy info to the readme for the GDPR regulations.
+
+= 1.1.1 =
+* Added support for Jetpack Contact Form. Enable it in Settings > WP Discord Post. Jetpack and the Contact Forms module must be active.
+* Added filter `wp_discord_post_is_new_post`.
 
 = 1.1.0 =
 
-* Added support for Contact Form 7. Enable it in Settings > WP Discord post.
+* Added support for Contact Form 7. Enable it in Settings > WP Discord Post. Contact Form 7 must be active.
 * Added option to stop processing old posts when they are edited for the first time after installing the plugin. Disabled by default.
 * Added several hooks. See the readme's description for a complete list.
 * Moved all the settings to Settings > WP Discord Post.
@@ -103,7 +114,7 @@ add_filter( 'wp_discord_post_process_old_posts', '__return_false' );
 * WooCommerce options will not show anymore if WooCommerce is not active.
 
 = 1.0.8 =
-* Added support for WooCommerce orders to be sent to Discord. Enable it in Settings > WP Discord post.
+* Added support for WooCommerce orders to be sent to Discord. Enable it in Settings > WP Discord Post. WooCommerce must be active.
 * Tested the plugin with  WordPress 4.9.3.
 
 = 1.0.7 =
@@ -117,7 +128,7 @@ add_filter( 'wp_discord_post_process_old_posts', '__return_false' );
 * Fixed the description of a setting in the admin.
 
 = 1.0.5 =
-* Added option to mention @everyone in Discord. Activate it from Settings > WP Discord post.
+* Added option to mention @everyone in Discord. Activate it from Settings > WP Discord Post.
 
 = 1.0.4 =
 * Removed quotes for the post title. They are only causing issues.

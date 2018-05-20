@@ -22,7 +22,7 @@ class WP_Discord_Post_CF7 {
 	}
 
 	/**
-	 * Sends the order to Discord using the specified webhook URL and Bot token.
+	 * Sends the form submission to Discord using the specified webhook URL and Bot token.
 	 *
 	 * @param int $contact_form The contact form.
 	 */

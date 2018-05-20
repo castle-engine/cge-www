@@ -118,14 +118,6 @@ class WP_Discord_Post_Admin {
 			'wp_discord_post_settings'
 		);
 
-		add_settings_field(
-			'wp_discord_post_process_old_posts',
-			esc_html__( 'Process Old Posts', 'wp-discord-post' ),
-			array( $this, 'print_process_old_posts_field' ),
-			'wp-discord-post',
-			'wp_discord_post_settings'
-		);
-
 		// Enable support for Contact Form 7 if it's active.
 		if ( class_exists( 'WPCF7' ) ) {
 			add_settings_field(
@@ -137,6 +129,19 @@ class WP_Discord_Post_Admin {
 			);
 
 			register_setting( 'wp-discord-post', 'wp_discord_enabled_for_cf7' );
+		}
+
+		// Enable support for Jetpack Contact Form if it's active.
+		if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'contact-form' ) ) {
+			add_settings_field(
+				'wp_discord_enabled_for_jetpack_cf',
+				esc_html__( 'Enable Jetpack Contact Form Support', 'wp-discord-post' ),
+				array( $this, 'print_enabled_for_jetpack_cf_field' ),
+				'wp-discord-post',
+				'wp_discord_post_settings'
+			);
+
+			register_setting( 'wp-discord-post', 'wp_discord_enabled_for_jetpack_cf' );
 		}
 
 		// Enable support for WooCommerce if it's active.
@@ -247,6 +252,16 @@ class WP_Discord_Post_Admin {
 
 		echo '<input type="checkbox" name="wp_discord_enabled_for_cf7" value="yes"' . checked( $value, 'yes', false ) . ' />';
 		echo '<span class="description">' . esc_html__( 'Catch emails sent via Contact Form 7 and send them to Discord.', 'wp-discord-post' ) . '</span>';
+	}
+
+	/**
+	 * Prints the Enabled for Jetpack Contact Form settings field.
+	 */
+	public function print_enabled_for_jetpack_cf_field() {
+		$value = get_option( 'wp_discord_enabled_for_jetpack_cf' );
+
+		echo '<input type="checkbox" name="wp_discord_enabled_for_jetpack_cf" value="yes"' . checked( $value, 'yes', false ) . ' />';
+		echo '<span class="description">' . esc_html__( 'Catch emails sent via Jetpack Contact Form and send them to Discord.', 'wp-discord-post' ) . '</span>';
 	}
 
 	/**

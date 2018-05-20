@@ -8,7 +8,7 @@
  * Plugin Name: WP Discord Post
  * Plugin URI:  https://wordpress.org/plugins/wp-discord-post/
  * Description: A Discord integration that sends a message on your desired Discord server and channel for every new post published.
- * Version:     1.1.0
+ * Version:     1.1.2
  * Author:      Nicola Mustone
  * Author URI:  https://nicola.blog/
  * Text Domain: wp-discord-post
@@ -44,6 +44,13 @@ class WP_Discord_Post {
 	 * @var WP_Discord_Post_CF7
 	 */
 	public $cf7 = null;
+
+	/**
+	 * The instance of WP_Discord_Post_Jetpack_CF.
+	 *
+	 * @var WP_Discord_Post_Jetpack_CF
+	 */
+	public $jetpack_cf = null;
 
 	/**
 	 * The instance of WP_Discord_Post_WooCommerce.
@@ -92,6 +99,10 @@ class WP_Discord_Post {
 
 		if ( 'yes' === get_option( 'wp_discord_enabled_for_cf7' ) && class_exists( 'WPCF7' ) ) {
 			$this->cf7 = include_once( 'includes/class-wp-discord-post-contact-form-7.php' );
+		}
+
+		if ( 'yes' === get_option( 'wp_discord_enabled_for_jetpack_cf' ) && class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'contact-form' ) ) {
+			$this->jetpack_cf = include_once( 'includes/class-wp-discord-post-jetpack-contact-form.php' );
 		}
 
 		if ( 'yes' === get_option( 'wp_discord_enabled_for_woocommerce' ) && class_exists( 'WooCommerce' ) ) {
