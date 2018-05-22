@@ -218,16 +218,16 @@ $castle_sitemap = array(
       'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
-      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'http://castle-engine.io/modern_pascal_introduction.html'),
+      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
       'documentation_more' => array('title' => 'More...'),
     ),
     'sidebar' => true,
     'sub' => array(
       /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
-      /*   'url' => 'http://castle-engine.io/modern_pascal_introduction.html', */
+      /*   'url' => 'https://castle-engine.io/modern_pascal_introduction.html', */
       /*   'sub' => array('pascal_intro_pdf' =>  array( */
       /*       'title' => 'PDF version', */
-      /*       'url' => 'http://castle-engine.io/modern_pascal_introduction.pdf', */
+      /*       'url' => 'https://castle-engine.io/modern_pascal_introduction.pdf', */
       /*     ), */
       /*   ) */
       /* ), */
@@ -309,7 +309,7 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
-      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'http://castle-engine.io/modern_pascal_introduction.html'),
+      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
           // 'android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),

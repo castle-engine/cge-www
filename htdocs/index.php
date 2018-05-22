@@ -37,7 +37,7 @@ castle_header('Download', array(
                     <p>Read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>,
                     <?php echo a_href_page('manual', 'manual_intro'); ?>
                     <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
-                    <?php /* <a href="http://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
+                    <?php /* <a href="https://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
                     and the <a href="documentation_more.php">rest of our documentation</a>.<br>
 
                     You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>

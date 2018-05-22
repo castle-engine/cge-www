@@ -88,7 +88,7 @@ Procedure to update WWW content
 
 - After updating CGE,
   update also FPC/Lazarus requirements:
-  http://castle-engine.io/fpc_and_lazarus.php
+  https://castle-engine.io/supported_compilers.php
 
 - if you change some content outside GitHub cge-www repository:
   (These are some files that are automatically generated and it would

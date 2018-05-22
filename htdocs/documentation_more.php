@@ -28,7 +28,7 @@ echo pretty_heading("Documentation");
 If you'd like to <b>learn the Object Pascal</b>:
 
 <ul>
-  <li>We have a <a href="http://castle-engine.io/modern_pascal_introduction.html">Modern Object Pascal Introduction for Programmers</a> (<a href="http://castle-engine.io/modern_pascal_introduction.pdf">PDF version</a>). <!-- (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>). --> If you're a programmer, already familiar with concepts like variables and classes, then this quick Pascal guide will be very useful to you.
+  <li>We have a <a href="https://castle-engine.io/modern_pascal_introduction.html">Modern Object Pascal Introduction for Programmers</a> (<a href="https://castle-engine.io/modern_pascal_introduction.pdf">PDF version</a>). <!-- (<a href="https://github.com/michaliskambi/modern-pascal-introduction">Sources on GitHub</a>). --> If you're a programmer, already familiar with concepts like variables and classes, then this quick Pascal guide will be very useful to you.
   <li><a href="http://www.freepascal.org/docs.var">FPC (Free Pascal Compiler) has extensive documentation</a>, including <i>Language reference guide</i> and a reference of RTL and FCL (standard library).
   <li>Many good resources are listed in <a href="https://plus.google.com/+MarcHanisch/posts/Ka2WmrWTqks">this post</a> and in <a href="http://wiki.freepascal.org/">FPC and Lazarus Wiki</a>.
 </ul>
