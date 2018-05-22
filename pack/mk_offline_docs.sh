@@ -64,17 +64,16 @@ mk_offline_docs ()
   done
 
   cp "${CASTLE_ENGINE_HTDOCS}"castle-engine.css "${OUTPUT_PATH}"
+  cp "${CASTLE_ENGINE_HTDOCS}"castle-engine.js  "${OUTPUT_PATH}"
   mkdir -p "${OUTPUT_PATH}"images/
   cp "${CASTLE_ENGINE_HTDOCS}images/header_icon.png" \
      "${OUTPUT_PATH}"images/
-  mkdir -p "${OUTPUT_PATH}"kambi-php-lib/
+  mkdir -p "${OUTPUT_PATH}"castle-engine-website-base/
   cp -R \
-     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/bootstrap" \
-     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/colorbox" \
-     "${CASTLE_ENGINE_HTDOCS}kambi-php-lib/js" \
-     "${OUTPUT_PATH}"kambi-php-lib/
-  # In the future we may add castle-engine.js, but for now it's used only
-  # in some news text, not needed in offline docs.
+     "${CASTLE_ENGINE_HTDOCS}castle-engine-website-base/bootstrap" \
+     "${CASTLE_ENGINE_HTDOCS}castle-engine-website-base/colorbox" \
+     "${CASTLE_ENGINE_HTDOCS}castle-engine-website-base/js" \
+     "${OUTPUT_PATH}"castle-engine-website-base/
 }
 
 clean_offline_docs ()
@@ -84,5 +83,7 @@ clean_offline_docs ()
 
   rm -Rf "${OUTPUT_PATH}"/*.html \
          "${OUTPUT_PATH}"/images \
-         "${OUTPUT_PATH}"/kambi-php-lib
+         "${OUTPUT_PATH}"/castle-engine.css \
+         "${OUTPUT_PATH}"/castle-engine.js \
+         "${OUTPUT_PATH}"/castle-engine-website-base
 }
