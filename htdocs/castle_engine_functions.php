@@ -777,6 +777,17 @@ echo googleplus_header();
    from FB (and G+?) lead to main page --- I actually don't want this. */
 global $main_page;
 if ($main_page) echo facebook_header();
+
+global $castle_wordpress;
+if (empty($castle_wordpress)) {
+/* Add icons, using same HTML code as Wordpress. */
+?>
+<link rel="icon" href="<?php echo CURRENT_URL; ?>wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-32x32.png" sizes="32x32" />
+<link rel="icon" href="<?php echo CURRENT_URL; ?>wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="<?php echo CURRENT_URL; ?>wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-180x180.png" />
+<meta name="msapplication-TileImage" content="<?php echo CURRENT_URL; ?>wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-270x270.png" />
+<?php
+}
 }
 
 /* Echo a header.
