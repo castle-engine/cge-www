@@ -126,7 +126,7 @@ In Pascal, this nodes corresponds to the class
 with properties
 <a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html#Size">Size (type TVector3)</a>
 and
-<a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html#Solid">Solid (type Boolean)</a>.
+<a href="https://castle-engine.io/apidoc/html/X3DNodes.TAbstractGeometryNode.html#Solid">Solid (type Boolean)</a>.
 You can create and edit instances of
 <a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html">TBoxNode</a>
 and use <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
