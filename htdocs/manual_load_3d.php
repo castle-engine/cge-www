@@ -162,16 +162,27 @@ be obtained from this scene.</p>
     <p>You can also control the initial camera type using the <code>NavigationInfo</code>
     X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.
 
-    <p>The camera position/direction/up and navigation type set in X3D file
-    (by nodes like <code>Viewpoint</code>,
+    <p>Note that, in order for the "bindable" nodes (like <code>Viewpoint</code>,
+    <code>OrthoViewpoint</code>, <code>NavigationInfo</code>) to work,
+    they must be within a scene set as
+    <?php api_link('SceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>.
+    The first <code>Viewpoint</code> or <code>OrthoViewpoint</code>
+    is automatically used, just like the first <code>NavigationInfo</code> node.
+    You can always call explicitly <code>Viewpoint.EventSet_Bind.Send(true)</code>
+    to activate (jump to) a specific Viewpoint node.
+
+    <p>The camera settings (position, direction, up, navigation type, avatar height
+    and many others) set in X3D file (by nodes like <code>Viewpoint</code>,
     or <code>OrthoViewpoint</code>,
     <code>NavigationInfo</code>) serve as defaults when we create a camera instance.
     You can override them all by code, as documented above.
 
-  <li><p>Note: remember that simple methods <code>TCastleWindow.Load</code>
+  <li><p>Warning: The simple methods <code>TCastleWindow.Load</code>
     or <code>TCastleControl.Load</code> forcefully reset (free and recreate)
-    the camera. Do not use them if you want to comfortably control the camera
-    yourself.
+    the camera.
+    These methods are mostly designed for the case when your 3D world
+    is actually only one 3D scene (e.g. when you make a 3D model viewer).
+    It's usually better to avoid these methods in more complex applications.
 </ol>
 
 <?php echo $toc->html_section(); ?>
