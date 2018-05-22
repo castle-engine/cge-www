@@ -57,7 +57,7 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
   <?php program_image_link('The Unholy Society',
     'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>Coming to Steam in 2018</i>, for Windows, Linux and macOS.',
     'unholy_society_in_game.jpg',
-    'http://store.steampowered.com/app/746750/The_Unholy_Society/');
+    'https://store.steampowered.com/app/746750/The_Unholy_Society/');
   ?>
 
   <?php program_image_link('Wyrd Forest',
@@ -79,7 +79,7 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
   <?php program_image_link('Escape from the Universe',
     'Action shooter in the outer space with an incredible randomized storyline. For mobile devices (Android, iOS).',
     'escape_universe.png',
-    'http://cat-astrophe-games.com/'); ?>
+    'https://cat-astrophe-games.com/escape-universe/'); ?>
 
   <?php program_image_link('Dragon Squash',
     'Android game where you defend beautiful animated castles. For Android, with Google Games integration and dragons.',
