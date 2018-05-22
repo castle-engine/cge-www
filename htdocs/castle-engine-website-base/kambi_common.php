@@ -1,8 +1,7 @@
 <?php /* -*- mode: kambi-php -*-
-  (This page should be edited in php mode,
-  mmm mode is too slowish for this page). */
+  (This page should be edited in php mode, mmm mode is too slow). */
 
-/* Copyright 2001-2017 Michalis Kamburelis.
+/* Copyright 2001-2018 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
@@ -27,7 +26,7 @@
    http://michalis.ii.uni.wroc.pl/~michalis/
    websites.
 
-   Note that, contrary to other PHP files inside kambi-php-lib/
+   Note that, contrary to other PHP files inside castle-engine-website-base/
    directory, this file *does* make some assumptions about how your
    website looks and works like. In other words, this file is probably
    not directly usable for other projects. (Still, feel free
@@ -40,7 +39,7 @@
      local HTML versions by command-line php)
    - CURRENT_URL (URL to main directory of these very web pages,
      must be finished by "/")
-   - You may want to define KAMBI_NO_HOME_LINK (value is ignored,
+   - You may define KAMBI_NO_HOME_LINK (value is ignored,
      for now always define to true) to suppress automatic
      writing of main page link in common_header and common_footer.
 
@@ -48,33 +47,21 @@
 
    Some rules to follow when editing these pages:
 
-   - The basic idea is that these pages may be processed in two
-     various modes:
-     - When IS_GEN_LOCAL = false, we make normal online version
-       on the page, visible online on URL defined by CURRENT_URL.
-     - When IS_GEN_LOCAL = true, we make special version of the page
-       suitable for offline viewing. It differs from the online
-       version in many details.
+   - Instead of <a href ...> always use
+     - a_href_page[_hashlink] function for php/html files.
+     - current_www_a_href_size for downloadable files (not php/html).
+       Do not use a_href_size from funcs.php.
+     - or lower-level page_url.
 
-   - Nigdy nie rób bezpośrednich linków do stron za pomocą <a href ...>,
-     zawsze używaj funkcji a_href_page[_hashlink]. Ona zajmuje się
-     kilkoma rzeczami, np. dba o to aby wszystko działało dobrze
-     dla każdej wartości IS_GEN_LOCAL (i dla dowolnej kombinacji plików
-     dostępnych lokalnie w/g funkcji is_page_available_locally),
-     IS_GEN_PAGE_HREFS_TO_HTML, CURRENT_URL, ona też zajmuje się
-     automatycznie doklejeniem odpowiedniego sufixu języka do nazwy strony.
+     This makes sure that CASTLE_ENVIRONMENT is honored,
+     in particular that CASTLE_ENVIRONMENT == 'offline' is honored,
+     and that $locally_available_files affects the links correctly
+     (some links are to xxx.html, some to remote CASTLE_FINAL_URL/xxx.php).
 
-     Wyjątkiem są hash-linki w obrębie tej samej strony, tzn. linki
-     a postaci <a href="[tutaj hash]hash_link_na_tej_samej_stronie">...</a>,
-     to jest dozwolone.
+     The only allowed usage of <a href ...> is for internal links within
+     the same page, like <a href="#internal_link">xxx</a>
 
-   - Podobnie, nie rób bezpośrednich linków do innych plików.
-     Co więcej, nie używaj a_href_size z funcs.php.
-     Zamiast tego używaj current_www_a_href_size, z tych samych powodów
-     co wyżej a_href_page[_hashlink].
-
-   - Use common_header(...odpowiednie parametry...) and
-     common_footer() for page header/footer.
+   - Use common_header() / common_footer() for page header/footer.
      Between them insert just the page's body.
 
    Ponadto następujące rzeczy są sugerowane aby uzyskać spójny styl:
@@ -88,83 +75,29 @@
      katalogu domowego jest nieco bardziej złożony (CastleUtils.HomeDir)
      niż tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
      uważam za lepszy od ~ bo jest dłuższy.
-  */
+*/
 
 /* assert_options(ASSERT_ACTIVE, 1); */
 
 require_once 'funcs.php';
 require_once 'kambi_toc.php';
 
-/* Constants always defined by this script (so they are accessible after
-     including this script) :
-
-   IS_GEN_LOCAL : bool = true means we're generating local version of the
-     page to be stored as usual HTML, not as part of the online
-     pages on CURRENT_URL.
-     It is set here to true if you give --gen-local param to php,
-     else it's false.
-
-     What is "local" page ? A better name would be a "separate" page;
-     such pages can be distribited separately, i.e. without attaching
-     to them default index.html page, images\default_background etc.
-     This allows me to distribute some pages as documentation for
-     my programs (e.g. lets_take_a_walk contains such lets_take_a_walk.php
-     generated with --gen-local) while not being forced to distribute
-     with them _all_ documentation from my site
-     (e.g. lets_take_a_walk contains lets_take_a_walk[.pl].php,
-     common_options.php, opengl_options[.pl].php. It does not
-     contain some pages that I do not consider "part of documentation for
-     lets_take_a_walk usage" like index.php/html).
-     Some steps (in this file and in all specific php
-     pages) must to be taken when generating "local" pages:
-     - links to main page (index[.pl].(php|html)) (like those
-       in $s_quick_links and <link rel=Start ...>) must not be
-       generated
-     - default page background (specified by calling common_header())
-       may not contain any url to image
-     - every local page will have in it's footer a text stating that
-         o. I'm the author of this page,
-         o. link to CURRENT_URL
-       (I want to display this information to everyone that sees my
-       pages/programs; when not generating local pages, this info
-       is listed on index.php)
-
-     - links to files on WWW should be always written
-       using current_www_a_href_size. This way when we generate local page
-       those links will always have absolute URL starting with CURRENT_URL.
-       That's needed since we don't provide anything besides HTML pages
-       in locally generated versions.
-
-   IS_GEN_PAGE_HREFS_TO_HTML : bool = true means we're generating
-     a_href_page with extension HTML instead of default PHP extension
-     (it does NOT mean any other changes in pages; i.e. everything will
-     look as usual (links to index.html, default background contains link to
-     bg image etc.); it was useful once when on camelot.homedns.org
-     php was not available - I was then able to generate all pages locally
-     with href's to htmls and everything worked as expected;
-     now it is still useful
-     since it is required by IS_GEN_LOCAL).
-
-     Always true if IS_GEN_LOCAL, use command-line param --gen-page-hrefs-to-html
-     to force it to be true even if not IS_GEN_LOCAL. If not IS_GEN_LOCAL
-     and no command-line param "gen_page_hrefs_to_html" then it will be false.
-*/
-
 /* Parsuj argv. ============================================================
 
    Dozwolone opcje:
-   --gen-local : ustaw IS_GEN_LOCAL na true
-   --gen-page-hrefs-to-html : ustaw IS_GEN_PAGE_HREFS_TO_HTML na true
+   --gen-local : set CASTLE_ENVIRONMENT to 'offline'
+     (should be handled castle_engine_functions.php now)
    --locally-avail ARGS... :
      wszystkie parametry za --locally-avail zostaną potraktowane jako
      nazwy plików które deklarujemy jako dostępne lokalnie w sensie funkcji
      is_file_available_locally.
+
    Wszystkie nieznane parametry spowodują exit() z odpowiednim komunikatem
    błędu.
 
-   Tutaj ustawiamy stałe IS_GEN_LOCAL, IS_GEN_PAGE_HREFS_TO_HTML
-   oraz zmienną $locally_available_files. Tutaj też ustawiamy sobie
-   prawidłowe current dir w przypadku IS_GEN_LOCAL=true.
+   Tutaj ustawiamy zmienną $locally_available_files.
+   Tutaj też ustawiamy sobie prawidłowe current dir w przypadku
+   CASTLE_ENVIRONMENT == offline.
 */
 
 /* Zmienna wewnętrzna dla funkcji is_file_available_locally, ustawiana
@@ -175,30 +108,29 @@ if (array_key_exists('argc', $_SERVER))
 {
   for ($i = 1; $i < $_SERVER['argc']; $i++)
   {
-    if ($_SERVER['argv'][$i] == '--gen-local')
-      define_if_needed('IS_GEN_LOCAL', true); else
-    if ($_SERVER['argv'][$i] == '--gen-page-hrefs-to-html')
-      define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', true); else
-    if ($_SERVER['argv'][$i] == '--html-validation')
-      define_if_needed('HTML_VALIDATION', true); else
-    if ($_SERVER['argv'][$i] == '--locally-avail')
-    {
+    if ($_SERVER['argv'][$i] == '--gen-local') {
+      /* should be already processed by castle_engine_functions.php */
+    } else
+    if ($_SERVER['argv'][$i] == '--html-validation') {
+      define_if_needed('HTML_VALIDATION', true);
+    } else
+    if ($_SERVER['argv'][$i] == '--locally-avail') {
       $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
       break;
-    } else
+    } else {
       exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
+    }
   }
 }
 
 // tests: echo "Locally available are "; print_r($locally_available_files);
 
-/* Jeżeli stałe nie zostały ustawione przed odpowiednie parametry
-   to ustaw je teraz. */
-define_if_needed('IS_GEN_LOCAL', false);
-define_if_needed('IS_GEN_PAGE_HREFS_TO_HTML', IS_GEN_LOCAL);
+/* Defaults. */
 define_if_needed('HTML_VALIDATION', false);
+define_if_needed('CASTLE_ENVIRONMENT', 'production');
 
-if (IS_GEN_LOCAL) {
+if (CASTLE_ENVIRONMENT == 'offline') {
+  // this *should* fail if ENV_VARIABLE_NAME_LOCAL_PATH undefined
   $engine_trunk_dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
   if ($engine_trunk_dir === FALSE) {
     // assuming that current dir is cge-www
@@ -210,28 +142,31 @@ if (IS_GEN_LOCAL) {
 }
 
 /* ============================================================
-   some functions related to IS_GEN_LOCAL */
+   some functions related to CASTLE_ENVIRONMENT == 'offline' */
 
 /* Jako $file_name podaj nazwę pliku. Np. "view3dscene.php",
    "view3dscene.pl.php". Dozwolone jest poprzedzenie tego względnym katalogiem,
    jak np. "miscella/badBlaster.zip".
 
-   Jeżeli IS_GEN_LOCAL i plik nie jest dostępny lokalnie to zwróci false,
+   Jeżeli CASTLE_ENVIRONMENT == 'offline'
+   i plik nie jest dostępny lokalnie to zwróci false,
    wpp. zwróci true. Ujmując to inaczej zwraca
-   (!IS_GEN_LOCAL or plik jest dostępny lokalnie).
+   (CASTLE_ENVIRONMENT != 'offline') or (plik jest dostępny lokalnie).
 
    Np. gdy generujemy dokumentację lokalną specjalnie do dołączenia jej do
    programu rayhunter to mamy dostępne pliki "rayhunter.html",
-   "rayhunter.pl.html", "common_options.html"
+   "common_options.html"
    tzn. dla tych wartości $file_name ta funkcja zwróci true;
    dla pozostałych stron, np. "view3dscene.html", ta funkcja
-   zwróci false. Gdy generujemy strony nie-lokalnie (czyli IS_GEN_LOCAL=false)
+   zwróci false. Gdy generujemy strony nie-lokalnie
+   (czyli CASTLE_ENVIRONMENT != 'offline')
    to zawsze zwraca true, bo wtedy zakłada że przecież na serwerze CURRENT_URL
    są dostępne wszystkie pliki. */
 function is_file_available_locally($file_name)
 {
   global $locally_available_files;
-  return (!IS_GEN_LOCAL || in_array($file_name, $locally_available_files));
+  return (CASTLE_ENVIRONMENT != 'offline') ||
+    in_array($file_name, $locally_available_files);
 }
 
 /* Jak is_file_available_locally tyle że tej funkcji możesz używać tylko
@@ -310,39 +245,25 @@ function pretty_heading($heading_text, $version_number = NULL, $subheading_text 
   return $result;
 }
 
-/* jesli nie IS_GEN_LOCAL to nie rozni sie niczym od a_href_size
-   z funcs.php. Wpp. poprzedza $f_name pelnym URL naszej
-   strony (CURRENT_URL) i nie podaje size.
+/* When CASTLE_ENVIRONMENT != 'offline' then this is exactly a_href_size.
+   Otherwise prefixes $f_name with full URL our page (CASTLE_FINAL_URL)
+   and doesn't give size.
 
-   (Kiedys przy IS_GEN_LOCAL podawalo size brany z lokalnej kopii tego pliku,
-   $f_name; ale zmienilem to, teraz w ogole nie podaje size. To dlatego ze tego
-   typu size moze szybko stac sie nieaktualny. W szczegolnosci, czesto
-   wkladam strony wygenerowane z IS_GEN_LOCAL do srodka archiwum
-   do ktorego jest odnosnik z tej samej strony (np. glviewimage.php
-   zawiera odnosnik na glviewimage_linux.tar.gz a w srodku
-   glviewimage_linux.tar.gz jest strona glviewimage.html ktora zawiera odnosnik
-   do archiwum glviewimage_linux.tar.gz na WWW.).
-   To powoduje ze w momencie generowania strony czesto nie jest jeszcze znany
-   faktyczny rozmiar $f_name bo w momencie generowania strony z IS_GEN_LOCAL
-   plik $f_name jest wlasnie w trakcie uaktualniania. Tego rodzaju rekurecyjna
-   zaleznosc (strona wymaga archiwum ktore wymaga strony) sprawia ze w praktyce
-   czesto musialbym wywolywac pack_binary.sh dwa razy pod rzad tylko po to
-   aby za drugim razem dobrze zalapac rozmiary archiwum. A ciagle przeciez
-   istnieje spora szansa ze rozmiary archiwow na moich stronach beda sie
-   czesto zmieniac, wiec po co je umieszczac na stronie ?)
-
-   Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku na
-   CURRENT_URL. Wtedy ta funkcja wygeneruje a_href_size lub,
-   w przypadku IS_GEN_LOCAL, sensowny odpowiednik z linkiem http://...
+   Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku.
+   Wtedy ta funkcja wygeneruje a_href_size lub,
+   w przypadku offline, sensowny odpowiednik z linkiem CASTLE_FINAL_URL.
 */
 function current_www_a_href_size($link_title, $f_name)
 {
-  if (IS_GEN_LOCAL)
-    $final_f_name = CURRENT_URL . $f_name; else
+  if (CASTLE_ENVIRONMENT == 'offline') {
+    $final_f_name = CASTLE_FINAL_URL . $f_name;
+    $f_size = '';
+  } else {
     $final_f_name = $f_name;
+    $f_size = ' (' . readable_file_size($f_name) . ')';
+  }
 
-  return "<a href=\"$final_f_name\">$link_title"
-    . (IS_GEN_LOCAL ? '': " (" . readable_file_size($f_name) . ")") . "</a>";
+  return "<a href=\"$final_f_name\">$link_title$f_size</a>";
 }
 
 function kambi_url_absolute($url)
@@ -351,23 +272,12 @@ function kambi_url_absolute($url)
   return isset($parse_url_result['scheme']);
 }
 
-/* URL of desired page, which is a page_name with added extension (.php)
-   and prefixed with CURRENT_URL.
-   Right now, we just prefix all links with CURRENT_URL, making them absolute,
-   so they work from any URL of our website equall well (even from Wordpress,
-   which may have URL like /wp/ or /wp/2017/hello-world/ or such).
+/* Returns URL of desired page.
+   Add to $page_name (string) the URL (prefix), extension (suffix).
 
-   $page_name: string, nie zawiera extension, basename strony.
-
-   Eventually, $page_name may already contain a .php extension,
-   then we will not add any new php/html extension at the end.
-   Remember that this disables local html generation,
-   and so generally should not be used, as it means that page_url
-   isn't of much use.
-
-   Eventually, $page_name may be an absolute URL,
-   in which case we don't add any extension and generally don't
-   process it in any way (besides eventually adding $hash_link).
+   It is also allowed for $page_name to be an absolute URL,
+   in which case we don't add any URL or extension.
+   We then only add $hash_link.
 
    $hash_link is an anchor name.
    If non-empty, it will be added to the URL, after a hash (#) sign.
@@ -377,29 +287,28 @@ function page_url($page_name, $hash_link)
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
-    /* add an extension */
-    $already_has_extension = strpos($page_name, '.php') !== FALSE;
-    $add_url = true;
-    if (!is_page_available_locally($result))
-    {
-      if (!$already_has_extension) {
-        $result .= '.php';
-      }
-    } else
-    if (!$already_has_extension)
-    {
-      if (IS_GEN_PAGE_HREFS_TO_HTML) {
-        $result .= '.html';
-        $add_url = false; // the only case when we don't add URL prefix
-      } else {
-        $result .= '.php';
-      }
+    $remote_url = CURRENT_URL;
+
+    if (CASTLE_ENVIRONMENT == 'offline' && CURRENT_URL != '') {
+      throw new ErrorException('When CASTLE_ENVIRONMENT==offline, CURRENT_URL is expected to be empty by page_url');
     }
 
-    /* add URL, to make it absolute */
-    if ($add_url) {
-      $result = CURRENT_URL . $result;
+    if (!is_page_available_locally($result)) {
+      if (CASTLE_ENVIRONMENT != 'offline') {
+        throw new ErrorException('is_page_available_locally can be false only when CASTLE_ENVIRONMENT==offline');
+      }
+      $extension = '.php';
+      // $remote_url is empty now, since CURRENT_URL == ''
+      $remote_url = CASTLE_FINAL_URL;
+    } else
+    if (CASTLE_ENVIRONMENT == 'offline') {
+      $extension = '.html';
+      // $remote_url is empty now, and that's what we want, let it stay empty
+    } else {
+      $extension = '.php';
     }
+
+    $result = $remote_url . $result . $extension;
   }
 
   if ($hash_link != '') {
@@ -517,7 +426,7 @@ function common_header($a_page_title, array $parameters = array())
   /* calculate $s_quick_links */
   $s_quick_links = '';
 
-  if (!IS_GEN_LOCAL)
+  if (CASTLE_ENVIRONMENT != 'offline')
   {
     switch ($page_lang)
     {
@@ -558,7 +467,7 @@ if ($castle_wordpress) {
     echo '<meta name="Description" content="' . $parameters['meta_description'] . '">' . "\n";
   }
 
-  if (! ($main_page || IS_GEN_LOCAL))
+  if (! ($main_page || CASTLE_ENVIRONMENT == 'offline'))
   {
     switch ($page_lang)
     {
@@ -595,12 +504,12 @@ if ($castle_wordpress) {
 <?php } ?>
 
 <!-- Bootstrap -->
-<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
 <!-- Colorbox -->
-<link href="<?php echo CURRENT_URL; ?>kambi-php-lib/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
+<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -657,14 +566,14 @@ function common_footer($js_using_jquery = '')
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/js/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/js/jquery.min.js" type="text/javascript"></script>
 <!-- Include colorbox after jQuery is known -->
-<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo CURRENT_URL; ?>kambi-php-lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/js/bootstrap.min.js"></script>
 
 <?php
 if ($js_using_jquery) {

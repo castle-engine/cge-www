@@ -27,7 +27,7 @@ header('Location: http://gplusrss.com/rss/feed/c3dd3cd5ec6725d92b8b5b0633b2daa85
 <?php
 /*
   require_once 'castle_engine_functions.php';
-  require_once 'kambi-php-lib/class_rss_generator.inc.php';
+  require_once 'castle-engine-website-base/class_rss_generator.inc.php';
   require_once 'news_common.php';
 
   define('FEED_MAX_COUNT', 10);

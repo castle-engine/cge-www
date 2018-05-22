@@ -2,62 +2,98 @@
 
 /* PHP functions common for castle-engine WWW pages. */
 
-/* CASTLE_OFFLINE removes *some* stuff that embeds online content on our webpages,
-   see castle_engine_externals.php.
-   It also sets CURRENT_URL to '', which means that things that normally
-   refer using absolute URL will instead refer to local copy
-   (this concerns things like links to thumbnails in news items;
-   they use full absolute URLs, because they are
-   also used inside RSS feeds, which may be displayed on other servers).
+/* Calculate CASTLE_ENVIRONMENT constant. */
+function castle_detect_environment()
+{
+  /* CASTLE_ENVIRONMENT equal "offline"
+     means that we will set CURRENT_URL to '' and do not connect
+     to the outside world for resources (scripts, images, including analytics).
+     Also some links are local (to xxx.html),
+     some remote (to CASTLE_FINAL_URL/xxx.php),
+     this is realized by kambi_common.php .
 
-   Overall, this allows to browse our webpages locally
-   (through http://localhost/...) faster. */
-define('CASTLE_OFFLINE', isset($_SERVER['SERVER_NAME']) && (
-    $_SERVER['SERVER_NAME'] == '127.0.0.1' ||
-    $_SERVER['SERVER_NAME'] == 'localhost'
-  )
-);
-define('CASTLE_PREVIEW', isset($_SERVER['SERVER_NAME']) && (
-    $_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl'
-  )
-);
-if (CASTLE_OFFLINE || CASTLE_PREVIEW) {
+     Useful to generate documentation working offline (for documentation/
+     subdirectory in releases, or for PasDoc docs in CGE release).
+
+     Below it is set if you give --gen-local param to command-line php.
+
+     Note that some things cannot work correctly in this mode:
+     - Stuff that can be included by WordPress will be included
+       incorrectly, as WordPress base path is in any subdirectory,
+       like "2017/02/12/hello-world/".
+     - RSS feed generated will have relative URLs,
+       which means it would not work when embedded on other servers.
+     - og:image contents should be an absolute URL (Facebook warns
+       about it otherwise).
+  */
+  if (array_key_exists('argc', $_SERVER)) {
+    for ($i = 1; $i < $_SERVER['argc']; $i++) {
+      if ($_SERVER['argv'][$i] == '--gen-local') {
+        define('CASTLE_ENVIRONMENT', 'offline');
+        return;
+      }
+    }
+  }
+
+  /* CASTLE_ENVIRONMENT equal "development"
+     means that we are testing the page on development server,
+     not on production server. It removes *some* stuff that embeds online
+     content on our webpages, see castle_engine_externals.php.
+     The idea is to test our webpages locally
+     (through http://localhost/...) easily.
+  */
+  if (isset($_SERVER['SERVER_NAME']) &&
+      ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
+       $_SERVER['SERVER_NAME'] == 'localhost')) {
+    define('CASTLE_ENVIRONMENT', 'development');
+    return;
+  }
+
+  if (isset($_SERVER['SERVER_NAME']) &&
+      ($_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl')) {
+    define('CASTLE_ENVIRONMENT', 'preview');
+    return;
+  }
+
+  define('CASTLE_ENVIRONMENT', 'production');
+}
+
+if (!defined('CASTLE_ENVIRONMENT')) {
+  castle_detect_environment();
+}
+
+if (CASTLE_ENVIRONMENT != 'production') {
   /* Helpful for debugging, to see PHP warnings, notices. */
   error_reporting(E_ALL);
   ini_set('display_errors', 'stderr');
 }
 
-/* Constants that should be defined before including kambi_common.php */
+/* Constant that should be defined before including kambi_common.php */
 define('ENV_VARIABLE_NAME_LOCAL_PATH', 'CASTLE_ENGINE_PATH');
-if (CASTLE_OFFLINE) {
-  /* Set my localhost development address.
-     This is necessary (we cannot anymore leave the CURRENT_URL empty,
-     to make links relative), because stuff will also be included by Wordpress,
-     which may have URL in any subdirectory, like "2017/02/12/hello-world/". */
-  define('CURRENT_URL', 'http://127.0.0.1/~michalis/castle-engine/');
-} else
-if (CASTLE_PREVIEW) {
-  /* Although CURRENT_URL = '' would also work OK usuallly,
-     but the og:image contents should be an absolute URL (Facebook warns
-     about it otherwise).
-     Later: for Wordpress, we actually want this to be always absolute URL.
-  */
-  define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
-} else
-{
-  /* Define CURRENT_URL to follow the protocol under which we currently are.
-     This way loading font glyphs works on unsecure http://castle-engine.io.
 
-     Later note: This is not really necessary anymore, as we are only on HTTPS.
-     But it's not harmful, so let it stay now. */
-  $is_https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
-  define('CURRENT_URL', 'http'. ($is_https?'s':'') . '://castle-engine.io/');
+/* Calculate CURRENT_URL constant. */
+switch (CASTLE_ENVIRONMENT) {
+  case 'offline':
+    define('CURRENT_URL', '');
+    break;
+  case 'development':
+    define('CURRENT_URL', 'http://localhost/~michalis/castle-engine/');
+    break;
+  case 'preview':
+    define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
+    break;
+  case 'production':
+    define('CURRENT_URL', 'https://castle-engine.io/');
+    break;
+  default:
+    throw new ErrorException('Unrecognized CASTLE_ENVIRONMENT value: ' . CASTLE_ENVIRONMENT);
 }
+
 /* The final (not testing, offline, or preview) website URL. */
 define('CASTLE_FINAL_URL', 'https://castle-engine.io/');
 define('KAMBI_NO_HOME_LINK', true);
 global $castle_apidoc_url;
-if (CASTLE_OFFLINE) {
+if (CASTLE_ENVIRONMENT == 'development') {
   $castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/';
 } else {
   $castle_apidoc_url = CURRENT_URL . 'apidoc/html/';
@@ -79,7 +115,7 @@ function reference_link()
 }
 
 /* PHP file relative path from current file to "our root"
-   (where kambi-php-lib/ is a subdirectory).
+   (where castle-engine-website-base/ is a subdirectory).
    The original PHP file that handles the request can define it at the beginning,
    and require this file (...functions.php) using:
 
@@ -93,16 +129,16 @@ if (empty($castle_php_relative_path)) {
 }
 
 /* Set path to include PHP files.
-   - Because some time ago on SourceForge, requiring kambi-php-lib/kambi_common.php
+   - Because some time ago on SourceForge, requiring castle-engine-website-base/kambi_common.php
      was not reliable without this (sometimes fails, sometimes not).
-     Using set_include_path to include the kambi-php-lib/ fixed the issue.
+     Using set_include_path to include the castle-engine-website-base/ fixed the issue.
    - Bacause we actually depend on it for geshi. */
 global $castle_php_relative_path;
 set_include_path(get_include_path() .
-  PATH_SEPARATOR . $castle_php_relative_path . 'kambi-php-lib/' .
+  PATH_SEPARATOR . $castle_php_relative_path . 'castle-engine-website-base/' .
   PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
 
-require_once 'kambi-php-lib/kambi_common.php';
+require_once 'castle-engine-website-base/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
 require_once 'castle_engine_books.php';
@@ -886,7 +922,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     ' . $github_ribbon . '
   </nav>';
 
-  if (CASTLE_PREVIEW) {
+  if (CASTLE_ENVIRONMENT == 'preview') {
     $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_FINAL_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
   }
 
@@ -948,15 +984,8 @@ function echo_footer ()
   <?php
 
   /* Insert tracking code */
-  if ( (!IS_GEN_LOCAL) &&
-       isset($_SERVER["HTTP_HOST"]) &&
-       ($_SERVER["HTTP_HOST"] == 'castle-engine.io' ||
-        $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.net' ||
-        $_SERVER["HTTP_HOST"] == 'castle-engine.sourceforge.io') )
-  {
-    echo_piwik_tracking();
-    echo_google_analytics_tracking();
-  }
+  echo_piwik_tracking();
+  echo_google_analytics_tracking();
 }
 
 /* Return SVN URL to appropriate path with repository trunk.
@@ -1065,7 +1094,7 @@ function echo_standard_program_download(
 
   echo '<div class="download jumbotron">';
 
-  if (IS_GEN_LOCAL)
+  if (CASTLE_ENVIRONMENT == 'offline')
   {
     /* Since the download links contain so many things
        (program version, available OSes, availability on servers
@@ -1186,6 +1215,10 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
       $result .= $image['html'];
     } else
     {
+      /* We add CURRENT_URL to make absolute URLs, because this
+         may also be used in RSS feeds,
+         which may be displayed on other servers. */
+
       $url_full = isset($image['url_full']) ? $image['url_full'] :
         CURRENT_URL . 'images/original_size/' . $image['filename'];
       $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :

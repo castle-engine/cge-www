@@ -89,7 +89,9 @@ castle_header('Download', array(
 </div>
 
 <?php
-if (!CASTLE_OFFLINE && !HTML_VALIDATION)
+if (!HTML_VALIDATION &&
+  (CASTLE_ENVIRONMENT == 'production' ||
+   CASTLE_ENVIRONMENT == 'development'))
 {
     /* Load Wordpress PHP now
        (in global namespace, just like wp-blog-header.php does) */

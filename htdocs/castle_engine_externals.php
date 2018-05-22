@@ -3,50 +3,25 @@
 /* Functions to integrate our pages with external websites widgets,
    like Flattr, G+, Facebook. */
 
-/* Flattr -------------------------------------------------------------------- */
-
-// Flattr not used anymore.
-
-// function flattr_header()
-// {
-//   if (CASTLE_OFFLINE) return '';
-//   return '<script type="text/javascript">
-// /* <![CDATA[ */
-//     (function() {
-//         var s = document.createElement(\'script\'), t = document.getElementsByTagName(\'script\')[0];
-//         s.type = \'text/javascript\';
-//         s.async = true;
-//         s.src = \'http://api.flattr.com/js/0.6/load.js?mode=auto\';
-//         t.parentNode.insertBefore(s, t);
-//     })();
-// /* ]]> */
-// </script>';
-// }
-
-// function flattr_button($align = true)
-// {
-//   if (CASTLE_OFFLINE) return '';
-//   $result = '';
-//   if ($align) $result .= '<div style="float: right; margin: 1em;">';
-//   $result .= '
-//     <a class="FlattrButton" style="display:none;" href="https://castle-engine.io/"></a>
-//     <noscript><a href="http://flattr.com/thing/398312/Castle-Game-Engine" target="_blank">
-//     <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: 0" /></a></noscript>';
-//   if ($align) $result .= '</div>';
-//   return $result;
-// }
+function _castle_disable_externals()
+{
+  return (
+    CASTLE_ENVIRONMENT == 'offline' ||
+    CASTLE_ENVIRONMENT == 'development' ||
+    HTML_VALIDATION);
+}
 
 /* Google+ ------------------------------------------------------------------- */
 
 function googleplus_header()
 {
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
   return '<script src="https://apis.google.com/js/platform.js" async defer></script>';
 }
 
 function googleplus_badge($large = false)
 {
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
   /* Instead of +1 button, it's better to use a "badge",
      https://developers.google.com/+/web/badge/ .
      This allos Google to link our normal page back to our G+ page. */
@@ -60,15 +35,15 @@ function googleplus_badge($large = false)
 
 function googleplus_button()
 {
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
   return '<g:plusone size="tall"></g:plusone>';
 }
 
 function google_custom_search_box()
 {
-  // https://developers.google.com/custom-search/docs/element
-  if (CASTLE_OFFLINE || HTML_VALIDATION || IS_GEN_LOCAL) return '';
+  if (_castle_disable_externals()) return '';
 
+  // https://developers.google.com/custom-search/docs/element
   return <<<EOD
 <div class="google-search-container">
 <script>
@@ -91,7 +66,7 @@ EOD;
 /*
 function google_custom_search_results()
 {
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
 
   return <<<EOD
 <div class="google-search-results-container">
@@ -103,6 +78,8 @@ EOD;
 
 function echo_piwik_tracking()
 {
+  if (CASTLE_ENVIRONMENT != 'production' || HTML_VALIDATION) return;
+
   /* Note: only one piwik.js should be included,
      so don't report to multiple Piwik installations.
      This Piwik code must be synched with
@@ -111,8 +88,6 @@ function echo_piwik_tracking()
      ../../castle_game_engine/doc/pasdoc/footer.html
   */
   ?>
-
-
 
 <!-- Matomo -->
 <script type="text/javascript">
@@ -137,6 +112,8 @@ function echo_piwik_tracking()
 
 function echo_google_analytics_tracking()
 {
+  if (CASTLE_ENVIRONMENT != 'production' || HTML_VALIDATION) return;
+
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61279460-1"></script>
@@ -170,7 +147,7 @@ function facebook_header()
 
 function facebook_button()
 {
-  if (CASTLE_OFFLINE || HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
 
   /* Facebook docs say to put this somewhere at the beginning of <body>,
      but that's actually bad for us, facebook may be slow...
@@ -198,8 +175,7 @@ function facebook_button()
 
 function paypal_button($with_logos = true)
 {
-  // Ok to show also when CASTLE_OFFLINE
-  if (HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
 
   return ($with_logos ?
     '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -222,7 +198,7 @@ function paypal_button($with_logos = true)
 
 function twitter_widget()
 {
-  if (HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
   return '
 <a class="twitter-timeline" href="https://twitter.com/castleengine" data-widget-id="506585522525859840">Tweety na temat @castleengine</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -233,7 +209,7 @@ function twitter_widget()
 
 function youtube_subscribe()
 {
-  if (HTML_VALIDATION) return '';
+  if (_castle_disable_externals()) return '';
   /* Using https://developers.google.com/youtube/youtube_subscribe_button */
   return '
 <script src="https://apis.google.com/js/platform.js"></script>
@@ -245,9 +221,9 @@ function youtube_subscribe()
 
 function disqus_form()
 {
-  global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
+  if (_castle_disable_externals()) return '';
 
-  if (HTML_VALIDATION || IS_GEN_LOCAL) return '';
+  global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
 
   /* only show it once. This allows to insert this earlier for news */
   if (!empty($disqus_form_already_done)) return '';
