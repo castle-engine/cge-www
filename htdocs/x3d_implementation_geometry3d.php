@@ -25,7 +25,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p></li>
+  <li><p><?php echo x3d_node_link('IndexedFaceSet'); ?></p>
 
     <p>This is the most versatile node to render a mesh.
     The geometry is defined as a set of polygons.
@@ -44,7 +44,7 @@ $toc = new TableOfContents(
     You can use the <code>solid</code> field to make them visible
     from the inside too.</p></li>
 
-  <li><p><?php echo x3d_node_link('ElevationGrid'); ?></p></li>
+  <li><p><?php echo x3d_node_link('ElevationGrid'); ?></p>
 
     <p>This geometry node represents a regular grid with a different height
     at each point. It can be used to render height maps, terrains.
@@ -55,7 +55,7 @@ $toc = new TableOfContents(
     <a href="https://castle-engine.io/apidoc/html/CastleTerrain.html">CastleTerrain</a>
     for an example usage.
 
-  <li><p><?php echo x3d_node_link('Extrusion'); ?></p></li>
+  <li><p><?php echo x3d_node_link('Extrusion'); ?></p>
 
     <p>This geometry node looks like a 2D cross-section extruded along a "spine"
     constructed from a series of 3D points.

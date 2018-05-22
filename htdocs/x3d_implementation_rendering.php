@@ -111,7 +111,7 @@ Shape {
     <p>This uses OpenGL(ES) rendering of points. So:
     <ul>
       <li><p>It's really fast (milions of points are not a problem, when placed in one PointSet).
-      <li><p>There are GPU-specific (OpenGL-implementation specific, actually) limits on the possible point sizes. For desktop OpenGL, small sizes like 1-8 are usually supported, but (strictly speaking) only size 1 is absolutely guaranteed to be supported (see <a jref="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGet.xhtml">GL_POINT_SIZE_RANGE</a>). For mobile OpenGLES, controlling the point size is not possible (so it's always like 1).
+      <li><p>There are GPU-specific (OpenGL-implementation specific, actually) limits on the possible point sizes. For desktop OpenGL, small sizes like 1-8 are usually supported, but (strictly speaking) only size 1 is absolutely guaranteed to be supported (see <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGet.xhtml">GL_POINT_SIZE_RANGE</a>). For mobile OpenGLES, controlling the point size is not possible (so it's always like 1).
       <li><p>Using anti-aliasing <!-- TODO: does Window.AntiAliasing affect this? --> affects how the large points look (as a rect or circle). See <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glPointSize.xml">glPointSize</a> docs.
     </ul>
 
