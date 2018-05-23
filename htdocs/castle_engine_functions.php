@@ -982,7 +982,7 @@ function echo_footer ()
 
     <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
     Like every other frickin' website on the Internet.
-    Blink twice if you understand.
+    See <a href="https://cat-astrophe-games.com/privacy-policy/">privacy policy</a>.
   </div>
 
   <?php
