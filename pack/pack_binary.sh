@@ -27,46 +27,6 @@ WIN32_DLLS_OPENAL='OpenAL32.dll wrap_oal.dll'
 WIN32_DLLS_OGGVORBIS='ogg.dll vorbis.dll vorbisenc.dll vorbisfile.dll'
 WIN32_DLLS_HTTPS='openssl/libeay32.dll openssl/ssleay32.dll'
 
-DOC_FILES_GL_PARAMS='opengl_options.html common_options.html'
-DOC_FILES_X3D='castle_animation_frames.html
-  castle_script.html
-  demo_models.html
-  compositing_shaders.html
-  x3d_extensions.html
-  x3d_extensions_shadow_maps.html
-  x3d_extensions_vrml1.html
-  x3d_extensions_screen_effects.html
-  x3d_implementation_cadgeometry.html
-  x3d_implementation_core.html
-  x3d_implementation_cubemaptexturing.html
-  x3d_implementation_environmentaleffects.html
-  x3d_implementation_environmentalsensor.html
-  x3d_implementation_eventutilities.html
-  x3d_implementation_geometry2d.html
-  x3d_implementation_geometry3d.html
-  x3d_implementation_grouping.html
-  x3d_implementation_hanim.html
-  x3d_implementation_interpolation.html
-  x3d_implementation_keydevicesensor.html
-  x3d_implementation_lighting.html
-  x3d_implementation_navigation.html
-  x3d_implementation_networking.html
-  x3d_implementation_nurbs.html
-  x3d_implementation_pointingdevicesensor.html
-  x3d_implementation_rendering.html
-  x3d_implementation_scripting.html
-  x3d_implementation_shaders.html
-  x3d_implementation_shape.html
-  x3d_implementation_sound.html
-  x3d_implementation_status.html
-  x3d_implementation_text.html
-  x3d_implementation_texturing3d.html
-  x3d_implementation_texturing.html
-  x3d_implementation_time.html
-  nist_vrml_test_suite.html
-  x3d_time_origin_considered_uncomfortable.html
-  vrml_x3d.html'
-
 # $MAKE is just a shortcut for $KAMBI_GNU_MAKE, or simply "make"
 MAKE="${KAMBI_GNU_MAKE:-make}"
 
@@ -211,11 +171,10 @@ binary_add_gpl2 ()
 # Add to archive documentation files inside 'documentation/' subdirectory
 # ('documentation/' subdirectory will be created if not exists).
 #
-# Filenames ended by '.html' will be created from php files in htdocs/.
-# Other filenames will be directly copied from htdocs/, preserving subdirectories.
-# Also, some CSS and images files will be always added, see mk_offline_docs.
+# Give one file basename, like 'view3dscene'.
+# It will be grabbed to be viewable offline.
 #
-# This function ignores and modifies current dir.
+# This function ignores and preserves current dir.
 binary_add_doc ()
 {
   # This used to be configurable, but now I think that 'documentation/'
@@ -380,7 +339,7 @@ binary_archive_begin "$2" "$3" "$1"
 
 case "$1" in
   view3dscene)
-    binary_add_doc view3dscene.html openal.html $DOC_FILES_GL_PARAMS $DOC_FILES_X3D
+    binary_add_doc view3dscene
     binary_add_exec_and_data view3dscene
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB $WIN32_DLLS_OPENAL $WIN32_DLLS_OGGVORBIS $WIN32_DLLS_HTTPS
     binary_add_gpl2
@@ -390,7 +349,7 @@ case "$1" in
     ;;
 
   rayhunter)
-    binary_add_doc rayhunter.html common_options.html $DOC_FILES_X3D
+    binary_add_doc rayhunter
     binary_add_exec_and_data rayhunter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -398,7 +357,7 @@ case "$1" in
     ;;
 
   glviewimage)
-    binary_add_doc glviewimage.html $DOC_FILES_GL_PARAMS
+    binary_add_doc glviewimage
     binary_add_exec_and_data glViewImage
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -407,7 +366,7 @@ case "$1" in
     ;;
 
   glplotter)
-    binary_add_doc glplotter_and_gen_function.html $DOC_FILES_GL_PARAMS
+    binary_add_doc glplotter_and_gen_function
     binary_add_exec_and_data glplotter
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
@@ -415,14 +374,14 @@ case "$1" in
     ;;
 
   gen_function)
-    binary_add_doc glplotter_and_gen_function.html
+    binary_add_doc glplotter_and_gen_function
     binary_add_exec_and_data gen_function
     binary_add_gpl2
     binary_set_unix_permissions
     ;;
 
   glinformation)
-    binary_add_doc glinformation.html $DOC_FILES_GL_PARAMS
+    binary_add_doc glinformation
     binary_add_exec_and_data "$1"
     binary_add_gpl2
     binary_set_unix_permissions
@@ -430,7 +389,7 @@ case "$1" in
     ;;
 
   malfunction)
-    binary_add_doc malfunction.html $DOC_FILES_GL_PARAMS
+    binary_add_doc malfunction
     binary_add_exec_and_data malfunction \
       "$CASTLE_ENGINE_PATH"../malfunction/ \
       'data/' \
@@ -441,14 +400,10 @@ case "$1" in
     ;;
 
   kambi_lines)
-    binary_add_doc kambi_lines.html common_options.html \
-      images/kambi_lines/ball_blue_yellow_1.png \
-      images/kambi_lines/ball_joker_1.png \
-      images/kambi_lines/ball_red_white_1.png \
-      images/kambi_lines/red_white_combo.png
+    binary_add_doc kambi_lines
     binary_add_exec_and_data kambi_lines \
-      "$CASTLE_ENGINE_PATH"../kambi_lines/ \
-      'images/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
+      "$CASTLE_ENGINE_PATH"../kambi-lines/ \
+      'data/ kambi_lines_fullscreen.sh kambi_lines_fullscreen.bat' \
       't'
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
