@@ -54,9 +54,8 @@
      - or lower-level page_url.
 
      This makes sure that CASTLE_ENVIRONMENT is honored,
-     in particular that CASTLE_ENVIRONMENT == 'offline' is honored,
-     and that $locally_available_files affects the links correctly
-     (some links are to xxx.html, some to remote CASTLE_FINAL_URL/xxx.php).
+     in particular that CASTLE_ENVIRONMENT == 'offline' is honored
+     (links should be to remote CASTLE_FINAL_URL/xxx.php).
 
      The only allowed usage of <a href ...> is for internal links within
      the same page, like <a href="#internal_link">xxx</a>
@@ -82,53 +81,27 @@
 require_once 'funcs.php';
 require_once 'kambi_toc.php';
 
-/* Parsuj argv. ============================================================
-
-   Dozwolone opcje:
-   --gen-local : set CASTLE_ENVIRONMENT to 'offline'
-     (should be handled castle_engine_functions.php now)
-   --locally-avail ARGS... :
-     wszystkie parametry za --locally-avail zostaną potraktowane jako
-     nazwy plików które deklarujemy jako dostępne lokalnie w sensie funkcji
-     is_file_available_locally.
-
-   Wszystkie nieznane parametry spowodują exit() z odpowiednim komunikatem
-   błędu.
-
-   Tutaj ustawiamy zmienną $locally_available_files.
-   Tutaj też ustawiamy sobie prawidłowe current dir w przypadku
-   CASTLE_ENVIRONMENT == offline.
+/* Parse command-line args.
+   Right now, it just recognizes --html-validation.
 */
-
-/* Zmienna wewnętrzna dla funkcji is_file_available_locally, ustawiana
-   w kodzie poniżej. */
-$locally_available_files = array();
-
 if (array_key_exists('argc', $_SERVER))
 {
   for ($i = 1; $i < $_SERVER['argc']; $i++)
   {
-    if ($_SERVER['argv'][$i] == '--gen-local') {
-      /* should be already processed by castle_engine_functions.php */
-    } else
     if ($_SERVER['argv'][$i] == '--html-validation') {
       define_if_needed('HTML_VALIDATION', true);
     } else
-    if ($_SERVER['argv'][$i] == '--locally-avail') {
-      $locally_available_files = array_slice($_SERVER['argv'], $i + 1);
-      break;
-    } else {
+    {
       exit("Not recognized command-line parameter " . $_SERVER['argv'][$i]);
     }
   }
 }
 
-// tests: echo "Locally available are "; print_r($locally_available_files);
-
 /* Defaults. */
 define_if_needed('HTML_VALIDATION', false);
 define_if_needed('CASTLE_ENVIRONMENT', 'production');
 
+/* Set correct current dir in case of CASTLE_ENVIRONMENT == offline. */
 if (CASTLE_ENVIRONMENT == 'offline') {
   // this *should* fail if ENV_VARIABLE_NAME_LOCAL_PATH undefined
   $engine_trunk_dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
@@ -139,45 +112,6 @@ if (CASTLE_ENVIRONMENT == 'offline') {
     $dir = $engine_trunk_dir . '../cge-www/htdocs/';
   }
   chdir($dir) or exit("Cannot change directory to \"$dir\"");
-}
-
-/* ============================================================
-   some functions related to CASTLE_ENVIRONMENT == 'offline' */
-
-/* Jako $file_name podaj nazwę pliku. Np. "view3dscene.php",
-   "view3dscene.pl.php". Dozwolone jest poprzedzenie tego względnym katalogiem,
-   jak np. "miscella/badBlaster.zip".
-
-   Jeżeli CASTLE_ENVIRONMENT == 'offline'
-   i plik nie jest dostępny lokalnie to zwróci false,
-   wpp. zwróci true. Ujmując to inaczej zwraca
-   (CASTLE_ENVIRONMENT != 'offline') or (plik jest dostępny lokalnie).
-
-   Np. gdy generujemy dokumentację lokalną specjalnie do dołączenia jej do
-   programu rayhunter to mamy dostępne pliki "rayhunter.html",
-   "common_options.html"
-   tzn. dla tych wartości $file_name ta funkcja zwróci true;
-   dla pozostałych stron, np. "view3dscene.html", ta funkcja
-   zwróci false. Gdy generujemy strony nie-lokalnie
-   (czyli CASTLE_ENVIRONMENT != 'offline')
-   to zawsze zwraca true, bo wtedy zakłada że przecież na serwerze CURRENT_URL
-   są dostępne wszystkie pliki. */
-function is_file_available_locally($file_name)
-{
-  global $locally_available_files;
-  return (CASTLE_ENVIRONMENT != 'offline') ||
-    in_array($file_name, $locally_available_files);
-}
-
-/* Jak is_file_available_locally tyle że tej funkcji możesz używać tylko
-   dla stron (tzn. HTML/PHP) i nie podajesz tutaj rozszerzenia strony
-   (".html" lub ".php"). */
-function is_page_available_locally($page_name)
-{
-  /* Możemy tu zawsze doklejać suffix .html bo strony lokalne zawsze
-     mają rozszerzenie .html a dla stron nielokalnych funkcja
-     is_file_available_locally działa nie patrząc w ogóle na $file_name. */
-  return is_file_available_locally($page_name . '.html');
 }
 
 /* Global consts ====================================================== */
@@ -287,25 +221,15 @@ function page_url($page_name, $hash_link)
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
+    $extension = '.php';
     $remote_url = CURRENT_URL;
 
-    if (CASTLE_ENVIRONMENT == 'offline' && CURRENT_URL != '') {
-      throw new ErrorException('When CASTLE_ENVIRONMENT==offline, CURRENT_URL is expected to be empty by page_url');
-    }
-
-    if (!is_page_available_locally($result)) {
-      if (CASTLE_ENVIRONMENT != 'offline') {
-        throw new ErrorException('is_page_available_locally can be false only when CASTLE_ENVIRONMENT==offline');
+    if (CASTLE_ENVIRONMENT == 'offline') {
+      if (CURRENT_URL != '') {
+        throw new ErrorException('When CASTLE_ENVIRONMENT==offline, CURRENT_URL is expected to be empty by page_url');
       }
-      $extension = '.php';
       // $remote_url is empty now, since CURRENT_URL == ''
       $remote_url = CASTLE_FINAL_URL;
-    } else
-    if (CASTLE_ENVIRONMENT == 'offline') {
-      $extension = '.html';
-      // $remote_url is empty now, and that's what we want, let it stay empty
-    } else {
-      $extension = '.php';
     }
 
     $result = $remote_url . $result . $extension;

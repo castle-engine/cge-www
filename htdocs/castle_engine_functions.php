@@ -8,14 +8,11 @@ function castle_detect_environment()
   /* CASTLE_ENVIRONMENT equal "offline"
      means that we will set CURRENT_URL to '' and do not connect
      to the outside world for resources (scripts, images, including analytics).
-     Also some links are local (to xxx.html),
-     some remote (to CASTLE_FINAL_URL/xxx.php),
+     All the links lead to remote (to CASTLE_FINAL_URL/xxx.php),
      this is realized by kambi_common.php .
 
-     Useful to generate documentation working offline (for documentation/
-     subdirectory in releases, or for PasDoc docs in CGE release).
-
-     Below it is set if you give --gen-local param to command-line php.
+     Useful to generate documentation working offline
+     (for PasDoc docs in CGE release).
 
      Note that some things cannot work correctly in this mode:
      - Stuff that can be included by WordPress will be included
@@ -26,21 +23,13 @@ function castle_detect_environment()
      - og:image contents should be an absolute URL (Facebook warns
        about it otherwise).
   */
-  if (array_key_exists('argc', $_SERVER)) {
-    for ($i = 1; $i < $_SERVER['argc']; $i++) {
-      if ($_SERVER['argv'][$i] == '--gen-local') {
-        define('CASTLE_ENVIRONMENT', 'offline');
-        return;
-      }
-    }
-  }
+  // For now, this is environment is never auto-detected here.
 
   /* CASTLE_ENVIRONMENT equal "development"
      means that we are testing the page on development server,
      not on production server. It removes *some* stuff that embeds online
      content on our webpages, see castle_engine_externals.php.
-     The idea is to test our webpages locally
-     (through http://localhost/...) easily.
+     The idea is to test our webpages through http://localhost/ easily.
   */
   if (isset($_SERVER['SERVER_NAME']) &&
       ($_SERVER['SERVER_NAME'] == '127.0.0.1' ||
@@ -1109,8 +1098,7 @@ function echo_standard_program_download(
 
   echo '<div class="download jumbotron">';
 
-  if (CASTLE_ENVIRONMENT == 'offline')
-  {
+  if (CASTLE_GENERATE_OFFLINE) {
     /* Since the download links contain so many things
        (program version, available OSes, availability on servers
        (github ? sf ?)), it's safer to not put this information
