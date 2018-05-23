@@ -734,7 +734,7 @@ function echo_header_bonus ()
   title="Castle Game Engine - News Feed"
   href="<?php echo CURRENT_URL; ?>news_feed.php">
 
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?>castle-engine.css">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?>castle-engine-website-base/castle-engine.css">
 
 <?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo CURRENT_URL; ?><?php echo CASTLE_ENGINE_CUSTOM_CSS; ?>">
@@ -967,7 +967,7 @@ function castle_footer()
     echo '</div><div class="col-sm-3 col-sm-pull-9 well sidebar">' .$castle_sidebar. '</div></div></div>';
   }
 
-  common_footer(CURRENT_URL . 'castle-engine.js');
+  common_footer(CURRENT_URL . 'castle-engine-website-base/castle-engine.js');
 }
 
 function echo_footer ()
