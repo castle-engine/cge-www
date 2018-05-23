@@ -11,6 +11,14 @@ function _castle_disable_externals()
     HTML_VALIDATION);
 }
 
+function _castle_disable_stats()
+{
+  return (
+    CASTLE_ENVIRONMENT != 'production' ||
+    HTML_VALIDATION ||
+    CASTLE_DISABLE_STATS);
+}
+
 /* Google+ ------------------------------------------------------------------- */
 
 function googleplus_header()
@@ -78,7 +86,7 @@ EOD;
 
 function echo_piwik_tracking()
 {
-  if (CASTLE_ENVIRONMENT != 'production' || HTML_VALIDATION) return;
+  if (_castle_disable_stats()) return;
 
   /* Note: only one piwik.js should be included,
      so don't report to multiple Piwik installations.
@@ -112,7 +120,7 @@ function echo_piwik_tracking()
 
 function echo_google_analytics_tracking()
 {
-  if (CASTLE_ENVIRONMENT != 'production' || HTML_VALIDATION) return;
+  if (_castle_disable_stats()) return;
 
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->

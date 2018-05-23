@@ -144,6 +144,10 @@ require_once 'castle_engine_externals.php';
 require_once 'castle_engine_books.php';
 require_once 'geshi.php';
 
+define('CASTLE_DISABLE_STATS',
+  isset($_GET['CASTLE_DISABLE_STATS']) &&
+  $_GET['CASTLE_DISABLE_STATS'] == 'true');
+
 define('S_INSTALLATION_INSTRUCTIONS_SHORT',
   'No installation is required. Just download and unpack these archives wherever
   you want, and run the program inside. The documentation
