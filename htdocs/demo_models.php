@@ -34,8 +34,7 @@
     <div style="display: block; min-width: 20em; text-align: center;">
 
     <?php
-    if (CASTLE_ENVIRONMENT == 'offline')
-    {
+    if (CASTLE_GENERATE_OFFLINE) {
       echo '<p><a href="' . CURRENT_URL . $this_page_name .
         '" class="btn btn-primary btn-lg">Download demo models from our WWW page</a></p>';
     } else
