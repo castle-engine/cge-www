@@ -8,7 +8,8 @@ function _castle_disable_externals()
   return (
     CASTLE_ENVIRONMENT == 'offline' ||
     CASTLE_ENVIRONMENT == 'development' ||
-    HTML_VALIDATION);
+    HTML_VALIDATION ||
+    CASTLE_GENERATE_OFFLINE);
 }
 
 function _castle_disable_stats()
@@ -16,7 +17,7 @@ function _castle_disable_stats()
   return (
     CASTLE_ENVIRONMENT != 'production' ||
     HTML_VALIDATION ||
-    CASTLE_DISABLE_STATS);
+    CASTLE_GENERATE_OFFLINE);
 }
 
 /* Google+ ------------------------------------------------------------------- */
