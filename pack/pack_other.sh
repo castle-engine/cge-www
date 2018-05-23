@@ -15,8 +15,9 @@ case "$1" in
     dircleaner . clean -d .svn -d .git -f '*.blend1' -f '*.blend2'
     make -C demo_models/shadow_maps/castle_with_trees/ clean
 
-    mk_offline_docs demo_models/ demo_models
-    mv demo_models/demo_models.html demo_models/README.html
+    # These docs are not so useful. Existing README.md already points to it.
+    # mk_offline_docs demo_models/ demo_models
+    # mv demo_models/demo_models.html demo_models/README.html
 
     find ./ -type f -and -exec chmod 644 '{}' ';'
     find ./ -type d -and -exec chmod 755 '{}' ';'
