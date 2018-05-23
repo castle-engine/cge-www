@@ -13,3 +13,7 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Redirect kambi-php-lib, to keep PasDoc-generated docs accessing this working
+# (in CGE release too, before we fixed https://github.com/castle-engine/castle-engine/issues/59 )
+Redirect "/kambi-php-lib/" "/castle-engine-website-base/"
