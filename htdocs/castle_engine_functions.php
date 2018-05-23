@@ -975,14 +975,15 @@ function echo_footer ()
   ?>
 
   <div class="panel-footer">
-    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
-    Some images copyright <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a> and Paweł Wojciechowicz.
-    You can redistribute this on terms of the
+    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a> and Paweł Wojciechowicz from <a href="https://cat-astrophe-games.com/">Cat-astrophe Games</a>.
+    This documentation itself is also open-source,
+    you can redistribute it on terms of the
     <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.</span>
 
-    <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>.
+    <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
+    for analytics.
     Like every other frickin' website on the Internet.
-    See <a href="https://cat-astrophe-games.com/privacy-policy/">privacy policy</a>.
+    See our <a href="https://cat-astrophe-games.com/privacy-policy/">privacy policy</a>.
   </div>
 
   <?php
