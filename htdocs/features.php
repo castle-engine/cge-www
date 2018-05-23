@@ -2,7 +2,7 @@
 require_once 'castle_engine_functions.php';
 castle_header("Features", array(
   'path' => array('features'),
-  'social_share_image' => CURRENT_URL . 'images/castle_game_engine_icon.png',
+  'social_share_image' => page_url('images/castle_game_engine_icon.png'),
 ));
 
 $toc = new TableOfContents(

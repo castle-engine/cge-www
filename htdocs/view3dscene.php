@@ -331,7 +331,7 @@ flawlessly :) So give it a try!
 
 <h3><code>Walk</code> / <code>Fly</code> navigation modes:</h3>
 
-<img src="<?php echo CURRENT_URL; ?>images/original_size/navigation_controls.png" alt="Walk/Fly navigation controls" class="media-responsive" />
+<img src="<?php echo page_requisite('images/original_size/navigation_controls.png'); ?>" alt="Walk/Fly navigation controls" class="media-responsive" />
 
 <table class="key_list">
 

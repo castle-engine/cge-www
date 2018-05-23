@@ -21,29 +21,19 @@
 
    ============================================================
 
-   This is a common functions library, shared by both
+   A common functions library, shared by both
    https://castle-engine.io/ and
    http://michalis.ii.uni.wroc.pl/~michalis/
    websites.
 
-   Note that, contrary to other PHP files inside castle-engine-website-base/
-   directory, this file *does* make some assumptions about how your
-   website looks and works like. In other words, this file is probably
-   not directly usable for other projects. (Still, feel free
-   to take parts of it or adjust it, if you want, of course).
+   Before including this file, you should define:
 
-   ============================================================
-
-   Before including this file, you should define a couple of constants:
-   - ENV_VARIABLE_NAME_LOCAL_PATH (needed only if you intend to make
-     local HTML versions by command-line php)
    - CURRENT_URL (URL to main directory of these very web pages,
-     must be finished by "/")
+     must end with "/")
+
    - You may define KAMBI_NO_HOME_LINK (value is ignored,
      for now always define to true) to suppress automatic
      writing of main page link in common_header and common_footer.
-
-   ============================================================
 
    Some rules to follow when editing these pages:
 
@@ -51,7 +41,7 @@
      - a_href_page[_hashlink] function for php/html files.
      - current_www_a_href_size for downloadable files (not php/html).
        Do not use a_href_size from funcs.php.
-     - or lower-level page_url.
+     - or lower-level page_url for any files.
 
      This makes sure that CASTLE_ENVIRONMENT is honored,
      in particular that CASTLE_ENVIRONMENT == 'offline' is honored
@@ -60,20 +50,20 @@
      The only allowed usage of <a href ...> is for internal links within
      the same page, like <a href="#internal_link">xxx</a>
 
+   - To include embedded resources (images, CSS, JS files that are downloaded
+     to render this page; wget calls them "page requisites")
+     just make them relative to CURRENT_URL.
+
+     Best by using page_requisite('my_file.css').
+
+     Do *not* use the page_url or a_href_page in this case
+     (it would make the resource remote, in case of
+     CASTLE_ENVIRONMENT == 'offline').
+
    - Use common_header() / common_footer() for page header/footer.
      Between them insert just the page's body.
 
-   Ponadto następujące rzeczy są sugerowane aby uzyskać spójny styl:
-   - Ważniejsze strony o stosunkowo krótkim tytule mogą się zaczynać
-     używając echo pretty_heading(... tytuł strony ..., wersja programu),
-     w szczególności może być
-       echo pretty_heading($page_title);
-
-   - Przy opisie instalacji moich gier pod UNIXy home directory użytkownika
-     będę oznaczał jako "$HOME" (a nie np. "~"). Mimo że algorytm wyznaczania
-     katalogu domowego jest nieco bardziej złożony (CastleUtils.HomeDir)
-     niż tylko GetEnvironmentVariable('HOME'), to jednak zapis $HOME
-     uważam za lepszy od ~ bo jest dłuższy.
+   ============================================================
 */
 
 /* assert_options(ASSERT_ACTIVE, 1); */
@@ -100,19 +90,6 @@ if (array_key_exists('argc', $_SERVER))
 /* Defaults. */
 define_if_needed('HTML_VALIDATION', false);
 define_if_needed('CASTLE_ENVIRONMENT', 'production');
-
-/* Set correct current dir in case of CASTLE_ENVIRONMENT == offline. */
-if (CASTLE_ENVIRONMENT == 'offline') {
-  // this *should* fail if ENV_VARIABLE_NAME_LOCAL_PATH undefined
-  $engine_trunk_dir = getenv(ENV_VARIABLE_NAME_LOCAL_PATH);
-  if ($engine_trunk_dir === FALSE) {
-    // assuming that current dir is cge-www
-    $dir = 'htdocs/';
-  } else {
-    $dir = $engine_trunk_dir . '../cge-www/htdocs/';
-  }
-  chdir($dir) or exit("Cannot change directory to \"$dir\"");
-}
 
 /* Global consts ====================================================== */
 
@@ -206,24 +183,56 @@ function kambi_url_absolute($url)
   return isset($parse_url_result['scheme']);
 }
 
-/* Returns URL of desired page.
-   Add to $page_name (string) the URL (prefix), extension (suffix).
+function kambi_url_has_extension($url)
+{
+  return pathinfo($url, PATHINFO_EXTENSION) != '';
+}
 
-   It is also allowed for $page_name to be an absolute URL,
-   in which case we don't add any URL or extension.
-   We then only add $hash_link.
-
-   $hash_link is an anchor name.
-   If non-empty, it will be added to the URL, after a hash (#) sign.
+/* Returns URL of desired resource.
+   Add to $page_name CURRENT_URL (regardless of CASTLE_ENVIRONMENT,
+   so this is only good for resources needed to render the page)
+   and $hash_link (suffix after #).
 */
-function page_url($page_name, $hash_link)
+function page_requisite($page_name, $hash_link = '')
+{
+  $result = CURRENT_URL . $page_name;
+  if ($hash_link != '') {
+    $result .= '#' . $hash_link;
+  }
+  return $result;
+}
+
+function is_suffix($suffix, $str)
+{
+  return (substr($str, strlen($str) - strlen($suffix)) == $suffix);
+}
+
+/* Returns URL of desired page.
+   Add to $page_name (string) the URL (prefix), extension if needed (suffix),
+   and $hash_link (suffix after #).
+
+   It makes the CASTLE_ENVIRONMENT == 'offline' honored OK:
+   - when CASTLE_ENVIRONMENT != 'offline', adds CASTLE_FINAL_URL
+   - when CASTLE_ENVIRONMENT == 'offline', adds CURRENT_URL
+
+   If the URL is absolute, we do not add URL prefix
+   or extension suffix. We still add $hash_link.
+*/
+function page_url($page_name, $hash_link = '')
 {
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
-    $extension = '.php';
-    $remote_url = CURRENT_URL;
+    /* Do not add extension if one already is there,
+       or it's a directory name like 'wp/'
+    */
+    if (kambi_url_has_extension($result) || is_suffix('/', $result)) {
+      $add_extension = '';
+    } else {
+      $add_extension = '.php';
+    }
 
+    $remote_url = CURRENT_URL;
     if (CASTLE_ENVIRONMENT == 'offline') {
       if (CURRENT_URL != '') {
         throw new ErrorException('When CASTLE_ENVIRONMENT==offline, CURRENT_URL is expected to be empty by page_url');
@@ -232,7 +241,7 @@ function page_url($page_name, $hash_link)
       $remote_url = CASTLE_FINAL_URL;
     }
 
-    $result = $remote_url . $result . $extension;
+    $result = $remote_url . $result . $add_extension;
   }
 
   if ($hash_link != '') {
@@ -242,7 +251,7 @@ function page_url($page_name, $hash_link)
   return $result;
 }
 
-/* Simpler version of page_url. */
+/* Deprecated version of page_url. */
 function en_page_url($page_name, $hash_link = '')
 {
   return page_url($page_name, $hash_link);
@@ -428,12 +437,12 @@ if ($castle_wordpress) {
 <?php } ?>
 
 <!-- Bootstrap -->
-<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/bootstrap/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
 
 <!-- Colorbox -->
-<link href="<?php echo CURRENT_URL; ?>castle-engine-website-base/colorbox/example3/colorbox.css" type="text/css" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -490,14 +499,14 @@ function common_footer($js_using_jquery = '')
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/js/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/js/jquery.min.js'); ?>" type="text/javascript"></script>
 <!-- Include colorbox after jQuery is known -->
-<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo CURRENT_URL; ?>castle-engine-website-base/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
 <?php
 if ($js_using_jquery) {

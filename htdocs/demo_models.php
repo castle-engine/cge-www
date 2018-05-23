@@ -35,7 +35,7 @@
 
     <?php
     if (CASTLE_GENERATE_OFFLINE) {
-      echo '<p><a href="' . CURRENT_URL . $this_page_name .
+      echo '<p><a href="' . page_url($this_page_name) .
         '" class="btn btn-primary btn-lg">Download demo models from our WWW page</a></p>';
     } else
     {
