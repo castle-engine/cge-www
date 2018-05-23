@@ -2,7 +2,7 @@
   require_once 'x3d_implementation_common.php';
   require_once 'x3d_extensions_functions.php';
   x3d_extensions_header('Time', 'time', 'time',
-    'Extensions introduced in <a href="' . CURRENT_URL . '">Castle Game Engine</a> related to the time.');
+    'Extensions introduced in <a href="' . page_url('index') . '">Castle Game Engine</a> related to the time.');
 
 $toc = new TableOfContents(
   array(

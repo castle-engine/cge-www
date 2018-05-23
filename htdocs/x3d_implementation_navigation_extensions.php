@@ -2,7 +2,7 @@
   require_once 'x3d_implementation_common.php';
   require_once 'x3d_extensions_functions.php';
   x3d_extensions_header('Navigation', 'navigation', 'navigation',
-    'Extensions introduced in <a href="' . CURRENT_URL . '">Castle Game Engine</a> related to navigation.');
+    'Extensions introduced in <a href="' . page_url('index') . '">Castle Game Engine</a> related to navigation.');
 
   $toc = new TableOfContents(
     array(
@@ -298,7 +298,7 @@ echo castle_thumbs(array(
 tree structure to handle collision detection in arbitrary 3D worlds.
 The structure used in our engine is the <i>octree</i>, with a couple
 of special twists to handle dynamic scenes. See
-<a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
+<a href="<?php echo page_url('vrml_engine_doc/output/xsl/html/chapter.octree.html'); ?>">documentation
 chapter "octrees" for more explanation</a>.</p>
 
 <p>There are some limits that determine how fast the octree is constructed,
@@ -317,7 +317,7 @@ suit (almost?) all practical uses.</i></p>
 
 <p>If the above paragraph didn't scare you, and you want to know more
 about octrees in our engine: besides
-<a href="<?php echo CURRENT_URL; ?>vrml_engine_doc/output/xsl/html/chapter.octree.html">documentation
+<a href="<?php echo page_url('vrml_engine_doc/output/xsl/html/chapter.octree.html'); ?>">documentation
 chapter "octrees"</a> you can
 also take a look at the (source code and docs) of the
 <?php api_link('TCastleSceneCore.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?> property.

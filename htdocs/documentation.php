@@ -257,7 +257,7 @@ you have appropriate libraries installed on your system.
 
 <div class="centered-download-wrapper">
 <div class="download jumbotron">
-<a class="btn btn-primary btn-lg" href="<?php echo CURRENT_URL; ?>manual_intro.php">Now go to our manual!</a>
+<a class="btn btn-primary btn-lg" href="<?php echo page_url('manual_intro'); ?>">Now go to our manual!</a>
 
 <div style="margin-top: 1em;">..and create some cool games!:)
 
