@@ -20,6 +20,7 @@ class WP_Discord_Post_Admin {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
+		add_action( 'admin_init', array( $this, 'add_privacy_policy_content' ) );
 	}
 
 	/**
@@ -272,6 +273,34 @@ class WP_Discord_Post_Admin {
 
 		echo '<input type="checkbox" name="wp_discord_enabled_for_woocommerce" value="yes"' . checked( 'yes', $value, false ) . ' />';
 		echo '<span class="description">' . esc_html__( 'Write in Discord when a new WooCommerce order is created.', 'wp-discord-post' ) . '</span>';
+	}
+
+	/**
+	 * Adds some content to the Privacy Policy default content.
+	 */
+	public function add_privacy_policy_content() {
+	    if ( ! function_exists( 'wp_add_privacy_policy_content' ) ) {
+	        return;
+	    }
+
+		$content = '';
+
+		if ( 'yes' === get_option( 'wp_discord_enabled_for_woocommerce' ) ) {
+		    $content .= __( 'When you place an order on this site, we send your full name to discordapp.com.', 'wp-discord-post' );
+		}
+
+		if ( 'yes' === get_option( 'wp_discord_enabled_for_jetpack_cf' ) || 'yes' === get_option( 'wp_discord_enabled_for_cf7' ) ) {
+			$content .= __( 'When you use the contact forms on this site, we send their content to discordapp.com.', 'wp-discord-post' );
+		}
+
+		if ( ! empty( $content ) ) {
+			$content .= sprintf( ' ' . __( 'The discordapp.com privacy policy is <a href="%s" target="_blank">here</a>.', 'wp-discord-post' ), 'https://discordapp.com/privacy' );
+		}
+
+	    wp_add_privacy_policy_content(
+	        'WP Discord Post',
+	        wp_kses_post( wpautop( $content, false ) )
+	    );
 	}
 }
 

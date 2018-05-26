@@ -3,7 +3,7 @@ Contributors: nicolamustone
 Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7
 Requires at least: 4.4
 Tested up to: 4.9.6
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,11 @@ The manual installation method involves downloading this plugin and uploading it
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.1.3 =
+* Added logging functions for easy troubleshoot if needed.
+* Added example content for the Privacy Policy page.
+* Fixed posts not being sent properly when published.
 
 = 1.1.2 =
 * Removed option to process old posts because it was causing more troubles than benefits. You can use the filter `wp_discord_post_is_new_post` instead.

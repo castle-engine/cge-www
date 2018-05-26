@@ -57,6 +57,12 @@ class WP_Discord_Post_CF7 {
 		);
 
 		$response = wp_remote_post( esc_url( $webhook_url ), $request );
+
+		if ( ! is_wp_error( $response ) ) {
+			error_log( 'WP Discord Post - Contact Form sent.' );
+		} else {
+			error_log( sprintf( 'WP Discord Post - Contact Form not sent. %s', $response->get_error_message() ) );
+		}
 	}
 }
 

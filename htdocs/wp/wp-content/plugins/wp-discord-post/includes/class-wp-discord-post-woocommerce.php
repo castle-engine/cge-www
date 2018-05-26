@@ -85,6 +85,12 @@ class WP_Discord_Post_WooCommerce {
 
 		$http     = WP_Discord_Post_HTTP::instance();
 		$response = $http->send_request( $content );
+
+		if ( ! is_wp_error( $response ) ) {
+			error_log( sprintf( 'WP Discord Post - Order %d sent.', $order_id ) );
+		} else {
+			error_log( sprintf( 'WP Discord Post - Order %d not sent. %s', $order_id, $response->get_error_message() ) );
+		}
 	}
 }
 

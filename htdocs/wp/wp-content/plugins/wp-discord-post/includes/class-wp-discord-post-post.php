@@ -30,6 +30,7 @@ class WP_Discord_Post_Post {
 	public function send_post( $id, $post ) {
 		// Check if the post has been already published and if it should be processed.
 		if ( ! apply_filters( 'wp_discord_post_is_new_post', $this->is_new_post( $post ) ) ) {
+			error_log( sprintf( 'WP Discord Post - Post %d is not a new post. Skipping.', $id ) );
 			return;
 		}
 
@@ -61,6 +62,8 @@ class WP_Discord_Post_Post {
 
 		if ( ! is_wp_error( $response ) ) {
 			add_post_meta( $id, '_wp_discord_post_published', 'yes' );
+		} else {
+			error_log( sprintf( 'WP Discord Post - Post %d not sent. %s', $id, $response->get_error_message() ) );
 		}
 	}
 
@@ -71,9 +74,13 @@ class WP_Discord_Post_Post {
 	 * @return bool
 	 */
 	public function is_new_post( $post ) {
-		$post_date         = strtotime( $post->post_date );
+		$post_date = strtotime( $post->post_date );
 
 		if ( $post_date < current_time( 'timestamp' ) ) {
+			error_log( sprintf( 'WP Discord Post - Post %d is not a new post. Skipping.', $id ) );
+			return false;
+		} else {
+			error_log( sprintf( 'WP Discord Post - Post %d maybe is new. _wp_discord_post_published = %s', $id, 'yes' === get_post_meta( $post->ID, '_wp_discord_post_published', true ) ) );
 			return 'yes' !== get_post_meta( $post->ID, '_wp_discord_post_published', true );
 		}
 	}
