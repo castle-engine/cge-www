@@ -69,26 +69,25 @@ Procedure to update WWW content
   Should we just use zip instead of dmg?
   https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed
 
-- if you modified castle_game_engine:
-  - update apidoc/
+- if you released new castle_game_engine version:
+  - update ../castle-engine/doc/pasdoc/html-parts/body-end.php with new versions,
+  - update apidoc by
+    cd ../castle-engine/doc/pasdoc/html-parts/
+    make clean default
+    cd ../
+    make clean upload
   - update $engine_ver in htdocs/all_programs_sources.php, to reflect
     with what engine ver each sources were tested.
+  - update FPC/Lazarus requirements:
+    https://castle-engine.io/supported_compilers.php
 
 - good practice after large changes is to check
-  linkchecker.sh and validate_html.sh
+  linkchecker.sh and
+  validate_html.sh
 
 - if you change some content managed inside GIT:
   - commit and push your changes, of course
-  - git pull --rebase on SF within cge-www
-
-- if may be good to fix old links leading to
-  http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/ now
-  to go to https://castle-engine.io/ .
-  (M-x kam-castle-engine-snapshot-docs-to-normal in Michalis Emacs.)
-
-- After updating CGE,
-  update also FPC/Lazarus requirements:
-  https://castle-engine.io/supported_compilers.php
+  - git pull --rebase on castle-engine.io (ssh-ceup)
 
 - if you change some content outside GitHub cge-www repository:
   (These are some files that are automatically generated and it would

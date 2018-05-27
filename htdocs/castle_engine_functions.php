@@ -138,7 +138,7 @@ define('FPC_CFG_DOCS', 'see <a href="http://www.freepascal.org/docs-html/user/us
 
 global $castle_apidoc_url;
 if (CASTLE_ENVIRONMENT == 'development') {
-  $castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/';
+  $castle_apidoc_url = 'https://castle-engine.io/apidoc-unstable/html/';
 } else {
   $castle_apidoc_url = page_url('apidoc/html/');
 }
