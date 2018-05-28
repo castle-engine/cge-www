@@ -8,6 +8,8 @@ htdocs/vrml_engine_doc/output/
 htdocs/vrml_engine_doc/*.tar.gz
 htdocs/apidoc/html/
 htdocs/apidoc/*.tar.gz
+htdocs/apidoc-unstable/html/
+htdocs/apidoc-unstable/*.tar.gz
 htdocs/compositing_shaders_doc/html/
 htdocs/compositing_shaders_doc/*.pdf
 htdocs/compositing_shaders_doc/*.fo

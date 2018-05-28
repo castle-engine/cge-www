@@ -17,3 +17,9 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 # Redirect kambi-php-lib, to keep PasDoc-generated docs accessing this working
 # (in CGE release too, before we fixed https://github.com/castle-engine/castle-engine/issues/59 )
 Redirect "/kambi-php-lib/" "/castle-engine-website-base/"
+
+# Unknown who contains this invalid link,
+# but our redirect seems stuck at this point,
+# Google Search Console reports "redirect error" and indeed opening this
+# in Firefox or wget causes redirect error.
+Redirect "/engine.php/creating_data_intro.php" "/"
