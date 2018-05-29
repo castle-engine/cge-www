@@ -71,7 +71,7 @@ is <code>(x/weight, y/weight, z/weight)</code>.</p>
 
 <p>This may be a little confusing, if you're used to normal NURBS
 equation definition like from <a href="http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/NURBS-def.html">here</a>
-or <a href="https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at wikipedia</a>.
+or <a href="https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline">at Wikipedia</a>.
 Instead of usual equation:</p>
 
 <pre>P(u) = (sum of basis * control point * weight) / (sum of basis * weight)</pre>
@@ -99,12 +99,12 @@ you should</p>
 then the corresponding control point should also be multiplied * 2,
 to make things behave intuitive.</p>
 
-<p>In particular, when writing an exporter from normal 3D modelling programs,
+<p>In particular, when writing an exporter from normal 3D modeling programs,
 like <a href="http://www.blender.org/">Blender</a>, note that you have
 to multiply Blender control points * Blender weights to get correct
 X3D control points. When you use <a href="http://wdune.ourproject.org/">White Dune</a>,
-a NURBS 3D modeller especially suited for working with VRML/X3D,
-this non-intuitive behevior is somewhat hidden (the <a href="http://129.69.35.12/dune/docs/usage_docs/dune_en.html#nurbsbasics">curve "handles"</a>
+a NURBS 3D modeler especially suited for working with VRML/X3D,
+this non-intuitive behavior is somewhat hidden (the <a href="http://129.69.35.12/dune/docs/usage_docs/dune_en.html#nurbsbasics">curve "handles"</a>
 you see in White Dune are actually <i>"X3D control points / divided by weight"</i>).</p>
 
 <p>Our behavior is compatible with other X3D browsers/editors
