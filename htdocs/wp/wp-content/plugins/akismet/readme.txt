@@ -3,7 +3,7 @@ Contributors: matt, ryan, andy, mdawaffe, tellyworth, josephscott, lessbloat, eo
 Tags: akismet, comments, spam, antispam, anti-spam, anti spam, comment moderation, comment spam, contact form spam, spam comments
 Requires at least: 4.0
 Tested up to: 4.9.6
-Stable tag: 4.0.6
+Stable tag: 4.0.7
 License: GPLv2 or later
 
 Akismet checks your comments and contact form submissions against our global database of spam to protect you and your site from malicious content.
@@ -29,6 +29,13 @@ Upload the Akismet plugin to your blog, Activate it, then enter your [Akismet.co
 1, 2, 3: You're done!
 
 == Changelog ==
+
+= 4.0.7 =
+*Release Date - 28 May 2018*
+
+* Based on user feedback, the link on "Learn how your comment data is processed." in the optional privacy notice now has a `target` of `_blank` and opens in a new tab/window.
+* Updated the in-admin privacy notice to use the term "comment" instead of "contact" in "Akismet can display a notice to your users under your comment forms."
+* Only show in-admin privacy notice if Akismet has an API Key configured
 
 = 4.0.6 =
 *Release Date - 26 May 2018*
