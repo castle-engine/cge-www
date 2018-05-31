@@ -268,7 +268,12 @@ $castle_sitemap = array(
           'manual_log' => array('title' => 'Logging'),
           'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
           'manual_key_mouse' => array('title' => 'Key/mouse shortcuts'),
-          'manual_optimization' => array('title' => 'Optimization and profiling'),
+          'manual_optimization' => array('title' => 'Optimization and profiling',
+            'sub' => array(
+              'profiling' => array('title' => 'Profiling Using Valgrind (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind'),
+              'prettier' => array('title' => 'How Make Rendering Prettier (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/How-to-make-rendering-prettier%3F'),
+            )
+          ),
           'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
           'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
             'sub' => array(
