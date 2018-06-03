@@ -36,14 +36,17 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <ul>
   <li><p><?php echo x3d_node_link('ImageTexture'); ?>,<br>
-    <?php echo x3d_node_link('TextureTransform'); ?>,<br>
-    <?php echo x3d_node_link('TextureCoordinate'); ?>,<br>
-    <?php echo x3d_node_link('PixelTexture'); ?></p>
+    <?php echo x3d_node_link('PixelTexture'); ?>.</p>
 
-    <p><i>Note</i>: ImageTexture allows various texture formats,
+    <p>These nodes define a texture,
+    from an external file (in the usual case of <code>ImageTexture</code>)
+    or embedded inside the X3D file (in case of <code>PixelTexture</code>,
+    or <code>ImageTexture</code> using <a href="manual_network.php">data URI</a>).
+
+    <p><code>ImageTexture</code> allows various texture formats,
     including JPEG, PNG, GIF, BMP, PPM, RGBE, KTX, DDS.
     See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
-    documentation for more detailed list.
+    documentation for a detailed list.
 
     <p><i>Note about alpha channel</i>: alpha channel of the textures
     is fully supported, both a simple yes-no transparency (done
@@ -54,7 +57,16 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     'section_ext_alpha_channel_detection'); ?> for details.
     The bottom line is: everything will magically work fast and look perfect.
 
+  <li><p><?php echo x3d_node_link('TextureCoordinate'); ?>,<br>
+    <?php echo x3d_node_link('TextureTransform'); ?>.
+
+    <p>These nodes specify how the texture is mapped onto the shape.
+    All X3D nodes have some "default" texture mapping, if you don't provide
+    explicit texture coordinates.
+
   <li><p><?php echo x3d_node_link('MovieTexture'); ?>
+
+    <p>This node defines a texture that is actually a (playing) movie file.
 
     <p><i>TODO</i>: for now, the sound of the movie is not played.
 
@@ -90,13 +102,20 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         'section_ext_movie_from_image_sequence'); ?>.
     </ul>
 
-  <li><?php echo x3d_node_link('MultiTexture'); ?>,<br>
+  <li><p><?php echo x3d_node_link('MultiTexture'); ?>,<br>
       <?php echo x3d_node_link('MultiTextureCoordinate'); ?>,<br>
       <?php echo x3d_node_link('MultiTextureTransform'); ?>
 
-    <p>Support for all fields (unless mentioned below).
+    <p><i>Multi-texturing</i> means that you can use multiple textures on a single polygon (face). A number of textures can be mixed, in a way resembling the "layers" concept you from image editing applications (like GIMP or Photoshop). For each layer, you specify which texture to use, the "mode" (how it is mixed), also each layer may have it's own texture coordinates.
 
-    <p>Note that using <code>MultiTexture.function</code>
+    <p>Some examples are present in the
+    <a href="https://github.com/castle-engine/demo-models/">demo-models</a>,
+    in particular in
+    <a href="https://github.com/castle-engine/demo-models/tree/master/multi_texturing">multi_texturing subdirectory</a>.
+
+    <p>We support for all the fields from X3D specification (unless mentioned below).
+
+    <!--p>Note that using <code>MultiTexture.function</code>
     forces shader pipeline for given shape (so it will not work on really
     old GPUs).
     There is no way to reasonably do this using OpenGL fixed-function pipeline,
@@ -104,27 +123,41 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
     are done, while X3D spec requires <code>function</code> to act afterwards.
 
-    <p><i>TODO</i>: modes
+    (commented out, not important anymore)
+    -->
+
+    <p>We implement most modes (in <code>MultiTexture.mode</code>), except (<i>TODO</i>):
     <code>MODULATEALPHA_ADDCOLOR</code>,
     <code>MODULATEINVALPHA_ADDCOLOR</code>,
-    <code>MODULATEINVCOLOR_ADDALPHA</code>
-    are temporarily not supported.</p>
+    <code>MODULATEINVCOLOR_ADDALPHA</code>.</p>
 
-    <p><i>TODO</i>: source values "DIFFUSE" and "SPECULAR" are treated
-    the same, as <code>PRIMARY_COLOR</code> (in the sense of OpenGL
-    ARB_texture_env_combine extension). Primary color contains
-    material ambient, diffuse and specular factors,
-    multiplied by lighting properties, summed over all lights.
-    I don't know of any way to efficiently implement separate
-    diffuse / specular sources &mdash; please report if you do,
-    otherwise there's no way this can be fixed (note that engine's
-    multi-texturing must work without shaders too).</p>
+    <p><i>TODO</i>: <code>MultiTexture.source</code> values <code>"DIFFUSE"</code> and <code>"SPECULAR"</code> are treated the same.
+    <ul>
+      <li>If <a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">SeparateDiffuseTexture</a> is false (which is the default), the textures process the final color obtained from lighting calculation (so it's affected by all the material and lights colors for ambient, diffuse and specular).
+      <li>If <a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">SeparateDiffuseTexture</a> is true, the textures process the diffuse color.
+    </ul>
+
+    <p>Note that the multi-texturing specification of X3D has unfortunately some issues. <a href="x3d_multi_texturing.php">Clarifications and our extensions are documented here</a>.
+
+    <p>Note that in case of 2D games, when the camera cannot move freely, you can often use multiple polygons (each with a single texture) rendered on top of each other (positioned with slight shift), instead of using a single polygon with multi-texturing. Both choices are fine, in principle: use whichever is more comfortable for your case.
   </li>
 
-  <li><?php echo x3d_node_link('TextureCoordinateGenerator'); ?>
+  <li><p><?php echo x3d_node_link('TextureCoordinateGenerator'); ?>
+
+    <p>This node can be used instead of
+    <?php echo x3d_node_link('TextureCoordinate'); ?>
+    to automatically calculate the coordinates based on some algorithm.
 
     <p>Supported modes are now "SPHERE", "COORD", "COORD-EYE",
-    "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".</p>
+    "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".
+    We also allow some extensions:
+    <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
+    and "WORLDSPACENORMAL"', 'x3d_extensions',
+    'section_ext_tex_coord_worldspace'); ?>,
+    <?php echo a_href_page_hashlink('"BOUNDS", "BOUNDS2D"
+    and "BOUNDS3D"', 'x3d_extensions',
+    'section_ext_tex_coord_bounds'); ?>.
+    </p>
 
     <p>Note that "CAMERASPACEPOSITION" and
     "COORD-EYE" are exactly the same thing. Google confirms it
@@ -133,14 +166,12 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <a href="http://www.bitmanagement.com/developer/contact/labs/chrome.html">in this old
     bitmanagement spec they mention they are equal</a>).</p>
 
-    <p>As an extension, we also allow <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
-    and "WORLDSPACENORMAL" texture generation modes', 'x3d_extensions',
-    'section_ext_tex_coord_worldspace'); ?>.</p>
-
     <p>TODO: not implemented modes: "SPHERE-LOCAL", "NOISE", "NOISE-EYE",
     "SPHERE-REFLECT", "SPHERE-REFLECT-LOCAL".
 
   <li><p><?php echo x3d_node_link('TextureProperties'); ?>
+
+    <p>Adjust various texture calculation properties.
 
     <p><code>minificationFilter</code>, <code>magnificationFilter</code>,
     <code>anisotropicDegree</code> fields are supported.

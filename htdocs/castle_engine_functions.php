@@ -271,7 +271,7 @@ $castle_sitemap = array(
           'manual_optimization' => array('title' => 'Optimization and profiling',
             'sub' => array(
               'profiling' => array('title' => 'Profiling Using Valgrind (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind'),
-              'prettier' => array('title' => 'How Make Rendering Prettier (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/How-to-make-rendering-prettier%3F'),
+              'prettier' => array('title' => 'How To Make Rendering Prettier (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/How-to-make-rendering-prettier%3F'),
             )
           ),
           'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
