@@ -118,10 +118,10 @@ You are not limited to only loading the content from X3D files
 (or Collada, or Wavefront OBJ...).
 
 <p>For example, consider an X3D node
-<?php echo x3d_node_link2('Box', 'geometry3D'); ?>,
-that has fields <code>size</code> (type <code>SFVec3f</code>)
-and <code>solid</code> (type <code>SFBool</code>).
-In Pascal, this nodes corresponds to the class
+<?php echo x3d_node_link2('Box', 'geometry3D'); ?> (this is a link to the X3D specification about it).
+This node in X3D has fields <code>size</code> (the X3D type is <code>SFVec3f</code>)
+and <code>solid</code> (the X3D type is <code>SFBool</code>).
+In Pascal, this node corresponds to the class
 <a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html">TBoxNode</a>,
 with properties
 <a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html#Size">Size (type TVector3)</a>
@@ -132,10 +132,10 @@ You can create and edit instances of
 and use <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
  to render them.
 
-<p>This section of the Castle Game Engine documentation is describes all X3D nodes
+<p>This section of the Castle Game Engine documentation describes all X3D nodes
 (often by referring you to the X3D specification for details),
 and it shows various examples how to create and edit X3D graph using Pascal.
 See for example <a href="x3d_implementation_geometry3d.php">Pascal example of creating a 3D mesh (TIndexedFaceSetNode)</a>,
-<a href="x3d_implementation_geometry2d.php">Pascal example of seting up 2D rectangle and lines</a>.
+or <a href="x3d_implementation_geometry2d.php">Pascal example of seting up 2D rectangle and lines</a>.
 
 <?php vrmlx3d_footer(); ?>

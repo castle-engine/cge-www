@@ -152,10 +152,10 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     "CAMERASPACEPOSITION", "CAMERASPACENORMAL", "CAMERASPACEREFLECTIONVECTOR".
     We also allow some extensions:
     <?php echo a_href_page_hashlink('"WORLDSPACEREFLECTIONVECTOR"
-    and "WORLDSPACENORMAL"', 'x3d_extensions',
+    and "WORLDSPACENORMAL"', 'x3d_implementation_texturing_extensions',
     'section_ext_tex_coord_worldspace'); ?>,
     <?php echo a_href_page_hashlink('"BOUNDS", "BOUNDS2D"
-    and "BOUNDS3D"', 'x3d_extensions',
+    and "BOUNDS3D"', 'x3d_implementation_texturing_extensions',
     'section_ext_tex_coord_bounds'); ?>.
     </p>
 
