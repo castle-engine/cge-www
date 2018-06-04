@@ -7,8 +7,8 @@ castle_header("Mac OS X notes and requirements", array(
 $toc = new TableOfContents(
   array(
     new TocItem('Compiling on Mac OS X', 'compiling'),
-    new TocItem('GUI libraries: Carbon? X11? X11 + GTK + GtkGlExt?', 'options'),
-    new TocItem('Advantages and disadvantages of using Carbon', 'carbon'),
+    new TocItem('GUI libraries: Carbon/Cocoa? X11? X11 + GTK + GtkGlExt?', 'options'),
+    new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl'),
     new TocItem('Other libraries that may be required', 'other_libs'),
     new TocItem('Notes specific to particular Mac OS X package managers', 'package_managers'),
       new TocItem('Consider installing FPC and Lazarus through them too', 'fpc_and_laz', 1),
@@ -58,12 +58,9 @@ $toc = new TableOfContents(
     <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     component on a Lazarus form.
 
-    <p>By default, on Mac OS X, this means that your applications
-    will use <i>Carbon</i>, which is a built-in library
-    on Mac OS X. So, your programs don't require anything extra.
-
-    <p>(You can switch Lazarus widgetset, though, to use a different library
-    under the hood.)
+    <p>This, in practice, means that your applications will use <i>Carbon</i> or <i>Cocoa</i>.
+    These are built-in native libraries on Mac OS X.
+    So, your programs don't require anything extra to distribute.
 
   <li><p>Alternatively, you can create your windows using our own
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
@@ -165,7 +162,8 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
       <li><p>Alternatively, <b>you can switch the backend of
         <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
         to <code>CASTLE_WINDOW_LCL</code></b>.
-        This uses Lazarus under the hood, and this way we will use <i>Carbon</i> instead.
+        This uses Lazarus under the hood, and this way we will use <i>Carbon</i> or <i>Cocoa</i>
+        instead.
         This means that <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
         will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
         internally.
@@ -192,7 +190,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 <?php echo $toc->html_section(); ?>
 
 <p>On Mac OS X, the default LCL widgetset is
-<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.</p>
+<a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.
 
 <ul>
   <li><p><i>Good:</i> native look, application has a normal menu bar,
@@ -202,12 +200,17 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     that can be easily installed by dragging to your <i>Applications</i>
     directory.
 
-  <li><p><i>Good:</i> no extra dependencies, Carbon is already part of every
+  <li><p><i>Good:</i> no extra dependencies, Carbon and Cocoa are already part of every
     Mac OS X installation. (No dependencies on X11, GTK, GTKGlExt etc.)
 
-  <li><p><i>Bad:</i> Unfortunately, Carbon is deprecated by Apple
-    (although there are many applications using it, including Lazarus IDE itself).
+  <li><p><i>Bad:</i> Carbon is deprecated by Apple.
     It is available only for 32-bit applications.
+
+    <p>You can alternatively use the <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>
+    widgetset, but it is not as stable.
+    As of Lazarus 1.8, CastleWindow + LCL backend + Cocoa widgetset
+    doesn't work reliably. So, in practice, you are stuck with 32-bit applications
+    if you want native look on macOS.
 
     <p>In time, this will be resolved in LCL when
     <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>
