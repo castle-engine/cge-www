@@ -185,7 +185,7 @@ fade_duration="animation_duration * 0.1"
 fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 0.5)"
 </pre>
 
-        <p><a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">Animation blending is already working, see here!</a> However, it still has two TODOs for now (it does not yet work for castle-anim-frames or resource.xml).
+        <p><i><a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">Animation blending is already working, see here!</a> However, it still has two TODOs for now (it does not yet work for castle-anim-frames or resource.xml).</i>
 
       <li><p><b>Batching</b>
 
@@ -226,31 +226,15 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
     <!-- Use ARB_point_sprite? -->
 
+    <p><i>(Note that we already have 2D particle system in CGE, see <a href="https://github.com/Kagamma/cge-2d-particle-emitter">cge-2d-particle-emitter by Kagamma</a>)</i></p>
+
   </li>
-
-<?php /*
-  <li>
-    <p><b>Use Cocoa under Mac OS X</b></p>
-
-    <p>We already have a native look and feel, and easy installation,
-    under Mac OS X, see
-    <a href="<?php echo CURRENT_URL; ?>old_news.php?id=devel-2013-04-19">relevant news</a>
-    and <a href="<?php echo CURRENT_URL; ?>macosx_requirements.php">docs for Mac OS X</a>.
-    Our programs no longer have to use X11 and GTK under Mac OS X.
-    Still, current solution is not optimal:
-    we use LCL with Carbon under the hood. Carbon is deprecated and only
-    32-bit (Cocoa should be used instead), and depending on LCL has it's
-    own problems (mouse look is not smooth with LCL message loop).
-
-    <p>The proposed task is to implement nice Cocoa backend
-    in <code>CastleWindow</code> unit. Contributions are welcome.
-    This is an easy and rewarding task for a developer interested in Mac OS X.
-  </li>
-
-*/ ?>
 
   <li>
     <p><b>Support Material.mirror field for OpenGL rendering</b></p>
+
+    <p><i>(This feature is already in progress, but with somewhat different API: Instead of Material.mirror, we give you <a href="https://castle-engine.io/wp/2018/06/16/easy-mirrors-on-flat-surfaces-more-progress/">more straightforward way to use RenderedTexture for a mirror</a>. This approach is different, doesn't look so perfect, but it has many other advantages, it is also more straightforward to maintain. So, for practical purposes, it replaces the Material.mirror idea.)</i></p>
+
     <p>An easy way to make planar (on flat surfaces) mirrors. Just set Material.mirror field to something > 0 (setting it to 1.0 means it's a perfect mirror, setting it to 0.5 means that half of the visible color is coming from the mirrored image, and half from normal material color).</p>
     <p>Disadvantages: This will require an additional rendering pass for such shape (so expect some slowdown for really large scenes). Also your shape will have to be mostly planar (we will derive a single plane equation by looking at your vertexes).</p>
     <p>Advantages: The resulting mirror image looks perfect (there's no texture pixelation or anything), as the mirror is actually just a specially rendered view of a scene. The mirror always shows the current scene (there are no problems with dynamic scenes, as mirror is rendered each time).</p>
@@ -365,9 +349,9 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
             directory as for config files may not be adviced,
             e.g. to allow users to backup config without backuping cache).
             See standards suitable for each OS (for Linux, and generally Unix
-            (but not Mac OS X) see <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a>;
+            (but not macOS) see <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a>;
             specific Microsoft, Apple specs may be available
-            for Windows and Mac OS X).
+            for Windows and macOS).
           <li>Probably it's best to store a resource under a filename
             calculated by MD5 hash on the URL.
           <li>For starters, you can just make the max cache life
@@ -387,7 +371,34 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
   </ol>
 
   <li>
-    <p><b>Easy way to use 3rd-person camera movement in your games</b>
+    <p><b>Easy way to use 3rd-person camera movement in your games.</b>
+
+  <li>
+    <p><b>Make 100% rendering features available on OpenGLES too.</b>
+
+    <p><a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).</a>
+
+  <li>
+    <p><b>Use Cocoa under macOS</b></p>
+
+    <p>We already have a native look and feel, and easy installation,
+    under macOS by
+    and <a href="macosx_requirements.php">using LCL with Carbon or Cocoa on macOS</a>.
+    Our programs do not have to use X11 and GTK under macOS.
+
+    <p>However, the current solution is not optimal.
+    Carbon is deprecated and only 32-bit (so memory is limited).
+    Cocoa is not stable in LCL yet.
+    Depending on LCL has it's own problems
+    (mouse look is not smooth with LCL message loop).
+
+    <p>The proposed task is to implement nice Cocoa backend
+    in <code>CastleWindow</code> unit. You can of course look at LCL implementation
+    of Cocoa widgetset, but I expect that we can implement it muuuch simpler
+    (and more stable) as CastleWindow backend.
+    <i>Contributions are welcome.
+    This is an easy and rewarding task for a developer interested in macOS.</i>
+  </li>
 </ul>
 
 <?php castle_footer(); ?>
