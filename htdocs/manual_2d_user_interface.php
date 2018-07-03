@@ -459,7 +459,7 @@ The key to understand this is that <i>the scene manager serves by default two pu
 and it always refers to some <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
  instance to know what to show inside.
 
-<p>Often is makes sense to keep <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
+<p>Often it makes sense to keep <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
  as <code>true</code>, if you have something
 like a <i>primary</i> viewport of the user. And then use
  <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
