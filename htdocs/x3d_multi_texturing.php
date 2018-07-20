@@ -688,7 +688,10 @@ In table below,
     <td>Output.RGBA :=<br/>
         &nbsp;&nbsp;Arg1 * PRIMARY_COLOR.Alpha +<br/>
         &nbsp;&nbsp;Arg2 * (1 - PRIMARY_COLOR.Alpha)</td>
-    <td colspan="2">Not allowed.</td>
+    <td>Output.RGB :=<br/>
+        &nbsp;&nbsp;Arg1.RGB * PRIMARY_COLOR.Alpha +<br/>
+        &nbsp;&nbsp;Arg2.RGB * (1 - PRIMARY_COLOR.Alpha)</td>
+    <td>Not allowed.</td>
   </tr>
 
   <tr>
@@ -696,7 +699,10 @@ In table below,
     <td>Output.RGBA :=<br/>
         &nbsp;&nbsp;Arg1 * Arg1.A +<br/>
         &nbsp;&nbsp;Arg2 * (1 - Arg1.A)</td>
-    <td colspan="2">Not allowed.</td>
+    <td>Output.RGB :=<br/>
+        &nbsp;&nbsp;Arg1.RGB * Arg1.A +<br/>
+        &nbsp;&nbsp;Arg2.RGB * (1 - Arg1.A)</td>
+    <td>Not allowed.</td>
   </tr>
 
   <tr>
@@ -704,7 +710,10 @@ In table below,
     <td>Output.RGBA :=<br/>
         &nbsp;&nbsp;Arg1 * MULTI_TEXTURE_CONSTANT.Alpha +<br/>
         &nbsp;&nbsp;Arg2 * (1 - MULTI_TEXTURE_CONSTANT.Alpha)</td>
-    <td colspan="2">Not allowed.</td>
+    <td>Output.RGB :=<br/>
+        &nbsp;&nbsp;Arg1.RGB * MULTI_TEXTURE_CONSTANT.Alpha +<br/>
+        &nbsp;&nbsp;Arg2.RGB * (1 - MULTI_TEXTURE_CONSTANT.Alpha)</td>
+    <td>Not allowed.</td>
   </tr>
 
   <tr>
@@ -712,7 +721,10 @@ In table below,
     <td>Output.RGBA :=<br/>
         &nbsp;&nbsp;Arg1 * PREVIOUS_STAGE.Alpha +<br/>
         &nbsp;&nbsp;Arg2 * (1 - PREVIOUS_STAGE.Alpha)</td>
-    <td colspan="2">Not allowed.</td>
+    <td>Output.RGB :=<br/>
+        &nbsp;&nbsp;Arg1.RGB * PREVIOUS_STAGE.Alpha +<br/>
+        &nbsp;&nbsp;Arg2.RGB * (1 - PREVIOUS_STAGE.Alpha)</td>
+    <td>Not allowed.</td>
   </tr>
 </table>
 
