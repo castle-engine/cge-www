@@ -205,7 +205,7 @@ abstract class Sharing_Source {
 			( $id ? esc_attr( $id ) : '' ),
 			implode( ' ', $klasses ),
 			$url,
-			( true == $this->open_link_in_new ) ? ' target="_blank"' : '',
+			( true == $this->open_link_in_new ) ? ' rel="noopener noreferrer" target="_blank"' : '',
 			$title,
 			( 'icon' == $this->button_style ) ? '></span><span class="sharing-screen-reader-text"' : '',
 			$text
@@ -1713,7 +1713,7 @@ class Jetpack_Share_WhatsApp extends Sharing_Source {
 	}
 
 	public function get_display( $post ) {
-		return $this->get_link( 'https://api.whatsapp.com/send?text=' . rawurlencode( $this->get_share_title( $post->ID ) ) . ' ' . rawurlencode( $this->get_share_url( $post->ID ) ), _x( 'WhatsApp', 'share to', 'jetpack' ), __( 'Click to share on WhatsApp', 'jetpack' ) );
+		return $this->get_link( 'https://api.whatsapp.com/send?text=' . rawurlencode( $this->get_share_title( $post->ID ) . ' ' . $this->get_share_url( $post->ID ) ), _x( 'WhatsApp', 'share to', 'jetpack' ), __( 'Click to share on WhatsApp', 'jetpack' ) );
 	}
 }
 

@@ -31,7 +31,16 @@ class Sharing_Admin {
 			array( 'jquery-ui-draggable', 'jquery-ui-droppable', 'jquery-ui-sortable', 'jquery-form' ),
 			2
 		);
-		$postfix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+		/**
+		 * Filters the switch that if set to true allows Jetpack to use minified assets. Defaults to true
+		 * if the SCRIPT_DEBUG constant is not set or set to false. The filter overrides it.
+		 *
+		 * @since 6.2.0
+		 *
+		 * @param boolean $var should Jetpack use minified assets.
+		 */
+		$postfix = apply_filters( 'jetpack_should_use_minified_assets', true ) ? '.min' : '';
 		if ( is_rtl() ) {
 			wp_enqueue_style( 'sharing-admin', WP_SHARING_PLUGIN_URL . 'admin-sharing-rtl' . $postfix . '.css', false, JETPACK__VERSION );
 		} else {
@@ -174,7 +183,7 @@ class Sharing_Admin {
 
 		if ( false == function_exists( 'mb_stripos' ) ) {
 			echo '<div id="message" class="updated fade"><h3>' . __( 'Warning! Multibyte support missing!', 'jetpack' ) . '</h3>';
-			echo '<p>' . sprintf( __( 'This plugin will work without it, but multibyte support is used <a href="%s" target="_blank">if available</a>. You may see minor problems with Tweets and other sharing services.', 'jetpack' ), 'http://www.php.net/manual/en/mbstring.installation.php' ) . '</p></div>';
+			echo '<p>' . sprintf( __( 'This plugin will work without it, but multibyte support is used <a href="%s" rel="noopener noreferrer" target="_blank">if available</a>. You may see minor problems with Tweets and other sharing services.', 'jetpack' ), 'http://www.php.net/manual/en/mbstring.installation.php' ) . '</p></div>';
 		}
 
 		if ( isset( $_GET['update'] ) && $_GET['update'] == 'saved' ) {

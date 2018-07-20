@@ -3,7 +3,7 @@ Contributors: nicolamustone
 Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7
 Requires at least: 4.4
 Tested up to: 4.9.6
-Stable tag: 1.1.3
+Stable tag: 1.1.5
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,13 @@ The manual installation method involves downloading this plugin and uploading it
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.1.5 =
+* Fixed issue with scheduled posts not being sent to Discord.
+
+= 1.1.4 =
+* Added file class-wp-discord-post-jetpack-contact-form.php gone missing by mistake
+* Tested with WooCommerce 3.4.1
 
 = 1.1.3 =
 * Added logging functions for easy troubleshoot if needed.

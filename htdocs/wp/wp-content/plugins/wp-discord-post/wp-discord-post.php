@@ -8,12 +8,12 @@
  * Plugin Name: WP Discord Post
  * Plugin URI:  https://wordpress.org/plugins/wp-discord-post/
  * Description: A Discord integration that sends a message on your desired Discord server and channel for every new post published.
- * Version:     1.1.3
+ * Version:     1.1.5
  * Author:      Nicola Mustone
  * Author URI:  https://nicola.blog/
  * Text Domain: wp-discord-post
  *
- * WC tested up to: 3.4
+ * WC tested up to: 3.4.1
  *
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
