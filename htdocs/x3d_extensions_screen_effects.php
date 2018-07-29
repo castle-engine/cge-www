@@ -195,16 +195,15 @@ shader:</p>
 
 <ul>
   <li><p><p>Internally, we pass the screen contents (color and, optionally,
-    depth buffer) as a texture (normal npot texture, before OpenGLES
-    we also used <a href="http://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">texture rectangle</a>)
+    depth buffer) as a texture (normal non-power-of-two texture)
     or a <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">multi-sample texture</a>.
-    You should just use the comfortable functions <code>screen_get_xxx</code>
-    to read previous
-    screen contents, they will hide the differences for you, and your screen
-    effects will work for all multi-sampling (anti-aliasing) configurations.</p></li>
+    You should always use the functions <code>screen_get_xxx</code>
+    to read previous screen contents,
+    this way your screen effects will work for
+    all multi-sampling (anti-aliasing) configurations.</p></li>
 
   <li><p>The texture coordinates for <code>screen_get_xxx</code>
-    are integers, in range <code>[0..width - 1, 0..height - 1]</code>.
+    are integers, in range <code>[0..screen_width - 1, 0..screen_height - 1]</code>.
     This is usually comfortable when writing screen effects shaders,
     for example you know that <code>(screen_x() - 1)</code> is
     "one pixel to the left".</p>
@@ -215,17 +214,28 @@ shader:</p>
     is the position of current pixel, you can use it e.g. to query previous
     color at this point, or query some other colors around this point
     (e.g. to blur the image).
+
+    <p>Since <i>Castle Game Engine</i> 6.5 you can also use float-based
+    screen coordinates with functions
+    like <code>screenf_get_xxx</code> (note the extra "f" letter in the name).
+    The float coordinates are in the range
+    <code>[0..screen_width, 0..screen_height]</code>.
+    <!--
     Note that using <code>gl_FragCoord.st</code> as a pixel position
     will work in simple cases too,
     but it's not advised, because it will not work intuitively
     when you use <a href="https://castle-engine.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom viewports</a>
     with our engine. <code>screen_position()</code>
-    will cooperate nicely with custom viewports.</p></li>
+    will cooperate nicely with custom viewports.
+    -->
+    </p></li>
 
+<!--
   <li><p>We also pass uniform <code>"screen_width"</code>, <code>"screen_height"</code>
     integers to the shader. These give you the size of the screen.
     (On new GPUs, you could also get them with GLSL function <code>textureSize</code>,
     but it's not available on older GPUs/OpenGL versions.)</p>
+-->
 
   <li><p>If you set <code>"needsDepth"</code> to <code>TRUE</code> then we also pass
     depth buffer contents to the shader.
