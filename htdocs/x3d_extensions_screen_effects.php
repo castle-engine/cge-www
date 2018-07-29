@@ -92,11 +92,13 @@ inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
 
 <ul>
   <li><?php echo a_href_page('The overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>.
-  <li><a href="https://www.opengl.org/sdk/docs/man4/">The GLSL function reference</a>.
+  <li><a href="https://www.khronos.org/opengles/sdk/docs/manglsl/docbook4/">The GLSL function reference</a>.
+  <!--
     Be careful: the reference linked here describes both GLSL and OpenGL API.
     You can ignore the functions named <code>glXxx</code>,
     they are part of the OpenGL API,
     and they not useful to a shader author.
+  -->
   <li><a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL description at Wikipedia</a> and
     <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">GLSL description at Khronos wiki</a>.
 </ul>
