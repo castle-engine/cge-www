@@ -1,9 +1,9 @@
 === WP Discord Post ===
 Contributors: nicolamustone
-Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7
+Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7, jetpack
 Requires at least: 4.4
-Tested up to: 4.9.6
-Stable tag: 1.1.5
+Tested up to: 4.9.7
+Stable tag: 2.0.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,13 +15,13 @@ WP Discord Post is a free plugin for WordPress that uses a Discord bot and Webho
 
 You can configure it by going to Settings > WP Discord Post and filling in all the details. The fields are all required. Click on the links “Learn more” in the description of the fields to learn how to get the necessary data.
 
-= Compatible with Contact Form 7 and Jetpack Contact Form =
+= Compatible with contact forms =
 
-WP Discord Post is compatible with Contact Form 7 and Jetpack Contact Form, sending the content of each form to your Discord before it is sent via email as well.
+WP Discord Post is compatible with Contact Form 7, Jetpack Contact Form, and Gravity Forms sending the content of each form to your Discord before it is sent via email as well.
 
 = Compatible with WooCommerce =
 
-WP Discord Post is also compatible with WooCommerce, sending a new message to Discord every time a new order is created on your shop!
+WP Discord Post is also compatible with WooCommerce, sending a new message to Discord every time a new order is created on your shop, or when a new product is added to the catalog.
 
 = Compatible with any custom post type =
 
@@ -43,11 +43,11 @@ This plugin  sends private user data to Discord. Different data are sent based o
 
 * Posts: Author name
 * Contact Forms: Any user data collected via the form
-* Orders: Customer full name
+* Orders: Customer and order details
 
 Once the data are sent they are under Discord's control and the plugin cannot remove them from their servers.
 
-Learn more about Discord's privacy policy at https://discordapp.com/privacy.
+Learn more about Discord's privacy policy at [https://discordapp.com/privacy](https://discordapp.com/privacy).
 
 = Developers Resources =
 
@@ -56,12 +56,17 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 **Filters**
 
 * `wp_discord_post_post_content`
+* `wp_discord_post_post_embed`
+* `wp_discord_post_embed_image_size`
 * `wp_discord_post_woocommerce_order_content`
-* `wp_discord_post_cf7_message_content`
+* `wp_discord_post_product_embed`
+* `wp_discord_post_order_embed`
 * `wp_discord_post_request_body_args`
 * `wp_discord_post_request_args`
 * `wp_discord_post_process_old_posts`
 * `wp_discord_post_is_new_post`
+* `wp_discord_post_meme_tag`
+* `wp_discord_post_meme_rating`
 
 **Actions**
 
@@ -69,11 +74,23 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 * `wp_discord_post_before_request`
 * `wp_discord_post_after_request`
 
+= Roadmap =
+
+* Option to mention `@everyone` on each post singularly
+* Discord notification for post comments
+* Discord notification when updating WooCommerce products (stock and sales updates)
+* Sales reports for WooCommerce in Discord
+* Discord notification on newsletter signup for MailChimp (TBC)
+* Compatibility with Yoast SEO and OpenGraph
+* Compatibility with WooCommerce Subscriptions
+* Compatibility with WooCommerce Memberships
+* More ideas? Tell me in the [support forum](https://wordpress.org/support/plugin/wp-discord-post/)
+
 == Installation ==
 
 = Minimum Requirements =
 
-* PHP version 5.6 or greater
+* PHP version 7.0 or greater.
 
 = Automatic installation =
 
@@ -91,12 +108,34 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Fix: _wp_discord_post_published was not set when processing posts and products.
+
+= 2.0.0 =
+* New: support for Gravity Forms.
+* New: support for random dank memes, because this is a Discord plugin after all... You don't get to choose what's being sent.
+* New: options to specify separate webhooks for each post type (you can use this to send posts, orders, etc. in different channels, also private ones).
+* Fix: options are hidden unless support for them is enabled (eg. enabling support for products will show the options to customize products messages).
+* Fix: tags in the embed description.
+* Fix: embed image size was 150x150px. It now uses the `full` size instead.
+* Dev: reorganized parts of the plugin to avoid duplicated code.
+* Dev: filter `wp_discord_post_embed_image_size` to change the image size if desired.
+* Dev: added parameter `$webhook_url` to the filter `wp_discord_post_before_request`.
+
+= 1.1.6 =
+* Added embed content for posts, WooCommerce orders, Jetpack and Contact Forms 7 forms.
+* Added support for WooCommerce products.
+* Fixed issue with custom post types not being sent.
+* Fixed missing actions and filters for the request and its args when using Jetpack and Contact Forms 7 forms.
+* Tested with WooCommerce 3.4.3 and WordPress 4.9.7.
+
 = 1.1.5 =
 * Fixed issue with scheduled posts not being sent to Discord.
 
 = 1.1.4 =
-* Added file class-wp-discord-post-jetpack-contact-form.php gone missing by mistake
-* Tested with WooCommerce 3.4.1
+* Added file class-wp-discord-post-jetpack-contact-form.php gone missing by mistake.
+* Tested with WooCommerce 3.4.1.
 
 = 1.1.3 =
 * Added logging functions for easy troubleshoot if needed.

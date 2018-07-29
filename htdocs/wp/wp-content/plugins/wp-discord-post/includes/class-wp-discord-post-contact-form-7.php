@@ -18,7 +18,7 @@ class WP_Discord_Post_CF7 {
 	 * Adds the required hooks.
 	 */
 	public function __construct() {
-		add_action( 'wpcf7_before_send_mail', array( $this, 'send_cf7' ), 10, 3 );
+		add_action( 'wpcf7_before_send_mail', array( $this, 'send' ), 10, 3 );
 	}
 
 	/**
@@ -26,43 +26,49 @@ class WP_Discord_Post_CF7 {
 	 *
 	 * @param int $contact_form The contact form.
 	 */
-	public function send_cf7( $contact_form, $abort, $submission ) {
-		$message      = '';
-		$email_data   = $submission->get_posted_data();
-		$bot_username = get_option( 'wp_discord_post_bot_username' );
-		$bot_avatar   = get_option( 'wp_discord_post_avatar_url' );
-		$bot_token    = get_option( 'wp_discord_post_bot_token' );
-		$webhook_url  = get_option( 'wp_discord_post_webhook_url' );
+	public function send( $contact_form, $abort, $submission ) {
+		$embed = $this->_prepare_embed( $submission );
 
-		foreach ( $email_data as $key => $value ) {
-			if ( '_' === substr( $key, 0, 1 ) ) {
-				continue;
-			}
+		WP_Discord_Post_HTTP::process( $embed, 'cf7' );
+	}
 
-			$message .= $key . ': ' . $value . "\n";
-		}
-
-		$args = array(
-			'content'    => esc_html( $message ),
-			'username'   => esc_html( $bot_username ),
-			'avatar_url' => esc_url( $bot_avatar ),
-		);
-
-		$request = array(
-			'headers' => array(
-				'Authorization' => 'Bot ' . esc_html( $bot_token ),
-				'Content-Type'  => 'application/json',
+	/**
+	 * Prepares the embed for the CF7 form.
+	 *
+	 * @access protected
+	 * @param  array  $submission The form values.
+	 * @return array
+	 */
+	protected function _prepare_embed( $submission ) {
+		$data  = $submission->get_posted_data();
+		$embed = array(
+			'title'       => '',
+			'description' => '',
+			'url'         => '',
+			'timestamp'   => date( 'c' ),
+			'footer'      => array(
+				'text'     => get_bloginfo( 'name' ),
+				'icon_url' => get_site_icon_url(),
 			),
-			'body' => wp_json_encode( $args ),
+			'image'       => '',
+			'author'      => '',
+			'fields'      => array(),
 		);
 
-		$response = wp_remote_post( esc_url( $webhook_url ), $request );
+		if ( ! empty( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				if ( '_' === substr( $key, 0, 1 ) || empty( $value ) ) {
+					continue;
+				}
 
-		if ( ! is_wp_error( $response ) ) {
-			error_log( 'WP Discord Post - Contact Form sent.' );
-		} else {
-			error_log( sprintf( 'WP Discord Post - Contact Form not sent. %s', $response->get_error_message() ) );
+				$embed['fields'][] = array(
+					'name'  => $key,
+					'value' => $value,
+				);
+			}
 		}
+
+		return $embed;
 	}
 }
 

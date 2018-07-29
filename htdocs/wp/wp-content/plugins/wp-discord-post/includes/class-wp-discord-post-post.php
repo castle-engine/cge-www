@@ -18,7 +18,7 @@ class WP_Discord_Post_Post {
 	 * Adds the hook to handle posts.
 	 */
 	public function __construct() {
-		add_action( 'publish_post', array( $this, 'send_post' ), 10, 2 );
+		add_action( 'publish_post', array( $this, 'send' ), 10, 2 );
 	}
 
 	/**
@@ -27,16 +27,62 @@ class WP_Discord_Post_Post {
 	 * @param  int     $id   The post ID.
 	 * @param  WP_Post $post The post object.
 	 */
-	public function send_post( $id, $post ) {
-		if ( $post->post_type !== 'post' ) {
-			return;
-		}
-
+	public function send( $id, $post ) {
 		// Check if the post has been already published and if it should be processed.
 		if ( ! apply_filters( 'wp_discord_post_is_new_post', $this->is_new_post( $post ) ) ) {
 			return;
 		}
 
+		$content = $this->_prepare_content( $id, $post );
+		$embed   = $this->_prepare_embed( $id, $post );
+
+		WP_Discord_Post_HTTP::process( $embed, 'post', $id, $content );
+	}
+
+	/**
+	 * Checks if a post has been published already or not.
+	 *
+	 * @param  WP_Post $post The post object.
+	 * @return bool
+	 */
+	public function is_new_post( $post ) {
+		$id           = intval( $post->ID );
+		$post_status  = (string) $post->post_status;
+		$post_date    = date( 'Y-m-d H', strtotime( $post->post_date ) );
+		$current_time = current_time( 'Y-m-d H' );
+
+		if ( wp_discord_post_is_logging_enabled() ) {
+			error_log( print_r( array(
+				'id'           => $id,
+				'status'       => $post_status,
+				'date'         => $post_date,
+				'current_time' => $current_time,
+			), true ) );
+		}
+
+		if ( $post_date < $current_time ) {
+			if ( wp_discord_post_is_logging_enabled() ) {
+				error_log( sprintf( 'WP Discord Post - Post %d is not a new post. Skipping.', $id ) );
+			}
+
+			return false;
+		} else {
+			if ( wp_discord_post_is_logging_enabled() ) {
+				error_log( sprintf( 'WP Discord Post - Post %d maybe is new. _wp_discord_post_published = %s', $id, 'yes' === get_post_meta( $id, '_wp_discord_post_published', true ) ) );
+			}
+
+			return 'yes' !== get_post_meta( $id, '_wp_discord_post_published', true ) && ! wp_is_post_revision( $id );
+		}
+	}
+
+	/**
+	 * Prepares the request content for posts.
+	 *
+	 * @param  object  $id   The post ID.
+	 * @param  WP_Post $post The post object.
+	 * @return string
+	 */
+	protected function _prepare_content( $id, $post ) {
 		$author = $post->post_author;
 		$author = get_user_by( 'ID', $author );
 		$author = $author->display_name;
@@ -59,43 +105,51 @@ class WP_Discord_Post_Post {
 		}
 
 		$content = apply_filters( 'wp_discord_post_post_content', $content, $post );
-
-		$http     = WP_Discord_Post_HTTP::instance();
-		$response = $http->send_request( $content );
-
-		if ( ! is_wp_error( $response ) ) {
-			add_post_meta( $id, '_wp_discord_post_published', 'yes' );
-		} else {
-			error_log( sprintf( 'WP Discord Post - Post %d not sent. %s', $id, $response->get_error_message() ) );
-		}
 	}
 
 	/**
-	 * Checks if a post has been published already or not.
+	 * Prepares the embed for the GF form.
 	 *
+	 * @access protected
+	 * @param  array   $id   The post ID.
 	 * @param  WP_Post $post The post object.
-	 * @return bool
+	 * @return array
 	 */
-	public function is_new_post( $post ) {
-		$id           = intval( $post->ID );
-		$post_status  = (string) $post->post_status;
-		$post_date    = date( 'Y-m-d H', strtotime( $post->post_date ) );
-		$current_time = current_time( 'Y-m-d H' );
+	protected function _prepare_embed( $id, $post ) {
+		$thumbnail = WP_Discord_Post_Formatting::get_thumbnail( $id );
+		$text      = WP_Discord_Post_Formatting::get_description( $post );
 
-		error_log( print_r( array(
-			'id'           => $id,
-			'status'       => $post_status,
-			'date'         => $post_date,
-			'current_time' => $current_time,
-		), true ) );
+		$embed = array(
+			'title'       => $post->post_title,
+			'description' => $text,
+			'url'         => get_permalink( $id ),
+			'timestamp'   => get_the_date( 'c', $id ),
+			'image'       => $thumbnail,
+			'author'      => $author,
+			'fields'      => array(),
+		);
 
-		if ( $post_date < $current_time ) {
-			error_log( sprintf( 'WP Discord Post - Post %d is not a new post. Skipping.', $id ) );
-			return false;
-		} else {
-			error_log( sprintf( 'WP Discord Post - Post %d maybe is new. _wp_discord_post_published = %s', $id, 'yes' === get_post_meta( $id, '_wp_discord_post_published', true ) ) );
-			return 'yes' !== get_post_meta( $id, '_wp_discord_post_published', true ) && ! wp_is_post_revision( $id );
+		if ( ! empty( get_the_category_list() ) ) {
+			$embed['fields'][] = array(
+				'name'  => esc_html__( 'Categories', 'wp-discord-post' ),
+				'value' => strip_tags( get_the_category_list( ', ', '', $id ) ),
+			);
 		}
+
+		if ( ! empty( get_the_tag_list() ) ) {
+			$embed['fields'][] = array(
+				'name'  => esc_html__( 'Tags', 'wp-discord-post' ),
+				'value' => strip_tags( get_the_tag_list( '', ', ', '', $id ) ),
+			);
+		}
+
+		$embed = apply_filters( 'wp_discord_post_post_embed', $embed, $post );
+
+		if ( wp_discord_post_is_logging_enabled() ) {
+			error_log( print_r( $embed, true ) );
+		}
+
+		return $embed;
 	}
 }
 
