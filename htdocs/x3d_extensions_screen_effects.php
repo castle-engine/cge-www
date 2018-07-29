@@ -50,6 +50,8 @@ by processing the rendered image. Demos:</p>
     <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
     and open files in <code>screen_effects</code> subdirectory there, to see the complete
     working demos with an example castle model underneath.</p></li>
+
+  <li><p>Compile and run <i>Castle Game Engine</i> demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo">examples/screen_effects_demo</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
