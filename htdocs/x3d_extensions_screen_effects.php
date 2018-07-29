@@ -9,6 +9,7 @@ castle_header('Screen Effects', array(
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Definition', 'definition'),
+  new TocItem('Shader language (GLSL) variables and functions', 'glsl'),
   new TocItem('Examples', 'examples'),
   new TocItem('Details', 'details'),
   new TocItem('Todos', 'todos'),
@@ -98,64 +99,90 @@ inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
     <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">GLSL description at Khronos wiki</a>.
 </ul>
 
-<p>The shader inside <code>ScreenEffect</code> is always linked with a library
-of useful GLSL functions:.</p>
+<?php echo $toc->html_section(); ?>
 
-<ul>
-  <li><code>ivec2 screen_position()</code> - position of the current pixel.
-    This pixel's color will be set by our <code>gl_FragColor</code> value at exit.</li>
-  <li><code>int screen_x()</code>, <code>int screen_y()</code> - x and y coordinates of current pixel position, for comfort.</li>
-  <li><code>vec4 screen_get_color(ivec2 position)</code> - get previous screen color at this pixel.</li>
-  <li><code>float screen_get_depth(ivec2 position)</code> - get previous depth at this pixel (only if <code>needsDepth</code> was <code>TRUE</code>).</li>
-  <li>uniform values <code>int screen_width</code>, <code>int screen_height</code> - screen size in pixels.<br>
-    Note: <i>do not</i> define these uniform variables in your shader code. Or you will get "repeated declaration" GLSL errors. That is because on OpenGLES (Android, iOS), we have to actually "glue" the common screen effect code at the beginning of your code, and it already defines these uniform variables. (And we do it the same for desktop OpenGL, for consistency.)</li>
-</ul>
+<p>The GLSL shader code inside <code>ScreenEffect</code> can use
+some special functions and uniform variables.
+
+<?php echo glsl_highlight(
+'// Screen size in pixels.
+uniform int screen_width;
+uniform int screen_height;
+
+// Position of the current pixel,
+// in range [0..screen_width - 1, 0..screen_height - 1].
+// This pixel\'s color will be set by our <code>gl_FragColor</code> value at exit.
+ivec2 screen_position();
+int screen_x(); // Same as screen_position().x
+int screen_y(); // Same as screen_position().y
+
+// Previous color at this pixel.
+vec4 screen_get_color(ivec2 position);
+
+// Depth buffer value at this pixel.
+// Only available needsDepth = TRUE at ScreenEffect node.
+// The version "_fast" is faster, but less precise,
+// in case full-screen multi-sampling is used.
+float screen_get_depth(ivec2 position);
+float screen_get_depth_fast(ivec2 position);
+
+// In Castle Game Engine >= 6.5:
+// Float-based versions of the above functions.
+// They take/return float,vec2 instead of int,ivec2.
+// The screen positions are in range [0..screen_width,0..screen_height].
+vec2 screenf_position();
+float screenf_x();
+float screenf_y();
+vec4 screenf_get_color(vec2 position);
+float screenf_get_depth(vec2 position);
+float screenf_get_depth_fast(vec2 position);'); ?>
+
+<p>Note: <i>do not</i> redeclare these uniform variables or functions
+in your own GLSL shader code. Instead, just use them.
+If you try to declare them, you will get "repeated declaration" GLSL errors,
+in case of uniforms. Internallly, we always "glue" our standard GLSL code
+(dealing with screen effects) with your GLSL code,
+to make these variables and functions available without the need to declare them.
 
 <?php echo $toc->html_section(); ?>
 
 <p>A simplest example:</p>
 
-<pre class="vrml_code">
-ScreenEffect {
+<?php echo vrmlx3d_highlight(
+'ScreenEffect {
   shaders ComposedShader {
     language "GLSL"
-    parts ShaderPart { type "FRAGMENT" url "data:text/plain,
-ivec2 screen_position();
-vec4 screen_get_color(ivec2 position);
-void main (void)
-{
-  gl_FragColor = screen_get_color(screen_position());
-}
-" } } }
-</pre>
+    parts ShaderPart {
+      type "FRAGMENT"
+      url "data:text/plain,
+      void main (void)
+      {
+        gl_FragColor = screen_get_color(screen_position());
+      }
+      "
+    }
+  }
+}'); ?>
 
 <p>The above example processes the screen without making any changes.
 You now have the full power of GLSL to modify it to make any changes
 to colors, sampled positions and such. For example
 make colors two times smaller (darker) by just dividing by 2.0:</p>
 
-<pre class="vrml_code">
-ivec2 screen_position();
-vec4 screen_get_color(ivec2 position);
-void main (void)
+<?php echo glsl_highlight(
+'void main (void)
 {
   gl_FragColor = screen_get_color(screen_position()) / 2.0;
-}
-</pre>
+}'); ?>
 
 <p>Or turn the screen upside-down by changing the 2nd texture coordinate:</p>
 
-<pre class="vrml_code">
-ivec2 screen_position();
-vec4 screen_get_color(ivec2 position);
-int screen_x();
-int screen_y();
-void main (void)
+<?php echo glsl_highlight(
+'void main (void)
 {
   gl_FragColor = screen_get_color(
     ivec2(screen_x(), screen_height - screen_y()));
-}
-</pre>
+}'); ?>
 
 <?php echo $toc->html_section(); ?>
 
