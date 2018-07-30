@@ -172,7 +172,14 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
     "rayhunter"); ?>
 </div>
 
+<p>More:
+
 <ul>
+  <?php program_link("cge-2d-particle-emitter",
+    '"71 Squared" particle system (.pex files) implementation for Castle Game Engine.',
+    'https://github.com/Kagamma/cge-2d-particle-emitter');
+  ?>
+
   <?php program_link("glinformation",
     'Output information about OpenGL installed on your system.',
     "glinformation");
