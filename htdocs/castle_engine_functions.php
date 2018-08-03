@@ -416,7 +416,11 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Talk with us'),
+  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Talk with us',
+    'sub' => array(
+      'privacy_policy' => array('title' => 'Privacy Policy'),
+    ),
+  ),
 
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
