@@ -26,7 +26,7 @@ We do not share the gathered data with any 3rd-party. We only store the data on 
 <h2>Questions</h2>
 
 <p>If you have any questions, contact us:
-<a href="https://castle-engine.io/talk.php">publicly (Discord, forum...)
+<a href="https://castle-engine.io/talk.php">publicly (Discord, forum...)</a>
 or send an email to
 <a href="mailto:michalis.kambi@gmail.com">michalis.kambi@gmail.com</a>
 
