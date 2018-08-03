@@ -992,7 +992,7 @@ function echo_footer ()
     <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
     for analytics.
     Like every other frickin' website on the Internet.
-    See our <a href="<?php echo CURRENT_URL; ?>donate.php">privacy policy</a>.
+    See our <a href="<?php echo CURRENT_URL; ?>privacy_policy.php">privacy policy</a>.
   </div>
 
   <?php

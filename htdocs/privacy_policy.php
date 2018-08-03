@@ -1,7 +1,7 @@
 <?php
 require_once "castle_engine_functions.php";
 castle_header("Privacy Policy", array(
-//  'path' => array('all_programs', 'castle')
+  'path' => array()
 ));
 echo pretty_heading($page_title);
 ?>
