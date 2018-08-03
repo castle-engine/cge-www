@@ -23,7 +23,7 @@ function castle_detect_environment()
      - og:image contents should be an absolute URL (Facebook warns
        about it otherwise).
   */
-  // For now, this is environment is never auto-detected here.
+  // For now, the environment "offline" is never auto-detected here.
 
   /* CASTLE_ENVIRONMENT equal "development"
      means that we are testing the page on development server,
@@ -992,7 +992,7 @@ function echo_footer ()
     <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
     for analytics.
     Like every other frickin' website on the Internet.
-    See our <a href="https://cat-astrophe-games.com/privacy-policy/">privacy policy</a>.
+    See our <a href="<?php echo CURRENT_URL; ?>donate.php">privacy policy</a>.
   </div>
 
   <?php
