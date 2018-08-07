@@ -60,6 +60,11 @@ or <code>TCastleWindow.OnPress</code> callbacks. You will find then useful metho
 input) and <code>TInputShortcut.IsPressed(IUIContainer)</code> (to detect holding
 (keeping pressed) of input).
 
+<p>An example application that creates a set of custom
+<?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instances,
+and saves/loads them to config file, is in
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr">examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr</a>.
+
 <?php
   manual_footer();
 ?>
