@@ -16,6 +16,8 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
   <!--
     Contains a list of <sound> elements.
     Only the "name" attribute is required, and all names must be unique.
+    The sound URL (filename) by default is just <name>.wav,
+    unless you specify other URL explicitly.
   -->
 
   <sound
@@ -30,6 +32,28 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
   <sound name="test_sound_1" />
   <sound name="test_sound_2" />
   <sound name="test_sound_3" />
+
+  <!--
+    (Since CGE >= 6.5):
+
+    Sound group is like a directory of sound files.
+    Sounds within a group named "fight" must be played using a qualified
+    name like "fight/drum_beat".
+    This way sound names must only be unique within their group.
+
+    Sound group can also (optionally) correspond to an actual subdirectory
+    of sound files, if it has a subdirectory attribute.
+    In this case, all the sounds inside are searched within that subdirectory.
+    For example <sound> with name drum_beat is by default opened from
+    "drum_beat.wav". But if it\'s in a group with subdirectory="fight",
+    then it\'s actually opened from "fight/drum_beat.wav".
+
+    You can make groups within groups (just like directories in directories).
+  -->
+  <group name="fight" subdirectory="fight">
+    <sound name="drum_beat" />
+    <sound name="drum_ending" />
+  </group>
 </sounds>'); ?>
 
 <h2>Some notes about sound files</h2>

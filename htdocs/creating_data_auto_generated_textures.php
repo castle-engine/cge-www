@@ -148,37 +148,35 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
         You will need to do "winetricks vcrun2005" first.
         Installing it is troublesome under Wine, but a working installed dir can
         be copied from your Windows installation.</p>
+
+        <p>TODO: This should be replaced with <a href="https://gpuopen.com/gaming-product/compressonator/">new AMD Compressonator</a>
+        that is open-source, cross-platform and should provide
+        much better experience.
       </li>
 
       <li><p>Not used for now:
         <a href="http://gpuopen.com/gaming-product/compressonator/"><code>AMDCompressCLI</code> from AMD Compress</a>
 
-        <p>We have it implemented, but it's broken unfortunately,
-        so it's disabled by default.
-        Messes up colors in ATITC* texture compression modes.
-        Also, on non-Windows, running in under wine is even more
-        troublesome than running ATI Compressonator...
-        Please send complaints to AMD, maybe one day they'll release
-        a tool that can correctly compress to ATITC*, from command-line,
-        and is cross-platform.
-
-        <p>Update on 2017-08: Possibly things are better now:
-        <a href="http://gpuopen.com/compressonator-is-going-open-source/">AMD Compress</a> is now open-source. It is <a href="https://github.com/GPUOpen-Tools/Compressonator">available on GitHub</a>.
-        See <a href="http://gpuopen.com/gaming-product/compressonator/">new AMD Compress page</a>.
-
-        <p>It is still Windows-only, but possibly it's working better now.
-        TODO: someone needs to check the latest version of AMD Compress.
-
+        <p>We have it implemented, but the old version was broken unfortunately,
+        so it was disabled.
+        Messed up colors in ATITC* texture compression modes.
+        Also, on non-Windows, running it under wine is even more
+        troublesome than running ancient ATI Compressonator.
         <!--
-
         <p>On non-Windows, it can be installed and run under Wine.
         Install with "wine start xxx.msi".
         You may also need to do "winetricks vcrun2005"
         and/or "winetricks vcrun2015".
         On some Wine versions it works cool (even installation from msi!),
         unfortunately on others &mdash; it doesn't work at all.</p>
-
         -->
+
+        <p>Update on 2017-08: Possibly things are better now:
+        <a href="http://gpuopen.com/compressonator-is-going-open-source/">AMD Compressonator</a> is now open-source. It is <a href="https://github.com/GPUOpen-Tools/Compressonator">available on GitHub</a>.
+        It is also cross-platform.
+        See <a href="http://gpuopen.com/gaming-product/compressonator/">new AMD Compressonator page</a>.
+
+        <p>TODO: check and use the latest version of AMD Compress from above links.
     </ul>
 
   <li><p>In game, trying to load an uncompressed texture URL will automatically
