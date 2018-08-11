@@ -16,8 +16,13 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
   <!--
     Contains a list of <sound> elements.
     Only the "name" attribute is required, and all names must be unique.
-    The sound URL (filename) by default is just <name>.wav,
-    unless you specify other URL explicitly.
+    The sound URL (filename) by default
+    (if you don't specify other URL explicitly) is determined like this:
+    - In CGE <= 6.4: <name>.wav
+    - In CGE >= 6.5:
+      <name>.ogg, or
+      <name>.wav (whichever is found first), or
+      none (this causes a warning).
   -->
 
   <sound
