@@ -3,7 +3,7 @@ Contributors: nicolamustone
 Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7, jetpack
 Requires at least: 4.4
 Tested up to: 4.9.7
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,8 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 * `wp_discord_post_woocommerce_order_content`
 * `wp_discord_post_product_embed`
 * `wp_discord_post_order_embed`
+* `wp_discord_post_{context}_webhook_url`
+* `wp_discord_post_webhook_url`
 * `wp_discord_post_request_body_args`
 * `wp_discord_post_request_args`
 * `wp_discord_post_process_old_posts`
@@ -107,6 +109,11 @@ The manual installation method involves downloading this plugin and uploading it
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 2.0.2 =
+
+* Fix: content for posts was not being sent to Discord.
+* Dev: added filters `wp_discord_post_{context}_webhook_url` and `wp_discord_post_webhook_url`
 
 = 2.0.1 =
 

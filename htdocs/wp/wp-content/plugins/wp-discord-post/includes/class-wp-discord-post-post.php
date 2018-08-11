@@ -105,6 +105,8 @@ class WP_Discord_Post_Post {
 		}
 
 		$content = apply_filters( 'wp_discord_post_post_content', $content, $post );
+
+		return $content;
 	}
 
 	/**

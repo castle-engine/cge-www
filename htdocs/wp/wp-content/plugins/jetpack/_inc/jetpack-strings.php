@@ -483,7 +483,7 @@ __( "Unlink me from WordPress.com", "jetpack" ), // _inc/client/components/conne
 __( "Link to WordPress.com", "jetpack" ), // _inc/client/components/connect-button/index.jsx:93
 __( "Manage site connection", "jetpack" ), // _inc/client/components/connect-button/index.jsx:113
 __( "Set up Jetpack", "jetpack" ), // _inc/client/components/connect-button/index.jsx:128
-__( "By clicking the button below, you agree to our fascinating {{tosLink}}Terms of Service{{/tosLink}} and to {{shareDetailsLink}}share details{{/shareDetailsLink}} with WordPress.com", "jetpack" ), // _inc/client/components/connect-button/index.jsx:140
+__( "By clicking the button below, you agree to our {{tosLink}}Terms of Service{{/tosLink}} and to {{shareDetailsLink}}share details{{/shareDetailsLink}} with WordPress.com.", "jetpack" ), // _inc/client/components/connect-button/index.jsx:140
 _x( "Updates needed", "Short warning message", "jetpack" ), // _inc/client/components/dash-item/index.jsx:92
 __( "Active", "jetpack" ), // _inc/client/components/dash-item/index.jsx:98
 _x( "Paid", "Short label appearing near a paid feature configuration block.", "jetpack" ), // _inc/client/components/dash-item/index.jsx:114

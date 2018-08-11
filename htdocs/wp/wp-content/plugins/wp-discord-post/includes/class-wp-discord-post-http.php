@@ -71,6 +71,9 @@ class WP_Discord_Post_HTTP {
 			}
 		}
 
+		$webhook_url = apply_filters( 'wp_discord_post_' . sanitize_key( $context ) . '_webhook_url', $webhook_url );
+		$webhook_url = apply_filters( 'wp_discord_post_webhook_url', $webhook_url );
+
 		$args = array(
 			'content'    => esc_html( $content ),
 			'username'   => esc_html( $bot_username ),
