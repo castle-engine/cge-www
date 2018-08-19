@@ -231,6 +231,7 @@ $castle_sitemap = array(
           'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop and mobile) games',
             'sub' => array(
+              'manual_data_directory' => array('title' => 'Data directory'),
               'manual_build_tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
               'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
               'manual_android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
