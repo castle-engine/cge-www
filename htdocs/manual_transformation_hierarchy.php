@@ -88,7 +88,8 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     instance for each 3D model file you have.
     But you're not limited to this approach, as you can split and merge
     X3D graphs freely.
-    See an example code <code>castle_game_engine/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr</code>
+    See an example code
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr">examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr</a>
     for how to load multiple 3D model files into a single X3D graph
     (single <code>TX3DRootNode</code>).
 
