@@ -472,6 +472,8 @@ for a wide range of scenes.
 
 <p>Beware: This is usually <i>a lot</i> of information, so you probably don't want to see it always. Dumping this information to the log will often cause a <b>tremendous slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
+<p>Since <i>Castle Game Engine</i> 6.5: You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily get information about what was loaded, and what took most time to load.
+
 <?php echo $toc->html_section(); ?>
 
 <p>The engine by default performs frustum culling, using per-shape
@@ -552,6 +554,8 @@ Hints to make it faster:
 </ul>
 
 <?php echo $toc->html_section(); ?>
+
+<p>Since <i>Castle Game Engine</i> 6.5: We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can use it for more purposes too.
 
 <p>You can compile your
 application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
