@@ -2,7 +2,7 @@
 set -eu
 
 # Script run by Jenkins (Automatic Cloud Builds of Castle Game Engine projects) on
-# https://michalis.ii.uni.wroc.pl/jenkins/ to check compilation
+# https://jenkins.castle-engine.io/ to check compilation
 # of various CGE programs.
 # Parts of this script are really specific to the Jenkins
 # and michalis.ii.uni.wroc.pl server configuration.
