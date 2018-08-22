@@ -555,18 +555,19 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Since <i>Castle Game Engine</i> 6.5: We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can use it for more purposes too.
+<ul>
+  <li><p>Since <i>Castle Game Engine</i> 6.5: We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can use it for more purposes too.
 
-<p>You can compile your
-application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-using <code>--mode=valgrind</code> to get an executable ready to be tested
-with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
+  <li><p>You can compile your
+    application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    using <code>--mode=valgrind</code> to get an executable ready to be tested
+    with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Read instructions how to use Valgrind with Castle Game Engine applications</a>.
 
-<p><a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Instructions how to use Valgrind with Castle Game Engine applications are here</a>.
-
-<p>In general, you can use any FPC tool to profile your code, for memory and
-speed. See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
-wiki about profiling</a>.
+  <li><p>In general, you can use any FPC tool to profile your code, for memory and
+    speed. See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
+    wiki about profiling</a>.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
