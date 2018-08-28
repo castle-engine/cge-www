@@ -142,42 +142,39 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
 
       <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
 
-      <li><p><a href="http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/">ATI Compressonator</a></p>
+      <li><p>(Since Castle Game Enigne &gt;= 6.5)
+        <a href="https://gpuopen.com/gaming-product/compressonator/"><code>CompressonatorCLI</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
+
+        <p>This is a successor of the old (great, but Windows-only and closed-source)
+        <i>ATI Compressonator</i> and later <i>AMD Compress</i>.
+        In particular, it is capable of compression to AMD GPU compression
+        formats <code>ATITC*</code>, that are common on Android devices.
+
+      <li><p>(Only Castle Game Enigne &lt;= 6.4)
+        <a href="http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/">ATI Compressonator</a></p>
 
         <p>On non-Windows, it can be run under Wine
         You will need to do "winetricks vcrun2005" first.
         Installing it is troublesome under Wine, but a working installed dir can
         be copied from your Windows installation.</p>
-
-        <p>TODO: This should be replaced with <a href="https://gpuopen.com/gaming-product/compressonator/">new AMD Compressonator</a>
-        that is open-source, cross-platform and should provide
-        much better experience.
       </li>
-
-      <li><p>Not used for now:
-        <a href="http://gpuopen.com/gaming-product/compressonator/"><code>AMDCompressCLI</code> from AMD Compress</a>
-
-        <p>We have it implemented, but the old version was broken unfortunately,
-        so it was disabled.
-        Messed up colors in ATITC* texture compression modes.
-        Also, on non-Windows, running it under wine is even more
-        troublesome than running ancient ATI Compressonator.
-        <!--
-        <p>On non-Windows, it can be installed and run under Wine.
-        Install with "wine start xxx.msi".
-        You may also need to do "winetricks vcrun2005"
-        and/or "winetricks vcrun2015".
-        On some Wine versions it works cool (even installation from msi!),
-        unfortunately on others &mdash; it doesn't work at all.</p>
-        -->
-
-        <p>Update on 2017-08: Possibly things are better now:
-        <a href="http://gpuopen.com/compressonator-is-going-open-source/">AMD Compressonator</a> is now open-source. It is <a href="https://github.com/GPUOpen-Tools/Compressonator">available on GitHub</a>.
-        It is also cross-platform.
-        See <a href="http://gpuopen.com/gaming-product/compressonator/">new AMD Compressonator page</a>.
-
-        <p>TODO: check and use the latest version of AMD Compress from above links.
     </ul>
+
+    <p>The location of these tools is searched using your <code>PATH</code>
+    environment variable. If you don't know what it means or how to set
+    your <code>PATH</code> environment variable,
+    please search the Internet, there are step-by-step
+    instrucions for all operating systems.
+    Some of these tools have also a standardized install location,
+    we look there too.
+
+    <p>The <i>build tool</i> automatically calls an appropriate
+    compression tool with the appropriate options.
+    Some formats require specific tools (e.g. ATI compression formats
+    require <code>CompressonatorCLI</code>),
+    other formats can be produced using a 1st available tool
+    (e.g. DXT* compression formats can be done either using <code>nvcompress</code>
+    or <code>CompressonatorCLI</code>).
 
   <li><p>In game, trying to load an uncompressed texture URL will automatically
     load the GPU-compressed version instead, if the GPU compression
