@@ -63,8 +63,8 @@ do_compile_all_programs ()
 
   scripts/compile_all_programs.sh
 
-  export CASTLE_FPC_OPTIONS=-Twin32
-  export CASTLE_ENGINE_TOOL_OPTIONS=--os=win32
+  export CASTLE_FPC_OPTIONS='-Twin32 -Pi386'
+  export CASTLE_ENGINE_TOOL_OPTIONS='--os=win32 --cpu=i386'
   scripts/compile_all_programs.sh
   export CASTLE_FPC_OPTIONS=''
   export CASTLE_ENGINE_TOOL_OPTIONS=''
