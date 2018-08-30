@@ -48,11 +48,54 @@ class WP_Discord_Post_Formatting {
 		$text           = strip_shortcodes( $post->post_content );
 		$text           = apply_filters( 'the_content', $text );
 		$text           = str_replace(']]>', ']]&gt;', $text);
+		$text           = html_entity_decode( $text );
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 		$excerpt_more   = apply_filters( 'excerpt_more', ' ' . '...' );
 		$text           = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 		$text           = strip_tags( $text );
 
 		return $text;
+	}
+
+	/**
+	 * Formats the embed content in a proper array ready for Discord.
+	 *
+	 * @param  array $embed The embed array prepared for Discord.
+	 * @return array
+	 */
+	public static function get_embed( $embed ) {
+		if ( ! is_array( $embed ) ) {
+			return array();
+		}
+
+		$args = array(
+			array(
+				'title'       => ! empty( $embed['title'] ) ? $embed['title'] : '',
+				'type'        => 'rich',
+				'description' => ! empty( $embed['description'] ) ? $embed['description'] : '',
+				'url'         => ! empty( $embed['url'] ) ? $embed['url'] : site_url(),
+				'timestamp'   => ! empty( $embed['timestamp'] ) ? $embed['timestamp'] : date( 'c' ),
+				'footer'      => array(
+					'text'     => get_bloginfo( 'name' ),
+					'icon_url' => get_site_icon_url(),
+				),
+				'author'      => array(
+					'name' => ! empty( $embed['author'] ) ? $embed['author'] : get_bloginfo( 'name' ),
+				),
+				'fields' => ! empty( $embed['fields'] ) ? $embed['fields'] : array(),
+			),
+		);
+
+		if ( ! empty( $embed['image'] ) ) {
+			$args[0]['image'] = array(
+				'url' => $embed['image'],
+			);
+		}
+
+		if ( wp_discord_post_is_logging_enabled() ) {
+			error_log( print_r( $args, true ) );
+		}
+
+		return $args;
 	}
 }

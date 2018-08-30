@@ -31,7 +31,8 @@ class WP_Discord_Post_Jetpack_CF {
 	public function send( $post_id, $all_values ) {
 		$embed = $this->_prepare_embed( $all_values );
 
-		WP_Discord_Post_HTTP::process( $embed, 'jetpack' );
+		$http = new WP_Discord_Post_HTTP( 'jetpack' );
+		return $http->process( '', $embed );
 	}
 
 	/**
@@ -42,19 +43,7 @@ class WP_Discord_Post_Jetpack_CF {
 	 * @return array
 	 */
 	protected function _prepare_embed( $values ) {
-		$embed = array(
-			'title'       => '',
-			'description' => '',
-			'url'         => '',
-			'timestamp'   => date( 'c' ),
-			'footer'      => array(
-				'text'     => get_bloginfo( 'name' ),
-				'icon_url' => get_site_icon_url(),
-			),
-			'image'       => '',
-			'author'      => '',
-			'fields'      => array(),
-		);
+		$embed = array();
 
 		if ( ! empty( $values ) ) {
 			foreach ( $values as $key => $value ) {

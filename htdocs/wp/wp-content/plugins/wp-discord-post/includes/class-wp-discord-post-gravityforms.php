@@ -30,7 +30,8 @@ class WP_Discord_Post_GF {
 	public function send( $entry, $form ) {
 		$embed = $this->_prepare_embed( $form, $entry );
 
-		WP_Discord_Post_HTTP::process( $embed, 'gf' );
+		$http = new WP_Discord_Post_HTTP( 'gf' );
+		return $http->process( '', $embed );
 	}
 
 	/**
@@ -42,15 +43,7 @@ class WP_Discord_Post_GF {
 	 * @return array
 	 */
 	protected function _prepare_embed( $form, $entry ) {
-		$embed = array(
-			'title'       => '',
-			'description' => '',
-			'url'         => '',
-			'timestamp'   => date( 'c' ),
-			'image'       => '',
-			'author'      => '',
-			'fields'      => array(),
-		);
+		$embed = array();
 
 		if ( ! empty( $form['fields'] ) ) {
 			foreach ( $form['fields'] as $field ) {

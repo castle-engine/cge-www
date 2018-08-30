@@ -3,7 +3,7 @@ Contributors: nicolamustone
 Tags: discord, post, publish, server, chat, gaming, streaming, twitch, community, blog, woocommerce, contact form 7, jetpack
 Requires at least: 4.4
 Tested up to: 4.9.7
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,13 +28,13 @@ WP Discord Post is also compatible with WooCommerce, sending a new message to Di
 WP Discord Post supports any post type, with a bit of custom code. If you want to send a message for your custom post type add this code to your **functions.php** file in **wp-content/themes/your-child-theme-name/**:
 
 `
-add_action( 'publish_{post_type}', array( WP_Discord_Post::instance()->post, 'send_post' ), 10, 2 );
+add_action( 'publish_{post_type}', array( WP_Discord_Post::instance()->post, 'send' ), 10, 2 );
 `
 
 Make sure to replace `{post_type}` with the slug of the post type that you want to use, for example if you registered a post type `book` you would use:
 
 `
-add_action( 'publish_book', array( WP_Discord_Post::instance()->post, 'send_post' ), 10, 2 );
+add_action( 'publish_book', array( WP_Discord_Post::instance()->post, 'send' ), 10, 2 );
 `
 
 = Privacy Info =
@@ -59,6 +59,7 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 * `wp_discord_post_post_embed`
 * `wp_discord_post_embed_image_size`
 * `wp_discord_post_woocommerce_order_content`
+* `wp_discord_post_allowed_order_statuses`
 * `wp_discord_post_product_embed`
 * `wp_discord_post_order_embed`
 * `wp_discord_post_{context}_webhook_url`
@@ -69,6 +70,7 @@ WP Discord Post comes with some hooks that you can use to customize how the plug
 * `wp_discord_post_is_new_post`
 * `wp_discord_post_meme_tag`
 * `wp_discord_post_meme_rating`
+* `wp_discord_post_embed_enabled`
 
 **Actions**
 
@@ -110,13 +112,20 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.1.0 =
+* New: added option to disable the embed content added by the plugin and use the default one by Discord.
+* Fix: only post orders with status On Hold, Processing, or Completed.
+* Fix: encoded HTML entities in Discord message, post title, and content.
+* Dev: added parameter `$post` to the filter `wp_discord_post_is_new_post`.
+* Dev: started writing PHP Unit tests.
+* Dev: added filter `wp_discord_post_embed_enabled`.
+* Dev: added filter `wp_discord_post_allowed_order_statuses`.
 
+= 2.0.2 =
 * Fix: content for posts was not being sent to Discord.
-* Dev: added filters `wp_discord_post_{context}_webhook_url` and `wp_discord_post_webhook_url`
+* Dev: added filters `wp_discord_post_{context}_webhook_url` and `wp_discord_post_webhook_url`.
 
 = 2.0.1 =
-
 * Fix: _wp_discord_post_published was not set when processing posts and products.
 
 = 2.0.0 =

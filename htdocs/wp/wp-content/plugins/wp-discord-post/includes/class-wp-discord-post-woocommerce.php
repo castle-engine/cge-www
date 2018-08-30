@@ -41,9 +41,14 @@ class WP_Discord_Post_WooCommerce {
 
 		$product = wc_get_product( $id );
 		$content = $this->_prepare_product_content( $product );
-		$embed   = $this->_prepare_product_embed( $id, $product );
+		$embed   = array();
 
-		WP_Discord_Post_HTTP::process( $embed, 'product', $id, $content );
+		if ( ! wp_discord_post_is_embed_enabled() ) {
+			$embed   = $this->_prepare_product_embed( $id, $product );
+		}
+
+		$http = new WP_Discord_Post_HTTP( 'product' );
+		return $http->process( $content, $embed, $id );
 	}
 
 	/**
@@ -52,11 +57,22 @@ class WP_Discord_Post_WooCommerce {
 	 * @param int $order_id The order ID.
 	 */
 	public function send_order( $order_id ) {
-		$order          = wc_get_order( $order_id );
-		$content = $this->_prepare_order_content( $order );
-		$embed   = $this->_prepare_order_embed( $order_id, $order );
+		$order            = wc_get_order( $order_id );
+		$allowed_statuses = apply_filters( 'wp_discord_post_allowed_order_statuses', array( 'on-hold', 'processing', 'completed' ) );
 
-		WP_Discord_Post_HTTP::process( $embed, 'order', 0, $content );
+		if ( ! in_array( $order->get_status(), $allowed_statuses ) ) {
+			return false;
+		}
+
+		$content          = $this->_prepare_order_content( $order );
+		$embed            = array();
+
+		if ( ! wp_discord_post_is_embed_enabled() ) {
+			$embed   = $this->_prepare_order_embed( $order_id, $order );
+		}
+
+		$http = new WP_Discord_Post_HTTP( 'post' );
+		return $http->process( $content, $embed );
 	}
 
 	/**
@@ -173,7 +189,6 @@ class WP_Discord_Post_WooCommerce {
 			'url'         => $product->get_permalink(),
 			'timestamp'   => get_the_date( 'c', $id ),
 			'image'       => $thumbnail,
-			'author'      => '',
 			'fields'      => array(),
 		);
 
@@ -257,10 +272,6 @@ class WP_Discord_Post_WooCommerce {
 
 		$embed = apply_filters( 'wp_discord_post_product_embed', $embed, $product );
 
-		if ( wp_discord_post_is_logging_enabled() ) {
-			error_log( print_r( $embed, true ) );
-		}
-
 		return $embed;
 	}
 
@@ -275,10 +286,8 @@ class WP_Discord_Post_WooCommerce {
 	protected function _prepare_order_embed( $order_id, $order ) {
 		$embed = array(
 			'title'       => sprintf( esc_html__( 'Order #%d', 'wp-discord-post' ), strip_tags( $order->get_order_number() ) ),
-			'description' => '',
 			'url'         => $order->get_edit_order_url(),
 			'timestamp'   => get_the_date( 'c', $order_id ),
-			'image'       => '',
 			'author'      => esc_html( $order->get_formatted_billing_full_name() ),
 			'fields'      => array(),
 		);
@@ -349,10 +358,6 @@ class WP_Discord_Post_WooCommerce {
 		}
 
 		$embed = apply_filters( 'wp_discord_post_order_embed', $embed, $product );
-
-		if ( wp_discord_post_is_logging_enabled() ) {
-			error_log( print_r( $embed, true ) );
-		}
 
 		return $embed;
 	}

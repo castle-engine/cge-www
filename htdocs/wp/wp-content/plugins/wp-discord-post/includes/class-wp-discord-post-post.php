@@ -29,14 +29,19 @@ class WP_Discord_Post_Post {
 	 */
 	public function send( $id, $post ) {
 		// Check if the post has been already published and if it should be processed.
-		if ( ! apply_filters( 'wp_discord_post_is_new_post', $this->is_new_post( $post ) ) ) {
+		if ( ! apply_filters( 'wp_discord_post_is_new_post', $this->is_new_post( $post ), $post ) ) {
 			return;
 		}
 
 		$content = $this->_prepare_content( $id, $post );
-		$embed   = $this->_prepare_embed( $id, $post );
+		$embed   = array();
 
-		WP_Discord_Post_HTTP::process( $embed, 'post', $id, $content );
+		if ( ! wp_discord_post_is_embed_enabled() ) {
+			$embed   = $this->_prepare_embed( $id, $post );
+		}
+
+		$http = new WP_Discord_Post_HTTP( 'post' );
+		return $http->process( $content, $embed, $id );
 	}
 
 	/**
@@ -81,8 +86,9 @@ class WP_Discord_Post_Post {
 	 * @param  object  $id   The post ID.
 	 * @param  WP_Post $post The post object.
 	 * @return string
+	 * @access private
 	 */
-	protected function _prepare_content( $id, $post ) {
+	private function _prepare_content( $id, $post ) {
 		$author = $post->post_author;
 		$author = get_user_by( 'ID', $author );
 		$author = $author->display_name;
@@ -112,22 +118,22 @@ class WP_Discord_Post_Post {
 	/**
 	 * Prepares the embed for the GF form.
 	 *
-	 * @access protected
 	 * @param  array   $id   The post ID.
 	 * @param  WP_Post $post The post object.
 	 * @return array
+	 * @access private
 	 */
-	protected function _prepare_embed( $id, $post ) {
+	private function _prepare_embed( $id, $post ) {
 		$thumbnail = WP_Discord_Post_Formatting::get_thumbnail( $id );
 		$text      = WP_Discord_Post_Formatting::get_description( $post );
 
 		$embed = array(
-			'title'       => $post->post_title,
+			'title'       => html_entity_decode( get_the_title( $id ) ),
 			'description' => $text,
 			'url'         => get_permalink( $id ),
 			'timestamp'   => get_the_date( 'c', $id ),
 			'image'       => $thumbnail,
-			'author'      => $author,
+			'author'      => get_the_author_meta( 'display_name', $post->post_author ),
 			'fields'      => array(),
 		);
 
@@ -146,10 +152,6 @@ class WP_Discord_Post_Post {
 		}
 
 		$embed = apply_filters( 'wp_discord_post_post_embed', $embed, $post );
-
-		if ( wp_discord_post_is_logging_enabled() ) {
-			error_log( print_r( $embed, true ) );
-		}
 
 		return $embed;
 	}

@@ -29,7 +29,8 @@ class WP_Discord_Post_CF7 {
 	public function send( $contact_form, $abort, $submission ) {
 		$embed = $this->_prepare_embed( $submission );
 
-		WP_Discord_Post_HTTP::process( $embed, 'cf7' );
+		$http = new WP_Discord_Post_HTTP( 'cf7' );
+		return $http->process( '', $embed );
 	}
 
 	/**
@@ -41,19 +42,7 @@ class WP_Discord_Post_CF7 {
 	 */
 	protected function _prepare_embed( $submission ) {
 		$data  = $submission->get_posted_data();
-		$embed = array(
-			'title'       => '',
-			'description' => '',
-			'url'         => '',
-			'timestamp'   => date( 'c' ),
-			'footer'      => array(
-				'text'     => get_bloginfo( 'name' ),
-				'icon_url' => get_site_icon_url(),
-			),
-			'image'       => '',
-			'author'      => '',
-			'fields'      => array(),
-		);
+		$embed = array();
 
 		if ( ! empty( $data ) ) {
 			foreach ( $data as $key => $value ) {

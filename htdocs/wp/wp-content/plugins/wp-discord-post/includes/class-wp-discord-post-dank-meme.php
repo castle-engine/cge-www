@@ -20,6 +20,9 @@ class WP_Discord_Post_Dank_Meme {
 		}
 	}
 
+	/**
+	 * Sends a dank meme to the  main channel.
+	 */
 	public function send() {
 		$api_key = get_option( 'wp_discord_post_giphy_api_key' );
 		$args    = array(
@@ -34,7 +37,8 @@ class WP_Discord_Post_Dank_Meme {
 		if ( ! is_wp_error( $response ) ) {
 			$response = json_decode( wp_remote_retrieve_body( $response ) );
 			if ( ! empty( $response->data->embed_url ) ) {
-				WP_Discord_Post_HTTP::process( array(), 'giphy', $response->data->embed_url );
+				$http = new WP_Discord_Post_HTTP( 'giphy' );
+				$http->process( $response->data->embed_url );
 			}
 		}
 

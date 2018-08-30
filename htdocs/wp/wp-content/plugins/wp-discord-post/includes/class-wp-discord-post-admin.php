@@ -127,6 +127,14 @@ class WP_Discord_Post_Admin {
 		);
 
 		add_settings_field(
+			'wp_discord_post_disable_embed',
+			esc_html__( 'Disable Embed Content', 'wp-discord-post' ),
+			array( $this, 'print_disable_embed_field' ),
+			'wp-discord-post',
+			'wp_discord_post_settings'
+		);
+
+		add_settings_field(
 			'wp_discord_post_post_webhook_url',
 			esc_html__( 'Discord Posts Webhook URL', 'wp-discord-post' ),
 			array( $this, 'print_post_webhook_url_field' ),
@@ -338,6 +346,7 @@ class WP_Discord_Post_Admin {
 		register_setting( 'wp-discord-post', 'wp_discord_post_webhook_url' );
 		register_setting( 'wp-discord-post', 'wp_discord_post_logging' );
 		register_setting( 'wp-discord-post', 'wp_discord_post_mention_everyone' );
+		register_setting( 'wp-discord-post', 'wp_discord_post_disable_embed' );
 		register_setting( 'wp-discord-post', 'wp_discord_post_post_webhook_url' );
 		register_setting( 'wp-discord-post', 'wp_discord_post_message_format' );
 		register_setting( 'wp-discord-post', 'wp_discord_post_giphy_api_key' );
@@ -408,6 +417,16 @@ class WP_Discord_Post_Admin {
 
 		echo '<input type="checkbox" name="wp_discord_post_mention_everyone" value="yes"' . checked( 'yes', $value, false ) . ' />';
 		echo '<span class="description">' . esc_html__( 'Mention @everyone when sending the message to Discord.', 'wp-discord-post' ) . '</span>';
+	}
+
+	/**
+	 * Prints the Disable embed settings field.
+	 */
+	public function print_disable_embed_field() {
+		$value = get_option( 'wp_discord_post_disable_embed' );
+
+		echo '<input type="checkbox" name="wp_discord_post_disable_embed" value="yes"' . checked( $value, 'yes', false ) . ' />';
+		echo '<span class="description">' . esc_html__( 'Disable the embed content added by WP Discord Post and use the default content automatically added by Discord.', 'wp-discord-post' ) . '</span>';
 	}
 
 	/**

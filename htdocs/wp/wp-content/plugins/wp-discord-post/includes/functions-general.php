@@ -18,3 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wp_discord_post_is_logging_enabled() {
     return 'yes' === get_option( 'wp_discord_post_logging' );
 }
+
+/**
+ * Returns a boolean value indicating if embed content is enabled in the settings.
+ *
+ * @return bool
+ */
+function wp_discord_post_is_embed_enabled() {
+    return apply_filters( 'wp_discord_post_embed_enabled', 'yes' === get_option( 'wp_discord_post_disable_embed' ) );
+}
