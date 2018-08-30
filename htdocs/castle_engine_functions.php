@@ -458,6 +458,8 @@ $castle_sitemap = array(
       'all_programs_sources' => array('title' => 'All Programs Sources'),
     ),
   ),
+
+  'assets' => array('hint' => 'Example assets you can use in your games', 'title' => 'Assets', 'url' => 'https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D'),
 );
 
 function _castle_bootstrap()
