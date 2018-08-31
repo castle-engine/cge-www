@@ -10,6 +10,11 @@ read-only data files) it is recommended to put all your data inside the
 <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
  function.
 
+<p>In <i>Castle Game Engine &gt;= 6.5</i> you can also use a special URL
+protocol <code>castle-data:/xxx</code>. Loading from
+<code>castle-data:/images/my_image.png</code> is equivalent to loading from
+<code>ApplicationData('images/my_image.png')</code>.
+
 <p>Advantages:
 
 <ol>
@@ -27,7 +32,8 @@ read-only data files) it is recommended to put all your data inside the
 </ol>
 
 <p>Note that you do not have to place your files inside the <code>data</code>
-subdirectory, or use the <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?> function,
+subdirectory, or use the <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?> function
+or <code>castle-data:/xxx</code> URLs,
  if you don't want to.
 You can always load a file from any filename
 or URL, so you can open any file on disk etc.
