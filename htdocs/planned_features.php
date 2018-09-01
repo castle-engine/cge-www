@@ -14,7 +14,15 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 <h2>Incoming in the next release (6.6)</h2>
 
 <ul>
-  <li><p><b>Delphi compatibility</b>
+  <li><p><b>Prototype of a visual editor</b>.
+
+    <p><a href="https://castle-engine.io/wp/2018/09/01/castle-game-engine-editor/">In progress, see here</a>. And <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">see here for plans.</a>
+</ul>
+
+<h2>Future plans</h2>
+
+<ul>
+  <li><p><b>Delphi compatibility</b> (was planned for 6.6 release, postponed to 6.8)
 
     <p>As for the Delphi version: <a href="supported_compilers.php">see here</a>.
 
@@ -48,6 +56,16 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p><a href="https://castle-engine.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
 
+    <p>If you want to help in this effort by coding:
+
+    <ul>
+      <li><p>The suggested approach is to extend the existing "examples/delphi/base_tests/base_tests.dpr" to use more and more CGE units, fixing any Delphi compatibility that occurs (e.g. XML units, JSON units etc.).
+
+      <li><p>The order of adding units can folow <a href="https://github.com/castle-engine/castle-engine/wiki/Units-Map">the map of dependencies</a>. So first we make sure all/most from "base" compiles, then "files", then "images", then "fonts"...
+
+      <li><p>Once we get to CastleUIControls unit compiling, we can implement TCastleControl on VCL and/or FMX, and actually display something.
+    </ul>
+
     <!--
     <p>Michalis is still an open-source fanatic,
     and most of the engine development happens on Linux, so don't worry
@@ -59,15 +77,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     -->
   </li>
 
-  <li><p><b>Prototype of a visual editor</b>.
-
-    <p><a href="https://castle-engine.io/wp/2018/09/01/castle-game-engine-editor/">In progress, see here</a>. And <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">see here for plans.</a>
-</ul>
-
-<h2>Future plans</h2>
-
-<ul>
-  <li><p><b>Fully working visual editor (release 6.8)</b>
+  <li><p><b>Fully working visual editor</b>
 
     <p>I outlined my details in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">this post</a>.
     I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
