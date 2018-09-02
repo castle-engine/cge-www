@@ -8,8 +8,8 @@ a_href_page('X3D, an open standard format for 3D models', 'vrml_x3d');
 ?>. You can use <b>any 3D modeler</b> to
 make models for your games, as almost everything can export to X3D (or
 it's older version, VRML). And when that's not enough,
-we also support many other formats:
-<i>Collada, 3DS, Wavefront OBJ</i> and some other.
+<a href="creating_data_model_formats.php">we also support many other formats:
+Spine JSON, Collada, 3DS, Wavefront OBJ and more</a>.
 
 <p><!--So the basic guide to create 3D data for our engine is actually
 trivial: export your models to the X3D, or eventually to other supported format.-->

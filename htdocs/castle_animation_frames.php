@@ -142,10 +142,9 @@ of animation handling in our VRML engine documentation</a>.</p-->
       <b>url="file_1.x3d"</b> // This specifies the URL from which to load this
                        // animation frame. Any 3D file format is allowed here:
                        // most of all, VRML/X3D, but also
-                       // <?php echo a_href_page_hashlink(
-                            'other formats understood by view3dscene and our engine',
-                            'view3dscene',
-                            'section_features'); ?>.
+                       // <?php echo a_href_page(
+                            'other formats supported by Castle Game Engine',
+                            'creating_data_model_formats'); ?>.
                        // There is also a deprecated attribute "file_name"
                        // that means the same as "url".
                        //

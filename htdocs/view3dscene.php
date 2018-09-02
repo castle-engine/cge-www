@@ -156,97 +156,19 @@ flawlessly :) So give it a try!
 
 <?php section(); ?>
 
-<p>Supported file formats:
 <ul>
-  <li><p><b><?php echo a_href_page('VRML 1.0, 2.0 and X3D', 'vrml_x3d'); ?></b>.
-    Usual extensions for VRML files are
-    <code>.wrl</code>, <code>.wrz</code> and <code>.wrl.gz</code>.
-    For X3D (we support fully both
-    XML and classic encoding) extensions are <code>.x3d</code>,
-    <code>.x3dz</code>, <code>.x3d.gz</code>
-    and <code>.x3dv</code>, <code>.x3dvz</code>, <code>.x3dv.gz</code>.</p>
+  <li><p><a href="creating_data_model_formats.php">All the 3D and 2D model formats supported by Castle Game Engine</a>
+    can be opened: X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, Spine JSON...
 
-    <p>Almost complete VRML&nbsp;1.0 support is done.
-    VRML&nbsp;2.0 (aka VRML&nbsp;97) and X3D support is also quite advanced,
-    a lot of nodes and features are implemented (including
-    advanced texturing and GLSL shaders,
-    <code>PROTO</code> and <code>EXTERNPROTO</code> support,
-    events mechanism with routes, sensors and interpolators).
-
-    <!-- Among things that work are embedded textures,
-    semi-transparent materials and semi-transparent textures,
-    automatic normals smoothing (based on <code>creaseAngle</code>),
-    triangulating non-convex faces, understanding camera nodes,
-    WWWInline handling, text rendering and more. -->
-
-    See <?php echo a_href_page('VRML/X3D implementation status',
-      'x3d_implementation_status'); ?> for detailed list of supported
-    features. See also <?php echo a_href_page('VRML/X3D extensions',
-    'x3d_extensions'); ?>, <?php
-      echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>,
-    and finally <a href="http://www.web3d.org/standards">
-    the official X3D specifications</a>.
-
-  <li><p><b><?php echo a_href_page('Castle Animation Frames
-    (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
-    formerly known as <code>kanim</code>.
-    Animation is played.</p>
-
-  <li><p><b><a href="http://www.khronos.org/collada/">Collada</a></b>
-    (<code>.dae</code> extension).
-    We support a lot of Collada features &mdash; geometry with materials,
-    textures, cameras, lights. Tested on many Collada examples,
-    like <a href="http://collada.org/owl/">Collada Test Model Bank</a>
-    and Collada models exported from various <a href="http://www.blender.org/">Blender</a>
-    versions. Animations in Collada files are <i>not</i> handled yet.
-    All modern Collada versions (1.3, 1.4, 1.5) are handled.
-    </p>
-
-  <li><p>Also many
-    <a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor's</b></a>
-    1.0 ASCII files (<code>.iv</code> extension) are handled.
-    Mainly it's because Inventor 1.0 and VRML 1.0 are very similar
-    formats, but view3dscene handles also some additional
-    Inventor-specific nodes.
-
-  <li><p><b>3d Studio 3DS format</b>. Not every information in 3DS
-    is handled by view3dscene but most important things, like
-    materials, texture coordinates and texture filenames are supported.
-
-  <li><p><b>MD3</b>. This is the format used for models
-    in Quake 3 and derivatives (<a href="http://tremulous.net/">Tremulous</a>
-    etc.). Almost everything useful is read from MD3 file:
-    geometry with texture (coordinates, and texture filename from
-    associated <code>xxx_default.skin</code> file), <i>animation is also read
-    and played</i>.</p>
-
-  <li><p><b>Wavefront OBJ files</b>. Most useful things are supported:
-    geometry (with texture coords, normal vectors), materials
-    (colors, opacity, texture filenames).</p>
-
-  <li><p><b>Spine JSON animations</b>.
-    <a href="http://esotericsoftware.com/">Spine</a> is a powerful program
-    for 2D game animations.</p>
-
-  <li><p><b>STL (Standard Triangle Language, aka STereoLithography)</b>.
-    <a href="https://en.wikipedia.org/wiki/STL_%28file_format%29">STL</a> is a simple
-    popular 3D format used in 3D printing.
-    We support both ASCII and binary formats.</p>
-
-  <li><p><b><a href="http://local.wasp.uwa.edu.au/~pbourke/dataformats/geo/">Videoscape
-    GEO</a></b> (<code>.geo</code> extension).
-    Very basic support for this very old 3D format.
-</ul>
-
-<p>Among many features are:
-<ul>
-  <li>Various navigation modes are available:
+  <li><p>Various navigation modes are available:
     <code>Examine</code> (easily rotate and move the whole model),
     <code>Walk</code> (walk like in FPS games,
     with collision detection, gravity and related features available),
     <code>Fly</code> (similar to <code>Walk</code> but without gravity).
-  <li>Conversion of Collada, 3DS, MD3, Wavefront OBJ and GEO files to X3D.
-  <li>You can convert between X3D classic and XML encodings (in both directions),
+
+  <li><p>All model formats can be converted to X3D.
+
+    <p>You can convert between X3D classic and XML encodings (in both directions),
     and you can convert from VRML 2 to X3D.
     You can also use view3dscene as a "pretty-printer",
     just open and save any VRML/X3D file without any version conversion.
@@ -255,9 +177,11 @@ flawlessly :) So give it a try!
     are available in view3dscene. Special minimized binary
     <code>tovrmlx3d</code> (useful to install on servers without GUI libraries
     available) is also included in view3dscene archive.
-  <li>A wealth of Castle Game Engine's rendering features are available,
+
+  <li><p>A number of Castle Game Engine's rendering features are available,
     like GLSL shaders, bump mapping and shadows.
-  <li>Built-in ray-tracer
+
+  <li><p>Built-in ray-tracer
     (that is also available as a separate command-line program,
     <?php echo a_href_page("rayhunter", "rayhunter"); ?>)
     to generate nice views of the scene (with shadows, mirrors,
@@ -272,16 +196,19 @@ flawlessly :) So give it a try!
     intended to be used only as post-processing of some model.
     We intentionally do not try to implement a full 3D authoring program here.
 
-  <li><p><i>Interactive animations</i> may be played from VRML / X3D files,
+  <li><p><i>Animations</i> may be played from VRML / X3D files,
     using sensors, scripts, interpolators and all other VRML events features.
 
     <p>You can activate VRML pointing-device sensors by clicking with
     <i>left mouse button</i> (the cursor will change shape and you will
     get status information when your cursor is over some clickable sensor).
     Note that this works only when <i>Collision
-    detection</i> is on (as it requires octree).</p></li>
+    detection</i> is on (as it requires octree).</p>
 
-  <li><p><i>Baked animations</i> are played from
+    <p>You can also play a <i>named animation</i> using menu <i>Animation -&gt; Named Animations</i>.
+  </li>
+
+  <li><p><i>Baked animations</i> can also be played from
     <?php echo a_href_page('Castle Animation Frames
     (castle-anim-frames) format', 'castle_animation_frames'); ?> or MD3 files
     (and you can convert any interactive VRML/X3D animation to a baked one).</p>

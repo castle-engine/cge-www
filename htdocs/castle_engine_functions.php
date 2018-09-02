@@ -289,6 +289,7 @@ $castle_sitemap = array(
         'sub' => array(
           'creating_data_export' => array('title' => 'Exporting 3D and 2D models',
             'sub' => array(
+              'creating_data_model_formats' => array('title' => 'Supported model formats'),
               'creating_data_blender' => array('title' => 'Blender'),
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
