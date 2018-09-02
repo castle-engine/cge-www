@@ -91,29 +91,27 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
     textures, cameras, lights. Tested on many Collada examples,
     like <a href="http://collada.org/owl/">Collada Test Model Bank</a>
     and Collada models exported from various <a href="http://www.blender.org/">Blender</a>
-    versions. Animations in Collada files are <i>not</i> handled yet.
+    versions.
     All modern Collada versions (1.3, 1.4, 1.5) are handled.
-    </p>
 
-  <li><p>Also many
-    <a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor's</b></a>
+    <p><i>Animations in Collada files are not handled yet.</i>
+
+  <li><p><a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor</b></a>
     1.0 ASCII files (<code>.iv</code> extension) are handled.
-    Mainly it's because Inventor 1.0 and VRML 1.0 are very similar
-    formats, but view3dscene handles also some additional
-    Inventor-specific nodes.
+    Inventor 1.0 and VRML 1.0 are very similar
+    formats, we also handle some additional Inventor-specific nodes.
 
-  <li><p><b>3d Studio 3DS format</b>. Not every information in 3DS
-    is handled by view3dscene but most important things, like
-    materials, texture coordinates and texture filenames are supported.
+  <li><p><b>3d Studio 3DS format</b>. We support most important things:
+    meshes, cameras, materials, textures.
 
   <li><p><b>MD3</b>. This is the format used for models
     in Quake 3 and derivatives (<a href="http://tremulous.net/">Tremulous</a>
-    etc.). Almost everything useful is read from MD3 file:
+    etc.). Almost everything useful from MD3 file is supported:
     geometry with texture (coordinates, and texture filename from
     associated <code>xxx_default.skin</code> file), <i>animation is also read
     and played</i>.</p>
 
-  <li><p><b>Wavefront OBJ files</b>. Most useful things are supported:
+  <li><p><b>Wavefront OBJ files</b>. We support most important things:
     geometry (with texture coords, normal vectors), materials
     (colors, opacity, texture filenames).</p>
 
