@@ -14,6 +14,7 @@ echo pretty_heading($page_title);
 $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
+      new TocItem('In case you use sparta_Docked package...', 'sparta_docked', 1),
     new TocItem('Delphi (coming soon)', 'delphi'),
     new TocItem('Code Typhon', 'code_typhon'),
   )
@@ -49,6 +50,19 @@ Just use Lazarus with a sufficiently up-to-date FPC version.</b></p>
 <p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
 
 <p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you use FPC 3.0.x (not newer), and you use <code>sparta_Docked</code> package (or some other package that depends on <code>sparta_Generics</code> package), you will encounter errors when trying to install CGE packages. That's because CGE (only when compiled with FPC 3.0.x) includes our own copy of <code>Generics.Collections</code> and friends, and compiler is confused because it sees two possible versions of this unit.
+
+<p>Solution:
+
+<ol>
+  <li>Remove the directory <code>src/compatibility/generics.collections/</code> from your CGE source.
+  <li>Add <code>sparta_Generics</code> as a dependency of <code>castle_base</code> package.
+</ol>
+
+<p>This is a temporary problem. New FPC versions include <code>Generics.Collections</code> implementation as a standard unit, and thus everyone will just use it, and such problems will disappear :)
 
 <!--p>I also regularly test FPC from SVN,
 so it's usually painless to use even development FPC releases.</p-->
