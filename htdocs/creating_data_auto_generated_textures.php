@@ -176,6 +176,10 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     (e.g. DXT* compression formats can be done either using <code>nvcompress</code>
     or <code>CompressonatorCLI</code>).
 
+    <p>For macOS, getting some of these tools is not easy.
+    <a href="https://github.com/floooh/oryol/tree/master/tools">Here you can find precompiled versions
+    for various systems, including macOS</a>.
+
   <li><p>In game, trying to load an uncompressed texture URL will automatically
     load the GPU-compressed version instead, if the GPU compression
     is supported. Just load the <code>material_properties.xml</code>
