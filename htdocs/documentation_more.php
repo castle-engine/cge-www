@@ -33,7 +33,7 @@ If you'd like to <b>learn the Object Pascal</b>:
   <li>Many good resources are listed in <a href="https://plus.google.com/+MarcHanisch/posts/Ka2WmrWTqks">this post</a> and in <a href="http://wiki.freepascal.org/">FPC and Lazarus Wiki</a>.
 </ul>
 
-<p>Resources about the engine from the Web3d&nbsp;2015 conference workshop:
+<p>Resources about the engine from the Web3D&nbsp;2015 conference workshop:
 
 <ul>
   <li><a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">Engine introductory tutorial, as a series of slides, showing the creation of a simple 3D FPS game and 2D game.</a> Download also <a href="https://github.com/castle-engine/cge-tutorial">the accompaning example data and code</a>.

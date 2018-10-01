@@ -276,7 +276,7 @@ Our implementation tries to follow common sense (do what is useful for authors a
 naturally on GPUs) and majority of existing implementations.
 
 <p>(If you have any power over the X3D spec, please fix issues mentioned
-below. I posted about this on Web3d forums (no longer accessible) and x3d-public
+below. I posted about this on Web3D forums (no longer accessible) and x3d-public
 mailing list and to "X3D specification comment form",
 without any answer so far.)
 */ ?>

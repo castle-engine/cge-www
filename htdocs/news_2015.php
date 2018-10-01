@@ -18,7 +18,7 @@ array_push($news,
           'short_description' => '',
           'guid' => '2015-07-05',
           'images' => array(
-            array('filename' => 'enemies_and_shadows.png', 'titlealt' => 'Enemies and Shadows - screen from Web3d 2015 tutorial'),
+            array('filename' => 'enemies_and_shadows.png', 'titlealt' => 'Enemies and Shadows - screen from Web3D 2015 tutorial'),
             array('filename' => 'texture_memory_profiler_3.png', 'titlealt' => 'Texture memory profiler in action'),
             array('filename' => 'hydra_battles_screen_best.png', 'titlealt' => 'Hydra Battles, an isometric RTS game using Castle Game Engine'),
             array('filename' => 'dragon_squash_title.png', 'titlealt' => 'Dragon Squash - Android game integration with Google Games (title, sign-in)'),
@@ -36,7 +36,7 @@ array_push($news,
 <p>Be sure to also check out
 <a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">the slides</a>
 and <a href="https://github.com/michaliskambi/cge-tutorial">examples (data and code)</a>
-from a tutorial about our engine given during the recent <i>Web3d&nbsp;2015 conference</i>.
+from a tutorial about our engine given during the recent <i>Web3D&nbsp;2015 conference</i>.
 They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 
 <p>The 5.2.0 release brings various improvements to the engine capabilities and API:
