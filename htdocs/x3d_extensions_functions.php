@@ -39,6 +39,12 @@ function node_dots($comment = '')
   return $result;
 }
 
+function node_comment($comment)
+{
+  $result = "  # $comment\n";
+  return $result;
+}
+
 function node_field($field_type, $field_inout, $field_name, $field_default, $field_comment = "")
 {
   global $node_format_fd_type_pad, $node_format_fd_name_pad,

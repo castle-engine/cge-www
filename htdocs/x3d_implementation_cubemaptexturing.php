@@ -1,27 +1,27 @@
 <?php
-  require_once 'x3d_implementation_common.php';
-  x3d_status_header('Cube map environmental texturing', 'env_texture',
-    'This component defines nodes for using cube map textures.
-     Such textures generate a color based on a direction.
-     They are one of the common methods for environment mapping
-     (that is, simulation of mirror-like surfaces).
-     <code>ComposedCubeMapTexture</code> and <code>ImageCubeMapTexture</code>
-     allow loading a cube map texture from file(s).
-     <code>GeneratedCubeMapTexture</code> allows to create and use
-     an environment map capturing actual environment in your virtual 3D world,
-     thus making true realtime mirror.');
+require_once 'x3d_implementation_common.php';
+x3d_status_header('Cube map environmental texturing', 'env_texture',
+  'This component defines nodes for using cube map textures.
+   Such textures generate a color based on a direction.
+   They are one of the common methods for environment mapping
+   (that is, simulation of mirror-like surfaces).
+   <code>ComposedCubeMapTexture</code> and <code>ImageCubeMapTexture</code>
+   allow loading a cube map texture from file(s).
+   <code>GeneratedCubeMapTexture</code> allows to create and use
+   an environment map capturing actual environment in your virtual 3D world,
+   thus making true realtime mirror.');
 
 echo castle_thumbs(array(
   array('filename' => 'water_reflections.png', 'titlealt' => 'Water reflections by optimized GeneratedCubeMapTexture'),
   array('filename' => 'cubemap_teapot.png', 'titlealt' => 'Teapot with cube map reflections'),
 ));
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Demos', 'demos'),
-      new TocItem('Tutorial: How to make a mirror', 'example'),
-      new TocItem('Supported nodes', 'support'),
-    ));
+$toc = new TableOfContents(
+  array(
+    new TocItem('Demos', 'demos'),
+    new TocItem('Tutorial: How to make a mirror', 'example'),
+    new TocItem('Supported nodes', 'support'),
+  ));
 ?>
 
 <p>Contents:
@@ -77,6 +77,12 @@ to simulate mirror-like surfaces. It should be coupled with
     Even with the primitives
     like  <?php echo a_href_page_hashlink('Box / Cone / Cylinder / Sphere',
     'x3d_extensions', 'section_ext_tex_coord'); ?>.</p>
+
+  <li><p>Cubemaps are great for mirrors on a curved object
+    (like a sphere, or a teapot).
+    To display mirrors on a flat surface, it is better to use
+    <a href="x3d_extensions_mirror_plane.php">Castle Game Engine
+    extensions for mirrors on flat objects</a>.
   </li>
 </ol>
 
