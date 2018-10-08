@@ -23,3 +23,7 @@ Redirect "/kambi-php-lib/" "/castle-engine-website-base/"
 # Google Search Console reports "redirect error" and indeed opening this
 # in Firefox or wget causes redirect error.
 Redirect "/engine.php/creating_data_intro.php" "/"
+
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+
