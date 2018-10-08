@@ -27,7 +27,7 @@ to render 2D graphics as well.
 
 <p>Since various coordinates are in 3D,
 for 2D graphics you usually want to set the Z coordinate to a constant, like zero.
-By default, 2D shapes are placed at Z = 0 (by you can adjust it,
+By default, 2D shapes are placed at Z = 0 (but you can adjust it,
 to control what is visible on top of what).</p>
 
 <?php echo $toc->html_section(); ?>
