@@ -42,9 +42,10 @@ do_compile_tool ()
   ./castle-engine_compile.sh
   mv -f castle-engine "${CASTLE_BIN_PATH}"
 
-  cd "${CASTLE_ENGINE_PATH}"castle_game_engine/examples/tools/
-  ./dircleaner_compile.sh
-  mv -f dircleaner "${CASTLE_BIN_PATH}"
+  # Not useful anymore.
+  # cd "${CASTLE_ENGINE_PATH}"castle_game_engine/examples/tools/
+  # ./dircleaner_compile.sh
+  # mv -f dircleaner "${CASTLE_BIN_PATH}"
 
   cd "${CASTLE_ENGINE_PATH}"castle_game_engine/tools/image-to-pascal/
   ./image-to-pascal_compile.sh
