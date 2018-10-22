@@ -44,19 +44,28 @@ This way the build tool will automatically package your game correctly.
 
 <ul>
   <li><p>Game 3D and 2D models,
-    loaded e.g. by <code>TCastleScene.Load(ApplicationData('my_model.x3d'))</code>.
-    See <a href="https://castle-engine.io/manual_load_3d.php">loading 3D models</a>.
+    loaded e.g. by
+    <?php echo pascal_highlight('MyCastleSceneInstance.Load(ApplicationData(\'my_model.x3d\'))'); ?>
 
-  <li><p>2D images, loaded e.g. by <code>TGLImage.Create(ApplicationData('my_image.png'))</code>.
-    See <a href="https://castle-engine.io/manual_2d_ui_custom_drawn.php">loading images</a>.
+    <p>See <a href="https://castle-engine.io/manual_load_3d.php">loading 3D models</a>.
 
-  <li><p>Sounds, loaded e.g. by <code>SoundEngine.LoadBuffer(ApplicationData('my_sound.wav'))</code>.
-    See <a href="https://castle-engine.io/manual_sound.php">loading sounds</a>.
+  <li><p>2D images, loaded e.g. by
+    <?php echo pascal_highlight('MyImage := TGLImage.Create(ApplicationData(\'my_image.png\'))'); ?>
+
+    <p>See <a href="https://castle-engine.io/manual_2d_ui_custom_drawn.php">loading images</a>.
+
+  <li><p>Sounds, loaded e.g. by
+    <?php echo pascal_highlight('MySoundBuffer := SoundEngine.LoadBuffer(ApplicationData(\'my_sound.wav\'))'); ?>
+
+    <p>See <a href="https://castle-engine.io/manual_sound.php">loading sounds</a>.
 
   <li><p>... and really anything else you plan to load during the game.
-    Your custom files can be loaded using <code>Download(ApplicationData('my_binary_file'))</code>
-    or <code>TTextReader.Create(ApplicationData('my_text_file.txt'))</code>.
-    See <a href="https://castle-engine.io/manual_network.php">loading from URLs</a>
+    Your custom files can be loaded using
+    <?php echo pascal_highlight('MyStream := Download(ApplicationData(\'my_binary_file\'))'); ?>
+    or
+    <?php echo pascal_highlight('MyTextReader := TTextReader.Create(ApplicationData(\'my_text_file.txt\'))'); ?>
+
+    <p>See <a href="https://castle-engine.io/manual_network.php">loading from URLs</a>
     and the <?php api_link('CastleDownload', 'CastleDownload.html'); ?> unit.
 </ul>
 
