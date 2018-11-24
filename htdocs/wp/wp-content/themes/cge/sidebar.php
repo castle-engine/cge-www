@@ -17,6 +17,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
           <li><a href="https://www.facebook.com/castleengine">Facebook</a>
           <li><a href="https://twitter.com/castleengine">Twitter</a>
           <li><a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a>
+          <li><a href="https://mastodon.social/@michalis_kambi">Mastodon</a>
         </ul>
     </div>
 

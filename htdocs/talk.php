@@ -27,9 +27,13 @@ castle_header('Talk with us');
         <ul>
           <li><a href="https://www.patreon.com/castleengine">Talk and support us on Patreon</a></li>
           <li><a href="wp/">Comment on our blog</a>
-          <li><a href="https://www.facebook.com/castleengine">Facebook</a></li>
-          <li><a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a></li>
-          <li><a href="https://twitter.com/castleengine">Twitter</a></li>
+          <li>Follow and talk to us on:
+            <ul>
+              <li><a href="https://www.facebook.com/castleengine">Facebook</a></li>
+              <li><a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a></li>
+              <li><a href="https://twitter.com/castleengine">Twitter</a></li>
+              <li><a href="https://mastodon.social/@michalis_kambi">Mastodon</a></li>
+            </ul>
         </ul>
 
         <p>If you're looking for ways to contribute, <a href="helping.php">there's a number of tasks (for developers and non-developers) how you can help!</a>
