@@ -10,6 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Using the 2D controls', 'usage'),
     new TocItem('Parents and anchors', 'parents_and_anchors'),
     new TocItem('User-interface scaling (Container.UIScaling)', 'scaling'),
+    new TocItem('Using CastleSettings.xml file to define UIScaling and other properties', 'settings_xml'),
     new TocItem('Query sizes', 'sizes'),
     new TocItem('Adjust theme', 'theme'),
     new TocItem('Taking control of the 2D viewport and scene manager', 'viewport'),
@@ -304,7 +305,7 @@ controls sizes. You activate it like this:
 Window.Container.UIReferenceHeight := 768;
 Window.Container.UIScaling := usEncloseReferenceSize;'); ?>
 
-<p>This is incredibly important if you want your game to work on
+<p>Using UI scaling is incredibly important if you want your game to work on
 various window sizes. Which is especially important on mobile devices,
 where the sizes of the screen (in pixels) vary wildly.
 
@@ -333,6 +334,36 @@ or <i>scaled</i>) control size. In particular the
 in the real device pixels (and with the anchors and parent
 transformations already applied). More about this in the
 <a href="manual_2d_ui_custom_drawn.php">chapter about custom-drawn UI controls</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Since <i>Castle Game Engine</i> 6.5, you can alternatively activate UI scaling
+by creating a file called <code>CastleSettings.xml</code> in the
+<a href="manual_data_directory.php"><code>data</code> subdirectory of your project</a>.
+The sample <code>CastleSettings.xml</code> contents look like this:
+
+<?php echo xml_highlight('<?xml version="1.0" encoding="utf-8"?>
+<castle_settings>
+  <ui_scaling
+    mode="EncloseReferenceSize"
+    reference_width="1024"
+    reference_height="768"
+  />
+</castle_settings>'); ?>
+
+<p>Then in your <code>Application.OnInitialize</code> callback just call
+<code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>.
+This will set <code>UIScaling</code>.
+
+<p>It can also set other global (for the whole container) properties,
+like the default font.
+
+<p>The advantage of using the <code>CastleSettings.xml</code> file is that
+the <a href="manual_editor.php">editor</a> reads this file too,
+and can apply the same scaling, default font and so on when you edit the UI.
+
+<p>Read <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/EDITOR_SETTINGS.md">more about the
+<code>CastleSettings.xml</code> file.</a>
 
 <?php echo $toc->html_section(); ?>
 
