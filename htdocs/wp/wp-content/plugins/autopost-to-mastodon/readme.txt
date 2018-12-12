@@ -2,8 +2,8 @@
 Contributors: l1am0, Hellexis
 Tags: mastodon, Mastodon, Mastdon Autopost, federated web, GNU social, statusnet, social web, social media, auto post
 Requires at least: 4.6
-Tested up to: 4.9.4
-Stable tag: 3.2.2
+Tested up to: 5.0
+Stable tag: 3.2.4
 License: GPLv2
 Donate link: https://liberapay.com/Mastodon-Auto-Share-Team/donate
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,7 +26,7 @@ For any questions, do not hesitate to contact me:
 
 Do you want to help translating this plugin in your language? [Visit the translation page](https://translate.wordpress.org/projects/wp-plugins/autopost-to-mastodon)
 
-Please consider donating via [Liberapay](https://liberapay.com/Mastodon-Auto-Share-Team/donate) <3
+Please consider donating via [Patreon](https://patreon.com/simonfrey) or [Liberapay](https://liberapay.com/Mastodon-Auto-Share-Team/donate) <3
 
 == Frequently Asked Questions ==
  
@@ -45,6 +45,16 @@ The plugin never transmits any data to me, or anyone else than the mastodon node
 3. Advanced settings
 
 == Changelog ==
+
+= 3.2.4 =
+* Add version check to prevent call to undefined 5.0 function
+
+= 3.2.3 =
+* fixup for tags
+* remove hardcoded `[...]` from post excerpt
+* different excerpt function
+* Works with 5.0 and Gutenberg Editor
+* Create future toot the moment it gets tooted (not upfront)
 
 = 3.2.2 =
 * revert change
