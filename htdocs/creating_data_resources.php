@@ -46,6 +46,8 @@ with links to documentation for every attribute.
   [[CastleCreatures.TCreatureResource.html#MiddleHeight|middle_height]]="0.5"
   [[CastleCreatures.TCreatureResource.html#SoundSuddenPain|sound_sudden_pain]]=""
   [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]=""
+  [[CastleCreatures.TCreatureResource.html#ScaleMin|scale_min]]=""
+  [[CastleCreatures.TCreatureResource.html#ScaleMax|scale_max]]=""
   [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="0.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="1.0"
@@ -58,7 +60,8 @@ with links to documentation for every attribute.
   [[CastleResources.T3DResource.html#FallSpeed|fall_speed]]="10.0"
   [[CastleResources.T3DResource.html#GrowSpeed|grow_speed]]="5.0"
   [[CastleResources.T3DResource.html#ReceiveShadowVolumes|receive_shadow_volumes]]="True"
-  [[CastleResources.T3DResource.html#CastShadowVolumes|cast_shadow_volumes]]="True">
+  [[CastleResources.T3DResource.html#CastShadowVolumes|cast_shadow_volumes]]="True"
+  >
 
   <!-- See lower on this page for explanation how to export animations
        and define <model> element. Below we only show all possible attributes,
