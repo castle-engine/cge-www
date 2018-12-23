@@ -26,7 +26,6 @@ echo castle_thumbs(array(
 ?>
 
 <?php echo $toc->html_toc(); ?>
-<?php echo $toc->html_section(); ?>
 
 <p><a href="http://www.blender.org/">Blender</a> is a magnificent
 free open-source 3D modelling software.
@@ -36,7 +35,8 @@ free open-source 3D modelling software.
 <p>Since <i>Castle Game Engine</i> 6.5 we support the <i>glTF 2</i> format,
 at least for static models,
 you can just export from Blender to glTF.
-Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
+
+<p>Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
 <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Khronos
 also develops a full-featured glTF 2 exporter</a>.
 

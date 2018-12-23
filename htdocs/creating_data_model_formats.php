@@ -58,9 +58,9 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
     <p><i>If your authoring software
     can export to X3D, this is the format you should probably use.</i>
 
-  <li><p><b><a href="https://www.khronos.org/gltf">glTF is a great format for models by Khronos</a>. It's efficient, modern, and Khronos people know what they are doing :)
+  <li><p><a href="https://www.khronos.org/gltf"><b>glTF</b></a>. It's an efficient, modern format, developed by Khronos.
 
-    <p>We support most features of static glTF models. (Animations from glTF are <a href="planned_features.php">not yet</a> supported.)
+    <p>We support most features of static glTF models. Note that animations from glTF are <a href="planned_features.php">not yet</a> supported. <a href="TODO">See here for details what is supported now.</a>
 
     <p>See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
 

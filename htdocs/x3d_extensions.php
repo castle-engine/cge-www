@@ -551,7 +551,7 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    You can use inline nodes (<code>Inline</code> in X3D,
+    <p>You can use inline nodes (<code>Inline</code> in X3D,
     <code>Inline</code> and <code>InlineLoadControl</code> in VRML &gt;= 2.0
     and <code>WWWInline</code> in VRML 1.0) to include any 3D model
     format understood by our engine.
