@@ -60,7 +60,7 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
   <li><p><a href="https://www.khronos.org/gltf"><b>glTF</b></a>. It's an efficient, modern format, developed by Khronos.
 
-    <p>We support most features of glTF models, with the exception of PBR and animations. <a href="TODO">See here for details what is supported now.</a>
+    <p>We support most features of glTF models, with the exception of PBR and animations. <a href="https://castle-engine.io/wp/2018/12/23/gltf-2-0/">See here for details what is supported now.</a>
 
     <p>See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
 
