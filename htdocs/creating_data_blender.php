@@ -9,6 +9,7 @@ creating_data_header('Exporting from Blender', array(
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Export to glTF 2', 'gltf'),
     new TocItem('Export to X3D', 'x3d'),
     new TocItem('Export to Castle Animation Frames (castle-anim-frames)', 'castle_anim_frames'),
     new TocItem('Actions and Frames', 'actions_and_frames', 1),
@@ -28,9 +29,22 @@ echo castle_thumbs(array(
 <?php echo $toc->html_section(); ?>
 
 <p><a href="http://www.blender.org/">Blender</a> is a magnificent
-free open-source 3D modelling software. Latest Blender versions
-include a working X3D exporter, so you can export your content from Blender
-out-of-the-box and open it with our engine.
+free open-source 3D modelling software.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Since <i>Castle Game Engine</i> 6.5 we support the <i>glTF 2</i> format,
+at least for static models,
+you can just export from Blender to glTF.
+Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
+<a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Khronos
+also develops a full-featured glTF 2 exporter</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Blender versions earlier than 2.80
+included a working X3D exporter out-of-the-box.
+So you can export your content from Blender to X3D open it with our engine.
 We advice testing the X3D models by opening them with
 <?php echo a_href_page('view3dscene', 'view3dscene') ?>.</p>
 

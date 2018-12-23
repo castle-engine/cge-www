@@ -551,13 +551,14 @@ end;
 
 <?php echo $toc->html_section(); ?>
 
-    All inline nodes (<code>Inline</code> in X3D,
+    You can use inline nodes (<code>Inline</code> in X3D,
     <code>Inline</code> and <code>InlineLoadControl</code> in VRML &gt;= 2.0
-    and <code>WWWInline</code> in VRML 1.0) allow you to include any 3D model
+    and <code>WWWInline</code> in VRML 1.0) to include any 3D model
     format understood by our engine.
-    So you can inline not only other VRML/X3D files,
-    but also Collada, 3DS, MD3, Wavefront OBJ models.
-    Internally, all those formats are converted to X3D before
+
+    <p>So you can inline not only X3D and VRML,
+    you can also inline <a href="creating_data_model_formats.php">glTF, Collada, 3DS, MD3, Wavefront OBJ, Spine JSON, castle-anim-frames...</a>.
+    Internally, all those formats are converted to X3D graph before
     displaying anyway. If you want to precisely know how the conversion
     to X3D goes, you can always try the explicit conversion
     by "<i>File -&gt; Save as X3D</i>" menu option in
@@ -569,7 +570,7 @@ end;
 
     <p>This also works for jumping to scenes by clicking on an
     <code>Anchor</code> node &mdash; you can make an <code>Anchor</code> to any
-    VRML/X3D version, or a Collada, 3DS, etc. file.
+    VRML/X3D version, or a glTF, Collada, etc. file.
 
 <?php echo $toc->html_section(); ?>
 

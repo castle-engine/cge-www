@@ -113,49 +113,21 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p><a href="https://github.com/castle-engine/view3dscene-mobile">This is already started by Jan Adamec!</a>
 
-  <li><p><b>glTF format support and PBR</b>
+  <li><p><b>glTF: PBR, efficient meshes, animations</b>
 
-    <p>glTF is a cool format for 3D models by Khronos. See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
+    <p><i>Note that static glTF models already load OK in CGE.</i>
 
-    <p>It supports meshes, advanced materials, animations. The file format is a readable JSON, but additional binary files are used to transfer coordinates, so it's fast to load from disk straight to GPU. It's also a Khronos format, so it's developed by people who really know what they are doing (the same people develop OpenGL[ES] and WebGL, Vulkan, KTX, Collada ...).
+    <p>Things to do:</p>
 
-    <p>Because of this, it may (or already is?) become a widely supported 3D format across a range of 3D software. So we want to have really good support for it &mdash; reading all the features (including animations), and preserving the efficiency of binary-encoded meshes (to do this, we will probably invent some new X3D nodes).
+    <ul>
+      <li><p>Reading meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
 
-    <p><a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">See this post for my 2018 roadmap -- it includes glTF and PBR.</a>
+        <p>Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like <code>BufferGeometry</code> (same as X3DOM?).
 
-    <p><a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">See here for documentation what is PBR (Physically-based Rendering) and do I plan to add it to X3D and Castle Game Engine, and thus seamlessly render glTF materials too</a>.
+      <li><p>Rendering PBR materials. <a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">See here for documentation what is PBR (Physically-based Rendering) and do I plan to add it to X3D and Castle Game Engine, and thus seamlessly render glTF materials too</a>.
 
-    <p>Strategy of implementation (if you'd like to help, <a href="talk.php">speak up!</a>):
-
-    <ol>
-      <li><p>(<i>This is already started in <a href="https://github.com/castle-engine/castle-engine/tree/pasgltf">branch pasgltf</a></i>:)
-
-        <p>Create a unit <code>X3DLoadIternalGLTF</code>, consistent with other such units e.g. <code>src/x3d/x3dloadinternalstl.pas</code>.
-
-        <p>It should define a function <code>LoadGLTF</code> that takes a URL and returns TX3DRootNode. See the examples in all other x3dloadinternal*.pas how to construct X3D graph, and read the documentation of our <a href="vrml_x3d.php">scene graph (X3D)</a> to know what is possible.
-
-        <p>The function <code>LoadGLTF</code> should be "registered", which for now just means that glTF should be added as a new format to X3DLoad unit. Just follow what other formats are doing (like STL) and add appropriate few lines.
-
-        <p>Inside <code>LoadGLTF</code>, read the file (using <code>Download(URL)</code>) and parse it.
-
-        <p>One approach to parsing glTF is to use Bero's <a href="https://github.com/BeRo1985/pasgltf">PasGLTF</a>. This is what I advice to try first. You will need to figure our the API by reading the source code and examples, but it should be straightforward. You will need to add PasGLTF along with dependencies (like PasJSON) to CGE source code, just like Kraft is added now (see in src/compatibilty/).
-
-        <p><b>The stuff mentioned above is already started in <a href="https://github.com/castle-engine/castle-engine/tree/pasgltf">branch pasgltf</a>. You can use it, and CGE will be able to open glTF 2.0 files using PasGLTF, and output basic information about them on the log.</b>
-
-      <li><p><i>Only if PasGLTF will be unsuitable for some reason (but this is plan B, don't start with this!)</i>: We can also implement our own glTF reading. Just use FpJson (which is the JSON unit we already use for Spine loading and <code>CastleComponentSerialize</code>) for the JSON part.
-
-      <li><p>The initial task is to read meshes with transformations. I expect you will have to use nodes like <code>Transform</code>, <code>Shape</code>, <code>IndexedFaceSet</code>, <code>Coordinate</code>.
-
-      <li><p>I expect you to test it with <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a> and the output of <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF exporter</a>.
-
-      <li><p>Once the above is working, we can look into more advanced glTF features:
-        <ol>
-          <li>Read textures and texture coords.
-          <li>Reading meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU. Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). Maybe some new X3D nodes should be introduced.
-          <li>Reading materials with PBR parameters. Modifications to CGE, including adding new X3D nodes will be needed for this, see my links above about PBR.
-          <li>Reading animations. X3D should be capable of expressing glTF animations, using interpolators and H-Anim for skinned animation.
-        </ol>
-    </ol>
+      <li><p>Reading animations. X3D should be capable of expressing glTF animations, using interpolators and H-Anim for skinned animation.
+    </ul>
 
   <li><p><b>Terrain designer</b>
 
