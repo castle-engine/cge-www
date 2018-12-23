@@ -68,7 +68,7 @@ and open them with our
 </ul>
 
 <p>Note that <b>our engine supports <a href="view3dscene.php">many other 3D and 2D file formats</a> too</b>,
-like Collada, Wavefront OBJ, Spine JSON, and (soon) glTF.
+like glTF, Collada, Wavefront OBJ, Spine JSON...
 They are all loaded into a graph of X3D nodes.
 So X3D is our scene graph, but it's absolutely not the only file format that we support.
 
