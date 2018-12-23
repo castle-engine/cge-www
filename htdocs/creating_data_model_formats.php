@@ -60,7 +60,7 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
   <li><p><a href="https://www.khronos.org/gltf"><b>glTF</b></a>. It's an efficient, modern format, developed by Khronos.
 
-    <p>We support most features of static glTF models. Note that animations from glTF are <a href="planned_features.php">not yet</a> supported. <a href="TODO">See here for details what is supported now.</a>
+    <p>We support most features of glTF models, with the exception of PBR and animations. <a href="TODO">See here for details what is supported now.</a>
 
     <p>See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
 
@@ -81,11 +81,6 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
     <p><a href="https://github.com/castle-engine/castle-engine/wiki/Spine">We have a big support for Spine JSON features</a>,
     and our friendly game studio <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a>
     is using Spine for all 2D games.
-
-  <li><p><b>Not yet, but coming soon: glTF 2.0</b>.
-
-    <p>Great format from Khronos. See <a href="planned_features.php">planned features</a>
-    for a lot of details.
 </ul>
 
 <?php echo $toc->html_section(); ?>
