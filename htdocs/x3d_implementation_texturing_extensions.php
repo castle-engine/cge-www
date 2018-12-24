@@ -16,6 +16,7 @@
       new TocItem('Override alpha channel detection (field <code>alphaChannel</code> for <code>ImageTexture</code>, <code>MovieTexture</code> and other textures)', 'ext_alpha_channel_detection'),
       new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
       new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
+      new TocItem('Flip the Y coordinate of the texture at loading (<code>ImageTexture.flipVertically</code>, <code>MovieTexture.flipVertically</code>)', 'flip_vertically'),
     ));
 ?>
 
@@ -654,6 +655,42 @@ are inside <?php echo a_href_page('our VRML/X3D demo models',
 not forced to have power-of-two size, and it never uses mipmaps. Good
 for GUI stuff, or other textures where forcing power-of-two causes
 unacceptable loss of quality (and it's better to resign from mipmaps).
+
+<?php echo $toc->html_section(); ?>
+
+We add a new field to <code>ImageTexture</code> and <code>MovieTexture</code>
+to flip them vertically at loading.
+
+<?php
+  echo node_begin('ImageTexture or MovieTexture') .
+  node_dots() .
+  node_field('SFBool', '[]', 'flipVertically', 'FALSE') .
+  node_end();
+?>
+
+<p>This parameter is in particular used when loading a model from
+<a href="creating_data_model_formats.php">glTF</a> format.
+In glTF, the texture coordinate (0,0) corresponds to the upper-left
+image corner. See
+
+<ul>
+  <li><a href="https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#images">glTF specification about "Images" that states this explicitly, and also illustrates it with an image</a>.
+  <li><a href="https://github.com/KhronosGroup/glTF/issues/1021">https://github.com/KhronosGroup/glTF/issues/1021</a>
+  <li><a href="https://github.com/KhronosGroup/glTF/issues/674">https://github.com/KhronosGroup/glTF/issues/674</a>
+  <li><a href="https://github.com/KhronosGroup/glTF-Sample-Models/issues/82">https://github.com/KhronosGroup/glTF-Sample-Models/issues/82</a>
+</ul>
+
+<p>This is contrary to what X3D (and our renderer, OpenGL and OpenGLES) expects.
+See the <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/texturing.html#Texturecoordinates">X3D specification "18.2.3 Texture coordinates"</a>.
+
+<p>To import glTF models as an X3D scene graph, one can either
+1. flip the texture coordinates, 2. or flip the texture images.
+Flipping the texture coordinates (AD 1) is less optimal
+(it means that we process the texture coordinates, instead of loading them
+straigt to GPU) so it seems better to flip the images at loading (AD 2).
+Especially since many image formats (like PNG, BMP) actually store the lines
+in top-to-bottom order already. To flip the images at loading,
+set the <code>flipVertically</code> to <code>TRUE</code>.
 
 <?php
   x3d_status_footer();
