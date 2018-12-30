@@ -3,7 +3,7 @@ Contributors: l1am0, Hellexis
 Tags: mastodon, Mastodon, Mastdon Autopost, federated web, GNU social, statusnet, social web, social media, auto post
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 3.2.5
+Stable tag: 3.2.6
 License: GPLv2
 Donate link: https://patreon.com/simonfrey
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,7 +26,7 @@ For any questions, do not hesitate to contact me:
 
 Do you want to help translating this plugin in your language? [Visit the translation page](https://translate.wordpress.org/projects/wp-plugins/autopost-to-mastodon)
 
-Please consider donating via [Patreon](https://patreon.com/simonfrey) or [Liberapay](https://liberapay.com/Mastodon-Auto-Share-Team/donate) <3
+Please consider donating via [Patreon](https://patreon.com/simonfrey), [PayPal](https://paypal.me/51edpo) or [Liberapay](https://liberapay.com/Mastodon-Auto-Share-Team/donate) <3
 
 == Frequently Asked Questions ==
  
@@ -46,6 +46,8 @@ The plugin never transmits any data to me, or anyone else than the mastodon node
 
 == Changelog ==
 
+= 3.2.6 =
+* Change permission for settings page to manage_options
 
 = 3.2.5 =
 * 5.0 Fix: Post only the tags of the post
