@@ -1052,7 +1052,7 @@ function download_donate_footer()
       /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>'; */
 
     '<a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL .
-    '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Suppport on Patreon</a>';
+    '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>';
 }
 
 /* This echoes a list to download various versions of the same program.

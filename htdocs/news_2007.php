@@ -516,7 +516,7 @@ SourceForge.
 
     <ul>
       <li>' . news_a_href_page('view3dscene 2.0.0', 'view3dscene') . '
-        released &mdash; VRML 2.0 suppport,
+        released &mdash; VRML 2.0 support,
         various other improvements: "Jump to viewpoint" menu added
         (this is useful both for VRML 2.0 Viewpoint nodes and VRML 1.0
         cameras too), --camera-pos, --camera-dir, --camera-up,
@@ -546,7 +546,7 @@ SourceForge.
         in one of the first rayhunter renderings of VRML 2.0 model.
       <li>' . news_a_href_page('"The Castle" 0.6.6', 'castle') . '
         released &mdash; in 0.6.5 sky on the "Gate" level
-        was not visible, fixed now. Also suppport for designing levels
+        was not visible, fixed now. Also support for designing levels
         in VRML 2.0 added, but not finished yet, see TODO item on
         "The Castle" &mdash; development page.
       <li>' . news_a_href_page('glViewImage 1.2.0', 'glviewimage') . '
