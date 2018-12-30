@@ -1,5 +1,5 @@
 { Game initialization and logic. }
-unit Game;
+unit GameInitialize;
 
 interface
 

@@ -37,13 +37,14 @@ it seems a good moment to talk about them.
 <?php echo $toc->html_section(); ?>
 
 <p>To create a game that works on all platforms, write a simple
-platform-independent main game unit. This unit is usually called <code>game.pas</code>
-in our example projects, although you can of course use any name you like
-(like <code>gameinitialize.pas</code> or <code>mygameinitialization.pas</code>).
+platform-independent main game unit.
+This unit is usually called <code>GameInitialize</code> (in file
+<code>gameinitialize.pas</code>) in our example projects,
+although you can of course use any name you like.
 
 <p>See the simplest initial project code in engine examples:
 <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/portable_game_skeleton">castle_game_engine/examples/portable_game_skeleton/</a> .
-In particular see <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/portable_game_skeleton/game.pas">the game.pas unit inside, showing a cross-platform initialization</a>.
+In particular see <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/portable_game_skeleton/gameinitialize.pas">the GameInitialize unit inside, showing a cross-platform initialization</a>.
 You can use it as a start of your projects.
 
 <!--
@@ -57,12 +58,12 @@ source code (see <a href="https://github.com/castle-engine/darkest-before-dawn/b
 
 <p>This is a short implementation of a <b>cross-platform "Hello world!" application</b>:</p>
 
-<?php echo pascal_highlight_file('code-samples/game.pas'); ?>
+<?php echo pascal_highlight_file('code-samples/gameinitialize.pas'); ?>
 
-<p>The <code>initialization</code> section at the bottom of the <code>Game</code>
+<p>The <code>initialization</code> section at the bottom of the <code>GameInitialize</code>
 unit should only assign a callback to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>,
 and create and assign <code>Application.MainWindow</code>.
-Actual game initialization (loading images, resources, setting up player
+Most of the actual initialization (loading images, resources, setting up player
 and such) should happen in the callback you assigned to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>.
 At that point you know that your program is ready to load and prepare resources.
 <!--
@@ -82,11 +83,11 @@ It should descend from <?php api_link('TCastleWindowCustom', 'CastleWindow.TCast
 although you can also derive your own window classes).
 -->
 
-<p>This <code>game.pas</code> unit can be included by the main program or library
+<p>This <code>GameInitialize</code> unit can be included by the main program or library
 (the <code>.lpr</code> file for Lazarus, <code>.dpr</code> file for Delphi).
 The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
 will automatically generate a main program or library code using this unit,
-you only need to indicate it by writing <code>game_units="Game"</code> in the
+you only need to indicate it by writing <code>game_units="GameInitialize"</code> in the
 <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
 
 <p>Usually, all other game units are (directly or indirectly) used by this
@@ -97,7 +98,7 @@ to include more units.
 
 <?php echo xml_full_highlight(
 '<?xml version="1.0" encoding="utf-8"?>
-<project name="my-cool-game" game_units="Game">
+<project name="my-cool-game" game_units="GameInitialize">
 </project>'); ?>
 
 <p>Compile and run it on your desktop using this on the command-line:
@@ -131,7 +132,7 @@ to run your game from Lazarus.
 '{$mode objfpc}{$H+}
 {$apptype GUI}
 program my_fantastic_game_standalone;
-uses CastleWindow, Game;
+uses CastleWindow, GameInitialize;
 begin
   Application.MainWindow.OpenAndRun;
 end.'); ?>
@@ -234,7 +235,7 @@ Player.Camera.MouseLook := not Application.TouchDevice;'); ?>
 <ul>
   <li>Do not call <code>Window.Open</code> or <code>Window.Close</code> or
     <code>Application.Run</code> or <code>Application.Terminate</code>
-    inside the cross-platform unit like <code>game.pas</code>.
+    inside the cross-platform unit like <code>gameinitialize.pas</code>.
 
     <p>These methods should never be explicitly called on mobile platforms.
     On the desktop platforms, they should only be called from the main program file
