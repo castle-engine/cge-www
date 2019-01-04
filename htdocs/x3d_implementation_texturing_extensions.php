@@ -16,7 +16,7 @@
       new TocItem('Override alpha channel detection (field <code>alphaChannel</code> for <code>ImageTexture</code>, <code>MovieTexture</code> and other textures)', 'ext_alpha_channel_detection'),
       new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
       new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
-      new TocItem('Flip the Y coordinate of the texture at loading (<code>ImageTexture.flipVertically</code>, <code>MovieTexture.flipVertically</code>)', 'flip_vertically'),
+      new TocItem('Flip the texture vertically at loading (<code>ImageTexture.flipVertically</code>, <code>MovieTexture.flipVertically</code>)', 'flip_vertically'),
     ));
 ?>
 
@@ -116,8 +116,8 @@ CommonSurfaceShader :  X3DShaderNode {
   SFNode          [in,out]     multiSpecularShininessTexture        NULL # Allowed: X3DTextureNode
   SFNode          [in,out]     multiVisibilityTexture               NULL # Allowed: X3DTextureNode
 
-  <b>SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only alllowed value for now</b>
-  <b>SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only alllowed value for now</b>
+  <b>SFString        [in,out]     normalFormat                     "UNORM"   # The default is the only allowed value for now</b>
+  <b>SFString        [in,out]     normalSpace                      "TANGENT" # The default is the only allowed value for now</b>
   SFInt32         [in,out]     normalTextureId                  -1
   <b>SFInt32         [in,out]     normalTextureCoordinatesId       0</b>
   SFString        [in,out]     normalTextureChannelMask         "rgb"
@@ -205,7 +205,7 @@ CommonSurfaceShader {
 </pre>
 
     <p>Note that X3DOM implementation of <code>CommonSurfaceShader</code>
-    seems to have the same bug: the <code>diffuseTexture</code> is used for <i>both difffuse + alpha</i>,
+    seems to have the same bug: the <code>diffuseTexture</code> is used for <i>both diffuse + alpha</i>,
     and <code>alphaTexture</code> is ignored.
     So, the buggy behaviors happen to be compatible... but please don't depend on it.
     Sooner or later, one or both implementations will be fixed,
@@ -340,7 +340,7 @@ echo castle_thumbs(array(
 
 <p>Texture rendered from a specified viewpoint in the 3D scene.
 This can be used for a wide range of graphic effects,
-the most straighforward use is to make something like a "security camera"
+the most straightforward use is to make something like a "security camera"
 or a "portal", through which a player can peek what happens at the other
 place in 3D world.</p>
 
@@ -518,7 +518,7 @@ See <?php echo a_href_page('Cube map environmental texturing component',
 
 <p>Following VRML/X3D standards, above texture mappings are
 automatically used when you supply a texture but no texture coordinates for your
-shape. Our extensions make it possible to also explicitly use these mappgins,
+shape. Our extensions make it possible to also explicitly use these mappings,
 when you really want to explicitly use <code>TextureCoordinateGenerator</code> node.
 This is useful when working with multi-texturing (e.g. one texture unit
 may have BOUNDS mapping, while the other texture unit has different mapping).</p>
@@ -607,7 +607,7 @@ with successive numbers starting from 0 or 1 (if filename
 <code>my_animation_0.png</code> exists,
 we use it; otherwise we start from <code>my_animation_1.png</code>).
 
-<p>The paramter inside <code>@counter(&lt;padding&gt;)</code>
+<p>The parameter inside <code>@counter(&lt;padding&gt;)</code>
 macro specifies the padding.
 The number will be padded with zeros to have at least the required length.
 For example, <code>@counter(1).png</code>
@@ -658,7 +658,7 @@ unacceptable loss of quality (and it's better to resign from mipmaps).
 
 <?php echo $toc->html_section(); ?>
 
-We add a new field to <code>ImageTexture</code> and <code>MovieTexture</code>
+<p>We add a new field to <code>ImageTexture</code> and <code>MovieTexture</code>
 to flip them vertically at loading.
 
 <?php
@@ -668,29 +668,65 @@ to flip them vertically at loading.
   node_end();
 ?>
 
-<p>This parameter is in particular used when loading a model from
-<a href="creating_data_model_formats.php">glTF</a> format.
-In glTF, the texture coordinate (0,0) corresponds to the upper-left
-image corner. See
+<p>This parameter is in particular useful when loading a model from
+the <a href="creating_data_model_formats.php">glTF format</a>.
+Our glTF loading code (that internally converts glTF into X3D nodes)
+sets this field to <code>TRUE</code> for all textures referenced by the glTF file.
+This is necessary for correct texture mapping.
+
+<p>Note that the decision whether to flip the texture is specific to this
+<code>ImageTexture</code> / <code>MovieTexture</code> node.
+Other X3D texture nodes (even if they refer to the same texture file)
+do not have to flip the texture. Our caching mechanism intelligently accounts for it,
+and knows that "<code>foo.png</code> with <code>flipVertically=FALSE</code> has different
+contents than <code>foo.png</code> with <code>flipVertically=TRUE</code>".
+
+<p><b>Detailed discussion of why this field is necessary for interoperability with glTF:</b>
 
 <ul>
-  <li><a href="https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#images">glTF specification about "Images" that states this explicitly, and also illustrates it with an image</a>.
-  <li><a href="https://github.com/KhronosGroup/glTF/issues/1021">https://github.com/KhronosGroup/glTF/issues/1021</a>
-  <li><a href="https://github.com/KhronosGroup/glTF/issues/674">https://github.com/KhronosGroup/glTF/issues/674</a>
-  <li><a href="https://github.com/KhronosGroup/glTF-Sample-Models/issues/82">https://github.com/KhronosGroup/glTF-Sample-Models/issues/82</a>
+  <li><p><a href="https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#images">glTF 2.0 specification about "Images"</a> says explicitly (and illustrates it with an image) that the <i>texture coordinate (0,0) corresponds to the upper-left</i> image corner.
+
+    <p>As far as I know (<a href="https://github.com/KhronosGroup/glTF/issues/1021">glTF issue #1021</a>,
+    <a href="https://github.com/KhronosGroup/glTF/issues/674">glTF issue #674</a>,
+    <a href="https://github.com/KhronosGroup/glTF-Sample-Models/issues/82">glTF-Sample-Models issue #82</a>)
+    this is compatible at least with glTF 1.0, WebGL and Vulkan. I am not an expert about WebGL, and I was surprised that WebGL does something differently than OpenGL(ES) &mdash; but it seems to be the case, after reading the above links.
+
+  <li><p>In contrast, X3D expects that the <i>texture coordinate (0,0) corresponds to the bottom-left image corner</i>. See the <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/texturing.html#Texturecoordinates">X3D specification "18.2.3 Texture coordinates"</a>.
+
+    <p>This is consistent with OpenGL and OpenGLES, at least if you load the textures correctly, following the OpenGL(ES) requirements: <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml">glTexImage2D docs require that image data starts at a lower-left corner</a>.
+
+  <li><p>How to reconcile these differences? Three solutions come to mind:
+
+    <ul>
+      <li><p>Use a different shader for rendering glTF content, that transforms texture coordinates like <code>texCoord.y = 1 - texCoord.y</code>.
+
+        <p>I rejected this idea, because 1. I don't want to complicate shader code by a special clause for glTF, 2. I don't want to perform at runtime (each time you render a pixel!) something that could otherwise be done at loading time.
+
+      <li><p>At loading, process all texture coordinates in glTF file, performing the <code>texCoord.y = 1 - texCoord.y</code> operation.
+
+        <p>I rejected this idea, because it would make it impossible to load buffers (containing per-vertex data) straight from glTF binary files into GPU. In other words, we would lose one of the big glTF advantages: maximum efficiency in transferring data to GPU.
+
+      <li><p>At loading, flip the textures vertically. This means that original texture coordinates can be used, and the result is as desired.
+
+        <p>I chose this option. Right now our image loaders just
+        flip the image after loading, but in the future they could
+        load a texture already flipped. This is possible since
+        many image formats (like PNG, BMP) actually store the lines
+        in top-to-bottom order already.
+
+        <p>So, this solution makes it possible to have efficient loading
+        of textures, and of glTF.
 </ul>
 
-<p>This is contrary to what X3D (and our renderer, OpenGL and OpenGLES) expects.
-See the <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/texturing.html#Texturecoordinates">X3D specification "18.2.3 Texture coordinates"</a>.
+<p><b>Why only for ImageTexture / MovieTexture?</b>
 
-<p>To import glTF models as an X3D scene graph, one can either
-1. flip the texture coordinates, 2. or flip the texture images.
-Flipping the texture coordinates (AD 1) is less optimal
-(it means that we process the texture coordinates, instead of loading them
-straigt to GPU) so it seems better to flip the images at loading (AD 2).
-Especially since many image formats (like PNG, BMP) actually store the lines
-in top-to-bottom order already. To flip the images at loading,
-set the <code>flipVertically</code> to <code>TRUE</code>.
+<p>glTF 2.0 assumes only 2D texture images. So we do not bother
+with a similar solution for 3D texture nodes, or cube-map texture nodes.
+
+<p>Future glTF versions may add more texture types,
+they may also add some fields to declare the orientation
+of texture coordinates. Until then, our current solution is directed
+at handling 2D textures in glTF 2.0 correctly, nothing more is necessary.
 
 <?php
   x3d_status_footer();
