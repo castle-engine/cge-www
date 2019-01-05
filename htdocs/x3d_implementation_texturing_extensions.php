@@ -525,6 +525,8 @@ may have BOUNDS mapping, while the other texture unit has different mapping).</p
 
 <?php echo $toc->html_section(); ?>
 
+<p><i>DEPRECATED: Instead of using this, consider setting <a href="x3d_implementation_shape_extensions.php#section_ext_alpha_channel">Appearance.alphaChannel</a>. Using Appearance.alphaChannel is a straightforward way of influencing how the alpha is treated at rendering a particular <code>Appearance</code>.</i>
+
 <?php
 echo castle_thumbs(array(
   array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel override'),
@@ -584,6 +586,8 @@ in VRML 1.0):
 <p>Value <code>AUTO</code> means that automatic detection is used, this
 is the default. Other values force the specific alpha channel treatment
 and rendering, regardless of initial texture contents.
+
+<p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/castle_extensions/alpha_channel.x3dv">Test file of this feature.</a>
 
 <?php echo $toc->html_section(); ?>
 

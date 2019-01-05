@@ -8,6 +8,7 @@
     array(
       new TocItem('Toggle shape rendering (<code>Shape.render</code>)', 'ext_shape_render'),
       new TocItem('Specify shading, e.g. to force Phong shading or wireframe for a shape (<code>Shape.shading</code>)', 'ext_shading'),
+      new TocItem('Specify alpha channel treatment (field <code>alphaChannel</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
     ));
 ?>
 
@@ -97,6 +98,46 @@ Although toggling Switch node is also ultra-fast.
 
 <p>These shading names are consistent with <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>
 (with <code>DEFAULT</code> added by us).</p>
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel override'),
+));
+?>
+
+<p>We add a new field to the <code>Appearance</code> node to request a specific
+alpha treatment when rendering.
+
+<?php
+  echo node_begin('Appearance');
+  echo
+  node_dots('all normal Appearance fields') .
+  node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "NONE", "TEST" or "BLENDING"') .
+  node_end();
+?>
+
+<p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/castle_extensions/alpha_channel.x3dv">Test file of this feature.</a>
+
+<p>Value <code>AUTO</code> (the default) means that we auto-detect the correct alpha treatment, looking at various things.
+<ul>
+  <li><p><code>Material</code> properties (whether the material uses <code>Material.transparency</code> &gt; 0),
+  <li><p>texture properties (whether some texture defines some alpha channel, and whether it's a yes-or-no alpha channel or smooth).
+  <li><p>The interpretation of each texture may also be affected by it's <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">ImageTexture.alphaChannel</a> field.
+</ul>
+
+<p>Other <code>Appearance.alphaChannel</code> values force a specific alpha channel treatment
+at rendering. Using them means that our auto-detection (discussed above)
+is not used at all. There are three possible values:
+
+<ol>
+  <li><code>NONE</code>: Ignore any alpha channel, render as opaque.
+  <li><code>TEST</code>: Use alpha-testing, which is good for textures having
+    a sharp (yes-or-no) alpha channel contents.
+  <li><code>BLENDING</code>: Use blending, which allows to show partial
+    transparency of textures and/or materials.
+</ol>
 
 <?php
   x3d_status_footer();
