@@ -11,20 +11,36 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
-<h2>Incoming in the next release (6.6)</h2>
+<?php /*
+<h2>Incoming in the next release (6.8)</h2>
 
 <ul>
-  <li><p><b>Prototype of a visual editor</b>.
 
-    <p><a href="https://castle-engine.io/wp/2018/09/01/castle-game-engine-editor/">In progress, see here</a>. And <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">see here for plans.</a>
 </ul>
+*/ ?>
 
 <h2>Future plans</h2>
 
 <ul>
-  <li><p><b>Delphi compatibility</b> (was planned for 6.6 release, postponed to 6.8)
+  <li><p><b>More visual editor</b>.
 
-    <p>As for the Delphi version: <a href="supported_compilers.php">see here</a>.
+    <p>Extend our <a href="manual_editor.php">editor</a>.
+
+    <ul>
+      <li><p>Add gizmos to manipulate (translate / rotate / scale) 3D and 2D objects inside a viewport / scene manager.
+      <li><p>Make the "files browser" at the bottom actually useful (display asset icons, allow to drag them onto a design etc.).
+      <li><p>Cover all use-cases mentioned in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">original post about the editor</a>:
+        <ol>
+          <li>I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
+          <li>I want to have a standalone editor (like <i>Unity3d</i>; check!),
+          <li>I want to edit at runtime too.
+        </ol>
+      <li><p>Implement <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md">everything planned for the editor</a>, and close all <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/TODO.md">TODOs</a> :)
+    </ul>
+
+  <li><p><b>Delphi compatibility</b> (was planned for 6.6 release, postponed to 6.8).
+
+    <p>Already started, <a href="supported_compilers.php">see here</a>.
 
     <?php /*
     <ul>
@@ -54,8 +70,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     </ul>
     */ ?>
 
-    <p><a href="https://castle-engine.io/wp/2017/08/14/delphi-base-compatibility-spine-improvements-other-stuff/">This is already in-progress, see here.</a>
-
     <p>If you want to help in this effort by coding:
 
     <ul>
@@ -77,43 +91,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     -->
   </li>
 
-  <li><p><b>Fully working visual editor</b>
-
-    <p>I outlined my details in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">this post</a>.
-    I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
-    and I want to have a standalone editor (like <i>Unity3d</i>),
-    and I want to edit at runtime too.
-    And I think we can do it:)
-
-    <!--
-    <p>Implementing this feature will most likely be split into a couple of small releases:</p>
-
-    <ol>
-      <li><p>Visually design 2D controls within <code>TCastleControl</code>.
-      <li><p>Visually design T3D hierarchy in <code>SceneManager.Items</code>.
-        So you could look and move whole <code>TCastleScene</code> instances.
-      <li><p>Make published, and editable through Lazarus, various properties
-        currently only public. E.g. we need to figure out some way to edit
-        vectors and matrices in Lazarus (they are records/old-style objects
-        internally).
-      <li><p>Design X3D nodes hierarchy (inside the TCastleScene) visually,
-        which means you can edit shapes, materials, textures...
-    </ol>
-    -->
-
-  <li><p><b>More physics</b></p>
-    <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
-  </li>
-
-  <li><p><b>Mobile view3dscene (as Android and iOS application)</b>
-
-    <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
-
-    <p>I have not decided yet whether it would be based on our <a href="https://github.com/castle-engine/view3dscene">view3dscene source code</a>, as desktop "view3dscene" contains a ton of GUI features that would not work comfortably on Android / iOS. Instead, we can develop a simple application that allows to open files, switch navigation type, turn on/off collisions and make screenshots (features that are available through the current view3dscene toolbar).
-
-    <p><a href="https://github.com/castle-engine/view3dscene-mobile">This is already started by Jan Adamec!</a>
-
-  <li><p><b>glTF: PBR, efficient meshes, animations</b>
+  <li><p><b>More glTF: PBR, efficient meshes, animations</b>
 
     <p><i>Note that static glTF models already load OK in CGE.</i>
 
@@ -128,6 +106,16 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
       <li><p>Reading animations. X3D should be capable of expressing glTF animations, using interpolators and H-Anim for skinned animation.
     </ul>
+
+  <li><p><b>More physics</b></p>
+    <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
+  </li>
+
+  <li><p><b>Release mobile view3dscene (as Android and iOS application)</b>
+
+    <p><a href="https://github.com/castle-engine/view3dscene-mobile">This is almost done, thanks to Jan Adamec.</a> We need to release it :)
+
+    <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
 
   <li><p><b>Terrain designer</b>
 
@@ -160,6 +148,8 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     and <a href="https://github.com/castle-engine/castle-engine/wiki/Blender">hints
     about exporting from Blender to X3D</a>.
 
+    <p><i>Depending on the future, it is possible that this feature will be replaced with "better support for glTF animations".</i> Currently, the reality is that glTF has more momentum as an interchange format than X3D.
+
   <li><p><b>Android Cardboard (VR)</b>
 
     <p>Maybe also other VR devices &mdash; depending on demand, and our access to test devices.
@@ -181,7 +171,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
   <li><p><b>Larger scene processing and rendering improvements:</b>
 
     <ol>
-      <li><p><b>Animations blending</b>
+      <li><p><b>More animations blending</b>
 
         <p>To smoothly fade in/out animation,
         with cross-fade between animations,
@@ -245,21 +235,10 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
   </li>
 
   <li>
-    <p><b>Support Material.mirror field for OpenGL rendering</b></p>
-
-    <p><i>(This feature is already in progress, but with somewhat different API: Instead of Material.mirror, we give you <a href="https://castle-engine.io/wp/2018/06/16/easy-mirrors-on-flat-surfaces-more-progress/">more straightforward way to use RenderedTexture for a mirror</a>. This approach is different, doesn't look so perfect, but it has many other advantages, it is also more straightforward to maintain. So, for practical purposes, it replaces the Material.mirror idea.)</i></p>
-
-    <p>An easy way to make planar (on flat surfaces) mirrors. Just set Material.mirror field to something > 0 (setting it to 1.0 means it's a perfect mirror, setting it to 0.5 means that half of the visible color is coming from the mirrored image, and half from normal material color).</p>
-    <p>Disadvantages: This will require an additional rendering pass for such shape (so expect some slowdown for really large scenes). Also your shape will have to be mostly planar (we will derive a single plane equation by looking at your vertexes).</p>
-    <p>Advantages: The resulting mirror image looks perfect (there's no texture pixelation or anything), as the mirror is actually just a specially rendered view of a scene. The mirror always shows the current scene (there are no problems with dynamic scenes, as mirror is rendered each time).</p>
-    <p>This will be some counterpart to current way of making mirrors by RenderedTexture (on flat surfaces) or <a href="x3d_implementation_cubemaptexturing.php">GeneratedCubeMap</a> (on curvy surfaces).</p>
-  </li>
-
-  <li>
     <p>Make a demo showing how to use Castle Game Engine together with <a href="https://github.com/BeRo1985/rnl">RNL - a real-time network library, in Pascal, very suitable for games, by Benjamin Rosseaux</a>.
 
   <li>
-    <p><b>Advanced networking support</b></p>
+    <p><b>More networking support</b></p>
     <p>Basic networking support is working already, see <a href="https://castle-engine.io/manual_network.php">the manual</a>.
 
     <p>Missing features / ideas:
@@ -335,53 +314,6 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
         <p>This will also enable <i>cancelling the ongoing download</i>.
         Maybe add a "cancel" button to <code>CastleWindowProgress</code> to cancel
         ongoing view3dscene downloads.
-
-      <li><p>(Low priority) <b>Support for <code>ftp</code></b>. By using LNet or Synapse, unless
-        something ready in FPC appears in the meantime.
-        Both LNet (through LFtp unit) and Synapse (FtpGetFile) support ftp.
-
-      <li><p>(Low priority) <b>Support for HTTP basic authentication</b>. This can be done in our
-        CastleDownload unit. Although it would be cleaner to implement it
-        at FpHttpClient level, see
-        <a href="http://bugs.freepascal.org/view.php?id=24335">this
-        proposal</a>.
-        Or maybe just use LNet or Synapse, I'm sure they have some support
-        for it.
-
-      <li><p>(Low priority) <b>Support X3D <code>LoadSensor</code> node</b>.
-
-      <li><p>(Low priority) <b>Caching on disk of downloaded data</b>.
-        Just like WWW browsers, we should be able to cache
-        resources downloaded from the Internet.
-        <ul>
-          <li>Store each resource under a filename in cache directory.
-          <li>Add a function like ApplicationCache, similar existing ApplicationData
-            and ApplicationConfig, to detect cache directory.
-            For starters, it can be ApplicationConfig (it cannot be
-            ApplicationData, as ApplicationData may be read-only).
-            Long-term, it should be something else (using the same
-            directory as for config files may not be adviced,
-            e.g. to allow users to backup config without backuping cache).
-            See standards suitable for each OS (for Linux, and generally Unix
-            (but not macOS) see <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html">basedir-spec</a>;
-            specific Microsoft, Apple specs may be available
-            for Windows and macOS).
-          <li>Probably it's best to store a resource under a filename
-            calculated by MD5 hash on the URL.
-          <li>For starters, you can just make the max cache life
-            a configurable variable for user.
-            Long-term: Like WWW browsers, we should honor various HTTP headers that
-            say when/how long cache can be considered valid,
-            when we should at least check with server if something changed,
-            when we should just reload the file every time.
-          <li>Regardless of above, a way to reload file forcibly disregarding
-            the cache should be available (like Ctrl+Shift+R in WWW browsers).
-          <li>A setting to control max cache size on disk, with some reasonable
-            default (look at WWW browsers default settings) should be available.
-        </ul>
-
-        <p>Note: don't worry about caching in memory, we have this already,
-        for all URLs (local files, data URIs, network resources).
   </ol>
 
   <li>
