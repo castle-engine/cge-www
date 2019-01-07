@@ -196,10 +196,10 @@ function cge_continue_suffix()
    https://wordpress.org/plugins/regenerate-thumbnails/ */
 add_image_size('news-teaser', 600, 300, array('center', 'top'));
 
-// Always send mail from wordpress@mail.castle-engine.io
+// Always send mail from wordpress@castle-engine.io
 // See https://www.wpbeginner.com/plugins/how-to-change-sender-name-in-outgoing-wordpress-email/
 function cge_sender_email($original_email_address)
 {
-  return 'wordpress@mail.castle-engine.io';
+  return 'wordpress@castle-engine.io';
 }
 add_filter('wp_mail_from', 'cge_sender_email');
