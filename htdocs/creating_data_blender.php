@@ -36,9 +36,10 @@ free open-source 3D modelling software.
 at least for static models,
 you can just export from Blender to glTF.
 
-<p>Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
-<a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Khronos
-also develops a full-featured glTF 2 exporter</a>.
+<p>New Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
+based on <a href="https://github.com/KhronosGroup/glTF-Blender-IO">Khronos glTF-Blender-IO</a>.
+For stable Blender &lt;= 2.7x use the
+<a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Khronos glTF-Blender-Exporter</a>.
 
 <?php echo $toc->html_section(); ?>
 
