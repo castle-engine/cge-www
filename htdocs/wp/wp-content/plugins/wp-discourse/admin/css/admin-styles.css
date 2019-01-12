@@ -1,0 +1,207 @@
+/* Highlights errors in settings form inputs */
+
+#setting-error-discourse_url ~ form #discourse-url,
+#setting-error-api_key ~ form #discourse-api-key,
+#setting-error-publish_username ~ form #discourse-publish-username,
+#setting-error-max_comments ~ form #discourse-max-comments,
+#setting-error-min_replies ~ form #discourse-min-replies,
+#setting-error-min_score ~ form #discourse-min-score,
+#setting-error-min_trust_level ~ form #discourse-min-trust-level,
+#setting-error-bypass_trust_level ~ form #discourse-bypass-trust-level-score,
+#setting-error-excerpt_length ~ form #discourse-custom-excerpt-length,
+#setting-error-sso_provider_enabled ~ form #discourse-sso-client-enabled,
+#setting-error-sso_client_enabled ~ form #discourse-enable-sso,
+#setting-error-sso_client_no_secret ~ form #discourse-sso-client-enabled,
+#setting-error-sso_provider_no_secret ~ form #discourse-enable-sso,
+#setting-error-auto_create_login_redirect ~ form #discourse-auto-create-login-redirect,
+#setting-error-auto_create_welcome_redirect ~ form #discourse-auto-create-welcome-redirect,
+#setting-error-login_path ~ form #discourse-login-path,
+#setting-error-sso_secret ~ form #discourse-sso-secret,
+#setting-error-webhook_secret ~ form #discourse-webhook-secret,
+#setting-error-add_join_link ~ form #discourse-add-join-link,
+#setting-error-sso_client_login_redirect ~ form #discourse-sso-client-login-form-redirect {
+	border-color: #dc3232;
+	border-width: 1px;
+}
+
+.wp-discourse-options-form,
+.wp-discourse-network-options-form {
+	max-width: 800px;
+}
+
+.discourse-logo {
+	vertical-align: bottom;
+}
+
+.wrap > h2:first-child {
+	line-height: 24px;
+	margin-bottom: 6px;
+}
+
+#discourse-allowed-post-types {
+	min-width: 160px;
+}
+
+#discourse-publish-meta-box .warning {
+	padding: 0 8px;
+}
+
+/* Menu logo */
+#adminmenu .toplevel_page_wp_discourse_options .wp-menu-image img,
+.network-admin #adminmenu .toplevel_page_discourse_network_options .wp-menu-image img,
+.toplevel_page_discourse_network_options  #adminmenumain .wp-menu-image img {
+	padding-top: 5px;
+}
+
+.discourse-options-page-wrap {
+	position: relative;
+}
+
+input#discourse_reset_options {
+	position: relative;
+	left: 115px;
+	bottom: 27px;
+	font-size: 13px;
+	line-height: 26px;
+	height: 28px;
+	margin: 0;
+	padding: 0 10px 1px;
+	background-color: rgb(212, 78, 33);
+	border-color: rgb(212, 78, 33);
+	color: #ffffff;
+}
+
+input#discourse_reset_options:hover {
+	background-color: rgba(213, 78, 33, 0.9);
+}
+
+ul.wpdc-documentation-list {
+	list-style: disc;
+	margin-left: 40px;
+}
+
+/* Make it easier to copy sections. */
+code.wpdc-select-all {
+	-webkit-user-select: all;
+	-moz-user-select: all;
+	-ms-user-select: all;
+	user-select: all;
+}
+
+#discourse-publish-meta-box label {
+	display: inline-block;
+	padding: 6px 10px 8px 0;
+}
+
+#discourse-publish-meta-box label[for="wpdc_publish_option"] {
+	padding: 0;
+}
+
+.wpdc-new-discourse-topic.hidden,
+.wpdc-link-to-topic.hidden {
+	display: none;
+}
+
+#discourse-publish-meta-box a {
+	overflow-wrap: break-word;
+}
+
+.wpdc-advanced-options.hidden {
+	display: none;
+}
+
+.wpdc-advanced-options {
+	padding-bottom: 8px;
+}
+
+.wpdc-advanced-options-toggle:hover{
+	cursor: pointer;
+}
+
+.wpdc-advanced-options-toggle:before {
+	content: "\f111";
+	font: 400 20px/1 dashicons;
+	color: #82878c;
+	speak: none;
+	display: inline-block;
+	margin-left: -1px;
+	padding-right: 3px;
+	vertical-align: top;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.wpdc-advanced-options-toggle:hover:before {
+	color: #444444;
+}
+
+.wpdc-pin-topic-time.hidden {
+	display: none;
+}
+
+#wpdc-tagchecklist {
+	padding-left: 14px;
+}
+
+#wpdc-tagchecklist:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+#wpdc-tagchecklist>li {
+	float: left;
+	margin-right: 25px;
+	font-size: 13px;
+	line-height: 1.8em;
+	max-width: 100%;
+	text-overflow: ellipsis;
+}
+
+button.wpdc-remove-tag {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	border: none;
+	margin: 0 0 0 -19px;
+	padding: 0;
+	background: 0 0;
+	cursor: pointer;
+	text-indent: 0;
+}
+
+.wpdc-remove-tag-icon:before {
+	margin-left: 2px;
+	border-radius: 50%;
+	color: #0073aa;
+	content: "\f153";
+	display: block;
+	font: 400 16px/20px dashicons;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+button.wpdc-remove-tag:hover .wpdc-remove-tag-icon:before {
+	color: #c00c00;
+}
+
+.wpdc-info-icon:before {
+	margin-left: 2px;
+	content: "?";
+	font-size: 18px;
+	font-weight: bold;
+	color: #444444;
+	position: absolute;
+	bottom: 0;
+}
+
+.wpdc-publish-info {
+	font-style: italic;
+	color: #666666;
+}
+
+/* Padding for the Commenting options comment-type radio input. */
+.discourse-comment-type {
+	padding-left: 23px;
+}

@@ -1,0 +1,14 @@
+*.swp
+
+# JetBrains IDEs
+.idea/*
+
+# Tests
+tests/integration/config.php
+
+vendor/*
+
+wpcs/*
+
+*.sublime-workspace
+*.sublime-project
