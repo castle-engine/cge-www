@@ -203,3 +203,28 @@ function cge_sender_email($original_email_address)
   return 'wordpress@castle-engine.io';
 }
 add_filter('wp_mail_from', 'cge_sender_email');
+
+// Customize post published on Discourse.
+//
+// See https://meta.discourse.org/t/wp-discourse-template-customization/50754
+// https://meta.discourse.org/t/wp-discourse-plugin-installation-and-setup/50752
+// Original content: https://github.com/discourse/wp-discourse/blob/beta/templates/html-templates.php
+function cge_publish_format($input)
+{
+    ob_start();
+    ?>
+
+{excerpt}
+
+    <?php
+// <div class="cge-wordpress-news">
+// ... this has no effect, CSS classes are stripped when rendering Markdown by Discourse.
+
+//----
+//News originally published on: {blogurl} . You're welcome to comment on it below!
+
+    $output = ob_get_clean();
+
+    return $output;
+}
+add_filter( 'discourse_publish_format_html', 'cge_publish_format' );
