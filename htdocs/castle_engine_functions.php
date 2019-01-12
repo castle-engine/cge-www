@@ -82,8 +82,8 @@ define('KAMBI_NO_HOME_LINK', true);
 // other constants
 define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
 define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wiki');
-define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
-define('FORUM_URL',           'https://sourceforge.net/p/castle-engine/discussion/general/');
+// unused: define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
+define('FORUM_URL',           'https://forum.castle-engine.io/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/download/v6.4/castle_game_engine-6.4-src.zip');
