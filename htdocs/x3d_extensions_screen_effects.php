@@ -59,7 +59,7 @@ by processing the rendered image. Demos:</p>
 <p>You can define your own screen effects by using
 the <code>ScreenEffect</code> node in your VRML/X3D files.
 Inside the <code>ScreenEffect</code> node you provide your own shader code
-to process the screen, given the current color and depth buffer contents.
+to process the rendered image, given the current color and depth buffer contents.
 With the power of GLSL shading language,
 your possibilities are endless :). You can warp the view,
 apply textures in screen-space, do edge detection,
@@ -82,9 +82,9 @@ field is <code>TRUE</code>.
 In the simple cases, you usually just add <code>ScreenEffect</code> node
 anywhere at the top level of your VRML/X3D file. If you use many
 <code>ScreenEffect</code> nodes, then their order matters:
-they process the rendered screen in the given order.</p>
+they process the rendered image in the given order.</p>
 
-<p>You have to specify a shader to process the rendered screen by the
+<p>You have to specify a shader to process the rendered image by the
 <code>"shaders"</code> field. This works exactly like the standard X3D
 <code>"Appearance.shaders"</code>, by selecting a first supported shader.
 Right now our engine supports only GLSL (OpenGL shading language) shaders
@@ -109,7 +109,7 @@ inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
 some special functions and uniform variables.
 
 <?php echo glsl_highlight(
-'// Screen size in pixels.
+'// Size of the rendering area where this screen effect is applied, in pixels.
 uniform int screen_width;
 uniform int screen_height;
 
@@ -168,7 +168,7 @@ to make these variables and functions available without the need to declare them
   }
 }'); ?>
 
-<p>The above example processes the screen without making any changes.
+<p>The above example processes the rendered image without making any changes.
 You now have the full power of GLSL to modify it to make any changes
 to colors, sampled positions and such. For example
 make colors two times smaller (darker) by just dividing by 2.0:</p>
@@ -179,7 +179,7 @@ make colors two times smaller (darker) by just dividing by 2.0:</p>
   gl_FragColor = screen_get_color(screen_position()) / 2.0;
 }'); ?>
 
-<p>Or turn the screen upside-down by changing the 2nd texture coordinate:</p>
+<p>Or turn the rendered image upside-down by changing the 2nd texture coordinate:</p>
 
 <?php echo glsl_highlight(
 'void main (void)
@@ -194,11 +194,11 @@ make colors two times smaller (darker) by just dividing by 2.0:</p>
 shader:</p>
 
 <ul>
-  <li><p><p>Internally, we pass the screen contents (color and, optionally,
+  <li><p><p>Internally, we pass the image contents (color and, optionally,
     depth buffer) as a texture (normal non-power-of-two texture)
     or a <a href="http://www.opengl.org/registry/specs/ARB/texture_multisample.txt">multi-sample texture</a>.
     You should always use the functions <code>screen_get_xxx</code>
-    to read previous screen contents,
+    to read previous image contents,
     this way your screen effects will work for
     all multi-sampling (anti-aliasing) configurations.</p></li>
 
@@ -208,7 +208,7 @@ shader:</p>
     for example you know that <code>(screen_x() - 1)</code> is
     "one pixel to the left".</p>
 
-    <p>You can of course sample the previous screen however you like.
+    <p>You can of course sample the previous image however you like.
     The <code>screen_position()</code> (or, equivalent,
     <code>ivec2(screen_x(), screen_y())</code>)
     is the position of current pixel, you can use it e.g. to query previous
