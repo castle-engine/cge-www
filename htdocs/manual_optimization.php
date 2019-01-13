@@ -631,16 +631,26 @@ Call trace for block $00007F9B14E42980 size 44
   ...
 </pre>
 
-<p>Note: when you exit with <code>Halt</code>,
-you will always have some memory leaks, that's unavoidable for now.
-You can ignore the "<i>Heap dump by heaptrc unit</i>" output in this case.
-<!-- the OS cleans up the memory of a terminated program anyway. -->
-Same thing if your program crashes with an unhandled exception.
-
-<p>Note: In the future, we may add <code>-gl -gh</code> automatically
+<p>It is possible that in the future, we may add <code>-gl -gh</code> automatically
 to the options added by the build tool in the debug mode.
 So programs compiled with <code>castle-engine compile --mode=debug</code>
 will automatically show this output.
+We don't do it yet, because:
+
+<ul>
+  <li><p>When you exit with <code>Halt</code>,
+    you will always have some memory leaks, that's unavoidable for now.
+    You should ignore the "<i>Heap dump by heaptrc unit</i>" output in this case.
+    <!-- the OS cleans up the memory of a terminated program anyway. -->
+    Same thing if your program crashes with an unhandled exception.
+
+  <li><p>The behavior in case of memory leaks on Windows GUI application is
+    somewhat unfriendly. Memory leaks are displayed using a series of Windows
+    modal message boxes, and you have to click through them, or kill the application.
+
+    <p>It's better to switch application to CONSOLE for debugging,
+    and run it from command-line, to observe HeapTrc output.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
