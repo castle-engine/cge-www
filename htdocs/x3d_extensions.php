@@ -26,7 +26,7 @@ $toc = new TableOfContents(array(
   new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing', 1),
   new TocItem('Executing compiled-in code on Script events (<code>compiled:</code> Script protocol)', 'ext_script_compiled', 1),
   new TocItem('CastleScript (<code>castlescript:</code> Script protocol)', 'ext_castlescript', 1),
-  new TocItem('Precalculated radiance transfer (<code>radianceTransfer</code> in all <code>X3DComposedGeometryNode</code> nodes)', 'ext_radiance_transfer', 1),
+  new TocItem('DEPRECATED: Precalculated radiance transfer (<code>radianceTransfer</code> in all <code>X3DComposedGeometryNode</code> nodes)', 'ext_radiance_transfer', 1),
   new TocItem('Mixing VRML 1.0, 2.0, X3D nodes and features', 'ext_mix_vrml_1_2', 1),
   new TocItem('Volumetric fog (additional fields for <code>Fog</code> and <code>LocalFog</code> nodes)', 'ext_fog_volumetric', 1),
   new TocItem('Inline nodes allow to include 3D models in other handled formats (Collada, 3DS, MD3, Wavefront OBJ, others) and any VRML/X3D version', 'ext_inline_for_all', 1),
