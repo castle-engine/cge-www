@@ -14,7 +14,8 @@ x3d_status_header('Geometry3D', 'geometry3D',
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
-    new TocItem('Example in Pascal', 'example_pascal'),
+    new TocItem('Example in Pascal (build a textured rectangle)', 'example_pascal_rect'),
+    new TocItem('Example in Pascal (build a textured 3D shape)', 'example_pascal'),
   )
 );
 ?>
@@ -62,6 +63,14 @@ $toc = new TableOfContents(
     Think of a snake, or a human arm or leg, that bends.
     Think of the Blender's <i>Extrude</i> operation applied repeatedly.
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Below is a complete example how to construct in Pascal a scene with
+<code>IndexedFaceSet</code> and helper nodes (<code>Coordinate</code>,
+<code>TextureCoordinate</code>, <code>Shape</code>).
+
+<?php echo pascal_highlight_file('code-samples/create_textured_quad.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
