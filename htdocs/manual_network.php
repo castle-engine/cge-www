@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Network and downloading');
+manual_header('Network, downloading and using URLs');
 
 $toc = new TableOfContents(
   array(
@@ -176,24 +176,42 @@ that uses system encoding).
 
 <p>(Since <i>Castle Game Engine &gt;= 6.5</i>).
 
-<p>This protocol allows to load
+<p>This protocol should be used to load
 <a href="manual_data_directory.php">data files</a> of your project.
-Loading from the <code>castle-data:/images/my_image.png</code>
+During development, on normal desktop systems (Windows, Linux etc.),
+the <i>data files</i> are simply files
+inside the <code>data</code> subdirectory of your project.
+You should place there all the files loaded at runtime by your application.
+
+<p>When the application is packaged for some systems,
+like Android or iOS, the data directory may be treated in a special way.
+If you access all the data files using the <code>castle-data</code> protocol
+(or using URLs relative to files loaded using the <code>castle-data</code> protocol)
+then your application will "just wok" on all systems.
+
+<p>See the <a href="manual_data_directory.php">documentation
+about the data directory</a>.
+
+<p>Note that you can adjust
+<?php api_link('ApplicationDataOverride', 'CastleFilesUtils.html#ApplicationDataOverride'); ?>
+ to host your data files wherever you want.
+This way data files may even be loaded from <code>http</code> location.
+On desktop systems, the data location is by default
+just a regular directory on disk, but you can change it.
+
+<p>Loading from the <code>castle-data:/images/my_image.png</code>
 is equivalent to using <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
  in code and loading from the <code>ApplicationData('images/my_image.png')</code>.
+Since <i>Castle Game Engine 6.5</i>, we advise using
+<code>castle-data:/images/my_image.png</code> form.
 
-<p>During development of a normal cross-plaform game,
-the <i>data files</i> are simply things
-inside the <code>data</code> subdirectory of your project.
-See <a href="manual_data_directory.php">documentation about the data directory</a>.
 
-<p>The data location is usually (at least on desktop systems) just
-a regular directory on disk. So loading files from <code>castle-data:/xxx</code>
-protocol <i>usually</i> boils down to loading from a <code>file:/xxx</code> protocol.
-But you can adjust
-<?php api_link('ApplicationDataOverride', 'CastleFilesUtils.html#ApplicationDataOverride'); ?>
- to host your data files wherever you want, this way
-data files may even be loaded from <code>http</code> location.
+<!--
+The castle-data:/ URL designates files inside the application data directory. When developing, this is usually the subdirectory "data/" of your project. When the application is installed, this is sometimes a special directory within the filesystem, sometimes a special filesystem (read-only "assets" on Android). Use this for all your game's URLs to have a completely self-contained game that will work on any OS.
+
+When setting the URLs of various components from Lazarus, by clicking on "..." in the Lazarus Object Inspector, we automatically detect when you chose a file inside the "data/" subdirectory, and change the URL into appropriate castle-data:/ (instead of a file:/ URL).
+-->
+
 
 <?php echo $toc->html_section(); ?>
 

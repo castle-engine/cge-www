@@ -265,7 +265,7 @@ $castle_sitemap = array(
           'manual_physics' => array('title' => 'Physics'),
           'manual_sound' => array('title' => 'Sound'),
           'manual_screenshots' => array('title' => 'Screenshots'),
-          'manual_network' => array('title' => 'Network and downloading'),
+          'manual_network' => array('title' => 'Network, downloading and using URLs'),
           'manual_recording_movies' => array('title' => 'Recording movies'),
           'manual_log' => array('title' => 'Logging'),
           'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
