@@ -246,6 +246,7 @@ $castle_sitemap = array(
             'sub' => array(
               'manual_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
               'manual_editor' => array('title' => 'Editor'),
+              'manual_castle_settings' => array('title' => 'Customize look by CastleSettings.xml'),
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'manual_text' => array('title' => 'Text and fonts'),
               'manual_on_screen_menu' => array('title' => 'On-screen menu'),

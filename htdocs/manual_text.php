@@ -104,11 +104,16 @@ place appropriate FreeType2 DLL alongside the exe, you can get the DLL
 from <code>castle_game_engine/tools/build-tool/data/external_libraries/</code> directory
 of the engine.
 
-<p>Note that you can also assign the new font as the global <code>UIFont</code>,
+<p>You can assign the new font as the global <code>UIFont</code>,
 so it will be by default used by all standard UI controls:
 
 <?php echo pascal_highlight(
 'UIFont := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
+
+<p>(Instead of assigning to the <code>UIFont</code>,
+you can define a <code>default_font</code> inside the
+<a href="manual_castle_settings.php">CastleSettings.xml</a> file.
+This way CGE editor will also use the new font.)
 
 <p>Instead of loading the font data from a TTF file, you can also provide
 a <?php api_link('TTextureFontData', 'CastleFonts.TTextureFontData.html'); ?>
