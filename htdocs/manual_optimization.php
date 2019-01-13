@@ -469,9 +469,10 @@ for a wide range of scenes.
   <li><code>LogAllLoading</code>
   <li><code>TextureMemoryProfiler.Enabled</code>
   <li><code>LogRenderer</code> (from <code>CastleRenderer</code> unit)
+  <li><code>TSoundEngine.LogSoundLoading</code> (since CGE 6.5)
 </ul>
 
-<p>Beware: This is usually <i>a lot</i> of information, so you probably don't want to see it always. Dumping this information to the log will often cause a <b>tremendous slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
+<p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
 <p>Since <i>Castle Game Engine</i> 6.5: You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily get information about what was loaded, and what took most time to load.
 

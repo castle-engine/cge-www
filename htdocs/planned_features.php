@@ -117,6 +117,10 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
 
+  <li><p><b>Continous integration (Jenkins) for free for all open-source projects.</b>
+
+    <p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)">Jenkins + Docker infrastructure</a> to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
+
   <li><p><b>Terrain designer</b>
 
     <p>Easily design a height map (X3D <?php api_link('ElevationGrid', 'X3DNodes.TElevationGridNode.html'); ?> node, with trees, rocks, grass). Saved and loaded as an X3D file.
@@ -345,6 +349,69 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
     <i>Contributions are welcome.
     This is an easy and rewarding task for a developer interested in macOS.</i>
   </li>
+
+  <li><p><b>API improvement: Make <code>SceneManager.MainScene</code> not necessary</b>.
+
+    <p>In the future, everything should be possible without assigning
+    <code>SceneManager.MainScene</code>,
+    and eventually <code>SceneManager.MainScene</code> property should be deprecated,
+    later it should be ignored, and later it should be removed.
+
+    <p>Currently, the engine requires you to assign scene to
+    <code>SceneManager.MainScene</code>
+    to achieve some features. For example:
+
+    <ol>
+      <li><p>To have some X3D lights shining on <i>all</i>
+        scenes, these lights should be in <code>SceneManager.MainScene</code>.
+      <li><p>To use a <code>Background</code> or <code>Fog</code> X3D node,
+        this node needs to be inside <code>SceneManager.MainScene</code>.
+      <li><p>The initial camera position may be derived from <code>Viewpoint</code>
+        in the <code>SceneManager.MainScene</code>.
+    </ol>
+
+    <p>All these features should have a different solution,
+    that doesn't require marking any scene as "main".
+    This is not a trivial job, and it needs case-by-case solutions.
+    For example (addressing above examples):
+
+    <ol>
+      <li><p>Every scene could have a Boolean property like
+        <code>TCastleScene.LightsAffectAllScenes</code>.
+      <li><p>The editor could allow to point a specific <code>Background</code> or <code>Fog</code>
+        node to be currently used (which could come from any X3D scene).
+      <li><p>The initial camera position can already be given in various
+        alternative ways.
+    </ol>
+
+  <li><p><b>API improvement: CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API.</b>
+
+    <p>These 5 units (CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer) expose a high-level API, that sits on top on existing classes (like TCastleScene and TCastleTransform). But I am not 100% happy with their API. Reasons:
+
+    <ol>
+      <li><p>The API is too specialized at some points (3D games with creatures / items pickable),
+      <li><p>It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCamera).
+    </ol>
+
+    <p>Gradually I will want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleSceneManager / TCamera. Basically, I'm very happy with current API of TCastleScene and TCastleTransform, and I want to make it more obvious how it is related to creatures/placeholders and other concepts introduced in CastleLevels and CastleCreatures and CastkeResources. Currently they use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
+
+    <p>It's not going to happen any time soon, but it will happen gradually, over the course of next 1 or more years. That is, some of the features of the 5 units mentioned above will become available in other ways too (more flexible, and more obviously connected to TCastleScene).
+
+    <p>I know this sounds vague, because I have not yet clarified these plans in my head:) These 5 units *are* useful, they provide various features on top of TCastleScene. I'm not going to just "ditch" them or even deprecate them, before I made a better API that also has these features. For example:
+
+    <ul>
+      <li><p>New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of <a href="https://castle-engine.io/apidoc/html/CastleLevels.TGameSceneManager.html#LoadLevel">TGameSceneManager.Load</a> in a flexible manner (user can decide what to replace with what).
+
+      <li><p>There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
+
+      <li><p>It should be possible to add an A.I. (like TWalkAttackLogic) to any TCastleTransform instance.
+    </ul>
+
+    <p>I know I want to go in this direction. Based on the questions (including on Discord) I see that the API of these 5 units is not clear to people. It wraps TCastleScene / TCastleSceneManager / TCamera, but in ways that are not obvious, and that is something I want to improve.
+
+    <p>Again, bear in mind that it will not happen any time soon :) You can safely and happily use these units, probably for a few years to come.
+
+    <p>But it is something I think about for the future, and it may explain some of my decisions. E.g. that is why I don't plan special integration of TCastleCreature with castle-editor. Instead I want to enable you to add future TWalkAttackLogic to any TCastleTransform one day. And thus we will have "easy creatures" in CGE but with more flexible API.
 </ul>
 
 <?php castle_footer(); ?>
