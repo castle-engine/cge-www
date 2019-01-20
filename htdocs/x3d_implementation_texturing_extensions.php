@@ -701,7 +701,7 @@ contents than <code>foo.png</code> with <code>flipVertically=TRUE</code>".
 
   <li><p>How to reconcile these differences? Three solutions come to mind:
 
-    <ul>
+    <ol>
       <li><p>Use a different shader for rendering glTF content, that transforms texture coordinates like <code>texCoord.y = 1 - texCoord.y</code>.
 
         <p>I rejected this idea, because 1. I don't want to complicate shader code by a special clause for glTF, 2. I don't want to perform at runtime (each time you render a pixel!) something that could otherwise be done at loading time.
@@ -720,6 +720,7 @@ contents than <code>foo.png</code> with <code>flipVertically=TRUE</code>".
 
         <p>So, this solution makes it possible to have efficient loading
         of textures, and of glTF.
+    </ol>
 </ul>
 
 <p><b>Why only for ImageTexture / MovieTexture?</b>
