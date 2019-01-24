@@ -412,6 +412,10 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
     <p>Again, bear in mind that it will not happen any time soon :) You can safely and happily use these units, probably for a few years to come.
 
     <p>But it is something I think about for the future, and it may explain some of my decisions. E.g. that is why I don't plan special integration of TCastleCreature with castle-editor. Instead I want to enable you to add future TWalkAttackLogic to any TCastleTransform one day. And thus we will have "easy creatures" in CGE but with more flexible API.
+
+  <li><p><b>Bridge TGLImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.</b>
+
+    <p><a href="https://github.com/castle-engine/castle-engine/wiki/2D-Games">See also here.</a>
 </ul>
 
 <?php castle_footer(); ?>
