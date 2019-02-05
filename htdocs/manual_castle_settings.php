@@ -98,6 +98,20 @@ I expect that this file will also get more features in the future.
     - `size` determines the `TCastleFont.Size`,
       it determines how large the font is on the screen.
 
+    - `sizes_at_load`, if defined, should be a list of font sizes
+      (integers separated by whitespace).
+      The font sizes should represent a spectrum of sizes you plan
+      to use in your application, e.g. "10 15 20 25".
+
+      Internally, the font is loaded into a number of textures,
+      one for each size, using TCustomizedFont.Load that creates
+      a number of TTextureFont instances.
+      When rendering using this font, the closest size will be used,
+      and scaled to the requested size, to be rendered exactly at
+      requested size.
+
+      This gives greatest font quality.
+
     - `size_at_load` is the font size used to create an internal texture
       with letters. By default it is equal to `size`,
       but it can be set to something larger to improve the quality of the font.
@@ -106,11 +120,19 @@ I expect that this file will also get more features in the future.
       (E.g. your controls leave `TCastleUserInterfaceFont.CustomFont = nil`,
       but often use large `TCastleUserInterfaceFont.FontSize` or
       `TCastleUserInterfaceFont.FontScale`).
+
+      This is used only when the list `sizes_at_load` is empty.
+
+      Internally, one TTextureFont instance will be created,
+      for given size.
+      When rendering it will be scaled to the requested size.
+      If you try to render font much smaller or much larger than
+      the loaded size, results may look aliased or blurry.
   -->
   <default_font
     url="castle-data:/MyFontFile.ttf"
     size="20"
-    size_at_load="20"
+    sizes_at_load="10 20 30"
     anti_aliased="true"
   />
 </castle_settings>'); ?>
