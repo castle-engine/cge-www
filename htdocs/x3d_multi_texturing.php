@@ -432,6 +432,26 @@ without any answer so far.)
     to non-existing mode
     <code>MODULATECOLOR_ADDALPHA</code> (that doesn't invert the color).
 
+  <li><p><i>(Deleted. This point contained notes about
+    <code>source="DIFFUSE"</code> and <code>source="SPECULAR"</code>,
+    but actually spec isn't at fault here. I was at fault,
+    reading the spec incorrectly.)</i>
+
+<?php /*
+  I deleted this section, and keep it in comments only to remind myself
+  that I'm sometimes not very smart :)
+  The spec of
+  <code>source="DIFFUSE"</code> and <code>source="SPECULAR"</code>
+  merely says that
+  """
+  The texture argument is the diffuse/specular color interpolated from vertex components during Gouraud shading.
+  """
+
+  They just want to interpolate Material.diffuseColor/specularColor field,
+  from vertex to fragment.
+  This doesn't force Gouraud shading,
+  this doesn't force lighting calculation to be done at any point.
+
   <li><p>The definition of <code>source="DIFFUSE"</code>
     and <code>source="SPECULAR"</code> doesn't play nicely with lighting.
 
@@ -527,6 +547,9 @@ without any answer so far.)
         mean "the result of lighting equations (for non-textured appearance)".
     </ol>
   </li>
+
+*/
+?>
 
   <li><p>The default mode is always modulate, for both RGB and grayscale textures.
     This is inconsistent with single-texturing (using normal
