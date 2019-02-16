@@ -778,7 +778,6 @@ var _bftn_options = {
 
 <?php
 /* echo flattr_header(); - Flattr not used now */
-echo googleplus_header();
 
 /* Don't use facebook_header on other pages, as it makes all links
    from FB (and G+?) lead to main page --- I actually don't want this. */

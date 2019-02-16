@@ -116,8 +116,9 @@ Announcing release
   - Our Wordpress: https://castle-engine.io/wp/
   - Patreon: https://www.patreon.com/castleengine
   - Facebook: https://facebook.com/castleengine/
-  - Google+: https://plus.google.com/+CastleGameEngineX3d/
+  - (soon to be gone) Google+: https://plus.google.com/+CastleGameEngineX3d/
   - Twitter: https://twitter.com/castleengine
+  - Mastodon: https://mastodon.social/@michalis_kambi
 
 - engine source code release means updating FPC contrib units info
   (see fpc_contrib_units_data.txt,

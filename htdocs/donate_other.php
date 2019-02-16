@@ -100,8 +100,7 @@ Old text:
 <a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png" /></a>
 <p>Hi,
 <p>I'm Michalis Kamburelis
-(<?php echo michalis_mailto('email'); ?>,
-<a href="https://plus.google.com/106323096891653345103">google+</a>).
+(<?php echo michalis_mailto('email'); ?>).
 I'm developing this engine since 2007, with a dream to create something <b>great and open-source and (forever) free</b>.
 I guess I spend most of my days (and nights:) developing it throughout these years.
 <p>Since 2016, I don't have any other job, and

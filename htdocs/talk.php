@@ -30,7 +30,6 @@ castle_header('Talk with us');
           <li>Follow and talk to us on:
             <ul>
               <li><a href="https://www.facebook.com/castleengine">Facebook</a></li>
-              <li><a href="https://plus.google.com/+CastleGameEngineX3d">Google+</a></li>
               <li><a href="https://twitter.com/castleengine">Twitter</a></li>
               <li><a href="https://mastodon.social/@michalis_kambi">Mastodon</a></li>
             </ul>

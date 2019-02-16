@@ -20,33 +20,7 @@ function _castle_disable_stats()
     CASTLE_GENERATE_OFFLINE);
 }
 
-/* Google+ ------------------------------------------------------------------- */
-
-function googleplus_header()
-{
-  if (_castle_disable_externals()) return '';
-  return '<script src="https://apis.google.com/js/platform.js" async defer></script>';
-}
-
-function googleplus_badge($large = false)
-{
-  if (_castle_disable_externals()) return '';
-  /* Instead of +1 button, it's better to use a "badge",
-     https://developers.google.com/+/web/badge/ .
-     This allos Google to link our normal page back to our G+ page. */
-  if ($large) {
-    return '<div class="g-page" data-href="//plus.google.com/u/0/101185352355602218697" data-rel="publisher"></div>';
-  } else {
-    return '<div class="g-plus" data-href="https://plus.google.com/101185352355602218697" data-layout="portrait" width="280"></div>';
-  }
-  //return '<g:plusone size="tall"></g:plusone>';
-}
-
-function googleplus_button()
-{
-  if (_castle_disable_externals()) return '';
-  return '<g:plusone size="tall"></g:plusone>';
-}
+/* Google ------------------------------------------------------------------- */
 
 function google_custom_search_box()
 {

@@ -10,7 +10,6 @@ castle_header("Darkest Before the Dawn", array(
 define('VERSION_DARKEST_BEFORE_DAWN', '1.2.0');
 
 /* echo '<div style="float: right; width: 400px;">'; */
-/* echo googleplus_button(); */
 /* echo facebook_button(); */
 /* echo flattr_button(); */
 /* echo '</div>'; */
@@ -21,7 +20,6 @@ echo castle_thumbs(array(
   array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Darkest Before the Dawn - game screen 2'),
   array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => 'Darkest Before the Dawn - title screen'),
   /* array('html' => */
-  /*   '<div class="social_button">' . googleplus_button() . '</div>' . */
   /*   '<div class="social_button">' . facebook_button() . '</div>' . */
   /*   '<div class="social_button" style="margin: 0">' . flattr_button() . '</div>' */
   /* ), */
@@ -62,10 +60,6 @@ automatically propose to install it.
 </div>
 
 <div style="margin-top: 2em;">
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
-<?php echo googleplus_button(); ?>
-</div>
-
 <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
 <?php echo facebook_button(); ?>
 </div>

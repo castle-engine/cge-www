@@ -8,7 +8,6 @@ castle_header("Mountains Of Fire", array(
 ));
 
 /* echo '<div style="float: right; width: 400px;">'; */
-/* echo googleplus_button(); */
 /* echo facebook_button(); */
 /* echo flattr_button(); */
 /* echo '</div>'; */
@@ -65,10 +64,6 @@ Try it now!
 </div>
 
 <div style="margin-top: 2em;">
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
-<?php echo googleplus_badge(); ?>
-</div>
-
 <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
 <?php echo facebook_button(); ?>
 </div>
