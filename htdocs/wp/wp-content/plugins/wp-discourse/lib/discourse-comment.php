@@ -145,9 +145,17 @@ class DiscourseComment {
 	 * @return string
 	 */
 	public function get_discourse_comments( $request ) {
-		$post_id = isset( $request['post_id'] ) ? esc_attr( wp_unslash( $request['post_id'] ) ) : null;
+		$post_id = isset( $request['post_id'] ) ? intval( ( $request['post_id'] ) ) : 0;
 
 		if ( empty( $post_id ) ) {
+
+			return '';
+		}
+
+		$status = get_post_status( $post_id );
+		$post = get_post( $post_id );
+
+		if ( 'publish' !== $status || ! empty( $post->post_password ) ) {
 
 			return '';
 		}

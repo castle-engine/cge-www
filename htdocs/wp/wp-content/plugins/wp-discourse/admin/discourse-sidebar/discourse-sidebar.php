@@ -128,8 +128,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'get-discourse-categories', array(
 				array(
-					'methods'  => \WP_REST_Server::READABLE,
-					'callback' => array( $this, 'get_discourse_categories' ),
+					'methods'             => \WP_REST_Server::READABLE,
+					'permission_callback' => array( $this, 'get_discourse_read_categorories_permissions' ),
+					'callback'            => array( $this, 'get_discourse_categories' ),
 				),
 			)
 		);
@@ -137,8 +138,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'update-topic', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'update_topic' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'update_topic' ),
 				),
 			)
 		);
@@ -146,8 +148,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'publish-topic', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'publish_topic' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'publish_topic' ),
 				),
 			)
 		);
@@ -155,8 +158,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'unlink-post', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'unlink_post' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'unlink_post' ),
 				),
 			)
 		);
@@ -164,8 +168,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'link-topic', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'link_topic' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'link_topic' ),
 				),
 			)
 		);
@@ -173,8 +178,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'set-publish-meta', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'set_publish_meta' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'set_publish_meta' ),
 				),
 			)
 		);
@@ -182,8 +188,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'set-category-meta', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'set_category_meta' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'set_category_meta' ),
 				),
 			)
 		);
@@ -191,8 +198,9 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'set-tag-meta', array(
 				array(
-					'methods'  => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'set_tag_meta' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'set_tag_meta' ),
 				),
 			)
 		);
@@ -200,11 +208,65 @@ class DiscourseSidebar {
 		register_rest_route(
 			'wp-discourse/v1', 'set-pin-meta', array(
 				array(
-					'methods' => \WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'set_pin_meta' ),
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => array( $this, 'get_discourse_publish_permissions' ),
+					'callback'            => array( $this, 'set_pin_meta' ),
 				),
 			)
 		);
+	}
+
+	/**
+	 * Checks whether the current user has permission to access the Discourse categories option.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	public function get_discourse_read_categorories_permissions() {
+		if ( ! current_user_can( 'publish_posts' ) ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to do that.', 'wp-discourse' ),
+				array(
+					'status' => rest_authorization_required_code(),
+					)
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Checks if the user has permissions to publish the post.
+	 *
+	 * @param object $data The data sent with the API request.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	public function get_discourse_publish_permissions( $data ) {
+		$post_id = isset( $data['id'] ) ? intval( wp_unslash( $data['id'] ) ) : 0; // Input var okay.
+
+		if ( $post_id <= 0 ) {
+			return new \WP_Error(
+				'rest_invalid_param',
+				// translators: Discourse invalid parameter message. Placeholder: the post ID.
+				sprintf( __( 'Invalid parameter: %s', 'wp-discourse' ), $post_id ),
+				array(
+					'status' => 400,
+					)
+			);
+		}
+
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to do that.', 'wp-discourse' ),
+				array(
+					'status' => rest_authorization_required_code(),
+					)
+			);
+		}
+
+		return true;
 	}
 
 	/**
@@ -254,7 +316,7 @@ class DiscourseSidebar {
 	 * @param object $data The data received from the API request.
 	 */
 	public function set_pin_meta( $data ) {
-		$post_id = intval( wp_unslash( $data['id'] ) ); // Input var okay.
+		$post_id   = intval( wp_unslash( $data['id'] ) ); // Input var okay.
 		$pin_topic = intval( wp_unslash( $data['wpdc_pin_topic'] ) ); // Input var okay.
 		if ( ! empty( $data['wpdc_pin_until'] ) ) { // Input var okay.
 			$pin_until = sanitize_text_field( wp_unslash( $data['wpdc_pin_until'] ) ); // Input var okay.

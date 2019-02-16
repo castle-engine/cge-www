@@ -329,7 +329,7 @@ class SSOSettings {
 						<?php
 						esc_html_e(
 							'The use of all sites on this network as SSO providers for your Discourse forum
-                        has been disabled by the main site on this network. Enabling any of thethe settings on this tab will
+                        has been disabled by the main site on this network. Enabling any of the settings on this tab will
                         have no effect.', 'wp-discourse'
 						);
 ?>
@@ -598,11 +598,6 @@ class SSOSettings {
                 user will be created.", 'wp-discourse'
 				);
 ?>
-			</em>
-		</p>
-		<p class="wpdc-options-documentation">
-			<em>
-				<strong><?php esc_html_e( 'Note: ', 'wp-discourse' ); ?></strong><?php esc_html_e( 'this setting does not yet work with multisite installations.', 'wp-discourse' ); ?>
 			</em>
 		</p>
 		<p class="wpdc-options-documentation">

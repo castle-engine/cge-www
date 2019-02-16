@@ -74,7 +74,7 @@ class DiscoursePublish {
 		$already_published      = get_post_meta( $post_id, 'discourse_post_id', true );
 		$update_discourse_topic = get_post_meta( $post_id, 'update_discourse_topic', true );
 		$title                  = $this->sanitize_title( $post->post_title );
-		$title                  = apply_filters( 'wpdc_publish_format_title', $title );
+		$title                  = apply_filters( 'wpdc_publish_format_title', $title, $post_id );
 
 		$publish_private = apply_filters( 'wpdc_publish_private_post', false, $post_id );
 		if ( 'publish' === get_post_status( $post_id ) || $publish_private ) {
@@ -101,7 +101,7 @@ class DiscoursePublish {
 		$publish_to_discourse = false;
 		$publish_to_discourse = apply_filters( 'wp_discourse_before_xmlrpc_publish', $publish_to_discourse, $post );
 		$title                = $this->sanitize_title( $post->post_title );
-		$title                = apply_filters( 'wpdc_publish_format_title', $title );
+		$title                = apply_filters( 'wpdc_publish_format_title', $title, $post_id );
 
 		if ( $publish_to_discourse && $post_is_published && $this->is_valid_sync_post_type( $post_id ) && ! empty( $title ) ) {
 			update_post_meta( $post_id, 'publish_to_discourse', 1 );
@@ -180,7 +180,7 @@ class DiscoursePublish {
 		$featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
 		$baked    = str_replace( '{featuredimage}', '![image](' . $featured['0'] . ')', $baked );
 
-		$username = get_the_author_meta( 'discourse_username', $current_post->post_author );
+		$username = apply_filters( 'wpdc_discourse_username', get_the_author_meta( 'discourse_username', $current_post->post_author ), $author_id );
 		if ( ! $username || strlen( $username ) < 2 ) {
 			$username = $options['publish-username'];
 		}
@@ -200,10 +200,13 @@ class DiscoursePublish {
 
 		// The post hasn't been published to Discourse yet.
 		if ( ! $discourse_id > 0 ) {
-			// Unlisted has been moved from post metadata to a site option.
+			// Unlisted has been moved from post metadata to a site option. This is awkward for now.
 			$unlisted_post   = get_post_meta( $post_id, 'wpdc_unlisted_topic', true );
 			$unlisted_option = $this->options['publish-as-unlisted'];
-			$unlisted        = ! empty( $unlisted_post ) || ! empty( $unlisted_option );
+			$unlisted        = apply_filters( 'wpdc_publish_unlisted', ! empty( $unlisted_post ) || ! empty( $unlisted_option ), $current_post, $post_id );
+			if ( $unlisted ) {
+				update_post_meta( $post_id, 'wpdc_unlisted_topic', 1 );
+			}
 			$data            = array(
 				'embed_url'        => $permalink,
 				'featured_link'    => $add_featured_link ? $permalink : null,

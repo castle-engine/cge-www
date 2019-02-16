@@ -9,7 +9,7 @@
  * Auto Activate: Yes
  * Module Tags: Social, Recommended
  * Feature: Engagement
- * Additional Search Queries: facebook, twitter, google+, googleplus, google, tumblr, linkedin, social, tweet, connections, sharing
+ * Additional Search Queries: facebook, twitter, tumblr, linkedin, social, tweet, connections, sharing
  */
 
 class Jetpack_Publicize {
@@ -40,11 +40,12 @@ class Jetpack_Publicize {
 		$publicize_ui->in_jetpack = $this->in_jetpack;
 
 		// Jetpack specific checks / hooks
-		if ( $this->in_jetpack) {
+		if ( $this->in_jetpack ) {
 			// if sharedaddy isn't active, the sharing menu hasn't been added yet
 			$active = Jetpack::get_active_modules();
-			if ( in_array( 'publicize', $active ) && !in_array( 'sharedaddy', $active ) )
+			if ( in_array( 'publicize', $active ) && ! in_array( 'sharedaddy', $active ) ) {
 				add_action( 'admin_menu', array( &$publicize_ui, 'sharing_menu' ) );
+			}
 		}
 	}
 
