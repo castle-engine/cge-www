@@ -4,7 +4,8 @@ manual_header('Text and fonts');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('TCastleFont class', 'font'),
+    new TocItem('Show text using a label UI control (TCastleLabel)', 'label'),
+    new TocItem('Explicitly draw text (TCastleFont)', 'font'),
     new TocItem('Create a new font', 'create'),
     new TocItem('International characters', 'international'),
     new TocItem('Localization (translation)', 'localization'),
@@ -15,7 +16,32 @@ $toc = new TableOfContents(
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>To draw some text you need an instance of the
+<p>The most comfortable way to show text is to use
+ <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>.
+ You can customize it's font using
+ <?php api_link('CustomFont', 'CastleControls.TUIControlFont.html#CustomFont'); ?>
+ and
+ <?php api_link('FontSize', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
+ properties.
+
+<p>Many UI controls (see for example unit
+ <?php api_link('CastleControls', 'CastleControls.html'); ?>)
+ descend from
+ <?php api_link('TUIControlFont', 'CastleControls.TUIControlFont.html'); ?>,
+ and thus can render text and have their font customized, for example
+ <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>.
+
+<p>You can add and configure UI controls (like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>,
+ <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>
+ and many more)
+ by code, or using <a href="manual_editor.php">the CGE editor</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Instead of using
+<?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>,
+you can explicitly draw the text.
+For this you need an instance of the
 <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> class.
 To make it easy, one global instance of this class is already created for you:
 <?php api_link('UIFont', 'CastleControls.html#UIFont'); ?>
@@ -36,31 +62,14 @@ inside the overridden <?php api_link('TUIControl.Render',
 See <?php echo a_href_page('the manual about 2D drawing',
   'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
 
-<p>Instead of directly drawing the text,
-you can also use
- <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
- that manages the drawing for you.
- You can customize it's font using
- <?php api_link('CustomFont', 'CastleControls.TUIControlFont.html#CustomFont'); ?>,
- <?php api_link('FontSize', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
- and
- <?php api_link('SmallFont', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
- properties.
- Many other UI controls (see for example unit
- <?php api_link('CastleControls', 'CastleControls.html'); ?>)
- descend from
- <?php api_link('TUIControlFont', 'CastleControls.TUIControlFont.html'); ?>.
- and thus may have their font customized, for example
- <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>.
 
 <p><?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> class
 has a lot of methods and properties.
 <ul>
   <li>You can simply print the text
     (<?php api_link('Print', 'CastleFonts.TCastleFont.html#Print'); ?>).
-  <li>You can scale the font
-    (<?php api_link('Scale', 'CastleFonts.TCastleFont.html#Scale'); ?>,
-     <?php api_link('Size', 'CastleFonts.TCastleFont.html#Size'); ?>).
+  <li>You can change the font size
+    (<?php api_link('Size', 'CastleFonts.TCastleFont.html#Size'); ?>).
   <li>You can add an outline around it
     (<?php api_link('Outline', 'CastleFonts.TCastleFont.html#Outline'); ?>,
     <?php api_link('OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor'); ?>).
@@ -83,7 +92,8 @@ has a lot of methods and properties.
 an abstract class representing some font that can be drawn.
 To create a new font, you create an instance of a non-abstract class,
 most often the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
- class &mdash; it draws font glyphs from a texture, and can be loaded from a TTF font.
+ class &mdash; it draws font glyphs from a texture,
+ and can be loaded from a font file (TTF, OTF).
 There are other possible font implementations, for example
 <?php api_link('TSimpleTextureFont', 'CastleFonts.TSimpleTextureFont.html'); ?>
  allows to use a font drawn on an image (so you can make colorful letters,
@@ -92,12 +102,13 @@ with fancy custom outline and such).
 <p>See <code>castle_game_engine/examples/fonts/font_from_texture.lpr</code>
 for a simple example of creating fonts.
 In the basic version, you simply use
-<?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?> constructor
-to load a font from a TTF file (or any other font format supported by the
-FreeType2 library). So you construct a font like this:
+<?php api_link('TTextureFont.Load', 'CastleFonts.TTextureFont.html#Load'); ?>
+ to load a font from a file (TTF, OTF or any other font format supported by the
+FreeType2 library). So you construct and load a font like this:
 
 <?php echo pascal_highlight(
-'MyNewFont := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
+'MyNewFont := TTextureFont.Create(Application { any TComponent to act as owner });
+MyNewFont.Load(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
 
 <p>Remember to install the FreeType2 library for this to work. On Windows,
 place appropriate FreeType2 DLL alongside the exe, you can get the DLL
@@ -108,21 +119,22 @@ of the engine.
 so it will be by default used by all standard UI controls:
 
 <?php echo pascal_highlight(
-'UIFont := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
+'UIFont := MyNewFont;'); ?>
 
 <p>(Instead of assigning to the <code>UIFont</code>,
-you can define a <code>default_font</code> inside the
+you can assign to <code>Container.DefaultFont</code>
+or define a <code>default_font</code> inside the
 <a href="manual_castle_settings.php">CastleSettings.xml</a> file.
 This way CGE editor will also use the new font.)
 
-<p>Instead of loading the font data from a TTF file, you can also provide
+<p>Instead of loading the font data from a file, you can also provide
 a <?php api_link('TTextureFontData', 'CastleFonts.TTextureFontData.html'); ?>
  instance to the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
  constructor. This allows to create the font data at runtime
  or <b>to use the font data embedded in a Pascal source code</b>.
 You can use the <code>texture-font-to-pascal</code> program (compile it from
 <code>castle_game_engine/tools/texture-font-to-pascal/texture-font-to-pascal.lpr</code>)
-to convert a TTF file into a Pascal unit:
+to convert a font file into a Pascal unit:
 
 <pre>
 texture-font-to-pascal --size 20 MyFontFile.ttf
@@ -137,7 +149,8 @@ texture-font-to-pascal --size 20 MyFontFile.ttf
 <p>You can use this unit in your program, and create a font instance like this:
 
 <?php echo pascal_highlight(
-'MyNewFont := TTextureFont.Create(TextureFont_MyFontFile_20);'); ?>
+'MyNewFont := TTextureFont.Create(Application { any TComponent to act as owner });
+MyNewFont.Load(TextureFont_MyFontFile_20);'); ?>
 
 <p>The advantages of embedding a font inside a Pascal unit are:
 
@@ -149,8 +162,8 @@ texture-font-to-pascal --size 20 MyFontFile.ttf
     a suitable texture data.
 </ul>
 
-<p>The disadvantages are of course that you cannot easily edit the TTF anymore,
-you will need to rerun the <code>texture-font-to-pascal</code> command
+<p>The disadvantages are of course that you cannot simply change the font file anymore,
+you need to rerun the <code>texture-font-to-pascal</code> command
 and recompile your program to see the new font.
 
 <?php echo $toc->html_section(); ?>
