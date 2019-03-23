@@ -14,14 +14,20 @@ read-only data files) it is recommended to put all your data inside the
 protocol <code>castle-data:/xxx</code>. Loading from
 <code>castle-data:/images/my_image.png</code> is equivalent to loading from
 <code>ApplicationData('images/my_image.png')</code>.
+We advise to use only <code>castle-data:/xxx</code> for code targeting the new CGE
+versions &mdash; it is simpler, can be saved to files better (useful when saving CGE editor designs,
+X3D models with URLs etc.),
+and it works better in some corner-cases (e.g. <a href="https://castle-engine.io/apidoc-unstable/html/CastleFindFiles.html#FindFiles">FindFiles</a> will work
+on Android, thanks to an internal information stored in the data on Android).
 
 <p>Advantages:
 
 <ol>
   <li><p>This directory is automatically correctly packaged by the
     <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">CGE build tool</a>
-    and upcoming editor.
-    E.g. it will be correctly added to the Android <code>apk</code> file.
+    and editor.
+    E.g. it will be correctly added to the Android <code>apk</code> file,
+    iOS or Nintendo Switch application.
 
   <li><p>It is detected in a smart way. E.g. it allows to place your data files
     in a system-wide location on Unix.
@@ -68,6 +74,11 @@ This way the build tool will automatically package your game correctly.
     <p>See <a href="https://castle-engine.io/manual_network.php">loading from URLs</a>
     and the <?php api_link('CastleDownload', 'CastleDownload.html'); ?> unit.
 </ul>
+
+<p>Note that the data contents should be treated as read-only in cross-platform
+applications. In some cases it may be writeable (e.g. on desktop, when the application
+files are owned by the current user) but on some platforms it may be read-only
+(e.g. in case of Android, it resides in a special area which cannot be modified by code).
 
 <?php
 manual_footer();
