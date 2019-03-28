@@ -12,7 +12,7 @@ global $disqus_form_already_done;
 $disqus_form_already_done = true;
 
 castle_header('Download', array(
-  'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including X3D, glTF, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, Mac OS X...), mobile (Android, iOS), web browser plugin. Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
+  'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including X3D, glTF, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
 ));
 ?>
 
@@ -52,7 +52,7 @@ castle_header('Download', array(
                 <ul>
                     <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, glTF, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
                       <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
-                    <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, Mac OS X...) and <b>mobile</b> (Android, iOS).
+                    <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, macOS...), <b>mobile</b> (Android, iOS) and <b>consoles</b> (Nintendo Switch).
                     <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
                     <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
                       <!--Load and save images and X3D graph as needed.-->

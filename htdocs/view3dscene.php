@@ -4,7 +4,7 @@ define('CASTLE_GITHUB_NAME', 'view3dscene');
 require_once 'castle_engine_functions.php';
 castle_header("view3dscene", array(
   'social_share_image' => 'castle_sunset.png',
-  'meta_description' => 'view3dscene is a lightweight browser for X3D and VRML 3D models, and a viewer for various other 3D model formats (3DS, MD3, Wavefront OBJ, and Collada, Spine JSON). It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Rendering is done using OpenGL. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from 3DS, MD3, Collada, Spine and other formats to X3D and pretty-print VRML and X3D files. Free software. For Linux, Mac OS X and Windows.'
+  'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: X3D, glTF, VRML, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, Mac OS X and Windows.'
 ));
 
 function section($make_hr = true)
@@ -33,7 +33,7 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p><b>view3dscene</b> is a viewer for many 3D model formats: X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
+<p><b>view3dscene</b> is a viewer for many 3D model formats: X3D, glTF, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
 
 <p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D or VRML.</p>
 

@@ -10,7 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Summary', 'summary'),
     new TocItem('Demo reel', 'demo'),
     new TocItem('Many 3D and 2D formats supported (X3D, Collada, Spine...)', 'data'),
-    new TocItem('Portable (standalone, mobile, web browser plugin)', 'portable'),
+    new TocItem('Portable (standalone, mobile, console, web browser plugin)', 'portable'),
     new TocItem('Graphic features and effects (shadows, mirrors, bump mapping...)', 'graphic'),
     new TocItem('Scene manager and comfortable API', 'api'),
     new TocItem('And much more!', 'more'),
@@ -36,7 +36,7 @@ $toc = new TableOfContents(
 <ul>
   <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
     <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
-  <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, Mac OS X...) and <b>mobile</b> (Android, iOS).
+  <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, macOS...), <b>mobile</b> (Android, iOS) and <b>consoles</b> (Nintendo Switch).
   <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
   <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
     <!--Load and save images and X3D graph as needed.-->
@@ -150,11 +150,12 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>You can compile and package your games as
+  <li><p>You can compile and package your games for various platforms:
     <ul>
-      <li><b>standalone</b> (Linux, Windows, Mac OS X, FreeBSD, more... 32-bit and 64-bit),
-      <li><b>mobile</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
-      <li><b>web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
+      <li><b>Any modern desktop operating system</b> (Linux, Windows, macOS, FreeBSD, more...), with any CPU supported by FPC (like i386, x86_64, ARM, Aarch64...).
+      <li><b>Mobile platforms</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
+      <li><a href="https://castle-engine.io/wp/2019/03/23/castle-game-engine-supports-nintendo-switch/"><b>Nintendo Switch</b></a>.
+      <li><b>Web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
     </ul>
 
     <?php
