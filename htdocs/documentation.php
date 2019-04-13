@@ -15,7 +15,8 @@ $toc = new TableOfContents(
   array(
     new TocItem('Installation', 'installation'),
     new TocItem('Lazarus', 'lazarus', 1),
-    new TocItem('Alternative: without Lazarus (bare FPC)', 'bare_fpc', 1),
+    new TocItem('Using Castle Game Engine Editor or command-line build tool', 'editor', 1),
+    //new TocItem('Alternatives', 'bare_fpc', 1),
     new TocItem('Install the libraries', 'libraries'),
     new TocItem('Read the manual', 'manual'),
   )
@@ -40,7 +41,7 @@ echo pretty_heading('Getting Started');
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you use <a href="http://lazarus.freepascal.org/">Lazarus</a> for development:
+<p>To use <a href="http://lazarus.freepascal.org/">Lazarus</a> for development:
 
 <ol>
   <li><p>Open and <b>compile the package <code>castle_base.lpk</code></b>
@@ -118,6 +119,31 @@ echo castle_thumbs(array(
 ?>
 
 <a href="https://www.youtube.com/watch?v=rCPEOw8700c">Watch the movie showing the Lazarus installation process.</a>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Since <i>Castle Game Engine</i> 6.5, you can also use our <a href="manual_editor.php">editor</a>. The editor executes under the hood our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> which in turn executes under the hood FPC (and some other tools, depending on the platform).
+
+<p>The editor and build tool can be used to compile / run / package
+applications that do not depend on LCL (<i>Lazarus Component Library</i>).
+This means that you should initialize your game window using
+the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+
+<ul>
+  <li><p>Install <a href="https://www.lazarus-ide.org/">Lazarus with FPC</a> or just <a href="https://www.freepascal.org/">bare FPC</a>.
+
+  <li><p>Make sure that <code>fpc</code> binary is available on the environment variable <code>$PATH</code>. If you don't know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
+
+  <li><p>Download the <a href="/">Castle Game Engine</a>, version &gt;= 6.5. It's easiest to download a binary release, then you have a directory <code>bin</code> inside &mdash; execute the <code>castle-engine</code> executable there.
+
+  <li><p>Open your project or create a new one, and <i>Compile / Run / Package</i> it using the editor <i>Run</i> menu.
+
+    <p>Alternatively compile / run / package from the command-line, using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line build tool</a>.
+
+    <p>In either case, the project configuration is defined by a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
+</ul>
+
+<?php /*
 
 <?php echo $toc->html_section(); ?>
 
@@ -204,6 +230,8 @@ essential part of the engine for now.
 The main way for
 initializing OpenGL for games is by CastleWindow unit that doesn't depend on
 any Lazarus units. -->
+
+*/ ?>
 
 <?php echo $toc->html_section(); ?>
 
