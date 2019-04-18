@@ -74,7 +74,7 @@ allows to:
 
 <p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md">More detailed documentation about the editor is here.</a>
 
-<p>See also the movie explaining th editor:
+<p>See also the movie about the editor:
 
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/podM_zBXGEg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
