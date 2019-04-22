@@ -222,7 +222,7 @@ you can just use this code to setup UI in the main program block
 or you can set it as the <code>Application.OnInitialize</code> callback following the
 <a href="manual_cross_platform.php">chapter about developing cross-platform applications</a>.
 
-<p>If in doubt, <b>take a look at the <code>examples/2d_standard_ui/zombie_fighter/game.pas</code>
+<p>If in doubt, <b>take a look at the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_standard_ui/zombie_fighter">examples/2d_standard_ui/zombie_fighter/</a>
 code that contains the final application we will make in this manual!</b>
 It uses the <code>ApplicationInitialize</code> procedure.</p>
 

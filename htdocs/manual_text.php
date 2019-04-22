@@ -175,8 +175,8 @@ echo castle_thumbs(array(
 ?>
 
 <p>(<b>A complete program using the concepts discussed below is in the engine examples</b>,
-in the <code>examples/fonts/test_local_characters/</code>.
-The main code is in <code>game.pas</code> unit there.
+in the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fonts/test_local_characters">examples/fonts/test_local_characters/</a>.
+ The main code is in <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fonts/test_local_characters/gameinitialize.pas">gameinitialize.pas</a> unit there.
 Check it out!)
 
 <p>All font routines (printing, measuring) expect
