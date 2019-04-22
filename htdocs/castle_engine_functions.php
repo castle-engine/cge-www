@@ -86,7 +86,8 @@ define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wi
 define('FORUM_URL',           'https://forum.castle-engine.io/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
-define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/download/v6.4/castle_game_engine-6.4-src.zip');
+define('CGE_LATEST_STABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/download/v6.4/castle_game_engine-6.4-src.zip');
+define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
 function reference_link()
 {

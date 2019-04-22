@@ -30,17 +30,20 @@ castle_header('Download', array(
 
         <div class="centered-download-wrapper">
             <div class="download jumbotron">
-                <?php echo castle_download_button('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download',
-                  CGE_LATEST_DOWNLOAD); ?>
+                <?php echo castle_download_button('<span class="glyphicon glyphicon-fire" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.5 - Next Release Beta<br>(Recommended)</p>',
+                  CGE_LATEST_UNSTABLE_DOWNLOAD); ?>
+                <?php echo castle_download_button('<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.4 - Stable Release<br>&nbsp;</p>',
+                  CGE_LATEST_STABLE_DOWNLOAD); ?>
 
                 <div class="download-hints">
-                    <p>Read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>,
-                    <?php echo a_href_page('manual', 'manual_intro'); ?>
+                    <p>After downloading, read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>
+                    and <?php echo a_href_page('manual', 'manual_intro'); ?>.
                     <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
                     <?php /* <a href="https://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
-                    and the <a href="documentation_more.php">rest of our documentation</a>.<br>
+                    <?php /* and the <a href="documentation_more.php">rest of our documentation</a>. */ ?><br>
 
-                    You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
+                    <?php /* You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
+                    */ ?>
                 </div>
 
                 <?php echo download_donate_footer(); ?>

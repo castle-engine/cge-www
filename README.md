@@ -58,7 +58,7 @@ Procedure to update WWW content
   (a tag should already be created in the previous step, by scripts/make_tags.sh script)
 
   Update the URLs:
-  - CGE_LATEST_DOWNLOAD in htdocs/castle_engine_functions.php
+  - CGE_LATEST_STABLE_DOWNLOAD in htdocs/castle_engine_functions.php
   - view3dscene links in htdocs/view3dscene.php
 
   After:

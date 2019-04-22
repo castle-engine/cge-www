@@ -258,10 +258,13 @@ a.download_code {
     display: inline-block;
 }
 .download-hints {
-    margin-top: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 .download-hints p {
     font-size: 87% !important;
+    margin-top: 0; /* .download-hints already makes margins */
+    margin-bottom: 0; /* .download-hints already makes margins */
 }
 
 /* news on main page --------------------------------------------------------- */
@@ -774,13 +777,20 @@ div.download .download_platform {
 }
 
 .centered-download-wrapper .btn-primary {
-  width: 80%;
+  padding-left: 3em;
+  padding-right: 3em;
+  /* margin vertical matters only in case of narrow screen,
+     when one btn-primary is under another */
+  margin: 0.1em 0.5em;
 }
 
 .jumbotron .btn-patreon {
   margin-right: auto;
   margin-left: auto;
-  margin-top: 1em;
   display: block;
   width: 80%;
+}
+
+.centered-download-wrapper .btn-primary .download-button-hint {
+  font-size: xx-small;
 }
