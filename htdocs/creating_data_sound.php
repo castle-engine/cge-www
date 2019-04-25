@@ -59,6 +59,31 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
     <sound name="drum_beat" />
     <sound name="drum_ending" />
   </group>
+
+  <!--
+    (Since CGE >= 6.5):
+
+    Alias allows to define a sound name that refers to another <sound> or <alias>.
+    Moreover, an alias may have more than one target,
+    which means that actual sound will be randomly chosen from the available options
+    each time you play this alias.
+
+    Note that <alias> may be placed within a <group> too.
+    Both alias names, and target names, are automatically qualified by the group name.
+  -->
+  <alias name="alternative_name_for_test_sound_1">
+    <target name="test_sound_1" />
+  </alias>
+
+  <alias name="alternative_name_for_fight_drum_beat">
+    <target name="fight/drum_beat" />
+  </alias>
+
+  <alias name="random_test_sound">
+    <target name="test_sound_1" />
+    <target name="test_sound_2" />
+    <target name="test_sound_3" />
+  </alias>
 </sounds>'); ?>
 
 <h2>Some notes about sound files</h2>
