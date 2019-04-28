@@ -182,11 +182,11 @@ case "$1" in
     pascal_src_archive_end view3dscene
     ;;
 
-  glviewimage)
+  castle-view-image)
     mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glviewimage
-    $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"glviewimage clean
-    pascal_src_archive_end glviewimage
+    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../castle-view-image
+    $KAMBI_GNU_MAKE -C "$MK_ARCHIVE_TEMP_PATH"castle-view-image clean
+    pascal_src_archive_end castle-view-image
     ;;
 
   glplotter)

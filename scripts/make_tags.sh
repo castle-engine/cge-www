@@ -29,7 +29,7 @@ do_tag ()
 # do_tag castle
 # do_tag glplotter
 # do_tag glinformation
-do_tag glviewimage
+do_tag castle-view-image
 # do_tag gen_function
 # do_tag kambi_lines
 # do_tag lets_take_a_walk

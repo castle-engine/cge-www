@@ -64,12 +64,12 @@ allows to:
 
     <ul>
       <li><p>Open <a href="creating_data_model_formats.php">model</a> in <a href="view3dscene.php">view3dscene</a>,
-      <li><p>Open image in <a href="glviewimage.php">glViewImage</a>,
+      <li><p>Open image in <a href="castle-view-image.php">castle-view-image</a>,
       <li><p>Open design in the current editor,
       <li><p>Open other files in the default associated application.
     </ul>
 
-    <p>The tools, like <a href="view3dscene.php">view3dscene</a> and <a href="glviewimage.php">glViewImage</a> are already distributed with CGE, so you don't have to install anything additional. Just double-click from the editor and it will run a suitable viewer.
+    <p>The tools, like <a href="view3dscene.php">view3dscene</a> and <a href="castle-view-image.php">castle-view-image</a> are already distributed with CGE, so you don't have to install anything additional. Just double-click from the editor and it will run a suitable viewer.
 </ol>
 
 <p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md">More detailed documentation about the editor is here.</a>

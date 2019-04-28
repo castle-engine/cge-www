@@ -152,9 +152,9 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
     'castle_sunset.png',
     'view3dscene'); ?>
 
-  <?php program_image_link('glViewImage',
+  <?php program_image_link('castle-view-image (formerly glViewImage)',
     'Image viewer, handles many image formats (including some exotic ones: DDS, RGBE).',
-    "glviewimage_dds.png", 'glviewimage'); ?>
+    "castle-view-image_dds.png", 'castle-view-image'); ?>
 
   <?php program_image_link("Curves Tool",
     "Design a 2D curve, save it as XML, and use it in your own programs, e.g. to move something (camera, another object) along a smooth designed trajectory.",

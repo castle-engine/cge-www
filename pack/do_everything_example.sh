@@ -21,11 +21,11 @@ set -eu
 # ./pack_binary.sh glinformation linux x86_64
 # ./pack_pascal_src.sh glinformation
 
-# ./pack_binary.sh glviewimage macosx i386
-./pack_binary.sh glviewimage linux i386
-./pack_binary.sh glviewimage win i386
-./pack_binary.sh glviewimage linux x86_64
-./pack_pascal_src.sh glviewimage
+# ./pack_binary.sh castle-view-image macosx i386
+./pack_binary.sh castle-view-image linux i386
+./pack_binary.sh castle-view-image win i386
+./pack_binary.sh castle-view-image linux x86_64
+./pack_pascal_src.sh castle-view-image
 
 # ./pack_binary.sh gen_function macosx i386
 # ./pack_binary.sh gen_function linux i386

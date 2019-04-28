@@ -23,4 +23,4 @@ upload_dir ()
 upload_dir view3dscene
 upload_dir castle_game_engine
 upload_dir demo_models
-upload_dir glviewimage
+upload_dir castle-view-image

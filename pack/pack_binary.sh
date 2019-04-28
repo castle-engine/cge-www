@@ -356,12 +356,12 @@ case "$1" in
     binary_set_unix_permissions
     ;;
 
-  glviewimage)
-    binary_add_doc glviewimage
-    binary_add_exec_and_data glViewImage
+  castle-view-image)
+    binary_add_doc castle-view-image
+    binary_add_exec_and_data castle-view-image
     binary_add_win32_dlls $WIN32_DLLS_PNG_ZLIB
     binary_add_gpl2
-    binary_add_freedesktop glViewImage "$CASTLE_ENGINE_PATH"../glviewimage/desktop/
+    binary_add_freedesktop castle-view-image "$CASTLE_ENGINE_PATH"../castle-view-image/desktop/
     binary_set_unix_permissions
     ;;
 

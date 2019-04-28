@@ -232,7 +232,7 @@ and Monte Carlo path tracing.
 
     <p>You can process RGBE images using
     <a href="http://floyd.lbl.gov/radiance/">Radiance</a> programs.
-    Also my <?php echo a_href_page("glViewImage", "glviewimage"); ?>
+    Also my <?php echo a_href_page("castle-view-image", "castle-view-image"); ?>
     can be used to view RGBE images.
 </ul>
 

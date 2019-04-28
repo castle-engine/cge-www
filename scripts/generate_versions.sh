@@ -63,7 +63,7 @@ version_call malfunction
 version_call kambi_lines
 version_call view3dscene
 version_call rayhunter
-version_call glViewImage
+version_call castle_view_image `castle-view-image --version`
 version_call glplotter
 version_call glinformation
 version_call gen_function

@@ -630,8 +630,8 @@ as a movie URL. This just loads a trivial movie, that consists of one
 frame and is always still...
 
 <p>Allowed image formats are just like everywhere in our engine &mdash;
-PNG, JPEG and many others, see <?php echo a_href_page('glViewImage docs',
-'glviewimage'); ?> for the list.
+PNG, JPEG and many others, see <?php echo a_href_page('castle-view-image docs',
+'castle-view-image'); ?> for the list.
 
 <p>Besides the fact that loading image sequence doesn't require
 ffmpeg installed, using image sequence has also one very important

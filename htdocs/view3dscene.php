@@ -361,7 +361,7 @@ view3dscene my_model.wrl --screenshot 0 output.png
     the screenshot at time <code>TIME</code> to an image file <code>FILE-NAME</code>.
 
     <p>Image format is guessed from <code>FILE-NAME</code> extension,
-    see <?php echo a_href_page("glViewImage", "glviewimage") ?>
+    see <?php echo a_href_page("castle-view-image", "castle-view-image") ?>
     for detailed list of image formats that we can handle.
     In short, we handle many popular image formats, like PNG and JPG,
     and these are what usually you want to use.
@@ -889,7 +889,7 @@ and make sure it's available on $PATH.
 <p>Also <code>convert</code> program from
 <a href="http://www.imagemagick.org/">ImageMagick</a>
 package must be available on $PATH for some miscellaneous image formats to work.
-See <?php echo a_href_page("glViewImage documentation", "glviewimage"); ?>
+See <?php echo a_href_page("castle-view-image documentation", "castle-view-image"); ?>
  for a list of image formats handled.
 
 <?php echo $toc->html_section(); ?>

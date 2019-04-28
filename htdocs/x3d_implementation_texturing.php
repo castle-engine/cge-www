@@ -45,7 +45,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p><code>ImageTexture</code> allows various texture formats,
     including JPEG, PNG, GIF, BMP, PPM, RGBE, KTX, DDS.
-    See <?php echo a_href_page('glViewImage', 'glviewimage'); ?>
+    See <?php echo a_href_page('castle-view-image', 'castle-view-image'); ?>
     documentation for a detailed list.
 
     <p><i>Note about alpha channel</i>: alpha channel of the textures
@@ -217,7 +217,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>See <?php echo a_href_page("glViewImage", "glviewimage") ?> features
+<p>See <?php echo a_href_page("castle-view-image", "castle-view-image") ?> features
 for the full list of 2D image formats we can handle.
 
 <p>See also lower on this page for details about
@@ -238,7 +238,7 @@ compressed for GPU (S3TC), storing mipmaps, cube maps, and volume (3D) textures.
 A number of technical details about DDS implementation are below, but in short:
 we try to support all formats and all options of DDS in a standard way.
 You may find example DDS images inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <code>textures</code> subdirectory for <code>*.dds</code> files). You can open them directly with our image viewer <?php echo a_href_page("glViewImage", "glviewimage") ?>.</p>
+echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <code>textures</code> subdirectory for <code>*.dds</code> files). You can open them directly with our image viewer <?php echo a_href_page("castle-view-image", "castle-view-image") ?>.</p>
 
 <p>Implementation history:
 

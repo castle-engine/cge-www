@@ -445,7 +445,7 @@ $castle_sitemap = array(
       'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
       'malfunction' => array('title' => 'malfunction'),
       'kambi_lines' => array('title' => 'kambi_lines'),
-      'glviewimage' => array('title' => 'glViewImage'),
+      'castle-view-image' => array('title' => 'castle-view-image'),
       'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
       'rayhunter' => array('title' => 'rayhunter',
         'sub' => array(

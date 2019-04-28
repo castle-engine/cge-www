@@ -439,7 +439,7 @@ and  that you package however you like.</p>
 
     <p>You can use Lazarus to create Mac OS X bundle.
     Or you can use our <a href="https://github.com/castle-engine/cge-scripts/blob/master/create_macosx_bundle.sh">create_macosx_bundle.sh script</a>.
-    The example usage is inside view3dscene and glViewImage sources.</p>
+    The example usage is inside view3dscene and castle-view-image sources.</p>
     </li>
 
   <li><p>Optionally, <i>add libraries (like libpng and vorbisfile) to the bundle</i>.
