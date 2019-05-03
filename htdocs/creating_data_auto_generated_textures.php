@@ -99,11 +99,8 @@ Texture compression format names are <a href="https://castle-engine.io/apidoc/ht
 
     <include path="spells/*" recursive="True" />
     <include path="castles/*" recursive="True" />
-    <include path="player.png" />
-
     <exclude path="*.jpg" />
     <exclude path="spells/gui/*" />
-    <exclude path="*/gui_hud.png" />
   </auto_generated_textures>
 
   <!-- You can use as many <auto_generated_textures> elements as you like,
@@ -112,7 +109,46 @@ Texture compression format names are <a href="https://castle-engine.io/apidoc/ht
 
        Just make sure that no image falls into more than one <auto_generated_textures>
        group (use include/exclude to make the groups disjoint).
-       You will get a clean warning in case it happens, so don\'t worry:) -->
+       You will get a warning in case it happens. -->
+
+  <!-- These textures will be downscaled (to be 2x smaller).
+       You can use TextureLoadingScale in CGE to load downscaled textures. -->
+  <auto_generated_textures>
+    <scale smallest="2" />
+    <include path="endings/*" recursive="True" />
+  </auto_generated_textures>
+
+  <!-- These textures will be converted to DDS format (which may load
+       faster than other formats on some platforms).
+       They will not be GPU-compressed, they will not be downscaled. -->
+  <auto_generated_textures>
+    <!--
+      If specified, it sets the preferred output image format.
+
+      If not specified, by default this is .png.
+      It can be any image format that CGE can write.
+
+      - This does not affect the GPU-compressed (e.g. to DXT5) textures now
+        (their format depends on what the underlying tool can make,
+        and in practice is always .dds now).
+        In the future this may change.
+
+      - This does affect the uncompressed (only downlscaled,
+        or not even downscaled when trivial_uncompressed_convert) format.
+    -->
+    <preferred_output_format extension=".dds" />
+
+    <!--
+      If this element is specified, we will also make
+      not-compressed and not-downscaled texture version.
+      It will have a format specified in preferred_output_format.
+      This is useful if (in distributed game) you just prefer
+      given format (e.g. because it\'s faster to read).
+    -->
+    <trivial_uncompressed_convert />
+
+    <include path="gui/*" recursive="True" />
+  </auto_generated_textures>
 </properties>'); ?>
 
 <?php echo $toc->html_section(); ?>

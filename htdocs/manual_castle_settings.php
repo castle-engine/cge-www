@@ -135,6 +135,31 @@ I expect that this file will also get more features in the future.
     sizes_at_load="10 20 30"
     anti_aliased="true"
   />
+
+  <!--
+    When loading settings (at LoadSettings call),
+    load and keep in cache some resources.
+
+    It is most useful to cache large images (used in UI or referenced
+    from TCastleScene) or audio files (referenced from TCastleScene).
+    Thanks to keeping them in cache, any loading of them later in the game
+    will be instant. E.g. instantiating UI by "TUIState.InsertUserInterface"
+    will use the cached images, making starting new UI fast.
+  -->
+  <warmup_cache>
+    <!-- Put in cache an image.
+         Loading this image in UI (like TCastleImageControl, TCastleButton
+         or anything else that uses TCastleImagePersistent cache)
+         will be instant. -->
+    <image_ui url="castle-data:/gui/image.png" />
+
+    <!-- Put in cache a scene, along with all resources it references
+         (textures, sounds).
+         Loading this scene in TCastleScene will be much faster,
+         since all resources will be already in cache. -->
+    <scene url="castle-data:/gui/space_map/map_big_1.json" />
+    <scene url="castle-data:/gui/space_map/map_big_2.json" />
+  </warmup_cache>
 </castle_settings>'); ?>
 
 <?php

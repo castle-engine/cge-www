@@ -470,6 +470,8 @@ for a wide range of scenes.
   <li><code>TextureMemoryProfiler.Enabled</code>
   <li><code>LogRenderer</code> (from <code>CastleRenderer</code> unit)
   <li><code>TSoundEngine.LogSoundLoading</code> (since CGE 6.5)
+  <li><code>TUIState.Log</code> (since CGE 6.5)
+  <li>Also enabling <code>Profiler.Enabled</code> and doing <code>WritelnLog(Profiler.Summary)</code> is a great way to be informed about most loading.
 </ul>
 
 <p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
