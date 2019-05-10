@@ -148,7 +148,7 @@ similar to the
  control</i>.
 
 <p>To <b>draw an arbitrary 2D primitive</b> use the
-<?php api_link('DrawRectangle', 'CastleGLUtils.html#DrawRectangle'); ?>
+<?php api_link('DrawPrimitive2D', 'CastleGLUtils.html#DrawPrimitive2D'); ?>
  method. Blending is automatically used if you pass color with alpha &lt; 1.</p>
 
 <?php echo $toc->html_section(); ?>
