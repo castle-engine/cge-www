@@ -13,7 +13,7 @@ echo pretty_heading($page_title);
 <p>To be completely open, we want to tell you exactly what technologies we use:
 
 <ol>
-  <li><p><a href="https://matomo.org/">Matomo</a>. Self-hosted (the data is on our servers, not any 3rd party). The data (like IP addresses) is immediately anonymized (e.g. we story only first 2 bytes from IPv4 address). i.e. we don't store non-anonymized data in our database at all. The logs are removed after 180 days anyway.
+  <li><p><a href="https://matomo.org/">Matomo</a>. Self-hosted (the data is on our servers, not any 3rd party). The data (like IP addresses) is immediately anonymized (e.g. we store only first 2 bytes from IPv4 address). i.e. we don't store non-anonymized data in our database at all. The logs are removed after 180 days anyway.
 
   <li><p><a href="https://www.google.com/analytics/">Google Analytics</a>. The data is only stored on Google Analytics servers, and removed after 26 months.
 

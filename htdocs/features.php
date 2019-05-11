@@ -9,7 +9,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Summary', 'summary'),
     new TocItem('Demo reel', 'demo'),
-    new TocItem('Many 3D and 2D formats supported (X3D, Collada, Spine...)', 'data'),
+    new TocItem('Many 3D and 2D formats supported (X3D, glTF, Collada, Spine...)', 'data'),
     new TocItem('Portable (standalone, mobile, console, web browser plugin)', 'portable'),
     new TocItem('Graphic features and effects (shadows, mirrors, bump mapping...)', 'graphic'),
     new TocItem('Scene manager and comfortable API', 'api'),
@@ -34,9 +34,10 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+  <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, glTF, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
     <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
   <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, macOS...), <b>mobile</b> (Android, iOS) and <b>consoles</b> (Nintendo Switch).
+  <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
   <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
   <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
     <!--Load and save images and X3D graph as needed.-->
@@ -59,7 +60,7 @@ $toc = new TableOfContents(
 
     <ul>
       <li><p>Our main scene format is <b><?php echo a_href_page('X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <b>Collada, 3DS, Wavefront OBJ, MD3, STL, <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a></b> and many others. We also fully support older versions of the X3D standard: <b>VRML 1.0</b> and <b>VRML 2.0</b>.
+      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <a href="creating_data_model_formats.php">glTF 2.0, Spine JSON, VRML, Collada, 3DS, Wavefront OBJ, MD3, STL, Spine JSON</a> and others.
       </li>
     </ul>
 
