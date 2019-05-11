@@ -193,3 +193,9 @@ make android
 # Should use system-wide Gradle, should show a message like
 #   Local Gradle wrapper ("gradlew") not found, so we will call the Gradle on $PATH.
 #   Make sure you have installed Gradle (e.g. from the Debian "gradle" package), in a version compatible with the Android Gradle plugin (see https://developer.android.com/studio/releases/gradle-plugin.html#updating-gradle ).
+
+# Test fpmake and InstantFPC
+
+Install CGE units following
+https://github.com/castle-engine/castle-engine/wiki/FpMake
+Run the 2 InstantFPC examples.

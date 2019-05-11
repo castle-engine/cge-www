@@ -136,7 +136,9 @@ echo castle_thumbs(array(
 ), 'auto', 'left', 'small_thumb_const_height_size');
 ?>
 
-<a href="https://www.youtube.com/watch?v=rCPEOw8700c">Watch the movie showing the Lazarus installation process.</a>
+<p><a href="https://www.youtube.com/watch?v=rCPEOw8700c">Watch the movie showing the Lazarus installation process.</a>
+
+<p>Another option is to <a href="https://github.com/castle-engine/castle-engine/wiki/FpMake">build and install the engine using FpMake</a>.
 
 <?php /*
 
@@ -190,25 +192,6 @@ cd examples/fps_game/
 
     <!-- you can also do <code>make examples</code> at top-level -->
 
-  <li><p>Other option is to compile the engine using <a href="http://wiki.freepascal.org/FPMake">FpMake</a>.
-
-    <!--
-    units by executing <code>make</code> inside the
-    <code>castle_game_engine/</code> directory.
-    -->
-
-<pre>
-fpc fpmake.pp
-./fpmake
-<span class="xml_highlight_comment"># If the above doesn't work, you usually need to define FPC units dir</span>
-<span class="xml_highlight_comment"># ./fpmake --globalunitdir=&lt;my-fpc-directory&gt;/units/</span>
-</pre>
-
-    <p>Then add the path with compiled units to your <code>fpc.cfg</code> file by
-    adding a line like <code>-Fu.../castle_game_engine/units/x86_64-linux</code>
-    (<?php echo FPC_CFG_DOCS; ?>). And then, just use our units in your game code,
-    and compile it in any way you like (like <code>fpc&nbsp;mygame.lpr</code>
-    on the command-line).
 </ol>
 
 <!--
