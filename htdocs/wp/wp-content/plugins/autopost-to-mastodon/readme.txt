@@ -3,7 +3,7 @@ Contributors: l1am0, Hellexis
 Tags: mastodon, Mastodon, Mastdon Autopost, federated web, GNU social, statusnet, social web, social media, auto post
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 3.2.7.5
+Stable tag: 3.3
 License: GPLv2
 Donate link: https://patreon.com/simonfrey
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -46,8 +46,8 @@ The plugin never transmits any data to me, or anyone else than the mastodon node
 
 == Changelog ==
 
-= 3.2.7.5 =
-* Revert changes
+= 3.3 =
+* Dutch translation (Thanks to [Alex Belgraver](https://fediversum.nl))
 
 = 3.2.7 =
 * Auth workflow change
