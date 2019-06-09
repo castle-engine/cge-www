@@ -4,7 +4,7 @@ Plugin Name: Check Email
 Plugin URI: http://www.stillbreathing.co.uk/wordpress/check-email/
 Description: Check email allows you to test if your WordPress installation is sending emails correctly.
 Text Domain: check-email
-Version: 0.5.5
+Version: 0.5.6
 Author: Chris Taylor
 Author URI: http://www.stillbreathing.co.uk
 */

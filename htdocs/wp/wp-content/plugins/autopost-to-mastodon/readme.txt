@@ -2,8 +2,8 @@
 Contributors: l1am0, Hellexis
 Tags: mastodon, Mastodon, Mastdon Autopost, federated web, GNU social, statusnet, social web, social media, auto post
 Requires at least: 4.6
-Tested up to: 5.0
-Stable tag: 3.3
+Tested up to: 5.2.1
+Stable tag: 3.3.4
 License: GPLv2
 Donate link: https://patreon.com/simonfrey
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,16 @@ The plugin never transmits any data to me, or anyone else than the mastodon node
 3. Advanced settings
 
 == Changelog ==
+
+= 3.3.4 =
+* Remove toot editor javascript as we do not have a toot editor anymore
+
+= 3.3.3 =
+* Change permission for settings pages
+* Update for HTML tags striping
+
+= 3.3.2 =
+* Remove HTML tags from excerpt (with php strip_tags())
 
 = 3.3 =
 * Dutch translation (Thanks to [Alex Belgraver](https://fediversum.nl))
