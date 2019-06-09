@@ -299,21 +299,50 @@ described on this page.
 Moreover, see also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to the interpolation','x3d_implementation_interpolation_extensions'); ?>.
 
 <ul>
-  <li><p><?php echo x3d_node_link('ColorInterpolator'); ?>,<br>
-    <?php echo x3d_node_link('PositionInterpolator'); ?>,<br>
-    <?php echo x3d_node_link('PositionInterpolator2D'); ?>,<br>
-    <?php echo x3d_node_link('ScalarInterpolator'); ?>,<br>
-    <?php echo x3d_node_link('OrientationInterpolator'); ?></p>
+  <li><p><?php echo x3d_node_link('ColorInterpolator'); ?> - Animate color change.
 
-    <p><?php echo x3d_node_link('CoordinateInterpolator'); ?>,<br>
-    <?php echo x3d_node_link('CoordinateInterpolator2D'); ?>,<br>
-    <?php echo x3d_node_link('NormalInterpolator'); ?></p>
+    <p>The colors between keyframes are calculated by interpolation in the HSV space.</p>
 
-    <p>Interpolation of <code>OrientationInterpolator</code> correctly goes through
-    the shortest path on the unit sphere, with constant velocity.</p>
+  <li><p><?php echo x3d_node_link('PositionInterpolator'); ?> - Animate 3D vector (like position) change.
+  <li><p><?php echo x3d_node_link('PositionInterpolator2D'); ?> - Animate 2D vector (like 2D position) change.
+  <li><p><?php echo x3d_node_link('ScalarInterpolator'); ?> - Animate changing a single floating-point value.
+  <li><p><?php echo x3d_node_link('OrientationInterpolator'); ?> - Animate a rotation.
 
-    <p>Interpolation of <code>ColorInterpolator</code> correctly interpolates
-    in HSV space.</p>
+    <p>The rotations between keyframes go through
+    the shortest path on a conceptual unit sphere, with constant velocity.</p>
+
+    <i>Warning: Never define two consecutive key frames such that the model would point in exactly the opposite directions</i>. In this case it is undefined how exactly the model with rotate, since there are many possible rotations that achieve the necessary transition. The X3D specification explicitly says that this is undefined (<i>"""The results are undefined if the two orientations are diagonally opposite."""</i>).
+
+    <p>This is an often mistake when defining a rotation for model to spin in a loop. It is tempting to define it using 3 keyframes:
+
+    <ol>
+      <li><p>initial rotation,
+      <li><p>rotation by 180 degrees (by pi, i.e. 3.14),
+      <li><p>rotation by 360 degrees (2 * pi, 6.28, that brings model back to original orientation)
+    </ol>
+
+    <p>Like this:
+
+<?php echo vrmlx3d_highlight(
+'# THIS IS AN INCORRECT EXAMPLE, RESULTS ARE UNDEFINED!
+OrientationInterpolator {
+  key [
+    0, 0.5, 1,
+  ]
+  keyValue [
+    0 1 0 0,
+    0 1 0 3.14,
+    0 1 0 6.28,
+  ]
+}'); ?>
+
+    <p>The above is not correct, i.e. it is not precisely defined. Instead of a spinning model, you may see a model that spins by 180 degrees in one direction, then spins by 180 degrees back (since this also satisifies the given key frames).
+
+    <p>The solution is to use more key frames. Instead of 1 intermediate key frame (<code>[0, pi, 2*pi]</code>), use at least 2 intermediate key frames (<code>[0, 2/3*pi, 4/3*pi, 2*pi]</code>). Often 3 intermediate keyframes (<code>[0, pi/2, pi, 1.5*pi, 2*pi]</code>) are most comfortable to define.
+
+  <li><p><?php echo x3d_node_link('CoordinateInterpolator'); ?> - Animate a set of 3D vectors (like coordinates of a mesh).
+  <li><p><?php echo x3d_node_link('CoordinateInterpolator2D'); ?> - Animate a set of 2D vectors.
+  <li><p><?php echo x3d_node_link('NormalInterpolator'); ?> - Animate a set of 3D directions.
 
     <p><i>TODO</i>: Interpolation of <code>NormalInterpolator</code> simply interpolates
     3D vectors (and normalizes afterwards), instead of
