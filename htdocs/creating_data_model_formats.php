@@ -58,11 +58,29 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
     <p><i>If your authoring software
     can export to X3D, this is the format you should probably use.</i>
 
-  <li><p><a href="https://www.khronos.org/gltf"><b>glTF</b></a>. It's an efficient, modern format, developed by Khronos.
+  <li><p><a href="https://www.khronos.org/gltf"><b>glTF</b></a>. It's an efficient, modern format, developed by Khronos. Resources:
 
-    <p>We support most features of glTF models, with the exception of PBR and animations. <a href="https://castle-engine.io/wp/2018/12/23/gltf-2-0/">See here for details what is supported now.</a>
+    <ul>
+      <li><a href="https://www.khronos.org/gltf">glTF overview</a>,
+      <li><a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>,
+      <li><a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a> (open them with <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene from snapshots right now</a>),
+      <li>In Blender: <a href="https://github.com/KhronosGroup/glTF-Blender-IO">Blender glTF exporter and importer</a> is packaged inside <a href="https://builder.blender.org/download/">Blender 2.80</a> out-of-the-box. See <a href="https://docs.blender.org/manual/en/dev/addons/io_gltf2.html">manual about using Blender glTF exporter</a>.
+    </ul>
 
-    <p>See <a href="https://www.khronos.org/gltf">glTF overview</a>, <a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>, <a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a>, <a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Blender glTF 2.0 exporter</a>.
+    <p>Supported features of glTF models in our engine:
+
+    <ul>
+      <li>Meshes (polygons, lines), transformation hierarchy.
+      <li>Materials using Phong shading, alpha mode, double-sidedness, per-vertex colors.
+      <li>Texturing for base color, normal maps, emissive.
+      <li>Cameras (perspective and orthogonal).
+      <li>Animations of transformations (position, rotation, scale), that can be played using <a href="manual_scene.php#section_play_animation">standard CGE <code>PlayAnimation</code> method</a> (or <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">other means, e.g. to play multiple animations from one model simultaneously</a>).
+      <li>Both <code>.glb</code> and <code>.gltf</code> extensions are supported. Textures can be provided in separate files or embedded inside the GLTF stream.
+      <li>It is integrated in our engine as X3D nodes graph. This means that you can include a glTF model inside larger X3D file using the <code>Inline</code> node, you can modify the glTF scene graph at runtime (e.g. modify material color, show/hide something etc.) and you can serialize the scene graph to an X3D file.
+      <li>We use <a href="https://github.com/BeRo1985/pasgltf/">PasGLTF</a>, a great open-source library for reading glTF by <a href="https://www.patreon.com/bero">Benjamin "Bero" Rosseaux</a>.
+    </ul>
+
+    <p>Main missing features are PBR (Physical-Based Rendered materials, <a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PBR-%28PhysicalMaterial-and-related-concepts%29-in-the-official-X3D-specification">we are working on it</a>), morph targets and skinned animation.
 
   <li><p><b><?php echo a_href_page('Castle Animation Frames
     (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
