@@ -127,8 +127,10 @@ is using Spine for all 2D games.
     All modern Collada versions (1.3, 1.4, 1.5) are handled.
 
     <p>Animations in Collada files are not handled yet.
-    It's doubtful they will be implemented &mdash; as glTF format largely
-    supercedes Collada.
+    If you need animations, we advise to use glTF instead.
+    glTF is newer and has similar feature set.
+    <a href="https://github.com/KhronosGroup/COLLADA2GLTF">Khronos provides a converter
+    from Collada to glTF</a>.
 
   <li><p><a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor</b></a>
     1.0 ASCII files (<code>.iv</code> extension) are handled.
