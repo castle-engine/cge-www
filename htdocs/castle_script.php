@@ -595,10 +595,10 @@ in CastleScript.</p>
 
 <p><?php func('character_from_code', 'character_from_code(int)'); ?> converts integer
 character code to a 1-letter string with this character.
-<i>Only the ASCII character codes are
-guaranteed to work in the long run.</i> In the future, all Unicode character codes
-will be accepted here, and rendered if present in the font.
-Currently, our font rendering is limited to 256-character encodings.</p>
+<i>Only the ASCII character codes are guaranteed to work for now.</i>
+Although we support Unicode character set (encoded as UTF-8 in Pascal AnsiString)
+throughout the engine, but some CastleScript functions were not adjusted to it yet
+(report if you need it).
 
 <p><?php func('shortcut', 'shortcut(name)'); ?> returns a nice string describing the named key/mouse shortcut
 in the game. It's useful if you want to show a message describing some
@@ -609,6 +609,15 @@ or <i>Hint: you can open this door using the mouse "left"</i>.
 See <code>CastleInputs</code> for available shortcut names, additionally
 games may define their own key shortcuts by creating new <code>TInputConfiguration</code>
 instances.</p>
+
+<p><?php func('coalesce', 'coalesce(expression, ...)'); ?> returns the first string that is not empty.
+<ul>
+  <li><p>It takes from 1 to any number of arguments. The arguments are evaluated in order, until one of them returns a string that is not empty (the remaining arguments are not evaluated at all), or we reach the last argument.
+
+  <li><p>That is, the only case when this function can return an empty string, is if the last argument is an empty string.
+
+  <li><p>This function is handy to provide a "fallback" or "default" value for some variables. E.g. you can write <code>coalesce(my_variable, 'default value')</code>.
+</ul>
 
 <p>A lot of string functions are trivial to add
 &mdash; report if you need some particular function.
