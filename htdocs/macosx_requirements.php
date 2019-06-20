@@ -247,7 +247,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     </ul>
 
   <li><p><i>Bad:</i> There are issues with LCL event loop. Some of them
-    (not being able to get Update events continously) are in bare LCL,
+    (not being able to get Update events continuously) are in bare LCL,
     some of them (the need to call Application.Run, not just loop
     using Application.ProcessMessages) are specific to LCL-Carbon.
     The former (Update issues when using mouse look or

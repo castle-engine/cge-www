@@ -7,7 +7,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Boolean value toggler (<code>Toggler</code> node)', 'ext_toggler'),
-      new TocItem('Force sequencer continous output (<code>X3DSequencerNode.forceContinousValue_Changed</code>)', 'forceContinousValue_Changed'),
+      new TocItem('Force sequencer continuous output (<code>X3DSequencerNode.forceContinuousValue_Changed</code>)', 'forceContinuousValue_Changed'),
     ));
 ?>
 
@@ -71,22 +71,22 @@ doesn't change), and no output events are generated.</p>
 <?php
   echo node_begin('X3DSequencerNode') .
   node_dots() .
-  node_field('SFBool', '[in,out]', 'forceContinousValue_Changed', 'FALSE') .
+  node_field('SFBool', '[in,out]', 'forceContinuousValue_Changed', 'FALSE') .
   node_end();
 ?>
 
 <p>By default (when this field is <code>FALSE</code>) the behaviour of sequencer nodes follows the X3D spec:
 <i>The sequencer node sends only one value_changed output event per key[i] interval</i>.
 
-<p>When <code>forceContinousValue_Changed</code> is <code>TRUE</code> then
-on <b>every</b> action posibly changing the continous key, we output <code>value_changed</code>.
+<p>When <code>forceContinuousValue_Changed</code> is <code>TRUE</code> then
+on <b>every</b> action posibly changing the continuous key, we output <code>value_changed</code>.
 In particular, this means that <b>every set_fraction will cause appropriate "value_changed"</b>,
 even if previous set_fraction already generated the same "value_changed".
 This is consistent with float interpolator nodes, and it is very useful sometimes: when multiple
 <code>IntegerSequencer</code> nodes may affect the same <code>Switch.whichChoice</code>
 (but only one <code>IntegerSequencer</code> is active
 at a time, i.e. only one TimeSensor actually uses some <code>IntegerSequencer</code>),
-you want to be sure to send <code>IntegerSequencer.value_changed</code> continously.
+you want to be sure to send <code>IntegerSequencer.value_changed</code> continuously.
 
 <?php
   x3d_status_footer();

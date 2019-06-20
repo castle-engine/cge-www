@@ -48,7 +48,7 @@ array_push($news,
       <li><a href="https://castle-engine.io/x3d_implementation_navigation_extensions.php#section_ext_blending_sort">NavigationInfo.blendingSort</a>
       <li><a href="https://castle-engine.io/x3d_implementation_interpolation_extensions.php#section_cubic_bezier_interpolator">CubicBezierXxx interpolators</a>
       <li><a href="https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_texture_properties_gui_texture">TextureProperties.guiTexture </a>
-      <li><a href="https://castle-engine.io/x3d_implementation_eventutilities_extensions.php#section_forceContinousValue_Changed">X3DSequencerNode.forceContinousValue_Changed</a>
+      <li><a href="https://castle-engine.io/x3d_implementation_eventutilities_extensions.php#section_forceContinuousValue_Changed">X3DSequencerNode.forceContinuousValue_Changed</a>
     </ul>
   <li>High-quality image scaling, using interpolation modes like Mitchell, Blackman, Lanczos, Gaussian. See <a href="https://castle-engine.io/apidoc/html/CastleImages.TCastleImage.html#MakeResized">TCastleImage.MakeResized</a> and <a href="https://castle-engine.io/apidoc/html/CastleImages.html#TResizeNiceInterpolation">TResizeNiceInterpolation</a>. The implementation uses excellent fcl-image library underneath.
   <li>Named animations: Our engine detects named animations by looking at X3D TimeSensor node names. Name starting with "Animation_xxx" indicates an animation, with name "xxx". Some converters (right now, our Spine to X3D conversion) follow this convention, so our engine immediately "knows" the Spine animation names and can play them. The benefits:

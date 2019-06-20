@@ -195,7 +195,7 @@ When necessary for rendering, they will internally be rounded to whole pixels an
 
 <?php echo $toc->html_section(); ?>
 
-<p>The event <code>OnUpdate</code> is continously called by the engine.
+<p>The event <code>OnUpdate</code> is continuously called by the engine.
 You should use it to update the state of your world as time passes.
 
 <p>Use the <code>Fps.SecondsPassed</code> to know how much time has passed

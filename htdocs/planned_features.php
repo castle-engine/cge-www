@@ -117,7 +117,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Associated with X3D and other 3D / 2D formats that the view3dscene (and <i>Castle Game Engine</i>) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).</p>
 
-  <li><p><b>Continous integration (Jenkins) for free for all open-source projects.</b>
+  <li><p><b>Continuous integration (Jenkins) for free for all open-source projects.</b>
 
     <p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)">Jenkins + Docker infrastructure</a> to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
 

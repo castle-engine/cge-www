@@ -107,7 +107,7 @@ number of frames per second that we managed to display.</b>
     screen, or use <code>AutoRedisplay</code> = <code>true</code>
     (it is the default since CGE 6.0, so you're probably already set).
 
-    <p>Otherwise, we may not refresh the screen continously (no point to
+    <p>Otherwise, we may not refresh the screen continuously (no point to
     redraw, if both the scene and camera are completely static; this way we let
     other applications to work more smoothly, and we save your laptop battery).
     Then "<i>real FPS</i>" will drop to almost zero. This can be detected by looking at
