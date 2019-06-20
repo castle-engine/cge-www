@@ -921,9 +921,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     </ol>
 
     <p><code>logFile</code>, when non-empty, specifies the filename to
-    write log information to. (When <code>logFile</code> is empty, it's
-    all simply dumped on standard output, i.e. usually console.)
-    As a security measure (you really do not want to allow an author
+    write log information to.
+    As a security measure (we do not want to allow an author
     of X3D file to overwrite arbitrary files without asking user),
     in my implementation only the basename of the <code>logFile</code> matters,
     the file is always saved into current directory. Moreover, filename
@@ -931,6 +930,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     is the name of the program, "XXX" is the name specified in <code>logFile</code>,
     and "%d" is just next free number. This way logger output file
     is predictable, and should never overwrite your data.
+
+    <p>If the <code>logFile</code> is empty, the output goes to the <a href="manual_log.php">default Castle Game Engine log file for this application</a>.
 
     <p>These security measures were added by my implementation &mdash;
     InstantReality spec simply says that <code>logFile</code> is the name of the file,
