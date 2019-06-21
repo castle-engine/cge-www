@@ -183,7 +183,7 @@ You can use separate 3D files for each animation, or a single 3D file
 for all of the animations, or any combination of the above.
 
 <p>You can see the example of all the approaches inside the
-<code>examples/resource_animations</code> demo.
+<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/resource_animations/">resource_animations engine example</a>.
 The <code>data/</code> subdirectory of it shows examples of how you can define <code>&lt;model&gt;</code>,
 discussed below. It is also a great program to test your own
 creatures/items animations (before using in the actual game), you
