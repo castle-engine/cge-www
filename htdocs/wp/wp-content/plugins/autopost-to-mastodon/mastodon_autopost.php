@@ -3,7 +3,7 @@
  * Plugin Name: Mastodon Autopost
  * Plugin URI: https://github.com/simonfrey/mastodon_wordpress_autopost
  * Description: A Wordpress Plugin that automatically posts your new articles to Mastodon
- * Version: 3.3.4
+ * Version: 3.4
  * Author: L1am0
  * Author URI: http://www.simon-frey.eu
  * License: GPL2
@@ -486,27 +486,30 @@ class autopostToMastodon
         }
 
         //Replace excerpt
-        $post_content_long = $post->post_content;
-        if ($wp_version[0] == "5"){
+        //Replace with the excerpt of the post
+        $post_optional_excerpt = $post->post_excerpt;
+        if (strlen($post_optional_excerpt) > 0) {
+            $post_content_long = $post_optional_excerpt;
+        } else {
+            $post_content_long = $post->post_content;
+        }
+        if ($wp_version[0] == "5") {
             $post_content_long = excerpt_remove_blocks($post_content_long);
         }
-        $post_content_long = strip_shortcodes($post_content_long);        
+        $post_content_long = strip_shortcodes($post_content_long);
         $post_content_long = html_entity_decode($post_content_long, ENT_COMPAT, 'UTF-8');
         $post_content_long = wp_strip_all_tags($post_content_long);
         //$post_content_long = str_replace("...", "",$post_content_long);
 
         $excerpt_len = $toot_size - strlen($message_template) + 9 - 5;
 
-        //Replace with the excerpt of the post
-        $post_optional_excerpt = get_the_excerpt($id);
-        if (strlen($post_optional_excerpt)>0){
-            $post_content_long = $post_optional_excerpt;
-        }
-        $post_excerpt = substr($post_content_long, 0, $excerpt_len);
+        mb_internal_encoding("UTF-8");
+      
+        $post_excerpt = mb_substr($post_content_long, 0, $excerpt_len);
 
         $message_template = str_replace("[excerpt]", $post_excerpt, $message_template);
 
-        return substr($message_template, 0, $toot_size);
+        return mb_substr($message_template, 0, $toot_size);
     }
 
     private function sendTestToot()
