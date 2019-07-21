@@ -1359,6 +1359,12 @@ function api_link($title, $href, $output = true)
   return $result;
 }
 
+function api_links_to_unstable()
+{
+  global $castle_apidoc_url;
+  $castle_apidoc_url = 'https://castle-engine.io/apidoc-unstable/html/';
+}
+
 /* Highlight XML code, detecting [[xxx|yyy]] as links to API doc.
 
    We do not use geshi for this now, since as far as I know we cannot do this

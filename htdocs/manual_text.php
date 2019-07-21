@@ -229,69 +229,101 @@ out of the box; on modern Windows it should also work).
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use the <a href="https://castle-engine.io/apidoc-unstable/html/CastleLocalizationGetText.html">CastleLocalizationGetText</a> for a localization approach based on GetText.
+<?php
+api_links_to_unstable();
+?>
 
-<p>You use GetText formats for translating (PO, MO), utilizing tools like <a href="https://poedit.net/">PoEdit</a>. You can automatically translate strings in Pascal code, declared as <code>resourcestring</code> (use <a href="https://castle-engine.io/apidoc-unstable/html/CastleLocalizationGetText.html#CastleTranslateResourceStrings">CastleTranslateResourceStrings</a>). You can automatically translate user interface (use <a href="https://castle-engine.io/apidoc-unstable/html/CastleLocalizationGetText.html#TranslateAllDesigns">TranslateAllDesigns</a>). You can generate starting file to translate user interface (use <a href="https://castle-engine.io/apidoc-unstable/html/CastleLocalizationGetText.html#GenerateGetTextPo">GenerateGetTextPo</a>).
+<p>You can use the <?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?> for a localization approach based on GetText.
 
-<p>A typical workflow for translating an application:
+<p>You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like <a href="https://poedit.net/">PoEdit</a>. You can automatically translate strings in Pascal code, declared as <code>resourcestring</code> (use <?php api_link('CastleTranslateResourceStrings', 'CastleLocalizationGetText.html#CastleTranslateResourceStrings'); ?>). You can automatically translate user interface (use <?php api_link('TranslateAllDesigns', 'CastleLocalizationGetText.html#TranslateAllDesigns'); ?>). You can generate starting file to translate user interface (use <?php api_link('GenerateGetTextPo', 'CastleLocalizationGetText.html#GenerateGetTextPo'); ?>).
+
+<p>A typical workflow for translating an application looks like this:
 
 <ol>
-  <li><p>Generate a file containing everything to translate in your user interface
-    by calling <code>GenerateGetTextPo('castle-data:/gui/*.castle-user-interface');</code>.
-    Place the resulting contents in <code>user_interface.pot</code>.
+  <li><p>Generate POT (PO Template) files containing everything to translate:
 
-    <p>Generate a file containing everything to translate in your resourcestrings
-    using <code>rstconv</code> tool from FPC.
-    Call the resulting file <code>game.pot</code>.
+    <ul>
+      <li><p>Generate POT file to translate the user interface
+        by calling <code>GenerateGetTextPo('castle-data:/gui/*.castle-user-interface');</code>.
+        Place the resulting contents in <code>user_interface.pot</code>.
 
-  <li><p>Translate the PO files and generate MO files using GetText tools.
+      <li><p>Generate POT file to translate all resourcestrings
+        using the <code>rstconv</code> tool from FPC.
+        Place the resulting contents in <code>game.pot</code>.
+     </ul>
 
-    <p>For each translation, you create files like
-    <code>game.pl.po</code>,
-    <code>user_interface.pl.po</code> (Polish translation) and
-    <code>game.ja.po</code>,
-    <code>user_interface.ja.po</code> (Japanese translation).
+  <li><p>Create and translate the PO files for each language you support.
 
-    <p>Use GetText tools to convert PO files to MO, and get
+    <p>For each <code>xxx.pot</code>,
+    create a file <code>xxx.&lt;language-code&gt;.po</code>.
+    For example for Polish translation you would create files like
+    <code>game.pl.po</code> and
+    <code>user_interface.pl.po</code>.
+    For Japanese translation you would create files
+    <code>game.ja.po</code> and
+    <code>user_interface.ja.po</code>.
+
+    <p>Note that <code>game.xx.po</code> should contain
+    a map from English text -&gt; localized (Polish, Japanese etc.) text.
+    In contrast, <code>user_interface.xx.po</code> should contain
+    a map from internal identifier (qualified component names) -&gt; localized (Polish, Japanese etc.) text.
+    Both approaches are possible with GetText.
+
+    <p>You can create and edit PO files using any GetText PO editor,
+    like <a href="https://poedit.net/">PoEdit</a>.
+    The PO is a text file format, so you can use any regular text editor
+    (like Atom or Emacs) as well.
+
+  <li><p>Generate MO files from PO using the GetText <code>msgfmt</code> tool.
+    Some editors like <a href="https://poedit.net/">PoEdit</a> may also do this automatically.
+
+    <p>In effect you will get
     <code>game.pl.mo</code>,
     <code>user_interface.pl.mo</code> (Polish translation) and
     <code>game.ja.mo</code>,
     <code>user_interface.ja.mo</code> (Japanese translation).
 
-  <li><p>In game, determine user language, e.g. using
-    <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleSystemLanguage.html">CastleSystemLanguage</a>.
+    <p>Place these MO files inside the <a href="manual_data_directory.php">data directory</a>
+    of your application.
 
-  <li><p>Call something like <code>TranslateAllDesigns('castle-data:/translations/user_interface.ja.mo');</code>
-    (where "ja" stands for Japanese localization, just an example) to translate all future user interface.
+  <li><p>In game, determine user preferred language, e.g. using
+    <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?>.
 
-    <p>Call <code>CastleTranslateResourceStrings('castle-data:/translations/game.ja.mo');</code>
-    to translate resourcestrings.
+    <p>Then translate things by loading appropriate MO file.
+
+    <ul>
+      <li><p>To translate all user interface that will be loaded,
+        call <code>TranslateAllDesigns('castle-data:/translations/user_interface.ja.mo');</code>
+        (where "ja" stands for Japanese localization, just an example).
+
+      <li><p>To translate resourcestrings, call
+        <code>CastleTranslateResourceStrings('castle-data:/translations/game.ja.mo');</code>.
+    </ul>
 </ol>
 
 <p>For more details and example how to do it all see the README and source code of our
 <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/gettext">example application using CastleLocalizationGetText (examples/localization/gettext/)</a>.
 
 <p>You can tweak this workflow to your needs by using various other routines from
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleLocalizationGetText.html">CastleLocalizationGetText</a> unit
-and overriding <a href="https://castle-engine.io/apidoc-unstable/html/CastleClassUtils.TCastleComponent.html#TranslateProperties">TCastleComponent.TranslateProperties</a>.
-You can translate your own strings explicitly at any moment too, using
+<?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?>
+ unit and overriding <?php api_link('TCastleComponent.TranslateProperties', 'CastleClassUtils.TCastleComponent.html#TranslateProperties'); ?>.
+You can use more POT / PO files for your own needs.
+You can translate strings explicitly at any moment, using
 <a href="https://www.freepascal.org/docs-html/fcl/gettext/tmofile.translate.html">TMOFile.Translate('my_id')</a>.
 
 <p>The engine uses resourcestrings for some internally-generated messages, so these can be translated too.
 
-<p>You can use a cross-platform <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleSystemLanguage.html">CastleSystemLanguage</a> unit that tells you the preferred user language.
-
 <?php echo $toc->html_section(); ?>
 
-<p>You can use our own localization class from the <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.html">CastleLocalization</a> unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleControls.TCastleLabel.html">TCastleLabel</a>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
+<p>You can use our own localization class from the <?php api_link('CastleLocalization', 'CastleLocalization.html'); ?> unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
 
-<p>For advanced users, the system allows to aid in localizing your custom classes too (see <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#OnUpdateLocalization">OnUpdateLocalization</a>) and to add your own translation formats (see <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#FileLoader">FileLoader</a>).
+<p>For advanced users, the system allows to aid in localizing your custom classes too (see <?php api_link('OnUpdateLocalization', 'CastleLocalization.TCastleLocalization.html#OnUpdateLocalization'); ?>) and to add your own translation formats (see <?php api_link('FileLoader', 'CastleLocalization.TCastleLocalization.html#FileLoader'); ?>).
 
-<p><i>Thousand thanks go to Benedikt Magnus for developing this!</i>
+<p>As with GetText approach, you can use a cross-platform <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the <?php api_link('Localization.Items[\'my_id\']', 'CastleLocalization.TCastleLocalization.html#Items'); ?> in CastleLocalization.
 
-<p>As with GetText approach, you can use a cross-platform <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleSystemLanguage.html">CastleSystemLanguage</a> unit that tells you the preferred user language. You can also translate strings "explicitly" using the <a href="http://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/CastleLocalization.TCastleLocalization.html#Items">Localization.Items['my_id']</a> in CastleLocalization.
+<p><i>Thousand thanks go to Benedikt Magnus for developing this approach!</i>
 
-<p>This is deprecated now, as it has a little less features than GetText approach. It doesn't have an equivalent of <code>GenerateGetTextPo</code> (to generate translation template), TranslateAllDesigns (to automatically translate all deserialized components), and it does not use <code>TCastleComponent.TranslateProperties</code> (to allow mutiple translatable properties on a component). It also doesn't translate resourcestrings.
+<p>It is deprecated, as it has (for now) less features than the GetText approach (see the <?php api_link('CastleLocalization', 'CastleLocalization.html'); ?> documentation for details).
 
 <?php
 manual_footer();

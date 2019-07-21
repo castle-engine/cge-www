@@ -1,8 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 
-global $castle_apidoc_url;
-$castle_apidoc_url = 'https://michalis.ii.uni.wroc.pl/cge-www-preview/apidoc/html/';
+api_links_to_unstable();
 
 manual_header('Physics');
 ?>
