@@ -128,13 +128,14 @@ Texture compression format names are <a href="https://castle-engine.io/apidoc/ht
       If not specified, by default this is .png.
       It can be any image format that CGE can write.
 
-      - This does not affect the GPU-compressed (e.g. to DXT5) textures now
-        (their format depends on what the underlying tool can make,
-        and in practice is always .dds now).
-        In the future this may change.
-
       - This does affect the uncompressed (only downlscaled,
         or not even downscaled when trivial_uncompressed_convert) format.
+
+      - This does not affect the GPU-compressed (e.g. to DXT5) textures now.
+        For the GPU-compressed textures,
+        their format depends on what the underlying tool can make,
+        and it is hardcoded in CGE code (see the TextureCompressionInfo array)
+        as .dds or .ktx, depending on the compression.
     -->
     <preferred_output_format extension=".dds" />
 
@@ -177,6 +178,8 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
       <li><p><a href="https://developer.nvidia.com/gpu-accelerated-texture-compression"><code>nvcompress</code> from NVidia Texture Tools</a>. Cross-platform (Windows, Linux...), free and open source. On Debian and derivatives (like Ubuntu) install them simply by <code>sudo apt-get install libnvtt-bin</code>.
 
       <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
+
+      <li><p><a href="https://github.com/ARM-software/astc-encoder">astcenc</a> is used (by <code>PVRTexToolCLI</code>) to encode textures to ASTC.
 
       <li><p>(Since Castle Game Enigne &gt;= 6.5)
         <a href="https://gpuopen.com/gaming-product/compressonator/"><code>CompressonatorCLI</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
