@@ -4,26 +4,45 @@
     'This component defines the materials and containers for geometric
      nodes and their appearance.'
     );
+$toc = new TableOfContents(
+  array(
+    new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('TODOs', 'todo'),
+  )
+);
 ?>
 
-<p>Supported nodes:</p>
+<p>Contents:
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><?php echo x3d_node_link('Shape'); ?>,<br>
-    <?php echo x3d_node_link('Appearance'); ?>,<br>
-    <?php echo x3d_node_link('Material'); ?></p>
+  <li><p><?php echo x3d_node_link('Shape'); ?>
 
-    <p>Fully implemented.</li>
+    <p>The basic X3D node for "something that can be visible and collides".
+    Inside the <code>Shape.geometry</code> field place a geometry node, like <code>IndexedFaceSet</code>.
+    Inside the <code>Shape.appearance</code> field (optionally) place the <code>Appearance</code> node.
 
-  <li><p><?php echo x3d_node_link('LineProperties'); ?>.<br>
-    Fullly implemented.
+  <li><p><?php echo x3d_node_link('Appearance'); ?>
 
-    <p>Allows to change line width and type (pattern).
-    Suitable for all line geometry,
-    in particular <code>IndexedLineSet</code> and <code>LineSet</code>.
+    <p>Describes the shape look (textures, material, shaders and such).
+    Place this node inside <code>Shape.appearance</code> field.
+
+  <li><p><?php echo x3d_node_link('Material'); ?>
+
+    <p>Describes how the shape interacts with lights.
+    In simple terms: what is the color of the shape.
+    Place this node inside <code>Appearance.material</code> field.
+
+  <li><p><?php echo x3d_node_link('LineProperties'); ?>
+
+    <p>Configure line width and type (pattern).
+    This node can be placed in <code>Shape.lineProperties</code>,
+    and it affects a shape that uses a line geometry,
+    like <code>IndexedLineSet</code> and <code>LineSet</code>.
     It also affects normal (filled) geometry (like <code>IndexedFaceSet</code>)
-    when viewed in wireframe mode (see view3dscene "View -&gt; Fill Mode"
-    menu).</p>
+    when viewed in wireframe mode (see view3dscene "View -&gt; Fill Mode" menu).</p>
 
     <p>We only support values 1..5 (<i>Solid</i> .. <i>Dash-dot-dot</i>) for <code>linetype</code> field.
 
@@ -60,7 +79,15 @@
 
 </ul>
 
-<p><i>TODO</i>: FillProperties, TwoSidedMaterial are missing.</p>
+<?php echo $toc->html_section(); ?>
+
+<p>Missing and planned:
+
+<ul>
+  <li><a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PBR-%28PhysicalMaterial-and-related-concepts%29-in-the-official-X3D-specification">PBR (Physical Based Rendering)</a> materials and related nodes.
+  <li>FillProperties
+  <li>TwoSidedMaterial
+</ul>
 
 <?php
   x3d_status_footer();

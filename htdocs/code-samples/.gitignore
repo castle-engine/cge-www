@@ -24,6 +24,7 @@ view_3d_model_basic
 point_set
 orthographic_cube_sheared_test
 create_textured_quad
+grouping_nodes
 
 # particular example output
 my_points.x3d
