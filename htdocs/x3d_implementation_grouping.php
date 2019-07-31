@@ -79,6 +79,12 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'grouping_nodes.png', 'titlealt' => 'Demo of grouping X3D nodes'),
+));
+?>
+
 <p>The example below builds a node hierarchy like this:
 
 <pre>
@@ -105,6 +111,11 @@ Group (root node)
 
 <p>The <code>Group</code> and <code>Transform</code> simply arrange the nodes positions
 on the screen.
+
+<p>Note that this node hierarchy could be encoded in X3D (in XML or classic encoding)
+as well, and only loaded from Pascal. This has some benefits (e.g. an X3D file can be tested
+by <a href="view3dscene.php">view3dscene</a>).
+Below we construct everything in Pascal just as a demo, to show that it is possible.
 
 <p>Press the <code>s</code> key to toggle what is displayed in the <code>Switch</code> node:
 one of the children, or nothing.
