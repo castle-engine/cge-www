@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="generator" content="Asciidoctor 1.5.8">
 <meta name="author" content="Michalis Kamburelis">
 <title>Краткое введение в современный Object Pascal для программистов</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -80,7 +80,7 @@ h2{font-size:1.6875em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
 h4,h5{font-size:1.125em}
 h6{font-size:1em}
-hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
 em,i{font-style:italic;line-height:inherit}
 strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
@@ -142,9 +142,9 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content{margin-top:1.25em}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
-#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
-#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
 #header .details br{display:none}
@@ -153,8 +153,8 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #header .details br+span#revremark::before{content:"\00a0|\00a0"}
 #header #revnumber{text-transform:capitalize}
 #header #revnumber::after{content:"\00a0"}
-#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
-#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
 #toc>ul{margin-left:.125em}
 #toc ul.sectlevel0>li>a{font-style:italic}
 #toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
@@ -165,13 +165,13 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
-#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
 #toc.toc2 ul ul{margin-left:0;padding-left:1em}
 #toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
 body.toc2.toc-right{padding-left:0;padding-right:15em}
-body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
 @media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
 #toc.toc2{width:20em}
 #toc.toc2 #toctitle{font-size:1.375em}
@@ -188,7 +188,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 @media screen and (min-width:768px){#content{margin-bottom:1.25em}
 .sect1{padding-bottom:1.25em}}
 .sect1:last-child{padding-bottom:0}
-.sect1+.sect1{border-top:1px solid #efefed}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
 #content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
 #content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
 #content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
@@ -203,7 +203,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
 .exampleblock>.content>:first-child{margin-top:0}
@@ -215,10 +215,10 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
 .sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
-.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
-.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock pre.nowrap,.literalblock pre.nowrap pre,.listingblock pre.nowrap,.listingblock pre.nowrap pre{white-space:pre;word-wrap:normal}
 .literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
 .listingblock pre.highlightjs{padding:0}
 .listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
@@ -231,19 +231,16 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
 table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
 table.pyhltable td.code{padding-left:.75em;padding-right:0}
-pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #dddddf}
 pre.pygments .lineno{display:inline-block;margin-right:.25em}
 table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
-.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
 .quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
-.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
-.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
-.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
-.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
 .verseblock{margin:0 1em 1.25em}
 .verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
 .verseblock pre strong{font-weight:400}
@@ -251,10 +248,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 .quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
 .quoteblock .attribution br,.verseblock .attribution br{display:none}
 .quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{word-spacing:0;line-height:1.6}
-.quoteblock.abstract blockquote::before,.quoteblock.abstract p::before{display:none}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
 td.tableblock>.content{margin-bottom:-1.25em}
@@ -313,8 +313,8 @@ td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .colist td:not([class]):first-child img{max-width:none}
 .colist td:not([class]):last-child{padding:.25em 0}
 .thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
-.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
-.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
 .imageblock>.title{margin-bottom:0}
 .imageblock.thumb,.imageblock.th{border-width:6px}
 .imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
@@ -408,7 +408,7 @@ svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
-#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
 body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
 body.book #header .details{border:0!important;display:block;padding:0!important}
@@ -576,7 +576,11 @@ a.patreon-link:focus {
 <ul class="sectlevel2">
 <li><a href="#_основы_2">4.1. Основы</a></li>
 <li><a href="#_наследование_inheritance_проверка_is_и_приведение_типов_as">4.2. Наследование (Inheritance), проверка (is), и приведение типов (as)</a></li>
-<li><a href="#_свойства">4.3. Свойства</a></li>
+<li><a href="#_свойства">4.3. Свойства</a>
+<ul class="sectlevel3">
+<li><a href="#_сериализация_serialization_свойств">4.3.1. Сериализация (Serialization) свойств</a></li>
+</ul>
+</li>
 <li><a href="#_исключения">4.4. Исключения</a></li>
 <li><a href="#_уровни_видимости">4.5. Уровни видимости</a></li>
 <li><a href="#_предок_по_умолчанию">4.6. Предок по умолчанию</a></li>
@@ -613,8 +617,8 @@ a.patreon-link:focus {
 <li><a href="#_дополнительные_возможности_классов">8. Дополнительные возможности классов</a>
 <ul class="sectlevel2">
 <li><a href="#_различие_private_и_strict_private">8.1. Различие private и strict private</a></li>
-<li><a href="#_class_method">8.2. Class method</a></li>
-<li><a href="#_дополнительные_возможности_объявления_классов_и_локальные_классы">8.3. Дополнительные возможности объявления классов и локальные классы</a></li>
+<li><a href="#_дополнительные_возможности_объявления_классов_и_локальные_классы">8.2. Дополнительные возможности объявления классов и локальные классы</a></li>
+<li><a href="#_class_method">8.3. Class method</a></li>
 <li><a href="#_ссылки_на_класс">8.4. Ссылки на класс</a></li>
 <li><a href="#_class_helper">8.5. Class helper</a></li>
 <li><a href="#_виртуальные_constructor_ы_destructor_ы">8.6. Виртуальные constructor-ы, destructor-ы</a></li>
@@ -628,7 +632,7 @@ a.patreon-link:focus {
 <li><a href="#_guid_ы_интерфейсов">9.3. GUID-ы интерфейсов</a></li>
 <li><a href="#_некрасивые_com_интерфейсы">9.4. Некрасивые (COM) интерфейсы</a></li>
 <li><a href="#_использование_com_интерфейсов_с_отключённым_reference_counting">9.5. Использование COM интерфейсов с отключённым reference-counting</a></li>
-<li><a href="#_приведение_типов_интерфейсов_без_оператора_as">9.6. Приведение типов интерфейсов без оператора "as"</a></li>
+<li><a href="#_приведение_типов_интерфейсов">9.6. Приведение типов интерфейсов</a></li>
 </ul>
 </li>
 <li><a href="#_про_этот_документ">10. Про этот документ</a></li>
@@ -669,7 +673,7 @@ a.patreon-link:focus {
 <p>Данное краткое введение в первую очередь ориентировано на программистов, которые уже имеют некоторый опыт в других языках программирования. Здесь не будет раскрываться значение некоторых универсальных концепций, таких как <em>"что такое класс"</em>, лишь будет показано как они реализуются в современном Паскале.</p>
 </div>
 <div class="paragraph">
-<p><em>Прим.перев. Здесь и далее мы будем использовать оригинальные английские понятия такие как unit, constructor, override, reference-counting в случаях, если они являются ключевыми словами языка либо не имеют общепринятых переводов на русский язык. Мы также часто предпочитаем использовать оригинальное английское слово его транслитерации, как в случае с понятием "generic" выше.</em></p>
+<p><em>Прим.перев. Здесь и далее мы будем использовать оригинальные английские понятия такие как unit, constructor, override, reference-counting в случаях, если они являются ключевыми словами языка либо не имеют общепринятых переводов на русский язык. Также часто предпочитается использовать оригинальное английское слово его транслитерации, как в случае с понятием "generic" выше.</em></p>
 </div>
 </div>
 </div>
@@ -790,7 +794,7 @@ a.patreon-link:focus {
 </div>
 </div>
 <div class="paragraph">
-<p>Ещё одна полезная особенность Паскаля заключается в том, что можно "отбросить" результат функции и использовать её как обычную процедуру. Например:</p>
+<p>Обратите внимание, что результат функции может быть "проигнорирован" (отброшен). Любую функцию можно вызвать как обычную процедуру. Делать так имеет смысл если функция выполняет некоторые <em>побочные операции</em> (например, изменяет глобальные переменные), а не просто вычисляет некоторый результат. Например:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -806,8 +810,8 @@ a.patreon-link:focus {
 
 <span class="keyword">begin</span>
   Count := <span class="integer">10</span>;
-  CountMe; <span class="comment">// результат функции будет отброшен, однако функция выполняется</span>
-  MyCount := CountMe; <span class="comment">//обычное применение функции</span>
+  CountMe; <span class="comment">// результат функции будет отброшен, однако функция выполняется, Count станет равен 11.</span>
+  MyCount := CountMe; <span class="comment">// запоминаем результат выполнения функции будет, Count теперь 12.</span>
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -896,7 +900,7 @@ a.patreon-link:focus {
 </div>
 </div>
 <div class="paragraph">
-<p>Ошибка связана с тем, что компилятор в первую очередь пытается выполнить побитовый оператор <code>and</code> в середине выражения и в результате получается <code>(0 and B)</code> - побитная операция, возвращающая целочисленную величину. Далее компилятор выполняет оператор "равно" и получает булевскую величину <code>A = (0 and B)</code>. Финальная ошибка оказывается связана с попыткой сравнить булевскую величину <code>A = (0 and B)</code> с целочисленной величиной <code>0</code>.</p>
+<p>Ошибка связана с тем, что компилятор в первую очередь пытается выполнить побитовый оператор <code>and</code> в середине выражения. В результате получается <code>(0 and B)</code> - побитная операция, возвращающая целочисленную величину. Далее компилятор выполняет оператор "равно" и получает булевскую величину <code>A = (0 and B)</code>. И в конце концов появляется ошибка <em>type mismatch</em>, в результате попытки сравнения булевской величины <code>A = (0 and B)</code> с целочисленной величиной <code>0</code>.</p>
 </div>
 <div class="paragraph">
 <p>Правильно записывать это условие в следующем виде:</p>
@@ -936,7 +940,7 @@ a.patreon-link:focus {
 </div>
 </div>
 <div class="paragraph">
-<p>В данном случае не возникнет ошибки даже в случае если <code>A</code> имеет значение <code>nil</code> (т.е. нулевой указатель).</p>
+<p>В данном случае не возникнет ошибки даже в случае если <code>A</code> имеет значение <code>nil</code>. Ключевое слово <code>nil</code> это указатель, который в численном представлении указывает на "нулевой" адрес. Во многих языках программирования он называется <em>нулевым указателем</em> (<em>null pointer</em>).</p>
 </div>
 </li>
 </ul>
@@ -1208,7 +1212,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </div>
 <div class="paragraph">
-<p>Стоит отметить, что функции <code>write</code>/<code>WriteLn</code> будут работать только в <em>консольных</em> приложениях. Для этого необходимо указывать <code>{$apptype CONSOLE}</code> (<strong>но не</strong> <code>{$apptype GUI}</code>) в главном файле программы. На некоторых ОС консоль явно или скрыто присутствует всегда (Unix) и эта директива не используется. А в некоторых системах попытка выполнения <code>write</code>/<code>WriteLn</code> из GUI приложения приведёт к ошибке (например, в Windows).</p>
+<p>Стоит отметить, что функции <code>Write</code>/<code>WriteLn</code> будут работать только в <em>консольных</em> приложениях. Для этого необходимо указывать <code>{$apptype CONSOLE}</code> (<strong>но не</strong> <code>{$apptype GUI}</code>) в главном файле программы. На некоторых ОС консоль явно или скрыто присутствует всегда (Unix) и эта директива не используется. А в некоторых системах попытка выполнения <code>Write</code>/<code>WriteLn</code> из GUI приложения приведёт к ошибке (например, в Windows).</p>
 </div>
 <div class="paragraph">
 <p>В <strong>Castle Game Engine</strong> не советуется использовать <code>WriteLn</code>, поскольку для этого есть специальная функция <code>WriteLnLog</code> или <code>WriteLnWarning</code> для вывода логов и отладочной информации. Их результат всегда будет направлен в полезном направлении: для Unix-подобных систем это будет стандартный вывод в консоль. Для Windows GUI приложений это будет лог-файл. В Android вывод будет направлен в <em>Android logging facility</em> (инструмент логов Андроида), который можно просматривать с помощью команды <code>adb logcat</code>. Использовать <code>WriteLn</code> есть смысл лишь в ограниченном наборе случаев, например, для консольных приложений (исполняемых из командной строки) в которых можно быть точно уверенным, что <em>стандартный вывод</em> определён. Например, так можно делать в конвертере или генераторе трёхмерных моделей, который предназначен для запуска из командной строки.</p>
@@ -1322,7 +1326,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </div>
 <div class="paragraph">
-<p>Ещё одной полезной особенностью unit-ов являются под-секции <code>initialization</code> и <code>finalization</code> внутри секции <code>implementation</code> которые выполняются при запуске и завершении выполнения программы.</p>
+<p>Unit может также содержать секции <code>initialization</code> и <code>finalization</code>. В них размещается код, который выполняется при запуске и завершении выполнения программы, соответственно.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1375,8 +1379,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="paragraph">
 <p>Запрещено применять <em>кольцевую взаимозависимость (cyclic reference)</em> в разделе interface. Т.е. два unit-а не могут использовать друг друга в разделе interface.
-Причина такого ограничения заключается в том, что для того, чтобы "понять"
-секцию interface unit-а, компилятор анализирует и "понимает" все unit-ы, перечисленные в uses в секции interface.
+Причина такого ограничения заключается в том, что для того, чтобы "понять" секцию interface unit-а, компилятор анализирует и "понимает" все unit-ы, перечисленные в uses в секции interface.
 В Паскале это правило придерживается строго, что позволяет достичь высокой скорости компиляции и полностью автоматическое определение компилятором <em>что именно необходимо перекомпилировать</em>. В Паскале нет необходимости создания сложных <code>Makefile</code> для выполнения простой задачи компиляции, а также нет нужды <em>перекомпилировать всё</em> лишь для того, чтобы удостовериться, что все зависимости правильно обновились.</p>
 </div>
 <div class="paragraph">
@@ -1396,7 +1399,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
 <span class="keyword">program</span> showcolor;
 
-<span class="comment">// unit-ы Graphics и GoogleMapsEngine определяют свой тип TColor.</span>
+<span class="comment">// unit-ы Graphics и GoogleMapsEngine определяют свои типы, которые называются одинаково - TColor.</span>
 <span class="keyword">uses</span> Graphics, GoogleMapsEngine;
 
 <span class="keyword">var</span>
@@ -1753,7 +1756,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
   <span class="keyword">if</span> FColor &lt;&gt; Value <span class="keyword">then</span>
   <span class="keyword">begin</span>
     FColor := Value;
-    <span class="comment">{ Например, требовать обновления объекта, каждый раз,
+    <span class="comment">{ Например, требовать обновления класса, каждый раз,
       когда изменяется значение его цвета:
     Repaint;
     { Ещё пример: обеспечить чтобы нечто изменялось синхронно
@@ -1777,9 +1780,6 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <li>
 <p>Может ли оно быть установлено, и как (с помощью прямой записи поля, или вызовом метода <code>setter</code>).</p>
 </li>
-<li>
-<p>Имеет ли оно значение по умолчанию и какое (с помощью указания значения по умолчанию после ключевого слова <code>default</code>).</p>
-</li>
 </ol>
 </div>
 <div class="paragraph">
@@ -1800,7 +1800,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <p>Функция <em>setter</em> должна всегда устанавливать значение таким образом, чтобы <em>getter</em> вернул его же обратно. Не стоит автоматически отбрасывать неверные значения "setter", а в случае, когда это необходимо, следует вызвать exception. Также не желательно конвертировать или масштабировать запрашиваемое значение. Главная идея заключается в том, чтобы после установки <code>MyClass.MyProperty := 123;</code> можно было с уверенностью сказать, что <code>MyClass.MyProperty = 123</code>.</p>
 </li>
 <li>
-<p><em>Свойства, доступные только для чтения</em> часто используют для создания неких полей доступных из внешнего кода только для чтения. Снова таки, хорошая практика - делать их поведение похожим на константу, по крайней мере для данного экземпляра объекта в его текущем состоянии. Значение такого свойства не должно меняться неожиданно. <em>Если необходимо возвращать что-то случайное, лучше сделать функцию, а не свойство.</em></p>
+<p><em>Свойства, доступные только для чтения</em> часто используют для создания неких полей доступных из внешнего кода только для чтения. Снова таки, хорошая практика - делать их поведение похожим на константу, по крайней мере для данного экземпляра класса в его текущем состоянии. Значение такого свойства не должно меняться неожиданно. <em>Если необходимо возвращать что-то случайное, лучше сделать функцию, а не свойство.</em></p>
 </li>
 <li>
 <p>Поле, к которому обращаются свойства почти всегда находится в разделе <em>private</em>, поскольку главная идея свойств - служить обёрткой и методом доступа к нему.</p>
@@ -1812,6 +1812,31 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="paragraph">
 <p>ПРИМЕЧАНИЕ: Свойства так же могут быть определены вне класса, на уровне unit-а. Они служат аналогичной цели: они внешне выглядят как глобальные переменные, но доступ к ним вызывает соответствующие функции <em>getter</em> и <em>setter</em>.</p>
+</div>
+<div class="sect3">
+<h4 id="_сериализация_serialization_свойств">4.3.1. Сериализация (Serialization) свойств</h4>
+<div class="paragraph">
+<p>Свойства, имеющие уровень <em>Published</em> являются основой для сериализации (<em>serialization</em>) (также называемой <em>передачей компонент в потоке</em> (<em>streaming components</em>)) в Паскале. Слово "Serialization" происходит от слова "Series" - "ряд", т.е. сериализация подаёт свойства объекта в виде некоторого линейного ряда данных, такого как например, запись в памяти или в файле.</p>
+</div>
+<div class="paragraph">
+<p>Собственно, именно сериализация и происходит в момент, когда Lazarus читает или записывает состояние компонент из/в файл <code>xxx.lfm</code>. В Delphi эквивалентный файл имеет расширение <code>.dfm</code>. Этот механизм можно использовать и в своих целях, с помощью процедур таких как <code>ReadComponentFromTextStream</code> из unit-а <code>LResources</code>. Также можно использовать другие алгоритмы сериализации, например unit <code>FpJsonRtti</code> представляет возможность сериализации в популярном формате JSON.</p>
+</div>
+<div class="paragraph">
+<p>В <strong>Castle Game Engine</strong> можно использовать unit <code>CastleComponentSerialize</code> (созданный на основе <code>FpJsonRtti</code>) для сериализации иерархии наших собственных компонент, таких как user-interface и transformation.</p>
+</div>
+<div class="paragraph">
+<p>При каждом свойстве можно указать дополнительные параметры, которые будут полезны при использовании любого алгоритма сериализации:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Можно указать значение свойства "по умолчанию" с помощью ключевого слова <code>default</code>. Обратите внимание, что всё равно следует инициализировать свойство с помощью значения по умолчанию - это не происходит автоматически. Значение <code>default</code> это лишь указание алгоритму сериализации: <em>"когда закончится выполнение constructor-а, то данное свойство имеет это значение"</em>.</p>
+</li>
+<li>
+<p>Сохранять ли это свойство вообще - с помощью ключевого слова <code>stored</code>.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1952,7 +1977,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="sect2">
 <h3 id="_ручное_и_автоматическое_освобождение_памяти">5.3. Ручное и автоматическое освобождение памяти</h3>
 <div class="paragraph">
-<p>Во многих ситуациях, освобождение экземпляра класса не является чем-то сложным. Просто пишется destructor, как пара соответствующему constructor-у, и освобождает все объекты, память для которых была выделена в constructor-е (а, точнее, в продолжении всего времени существования класса). Важно следить за тем, чтобы освобождать каждый объект лишь <strong>один раз</strong>. Хорошей практикой будет всегда присваивать освобождённой ссылке значение <code>nil</code>, а наиболее удобно сделать это, вызвав команду <code>FreeAndNil(A)</code>.</p>
+<p>Во многих ситуациях, освобождение экземпляра класса не является чем-то сложным. Просто пишется destructor, как пара соответствующему constructor-у, и освобождает все классы, память для которых была выделена в constructor-е (а, точнее, в продолжении всего времени существования класса). Важно следить за тем, чтобы освобождать каждый класс лишь <strong>один раз</strong>. Хорошей практикой будет всегда присваивать освобождённой ссылке значение <code>nil</code>, а наиболее удобно сделать это, вызвав команду <code>FreeAndNil(A)</code>.</p>
 </div>
 <div class="paragraph">
 <p>Например:</p>
@@ -1987,7 +2012,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </div>
 <div class="paragraph">
-<p>Чтобы избежать необходимости каждый раз явным образом освобождать экземпляр класса, можно использовать полезную особенность <code>TComponent</code>, которая называется <em>"owner"</em> (владение дочерним объектом). Объект у которого есть <em>owner</em> (владелец) будет автоматически освобождён его <em>owner-ом</em>. Механизм очень гибкий и никогда не освобождает объекты, которые уже освобождены, т.е. всё будет работать правильно и для несозданных объектов, и для освобождённых ранее. Таким образом предыдущий пример можно переписать следующим образом:</p>
+<p>Чтобы избежать необходимости каждый раз явным образом освобождать экземпляр класса, можно использовать полезную особенность <code>TComponent</code>, которая называется <em>"owner"</em> (владение дочерним классом). Класс у которого есть <em>owner</em> (владелец) будет автоматически освобождён его <em>owner-ом</em>. Механизм очень гибкий и никогда не освобождает классы, которые уже освобождены, т.е. всё будет работать правильно в случае, если класс был освобождён ранее. Таким образом предыдущий пример можно переписать следующим образом:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2012,6 +2037,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="paragraph">
 <p>Следует обратить внимание, что также необходимо override виртуальный constructor от <code>TComponent</code>. Это, в свою очередь, означает, что нельзя изменять параметры constructor-а. Впрочем, всё-таки это возможно&#8201;&#8212;&#8201;объявив новый constructor с ключевым словом <code>reintroduce</code>. Однако здесь стоит быть осторожным, так как некоторый функционал, например, streaming, всё равно будет использовать виртуальный constructor, по этому следует удостовериться, что во всех возможных случаях всё будет работать корректно.</p>
+</div>
+<div class="paragraph">
+<p>Обратите внимание, что всегда можно использовать <code>nil</code> в качестве owner-а. Таким образом для данного компонента не будет owner-класса и класс не будет освобождён автоматически. Это может оказаться полезным, если необходимо использовать класс на основе <code>TComponent</code>, сохранив при этом возможность освобождать его вручную. Таким образом просто создавать наследника компонента следующим образом: <code>ManualGun := TGun.Create(nil);</code>.</p>
 </div>
 <div class="paragraph">
 <p>Ещё один удобный механизм автоматического освобождения памяти&#8201;&#8212;&#8201;функционал <code>OwnsObjects</code> (который по умолчанию равен <code>true</code>) классов-списков, таких, как <code>TFPGObjectList</code> или <code>TObjectList</code>. Т.е. можно сделать следующим образом:</p>
@@ -2070,7 +2098,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <p>Заметим, что механизм owner-ов классов-списков простой (без дополнительных проверок) и, в случае освобождения содержащегося в списке экземпляра класса сторонним кодом, впоследствии возникнет ошибка. Чтобы исключить что-либо из списка без освобождения используется метод <code>Extract</code>, однако это также означает, что в дальнейшем элемент придётся освободить вручную.</p>
 </div>
 <div class="paragraph">
-<p>Например, в <strong>Castle Game Engine</strong> все наследники класса <code>TX3DNode</code> автоматически управляют памятью при добавлении другой <code>TX3DNode</code> в список children. Корневая X3DNode называется <code>TX3DRootNode</code> и, в свою очередь, обычно имеет своим owner-ом класс <code>TCastleSceneCore</code>. Другие объекты также имеют простой механизм owner-а&#8201;&#8212;&#8201;обычно это обозначено параметром или свойством под названием вида <code>OwnsXxx</code>.</p>
+<p>Например, в <strong>Castle Game Engine</strong> все наследники класса <code>TX3DNode</code> автоматически управляют памятью при добавлении другой <code>TX3DNode</code> в список children. Корневая X3DNode называется <code>TX3DRootNode</code> и, в свою очередь, обычно имеет своим owner-ом класс <code>TCastleSceneCore</code>. Другие классы также имеют простой механизм owner-а&#8201;&#8212;&#8201;обычно это обозначено параметром или свойством под названием вида <code>OwnsXxx</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2090,7 +2118,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
   Obj2 := Obj1;
   FreeAndNil(Obj1);
 
-  <span class="comment">// что произойдёт, если попытаться получить доступ к объекту Obj1 или Obj2?</span>
+  <span class="comment">// что произойдёт, если попытаться получить доступ к классу Obj1 или Obj2?</span>
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
@@ -2112,8 +2140,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </li>
 <li>
-<p>Ситуация с <code>Obj2</code>&#8201;&#8212;&#8201;куда сложнее. Её значение не <code>nil</code>, однако оно уже ошибочно. Попытка доступа к не-<code>nil</code> ссылки на несуществующий экземпляр класса
-приводит к непредсказуемому результату&#8201;&#8212;&#8201;это может быть и ошибка access violation, а может и просто какое-то случайное значение.</p>
+<p>Ситуация с <code>Obj2</code>&#8201;&#8212;&#8201;куда сложнее. Её значение не <code>nil</code>, однако оно уже ошибочно. Попытка доступа к не-<code>nil</code> ссылки на несуществующий экземпляр класса приводит к непредсказуемому результату&#8201;&#8212;&#8201;это может быть и ошибка access violation, а может и просто какое-то случайное значение.</p>
 </li>
 </ol>
 </div>
@@ -2123,7 +2150,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="ulist">
 <ul>
 <li>
-<p>Первое решение - внимательно читать документацию к объекту. Не предполагать ничего о длительности жизни ссылки, если она создана чужим кодом. Если в классе <code>TCar</code> есть поле <code>wheel</code>, указывающее на экземпляр класса типа <code>TWheel</code>, то есть <em>правило</em> что ссылка на <code>wheel</code> верна, пока существует класс <code>car</code>, и сам <code>car</code> освободит все его <code>wheel</code> используя свой destructor. Но это правило не всегда возможно выполнить. В более сложных случаях, в документации следует сделать упоминание о том, что и как происходит со ссылками.</p>
+<p>Первое решение - внимательно читать документацию к классу. Не предполагать ничего о длительности жизни ссылки, если она создана чужим кодом. Если в классе <code>TCar</code> есть поле <code>wheel</code>, указывающее на экземпляр класса типа <code>TWheel</code>, то есть <em>правило</em> что ссылка на <code>wheel</code> верна, пока существует класс <code>car</code>, и сам <code>car</code> освободит все его <code>wheel</code> используя свой destructor. Но это правило не всегда возможно выполнить. В более сложных случаях, в документации следует сделать упоминание о том, что и как происходит со ссылками.</p>
 </li>
 <li>
 <p>В примере выше, сразу после освобождения экземпляра класса <code>Obj1</code>, можно просто вручную установить <code>Obj2</code> значение <code>nil</code>. В данном конкретном примере тривиально.</p>
@@ -2199,7 +2226,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="sect2">
 <h3 id="_вводвывод_с_помощью_потоков">6.1. Ввод/вывод с помощью потоков</h3>
 <div class="paragraph">
-<p>Для ввода / выода в современных программах на Паскале используется класс <code>TStream</code>. У него также есть множество полезных производных классов, таких как <code>TFileStream</code>, <code>TMemoryStream</code>, <code>TStringStream</code> и т.п.</p>
+<p>Для ввода / вывода в современных программах на Паскале используется класс <code>TStream</code>. У него также есть множество полезных производных классов, таких как <code>TFileStream</code>, <code>TMemoryStream</code>, <code>TStringStream</code> и т.п.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2232,7 +2259,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </div>
 <div class="paragraph">
-<p>В <strong>Castle Game Engine</strong> следует использовать метод <code>Download</code> для создания потока, который оперирует ресурсами (это могут быть файлы, данные, скачанные с URL или Android assets). Более того, для однозначного кросс-платформенного указания на папку игровых данных (обычно это под-папка <code>data</code>) следует использовать функцию <code>ApplicationData</code>.</p>
+<p>В <strong>Castle Game Engine</strong> следует использовать функцию <code>Download</code> для создания потока, который загружает данные с любого заданного URL. Это могут быть обычные файлы, ресурсы, хранящиеся на HTTP и HTTPS, Android assets и много других. Более того, для однозначного кросс-платформенного указания на папку игровых данных (хранящихся в папке <code>data</code>) следует использовать функцию <code>ApplicationData</code> или особый тип URL <code>castle-data:/xxx</code> URL. Например:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2386,7 +2413,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> SumOfSquares(<span class="keyword">const</span> N: Integer): Integer;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> SumOfSquares(<span class="keyword">const</span> N: Integer): Integer;
 
   <span class="keyword">function</span> Square(<span class="keyword">const</span> Value: Integer): Integer;
   <span class="keyword">begin</span>
@@ -2407,7 +2434,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> SumOfSquares(<span class="keyword">const</span> N: Integer): Integer;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> SumOfSquares(<span class="keyword">const</span> N: Integer): Integer;
 <span class="keyword">var</span>
   I: Integer;
 
@@ -2893,7 +2920,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 <p>Следует обратить внимание, что здесь было использовано рекурсивное определение (тип <code>PMyRecord</code> определяется с помощью <code>TMyRecord</code>, а <code>TMyRecord</code> использует в своём определении <code>PMyRecord</code>). Можно определить pointer на тип, <em>который ещё не был объявлен</em>, в том случае, если он будет определён в том же самом блоке <code>type</code>.</p>
 </div>
 <div class="paragraph">
-<p>Можно распределять и освобождать память для pointer-ов с помощью методов <code>New</code> / <code>Dispose</code>, или (более низкоуровневых, но не типобезопасных) методов <code>GetMem</code> / <code>FreeMem</code>. Для доступа к данным, на которые pointer указывает, после него следует добавить оператор <code>^</code> (в виде <code>PMyRecord^.Value</code>). Обратная операция (получить pointer на существующую переменную) выполняется с помощью оператора-префикса <code>@</code> (например, <code>@myRecordVariable</code>).</p>
+<p>Можно распределять и освобождать память для pointer-ов с помощью методов <code>New</code> / <code>Dispose</code>, или (более низкоуровневых, но не типобезопасных) методов <code>GetMem</code> / <code>FreeMem</code>. Для доступа к данным, на которые pointer указывает, после него следует добавить оператор <code>^</code> (в виде <code>MyInteger := MyPointerToInteger^</code>). Обратная операция (получить pointer на существующую переменную) выполняется с помощью оператора-префикса <code>@</code> (например, <code>MyPointerToInteger := @MyInteger</code>).</p>
 </div>
 <div class="paragraph">
 <p>Существует также самый общий тип <code>Pointer</code>, который не указывает на конкретный тип данных и подобен <code>void*</code> в C-подобных языках. Он совершенно не типобезопасен, и его можно привести его тип в любой другой тип pointer-а.</p>
@@ -3068,40 +3095,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_method">8.2. Class method</h3>
-<div class="paragraph">
-<p>Существуют методы, которые можно вызвать из класса вообще (<code>TMyClass</code>), не обязательно из его конкретного экземпляра.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
-  TEnemy = <span class="keyword">class</span>
-    <span class="keyword">procedure</span> Kill;
-    <span class="keyword">class</span> <span class="keyword">procedure</span> KillAll;
-  <span class="keyword">end</span>;
-
-<span class="keyword">var</span>
-  E: TEnemy;
-<span class="keyword">begin</span>
-  E := TEnemy.Create;
-  <span class="keyword">try</span>
-    E.Kill;
-  <span class="keyword">finally</span>
-    FreeAndNil(E);
-  <span class="keyword">end</span>;
-  TEnemy.KillAll;
-<span class="keyword">end</span>;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Обратите внимание, что они также могут быть виртуальными&#8201;&#8212;&#8201;иногда это весьма удобно, особенно, если применяется совместно с понятием <a href="#_ссылки_на_класс">Ссылки на класс</a>.</p>
-</div>
-<div class="paragraph">
-<p>Следует отметить, что constructor всегда работает, как class method когда вызывается "обычным образом" (<code>MyInstance := TMyClass.Create(&#8230;&#8203;);</code>). Впрочем, можно вызвать конструктор в данном конкретном экземпляре класса как метод&#8201;&#8212;&#8201;и он тогда и сработает как обычный метод. Таким образом можно сделать удобную "цепочку" constructor-ов, когда один constructor (например, перегруженный для принятия дополнительных параметров) выполняет определённый код, а затем вызывает другой constructor (например, беспараметрический).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_дополнительные_возможности_объявления_классов_и_локальные_классы">8.3. Дополнительные возможности объявления классов и локальные классы</h3>
+<h3 id="_дополнительные_возможности_объявления_классов_и_локальные_классы">8.2. Дополнительные возможности объявления классов и локальные классы</h3>
 <div class="paragraph">
 <p>Внутри определения класса можно создавать константы (<code>const</code>) или типы (<code>type</code>). Таким образом можно даже создать класс внутри класса. Спецификаторы видимости будут работать как обычно, и такие локальные классы могут быть private (не видимые "внешнему миру"), что иногда удобно.</p>
 </div>
@@ -3146,6 +3140,39 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <span class="keyword">begin</span>
 <span class="keyword">end</span>;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_method">8.3. Class method</h3>
+<div class="paragraph">
+<p>Существуют методы, которые можно вызвать из класса вообще (<code>TMyClass</code>), не обязательно из его конкретного экземпляра.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TEnemy = <span class="keyword">class</span>
+    <span class="keyword">procedure</span> Kill;
+    <span class="keyword">class</span> <span class="keyword">procedure</span> KillAll;
+  <span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  E: TEnemy;
+<span class="keyword">begin</span>
+  E := TEnemy.Create;
+  <span class="keyword">try</span>
+    E.Kill;
+  <span class="keyword">finally</span>
+    FreeAndNil(E);
+  <span class="keyword">end</span>;
+  TEnemy.KillAll;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Обратите внимание, что они также могут быть виртуальными&#8201;&#8212;&#8201;иногда это весьма удобно, особенно, если применяется совместно с понятием <a href="#_ссылки_на_класс">Ссылки на класс</a>.</p>
+</div>
+<div class="paragraph">
+<p>Следует отметить, что constructor всегда работает, как class method когда вызывается "обычным образом" (<code>MyInstance := TMyClass.Create(&#8230;&#8203;);</code>). Впрочем, можно вызвать конструктор в данном конкретном экземпляре класса как метод&#8201;&#8212;&#8201;и он тогда и сработает как обычный метод. Таким образом можно сделать удобную "цепочку" constructor-ов, когда один constructor (например, перегруженный для принятия дополнительных параметров) выполняет определённый код, а затем вызывает другой constructor (например, беспараметрический).</p>
 </div>
 </div>
 <div class="sect2">
@@ -3248,10 +3275,10 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 
 <span class="keyword">function</span> TMyClass.Clone(AOwner: TComponent): TMyClass;
 <span class="keyword">begin</span>
-  <span class="comment">// Таким образом будет создан объект конкретного типа TMyClass:</span>
-  <span class="comment">//Result := TMyClass.Create(AOwner);</span>
-  <span class="comment">// А такой подход может создать объект как типа TMyClass, так и его наследников:</span>
-  Result := TMyClassRef(Self.ClassType).Create(AOwner);
+  <span class="comment">// Таким образом будет создан класс конкретного типа TMyClass:</span>
+  <span class="comment">// Result := TMyClass.Create(AOwner);</span>
+  <span class="comment">// А такой подход может создать класс как типа TMyClass, так и его наследников:</span>
+  Result := TMyClassRef(ClassType).Create(AOwner);
   Result.Assign(Self);
 <span class="keyword">end</span>;</code></pre>
 </div>
@@ -3280,7 +3307,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 </div>
 <div class="paragraph">
-<p>И это действительно сработает. Однако, недостаток такого подхода - он выглядит не очень красиво. Ведь обычно мы вызываем действия над объектом с помощью <code>X.Action(&#8230;&#8203;)</code>, а тут нам приходится использовать иной синтаксис: <code>Render(X, &#8230;&#8203;)</code>. Было бы куда удобнее записать <code>X.Render(&#8230;&#8203;)</code>, даже для случаев, когда <code>Render</code> не описан в unit-е, в котором находится <code>TMy3DObject</code>.</p>
+<p>И это действительно сработает. Однако, недостаток такого подхода - он выглядит не очень красиво. Ведь обычно мы вызываем действия над классом с помощью <code>X.Action(&#8230;&#8203;)</code>, а тут нам приходится использовать иной синтаксис: <code>Render(X, &#8230;&#8203;)</code>. Было бы куда удобнее записать <code>X.Render(&#8230;&#8203;)</code>, даже для случаев, когда <code>Render</code> не описан в unit-е, в котором находится <code>TMy3DObject</code>.</p>
 </div>
 <div class="paragraph">
 <p>Для этого и существуют class helper-ы, дающие возможность создать процедуры/функции, которые оперируют данным классом и вызываются таким же образом, как и остальные методы класса. Однако они не являются "обычными" методами&#8201;&#8212;&#8201;они "добавляются" извне определения класса <code>TMy3DObject</code>.</p>
@@ -3490,8 +3517,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </dd>
 <dt class="hdlist1">Требуется ли задавать <code>{$interfaces corba}</code> ?</dt>
 <dd>
-<p>Да, поскольку по умолчанию
-будут созданы <em>COM интерфейсы</em>. Последнее можно указать явно с помощью директивы <code>{$interfaces com}</code>, но не обязательно, так как это случай по умолчанию.</p>
+<p>Да, поскольку по умолчанию будут созданы <em>COM интерфейсы</em>. Последнее можно указать явно с помощью директивы <code>{$interfaces com}</code>, но не обязательно, так как это случай по умолчанию.</p>
 <div class="paragraph">
 <p>Лично я не советую использовать <em>COM интерфейсы</em>. Особенно в случае, если Вам знакомы интерфейсы из других языков программирования. <em>Интерфейсы CORBA</em> в Паскале&#8201;&#8212;&#8201;это именно то, что ожидается от интерфейсов, они идентичны интерфейсам в C# и Java. При этом <em>COM интерфейсы</em> привносят дополнительные "особенности", которые, скорее всего, не понадобятся.</p>
 </div>
@@ -3505,7 +3531,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <div class="ulist">
 <ul>
 <li>
-<p>Требует, чтобы классы определяли методы <code>_AddRef</code> и <code>_ReleaseRef</code>. Правильная имплементация этих методов позволит управлять объектом с помощью подсчёта ссылок (reference-counting).</p>
+<p>Требует, чтобы классы определяли методы <code>_AddRef</code> и <code>_ReleaseRef</code>. Правильная имплементация этих методов позволит управлять классом с помощью подсчёта ссылок (reference-counting).</p>
 </li>
 <li>
 <p>Добавляет метод <code>QueryInterface</code>.</p>
@@ -3527,7 +3553,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>Иногда возникает необходимость передать обычные классы (не имеющими ничего общего) через обычный интерфейс.</p>
 </li>
 <li>
-<p>Иногда возникает желание управлять памятью с помощью технологии reference counting.</p>
+<p>Иногда возникает желание управлять памятью с помощью технологии reference-counting.</p>
 </li>
 <li>
 <p><em>Возможно</em> когда-нибудь лично мне тоже пригодится <em>COM технология</em>.</p>
@@ -3618,10 +3644,6 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </ul>
 </div>
 </li>
-</ul>
-</div>
-<div class="ulist">
-<ul>
 <li>
 <p>Необходимо быть аккуратным при освобождении класса, когда на него могут ссылаться некоторые переменные интерфейса. Поскольку интерфейсы освобождаются с помощью виртуального метода (потому что он <em>может использовать reference-counting, даже если <code>_AddRef</code> написан таким образом, чтобы отключить эту возможность</em>), то нельзя освобождать низлежащий экземпляр класса из-за того, что какая-либо переменная интерфейса может на него указывать. См. раздел <em>"7.7 Reference counting"</em> в руководстве FPC (<a href="http://freepascal.org/docs-html/ref/refse47.html" class="bare">http://freepascal.org/docs-html/ref/refse47.html</a>).</p>
 </li>
@@ -3712,7 +3734,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 
       а переменная C3 является экземпляром класса
       и не управляется интерфейсом,
-      и по этому её необходимо совободить вручную. }</span>
+      по этому её необходимо совободить вручную. }</span>
     FreeAndNil(C3);
   <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
@@ -3809,24 +3831,31 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_приведение_типов_интерфейсов_без_оператора_as">9.6. Приведение типов интерфейсов без оператора "as"</h3>
+<h3 id="_приведение_типов_интерфейсов">9.6. Приведение типов интерфейсов</h3>
 <div class="paragraph">
-<p>Этот раздел касается как <em>CORBA</em>, так и <em>COM</em> интерфейсов.</p>
+<p>Этот раздел касается как <em>CORBA</em>, так и <em>COM</em> интерфейсов. Впрочем, также отмечены некоторые особенности CORBA интерфейсов.</p>
 </div>
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Приведение типа интерфейса через оператор <code>as</code> выполняет проверку в режиме исполнения. Рассмотрим пример:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(Cx <span class="keyword">as</span> IMyInterface);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Этот вариант скомпилируется для всех экземпляров <code>C1</code>, <code>C2</code>, <code>C3</code> из примера в предыдущем подразделе. При выполнении программы возникнет ошибка для <code>C3</code>, у которого не описан <code>IMyInterface</code> (впрочем, мы можем избежать такой ошибки, проверив <code>Cx is IMyInterface</code> перед выполнением приведения типа), как это сделано в примере.</p>
+<p>Этот вариант скомпилируется для всех экземпляров <code>C1</code>, <code>C2</code>, <code>C3</code> из примера в предыдущем подразделе. При выполнении программы возникнет ошибка для <code>C3</code>, у которого не описан <code>IMyInterface</code>.</p>
 </div>
 <div class="paragraph">
-<p>Однако, возможно привести тип данного экземпляра самым непосредственным образом:</p>
+<p>Использование оператора <code>as</code> работает правильно независимо от того, объявлен ли <code>Cx</code> как экземпляр класса (например, <code>TMyClass2</code>) или как интерфейс (например, <code>IMyInterface2</code>).</p>
 </div>
+<div class="paragraph">
+<p>However, it is not allowed for CORBA interfaces.</p>
+</div>
+</li>
+<li>
+<p>Однако, возможно привести тип данного экземпляра самым непосредственным образом:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(Cx);</code></pre>
@@ -3838,16 +3867,121 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <div class="paragraph">
 <p>По большому счёту, такое приведение типа работает как для обычных классов. В случае, если требуется экземпляр класса <code>TMyClass</code>, всегда можно использовать переменную, объявленную как <code>TMyClass</code>, <strong>которой подойдёт любой наследник <code>TMyClass</code></strong>. Точно такая же ситуация и для интерфейсов. Не требуется выполнять явные приведения типов в такой ситуации.</p>
 </div>
-<div class="paragraph">
-<p>Эквивалентно этому:</p>
-</div>
+</li>
+<li>
+<p>Можно также выполнить приведение типа <code>IMyInterface(Cx)</code> следующим образом:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(IMyInterface(Cx));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Это тоже приведение типа, которое должно быть верным при компиляции. Обратите внимание, что данный синтаксис работает иначе, чем приведение типов обычных классов. Если написать что-либо вроде <code>TMyClass(C)</code> для классов, то в результате получится <em>небезопасное, непроверяемое приведение типов</em>. В случае же интерфейсов, писать <code>IMyInterface(C)</code> безопасно и быстро (проверяется лишь при компиляции).</p>
+<p>Обычно, такой синтаксис приведения типа является <em>небезопасным, не проверяемым</em>. Если привести ошибочный тип интерфейса подобным образом, могут возникнуть ошибки, как в случае приведения типа <em>класса к классу</em>, или _интерфейса к интерфейсу_с помощью данного синтаксиса.</p>
+</div>
+<div class="paragraph">
+<p>Можно сделать небольшую оговорку: если <code>Cx</code> объявлен как class (например <code>TMyClass2</code>), то такая операция приведения типа должна быть верной при компиляции. Иными словами, приведение типа <em>класса к интерфейсу</em> таким образом - безопасно и быстро (проверка выполняется при компиляции).</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Можете всё это попробовать, поиграв со следующим примером:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+
+<span class="comment">// {$interfaces corba} // обратите внимание, что приведение типа с помощью &quot;as&quot; для интерфейсов типа CORBA не скомпилируется</span>
+
+<span class="keyword">uses</span> Classes;
+
+<span class="keyword">type</span>
+  IMyInterface = <span class="keyword">interface</span>
+  [<span class="string"><span class="delimiter">'</span><span class="content">{7FC754BC-9CA7-4399-B947-D37DD30BA90A}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> One;
+  <span class="keyword">end</span>;
+
+  IMyInterface2 = <span class="keyword">interface</span>(IMyInterface)
+  [<span class="string"><span class="delimiter">'</span><span class="content">{A72B7008-3F90-45C1-8F4C-E77C4302AA3E}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> Two;
+  <span class="keyword">end</span>;
+
+  IMyInterface3 = <span class="keyword">interface</span>(IMyInterface2)
+  [<span class="string"><span class="delimiter">'</span><span class="content">{924BFB98-B049-4945-AF17-1DB08DB1C0C5}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> Three;
+  <span class="keyword">end</span>;
+
+  TMyClass = <span class="keyword">class</span>(TComponent, IMyInterface)
+    <span class="keyword">procedure</span> One;
+  <span class="keyword">end</span>;
+
+  TMyClass2 = <span class="keyword">class</span>(TMyClass, IMyInterface, IMyInterface2)
+    <span class="keyword">procedure</span> One;
+    <span class="keyword">procedure</span> Two;
+  <span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass.One;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.One</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass2.One;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.One</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass2.Two;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.Two</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> UseInterface2(<span class="keyword">const</span> I: IMyInterface2);
+<span class="keyword">begin</span>
+  I.One;
+  I.Two;
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> UseInterface3(<span class="keyword">const</span> I: IMyInterface3);
+<span class="keyword">begin</span>
+  I.One;
+  I.Two;
+  I.Three;
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  My: IMyInterface;
+  MyClass: TMyClass;
+<span class="keyword">begin</span>
+  My := TMyClass2.Create(<span class="keyword">nil</span>);
+  MyClass := TMyClass2.Create(<span class="keyword">nil</span>);
+
+  <span class="comment">// Следующий код не скомпилируется, так как в момент компиляции неизвестно является ли My интерфейсом IMyInterface2.</span>
+  <span class="comment">// UseInterface2(My);</span>
+  <span class="comment">// UseInterface2(MyClass);</span>
+
+  <span class="comment">// Это скомпилируется и работает правильно.</span>
+  UseInterface2(IMyInterface2(My));
+  <span class="comment">// А это не скомпилируется. Приведение типа InterfaceType(ClassType) проверяется в момент компиляции.</span>
+  <span class="comment">// UseInterface2(IMyInterface2(MyClass));</span>
+
+  <span class="comment">// Это скомпилируется и работает правильно.</span>
+  UseInterface2(My <span class="keyword">as</span> IMyInterface2);
+  <span class="comment">// Это скомпилируется и работает правильно.</span>
+  UseInterface2(MyClass <span class="keyword">as</span> IMyInterface2);
+
+  <span class="comment">// Это скомпилируется, но приведёт к непонятной ошибке &quot;Access violation&quot; при выполнении программы.</span>
+  <span class="comment">// UseInterface3(IMyInterface3(My));</span>
+  <span class="comment">// Это не скомпилируется. Приведение типа InterfaceType(ClassType) проверяется в момент компиляции.</span>
+  <span class="comment">// UseInterface3(IMyInterface3(MyClass));</span>
+
+  <span class="comment">// Это скомпилируется, но приведёт к понятному сообщению об ошибке &quot;EInvalidCast: Invalid type cast&quot; и укажет на проблему.</span>
+  <span class="comment">// UseInterface3(My as IMyInterface3);</span>
+  <span class="comment">// Это скомпилируется, но приведёт к понятному сообщению об ошибке &quot;EInvalidCast: Invalid type cast&quot; и укажет на проблему.</span>
+  <span class="comment">// UseInterface3(MyClass as IMyInterface3);</span>
+
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Готово</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>.</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3881,14 +4015,16 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <div class="paragraph">
 <p>Перевод на русский выполнен:
 Александр Скворцов и Евгений Лоза
-2016-2017</p>
+2016-2019
+Благодарность за помощь в поиске и исправлении ошибок и очепяток:
+vitaly_l и pupsik @ freepascal.ru</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-07 18:00:03 CEST
+Last updated 2019-07-31 22:33:46 +0200
 </div>
 </div>
 <!-- Google analytics -->
