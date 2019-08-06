@@ -549,7 +549,7 @@ a.patreon-link:focus {
 </div>
 <a href="https://patreon.com/castleengine" class="patreon-link">Support the author on<br><img class="patreon-logo" src="patreon-link.png" alt="Patreon"></a>
 <div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
+<div id="toctitle">Содержание</div>
 <ul class="sectlevel1">
 <li><a href="#_введение_для_чего_это_нужно">1. Введение: Для чего это нужно?</a></li>
 <li><a href="#_основы">2. Основы</a>
@@ -987,11 +987,29 @@ a.patreon-link:focus {
 <div class="paragraph">
 <p>Общепринято, что префикс перечисляемого типа состоит из двух букв сокращения имени типа, следовательно <code>ak</code> = сокращение для <em>"Animal Kind"</em>. Это полезное соглашение, так как имена перечисляемых типов находятся в глобальном пространстве переменных unit-а. Таким образом, с помощью префикса <code>ak</code> автоматически уменьшаются шансы на случайный конфликт с другими идентификаторами.</p>
 </div>
-<div class="paragraph">
-<p>ПРИМЕЧАНИЕ: Конфликты в именах не приводят к неработоспособности программы. Вполне допустимо в различных unit-ах определять одинаковые идентификаторы. Однако, желательно избегать подобных конфликтов везде, где это возможно, чтобы код был прост для понимания и анализа.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Примечание</div>
+</td>
+<td class="content">
+Конфликты в именах не приводят к неработоспособности программы. Вполне допустимо в различных unit-ах определять одинаковые идентификаторы. Однако, желательно избегать подобных конфликтов везде, где это возможно, чтобы код был прост для понимания и анализа.
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>ПРИМЕЧАНИЕ: Можно избежать попадания имён перечисляемых типов в глобальное пространство с помощью директивы компилятора <code>{$scopedenums on}</code>. В таком варианте будет необходимо обращаться к ним через имя типа следующим образом: <code>TAnimalKind.akDuck</code>. В результате отпадает необходимость в префиксе <code>ak</code>, и можно просто оставить исходные названия <code>Duck, Cat, Dog</code>. Такое исполнение подобно тому, как работают перечисляемые списки в C#.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Примечание</div>
+</td>
+<td class="content">
+Можно избежать попадания имён перечисляемых типов в глобальное пространство с помощью директивы компилятора <code>{$scopedenums on}</code>. В таком варианте будет необходимо обращаться к ним через имя типа следующим образом: <code>TAnimalKind.akDuck</code>. В результате отпадает необходимость в префиксе <code>ak</code>, и можно просто оставить исходные названия <code>Duck, Cat, Dog</code>. Такое исполнение подобно тому, как работают перечисляемые списки в C#.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><em>Прозрачность</em> перечисляемого типа означает, что он не совместим напрямую с целочисленными величинами. Тем не менее, если такая совместимость необходима, можно использовать <code>Ord(MyAnimalKind)</code>, чтобы вручную привести список к целочисленному типу. Обратная операция будет выглядеть как приведение типа <code>TAnimalKind(MyInteger)</code> и превратит целое число в соответствующий перечисляемый тип. В последнем случае необходимо также быть уверенным, что <code>MyInteger</code> является частью диапазона от <code>0</code> до <code>Ord(High(TAnimalKind)))</code>.</p>
@@ -1810,8 +1828,17 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>ПРИМЕЧАНИЕ: Свойства так же могут быть определены вне класса, на уровне unit-а. Они служат аналогичной цели: они внешне выглядят как глобальные переменные, но доступ к ним вызывает соответствующие функции <em>getter</em> и <em>setter</em>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Примечание</div>
+</td>
+<td class="content">
+Свойства так же могут быть определены вне класса, на уровне unit-а. Они служат аналогичной цели: они внешне выглядят как глобальные переменные, но доступ к ним вызывает соответствующие функции <em>getter</em> и <em>setter</em>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_сериализация_serialization_свойств">4.3.1. Сериализация (Serialization) свойств</h4>
@@ -1929,7 +1956,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="sect2">
 <h3 id="_всегда_необходимо_освобождать_экземпляры_класса">5.1. Всегда необходимо освобождать экземпляры класса</h3>
 <div class="paragraph">
-<p>Чтобы избежать утечек памяти, все экземпляры класса должны быть освобождены вручную. Хорошей практикой является использование опции компилятора FPC -gl -gh, чтобы обнаруживать утечки памяти (более подробно см. <a href="https://castle-engine.io/manual_optimization.php#section_memory" class="bare">https://castle-engine.io/manual_optimization.php#section_memory</a> ).</p>
+<p>Чтобы избежать утечек памяти, все экземпляры класса должны быть освобождены вручную. Хорошей практикой является использование опции компилятора FPC -gl -gh, чтобы обнаруживать утечки памяти (более подробно см. <a href="https://castle-engine.io/manual_optimization.php#section_memory" class="bare">https://castle-engine.io/manual_optimization.php#section_memory</a>).</p>
 </div>
 <div class="paragraph">
 <p>Следует обратить внимание, что это не касается вызванных исключений (raised exceptions). Не смотря на то, что при вызове исключения действительно создаётся класс (и это вполне обычный класс, для этих целей также можно создавать и свои классы), такой экземпляр класса освобождается автоматически.</p>
@@ -2391,8 +2418,17 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <div class="paragraph">
 <p>Следует быть осторожным с <code>inherited</code> при написании <code>Assign</code>. <em>Inherited</em> из <code>TPersistent.Assign</code> должен вызываться исключительно в случаях, если Вы не можете самостоятельно выполнить копирование в своём коде (это позволит использовать метод <code>AssignTo</code> и создавать сообщения об ошибках, в случае, если копирование не может быть выполнено). С другой стороны, если данный класс является производным от класса, в котором уже есть метод <code>Assign</code>, то в данном случае <em>следует обязательно вызывать inherited</em> из <code>TMyClass.Assign</code>. См. пример выше.</p>
 </div>
-<div class="paragraph">
-<p>Примечание: Обратите внимание, что наследуя класс <code>TPersistent</code> по умолчанию видимость полей становится <code>published</code>, чтобы дать возможность переводить в поток (streaming) производные от <code>TPersistent</code> классы. Однако, не все типы полей и свойств разрешены в секции <code>published</code>. Если возникают связанные с этим ошибки и нет необходимости передавать эти данные в поток, просто вручную измените уровень видимости на <code>public</code>. Детальнее см. раздел <a href="#_уровни_видимости">Уровни видимости</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Примечание</div>
+</td>
+<td class="content">
+Обратите внимание, что наследуя класс <code>TPersistent</code> по умолчанию видимость полей становится <code>published</code>, чтобы дать возможность переводить в поток (streaming) производные от <code>TPersistent</code> классы. Однако, не все типы полей и свойств разрешены в секции <code>published</code>. Если возникают связанные с этим ошибки и нет необходимости передавать эти данные в поток, просто вручную измените уровень видимости на <code>public</code>. Детальнее см. раздел <a href="#_уровни_видимости">Уровни видимости</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -3329,8 +3365,17 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>ПРИМЕЧАНИЕ: Более общая концепция является <em>"type helper"</em>, используя которую становится возможным добавлять методы даже к самым примитивным типам, например integer. Можно также создать <em>"record helper"</em> чтобы&#8230;&#8203; ну, Вы поняли. Детальнее см. здесь: <a href="http://lists.freepascal.org/fpc-announce/2013-February/000587.html" class="bare">http://lists.freepascal.org/fpc-announce/2013-February/000587.html</a> .</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Примечание</div>
+</td>
+<td class="content">
+Более общая концепция является <em>"type helper"</em>, используя которую становится возможным добавлять методы даже к самым примитивным типам, например integer. Можно также создать <em>"record helper"</em> чтобы&#8230;&#8203; ну, Вы поняли. Детальнее см. здесь: <a href="http://lists.freepascal.org/fpc-announce/2013-February/000587.html" class="bare">http://lists.freepascal.org/fpc-announce/2013-February/000587.html</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -3588,7 +3633,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>Без присваивания (уникального) GUID-а, все интерфейсы будут идентичными для оператора <code>is</code>. Таким образом, он всегда будет возвращать <code>true</code> если данный класс поддерживает <em>любой</em> из используемых интерфейсов. "Волшебная" функция <code>Supports(ObjectInstance, IMyInterface)</code> работает несколько лучше в данном случае, поскольку выдаст ошибку компиляции для интерфейсов без GUID. Это касается и CORBA, и COM интерфейсов, для версии FPC 3.0.0.</p>
 </div>
 <div class="paragraph">
-<p>Таким образом, необходимо обязательно объявлять GUID для каждого интерфейса. Можно использовать встроенный генератор GUID-ов <em>Lazarus GUID generator</em> (горячая клавиша <code>Ctrl + Shift + G</code> в режиме редактирования). Либо воспользоваться он-лайн сервисом, например <a href="https://www.guidgenerator.com/" class="bare">https://www.guidgenerator.com/</a> .</p>
+<p>Таким образом, необходимо обязательно объявлять GUID для каждого интерфейса. Можно использовать встроенный генератор GUID-ов <em>Lazarus GUID generator</em> (горячая клавиша <code>Ctrl + Shift + G</code> в режиме редактирования). Либо воспользоваться он-лайн сервисом, например <a href="https://www.guidgenerator.com/" class="bare">https://www.guidgenerator.com/</a>.</p>
 </div>
 <div class="paragraph">
 <p>А можно вообще написать свой инструмент, использующий <code>CreateGUID</code> и <code>GUIDToString</code> функции из RTL. Например, следующим образом:</p>
@@ -3639,7 +3684,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>Стандартный класс <code>TInterfacedObject</code> имеет эти методы выполненными в таком виде, чтобы <em>включить</em> reference-counting.</p>
 </li>
 <li>
-<p>Стандартный класс <code>TComponent</code> имеет эти методы выполненными в таком виде, чтобы <em>выключить</em> reference-counting. В <strong>Castle Game Engine</strong> предоставлены дополнительные классы, от которых можно выполнять наследование: <code>TNonRefCountedInterfacedObject</code> и <code>TNonRefCountedInterfacedPersistent</code> для этих целей, см. детальнее: <a href="https://github.com/castle-engine/castle-engine/blob/master/src/base/castleinterfaces.pas" class="bare">https://github.com/castle-engine/castle-engine/blob/master/src/base/castleinterfaces.pas</a> .</p>
+<p>Стандартный класс <code>TComponent</code> имеет эти методы выполненными в таком виде, чтобы <em>выключить</em> reference-counting. В <strong>Castle Game Engine</strong> предоставлены дополнительные классы, от которых можно выполнять наследование: <code>TNonRefCountedInterfacedObject</code> и <code>TNonRefCountedInterfacedPersistent</code> для этих целей, см. детальнее: <a href="https://github.com/castle-engine/castle-engine/blob/master/src/base/castleinterfaces.pas" class="bare">https://github.com/castle-engine/castle-engine/blob/master/src/base/castleinterfaces.pas</a>.</p>
 </li>
 </ul>
 </div>
@@ -3993,19 +4038,26 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>Copyright Michalis Kamburelis.</p>
 </div>
 <div class="paragraph">
-<p>Исходные файлы этого документа в формате AsciiDoc можно скачать по адресу: <a href="https://github.com/michaliskambi/modern-pascal-introduction" class="bare">https://github.com/michaliskambi/modern-pascal-introduction</a> .
-Автор будет рад любым пожеланиям, исправлениям, расширениям материала, доработкам и pull request-ам :). С автором можно связаться через профиль GitHub либо по e-mail: <a href="mailto:michalis.kambi@gmail.com">michalis.kambi@gmail.com</a> . Домашняя страничка автора: <a href="https://michalis.ii.uni.wroc.pl/~michalis/" class="bare">https://michalis.ii.uni.wroc.pl/~michalis/</a> .</p>
+<p>Исходные файлы этого документа в формате AsciiDoc можно скачать по адресу: <a href="https://github.com/michaliskambi/modern-pascal-introduction" class="bare">https://github.com/michaliskambi/modern-pascal-introduction</a>.
+Автор будет рад любым пожеланиям, исправлениям, расширениям материала, доработкам и pull request-ам :). С автором можно связаться через профиль GitHub либо по e-mail: <a href="mailto:michalis.kambi@gmail.com">michalis.kambi@gmail.com</a>. Домашняя страничка автора: <a href="https://michalis.ii.uni.wroc.pl/~michalis/" class="bare">https://michalis.ii.uni.wroc.pl/~michalis/</a>.</p>
 </div>
 <div class="paragraph">
-<p>Этот документ можно свободно распространять и изменять на лицензи идентичной лицензии Wikipedia, см. <a href="https://en.wikipedia.org/wiki/Wikipedia:Copyrights" class="bare">https://en.wikipedia.org/wiki/Wikipedia:Copyrights</a> :</p>
+<p>Этот документ можно свободно распространять и изменять согласно лицензи идентичной лицензии Wikipedia, см. <a href="https://en.wikipedia.org/wiki/Wikipedia:Copyrights" class="bare">https://en.wikipedia.org/wiki/Wikipedia:Copyrights</a>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><em>Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA)</em></p>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Либо</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Либо <em>GNU Free Documentation License (GFDL) (unversioned, with no invariant sections, front-cover texts, or back-cover texts)</em> .</p>
+<p><em>GNU Free Documentation License (GFDL) (unversioned, with no invariant sections, front-cover texts, or back-cover texts)</em> .</p>
 </li>
 </ul>
 </div>
@@ -4015,8 +4067,10 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <div class="paragraph">
 <p>Перевод на русский выполнен:
 Александр Скворцов и Евгений Лоза
-2016-2019
-Благодарность за помощь в поиске и исправлении ошибок и очепяток:
+2016-2019</p>
+</div>
+<div class="paragraph">
+<p>Благодарность за помощь в поиске и исправлении ошибок и очепяток:
 vitaly_l и pupsik @ freepascal.ru</p>
 </div>
 </div>
@@ -4024,7 +4078,7 @@ vitaly_l и pupsik @ freepascal.ru</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-07-31 22:33:46 +0200
+Последнее обновление 2019-08-01 20:21:36 +0200
 </div>
 </div>
 <!-- Google analytics -->
