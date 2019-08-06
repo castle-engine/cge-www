@@ -179,24 +179,14 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
 
       <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
 
-      <li><p><a href="https://github.com/ARM-software/astc-encoder">astcenc</a> is used (by <code>PVRTexToolCLI</code>) to encode textures to ASTC.
+      <li><p><a href="https://developer.arm.com/tools-and-software/graphics-and-gaming/graphics-development-tools/mali-texture-compression-tool"><code>astcenc</code>, part of Mali Texture Compression Tool</a>. It is called by <code>PVRTexToolCLI</code> to encode textures to ASTC. <a href="https://github.com/ARM-software/astc-encoder">See also it's source code</a>.
 
-      <li><p>(Since Castle Game Enigne &gt;= 6.5)
-        <a href="https://gpuopen.com/gaming-product/compressonator/"><code>CompressonatorCLI</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
+      <li><p><a href="https://gpuopen.com/gaming-product/compressonator/"><code>CompressonatorCLI</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
 
         <p>This is a successor of the old (great, but Windows-only and closed-source)
         <i>ATI Compressonator</i> and later <i>AMD Compress</i>.
         In particular, it is capable of compression to AMD GPU compression
         formats <code>ATITC*</code>, that are common on Android devices.
-
-      <li><p>(Only Castle Game Enigne &lt;= 6.4)
-        <a href="http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/the-compressonator/">ATI Compressonator</a></p>
-
-        <p>On non-Windows, it can be run under Wine
-        You will need to do "winetricks vcrun2005" first.
-        Installing it is troublesome under Wine, but a working installed dir can
-        be copied from your Windows installation.</p>
-      </li>
     </ul>
 
     <p>The location of these tools is searched using your <code>PATH</code>
