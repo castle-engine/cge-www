@@ -31,7 +31,8 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
     [[CastleSoundEngine.TSoundInfo.html#DefaultImportance|default_importance]]="max"
     [[CastleSoundEngine.TSoundInfo.html#Gain|gain]]="1.0"
     [[CastleSoundEngine.TSoundInfo.html#MinGain|min_gain]]="0.0"
-    [[CastleSoundEngine.TSoundInfo.html#MaxGain|max_gain]]="1.0" />
+    [[CastleSoundEngine.TSoundInfo.html#MaxGain|max_gain]]="1.0"
+    [[https://castle-engine.io/wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/|stream]]="false" />
 
   <!-- And more <sound> elements... -->
   <sound name="test_sound_1" />
