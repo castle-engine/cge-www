@@ -36,7 +36,7 @@ $toc = new TableOfContents(
 <ul>
   <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, glTF, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
     <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
-  <li>Develop <b>cross-platform</b> applications, for <b>desktop</b> (Windows, Linux, macOS...), <b>mobile</b> (Android, iOS) and <b>consoles</b> (Nintendo Switch).
+  <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
   <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
   <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
   <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
