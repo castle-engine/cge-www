@@ -22,43 +22,6 @@ function _castle_disable_stats()
 
 /* Google ------------------------------------------------------------------- */
 
-function google_custom_search_box()
-{
-  if (_castle_disable_externals()) return '';
-
-  // https://developers.google.com/custom-search/docs/element
-  return <<<EOD
-<div class="google-search-container">
-<script>
-  (function() {
-    var cx = '012479576662529301542:be-myf53lua';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<div class="gcse-search" data-enableAutoComplete="true"></div>
-</div>
-EOD;
-}
-
-/*
-function google_custom_search_results()
-{
-  if (_castle_disable_externals()) return '';
-
-  return <<<EOD
-<div class="google-search-results-container">
-  <div class="gcse-searchresults" data-refinementStyle="link"></div>
-</div>
-EOD;
-}
-*/
-
 function echo_piwik_tracking()
 {
   if (_castle_disable_stats()) return;
@@ -231,4 +194,15 @@ function disqus_form()
       })();
     </script>
     <noscript>Please enable JavaScript to view the <a href=\"https://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>";
+}
+
+/* DuckDuckGo ---------------------------------------------------------------- */
+
+// Generated with https://duckduckgo.com/search_box
+function search_box()
+{
+//  if (_castle_disable_externals()) return '';
+  return <<<EOD
+<iframe src="https://duckduckgo.com/search.html?width=\&site=castle-engine.io&prefill=Search Castle Game Engine" style="overflow:hidden;margin:0;padding:0;width:NaNpx;height:40px;" frameborder="0"></iframe>
+EOD;
 }

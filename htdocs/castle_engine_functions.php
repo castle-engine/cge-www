@@ -938,7 +938,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       </div>
       ' .
       // TODO: No idea now where to place this, so it doesn't interfere with "patreon"
-      // google_custom_search_box() .
+      // search_box() .
       '
       ' . _castle_header_menu($path[0]) . '
     </div>
@@ -961,8 +961,6 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
         <div class="col-sm-9 col-sm-push-3 content-near-sidebar">
           ' . _castle_breadcrumbs($path);
   }
-
-//  $rendered .= google_custom_search_results();
 
   echo $rendered;
 }
