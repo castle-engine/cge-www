@@ -35,4 +35,21 @@ ImageBackground : X3DBackgroundNode {
 
   It is undefined what happens if there are not exactly 4 items.
 
+Note that TextureProperties node ImageBackground.texture
+is treated specially.
+
+- Various TextureProperties fields do not work (as they would make little sense),
+  e.g. minificationFilter and anisotropicDegree are ignored.
+
+- Also, magnificationFilter="FASTEST"
+  (default value of TextureProperties.magnificationFilter value)
+  is treated like "LINEAR", although it really should be "NEAREST_PIXEL".
+  So the "trap" with using <TextureProperties/>
+  described on https://castle-engine.io/x3d_implementation_texturing.php
+  is not present in case of ImageBackground.
+
+- Summing it up, the only useful thing you can do with TextureProperties
+  inside ImageBackground is to request "nearest" (pixelated) filtering by
+  <code>&lt;TextureProperties magnificationFilter="NEAREST_PIXEL" /&gt;</code>
+
 </pre>
