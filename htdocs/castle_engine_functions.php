@@ -383,7 +383,11 @@ $castle_sitemap = array(
               'x3d_implementation_navigation_extensions' => array('title' => 'Extensions'),
             ),
           ),
-          'x3d_implementation_environmentaleffects' => array('title' => 'Environmental effects'           ),
+          'x3d_implementation_environmentaleffects' => array('title' => 'Environmental effects',
+            'sub' => array(
+              'x3d_implementation_environmentaleffects_extensions' => array('title' => 'Extensions'),
+            ),
+          ),
           'x3d_implementation_hanim'                => array('title' => 'H-Anim'                          ),
           'x3d_implementation_nurbs'                => array('title' => 'NURBS',
             'sub' => array(
