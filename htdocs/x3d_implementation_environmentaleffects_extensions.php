@@ -26,6 +26,11 @@ $toc = new TableOfContents(
 
 <p>Displays a background from a simple 2D image.
 
+<p>Demo models of this node:
+<a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image.x3dv">background/background_image.x3dv</a>,
+<a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image_partial.x3dv">background/background_image_partial.x3dv</a>,
+<a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image_animated.x3d">background/background_image_animated.x3d</a> .
+Open them with <a href="view3dscene.php">view3dscene</a>.
 
 <p>Fields:
 
