@@ -9,10 +9,10 @@ This provides various features:
 
 <ol>
   <li><p>It keeps track of player life, owned items and more.
-  
+
   <li><p>It automatically updates some navigation methods based
     on whether player in swimming, dead etc.
-  
+
   <li><p>By default player is also a central enemy of all hostile creatures
     created using <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?>
     unit. This is configurable (by
