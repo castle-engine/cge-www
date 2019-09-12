@@ -3,17 +3,16 @@ require_once 'castle_engine_functions.php';
 manual_header('Player');
 ?>
 
-<p>For a full-featured game it is good to have a central player
-object, an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
-assigned to <?php api_link('SceneManager.Player', 'CastleSceneManager.TCastleSceneManager.html#Player'); ?>.
-This is used for various things:
+<p>You can create an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
+ and assign to <?php api_link('SceneManager.Player', 'CastleSceneManager.TCastleSceneManager.html#Player'); ?>.
+This provides various features:
 
 <ol>
-  <li><p>It will make camera automatically tied to the player,
-    making it a first-person perspective game. (More camera approaches,
-    like 3rd person view, will be available later &mdash; for now
-    you have to manually code your camera if you want 3rd person view.)
-
+  <li><p>It keeps track of player life, owned items and more.
+  
+  <li><p>It automatically updates some navigation methods based
+    on whether player in swimming, dead etc.
+  
   <li><p>By default player is also a central enemy of all hostile creatures
     created using <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?>
     unit. This is configurable (by
@@ -24,8 +23,6 @@ This is used for various things:
 <p>Note that the player instance is not necessary for basic 3D navigation
 (the only thing really necessary is a camera, which is automatically created and
 placed in <?php api_link('TCastleAbstractViewport.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>).
-But for games, it's usually
-most comfortable to create and use it.
 
 <p>To load a Player do this:
 
