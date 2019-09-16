@@ -78,7 +78,8 @@ so no scaling is done.
 If you don't specify <code>&lt;ui_scaling&gt;</code> element in <code>CastleSettings.xml</code>,
 we keep using this default.
 
-<p>However, we advise all new cross-platform projects to use some <code>UIScaling</code>.
+<p><b>We advise all new cross-platform projects to activate UI scaling by <code>mode="EncloseReferenceSize"</code>
+in <code>CastleSettings.xml</code></b>.
 This is the best practical way to achieve a consistent look
 on various screen sizes and devices.
 It is useful even for desktop-only applications (since people have
