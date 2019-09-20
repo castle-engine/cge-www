@@ -35,6 +35,19 @@ $toc = new TableOfContents(
     In simple terms: what is the color of the shape.
     Place this node inside <code>Appearance.material</code> field.
 
+    <p>Note that the rendering engine has special optimizations
+    for the <i>"pure emissive"</i> materials, otherwise known as <i>"unlit materials"</i>,
+    that cannot be affected by lighting. If you want to use such optimized material,
+    be sure to set to zero all these material fields:
+
+    <ul>
+      <li><code>ambientIntensity</code>
+      <li><code>diffuseColor</code>
+      <li><code>specularColor</code>
+    </ul>
+
+    <p>Effectively, for such material, only the <code>emissiveColor</code> matters.
+
   <li><p><?php echo x3d_node_link('LineProperties'); ?>
 
     <p>Configure line width and type (pattern).
