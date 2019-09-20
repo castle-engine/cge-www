@@ -48,6 +48,11 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
 <?php echo $toc->html_section(); ?>
 
 <div class="row">
+  <?php program_image_link('Escape from the Universe',
+    'Action shooter in the outer space with an incredible randomized storyline. New version is already released on the Nintendo Switch platform. Originally, the game was available for mobile devices (Android and iOS).',
+    'escape_universe.png',
+    'https://cat-astrophe-games.com/escape-universe/'); ?>
+
   <?php program_image_link('Connect4',
     'Fun free game for Android. You can plan against a computer, or against a friend over the network. Shows various engine features like localization and 2D scalable UI. <a href="https://castle-engine.io/wp/2018/04/11/connect4-new-android-game-using-castle-game-engine/">By Benedikt Magnus and LanIstAn.</a>',
     'connect4.png',
@@ -55,7 +60,7 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
   ?>
 
   <?php program_image_link('The Unholy Society',
-    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>Coming to Steam in 2018</i>, for Windows, Linux and macOS.',
+    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>To be released in the fall of 2019</i>, for Nintendo Switch and Steam (Windows, Linux, macOS).',
     'unholy_society_in_game.jpg',
     'https://store.steampowered.com/app/746750/The_Unholy_Society/');
   ?>
@@ -75,11 +80,6 @@ Sure! Just <a href="talk.php">tell us about it (using Discord, forum, GitHub iss
     'Top-down bullet hell shooter inspired by CrossFire game. By Eugene Loza. <a href="https://github.com/eugeneloza/FireMadness">The source code is available on GitHub</a>. <!--a href="http://opengameart.org/forumtopic/fire-madness-top-down-shooter-bullet-hell">See also the opengameart thread</a-->',
     'fire_madness.png',
     'https://decoherence.itch.io/fire-maddness'); ?>
-
-  <?php program_image_link('Escape from the Universe',
-    'Action shooter in the outer space with an incredible randomized storyline. For mobile devices (Android, iOS).',
-    'escape_universe.png',
-    'https://cat-astrophe-games.com/escape-universe/'); ?>
 
   <?php program_image_link('Dragon Squash',
     'Android game where you defend beautiful animated castles. For Android, with Google Games integration and dragons.',
