@@ -60,7 +60,7 @@ $toc = new TableOfContents(
 
     <ul>
       <li><p>Our main scene format is <b><?php echo a_href_page('X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <a href="creating_data_model_formats.php">glTF 2.0, Spine JSON, VRML, Collada, 3DS, Wavefront OBJ, MD3, STL, Spine JSON</a> and others.
+      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <a href="creating_data_model_formats.php">glTF 2.0, Spine JSON, VRML, Collada, 3DS, Wavefront OBJ, MD3, STL</a> and others.
       </li>
     </ul>
 
