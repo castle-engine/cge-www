@@ -42,10 +42,11 @@ Open them with <a href="view3dscene.php">view3dscene</a>.
 
     <p>The texture is displayed as a full-screen quad.
 
-    <p>Right now, the allowed texture nodes are <code>ImageTexture</code>
-    and <code>PixelTexture</code>.
-    In the future we plan to allow more nodes, like <code>MovieTexture</code>,
-    or cube-map texture nodes (they would allow to specify background skybox
+    <p>Right now, the allowed texture nodes are <code>ImageTexture</code>,
+    <code>PixelTexture</code> and <code>MovieTexture</code>
+
+    <p>TODO: In the future we may allow cube-map texture nodes too
+    (they would allow to specify background skybox
     just like a cube-map).
 
   <li><p><code>color</code> multiplies the texture color. It is opaque white by default.
@@ -79,25 +80,8 @@ Open them with <a href="view3dscene.php">view3dscene</a>.
 
 <p>The node inside <code>ImageBackground.texture</code> may specify
 a <code>TextureProperties</code> node.
-This <code>TextureProperties</code> is treated a little differently
-than in other cases:
-
-<ul>
-  <li><p>Various <code>TextureProperties</code> fields do not work
-    (as they would make little sense),
-    e.g. <code>minificationFilter</code> and <code>anisotropicDegree</code> are ignored.
-
-  <li><p>Also, <code>magnificationFilter="FASTEST"</code>
-    (default value of the <code>TextureProperties.magnificationFilter</code> value)
-    is treated like "LINEAR", although it really should be "NEAREST_PIXEL".
-    So the "trap" with using <code>&lt;TextureProperties/&gt;</code>
-    described on <a href="x3d_implementation_texturing.php">texturing page</a>
-    is not present in case of the <code>ImageBackground</code>.
-
-  <li><p>Summing it up, the only useful thing you can do with TextureProperties
-    inside <code>ImageBackground</code> is to request "nearest" (pixelated) filtering by
-    <code>&lt;TextureProperties magnificationFilter="NEAREST_PIXEL" /&gt;</code>
-</ul>
+You can use it to request "nearest" filtering (pixelated look) by
+<code>&lt;TextureProperties magnificationFilter="NEAREST_PIXEL" /&gt;</code> .
 
 <p>Note that this node descends from the "trimmed" <i>Castle Game Engine</i>
 version of the <code>X3DBackgroundNode</code> node.
