@@ -5,7 +5,7 @@ the content (text and images) of the https://castle-engine.io/ website is:
 
 - Copyright by Michalis Kamburelis.
 
-    Moreover, some graphics content is by Paweł Wojciechowicz from
+    Moreover, some graphics content is also copyright by Paweł Wojciechowicz from
     [Cat-astrophe Games](https://cat-astrophe-games.com/).
 
 - Covered by a number of open-source licenses (you can use any of the mentioned
@@ -17,11 +17,11 @@ the content (text and images) of the https://castle-engine.io/ website is:
 
     - [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/deed.en) (newer version of the above license).
 
-    - [GNU Free Documentation License (GFDL)](https://www.gnu.org/licenses/fdl-1.3.html) (unversioned, with no invariant sections, front-cover texts, or back-cover texts)* (same as one of [Wikipedia licenses](https://en.wikipedia.org/wiki/Wikipedia:Copyrights))
+    - [GNU Free Documentation License (GFDL)](https://www.gnu.org/licenses/fdl-1.3.html) (unversioned, with no invariant sections, front-cover texts, or back-cover texts) (same as one of [Wikipedia licenses](https://en.wikipedia.org/wiki/Wikipedia:Copyrights)).
 
 # License of scripts and other source code in cge-www repository
 
-Except for the above (contents of the website), the rest of the files inside the repository https://github.com/castle-engine/cge-www are copyright by Michalis Kamburelis and can be reused in terms of [GNU General Public License](http://www.gnu.org/licenses/gpl.html) (version 2 or later, at your option) (not other licenses).
+Except for the above (contents of the website), the rest of the files inside the repository https://github.com/castle-engine/cge-www are copyright by *Michalis Kamburelis* and can be reused on terms of [GNU General Public License](http://www.gnu.org/licenses/gpl.html) (version 2 or later, at your option).
 
 This concerns stuff like
 

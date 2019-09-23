@@ -997,11 +997,9 @@ function echo_footer ()
   ?>
 
   <div class="panel-footer">
-    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>.
+    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a> and others.
     Thanks go to Paweł Wojciechowicz from <a href="https://cat-astrophe-games.com/">Cat-astrophe Games</a> for various graphics.
-    Even this documentation is open-source,
-    you can redistribute it on terms of the
-    <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.</span>
+    Even this documentation is <a href="https://github.com/castle-engine/cge-www/blob/master/COPYING.md">open-source, and you can redistribute it on open-source terms</a>.
 
     <p>We use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>
     for analytics.
