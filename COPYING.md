@@ -24,6 +24,10 @@ the content (text and images) of the https://castle-engine.io/ website is:
 
     - [GNU Free Documentation License (GFDL)](https://www.gnu.org/licenses/fdl-1.3.html) (unversioned, with no invariant sections, front-cover texts, or back-cover texts) (same as one of [Wikipedia licenses](https://en.wikipedia.org/wiki/Wikipedia:Copyrights)).
 
+This copyright and license doesn't apply to any user-generated content
+(e.g. blog comments, forum posts and so on).
+That remains the property of a user that created it.
+
 # License of scripts and other source code in cge-www repository
 
 Except for the above (contents of the website), the rest of the files inside the repository https://github.com/castle-engine/cge-www are copyright by *Michalis Kamburelis* and can be reused on terms of [GNU General Public License](http://www.gnu.org/licenses/gpl.html) (version 2 or later, at your option).
