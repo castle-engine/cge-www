@@ -30,9 +30,12 @@ echo pretty_heading('Getting Started');
 <?php echo $toc->html_section(); ?>
 
 <ol>
-  <li><p>First install <a href="https://www.lazarus-ide.org/">Lazarus with FPC</a> (advanced users: you can also install <a href="https://www.freepascal.org/">bare FPC</a>).
+  <li><p>First install <a href="https://www.lazarus-ide.org/">Lazarus with FPC</a>.
+  <!-- (advanced users: you can also install <a href="https://www.freepascal.org/">bare FPC</a>).-->
 
+<!--
   <li><p>Make sure that <code>fpc</code> binary is available on the environment variable <code>$PATH</code>. If you don't know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
+-->
 
   <li><p>Download the <a href="/">Castle Game Engine</a>, version &gt;= 6.5. Unpack the engine ZIP wherever you like.
 
@@ -44,7 +47,7 @@ echo pretty_heading('Getting Started');
 
     <p>In either case, the project configuration is defined by a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
 
-  <li><p>Try engine examples! They are in the <code>examples</code> subdirectory. Almost all engine examples have a <code>CastleEngineManifest.xml</code> and can be build using the editor (or command-line build toll).
+  <li><p>Try engine examples! They are in the <code>examples</code> subdirectory. Almost all engine examples have a <code>CastleEngineManifest.xml</code> and can be build using the editor (or command-line build tool).
 
     <p>Note: Right now, only <i>some</i> engine examples have UI designed using the editor. Although we advice using the editor to design UI of all future games. Open e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a> for a demo designed using the editor.
 </ol>
@@ -55,6 +58,7 @@ echo pretty_heading('Getting Started');
 applications that do not depend on LCL (<i>Lazarus Component Library</i>).
 This means that you should initialize your game window using
 the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+Our documentation and most examples follow this approach too.
 
 <?php echo $toc->html_section(); ?>
 
