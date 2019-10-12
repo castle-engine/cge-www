@@ -6,7 +6,7 @@ castle_header('Planned features (roadmap)', array(
 echo pretty_heading($page_title);
 ?>
 
-<p>Don't see the feature you need? <a href="<?php echo FORUM_URL; ?>">Tell us on the forum</a>:)
+<p>Don't see the feature you need? <a href="talk.php">Tell us on the forum or Discord</a>.
 
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
