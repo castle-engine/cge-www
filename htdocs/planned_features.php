@@ -11,6 +11,8 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
+<p>Incoming features in the next release (6.6) <a href="https://github.com/castle-engine/castle-engine/wiki/New-Features-in-Castle-Game-Engine-6.6">are documented here</a>.
+
 <?php /*
 <h2>Incoming in the next release (6.8)</h2>
 
@@ -194,10 +196,6 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 </pre>
 
         <p><i><a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">Animation blending is already working, see here!</a> However, it still has two TODOs for now (it does not yet work for castle-anim-frames or resource.xml).</i>
-
-      <li><p><b>Batching</b>
-
-        <p>Batching of shapes that have equal appearance for start, to optimize the rendering.
 
       <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
 

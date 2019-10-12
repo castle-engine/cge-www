@@ -117,6 +117,17 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
         Rendering and processing is always lighting fast,
         regardless of the tree depth or complication.
     </ul>
+
+    <p>A natural question is
+    <b>should you combine multiple loaded models into one TCastleScene</b>
+    (like <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr">combine_multiple_x3d_into_one.lpr</a>
+    example does)?
+
+    <ul>
+      <li><p>At the beginning, don't merge the scenes. It's more natural, and in 90% cases perfectly fast, to use one <code>TCastleScene</code> for each one model file you load. This allows to trivially load the model using <code>Scene.Load</code> and is really advised for most cases.
+
+      <li><p>100, or even 1000, or <code>TCastleScene</code> instances visible should not be a problem. You should consider merging them if you have 10 000 or more. It depends on your use-case (how complicated are the scenes, how heavy is their rendering and which optimizations matter most).
+    </ul>
   </li>
 
   <li>

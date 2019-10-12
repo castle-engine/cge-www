@@ -4,10 +4,10 @@ manual_header('Optimization and profiling');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Watch <i>Frames Per Second</i>', 'fps'),
-      new TocItem('The short version: what to watch', 'fpc_short', 1),
-      new TocItem('How to show the FPS value', 'fpc_show', 1),
-      new TocItem('How to interpret <i>Frames Per Second</i> values?', 'fpc_meaning', 1),
+    new TocItem('Watch <i>FPS (Frames Per Second)</i>', 'fps'),
+      new TocItem('How to display the FPS value', 'fpc_show', 1),
+      new TocItem('How to interpret the FPS value', 'fpc_meaning', 1),
+      new TocItem('Watch also scene manager statistics', 'scene_manager_stats', 1),
     new TocItem('Making your games run fast', 'models'),
       new TocItem('Basic rule: use small and static geometry, as much as possible', 'basic', 1),
       new TocItem('Compile in "release" mode for speed', 'release_mode', 1),
@@ -15,14 +15,24 @@ $toc = new TableOfContents(
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
+        new TocItem('Try dynamic batching', 'dynamic_batching', 2),
       new TocItem('Share TCastleScenes instances if possible', 'scenes', 1),
+        new TocItem('Reuse the same TCastleScene instance many times', 'reuse_scene', 2),
+        new TocItem('Maybe combine many small models into one TCastleScene instance', 'combine_scene', 2),
       new TocItem('Collisions', 'collisions', 1),
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
+        new TocItem('Prepare resources', 'prepare_resources', 2),
+        new TocItem('Log loading', 'log_loading', 2),
       new TocItem('Consider using occlusion query', 'occlusion_query', 1),
       new TocItem('Blending', 'blending', 1),
       new TocItem('Loading PNG using libpng', 'libpng', 1),
       new TocItem('User interface and 2D drawing', 'ui', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
+      new TocItem('Use simple TCastleProfiler to measure specific tasks', 'profiler', 1),
+      new TocItem('Use TCastleFrameProfiler to measure short tasks in each frame', 'frame_profiler', 1),
+      new TocItem('Use Valgrind, incredibly powerful profiler on Linux', 'valgrind', 1),
+      new TocItem('Use profiler on Nintendo Switch', 'nintendo_profiler', 1),
+      new TocItem('Use any other profiler for FPC', 'other_fpc_profilers', 1),
     new TocItem('Measure memory use and watch out for memory leaks', 'memory'),
       new TocItem('Detect memory leaks with HeapTrc (-gh)', 'heaptrc', 1),
       new TocItem('Other tools', 'memory_other', 1),
@@ -37,20 +47,22 @@ probably start to wonder about the speed and memory usage.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>The main tool to measure your game speed is the <i>Frames Per Second (FPS)</i>
-number. Use the
+value. Use the
  <?php api_link('TCastleControlCustom.Fps', 'CastleControl.TCastleControlCustom.html#Fps'); ?> or
  <?php api_link('TCastleWindowCustom.Fps', 'CastleWindow.TCastleWindowCustom.html#Fps'); ?>
  to get an instance of
  <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>.
- Look at these two numbers:
+ It contains two useful numbers (and some extra information):
  <?php api_link('TFramesPerSecond.RealFps', 'CastleTimeUtils.TFramesPerSecond.html#RealFps'); ?> and
  <?php api_link('TFramesPerSecond.OnlyRenderFps', 'CastleTimeUtils.TFramesPerSecond.html#OnlyRenderFps'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>In short, watch the <code>Window.Fps.ToString</code> value, by displaying it anywhere.
-It intelligently combines some information, to show you how fast is your application.
+<p>You can display the <code>Window.Fps.ToString</code> value in any way you like.
 
+<!--It intelligently combines some information, to show you how fast is your application.-->
+
+<!--
 <p>Eventually, display directly the <code>Window.Fps.RealFps</code> value.
 In this case, it is easiest to have
  <?php api_link('TCastleControlCustom.AutoRedisplay', 'CastleControl.TCastleControlCustom.html#AutoRedisplay'); ?> or
@@ -58,11 +70,11 @@ In this case, it is easiest to have
  to <code>true</code>, otherwise the meaning of <code>RealFps</code>
  may not actually indicate the potential speed of your application.
  It is <code>true</code> by default, so you're already set.
+ -->
+
  <!-- (But note that <a href="view3dscene.php">view3dscene</a>
  has <code>AutoRedisplay</code> set to <code>false</code> by default.
  -->
-
-<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>If you use <code>TCastleWindow</code>, you can trivially turn on <code>TCastleWindow.FpsShowOnCaption</code>.
@@ -71,16 +83,13 @@ In this case, it is easiest to have
 
     <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>. As an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas">see how examples/physics/physics_3d_demo/gameinitialize.pas shows the FPS</a> (search for <code>Container.Fps.ToString</code> there).
 
-    <p>Display the value like <code>Format('%f', [Window.Fps.RealFps])</code>. Or, even better (and simpler), use <code>Window.Fps.ToString</code>. The <code>Window.Fps.ToString</code> shows more information, nicely formatted.
-
-  <li><p>You can show the FPS value on some Lazarus label or form caption.
+  <li><p>You can show the FPS value on some LCL label or form caption (if you use LCL forms).
 
     <p>Warning: do not change the Lazarus control too often (like every frame).
     <i>Updating normal Lazarus controls all
     the time may slow your OpenGL context drastically</i>.
     Also, do not write to the console (e.g. using <code>Writeln</code>)
-    or anything else (e.g. using our <code>WritelnLog</code>) every frame
-    &mdash; the very fact of doing this will slow down your application a lot.
+    every frame &mdash; the very fact of doing this will slow down your application a lot.
 
     <p>If you need to change some Lazarus control,
     or write the FPS to some log, use a timer
@@ -236,6 +245,15 @@ detection and creature AI).
 
 <?php echo $toc->html_section(); ?>
 
+<p>Another useful statistics to display is
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TRenderStatistics.html">SceneManager.Statistics.ToString</a>.
+This shows how many scenes, and how many shapes, have been rendered in the last frame.
+It can be a useful guideline when to activate some specific optimizations discussed below.
+E.g. large value of displayed shapes may indicate that <i>dynamic batching</i>
+may be useful.
+
+<?php echo $toc->html_section(); ?>
+
 <?php echo $toc->html_section(); ?>
 
 <p>First of all, watch the number of vertexes and faces of the models you load.
@@ -250,8 +268,10 @@ try to "bake" such lighting effects to regular textures (use e.g. Blender
 
 <?php echo $toc->html_section(); ?>
 
-<p>Both Lazarus and our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-support the idea of "build modes".
+<p>Our <a href="manual_editor.php">editor</a>,
+<a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+as well as <a href="https://www.lazarus-ide.org/">Lazarus</a>
+support the concept of "build modes".
 
 <ul>
   <li><p>When you're in the middle of the development and you're testing the game for bugs,
@@ -275,11 +295,11 @@ support the idea of "build modes".
     always use the <code>release</code> mode.
 
     <p>The code runs <b>much faster</b> in release mode.
-    The speed difference may be really noticeable. As of Castle Game Engine 6.3,
-    the ray-tracer is <i>1.9 times slower in development mode vs release mode</i>.
+    The speed difference may be really noticeable. For example, as of Castle Game Engine 6.3,
+    our "toy" software ray-tracer (CastleRayTracer unit) is <i>1.9 times slower in development mode vs release mode</i>.
     The speed differences of a typical game are usually not that drastic
-    (since you don't spend 100% of your time calculating math expressions,
-    unlike a ray-tracer), but significant differences are still expected,
+    (since a normal game doesn't spend 100% of time calculating math expressions on CPU,
+    unlike a software ray-tracer), but significant differences are still expected,
     especially if you measure the performance of a particular calculation
     (not just looking at game FPS).
 
@@ -350,6 +370,8 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
+    <p>In a similar scenario, activating <a href="https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.html#InternalFastTransformUpdate">InternalFastTransformUpdate</a> may be also beneficial. We plan to make this optimization automatic in the future.
+
   <!--
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
 
@@ -400,17 +422,37 @@ to have hundreds or thousands of triangles in a single shape.
 
 <?php echo $toc->html_section(); ?>
 
-<ul>
-  <li><p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+<p>If you have a large number of small shapes using the same shader,
+consider turning on <a href="https://castle-engine.io/apidoc-unstable/html/CastleScene.html#DynamicBatching">DynamicBatching</a>. This will internallly detect and merge multiple shapes into
+one just before passing them to the GPU. In some cases, it is a very powerful optimization,
+reducing the number of <i>draw calls</i>.
 
-    <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
+<p>Watch the <code>SceneManager.Statistics.ToString</code> to see whether it reduces the number
+of rendered shapes.
 
-    <p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method).
+<p>It is particularly useful e.g. to optimize
+<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> rendering,
+as 2D animated models are often composed from a number of trivial textured quads that
+are transformed each frame. Dynamic batching can drastically reduce the number of
+draw calls in this case.
 
-  <li><p>In some cases, combining many <code>TCastleScene</code> instances into one helps. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>.
+<?php echo $toc->html_section(); ?>
 
-    <p>This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; there will be only one octree (used for collision routines and frustum culling) for the whole scene. Right now, we have an octree inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
-</ul>
+<?php echo $toc->html_section(); ?>
+
+<p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+
+<p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
+
+<p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method).
+
+<?php echo $toc->html_section(); ?>
+
+<p>In some cases, combining many <code>TCastleScene</code> instances into one helps. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>.
+
+<p>This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; there will be only one octree (used for collision routines and frustum culling) for the whole scene. Right now, we have an octree inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
+
+<p>See the manual page <a href="manual_transformation_hierarchy.php">Transformation hierarchy</a> for a detailed discussion of this, and when it may be a good idea to merge scenes.
 
 <?php echo $toc->html_section(); ?>
 
@@ -460,7 +502,13 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user. Use <code>TCastleSceneManager.PrepareResources</code> to load everything referenced by your scenes to GPU.
+<p>Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Use <code>TCastleSceneManager.PrepareResources</code> to load everything referenced by your scenes to GPU. Be sure to pass all the <code>TCastleScene</code> instances to <code>TCastleSceneManager.PrepareResources</code> in the "loading" stage.
+
+<?php echo $toc->html_section(); ?>
 
 <p>Enable some (or all) of these flags to get extensive information in the log about all the loading that is happening:
 
@@ -476,7 +524,7 @@ for a wide range of scenes.
 
 <p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
-<p>Since <i>Castle Game Engine</i> 6.5: You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily get information about what was loaded, and what took most time to load.
+<p>You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily get information about what was loaded, and what took most time to load.
 
 <?php echo $toc->html_section(); ?>
 
@@ -494,8 +542,9 @@ like <code>Scene.Attributes.UseOcclusionQuery := true</code>.
 Note that our simple implementation may sometimes show a lag of 1 frame
 when the object is not rendered, but it should be.
 
-<p>You can also define custom culling methods.
-See the <code>examples/3d_rendering_processing/fog_culling.lpr</code>.
+<p>You can also cull objects based on their distance from the camera,
+see the <code>examples/3d_rendering_processing/fog_culling.lpr</code> for example.
+This is a natural optimization when you have a heavy fog.
 
 <?php echo $toc->html_section(); ?>
 
@@ -567,19 +616,56 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
+<?php echo $toc->html_section(); ?>
+
+<p>We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
+
+<?php echo $toc->html_section(); ?>
+
+<p>We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleFrameProfiler.html">TCastleFrameProfiler</a> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="manual_log.php">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
+
+<pre>
+-------------------- FrameProfiler begin
+Frame time: 0.02 secs (we should have 51.22 FPS based on this):
+- BeforeRender: 0%
+- Render: 88% (0.02 secs, we should have 58.34 "only render FPS" based on this)
+  - TCastleTransform.Render transformation: 0%
+  - TCastleScene.Render: 47%
+    - ShapesFilterBlending: 1%
+- Update: 12%
+  - TCastleSceneCore.Update: 3%
+- Other:
+-------------------- FrameProfiler end
+</pre>
+
+<p>This example output shows that:
 <ul>
-  <li><p>Since <i>Castle Game Engine</i> 6.5: We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can use it for more purposes too.
-
-  <li><p>You can compile your
-    application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-    using <code>--mode=valgrind</code> to get an executable ready to be tested
-    with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Read instructions how to use Valgrind with Castle Game Engine applications</a>.
-
-  <li><p>In general, you can use any FPC tool to profile your code, for memory and
-    speed. See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
-    wiki about profiling</a>.
+  <li><p>The majority of the work (88%) is spent doing rendering.
+  <li><p>One conclusion is that optimizing animations (in TCastleSceneCore.Update) will not gain you much, as they only take 3% of time.
+  <li><p>If you would like to optimize, in this particular example you should think
+    <ol>
+      <li><p>can I optimize rendering (TCastleScene.Render),
+      <li><p>what else eats time in Render (there's a large difference between Render and TCastleScene.Render, so what is consuming the 41%?).
+    </ol>
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can compile your
+application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+using <code>--mode=valgrind</code> to get an executable ready to be tested
+with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
+<a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Read instructions how to use Valgrind with Castle Game Engine applications</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>On <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch</a>, another profiler is available. More information is available in the Nintendo Switch-specific documentation of CGE (only for registered developers on Nintendo).
+
+<?php echo $toc->html_section(); ?>
+
+<p>In general, you can use any FPC tool to profile your code, for memory and
+speed. See also <a href="http://wiki.lazarus.freepascal.org/Profiling">FPC
+wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
 
