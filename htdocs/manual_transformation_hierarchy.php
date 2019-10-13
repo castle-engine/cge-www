@@ -124,7 +124,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     example does)?
 
     <ul>
-      <li><p>At the beginning, don't merge the scenes. It's more natural, and in 90% cases perfectly fast, to use one <code>TCastleScene</code> for each one model file you load. This allows to trivially load the model using <code>Scene.Load</code> and is really advised for most cases.
+      <li><p>At the beginning, don't merge the scenes. It's more natural, and in 90% cases perfectly fast, to use one <code>TCastleScene</code> for each one model file you load. This allows to trivially load the model using <code>Scene.Load</code> and is really advised for most cases. <a href="manual_optimization.php#section_combine_scene">See also the relevant section in the manual about optimization</a>.
 
       <li><p>100, or even 1000, or <code>TCastleScene</code> instances visible should not be a problem. You should consider merging them if you have 10 000 or more. It depends on your use-case (how complicated are the scenes, how heavy is their rendering and which optimizations matter most).
     </ul>

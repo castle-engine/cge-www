@@ -454,6 +454,16 @@ draw calls in this case.
 
 <p>See the manual page <a href="manual_transformation_hierarchy.php">Transformation hierarchy</a> for a detailed discussion of this, and when it may be a good idea to merge scenes.
 
+<p>Note that <i>we do not advise using this optimization too hastily</i>. It sometimes makes sense, but <i>usually having one TCastleScene for each one model (that is, not combining them) is better</i>:
+
+<ul>
+  <li><p>It makes code simpler. You trivially load each model by <code>TCastleScene.Load</code>. You don't need to deal or understand anything about X3D nodes.
+  <li><p>It allows to <a href="https://castle-engine.io/manual_scene.php">run animations</a> in the most intuitive way: on each model, you can call <code>TCastleScene.PlayAnimation</code>.
+  <li><p>The <a href="manual_physics.php">physics engine</a> right now treats an entrie TCastleScene as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
+</ul>
+
+<p>Various things discussed here are <a href="planned_features.php">planned to be improved in the engine</a>, to avoid leaving you with such difficult decision. On one side, we plan to merge the <code>TCastleTransform</code> and <code>TTransformNode</code> hierarchies, making the gain from merging scenes irrelevant. On the other hand, we plan to allow physics to treat specific shapes as rigid bodies, making it possible to apply physics on smaller units than "entire TCastleScene".
+
 <?php echo $toc->html_section(); ?>
 
 <p>If you include <code>ssStaticCollisions</code> or <code>ssDynamicCollisions</code>
