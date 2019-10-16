@@ -683,8 +683,11 @@ function (_Component8) {
         }, options), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("hr", {
           className: 'wpdc-sidebar-hr'
         }));
+      } else if (this.props.categoryError) {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
+          className: 'wpdc-api-error error'
+        }, __('There was an error returning the category list from Discourse.', 'discourse-integration'));
       } else {
-        // Todo: handle this.
         return null;
       }
     }
@@ -908,8 +911,9 @@ function (_Component12) {
     value: function handleKeyPress(e) {
       var _this9 = this;
 
-      var keyVal = e.key;
-      var val = e.target.value;
+      var keyVal = e.key,
+          val = e.target.value,
+          allowedChars = new RegExp("^[a-zA-Z0-9\-\_ ]+$");
 
       if ('Enter' === keyVal || ',' === keyVal) {
         var currentChoices = this.state.chosenTags;
@@ -922,14 +926,20 @@ function (_Component12) {
           return null;
         }
 
-        currentChoices.push(val.trim().replace(/ /g, '-'));
-        currentChoices = TagTopic.sanitizeArray(currentChoices);
-        this.setState({
-          chosenTags: currentChoices,
-          inputContent: ''
-        }, function () {
-          _this9.props.handleTagChange(currentChoices);
-        });
+        if (allowedChars.test(val)) {
+          currentChoices.push(val.trim().replace(/ /g, '-'));
+          currentChoices = TagTopic.sanitizeArray(currentChoices);
+          this.setState({
+            chosenTags: currentChoices,
+            inputContent: ''
+          }, function () {
+            _this9.props.handleTagChange(currentChoices);
+          });
+        } else {
+          this.setState({
+            inputContent: ''
+          });
+        }
       }
     }
   }, {
@@ -1111,7 +1121,7 @@ function (_Component14) {
       postStatus: '',
       publishingMethod: 'publish_post',
       forcePublish: pluginOptions.forcePublish,
-      publishToDiscourse: false,
+      publishToDiscourse: pluginOptions.autoPublish,
       publishPostCategory: pluginOptions.defaultCategory,
       allowTags: pluginOptions.allowTags,
       maxTags: pluginOptions.maxTags,
@@ -1126,7 +1136,8 @@ function (_Component14) {
       busyLinking: false,
       busyPublishing: false,
       statusMessage: null,
-      discourseCategories: null
+      discourseCategories: null,
+      categoryError: false
     };
 
     _this13.updateStateFromDatabase(_this13.props.postId);
@@ -1150,19 +1161,23 @@ function (_Component14) {
     value: function getDiscourseCategories() {
       var _this14 = this;
 
-      wp.apiRequest({
-        path: '/wp-discourse/v1/get-discourse-categories',
-        method: 'GET',
-        data: {
-          get_categories_nonce: pluginOptions.get_categories_nonce
-        }
-      }).then(function (data) {
-        _this14.setState({
-          discourseCategories: data
+      if (!pluginOptions.pluginUnconfigured) {
+        wp.apiRequest({
+          path: '/wp-discourse/v1/get-discourse-categories',
+          method: 'GET',
+          data: {
+            get_categories_nonce: pluginOptions.get_categories_nonce
+          }
+        }).then(function (data) {
+          _this14.setState({
+            discourseCategories: data
+          });
+        }, function (err) {
+          _this14.setState({
+            categoryError: true
+          });
         });
-      }, function (err) {
-        return null;
-      });
+      }
     }
   }, {
     key: "updateStateFromDatabase",
@@ -1195,7 +1210,17 @@ function (_Component14) {
           }
 
           var meta = data.meta,
-              publishToDiscourse = 'deleted_topic' === meta.wpdc_publishing_error || 'queued_topic' === meta.wpdc_publishing_error ? false : 1 === parseInt(meta.publish_to_discourse, 10);
+              autoPublish = pluginOptions.autoPublish;
+          var publishToDiscourse;
+
+          if ('deleted_topic' === meta.wpdc_publishing_error || 'queued_topic' === meta.wpdc_publishing_error) {
+            publishToDiscourse = false;
+          } else if (autoPublish) {
+            var autoPublishOverridden = 1 === parseInt(meta.wpdc_auto_publish_overridden, 10);
+            publishToDiscourse = autoPublishOverridden ? 1 === parseInt(meta.wpdc_publish_to_discourse, 10) : true;
+          } else {
+            publishToDiscourse = 1 === parseInt(meta.wpdc_publish_to_discourse, 10);
+          }
 
           _this15.setState({
             published: meta.discourse_post_id > 0,
@@ -1511,10 +1536,15 @@ function (_Component14) {
     value: function render() {
       if (this.isAllowedPostType()) {
         var isPublished = this.state.published,
-            forcePublish = this.state.forcePublish;
+            forcePublish = this.state.forcePublish,
+            pluginUnconfigured = pluginOptions.pluginUnconfigured;
         var actions;
 
-        if (!isPublished && !forcePublish) {
+        if (pluginUnconfigured) {
+          actions = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
+            className: 'wpdc-plugin-unconfigured'
+          }, __("Before you can publish posts from WordPress to Discourse, you need to configure the plugin's Connection Settings tab.", 'discourse-integration'));
+        } else if (!isPublished && !forcePublish) {
           actions = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
             className: 'wpdc-not-published'
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(PublishingOptions, {
@@ -1525,7 +1555,8 @@ function (_Component14) {
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(CategorySelect, {
             category_id: this.state.publishPostCategory,
             handleCategoryChange: this.handleCategoryChange,
-            discourseCategories: this.state.discourseCategories
+            discourseCategories: this.state.discourseCategories,
+            categoryError: this.state.categoryError
           }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(TagTopic, {
             handleTagChange: this.handleTagChange,
             tags: this.state.topicTags,

@@ -58,22 +58,36 @@ class DiscoursePublish {
 	 *
 	 * @param int    $post_id The id of the post that has been saved.
 	 * @param object $post The Post object.
+	 *
+	 * @return null
 	 */
 	public function publish_post_after_save( $post_id, $post ) {
-		if ( wp_is_post_revision( $post_id ) || empty( $post->post_title ) || ! $this->is_valid_sync_post_type( $post_id ) ) {
+		$plugin_unconfigured    = empty( $this->options['url'] ) || empty( $this->options['api-key'] ) || empty( $this->options['publish-username'] );
+		$publish_status_not_set = 'publish' !== get_post_status( $post_id );
+		$publish_private        = apply_filters( 'wpdc_publish_private_post', false, $post_id );
+		if ( wp_is_post_revision( $post_id )
+			 || ( $publish_status_not_set && ! $publish_private )
+			 || $plugin_unconfigured
+			 || empty( $post->post_title )
+			 || ! $this->is_valid_sync_post_type( $post_id )
+		) {
 
-			return;
+			return null;
 		}
 
-		$publish_to_discourse  = get_post_meta( $post_id, 'publish_to_discourse', true );
-		$publish_to_discourse  = apply_filters( 'wpdc_publish_after_save', $publish_to_discourse, $post_id, $post );
+		// If the auto-publish option is enabled publish unpublished topics, unless the setting has been overridden.
+		$auto_publish_overridden = intval( get_post_meta( $post_id, 'wpdc_auto_publish_overridden', true ) ) === 1;
+		$auto_publish            = ! $auto_publish_overridden && ! empty( $this->options['auto-publish'] );
+
+		$publish_to_discourse = get_post_meta( $post_id, 'publish_to_discourse', true );
+		$publish_to_discourse = apply_filters( 'wpdc_publish_after_save', $publish_to_discourse, $post_id, $post );
 
 		$force_publish_enabled = ! empty( $this->options['force-publish'] );
-		$force_publish_post = false;
+		$force_publish_post    = false;
 		if ( $force_publish_enabled ) {
 			$force_publish_max_age = ! empty( $this->options['force-publish-max-age'] ) ? intval( $this->options['force-publish-max-age'] ) : 0;
-			$min_date = date_create()->modify( "-{$force_publish_max_age} day" )->format( 'U' );
-			$post_time = strtotime( $post->post_date );
+			$min_date              = date_create()->modify( "-{$force_publish_max_age} day" )->format( 'U' );
+			$post_time             = strtotime( $post->post_date );
 
 			if ( ( 0 === $force_publish_max_age ) || $post_time >= $min_date ) {
 				$force_publish_post = true;
@@ -85,14 +99,12 @@ class DiscoursePublish {
 		$update_discourse_topic = get_post_meta( $post_id, 'update_discourse_topic', true );
 		$title                  = $this->sanitize_title( $post->post_title );
 		$title                  = apply_filters( 'wpdc_publish_format_title', $title, $post_id );
-		$publish_private = apply_filters( 'wpdc_publish_private_post', false, $post_id );
 
-		if ( 'publish' === get_post_status( $post_id ) || $publish_private ) {
-
-			if ( $force_publish_post || ( ! $already_published && $publish_to_discourse ) || $update_discourse_topic ) {
-				$this->sync_to_discourse( $post_id, $title, $post->post_content );
-			}
+		if ( $force_publish_post || ( ! $already_published && $publish_to_discourse ) || $auto_publish || $update_discourse_topic ) {
+			$this->sync_to_discourse( $post_id, $title, $post->post_content );
 		}
+
+		return null;
 	}
 
 	/**
@@ -222,8 +234,6 @@ class DiscoursePublish {
 			$data         = array(
 				'embed_url'        => $permalink,
 				'featured_link'    => $add_featured_link ? $permalink : null,
-				'api_key'          => $options['api-key'],
-				'api_username'     => $username,
 				'title'            => $title,
 				'raw'              => $baked,
 				'category'         => $category,
@@ -235,14 +245,16 @@ class DiscoursePublish {
 			$post_options = array(
 				'timeout' => 30,
 				'method'  => 'POST',
+				'headers' => array(
+					'api_key'      => sanitize_key( $options['api-key'] ),
+					'api_username' => sanitize_text_field( $username ),
+				),
 				'body'    => http_build_query( $data ) . $tags_param,
 			);
 
 		} else {
 			// The post has already been published.
 			$data         = array(
-				'api_key'          => $options['api-key'],
-				'api_username'     => $username,
 				'title'            => $title,
 				'post[raw]'        => $baked,
 				'skip_validations' => 'true',
@@ -251,6 +263,10 @@ class DiscoursePublish {
 			$post_options = array(
 				'timeout' => 30,
 				'method'  => 'PUT',
+				'headers' => array(
+					'api_key'      => sanitize_key( $options['api-key'] ),
+					'api_username' => sanitize_text_field( $username ),
+				),
 				'body'    => http_build_query( $data ),
 			);
 		}// End if().
@@ -263,13 +279,15 @@ class DiscoursePublish {
 				$error_code    = null;
 				update_post_meta( $post_id, 'wpdc_publishing_error', $error_message );
 			} else {
-				$error_message = wp_remote_retrieve_response_message( $result );
-				$error_code    = intval( wp_remote_retrieve_response_code( $result ) );
-				if ( 500 === $error_code ) {
-					// For older versions of Discourse, publishing to a deleted topic is returning a 500 response code.
-					update_post_meta( $post_id, 'wpdc_publishing_error', 'deleted_topic' );
+				$result_body = json_decode( wp_remote_retrieve_body( $result ) );
+				if ( ! empty( $result_body ) && ! empty( $result_body->errors ) && ! empty( $result_body->errors[0] ) ) {
+					$error_message = $result_body->errors[0];
+					$error_code    = null;
+				} else {
+					$error_message = wp_remote_retrieve_response_message( $result );
+					$error_code    = intval( wp_remote_retrieve_response_code( $result ) );
 				}
-				update_post_meta( $post_id, 'wpdc_publishing_error', $error_message );
+				update_post_meta( $post_id, 'wpdc_publishing_error', sanitize_text_field( $error_message ) );
 			}
 
 			$this->create_bad_response_notifications( $current_post, $post_id, $error_message, $error_code );
@@ -386,15 +404,17 @@ class DiscoursePublish {
 	protected function pin_discourse_topic( $post_id, $topic_id, $pin_until ) {
 		$status_url   = esc_url_raw( $this->options['url'] . "/t/$topic_id/status" );
 		$data         = array(
-			'api_key'      => $this->options['api-key'],
-			'api_username' => $this->options['publish-username'],
-			'status'       => 'pinned',
-			'enabled'      => 'true',
-			'until'        => $pin_until,
+			'status'  => 'pinned',
+			'enabled' => 'true',
+			'until'   => $pin_until,
 		);
 		$post_options = array(
 			'timeout' => 30,
 			'method'  => 'PUT',
+			'headers' => array(
+				'Api-Key'      => $this->options['api-key'],
+				'Api-Username' => $this->options['publish-username'],
+			),
 			'body'    => http_build_query( $data ),
 		);
 

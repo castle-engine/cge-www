@@ -232,10 +232,10 @@ class DiscourseSSO {
 		$logout_response = wp_remote_post(
 			$logout_url,
 			array(
-				'method' => 'POST',
-				'body'   => array(
-					'api_key'      => $api_key,
-					'api_username' => $api_username,
+				'method'  => 'POST',
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_key ),
+					'api_username' => sanitize_text_field( $api_username ),
 				),
 			)
 		);
@@ -331,11 +331,13 @@ class DiscourseSSO {
 		$response = wp_remote_post(
 			esc_url_raw( $url ),
 			array(
-				'body' => array(
-					'sso'          => $sso_payload,
-					'sig'          => $sig,
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+				'body'    => array(
+					'sso' => $sso_payload,
+					'sig' => $sig,
+				),
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_credentials['api_key'] ),
+					'api_username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
 			)
 		);

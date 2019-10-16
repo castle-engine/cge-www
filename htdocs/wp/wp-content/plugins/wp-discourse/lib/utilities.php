@@ -73,11 +73,72 @@ class Utilities {
 	/**
 	 * Gets the Discourse categories.
 	 *
-	 * @return array
+	 * @return \WP_Error|array
 	 */
 	public static function get_discourse_categories() {
+		$options    = self::get_options();
+		$categories = get_transient( 'wpdc_discourse_categories' );
 
-		return get_option( 'wpdc_discourse_categories' );
+		if ( ! empty( $options['publish-category-update'] ) || ! $categories ) {
+			$api_credentials = self::get_api_credentials();
+			if ( is_wp_error( $api_credentials ) ) {
+
+				return new \WP_Error( 'wpdc_configuration_error', 'The Discourse Connection options are not properly configured.' );
+			}
+
+			$base_url     = $api_credentials['url'];
+			$api_username = $api_credentials['api_username'];
+			$api_key      = $api_credentials['api_key'];
+
+			$site_url = esc_url_raw( "{$base_url}/site.json" );
+
+			$remote = wp_remote_get(
+				$site_url,
+				array(
+					'headers' => array(
+						'Api-Key'      => sanitize_key( $api_key ),
+						'Api-Username' => sanitize_text_field( $api_username ),
+					),
+				)
+			);
+
+			if ( ! self::validate( $remote ) ) {
+
+				return new \WP_Error( 'connection_not_established', 'There was an error establishing a connection with Discourse' );
+			}
+
+			$remote = json_decode( wp_remote_retrieve_body( $remote ), true );
+			if ( array_key_exists( 'categories', $remote ) ) {
+				$categories = $remote['categories'];
+				$discourse_categories = [];
+				foreach ( $categories as $category ) {
+					if ( ( empty( $options['display-subcategories'] ) ) && array_key_exists( 'parent_category_id', $category ) ) {
+
+						continue;
+					}
+					$current_category = [];
+					$current_category['id'] = intval( $category['id'] );
+					$current_category['name'] = sanitize_text_field( $category['name'] );
+					$current_category['color'] = sanitize_key( $category['color'] );
+					$current_category['text_color'] = sanitize_key( $category['text_color'] );
+					$current_category['slug'] = sanitize_text_field( $category['slug'] );
+					$current_category['topic_count'] = intval( $category['topic_count'] );
+					$current_category['post_count'] = intval( $category['post_count'] );
+					$current_category['description_text'] = sanitize_text_field( $category['description_text'] );
+
+					$discourse_categories[] = $current_category;
+				}
+
+				set_transient( 'wpdc_discourse_categories', $discourse_categories, 1 * MINUTE_IN_SECONDS );
+
+				return $discourse_categories;
+			} else {
+
+				return new \WP_Error( 'key_not_found', 'The categories key was not found in the response from Discourse.' );
+			}
+		}// End if().
+
+		return $categories;
 	}
 
 	/**
@@ -110,16 +171,18 @@ class Utilities {
 		$response           = wp_remote_post(
 			$create_user_url,
 			array(
-				'method' => 'POST',
-				'body'   => array(
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
-					'name'         => $name,
-					'email'        => $email,
-					'password'     => $password,
-					'username'     => $username,
-					'active'       => $require_activation ? 'false' : 'true',
-					'approved'     => 'true',
+				'method'  => 'POST',
+				'body'    => array(
+					'name'     => $name,
+					'email'    => $email,
+					'password' => $password,
+					'username' => $username,
+					'active'   => $require_activation ? 'false' : 'true',
+					'approved' => 'true',
+				),
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_credentials['api_key'] ),
+					'api_username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
 			)
 		);
@@ -157,18 +220,17 @@ class Utilities {
 			return new \WP_Error( 'wpdc_configuration_error', 'The Discourse Connection options are not properly configured.' );
 		}
 
-		$groups_url = "{$api_credentials['url']}/groups.json";
-		$groups_url = esc_url_raw(
-			add_query_arg(
-				array(
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+		$groups_url = esc_url_raw( "{$api_credentials['url']}/groups.json" );
+
+		$response = wp_remote_get(
+			$groups_url,
+			array(
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_credentials['api_key'] ),
+					'api_username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
-				$groups_url
 			)
 		);
-
-		$response = wp_remote_get( $groups_url );
 
 		if ( ! self::validate( $response ) ) {
 
@@ -277,11 +339,13 @@ class Utilities {
 		$response = wp_remote_post(
 			esc_url_raw( $url ),
 			array(
-				'body' => array(
-					'sso'          => $sso_payload,
-					'sig'          => $sig,
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+				'body'    => array(
+					'sso' => $sso_payload,
+					'sig' => $sig,
+				),
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_credentials['api_key'] ),
+					'api_username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
 			)
 		);
@@ -367,18 +431,17 @@ class Utilities {
 			return new \WP_Error( 'wpdc_configuration_error', 'The Discourse connection options are not properly configured.' );
 		}
 
-		$external_user_url = "{$api_credentials['url']}/users/by-external/{$user_id}.json";
-		$external_user_url = esc_url_raw(
-			add_query_arg(
-				array(
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+		$external_user_url = esc_url_raw( "{$api_credentials['url']}/users/by-external/{$user_id}.json" );
+
+		$response = wp_remote_get(
+			$external_user_url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
-				$external_user_url
 			)
 		);
-
-		$response = wp_remote_get( $external_user_url );
 
 		if ( self::validate( $response ) ) {
 
@@ -422,16 +485,22 @@ class Utilities {
 		$users_url = esc_url_raw(
 			add_query_arg(
 				array(
-					'email'        => rawurlencode_deep( $email ),
-					'filter'       => rawurlencode_deep( $email ),
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+					'email'  => rawurlencode_deep( $email ),
+					'filter' => rawurlencode_deep( $email ),
 				),
 				$users_url
 			)
 		);
 
-		$response = wp_remote_get( $users_url );
+		$response = wp_remote_get(
+			$users_url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => sanitize_text_field( $api_credentials['api_username'] ),
+				),
+			)
+		);
 		if ( self::validate( $response ) ) {
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 			// The reqest returns a valid response even if the user isn't found, so check for empty.

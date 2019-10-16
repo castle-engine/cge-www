@@ -2,13 +2,13 @@
 Contributors: scossar, cdck, retlehs, samsaffron, techapj
 Tags: discourse, forum, comments, sso
 Requires at least: 4.7
-Tested up to: 5.2.3
+Tested up to: 5.2.4
 Requires PHP: 5.4.0
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin allows you to use Discourse as a community engine for your WordPress website. __The plugin is not a substitute for Disqus type commenting systems. Users will need to visit your Discourse forum to comment on your posts.__
+This plugin allows you to use Discourse as a community engine for your WordPress website. The plugin is not a substitute for Disqus type commenting systems. Users will need to visit your Discourse forum to comment on your posts.
 
 == Description ==
 
@@ -125,6 +125,15 @@ To create a coherent top menu, see our tutorial on how to make a [Custom nav hea
 8. Configuring the plugin: the SSO Client settings tab.
 
 == Changelog ==
+
+#### 1.9.5 10/04/2019
+
+- Fix WordPress as SSO client checking for matched email addresses after SSO external_id has been set
+- Fix incorrect markup on user profile page
+- Fix tag errors not being correctly handled
+- Fix disallowed tags not being able to be deleted through the Classic Editor meta box
+- Enable the auto-publish option for both the Block and the Classic editors
+- Remove mbstring dependency
 
 #### 1.9.4 09/05/2019
 

@@ -77,9 +77,7 @@ trait TemplateFunctions {
 		// Allows parsing misformed html. Save the previous value of libxml_use_internal_errors so that it can be restored.
 		$use_internal_errors   = libxml_use_internal_errors( true );
 		$disable_entity_loader = libxml_disable_entity_loader( true );
-
-		$doc = new \DOMDocument( '1.0', 'utf-8' );
-		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+		$doc = $this->create_dom_document( $content );
 
 		// Mentions and hashtags.
 		$links = $doc->getElementsByTagName( 'a' );
@@ -102,30 +100,22 @@ trait TemplateFunctions {
 				$image->setAttribute( 'src', $url . $src );
 			}
 		}
-
-		// Clear the libxml error buffer.
-		libxml_clear_errors();
-		// Restore the previous value of libxml_use_internal_errors and libxml_disable_entity_loader.
-		libxml_use_internal_errors( $use_internal_errors );
-		libxml_disable_entity_loader( $disable_entity_loader );
+		$this->clear_libxml_errors( $use_internal_errors, $disable_entity_loader );
 
 		$parsed = $doc->saveHTML( $doc->documentElement );
 
-		// Remove DOCTYPE, html, and body tags that have been added to the DOMDocument.
-		$parsed = preg_replace( '~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $parsed );
-
-		return $parsed;
+		return $this->remove_outer_html_elements( $parsed );
 	}
 
 	/**
 	 * Replaces polls in posts with a link to the post.
 	 *
 	 * @param string $cooked The post's cooked content.
-	 * @param string $url The post's Discourse URL.
+	 * @param string $post_url The post's Discourse URL.
 	 *
 	 * @return string
 	 */
-	protected function add_poll_links( $cooked, $url ) {
+	protected function add_poll_links( $cooked, $post_url ) {
 		if ( ! extension_loaded( 'libxml' ) ) {
 
 			return $cooked;
@@ -133,42 +123,114 @@ trait TemplateFunctions {
 
 		$use_internal_errors   = libxml_use_internal_errors( true );
 		$disable_entity_loader = libxml_disable_entity_loader( true );
-		$doc                   = new \DOMDocument( '1.0', 'utf-8' );
-		$doc->loadHTML( mb_convert_encoding( $cooked, 'HTML-ENTITIES', 'UTF-8' ) );
+		$doc = $this->create_dom_document( $cooked );
 
 		$finder = new \DOMXPath( $doc );
 		// See: http://www.a-basketful-of-papayas.net/2010/04/css-selectors-and-xpath-expressions.html.
 		$polls = $finder->query( "//div[contains(concat(' ', normalize-space(@class), ' '), ' poll ')]" );
 		if ( $polls->length ) {
+			$poll_number = 0;
 			foreach ( $polls as $poll ) {
-				$link = $doc->createElement( 'a' );
-				$link->setAttribute( 'class', 'wpdc-poll-link' );
-				$link->setAttribute( 'href', esc_url( $url ) );
-				$link_text = sprintf(
-					// translators: Poll replacement text. Placeholder: discourse_url.
-					__( 'This post includes a poll. Visit it at %1$s', 'wp-discourse' ),
-					esc_url( $this->options['url'] )
-				);
-				$link_text = $doc->createTextNode( $link_text );
-				$link->appendChild( $link_text );
+				if ( 0 === $poll_number ) {
+					$link_text = __( 'Vote in the poll.', 'discourse-integration' );
+					$link      = $doc->createElement( 'a', $link_text );
+					$link->setAttribute( 'class', 'wpdc-poll-link' );
+					$link->setAttribute( 'href', esc_url( $post_url ) );
+					$poll->parentNode->replaceChild( $link, $poll );
+				} else {
+					$poll->parentNode->removeChild( $poll );
+				}
 
-				$poll->parentNode->replaceChild( $link, $poll );
+				$poll_number ++;
 			}
 
 			$parsed = $doc->saveHTML( $doc->documentElement );
-			$parsed = preg_replace( '~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $parsed );
+			$this->clear_libxml_errors( $use_internal_errors, $disable_entity_loader );
 
-			libxml_clear_errors();
-			libxml_use_internal_errors( $use_internal_errors );
-			libxml_disable_entity_loader( $disable_entity_loader );
-
-			return $parsed;
+			return $this->remove_outer_html_elements( $parsed );
 		}
-
-		libxml_clear_errors();
-		libxml_use_internal_errors( $use_internal_errors );
+		$this->clear_libxml_errors( $use_internal_errors, $disable_entity_loader );
 
 		return $cooked;
+	}
+
+	/**
+	 * Replaces divs with that have the data attribute `youtube-id` with a link to the video.
+	 *
+	 * @param string $cooked The cooked post content returned from Discourse.
+	 *
+	 * @return string
+	 */
+	protected function fix_youtube_onebox_links( $cooked ) {
+		if ( ! extension_loaded( 'libxml' ) ) {
+
+			return $cooked;
+		}
+
+		$use_internal_errors   = libxml_use_internal_errors( true );
+		$disable_entity_loader = libxml_disable_entity_loader( true );
+		$doc = $this->create_dom_document( $cooked );
+		$finder        = new \DOMXPath( $doc );
+		$youtube_links = $finder->query( '//div[@data-youtube-id]' );
+
+		if ( $youtube_links->length ) {
+			foreach ( $youtube_links as $youtube_link ) {
+
+				$youtube_id  = $youtube_link->getAttribute( 'data-youtube-id' );
+				$youtube_url = esc_url( "https://www.youtube.com/watch?v={$youtube_id}" );
+				$new_link    = $doc->createElement( 'a', $youtube_url );
+				$new_link->setAttribute( 'href', esc_url( $youtube_url ) );
+				$new_link->setAttribute( 'class', 'wpdc-onebox-link' );
+				$youtube_link->parentNode->replaceChild( $new_link, $youtube_link );
+			}
+
+			$parsed = $doc->saveHTML( $doc->documentElement );
+			$this->clear_libxml_errors( $use_internal_errors, $disable_entity_loader );
+
+			return $this->remove_outer_html_elements( $parsed );
+		}
+		$this->clear_libxml_errors( $use_internal_errors, $disable_entity_loader );
+
+		return $cooked;
+	}
+
+	/**
+	 * Converts a fragment of HTML into a DomDocument object.
+	 *
+	 * @param string $fragment The HTML fragment to convert.
+	 *
+	 * @return \DOMDocument
+	 */
+	protected function create_dom_document( $fragment ) {
+		$html = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>' . $fragment . '</body></html>';
+		$doc  = new \DOMDocument( '1.0', 'utf-8' );
+		$doc->loadHTML( $html );
+
+		return $doc;
+	}
+
+	/**
+	 * Removes DOCTYPE, html, head, meta, and body elements from the parsed HTML.
+	 *
+	 * @param string $html The HTML to remove elements from.
+	 *
+	 * @return string|null
+	 */
+	protected function remove_outer_html_elements( $html ) {
+
+		return preg_replace( '~<(?:!DOCTYPE|/?(?:html|head|meta|body))[^>]*>\s*~i', '', $html );
+	}
+
+	/**
+	 * Clears libxml errors and restores previous state of libxml_use_internal_errors and libxml_disable_entity_loader.
+	 *
+	 * @param bool $use_internal_errors The site's use_internal_errors setting.
+	 * @param bool $disable_entity_loader The site's disable_entity_loader setting.
+	 */
+	protected function clear_libxml_errors( $use_internal_errors, $disable_entity_loader ) {
+		libxml_clear_errors();
+		libxml_use_internal_errors( $use_internal_errors );
+		libxml_disable_entity_loader( $disable_entity_loader );
 	}
 
 	/**

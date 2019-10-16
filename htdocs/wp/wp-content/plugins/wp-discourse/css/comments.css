@@ -94,8 +94,18 @@ article.onebox-body:after {
 	background-color: #f9f9f9;
 	font-size: 1em;
 	padding: 12px 12px 12px 12px;
+    margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
 	margin-left: 0;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
 	clear: both;
+}
+
+.comment-body .quote blockquote p:last-child {
+	margin-bottom: 0;
 }
 
 .comment-body aside.quote .title .avatar {
@@ -118,6 +128,15 @@ span.badge-category-bg {
 	margin-left: 5px;
 }
 
-.wpdc-poll-link {
+
+/* Polls and Youtube links. */
+.wpdc-poll-link,
+.wpdc-onebox-link {
 	display: block;
 }
+
+/* Images. */
+.lightbox-wrapper .meta {
+	display: none;
+}
+

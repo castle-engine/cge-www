@@ -416,7 +416,7 @@ class PublishSettings {
 			'auto-publish',
 			'discourse_publish',
 			__( 'Mark all new posts to be published to Discourse.', 'wp-discourse' ),
-			__( 'This setting is not supported when using the Block Editor.', 'wp-discourse' )
+                __( 'This can be overridden in the Discourse Sidebar before you publish a post.', 'wp-discourse' )
 		);
 	}
 
@@ -492,8 +492,7 @@ class PublishSettings {
 				'wp-discourse'
 			),
 			__(
-				"Unless SSO is enabled, this setting will cause all posts published
-	    to Discourse to be published by the 'Publishing Username.'",
+				'The username field is always visible to site admins.',
 				'wp-discourse'
 			)
 		);

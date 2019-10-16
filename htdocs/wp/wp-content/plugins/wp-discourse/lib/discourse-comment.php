@@ -83,31 +83,14 @@ class DiscourseComment {
 	}
 
 	/**
-	 * Enqueues the `comments.js` script.
+	 * Enqueues the comment scripts and styles.
 	 *
 	 * Hooks into 'wp_enqueue_scripts'.
 	 */
 	public function discourse_comments_js() {
-		// Is the query for an existing single post of any of the allowed_post_types?
-		if ( isset( $this->options['allowed_post_types'] ) && is_singular( $this->options['allowed_post_types'] ) ) {
-			if ( $this->use_discourse_comments( get_the_ID() ) ) {
-				wp_enqueue_script(
-					'discourse-comments-js',
-					WPDISCOURSE_URL . '/js/comments.js',
-					array( 'jquery' ),
-					get_option( 'discourse_version' ),
-					true
-				);
-				// Localize script.
-				$data = array(
-					'url' => $this->options['url'],
-				);
-				wp_localize_script( 'discourse-comments-js', 'discourse', $data );
-			}
-		}
-
 		if ( ! empty( $this->options['ajax-load'] ) ) {
-			wp_register_script( 'load_comments_js', plugins_url( '../js/load-comments.js', __FILE__ ), array( 'jquery' ), WPDISCOURSE_VERSION, true );
+			$script_path = '../js/load-comments.js';
+			wp_register_script( 'load_comments_js', plugins_url( $script_path, __FILE__ ), array( 'jquery' ), filemtime( plugin_dir_path( __FILE__ ) . $script_path ), true );
 			$data = array(
 				'commentsURL' => home_url( '/wp-json/wp-discourse/v1/discourse-comments' ),
 			);
@@ -116,7 +99,8 @@ class DiscourseComment {
 		}
 
 		if ( ! empty( $this->options['load-comment-css'] ) ) {
-			wp_register_style( 'comment_styles', WPDISCOURSE_URL . '/css/comments.css', array(), WPDISCOURSE_VERSION );
+			$style_path = '../css/comments.css';
+			wp_register_style( 'comment_styles', plugins_url( $style_path, __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) . $style_path ) );
 			wp_enqueue_style( 'comment_styles' );
 		}
 	}
@@ -246,7 +230,6 @@ class DiscourseComment {
 					if ( isset( $discourse_options['only-show-moderator-liked'] ) && 1 === intval( $discourse_options['only-show-moderator-liked'] ) ) {
 						$options = $options . '&only_moderator_liked=true';
 					}
-					$options = $options . '&api_key=' . $discourse_options['api-key'] . '&api_username=' . $discourse_options['publish-username'];
 
 					$discourse_permalink = get_post_meta( $postid, 'discourse_permalink', true );
 					$topic_id            = get_post_meta( $postid, 'discourse_topic_id', true );
@@ -256,7 +239,15 @@ class DiscourseComment {
 					}
 					$permalink = esc_url_raw( $discourse_permalink ) . '/wordpress.json?' . $options;
 
-					$result = wp_remote_get( $permalink );
+					$result = wp_remote_get(
+						$permalink,
+						array(
+							'headers' => array(
+								'Api-Key'      => sanitize_key( $discourse_options['api-key'] ),
+								'Api-Username' => sanitize_text_field( $discourse_options['publish-username'] ),
+							),
+						)
+					);
 
 					if ( $this->validate( $result ) ) {
 

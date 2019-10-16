@@ -42,23 +42,23 @@ class Discourse {
 	 * @var array
 	 */
 	protected $discourse_publish = array(
-		'display-subcategories'     => 0,
-		'publish-category'          => '',
-		'publish-category-update'   => 0,
-		'full-post-content'         => 0,
-		'allow-tags'                => 0,
-		'max-tags'                  => 5,
-		'publish-as-unlisted'       => 0,
-		'custom-excerpt-length'     => 55,
-		'add-featured-link'         => 0,
-		'auto-publish'              => 0,
-		'force-publish'             => 0,
-		'force-publish-max-age'     => 0,
-		'publish-failure-notice'    => 0,
-		'publish-failure-email'     => '',
-		'auto-track'                => 1,
-		'allowed_post_types'        => array( 'post' ),
-		'hide-discourse-name-field' => 0,
+		'display-subcategories'       => 0,
+		'publish-category'            => '',
+		'publish-category-update'     => 0,
+		'full-post-content'           => 0,
+		'allow-tags'                  => 0,
+		'max-tags'                    => 5,
+		'publish-as-unlisted'         => 0,
+		'custom-excerpt-length'       => 55,
+		'add-featured-link'           => 0,
+		'auto-publish'                => 0,
+		'force-publish'               => 0,
+		'force-publish-max-age'       => 0,
+		'publish-failure-notice'      => 0,
+		'publish-failure-email'       => '',
+		'auto-track'                  => 1,
+		'allowed_post_types'          => array( 'post' ),
+		'hide-discourse-name-field'   => 0,
 		'discourse-username-editable' => 0,
 	);
 
@@ -112,7 +112,7 @@ class Discourse {
 		'more-replies-more-text'      => 'more',
 		'external-login-text'         => 'Log in with Discourse',
 		'link-to-discourse-text'      => 'Link your account to Discourse',
-		'linked-to-discourse-text'    => "You're already linked to Discourse!",
+		'linked-to-discourse-text'    => "You're account is linked with Discourse!",
 	);
 
 	/**

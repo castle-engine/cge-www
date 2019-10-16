@@ -21,13 +21,6 @@ class Client extends SSOClientBase {
 	protected $options;
 
 	/**
-	 * The user meta key name that would store the Discourse user id
-	 *
-	 * @var string
-	 */
-	private $sso_meta_key = 'discourse_sso_user_id';
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -36,6 +29,45 @@ class Client extends SSOClientBase {
 		add_action( 'clear_auth_cookie', array( $this, 'logout_from_discourse' ) );
 		add_action( 'login_form', array( $this, 'discourse_sso_alter_login_form' ) );
 		add_action( 'show_user_profile', array( $this, 'discourse_sso_alter_user_profile' ) );
+		add_action( 'admin_notices', array( $this, 'set_user_notice' ) );
+	}
+
+	/**
+	 * Sets a notice for users when they link their account with Discourse.
+	 */
+	public function set_user_notice() {
+		global $pagenow;
+		$sso_client_enabled = ! empty( $this->options['sso-client-enabled'] );
+
+		if ( $sso_client_enabled && 'profile.php' === $pagenow ) {
+			$user_id           = get_current_user_id();
+			$mismatched_emails = get_user_meta( $user_id, 'discourse_mismatched_emails', true );
+
+			if ( $mismatched_emails ) {
+				$error_message = __(
+					'<div class="notice notice-error is-dismissible"><p>To link an existing WordPress account with Discourse,
+                     the email addresses of both accounts must match. Make sure you are logged into the correct Discourse account.
+                     If you are unable to edit your email addresses to match, contact a site administrator.</p></div>',
+					'wp-discourse'
+				);
+
+				delete_user_meta( $user_id, 'discourse_mismatched_emails' );
+
+				echo wp_kses_post( $error_message );
+			} else {
+				$user_synced = get_user_meta( $user_id, 'discourse_sso_client_synced', true );
+				if ( $user_synced ) {
+					$success_message = __(
+						'<div class="notice notice-success is-dismissible"><p>Your account is linked to Discourse!.</p></div>',
+						'wp-discourse'
+					);
+
+					delete_user_meta( $user_id, 'discourse_sso_client_synced' );
+
+					echo wp_kses_post( $success_message );
+				}
+			}
+		}
 	}
 
 	/**
@@ -95,7 +127,8 @@ class Client extends SSOClientBase {
 						echo wp_kses_post( $linked_text );
 					} else {
 
-						echo wp_kses_data( $this->get_discourse_sso_link_markup() );
+						echo wp_kses_data( $this->get_discourse_sso_link_markup() ) .
+							 ' <em>' . esc_html__( 'To link accounts, your Discourse email address needs to match your WordPress email address', 'wp-discourse' ) . '</em>';
 					}
 					?>
 				</td>
@@ -137,181 +170,65 @@ class Client extends SSOClientBase {
 	}
 
 	/**
-	 * Update WP user with discourse user data
+	 * Validates SSO signature
 	 *
-	 * @param  int $user_id the user ID.
-	 *
-	 * @return int|\WP_Error integer if the update was successful, WP_Error otherwise.
+	 * @return boolean
 	 */
-	private function update_user( $user_id ) {
-		$query = $this->get_sso_response();
-		$nonce = Nonce::get_instance()->verify( $query['nonce'], '_discourse_sso' );
+	private function is_valid_signature() {
+		$sso = urldecode( $this->get_sso_response( 'raw' ) );
 
-		if ( ! $nonce ) {
-			return new \WP_Error( 'expired_nonce' );
-		}
-
-		$username = $query['username'];
-		$email    = $query['email'];
-
-		// If the logged in user's credentials don't match the credentials returned from Discourse, return an error.
-		$wp_user = get_user_by( 'ID', $user_id );
-		if ( $wp_user->user_login !== $username && $wp_user->user_email !== $email ) {
-
-			return new \WP_Error( 'mismatched_users' );
-		}
-
-		$updated_user = array(
-			'ID'            => $user_id,
-			'user_login'    => $username,
-			'user_email'    => $email,
-			'user_nicename' => $username,
-		);
-
-		if ( ! empty( $query['name'] ) ) {
-			$updated_user['first_name'] = explode( ' ', $query['name'] )[0];
-			$updated_user['name']       = $query['name'];
-		}
-
-		$updated_user = apply_filters( 'wpdc_sso_client_updated_user', $updated_user, $query );
-
-		$update = wp_update_user( $updated_user );
-
-		if ( ! is_wp_error( $update ) ) {
-			update_user_meta( $user_id, 'discourse_username', $username );
-
-			if ( ! get_user_meta( $user_id, $this->sso_meta_key, true ) ) {
-				update_user_meta( $user_id, $this->sso_meta_key, $query['external_id'] );
-			}
-		}
-
-		return $update;
+		return hash_hmac( 'sha256', $sso, $this->get_sso_secret() ) === $this->get_sso_signature();
 	}
 
 	/**
-	 * Handle Login errors
+	 * Get user id or create a user.
 	 *
-	 * @param  \WP_Error $error WP_Error object.
-	 */
-	private function handle_errors( $error ) {
-		$redirect_to = apply_filters( 'wpdc_sso_client_redirect_after_failed_login', wp_login_url() );
-
-		$redirect_to = add_query_arg( 'discourse_sso_error', $error->get_error_code(), $redirect_to );
-
-		wp_safe_redirect( $redirect_to );
-		exit;
-	}
-
-
-	/**
-	 * Add errors on the login form.
+	 * For logged in users, the function checks if the 'discourse_sso_user_id' is set. If it isn't set, the user's email
+	 * is checked against the email from the SSO payload. If this doesn't match, the user is redirected to their profile
+	 * page where an error notice is displayed.
 	 *
-	 * @param  \WP_Error $errors the WP_Error object.
-	 *
-	 * @return \WP_Error updated errors.
-	 */
-	public function handle_login_errors( $errors ) {
-		if ( isset( $_GET['discourse_sso_error'] ) ) { // Input var okay.
-			$err = sanitize_text_field( wp_unslash( $_GET['discourse_sso_error'] ) ); // Input var okay.
-
-			switch ( $err ) {
-				case 'existing_user_email':
-					$message = __( "There is an exiting account with the email address you are attempting to login with. If you are trying to log in through Discourse, you need to first login through WordPress, visit your profile page, and click on the 'sync accounts' link.", 'wp-discourse' );
-					$errors->add( 'discourse_sso_existing_user', $message );
-					break;
-
-				case 'expired_nonce':
-					$message = __( 'Expired Nonce', 'wp-discourse' );
-					$errors->add( 'discourse_sso_expired_nonce', $message );
-					break;
-
-				case 'discourse_already_logged_in':
-					$message = __( "It seems that you're already logged in!", 'wp-discourse' );
-					$errors->add( 'discourse_already_logged_in', $message );
-					break;
-
-				case 'existing_user_login':
-					$message = __( 'There is already an account registed with the username supplied by Discourse. If this is you, login through WordPress and visit your profile page to sync your account with Discourse', 'wp-discourse' );
-					$errors->add( 'existing_user_login', $message );
-					break;
-
-				case 'mismatched_users':
-					$message = __( 'Neither the username or email address returned by Discourse match your WordPress account. There is probably another user logged into Discourse on your device. Please try visiting the Discourse forum and logging that user out.', 'wp-discourse' );
-					$errors->add( 'mismatched_users', $message );
-					break;
-
-				default:
-					$message = __( 'Unhandled Error', 'wp-discourse' );
-					$errors->add( 'discourse_sso_unhandled_error', $message );
-					break;
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Set auth cookies
-	 *
-	 * @param  int $user_id the user ID.
-	 * @return null
-	 */
-	private function auth_user( $user_id ) {
-		$query = $this->get_sso_response();
-		wp_set_current_user( $user_id, $query['username'] );
-		wp_set_auth_cookie( $user_id );
-		$user = wp_get_current_user();
-		if ( ! $user->exists() ) {
-
-			return null;
-		}
-		do_action( 'wp_login', $query['username'], $user );
-
-		$redirect_to = apply_filters( 'wpdc_sso_client_redirect_after_login', $query['return_sso_url'] );
-
-		wp_safe_redirect( $redirect_to );
-		exit;
-	}
-
-	/**
-	 * Gets the url to be redirected to
-	 *
-	 * @return string
-	 */
-	public function get_redirect_to_after_sso() {
-		return $this->get_sso_response( 'return_sso_url' );
-	}
-
-	/**
-	 * Get user id or create an user
+	 * For non-logged-in users, the function checks if there's an existing user with the payload's 'discourse_sso_user_id',
+	 * if there isn't, there is an optional check for a user with a matching email address. If both checks fail, a new user
+	 * is created.
 	 *
 	 * @return int|\WP_Error
 	 */
 	private function get_user_id() {
 		if ( is_user_logged_in() ) {
-			$user_id = get_current_user_id();
-			if ( get_user_meta( $user_id, $this->sso_meta_key, true ) ) {
-
-				// Don't reauthenticate the user, just redirect them to the 'return_sso_url'.
-				$redirect = $this->get_sso_response( 'return_sso_url' );
+			$user_id  = get_current_user_id();
+			$redirect = $this->get_sso_response( 'return_sso_url' );
+			if ( get_user_meta( $user_id, 'discourse_sso_user_id', true ) ) {
 				wp_safe_redirect( $redirect );
 
 				exit;
+			} else {
+				$discourse_email = $this->get_sso_response( 'email' );
+				$wp_email        = wp_get_current_user()->user_email;
+				if ( $discourse_email === $wp_email ) {
+					update_user_meta( $user_id, 'discourse_sso_user_id', $this->get_sso_response( 'external_id' ) );
+					update_user_meta( $user_id, 'discourse_sso_client_synced', 1 );
+					wp_safe_redirect( $redirect );
+
+					exit;
+				} else {
+					update_user_meta( $user_id, 'discourse_mismatched_emails', 1 );
+					$profile_url = get_edit_profile_url();
+					wp_safe_redirect( $profile_url );
+
+					exit;
+				}
 			}
-
-			return $user_id;
-
 		} else {
 			$user_query = new \WP_User_Query(
 				array(
-					'meta_key'   => $this->sso_meta_key,
+					'meta_key'   => 'discourse_sso_user_id',
 					'meta_value' => $this->get_sso_response( 'external_id' ),
 				)
 			);
 
 			$user_query_results = $user_query->get_results();
 
-			if ( empty( $user_query_results ) && ! empty( $this->options['sso-client-sync-by-email'] ) && 1 === intval( $this->options['sso-client-sync-by-email'] ) ) {
+			if ( empty( $user_query_results ) && ! empty( $this->options['sso-client-sync-by-email'] ) ) {
 				$user = get_user_by( 'email', $this->get_sso_response( 'email' ) );
 				if ( $user ) {
 
@@ -338,14 +255,127 @@ class Client extends SSOClientBase {
 	}
 
 	/**
-	 * Validates SSO signature
+	 * Update WP user with discourse user data
 	 *
-	 * @return boolean
+	 * @param  int $user_id the user ID.
+	 *
+	 * @return int|\WP_Error integer if the update was successful, WP_Error otherwise.
 	 */
-	private function is_valid_signature() {
-		$sso = urldecode( $this->get_sso_response( 'raw' ) );
+	private function update_user( $user_id ) {
+		$query = $this->get_sso_response();
+		$nonce = Nonce::get_instance()->verify( $query['nonce'], '_discourse_sso' );
 
-		return hash_hmac( 'sha256', $sso, $this->get_sso_secret() ) === $this->get_sso_signature();
+		if ( ! $nonce ) {
+			return new \WP_Error( 'expired_nonce' );
+		}
+
+		$username     = $query['username'];
+		$updated_user = array(
+			'ID'            => $user_id,
+			'user_nicename' => $username,
+		);
+
+		if ( ! empty( $query['name'] ) ) {
+			$updated_user['first_name'] = explode( ' ', $query['name'] )[0];
+			$updated_user['name']       = $query['name'];
+		}
+
+		$updated_user = apply_filters( 'wpdc_sso_client_updated_user', $updated_user, $query );
+
+		$update = wp_update_user( $updated_user );
+
+		if ( ! is_wp_error( $update ) ) {
+			update_user_meta( $user_id, 'discourse_username', $username );
+
+			if ( ! get_user_meta( $user_id, 'discourse_sso_user_id', true ) ) {
+				update_user_meta( $user_id, 'discourse_sso_user_id', $query['external_id'] );
+			}
+		}
+
+		return $update;
+	}
+
+	/**
+	 * Set auth cookies
+	 *
+	 * @param  int $user_id the user ID.
+	 * @return null
+	 */
+	private function auth_user( $user_id ) {
+		$query = $this->get_sso_response();
+		wp_set_current_user( $user_id, $query['username'] );
+		wp_set_auth_cookie( $user_id );
+		$user = wp_get_current_user();
+		if ( ! $user->exists() ) {
+
+			return null;
+		}
+		do_action( 'wp_login', $query['username'], $user );
+
+		$redirect_to = apply_filters( 'wpdc_sso_client_redirect_after_login', $query['return_sso_url'] );
+
+		wp_safe_redirect( $redirect_to );
+		exit;
+	}
+
+	/**
+	 * Handle Login errors
+	 *
+	 * @param  \WP_Error $error WP_Error object.
+	 */
+	private function handle_errors( $error ) {
+		$redirect_to = apply_filters( 'wpdc_sso_client_redirect_after_failed_login', wp_login_url() );
+
+		$redirect_to = add_query_arg( 'discourse_sso_error', $error->get_error_code(), $redirect_to );
+
+		wp_safe_redirect( $redirect_to );
+		exit;
+	}
+
+	/**
+	 * Add errors on the login form.
+	 *
+	 * @param  \WP_Error $errors the WP_Error object.
+	 *
+	 * @return \WP_Error updated errors.
+	 */
+	public function handle_login_errors( $errors ) {
+		if ( isset( $_GET['discourse_sso_error'] ) ) { // Input var okay.
+			$err = sanitize_text_field( wp_unslash( $_GET['discourse_sso_error'] ) ); // Input var okay.
+
+			switch ( $err ) {
+				case 'existing_user_email':
+					$message = __( "There is an exiting account with the email address you are attempting to login with. If you are trying to log in through Discourse, you need to first login through WordPress, visit your profile page, and click on the 'sync accounts' link.", 'wp-discourse' );
+					$errors->add( 'discourse_sso_existing_user', $message );
+					break;
+
+				case 'expired_nonce':
+					$message = __( 'Expired Nonce', 'wp-discourse' );
+					$errors->add( 'discourse_sso_expired_nonce', $message );
+					break;
+
+				case 'existing_user_login':
+					$message = __( 'There is already an account registered with the username supplied by Discourse. If this is you, login through WordPress and visit your profile page to sync your account with Discourse', 'wp-discourse' );
+					$errors->add( 'existing_user_login', $message );
+					break;
+
+				default:
+					$message = __( 'Unhandled Error', 'wp-discourse' );
+					$errors->add( 'discourse_sso_unhandled_error', $message );
+					break;
+			}
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * Gets the url to be redirected to
+	 *
+	 * @return string
+	 */
+	public function get_redirect_to_after_sso() {
+		return $this->get_sso_response( 'return_sso_url' );
 	}
 
 	/**
@@ -442,10 +472,10 @@ class Client extends SSOClientBase {
 		$logout_response = wp_remote_post(
 			$logout_url,
 			array(
-				'method' => 'POST',
-				'body'   => array(
-					'api_key'      => $api_key,
-					'api_username' => $api_username,
+				'method'  => 'POST',
+				'headers' => array(
+					'api_key'      => sanitize_key( $api_key ),
+					'api_username' => sanitize_text_field( $api_username ),
 				),
 			)
 		);

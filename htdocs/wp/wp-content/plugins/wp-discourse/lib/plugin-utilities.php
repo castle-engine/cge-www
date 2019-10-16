@@ -49,26 +49,24 @@ trait PluginUtilities {
 	 * @return int|\WP_Error
 	 */
 	public function check_connection_status() {
-		$options      = $this->get_options();
-		$url          = ! empty( $options['url'] ) ? $options['url'] : null;
-		$api_key      = ! empty( $options['api-key'] ) ? $options['api-key'] : null;
-		$api_username = ! empty( $options['publish-username'] ) ? $options['publish-username'] : null;
+		$api_credentials = $this->get_api_credentials();
+		if ( is_wp_error( $api_credentials ) ) {
 
-		if ( ! ( $url && $api_key && $api_username ) ) {
-
-			return 0;
+			return new \WP_Error( 'wpdc_configuration_error', 'The Discourse Connection options are not properly configured.' );
 		}
 
-		$url = add_query_arg(
-			array(
-				'api_key'      => $api_key,
-				'api_username' => $api_username,
-			),
-			$url . '/users/' . $api_username . '.json'
-		);
+		$api_username = sanitize_text_field( $api_credentials['api_username'] );
 
-		$url      = esc_url_raw( $url );
-		$response = wp_remote_get( $url );
+		$url      = esc_url_raw( "{$api_credentials['url']}/users/{$api_username}.json" );
+		$response = wp_remote_get(
+			$url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => $api_username,
+				),
+			)
+		);
 
 		return $this->validate( $response );
 	}
@@ -104,35 +102,31 @@ trait PluginUtilities {
 	 * @return array|\WP_Error
 	 */
 	protected function get_discourse_categories() {
-		$options      = $this->get_options();
-		$force_update = false;
-
-		$categories = get_option( 'wpdc_discourse_categories' );
+		$options    = $this->get_options();
+		$categories = get_transient( 'wpdc_discourse_categories' );
 
 		if ( ! empty( $options['publish-category-update'] ) || ! $categories ) {
-			$force_update = true;
-		}
+			$api_credentials = $this->get_api_credentials();
+			if ( is_wp_error( $api_credentials ) ) {
 
-		if ( $force_update ) {
-			$base_url     = ! empty( $options['url'] ) ? $options['url'] : null;
-			$api_key      = ! empty( $options['api-key'] ) ? $options['api-key'] : null;
-			$api_username = ! empty( $options['publish-username'] ) ? $options['publish-username'] : null;
-
-			if ( ! ( $base_url && $api_key && $api_username ) ) {
-
-				return new \WP_Error( 'discourse_configuration_error', 'The Discourse connection options have not been configured.' );
+				return new \WP_Error( 'wpdc_configuration_error', 'The Discourse Connection options are not properly configured.' );
 			}
 
-			$site_url = esc_url_raw( "{$base_url}/site.json" );
-			$site_url = add_query_arg(
-				array(
-					'api_key'      => $api_key,
-					'api_username' => $api_username,
-				),
-				$site_url
-			);
+			$base_url     = $api_credentials['url'];
+			$api_username = $api_credentials['api_username'];
+			$api_key      = $api_credentials['api_key'];
 
-			$remote = wp_remote_get( $site_url );
+			$site_url = esc_url_raw( "{$base_url}/site.json" );
+
+			$remote = wp_remote_get(
+				$site_url,
+				array(
+					'headers' => array(
+						'Api-Key'      => sanitize_key( $api_key ),
+						'Api-Username' => sanitize_text_field( $api_username ),
+					),
+				)
+			);
 
 			if ( ! $this->validate( $remote ) ) {
 
@@ -142,14 +136,22 @@ trait PluginUtilities {
 			$remote = json_decode( wp_remote_retrieve_body( $remote ), true );
 			if ( array_key_exists( 'categories', $remote ) ) {
 				$categories = $remote['categories'];
-				if ( empty( $options['display-subcategories'] ) ) {
-					foreach ( $categories as $category => $values ) {
-						if ( array_key_exists( 'parent_category_id', $values ) ) {
-							unset( $categories[ $category ] );
-						}
+				$discourse_categories = [];
+				foreach ( $categories as $category ) {
+					if ( ( empty( $options['display-subcategories'] ) ) && array_key_exists( 'parent_category_id', $category ) ) {
+
+						continue;
 					}
+					$current_category = [];
+					$current_category['id'] = intval( $category['id'] );
+					$current_category['name'] = sanitize_text_field( $category['name'] );
+
+					$discourse_categories[] = $current_category;
 				}
-				update_option( 'wpdc_discourse_categories', $categories );
+
+				set_transient( 'wpdc_discourse_categories', $discourse_categories, 1 * MINUTE_IN_SECONDS );
+
+				return $discourse_categories;
 			} else {
 
 				return new \WP_Error( 'key_not_found', 'The categories key was not found in the response from Discourse.' );
@@ -174,18 +176,17 @@ trait PluginUtilities {
 			return new \WP_Error( 'wpdc_configuration_error', 'The Discourse connection options are not properly configured.' );
 		}
 
-		$external_user_url = "{$api_credentials['url']}/users/by-external/{$user_id}.json";
-		$external_user_url = esc_url_raw(
-			add_query_arg(
-				array(
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
+		$external_user_url = esc_url_raw( "{$api_credentials['url']}/users/by-external/{$user_id}.json" );
+
+		$response = wp_remote_get(
+			$external_user_url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => sanitize_text_field( $api_credentials['api_username'] ),
 				),
-				$external_user_url
 			)
 		);
-
-		$response = wp_remote_get( $external_user_url );
 
 		if ( $this->validate( $response ) ) {
 
@@ -225,20 +226,24 @@ trait PluginUtilities {
 			return new \WP_Error( 'wpdc_configuration_error', 'The Discourse Connection options are not properly configured.' );
 		}
 
-		$users_url = "{$api_credentials['url']}/admin/users/list/all.json";
-		$users_url = esc_url_raw(
-			add_query_arg(
-				array(
-					'email'        => rawurlencode_deep( $email ),
-					'filter'       => rawurlencode_deep( $email ),
-					'api_key'      => $api_credentials['api_key'],
-					'api_username' => $api_credentials['api_username'],
-				),
-				$users_url
-			)
+		$users_url = esc_url_raw( "{$api_credentials['url']}/admin/users/list/all.json" );
+		$users_url = add_query_arg(
+			array(
+				'email'  => rawurlencode_deep( $email ),
+				'filter' => rawurlencode_deep( $email ),
+			),
+			$users_url
 		);
 
-		$response = wp_remote_get( $users_url );
+		$response = wp_remote_get(
+			$users_url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => sanitize_text_field( $api_credentials['api_username'] ),
+				),
+			)
+		);
 		if ( $this->validate( $response ) ) {
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 			// The reqest returns a valid response even if the user isn't found, so check for empty.
@@ -271,15 +276,16 @@ trait PluginUtilities {
 		}
 
 		$topic_url = esc_url_raw( "{$topic_url}.json" );
-		$topic_url = add_query_arg(
-			array(
-				'api_key'      => $api_credentials['api_key'],
-				'api_username' => $api_credentials['api_username'],
-			),
-			$topic_url
-		);
 
-		$response = wp_remote_get( $topic_url );
+		$response = wp_remote_get(
+			$topic_url,
+			array(
+				'headers' => array(
+					'Api-Key'      => sanitize_key( $api_credentials['api_key'] ),
+					'Api-Username' => sanitize_text_field( $api_credentials['api_username'] ),
+				),
+			)
+		);
 
 		if ( ! $this->validate( $response ) ) {
 
