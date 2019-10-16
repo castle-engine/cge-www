@@ -192,7 +192,7 @@ of the characters (including all the possible international characters)
 that you want to display. Like this:
 
 <?php echo pascal_highlight(
-'uses ..., CasteFonts, CastleStringUtils, CastleUnicode;
+'uses ..., CastleFonts, CastleStringUtils, CastleUnicode;
 
 function CreateMyFont: TCastleFont;
 var
