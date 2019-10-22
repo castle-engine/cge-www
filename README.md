@@ -11,13 +11,11 @@ same screenshots that are available on SF screenshot page of our project.
 
 scripts/ are various scripts, usually in bash, helpful to manage the website.
 
-* scripts/shell.sf.net are meant to be run when logged on
-  shell.sourceforge.net server, i.e. these scripts are supposed to work
-  on currently "online" version on the website on SF.
+* scripts/remote/ are meant to be run when logged on castle-engine.io
+  through ssh.
 
-* Rest of scripts/ should usually be run on your local version,
-  checkouted somewhere on your local computer. Running them on
-  shell.sf.net is not preferred, sometimes has little sense.
+* Rest of scripts/ can be run on a local version,
+  cloned somewhere on your local computer.
 
 Procedure to update WWW content
 -------------------------------

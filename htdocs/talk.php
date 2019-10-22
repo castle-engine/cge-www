@@ -11,10 +11,6 @@ castle_header('Talk with us');
     <div class="col-sm-6">
         <p><a href="<?php echo FORUM_URL; ?>" class="btn btn-default btn-lg">Post on our forum</a>
 
-        <!--p>(Register on <a href="https://sourceforge.net/">SouceForge</a>
-        before posting to be able to attach files.)
-        -->
-
         <p>You can also
 
         <ul>

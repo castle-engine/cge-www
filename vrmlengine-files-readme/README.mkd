@@ -1,7 +1,0 @@
-**Project renamed to castle-engine**
-
-Do not download files from here, these are old versions. To download the latest releases of our games (like "The Castle") and tools (like "view3dscene"), go to
-
-**[Castle Game Engine project](https://castle-engine.io/)**
-
-"Kambi VRML game engine" (vrmlengine) is renamed now to "Castle Game Engine" (castle-engine). Please update all links to lead to castle-engine downloads.
