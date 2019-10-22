@@ -122,15 +122,13 @@ You are not limited to only loading the content from X3D files
 This node in X3D has fields <code>size</code> (the X3D type is <code>SFVec3f</code>)
 and <code>solid</code> (the X3D type is <code>SFBool</code>).
 In Pascal, this node corresponds to the class
-<a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html">TBoxNode</a>,
+<?php api_link('TBoxNode', 'X3DNodes.TBoxNode.html'); ?>,
 with properties
-<a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html#Size">Size (type TVector3)</a>
-and
-<a href="https://castle-engine.io/apidoc/html/X3DNodes.TAbstractGeometryNode.html#Solid">Solid (type Boolean)</a>.
+<?php api_link('Size (type TVector3)', 'X3DNodes.TBoxNode.html#Size'); ?> and
+<?php api_link('Solid (type Boolean)', 'X3DNodes.TAbstractGeometryNode.html#Solid'); ?>.
 You can create and edit instances of
-<a href="https://castle-engine.io/apidoc/html/X3DNodes.TBoxNode.html">TBoxNode</a>
-and use <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
- to render them.
+<?php api_link('TBoxNode', 'X3DNodes.TBoxNode.html'); ?> and use
+<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> to render them.
 
 <p>This section of the Castle Game Engine documentation describes all X3D nodes
 (often by referring you to the X3D specification for details),

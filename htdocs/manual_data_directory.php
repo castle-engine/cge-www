@@ -17,7 +17,7 @@ protocol <code>castle-data:/xxx</code>. Loading from
 We advise to use only <code>castle-data:/xxx</code> for code targeting the new CGE
 versions &mdash; it is simpler, can be saved to files better (useful when saving CGE editor designs,
 X3D models with URLs etc.),
-and it works better in some corner-cases (e.g. <a href="https://castle-engine.io/apidoc-unstable/html/CastleFindFiles.html#FindFiles">FindFiles</a> will work
+and it works better in some corner-cases (e.g. <?php api_link('FindFiles', 'CastleFindFiles.html#FindFiles'); ?> will work
 on Android, thanks to an internal information stored in the data on Android).
 
 <p>Advantages:

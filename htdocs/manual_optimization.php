@@ -246,7 +246,7 @@ detection and creature AI).
 <?php echo $toc->html_section(); ?>
 
 <p>Another useful statistics to display is
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TRenderStatistics.html">SceneManager.Statistics.ToString</a>.
+<?php api_link('SceneManager.Statistics.ToString', 'CastleTransform.TRenderStatistics.html'); ?>.
 This shows how many scenes, and how many shapes, have been rendered in the last frame.
 It can be a useful guideline when to activate some specific optimizations discussed below.
 E.g. large value of displayed shapes may indicate that <i>dynamic batching</i>
@@ -370,7 +370,7 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
-    <p>In a similar scenario, activating <a href="https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.html#InternalFastTransformUpdate">InternalFastTransformUpdate</a> may be also beneficial. We plan to make this optimization automatic in the future.
+    <p>In a similar scenario, activating <?php api_link('InternalFastTransformUpdate', 'CastleSceneCore.html#InternalFastTransformUpdate'); ?> may be also beneficial. We plan to make this optimization automatic in the future.
 
   <!--
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
@@ -423,7 +423,7 @@ to have hundreds or thousands of triangles in a single shape.
 <?php echo $toc->html_section(); ?>
 
 <p>If you have a large number of small shapes using the same shader,
-consider turning on <a href="https://castle-engine.io/apidoc-unstable/html/CastleScene.html#DynamicBatching">DynamicBatching</a>. This will internallly detect and merge multiple shapes into
+consider turning on <?php api_link('DynamicBatching', 'CastleScene.html#DynamicBatching'); ?>. This will internallly detect and merge multiple shapes into
 one just before passing them to the GPU. In some cases, it is a very powerful optimization,
 reducing the number of <i>draw calls</i>.
 
@@ -534,7 +534,7 @@ for a wide range of scenes.
 
 <p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
-<p>You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily get information about what was loaded, and what took most time to load.
+<p>You can also use <?php api_link('TCastleProfiler', 'CastleTimeUtils.TCastleProfiler.html'); ?> to easily get information about what was loaded, and what took most time to load.
 
 <?php echo $toc->html_section(); ?>
 
@@ -620,7 +620,7 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Turn on <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#Culling">TCastleUserInterface.Culling</a> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleScrollView.html">TCastleScrollView</a>) or other parent with <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#ClipChildren">ClipChildren</a>. This is very useful when creating a large number of children inside <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleScrollView.html">TCastleScrollView</a>.
+<p>Turn on <?php api_link('TCastleUserInterface.Culling', 'CastleUIControls.TCastleUserInterface.html#Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>) or other parent with <?php api_link('ClipChildren', 'CastleUIControls.TCastleUserInterface.html#ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>.
 
 <p>When rendering 2D stuff yourself usign <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TGLImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
 
@@ -628,11 +628,11 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
-<p>We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html">TCastleProfiler</a> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
+<p>We have <?php api_link('TCastleProfiler', 'CastleTimeUtils.TCastleProfiler.html'); ?> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We have <a href="https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleFrameProfiler.html">TCastleFrameProfiler</a> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="manual_log.php">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
+<p>We have <?php api_link('TCastleFrameProfiler', 'CastleTimeUtils.TCastleFrameProfiler.html'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="manual_log.php">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
 
 <pre>
 -------------------- FrameProfiler begin

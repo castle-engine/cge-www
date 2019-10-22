@@ -56,7 +56,7 @@ MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
     used by the engine, instead of the original ones.
 
     <p>If you want to also use <i>downscaled</i> textures,
-    change the <a href="https://castle-engine.io/apidoc/html/CastleMaterialProperties.html#TextureLoadingScale">TextureLoadingScale</a>
+    change the <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>
     global variable. By default it is 1. Setting it to 2 makes your textures
     use 1/2 size (their area will be 1/4, for 2D textures).
 </ol>
@@ -65,7 +65,7 @@ MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
 
 <p>Below is a sample <code>material_properties.xml</code> file
 requesting to compress and downscale some images.
-Texture compression format names are <a href="https://castle-engine.io/apidoc/html/CastleImages.html#TTextureCompression">the same as TTextureCompression enum names but without leading "tc"</a>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
+Texture compression format names are <?php api_link('the same as TTextureCompression enum names but without leading "tc"', 'CastleImages.html#TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
 </p>
 
 <?php echo xml_highlight(

@@ -33,10 +33,10 @@ the +Y axis. So things <i>just work</i>.
 <p>If you have existing models oriented such that +Z is "up",
 but you would like to use the engine default convention that +Y is "up",
 you can simply rotate them. You can rotate things in <i>Castle Game Engine</i>
-using the <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html#Rotation">TCastleTransform.Rotation</a>
-property. Note that <a href="https://castle-engine.io/apidoc/html/CastleScene.TCastleScene.html">TCastleScene</a>
-also descends from <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html">TCastleTransform</a>,
-so you can directly rotate a scene.
+using the <?php api_link('TCastleTransform.Rotation', 'CastleTransform.TCastleTransform.html#Rotation'); ?>
+ property. Note that <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+ also descends from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
+ so you can directly rotate a scene.
 
 <p>To rotate each single model from +Z to +Y, just set rotation for every TCastleScene:
 
@@ -53,7 +53,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
 
 <?php echo pascal_highlight_file('code-samples/rotate_2.lpr'); ?>
 
-<p>Note that you can also rotate things in <i>Castle Game Engine</i> using <a href="https://castle-engine.io/apidoc/html/X3DNodes.TTransformNode.html#Rotation">TTransformNode.Rotation</a>. But in this case, <a href="https://castle-engine.io/apidoc/html/CastleTransform.TCastleTransform.html#Rotation">TCastleTransform.Rotation</a> is simpler to use.
+<p>Note that you can also rotate things in <i>Castle Game Engine</i> using <?php api_link('TTransformNode.Rotation', 'X3DNodes.TTransformNode.html#Rotation'); ?>. But in this case, <?php api_link('TCastleTransform.Rotation', 'CastleTransform.TCastleTransform.html#Rotation'); ?> is simpler to use.
 
 <?php echo $toc->html_section(); ?>
 

@@ -398,7 +398,7 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
     <p>I know this sounds vague, because I have not yet clarified these plans in my head:) These 5 units *are* useful, they provide various features on top of TCastleScene. I'm not going to just "ditch" them or even deprecate them, before I made a better API that also has these features. For example:
 
     <ul>
-      <li><p>New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of <a href="https://castle-engine.io/apidoc/html/CastleLevels.TGameSceneManager.html#LoadLevel">TGameSceneManager.Load</a> in a flexible manner (user can decide what to replace with what).
+      <li><p>New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of <?php api_link('TGameSceneManager.Load', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> in a flexible manner (user can decide what to replace with what).
 
       <li><p>There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
 

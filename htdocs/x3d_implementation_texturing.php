@@ -133,8 +133,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p><i>TODO</i>: <code>MultiTexture.source</code> values <code>"DIFFUSE"</code> and <code>"SPECULAR"</code> are treated the same.
     <ul>
-      <li>If <a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">SeparateDiffuseTexture</a> is false (which is the default), the textures process the final color obtained from lighting calculation (so it's affected by all the material and lights colors for ambient, diffuse and specular).
-      <li>If <a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture">SeparateDiffuseTexture</a> is true, the textures process the diffuse color.
+      <li>If <?php api_link('SeparateDiffuseTexture', 'CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture'); ?> is false (which is the default), the textures process the final color obtained from lighting calculation (so it's affected by all the material and lights colors for ambient, diffuse and specular).
+      <li>If <?php api_link('SeparateDiffuseTexture', 'CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture'); ?> is true, the textures process the diffuse color.
     </ul>
 
     <p>Note that the multi-texturing specification of X3D has unfortunately some issues. <a href="x3d_multi_texturing.php">Clarifications and our extensions are documented here</a>.

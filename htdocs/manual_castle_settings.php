@@ -50,9 +50,9 @@ the CGE editor GUI. For now just edit it directly, in any text editor (like Laza
 <?php echo $toc->html_section(); ?>
 
 <p>Loading the <code>CastleSettings.xml</code> sets properties
-related to user interface scaling: <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#UIScaling">Container.UIScaling</a>,
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#UIReferenceWidth">Container.UIReferenceWidth</a>,
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#UIReferenceHeight">Container.UIReferenceHeight</a>.
+related to user interface scaling: <?php api_link('Container.UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>,
+<?php api_link('Container.UIReferenceWidth', 'CastleUIControls.TUIContainer.html#UIReferenceWidth'); ?>,
+<?php api_link('Container.UIReferenceHeight', 'CastleUIControls.TUIContainer.html#UIReferenceHeight'); ?>.
 
 <?php echo xml_highlight(
 '<ui_scaling
@@ -62,8 +62,8 @@ related to user interface scaling: <a href="https://castle-engine.io/apidoc-unst
 />'); ?>
 
 <p>These settings control <i>user interface scaling</i>.
-See the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#UIScaling">UIScaling</a>
-documentation and <a href="manual_2d_user_interface.php">manual page about 2D user interface</a>
+See the <?php api_link('UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>
+ documentation and <a href="manual_2d_user_interface.php">manual page about 2D user interface</a>
 for an explanation how it works. In short, it means that you can "think" that an application
 is designed for a specified window size (like 1600x900).
 You set the positions and sizes (in code, in editor) relative to this desired window size.
@@ -99,19 +99,19 @@ all set up by default UI scaling to the reference sizes of 1600x900
   <li>DpiScale
 </ul>
 
-<p>See the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.html#TUIScaling">TUIScaling</a>
-documentation for their description.
+<p>See the <?php api_link('TUIScaling', 'CastleUIControls.html#TUIScaling'); ?>
+ documentation for their description.
 
 <?php echo $toc->html_section(); ?>
 
 <p>Loading the <code>CastleSettings.xml</code> also sets the
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#DefaultFont">Container.DefaultFont</a>.
+<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>.
 
 <p>This controls the default font look (font file, font size)
 for all user-interface controls.
 Note that this is only a default, each control can still customize it
-(using <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleUserInterfaceFont.html#CustomFont">TCastleUserInterfaceFont.CustomFont</a>,
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleUserInterfaceFont.html#FontSize">TCastleUserInterfaceFont.FontSize</a>).
+(using <?php api_link('TCastleUserInterfaceFont.CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?>,
+<?php api_link('TCastleUserInterfaceFont.FontSize', 'CastleControls.TCastleUserInterfaceFont.html#FontSize'); ?>).
 
 <p>An example code (only the <code>url</code> attribute is required):
 
@@ -124,9 +124,9 @@ Note that this is only a default, each control can still customize it
 />'); ?>
 
 <p>In effect,
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#DefaultFont">Container.DefaultFont</a>
-will be set to a proper
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleFonts.TCastleFont.html">TCastleFont</a> instance.
+<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>
+ will be set to a proper
+<?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> instance.
 
 <p>You can also provide separate font variants for <code>regular</code>,
 <code>bold</code>, <code>italic</code> and <code>bold_italic</code> variants.
@@ -155,12 +155,12 @@ Like this:
 </default_font>'); ?>
 
 <p>In effect,
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#DefaultFont">Container.DefaultFont</a>
-will be set to a proper
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleFontFamily.TFontFamily.html">TFontFamily</a> instance.
+<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>
+ will be set to a proper
+<?php api_link('TFontFamily', 'CastleFontFamily.TFontFamily.html'); ?> instance.
 This is useful if you plan to use
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleLabel.html">TCastleLabel</a>
-with <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleLabel.html#Html">HTML markup</a>,
+<?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
+ with <?php api_link('HTML markup', 'CastleControls.TCastleLabel.html#Html'); ?>,
 this way bold and italic tags in HTML will work. You have to define at least the <code>regular</code>
 font variant (others are optional).
 
@@ -181,7 +181,7 @@ font variant (others are optional).
 
   <dt><p><code>size</code> (default: 20)
 
-  <dd><p>Determines the font size (<a href="https://castle-engine.io/apidoc-unstable/html/CastleFonts.TCastleFont.html#Size">TCastleFont.Size</a>),
+  <dd><p>Determines the font size (<?php api_link('TCastleFont.Size', 'CastleFonts.TCastleFont.html#Size'); ?>),
     which determines how large the font is on the screen.
 
   <dt><p><code>size_at_load</code> (default: use <code>size</code> value)
@@ -191,9 +191,9 @@ font variant (others are optional).
     but it can be set to something larger to improve the quality of the font.
     This is useful if in your game you will often use this font
     with other sizes.
-    (E.g. your controls leave <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleUserInterfaceFont.html#CustomFont">TCastleUserInterfaceFont.CustomFont</a> = nil,
-    but often use large <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleUserInterfaceFont.html#FontSize">TCastleUserInterfaceFont.FontSize</a> or
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleUserInterfaceFont.html#FontScale">TCastleUserInterfaceFont.FontScale</a>).
+    (E.g. your controls leave <?php api_link('TCastleUserInterfaceFont.CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?> = nil,
+    but often use large <?php api_link('TCastleUserInterfaceFont.FontSize', 'CastleControls.TCastleUserInterfaceFont.html#FontSize'); ?> or
+    <?php api_link('TCastleUserInterfaceFont.FontScale', 'CastleControls.TCastleUserInterfaceFont.html#FontScale'); ?>).
 
     <p>This attribute is used only when the list <code>sizes_at_load</code> is not defined
     (see below).
@@ -266,7 +266,7 @@ font variant (others are optional).
 
 <?php echo $toc->html_section(); ?>
 
-<p>When loading settings (at <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TUIContainer.html#LoadSettings">LoadSettings call</a>),
+<p>When loading settings (at <?php api_link('LoadSettings call', 'CastleUIControls.TUIContainer.html#LoadSettings'); ?>),
 we can load and keep in cache some resources.
 
 <p>It is most useful to cache large images (used in UI or referenced

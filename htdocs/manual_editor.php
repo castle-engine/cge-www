@@ -33,28 +33,28 @@ allows to:
   <li><p><b>Design user interfaces and 3D/2D transformation hierarchies</b>.
 
     <p>A <i>design</i> is a hierarchy of components descending from
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html">TCastleUserInterface</a>
+    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
     (for user interfaces)
     or
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a>
+    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
     (for 3D and 2D worlds).
     Each design is saved into a file with extension <code>.castle-user-interface</code>
     or <code>.castle-transform</code>
     and can be loaded at any point in your game using
     the
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleComponentSerialize.html#UserInterfaceLoad">UserInterfaceLoad</a>
+    <?php api_link('UserInterfaceLoad', 'CastleComponentSerialize.html#UserInterfaceLoad'); ?>
     or
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleComponentSerialize.html#TransformLoad">TransformLoad</a>
+    <?php api_link('TransformLoad', 'CastleComponentSerialize.html#TransformLoad'); ?>
     functions.
     E.g. <code>UserInterfaceLoad('castle-data:/my-ui.castle-user-interface')</code>.
 
     <p>You can also use
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleComponentSerialize.TSerializedComponent.html">TSerializedComponent</a>
+    <?php api_link('TSerializedComponent', 'CastleComponentSerialize.TSerializedComponent.html'); ?>
     class to efficiently load a design once, and instantiate it many times.
     There is also
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#InsertUserInterface">TUIState.InsertUserInterface</a>,
+    <?php api_link('TUIState.InsertUserInterface', 'CastleUIState.TUIState.html#InsertUserInterface'); ?>,
     comfortable to insert UI into
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html">TUIState</a>
+    <?php api_link('TUIState', 'CastleUIState.TUIState.html'); ?>
     (which is typically used like a form in Lazarus/Delphi: each TUIState
     represents a functional user interface).
 
