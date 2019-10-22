@@ -141,7 +141,10 @@ global $castle_apidoc_url;
 if (CASTLE_ENVIRONMENT == 'development') {
   $castle_apidoc_url = 'https://castle-engine.io/apidoc-unstable/html/';
 } else {
-  $castle_apidoc_url = page_url('apidoc/html/');
+  // $castle_apidoc_url = page_url('apidoc/html/');
+  /* TODO: For now we lead to unstable API docs by default,
+     since we encourage CGE 6.5 throughout the docs now. */
+  $castle_apidoc_url = page_url('apidoc-unstable/html/');
 }
 
 global $site_title;
