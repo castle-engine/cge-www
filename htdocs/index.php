@@ -11,6 +11,81 @@ $main_page = true;
 global $disqus_form_already_done;
 $disqus_form_already_done = true;
 
+if (!HTML_VALIDATION &&
+  (CASTLE_ENVIRONMENT == 'production' ||
+   CASTLE_ENVIRONMENT == 'development'))
+{
+    /* Load Wordpress PHP now
+       (in global namespace, just like wp-blog-header.php does) */
+    if (!isset($wp_did_header)) {
+        chdir('wp');
+        //require_once 'index.php';
+        $wp_did_header = true;
+        // Load the WordPress library.
+        require_once('wp-load.php');
+        chdir('..');
+    }
+
+    function castle_wp_post_tile($post)
+    {
+        if (has_post_thumbnail($post)) {
+            $image = get_the_post_thumbnail($post, 'news-teaser');
+        } else {
+            $image = '';
+        }
+        $title = '<p class="news_title_wrapper">' .
+            '<span class="news_title">' .
+            esc_html($post->post_title) .
+            '</span>' .
+            '</p>';
+        $date = '<p class="news_date_wrapper">' .
+            '<span class="news_date">' .
+            get_the_date('F j, Y', $post->ID) .
+            '</span>' .
+            '</p>';
+        return '<a href="' . get_permalink($post) . '">' .
+            $image . $title . $date . '</a>';
+    }
+
+    function echo_news()
+    {
+        $posts = get_posts(array(
+            'numberposts' => 4,
+            'post_type' => 'post',
+            'post_status' => 'publish',
+        ));
+
+        echo '<div class="news-row-wrapper">';
+            echo '<div class="row-title">LATEST NEWS:</div>';
+            echo '<div class="row">';
+
+            //global $post;
+            foreach ($posts as $current_post) {
+                /* Set our current post as the post used with functions
+                   that work inside "The Loop" of Wordpress.
+                   See https://digwp.com/2011/05/loops/
+                   https://codex.wordpress.org/Function_Reference/setup_postdata
+                   Alternative https://developer.wordpress.org/reference/functions/query_posts/
+                   is not adviced.
+                   And I need to use some functions that only work inside "The Loop".
+                   Later: after all, I did not use any functions
+                   that only work inside "The Loop",
+                   so this is commented out -- better to not touch global vars
+                   if you can.
+                */
+                // $post = $current_post;
+                // setup_postdata($post);
+
+                echo '<div class="col-sm-3">';
+                    echo castle_wp_post_tile($current_post);
+                echo '</div>';
+            }
+
+            echo '</div>';
+        echo '</div>';
+    }
+}
+
 castle_header('Download', array(
   'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including X3D, glTF, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
 ));
@@ -95,79 +170,7 @@ castle_header('Download', array(
 </div>
 
 <?php
-if (!HTML_VALIDATION &&
-  (CASTLE_ENVIRONMENT == 'production' ||
-   CASTLE_ENVIRONMENT == 'development'))
-{
-    /* Load Wordpress PHP now
-       (in global namespace, just like wp-blog-header.php does) */
-    if (!isset($wp_did_header)) {
-        chdir('wp');
-        //require_once 'index.php';
-        $wp_did_header = true;
-        // Load the WordPress library.
-        require_once('wp-load.php');
-        chdir('..');
-    }
-
-    function castle_wp_post_tile($post)
-    {
-        if (has_post_thumbnail($post)) {
-            $image = get_the_post_thumbnail($post, 'news-teaser');
-        } else {
-            $image = '';
-        }
-        $title = '<p class="news_title_wrapper">' .
-            '<span class="news_title">' .
-            esc_html($post->post_title) .
-            '</span>' .
-            '</p>';
-        $date = '<p class="news_date_wrapper">' .
-            '<span class="news_date">' .
-            get_the_date('F j, Y', $post->ID) .
-            '</span>' .
-            '</p>';
-        return '<a href="' . get_permalink($post) . '">' .
-            $image . $title . $date . '</a>';
-    }
-
-    function echo_news()
-    {
-        $posts = get_posts(array(
-            'numberposts' => 4,
-            'post_type' => 'post',
-            'post_status' => 'publish',
-        ));
-
-        echo '<div class="news-row-wrapper">';
-            echo '<div class="row-title">LATEST NEWS:</div>';
-            echo '<div class="row">';
-
-            //global $post;
-            foreach ($posts as $current_post) {
-                /* Set our current post as the post used with functions
-                   that work inside "The Loop" of Wordpress.
-                   See https://digwp.com/2011/05/loops/
-                   https://codex.wordpress.org/Function_Reference/setup_postdata
-                   Alternative https://developer.wordpress.org/reference/functions/query_posts/
-                   is not adviced.
-                   And I need to use some functions that only work inside "The Loop".
-                   Later: after all, I did not use any functions
-                   that only work inside "The Loop",
-                   so this is commented out -- better to not touch global vars
-                   if you can.
-                */
-                // $post = $current_post;
-                // setup_postdata($post);
-
-                echo '<div class="col-sm-3">';
-                    echo castle_wp_post_tile($current_post);
-                echo '</div>';
-            }
-
-            echo '</div>';
-        echo '</div>';
-    }
+if (isset($wp_did_header)) {
     echo_news();
 }
 ?>
