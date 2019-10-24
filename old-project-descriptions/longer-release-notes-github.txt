@@ -1,0 +1,10 @@
+This info was on
+https://github.com/castle-engine/castle-engine/releases/edit/snapshot
+
+Title:
+Snapshot (unstable) release of Castle Game Engine
+
+Description:
+This is a "snapshot" release, automatically updated after every Castle Game Engine commit (if it passes some automatic tests). In practice, it is very stable, and [some people](https://cat-astrophe-games.com/) even use it in "production" to develop games.
+
+This snapshot release contains all the latest cool stuff described on [Castle Game Engine News](https://castle-engine.io/wp/). 
