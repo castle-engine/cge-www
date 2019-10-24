@@ -30,10 +30,12 @@ castle_header('Download', array(
 
         <div class="centered-download-wrapper">
             <div class="download jumbotron">
-                <?php echo castle_download_button('<span class="glyphicon glyphicon-fire" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.5 - Next Release Beta<br>(Recommended)</p>',
+                <?php echo castle_download_button('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">Version 6.5 (Snapshot)</p>',
                   CGE_LATEST_UNSTABLE_DOWNLOAD); ?>
-                <?php echo castle_download_button('<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.4 - Stable Release<br>&nbsp;</p>',
-                  CGE_LATEST_STABLE_DOWNLOAD); ?>
+                <?php /*
+                  echo castle_download_button('<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.4 - Stable Release<br>&nbsp;</p>',
+                  CGE_LATEST_STABLE_DOWNLOAD);
+                  */ ?>
 
                 <div class="download-hints">
                     <p>After downloading, read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>
