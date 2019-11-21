@@ -60,7 +60,8 @@ looking like this:</p>
  for detailed specification about sound XML files.
 See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'); ?> docs
  and <code>examples/fps_game/</code> for example.
-You have to initialize the sound repository inside your game code like this:</p>
+You have to initialize the sound repository by assigning to
+ <?php api_link('SoundEngine.RepositoryURL', 'CastleSoundEngine.TRepoSoundEngine.html#RepositoryURL'); ?>, like this:</p>
 
 <?php echo pascal_highlight(
 'SoundEngine.RepositoryURL := ApplicationData(\'sounds/index.xml\');'); ?>

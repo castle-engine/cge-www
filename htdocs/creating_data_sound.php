@@ -1,77 +1,160 @@
 <?php
 require_once 'castle_engine_functions.php';
 creating_data_header('Sound');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Sample sounds XML file', 'sample'),
+    new TocItem('Sound groups and aliases', 'groups_aliases'),
+    new TocItem('Advises about creating sound files', 'advises'),
+  )
+);
 ?>
 
-<p>Below is a sample sound configuration,
-with links to documentation for every attribute.
-See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
- for information how to initialize sound repository from such XML configuration.
-</p>
+<?php echo $toc->html_toc(); ?>
+
+<p>You can use an XML file to configure "named sounds" in your game.
+Such XML file can be set as
+<?php api_link('SoundEngine.RepositoryURL', 'CastleSoundEngine.TRepoSoundEngine.html#RepositoryURL'); ?>
+ (see <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
+ for more information how to use sound from code).
+
+<?php echo $toc->html_section(); ?>
+
+<p>In the simplest case, the sounds XML file is just a list of <code>&lt;sound&gt;</code>
+elements. Here's an example:
 
 <?php echo xml_highlight(
 '<?xml version="1.0"?>
 
 <sounds>
-  <!--
-    Contains a list of <sound> elements.
-    Only the "name" attribute is required, and all names must be unique.
-    The sound URL (filename) by default
-    (if you don\'t specify other URL explicitly) is determined like this:
-    - In CGE <= 6.4: <name>.wav
-    - In CGE >= 6.5:
-      <name>.ogg, or
-      <name>.wav (whichever is found first), or
-      none (this causes a warning).
-  -->
-
   <sound
-    [[CastleSoundEngine.TSoundInfo.html#Name|name]]="player_sudden_pain"
-    [[CastleSoundEngine.TSoundInfo.html#URL|url]]=""
-    [[CastleSoundEngine.TSoundInfo.html#DefaultImportance|default_importance]]="max"
-    [[CastleSoundEngine.TSoundInfo.html#Gain|gain]]="1.0"
-    [[CastleSoundEngine.TSoundInfo.html#MinGain|min_gain]]="0.0"
-    [[CastleSoundEngine.TSoundInfo.html#MaxGain|max_gain]]="1.0"
-    [[https://castle-engine.io/wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/|stream]]="false" />
+    name="player_sudden_pain"
+    url=""
+    default_importance="max"
+    gain="1.0"
+    min_gain="0.0"
+    max_gain="1.0"
+    stream="false" />
 
   <!-- And more <sound> elements... -->
   <sound name="test_sound_1" />
   <sound name="test_sound_2" />
   <sound name="test_sound_3" />
+</sounds>'); ?>
 
-  <!--
-    (Since CGE >= 6.5):
+<p>Each <code>&lt;sound&gt;</code> can have the following attributes:
 
-    Sound group is like a directory of sound files.
-    Sounds within a group named "fight" must be played using a qualified
-    name like "fight/drum_beat".
-    This way sound names must only be unique within their group.
+<ul>
+  <li><code>name</code> (the only require attribute; string).
 
-    Sound group can also (optionally) correspond to an actual subdirectory
-    of sound files, if it has a subdirectory attribute.
-    In this case, all the sounds inside are searched within that subdirectory.
-    For example <sound> with name drum_beat is by default opened from
-    "drum_beat.wav". But if it\'s in a group with subdirectory="fight",
-    then it\'s actually opened from "fight/drum_beat.wav".
+    <p>This is a unique sound name.
 
-    You can make groups within groups (just like directories in directories).
-  -->
+  <li><code>url</code>
+
+    <p>The URL (can be just a simple filename)
+    from which to load sound data.
+
+    <p>If you don't specify it, we will guess URL looking at <code>name</code>
+    and appending various extensions.
+    Right now we will try looking for <code>&lt;name&gt;.ogg</code>
+    and then <code>&lt;name&gt;.wav</code>.
+
+  <li><code>default_importance</code> (integer)
+
+    <p>How important the sound is. Influences what happens when we have a lot
+    of sounds playing at once.
+
+  <li><code>gain</code> (float, in range 0..infinity)
+
+    <p>Volume. How loud the sound is.
+
+    <p>Use this to indicate that
+    e.g. a plane engine is louder than a mouse squeak (when heard
+    from the same distance).
+
+    <p>Note: Do <i>not</i> make the actual sound data (in wav, ogg and such files)
+    louder/more silent for this purpose.
+    This is usually bad for sound quality. Instead, keep your sound data
+    at max loudness (normalized), and use this <code>gain</code> property
+    to scale sound.
+
+    <p>It can be anything from 0 to +infinity. The default is 1.
+    Note that values &gt; 1 are allowed,
+    but some sound backends (like OpenAL) may clip the resulting sound volume (after all
+    spatial calculations are be done) to 1.0.
+
+  <li><code>min_gain</code> (float, in range 0..1)
+
+    <p>Force a minimum sound loudness, despite what volume would be calculated
+    by the spatialization.
+    This can be used to force sound to be audible, even when it's far away from
+    the listener.
+
+    <p>It must be in [0, 1] range. By default it is 0.
+
+  <li><code>max_gain</code> (float, in range 0..1)
+
+    <p>Force a maximum sound loudness, despite what volume would be calculated
+    by the spatialization.
+    This can be used to limit sound volume,
+    regardless of the distance attenuation calculation.
+
+    <p>It must be in [0, 1] range. By default it is 1.
+
+  <li><code>stream</code> (boolean)
+
+    <p>Play sound using <i>streaming</i>.
+    This means that the sound is gradually decompressed in memory,
+    which means that loading time is much smaller, although there may be a small
+    overhead on CPU during playback.
+    This is usually a good idea for longer sounds,
+    e.g. music tracks.
+    See <a href="https://castle-engine.io/wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/">news post about streaming</a>
+    for more details.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can arrange sounds in <b>groups</b> using the <code>&lt;group&gt;</code> element.
+Sound <i>group</i> is like a directory of sound files.
+Sounds within a group named <code>"fight"</code> must be played using a qualified
+name like <code>"fight/drum_beat"</code>.
+This way sound names must only be unique within their group.
+
+<p>Sound group can also (optionally) correspond to an actual subdirectory
+of sound files, if it has a <code>subdirectory</code> attribute.
+In this case, all the sounds inside are searched within that subdirectory.
+For example <code>&lt;sound&gt;</code> with name <code>drum_beat</code>
+is by default opened from file
+<code>drum_beat.wav</code>. But if it's in a group <code>&lt;group subdirectory="fight"&gt;</code>,
+then it's actually opened from filename <code>fight/drum_beat.wav</code>.
+
+<p>You can make groups within groups (just like directories in directories).
+
+<p>We also support <b>aliases</b>.
+Alias allows to define a sound name that refers to another <code>&lt;sound&gt;</code> or <code>&lt;alias&gt;</code>.
+Moreover, an alias may have more than one target,
+which means that actual sound will be randomly chosen from the available options
+each time you play this alias.
+
+<p>Note that <code>&lt;alias&gt;</code> may be placed within a <code>&lt;group&gt;</code> too.
+Both alias names, and target names, are automatically qualified by the group name.
+
+<p>Here's an example:
+
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
+<sounds>
+  <sound name="test_sound_1" />
+  <sound name="test_sound_2" />
+  <sound name="test_sound_3" />
+
   <group name="fight" subdirectory="fight">
     <sound name="drum_beat" />
     <sound name="drum_ending" />
   </group>
 
-  <!--
-    (Since CGE >= 6.5):
-
-    Alias allows to define a sound name that refers to another <sound> or <alias>.
-    Moreover, an alias may have more than one target,
-    which means that actual sound will be randomly chosen from the available options
-    each time you play this alias.
-
-    Note that <alias> may be placed within a <group> too.
-    Both alias names, and target names, are automatically qualified by the group name.
-  -->
   <alias name="alternative_name_for_test_sound_1">
     <target name="test_sound_1" />
   </alias>
@@ -87,7 +170,7 @@ See <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
   </alias>
 </sounds>'); ?>
 
-<h2>Some notes about sound files</h2>
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>Right now we support OggVorbis and (uncompressed) WAV files.
