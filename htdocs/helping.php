@@ -33,16 +33,25 @@ $toc = new TableOfContents(
   <!--li>First of all, don't hesitate to post questions and suggestions
     about anything to our <a href="<?php echo FORUM_URL; ?>">forum</a>.-->
   <!--?php echo a_href_page('Donate', 'donate'); ?-->
+
+  <?php /*
+  Delayed for now,
+  we had a page on Wikipedia but it was deleted due to low notability,
+  https://en.wikipedia.org/wiki/Wikipedia:Articles_for_deletion/Castle_Game_Engine .
+  I accept this -- we need to be a more popular engine before retrying it.
+
   <li>Create a page on <a href="http://en.wikipedia.org/">Wikipedia</a> about our
-    <?php echo a_href_page('Castle Game Engine', 'index'); ?> and / or
-    <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+    < ?php echo a_href_page('Castle Game Engine', 'index'); ? > and / or
+    < ?php echo a_href_page('view3dscene', 'view3dscene'); ? >.
     <!--
     Or maybe only about the engine, and just redirect view3dscene there?
     I don't want to create and add it myself, it would not be fair.
     So this task waits for willing user (you! :) to do it.
     Of course you will get help (you can ask, post your draft etc.
-    on our <a href="<?php echo FORUM_URL; ?>">forum</a> and such).
+    on our <a href="< ?php echo FORUM_URL; ? >">forum</a> and such).
     -->
+  */ ?>
+
   <li>Talk about our engine on blogs and social platforms :)
 </ul>
 
