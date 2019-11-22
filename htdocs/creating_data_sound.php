@@ -73,13 +73,19 @@ elements. Here's an example:
     <p>You can use any number (from 0 to MaxInt = 2147483647), or a name:
 
     <ul>
-      <li><p><code>max</code>, equal to <?php api_link('MaxSoundImportance', 'CastleSoundEngine.html#MaxSoundImportance'); ?>
-      <li><p><code>level_event</code>, equal to <?php api_link('LevelEventSoundImportance', 'CastleSoundEngine.html#LevelEventSoundImportance'); ?>
-      <li><p><code>player</code>, equal to <?php api_link('PlayerSoundImportance', 'CastleSoundEngine.html#PlayerSoundImportance'); ?>
-      <li><p><code>default_creature</code>, equal to <?php api_link('DefaultCreatureSoundImportance', 'CastleSoundEngine.html#DefaultCreatureSoundImportance'); ?>
-      <li><p><code>minor_non_spatial</code>, equal to <?php api_link('MinorNonSpatialSoundImportance', 'CastleSoundEngine.html#MinorNonSpatialSoundImportance'); ?>
-      <li><p><code>default</code>, equal to <?php api_link('DefaultSoundImportance', 'CastleSoundEngine.html#DefaultSoundImportance'); ?>
+      <li><p><code>max</code>, equal to <?php api_link('MaxSoundImportance', 'CastleSoundEngine.html#MaxSoundImportance'); ?> = MaxInt = 2147483647
+      <li><p><code>level_event</code>, equal to <?php api_link('LevelEventSoundImportance', 'CastleSoundEngine.html#LevelEventSoundImportance'); ?> = 100000
+      <li><p><code>player</code>, equal to <?php api_link('PlayerSoundImportance', 'CastleSoundEngine.html#PlayerSoundImportance'); ?> = 10000
+      <li><p><code>default_creature</code>, equal to <?php api_link('DefaultCreatureSoundImportance', 'CastleSoundEngine.html#DefaultCreatureSoundImportance'); ?> = 1000
+      <li><p><code>minor_non_spatial</code>, equal to <?php api_link('MinorNonSpatialSoundImportance', 'CastleSoundEngine.html#MinorNonSpatialSoundImportance'); ?> = 100
+      <li><p><code>default</code>, equal to <?php api_link('DefaultSoundImportance', 'CastleSoundEngine.html#DefaultSoundImportance'); ?> = 10
     </ul>
+
+    <p>By default it is <code>default</code>.
+    So the sounds without <code>default_importance</code> attribute specified
+    are not very important:
+    all other importance names (like <code>level_event</code>), and all numbers &gt; 10,
+    are more important.
 
   <li><p><code>gain</code> (float, in range 0..infinity)
 
