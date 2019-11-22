@@ -31,7 +31,7 @@ elements. Here's an example:
   <sound
     name="player_sudden_pain"
     url=""
-    default_importance="max"
+    default_importance="default"
     gain="1.0"
     min_gain="0.0"
     max_gain="1.0"
@@ -63,9 +63,25 @@ elements. Here's an example:
   <li><code>default_importance</code> (integer)
 
     <p>How important the sound is. Influences what happens when we have a lot
-    of sounds playing at once.
+    of sounds playing at once, and we need to stop some of them
+    (we cannot have too many sounds playing at once,
+    as then the cost of mixing would be significant,
+    and human user cannot distinguish too many simultaneous sounds anyway).
+    Larger importance increases the chance that the sound
+    will keep playing.
 
-  <li><code>gain</code> (float, in range 0..infinity)
+    <p>You can use any number (from 0 to MaxInt = 2147483647), or a name:
+
+    <ul>
+      <li><p><code>max</code>, equal to <?php api_link('MaxSoundImportance', 'CastleSoundEngine.html#MaxSoundImportance'); ?>
+      <li><p><code>level_event</code>, equal to <?php api_link('LevelEventSoundImportance', 'CastleSoundEngine.html#LevelEventSoundImportance'); ?>
+      <li><p><code>player</code>, equal to <?php api_link('PlayerSoundImportance', 'CastleSoundEngine.html#PlayerSoundImportance'); ?>
+      <li><p><code>default_creature</code>, equal to <?php api_link('DefaultCreatureSoundImportance', 'CastleSoundEngine.html#DefaultCreatureSoundImportance'); ?>
+      <li><p><code>minor_non_spatial</code>, equal to <?php api_link('MinorNonSpatialSoundImportance', 'CastleSoundEngine.html#MinorNonSpatialSoundImportance'); ?>
+      <li><p><code>default</code>, equal to <?php api_link('DefaultSoundImportance', 'CastleSoundEngine.html#DefaultSoundImportance'); ?>
+    </ul>
+
+  <li><p><code>gain</code> (float, in range 0..infinity)
 
     <p>Volume. How loud the sound is.
 
