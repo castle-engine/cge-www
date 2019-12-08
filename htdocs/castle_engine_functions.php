@@ -258,8 +258,9 @@ $castle_sitemap = array(
             )
           ),
           'manual_2d_games' => array('title' => 'Two approaches for rendering 2D Games (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/2D-Games'),
-          'manual_high_level_3d_classes' => array('title' => 'High-level classes for games',
+          'manual_high_level_3d_classes' => array('title' => 'Utilities for typical 3D games',
             'sub' => array(
+              'manual_3d_utlities_overview' => array('title' => 'Overview'),
               'manual_game_level' => array('title' => 'Loading game level'),
               'manual_player' => array('title' => 'Player'),
               'manual_resources' => array('title' => 'Defining creatures and items'),

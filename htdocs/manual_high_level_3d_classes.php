@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('High-level classes for games');
+manual_header('Utilities for typical 3D games');
 ?>
 
 <p>Contents:
