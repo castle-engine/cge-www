@@ -8,34 +8,40 @@ manual_header('Logging');
  to have logging enabled.
 
 <ul>
-  <li><p><i>On Unix (Linux, Mac OS X...), and on Windows console applications</i>,
-    logging by default goes to the <i>standard error output</i>.
-    This is called <code>StdErr</code>, also known as <code>ErrOutput</code> in Pascal.
+  <li><p><i>On Unix (Linux, macOS...), and on Windows console applications</i>,
+    logging by default goes to the <i>standard output</i>.
     This is the standard behaviour for Unix and console apps.
+
+    <p>Users can redirect it by running the application from
+    the command-line like <code>my_game &gt; log_file.log</code>.
     The nice thing about it is that it avoids users asking questions <i>"where is the log
-    file"</i> &mdash; because they choose the name and location of the log file themselves.
+    file"</i>.
 
   <li><p><i>On Windows GUI applications</i>
-    <!-- the standard error is (usually) not available, so -->
-    we log to the file <code>xxx.log</code> in the current directory
-    (where <code>xxx</code> is your <code>ApplicationName</code>).
+    we log to the file in the user config directory.
+    The file name looks like
+    <code>C:\Users\&lt;user-name&gt;\AppData\Local\&lt;application-name&gt;\&lt;application-name&gt;.log</code>.
 
-  <li><p><i>On Windows GUI libraries (like NPAPI plugins)</i>
-    <!-- the standard error is (usually) not available, so -->
-    we log to the file <code>xxx.log</code> in the user's private directory
-    (where <code>xxx</code> is your <code>ApplicationName</code>).
-    <i>User's private directory</i> is determined by standard FPC functions,
-    that in turn use standard Windows functions,
-    it's something like
-    <code>c:/Documents and Settings/USERNAME/Local settings/Application Data/xxx/xxx.log</code> or
-    <code>c:/Users/USERNAME/AppData/Local/xxx/xxx.log</code> depending on your Windows version.
+    <p>The exact logic to determine the <i>user config directory</i> follows FPC
+    <code>GetAppConfigDir</code>, which in turn asks the Windows API function,
+    so it may be a little different from system to system.
+
+    <p>You can display the <code>LogOutput</code> value to show user on screen
+    where it the log file.
 
   <li><p><i>On Android</i> it goes to the standard device log.
     It that can be viewed using various Android tools,
     like <code>adb logcat</code>.
 
+  <li><p><i>On iOS, Nintendo Switch</i> it goes to the standard log facility for these devices.
+
   <li><p>You can pass a parameter to <code>InitializeLog</code>
     to generate log to any stream.
+
+    <p>You can also set <code>LogFileName</code> before calling the <code>InitializeLog</code>.
+
+    <p>User can also call the application with <code>--log-file=c:/tmp/my_log_name.txt</code> command-line
+    option to set the location (and filename) explicitly.
 </ul>
 
 <p>A lot of engine components automatically use this log.
