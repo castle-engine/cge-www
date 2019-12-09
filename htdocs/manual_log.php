@@ -11,21 +11,12 @@ manual_header('Logging');
 Call <?php api_link('WritelnLog', 'CastleLog.html#WritelnLog'); ?>
  or <?php api_link('WritelnWarning', 'CastleLog.html#WritelnWarning'); ?> to log stuff.
 
-<p>Some engine components also automatically use this log.
-Initializing the OpenGL context automatically logs the OpenGL and GPU features detected.
+<p>Some engine functions also automatically write to this log.
+For example, initializing the OpenGL context logs the OpenGL and GPU features detected.
 
-<p>To summarize:
+<p>An example:
 
-<?php echo pascal_highlight(
-'uses ..., CastleLog;
-
-... // place this in your initialization:
-InitializeLog;
-
-... // then use this wherever you want:
-WritelnLog(\'My Log Message\');
-WritelnLog(\'My Category\', \'My Log Message\');
-WritelnWarning(\'My Warning\');'); ?>
+<?php echo pascal_highlight_file('code-samples/logging.lpr'); ?>
 
 <p><code>'My Category'</code> is useful to easily spot your messages later. There are
 no hard rules about it, you're free to just invent your own category names here,
