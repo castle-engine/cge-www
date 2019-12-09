@@ -3,11 +3,40 @@ require_once 'castle_engine_functions.php';
 manual_header('Logging');
 ?>
 
-<p>Simply use <?php api_link('CastleLog', 'CastleLog.html'); ?> unit and call
+<h2>Usage</h2>
+
+<p>Use <?php api_link('CastleLog', 'CastleLog.html'); ?> unit and call
 <?php api_link('InitializeLog', 'CastleLog.html#InitializeLog'); ?>
  to have logging enabled.
+Call <?php api_link('WritelnLog', 'CastleLog.html#WritelnLog'); ?>
+ or <?php api_link('WritelnWarning', 'CastleLog.html#WritelnWarning'); ?> to log stuff.
+
+<p>Some engine components also automatically use this log.
+Initializing the OpenGL context automatically logs the OpenGL and GPU features detected.
+
+<p>To summarize:
+
+<?php echo pascal_highlight(
+'uses ..., CastleLog;
+
+... // place this in your initialization:
+InitializeLog;
+
+... // then use this wherever you want:
+WritelnLog(\'My Log Message\');
+WritelnLog(\'My Category\', \'My Log Message\');
+WritelnWarning(\'My Warning\');'); ?>
+
+<p><code>'My Category'</code> is useful to easily spot your messages later. There are
+no hard rules about it, you're free to just invent your own category names here,
+whatever works for you.
+
+<h2>Where is the log stored?</h2>
 
 <ul>
+  <li><p>When running from <a href="manual_editor.php">CGE editor</a>, the log is displayed
+    in the bottom editor panel.
+
   <li><p><i>On Unix (Linux, macOS...), and on Windows console applications</i>,
     logging by default goes to the <i>standard output</i>.
     This is the standard behaviour for Unix and console apps.
@@ -27,9 +56,9 @@ manual_header('Logging');
     so it may be a little different from system to system.
 
     <p>You can display the <code>LogOutput</code> value to show user on screen
-    where it the log file.
+    where is the log file.
 
-  <li><p><i>On Android</i> it goes to the standard device log.
+  <li><p><i>On Android</i> the log goes to the standard device log.
     It that can be viewed using various Android tools,
     like <code>adb logcat</code>.
 
@@ -38,34 +67,15 @@ manual_header('Logging');
   <li><p>You can pass a parameter to <code>InitializeLog</code>
     to generate log to any stream.
 
-    <p>You can also set <code>LogFileName</code> before calling the <code>InitializeLog</code>.
+    <p>You can also set <code>LogFileName</code> variable before calling the <code>InitializeLog</code>.
+    This way you force using specific filename for logging,
+    overriding the OS-specific auto-detection mechanism described above.
 
     <p>User can also call the application with <code>--log-file=c:/tmp/my_log_name.txt</code> command-line
     option to set the location (and filename) explicitly.
+    In fact, this way user sets the <code>LogFileName</code> variable.
+    It will work if you call in your main program file <code>Application.ParseStandardParameters;</code>.
 </ul>
-
-<p>A lot of engine components automatically use this log.
-To use it yourself, just call
-<?php api_link('WritelnLog', 'CastleLog.html#WritelnLog'); ?>
- (or one of it's friends, see
-<?php api_link('CastleLog', 'CastleLog.html'); ?> unit).
-
-<p>To summarize:
-
-<?php echo pascal_highlight(
-'uses ..., CastleLog;
-
-... // place this in your initialization:
-InitializeLog;
-
-... // then use this wherever you want:
-WritelnLog(\'My Log Message\');
-WritelnLog(\'My Category\', \'My Log Message\');
-WritelnWarning(\'My Warning\');'); ?>
-
-<p><code>'My Category'</code> is useful to easily spot your messages later. There are
-no hard rules about it, you're free to just invent your own category names here,
-whatever works for you.
 
 <?php
 manual_footer();
