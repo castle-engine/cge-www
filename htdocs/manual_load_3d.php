@@ -6,7 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Get sample 3D model', 'model'),
     new TocItem('Write the code!', 'code'),
-    new TocItem('Set the camera', 'camera'),
+    new TocItem('Set the camera and navigation', 'camera'),
     new TocItem('Explanation: What is a "Scene Manager"', 'create'),
     new TocItem('Try some impressive 3D models', 'demo_models'),
   )
@@ -131,7 +131,7 @@ Window.SceneManager.Camera.SetView(
     or by setting the camera in Blender before exporting this X3D file.
 </ol>
 
-<p>To can also control the camera navigation (how does the camera change based on input):
+<p>To can also control the <i>navigation</i> ("how does the camera change based on input"):
 
 <ol>
   <li><p>You can assign a specific TCastleNavigation descendant to
@@ -141,20 +141,22 @@ Window.SceneManager.Camera.SetView(
     the navigation instance is automatically created before rendering.
 
   <li><p>You can use
-    <?php api_link('SceneManager.WalkCamera',
-    'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
-     <?php api_link('SceneManager.ExamineCamera',
-    'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
-    to request given navigation class.
+    <?php api_link('SceneManager.WalkNavigation',
+    'CastleSceneManager.TCastleAbstractViewport.html#WalkNavigation'); ?>,
+     <?php api_link('SceneManager.ExamineNavigation',
+    'CastleSceneManager.TCastleAbstractViewport.html#ExamineNavigation'); ?>
+    to request given navigation class and assign it to
+    <?php api_link('SceneManager.Navigation',
+    'CastleSceneManager.TCastleAbstractViewport.html#Navigation'); ?>.
 
   <li><p>You can change the navigation type by setting
     <?php api_link('SceneManager.NavigationType',
     'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
 
-  <li><p>You can change the <?php api_link('SceneManager.Camera.Input',
-    'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
+  <li><p>You can change the <?php api_link('SceneManager.Navigation.Input',
+    'CastleCameras.TCastleNavigation.html#Input'); ?> to disable some default navigation
     key and mouse operations. For example, you can call
-    <code>Window.SceneManager.WalkCamera.Input := [];</code>
+    <code>Window.SceneManager.WalkNavigation.Input := [];</code>
     to disable <i>any</i> way for user to automatically control the camera,
     useful if you want to move camera only by your own code.
 
