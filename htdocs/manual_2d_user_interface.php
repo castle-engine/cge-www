@@ -206,10 +206,8 @@ The children are always drawn on top of their parent.
     not receive input (like mouse clicks). For this reason, it's best to make children actually fit
     within the parent.
 
-    <p>If you actually want to clip the children, use the
-     <?php api_link('TScissor', 'CastleGLUtils.TScissor.html'); ?>.
-    The <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>
-     implementation is a good example of how to use it properly.</p>
+    <p>If you actually want to clip the children, set the
+    <?php api_link('Clip', 'CastleUIControls.TCastleUserInterface.html#Clip'); ?> to <code>true</code>.
   </li>
 </ul>
 
