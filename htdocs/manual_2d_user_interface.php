@@ -103,7 +103,7 @@ often used controls are:
 
   <li><?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> - Rectangle filled with solid color. Good for a general-purpose background. The color may be partially transparent, in which case the content underneath is still visible.</li>
 
-  <li><?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> - General-purpose container (or ancestor) for other UI controls. Does not do or show anything by itself, but it has a configurable position and size.</li>
+  <li><?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> itself is also very useful - General-purpose container (or ancestor) for other UI controls. Does not do or show anything by itself, but it has a configurable position and size.</li>
 </ul>
 
 <p>These are just the basic UI classes. Find the <code>TCastleUserInterface</code> in our <?php api_link('class hierarchy', 'ClassHierarchy.html'); ?> diagram and look at all it's descendants to discover more:)
