@@ -6,7 +6,7 @@ var
   Player: TPlayer;
 
 type
-  TMyPlayerHUD = class(TUIControl)
+  TMyPlayerHUD = class(TCastleUserInterface)
   public
     procedure Render; override;
   end;
