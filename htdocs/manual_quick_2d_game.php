@@ -5,7 +5,7 @@ manual_header('Quick 2D game (basic window events)');
 $toc = new TableOfContents(
   array(
     new TocItem('Finished version', 'finished'),
-    new TocItem('Loading image (TGLImage class)', 'load'),
+    new TocItem('Loading image (TDrawableImage class)', 'load'),
     new TocItem('Drawing image (OnRender event)', 'draw'),
     new TocItem('Moving image (OnUpdate event)', 'update'),
     new TocItem('Reacting to user input (OnPress event)', 'press'),
@@ -25,7 +25,7 @@ echo castle_thumbs(array(
 <div class="jumbotron">
 <p><span class="label label-warning">Warning</span> This manual page uses features available only in the <b>unstable <a href="https://github.com/castle-engine/castle-engine">engine version on GitHub</a></b>. Do not read this if you use the <b>stable engine version</b> (downloaded as zip or tar.gz from our pages), or be prepared to make some modifications.
 
-<p>In particular, in the stable engine version, the <code>TGLImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="manual_player_2d_controls.php">Details are explained here</a>.
+<p>In particular, in the stable engine version, the <code>TDrawableImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="manual_player_2d_controls.php">Details are explained here</a>.
 </div>
 */ ?>
 
@@ -49,7 +49,7 @@ take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-ov
 
 <?php echo $toc->html_section(); ?>
 
-<p>Create an instance of <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>, and load an image there. <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> allows to load and display the image on screen.
+<p>Create an instance of <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>, and load an image there. <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> allows to load and display the image on screen.
 
 <ol>
   <li><p><b>If you use Lazarus form with
@@ -68,11 +68,11 @@ take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-ov
 <?php echo pascal_highlight(
 '// Also: add to your uses clause: CastleGLImages, CastleFilesUtils
 
-// Also: add to your form private section a declaration of: "Image: TGLImage"
+// Also: add to your form private section a declaration of: "Image: TDrawableImage"
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
+  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -96,7 +96,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-    Image: TGLImage;
+    Image: TDrawableImage;
   public
     { public declarations }
   end;
@@ -109,7 +109,7 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
+  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -127,9 +127,9 @@ end.'); ?>
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
   Window: TCastleWindow;
-  Image: TGLImage;
+  Image: TDrawableImage;
 begin
-  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
+  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
   try
     Window := TCastleWindow.Create(Application);
     Window.Open;
@@ -141,7 +141,7 @@ end.'); ?>
 <?php echo $toc->html_section(); ?>
 
 <p>Next we want to draw this image. To do this, we want to call
-<?php api_link('TGLImage.Draw', 'CastleGLImages.TGLImage.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
+<?php api_link('TDrawableImage.Draw', 'CastleGLImages.TDrawableImage.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
 
 <ol>
   <li><p><b>If you use Lazarus form with
@@ -166,7 +166,7 @@ end;'); ?>
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
   Window: TCastleWindow;
-  Image: TGLImage;
+  Image: TDrawableImage;
   X: Single = 0.0;
   Y: Single = 0.0;
 
@@ -176,7 +176,7 @@ begin
 end;
 
 begin
-  Image := TGLImage.Create(ApplicationData(\'my_image.png\'));
+  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
   try
     Window := TCastleWindow.Create(Application);
     Window.OnRender := @WindowRender;
@@ -309,7 +309,7 @@ end;
 <ul>
   <li><p>See the <?php echo a_href_page('manual about drawing your own 2D controls', 'manual_2d_ui_custom_drawn'); ?>. It has a nice overview of 2D drawing capabilities. You can also use the <?php echo a_href_page('standard 2D controls', 'manual_2d_user_interface'); ?> with a lot of ready functionality.
 
-    <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> (instead of simply attaching to window callbacks).
+    <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> (instead of simply attaching to window callbacks).
 
   <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it (using it's own properties, like <code>Translation</code>, or by making it a child of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) and do many other fancy stuff with it.
 

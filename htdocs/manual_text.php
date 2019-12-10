@@ -20,15 +20,15 @@ $toc = new TableOfContents(
 <p>The most comfortable way to show text is to use
  <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>.
  You can customize it's font using
- <?php api_link('CustomFont', 'CastleControls.TUIControlFont.html#CustomFont'); ?>
+ <?php api_link('CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?>
  and
- <?php api_link('FontSize', 'CastleControls.TUIControlFont.html#SmallFont'); ?>
+ <?php api_link('FontSize', 'CastleControls.TCastleUserInterfaceFont.html#SmallFont'); ?>
  properties.
 
 <p>Many UI controls (see for example unit
  <?php api_link('CastleControls', 'CastleControls.html'); ?>)
  descend from
- <?php api_link('TUIControlFont', 'CastleControls.TUIControlFont.html'); ?>,
+ <?php api_link('TCastleUserInterfaceFont', 'CastleControls.TCastleUserInterfaceFont.html'); ?>,
  and thus can render text and have their font customized, for example
  <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>.
 
@@ -54,12 +54,12 @@ So you can simply draw text like this:
 
 <p>You should place such drawing code inside a render method,
 for example inside the
- <?php api_link('OnRender event of TCastleWindowCustom',
- 'CastleWindow.TCastleWindowCustom.html#OnRender'); ?> or
- <?php api_link('OnRender event of TCastleControlCustom',
- 'CastleControl.TCastleControlCustom.html#OnRender'); ?> or
-inside the overridden <?php api_link('TUIControl.Render',
-  'CastleUIControls.TUIControl.html#Render'); ?> implementation.
+ <?php api_link('OnRender event of TCastleWindowBase',
+ 'CastleWindow.TCastleWindowBase.html#OnRender'); ?> or
+ <?php api_link('OnRender event of TCastleControlBase',
+ 'CastleControl.TCastleControlBase.html#OnRender'); ?> or
+inside the overridden <?php api_link('TCastleUserInterface.Render',
+  'CastleUIControls.TCastleUserInterface.html#Render'); ?> implementation.
 See <?php echo a_href_page('the manual about 2D drawing',
   'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
 
@@ -109,7 +109,7 @@ FreeType2 library). So you construct and load a font like this:
 
 <?php echo pascal_highlight(
 'MyNewFont := TTextureFont.Create(Application { any TComponent to act as owner });
-MyNewFont.Load(ApplicationData(\'MyFontFile.ttf\'), 20, true);'); ?>
+MyNewFont.Load(\'castle-data:/MyFontFile.ttf\', 20, true);'); ?>
 
 <p>Remember to install the FreeType2 library for this to work. On Windows,
 place appropriate FreeType2 DLL alongside the exe, you can get the DLL
@@ -203,7 +203,7 @@ begin
     Characters.Add(SimpleAsciiCharacters);
     { below is a string containing all my international chars, in UTF-8 }
     Characters.Add(\'你好世界ΓειασουκόσμεЗдравствуймир\');
-    Result := TTextureFont.Create(ApplicationData(\'MyFontFile.ttf\'), 20, true, Characters);
+    Result := TTextureFont.Create(\'castle-data:/MyFontFile.ttf\', 20, true, Characters);
   finally FreeAndNil(Characters) end;
 end;'); ?>
 

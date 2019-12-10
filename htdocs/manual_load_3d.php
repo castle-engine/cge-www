@@ -33,9 +33,8 @@ It can include animated stuff, interactions,
 in <code>examples/3d_rendering_processing/data/car.x3d</code> file.
 My advice is to copy now the whole directory <code>data</code> from there into your
 own project directory (so you have files like <code>data/car.x3d</code>).
-The name <code>data</code> is special, it cooperates with the default
-behavior of our <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
- function.
+The name <code>data</code> for a directory name is special,
+content there can be loaded using the <a href="manual_data_directory.php">castle-data:/xxx URL</a>.
 
 <p>You can also download
 <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
@@ -103,49 +102,21 @@ be obtained from this scene.</p>
 <p>To control the initial camera view:
 
 <ol>
-  <li><p>One option is to <b>control the camera by code</b>:
-    use the <?php api_link('SceneManager.RequiredCamera.SetView',
-    'CastleCameras.TCamera.html#SetView'); ?> method.
+  <li><p><b>Set the camera by code</b>:
+    use the <?php api_link('SceneManager.Camera.SetView',
+    'CastleCameras.TCastleCamera.html#SetView'); ?> method.
     This takes three vectors &mdash; position, look direction and look up vector.
     Simply add the <?php api_link('CastleVectors',
     'CastleVectors.html'); ?> unit to your uses clause,
     and call this:
 
 <?php echo pascal_highlight(
-'Window.SceneManager.RequiredCamera.SetView(
+'Window.SceneManager.AutoCamera := false; // no longer auto-detect camera view
+Window.SceneManager.Camera.SetView(
   Vector3(-7.83,  6.15, -7.55),
   Vector3( 0.47, -0.30,  0.82),
   Vector3( 0.16,  0.95,  0.25)
 );'); ?>
-
-    <p>Instead of <code>SceneManager.RequiredCamera</code> above,
-    you could use <code>SceneManager.WalkCamera</code> or
-    <code>SceneManager.ExamineCamera</code>
-    to force creating camera of the given type.
-
-    <p>You have a lot of options to control the camera from code:
-    <ul>
-      <li><p>You can assign a specific camera descendant to
-        <?php api_link('SceneManager.Camera',
-        'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>.
-        If you don't, the camera instance is automatically created when you use
-         <?php api_link('SceneManager.RequiredCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
-         <?php api_link('SceneManager.WalkCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
-         <?php api_link('SceneManager.ExamineCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
-         or anything that underneath requires a camera (e.g. rendering requires a camera).
-      <li><p>You can change the navigation type by setting
-        <?php api_link('SceneManager.NavigationType',
-        'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
-      <li><p>You can change the <?php api_link('SceneManager.Camera.Input',
-        'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
-        key and mouse operations. For example, you can call
-        <code>Window.SceneManager.WalkCamera.Input := [];</code>
-        to disable <i>any</i> way for user to automatically control the camera,
-        useful if you want to move camera only by your own code.
-    </ul>
 
   <li><p><b>You can also set camera defaults (including position/direction/up)
     in your data (X3D files), instead of hardcoding it in Pascal.</b>
@@ -158,8 +129,36 @@ be obtained from this scene.</p>
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
     <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
     or by setting the camera in Blender before exporting this X3D file.
+</ol>
 
-    <p>You can also control the initial camera type using the <code>NavigationInfo</code>
+<p>To can also control the camera navigation (how does the camera change based on input):
+
+<ol>
+  <li><p>You can assign a specific TCastleNavigation descendant to
+    <?php api_link('SceneManager.Navigation',
+    'CastleSceneManager.TCastleAbstractViewport.html#Navigation'); ?>.
+    If you don't assign it, but leave <code>AutoNavigation</code> at default <code>true</code>,
+    the navigation instance is automatically created before rendering.
+
+  <li><p>You can use
+    <?php api_link('SceneManager.WalkCamera',
+    'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
+     <?php api_link('SceneManager.ExamineCamera',
+    'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?>
+    to request given navigation class.
+
+  <li><p>You can change the navigation type by setting
+    <?php api_link('SceneManager.NavigationType',
+    'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
+
+  <li><p>You can change the <?php api_link('SceneManager.Camera.Input',
+    'CastleCameras.TCamera.html#Input'); ?> to disable some default camera
+    key and mouse operations. For example, you can call
+    <code>Window.SceneManager.WalkCamera.Input := [];</code>
+    to disable <i>any</i> way for user to automatically control the camera,
+    useful if you want to move camera only by your own code.
+
+  <li><p>You can also control the initial navigation type using the <code>NavigationInfo</code>
     X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.
 
     <p>Note that, in order for the "bindable" nodes (like <code>Viewpoint</code>,
@@ -171,18 +170,20 @@ be obtained from this scene.</p>
     You can always call explicitly <code>Viewpoint.EventSet_Bind.Send(true)</code>
     to activate (jump to) a specific Viewpoint node.
 
-    <p>The camera settings (position, direction, up, navigation type, avatar height
+    <p>The camera and navigation settings (position, direction, up, navigation type, avatar height
     and many others) set in X3D file (by nodes like <code>Viewpoint</code>,
     or <code>OrthoViewpoint</code>,
     <code>NavigationInfo</code>) serve as defaults when we create a camera instance.
     You can override them all by code, as documented above.
 
+<!-- deprecated already
   <li><p>Warning: The simple methods <code>TCastleWindow.Load</code>
     or <code>TCastleControl.Load</code> forcefully reset (free and recreate)
     the camera.
     These methods are mostly designed for the case when your 3D world
     is actually only one 3D scene (e.g. when you make a 3D model viewer).
     It's usually better to avoid these methods in more complex applications.
+-->
 </ol>
 
 <?php echo $toc->html_section(); ?>
@@ -216,8 +217,8 @@ viewports notes</a, and ).-->
 
 <p>In more advanced
 scenarios you may need to create and manage scene manager yourself.
-There are special classes available (<code>TCastleControlCustom</code> or
-<code>TCastleWindowCustom</code>) that allow you to use your own scene manager
+There are special classes available (<code>TCastleControlBase</code> or
+<code>TCastleWindowBase</code>) that allow you to use your own scene manager
 instance (or maybe zero, or maybe more than one scene manager instance,
 maybe a custom scene manager class...).
 </p>

@@ -13,13 +13,13 @@ begin
   Transform.Rotation := Vector4(1, 0, 0, -Pi/2);
 
   Scene1 := TCastleScene.Create(Application);
-  Scene1.Load(ApplicationData('monkey_z_up.x3d'));
+  Scene1.Load('castle-data:/monkey_z_up.x3d');
   Scene1.Spatial := [ssRendering, ssDynamicCollisions];
   Scene1.ProcessEvents := true;
   Scene1.Translation := Vector3(1, 1, 0);
 
   Scene2 := TCastleScene.Create(Application);
-  Scene2.Load(ApplicationData('monkey_z_up.x3d'));
+  Scene2.Load('castle-data:/monkey_z_up.x3d');
   Scene2.Spatial := [ssRendering, ssDynamicCollisions];
   Scene2.ProcessEvents := true;
   Scene2.Translation := Vector3(-1, -1, 0);

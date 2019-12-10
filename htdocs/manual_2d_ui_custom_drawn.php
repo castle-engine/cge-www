@@ -53,17 +53,17 @@ since various games have wildly different needs.
 <ol>
   <li><p>You can just place the appropriate drawing code in
     <code>OnRender</code> event
-    (see <?php api_link('TCastleWindowCustom.OnRender', 'CastleWindow.TCastleWindowCustom.html#OnRender'); ?>,
-    <?php api_link('TCastleControlCustom.OnRender', 'CastleControl.TCastleControlCustom.html#OnRender'); ?>).
+    (see <?php api_link('TCastleWindowBase.OnRender', 'CastleWindow.TCastleWindowBase.html#OnRender'); ?>,
+    <?php api_link('TCastleControlBase.OnRender', 'CastleControl.TCastleControlBase.html#OnRender'); ?>).
     This is simple to use, and works OK for simple applications.
   </li>
 
   <li><p>In the long-term, it's usually better to create your own
-    <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>
+    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
     descendant. This way you wrap the rendering
     (and possibly other processing) inside your own class.
     You can draw anything you want in the overridden
-    <?php api_link('TUIControl.Render', 'CastleUIControls.TUIControl.html#Render'); ?>
+    <?php api_link('TCastleUserInterface.Render', 'CastleUIControls.TCastleUserInterface.html#Render'); ?>
      method.</p>
    </li>
 </ol>
@@ -154,15 +154,15 @@ similar to the
 <?php echo $toc->html_section(); ?>
 
 <p>To draw an image, use the
-<?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> class.
+<?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> class.
  It has methods
- <?php api_link('Draw', 'CastleGLImages.TGLImageCore.html#Draw'); ?> and
- <?php api_link('Draw3x3', 'CastleGLImages.TGLImageCore.html#Draw3x3'); ?>
+ <?php api_link('Draw', 'CastleGLImages.TDrawableImage.html#Draw'); ?> and
+ <?php api_link('Draw3x3', 'CastleGLImages.TDrawableImage.html#Draw3x3'); ?>
  to draw the image, intelligently stretching it,
  optionally preserving unstretched corners.
 
 <p>Here's a simple example of
-<?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?> usage
+<?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> usage
 to display a hero's face. You can use an image below,
 if you're old enough to recognize it:)
 (<a href="http://doom.wikia.com/wiki/File:Doomfaces.png">Source</a>.)
@@ -173,9 +173,9 @@ if you're old enough to recognize it:)
 'uses ..., Classes, CastleFilesUtils, CastleGLImages;
 
 type
-  TMyPlayerHUD = class(TUIControl)
+  TMyPlayerHUD = class(TCastleUserInterface)
   private
-    FMyImage: TGLImage;
+    FMyImage: TDrawableImage;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -185,7 +185,7 @@ type
 constructor TMyPlayerHUD.Create(AOwner: TComponent);
 begin
   inherited;
-  FMyImage := TGLImage.Create(ApplicationData(\'face.png\'));
+  FMyImage := TDrawableImage.Create(\'castle-data:/face.png\');
 end;
 
 destructor TMyPlayerHUD.Destroy;
@@ -232,7 +232,7 @@ and see the <code>examples/fps_game/data/item_medkit/</code> for an example
 item definition.
 
 <p>The image is available as a
- <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>
+ <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>
  instance ready for drawing.
 For example, you can iterate over the inventory list and show the items like this:</p>
 
@@ -281,34 +281,32 @@ else
  our projection has (0,0) in lower-left corner (as is standard
  for 2D OpenGL). You can look at the size, in pixels, of the current
  <!--2D control in
- <?php api_link('TUIControl.Width', 'CastleUIControls.TUIControl.html#Width'); ?> x
- <?php api_link('TUIControl.Height', 'CastleUIControls.TUIControl.html#Height'); ?>,
+ <?php api_link('TCastleUserInterface.Width', 'CastleUIControls.TCastleUserInterface.html#Width'); ?> x
+ <?php api_link('TCastleUserInterface.Height', 'CastleUIControls.TCastleUserInterface.html#Height'); ?>,
  and the size of the current--> OpenGL container (window, control) in
  <?php api_link('ContainerWidth', 'CastleUIControls.TInputListener.html#ContainerWidth'); ?> x
  <?php api_link('ContainerHeight', 'CastleUIControls.TInputListener.html#ContainerHeight'); ?>
  or (as a rectangle) as
  <?php api_link('ContainerRect', 'CastleUIControls.TInputListener.html#ContainerRect'); ?>.
  The container size is also available as container properties, like
- <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowCustom.html#Width'); ?> x
- <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowCustom.html#Height'); ?>
+ <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
+ <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>
  or (as a rectangle)
- <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowCustom.html#Rect'); ?>.
+ <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowBase.html#Rect'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>So far, we have simply carelessly drawn our contents over the window.
 <ul>
   <li>We used absolute pixel positions to draw.</li>
-  <li>We did not use the control position (<?php api_link('Left', 'CastleUIControls.TUIControl.html#Left'); ?> and
-    <?php api_link('Bottom', 'CastleUIControls.TUIControl.html#Bottom'); ?>).
+  <li>We did not use the control position (<?php api_link('Left', 'CastleUIControls.TCastleUserInterface.html#Left'); ?> and
+    <?php api_link('Bottom', 'CastleUIControls.TCastleUserInterface.html#Bottom'); ?>).
     Nor did we take into account parent control position.</li>
   <li>We did not use the control size.
-    In fact, our control has always empty size.
-    The <?php api_link('TUIControl.Rect', 'CastleUIControls.TUIControl.html#Rect'); ?>
-    is by default empty. We should override it, or descend from something like
-    <?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>.</li>
+    We should use position and size defined by
+    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.</li>
   <li>We do not honor the anchors set by
-    <?php api_link('TUIControl.Anchor', 'CastleUIControls.TUIControl.html#Anchor'); ?>.</li>
+    <?php api_link('TCastleUserInterface.Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?>.</li>
   <li>We do not honor UI scaling set by the
     <?php api_link('Window.UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>.</li>
 </ul>
@@ -321,30 +319,29 @@ in a specific way.</p>
 there are quite a few features that are missing.
 The easiest way to handle all the features listed above is to
 get inside the <code>Render</code> method the values of
-<code>ScreenRect</code> and <code>UIScale</code>.
-Just scale your drawn contents to always fit within the <code>ScreenRect</code>
+<code>RenderRect</code> and <code>UIScale</code>.
+Just scale your drawn contents to always fit within the <code>RenderRect</code>
 rectangle. And scale all user size properties by <code>UIScale</code>
 before applying to pixels.
-
-<p>You have to also define a size for your control,
-by overriding the <code>Rect</code> method of <code>TUIControl</code>.
-(Alternatively, if you want the size to be configurable by user,
-derive your control from the
-<?php api_link('TUIControlSizeable', 'CastleUIControls.TUIControlSizeable.html'); ?>.)
 
 <p>Like this:</p>
 
 <?php echo pascal_highlight(
-'function TMyImageControl.Rect: TRectangle;
-begin
-  Result := Rectangle(Left, Bottom, FMyImage.Width, FMyImage.Height);
-  Result := Result.ScaleAround0(UIScale);
-end;
-
-procedure TMyImageControl.Render;
+'procedure TMyImageControl.Render;
 begin
   inherited;
-  FMyImage.Draw(ScreenRect);
+  FMyImage.Draw(RenderRect);
+end;
+
+var
+  MyControl: TMyImageControl;
+begin
+  MyControl := TMyImageControl.Create(Application);
+  MyControl.Left := 100;
+  MyControl.Bottom := 200;
+  MyControl.Width := 300;
+  MyControl.Height := 400;
+  Window.Controls.InsertFront(MyControl);
 end;'); ?>
 
 <?php echo $toc->html_section(); ?>

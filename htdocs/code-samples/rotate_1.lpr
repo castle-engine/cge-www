@@ -7,7 +7,7 @@ begin
   Window.Open;
 
   Scene := TCastleScene.Create(Application);
-  Scene.Load(ApplicationData('monkey_z_up.x3d'));
+  Scene.Load('castle-data:/monkey_z_up.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
   // rotate by -90 degrees around X axis

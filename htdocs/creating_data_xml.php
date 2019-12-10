@@ -47,19 +47,11 @@ data in our engine.
 <h2>Notes specifically about level.xml and resource.xml files</h2>
 
 <ol>
-  <li><p>The data directory of the game is scanned for the special XML files named
+  <li><p>The <a href="manual_data_directory.php">data directory</a> of the game is scanned for the special XML files named
     <code>level.xml</code> and <code>resource.xml</code>. This allows you to define new
     creatures or items (something that can be picked and carried by the player)
     or levels to the game simply by adding an additional subdirectory
     to the game data.
-
-    <p>What exactly is "data directory"? You give it as parameter to
-    <?php api_link('Levels.LoadFromFiles', 'CastleLevels.TLevelInfoList.html#LoadFromFiles'); ?>
-    and
-    <?php api_link('Resources.LoadFromFiles', 'CastleResources.T3DResourceList.html#LoadFromFiles'); ?>
-    calls, by default it's the result of
-    <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
-    function.
 
   <li><p>Each <code>level.xml</code> / <code>resource.xml</code>
     file may contain relative URLs for

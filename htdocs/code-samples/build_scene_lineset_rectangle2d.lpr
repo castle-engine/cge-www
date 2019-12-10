@@ -25,7 +25,7 @@ begin
   RectGeometry.Size := Vector2(200, 200);
 
   RectTexture := TImageTextureNode.Create;
-  RectTexture.SetUrl([ApplicationData('face.png')]);
+  RectTexture.SetUrl(['castle-data:/face.png']);
 
   RectShape.Appearance := TAppearanceNode.Create;
   RectShape.Appearance.Texture := RectTexture;
@@ -69,10 +69,10 @@ begin
 end;
 
 var
-  Window: TCastleWindowCustom;
+  Window: TCastleWindowBase;
   SceneManager: T2DSceneManager;
 begin
-  Window := TCastleWindowCustom.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
   SceneManager := T2DSceneManager.Create(Application);

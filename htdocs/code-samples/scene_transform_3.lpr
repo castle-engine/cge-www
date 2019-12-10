@@ -33,13 +33,13 @@ begin
   Window.Open;
 
   CarScene := TCastleScene.Create(Application);
-  CarScene.Load(ApplicationData('car.x3d'));
+  CarScene.Load('castle-data:/car.x3d');
   CarScene.Spatial := [ssRendering, ssDynamicCollisions];
   CarScene.ProcessEvents := true;
-  CarScene.PlayAnimation('wheels_turning', paForceLooping);
+  CarScene.PlayAnimation('wheels_turning', true);
 
   RoadScene := TCastleScene.Create(Application);
-  RoadScene.Load(ApplicationData('road.x3d'));
+  RoadScene.Load('castle-data:/road.x3d');
   RoadScene.Spatial := [ssRendering, ssDynamicCollisions];
   RoadScene.ProcessEvents := true;
 

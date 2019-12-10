@@ -27,10 +27,10 @@ begin
   Button.InsertFront(MyLabel);
 
   Scene := T2DScene.Create(Application);
-  Scene.Load(ApplicationData('dragon/dragon.json'));
+  Scene.Load('castle-data:/dragon/dragon.json');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
-  Scene.PlayAnimation('flying', paForceLooping);
+  Scene.PlayAnimation('flying', true);
 
   SceneManager := T2DSceneManager.Create(Application);
   SceneManager.FullSize := false;

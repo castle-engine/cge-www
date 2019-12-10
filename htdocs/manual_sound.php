@@ -64,7 +64,7 @@ You have to initialize the sound repository by assigning to
  <?php api_link('SoundEngine.RepositoryURL', 'CastleSoundEngine.TRepoSoundEngine.html#RepositoryURL'); ?>, like this:</p>
 
 <?php echo pascal_highlight(
-'SoundEngine.RepositoryURL := ApplicationData(\'sounds/index.xml\');'); ?>
+'SoundEngine.RepositoryURL := \'castle-data:/sounds/index.xml\';'); ?>
 
 <p>After this, you can refer to your sounds by name.
 You can play named sounds from Pascal code:</p>

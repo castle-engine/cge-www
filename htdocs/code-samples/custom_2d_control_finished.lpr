@@ -7,9 +7,9 @@ var
   Player: TPlayer;
 
 type
-  TMyPlayerHUD = class(TUIControl)
+  TMyPlayerHUD = class(TCastleUserInterface)
   private
-    FMyImage: TGLImage;
+    FMyImage: TDrawableImage;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -19,7 +19,7 @@ type
 constructor TMyPlayerHUD.Create(AOwner: TComponent);
 begin
   inherited;
-  FMyImage := TGLImage.Create(ApplicationData('face.png'));
+  FMyImage := TDrawableImage.Create('castle-data:/face.png');
 end;
 
 destructor TMyPlayerHUD.Destroy;

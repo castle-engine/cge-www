@@ -2,13 +2,13 @@ uses SysUtils, CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
   CastleWindow, CastleSceneManager, CastleControls, CastleUIControls,
   CastleCameras, CastleVectors;
 var
-  Window: TCastleWindowCustom;
+  Window: TCastleWindowBase;
   SceneManager: TCastleSceneManager;
   Scene: TCastleScene;
   ViewportRect: TCastleRectangleControl;
   Viewport: TCastleViewport;
 begin
-  Window := TCastleWindowCustom.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Container.UIReferenceWidth := 1024;
   Window.Container.UIReferenceHeight := 768;
   Window.Container.UIScaling := usEncloseReferenceSize;
@@ -21,7 +21,7 @@ begin
   Window.Controls.InsertFront(TCastleSimpleBackground.Create(Application));
 
   Scene := TCastleScene.Create(Application);
-  Scene.Load(ApplicationData('level1.x3d'));
+  Scene.Load('castle-data:/level1.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 

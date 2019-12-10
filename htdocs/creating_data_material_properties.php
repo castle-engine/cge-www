@@ -33,7 +33,7 @@ a given material or texture. Right now this allows to define things like:
 'uses ..., CastleMaterialProperties;
 
 ...
-MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
+MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
 
 <p>It's usually best to do it as early as possible, for example
 at the beginning on <code>Application.OnInitialize</code> (if you

@@ -73,7 +73,7 @@ begin
   Shape.Appearance := TAppearanceNode.Create;
 
   Texture := TImageTextureNode.Create;
-  Texture.SetUrl([ApplicationData('textures/test_texture.png')]);
+  Texture.SetUrl(['castle-data:/textures/test_texture.png']);
   Shape.Appearance.Texture := Texture;
 
   RootNode.AddChildren(Transform);

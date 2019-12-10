@@ -83,9 +83,8 @@ downloaded below.</p>
 
   <li><p><b>Optionally install required program data</b>. In most cases you don't
     have to do anything &mdash; as programs below either don't have any data,
-    or they use smart function (<?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>)
-    to detect data directory. It will automatically
-    use current directory, if the data is there.
+    or they use smart URL <a href="manual_data_directory.php">castle-data:/xxx</a>
+    to load data files. It will automatically use current directory, if the data is there.
 
     <p>On Unix you can also move/symlink data to <code>$HOME/.local/share/xxx</code>
     or <code>/usr/local/share/xxx</code> or <code>/usr/share/xxx</code>.
