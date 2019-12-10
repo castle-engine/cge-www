@@ -207,7 +207,7 @@ The children are always drawn on top of their parent.
     within the parent.
 
     <p>If you actually want to clip the children, set the
-    <?php api_link('Clip', 'CastleUIControls.TCastleUserInterface.html#Clip'); ?> to <code>true</code>.
+    <?php api_link('ClipChildren', 'CastleUIControls.TCastleUserInterface.html#ClipChildren'); ?> to <code>true</code>.
   </li>
 </ul>
 
