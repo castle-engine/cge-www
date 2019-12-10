@@ -53,13 +53,13 @@ take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-ov
 
 <ol>
   <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     Create and destroy the image in the form's <code>OnCreate</code> and
     <code>OnDestroy</code> events, like this:
     <ul>
       <li>Select the form in Lazarus (click on it in the <i>form
         designer</i> or <i>object inspector</i> &mdash; be sure to <b>select the
-        form, not the TCastleControl instance</b>).
+        form, not the TCastleControlBase instance</b>).
       <li>Then double click
         on appropriate events to create code for <code>OnCreate</code> and <code>OnDestroy</code>.
         Put there the following code:
@@ -92,7 +92,7 @@ uses Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
 
 type
   TForm1 = class(TForm)
-    CastleControl1: TCastleControl;
+    CastleControl1: TCastleControlBase;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -120,18 +120,18 @@ end;
 end.'); ?>
 
   <li><p><b>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     In the simplest case, just create and destroy the image like this:
 
 <?php echo pascal_highlight(
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   Image: TDrawableImage;
 begin
   Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
   try
-    Window := TCastleWindow.Create(Application);
+    Window := TCastleWindowBase.Create(Application);
     Window.Open;
     Application.Run;
   finally FreeAndNil(Image) end;
@@ -145,8 +145,8 @@ end.'); ?>
 
 <ol>
   <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
-    Select the <code>TCastleControl</code> instance,
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
+    Select the <code>TCastleControlBase</code> instance,
     and double click to create code for an event <code>OnRender</code>.
     Put there the following code:
 
@@ -159,13 +159,13 @@ begin
 end;'); ?>
 
   <li><p><b>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Change your program like this:
 
 <?php echo pascal_highlight(
 'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   Image: TDrawableImage;
   X: Single = 0.0;
   Y: Single = 0.0;
@@ -178,7 +178,7 @@ end;
 begin
   Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
   try
-    Window := TCastleWindow.Create(Application);
+    Window := TCastleWindowBase.Create(Application);
     Window.OnRender := @WindowRender;
     Window.Open;
     Application.Run;
@@ -205,9 +205,9 @@ we will increase our position by <code>CastleControl1.Fps.SecondsPassed * 100.0<
 
 <ol>
   <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     double click to create an event <code>OnUpdate</code>
-    on <code>TCastleControl</code>, and put there the following code:
+    on <code>TCastleControlBase</code>, and put there the following code:
 
 <?php echo pascal_highlight(
 'procedure TForm1.CastleControl1Update(Sender: TObject);
@@ -216,7 +216,7 @@ begin
 end;'); ?>
 
   <li><p><b>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Assign a <code>Window.OnUpdate</code> callback (analogous to
     <code>Window.OnRender</code> above):
 
@@ -238,9 +238,9 @@ to update movement constantly. Examples below show both ways.
 
 <ol>
   <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     double click to create an event <code>OnPress</code>
-    on <code>TCastleControl</code>. Change the <code>OnPress</code> and
+    on <code>TCastleControlBase</code>. Change the <code>OnPress</code> and
     <code>OnUpdate</code> like below.
 
 <?php echo pascal_highlight(
@@ -267,7 +267,7 @@ end;');
 ?>
 
   <li><p><b>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Assign a <code>Window.OnPress</code> callback (analogous to
     <code>Window.OnRender</code> above). Change the <code>OnPress</code> and
     <code>OnUpdate</code> like below.
