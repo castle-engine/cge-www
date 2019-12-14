@@ -89,7 +89,7 @@ you can open them all with <code>view3dscene</code>.</p>
 
 <p>Requirements:
 <ul>
-  <li><i>For Linux:</i> Install also <a href="http://projects.gnome.org/gtkglext/">gtkglext</a> on your system using your package manager. If you want to hear 3D sound in some VRML/X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
+  <li><i>For Linux:</i> If you want to hear 3D sound in some VRML/X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
   <li><i>For Windows:</i> All useful libraries are already included in the archive, so you don't have to do anything.
   <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
 </ul>
@@ -513,7 +513,7 @@ view3dscene my_model.castle-anim-frames \
     and such).<!-- Which means that all that GUI stuff must be installed
     and working on your server.--></p>
 
-    <p>Normally, you also need <i>GTK</i> and <i>GtkGLExt</i> libraries installed.
+    <p>Normally, you also need <i>GTK</i> libraries installed.
     However, you can compile from sources a version of view3dscene that doesn't
     need these libraries, and directly accesses XWindows. It will miss
     a menu bar and some other nice GUI stuff, but that's not a problem if you only

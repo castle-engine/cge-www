@@ -1328,8 +1328,7 @@ define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_1',
   <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
 define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
   'Under Unix (Linux, FreeBSD, Mac OS X):
-  <a href="http://www.gtk.org/">GTK+</a> >= 2.6 and
-  <a href="http://gtkglext.sourceforge.net/">GtkGLExt</a> >= 1.0.6');
+  <a href="http://www.gtk.org/">GTK+</a> >= 2.6');
   /* I also use some GTK >= 2.8 features, but since Mac OS X fink stable
      includes only GTK 2.6, we work Ok with GTK 2.6 too. */
 define('DEPENDS_MACOSX',

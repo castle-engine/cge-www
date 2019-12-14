@@ -7,7 +7,7 @@ castle_header("Mac OS X notes and requirements", array(
 $toc = new TableOfContents(
   array(
     new TocItem('Compiling on Mac OS X', 'compiling'),
-    new TocItem('GUI libraries: Carbon/Cocoa? X11? X11 + GTK + GtkGlExt?', 'options'),
+    new TocItem('GUI libraries: Carbon/Cocoa? X11? X11 + GTK?', 'options'),
     new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl'),
     new TocItem('Other libraries that may be required', 'other_libs'),
     new TocItem('Notes specific to particular Mac OS X package managers', 'package_managers'),
@@ -138,13 +138,12 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
         windows using GTK).
 
         <p>In addition to <b>X11</b> (see above), your
-        application will use <b>GTK and GtkGLExt</b> libraries.
+        application will use <b>GTK</b> libraries.
         Install them using
         <a href="https://www.macports.org/">MacPorts</a>,
         <a href="https://brew.sh/">Homebrew</a> or
         <a href="http://www.finkproject.org/">Fink</a>.
-        Yes, all three options are tested and OK. Look for packages called <code>gtk2</code>
-        and <code>gtkglext</code>.
+        Yes, all three options are tested and OK. Look for packages called <code>gtk2</code>.
 
         <!--
         " should install all
@@ -201,7 +200,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     directory.
 
   <li><p><i>Good:</i> no extra dependencies, Carbon and Cocoa are already part of every
-    Mac OS X installation. (No dependencies on X11, GTK, GTKGlExt etc.)
+    Mac OS X installation. (No dependencies on X11, GTK.)
 
   <li><p><i>Bad:</i> Carbon is deprecated by Apple.
     It is available only for 32-bit applications.
@@ -331,7 +330,7 @@ or you can install them by a Mac OS X package manager like
 
 <p>Besides easy upgrades, the advantage of using the package manager to install
 the compiler is that it's easier then to install the libraries
-(like <i>GTK2</i> and <i>GtkGLExt</i>)
+(like <i>GTK2</i>)
 with the same architecture (32-bit vs 64-bit).
 Otherwise, be careful to watch for it yourself: your system may host
 both 32-bit and 64-bit binaries and libraries, but <i>to compile a 64-bit
@@ -343,10 +342,10 @@ and the FPC compiler for Darwin+x86_64.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>To install GTK, GtkGLExt and FPC, simply do:
+<p>To install GTK and FPC, simply do:
 
 <pre>
-sudo port install gtkglext
+sudo port install gtkglext # TODO: update this command to only install gtk2
 sudo port install fpc
 </pre>
 
@@ -381,15 +380,7 @@ brew install fpc
 
 <p>The <code>fpc</code> is already on $PATH, so it's comfortable out-of-the-box.
 
-<p>Installing additional libraries, like GTK or GtkGLExt, is equally trivial.
-
-<!--
-Also, brew has now FPC 3.0.0, while MacPorts only 2.6.4.
-
-  You can also install gtkglext using brew, and reference it like above.
-  TODO: untested.
-  You can even mix MacPorts and brew - - use gtkglext from MacPorts, fpc from brew.
--->
+<p>Installing additional libraries, like GTK, is equally trivial.
 
 <?php echo $toc->html_section(); ?>
 

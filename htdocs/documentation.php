@@ -251,7 +251,7 @@ also lists the libraries in the introduction section.
 
   <li><p><b>On Linux and FreeBSD</b> you should install the following libraries
     using your favorite package Manager:
-    <i>LibPng, ZLib, GtkGLExt OpenAL, FreeType and VorbisFile</i>.
+    <i>LibPng, ZLib, OpenAL, FreeType and VorbisFile</i>.
     Remember to install <code>-dev</code> versions of these libraries too
     (if you're under Debian or similar distribution) to be able to compile
     programs that link to these libraries.
