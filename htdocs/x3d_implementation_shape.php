@@ -48,6 +48,29 @@ $toc = new TableOfContents(
 
     <p>Effectively, for such material, only the <code>emissiveColor</code> matters.
 
+    <p>Pascal programmers can also use
+    <?php api_link('ForcePureEmissive', 'X3DNodes.TMaterialNode.html#ForcePureEmissive'); ?>
+    and
+    <?php api_link('PureEmissive', 'X3DNodes.TMaterialNode.html#PureEmissive'); ?>
+    methods.
+
+  <li><p><?php echo x3d_node_link('TwoSidedMaterial'); ?>
+
+    <p>The basic <code>Material</code> is one-sided under Gourand shading.
+    This means that if you look at the object from behind,
+    it will be often pure black (lighting is not applied).
+
+    <p>Use the <code>TwoSidedMaterial</code> to have a two-sided material.
+
+    <p>Note that you can also
+    <a href="x3d_implementation_shape_extensions.php#section_ext_shading">use Phong shading</a>.
+    This makes even the basic <code>Material</code> two-sided in <i>Castle Game Engine</i>.
+
+    <p>TODO: We don't support yet X3D <code>separateBackColor</code>
+    and related properties. So <code>TwoSidedMaterial</code>
+    is affected by lighting from both sides, but it always looks the same
+    from both sides.
+
   <li><p><?php echo x3d_node_link('LineProperties'); ?>
 
     <p>Configure line width and type (pattern).
@@ -99,7 +122,6 @@ $toc = new TableOfContents(
 <ul>
   <li><a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PBR-%28PhysicalMaterial-and-related-concepts%29-in-the-official-X3D-specification">PBR (Physical Based Rendering)</a> materials and related nodes.
   <li>FillProperties
-  <li>TwoSidedMaterial
 </ul>
 
 <?php
