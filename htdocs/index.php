@@ -99,7 +99,7 @@ castle_header('Download', array(
             <div class="centered">
                 <h1 class="main-title">Castle Game Engine</h1>
                 <p class="main-subtitle">Free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-                3D and 2D game engine using modern Object Pascal</p>
+                3D and 2D game engine using <a href="modern_pascal_introduction.html">modern Object Pascal</a></p>
             </div>
         </div>
 
@@ -141,6 +141,10 @@ castle_header('Download', array(
                     <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
                     <li>Access numerous <b>services, like in-app purchases and game services</b> on mobile devices.
                     <li>Create <b>cross-platform user-interface with anchors and automatic scaling</b>.
+                    <?php /* Talking with Eugene and KB, it seems important to mention
+                      that it's actively developed language,
+                      and that we have native speed. */ ?>
+                    <li>Code in modern Object Pascal, an efficient OOP language with <a href="https://www.freepascal.org/">cross-platform open-source compiler (FPC)</a>, compiled to a native optimized code.
                 </ul>
             </div>
         </div>
