@@ -10,6 +10,11 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Bumpcars-2019',
+    'Race against the clock to complete the three tracks: park, city and beach. The game is a submission for the gamejam <a href="https://itch.io/jam/50-assembly-language">&quot;I\'m using a lot of assembly language&quot;</a>, and includes a large assembler code which main objective is the subdivision of 3D triangles.',
+    'bumpcars.jpg',
+    'https://juegosenlazaruscr.itch.io/bumpcars-2019'); ?>
+
   <?php gallery_link('Bricks Color Pick',
     'New approach to the classic arkanoid games, with a twist: there is no paddle. Free game for Android (on Google Play). By Digital Karabela – <a href="https://digitalkarabela.com/category/gamedev/castle-game-engine/">Andrzej Kilijański</a>.',
     'bricks_color_pick.jpg',
