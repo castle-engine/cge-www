@@ -1,8 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Games using Castle Game Engine', array(
-  'path' => array('gallery'),
-));
+castle_header('Games using Castle Game Engine');
 
 echo pretty_heading($page_title);
 ?>
@@ -12,6 +10,16 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Bricks Color Pick',
+    'New approach to the classic arkanoid games, with a twist: there is no paddle. Free game for Android (on Google Play). By Digital Karabela – <a href="https://digitalkarabela.com/category/gamedev/castle-game-engine/">Andrzej Kilijański</a>.',
+    'bricks_color_pick.jpg',
+    'https://play.google.com/store/apps/details?id=com.digitalkarabela.cge.colorpick'); ?>
+
+  <?php gallery_link('Swappy Jigsaw',
+    'Jigsaw puzzle game, where you have to unravel an image split into many tiles. With <a href="https://gitlab.com/EugeneLoza/swappy-jigsaw">source code</a>. By Eugene Loza.',
+    'swappy_jigsaw.png',
+    'https://decoherence.itch.io/swappy-jigsaw'); ?>
+
   <?php gallery_link('Escape from the Universe',
     'Action shooter in the outer space with an incredible randomized storyline. New version is already released on the Nintendo Switch platform. Originally, the game was available for mobile devices (Android and iOS).',
     'escape_universe.png',
@@ -24,9 +32,9 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('The Unholy Society',
-    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>To be released in the fall of 2019</i>, for Nintendo Switch and Steam (Windows, Linux, macOS).',
+    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>To be released at the beginning of 2020</i>, for Nintendo Switch and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>.',
     'unholy_society_in_game.jpg',
-    'https://store.steampowered.com/app/746750/The_Unholy_Society/');
+    'https://unholy-society.com/');
   ?>
 
   <?php gallery_link('Wyrd Forest',

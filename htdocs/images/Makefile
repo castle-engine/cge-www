@@ -41,7 +41,8 @@ ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
   gallery_size/little_things_screen_7.png \
   gallery_size/cge_2d_particles.png \
   gallery_size/swappy_jigsaw.png \
-  gallery_size/database_aware.png
+  gallery_size/database_aware.png \
+  gallery_size/bricks_color_pick.jpg
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
