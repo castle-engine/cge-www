@@ -1,21 +1,19 @@
 <?php
 require_once "castle_engine_functions.php";
-castle_header("Mac OS X notes and requirements", array(
-  'path' => array('all_programs')
-));
+castle_header("macOS notes and requirements");
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Compiling on Mac OS X', 'compiling'),
+    new TocItem('Compiling on macOS', 'compiling'),
     new TocItem('GUI libraries: Carbon/Cocoa? X11? X11 + GTK?', 'options'),
     new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl'),
     new TocItem('Other libraries that may be required', 'other_libs'),
-    new TocItem('Notes specific to particular Mac OS X package managers', 'package_managers'),
+    new TocItem('Notes specific to particular macOS package managers', 'package_managers'),
       new TocItem('Consider installing FPC and Lazarus through them too', 'fpc_and_laz', 1),
       new TocItem('MacPorts', 'macports', 1),
       new TocItem('Homebrew', 'homebrew', 1),
       new TocItem('Fink', 'fink', 1),
-    new TocItem('Creating Mac OS X applications', 'creating_apps'),
+    new TocItem('Creating macOS applications', 'creating_apps'),
   )
 );
 ?>
@@ -38,18 +36,17 @@ $toc = new TableOfContents(
 <p>This is covered in more details in the FPC / Lazarus documentation:
 
 <ul>
-  <li><a href="http://freepascal.stack.nl/down/i386/macosx-netherlands.html">FPC installation instructions for Mac OS X</a>
-  <li><a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Installing_Lazarus_and_Free_Pascal">OS X Programming Tips -&gt; Installing the Apple Developer Tools</a> and
-  <li><a href="http://wiki.lazarus.freepascal.org/Installing_Lazarus_on_MacOS_X#Prerequisites:_Apple_Developer_Tools">Installing Lazarus on MacOS X -&gt; Prerequisites: Apple Developer Tools</a>
+  <li><a href="https://wiki.freepascal.org/Mac_Installation_FAQ">FPC Mac Installation FAQ</a>
+  <li><a href="https://wiki.freepascal.org/Installing_Lazarus_on_MacOS_X">Installing Lazarus on MacOS X</a>
 </ul>
 
-<p>Also, it seems that the latest Mac OS X doesn't include gdb (a debugger, user underneath by Lazarus). Lazarus will warn you about this on the 1st run. You can install GDB e.g. using <a href="https://brew.sh/">HomeBrew</a>, just execute <code>brew install gdb</code>. See <a href="http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer">GDB on OS X</a>.
+<p>Also, it seems that the latest macOS doesn't include gdb (a debugger, user underneath by Lazarus). Lazarus will warn you about this on the 1st run. You can install GDB e.g. using <a href="https://brew.sh/">HomeBrew</a>, just execute <code>brew install gdb</code>. See <a href="http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer">GDB on OS X</a>.
 
 <!-- TODO: do we need codesigning? -->
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can create your Mac OS X applications in two ways:
+<p>You can create your macOS applications in two ways:
 
 <ol>
   <li><p>You can use <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms,
@@ -59,7 +56,7 @@ $toc = new TableOfContents(
     component on a Lazarus form.
 
     <p>This, in practice, means that your applications will use <i>Carbon</i> or <i>Cocoa</i>.
-    These are built-in native libraries on Mac OS X.
+    These are built-in native libraries on macOS.
     So, your programs don't require anything extra to distribute.
 
   <li><p>Alternatively, you can create your windows using our own
@@ -68,7 +65,7 @@ $toc = new TableOfContents(
     can use various <i>backends</i> under the hood:
 
     <ul>
-      <li><p>The <b>default backend on Mac OS X is <code>CASTLE_WINDOW_XLIB</code></b>.
+      <li><p>The <b>default backend on macOS is <code>CASTLE_WINDOW_XLIB</code></b>.
         It's easiest to setup,
         although it does not look pretty, and does not show a menu bar
         (<?php api_link('TCastleWindowCustom.MainMenu', 'CastleWindow.TCastleWindowCustom.html#MainMenu'); ?>).
@@ -76,9 +73,9 @@ $toc = new TableOfContents(
         <!-- (< ?php api_link('TCastleWindowCustom.FileDialog', 'CastleWindow.TCastleWindowCustom.html#FileDialog'); ? >) -->
 
         <p>It requires installing <a href="https://www.xquartz.org/">XQuartz</a>.
-        (On older Mac OS X versions, install instead
-        <i>X11 Server</i> from your Mac OS X install CD.
-        <a href="https://support.apple.com/en-us/HT201341">For newer Mac OS X, XQuartz is the way to go</a>.)
+        (On older macOS versions, install instead
+        <i>X11 Server</i> from your macOS install CD.
+        <a href="https://support.apple.com/en-us/HT201341">For newer macOS, XQuartz is the way to go</a>.)
 
         <p><!-- Install it, and run before executing our programs. -->
         Our programs will appear as part of "<i>X11 server</i>" on your desktop.
@@ -100,7 +97,7 @@ $toc = new TableOfContents(
         <!--p><i>Somewhat internal notes:</i> if you start our program from within
         X11 xterm, it will be focused at the start. When you start us outside of X11,
         and we detect that the default X display doesn't work,
-        we automatically use display name <code>:0</code> under Mac OS X.
+        we automatically use display name <code>:0</code> under macOS.
         This way we attach to the running X server, even if you execute us from some
         other application.
         <i>You can also explicitly start
@@ -188,19 +185,19 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 
 <?php echo $toc->html_section(); ?>
 
-<p>On Mac OS X, the default LCL widgetset is
+<p>On macOS, the default LCL widgetset is
 <a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.
 
 <ul>
   <li><p><i>Good:</i> native look, application has a normal menu bar,
     shows native dialog boxes (to open/save file, choose color and such)
-    and generally looks and feels like every other Mac OS X application.
+    and generally looks and feels like every other macOS application.
     Lazarus compiles it into a <i>bundle</i> like <code>view3dscene.app</code>
     that can be easily installed by dragging to your <i>Applications</i>
     directory.
 
   <li><p><i>Good:</i> no extra dependencies, Carbon and Cocoa are already part of every
-    Mac OS X installation. (No dependencies on X11, GTK.)
+    macOS installation. (No dependencies on X11, GTK.)
 
   <li><p><i>Bad:</i> Carbon is deprecated by Apple.
     It is available only for 32-bit applications.
@@ -217,7 +214,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     Right now, <a href="http://wiki.freepascal.org/Roadmap#Status_of_features_on_each_widgetset">Carbon
     implementation is just more complete than Cocoa in LCL</a>,
     see also <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Choice_of_Lazarus_LCL_widgetsets">Choice of Lazarus LCL widgetsets
-    (for Mac OS X)</a>.
+    (for macOS)</a>.
 
     <p>It may also be resolved on our side if we ever make direct
     <code>CastleWindow</code> backend based on Cocoa (without using Lazarus LCL):
@@ -239,7 +236,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 
       <li><p>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
         for pointers.
-	If you're a developer familiar with Mac OS X
+	If you're a developer familiar with macOS
 	native toolkit and
 	<a href="http://www.freepascal.org/">Free Pascal Compiler</a>, your help
 	will be much appreciated.
@@ -258,19 +255,19 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     <ul>
       <li><b>If you make normal game (that doesn't need
         any menu or dialog boxes)</b> consider using
-        the (default) CASTLE_WINDOW_XLIB backend on Mac OS X.
-        Using X11 (Xlib) is not a problem on Mac OS X.
+        the (default) CASTLE_WINDOW_XLIB backend on macOS.
+        Using X11 (Xlib) is not a problem on macOS.
         And this way you get a perfect speed and smoothly working event loop
         (with smooth mouse look).
 
         <p>Although full-screen is ugly on Xlib,
         there's no way to hide dock over fullscreen application in this situation...
-        Easiest solution in this case is to keep your game windowed on Mac OS X.
+        Easiest solution in this case is to keep your game windowed on macOS.
 
       <li>Only <b>if you make tool-like program (that needs menu and dialog
         boxes)</b> then CASTLE_WINDOW_LCL is a good choice.
         It will look perfectly native. Although at the cost of not perfect mouse look.
-        Alternatively, you can use CASTLE_WINDOW_GTK_2 on Mac OS X,
+        Alternatively, you can use CASTLE_WINDOW_GTK_2 on macOS,
         that has both nice menu/dialogs and a smooth mouse look,
         but it requires installation of some special libraries
         (GTK etc. from fink).
@@ -280,11 +277,11 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p><b>For Mac OS X older than Tiger (that is, 10.3 or older):
+  <li><p><b>For macOS older than Tiger (that is, 10.3 or older):
     install OpenAL to have game sounds</b>. It may be downloaded from
     Creative, see download links from
     <a href="http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx">openal.org downloads</a>.
-    For Mac OS X since Tiger, OpenAL comes already preinstalled.
+    For macOS since Tiger, OpenAL comes already preinstalled.
     Even without OpenAL installed, all our programs will still work fine,
     you just will not get any sound.</p>
 
@@ -297,7 +294,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     <p>Without vorbisfile, all our programs will still work fine, but you will not
     hear OggVorbis music.</p></li>
 
-  <li><p>If you decide to use <i>external libpng implementation</i>
+  <li><p>If you want to use <i>external libpng implementation</i>
     in your programs, that you will also need <b>libpng
     to open and save images and textures in PNG format</b>.
     It may be installed using
@@ -305,25 +302,24 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     <a href="https://brew.sh/">Homebrew</a> or
     <a href="http://www.finkproject.org/">Fink</a>.
 
-    <p>Note that <b>this is not necessary by default</b>.
-    By default, we use <i>FpImage</i> right now to read PNG,
-    and it works without the need for libpng.
-    You can edit the <code>castle-engine/src/base/castleconf.inc</code>
-    configuration file to change this.
+    <p>Note that <b>this is not necessary</b>.
+    If we don't find libpng,
+    we will fallback to reading PNG using <i>FpImage</i>,
+    which works too (but is slower, which may be significant if you load a lot of PNG files).
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>To actually compile our programs on Mac OS X, you need
+<p>To actually compile our programs on macOS, you need
 the <a href="http://freepascal.org/">Free Pascal Compiler</a>.
 For comfortable RAD development, install also
 <a href="http://www.lazarus.freepascal.org/">Lazarus</a> (FPC is already included
 inside Lazarus installations, if you choose normal packages).</p>
 
 <p>You can install them by downloading from their respective webpages,
-or you can install them by a Mac OS X package manager like
+or you can install them by a macOS package manager like
 <a href="https://www.macports.org/">MacPorts</a>,
 <a href="https://brew.sh/">Homebrew</a> or
 <a href="http://www.finkproject.org/">Fink</a>.
@@ -337,7 +333,7 @@ both 32-bit and 64-bit binaries and libraries, but <i>to compile a 64-bit
 application, you will need a compiler (FPC) that targets 64-bit processors
 <b>and</b> 64-bit libraries</i>.
 
-<p>On modern Mac OS X versions, you usually just want to install x86_64 libraries,
+<p>On modern macOS versions, you usually just want to install x86_64 libraries,
 and the FPC compiler for Darwin+x86_64.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -397,7 +393,7 @@ export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
     done.
 
   <li><p>To compile applications using GTK (<code>CASTLE_WINDOW_GTK_2</code> backend),
-    <!-- as of fink 0.29.21 (on Mac OS X 10.6.7), --> you should additionally install
+    <!-- as of fink 0.29.21 (on macOS 10.6.7), --> you should additionally install
     the fink "<code>pango1-xft2-shlibs</code>" package. Simple "<code>fink install pango1-xft2-shlibs</code>"
     should do the trick. This is necessary for successful linking.</p>
 
@@ -411,24 +407,24 @@ export LD_LIBRARY_PATH=/sw/lib:"$LD_LIBRARY_PATH"
 
 <?php echo $toc->html_section(); ?>
 
-<p>A bunch of information about packaging your programs for Mac OS X follows.
+<p>A bunch of information about packaging your programs for macOS follows.
 
 <!--
 Note that our engine doesn't force you to do anything special to distribute
 your programs &mdash; you get a normal (Unix) binary that you can use however you like.
 
 use any packaging, the rules below
-are just general rules for all Mac OS X programs.
+are just general rules for all macOS programs.
 make any constraints here.
 You compile and package your program as usual, using FPC or Lazarus,
 and  that you package however you like.</p>
 -->
 
 <ol>
-  <li><p><i>Make "Mac OS X bundle"</i>. It's basically a directory pretending
+  <li><p><i>Make "macOS bundle"</i>. It's basically a directory pretending
     to be an application.
 
-    <p>You can use Lazarus to create Mac OS X bundle.
+    <p>You can use Lazarus to create macOS bundle.
     Or you can use our <a href="https://github.com/castle-engine/cge-scripts/blob/master/create_macosx_bundle.sh">create_macosx_bundle.sh script</a>.
     The example usage is inside view3dscene and castle-view-image sources.</p>
     </li>
@@ -439,17 +435,17 @@ and  that you package however you like.</p>
     <code>BundlePath + 'Contents/MacOS/libpng.dylib'</code>.
 
     <p>See
-    <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries">Mac OS X Libraries on FPC wiki</a>
+    <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries">macOS Libraries on FPC wiki</a>
     for general instructions how to include library inside a bundle.</p>
     </li>
 
   <li><p>Pack into a nice .dmg file.
-    See <a href="http://el-tramo.be/guides/fancy-dmg/">Building Fancy DMG Images on Mac OS X</a>
+    See <a href="http://el-tramo.be/guides/fancy-dmg/">Building Fancy DMG Images on macOS</a>
     for nice description how to make the directories inside dmg look pretty,
     so you can visually suggest user to drag your application in the <i>Applications</i>
     folder.
 
-    <p>Alternative method of distribution Mac OS X applications is the
+    <p>Alternative method of distribution macOS applications is the
     <a href="http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X">package manager (.pkg)</a>.
     For normal applications (like games) the simpler .dmg is a better choice.
     </li>

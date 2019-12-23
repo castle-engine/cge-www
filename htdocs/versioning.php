@@ -1,8 +1,6 @@
 <?php
 require_once "castle_engine_functions.php";
-castle_header('Versioning scheme', array(
-  'path' => array('all_programs'),
-));
+castle_header('Versioning scheme');
 ?>
 
 <h2>Versioning scheme</h2>

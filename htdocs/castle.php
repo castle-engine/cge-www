@@ -2,9 +2,7 @@
 define('CASTLE_GITHUB_NAME', 'castle-game');
 
 require_once 'castle_engine_functions.php';
-castle_header("The Castle", array(
-  'path' => array('all_programs', 'castle')
-));
+castle_header("The Castle");
 
 // echo flattr_button(); - Flattr not used now
 

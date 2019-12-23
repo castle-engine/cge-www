@@ -4,7 +4,6 @@ define('CASTLE_GITHUB_NAME', 'castle-view-image');
 require_once 'castle_engine_functions.php';
 castle_header("castle-view-image", array(
   'social_share_image' => 'castle-view-image_welcome.png',
-  'path' => array('all_programs'),
   'meta_description' => 'Image viewer using Castle Game Engine. Handles various image formats - common ones (PNG, JPEG, BMP, PPM) and some exotic (KTX, DDS, RGBE). Includes some specialized editing functions - to scale, to perform alpha bleeding (fix alpha on textures with transparency)',
 ));
 

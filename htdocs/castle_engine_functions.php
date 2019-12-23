@@ -328,7 +328,9 @@ $castle_sitemap = array(
           ),
           'engine_doc' => array('title' => 'Internals documentation'),
           'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
-          'cloud_builds' => array('title' => 'Automatic cloud builds for Castle Game Engine projects', 'url' => 'https://jenkins.castle-engine.io/'),
+          'cloud_builds' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)'),
+          'docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Docker'),
+          'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),
         )
       ),
@@ -439,40 +441,61 @@ $castle_sitemap = array(
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
 
-  'all_programs' => array('hint' => 'All the games and tools using our 3D engine', 'title' => 'Games and Tools',
+  'gallery' => array('title' => 'Gallery',
+    'dropdown' => array(
+      'gallery_games' => array('title' => 'Games'),
+      'gallery_tools' => array('title' => 'Tools'),
+      'additional_components' => array('title' => 'Additional Components'),
+      'assets' => array('title' => 'Graphic Assets'),
+    ),
     'sub' => array(
-      'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
-      'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
-      'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
-        'sidebar' => true,
+      'gallery_games' => array('title' => 'Games',
         'sub' => array(
-          'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
-          'castle-credits'     => array('title' => 'Credits'),
+          'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
+          'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
+          'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
+            'sidebar' => true,
+            'sub' => array(
+              'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
+              'castle-credits'     => array('title' => 'Credits'),
+            ),
+          ),
+          'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
+          'malfunction' => array('title' => 'malfunction'),
+          'kambi_lines' => array('title' => 'kambi_lines'),
         ),
       ),
-      'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
-      'malfunction' => array('title' => 'malfunction'),
-      'kambi_lines' => array('title' => 'kambi_lines'),
-      'castle-view-image' => array('title' => 'castle-view-image'),
-      'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
-      'rayhunter' => array('title' => 'rayhunter',
+      'gallery_tools' => array('title' => 'Tools',
         'sub' => array(
-          'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
+          'castle-view-image' => array('title' => 'castle-view-image'),
+          'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
+          'rayhunter' => array('title' => 'rayhunter',
+            'sub' => array(
+              'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
+            ),
+          ),
+          'glinformation' => array('title' => 'glinformation'),
+          'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
+          'all_programs_sources' => array('title' => 'All Programs Sources'),
         ),
       ),
-      'glinformation' => array('title' => 'glinformation'),
-      'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
+      'additional_components' => array(
+        'title' => 'Additional Components',
+        'hint' => 'Additional components (Pascal code) on top of CGE, that you can use in your games',
+      ),
+      'assets' => array(
+        'title' => 'Graphic Assets',
+        'hint' => 'Graphic assets you can use in your games'
+      ),
 
-      'common_options' => array('title' => 'Standard command-line options'),
-      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs'),
-      'openal' => array('title' => 'OpenAL (3D sound)'),
-      'macosx_requirements' => array('title' => 'Dependencies on Mac OS X'),
-      'versioning' => array('title' => 'Versioning scheme of programs'),
-      'all_programs_sources' => array('title' => 'All Programs Sources'),
+      /* We keep these pages here, to keep them working,
+         but honestly they are old and we don't know where to link them from. */
+      'common_options' => array('title' => 'Standard command-line options', 'hidden_in_toc' => true),
+      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs', 'hidden_in_toc' => true),
+      'openal' => array('title' => 'OpenAL (3D sound)', 'hidden_in_toc' => true),
+      'versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
     ),
   ),
-
-  'assets' => array('hint' => 'Example assets you can use in your games', 'title' => 'Assets', 'url' => 'https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D'),
 );
 
 function _castle_bootstrap()
@@ -522,6 +545,10 @@ function _castle_sidebar_menu($sub)
   $result = '<ul>';
   foreach($sub as $page => $pageinfo)
   {
+    if (isset($pageinfo['hidden_in_toc']) && $pageinfo['hidden_in_toc']) {
+      continue;
+    }
+
     $result .= '<li>' . _castle_sidebar_link($page, $pageinfo);
     if (isset($pageinfo['sub']))
       $result .= _castle_sidebar_menu($pageinfo['sub']);
@@ -729,7 +756,11 @@ function castle_toc_from_sitemap()
   }
 
   $result = '<ul>';
-  foreach ($page_map['sub'] as $menu_item_page => $menu_item) {
+  foreach ($page_map['sub'] as $menu_item_page => $menu_item)
+  {
+    if (isset($menu_item['hidden_in_toc']) && $menu_item['hidden_in_toc']) {
+      continue;
+    }
 
     if (isset($menu_item['url'])) {
       $menu_item_url = $menu_item['url'];
@@ -851,6 +882,38 @@ function castle_header($a_page_title, array $parameters = array())
   echo_castle_header_suffix($path);
 }
 
+/* Helper for _detect_page_path. Returns null if not found. */
+function _detect_page_path_core($page_name, $list)
+{
+  foreach ($list as $list_pagename => $list_pageinfo) {
+    if ($list_pagename == $page_name) {
+      return array($page_name);
+    }
+    if (isset($list_pageinfo['sub'])) {
+      $result = _detect_page_path_core($page_name, $list_pageinfo['sub']);
+      if ($result !== NULL) {
+        array_unshift($result, $list_pagename);
+        return $result;
+      }
+    }
+  }
+  return NULL;
+}
+
+/* Find given page name within $castle_sitemap,
+   return a path (list of strings) from root to the page.
+   Throws error if not possible.
+   Never returns an empty list. */
+function _detect_page_path($page_name)
+{
+  global $castle_sitemap;
+  $result = _detect_page_path_core($page_name, $castle_sitemap);
+  if ($result === NULL) {
+    throw new ErrorException('Page named ' . $page_name . ' not found anywhere in the castle_sitemap');
+  }
+  return $result;
+}
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -859,9 +922,11 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   global $castle_page_path;
 
   /* calculate $castle_page_path and $path */
-  /* make sure $path ends with $page_basename.
-     This way, we also make sure $path is never empty. */
-  if (count($path) == 0 || $path[count($path) - 1] != $page_basename) {
+  if (count($path) == 0) {
+    $path = _detect_page_path($page_basename);
+  } else
+  if ($path[count($path) - 1] != $page_basename) {
+    /* make sure $path ends with $page_basename */
     $path[] = $page_basename;
   }
   $castle_page_path = $path;
@@ -1460,4 +1525,32 @@ function glsl_highlight($source)
   $geshi->set_language('C'); // don't use glSlang, for some reason it's broken for me
   $geshi->set_footer_content('');
   return $geshi->parse_code();
+}
+
+/* Link from a gallery.
+   Image used here for $image_name must have "gallery_size"
+   generated, so make sure it's listed in images/Makefile in GALLERY_SIZE.
+   $page_name may be a complete URL, or a page name for a_href_page. */
+function gallery_link($title, $subtitle, $image_name, $page_name)
+{
+  $s = '<div class="col-sm-4"><div class="cge-gallery-link">';
+  $s .= '<p>' . a_href_page(
+    "<img src=\"images/gallery_size/$image_name\" alt=\"$title\" />", $page_name) .
+    '</p>';
+  $s .= '<p class="cge-gallery-link-title">' .
+    a_href_page("<b>$title</b>", $page_name) . '</p>' .
+    '<p>' . $subtitle . '</p>' .
+    '</div></div>';
+
+  echo $s;
+}
+
+/* Link from a gallery, that doesn't have nice screenshot. */
+function gallery_link_noimage($title, $subtitle, $page_name)
+{
+  $s = '<li><p class="cge-gallery-link-title">' .
+    a_href_page("<b>$title</b>", $page_name) . '</p>' .
+    '<p>' . $subtitle . '</p>' .
+    '</li>';
+  echo $s;
 }

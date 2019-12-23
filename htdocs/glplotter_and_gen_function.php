@@ -3,7 +3,6 @@ define('CASTLE_GITHUB_NAME', 'glplotter');
 
 require_once 'castle_engine_functions.php';
 castle_header("glplotter and gen_function", array(
-  'path' => array('all_programs'),
   'meta_description' => 'Plotting and generating graphs.'
 ));
 ?>

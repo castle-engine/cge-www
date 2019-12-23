@@ -2,7 +2,6 @@
 require_once 'castle_engine_functions.php';
 
 castle_header("lets_take_a_walk", array(
-  'path' => array('all_programs'),
   'meta_description' => 'A small toy demonstrating rendering 3D graphic and spatial sound with Castle Game Engine.',
 ));
 

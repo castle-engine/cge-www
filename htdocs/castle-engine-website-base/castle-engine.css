@@ -159,8 +159,7 @@ dl.vrml_ver_differences > dt {
   font-style: italic;
 }
 
-.cge-gallery-link,
-.main_link {
+.cge-gallery-link {
   /* background: #e8d59a; */
   /* background: #efdfae; */
   border-width: thin;
@@ -172,8 +171,7 @@ dl.vrml_ver_differences > dt {
   width: 100%;
   margin: 20px 0;
 }
-.cge-gallery-link img,
-.main_link img {
+.cge-gallery-link img {
   border: none;
   max-width: 100%; /* force scaling down on narrow window width, for 3-column layout of all_programs.php */
 }

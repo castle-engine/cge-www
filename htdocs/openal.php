@@ -1,8 +1,6 @@
 <?php
 require_once "castle_engine_functions.php";
-castle_header('OpenAL (3D Sound)', array(
-  'path' => array('all_programs')
-));
+castle_header('OpenAL (3D Sound)');
 
 $toc = new TableOfContents(
   array(

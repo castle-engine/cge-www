@@ -1,8 +1,6 @@
 <?php
 require_once "castle_engine_functions.php";
-castle_header("Small gallery of images rendered using rayhunter", array(
-  'path' => array('all_programs', 'rayhunter', 'raytr_gallery')
-));
+castle_header("Small gallery of images rendered using rayhunter");
 
 function path_tracer_params_descr($min_depth, $r_roul, $non_prim_samples,
   $prim_samples, $direct_samples)

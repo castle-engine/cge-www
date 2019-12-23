@@ -3,9 +3,7 @@ define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
 define('CASTLE_GITHUB_NAME', 'darkest-before-dawn');
 
 require_once 'castle_engine_functions.php';
-castle_header("Darkest Before the Dawn", array(
-  'path' => array('all_programs', 'darkest_before_dawn')
-));
+castle_header("Darkest Before the Dawn");
 
 define('VERSION_DARKEST_BEFORE_DAWN', '1.2.0');
 

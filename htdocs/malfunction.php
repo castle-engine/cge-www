@@ -4,7 +4,6 @@ define('CASTLE_GITHUB_NAME', 'malfunction');
 require_once 'castle_engine_functions.php';
 castle_header("malfunction", array(
   'meta_description' => 'Small 3D game. You fly a spaceship and shoot down alien ships.',
-  'path' => array('all_programs')
 ));
 
 $toc = new TableOfContents(

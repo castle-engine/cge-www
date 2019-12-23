@@ -3,9 +3,7 @@ define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
 define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
 
 require_once 'castle_engine_functions.php';
-castle_header("Mountains Of Fire", array(
-  'path' => array('all_programs', 'mountains_of_fire')
-));
+castle_header("Mountains Of Fire");
 
 /* echo '<div style="float: right; width: 400px;">'; */
 /* echo facebook_button(); */

@@ -4,7 +4,6 @@ define('CASTLE_GITHUB_NAME', 'kambi-lines');
 require_once 'castle_engine_functions.php';
 castle_header("kambi_lines", array(
   'meta_description' => "A small game in OpenGL based on old DOS 'Color Lines'.",
-  'path' => array('all_programs')
 ));
 
 echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
