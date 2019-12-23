@@ -159,7 +159,7 @@ dl.vrml_ver_differences > dt {
   font-style: italic;
 }
 
-.program_image_link,
+.cge-gallery-link,
 .main_link {
   /* background: #e8d59a; */
   /* background: #efdfae; */
@@ -172,14 +172,14 @@ dl.vrml_ver_differences > dt {
   width: 100%;
   margin: 20px 0;
 }
-.program_image_link img,
+.cge-gallery-link img,
 .main_link img {
   border: none;
   max-width: 100%; /* force scaling down on narrow window width, for 3-column layout of all_programs.php */
 }
 
 @media only screen and (min-width : 768px) {
-    .program_image_link {
+    .cge-gallery-link {
       min-height: 450px;
     }
 }
@@ -187,12 +187,12 @@ dl.vrml_ver_differences > dt {
 /* Small devices (tablets, 768px and up), see http://getbootstrap.com/css/ */
 /* @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { */
 /* @media (min-width: 768px) and (max-width: 992px) { */
-/*   .program_image_link { */
+/*   .cge-gallery-link { */
 /*     min-height: 0 !important; */
 /*   } */
 /* } */
 
-.program_image_link_title { font-size: larger; }
+.cge-gallery-link-title { font-size: larger; }
 
 a.screenshot       img { border: 2pt solid #EEE; }
 a.screenshot:hover img { border: 2pt solid #888; }

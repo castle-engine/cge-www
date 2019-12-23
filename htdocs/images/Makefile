@@ -15,31 +15,30 @@ ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIG
 ALL_SMALL_THUMB_CONST_HEIGHT:=$(subst original_size,small_thumb_const_height_size,$(wildcard original_size/lazarus-install-*.png))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 
-# Only a small number of images needs "program_link_size"
-# (used for images on all_programs.php), so list here explicitly
-# which images are wanted.
-ALL_PROGRAM_LINK:=program_link_size/view3dscene_2.0.0_screen_demo.png \
-  program_link_size/castle_screen_demo_1.png \
-  program_link_size/lets_take_a_walk_screen_demo.png \
-  program_link_size/malfunction_screen_demo.png \
-  program_link_size/kambi_lines_screen_demo.png \
-  program_link_size/castle-view-image_dds.png \
-  program_link_size/glplotter_screen_demo_1.png \
-  program_link_size/rayhunter_graz_demo.png \
-  program_link_size/darkest_before_dawn_2.png \
-  program_link_size/mountains_of_fire_screen_1.png \
-  program_link_size/hydra_battles_screen_best.png \
-  program_link_size/dragon_squash_screen_1.png \
-  program_link_size/castle_spine_screen_3.png \
-  program_link_size/castle_curves.png \
-  program_link_size/escape_universe.png \
-  program_link_size/fire_madness.png \
-  program_link_size/castle_sunset.png \
-  program_link_size/mazer.jpg \
-  program_link_size/unholy_society_in_game.jpg \
-  program_link_size/wyrd_forest_screen_0-2.png \
-  program_link_size/connect4.png \
-  program_link_size/little_things_screen_7.png
+# Only a small number of images need "gallery_size"
+# so list here explicitly which images are wanted.
+ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
+  gallery_size/castle_screen_demo_1.png \
+  gallery_size/lets_take_a_walk_screen_demo.png \
+  gallery_size/malfunction_screen_demo.png \
+  gallery_size/kambi_lines_screen_demo.png \
+  gallery_size/castle-view-image_dds.png \
+  gallery_size/glplotter_screen_demo_1.png \
+  gallery_size/rayhunter_graz_demo.png \
+  gallery_size/darkest_before_dawn_2.png \
+  gallery_size/mountains_of_fire_screen_1.png \
+  gallery_size/hydra_battles_screen_best.png \
+  gallery_size/dragon_squash_screen_1.png \
+  gallery_size/castle_spine_screen_3.png \
+  gallery_size/castle_curves.png \
+  gallery_size/escape_universe.png \
+  gallery_size/fire_madness.png \
+  gallery_size/castle_sunset.png \
+  gallery_size/mazer.jpg \
+  gallery_size/unholy_society_in_game.jpg \
+  gallery_size/wyrd_forest_screen_0-2.png \
+  gallery_size/connect4.png \
+  gallery_size/little_things_screen_7.png
 
 ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
   main_link_size/castle_screen_demo_1.png \
@@ -56,7 +55,7 @@ ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_THUMB) \
   $(ALL_THUMB_CONST_HEIGHT) \
-  $(ALL_PROGRAM_LINK) \
+  $(ALL_GALLERY) \
   $(ALL_OS_ICONS) \
   $(ALL_MAIN_LINK) \
   $(ALL_SMALL_THUMB_CONST_HEIGHT) \
@@ -99,14 +98,14 @@ small_thumb_const_height_size/%: original_size/%
 	$(CONVERT) $< -geometry x100 $@
 
 # ----------------------------------------------------------------------------
-# making program_link_size
+# making gallery_size
 
 # glplotter screns require scaling with emboss,
 # otherwise look just black.
-program_link_size/glplotter%.png: original_size/glplotter%.png
+gallery_size/glplotter%.png: original_size/glplotter%.png
 	$(CONVERT) $< -emboss 15.0 -geometry 300x300 $@
 
-program_link_size/%: original_size/%
+gallery_size/%: original_size/%
 	$(CONVERT) $< -geometry 300x300 $@
 
 # ----------------------------------------------------------------------------
