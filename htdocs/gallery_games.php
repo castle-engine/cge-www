@@ -11,7 +11,7 @@ We love to see how you use CGE.</i>
 
 <div class="row">
   <?php gallery_link('Bumpcars-2019',
-    'Race against the clock to complete the three tracks: park, city and beach. The game is a submission for the gamejam <a href="https://itch.io/jam/50-assembly-language">&quot;I\'m using a lot of assembly language&quot;</a>, and includes a large assembler code which main objective is the subdivision of 3D triangles.',
+    'Race against the clock to complete the three tracks: park, city and beach. By Rafael Campos. The game is a submission for the gamejam <a href="https://itch.io/jam/50-assembly-language">&quot;I\'m using a lot of assembly language&quot;</a>, and includes a large assembler code which main objective is the subdivision of 3D triangles.',
     'bumpcars.jpg',
     'https://juegosenlazaruscr.itch.io/bumpcars-2019'); ?>
 
