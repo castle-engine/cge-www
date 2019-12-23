@@ -38,14 +38,10 @@ ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
   gallery_size/unholy_society_in_game.jpg \
   gallery_size/wyrd_forest_screen_0-2.png \
   gallery_size/connect4.png \
-  gallery_size/little_things_screen_7.png
-
-ALL_MAIN_LINK:=main_link_size/castle_sunset.png \
-  main_link_size/castle_screen_demo_1.png \
-  main_link_size/darkest_before_dawn_2.png \
-  main_link_size/mountains_of_fire_screen_1.png \
-  main_link_size/hydra_battles_screen_best.png \
-  main_link_size/dragon_squash_screen_1.png
+  gallery_size/little_things_screen_7.png \
+  gallery_size/cge_2d_particles.png \
+  gallery_size/swappy_jigsaw.png \
+  gallery_size/database_aware.png
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
