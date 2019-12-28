@@ -13,8 +13,8 @@ $toc = new TableOfContents(
     new TocItem('Using CastleSettings.xml file to define UIScaling and other properties', 'settings_xml'),
     new TocItem('Query sizes', 'sizes'),
     new TocItem('Adjust theme', 'theme'),
-    new TocItem('Taking control of the 2D viewport and scene manager', 'viewport'),
-    new TocItem('Insert animation (full scene manager) into a button', 'button_with_scene_manager', 1),
+    new TocItem('Taking control of the viewport', 'viewport'),
+    new TocItem('Insert animation (in a viewport) into a button', 'button_with_viewport', 1),
     new TocItem('Wrapping it up (in a custom TCastleUserInterface descendant)', 'wrapping'),
     new TocItem('User-interface state (TUIState)', 'ui_state'),
   )
@@ -25,8 +25,8 @@ $toc = new TableOfContents(
 The look and behavior of everything is very customizable,
 as you often want a special-looking UI in your games.
 Our user-interface is rendered inside a container like
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
+<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
 and of course works without any modifications on all the platforms
 we support &mdash; desktop, mobile...
 
@@ -40,7 +40,7 @@ directory.</p>
 <?php
 echo castle_thumbs(array(
   array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
-  //array('filename' => 'two_viewports.png', 'titlealt' => 'Scene manager with custom viewport'),
+  //array('filename' => 'two_viewports.png', 'titlealt' => 'Two viewports'),
   //array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
   array('filename' => 'button_with_2d_scene_manager.png', 'titlealt' => '2D animated scene inside a button'),
   //array('filename' => 'zombie_fighter_1.png', 'titlealt' => 'Multiple viewports and basic game UI'),
@@ -59,9 +59,9 @@ They can render, they can handle inputs, they can perform any time-dependent tas
 
 <p>All of the currently used controls are added to the list of
 <?php api_link('TCastleWindowBase.Controls', 'CastleWindow.TCastleWindowBase.html#Controls'); ?>
- (if you use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>) or
+ (if you use <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>) or
 <?php api_link('TCastleControlBase.Controls', 'CastleControl.TCastleControlBase.html#Controls'); ?>
- (if you use Lazarus forms with <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>).
+ (if you use Lazarus forms with <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>).
 The controls on this list are ordered from the back to front. But usually you don't need to remember that,
 as you add them using the aptly-named methods
 <?php api_link('InsertFront', 'CastleUIControls.TChildrenControls.html#InsertFront'); ?> or
@@ -73,8 +73,8 @@ The <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterfac
 and moved along with parent.
 
 <p>Note that you can also render and handle inputs using the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> callbacks,
+<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
+<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?> callbacks,
 like <?php api_link('Window.OnRender', 'CastleWindow.TCastleWindowBase.html#OnRender'); ?>,
 <?php api_link('Window.OnPress', 'CastleWindow.TCastleWindowBase.html#OnPress'); ?> and
 <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowBase.html#OnUpdate'); ?>.
@@ -285,14 +285,8 @@ begin
   InsideRect.InsertFront(ButtonFight);
 end;'); ?>
 
-<p>As you probably noticed, <b>we do not have a visual UI designer
-yet</b>. It's on the roadmap to make a visual designer integrated with
-Lazarus, so you could design the inside of
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> and
-even <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
- in the same comfortable way as you design
-a Lazarus form with standard Lazarus LCL components.
-<a href="donate.php">Support the engine development</a> to make this happen sooner!
+<p>Note that <a href="manual_editor.php">we have a visual designer for UI</a>.
+It is described in the separate chapter.
 
 <?php echo $toc->html_section(); ?>
 
@@ -452,53 +446,27 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<p>By default, the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> and
- <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
- already contain one item on their <code>Controls</code> list: the default
- <?php api_link('SceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
- instance. For non-trivial games, you may prefer to start with a truly empty window (or control),
- and create your scene managers and viewports yourself. To do this, simply use the
+<p>You should use
  <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
- <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?> instead.
+ <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
+ to create an area where <i>Castle Game Engine</i> can render.
+ And you should create an instance of
+ <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
+ and add it to the <code>Controls</code> list
+ (<code>TCastleWindowBase.Controls</code> or
+ <code>TCastleControlBase.Controls</code>).
 
-<p>The example below creates a scene manager, showing the world from the player perspective,
-and then adds a viewport that observes the same world from another perspective.
-The key to understand this is that <i>the scene manager serves by default two purposes</i>:
+<p>It is allowed to have multiple
+ <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
+ instances in your game, even visible at the same time.
+ They can even show the same world (but from different cameras)
+ if they share the same <code>Viewport.Items</code> value.
 
-<ol>
-  <li>It's a central keeper of the information about your game world (in the
-    <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>).
+<p>The example below creates one viewport, showing the world from the player perspective,
+and then adds another viewport that observes the same world from another perspective.
 
-  <li>It is also a default viewport, that instantiates a camera to view this world.
-    This works because
-    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> is a descendant of the
-    <?php api_link('TCastleAbstractViewport', 'CastleSceneManager.TCastleAbstractViewport.html'); ?>.
-    You can deactivate this feature of scene manager by setting the
-    <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
-    to <code>false</code>, then the scene manager is used <i>only</i> to store the information about your
-    world, and you <i>must</i> use at least one
-    <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
-    to actually see anything 3D (or anything 2D rendered using
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>).
-  </li>
-</ol>
-
-<p>On the other hand, <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
- always serves only one purpose: it's a viewport,
-and it always refers to some <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
- instance to know what to show inside.
-
-<p>Often it makes sense to keep <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
- as <code>true</code>, if you have something
-like a <i>primary</i> viewport of the user. And then use
- <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
- only for <i>secondary</i>
-viewports. Sometimes, if's better to set <?php api_link('SceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?> to <code>false</code>,
-and use only a number of <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> instances to show it.
-It really depends on what is easier for you conceptually, in a given game.
-
-<p>Note that, since the scene manager and viewports are 2D controls,
-you can place them as children of other UI controls.
+<p>Note that, since the viewport is a 2D control,
+you can place it as child of other UI controls.
 The example below demonstrates this technique, inserting
  <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
  inside a <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>.
@@ -528,7 +496,7 @@ insert it to <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneMan
 <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>. Thus you can have a button
  with any crazy animation inside:)
 
-<?php echo pascal_highlight_file('code-samples/button_with_2d_scene_manager.lpr'); ?>
+<?php echo pascal_highlight_file('code-samples/button_with_viewport.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 

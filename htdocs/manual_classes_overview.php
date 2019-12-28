@@ -25,20 +25,22 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
 <dl>
   <dt>OpenGL context:
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>  /
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>  /
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     classes</dt>
 
   <dd><p><i>How to use</i>: Just create, or drop on Lazarus form,
     an instance of this class.
+    <!--
     Advanced: you can also make your own class providing a non-abstract
     <?php api_link('TUIContainer', 'CastleUIControls.TUIContainer.html'); ?>.
+    -->
 
     <p>Properties: a <code>Controls</code> list, that contains instances of
-    <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>.
+    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
   </dd>
 
-  <dt>2D control: <?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> class</dt>
+  <dt>2D control: <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> class</dt>
 
   <dd><p>Important descendants:
     <ul>
@@ -48,70 +50,67 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <li>... and many other common 2D UI stuff (see
         <?php api_link('CastleControls', 'CastleControls.html'); ?> unit
         and some others).
-      <li><?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
-        (central knowledge about the world; also acts
-        as a viewport by default, although you can turn it off by setting
-        <?php api_link('TCastleSceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
-        to <code>false</code>, and using only
-        <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
-        for viewports).
+      <li><?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
+      <!--
         <ul>
           <li><?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>
             (a descendant of
             <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>,
             adds comfortable methods to load levels with placeholders)
         </ul>
-      <li><?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
-        (refers to
-        <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
-        instance for knowledge about world)
+      -->
     </ul>
 
     <p><i>How to use</i>: Just create, or drop on form, instances of these class.
     Then call <code>Window.Controls.Add(...)</code>.
 
+<!--
     <p>Except you usually don't have to create 1st
     <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance:
     <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     and <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     already contain a <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?> instance,
     automatically created and available inside their <code>Controls</code> list
-    and inside their <code>SceneManager</code> property. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?>  /
-    <?php api_link('TCastleControlCustom', 'CastleControl.TCastleControlCustom.html'); ?>
+    and inside their <code>SceneManager</code> property. You can use <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>  /
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     to avoid this automatic scene manager &mdash;
     useful if you want to use your custom descendant (that overrides some virtual methods) of
     <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
     or <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>.
+-->
 
-  <dt>Game world knowledge: <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?></dt>
+  <dt>Viewport: <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?></dt>
 
   <dd>
-    <p><?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> refers to exactly one instance of:
+    <p><?php api_link('TCastleViewport.Camera', 'CastleViewport.TCastleViewport.html#Camera'); ?> refers to exactly one instance of <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>.
+
+    <p><?php api_link('TCastleViewport.Navigation', 'CastleViewport.TCastleViewport.html#Navigation'); ?> refers to one (or none) instance of:
 
     <dl>
-      <dt>Camera handling viewpoint and keys: <?php api_link('TCamera', 'CastleCameras.TCamera.html'); ?></dt>
+      <dt>Navigation handling keys and mouse: <?php api_link('TCastleNavigation', 'CastleCameras.TCastleNavigation.html'); ?></dt>
 
       <dd>
         <p>Important descendants:
         <ul>
-          <li><?php api_link('TWalkCamera', 'CastleCameras.TWalkCamera.html'); ?>
-          <li><?php api_link('TExamineCamera', 'CastleCameras.TExamineCamera.html'); ?>
+          <li><?php api_link('TCastleWalkNavigation', 'CastleCameras.TCastleWalkNavigation.html'); ?>
+          <li><?php api_link('TCastleExamineNavigation', 'CastleCameras.TCastleExamineNavigation.html'); ?>
         </ul>
 
-        <p><i>How to use</i>: you can create camera instance (or drop on form),
-        and then assign to <?php api_link('TCastleSceneManager.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?> (or <?php api_link('TCastleViewport.Camera', 'CastleSceneManager.TCastleViewport.html#Camera'); ?>).
-        You can just let the automatic creation of camera happen,
-        during the nearest rendering or at
-         <?php api_link('SceneManager.RequiredCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#RequiredCamera'); ?>,
-         <?php api_link('SceneManager.WalkCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#WalkCamera'); ?>,
-         <?php api_link('SceneManager.ExamineCamera',
-        'CastleSceneManager.TCastleAbstractViewport.html#ExamineCamera'); ?> call.
+        <p><i>How to use</i>: you can create navigation instance,
+        and then assign to <?php api_link('TCastleViewport.Navigation', 'CastleViewport.TCastleViewport.html#Navigation'); ?>.
+        Or you can set <code>Viewport.AutoNavigation := true</code> and let the automatic creation of navigation happen
+        during the nearest rendering.
+        Or you can force creating a suitable navigation by calling
+         <?php api_link('Viewport.RequiredNavigation',
+        'CastleViewport.TCastleViewport.html#RequiredNavigation'); ?>,
+         <?php api_link('Viewport.WalkNavigation',
+        'CastleViewport.TCastleViewport.html#WalkNavigation'); ?>,
+         <?php api_link('Viewport.ExamineNavigation',
+        'CastleViewport.TCastleViewport.html#ExamineNavigation'); ?> call.
       </dd>
     </dl>
 
-    <p><?php api_link('TCastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
+    <p><?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
     is an instance of:
 
     <dl>
@@ -133,12 +132,12 @@ It can be treated like a cheatsheet, concise description of engine architecture.
           </li>
         </ul>
 
-        <p><i>How to use</i>: you can create (or drop on form) instances
+        <p><i>How to use</i>: you can create instances
         of these classes, as usual. After creation you usually add them to
-        <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
+        <?php api_link('CastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
         (or to some another list e.g.
         you can add <code>List1</code>: <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to
-        <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>,
+        <?php api_link('CastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>,
         and then add <code>Scene</code>: <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
         to <code>List1</code>.)
         It's your decision how (and if at all) you need to build a hierarchy
@@ -169,7 +168,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       </dd>
     </dl>
 
-    <p><?php api_link('TCastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
+    <p><?php api_link('TCastleViewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>
     refers to one (or none) instance of:
 
     <dl>
@@ -183,27 +182,31 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         can change during the lifetime of the world, but at a given time
         only one value is active.
 
-        <p>The main scene should also be present in <?php api_link('TCastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>.
+        <p>The main scene should also be present in <?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>.
 
         <p><i>How to use</i>: To load a game level, you can simply create
-        <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance, add it to <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and set it as
-        <?php api_link('CastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>.
+        <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance, add it to <?php api_link('CastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>, and set it as
+        <?php api_link('TCastleViewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
+
+        <?php
+        /*
         Alternatively you can use the <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
         method, usually like this:
 
-<?php echo pascal_highlight(
+< ?php echo pascal_highlight(
 'Levels.LoadFromFiles(...);
 SceneManager.LoadLevel(\'myLevelName\');
 // the 2nd line is a shortcut for
-// SceneManager.LoadLevel(Levels.FindName(\'myLevelName\'));'); ?>
+// SceneManager.LoadLevel(Levels.FindName(\'myLevelName\'));'); ? >
 
         <p>This will create <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, update
-        <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>,
-        <?php api_link('CastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>,
+        <?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>,
+        <?php api_link('TCastleViewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>,
         and do some other stuff helpful for typical
         3D games, like handle placeholders &mdash; see
         <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
         docs.
+*/ ?>
       </dd>
     </dl>
   </dd>

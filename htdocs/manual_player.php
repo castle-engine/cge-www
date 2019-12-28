@@ -22,7 +22,7 @@ This provides various features:
 
 <p>Note that the player instance is not necessary for basic 3D navigation
 (the only thing really necessary is a camera, which is automatically created and
-placed in <?php api_link('TCastleAbstractViewport.Camera', 'CastleSceneManager.TCastleAbstractViewport.html#Camera'); ?>).
+placed in <?php api_link('TCastleViewport.Camera', 'CastleViewport.TCastleViewport.html#Camera'); ?>).
 
 <p>To load a Player do this:
 

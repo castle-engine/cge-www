@@ -23,7 +23,7 @@ To load a level call the
  uses <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
  adding it to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and setting
 as
-<?php api_link('SceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>.
+<?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
 It also does something extra: it detects a "placeholders" in your 3D model,
 which should be replaced with creatures and items.</p>
 

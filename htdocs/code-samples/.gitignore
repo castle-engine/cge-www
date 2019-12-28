@@ -6,7 +6,7 @@ castle-engine-output
 # particular Unix binaries
 build_scene_interpolator
 build_scene_lineset_rectangle2d
-button_with_2d_scene_manager
+button_with_viewport
 custom_2d_control
 custom_2d_control_finished
 notifications

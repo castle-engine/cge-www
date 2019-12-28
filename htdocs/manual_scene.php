@@ -353,7 +353,7 @@ end;'); ?>
 <?php api_link('InsertFront', 'CastleUIControls.TUIControl.html#InsertFront'); ?>,
 <?php api_link('InsertBack', 'CastleUIControls.TUIControl.html#InsertBack'); ?>). This way you explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
 
-    <p> When using multiple scene managers on top of each other, remember that the <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> by default renders a background covering everything underneath. You can disable this background by setting <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleAbstractViewport.html#Transparent'); ?> to <code>false</code>. The 2D scene manager, in <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, has already <code>Transparent</code> = <code>true</code> by default.</p>
+    <p> When using multiple scene managers on top of each other, remember that the <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> by default renders a background covering everything underneath. You can disable this background by setting <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleViewport.html#Transparent'); ?> to <code>false</code>. The 2D scene manager, in <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, has already <code>Transparent</code> = <code>true</code> by default.</p>
   </li>
 
   <li><p>You can also make alternative views into the same world (same scene manager). For this, use <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> , that points to a <code>TCastleSceneManager</code> for information about the world (but has it's own camera).
@@ -422,7 +422,7 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
     especially suitable for 2D world.
 
     <p>It has a little more comfortable default camera and projection settings for 2D.
-    Also, it has by default <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleAbstractViewport.html#Transparent'); ?> = <code>true</code>, so you can see the background
+    Also, it has by default <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleViewport.html#Transparent'); ?> = <code>true</code>, so you can see the background
     underneath (although you can change it to <code>false</code> if you want of course).
     This way, it can be easily used as a 2D user-interface control,
     to show something animating over a GUI.

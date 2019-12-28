@@ -17,10 +17,12 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>Mobile platforms (Android, iOS) are different
-from desktop platforms (Windows, Linux, Mac OS X, FreeBSD...) in many ways.
-But our engine hides a lot of these differences from you by exposing
-a nice cross-platform API.
+<p><i>Castle Game Engine</i> supports many platforms:
+desktop (Windows, Linux, Mac OS X, FreeBSD, Raspberry Pi...),
+mobile (Android, iOS),
+<a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch</a>.
+The engine hides as much as possible differences between these platforms,
+exposing a nice cross-platform API.
 
 <!--
 Still, there are some

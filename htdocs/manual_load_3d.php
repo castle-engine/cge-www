@@ -7,7 +7,7 @@ $toc = new TableOfContents(
     new TocItem('Get sample 3D model', 'model'),
     new TocItem('Write the code!', 'code'),
     new TocItem('Set the camera and navigation', 'camera'),
-    new TocItem('Explanation: What is a "Scene Manager"', 'create'),
+    new TocItem('Explanation: What is a TCastleViewport', 'viewport'),
     new TocItem('Try some impressive 3D models', 'demo_models'),
   )
 );
@@ -59,19 +59,26 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
+  Viewport: TCastleViewport;
   Scene: TCastleScene;
 begin
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoCamera := true;
+  Viewport.AutoNavigation := true;
+  CastleControlBase1.Controls.InsertFront(Viewport);
+
   Scene := TCastleScene.Create(Application);
   Scene.Load(\'car.x3d\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
-  CastleControl1.SceneManager.Items.Add(Scene);
-  CastleControl1.SceneManager.MainScene := Scene;
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
 end;'); ?>
 
   <li><p><b>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?></b>:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     To load a 3D model, change your program code to this:</p>
 
     <?php echo pascal_highlight_file('code-samples/view_3d_model_basic.lpr'); ?>
@@ -91,9 +98,12 @@ parts).
  activates animating VRML/X3D models (you
 can remove it if you know that your level is, and always will be, static).</p>
 
-<p>The level is added to the scene manager. The level is also set as the
-<?php api_link('MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
- of scene manager, this means that some central settings
+<p>Then we create a <i>viewport</i>, which is a 2D rectangular area
+in a window that will show the world.
+
+<p>The model is added to the viewport. The model is also set as the
+<?php api_link('MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>,
+this means that some central settings
 (like initial camera position, initial headlight status and such) can
 be obtained from this scene.</p>
 
@@ -103,7 +113,7 @@ be obtained from this scene.</p>
 
 <ol>
   <li><p><b>Set the camera by code</b>:
-    use the <?php api_link('SceneManager.Camera.SetView',
+    use the <?php api_link('Viewport.Camera.SetView',
     'CastleCameras.TCastleCamera.html#SetView'); ?> method.
     This takes three vectors &mdash; position, look direction and look up vector.
     Simply add the <?php api_link('CastleVectors',
@@ -111,52 +121,62 @@ be obtained from this scene.</p>
     and call this:
 
 <?php echo pascal_highlight(
-'Window.SceneManager.AutoCamera := false; // no longer auto-detect camera view
-Window.SceneManager.Camera.SetView(
+'Viewport.Camera.SetView(
   Vector3(-7.83,  6.15, -7.55),
   Vector3( 0.47, -0.30,  0.82),
   Vector3( 0.16,  0.95,  0.25)
 );'); ?>
 
-  <li><p><b>You can also set camera defaults (including position/direction/up)
-    in your data (X3D files), instead of hardcoding it in Pascal.</b>
-    Use a <code>Viewpoint</code>
-    or <code>OrthoViewpoint</code> node inside the
-    <code>car.x3d</code>  file
-    (in general, inside a scene that is set as <code>SceneManager.MainScene</code>)
-    to define the initial camera view. You can generate this
+  <li><p><b>Or initialize the camera defaults (including position/direction/up)
+    based on the model size/nodes, instead of hardcoding it in Pascal.</b>
+
+    <p>To make it work, set <code>Viewport.AutoCamera := true</code>.
+
+    <p>If a model file (set as <code>MainScene</code>, like <code>car.x3d</code> in the example above)
+    has a <code>Viewpoint</code>
+    or <code>OrthoViewpoint</code> X3D node,
+    then this node will determine the initial camera. You can generate such
     <code>Viewpoint</code> using the
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
     <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
     or by setting the camera in Blender before exporting this X3D file.
+
+    <p>Otherwise (if there is no <code>Viewpoint</code> node,
+    or you didn't even set <code>MainScene</code>)
+    then the camera will be auto-detected to look at the world bounding box.
 </ol>
 
 <p>To can also control the <i>navigation</i> ("how does the camera change based on input"):
 
 <ol>
   <li><p>You can assign a specific TCastleNavigation descendant to
-    <?php api_link('SceneManager.Navigation',
-    'CastleSceneManager.TCastleAbstractViewport.html#Navigation'); ?>.
-    If you don't assign it, but leave <code>AutoNavigation</code> at default <code>true</code>,
-    the navigation instance is automatically created before rendering.
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
+
+  <li><p>You can auto-detect the suitable navigation method.
+    To do this, leave
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?> as <code>nil</code>,
+    and set <code>Viewport.AutoNavigation := true</code>.
+    Then the navigation instance will be automatically created before rendering.
 
   <li><p>You can use
-    <?php api_link('SceneManager.WalkNavigation',
-    'CastleSceneManager.TCastleAbstractViewport.html#WalkNavigation'); ?>,
-     <?php api_link('SceneManager.ExamineNavigation',
-    'CastleSceneManager.TCastleAbstractViewport.html#ExamineNavigation'); ?>
+    <?php api_link('Viewport.WalkNavigation',
+    'CastleViewport.TCastleViewport.html#WalkNavigation'); ?>,
+     <?php api_link('Viewport.ExamineNavigation',
+    'CastleViewport.TCastleViewport.html#ExamineNavigation'); ?>
     to request given navigation class and assign it to
-    <?php api_link('SceneManager.Navigation',
-    'CastleSceneManager.TCastleAbstractViewport.html#Navigation'); ?>.
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
 
   <li><p>You can change the navigation type by setting
-    <?php api_link('SceneManager.NavigationType',
-    'CastleSceneManager.TCastleAbstractViewport.html#NavigationType'); ?>.
+    <?php api_link('Viewport.NavigationType',
+    'CastleViewport.TCastleViewport.html#NavigationType'); ?>.
 
-  <li><p>You can change the <?php api_link('SceneManager.Navigation.Input',
+  <li><p>You can change the <?php api_link('Viewport.Navigation.Input',
     'CastleCameras.TCastleNavigation.html#Input'); ?> to disable some default navigation
     key and mouse operations. For example, you can call
-    <code>Window.SceneManager.WalkNavigation.Input := [];</code>
+    <code>Viewport.WalkNavigation.Input := [];</code>
     to disable <i>any</i> way for user to automatically control the camera,
     useful if you want to move camera only by your own code.
 
@@ -166,7 +186,7 @@ Window.SceneManager.Camera.SetView(
     <p>Note that, in order for the "bindable" nodes (like <code>Viewpoint</code>,
     <code>OrthoViewpoint</code>, <code>NavigationInfo</code>) to work,
     they must be within a scene set as
-    <?php api_link('SceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>.
+    <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
     The first <code>Viewpoint</code> or <code>OrthoViewpoint</code>
     is automatically used, just like the first <code>NavigationInfo</code> node.
     You can always call explicitly <code>Viewpoint.EventSet_Bind.Send(true)</code>
@@ -190,23 +210,18 @@ Window.SceneManager.Camera.SetView(
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>Scene manager</i> contains the whole knowledge about your game 3D world.
-It is essential to add all your 3D stuff to a scene manager.
-An instance of scene manager (class
-<?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>)
-is already created and available in the <code>SceneManager</code> property
-of the <code>TCastleControl</code> or <code>TCastleWindow</code> instance.
+<p><i>Viewport</i> allows to display and interact with the 3D world.
+It is essential to add all your 3D stuff to a viewport.
 
-<p>By default <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
- also acts as a viewport filling the whole window. So the whole window shows
- your 3D world. In more complex scenarios you can have
-many smaller viewports inside your window using <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>.
-You can also turn off scene manager from being a viewport
-(setting <?php api_link('TCastleSceneManager.DefaultViewport', 'CastleSceneManager.TCastleSceneManager.html#DefaultViewport'); ?>
- to <code>false</code>), and then scene manager is really
-<b>only</b> something that keeps track of 3D world, and nothing more.</p>
+<p>Viewport is a <i>user interface control</i>, which means that it occupies
+some space on a 2D window on user screen.
+By setting <code>Viewport.FullSize := true</code> in examples above we
+say that the position and size of the viewport is such that it fills the entire parent,
+which in this case means that viewport fills the entire window.
 
-<p>For examples of using viewports, see:
+<p>In more complex scenarios you can have
+multiple viewports inside your window showing the same world from many cameras.
+For examples of this, see:
 <ul>
   <li>The <a href="manual_2d_user_interface.php">chapter about user interface</a> shows how to set additional viewport.</li>
   <li>Engine example <code>examples/3d_rendering_processing/multiple_viewports.lpr</code></li>
@@ -216,14 +231,6 @@ You can also turn off scene manager from being a viewport
 <!--See also <a
 href="https://castle-engine.io/vrml_engine_doc/output/xsl/html/section.custom_viewports.html">custom
 viewports notes</a, and ).-->
-
-<p>In more advanced
-scenarios you may need to create and manage scene manager yourself.
-There are special classes available (<code>TCastleControlBase</code> or
-<code>TCastleWindowBase</code>) that allow you to use your own scene manager
-instance (or maybe zero, or maybe more than one scene manager instance,
-maybe a custom scene manager class...).
-</p>
 
 <?php echo $toc->html_section(); ?>
 

@@ -1,12 +1,12 @@
 uses SysUtils, CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
-  CastleWindow, CastleSceneManager, CastleControls, CastleUIControls,
+  CastleWindow, CastleViewport, CastleControls, CastleUIControls,
   CastleCameras, CastleVectors;
 var
   Window: TCastleWindowBase;
-  SceneManager: TCastleSceneManager;
+  MainViewport: TCastleViewport;
   Scene: TCastleScene;
-  ViewportRect: TCastleRectangleControl;
-  Viewport: TCastleViewport;
+  AdditionalViewport: TCastleViewport;
+  AdditionalViewportContainer: TCastleRectangleControl;
 begin
   Window := TCastleWindowBase.Create(Application);
   Window.Container.UIReferenceWidth := 1024;
@@ -25,54 +25,44 @@ begin
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
-  SceneManager := TCastleSceneManager.Create(Application);
-  SceneManager.FullSize := false;
-  SceneManager.Left := 10;
-  SceneManager.Bottom := 10;
-  SceneManager.Width := 800;
-  SceneManager.Height := 748;
-  SceneManager.Items.Add(Scene);
-  SceneManager.MainScene := Scene;
-  SceneManager.NavigationType := ntWalk;
-  SceneManager.WalkCamera.MoveSpeed := 10;
-  // In Castle Game Engine <= 6.2 the above 2 lines should be written as:
-  // (SceneManager.RequiredCamera as TUniversalCamera).NavigationType := ntWalk;
-  // (SceneManager.RequiredCamera as TUniversalCamera).Walk.MoveSpeed := 10;
-  Window.Controls.InsertFront(SceneManager);
+  MainViewport := TCastleViewport.Create(Application);
+  MainViewport.AutoCamera := true;
+  MainViewport.Left := 10;
+  MainViewport.Bottom := 10;
+  MainViewport.Width := 800;
+  MainViewport.Height := 748;
+  MainViewport.Items.Add(Scene);
+  MainViewport.Items.MainScene := Scene;
+  MainViewport.NavigationType := ntWalk;
+  MainViewport.WalkCamera.MoveSpeed := 10;
+  Window.Controls.InsertFront(MainViewport);
 
   { otherwise, inputs are only passed
-    when mouse cursor is over the SceneManager. }
-  Window.Container.ForceCaptureInput := SceneManager;
+    when mouse cursor is over the MainViewport. }
+  Window.Container.ForceCaptureInput := MainViewport;
 
-  ViewportRect := TCastleRectangleControl.Create(Application);
-  ViewportRect.FullSize := false;
-  ViewportRect.Left := 820;
-  ViewportRect.Bottom := 10;
-  ViewportRect.Width := 256;
-  ViewportRect.Height := 256;
-  ViewportRect.Color := Silver;
-  Window.Controls.InsertFront(ViewportRect);
+  AdditionalViewportContainer := TCastleRectangleControl.Create(Application);
+  AdditionalViewportContainer.FullSize := false;
+  AdditionalViewportContainer.Left := 820;
+  AdditionalViewportContainer.Bottom := 10;
+  AdditionalViewportContainer.Width := 256;
+  AdditionalViewportContainer.Height := 256;
+  AdditionalViewportContainer.Color := Silver;
+  Window.Controls.InsertFront(AdditionalViewportContainer);
 
-  Viewport := TCastleViewport.Create(Application);
-  Viewport.FullSize := false;
-  Viewport.Left := 10;
-  Viewport.Bottom := 10;
-  Viewport.Width := 236;
-  Viewport.Height := 236;
-  Viewport.SceneManager := SceneManager;
-  Viewport.Transparent := true;
-  Viewport.NavigationType := ntNone;
-  Viewport.RequiredCamera.SetView(
+  AdditionalViewport := TCastleViewport.Create(Application);
+  AdditionalViewport.FullSize := false;
+  AdditionalViewport.Left := 10;
+  AdditionalViewport.Bottom := 10;
+  AdditionalViewport.Width := 236;
+  AdditionalViewport.Height := 236;
+  AdditionalViewport.Items := MainViewport.Items;
+  AdditionalViewport.Transparent := true;
+  AdditionalViewport.Camera.SetView(
     Vector3(5, 92.00, 0.99),
     Vector3(0, -1, 0),
     Vector3(0, 0, 1));
-  // In Castle Game Engine <= 6.2 the above 2 lines should be written as:
-  // (Viewport.RequiredCamera as TUniversalCamera).NavigationType := ntNone;
-  // (Viewport.RequiredCamera as TUniversalCamera).SetView(
-  //   Vector3(5, 92.00, 0.99),
-  //   Vector3(0, -1, 0),
-  //   Vector3(0, 0, 1));
-  ViewportRect.InsertFront(Viewport);
+  AdditionalViewportContainer.InsertFront(AdditionalViewport);
 
   Application.Run;
 end.

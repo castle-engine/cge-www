@@ -70,7 +70,7 @@ or by changing it's <?php api_link('Exists', 'CastleUIControls.TUIControl.html#E
 <p>If the game is already started, in single player games,
 you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by
-<?php api_link('SceneManager.Paused', 'CastleSceneManager.TCastleAbstractViewport.html#Paused'); ?> property.
+<?php api_link('Items.Paused', 'CastleTransform.TCastleAbstractRootTransform.html#Paused'); ?> property.
 Like this:</p>
 
 <?php echo pascal_highlight(

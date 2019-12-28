@@ -1,14 +1,14 @@
 uses SysUtils, CastleVectors, CastleCameras,
-  CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
+  CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils, CastleViewport,
   CastleUIControls, CastleWindow, Castle2DSceneManager, CastleControls;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   Button: TCastleButton;
   MyLabel: TCastleLabel;
-  SceneManager: T2DSceneManager;
+  Viewport: TCastleViewport;
   Scene: T2DScene;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
   Button := TCastleButton.Create(Application);
@@ -32,23 +32,24 @@ begin
   Scene.ProcessEvents := true;
   Scene.PlayAnimation('flying', true);
 
-  SceneManager := T2DSceneManager.Create(Application);
-  SceneManager.FullSize := false;
-  SceneManager.Width := 390;
-  SceneManager.Height := 350;
-  SceneManager.Anchor(hpMiddle);
-  SceneManager.Anchor(vpBottom, 10);
-  SceneManager.Items.Add(Scene);
-  SceneManager.MainScene := Scene;
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.Setup2D;
+  Viewport.Transparent := true;
+  Viewport.FullSize := false;
+  Viewport.Width := 390;
+  Viewport.Height := 350;
+  Viewport.Anchor(hpMiddle);
+  Viewport.Anchor(vpBottom, 10);
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
   { below adjusted to the scene size and position }
-  SceneManager.ProjectionAutoSize := false;
-  SceneManager.ProjectionWidth := 3000;
-  SceneManager.ProjectionOriginCenter := true;
-  SceneManager.RequiredCamera.SetView(
-    Vector3(0, 500, T2DSceneManager.DefaultCameraZ),
+  Viewport.Camera.Orthographic.Width := 3000;
+  Viewport.Camera.Orthographic.Origin := Vector2(0.5, 0.5);
+  Viewport.Camera.SetView(
+    Vector3(0, 500, TCastleViewport.Default2DCameraZ),
     Vector3(0, 0, -1),
     Vector3(0, 1, 0));
-  Button.InsertFront(SceneManager);
+  Button.InsertFront(Viewport);
 
   Application.Run;
 end.

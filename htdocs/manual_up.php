@@ -201,7 +201,7 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 <ol>
   <li><p>Gravity pulls things (player, items, creatures...) down in the -up
     vector. We automatically detect this based on the gravity vector of
-    the <code>Viewpoint</code> inside your <?php api_link('TCastleSceneManager.MainScene', 'CastleSceneManager.TCastleSceneManager.html#MainScene'); ?>
+    the <code>Viewpoint</code> inside your <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>
     (you usually
     want to set this to your level 3D model). This means that we follow
     VRML/X3D specification, and gravity vector is derived from the 3D

@@ -9,7 +9,7 @@ that will be able to display 3D content. There are two ways of doing this:
 <ol>
   <li><p><b>Integration inside Lazarus form:</b>
     Use our
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     inside normal Lazarus form.
     You should choose this method if you want
     to integrate 3D area with normal GUI (Lazarus forms, controls) or
@@ -24,13 +24,13 @@ that will be able to display 3D content. There are two ways of doing this:
     <ul>
       <li>Create new project (using Lazarus <i>"New Project"</i> menu item).
         Choose <i>"Application"</i>.
-      <li>Pick <code>TCastleControl</code> from the component palette (tab
+      <li>Pick <code>TCastleControlBase</code> from the component palette (tab
         <i>"Castle"</i>) and drop it on a regular Lazarus form.
       <li>Press "Run" :)
     </ul>
 
     <!--
-     The downside is that our TCastleControl
+     The downside is that our TCastleControlBase
     inherits from Lazarus TOpenGLComponent, and it has some limitations
     (sometimes mouse look may
     stutter a little because of Lazarus event loop processing).
@@ -47,10 +47,10 @@ that will be able to display 3D content. There are two ways of doing this:
   <li><p><b>Without using Lazarus forms:</b>
     Use our own <?php api_link('CastleWindow', 'CastleWindow.html'); ?>  unit,
     that defines window class
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>.
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>.
     This avoids some problems
     with Lazarus application loop (for example, mouse look is smooth) and
-    is suitable for desktops as well as Android/iOS.
+    works on all CGE platforms (desktop, mobile, consoles).
     <!-- This way you don't get native-looking
     controls (only menu bar and simple dialogs), but you can use OpenGL controls
     (<?php api_link('CastleControls', 'CastleControls.html'); ?> unit),
@@ -61,7 +61,7 @@ that will be able to display 3D content. There are two ways of doing this:
     editor. The only real requirement is having a
     <a href="http://www.freepascal.org/">Free Pascal Compiler</a> installed.
 
-    <p>To create an application using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> in Lazarus:</p>
+    <p>To create an application using <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> in Lazarus:</p>
 
     <ul>
       <li>Create new project using Lazarus <i>"New Project"</i> menu item.</li>
@@ -94,9 +94,9 @@ that will be able to display 3D content. There are two ways of doing this:
 
 uses CastleWindow;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.OpenAndRun;
 end.'); ?>
 
