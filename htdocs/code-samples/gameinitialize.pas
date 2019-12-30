@@ -6,7 +6,7 @@ interface
 implementation
 
 uses CastleWindow, CastleControls, CastleLog, CastleUIControls,
-  CastleApplicationProperties;
+  CastleApplicationProperties, CastleColors;
 
 var
   Window: TCastleWindow;
@@ -23,6 +23,7 @@ begin
   Status := TCastleLabel.Create(Application);
   Status.Anchor(vpMiddle);
   Status.Anchor(hpMiddle);
+  Status.Color := White;
   Status.Caption := 'Hello world!';
   Window.Controls.InsertFront(Status);
 end;

@@ -1,12 +1,19 @@
 uses CastleWindow, CastleSceneCore, CastleScene, CastleVectors, CastleFilesUtils,
-  CastleTransform;
+  CastleViewport, CastleTransform;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
+  Viewport: TCastleViewport;
   Scene1, Scene2: TCastleScene;
   Transform: TCastleTransform;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
+
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoCamera := true;
+  Viewport.AutoNavigation := true;
+  Window.Controls.InsertFront(Viewport);
 
   Transform := TCastleTransform.Create(Application);
   // rotate by 90 degrees around X axis
@@ -26,7 +33,7 @@ begin
 
   Transform.Add(Scene1);
   Transform.Add(Scene2);
-  Window.SceneManager.Items.Add(Transform);
+  Viewport.Items.Add(Transform);
 
   Application.Run;
 end.

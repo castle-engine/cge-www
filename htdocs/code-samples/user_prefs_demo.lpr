@@ -1,6 +1,7 @@
-uses CastleWindow, CastleConfig, CastleApplicationProperties, CastleControls;
+uses CastleWindow, CastleConfig, CastleApplicationProperties, CastleControls,
+  CastleColors;
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   LabelForParameter: TCastleLabel;
   MyParameter: string;
 begin
@@ -9,7 +10,8 @@ begin
   ApplicationProperties.ApplicationName := 'my_game_name';
 
   { open Window }
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
+  Window.Container.BackgroundColor := White;
   Window.Open;
 
   { load UserConfig }

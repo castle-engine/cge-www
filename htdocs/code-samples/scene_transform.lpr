@@ -1,12 +1,18 @@
-uses SysUtils, CastleVectors,
+uses SysUtils, CastleVectors, CastleViewport,
   CastleFilesUtils, CastleWindow, CastleSceneCore, CastleScene;
 
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
+  Viewport: TCastleViewport;
   CarScene, RoadScene: TCastleScene;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
+
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoNavigation := true;
+  Window.Controls.InsertFront(Viewport);
 
   CarScene := TCastleScene.Create(Application);
   CarScene.Load('castle-data:/car.x3d');
@@ -18,12 +24,12 @@ begin
   RoadScene.Spatial := [ssRendering, ssDynamicCollisions];
   RoadScene.ProcessEvents := true;
 
-  Window.SceneManager.Items.Add(CarScene);
-  Window.SceneManager.Items.Add(RoadScene);
-  Window.SceneManager.MainScene := RoadScene;
+  Viewport.Items.Add(CarScene);
+  Viewport.Items.Add(RoadScene);
+  Viewport.Items.MainScene := RoadScene;
 
   // nice camera to see the road
-  Window.SceneManager.RequiredCamera.SetView(
+  Viewport.Camera.SetView(
     Vector3(-43.30, 27.23, -80.74),
     Vector3(  0.60, -0.36,   0.70),
     Vector3(  0.18,  0.92,   0.32)

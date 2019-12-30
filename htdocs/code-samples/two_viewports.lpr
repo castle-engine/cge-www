@@ -14,12 +14,6 @@ begin
   Window.Container.UIScaling := usEncloseReferenceSize;
   Window.Open;
 
-  { Add a black background underneath. You must always draw on
-    the whole window area, otherwise it's contents are undefined.
-    In this program, we don't have a full-size viewport filling the whole
-    screen, so we use TCastleSimpleBackground to clear the screen. }
-  Window.Controls.InsertFront(TCastleSimpleBackground.Create(Application));
-
   Scene := TCastleScene.Create(Application);
   Scene.Load('castle-data:/level1.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
@@ -34,7 +28,7 @@ begin
   MainViewport.Items.Add(Scene);
   MainViewport.Items.MainScene := Scene;
   MainViewport.NavigationType := ntWalk;
-  MainViewport.WalkCamera.MoveSpeed := 10;
+  MainViewport.WalkNavigation.MoveSpeed := 10;
   Window.Controls.InsertFront(MainViewport);
 
   { otherwise, inputs are only passed

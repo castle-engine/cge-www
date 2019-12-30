@@ -18,6 +18,7 @@ var
   OutlineShape: TShapeNode;
   OutlineCoords: TCoordinateNode;
   OutlineGeometry: TLineSetNode;
+  Material: TMaterialNode;
 begin
   Transform := TTransformNode.Create;
 
@@ -46,8 +47,9 @@ begin
   OutlineGeometry.Coord := OutlineCoords;
   OutlineGeometry.SetVertexCount([OutlineCoords.FdPoint.Count]);
 
-  OutlineShape.Material := TMaterialNode.Create;
-  OutlineShape.Material.EmissiveColor := YellowRGB;
+  Material := TMaterialNode.Create;
+  Material.EmissiveColor := YellowRGB;
+  OutlineShape.Material := Material;
 
   Transform.AddChildren(OutlineShape);
 

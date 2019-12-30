@@ -1,7 +1,7 @@
 { Build a simplest IndexedFaceSet node (mesh) to display a texture. }
 
 uses SysUtils,
-  CastleWindow, CastleScene, CastleSceneManager,
+  CastleWindow, CastleScene, CastleViewport,
   CastleColors, CastleVectors, CastleFilesUtils, X3DNodes, CastleTransform;
 
 function BuildRootNode(const ImageUrl: String): TX3DRootNode;
@@ -57,18 +57,25 @@ begin
 end;
 
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
+  Viewport: TCastleViewport;
   Scene: TCastleScene;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
+
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoCamera := true;
+  Viewport.AutoNavigation := true;
+  Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildRootNode('castle-data:/face.png'), true);
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
-  Window.SceneManager.Items.Add(Scene);
-  Window.SceneManager.MainScene := Scene;
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
 
   Application.Run;
 end.

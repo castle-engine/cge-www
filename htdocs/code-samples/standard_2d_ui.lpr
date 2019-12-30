@@ -1,11 +1,11 @@
-uses CastleWindow, CastleUIControls, CastleControls;
+uses CastleWindow, CastleUIControls, CastleControls, CastleColors;
 
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   MyLabel: TCastleLabel;
   MyButton: TCastleButton;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
   MyButton := TCastleButton.Create(Application);
@@ -16,9 +16,10 @@ begin
 
   MyLabel := TCastleLabel.Create(Application);
   MyLabel.Caption := 'Click on the button!';
+  MyLabel.Color := White;
   MyLabel.Anchor(hpMiddle);
   { position label such that it's over the button }
-  MyLabel.Anchor(vpBottom, 10 + MyButton.CalculatedHeight + 10);
+  MyLabel.Anchor(vpBottom, 10 + MyButton.EffectiveHeight + 10);
   Window.Controls.InsertFront(MyLabel);
 
   Application.Run;

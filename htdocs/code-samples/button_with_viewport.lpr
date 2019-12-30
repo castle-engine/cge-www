@@ -1,12 +1,12 @@
 uses SysUtils, CastleVectors, CastleCameras,
   CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils, CastleViewport,
-  CastleUIControls, CastleWindow, Castle2DSceneManager, CastleControls;
+  CastleUIControls, CastleWindow, CastleControls;
 var
   Window: TCastleWindowBase;
   Button: TCastleButton;
   MyLabel: TCastleLabel;
   Viewport: TCastleViewport;
-  Scene: T2DScene;
+  Scene: TCastleScene;
 begin
   Window := TCastleWindowBase.Create(Application);
   Window.Open;
@@ -26,7 +26,8 @@ begin
   MyLabel.Color := Black;
   Button.InsertFront(MyLabel);
 
-  Scene := T2DScene.Create(Application);
+  Scene := TCastleScene.Create(Application);
+  Scene.Setup2D;
   Scene.Load('castle-data:/dragon/dragon.json');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;

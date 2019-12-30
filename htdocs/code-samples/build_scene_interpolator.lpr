@@ -13,12 +13,13 @@
   See https://castle-engine.io/x3d_implementation_interpolation.php
   for description what the nodes used here (like TimeSensor) do. }
 
-uses CastleWindow, CastleSceneManager, X3DNodes,
+uses CastleWindow, CastleViewport, X3DNodes,
   CastleColors, CastleVectors, CastleScene;
 
 function BuildScene: TX3DRootNode;
 var
   Shape: TShapeNode;
+  Material: TMaterialNode;
   Sphere: TSphereNode;
   Transform: TTransformNode;
   TimeSensor: TTimeSensorNode;
@@ -27,11 +28,13 @@ var
 begin
   Result := TX3DRootNode.Create;
 
+  Material := TMaterialNode.Create;
+  Material.DiffuseColor := YellowRGB;
+
   Sphere := TSphereNode.CreateWithTransform(Shape, Transform);
   { Note that assigning to Shape.Material is a shortcut for creating
     Shape.Appearance, and assigning to Shape.Appearance.Material. }
-  Shape.Material := TMaterialNode.Create;
-  Shape.Material.DiffuseColor := YellowRGB;
+  Shape.Material := Material;
   Result.AddChildren(Transform);
 
   TimeSensor := TTimeSensorNode.Create('MyAnimationName');
@@ -55,26 +58,27 @@ begin
 end;
 
 var
-  Window: TCastleWindowCustom;
-  SceneManager: TCastleSceneManager;
+  Window: TCastleWindowBase;
+  Viewport: TCastleViewport;
   Scene: TCastleScene;
 begin
-  Window := TCastleWindowCustom.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
-  SceneManager := TCastleSceneManager.Create(Application);
-  SceneManager.FullSize := true;
-  Window.Controls.InsertFront(SceneManager);
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoNavigation := true;
+  Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildScene, true);
   Scene.ProcessEvents := true;
-  Scene.PlayAnimation('MyAnimationName', paLooping);
-  SceneManager.Items.Add(Scene);
-  SceneManager.MainScene := Scene;
+  Scene.PlayAnimation('MyAnimationName', true);
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
 
   // move camera, to better see the animation
-  SceneManager.RequiredCamera.Position := Vector3(0, 0, 30);
+  Viewport.Camera.Position := Vector3(0, 0, 30);
 
   Application.Run;
 end.
