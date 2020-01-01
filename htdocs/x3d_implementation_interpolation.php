@@ -69,7 +69,7 @@ DEF MyAnimationName TimeSensor {
 
 <p>This animation does not do anything (<code>MyAnimationName</code>
 output events are not connected to anything). But it can already be started
-using <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>
+using <code>Scene.PlayAnimation('MyAnimationName', true)</code>
 in the engine. The <code>Scene.AnimationDuration('MyAnimationName')</code>
 will return 5.0.
 
@@ -218,7 +218,7 @@ to make the first item on the <code>keyValue</code> list equal to the last.
 }'); ?>
 
 <p>To actually <i>run the animation as looping</i> in <i>Castle Game Engine</i>
-just call <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>.
+just call <code>Scene.PlayAnimation('MyAnimationName', true)</code>.
 
 <p>Note: if you read the X3D specification, you may notice a field
 called <code>TimeSensor.loop</code>. <i>Do not touch this field</i>,
@@ -227,12 +227,8 @@ the <code>PlayAnimation</code> method. If you generate the X3D files yourself,
 leave <code>TimeSensor.loop</code> initially <code>FALSE</code> (this is the default),
 otherwise the animation will be already playing when you load the file.
 
-<p>The <a href="https://github.com/castle-engine/castle-engine/">Castle Game Engine version in GitHub</a>
-(to be released as version 6.6)
-has more cool improvements for <code>PlayAnimation</code>.
-Instead of <code>Scene.PlayAnimation('MyAnimationName', paLooping)</code>,
-you can call <code>Scene.PlayAnimation('MyAnimationName', true)</code>,
-and there are <code>PlayAnimation</code> overloads that allow you to optionally
+<p>The <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method is very powerful.
+For example you can optionally
 play the animation backward, or with <a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">blending</a>,
 or get a notification when animation stops.
 

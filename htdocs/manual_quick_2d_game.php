@@ -311,16 +311,21 @@ end;
 
     <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> (instead of simply attaching to window callbacks).
 
-  <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from an <?php echo a_href_page('X3D', 'vrml_x3d'); ?> or <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> or other format supported by our engine. To do this, create a <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, and inside it add <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> instance. <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?> descends from our powerful <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, you can load a 2D or 3D model there, you can transform it (using it's own properties, like <code>Translation</code>, or by making it a child of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) and do many other fancy stuff with it.
+  <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from <a href="creating_data_model_formats.php">any supported format (like X3D or glTF or Spine)</a>. To do this:
 
-    <p><b>Just follow the rest of this manual, knowing that everything applies also to 2D, not just 3D:)</b>
+    <ol>
+      <li>Create a <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>.
+      <li>Call <?php api_link('TCastleViewport.Setup2D', 'CastleViewport.TCastleViewport.html#Setup2D'); ?>.
+      <li>Create <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
+      <li>Call <?php api_link('TCastleScene.Setup2D', 'CastleScene.TCastleScene.html#Setup2D'); ?>.
+    </ol>
 
-    <p>See also the <i>Web3D 2015 Castle Game Engine tutorial</i>: <a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">the slides</a>, and <a href="https://github.com/castle-engine/cge-tutorial">the examples (code and sample data)</a>. The 2nd part of this tutorial shows the usage of <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>.
+    <p>The following manual chapters focus on <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> usage, and apply for both 3D and 2D games.
 
-    <p>See also the example <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code>.
+    <p>See the example code <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code> inside the engine.
+
+  <li><p>You can also make inputs user-configurable. To do this, wrap each input in a <?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instance. This will store whether the input is a key press or a mouse click, and you can check and change it at runtime. More information is in <?php echo a_href_page('manual about key / mouse shortcuts', 'manual_key_mouse'); ?>.
 </ul>
-
-<p>To make inputs user-configurable, you could wrap them in <?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instance. This will store whether the input is a key press or a mouse click, and you can check and change it at runtime. More information is in <?php echo a_href_page('manual about key / mouse shortcuts', 'manual_key_mouse'); ?>. This will allow you to replace the check <code>Event.IsKey(K_Space)</code> with something much more powerful:)
 
 <?php
 manual_footer();

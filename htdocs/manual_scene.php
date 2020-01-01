@@ -12,7 +12,7 @@ $toc = new TableOfContents(
     new TocItem('Many instances of the same 3D object', 'many_instances'),
     new TocItem('Building and editing the scene', 'building_and_editing'),
     new TocItem('Further reading', 'further_reading'),
-    new TocItem('Scene Manager: advanced notes', 'scene_manager_notes', 1),
+    new TocItem('Viewports: advanced notes', 'viewport_notes', 1),
     new TocItem('Creating descendants, implementing AI', 'descendants', 1),
     new TocItem('It all applies to 2D too!', '2d', 1),
   )
@@ -29,7 +29,7 @@ echo castle_thumbs(array(
 <p>In the last chapter, we created a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
 This is a very powerful class in our engine, it represents any non-trivial 3D or 2D object.
 You often load it's contents from the file using the <?php api_link('Load', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method.
-To actually make it visible (and animated, and sometimes even interactive), you need to also add it to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>.</p>
+To actually make it visible (and animated, and sometimes even interactive), you need to also add it to the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>.</p>
 
 <p>In this chapter, we will extend a little the code from the previous chapter, to add more functionality around the scene.
 
@@ -44,18 +44,18 @@ To actually make it visible (and animated, and sometimes even interactive), you 
 <ol>
   <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>.</p></li>
 
-  <li><p>Create both scenes, placing both <code>CarScene</code> and <code>RoadScene;</code> as children of <code>SceneManager.Items</code>.
+  <li><p>Create both scenes, placing both <code>CarScene</code> and <code>RoadScene;</code> as children of <code>Viewport.Items</code>.
 
-    <p>The complete code doing this, using <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, looks like this:
+    <p>The complete code doing this, using <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>, looks like this:
 
     <?php echo pascal_highlight_file('code-samples/scene_transform.lpr'); ?>
 
-    <p>If, instead of <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>, you use <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
+    <p>If, instead of <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>, you use <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
 
-    <p>Note that we set <code>SceneManager.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world. Note: avoid transforming the <code>MainScene</code> (if you do transform it, the default camera position may be incorrect in some cases) &mdash; this will be fixed soon (in CGE 6.6).</p>
+    <p>Note that we set <code>Viewport.Items.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
   </li>
 
-  <li><p>To make the car actually moving, we should now update the <?php api_link('TCastleTransform.Translation', 'CastleTransform.TCastleTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowCustom.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControl.OnUpdate', 'CastleControl.TCastleControlCustom.html#OnUpdate'); ?>).</p>
+  <li><p>To make the car actually moving, we should now update the <?php api_link('TCastleTransform.Translation', 'CastleTransform.TCastleTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowBase.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControlBase.OnUpdate', 'CastleControl.TCastleControlBase.html#OnUpdate'); ?>).</p>
 
     <p>Before opening the window, assign:</p>
 
@@ -107,7 +107,7 @@ echo castle_thumbs(array(
 do this sometime after loading the <code>CarScene</code>:
 
 <?php echo pascal_highlight(
-'CarScene.PlayAnimation(\'wheels_turning\', paForceLooping);'); ?>
+'CarScene.PlayAnimation(\'wheels_turning\', true);'); ?>
 
 <p>You should see now that the wheels of the car are turning. <i>Tip:</i> If you can't easily see the wheels, remember that you can move around in the scene using mouse dragging and mouse wheel. See <?php echo a_href_page('view3dscene', 'view3dscene'); ?> documentation of the <i>"Examine"</i> camera mode. Of course you can configure or disable the default camera navigation in your games (see <a href="manual_load_3d.php#section_camera">previous manual chapter for camera description</a>).
 
@@ -128,7 +128,7 @@ You can access the underlying node using the <?php api_link('AnimationTimeSensor
 <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?>,
 <?php api_link('Visible', 'CastleTransform.T3D.html#Visible'); ?>,
 <?php api_link('Collides', 'CastleTransform.T3D.html#Collides'); ?> and
-<?php api_link('Pickable', 'CastleTransform.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
+<?php api_link('Pickable', 'CastleTransform.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
 
 <p>For example, you can toggle the visibility of the car when user presses the <code>'c'</code> key, like this:
 
@@ -156,11 +156,11 @@ end;'); ?>
 <ul>
   <li><p>In some cases, instead of changing the <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'CastleTransform.T3D.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
 
-  <li><p>Note that simply changing the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
+  <li><p>Note that simply changing the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
 
   <li><p>The one thing you should <i>not</i> do during the game, if you hope to have a good performance: <i>do not load from 3D model files</i> during the game (e.g. do not call <?php api_link('TCastleSceneCore.Load(URL, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method).</p>
 
-    <p>If you want to add scenes dynamically during the game, it's better to load a <i>pool</i> of scenes at the initialization (and prepare them for rendering using the <?php api_link('TCastleScene.PrepareResources', 'CastleScene.TCastleScene.html#PrepareResources'); ?> method). Then add/remove such already-prepared scenes during the game. You can efficiently initialize many scenes from the same 3D model using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method, or load an X3D graph once using the <?php api_link('Load3D', 'X3DLoad.html#Load3D'); ?> function and then use repeatedly the <?php api_link('TCastleSceneCore.Load(TX3DRootNode, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> overloaded version.</p>
+    <p>If you want to add scenes dynamically during the game, it's better to load a <i>pool</i> of scenes at the initialization (and prepare them for rendering using the <?php api_link('TCastleScene.PrepareResources', 'CastleScene.TCastleScene.html#PrepareResources'); ?> method). Then add/remove such already-prepared scenes during the game. You can efficiently initialize many scenes from the same 3D model using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method, or load an X3D graph once using the <?php api_link('LoadNode', 'X3DLoad.html#LoadNode'); ?> function and then use repeatedly the <?php api_link('TCastleSceneCore.Load(TX3DRootNode, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> overloaded version.</p>
 
     <p>See <?php echo a_href_page('the manual chapter about optimization for more hints', 'manual_optimization'); ?>.
   </li>
@@ -194,7 +194,7 @@ begin
   CarTransforms[I].Translation := Vector3(
     -6 + Random(4) * 6, 0, RandomFloatRange(-70, 50));
   CarTransforms[I].Add(CarScene);
-  Window.SceneManager.Items.Add(CarTransforms[I]);
+  Viewport.Items.Add(CarTransforms[I]);
 end;'); ?>
 
     <p>We added a randomization of the initial car position. The <?php api_link('RandomFloatRange', 'CastleUtils.html#RandomFloatRange'); ?> function is in the <?php api_link('CastleUtils', 'CastleUtils.html'); ?> unit. There's really nothing magic about the randomization parameters, I just adjusted them experimentally to look right:)</p>
@@ -315,7 +315,7 @@ end;'); ?>
     <p>Note that to transform X3D nodes we use the <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?> class. We have essentially two transformation trees in our engine:</p>
 
     <ol>
-      <li>The "outer" tree is rooted in <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and shows scenes <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> transformed by <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> and friends.</li>
+      <li>The "outer" tree is rooted in <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>, and shows scenes <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> transformed by <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> and friends.</li>
 
       <li>The "inner" tree is inside every scene. It is rooted in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>, and shows shapes <?php api_link('TShapeNode', 'X3DNodes.TShapeNode.html'); ?>, and is transformed by <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?>.</li>
     </ol>
@@ -326,7 +326,7 @@ end;'); ?>
   <li><p>Add the created scene to the scene manager, by adding this somewhere at the end of scene manager initialization:</p>
 
 <?php echo pascal_highlight(
-'Window.SceneManager.Items.Add(CreateBoxesScene);'); ?>
+'Viewport.Items.Add(CreateBoxesScene);'); ?>
 
   </li>
 </ol>
@@ -347,16 +347,14 @@ end;'); ?>
 
 <ul>
   <li>
-    <p>You can use many scene manager instances. Just create your own <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance. You can use <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> to get a window that does <b>not</b> have the default scene manager created for you &mdash; sometimes it's easier to dynamically create, add and remove as many scene managers as you want.</p>
+    <p>You can use many viewport instances. Just create your own <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?> instance.</p>
 
-    <p>You can display multiple scene managers, each showing different set of objects, on top of each other. This way you can easily divide your world into <i>"layers"</i>. The scene managers order is determined by their 2D order (you insert them using methods like
-<?php api_link('InsertFront', 'CastleUIControls.TUIControl.html#InsertFront'); ?>,
-<?php api_link('InsertBack', 'CastleUIControls.TUIControl.html#InsertBack'); ?>). This way you explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
+    <p>The viewports may show the same, or completely different, scenes.
 
-    <p> When using multiple scene managers on top of each other, remember that the <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> by default renders a background covering everything underneath. You can disable this background by setting <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleViewport.html#Transparent'); ?> to <code>false</code>. The 2D scene manager, in <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, has already <code>Transparent</code> = <code>true</code> by default.</p>
+    <p>The viewports may be used as <i>layers</i> if you set <code>ViewportXxx.Transparent := true</code> and place them on top of each other, using <?php api_link('InsertFront', 'CastleUIControls.TCastleUserInterface.html#InsertFront'); ?> in the proper order. This way you can explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
   </li>
 
-  <li><p>You can also make alternative views into the same world (same scene manager). For this, use <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> , that points to a <code>TCastleSceneManager</code> for information about the world (but has it's own camera).
+  <li><p>You can show the same world from different cameras. For this, use additional <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> instances and copy the <code>Viewport.Items</code> value.
 
     <p>For examples of this, see:
     <ul>

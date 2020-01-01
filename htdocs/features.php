@@ -342,7 +342,8 @@ $toc = new TableOfContents(
     <?php api_link('TCastleTransform.BoxCollision', 'CastleTransform.TCastleTransform.html#BoxCollision'); ?>,
     <?php api_link('TCastleTransform.SphereCollision', 'CastleTransform.TCastleTransform.html#SphereCollision'); ?>
     <?php api_link('TCastleTransform.RayCollision', 'CastleTransform.TCastleTransform.html#RayCollision'); ?>
-    on the main 3D world instance: <?php api_link('CastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>).
+    on the root transformation:
+    <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>).
     </li>
 </ul>
 

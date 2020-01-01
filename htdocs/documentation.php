@@ -57,7 +57,7 @@ echo pretty_heading('Getting Started');
 <p>The editor and build tool can be used to compile / run / package
 applications that do not depend on LCL (<i>Lazarus Component Library</i>).
 This means that you should initialize your game window using
-the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+the <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class.
 Our documentation and most examples follow this approach too.
 
 <?php echo $toc->html_section(); ?>
@@ -125,11 +125,11 @@ A good examples to try at the beginning are
 <p>From Lazarus, you can use the engine integrated
 with Lazarus forms (and the rest of the <i>Lazarus Component Library</i>)
 through the
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> class.
+<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?> class.
 Or you can use Lazarus only as an editor and debugger,
 and use the engine without the Lazarus forms,
 initializing the window using the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class.
 
 <?php
 echo castle_thumbs(array(
@@ -152,7 +152,7 @@ echo castle_thumbs(array(
 
 <p>Our engine can be used without the LCL (<i>Lazarus Component Library</i>)
 through the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class.
 To compile the engine and applications without the help of Lazarus,
 you have a couple of options:
 

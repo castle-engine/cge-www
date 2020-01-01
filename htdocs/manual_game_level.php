@@ -113,12 +113,17 @@ That's because loading level wants to prepare resources for OpenGL rendering.
 
 <ol>
   <li><p>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
-    make sure that
-    <?php api_link('Open method', 'CastleWindow.TCastleWindowBase.html#Open'); ?>
-    was already called.
-    By the way, you can also initialize progress interface, to see nice progress
-    bar when loading level. Like this:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
+    do this in
+    <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>
+    handler or later.
+    See <?php echo a_href_page('manual about writing cross-platform games', 'manual_cross_platform'); ?>
+    for an example application initialization.
+
+  <li><p>If you use
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
+    you can also initialize progress interface, to see nice progress bar when loading 
+    the level. Like this:
 
     <?php echo pascal_highlight(
 'uses ..., CastleProgress, CastleWindowProgress;
@@ -135,15 +140,8 @@ SceneManager.LoadLevel(\'pits\');
 
 Application.Run; // this goes after preparing level (and everything else)'); ?>
 
-  <li><p>If you use
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-    to write cross-platform (portable to mobile) games, do this in
-    <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>
-    handler (or later).
-    See <?php echo a_href_page('manual about writing cross-platform games', 'manual_cross_platform'); ?>.
-
   <li><p>If you use Lazarus
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
     make sure you call
     <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
     from

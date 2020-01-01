@@ -32,7 +32,7 @@ $toc = new TableOfContents(array(
   X3D global light behavior will be used: light will affect everything,
   regardless of light node placement in node graph. For developers:
   this also indicates that light shines on other 3D objects,
-  outside of this scene, if you use <code>TCastleSceneManager.GlobalLights := true;</code>.
+  outside of this scene, if you use <code>TCastleViewport.GlobalLights := true;</code>.
   Very useful to make your creatures, items and such lit by the level lights.
 
 <?php echo $toc->html_section(); ?>

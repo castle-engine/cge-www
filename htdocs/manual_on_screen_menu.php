@@ -71,40 +71,11 @@ or by changing it's <?php api_link('Exists', 'CastleUIControls.TUIControl.html#E
 you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by
 <?php api_link('Items.Paused', 'CastleTransform.TCastleAbstractRootTransform.html#Paused'); ?> property.
-Like this:</p>
 
-<?php echo pascal_highlight(
-'...
-{ global / static variables }
-var
-  GameMenu: TCastleOnScreeMenu;
-  GameMenuClosed: boolean;
-
-... // use this at initialization:
-  { somewhere at the beginning prepare the menu }
-  GameMenu := TCastleOnScreeMenu.Create(...);
-  { see example above for how to initialize and implement TCastleOnScreeMenu.
-    Make sure that one of the menu items, like "Back",
-    sets GameMenuClosed := true when clicked. }
-
-... // use this when you want to actually show menu:
-  SceneManager.Paused := true;
-  GameMenuClosed := false;
-  Window.Controls.Add(GameMenu);
-  repeat
-    Application.ProcessMessage(true, true);
-  until GameMenuClosed;
-  Window.Controls.Remove(GameMenu);
-  SceneManager.Paused := false;'); ?>
-
-<p>As the scene manager handles a lot of stuff automatically,
-processing events and calling Update methods of all 3D objects periodically,
-pausing it effectively pauses your whole 3D world, while still allowing
-it to be displayed as a background under the on-screen menu.
-Alternatively you could also hide the 3D world entirely,
-by changing <code>SceneManager.Exists</code> property to <code>false</code> &mdash;
-the <code>SceneManager</code> with <code>Exists=false</code> is not only paused,
-it's also invisible.</p>
+Use the <a href="manual_2d_user_interface.php#section_ui_state">TUIState</a>
+to create a state like <code>TStateOptions</code> that will contain
+the "options" user-interface (e.g. using <code>TCastleOnScreenMenu</code>),
+and underneath pause the game by setting <code>Viewport.Items.Paused := true</code>.
 
 <h2>Background under on-screen menu</h2>
 

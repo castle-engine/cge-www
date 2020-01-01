@@ -6,10 +6,11 @@ manual_header('Key / mouse shortcuts');
 <p>We have global key/mouse shortcuts in some global <code>Input_Xxx</code> variables:
 
 <ul>
-  <li>In <code>CastleSceneManager</code> unit we have <code>Input_Interact</code>
-    and some game operations.
+  <li>In <code>CastleViewport</code> unit we have <code>Input_Interact</code>.
+  <li>In <code>CastleLevels</code> unit we have more <code>Input_Xxx</code> shortcuts
+    useful for <a href="manual_high_level_3d_classes.php">typical 3D games</a>.
   <li>In <code>CastlePlayer</code> unit we have <code>PlayerInput_Xxx</code>
-    global variables, these override some camera shortcuts when Player is used.
+    global variables, these override some navigation shortcuts when <code>TPlayer</code> is used.
 </ul>
 
 Global shortcuts are gathered inside <?php api_link('InputsAll',
@@ -18,15 +19,15 @@ Global shortcuts are gathered inside <?php api_link('InputsAll',
 game controls, you can detect key conflicts and handle them however
 you like, etc.
 
-<p>There are also local inputs, local to a specific camera instance,
+<p>There are also local inputs, local to a specific navigation instance,
 inside <code>Input_Xxx</code> properties of
-<?php api_link('TWalkCamera', 'CastleCameras.TWalkCamera.html'); ?> and
-<?php api_link('TExamineCamera', 'CastleCameras.TExamineCamera.html'); ?>.
+<?php api_link('TCastleWalkNavigation', 'CastleCameras.TCastleWalkNavigation.html'); ?> and
+<?php api_link('TCastleExamineNavigation', 'CastleCameras.TCastleExamineNavigation.html'); ?>.
 <b>If you use <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?></b> then
 <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> uses it's own
-<?php api_link('TWalkCamera', 'CastleCameras.TWalkCamera.html'); ?>,
- and overrides (most of) camera inputs with global
-<code>PlayerInput_Xxx</code>, so (most of) the <code>TWalkCamera.Input_Xxx</code> controls
+<?php api_link('TCastleWalkNavigation', 'CastleCameras.TCastleWalkNavigation.html'); ?>,
+ and overrides (most of) navigation inputs with global
+<code>PlayerInput_Xxx</code>, so (most of) the <code>TCastleWalkNavigation.Input_Xxx</code> controls
 should not be accessed directly, instead change only the global
 <code>PlayerInput_Xxx</code>. <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
  sets typical AWSD key
@@ -53,9 +54,9 @@ See the chapter <?php echo a_href_page('User preferences',
 Then can be global (added to
 InputsAll, saved to config file and such) or local. See <code>CastleInputs</code>
 unit API docs. You can easily handle them by overriding
-<code>TUIControl.Press</code> or <code>TCastleControl.EventPress</code> or
-<code>TCastleWindow.EventPress</code> methods, or assigning <code>TCastleControl.OnPress</code>
-or <code>TCastleWindow.OnPress</code> callbacks. You will find then useful methods
+<code>TCastleUserInterface.Press</code> or <code>TCastleControlBase.EventPress</code> or
+<code>TCastleWindow.EventPress</code> methods, or assigning <code>TCastleControlBase.OnPress</code>
+or <code>TCastleWindowBase.OnPress</code> callbacks. You will find then useful methods
 <code>TInputShortcut.IsEvent(TInputPressRelease)</code> (to detect press/release of
 input) and <code>TInputShortcut.IsPressed(IUIContainer)</code> (to detect holding
 (keeping pressed) of input).

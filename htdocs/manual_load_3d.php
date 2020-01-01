@@ -50,7 +50,7 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
 
 <ol>
   <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>:</b>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     To load a 3D model, double click to create an event <code>OnCreate</code>
     on your <code>TForm1</code> class, and put there the following code:</p>
 

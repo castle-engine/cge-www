@@ -1,7 +1,19 @@
 <?php
 require_once 'castle_engine_functions.php';
 manual_header('Classes overview (cheatsheet)');
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Introduction', 'introduction'),
+    new TocItem('Engine core classes', 'core'),
+    new TocItem('Utilities for typical 3D games', 'utilities_3d'),
+  )
+);
 ?>
+
+<?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
 
 <p>This manual chapter summarizes information about
 the most important classes and concepts of our engine.
@@ -21,35 +33,47 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     in particular <?php api_link('class hierarchy', 'ClassHierarchy.html'); ?>.
 </ol>
 
-<p>Classes:</p>
+<?php echo $toc->html_section(); ?>
 
 <dl>
-  <dt>OpenGL context:
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>  /
+  <dt>Container:
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
     <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     classes</dt>
 
-  <dd><p><i>How to use</i>: Just create, or drop on Lazarus form,
-    an instance of this class.
+  <dd>
+    <p>You need to have a <i>container</i> to display anything using CGE,
+    and allow user to interact with your application.
+    The "container" has an OpenGL rendering context,
+    and handles user input in a cross-platform way.
+    A usual application creates exactly one instance of
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+    or
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+    and uses this instance for the entire game.
+
+    <p><i>How to use</i>: You can explicitly create an instance of this class.
+
+    <p>In case of
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+    you can also drag-and-drop it on a Lazarus form using Lazarus form designer.
+
     <!--
     Advanced: you can also make your own class providing a non-abstract
     <?php api_link('TUIContainer', 'CastleUIControls.TUIContainer.html'); ?>.
     -->
 
-    <p>Properties: a <code>Controls</code> list, that contains instances of
+    <p><i>Most important properties</i>: a <code>Controls</code> list, that contains instances of
     <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
   </dd>
 
-  <dt>2D control: <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> class</dt>
+  <dt>User interface control: <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> class</dt>
 
   <dd><p>Important descendants:
     <ul>
+      <li><?php api_link('TCastleRectangle', 'CastleControls.TCastleRectangle.html'); ?>
       <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>
-      <li><?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
       <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
-      <li>... and many other common 2D UI stuff (see
-        <?php api_link('CastleControls', 'CastleControls.html'); ?> unit
-        and some others).
       <li><?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
       <!--
         <ul>
@@ -59,10 +83,19 @@ It can be treated like a cheatsheet, concise description of engine architecture.
             adds comfortable methods to load levels with placeholders)
         </ul>
       -->
+      <li>... and many other usual user-interface components. See e.g.
+        <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.
+        See the <a href="manual_2d_user_interface.php">manual chapter about user interface</a>.
     </ul>
 
-    <p><i>How to use</i>: Just create, or drop on form, instances of these class.
-    Then call <code>Window.Controls.Add(...)</code>.
+    <p><i>How to use</i>: Just create instances of these classes.
+    Add them to the container, by calling <code>Window.Controls.InsertFront(...)</code>.
+
+    <p>You can also <a href="manual_editor.php">design user interface using CGE editor</a>.
+    In this case you can load (instantiate) it using
+    <?php api_link('UserInterfaceLoad', 'CastleComponentSerialize.html#UserInterfaceLoad'); ?>
+    or
+    <?php api_link('TUIState.InsertUserInterface', 'CastleUIState.TUIState.html#InsertUserInterface'); ?>.
 
 <!--
     <p>Except you usually don't have to create 1st
@@ -82,6 +115,15 @@ It can be treated like a cheatsheet, concise description of engine architecture.
   <dt>Viewport: <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?></dt>
 
   <dd>
+    <p>Viewport allows to display
+    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>.
+    You can arrange scenes into groups and transform them using
+    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
+    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> is the only way
+    to display 3D objects using CGE,
+    it is also advised way to display 2D game assets (see
+    <a href="https://github.com/castle-engine/castle-engine/wiki/2D-Games">about 2D games here</a>).
+
     <p><?php api_link('TCastleViewport.Camera', 'CastleViewport.TCastleViewport.html#Camera'); ?> refers to exactly one instance of <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>.
 
     <p><?php api_link('TCastleViewport.Navigation', 'CastleViewport.TCastleViewport.html#Navigation'); ?> refers to one (or none) instance of:
@@ -114,7 +156,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     is an instance of:
 
     <dl>
-      <dt>Transformation and grouping of objects:
+      <dt>Transformation:
       <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
       </dt>
 
@@ -122,8 +164,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
         <p>This groups and transforms children, that may be:
 
         <ul>
-          <li>More <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> &mdash;
-            a transformed group of objects,
+          <li>More instances of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
 
           <li><?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> &mdash;
             a 3D or 2D model, that can be rendered, animated, checked for collisions and so on.
@@ -134,37 +175,23 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
         <p><i>How to use</i>: you can create instances
         of these classes, as usual. After creation you usually add them to
-        <?php api_link('CastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
+        <?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
         (or to some another list e.g.
         you can add <code>List1</code>: <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to
-        <?php api_link('CastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>,
+        <?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>,
         and then add <code>Scene</code>: <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
         to <code>List1</code>.)
         It's your decision how (and if at all) you need to build a hierarchy
         of objects using lists and transformations. Maybe it's enough to
         just load your whole 3D model as a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>?
 
+<!--
         <p>Note that <i>most of the actual rendering is eventually done by TCastleScene.</i>
         The <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> rendering
         is so versatile that we use it for everything.
         So treat everything other than <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
         as just a way to organize (group, transform) your 3D data.
-
-        <p><?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
-        is also a base for some optional game-specific classes listed below.
-        More about them later, some of them should be instantiated in a special way:
-
-        <ul>
-          <li><?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> (special, usage described in more detail later)
-          <li><?php api_link('T3DAlive', 'CastleTransform.T3DAlive.html'); ?>
-            <ul>
-              <li><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?> (special, usage described in more detail later)
-              <li><?php api_link('T3DAliveWithInventory', 'CastleItems.T3DAliveWithInventory.html'); ?>
-                <ul>
-                  <li><?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> (special, usage described in more detail later)
-                </ul>
-            </ul>
-        </ul>
+-->
       </dd>
     </dl>
 
@@ -211,6 +238,28 @@ SceneManager.LoadLevel(\'myLevelName\');
     </dl>
   </dd>
 </dl>
+
+<?php echo $toc->html_section(); ?>
+
+<p>As explained in the <a href="manual_3d_utlities_overview.php">Utilities for typical 3D games -&gt; Overview</a>,
+our engine contains a number of optional classes helpful to implement typical 3D games.
+Their usage is more limited than the "core" classes listed above.
+
+<p><?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
+ is a base for the classes listed below.
+More about them later, some of them should be instantiated in a special way:
+
+<ul>
+<li><?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> (special, usage described in more detail later)
+<li><?php api_link('TCastleAlive', 'CastleTransformExtra.TCastleAlive.html'); ?>
+<ul>
+<li><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?> (special, usage described in more detail later)
+<li><?php api_link('TAliveWithInventory', 'CastleItems.TAliveWithInventory.html'); ?>
+  <ul>
+    <li><?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> (special, usage described in more detail later)
+  </ul>
+</ul>
+</ul>
 
 <p>Global <?php api_link('Resources', 'CastleResources.html#Resources'); ?> list contains instances of:</p>
 
@@ -269,7 +318,7 @@ SceneManager.LoadLevel(\'myLevelName\');
   </dd>
 </dl>
 
-<p>Special descendants of <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>:</p>
+<p>Special descendants of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>:</p>
 
 <dl>
   <dt><?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?></dt>

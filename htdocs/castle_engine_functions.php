@@ -287,7 +287,7 @@ $castle_sitemap = array(
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
-              'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControl'),
+              'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
             )
           ),
         ),

@@ -468,7 +468,7 @@ and then adds another viewport that observes the same world from another perspec
 <p>Note that, since the viewport is a 2D control,
 you can place it as child of other UI controls.
 The example below demonstrates this technique, inserting
- <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?>
+ <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
  inside a <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>.
 
 <?php
@@ -488,11 +488,11 @@ echo castle_thumbs(array(
 ?>
 
 <p>As the viewport may contain a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
- with animation, and any viewport (including a scene manager)
+ with animation, and a viewport
 is just a 2D user-interface control,<!-- that can be children of other controls,-->
 you can mix user-interface with animations freely.
-For example, you can design an animation in Spine, load it to <?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>,
-insert it to <?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>, which you can then insert inside a
+For example, you can design an animation in Spine, load it to <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
+insert it to <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>, which you can then insert inside a
 <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>. Thus you can have a button
  with any crazy animation inside:)
 

@@ -52,7 +52,7 @@ $toc = new TableOfContents(
   <li><p>You can use <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms,
     and LCL (<i>Lazarus Component Library</i>).
     To use the engine, simply drop a
-    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     component on a Lazarus form.
 
     <p>This, in practice, means that your applications will use <i>Carbon</i> or <i>Cocoa</i>.

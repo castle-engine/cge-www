@@ -9,10 +9,11 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 <ol>
   <li><p><b>The "outer" tree containing scenes:</b>
 
-    <p><?php api_link('TCastleSceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>
-    is a tree containing 3D scenes. A scene is an instance of
+    <p><?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
+    is a tree containing scenes. A scene is an instance of
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> class,
     which is probably <b>the</b> most important class in our engine.
+    It represents a 3D or 2D model.
 
     <p>You can group and transform the scenes using
     <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
