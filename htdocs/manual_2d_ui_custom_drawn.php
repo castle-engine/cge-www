@@ -38,15 +38,7 @@ using lower-level utilities for 2D drawing.
 
 <p>An example that we will consider in this chapter is designing
 a HUD (<i>heads-up display</i>) that displays some player information,
-like current life and inventory. In the <a href="manual_player.php">chapter about "Player"</a> we shown how to easily use the standard
- <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
- class to automatically store and update your player's life and inventory
-(see <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?> and ancestors properties, like
-<?php api_link('TAliveWithInventory.Inventory', 'CastleItems.TAliveWithInventory.html#Inventory'); ?> and
-<?php api_link('TAlive.Life', 'Castle3D.TAlive.html#Life'); ?>).
-But this information is not <i>displayed</i> automatically in any way,
-since various games have wildly different needs.
-<i>Let's draw the information about player ourselves</i>.</p>
+like current life.</p>
 
 <p>There are two places where you can draw:</p>
 
@@ -77,7 +69,7 @@ It shows the player health by simply writing it out as text.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Inside <code>TMyPlayerHUD.Render</code> you can draw using our
+<p>Inside <code>TPlayerHud.Render</code> you can draw using our
 2D drawing API.
 
 <?php echo $toc->html_section(); ?>
@@ -89,8 +81,10 @@ This is an instance of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.ht
 For example, you can show player's health like this:
 
 <?php echo pascal_highlight(
-'UIFont.Print(10, 10, Yellow,
-  Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));'); ?>
+'UIFont.Print(10, 10, Yellow, Format(\'Player life: %f / %f\', [
+  PlayerInformation.Life,
+  PlayerInformation.MaxLife
+]));'); ?>
 
 <p>You can also create your own instances
 of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>
@@ -98,10 +92,9 @@ of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>
 <?php echo a_href_page('the manual chapter about "Text and fonts" for more',
 'manual_text'); ?>.
 
-<p><i>Note: Drawing a text this way means that you manually do something
-similar to the
+<p><i>Note: It is more advised (easier, more flexible) to use
 <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
- control</i>.
+ control than to draw text like above.</i>
 
 <?php echo $toc->html_section(); ?>
 
@@ -112,29 +105,30 @@ similar to the
 <p>For example, we can show a nice health bar showing the player's life:</p>
 
 <?php echo pascal_highlight(
-'procedure TMyPlayerHUD.Render;
+'procedure TPlayerHud.Render;
 var
-  R: TRectangle;
+  R: TFloatRectangle;
 begin
   inherited;
 
-  R := Rectangle(10, 10, 400, 50);
+  R := FloatRectangle(10, 10, 400, 50);
   { draw background of health bar with a transparent red }
   DrawRectangle(R, Vector4(1, 0, 0, 0.5));
   { calculate smaller R, to only include current life }
   R := R.Grow(-3);
-  R.Width := Round(R.Width * Player.Life / Player.MaxLife);
+  R.Width := R.Width * PlayerInformation.Life / PlayerInformation.MaxLife;
   { draw the inside of health bar with an opaque red }
   DrawRectangle(R, Vector4(1, 0, 0, 1));
 
-  UIFont.Print(20, 20, Yellow,
-    Format(\'Player life: %f / %f\', [Player.Life, Player.MaxLife]));
+  UIFont.Print(20, 20, Yellow, Format(\'Player life: %f / %f\', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
 end;'); ?>
 
-<p><i>Note: Drawing a rectangle this way means that you manually do something
-similar to the
+<p><i>Note: It is more advised (easier, more flexible) to use
 <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>
- control</i>.
+ control than to draw rectangle like above.</i>
 
 <p>To <b>draw a circle</b> use the
 <?php api_link('DrawCircle', 'CastleGLUtils.html#DrawCircle'); ?>.
@@ -142,10 +136,9 @@ similar to the
  <?php api_link('DrawRectangleOutline', 'CastleGLUtils.html#DrawRectangleOutline'); ?>
  <?php api_link('DrawCircleOutline', 'CastleGLUtils.html#DrawCircleOutline'); ?>.
 
-<p><i>Note: Drawing shapes this way means that you manually do something
-similar to the
+<p><i>Note: It is more advised (easier, more flexible) to use
 <?php api_link('TCastleShape', 'CastleControls.TCastleShape.html'); ?>
- control</i>.
+ control than to draw shapes like above.</i>
 
 <p>To <b>draw an arbitrary 2D primitive</b> use the
 <?php api_link('DrawPrimitive2D', 'CastleGLUtils.html#DrawPrimitive2D'); ?>
@@ -173,7 +166,7 @@ if you're old enough to recognize it:)
 'uses ..., Classes, CastleFilesUtils, CastleGLImages;
 
 type
-  TMyPlayerHUD = class(TCastleUserInterface)
+  TPlayerHud = class(TCastleUserInterface)
   private
     FMyImage: TDrawableImage;
   public
@@ -182,31 +175,30 @@ type
     procedure Render; override;
   end;
 
-constructor TMyPlayerHUD.Create(AOwner: TComponent);
+constructor TPlayerHud.Create(AOwner: TComponent);
 begin
   inherited;
   FMyImage := TDrawableImage.Create(\'castle-data:/face.png\');
 end;
 
-destructor TMyPlayerHUD.Destroy;
+destructor TPlayerHud.Destroy;
 begin
   FreeAndNil(FMyImage);
   inherited;
 end;
 
-procedure TMyPlayerHUD.Render;
+procedure TPlayerHud.Render;
 begin
   inherited;
 
-  // ... previous TMyPlayerHUD.Render contents ...
+  // ... previous TPlayerHud.Render contents ...
 
   FMyImage.Draw(420, 10);
 end;'); ?>
 
-<p><i>Note: Drawing images this way means that you manually do something
-similar to the
+<p><i>Note: Note: It is more advised (easier, more flexible) to use
 <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
- control</i>.
+ control than to draw image like above.</i>
 
 <?php echo $toc->html_section(); ?>
 
@@ -347,7 +339,7 @@ end;'); ?>
 <?php echo $toc->html_section(); ?>
 
 <p>See <code>examples/fps_game</code> for a working and fully-documented
-demo of such <code>TMyPlayerHUD</code> implementation.
+demo of such <code>TPlayerHud</code> implementation.
 See <?php echo a_href_page('"The Castle"', 'castle'); ?> sources (unit <code>GamePlay</code>)
 for an example implementation that shows
 more impressive player's life indicator and inventory and other things on the screen.

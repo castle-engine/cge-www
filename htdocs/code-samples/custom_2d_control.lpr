@@ -1,38 +1,44 @@
-uses SysUtils, CastleColors, CastleVectors, CastleWindow, CastleUIControls,
-  CastleControls, CastlePlayer, CastleRectangles, CastleGLUtils;
-
-var
-  Window: TCastleWindow;
-  Player: TPlayer;
+uses SysUtils, Classes,
+  CastleColors, CastleVectors, CastleWindow, CastleUIControls,
+  CastleControls, CastleRectangles;
 
 type
-  TMyPlayerHUD = class(TCastleUserInterface)
+  TPlayerInformation = class(TComponent)
+  public
+    Life, MaxLife: Single;
+  end;
+
+var
+  Window: TCastleWindowBase;
+  PlayerInformation: TPlayerInformation;
+
+type
+  TPlayerHud = class(TCastleUserInterface)
   public
     procedure Render; override;
   end;
 
-procedure TMyPlayerHUD.Render;
+procedure TPlayerHud.Render;
 begin
   inherited;
-  UIFont.Print(20, 20, Yellow,
-    Format('Player life: %f / %f', [Player.Life, Player.MaxLife]));
+  UIFont.Print(20, 20, Yellow, Format('Player life: %f / %f', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
 end;
 
 var
-  PlayerHUD: TMyPlayerHUD;
+  PlayerHud: TPlayerHud;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
-  Player := TPlayer.Create(Window.SceneManager);
-  Player.Life := 75; // just to make things interesting
-  Window.SceneManager.Items.Add(Player);
-  Window.SceneManager.Player := Player;
+  PlayerInformation := TPlayerInformation.Create(Application);
+  PlayerInformation.Life := 75;
+  PlayerInformation.MaxLife := 100;
 
-  { When starting your game, create TMyPlayerHUD instance
-    and add it to Window.Controls }
-  PlayerHUD := TMyPlayerHUD.Create(Application);
-  Window.Controls.InsertFront(PlayerHUD);
+  PlayerHud := TPlayerHud.Create(Application);
+  Window.Controls.InsertFront(PlayerHud);
 
   Application.Run;
 end.

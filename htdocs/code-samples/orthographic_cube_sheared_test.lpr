@@ -2,7 +2,7 @@
   of a special mesh (that looks a bit like a box, but with back side shifted). }
 
 uses SysUtils,
-  CastleWindow, CastleScene, CastleSceneManager,
+  CastleWindow, CastleScene, CastleViewport,
   CastleColors, CastleVectors, CastleFilesUtils, X3DNodes, CastleTransform;
 
 procedure AddTexturedShearedCube(
@@ -99,12 +99,17 @@ begin
 end;
 
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
+  Viewport: TCastleViewport;
   Scene: TCastleScene;
   RootNode: TX3DRootNode;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
+
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Window.Controls.InsertFront(Viewport);
 
   RootNode := TX3DRootNode.Create;
   AddOrthoViewpoint(RootNode);
@@ -117,26 +122,18 @@ begin
   Scene.Load(RootNode, true);
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
-  Window.SceneManager.Items.Add(Scene);
-  Window.SceneManager.MainScene := Scene;
 
-{
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
+
   // configure initial camera view
-  Window.SceneManager.WalkCamera.SetView(
-    Vector3(0, 0, 10),
-    Vector3(0, 0, -1),
-    Vector3(0, 1, 0)
-  );
-  // do not allow user to move camera by arrow keys etc.
-  Window.SceneManager.WalkCamera.Input := [];
-}
-
-  // for debug: configure initial camera view, let user rotate the scene
-  Window.SceneManager.ExamineCamera.SetView(
+  Viewport.Camera.SetView(
     Vector3(3, 3, 10),
     Vector3(0, 0, -1),
     Vector3(0, 1, 0)
   );
+  // let user rotate the scene by default Examine mode
+  Viewport.AutoNavigation := true;
 
   Application.Run;
 end.

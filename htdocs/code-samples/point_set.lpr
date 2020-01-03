@@ -1,15 +1,22 @@
-uses CastleVectors, CastleWindow, X3DNodes, CastleScene;
+uses CastleVectors, CastleWindow, X3DNodes, CastleScene, CastleViewport;
 
 var
   PointSet: TPointSetNode;
   PointCoordinates: TCoordinateNode;
   PointShape: TShapeNode;
   Root: TX3DRootNode;
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   Scene: TCastleScene;
+  Viewport: TCastleViewport;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
+
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Viewport.AutoCamera := true;
+  Viewport.AutoNavigation := true;
+  Window.Controls.InsertFront(Viewport);
 
   PointCoordinates := TCoordinateNode.Create;
   PointCoordinates.SetPoint(
@@ -30,7 +37,7 @@ begin
   Root.AddChildren(PointShape);
 
   { You can now save Root to X3D file,
-    or render Root (loading it to Scene, adding Scene to Window.SceneManager).
+    or render Root (loading it to Scene, adding Scene to TCastleViewport).
     Or both, as the example below shows.
 
     Notes about memory management:
@@ -55,7 +62,8 @@ begin
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.Attributes.PointSize := 10;
 
-  Window.SceneManager.Items.Add(Scene);
+  Viewport.Items.Add(Scene);
+  Viewport.Items.MainScene := Scene;
 
   Application.Run;
 end.

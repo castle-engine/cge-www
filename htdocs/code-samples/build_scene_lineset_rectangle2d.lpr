@@ -1,12 +1,12 @@
 { Build 2D scene with a textured Rectangle2D and outline using LineSet,
   and rotate it. }
 
-uses CastleWindow, Castle2DSceneManager, X3DNodes, CastleFilesUtils,
+uses CastleWindow, CastleViewport, CastleScene, X3DNodes, CastleFilesUtils,
   CastleColors, CastleVectors, CastleTimeUtils, CastleSceneCore;
 
 var
   LifeTime: TFloatTime;
-  Scene: T2DScene;
+  Scene: TCastleScene;
   Transform: TTransformNode;
 
 function BuildScene: TX3DRootNode;
@@ -72,23 +72,24 @@ end;
 
 var
   Window: TCastleWindowBase;
-  SceneManager: T2DSceneManager;
+  Viewport: TCastleViewport;
 begin
   Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
-  SceneManager := T2DSceneManager.Create(Application);
-  SceneManager.Transparent := false;
-  SceneManager.FullSize := true;
-  SceneManager.ProjectionAutoSize := false;
-  SceneManager.ProjectionHeight := 1000;
-  SceneManager.ProjectionOriginCenter := true;
-  Window.Controls.InsertFront(SceneManager);
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.Setup2D;
+  Viewport.FullSize := true;
+  Viewport.Camera.Orthographic.Height := 1000;
+  Viewport.Camera.Orthographic.Origin := Vector2(0.5, 0.5);
+  Window.Controls.InsertFront(Viewport);
 
-  Scene := T2DScene.Create(Application);
+  Scene := TCastleScene.Create(Application);
+  Scene.Setup2D;
   Scene.Load(BuildScene, true);
   Scene.ProcessEvents := true;
-  SceneManager.Items.Add(Scene);
+
+  Viewport.Items.Add(Scene);
 
   Window.OnUpdate := @WindowUpdate;
 

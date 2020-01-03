@@ -246,7 +246,7 @@ detection and creature AI).
 <?php echo $toc->html_section(); ?>
 
 <p>Another useful statistics to display is
-<?php api_link('SceneManager.Statistics.ToString', 'CastleTransform.TRenderStatistics.html'); ?>.
+<?php api_link('Viewport.Statistics.ToString', 'CastleTransform.TRenderStatistics.html'); ?>.
 This shows how many scenes, and how many shapes, have been rendered in the last frame.
 It can be a useful guideline when to activate some specific optimizations discussed below.
 E.g. large value of displayed shapes may indicate that <i>dynamic batching</i>
@@ -427,7 +427,7 @@ consider turning on <?php api_link('DynamicBatching', 'CastleScene.html#DynamicB
 one just before passing them to the GPU. In some cases, it is a very powerful optimization,
 reducing the number of <i>draw calls</i>.
 
-<p>Watch the <code>SceneManager.Statistics.ToString</code> to see whether it reduces the number
+<p>Watch the <code>Viewport.Statistics.ToString</code> to see whether it reduces the number
 of rendered shapes.
 
 <p>It is particularly useful e.g. to optimize
@@ -440,9 +440,9 @@ draw calls in this case.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>SceneManager.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+<p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>Viewport.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
 
-<p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>SceneManager.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
+<p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>Viewport.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
 
 <p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method).
 
@@ -516,7 +516,7 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Use <code>TCastleSceneManager.PrepareResources</code> to load everything referenced by your scenes to GPU. Be sure to pass all the <code>TCastleScene</code> instances to <code>TCastleSceneManager.PrepareResources</code> in the "loading" stage.
+<p>Use <code>TCastleViewport.PrepareResources</code> to load everything referenced by your scenes to GPU. Be sure to pass all the <code>TCastleScene</code> instances to <code>TCastleViewport.PrepareResources</code> in the "loading" stage.
 
 <?php echo $toc->html_section(); ?>
 

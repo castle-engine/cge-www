@@ -1,13 +1,19 @@
-uses SysUtils, CastleColors, CastleVectors, CastleWindow, CastleUIControls,
-  CastleControls, CastlePlayer, CastleRectangles, CastleGLUtils,
-  Classes, CastleFilesUtils, CastleGLImages;
-
-var
-  Window: TCastleWindow;
-  Player: TPlayer;
+uses SysUtils, Classes,
+  CastleColors, CastleVectors, CastleWindow, CastleUIControls,
+  CastleControls, CastleRectangles, CastleGLUtils, CastleFilesUtils, CastleGLImages;
 
 type
-  TMyPlayerHUD = class(TCastleUserInterface)
+  TPlayerInformation = class(TComponent)
+  public
+    Life, MaxLife: Single;
+  end;
+
+var
+  Window: TCastleWindowBase;
+  PlayerInformation: TPlayerInformation;
+
+type
+  TPlayerHud = class(TCastleUserInterface)
   private
     FMyImage: TDrawableImage;
   public
@@ -16,54 +22,53 @@ type
     procedure Render; override;
   end;
 
-constructor TMyPlayerHUD.Create(AOwner: TComponent);
+constructor TPlayerHud.Create(AOwner: TComponent);
 begin
   inherited;
   FMyImage := TDrawableImage.Create('castle-data:/face.png');
 end;
 
-destructor TMyPlayerHUD.Destroy;
+destructor TPlayerHud.Destroy;
 begin
   FreeAndNil(FMyImage);
   inherited;
 end;
 
-procedure TMyPlayerHUD.Render;
+procedure TPlayerHud.Render;
 var
-  R: TRectangle;
+  R: TFloatRectangle;
 begin
   inherited;
 
-  R := Rectangle(10, 10, 400, 50);
+  R := FloatRectangle(10, 10, 400, 50);
   { draw background of health bar with a transparent red }
   DrawRectangle(R, Vector4(1, 0, 0, 0.5));
   { calculate smaller R, to only include current life }
   R := R.Grow(-3);
-  R.Width := Round(R.Width * Player.Life / Player.MaxLife);
+  R.Width := R.Width * PlayerInformation.Life / PlayerInformation.MaxLife;
   { draw the inside of health bar with an opaque red }
   DrawRectangle(R, Vector4(1, 0, 0, 1));
 
-  UIFont.Print(20, 20, Yellow,
-    Format('Player life: %f / %f', [Player.Life, Player.MaxLife]));
+  UIFont.Print(20, 20, Yellow, Format('Player life: %f / %f', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
 
   FMyImage.Draw(420, 10);
 end;
 
 var
-  PlayerHUD: TMyPlayerHUD;
+  PlayerHud: TPlayerHud;
 begin
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Window.Open;
 
-  Player := TPlayer.Create(Window.SceneManager);
-  Player.Life := 75; // just to make things interesting
-  Window.SceneManager.Items.Add(Player);
-  Window.SceneManager.Player := Player;
+  PlayerInformation := TPlayerInformation.Create(Application);
+  PlayerInformation.Life := 75;
+  PlayerInformation.MaxLife := 100;
 
-  { When starting your game, create TMyPlayerHUD instance
-    and add it to Window.Controls }
-  PlayerHUD := TMyPlayerHUD.Create(Application);
-  Window.Controls.InsertFront(PlayerHUD);
+  PlayerHud := TPlayerHud.Create(Application);
+  Window.Controls.InsertFront(PlayerHud);
 
   Application.Run;
 end.

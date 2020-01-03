@@ -65,8 +65,8 @@ begin
   // Connect rigid body
   Scene.RigidBody := RigidBody;
 
-  // Add Scene to the scene manager, to make it part of visible 3D world
-  SceneManager.Items.Add(Scene);
+  // Add Scene to the Viewport, to make it visible
+  Viewport.Items.Add(Scene);
 end;'); ?>
 
 <p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/">physics_3d_demo</a>, in particular the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas">physics_3d_demo/gameinitialize.pas</a> source code, for a complete working example.

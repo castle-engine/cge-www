@@ -35,41 +35,30 @@ per second.
 <?php echo pascal_highlight(
 'for .... do // in a loop, grab screenshot each frame
 begin
-  SceneManager.MainScene.IncreaseTime(FrameTime);
-  SceneManager.Camera.Update(FrameTime, true, DummyBooleanInitializedToTrue);
+  HandleInput := false;
+  Viewport.Update(FrameTime, HandleInput);
 
-  // ... do anything else you need to update the 3D world/camera
-  // when the time passed
-
-  { capture and save screen as before, like: }
-  Image := Control.SaveScreen;
+  // capture and save screen
+  Image := Window.Container.SaveScreen;
   try
-    { add your image to the movie sequence.
+    { Add your image to the movie sequence.
       Various options possible, e.g. you can save a sequence
       of images to a temporary location and later processes
       them by ffmpeg to produce a full movie. }
     SaveImage(Image, Format(\'screenshot_name_%4d.png\', [FrameNumber]));
-  finally FreeAndNil(Image) end;
+  finally
+    FreeAndNil(Image);
+  end;
 end;'); ?>
 
-<p>You manually force the current time of the scene/camera to
+<p>You manually force the current time of the viewport (scenes, cameras) to
 increase as much as you want before each screenshot. This makes it
 work 100% reliably, without any worries how fast you can process
 captured images.
 
-<p>The time of the scene and of the camera is actually independent. You
-can remove the <code>"MainScene.IncreaseTime"</code> call, if you know that your
-scene stays static (or you want to force it to look like static), and
-want to animate only camera. Or the other way around, if your camera
-is static (or you want to force it to be static) but you have an
-animation in VRML/X3D, you can remove the <code>"Camera.Update"</code> line.
-
 <p><code>FrameTime</code> is a constant saying how many seconds passed between frames.
-Both <code>TCastleSceneCore.IncreseTime</code> and
-<code>TCamera.Update</code> take it's time argument in seconds. Don't worry, this
-is a float, so actually it honors fractions of seconds as well.
-So something like <code>FrameTime := 1/25</code> to get 25 frames per second will work
-perfectly Ok.
+This is a float, in seconds. E.g. <code>FrameTime := 1/25</code> will
+result in 25 frames per second.
 
 <?php
 manual_footer();
