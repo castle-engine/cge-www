@@ -160,7 +160,7 @@ it is actually configurable:
     Before doing it, you can use the <i>"Navigation -&gt; Set Up (and Gravity Up) ..."</i> menu item.
     The generated <code>Viewpoint</code> node will have correct settings.
 
-  <li><p>Alternatively you can set the camera using <code>TCamera.SetView</code>
+  <li><p>Alternatively you can set the camera using <code>TCastleCamera.SetView</code>
     method with an explicit <code>GravityUp</code> parameter.
 </ul>
 
@@ -208,10 +208,7 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
     model of your level. You can use e.g. <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
     to generate
     <code>Viewpoint</code> node with a desired gravity vector. You can read this vector
-    by looking at <code>TCastleSceneManager.GravityUp</code>,
-    <code>TCastleSceneManager.Camera.GravityUp</code>, and
-    <code>World.GravityUp</code> (from any
-    <code>TCastleTransform</code> code), these are all equal.
+    by looking at <code>TCastleViewport.Camera.GravityUp</code>.
 
   <li><p>If you use <code>TCastleTransform.Direction</code>
     and <code>TCastleTransform.Up</code> properties to rotate your models

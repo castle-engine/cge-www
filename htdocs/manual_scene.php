@@ -354,7 +354,7 @@ end;'); ?>
     <p>The viewports may be used as <i>layers</i> if you set <code>ViewportXxx.Transparent := true</code> and place them on top of each other, using <?php api_link('InsertFront', 'CastleUIControls.TCastleUserInterface.html#InsertFront'); ?> in the proper order. This way you can explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
   </li>
 
-  <li><p>You can show the same world from different cameras. For this, use additional <?php api_link('TCastleViewport', 'CastleSceneManager.TCastleViewport.html'); ?> instances and copy the <code>Viewport.Items</code> value.
+  <li><p>You can show the same world from different cameras. For this, use additional <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?> instances and copy the <code>Viewport.Items</code> value.
 
     <p>For examples of this, see:
     <ul>
@@ -400,33 +400,15 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 
 <?php echo $toc->html_section(); ?>
 
-<p>Basically, you don't need to learn anything new for 2D games. You can load 2D models (from X3D, VRML, Spine or any other format) in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and process them with <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>.
+<p>Basically, you don't need to learn anything new for 2D games.
+
+<ol>
+  <li><p>You can load 2D models (from X3D, VRML, Spine or any other format) into <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. Call <?php api_link('TCastleScene.Setup2D', 'CastleScene.TCastleScene.html#Setup2D'); ?> method to make some scene properties perfect for rendering 2D scenes.
+
+  <li><p>Display these scenes using <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>. Call <?php api_link('TCastleViewport.Setup2D', 'CastleViewport.TCastleViewport.html#Setup2D'); ?> method to set camera properties (projection, position, orientation) to what is usually desired for rendering 2D worlds.
+</ol>
 
 <p>The <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to transform your 2D scenes, it works perfectly.</p>
-
-<p>Often it's also a good idea to use a specialized 2D classes when they exist:</p>
-
-<ul>
-  <li><p><?php api_link('T2DScene', 'Castle2DSceneManager.T2DScene.html'); ?>:
-    descendant of <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> that
-    is especially suitable for 2D scenes.</p>
-
-    <p>It has a little better default Z-sorting settings,
-    so that blending "just works".</p>
-  </li>
-
-  <li><p><?php api_link('T2DSceneManager', 'Castle2DSceneManager.T2DSceneManager.html'); ?>:
-    descendant of <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
-    especially suitable for 2D world.
-
-    <p>It has a little more comfortable default camera and projection settings for 2D.
-    Also, it has by default <?php api_link('SceneManager.Transparent', 'CastleSceneManager.TCastleViewport.html#Transparent'); ?> = <code>true</code>, so you can see the background
-    underneath (although you can change it to <code>false</code> if you want of course).
-    This way, it can be easily used as a 2D user-interface control,
-    to show something animating over a GUI.
-    </p>
-  </li>
-</ul>
 
 <?php
 manual_footer();

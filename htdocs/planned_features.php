@@ -348,15 +348,15 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
     This is an easy and rewarding task for a developer interested in macOS.</i>
   </li>
 
-  <li><p><b>API improvement: Make <code>SceneManager.MainScene</code> not necessary</b>.
+  <li><p><b>API improvement: Make <code>TCastleViewport.MainScene</code> not necessary</b>.
 
     <p>In the future, everything should be possible without assigning
-    <code>SceneManager.MainScene</code>,
-    and eventually <code>SceneManager.MainScene</code> property should be deprecated,
+    <code>TCastleViewport.MainScene</code>,
+    and eventually <code>TCastleViewport.MainScene</code> property should be deprecated,
     later it should be ignored, and later it should be removed.
 
     <p>Currently, the engine requires you to assign scene to
-    <code>SceneManager.MainScene</code>
+    <code>TCastleViewport.MainScene</code>
     to achieve some features. For example:
 
     <ol>

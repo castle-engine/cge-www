@@ -57,8 +57,8 @@ Open them with <a href="view3dscene.php">view3dscene</a>.
     it will be mixed with the default background color (configurable
     in <a href="view3dscene.php">view3dscene</a>,
     in general in <i>Castle Game Engine</i>
-    looking at <code>TCastleSceneManager.BackgroundColor</code>
-    and <code>TCastleSceneManager.Transparent</code> settings;
+    looking at <code>TCastleViewport.BackgroundColor</code>
+    and <code>TCastleViewport.Transparent</code> settings;
     other UI controls may be visible underneath a transparent viewport).
 
   <li><p><code>texCoords</code>
