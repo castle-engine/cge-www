@@ -55,7 +55,7 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
     on your <code>TForm1</code> class, and put there the following code:</p>
 
 <?php echo pascal_highlight(
-'// also add to your uses clauses these units: CastleSceneCore, CastleScene;
+'// also add to your uses clauses these units: CastleSceneCore, CastleScene, CastleViewport;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -64,8 +64,8 @@ var
 begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
-  Viewport.AutoCamera := true;
-  Viewport.AutoNavigation := true;
+  Viewport.AutoCamera := true; // instead of this, you could do "Viewport.Camera.SetView(...)"
+  Viewport.AutoNavigation := true; // instead of this, you could do "Viewport.Navigation := ..."
   CastleControlBase1.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
@@ -109,6 +109,11 @@ be obtained from this scene.</p>
 
 <?php echo $toc->html_section(); ?>
 
+<p>As the comments in the above examples indicate,
+using <code>Viewport.AutoCamera := true</code>
+and <code>Viewport.AutoNavigation := true</code> is only one way to configure
+camera and navigation.
+
 <p>To control the initial camera view:
 
 <ol>
@@ -127,8 +132,12 @@ be obtained from this scene.</p>
   Vector3( 0.16,  0.95,  0.25)
 );'); ?>
 
-  <li><p><b>Or initialize the camera defaults (including position/direction/up)
-    based on the model size/nodes, instead of hardcoding it in Pascal.</b>
+    <p>In this case, you want to leave <code>Viewport.AutoCamera</code>
+    as <code>false</code> (otherwise the auto-detection, done at the first render,
+    would override what you set).
+
+  <li><p><b>Alternatively initialize the camera defaults (including position / direction / up)
+    based on the model size / nodes.</b>
 
     <p>To make it work, set <code>Viewport.AutoCamera := true</code>.
 
@@ -173,12 +182,18 @@ be obtained from this scene.</p>
     <?php api_link('Viewport.NavigationType',
     'CastleViewport.TCastleViewport.html#NavigationType'); ?>.
 
-  <li><p>You can change the <?php api_link('Viewport.Navigation.Input',
+  <li><p>To control the camera only from your code
+    (by calling <code>Viewport.Camera.SetView(...)</code>),
+    just leave <code>AutoNavigation</code> as <code>false</code>,
+    and leave <code>Navigation</code> as <code>nil</code>. By default,
+    the engine does not automatically
+    interpret any keys/mouse to handle the navigation.
+
+    <!--p>You can also set <code>Navigation</code>,
+    and change the <?php api_link('Viewport.Navigation.Input',
     'CastleCameras.TCastleNavigation.html#Input'); ?> to disable some default navigation
-    key and mouse operations. For example, you can call
-    <code>Viewport.WalkNavigation.Input := [];</code>
-    to disable <i>any</i> way for user to automatically control the camera,
-    useful if you want to move camera only by your own code.
+    key and mouse operations.
+    -->
 
   <li><p>You can also control the initial navigation type using the <code>NavigationInfo</code>
     X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.

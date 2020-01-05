@@ -9,8 +9,8 @@ begin
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
-  Viewport.AutoCamera := true;
-  Viewport.AutoNavigation := true;
+  Viewport.AutoCamera := true; // instead of this, you could do "Viewport.Camera.SetView(...)"
+  Viewport.AutoNavigation := true; // instead of this, you could do "Viewport.Navigation := ..."
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
