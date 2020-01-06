@@ -37,7 +37,7 @@ function output_error($error_message, $conversion_log)
 
    $encoding is 'classic' or 'xml'.
 
-   $conversion_log will be output (after sanitization).
+   $conversion_log may be NULL if empty. Otherwise it will output (after sanitization).
 */
 function output_success($output_file_id, $output_file_size, $encoding, $conversion_log)
 {
@@ -45,12 +45,17 @@ function output_success($output_file_id, $output_file_size, $encoding, $conversi
 
   ?>
   <p><b>Success!</b><br>
-  The resulting X3D file size: <?php echo readable_byte_size($output_file_size); ?>.<br>
-  <a id="toggle-details" href="#">Click to see the conversion details.</a>
+  The resulting X3D file size: <?php echo readable_byte_size($output_file_size); ?>.
 
-<pre style="display:none" id="details">
-<?php echo $conversion_log; ?>
-</pre>
+  <?php
+  if (!empty($conversion_log)) {
+    ?>
+    <br>
+    <a id="toggle-details" href="#">Click to see the conversion details.</a>
+    <pre style="display:none" id="details"><?php echo $conversion_log; ?></pre>
+    <?php
+  }
+  ?>
 
   <p><a href="convert-download.php?id=<?php echo htmlspecialchars($output_file_id); ?>&amp;encoding=<?php echo htmlspecialchars($encoding); ?>" class="btn btn-primary btn-lg">Download the resulting X3D file.</a></p>
 
