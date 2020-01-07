@@ -50,7 +50,7 @@ Button "Make a screenshot"
       </div>
     </div><!-- /input-group -->
     <div class="convert-patreon">
-      <a class="btn btn-success btn-lg btn-patreon" href="<?php echo PATREON_URL; ?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>';
+      <a class="btn btn-success btn-lg btn-patreon" href="<?php echo PATREON_URL; ?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
     </div>
   </div>
 </form>
