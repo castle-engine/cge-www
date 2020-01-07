@@ -28,9 +28,7 @@ $suggested_name = $_GET['suggested-name'];
 $extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
 $mime = $encoding == 'xml' ? 'model/x3d+xml' : 'model/x3d+vrml';
 
-// on server:
-// rm -Rf /var/cge-convert/ && mkdir -p /var/cge-convert/ && chown -R www-data:www-data /var/cge-convert/
-$file_name = '/var/cge-convert/' . $file_id;
+$file_name = '/var/convert-to-x3d/output/' . $file_id;
 
 $file_size = filesize($file_name);
 if ($file_size === FALSE) {

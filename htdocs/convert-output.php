@@ -85,6 +85,45 @@ function random_alphanum($length)
   return $result;
 }
 
+/* Delete non-empty directory.
+   Based on https://stackoverflow.com/questions/3349753/delete-directory-with-files-in-it
+*/
+function remove_directory($dir)
+{
+  $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+  $files = new RecursiveIteratorIterator($it,
+               RecursiveIteratorIterator::CHILD_FIRST);
+  foreach($files as $file) {
+    $real_path = $file->getRealPath();
+    if ($file->isDir()){
+      if (!rmdir($real_path)) {
+        throw new Exception('Cannot remove empty directory ' . $real_path);
+      }
+    } else {
+      if (!unlink($real_path)) {
+        throw new Exception('Cannot remove file ' . $real_path);
+      }
+    }
+  }
+  if (!rmdir($dir)) {
+    throw new Exception('Cannot remove final empty directory ' . $dir);
+  }
+}
+
+/* Returns the container id (to be passed to convert-to-x3d.sh).
+   Sets $container_path (string), always ends with slash.
+*/
+function conversion_container_get(&$container_path)
+{
+  $container_id = 1; // TODO
+  $container_path = '/var/convert-to-x3d/containers/' . $container_id . '/contents/';
+  remove_directory($container_path);
+  if (!mkdir($container_path)) {
+    throw new Exception('Cannot create file ' . $real_path);
+  }
+  return $container_id;
+}
+
 /* Perform conversion.
 
    $encoding (string) is 'classic' or 'xml', just like --encoding parameter of tovrmlx3d.
@@ -99,15 +138,13 @@ function random_alphanum($length)
 function convert_to_x3d($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
-  // TODO: run without any security for server,
-  // make even input files downloadable,
-  // and don't check whether we are used multiple times
-
   $output_file_id = random_alphanum(24);
+
+  $container_id = conversion_container_get($container_path);
 
   for ($i = 0; $i < count($files['tmp_name']); $i++) {
     $temp_name = $files['tmp_name'][$i];
-    $dest_name = '/var/cge-convert/' . basename($files['name'][$i]);
+    $dest_name = $container_path . basename($files['name'][$i]);
     if (!move_uploaded_file($temp_name, $dest_name)) {
       $conversion_log = 'Cannot move uploaded file';
       return false;
@@ -158,18 +195,25 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 
   // We put result in $output_file_id, this also avoids overriding the input file when it is processed
   shell_exec(
-    'cd /var/cge-convert/ && /usr/local/bin/tovrmlx3d ' .
+    'cd ' . escapeshellcmd($container_path) . ' && /usr/local/bin/tovrmlx3d ' .
     '"' . escapeshellcmd($main_file) . '" --force-x3d ' .
     '--encoding="' . escapeshellcmd($encoding) . '" ' .
     '> ' . $output_file_id . ' ' .
     '2> error.log');
   // TODO: check process exit status to get result
 
-  $conversion_log = file_get_contents('/var/cge-convert/error.log');
+  $conversion_log = file_get_contents($container_path . 'error.log');
 
-  $output_file_size = filesize('/var/cge-convert/' . $output_file_id);
+  $output_file_size = filesize($container_path . $output_file_id);
   $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
   $output_file_suggested_name = $main_file_without_ext . $output_extension;
+
+  if (!rename($container_path . $output_file_id,
+    '/var/convert-to-x3d/output/' . $output_file_id))
+  {
+    $conversion_log = 'Failed to move output file to the output directory';
+    return false;
+  }
 
   return !empty($output_file_size);
 }
