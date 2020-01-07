@@ -156,6 +156,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
     return false;
   }
 
+  // We put result in $output_file_id, this also avoids overriding the input file when it is processed
   shell_exec(
     'cd /var/cge-convert/ && /usr/local/bin/tovrmlx3d ' .
     '"' . escapeshellcmd($main_file) . '" --force-x3d ' .
