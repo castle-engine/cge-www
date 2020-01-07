@@ -62,7 +62,7 @@ Button "Make a screenshot"
 <ul>
   <li><p>You <b>can upload multiple files</b> (select them with <i>Ctrl</i> key in the open dialog) if it makes sense for the given model format. E.g. upload glTF JSON + optional binary data, or Wavefront OBJ + optional MTL file.
 
-  <li><p>This tool is <b>free and open-source software</b>. It is a set of scripts (see <a href="https://github.com/castle-engine/cge-www">cge-www on GitHub</a>) using <a href="index.php">Castle Game Engine</a> and <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> under the hood.
+  <li><p>This tool is <b>free and open-source software</b>. It is a set of scripts (<a href="https://github.com/castle-engine/cge-www/tree/master/convert-to-x3d">PHP, Docker and shell scripts</a>) using <a href="index.php">Castle Game Engine</a> and <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> under the hood.
 
   <li><p>This online converter has some limits on the uploaded file size and conversion time. If needed <b>you can just download <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> and perform the same conversion on your own computer</b>, without any limits. You can also generate screenshots or perform mass conversion from your scripts this way.
 
