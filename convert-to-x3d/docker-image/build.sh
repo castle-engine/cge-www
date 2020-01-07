@@ -17,7 +17,7 @@ ORIGINAL_DIR=`pwd`
 function finish ()
 {
   cd $ORIGINAL_DIR
-# TODO  rm -Rf docker-context/ tmp/
+  rm -Rf docker-context/ tmp/
 }
 trap finish EXIT
 
@@ -42,7 +42,7 @@ do_prerequisites ()
   # get view3dcene, tovrmlx3d
   $GIT_SHALLOW_CLONE https://github.com/castle-engine/view3dscene/
   cd view3dscene/
-  "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile
+  "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --compiler-option=-dCASTLE_WINDOW_XLIB
   cd code/
   "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine simple-compile tovrmlx3d.lpr
   cd ../../../
@@ -54,6 +54,14 @@ do_prerequisites ()
 do_build ()
 {
   docker build -t convert-to-x3d -f Dockerfile docker-context/
+}
+
+# Run tests
+do_test ()
+{
+  local DOCKER_TEST="docker run --name test-convert-to-x3d --rm -it convert-to-x3d"
+  $DOCKER_TEST tovrmlx3d --version
+  $DOCKER_TEST view3dscene --version
 }
 
 if [ '(' "${docker_user:-}" = '' ')' -o '(' "${docker_password:-}" = '' ')' ]; then
@@ -71,6 +79,7 @@ do_upload ()
 
 # main ---------------------------------------------------------------------------
 
-# TODO do_prerequisites
+do_prerequisites
 do_build
+do_test
 do_upload
