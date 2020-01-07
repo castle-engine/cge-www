@@ -34,16 +34,18 @@ function output_error($error_message, $conversion_log)
 
    $output_file_id (string) is an id for convert-download.php?id=xxx.
 
+   $output_file_suggested_name (string) is a suggested name, also for convert-download.php
+   parameter.
+
    $output_file_size (integer) is the size in bytes.
 
    $encoding is 'classic' or 'xml'.
 
    $conversion_log may be NULL if empty. Otherwise it will output (after sanitization).
 */
-function output_success($output_file_id, $output_file_size, $encoding, $conversion_log)
+function output_success($output_file_id, $output_file_suggested_name, $output_file_size,
+  $encoding, $conversion_log)
 {
-  $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
-
   ?>
   <p><b>Success!</b><br>
   The resulting X3D file size: <?php echo readable_byte_size($output_file_size); ?>.
@@ -58,7 +60,7 @@ function output_success($output_file_id, $output_file_size, $encoding, $conversi
   }
   ?>
 
-  <p><a href="convert-download.php?id=<?php echo htmlspecialchars($output_file_id); ?>&amp;encoding=<?php echo htmlspecialchars($encoding); ?>" class="btn btn-primary btn-lg">Download the resulting X3D file.</a></p>
+  <p><a href="convert-download.php?id=<?php echo htmlspecialchars($output_file_id); ?>&amp;encoding=<?php echo htmlspecialchars($encoding); ?>&amp;suggested-name=<?php echo htmlspecialchars($output_file_suggested_name); ?>" class="btn btn-primary btn-lg">Download the resulting X3D file.</a></p>
 
   <div class="convert-patreon">
     <a class="btn btn-success btn-lg btn-patreon" href="<?php echo PATREON_URL; ?>">Do you like this tool?<br><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support us on Patreon.</a>';
@@ -95,7 +97,7 @@ function random_alphanum($length)
    Returns boolean, whether converting was successfull.
 */
 function convert_to_x3d($encoding, $files, &$conversion_log,
-  &$output_file_id, &$output_file_size)
+  &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
   // TODO: run without any security for server,
   // make even input files downloadable,
@@ -135,6 +137,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 
   // calculate $main_file, $main_file_ext
   $main_file = null;
+  $main_file_without_ext = null;
   $main_file_ext = null;
   foreach ($files['name'] as $possible_main_file) {
     $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
@@ -144,6 +147,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         return false;
       }
       $main_file = $possible_main_file;
+      $main_file_without_ext = pathinfo($possible_main_file, PATHINFO_FILENAME);
       $main_file_ext = $possible_main_file_ext;
     }
   }
@@ -163,6 +167,8 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
   $conversion_log = file_get_contents('/var/cge-convert/error.log');
 
   $output_file_size = filesize('/var/cge-convert/' . $output_file_id);
+  $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
+  $output_file_suggested_name = $main_file_without_ext . $output_extension;
 
   return !empty($output_file_size);
 }
@@ -188,9 +194,10 @@ function process_form_post()
   } else
   {
     $conversion_success = convert_to_x3d($encoding, $files, $conversion_log,
-      $output_file_id, $output_file_size);
+      $output_file_id, $output_file_suggested_name, $output_file_size);
     if ($conversion_success) {
-      output_success($output_file_id, $output_file_size, $encoding, $conversion_log);
+      output_success($output_file_id, $output_file_suggested_name, $output_file_size,
+        $encoding, $conversion_log);
     } else {
       output_error('Conversion failed.', $conversion_log);
     }

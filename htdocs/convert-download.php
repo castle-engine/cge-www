@@ -19,6 +19,12 @@ if (preg_match('/[^a-z0-9]/i', $file_id)) {
   die('Invalid id parameter');
 }
 
+// calculate and validate $suggested_name
+if (!isset($_GET['suggested-name'])) {
+  die('No suggested-name parameter');
+}
+$suggested_name = $_GET['suggested-name'];
+
 $extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
 $mime = $encoding == 'xml' ? 'model/x3d+xml' : 'model/x3d+vrml';
 
@@ -37,7 +43,7 @@ if ($file_size === FALSE) {
 
 header('Content-Description: File Transfer');
 header('Content-Type: ' . $mime);
-header('Content-Disposition: attachment; filename=' . $file_id . $extension);
+header('Content-Disposition: attachment; filename=' . $suggested_name);
 header('Content-Transfer-Encoding: binary');
 header('Content-Length: ' . $file_size);
 header('Cache-Control: no-store'); // disallows caching - get a response each and every time
