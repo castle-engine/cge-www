@@ -23,6 +23,8 @@ Architecture:
   Rebuild this image (and upload it to Docker hub)
   by "cd docker-image/ && ./build.sh"
 
+  It is available on Docker hub publicly, on https://hub.docker.com/r/kambi/convert-to-x3d .
+
 Author: Michalis Kamburelis
 
 License: GPL >= 2.
