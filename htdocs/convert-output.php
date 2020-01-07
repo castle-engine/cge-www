@@ -18,13 +18,14 @@ castle_header('Conversion output');
 */
 function output_error($error_message, $conversion_log)
 {
-  echo '<p><b>Failure: ' . $error_message . '</b>';
+  echo '<p><b>Error:</b> <i>' . $error_message . '</i></b>';
 
   if (!empty($conversion_log)) {
     ?>
     <br>
-    <a id="toggle-details" href="#">Click to see the details.</a>
-    <pre style="display:none" id="details"><?php echo htmlspecialchars($conversion_log); ?></pre>
+    <a id="toggle-details" href="#">Click to toggle the details.</a>
+    <!-- details are by default visible in this case -->
+    <pre id="details"><?php echo htmlspecialchars($conversion_log); ?></pre>
     <?php
   }
 }
@@ -111,7 +112,45 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
     }
   }
 
-  $main_file = $files['name'][0]; // TODO: assume 0th is the main
+  $model_extensions = array(
+    'x3d',
+    'x3dz',
+    'x3d.gz',
+    'x3dv',
+    'x3dvz',
+    'x3dv.gz',
+    'castle-anim-frames',
+    'kanim',
+    'glb',
+    'gltf',
+    'dae',
+    'iv',
+    '3ds',
+    'md3',
+    'obj',
+    'geo',
+    'json',
+    'stl'
+  );
+
+  // calculate $main_file, $main_file_ext
+  $main_file = null;
+  $main_file_ext = null;
+  foreach ($files['name'] as $possible_main_file) {
+    $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
+    if (in_array($possible_main_file_ext, $model_extensions)) {
+      if ($main_file !== null) {
+        $conversion_log = 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file;
+        return false;
+      }
+      $main_file = $possible_main_file;
+      $main_file_ext = $possible_main_file_ext;
+    }
+  }
+  if ($main_file === null) {
+    $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true);
+    return false;
+  }
 
   shell_exec(
     'cd /var/cge-convert/ && /usr/local/bin/tovrmlx3d ' .
