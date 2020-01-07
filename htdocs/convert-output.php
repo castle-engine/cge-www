@@ -133,7 +133,7 @@ function process_form_post()
 {
   if (!isset($_POST['encoding']) ||
       !isset($_FILES['input-file'])) {
-    output_error('The uploaded file was too large.', NULL);
+    output_error('No uploaded file, or the uploaded file was too large.', NULL);
     return;
   }
 
