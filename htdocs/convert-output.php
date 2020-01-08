@@ -206,12 +206,15 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       }
 
       $model_extensions = array(
+        'wrl',
+        'wrl.gz', // TODO: will not be actually recognized, as we only take last extension
+        'wrz',
         'x3d',
         'x3dz',
-        'x3d.gz',
+        'x3d.gz', // TODO: will not be actually recognized, as we only take last extension
         'x3dv',
         'x3dvz',
-        'x3dv.gz',
+        'x3dv.gz', // TODO: will not be actually recognized, as we only take last extension
         'castle-anim-frames',
         'kanim',
         'glb',
