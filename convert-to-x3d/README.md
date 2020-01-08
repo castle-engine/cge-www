@@ -59,6 +59,10 @@ emacs /sudo:root@localhost:/etc/php/7.3/apache2/php.ini
 sudo /etc/init.d/apache2 restart
 ```
 
+Make sure to adjust cge-www-path in ../htdocs/castle_engine_config.php .
+Use ../htdocs/castle_engine_config_sample.php as template,
+if it doesn't exist.
+
 # License
 
 Author: Michalis Kamburelis
