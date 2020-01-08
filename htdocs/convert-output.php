@@ -22,6 +22,8 @@
    ---------------------------------------------------------------------------
 */
 
+require_once 'castle_engine_config.php';
+
 /* Show error.
 
    Note that $error_message is assumed to be already-safe HTML,
@@ -260,8 +262,10 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         return false;
       }
 
+      global $cge_config;
+
       exec(
-        'sudo -u convert-to-x3d /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh ' .
+        'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
         escapeshellcmd($container_id) . ' ' .
         escapeshellcmd($main_file) . ' ' .
         escapeshellcmd($encoding) . ' ' .
