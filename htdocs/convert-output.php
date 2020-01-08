@@ -118,9 +118,16 @@ function conversion_container_get(&$container_path)
   $container_id = 1; // TODO
   $container_path = '/var/convert-to-x3d/containers/' . $container_id . '/contents/';
   remove_directory($container_path);
+  /* Allow everyone to write in dir, this way docker user (from convert-to-x3d) can write there.
+     TODO: It would be safer to do umask(0002) and only allow group to write.
+     convert-to-x3d may be easily part of www-data.
+     But docker user is still not part of www-data (and should not be, for security).
+  */
+  $old_umask = umask(0000);
   if (!mkdir($container_path)) {
     throw new Exception('Cannot create file ' . $real_path);
   }
+  umask($old_umask);
   return $container_id;
 }
 
@@ -193,14 +200,20 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
     return false;
   }
 
-  // We put result in $output_file_id, this also avoids overriding the input file when it is processed
-  shell_exec(
-    'cd ' . escapeshellcmd($container_path) . ' && /usr/local/bin/tovrmlx3d ' .
-    '"' . escapeshellcmd($main_file) . '" --force-x3d ' .
-    '--encoding="' . escapeshellcmd($encoding) . '" ' .
-    '> ' . $output_file_id . ' ' .
-    '2> error.log');
-  // TODO: check process exit status to get result
+  exec(
+    'sudo -u convert-to-x3d /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh ' .
+    escapeshellcmd($container_id) . ' ' .
+    escapeshellcmd($main_file) . ' ' .
+    escapeshellcmd($encoding) . ' ' .
+    escapeshellcmd($output_file_id),
+    $exec_output,
+    $exec_return_val
+  );
+
+  if ($exec_return_val !== 0) {
+    $conversion_log = "Conversion script failed (non-zero exit status).\nOutput:\n" . implode("\n", $exec_output);
+    return false;
+  }
 
   $conversion_log = file_get_contents($container_path . 'error.log');
 
