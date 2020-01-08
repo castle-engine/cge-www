@@ -27,6 +27,13 @@ This directory contains utilities for our online tool
 
 # Installing on server
 
+Install Docker (see
+https://www.docker.com/ ,
+https://docs.docker.com/install/ ,
+https://github.com/castle-engine/castle-engine/wiki/Docker ).
+
+Configure some server directories and users:
+
 ```
 sudo -i
 
