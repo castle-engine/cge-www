@@ -43,7 +43,8 @@ ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
   gallery_size/swappy_jigsaw.png \
   gallery_size/database_aware.png \
   gallery_size/bricks_color_pick.jpg \
-  gallery_size/bumpcars.jpg
+  gallery_size/bumpcars.jpg \
+  gallery_size/convert-to-x3d.png
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))

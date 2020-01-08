@@ -12,11 +12,6 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
-  <?php gallery_link('Convert everything to X3D',
-    'Convert onine glTF, OBJ, STL, Collada, 3DS (and other model formats handled by Castle Game Engine) to X3D. This is an online version of our <a href="view3dscene.php"><code>tovrmlx3d</code> converter (distributed with view3dscene)</a>.',
-    'castle_sunset.png',
-    'convert'); ?>
-
   <?php gallery_link('view3dscene',
     'VRML / X3D browser, and a viewer for other 3D model formats
     (Collada, 3DS, MD3, Wavefront OBJ, Spine...).
@@ -25,6 +20,11 @@ We love to see how you use CGE.</i>
     //"view3dscene_2.0.0_screen_demo.png",
     'castle_sunset.png',
     'view3dscene'); ?>
+
+  <?php gallery_link('Convert everything to X3D',
+    'Convert onine glTF, OBJ, STL, Collada, 3DS (and other model formats handled by Castle Game Engine) to X3D. This is an online version of our <a href="view3dscene.php"><code>tovrmlx3d</code> converter (distributed with view3dscene)</a>.',
+    'convert-to-x3d.png',
+    'convert'); ?>
 
   <?php gallery_link('castle-view-image (formerly glViewImage)',
     'Image viewer, handles many image formats (including some exotic ones: DDS, RGBE).',
