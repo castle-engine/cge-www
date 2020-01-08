@@ -31,6 +31,10 @@
 */
 function output_error($error_message, $conversion_log)
 {
+  syslog(LOG_WARNING, 'Error.' .
+    ' Error: ' . $error_message .
+    ' Log: ' .$conversion_log);
+
   echo '<p><b>Error:</b> <i>' . $error_message . '</i></b>';
 
   if (!empty($conversion_log)) {
@@ -59,6 +63,13 @@ function output_error($error_message, $conversion_log)
 function output_success($output_file_id, $output_file_suggested_name, $output_file_size,
   $encoding, $conversion_log)
 {
+  syslog(LOG_INFO, 'Success.' .
+    ' Output id: ' . $output_file_id .
+    ' Output suggested name: ' . $output_file_suggested_name .
+    ' Output size: ' . $output_file_size .
+    ' Encoding: ' . $encoding .
+    ' Log: ' .$conversion_log);
+
   ?>
   <p><b>Success!</b><br>
   The resulting X3D file size: <?php echo readable_byte_size($output_file_size); ?>.
@@ -80,7 +91,6 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
   </div>
   <?php
 }
-
 
 /* Random alphanumeric string.
    See https://code.tutsplus.com/tutorials/generate-random-alphanumeric-strings-in-php--cms-32132
@@ -292,6 +302,8 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 /* Process form input, call either output_error or output_success */
 function process_form_post()
 {
+  openlog('convert-to-x3d', LOG_PID, LOG_LOCAL0);
+
   if (!isset($_POST['encoding']) ||
       !isset($_FILES['input-file'])) {
     output_error('No uploaded file, or the uploaded file was too large.', NULL);
