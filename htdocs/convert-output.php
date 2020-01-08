@@ -1,13 +1,4 @@
 <?php
-require_once 'castle_engine_functions.php';
-castle_header('Conversion output');
-?>
-
-<div class="single-column-page">
-
-<div class="convert-form convert-output jumbotron">
-
-<?php
 
 /* Show error.
 
@@ -262,12 +253,17 @@ function process_form_post()
   }
 }
 
-process_form_post();
+/* Output page contents, run main function process_form_post ---------------------- */
+
+require_once 'castle_engine_functions.php';
+castle_header('Conversion output');
 ?>
 
-  <p><a href="convert.php">Convert another file.</a></p>
-</div>
-
+<div class="single-column-page">
+  <div class="convert-form convert-output jumbotron">
+    <?php process_form_post(); ?>
+    <p><a href="convert.php">Convert another file.</a></p>
+  </div>
 </div>
 
 <?php
