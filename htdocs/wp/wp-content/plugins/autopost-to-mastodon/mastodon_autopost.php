@@ -3,9 +3,9 @@
  * Plugin Name: Mastodon Autopost
  * Plugin URI: https://github.com/simonfrey/mastodon_wordpress_autopost
  * Description: A Wordpress Plugin that automatically posts your new articles to Mastodon
- * Version: 3.4
+ * Version: 3.6
  * Author: L1am0
- * Author URI: http://www.simon-frey.eu
+ * Author URI: https://www.simon-frey.eu
  * License: GPL2
  * Text Domain: autopost-to-mastodon
  * Domain Path: /languages
@@ -208,6 +208,30 @@ class autopostToMastodon
                             update_option('autopostToMastodon-postOnStandard', 'off');
                         }
 
+
+                        if (isset($_POST['cats_as_tags'])) {
+                            update_option('autopostToMastodon-catsAsTags', 'on');
+                        } else {
+                            update_option('autopostToMastodon-catsAsTags', 'off');
+                        }
+
+                        // get all post types
+                        $args = array(
+                           'public'   => true,
+                        );
+                        $output = 'names';
+                        $operator = 'and';
+                        $post_types = get_post_types( $args, $output, $operator );
+                        // check post for content type configs
+                        foreach ( $post_types  as $post_type ) {
+                            if (isset($_POST[$post_type]) ? $_POST[$post_type] : "off" == "on") {
+                                update_option("autopostToMastodon-post_types-$post_type", 'on');
+                            }
+                            else {
+                                update_option("autopostToMastodon-post_types-$post_type", 'off');
+                            }
+                        }
+
                         update_option('autopostToMastodon-content-warning', sanitize_textarea_field($content_warning));
 
                         $account = $client->verify_credentials($token);
@@ -248,6 +272,21 @@ class autopostToMastodon
         $toot_size = get_option('autopostToMastodon-toot-size', 500);
         $content_warning = get_option('autopostToMastodon-content-warning', '');
         $autopost = get_option('autopostToMastodon-postOnStandard', 'on');
+        $cats_as_tags = get_option('autopostToMastodon-catsAsTags', 'on');
+        $post_types = [];
+
+        // get all post types
+        $args = array(
+           'public'   => true,
+        );
+        $output = 'names';
+        $operator = 'and';
+        $wp_post_types = get_post_types( $args, $output, $operator );
+
+        // add form context data for post type options
+        foreach ( $wp_post_types  as $post_type ) {
+            $post_types[$post_type] = get_option("autopostToMastodon-post_types-$post_type", 'on');
+        }
 
         include 'form.tpl.php';
     }
@@ -413,14 +452,33 @@ class autopostToMastodon
      */
     public function add_metabox()
     {
-        add_meta_box(
-            'autopostToMastodon_metabox',
-            'Mastodon Autopost',
-            array($this, 'metabox'),
-            ['post', 'page'],
-            'side',
-            'high'
+        $active_post_types = [];
+        // get all post types
+        $args = array(
+           'public'   => true,
         );
+        $output = 'names';
+        $operator = 'and';
+        $post_types = get_post_types( $args, $output, $operator );
+
+        // add form context data for post type options
+        foreach ( $post_types  as $post_type ) {
+            if (get_option("autopostToMastodon-post_types-$post_type", 'on') == 'on') {
+                array_push($active_post_types, $post_type);
+            }
+        }
+
+        // empty array activates everywhere -> check
+        if (!empty($active_post_types)) {
+            add_meta_box(
+                'autopostToMastodon_metabox',
+                'Mastodon Autopost',
+                array($this, 'metabox'),
+                $active_post_types,
+                'side',
+                'high'
+            );
+        }
     }
 
     /**
@@ -472,18 +530,27 @@ class autopostToMastodon
         $message_template = str_replace("[permalink]", $post_permalink, $message_template);
 
         //Replace tags
-        $post_tags = get_the_tags($id);
+        $post_tags_content = '';
+        $cats_as_tags = get_option('autopostToMastodon-catsAsTags', 'off');
+        if ($cats_as_tags == 'on') {
+            $post_cats = get_the_category($id);
+            if (sizeof($post_cats) > 0 && $post_cats) {
+                foreach ($post_cats as $cat) {
+                    $post_tags_content = $post_tags_content . '#' . preg_replace('/\s+/', '', html_entity_decode($cat->name, ENT_COMPAT, 'UTF-8')) . ' ';
+                }
+            }
+        }
 
+        $post_tags = get_the_tags($id);
         if (sizeof($post_tags) > 0) {
-            $post_tags_content = '';
             if ($post_tags) {
                 foreach ($post_tags as $tag) {
                     $post_tags_content = $post_tags_content . '#' . preg_replace('/\s+/', '', html_entity_decode($tag->name, ENT_COMPAT, 'UTF-8')) . ' ';
                 }
                 $post_tags_content = trim($post_tags_content);
             }
-            $message_template = str_replace("[tags]", $post_tags_content, $message_template);
         }
+        $message_template = str_replace("[tags]", $post_tags_content, $message_template);
 
         //Replace excerpt
         //Replace with the excerpt of the post
