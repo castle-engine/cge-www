@@ -123,12 +123,44 @@ function remove_directory($dir)
   }
 }
 
+/* Acquire a lock file in given container.
+   Returns false if container is already locked.
+*/
+function simple_lock($container_id)
+{
+  // See https://stackoverflow.com/questions/325806/best-way-to-obtain-a-lock-in-php
+  $f = @fopen('/var/convert-to-x3d/containers/' . $container_id . '/lock.txt', 'x');
+  $result = ($f !== FALSE);
+  if ($result) {
+    $me = getmypid();
+    $now = date('Y-m-d H:i:s');
+    fwrite($f, "Locked by $me at $now\n");
+    fclose($f);
+  }
+  return $result;
+}
+
+function simple_unlock($container_id)
+{
+  if (!unlink('/var/convert-to-x3d/containers/' . $container_id . '/lock.txt')) {
+    throw new Exception('Cannot release lock for container ' . $container_id);
+  }
+}
+
 /* Returns the container id (to be passed to convert-to-x3d.sh).
    Sets $container_path (string), always ends with slash.
+
+   Also creates a lock for this container, to avoid using it from
+   two scripts simultaneously, be sure to release it with simple_unlock.
 */
 function conversion_container_get(&$container_path)
 {
-  $container_id = 1; // TODO
+  $container_id = 1;
+
+  if (!simple_lock($container_id)) {
+    throw new Exception('All the conversion resources are busy, please try again in a few minutes');
+  }
+
   $container_path = '/var/convert-to-x3d/containers/' . $container_id . '/contents/';
   remove_directory($container_path);
   /* Allow everyone to write in dir, this way docker user (from convert-to-x3d) can write there.
@@ -158,86 +190,96 @@ function conversion_container_get(&$container_path)
 function convert_to_x3d($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
-  $output_file_id = random_alphanum(24);
+  try { // exceptions inside will be nicely displayed
+    $output_file_id = random_alphanum(24);
 
-  $container_id = conversion_container_get($container_path);
+    $container_id = conversion_container_get($container_path);
 
-  for ($i = 0; $i < count($files['tmp_name']); $i++) {
-    $temp_name = $files['tmp_name'][$i];
-    $dest_name = $container_path . basename($files['name'][$i]);
-    if (!move_uploaded_file($temp_name, $dest_name)) {
-      $conversion_log = 'Cannot move uploaded file';
-      return false;
-    }
-  }
+    try { // be sure to call simple_unlock at end
+      for ($i = 0; $i < count($files['tmp_name']); $i++) {
+        $temp_name = $files['tmp_name'][$i];
+        $dest_name = $container_path . basename($files['name'][$i]);
+        if (!move_uploaded_file($temp_name, $dest_name)) {
+          $conversion_log = 'Cannot move uploaded file';
+          return false;
+        }
+      }
 
-  $model_extensions = array(
-    'x3d',
-    'x3dz',
-    'x3d.gz',
-    'x3dv',
-    'x3dvz',
-    'x3dv.gz',
-    'castle-anim-frames',
-    'kanim',
-    'glb',
-    'gltf',
-    'dae',
-    'iv',
-    '3ds',
-    'md3',
-    'obj',
-    'geo',
-    'json',
-    'stl'
-  );
+      $model_extensions = array(
+        'x3d',
+        'x3dz',
+        'x3d.gz',
+        'x3dv',
+        'x3dvz',
+        'x3dv.gz',
+        'castle-anim-frames',
+        'kanim',
+        'glb',
+        'gltf',
+        'dae',
+        'iv',
+        '3ds',
+        'md3',
+        'obj',
+        'geo',
+        'json',
+        'stl'
+      );
 
-  // calculate $main_file, $main_file_ext
-  $main_file = null;
-  $main_file_without_ext = null;
-  $main_file_ext = null;
-  foreach ($files['name'] as $possible_main_file) {
-    $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
-    if (in_array($possible_main_file_ext, $model_extensions)) {
-      if ($main_file !== null) {
-        $conversion_log = 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file;
+      // calculate $main_file, $main_file_ext
+      $main_file = null;
+      $main_file_without_ext = null;
+      $main_file_ext = null;
+      foreach ($files['name'] as $possible_main_file) {
+        $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
+        if (in_array($possible_main_file_ext, $model_extensions)) {
+          if ($main_file !== null) {
+            $conversion_log = 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file;
+            return false;
+          }
+          $main_file = $possible_main_file;
+          $main_file_without_ext = pathinfo($possible_main_file, PATHINFO_FILENAME);
+          $main_file_ext = $possible_main_file_ext;
+        }
+      }
+      if ($main_file === null) {
+        $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true);
         return false;
       }
-      $main_file = $possible_main_file;
-      $main_file_without_ext = pathinfo($possible_main_file, PATHINFO_FILENAME);
-      $main_file_ext = $possible_main_file_ext;
+
+      exec(
+        'sudo -u convert-to-x3d /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh ' .
+        escapeshellcmd($container_id) . ' ' .
+        escapeshellcmd($main_file) . ' ' .
+        escapeshellcmd($encoding) . ' ' .
+        escapeshellcmd($output_file_id),
+        $exec_output,
+        $exec_return_val
+      );
+
+      if ($exec_return_val !== 0) {
+        $conversion_log = "Conversion script failed (non-zero exit status).\nOutput:\n" . implode("\n", $exec_output);
+        return false;
+      }
+
+      $conversion_log = file_get_contents($container_path . 'error.log');
+
+      $output_file_size = filesize($container_path . $output_file_id);
+      $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
+      $output_file_suggested_name = $main_file_without_ext . $output_extension;
+
+      if (!rename($container_path . $output_file_id,
+        '/var/convert-to-x3d/output/' . $output_file_id))
+      {
+        $conversion_log = 'Failed to move output file to the output directory';
+        return false;
+      }
+    } finally {
+      simple_unlock($container_id);
     }
-  }
-  if ($main_file === null) {
-    $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true);
-    return false;
-  }
-
-  exec(
-    'sudo -u convert-to-x3d /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh ' .
-    escapeshellcmd($container_id) . ' ' .
-    escapeshellcmd($main_file) . ' ' .
-    escapeshellcmd($encoding) . ' ' .
-    escapeshellcmd($output_file_id),
-    $exec_output,
-    $exec_return_val
-  );
-
-  if ($exec_return_val !== 0) {
-    $conversion_log = "Conversion script failed (non-zero exit status).\nOutput:\n" . implode("\n", $exec_output);
-    return false;
-  }
-
-  $conversion_log = file_get_contents($container_path . 'error.log');
-
-  $output_file_size = filesize($container_path . $output_file_id);
-  $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
-  $output_file_suggested_name = $main_file_without_ext . $output_extension;
-
-  if (!rename($container_path . $output_file_id,
-    '/var/convert-to-x3d/output/' . $output_file_id))
-  {
-    $conversion_log = 'Failed to move output file to the output directory';
+  } catch (Exception $e) {
+    // convert uncaught exceptions at this point to nicel
+    $conversion_log = $e->getMessage();
     return false;
   }
 
