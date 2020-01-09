@@ -45,7 +45,9 @@ echo_standard_program_download(
     'linux-i386' => 'https://github.com/castle-engine/view3dscene/files/1756756/view3dscene-3.18.0-linux-i386.tar.gz',
     'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/files/1756757/view3dscene-3.18.0-linux-x86_64.tar.gz',
     'macosx-i386' => 'https://github.com/castle-engine/view3dscene/files/1756873/view3dscene-3.18.0-macosx.dmg.zip',
-  ));
+  ),
+  '<p style="text-align: center"><a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/" class="btn btn-primary btn-lg">Alternative: Download Latest Snapshot Version (More Features!)</a></p>'
+);
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>
@@ -94,7 +96,7 @@ you can open them all with <code>view3dscene</code>.</p>
   <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
 </ul>
 
-<p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a> page.
+<!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a> page.-->
 
 <?php /*
 

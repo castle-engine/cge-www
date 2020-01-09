@@ -1166,7 +1166,7 @@ function download_donate_footer()
    inside, and SourceForge download links. */
 function echo_standard_program_download(
   $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false,
-  $os_arch_urls = NULL)
+  $os_arch_urls = NULL, $extra_bottom_html = '')
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
 
@@ -1253,7 +1253,8 @@ function echo_standard_program_download(
     echo "</div>\n";
   }
 
-  echo download_donate_footer() . '
+  echo $extra_bottom_html .
+  download_donate_footer() . '
   </div>';
   /* <!-- This helps Michalis to spend more time on developing our engine, our tools and games :) Details about how you can donate are here</a>.<--> */
 }
