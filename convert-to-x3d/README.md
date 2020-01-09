@@ -53,8 +53,17 @@ sudo -i
 
     # allow www-data to execute convert-to-x3d.sh
     visudo -f /etc/sudoers.d/convert-to-x3d
-      www-data ALL = (convert-to-x3d) NOPASSWD: /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh
-    sudo -u www-data sudo -u convert-to-x3d /home/michalis/sources/castle-engine/cge-www/convert-to-x3d/convert-to-x3d.sh 1 2 3 4
+      www-data ALL = (convert-to-x3d) NOPASSWD: /home/michalis/cge-www/convert-to-x3d/convert-to-x3d.sh
+
+    # test convert-to-x3d.sh script
+    sudo mkdir -p                /var/convert-to-x3d/volumes/1/contents/
+    sudo chown www-data:www-data /var/convert-to-x3d/volumes/1/contents/
+    sudo chmod a+w               /var/convert-to-x3d/volumes/1/contents/
+    sudo bash -c 'echo "#VRML V2.0 utf8" > /var/convert-to-x3d/volumes/1/contents/input.wrl'
+    sudo -u www-data sudo -u convert-to-x3d /home/michalis/cge-www/convert-to-x3d/convert-to-x3d.sh 1 input.wrl xml testoutputid
+    sudo ls -Flah /var/convert-to-x3d/volumes/1/contents/
+    sudo cat /var/convert-to-x3d/volumes/1/contents/error.log
+    sudo cat /var/convert-to-x3d/volumes/1/contents/testoutputid
 ```
 
 Increase upload size in Apache:
@@ -70,10 +79,10 @@ Make sure to adjust cge-www-path in ../htdocs/castle_engine_config.php .
 Use ../htdocs/castle_engine_config_sample.php as template,
 if it doesn't exist.
 
-Add to cron (e.g. every 5 minutes):
+Create a cron job, by creating `/etc/cron.d/convert-to-x3d`:
 
 ```
-cd /home/michalis/sources/castle-engine/cge-www/htdocs/ && sudo -u www-data php < convert-cron.php
+*/5 * * * *     www-data    cd /home/michalis/cge-www/htdocs/ && php < convert-cron.php
 ```
 
 # License
