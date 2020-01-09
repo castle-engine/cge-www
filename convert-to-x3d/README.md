@@ -40,7 +40,7 @@ sudo -i
     # create /var/convert-to-x3d/
     rm -Rf /var/convert-to-x3d/
     mkdir -p /var/convert-to-x3d/output/
-    mkdir -p /var/convert-to-x3d/containers/1/
+    for I in {1..10}; do mkdir -p /var/convert-to-x3d/volumes/$I/; done
     chown -R www-data:www-data /var/convert-to-x3d/
 
     # create convert-to-x3d user

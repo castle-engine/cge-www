@@ -5,7 +5,7 @@ set -eu
 # acting as a sandbox to prevent calling tovrmlx3d (and exploting any tovrmlx3d
 # security problem on the server).
 
-CONTAINER_ID="$1"
+VOLUME_ID="$1"
 MAIN_FILE="$2"
 ENCODING="$3"
 OUTPUT_FILE_ID="$4"
@@ -19,6 +19,6 @@ docker run \
   -u 1001:1001 \
   --workdir /home/ \
   --read-only \
-  --volume /var/convert-to-x3d/containers/"${CONTAINER_ID}"/contents/:/home/convert-to-x3d/ \
+  --volume /var/convert-to-x3d/volumes/"${VOLUME_ID}"/contents/:/home/convert-to-x3d/ \
   kambi/convert-to-x3d \
   bash -c "cd /home/convert-to-x3d/ && /usr/local/bin/tovrmlx3d '${MAIN_FILE}' --force-x3d --encoding='${ENCODING}' > '${OUTPUT_FILE_ID}' 2> error.log"

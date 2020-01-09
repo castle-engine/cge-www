@@ -84,9 +84,15 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
 
   <?php
   if (!empty($conversion_log)) {
+    $warnings_count = substr_count($conversion_log, 'tovrmlx3d: Warning: ');
+    if ($warnings_count != 0) {
+      $warnings_str = ' <b>(' . $warnings_count . ' warnings)</b>';
+    } else {
+      $warnings_str = '';
+    }
     ?>
     <br>
-    <a id="toggle-details" href="#">Click to see the conversion details.</a>
+    <a id="toggle-details" href="#">Click to see the conversion details<?php echo $warnings_str; ?>.</a>
     <pre style="display:none" id="details"><?php echo $conversion_log; ?></pre>
     <?php
   }
@@ -144,13 +150,14 @@ function remove_directory($dir)
   }
 }
 
-/* Acquire a lock file in given container.
-   Returns false if container is already locked.
+/* Acquire a lock file on given Docker volume.
+   Docker volume is simply a subdirectory like /var/convert-to-x3d/volumes/xxx/contents .
+   Returns false if volume is already locked.
 */
-function simple_lock($container_id)
+function simple_lock($volume_id)
 {
   // See https://stackoverflow.com/questions/325806/best-way-to-obtain-a-lock-in-php
-  $f = @fopen('/var/convert-to-x3d/containers/' . $container_id . '/lock.txt', 'x');
+  $f = @fopen('/var/convert-to-x3d/volumes/' . $volume_id . '/lock.txt', 'x');
   $result = ($f !== FALSE);
   if ($result) {
     $me = getmypid();
@@ -161,40 +168,40 @@ function simple_lock($container_id)
   return $result;
 }
 
-function simple_unlock($container_id)
+function simple_unlock($volume_id)
 {
-  if (!unlink('/var/convert-to-x3d/containers/' . $container_id . '/lock.txt')) {
-    throw new Exception('Cannot release lock for container ' . $container_id);
+  if (!unlink('/var/convert-to-x3d/volumes/' . $volume_id . '/lock.txt')) {
+    throw new Exception('Cannot release lock for volume ' . $volume_id);
   }
 }
 
-/* Returns the container id (to be passed to convert-to-x3d.sh).
-   Sets $container_path (string), always ends with slash.
+/* Returns the volume id (to be passed to convert-to-x3d.sh).
+   Sets $volume_path (string), always ends with slash.
 
-   Also creates a lock for this container, to avoid using it from
+   Also creates a lock for this volume, to avoid using it from
    two scripts simultaneously, be sure to release it with simple_unlock.
 */
-function conversion_container_get(&$container_path)
+function conversion_volume_get(&$volume_path)
 {
-  $container_id = 1;
+  $volume_id = 1;
 
-  if (!simple_lock($container_id)) {
+  if (!simple_lock($volume_id)) {
     throw new Exception('All the conversion resources are busy, please try again in a few minutes');
   }
 
-  $container_path = '/var/convert-to-x3d/containers/' . $container_id . '/contents/';
-  remove_directory($container_path);
+  $volume_path = '/var/convert-to-x3d/volumes/' . $volume_id . '/contents/';
+  remove_directory($volume_path);
   /* Allow everyone to write in dir, this way docker user (from convert-to-x3d) can write there.
      TODO: It would be safer to do umask(0002) and only allow group to write.
      convert-to-x3d may be easily part of www-data.
      But docker user is still not part of www-data (and should not be, for security).
   */
   $old_umask = umask(0000);
-  if (!mkdir($container_path)) {
+  if (!mkdir($volume_path)) {
     throw new Exception('Cannot create file ' . $real_path);
   }
   umask($old_umask);
-  return $container_id;
+  return $volume_id;
 }
 
 /* Perform conversion.
@@ -212,14 +219,16 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
   try { // exceptions inside will be nicely displayed
+    $time_start = microtime(true);
+
     $output_file_id = random_alphanum(24);
 
-    $container_id = conversion_container_get($container_path);
+    $volume_id = conversion_volume_get($volume_path);
 
     try { // be sure to call simple_unlock at end
       for ($i = 0; $i < count($files['tmp_name']); $i++) {
         $temp_name = $files['tmp_name'][$i];
-        $dest_name = $container_path . basename($files['name'][$i]);
+        $dest_name = $volume_path . basename($files['name'][$i]);
         if (!move_uploaded_file($temp_name, $dest_name)) {
           $conversion_log = 'Cannot move uploaded file';
           return false;
@@ -275,7 +284,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 
       exec(
         'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
-        escapeshellcmd($container_id) . ' ' .
+        escapeshellcmd($volume_id) . ' ' .
         escapeshellcmd($main_file) . ' ' .
         escapeshellcmd($encoding) . ' ' .
         escapeshellcmd($output_file_id),
@@ -288,13 +297,13 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         return false;
       }
 
-      $conversion_log = file_get_contents($container_path . 'error.log');
+      $conversion_log = file_get_contents($volume_path . 'error.log');
 
-      $output_file_size = filesize($container_path . $output_file_id);
+      $output_file_size = filesize($volume_path . $output_file_id);
       $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
       $output_file_suggested_name = $main_file_without_ext . $output_extension;
 
-      if (!rename($container_path . $output_file_id,
+      if (!rename($volume_path . $output_file_id,
         '/var/convert-to-x3d/output/' . $output_file_id))
       {
         $conversion_log = 'Failed to move output file to the output directory';
@@ -302,12 +311,18 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       }
 
       // input files are no longer needed, delete (we promise we don't keep them on server)
-      remove_directory($container_path);
+      remove_directory($volume_path);
 
       _cge_record_creation_time($output_file_id);
     } finally {
-      simple_unlock($container_id);
+      simple_unlock($volume_id);
     }
+
+    $time_end = microtime(true);
+    $time = $time_end - $time_start;
+    $conversion_log .=
+      "\nConversion time (in seconds): " . sprintf('%.2f', $time) .
+      "\nConversion slot (Docker volume): $volume_id";
   } catch (Exception $e) {
     // convert uncaught exceptions at this point to nice error messages
     $conversion_log = $e->getMessage();
