@@ -30,6 +30,8 @@
 require_once 'castle_engine_config.php';
 require_once 'convert-database.php';
 
+define('CONVERSION_VOLUMES_COUNT', 10);
+
 /* Show error.
 
    Note that $error_message is assumed to be already-safe HTML,
@@ -183,9 +185,14 @@ function simple_unlock($volume_id)
 */
 function conversion_volume_get(&$volume_path)
 {
-  $volume_id = 1;
-
-  if (!simple_lock($volume_id)) {
+  $volume_id_found = false;
+  for ($volume_id = 1; $volume_id <= CONVERSION_VOLUMES_COUNT; $volume_id++) {
+    if (simple_lock($volume_id)) {
+      $volume_id_found = true;
+      break;
+    }
+  }
+  if (!$volume_id_found) {
     throw new Exception('All the conversion resources are busy, please try again in a few minutes');
   }
 
@@ -374,7 +381,7 @@ castle_header('Conversion output');
 <div class="single-column-page">
   <div class="convert-form convert-output jumbotron">
     <?php process_form_post(); ?>
-    <p><a href="convert.php">Convert another file.</a></p>
+    <p class="another"><a href="convert.php">Convert another file.</a></p>
   </div>
 </div>
 
