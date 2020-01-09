@@ -66,7 +66,7 @@ Button "Make a screenshot"
 
   <li><p>This online converter has some limits on the uploaded file size and conversion time. If needed <b>you can just download <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> and perform the same conversion on your own computer</b>, without any limits. You can also generate screenshots or perform mass conversion from your scripts this way.
 
-  <li><p>The models you upload here, and the resulting output, are not stored on the server longer than absolutely necessary (to perform the conversion, and then the output is kept for 15 minutes to allow you download it). <b>Your models remain yours, we don't store them.</b>
+  <li><p>The models you upload here, and the resulting output, are not stored on the server longer than absolutely necessary (to perform the conversion, and then the output is kept for 15 minutes to allow you download it). <b>Your models remain yours, we don't keep them.</b>
 
   <li><p>If you experience any problems, please <a href="talk.php">contact us</a>. You can submit bugs to the <a href="https://github.com/castle-engine/view3dscene/issues">view3dscene bugtracker</a>. There is no warranty.
 </ul>

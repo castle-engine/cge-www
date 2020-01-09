@@ -1,28 +1,34 @@
 <?php
 
 /*
-   Copyright 2020-2020 Michalis Kamburelis.
+  Copyright 2020-2020 Michalis Kamburelis.
 
-   This file is part of "Castle Game Engine Website".
+  This file is part of "Castle Game Engine Website".
 
-   "Castle Game Engine Website" is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
+  "Castle Game Engine Website" is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   "Castle Game Engine Website" is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  "Castle Game Engine Website" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with "Castle Game Engine Website"; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+  You should have received a copy of the GNU General Public License
+  along with "Castle Game Engine Website"; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-   ---------------------------------------------------------------------------
+  ---------------------------------------------------------------------------
+
+  Main PHP file doing the conversion from anything -> X3D.
+  Calls shell script convert-to-x3d/convert-to-x3d.sh to do the actual job.
+
+  ---------------------------------------------------------------------------
 */
 
 require_once 'castle_engine_config.php';
+require_once 'convert-database.php';
 
 /* Show error.
 
@@ -115,6 +121,9 @@ function random_alphanum($length)
 */
 function remove_directory($dir)
 {
+  if (!file_exists($dir)) {
+    return; // exit without errors if $dir doesn't exist
+  }
   $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
   $files = new RecursiveIteratorIterator($it,
                RecursiveIteratorIterator::CHILD_FIRST);
@@ -291,11 +300,16 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         $conversion_log = 'Failed to move output file to the output directory';
         return false;
       }
+
+      // input files are no longer needed, delete (we promise we don't keep them on server)
+      remove_directory($container_path);
+
+      _cge_record_creation_time($output_file_id);
     } finally {
       simple_unlock($container_id);
     }
   } catch (Exception $e) {
-    // convert uncaught exceptions at this point to nicel
+    // convert uncaught exceptions at this point to nice error messages
     $conversion_log = $e->getMessage();
     return false;
   }

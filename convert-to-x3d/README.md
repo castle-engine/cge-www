@@ -70,6 +70,12 @@ Make sure to adjust cge-www-path in ../htdocs/castle_engine_config.php .
 Use ../htdocs/castle_engine_config_sample.php as template,
 if it doesn't exist.
 
+Add to cron (e.g. every 5 minutes):
+
+```
+cd /home/michalis/sources/castle-engine/cge-www/htdocs/ && sudo -u www-data php < convert-cron.php
+```
+
 # License
 
 Author: Michalis Kamburelis
