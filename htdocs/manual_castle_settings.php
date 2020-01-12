@@ -26,7 +26,7 @@ From the Pascal code (usually, early in the
 
 <p>The <a href="manual_editor.php">Castle Game Engine Editor</a> will also
 automatically load this file. This way the editor can show (at design-time)
-your application in the same way as it will appear to the player.
+your application in the same way as it will appear to the user.
 In the future, the <code>CastleSettings.xml</code> file will be editable by
 the CGE editor GUI. For now just edit it directly, in any text editor (like Lazarus).
 
