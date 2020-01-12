@@ -8,20 +8,20 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>We could load a game level by directly using the
+<p>We can load a game level using the
 <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
  class, described in the previous chapters. Same goes for the game creatures,
 and actually for everything else you need to display in the game.
  <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
  is really versatile:)
 
-<p>However, we also have a more comfortable way to manage typical levels,
-creatures and items in the game.
-To load a level call the
-<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> method. Under the hood,
-<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+<p>We also have a comfortable way to manage typical levels in a 3D game.
+To load a level create the
+<?php api_link('TLevel', 'CastleLevels.TLevel.html'); ?> instance and call the
+<?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?> method. Under the hood,
+<?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
  uses <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
- adding it to the <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, and setting
+ adding it to the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>, and setting
 as
 <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
 It also does something extra: it detects a "placeholders" in your 3D model,
@@ -89,14 +89,17 @@ it's <code>"name"</code> field:</p>
 
 ...
 Levels.LoadFromFiles;
-SceneManager.LoadLevel(\'pits\'); // refer to name="pits" in level.xml
-// the 2nd line is a shortcut for
-// SceneManager.LoadLevel(Levels.FindName(\'pits\'));'); ?>
 
-<p>The <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> will clear all <code>SceneManager.Items</code> (except <code>SceneManager.Player</code>,
+Level := TLevel.Create(Application);
+Level.Viewport := Viewport;
+Level.Load(\'pits\'); // refer to name="pits" in level.xml
+// the last line is a shortcut for
+// Level.Load(Levels.FindName(\'pits\'));'); ?>
+
+<p>The <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?> will clear all <code>Viewport.Items</code> (except <code>Level.Player</code>,
 more about this in a second). Then it will load new 3D model with a
-level (adding it to <code>SceneManager.Items</code> and setting as
-<code>SceneManager.MainScene</code>, just as we did manually in previous chapter),
+level (adding it to <code>Viewport.Items</code> and setting as
+<code>Viewport.Items.MainScene</code>, just as we did manually in previous chapter),
 and do some more interesting stuff that we'll learn later.</p>
 
 <p>The important thing here is that (except the "name" of the 1st
@@ -108,7 +111,7 @@ will be used for creatures/items in the following chapter. Your game
 data is immediately friendly to MODders.</p>
 
 <p>Note that you have to initialize OpenGL context before
-calling <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
+calling <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>.
 That's because loading level wants to prepare resources for OpenGL rendering.
 
 <ol>
@@ -122,7 +125,7 @@ That's because loading level wants to prepare resources for OpenGL rendering.
 
   <li><p>If you use
     <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
-    you can also initialize progress interface, to see nice progress bar when loading 
+    you can also initialize progress interface, to see nice progress bar when loading
     the level. Like this:
 
     <?php echo pascal_highlight(
@@ -136,14 +139,17 @@ Application.MainWindow := Window;
 Progress.UserInterface := WindowProgressInterface;
 
 Levels.LoadFromFiles;
-SceneManager.LoadLevel(\'pits\');
+
+Level := TLevel.Create(Application);
+Level.Viewport := Viewport;
+Level.Load(\'pits\');
 
 Application.Run; // this goes after preparing level (and everything else)'); ?>
 
   <li><p>If you use Lazarus
     <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
     make sure you call
-    <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+    <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
     from
     <?php api_link('OnOpen event', 'CastleControl.TCastleControlBase.html#OnOpen'); ?>
     event (or something that occurs even later).

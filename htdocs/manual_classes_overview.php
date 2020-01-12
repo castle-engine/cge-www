@@ -75,14 +75,6 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>
       <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
       <li><?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
-      <!--
-        <ul>
-          <li><?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>
-            (a descendant of
-            <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>,
-            adds comfortable methods to load levels with placeholders)
-        </ul>
-      -->
       <li>... and many other usual user-interface components. See e.g.
         <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.
         See the <a href="manual_2d_user_interface.php">manual chapter about user interface</a>.
@@ -96,21 +88,6 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     <?php api_link('UserInterfaceLoad', 'CastleComponentSerialize.html#UserInterfaceLoad'); ?>
     or
     <?php api_link('TUIState.InsertUserInterface', 'CastleUIState.TUIState.html#InsertUserInterface'); ?>.
-
-<!--
-    <p>Except you usually don't have to create 1st
-    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?> instance:
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
-    and <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
-    already contain a <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?> instance,
-    automatically created and available inside their <code>Controls</code> list
-    and inside their <code>SceneManager</code> property. You can use <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>  /
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
-    to avoid this automatic scene manager &mdash;
-    useful if you want to use your custom descendant (that overrides some virtual methods) of
-    <?php api_link('TCastleSceneManager', 'CastleSceneManager.TCastleSceneManager.html'); ?>
-    or <?php api_link('TGameSceneManager', 'CastleLevels.TGameSceneManager.html'); ?>.
--->
 
   <dt>Viewport: <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?></dt>
 
@@ -217,21 +194,24 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
         <?php
         /*
-        Alternatively you can use the <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+        Alternatively you can use the <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
         method, usually like this:
 
 < ?php echo pascal_highlight(
 'Levels.LoadFromFiles(...);
-SceneManager.LoadLevel(\'myLevelName\');
-// the 2nd line is a shortcut for
-// SceneManager.LoadLevel(Levels.FindName(\'myLevelName\'));'); ? >
+
+Level := TLevel.Create(Application);
+Level.Viewport := ...;
+Level.Load(\'myLevelName\');
+// the last line is a shortcut for
+// Level.Load(Levels.FindName(\'myLevelName\'));'); ? >
 
         <p>This will create <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, update
         <?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>,
         <?php api_link('TCastleViewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>,
         and do some other stuff helpful for typical
         3D games, like handle placeholders &mdash; see
-        <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+        <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
         docs.
 */ ?>
       </dd>
@@ -333,7 +313,7 @@ More about them later, some of them should be instantiated in a special way:
       <li><?php api_link('TStillCreature', 'CastleCreatures.TStillCreature.html'); ?> (has Resource property that refers to <?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?>)
     </ul>
 
-    <p><i>How to use</i>: When you load level using <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>,
+    <p><i>How to use</i>: When you load level using <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>,
     instances of initial creatures/items existing on level are automatically
     created for you,
     replacing the placeholder objects in 3D file. Just add in Blender 3D object
@@ -359,7 +339,7 @@ More about them later, some of them should be instantiated in a special way:
     Make sure that all necessary creatures are declared in level's index.xml
     file under <code>&lt;prepare_resources&gt;</code>, to prepare creatures at level loading
     (you don't want to cause a sudden delay in the middle of the game).
-    T3DResource and <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> methods will then take care of loading resources
+    T3DResource and <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?> methods will then take care of loading resources
     when necessary.
   </dd>
 
@@ -385,7 +365,7 @@ More about them later, some of them should be instantiated in a special way:
         (it cannot be directly added to the
         level), only <?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?> is a 3D object.
         <ul>
-          <li><?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+          <li><?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
             automatically creates instances of <?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?>,
             along with instances of <?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>,
             referring to item resources on global <?php api_link('Resources', 'CastleResources.html#Resources'); ?>.
@@ -407,11 +387,8 @@ More about them later, some of them should be instantiated in a special way:
     of instances of <?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>
 
     <p><i>How to use</i>: just create an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,
-    and add it
-    to <?php api_link('SceneManager.Items', 'CastleSceneManager.TCastleSceneManager.html#Items'); ?>, like all normal T3D descendants.
-    You will also almost always want to set this as
-    <?php api_link('SceneManager.Player', 'CastleSceneManager.TCastleSceneManager.html#Player'); ?>,
-    to make it a central player (connected with central camera etc.).
+    and set it as
+    <?php api_link('Level.Player', 'CastleLevels.TLevel.html#Player'); ?>.
   </dd>
 </dl>
 

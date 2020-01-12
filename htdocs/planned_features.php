@@ -361,11 +361,11 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
 
     <ol>
       <li><p>To have some X3D lights shining on <i>all</i>
-        scenes, these lights should be in <code>SceneManager.MainScene</code>.
+        scenes, these lights should be in <code>Viewport.Items.MainScene</code>.
       <li><p>To use a <code>Background</code> or <code>Fog</code> X3D node,
-        this node needs to be inside <code>SceneManager.MainScene</code>.
+        this node needs to be inside <code>Viewport.Items.MainScene</code>.
       <li><p>The initial camera position may be derived from <code>Viewpoint</code>
-        in the <code>SceneManager.MainScene</code>.
+        in the <code>Viewport.Items.MainScene</code>.
     </ol>
 
     <p>All these features should have a different solution,
@@ -391,21 +391,21 @@ fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 
       <li><p>It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCamera).
     </ol>
 
-    <p>Gradually I will want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleSceneManager / TCamera. Basically, I'm very happy with current API of TCastleScene and TCastleTransform, and I want to make it more obvious how it is related to creatures/placeholders and other concepts introduced in CastleLevels and CastleCreatures and CastkeResources. Currently they use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
+    <p>Gradually I will want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCamera. Basically, I'm very happy with current API of TCastleScene and TCastleTransform, and I want to make it more obvious how it is related to creatures/placeholders and other concepts introduced in CastleLevels and CastleCreatures and CastkeResources. Currently they use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
 
     <p>It's not going to happen any time soon, but it will happen gradually, over the course of next 1 or more years. That is, some of the features of the 5 units mentioned above will become available in other ways too (more flexible, and more obviously connected to TCastleScene).
 
     <p>I know this sounds vague, because I have not yet clarified these plans in my head:) These 5 units *are* useful, they provide various features on top of TCastleScene. I'm not going to just "ditch" them or even deprecate them, before I made a better API that also has these features. For example:
 
     <ul>
-      <li><p>New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of <?php api_link('TGameSceneManager.Load', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?> in a flexible manner (user can decide what to replace with what).
+      <li><p>New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?> in a flexible manner (user can decide what to replace with what).
 
       <li><p>There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
 
       <li><p>It should be possible to add an A.I. (like TWalkAttackLogic) to any TCastleTransform instance.
     </ul>
 
-    <p>I know I want to go in this direction. Based on the questions (including on Discord) I see that the API of these 5 units is not clear to people. It wraps TCastleScene / TCastleSceneManager / TCamera, but in ways that are not obvious, and that is something I want to improve.
+    <p>I know I want to go in this direction. Based on the questions (including on Discord) I see that the API of these 5 units is not clear to people. It wraps TCastleScene / TCastleViewport / TCamera, but in ways that are not obvious, and that is something I want to improve.
 
     <p>Again, bear in mind that it will not happen any time soon :) You can safely and happily use these units, probably for a few years to come.
 

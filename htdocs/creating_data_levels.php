@@ -60,7 +60,7 @@ with links to documentation for every attribute.
 <?php echo $toc->html_section(); ?>
 
 <p>A major feature of loading level through
-<?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+<?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
  is that you can put "placeholders" on your level 3D model.
 These are 3D shapes with special names that will be recognized by the engine:
 
@@ -104,10 +104,10 @@ These are 3D shapes with special names that will be recognized by the engine:
     after dot is ignored too.
 
   <li><p><b>Water</b> volume by placeholder "CasWater"
-    (see <?php api_link('TCastleSceneManager.Water', 'CastleSceneManager.TCastleSceneManager.html#Water'); ?>).
+    (see <?php api_link('TLevel.Water', 'CastleLevels.TLevel.html#Water'); ?>).
 
   <li><p><b>Move limit</b> by placeholder "CasMoveLimit"
-    (see <?php api_link('TCastleSceneManager.MoveLimit', 'CastleSceneManager.TCastleSceneManager.html#MoveLimit'); ?>).
+    (see <?php api_link('TLevel.MoveLimit', 'CastleLevels.TLevel.html#MoveLimit'); ?>).
 
   <li><p><b>Sectors / waypoints</b> to improve creature AI moving.
     Each sector occupies some volume in 3D (like a room).
@@ -158,7 +158,7 @@ These are 3D shapes with special names that will be recognized by the engine:
     the move direction is simply set to go to the target directly.
   </li>
 
-  <li><p>See <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+  <li><p>See <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
     documentation for full list of placeholders.
 
   <li><p>And possibly your <?php api_link('TLevelLogic', 'CastleLevels.TLevelLogic.html'); ?>

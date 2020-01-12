@@ -27,7 +27,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     and player (<?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>)
     uses such transformations to move creatures, player etc.
     Loading a level by
-    <?php api_link('TGameSceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>
+    <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
     initializes the whole tree for you, but you can also do it by hand.
 
     <!--p>The visible leaves of this tree are

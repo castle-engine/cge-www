@@ -42,9 +42,9 @@ begin
   Direction := Vector3(1, 0, 0);
 
   CreatureResource := Resources.FindName(\'Knight\') as TCreatureResource;
-  { CreateCreature creates TCreature instance and adds it to SceneManager.Items.
+  { CreateCreature creates TCreature instance and adds it to the level.
     We could store CreateCreature result, but in this case we just ignore it. }
-  CreatureResource.CreateCreature(SceneManager.Items, Position, Direction);
+  CreatureResource.CreateCreature(Level, Position, Direction);
 end;
 
 // Remember to actually call SpawnMyCreature
@@ -74,12 +74,12 @@ begin
   { ItemResource.CreateItem(<quantity>) creates new TInventoryItem instance. }
   Item := ItemResource.CreateItem(1);
   { PutOnWorld method creates TItemOnWorld (that "wraps" the TInventoryItem
-    instance) and adds it to SceneManager.Items.
+    instance) and adds it to the level (in effect, adding it to Viewport.Items).
     We could store PutOnWorld result, but in this case we just ignore it. }
-  Item.PutOnWorld(SceneManager.Items, Position);
+  Item.PutOnWorld(Level, Position);
 
   { You may of course shorten it like this: }
-  // ItemResource.CreateItem(1).PutOnWorld(SceneManager.Items, Position);
+  // ItemResource.CreateItem(1).PutOnWorld(Level, Position);
 
   { You could instead add the item directly to someone\'s inventory, like this: }
   // Player.PickItem(Item);

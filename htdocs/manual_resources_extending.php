@@ -235,7 +235,7 @@ end;
 { and if you want to create werewolves programmatically
   (not just by placing "placeholders" on level 3D model) then do this: }
 for I := 1 to 100 do
-  WerewolfRookie.CreateCreature(SceneManager.Items,
+  WerewolfRookie.CreateCreature(Level,
     Vector3(1, 2, 3) { position }
     Vector3(1, 0, 0) { direction });'); ?>
 

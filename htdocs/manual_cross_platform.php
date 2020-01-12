@@ -68,12 +68,6 @@ and create and assign <code>Application.MainWindow</code>.
 Most of the actual initialization (loading images, resources, setting up player
 and such) should happen in the callback you assigned to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>.
 At that point you know that your program is ready to load and prepare resources.
-<!--
-and you can load
-Also, you know that the OpenGL context is created,
-so you can freely use things that require OpenGL context, and show loading progress,
-like <?php api_link('SceneManager.LoadLevel', 'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>.
--->
 
 <!--
 <p>The initialization <b>must assign the <?php api_link('Applcation.MainWindow', 'CastleWindow.TCastleApplication.html#MainWindow'); ?></b> instance,

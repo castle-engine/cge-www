@@ -4,7 +4,7 @@ manual_header('Player');
 ?>
 
 <p>You can create an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
- and assign to <?php api_link('TGameSceneManager.Player', 'CastleLevels.TGameSceneManager.html#Player'); ?>.
+ and assign to <?php api_link('TLevel.Player', 'CastleLevels.TLevel.html#Player'); ?>.
 This provides various features:
 
 <ol>
@@ -29,22 +29,22 @@ placed in <?php api_link('TCastleViewport.Camera', 'CastleViewport.TCastleViewpo
 <?php echo pascal_highlight(
 'uses ..., CastlePlayer;
 var
-  SceneManager: TGameSceneManager;
+  Viewport: TCastleViewport;
+  Level: TLevel;
   Player: TPlayer;
+begin
+  Viewport := TCastleViewport.Create(Application);
+  Viewport.FullSize := true;
+  Window.Controls.InsertFront(Viewport);
 
-...
-SceneManager := TGameSceneManager.Create(Application);
-SceneManager.FullSize := true;
-Window.Controls.InsertFront(SceneManager);
+  Level := TLevel.Create(Application);
+  Level.Viewport := Viewport;
 
-Player := TPlayer.Create(Application);
-SceneManager.Items.Add(Player);
-SceneManager.Player := Player;'); ?>
+  Player := TPlayer.Create(Application);
+  Level.Player := Player;
 
-<p>It's best to do this (assign <code>SceneManager.Player</code>) before
-<code>SceneManager.LoadLevel</code>, this way <code>Player.Navigation</code> is automatically
-configured as <code>SceneManager.Navigation</code> and it follows level's properties
-like <code>PreferredHeight</code> (from level's <code>NavigationInfo.avatarSize</code>).
+  Level.Load(...);
+end;'); ?>
 
 <h2>3D models relative to player</h2>
 

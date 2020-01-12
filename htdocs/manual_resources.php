@@ -3,8 +3,7 @@ require_once 'castle_engine_functions.php';
 manual_header('Defining creatures and items');
 ?>
 
-<p>Since we are using <?php api_link('TGameSceneManager.LoadLevel',
-'CastleLevels.TGameSceneManager.html#LoadLevel'); ?>, the system
+<p>Since we are using <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>, the system
 to load creatures and items (together called <i>3D resources</i>)
 is actually ready to use. A nice default handling of creatures
 and items suitable for 3D games is ready, in

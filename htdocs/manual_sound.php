@@ -113,7 +113,7 @@ We plan to deprecate level.xml. Also, it is mentioned above already.
 < ?php echo $toc->html_section(); ? >
 
 There is a special comfortable way to enable looping music on a level,
-if you use <code>level.xml</code> file with TGameSceneManager.LoadLevel. Simply add
+if you use <code>level.xml</code> file with TLevel.Load. Simply add
 <code>music_sound="xxx"</code> attribute to the root element of your
 <code>level.xml</code> file, where <code>xxx</code> refers to a sound name
 defined in <code>data/sounds/index.xml</code>.
