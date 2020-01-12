@@ -3,14 +3,16 @@ require_once 'castle_engine_functions.php';
 manual_header('Key / mouse shortcuts');
 ?>
 
-<p>We have global key/mouse shortcuts in some global <code>Input_Xxx</code> variables:
+<p>We have some global key/mouse shortcuts:
 
 <ul>
-  <li>In <code>CastleViewport</code> unit we have <code>Input_Interact</code>.
-  <li>In <code>CastleLevels</code> unit we have more <code>Input_Xxx</code> shortcuts
-    useful for <a href="manual_high_level_3d_classes.php">typical 3D games</a>.
-  <li>In <code>CastlePlayer</code> unit we have <code>PlayerInput_Xxx</code>
-    global variables, these override some navigation shortcuts when <code>TPlayer</code> is used.
+  <li><code>Input_Interact</code> in <code>CastleViewport</code> unit.
+  <li><code>PlayerInput_*</code> in <code>CastlePlayer</code> unit.
+    These are useful if you make a
+    <a href="manual_high_level_3d_classes.php">typical 3D game</a>
+    with the help of <code>TPlayer</code> class.
+    In this case, <code>PlayerInput_*</code>
+    override some navigation shortcuts, and allow to use player's inventory.
 </ul>
 
 Global shortcuts are gathered inside <?php api_link('InputsAll',
