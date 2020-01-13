@@ -303,7 +303,7 @@ $toc = new TableOfContents(
     properties.
 
   <li><b>Anti-aliasing</b> (by OpenGL multi-sampling),
-    see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindowCustom.html#AntiAliasing'); ?>
+    see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindowBase.html#AntiAliasing'); ?>
     property.
     </li>
 </ul>
@@ -417,9 +417,9 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>We have ready window classes (<code>TCastleWindow</code>)
-    and Lazarus components (<code>TCastleControl</code>) to make simple
-    X3D and other 3D models browser, on a Lazarus form or independent from Lazarus LCL.
+  <li>We have ready window classes (<code>TCastleWindowBase</code>)
+    and Lazarus components (<code>TCastleControlBase</code>) to make simple
+    3D model browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;
     we have various <b>Lazarus components</b>.</li>
 

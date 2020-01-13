@@ -48,8 +48,8 @@ probably start to wonder about the speed and memory usage.</p>
 
 <p>The main tool to measure your game speed is the <i>Frames Per Second (FPS)</i>
 value. Use the
- <?php api_link('TCastleControlCustom.Fps', 'CastleControl.TCastleControlCustom.html#Fps'); ?> or
- <?php api_link('TCastleWindowCustom.Fps', 'CastleWindow.TCastleWindowCustom.html#Fps'); ?>
+ <?php api_link('TCastleControlBase.Fps', 'CastleControl.TCastleControlBase.html#Fps'); ?> or
+ <?php api_link('TCastleWindowBase.Fps', 'CastleWindow.TCastleWindowBase.html#Fps'); ?>
  to get an instance of
  <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>.
  It contains two useful numbers (and some extra information):
@@ -65,8 +65,8 @@ value. Use the
 <!--
 <p>Eventually, display directly the <code>Window.Fps.RealFps</code> value.
 In this case, it is easiest to have
- <?php api_link('TCastleControlCustom.AutoRedisplay', 'CastleControl.TCastleControlCustom.html#AutoRedisplay'); ?> or
- <?php api_link('TCastleWindowCustom.AutoRedisplay', 'CastleWindow.TCastleWindowCustom.html#AutoRedisplay'); ?> set
+ <?php api_link('TCastleControlBase.AutoRedisplay', 'CastleControl.TCastleControlBase.html#AutoRedisplay'); ?> or
+ <?php api_link('TCastleWindowBase.AutoRedisplay', 'CastleWindow.TCastleWindowBase.html#AutoRedisplay'); ?> set
  to <code>true</code>, otherwise the meaning of <code>RealFps</code>
  may not actually indicate the potential speed of your application.
  It is <code>true</code> by default, so you're already set.
@@ -448,7 +448,7 @@ draw calls in this case.
 
 <?php echo $toc->html_section(); ?>
 
-<p>In some cases, combining many <code>TCastleScene</code> instances into one helps. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>Load3D</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>.
+<p>In some cases, combining many <code>TCastleScene</code> instances into one helps. To do this, load your 3D models to <code>TX3DRootNode</code> using <code>LoadNode</code>, and then create a new single <code>TX3DRootNode</code> instance that will have many other nodes as children. That is, create one new <code>TX3DRootNode</code> to keep them all, and for each scene add it's <code>TX3DRootNode</code> (wrapped in <code>TTransformNode</code>) to that single <code>TX3DRootNode</code>.
 
 <p>This allows you to load multiple 3D files into a single <code>TCastleScene</code>, which may make stuff faster &mdash; there will be only one octree (used for collision routines and frustum culling) for the whole scene. Right now, we have an octree inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
 
@@ -622,7 +622,7 @@ Hints to make it faster:
 
 <p>Turn on <?php api_link('TCastleUserInterface.Culling', 'CastleUIControls.TCastleUserInterface.html#Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>) or other parent with <?php api_link('ClipChildren', 'CastleUIControls.TCastleUserInterface.html#ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>.
 
-<p>When rendering 2D stuff yourself usign <?php api_link('TGLImage', 'CastleGLImages.TGLImage.html'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TGLImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
+<p>When rendering 2D stuff yourself usign <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
 
 <?php echo $toc->html_section(); ?>
 

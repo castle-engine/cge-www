@@ -9,7 +9,7 @@ uses CastleWindow, CastleControls, CastleLog, CastleUIControls,
   CastleApplicationProperties, CastleColors;
 
 var
-  Window: TCastleWindow;
+  Window: TCastleWindowBase;
   Status: TCastleLabel;
 
 { One-time initialization of resources. }
@@ -41,7 +41,7 @@ initialization
   Application.OnInitialize := @ApplicationInitialize;
 
   { Create and assign Application.MainWindow. }
-  Window := TCastleWindow.Create(Application);
+  Window := TCastleWindowBase.Create(Application);
   Application.MainWindow := Window;
 
   { You should not need to do *anything* more in the unit "initialization" section.

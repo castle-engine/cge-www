@@ -72,11 +72,8 @@ At that point you know that your program is ready to load and prepare resources.
 <!--
 <p>The initialization <b>must assign the <?php api_link('Applcation.MainWindow', 'CastleWindow.TCastleApplication.html#MainWindow'); ?></b> instance,
 that will be used by platform-specific program/library code.
-It should descend from <?php api_link('TCastleWindowCustom', 'CastleWindow.TCastleWindowCustom.html'); ?> class
-(in most cases, just use the standard
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
-<?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?> classes,
-although you can also derive your own window classes).
+It should be a <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class
+instance (it may be a descendant of this class, of course).
 -->
 
 <p>This <code>GameInitialize</code> unit can be included by the main program or library
@@ -212,7 +209,9 @@ or "mouse look" on desktops, you can
   <li><p>Create an instance of
     <?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?>
     (instead of the simpler
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>).
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>).
+
+    <p>TODO: TCastleWindowTouch is deprecated now.
 
   <li><p>Create <code>Player</code> instance
     (see the <?php echo a_href_page('manual chapter about the Player', 'manual_player'); ?>)
@@ -242,7 +241,7 @@ Player.Camera.MouseLook := not Application.TouchDevice;'); ?>
     a buttton to quit &mdash; instead, mobile users just switch
     to a different application (or desktop) using the standard buttons.
 
-  <li><p>Do not create more than one <code>TCastleWindowCustom</code> instance.
+  <li><p>Do not create more than one <code>TCastleWindowBase</code> instance.
     If you want your game to be truly portable to <b>any</b> device &mdash;
     you have to limit yourself to using only one window.
     For normal games that's probably natural anyway.
