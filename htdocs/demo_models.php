@@ -13,7 +13,10 @@ $toc = new TableOfContents(
     new TocItem('Authors', 'authors'),
   ));
 
-echo pretty_heading($page_title, VERSION_DEMO_MODELS);
+// set to true to download demo-models as ZIP from GitHub master, instead of using SourceForge release
+$demo_models_master = true;
+
+echo pretty_heading($page_title, $demo_models_master ? null : VERSION_DEMO_MODELS);
 echo castle_thumbs(array(
   /* shader pipeline */
   array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Shinto shrine model, from http://opengameart.org/content/shrine-shinto-japan , with multiple shadow maps enabled'),
@@ -41,10 +44,14 @@ echo castle_thumbs(array(
     {
       ?>
 
-      <?php echo sf_download('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download demo models', 'demo_models-' . VERSION_DEMO_MODELS . '.zip'); ?>
-
-      <?php echo download_donate_footer(); ?>
       <?php
+      $download_title = '<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download demo models';
+      if ($demo_models_master) {
+        echo castle_download_button($download_title, 'https://github.com/castle-engine/demo-models/archive/master.zip');
+      } else {
+        echo sf_download($download_title, 'demo_models-' . VERSION_DEMO_MODELS . '.zip');
+      }
+      echo download_donate_footer();
     }
     ?>
 
@@ -57,10 +64,11 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is our collection of demo 3D models.
-Some are impressive 3D models, some (most) are simple models demonstrating some
-technical feature.
-Most of the models are in X3D and VRML formats,
+<p>This is <i>Castle Game Engine</i> collection of demo models.
+While some of them are more impressive,
+most of the models are simple and demonstrate some particular <i>Castle Game Engine</i> feature.
+
+<p>Most of the models are in X3D and VRML formats.
 but in general various formats handled by
  <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and
  <?php echo a_href_page('Castle Game Engine', 'index'); ?> are used.
@@ -73,32 +81,36 @@ comments explaining what this file demonstrates.
 but many of them should also be handled by other conforming
 X3D and VRML browsers.</p>
 
-<p>Files inside <code>warnings/</code> subdirectories are deliberately invalid
+<p>Note: Files inside <code>warnings/</code> subdirectories are deliberately invalid
 in some ways. Good X3D browser should display a sensible warning
 message and (when possible) continue (omitting only the problematic part).</p>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Comments and contributions to these demos are most welcome.
-See <?php echo a_href_page('forum', 'forum'); ?> for ways to contact us.
+There are <?php echo a_href_page('many ways to contact us', 'talk'); ?>.
+<!--
 If you have a cool 3D model, something interesting,
 or maybe just something difficult for our engine, please share it with us!
+-->
 <!--Posting a screenshot or a video of your model is most welcome.-->
+<!--
 We love to see how you use our tools :)
+-->
 <!--
 To include your model in these demos, or to report a bug, you will of course
 have to actually send your 3D model source.--></p>
 
+<!--
 <p>Feel free to expand, modify, redistribute these test files
 &mdash; they are covered by GNU GPL &gt;= 2 license.</p>
+-->
 
-<p>You can always download the very current version of these models from <a href="https://github.com/castle-engine/demo-models">our GitHub project</a>, like this:
-
-<pre>git clone https://github.com/castle-engine/demo-models.git</pre>
+<p>You can <a href="https://github.com/castle-engine/demo-models">clone the demo-models repository from GitHub</a>. If you know your way around GIT and GitHub, you're most welcome to send contributions as <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">pull requests</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Most of the 3D models here were created by Kambi (Michalis Kamburelis).
+<p>Most of the 3D models here were created by <i>Michalis Kamburelis</i>.
 Simple test models were simply manually crafted in a text editor.
 The more complicated meshes were created in
 <a href="http://www.blender3d.org/">Blender</a> (see
