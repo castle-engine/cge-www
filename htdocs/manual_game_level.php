@@ -110,51 +110,6 @@ new subdirectory into the <code>data/levels/</code>, and if it will contain prop
 will be used for creatures/items in the following chapter. Your game
 data is immediately friendly to MODders.</p>
 
-<p>Note that you have to initialize OpenGL context before
-calling <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>.
-That's because loading level wants to prepare resources for OpenGL rendering.
-
-<ol>
-  <li><p>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
-    do this in
-    <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>
-    handler or later.
-    See <?php echo a_href_page('manual about writing cross-platform games', 'manual_cross_platform'); ?>
-    for an example application initialization.
-
-  <li><p>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
-    you can also initialize progress interface, to see nice progress bar when loading
-    the level. Like this:
-
-    <?php echo pascal_highlight(
-'uses ..., CastleProgress, CastleWindowProgress;
-
-...
-Window.Open; // this goes before preparing level
-
-{ initialize progress bar to use our window }
-Application.MainWindow := Window;
-Progress.UserInterface := WindowProgressInterface;
-
-Levels.LoadFromFiles;
-
-Level := TLevel.Create(Application);
-Level.Viewport := Viewport;
-Level.Load(\'pits\');
-
-Application.Run; // this goes after preparing level (and everything else)'); ?>
-
-  <li><p>If you use Lazarus
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
-    make sure you call
-    <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
-    from
-    <?php api_link('OnOpen event', 'CastleControl.TCastleControlBase.html#OnOpen'); ?>
-    event (or something that occurs even later).
-</ol>
-
 <?php
 manual_footer();
 ?>
