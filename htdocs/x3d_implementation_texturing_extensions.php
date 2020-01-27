@@ -575,10 +575,10 @@ like <code>ImageTexture</code>, <code>MovieTexture</code>; also <code>Texture2</
 in VRML 1.0):
 
 <?php
-  echo node_begin('X3DTextureNode');
+  echo node_begin('X3DSingleTextureNode');
   $node_format_fd_name_pad = 10;
   echo
-  node_dots('all normal X3DTextureNode fields') .
+  node_dots('all normal X3DSingleTextureNode fields') .
   node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "NONE", "TEST" or "BLENDING"') .
   node_end();
 ?>
