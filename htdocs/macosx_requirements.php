@@ -84,7 +84,11 @@ $toc = new TableOfContents(
         (<?php echo FPC_CFG_DOCS; ?>):</p>
 
 <pre>
--Fl/usr/X11/lib/
+-k-L/usr/X11/lib/
+
+# Old version:
+# -Fl/usr/X11/lib/
+# Should work equally well as far as I know, but it doesn't, for FPC 3.0.4/3.0.5
 </pre>
 
         <!--
