@@ -4,7 +4,7 @@ Plugin Name: Check Email
 Plugin URI: http://www.stillbreathing.co.uk/wordpress/check-email/
 Description: Check email allows you to test if your WordPress installation is sending emails correctly.
 Text Domain: check-email
-Version: 0.5.6
+Version: 0.5.7
 Author: Chris Taylor
 Author URI: http://www.stillbreathing.co.uk
 */
@@ -15,7 +15,7 @@ $register = new Plugin_Register();
 $register->file = __FILE__;
 $register->slug = "checkemail";
 $register->name = "Check Email";
-$register->version = "0.5.5";
+$register->version = "0.5.7";
 $register->developer = "Chris Taylor";
 $register->homepage = "http://www.stillbreathing.co.uk";
 $register->Register();
@@ -74,6 +74,9 @@ function checkemail_add_css() {
 function checkemail() {
 	global $current_user;
 
+	$from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
+	$from_name = apply_filters( 'wp_mail_from_name', $from_name );
+
 	echo '
 	<div id="checkemail" class="wrap">
 	';
@@ -117,7 +120,7 @@ function checkemail() {
 		echo ' class="checkemail-hide"';
 	}
 	echo '>MIME-Version: 1.0
-From: ' . $current_user->user_email . '
+From: ' . $from_email . '
 Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 	<p><label for="checkemail_customheaders">' . __( "Use custom headers", "check-email" ) . '</label>
 	<input type="radio" id="checkemail_customheaders" name="checkemail_headers" value="custom"';
@@ -152,7 +155,7 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 		if ( isset( $_POST["checkemail_from"] ) ) {
 			echo esc_attr( $_POST["checkemail_from"] );
 		} else {
-			echo $current_user->user_email;
+			echo $from_email;
 		}
 		echo '" class="text"  /></p>
 		<p><label for="checkemail_cc">' . __( "CC", "check-email" ) . '</label>
@@ -175,8 +178,9 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 	</div>
 	<p><label for="checkemail_go" class="checkemail-hide">' . __( "Send", "check-email" ) . '</label>
 	<input type="submit" name="checkemail_go" id="checkemail_go" class="button-primary" value="' . __( "Send test email", "check-email" ) . '" /></p>
-	' . wp_nonce_field( 'checkemail' ) . '
-	</form>
+	';
+	wp_nonce_field( 'checkemail' );
+	echo '</form>
 	
 	</div>
 	';
@@ -186,9 +190,13 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 // send a test email
 function checkemail_send($to, $headers = "auto") {
 	global $current_user;
+
+	$from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
+	$from_name = apply_filters( 'wp_mail_from_name', $from_name );
+
 	if ( $headers == "auto" ) {
 		$headers = "MIME-Version: 1.0\r\n" .
-		"From: " . $current_user->user_email . "\r\n" .
+		"From: " . $from_email . "\r\n" .
 		"Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\r\n";
 	} else {
 		$break = chr( 10 );

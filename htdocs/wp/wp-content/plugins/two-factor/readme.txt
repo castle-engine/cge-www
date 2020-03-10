@@ -1,8 +1,9 @@
 === Two-Factor ===
-Contributors: georgestephanis, valendesigns, stevenkword, extendwings, sgrant, aaroncampbell, johnbillion, stevegrunwell, netweb, kasparsd, alihusnainarshad
+Contributors: georgestephanis, valendesigns, stevenkword, extendwings, sgrant, aaroncampbell, johnbillion, stevegrunwell, netweb, kasparsd, alihusnainarshad, passoniate
 Tags: two factor, two step, authentication, login, totp, fido u2f, u2f, email, backup codes, 2fa, yubikey
 Requires at least: 4.3
 Tested up to: 5.3
+Requires PHP: 5.6
 Stable tag: trunk
 
 Enable Two-Factor Authentication using time-based one-time passwords (OTP, Google Authenticator), Universal 2nd Factor (FIDO U2F, YubiKey), email and backup verification codes.
@@ -17,8 +18,13 @@ Use the "Two-Factor Options" section under "Users" → "Your Profile" to enable 
 - Backup Codes
 - Dummy Method (only for testing purposes)
 
-For more history, see [this post](https://stephanis.info/2013/08/14/two-cents-on-two-factor/).
+For more history, see [this post](https://georgestephanis.wordpress.com/2013/08/14/two-cents-on-two-factor/).
 
+= Actions & Filters =
+
+Here is a list of action and filter hooks provided by the plugin:
+
+- `two_factor_user_authenticated` action which receives the logged in `WP_User` object as the first argument for determining the logged in user right after the authentication workflow.
 
 == Screenshots ==
 

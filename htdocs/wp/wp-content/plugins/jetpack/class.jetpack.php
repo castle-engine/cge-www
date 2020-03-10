@@ -1,16 +1,16 @@
 <?php
 use Automattic\Jetpack\Assets;
 use Automattic\Jetpack\Assets\Logo as Jetpack_Logo;
+use Automattic\Jetpack\Config;
 use Automattic\Jetpack\Connection\Client;
 use Automattic\Jetpack\Connection\Manager as Connection_Manager;
-use Automattic\Jetpack\Connection\REST_Connector as REST_Connector;
-use Automattic\Jetpack\Connection\XMLRPC_Connector as XMLRPC_Connector;
 use Automattic\Jetpack\Connection\Utils as Connection_Utils;
 use Automattic\Jetpack\Constants;
 use Automattic\Jetpack\Partner;
 use Automattic\Jetpack\Roles;
 use Automattic\Jetpack\Status;
 use Automattic\Jetpack\Sync\Functions;
+use Automattic\Jetpack\Sync\Health;
 use Automattic\Jetpack\Sync\Sender;
 use Automattic\Jetpack\Sync\Users;
 use Automattic\Jetpack\Terms_Of_Service;
@@ -47,8 +47,6 @@ class Jetpack {
 	private $rest_authentication_status = null;
 
 	public $HTTP_RAW_POST_DATA = null; // copy of $GLOBALS['HTTP_RAW_POST_DATA']
-
-	private $tracking;
 
 	/**
 	 * @var array The handles of styles that are concatenated into jetpack.css.
@@ -170,9 +168,6 @@ class Jetpack {
 			'Fast Secure Contact Form' => 'si-contact-form/si-contact-form.php',
 			'Ninja Forms'              => 'ninja-forms/ninja-forms.php',
 		),
-		'minileven'          => array(
-			'WPtouch' => 'wptouch/wptouch.php',
-		),
 		'latex'              => array(
 			'LaTeX for WordPress'     => 'latex/latex.php',
 			'Youngwhans Simple Latex' => 'youngwhans-simple-latex/yw-latex.php',
@@ -271,6 +266,7 @@ class Jetpack {
 		// 2 Click Social Media Buttons
 		'add-link-to-facebook/add-link-to-facebook.php',         // Add Link to Facebook
 		'add-meta-tags/add-meta-tags.php',                       // Add Meta Tags
+		'complete-open-graph/complete-open-graph.php',           // Complete Open Graph
 		'easy-facebook-share-thumbnails/esft.php',               // Easy Facebook Share Thumbnail
 		'heateor-open-graph-meta-tags/heateor-open-graph-meta-tags.php',
 		// Open Graph Meta Tags by Heateor
@@ -398,8 +394,7 @@ class Jetpack {
 	public static function init() {
 		if ( ! self::$instance ) {
 			self::$instance = new Jetpack();
-
-			self::$instance->plugin_upgrade();
+			add_action( 'plugins_loaded', array( self::$instance, 'plugin_upgrade' ) );
 		}
 
 		return self::$instance;
@@ -438,6 +433,29 @@ class Jetpack {
 				// Make sure Markdown for posts gets turned back on
 				if ( ! get_option( 'wpcom_publish_posts_with_markdown' ) ) {
 					update_option( 'wpcom_publish_posts_with_markdown', true );
+				}
+
+				/*
+				 * Minileven deprecation. 8.3.0.
+				 * Only delete options if not using
+				 * the replacement standalone Minileven plugin.
+				 */
+				if (
+					! self::is_plugin_active( 'minileven-master/minileven.php' )
+					&& ! self::is_plugin_active( 'minileven/minileven.php' )
+				) {
+					if ( get_option( 'wp_mobile_custom_css' ) ) {
+						delete_option( 'wp_mobile_custom_css' );
+					}
+					if ( get_option( 'wp_mobile_excerpt' ) ) {
+						delete_option( 'wp_mobile_excerpt' );
+					}
+					if ( get_option( 'wp_mobile_featured_images' ) ) {
+						delete_option( 'wp_mobile_featured_images' );
+					}
+					if ( get_option( 'wp_mobile_app_promos' ) ) {
+						delete_option( 'wp_mobile_app_promos' );
+					}
 				}
 
 				if ( did_action( 'wp_loaded' ) ) {
@@ -553,6 +571,32 @@ class Jetpack {
 	}
 
 	/**
+	 * Adds a hook to plugins_loaded at a priority that's currently the earliest
+	 * available.
+	 */
+	public function add_configure_hook() {
+		global $wp_filter;
+
+		$current_priority = has_filter( 'plugins_loaded', array( $this, 'configure' ) );
+		if ( false !== $current_priority ) {
+			remove_action( 'plugins_loaded', array( $this, 'configure' ), $current_priority );
+		}
+
+		$taken_priorities = array_map( 'intval', array_keys( $wp_filter['plugins_loaded']->callbacks ) );
+		sort( $taken_priorities );
+
+		$first_priority = array_shift( $taken_priorities );
+
+		if ( defined( 'PHP_INT_MAX' ) && $first_priority <= - PHP_INT_MAX ) {
+			$new_priority = - PHP_INT_MAX;
+		} else {
+			$new_priority = $first_priority - 1;
+		}
+
+		add_action( 'plugins_loaded', array( $this, 'configure' ), $new_priority );
+	}
+
+	/**
 	 * Constructor.  Initializes WordPress hooks
 	 */
 	private function __construct() {
@@ -561,44 +605,13 @@ class Jetpack {
 		 */
 		add_action( 'init', array( $this, 'deprecated_hooks' ) );
 
-		/*
-		 * Enable enhanced handling of previewing sites in Calypso
-		 */
-		if ( self::is_active() ) {
-			require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-iframe-embed.php';
-			add_action( 'init', array( 'Jetpack_Iframe_Embed', 'init' ), 9, 0 );
-			require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-keyring-service-helper.php';
-			add_action( 'init', array( 'Jetpack_Keyring_Service_Helper', 'init' ), 9, 0 );
-		}
-
-		add_action( 'plugins_loaded', array( $this, 'after_plugins_loaded' ) );
+		// Note how this runs at an earlier plugin_loaded hook intentionally to accomodate for other plugins.
+		add_action( 'plugin_loaded', array( $this, 'add_configure_hook' ), 90 );
+		add_action( 'network_plugin_loaded', array( $this, 'add_configure_hook' ), 90 );
+		add_action( 'mu_plugin_loaded', array( $this, 'add_configure_hook' ), 90 );
 		add_action( 'plugins_loaded', array( $this, 'late_initialization' ), 90 );
 
-		add_filter(
-			'jetpack_connection_secret_generator',
-			function( $callable ) {
-				return function() {
-					return wp_generate_password( 32, false );
-				};
-			}
-		);
-
 		add_action( 'jetpack_verify_signature_error', array( $this, 'track_xmlrpc_error' ) );
-
-		$this->connection_manager = new Connection_Manager();
-		$this->connection_manager->init();
-
-		/*
-		 * Load things that should only be in Network Admin.
-		 *
-		 * For now blow away everything else until a more full
-		 * understanding of what is needed at the network level is
-		 * available
-		 */
-		if ( is_multisite() ) {
-			$network = Jetpack_Network::init();
-			$network->set_connection( $this->connection_manager );
-		}
 
 		add_filter(
 			'jetpack_signature_check_token',
@@ -620,19 +633,6 @@ class Jetpack {
 		// Unlink user before deleting the user from WP.com.
 		add_action( 'deleted_user', array( 'Automattic\\Jetpack\\Connection\\Manager', 'disconnect_user' ), 10, 1 );
 		add_action( 'remove_user_from_blog', array( 'Automattic\\Jetpack\\Connection\\Manager', 'disconnect_user' ), 10, 1 );
-
-		// Initialize remote file upload request handlers.
-		$this->add_remote_request_handlers();
-
-		if ( self::is_active() ) {
-			add_action( 'login_form_jetpack_json_api_authorization', array( $this, 'login_form_json_api_authorization' ) );
-
-			Jetpack_Heartbeat::init();
-			if ( self::is_module_active( 'stats' ) && self::is_module_active( 'search' ) ) {
-				require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-search-performance-logger.php';
-				Jetpack_Search_Performance_Logger::init();
-			}
-		}
 
 		add_action( 'jetpack_event_log', array( 'Jetpack', 'log' ), 10, 2 );
 
@@ -680,20 +680,9 @@ class Jetpack {
 
 		add_filter( 'jetpack_just_in_time_msg_cache', '__return_true', 9 );
 
-		// If enabled, point edit post, page, and comment links to Calypso instead of WP-Admin.
-		// We should make sure to only do this for front end links.
-		if ( self::get_option( 'edit_links_calypso_redirect' ) && ! is_admin() ) {
-			add_filter( 'get_edit_post_link', array( $this, 'point_edit_post_links_to_calypso' ), 1, 2 );
-			add_filter( 'get_edit_comment_link', array( $this, 'point_edit_comment_links_to_calypso' ), 1 );
-
-			// we'll override wp_notify_postauthor and wp_notify_moderator pluggable functions
-			// so they point moderation links on emails to Calypso
-			jetpack_require_lib( 'functions.wp-notify' );
-		}
-
 		// Hide edit post link if mobile app.
 		if ( Jetpack_User_Agent_Info::is_mobile_app() ) {
-			add_filter( 'edit_post_link', '__return_empty_string' );
+			add_filter( 'get_edit_post_link', '__return_empty_string' );
 		}
 
 		// Update the Jetpack plan from API on heartbeats
@@ -737,23 +726,82 @@ class Jetpack {
 	}
 
 	/**
-	 * Runs after all the plugins have loaded but before init.
+	 * Before everything else starts getting initalized, we need to initialize Jetpack using the
+	 * Config object.
 	 */
-	function after_plugins_loaded() {
+	public function configure() {
+		$config = new Config();
 
-		Partner::init();
-		$terms_of_service = new Terms_Of_Service();
-		$tracking = new Plugin_Tracking();
-		if ( $terms_of_service->has_agreed() ) {
-			add_action( 'init', array( $tracking, 'init' ) );
-		} else {
-			/**
-			 * Initialize tracking right after the user agrees to the terms of service.
-			 */
-			add_action( 'jetpack_agreed_to_terms_of_service', array( $tracking, 'init' ) );
+		foreach (
+			array(
+				'connection',
+				'sync',
+				'tracking',
+				'tos',
+			)
+			as $feature
+		) {
+			$config->ensure( $feature );
 		}
 
-		add_filter( 'map_meta_cap', array( $this, 'jetpack_custom_caps' ), 1, 4 );
+		if ( is_admin() ) {
+			$config->ensure( 'jitm' );
+		}
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
+		/*
+		 * Load things that should only be in Network Admin.
+		 *
+		 * For now blow away everything else until a more full
+		 * understanding of what is needed at the network level is
+		 * available
+		 */
+		if ( is_multisite() ) {
+			$network = Jetpack_Network::init();
+			$network->set_connection( $this->connection_manager );
+		}
+
+		if ( $this->connection_manager->is_active() ) {
+			add_action( 'login_form_jetpack_json_api_authorization', array( $this, 'login_form_json_api_authorization' ) );
+
+			Jetpack_Heartbeat::init();
+			if ( self::is_module_active( 'stats' ) && self::is_module_active( 'search' ) ) {
+				require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-search-performance-logger.php';
+				Jetpack_Search_Performance_Logger::init();
+			}
+		}
+
+		// Initialize remote file upload request handlers.
+		$this->add_remote_request_handlers();
+
+		/*
+		 * Enable enhanced handling of previewing sites in Calypso
+		 */
+		if ( self::is_active() ) {
+			require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-iframe-embed.php';
+			add_action( 'init', array( 'Jetpack_Iframe_Embed', 'init' ), 9, 0 );
+			require_once JETPACK__PLUGIN_DIR . '_inc/lib/class.jetpack-keyring-service-helper.php';
+			add_action( 'init', array( 'Jetpack_Keyring_Service_Helper', 'init' ), 9, 0 );
+		}
+
+		/*
+		 * If enabled, point edit post, page, and comment links to Calypso instead of WP-Admin.
+		 * We should make sure to only do this for front end links.
+		 */
+		if ( self::get_option( 'edit_links_calypso_redirect' ) && ! is_admin() ) {
+			add_filter( 'get_edit_post_link', array( $this, 'point_edit_post_links_to_calypso' ), 1, 2 );
+			add_filter( 'get_edit_comment_link', array( $this, 'point_edit_comment_links_to_calypso' ), 1 );
+
+			/*
+			 * We'll override wp_notify_postauthor and wp_notify_moderator pluggable functions
+			 * so they point moderation links on emails to Calypso.
+			 */
+			jetpack_require_lib( 'functions.wp-notify' );
+		}
+
 	}
 
 	/**
@@ -763,6 +811,11 @@ class Jetpack {
 	 * @action plugins_loaded
 	 */
 	public function late_initialization() {
+		add_action( 'plugins_loaded', array( 'Jetpack', 'plugin_textdomain' ), 99 );
+		add_action( 'plugins_loaded', array( 'Jetpack', 'load_modules' ), 100 );
+
+		Partner::init();
+
 		/**
 		 * Fires when Jetpack is fully loaded and ready. This is the point where it's safe
 		 * to instantiate classes from packages and namespaces that are managed by the Jetpack Autoloader.
@@ -772,6 +825,8 @@ class Jetpack {
 		 * @param Jetpack $jetpack the main plugin class object.
 		 */
 		do_action( 'jetpack_loaded', $this );
+
+		add_filter( 'map_meta_cap', array( $this, 'jetpack_custom_caps' ), 1, 4 );
 	}
 
 	/**
@@ -792,6 +847,11 @@ class Jetpack {
 		Jetpack_XMLRPC_Server $xmlrpc_server = null
 	) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::setup_xmlrpc_handlers' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->setup_xmlrpc_handlers(
 			$request_params,
 			$is_active,
@@ -808,6 +868,11 @@ class Jetpack {
 	 */
 	public function initialize_rest_api_registration_connector() {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::initialize_rest_api_registration_connector' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$this->connection_manager->initialize_rest_api_registration_connector();
 	}
 
@@ -923,6 +988,11 @@ class Jetpack {
 	 */
 	public function remove_non_jetpack_xmlrpc_methods( $methods ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::remove_non_jetpack_xmlrpc_methods' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->remove_non_jetpack_xmlrpc_methods( $methods );
 	}
 
@@ -938,6 +1008,11 @@ class Jetpack {
 	 */
 	public function alternate_xmlrpc() {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::alternate_xmlrpc' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$this->connection_manager->alternate_xmlrpc();
 	}
 
@@ -1041,6 +1116,11 @@ class Jetpack {
 	 */
 	public function require_jetpack_authentication() {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::require_jetpack_authentication' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$this->connection_manager->require_jetpack_authentication();
 	}
 
@@ -1645,7 +1725,7 @@ class Jetpack {
 			echo '<div class="updated" style="border-color: #f0821e;"><p>' . $notice . '</p></div>';
 		}
 		// Throw up a notice if using staging mode
-		if ( self::is_staging_site() ) {
+		if ( ( new Status() )->is_staging_site() ) {
 			/* translators: %s is a URL */
 			$notice = sprintf( __( 'You are running Jetpack on a <a href="%s" target="_blank">staging server</a>.', 'jetpack' ), 'https://jetpack.com/support/staging-sites/' );
 
@@ -2375,6 +2455,7 @@ class Jetpack {
 			'debug'            => null,  // Closed out and moved to the debugger library.
 			'wpcc'             => 'sso', // Closed out in 2.6 -- SSO provides the same functionality.
 			'gplus-authorship' => null,  // Closed out in 3.2 -- Google dropped support.
+			'minileven'        => null,  // Closed out in 8.3 -- Responsive themes are common now, and so is AMP.
 		);
 
 		// Don't activate SSO if they never completed activating WPCC.
@@ -3150,6 +3231,8 @@ p {
 
 		update_option( 'jetpack_activation_source', self::get_activation_source( wp_get_referer() ) );
 
+		Health::on_jetpack_activated();
+
 		self::plugin_initialize();
 	}
 
@@ -3638,6 +3721,10 @@ p {
 		}
 
 		// Require Jetpack authentication for the remote file upload AJAX requests.
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$this->connection_manager->require_jetpack_authentication();
 
 		// Register the remote file upload AJAX handlers.
@@ -4643,7 +4730,7 @@ endif;
 		add_filter( 'jetpack_connect_processing_url', array( __CLASS__, 'filter_connect_processing_url' ) );
 
 		if ( $iframe ) {
-			add_filter( 'jetpack_api_url', array( __CLASS__, 'filter_connect_api_iframe_url' ), 10, 2 );
+			add_filter( 'jetpack_use_iframe_authorization_flow', '__return_true' );
 		}
 
 		$c8n = self::connection();
@@ -4654,7 +4741,7 @@ endif;
 		remove_filter( 'jetpack_connect_processing_url', array( __CLASS__, 'filter_connect_processing_url' ) );
 
 		if ( $iframe ) {
-			remove_filter( 'jetpack_api_url', array( __CLASS__, 'filter_connect_api_iframe_url' ) );
+			remove_filter( 'jetpack_use_iframe_authorization_flow', '__return_true' );
 		}
 
 		return $url;
@@ -4727,26 +4814,6 @@ endif;
 		}
 
 		return $redirect;
-	}
-
-	/**
-	 * Filters the API URL that is used for connect requests. The method
-	 * intercepts only the authorize URL and replaces it with another if needed.
-	 *
-	 * @param String $api_url the default redirect API URL used by the package.
-	 * @param String $relative_url the path of the URL that's being used.
-	 * @return String the modified URL.
-	 */
-	public static function filter_connect_api_iframe_url( $api_url, $relative_url ) {
-
-		// Short-circuit on anything that is not related to connect requests.
-		if ( 'authorize' !== $relative_url ) {
-			return $api_url;
-		}
-
-		$c8n = self::connection();
-
-		return $c8n->api_url( 'authorize_iframe' );
 	}
 
 	/**
@@ -5129,8 +5196,20 @@ endif;
 		return self::connection()->xmlrpc_api_url();
 	}
 
+	/**
+	 * Returns the connection manager object.
+	 *
+	 * @return Automattic\Jetpack\Connection\Manager
+	 */
 	public static function connection() {
-		return self::init()->connection_manager;
+		$jetpack = self::init();
+
+		// If the connection manager hasn't been instantiated, do that now.
+		if ( ! $jetpack->connection_manager ) {
+			$jetpack->connection_manager = new Connection_Manager();
+		}
+
+		return $jetpack->connection_manager;
 	}
 
 	/**
@@ -5318,8 +5397,7 @@ endif;
 	 * @deprecated since 7.7.0
 	 */
 	public static function load_xml_rpc_client() {
-		// Removed the php notice that shows up in order to give time to Akismet and VaultPress time to update.
-		// _deprecated_function( __METHOD__, 'jetpack-7.7' );
+		_deprecated_function( __METHOD__, 'jetpack-7.7' );
 	}
 
 	/**
@@ -5327,6 +5405,11 @@ endif;
 	 */
 	public function reset_saved_auth_state() {
 		$this->rest_authentication_status = null;
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$this->connection_manager->reset_saved_auth_state();
 	}
 
@@ -5370,6 +5453,11 @@ endif;
 	 */
 	public function authenticate_jetpack( $user, $username, $password ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::authenticate_jetpack' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->authenticate_jetpack( $user, $username, $password );
 	}
 
@@ -5424,6 +5512,10 @@ endif;
 			return null;
 		}
 
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		$verified = $this->connection_manager->verify_xml_rpc_signature();
 
 		if (
@@ -5470,6 +5562,11 @@ endif;
 	 */
 	public function add_nonce( $timestamp, $nonce ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::add_nonce' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->add_nonce( $timestamp, $nonce );
 	}
 
@@ -5485,6 +5582,11 @@ endif;
 	 */
 	public function xmlrpc_methods( $methods ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::xmlrpc_methods' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->xmlrpc_methods( $methods );
 	}
 
@@ -5499,6 +5601,11 @@ endif;
 	 */
 	public function public_xmlrpc_methods( $methods ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::public_xmlrpc_methods' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->public_xmlrpc_methods( $methods );
 	}
 
@@ -5513,6 +5620,11 @@ endif;
 	 */
 	public function jetpack_getOptions( $args ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::jetpack_getOptions' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->jetpack_getOptions( $args );
 	}
 
@@ -5527,6 +5639,11 @@ endif;
 	 */
 	public function xmlrpc_options( $options ) {
 		_deprecated_function( __METHOD__, 'jetpack-7.7', 'Automattic\\Jetpack\\Connection\\Manager::xmlrpc_options' );
+
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		return $this->connection_manager->xmlrpc_options( $options );
 	}
 
@@ -5889,6 +6006,10 @@ endif;
 		$timestamp = (int) $environment['timestamp'];
 		$nonce     = stripslashes( (string) $environment['nonce'] );
 
+		if ( ! $this->connection_manager ) {
+			$this->connection_manager = new Connection_Manager();
+		}
+
 		if ( ! $this->connection_manager->add_nonce( $timestamp, $nonce ) ) {
 			// De-nonce the nonce, at least for 5 minutes.
 			// We have to reuse this nonce at least once (used the first time when the initial request is made, used a second time when the login form is POSTed)
@@ -6001,64 +6122,8 @@ endif;
 	 * @return bool True = already whitelisted False = not whitelisted
 	 */
 	public static function is_staging_site() {
-		$is_staging = false;
-
-		$known_staging = array(
-			'urls'      => array(
-				'#\.staging\.wpengine\.com$#i', // WP Engine
-				'#\.staging\.kinsta\.com$#i',   // Kinsta.com
-				'#\.stage\.site$#i',            // DreamPress
-			),
-			'constants' => array(
-				'IS_WPE_SNAPSHOT',      // WP Engine
-				'KINSTA_DEV_ENV',       // Kinsta.com
-				'WPSTAGECOACH_STAGING', // WP Stagecoach
-				'JETPACK_STAGING_MODE', // Generic
-			),
-		);
-		/**
-		 * Filters the flags of known staging sites.
-		 *
-		 * @since 3.9.0
-		 *
-		 * @param array $known_staging {
-		 *     An array of arrays that each are used to check if the current site is staging.
-		 *     @type array $urls      URLs of staging sites in regex to check against site_url.
-		 *     @type array $constants PHP constants of known staging/developement environments.
-		 *  }
-		 */
-		$known_staging = apply_filters( 'jetpack_known_staging', $known_staging );
-
-		if ( isset( $known_staging['urls'] ) ) {
-			foreach ( $known_staging['urls'] as $url ) {
-				if ( preg_match( $url, site_url() ) ) {
-					$is_staging = true;
-					break;
-				}
-			}
-		}
-
-		if ( isset( $known_staging['constants'] ) ) {
-			foreach ( $known_staging['constants'] as $constant ) {
-				if ( defined( $constant ) && constant( $constant ) ) {
-					$is_staging = true;
-				}
-			}
-		}
-
-		// Last, let's check if sync is erroring due to an IDC. If so, set the site to staging mode.
-		if ( ! $is_staging && self::validate_sync_error_idc_option() ) {
-			$is_staging = true;
-		}
-
-		/**
-		 * Filters is_staging_site check.
-		 *
-		 * @since 3.9.0
-		 *
-		 * @param bool $is_staging If the current site is a staging site.
-		 */
-		return apply_filters( 'jetpack_is_staging_site', $is_staging );
+		_deprecated_function( 'Jetpack::is_staging_site', 'jetpack-8.1', '/Automattic/Jetpack/Status->is_staging_site' );
+		return ( new Status() )->is_staging_site();
 	}
 
 	/**
@@ -6424,6 +6489,22 @@ endif;
 			// Removed in Jetpack 7.9.0
 			'jetpack_pwa_manifest'                         => null,
 			'jetpack_pwa_background_color'                 => null,
+			// Removed in Jetpack 8.3.0.
+			'jetpack_check_mobile'                         => null,
+			'jetpack_mobile_stylesheet'                    => null,
+			'jetpack_mobile_template'                      => null,
+			'mobile_reject_mobile'                         => null,
+			'mobile_force_mobile'                          => null,
+			'mobile_app_promo_download'                    => null,
+			'mobile_setup'                                 => null,
+			'jetpack_mobile_footer_before'                 => null,
+			'wp_mobile_theme_footer'                       => null,
+			'minileven_credits'                            => null,
+			'jetpack_mobile_header_before'                 => null,
+			'jetpack_mobile_header_after'                  => null,
+			'jetpack_mobile_theme_menu'                    => null,
+			'minileven_show_featured_images'               => null,
+			'minileven_attachment_size'                    => null,
 		);
 
 		// This is a silly loop depth. Better way?
@@ -6815,8 +6896,11 @@ endif;
 		<footer>
 
 		<div class="protect">
+			<h3><?php esc_html_e( 'Brute force attack protection', 'jetpack' ); ?></h3>
 			<?php if ( self::is_module_active( 'protect' ) ) : ?>
-				<h3><?php echo number_format_i18n( get_site_option( 'jetpack_protect_blocked_attempts', 0 ) ); ?></h3>
+				<p class="blocked-count">
+					<?php echo number_format_i18n( get_site_option( 'jetpack_protect_blocked_attempts', 0 ) ); ?>
+				</p>
 				<p><?php echo esc_html_x( 'Blocked malicious login attempts', '{#} Blocked malicious login attempts -- number is on a prior line, text is a caption.', 'jetpack' ); ?></p>
 			<?php elseif ( current_user_can( 'jetpack_activate_modules' ) && ! ( new Status() )->is_development_mode() ) : ?>
 				<a href="
@@ -6834,17 +6918,20 @@ endif;
 				);
 				?>
 							" class="button button-jetpack" title="<?php esc_attr_e( 'Protect helps to keep you secure from brute-force login attacks.', 'jetpack' ); ?>">
-					<?php esc_html_e( 'Activate Protect', 'jetpack' ); ?>
+					<?php esc_html_e( 'Activate brute force attack protection', 'jetpack' ); ?>
 				</a>
 			<?php else : ?>
-				<?php esc_html_e( 'Protect is inactive.', 'jetpack' ); ?>
+				<?php esc_html_e( 'Brute force attack protection is inactive.', 'jetpack' ); ?>
 			<?php endif; ?>
 		</div>
 
 		<div class="akismet">
+			<h3><?php esc_html_e( 'Anti-spam', 'jetpack' ); ?></h3>
 			<?php if ( is_plugin_active( 'akismet/akismet.php' ) ) : ?>
-				<h3><?php echo number_format_i18n( get_option( 'akismet_spam_count', 0 ) ); ?></h3>
-				<p><?php echo esc_html_x( 'Spam comments blocked by Akismet.', '{#} Spam comments blocked by Akismet -- number is on a prior line, text is a caption.', 'jetpack' ); ?></p>
+				<p class="blocked-count">
+					<?php echo number_format_i18n( get_option( 'akismet_spam_count', 0 ) ); ?>
+				</p>
+				<p><?php echo esc_html_x( 'Blocked spam comments.', '{#} Spam comments blocked by Akismet -- number is on a prior line, text is a caption.', 'jetpack' ); ?></p>
 			<?php elseif ( current_user_can( 'activate_plugins' ) && ! is_wp_error( validate_plugin( 'akismet/akismet.php' ) ) ) : ?>
 				<a href="
 				<?php
@@ -6862,10 +6949,10 @@ endif;
 				);
 				?>
 							" class="button button-jetpack">
-					<?php esc_html_e( 'Activate Akismet', 'jetpack' ); ?>
+					<?php esc_html_e( 'Activate Anti-spam', 'jetpack' ); ?>
 				</a>
 			<?php else : ?>
-				<p><a href="<?php echo esc_url( 'https://akismet.com/?utm_source=jetpack&utm_medium=link&utm_campaign=Jetpack%20Dashboard%20Widget%20Footer%20Link' ); ?>"><?php esc_html_e( 'Akismet can help to keep your blog safe from spam!', 'jetpack' ); ?></a></p>
+				<p><a href="<?php echo esc_url( 'https://akismet.com/?utm_source=jetpack&utm_medium=link&utm_campaign=Jetpack%20Dashboard%20Widget%20Footer%20Link' ); ?>"><?php esc_html_e( 'Anti-spam can help to keep your blog safe from spam!', 'jetpack' ); ?></a></p>
 			<?php endif; ?>
 		</div>
 

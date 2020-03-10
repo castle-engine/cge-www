@@ -1,7 +1,7 @@
 === Jetpack by WordPress.com ===
 Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, blobaugh, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, scottsweb, sdquirk, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: Jetpack, WordPress.com, backup, security, related posts, CDN, speed, anti-spam, social sharing, SEO, video, stats
-Stable tag: 8.1
+Stable tag: 8.3
 Requires at least: 5.2
 Requires PHP: 5.6
 Tested up to: 5.3
@@ -96,47 +96,66 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 
 == Changelog ==
 
-= 8.1 =
+= 8.3 =
 
-* Release date: January 14, 2020
-* Release post: https://wp.me/p1moTy-lJT
+* Release date: March 3, 2020
+* Release post: https://wp.me/p1moTy-nZT
+
+**Major Enhancements**
+
+* Google Calendar Block: a simple way to embed Google Calendars into your posts.
+* Revue Block: allow your readers to subscribe to your Revue newsletter right from your site.
 
 **Enhancements**
 
-* Dashboard: preload connection flow script to improve performance.
-* Dashboard: improvements to backup interface.
-* Mobile Theme: allow one to temporary disable Jetpack's Mobile Theme for testing.
-* Mobile Theme: disable settings when feature is inactive.
-* Site Accelerator: disable a helper library by default and allow themes to enable it when required.
-* Subscriptions: add a wp-admin setting to alert the admin when someone follows the blog.
-* WordPress.com REST API: add flag to determine site eligibility for Full Site Editing.
-* WordPress.com synchronization: improve the reliability of the synchronization events triggered to keep your site up to date with WordPress.com.
-* WordPress.com Toolbar: update the link directing to the WordPress.com Reader.
-* WordPress.com Toolbar: add "My Home" link to the toolbar.
+* Dashboard widget: clarify wording in Anti-spam and Protect sections.
+* Dashboard notices: allow permanent notices.
+* Dashboard notices: add option to provide action button for a notice.
+* Map block: add the ability to set the size of the map.
+* Map block: add a zoom control to the block sidebar.
+* Map block: add a fullscreen option.
+* Map block: add an option for toggling zoom to scroll behaviour in the published post.
+* Mobile Theme: sunset feature. We originally created the mobile theme feature as a fall-back when the regular theme did not include a mobile view. Most themes include a mobile view by default now, so the feature is no longer necessary.
+* OpenTable block: offer more embedding options.
+* Search: improvements to layout options when using the Search widget.
+* Security Scanning tool: improve message about threats found in dashboard.
+* Sharing: improve Open Graph Meta Tags on search result pages.
+* Shortcodes: improve accessibility of navigation buttons for the Slideshow shortcode.
+* Site Health Tests: improve ability to add additional tests.
+* Site Health Tests: Update Connection test with detailed descriptions and actions to resolve failing tests.
+* Synchronization: increase reliability of sync by not sending wp-rest-api-log posts.
+* Synchronization: increase reliability when synchronizing term IDs.
+* Tiled Gallery block: add a Rounded Corners option.
+* Tiled Gallery block: add an option to easily rearrange images within a gallery.
+* Cookies & Consents Banner widget: improve performance by removing reliance on jQuery.
+* Twitter widget: remove deprecated link color parameter.
 
 **Improved compatibility**
 
-* General: improvements to Coding Standards for plugin compatibility files.
-* Notifications: avoid conflicts with Twenty Twenty's instrinsic video resizes.
-* PHP 7.4: fix PHP warnings that may appear on sites running PHP 7.4.
-* Sharing: avoid errors when using the Thrive Architect plugin.
-* Tiled Galleries: fix layout when using a gallery inside a Classic block with the Twenty Twenty theme.
-* Twenty Twenty: improve the display of the Authors and Flickr widget.
-* Twenty Twenty: add Content Options to the Customizer.
-* Twenty Twenty: ensure that Infinite Scroll does not suppress the display of footer widgets.
-* Videos: automatically convert old Flash Jetpack Video embeds so they can use the new player.
-* WooCommerce Services: avoid issues when installing plugin from notification message.
+* Autoloader: avoid conflicts when other plugins rely on the Autoloader to load Jetpack packages.
+* Beautiful Math: avoid layout issues with inline images when using the Twenty Twenty theme.
+* Blocks: improve compatibility with theme colors for block buttons.
+* Blocks: improve the layout of the blocks' placeholders when using the Gutenberg plugin.
+* Blocks: allow defining a minimum WordPress version or minimum Gutenberg plugin version when registering a block.
+* Lazy Images: add option to skip images with the `data-skip-lazy` attribute.
+* SSO: Add error argument for compatibility with a WordPress 5.4 hook change.
 
 **Bug fixes**
 
-* CLI: prevent a PHP notice when running some Jetpack CLI commands.
-* Map Block: fix layout issue when selecting a marker in a map and then scrolling down.
-* Map Block: avoid errors when adding more than 2 points on a map.
-* REST API: correctly validate on/off values for booleans.
-* Star Rating Block: translate block title.
-* Widget Visibility: ensure that the visibility options always appear on old Widgets Options screen.
-* WordAds: ensure that the ads.txt file created by the feature returns a correct HTTP response code.
-* WordPress.com Block Editor: exclude WordPress.com features from Jetpack sites.
+* Blocks: fix layout issues with previews in block sidebar.
+* Blocks: fix layout issues when using a custom CSS class for a block using the option in the block sidebar.
+* Calendly block: fix overlay to render properly in the editor.
+* Dashboard: remove Backups information from the Jetpack dashboard when on a Multisite network. Those do not support the Backup feature at this point.
+* Map block: only show the Add Marker UI if there are no markers.
+* Map block: prevent an unselected block from accidentally capturing scrolling.
+* Map block: fix the styling of the map theme buttons.
+* Mobile Apps: remove the edit post link when in app.
+* OpenTable block: avoid error when inserting some specific embed codes.
+* OpenTable block: fix alignment issues when center-aligning the block.
+* Secure Sign On: do not display feature message when logging in to WordPress.com's central dashboard.
+* Stats: hide Stats smiley in post embeds.
+* WooCommerce Analytics: improve product checks to avoid errors on order pages.
+* Wufoo shortcode: Security fix return early when invalid parameters.
 
 --------
 
