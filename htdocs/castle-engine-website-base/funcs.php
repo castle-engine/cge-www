@@ -107,10 +107,9 @@ function array_to_ul($arr)
 }
 
 /* Michalis' email address. Using the constant makes it easier to change
-   the address everywhere at once, and once saves me from accidentaly
+   the address everywhere at once, and saves me from accidentaly
    making typos in my email. */
-define('MICHALIS_EMAIL', 'michalis.kambi AT gmail.com');
-define('MICHALIS_SF_EMAIL', 'kambi AT users.sourceforge.net');
+define('MICHALIS_EMAIL', 'michalis.kambi@tutanota.com');
 
 function href_mailto($email_address)
 {

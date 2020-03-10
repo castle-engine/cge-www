@@ -657,9 +657,6 @@ SourceForge.
     then I probably didn\'t get it.
     <b>My only vaild email address is now
     ' . href_mailto(MICHALIS_EMAIL) . '.</b>
-    Or you can send your mail to
-    ' . href_mailto(MICHALIS_SF_EMAIL) . ', this will always be aliased
-    to some of my valid email addresses.
 
     <!--
       Updates not deserving mention:
