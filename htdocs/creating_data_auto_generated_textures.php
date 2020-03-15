@@ -6,6 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'introduction'),
     new TocItem('Example material_properties.xml file using texture compression', 'example'),
+    new TocItem('Using specific compression formats only for specific platforms', 'platforms'),
     new TocItem('How does the automatic texture compression work', 'texture_compression'),
     new TocItem('How does the automatic downscaling work', 'texture_scale'),
   )
@@ -34,7 +35,7 @@ which often has a significant impact on the performance.
 'uses ..., CastleMaterialProperties;
 
 ...
-MaterialProperties.URL := ApplicationData(\'material_properties.xml\');'); ?>
+MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
 
     <p>As mentioned in the <a href="creating_data_material_properties.php">chapter introducing material_properties.xml</a>,
     it's best to do it as early as possible, for example
@@ -151,6 +152,46 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
     <include path="gui/*" recursive="True" />
   </auto_generated_textures>
 </properties>'); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The <code>&lt;format&gt;</code> element can optionally specify that the textures compressed to this format are only suitable for a particular platform. In effect, the textures will not be distributed on other platforms, i.e. <code>castle-engine package --target=xxx</code> (see <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the build tool documentation</a>) will automatically exclude the unused textures on target platform. The code will also know that these compression formats are never packaged (so it will not try to use them, even if at runtime GPU happens to support them).</p>
+
+<p>This is useful as some combinations of compression + target are seldom possible. E.g. most mobile devices<!-- (except some rare Android devices)--> do not support the DXTx compression.
+
+<p>To do this, place <code>&lt;platforms&gt;</code> element within <code>&lt;format&gt;</code>, like this:</p>
+
+<?php echo xml_highlight(
+'<?xml version="1.0"?>
+<properties>
+  <auto_generated_textures>
+    <compress>
+      <format name="DXT5">
+        <platforms>
+          <platform>Desktop</platform>
+          <platform>Nintendo Switch</platform>
+        </platforms>
+      </format>
+      <format name="Pvrtc1_4bpp_RGBA">
+        <platforms>
+          <platform>iOS</platform>
+        </platforms>
+      </format>
+    </compress>
+    <include path="*" recursive="True" />
+  </auto_generated_textures>
+</properties>'); ?>
+
+<p>Possible values inside <code>&lt;platform&gt;</code> are:</p>
+
+<ul>
+  <li>Nintendo Switch</li>
+  <li>Android</li>
+  <li>iOS</li>
+  <li>Desktop</li>
+</ul>
+
+<p>Note: Not specyfing <code>&lt;platforms&gt;</code> at all means that the format should be distributed on <em>all</em> platforms (current and future). On the other hand, specifying empty <code>&lt;platforms&gt;&lt;/platforms&gt;</code> means that the format is not distributed on <em>any</em> platform (this makes commenting out a particular <code>&lt;platform&gt;xxx&lt;/platform&gt;</code> line behave naturally).</p>
 
 <?php echo $toc->html_section(); ?>
 
