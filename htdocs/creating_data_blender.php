@@ -10,7 +10,8 @@ creating_data_header('Exporting from Blender', array(
 $toc = new TableOfContents(
   array(
     new TocItem('Export to glTF 2', 'gltf'),
-    new TocItem('Export to X3D', 'x3d'),
+    new TocItem('Export to X3D from Blender 2.8 and later', 'x3d'),
+    new TocItem('Export to X3D from Blender 2.7 (Old)', 'x3d_old'),
     new TocItem('Export to Castle Animation Frames (castle-anim-frames)', 'castle_anim_frames'),
     new TocItem('Actions and Frames', 'actions_and_frames', 1),
     new TocItem('Exporting Various Animations Types to castle-anim-frames', 'castle_anim_frames_hints', 1),
@@ -32,14 +33,28 @@ free open-source 3D modelling software.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Since <i>Castle Game Engine</i> 6.5 we support the <i>glTF 2</i> format,
-at least for static models,
-you can just export from Blender to glTF.
+<p><i>Castle Game Engine</i> supports the <i>glTF 2.0</i> format,
+and new <a href="https://www.blender.org/">Blender</a> has an exporter to glTF 2.0.
+Just export using the <i>File -&gt; Export -&gt; glTF 2.0</i> menu item
+and open the resulting file (in <code>.glb</code> or <code>.gltf</code> formats)
+using any engine tool (like <a href="view3dscene.php">view3dscene</a>).
 
-<p>New Blender &gt;= 2.80 includes a glTF 2 exporter out-of-the-box,
-based on <a href="https://github.com/KhronosGroup/glTF-Blender-IO">Khronos glTF-Blender-IO</a>.
-For stable Blender &lt;= 2.7x use the
-<a href="https://github.com/KhronosGroup/glTF-Blender-Exporter">Khronos glTF-Blender-Exporter</a>.
+<p><a href="creating_data_model_formats.php#section_gltf">Read here for the details about our glTF support</a>.
+In short: we support most features for static models (including textures and physical materials),
+and we support simple animations by transformations.
+More support for glTF animations (by skinning and morphing) will come soon
+(for now you have to use other formats for it, like X3D or castle-anim-frames).
+
+<p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender documentation of the glTF exporter</a> is useful. The exporter is <a href="https://github.com/KhronosGroup/glTF-Blender-IO">developed by Khronos on GitHub</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p><a href="https://www.blender.org/">Blender</a> includes a working, albeit somewhat limited,
+exporter for X3D out-of-the-box.
+
+<p>It doesn't support animations, and it seems it doesn't support textures either.
+Be sure to use the latest Blender versions (2.82 or later), earlier releases in the 2.8x line
+exhibited bugs when exporting to X3D.
 
 <?php echo $toc->html_section(); ?>
 
@@ -117,11 +132,9 @@ on any license required for official Blender wiki / docs contents is granted.</p
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <i>Blender X3D exporter</i> cannot handle animations for now.
-To solve this, use the exporter below to export animations to
-a <?php echo a_href_page("Castle Animation Frames format",
-'castle_animation_frames'); ?>. The <code>.castle-anim-frames</code> files can be read by our engine
-and will play animations.
+<p>To export <i>any</i> kind of animation from Blender, use the exporter to our <?php echo a_href_page("Castle Animation Frames format", 'castle_animation_frames'); ?>. The <code>.castle-anim-frames</code> files can be read by our engine and will play animations.
+
+<p>Internally they are a set of X3D or glTF files.
 
 <div class="download jumbotron">
     <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download Castle Animation Frames exporter</a>
