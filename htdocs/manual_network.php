@@ -101,7 +101,7 @@ network when loading level. To do this,
 <code>level.xml</code> may use an http protocol when referring to
 a <code>scene</code>. Like this:
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 <level
   name="pits"

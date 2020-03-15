@@ -32,7 +32,7 @@ the CGE editor GUI. For now just edit it directly, in any text editor (like Laza
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0" encoding="utf-8"?>
 <castle_settings>
   <ui_scaling
@@ -54,7 +54,7 @@ related to user interface scaling: <?php api_link('Container.UIScaling', 'Castle
 <?php api_link('Container.UIReferenceWidth', 'CastleUIControls.TUIContainer.html#UIReferenceWidth'); ?>,
 <?php api_link('Container.UIReferenceHeight', 'CastleUIControls.TUIContainer.html#UIReferenceHeight'); ?>.
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<ui_scaling
   mode="EncloseReferenceSize"
   reference_width="1600"
@@ -115,7 +115,7 @@ Note that this is only a default, each control can still customize it
 
 <p>An example code (only the <code>url</code> attribute is required):
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<default_font
   url="castle-data:/MyFontFile.ttf"
   size="20"
@@ -134,7 +134,7 @@ In this case, the <code>&lt;default_font&gt;</code> element is only a container
 for the specification of font variants (do not use any attributes at <code>&lt;default_font&gt;</code> in this case).
 Like this:
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<default_font>
   <regular
     url="castle-data:/fonts/DejaVuSans.ttf"
@@ -275,7 +275,7 @@ Thanks to keeping them in the cache, any loading of them later in the game
 will be instant. E.g. instantiating UI by <code>TUIState.InsertUserInterface</code>
 will use the cached images, so the new UI state starts fast.
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<warmup_cache>
   <!-- Put in cache an image.
        Loading this image in UI (like TCastleImageControl, TCastleButton

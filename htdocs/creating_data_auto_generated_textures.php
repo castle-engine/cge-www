@@ -69,7 +69,7 @@ requesting to compress and downscale some images.
 Texture compression format names are <?php api_link('the same as TTextureCompression enum names but without leading "tc"', 'CastleImages.html#TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
 </p>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 
 <properties>
@@ -161,7 +161,7 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 
 <p>To do this, place <code>&lt;platforms&gt;</code> element within <code>&lt;format&gt;</code>, like this:</p>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 <properties>
   <auto_generated_textures>

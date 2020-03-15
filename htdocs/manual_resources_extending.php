@@ -124,7 +124,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
     <p>This way you can imagine creating a couple of <code>resource.xml</code> files
     that define a couple of resource instances:
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<resource
   name="WerewolfRookie"
   type="Werewolf"
@@ -133,7 +133,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
   <model>...</model>
 </resource>'); ?>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<resource
   name="WerewolfBoss"
   type="Werewolf"
@@ -142,7 +142,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
   <model>...</model>
 </resource>'); ?>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<resource
   name="SmallLifePotion"
   type="Potion"
@@ -151,7 +151,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
   <model>...</model>
 </resource>'); ?>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<resource
   name="LargeLifePotion"
   type="Potion"
@@ -160,7 +160,7 @@ RegisterResourceClass(TPotionResource, \'Potion\');'); ?>
   <model>...</model>
 </resource>'); ?>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<resource
   name="ManaPotion"
   type="Potion"

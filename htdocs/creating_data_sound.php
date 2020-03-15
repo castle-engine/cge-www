@@ -24,7 +24,7 @@ Such XML file can be set as
 <p>In the simplest case, the sounds XML file is just a list of <code>&lt;sound&gt;</code>
 elements. Here's an example:
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 
 <sounds>
@@ -165,7 +165,7 @@ Both alias names, and target names, are automatically qualified by the group nam
 
 <p>Here's an example:
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 <sounds>
   <sound name="test_sound_1" />

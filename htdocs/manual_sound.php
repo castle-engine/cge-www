@@ -47,12 +47,12 @@ which means that each sound file is assigned a simple name and configuration
 Do it by creating an XML file, for example named <code>sounds.xml</code>,
 looking like this:</p>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 <sounds>
   <sound name="sample" url="sample.wav" />
   <!-- Actually, you can omit the url, by default it\'s the same
-    as sound name with .wav extension. -->
+       as sound name with .wav extension. -->
 </sounds>'); ?>
 
 <p>See

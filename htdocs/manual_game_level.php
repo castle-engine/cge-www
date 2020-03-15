@@ -33,7 +33,7 @@ describing some additional level properties.
 For each level, you create a file named <code>level.xml</code>,
 with contents like this:</p>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 <level
   name="pits"

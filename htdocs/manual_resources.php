@@ -13,7 +13,7 @@ and items suitable for 3D games is ready, in
 <p>Creatures and items are defined by files named <code>resource.xml</code>
 in the game data. Their contents looks like this:</p>
 
-<?php echo xml_highlight(
+<?php echo xml_full_highlight(
 '<?xml version="1.0"?>
 
 <resource

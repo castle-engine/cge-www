@@ -1489,12 +1489,16 @@ function xml_highlight($source)
   return $source;
 }
 
+/* Highlight XML code.
+   This doesn't detect [[xxx|yyy]] inside (in contrast to xxx_highlight),
+   but it makes output more colorful (uses full Geshi possibilities).
+*/
 function xml_full_highlight($source)
 {
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('xml');
-  $geshi->set_footer_content('');
+  $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
   return $geshi->parse_code();
 }
 
@@ -1503,9 +1507,7 @@ function pascal_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('delphi'); // tested: order of set_source, set_language doesn't matter
-  if (!HTML_VALIDATION) {
-    $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
-  }
+  $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
   return $geshi->parse_code();
 }
 
@@ -1539,7 +1541,7 @@ function vrmlx3d_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('VRML / X3D');
-  $geshi->set_footer_content('');
+  $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
   return $geshi->parse_code();
 }
 
@@ -1548,7 +1550,7 @@ function glsl_highlight($source)
   global $geshi;
   $geshi->set_source($source);
   $geshi->set_language('C'); // don't use glSlang, for some reason it's broken for me
-  $geshi->set_footer_content('');
+  $geshi->set_footer_content(''); // remove set_footer_content by pascal_highlight_file
   return $geshi->parse_code();
 }
 

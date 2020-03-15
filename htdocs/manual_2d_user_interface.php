@@ -334,7 +334,7 @@ by creating a file called <code>CastleSettings.xml</code> in the
 <a href="manual_data_directory.php"><code>data</code> subdirectory of your project</a>.
 The sample <code>CastleSettings.xml</code> contents look like this:
 
-<?php echo xml_highlight('<?xml version="1.0" encoding="utf-8"?>
+<?php echo xml_full_highlight('<?xml version="1.0" encoding="utf-8"?>
 <castle_settings>
   <ui_scaling
     mode="EncloseReferenceSize"
