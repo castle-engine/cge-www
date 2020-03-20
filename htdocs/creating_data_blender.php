@@ -10,12 +10,12 @@ creating_data_header('Exporting from Blender', array(
 $toc = new TableOfContents(
   array(
     new TocItem('Export to glTF 2', 'gltf'),
-    new TocItem('Export to X3D from Blender 2.8 and later', 'x3d'),
-    new TocItem('Export to X3D from Blender 2.7 (Old)', 'x3d_old'),
+    new TocItem('Export to X3D', 'x3d'),
     new TocItem('Export to Castle Animation Frames (castle-anim-frames)', 'castle_anim_frames'),
     new TocItem('Actions and Frames', 'actions_and_frames', 1),
     new TocItem('Exporting Various Animations Types to castle-anim-frames', 'castle_anim_frames_hints', 1),
     new TocItem('Rendering Skyboxes and Static Cube Environment Maps', 'render_skybox'),
+    new TocItem('Obsolete: Export to X3D from Blender 2.7', 'x3d_old'),
   )
 );
 
@@ -47,88 +47,18 @@ More support for glTF animations (by skinning and morphing) will come soon
 
 <p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender documentation of the glTF exporter</a> is useful. The exporter is <a href="https://github.com/KhronosGroup/glTF-Blender-IO">developed by Khronos on GitHub</a>.
 
+<p>Apply <a href="https://github.com/KhronosGroup/glTF-Blender-IO/pull/991">this fix</a> if you're going to use glTF combined with castle-anim-frames (see below).
+
 <?php echo $toc->html_section(); ?>
 
 <p><a href="https://www.blender.org/">Blender</a> includes a working, albeit somewhat limited,
 exporter for X3D out-of-the-box.
 
 <p>It doesn't support animations, and it seems it doesn't support textures either.
-Be sure to use the latest Blender versions (2.82 or later), earlier releases in the 2.8x line
-exhibited bugs when exporting to X3D.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Blender versions earlier than 2.80
-included a working X3D exporter out-of-the-box.
-So you can export your content from Blender to X3D open it with our engine.
-We advice testing the X3D models by opening them with
-<?php echo a_href_page('view3dscene', 'view3dscene') ?>.</p>
-
-<div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/wiki/Blender">Some hints about exporting from Blender to X3D are here</a>
-</div>
-
-<p>We have our own X3D exporter version, which is based on the Blender X3D exporter
-and adds some fixes and also <b>support for <a href="x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a> exporting</b>.
-
-<div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/castle_engine_x3d.zip"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download our X3D exporter</a>
-</div>
-
-<p>A short installation instruction: just install it like any other Blender add-on (<i>"Install from file..."</i> on <i>"Add-ons"</i> tab).
-
-<p>A <i>very detailed</i> installation instruction:
-
-<ol>
-  <li>In Blender, click the <i>"File -&gt; User Preferences"</i> menu item.
-  <li>Go to the <i>"Add-ons"</i> tab.
-  <li>Click the button <i>"Install from file..."</i> at the bottom of the window that appears.
-  <li>Select the <code>castle_engine_x3d.zip</code> file you downloaded, and confirm by clicking <i>"Install from file..."</i> near the top-right corner.
-  <li>Find the script box e.g. by searching for <code>"castle"</code> in the search box. You should see a script named <i>"Web3D X3D/VRML2 format (Castle Game Engine Importer/Exporter)"</i>. Activate this script by ticking the checkbox right near it's name.
-  <li>Optionally, you can click now <i>"Save User Settings"</i> at the bottom to have this script automatically enabled next time you open Blender.
-  <li>Make sure it works: look into the <i>"File -&gt; Export"</i> submenu, it should have now a new option <i>"X3D Extensible 3D (.x3d) (Castle Game Engine Exporter)"</i>
-</ol>
-
-<p>In time, we want to submit all our modifications to the official Blender code, and have them available out-of-the-box in Blender. (If you want to help with that, <a href="<?php echo FORUM_URL; ?>">please let us know</a>, or just do it &mdash; the only issue is that someone needs to find a time to write a proper issue request to Blender devs:).
-
-<?php /*
-We publish here some improvements / fixes / documentation for
-Blender's X3D exporter.</p>
-*/ ?>
-
-<?php /*
-
-<h2>X3D exporter, for Blender &gt;= 2.68a</h2>
-
-<ul>
-  <li><p>< ?php echo_svn_blender_file('blender25_x3d/export_x3d.py') ? >:
-    Download the actual exporter.
-
-    <p>Copy it over (overwrite) the original Blender exporter,
-    which is in <code>&lt;blender-installation-dir&gt;/2.68/scripts/addons/io_scene_x3d/export_x3d.py</code>.
-    <!--You will need to restart Blender (if currently running to load the new exporter.-->
-
-    <p><i>Note</i>: as of Blender 2.68, our custom exporter doesn't serve much
-    purpose. All the past bugfixes have been applied to the
-    Blender standard X3D exporter. The only feature our exporter script
-    has over the standard exporter is the magic treatment of images named
-    <code>xxx_normalmap</code>, and we don't really advice using this
-    (better use < ?php echo a_href_page('material_properties.xml',
-    'creating_data_material_properties'); ? >).
-
-  <li><p>< ?php echo_svn_blender_file('blender25_x3d/x3d_blender_exporter_notes.txt') ? >:
-    Detailed notes how the exporter (both original distributed in Blender
-    and modified by me) works, how you should setup your model.
-    At the end, contains notes about our modifications.
-</ul>
-
-<p>Blender people: feel welcome to take my fixes / changes,
-and apply them to Blender sources. Michalis will try to report them when
-he has time.
-Also feel free to take my notes, and use/convert them for documentation
-anywhere on Blender site, wiki etc. Permission to use my notes
-on any license required for official Blender wiki / docs contents is granted.</p>
-*/ ?>
+Be sure to use the latest Blender versions (2.82 or later), and consider appplying these
+fixes yourself:
+<a href="https://developer.blender.org/D7183">fix applying modifiers</a>,
+<a href="https://developer.blender.org/D7186">fix backface culling export</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -206,6 +136,37 @@ on any license required for official Blender wiki / docs contents is granted.</p
 <div class="download jumbotron">
     <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/cge-blender/tree/master/render_skybox"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download render_skybox.py script, and test files</a>
 </div>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Blender versions earlier than 2.80
+included a working X3D exporter out-of-the-box.
+So you can export your content from Blender to X3D open it with our engine.</p>
+
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/wiki/Blender">Some hints about exporting from Blender to X3D are here</a>
+</div>
+
+<p>We have our own X3D exporter version, which is based on the Blender X3D exporter
+and adds some fixes and also <b>support for <a href="x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a> exporting</b>.
+
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/x3d_exporter/castle_engine_x3d.zip"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download our X3D exporter</a>
+</div>
+
+<p>A short installation instruction: just install it like any other Blender add-on (<i>"Install from file..."</i> on <i>"Add-ons"</i> tab).
+
+<p>A <i>very detailed</i> installation instruction:
+
+<ol>
+  <li>In Blender, click the <i>"File -&gt; User Preferences"</i> menu item.
+  <li>Go to the <i>"Add-ons"</i> tab.
+  <li>Click the button <i>"Install from file..."</i> at the bottom of the window that appears.
+  <li>Select the <code>castle_engine_x3d.zip</code> file you downloaded, and confirm by clicking <i>"Install from file..."</i> near the top-right corner.
+  <li>Find the script box e.g. by searching for <code>"castle"</code> in the search box. You should see a script named <i>"Web3D X3D/VRML2 format (Castle Game Engine Importer/Exporter)"</i>. Activate this script by ticking the checkbox right near it's name.
+  <li>Optionally, you can click now <i>"Save User Settings"</i> at the bottom to have this script automatically enabled next time you open Blender.
+  <li>Make sure it works: look into the <i>"File -&gt; Export"</i> submenu, it should have now a new option <i>"X3D Extensible 3D (.x3d) (Castle Game Engine Exporter)"</i>
+</ol>
 
 <?php
 creating_data_footer();

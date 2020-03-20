@@ -44,13 +44,13 @@ from an VRML animation by interpolators.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The format is a series of static 3D frames. They can be inlined in a large XML file (in which case they must follow X3D XML encoding), or they can be external files (in which case they can be any 3D format supported by the <i>Castle Game Engine</i>). Animation shows the transition from the first frame to the last. Where models are <i>structurally equal</i>, intermediate frames are created by a linear interpolation to show smooth changes.
+<p>The format is a series of static 3D frames. They can be inlined in a large XML file (as X3D or glTF), or they can be external files (in which case they can be any 3D format supported by the <i>Castle Game Engine</i>). Animation shows the transition from the first frame to the last. Where models are <i>structurally equal</i>, intermediate frames are created by a linear interpolation to show smooth changes.
 
 <p>All the advantages and disadvantages of this format come from this simplicity. On one hand, it can be used to transfer <i>any</i> Blender animation to Castle Game Engine. On the other hand, it can be quite heavy: <i>loading large animations takes some time</i>, and they eat a significant amount of memory.</p>
 
 <p>Some of these disadvantages may be mitigated in the future (as we will internally convert it to better X3D interpolator nodes). But it will always remain somewhat "heavy solution".</p>
 
-<p>At the same time, it will always remain something that <i>can handle any Blender animation, right now</i>. As opposed to X3D exporter (that currently cannot export Blender animation at all, and in the future will support a limited subset of Blender possibilities).</p>
+<p>At the same time, it will always remain something that <i>can handle any Blender animation, right now</i>. As opposed to the X3D exporter (that currently cannot export Blender animation at all, and in the future will support a limited subset of Blender possibilities).</p>
 
 <p>A temporary disadvantage (TODO) is that right now we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D <code>Switch</code> and <code>IntegerSequencer</code>. Once we improve this, the runtime memory usage will be <i>somewhat</i> better, and animation will be always perfectly smooth at runtime, and the collision detection will account for dynamic changes OK.
 
@@ -149,9 +149,14 @@ of animation handling in our VRML engine documentation</a>.</p-->
                        // that means the same as "url".
                        //
                        // This attribute may be omitted, in which case
-                       // we expect the &lt;frame&gt; element to contain X3D
-                       // scene graph encoded in XML (with top-level &lt;X3D&gt;
-                       // element).
+                       // we expect the &lt;frame&gt; element to contain the model
+                       // inlined, in format indicated by mime_type.
+
+      <b>mime_type="model/x3d+xml"</b>
+                       // In case the frame content is inlined
+                       // (url is not set), this indicates the inlined model format.
+                       // For now we only allow "model/x3d+xml" (X3D XML)
+                       // or "model/gltf+json" (glTF JSON).
 
       <b>time="0.0"</b>       // This is a required attribute specifying a
                        // time of this frame. For now, all frames
