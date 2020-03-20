@@ -51,10 +51,13 @@ More support for glTF animations (by skinning and morphing) will come soon
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="https://www.blender.org/">Blender</a> includes a working, albeit somewhat limited,
-exporter for X3D out-of-the-box.
+<p><a href="https://www.blender.org/">Blender</a> includes exporter for X3D out-of-the-box.
 
-<p>It doesn't support animations, and it seems it doesn't support textures either.
+<p>It doesn't support animations.
+Since Blender 2.8 it is unfortunately even more limited,
+it doesn't support any textures either.
+
+<p>There are also bugs.
 Be sure to use the latest Blender versions (2.82 or later), and consider appplying these
 fixes yourself:
 <a href="https://developer.blender.org/D7183">fix applying modifiers</a>,
