@@ -27,6 +27,10 @@ echo pretty_heading($page_title);
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
+    <p><a href="https://github.com/sponsors/michaliskambi">Support me by becoming a Sponsor on GitHub.</a>
+  <?php donation_option_end(); ?>
+
+  <?php donation_option_begin(); ?>
     <?php if (!HTML_VALIDATION) { echo paypal_button(); } ?>
 
     <p><b>Donate using <a href="https://www.paypal.com/">PayPal</a>.</b><br>
