@@ -11,7 +11,7 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
-<p>Incoming features in the next release (6.6) <a href="https://github.com/castle-engine/castle-engine/wiki/New-Features-in-Castle-Game-Engine-6.6">are documented here</a>.
+<p>Incoming features in the next release (7.0) <a href="https://github.com/castle-engine/castle-engine/wiki/New-Features-in-Castle-Game-Engine-7.0">are documented here</a>.
 
 <?php /*
 <h2>Incoming in the next release (6.8)</h2>
@@ -93,21 +93,13 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     -->
   </li>
 
-  <li><p><b>More glTF: PBR, efficient meshes, animations</b>
+  <li><p><b>Load glTF more efficiently to GPU.</b>
 
-    <p><i>Note that static glTF models already load OK in CGE.</i>
+    <p>We should read meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
 
-    <p>Things to do:</p>
+    <p>Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like <code>BufferGeometry</code> (same as X3DOM?).
 
-    <ul>
-      <li><p>Reading meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
-
-        <p>Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like <code>BufferGeometry</code> (same as X3DOM?).
-
-      <li><p>Rendering PBR materials. <a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">See here for documentation what is PBR (Physically-based Rendering) and do I plan to add it to X3D and Castle Game Engine, and thus seamlessly render glTF materials too</a>.
-
-      <li><p>Reading animations. X3D should be capable of expressing glTF animations, using interpolators and H-Anim for skinned animation.
-    </ul>
+    <p>We should also perform skinning fully on GPU, avoiding <code>CoordinateInterpolator</code> done on CPU.
 
   <li><p><b>More physics</b></p>
     <p>More integration with physics engine. The details are listed in the <a href="manual_physics.php">manual about physics</a>.
@@ -142,7 +134,10 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p><i>What we need:</i> Visual, interactive editor for the <code>ElevationGrid</code> (the thing you get from <code>TTerrain.Node</code> call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
 
+<?php /*
   <li><p><b>Blender X3D exporter improvements</b>
+
+    <p><i>Rejected. Just export to glTF, the exporter is way better than X3D exporter ever was. glTF has more momentum as an interchange format than X3D.</i>
 
     <p>Current Blender X3D exporter doesn't support animations,
     configuring collisions (X3D <?php api_link('Collision', 'X3DNodes.TCollisionNode.html'); ?> node),
@@ -153,12 +148,11 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>See also our page about <a href="creating_data_blender.php">creating data in Blender</a>
     and <a href="https://github.com/castle-engine/castle-engine/wiki/Blender">hints
     about exporting from Blender to X3D</a>.
+*/ ?>
 
-    <p><i>Depending on the future, it is possible that this feature will be replaced with "better support for glTF animations".</i> Currently, the reality is that glTF has more momentum as an interchange format than X3D.
+  <li><p><b>VR / AR</b>
 
-  <li><p><b>Android Cardboard (VR)</b>
-
-    <p>Maybe also other VR devices &mdash; depending on demand, and our access to test devices.
+    <p>Android Cardboard? And/or other VR devices &mdash; depending on demand, and our access to the test devices.
 
   <li><p><b>Ready components to replicate data over the Internet</b>
 
@@ -177,26 +171,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
   <li><p><b>Larger scene processing and rendering improvements:</b>
 
     <ol>
-      <li><p><b>More animations blending</b>
-
-        <p>To smoothly fade in/out animation,
-        with cross-fade between animations,
-        for things played by
-        <?php api_link('TCastleScene.PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>.
-
-        <p>Animation cross-fade time for
-        <a href="creating_data_resources.php">creatures from resource.xml files</a>
-        could be configured using a CastleScript expression,
-        so values like this could be possible:
-
-<pre>
-fade_duration="0.5"
-fade_duration="animation_duration * 0.1"
-fade_duration="min(animation_duration * 0.25, target_animation_duration * 0.25, 0.5)"
-</pre>
-
-        <p><i><a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">Animation blending is already working, see here!</a> However, it still has two TODOs for now (it does not yet work for castle-anim-frames or resource.xml).</i>
-
       <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
 
         <p>This would make the whole scene manager a single graph of X3D nodes,

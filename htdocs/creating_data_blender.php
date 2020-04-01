@@ -40,14 +40,9 @@ and open the resulting file (in <code>.glb</code> or <code>.gltf</code> formats)
 using any engine tool (like <a href="view3dscene.php">view3dscene</a>).
 
 <p><a href="creating_data_model_formats.php#section_gltf">Read here for the details about our glTF support</a>.
-In short: we support most features for static models (including textures and physical materials),
-and we support simple animations by transformations.
-More support for glTF animations (by skinning and morphing) will come soon
-(for now you have to use other formats for it, like X3D or castle-anim-frames).
+In short: we support most features, including physical materials and skinned animation.
 
 <p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender documentation of the glTF exporter</a> is useful. The exporter is <a href="https://github.com/KhronosGroup/glTF-Blender-IO">developed by Khronos on GitHub</a>.
-
-<p>Apply <a href="https://github.com/KhronosGroup/glTF-Blender-IO/pull/991">this fix</a> if you're going to use glTF combined with castle-anim-frames (see below).
 
 <?php echo $toc->html_section(); ?>
 
@@ -83,6 +78,8 @@ fixes yourself:
   <li>Enable it, by clicking the checkbox at <i>"Import-Export: Export Castle Animation Frames"</i>
     in the Addons window.
 </ol>
+
+<p>For Blender 2.82a: Apply <a href="https://github.com/KhronosGroup/glTF-Blender-IO/pull/991">this fix</a> if you're going to use glTF combined with castle-anim-frames (see below).
 
 <!-- <p>Tested with <i>Blender &gt;= 2.68</i>. -->
 

@@ -39,9 +39,12 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
   <li><p><a href="https://www.khronos.org/gltf">glTF overview</a>,
   <li><p><a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>,
   <li><p><a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a> (open them with <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene from snapshots right now</a>),
-  <li><p>In Blender: <a href="https://github.com/KhronosGroup/glTF-Blender-IO">Blender glTF exporter and importer</a> is packaged inside <a href="https://builder.blender.org/download/">Blender 2.80</a> out-of-the-box. See <a href="https://docs.blender.org/manual/en/dev/addons/io_gltf2.html">manual about using Blender glTF exporter</a>.
+  <li><p><a href="https://www.blender.org/">Blender</a> includes a full-featured glTF exporter (see <a href="https://docs.blender.org/manual/en/dev/addons/io_gltf2.html">manual about using Blender glTF exporter</a>).
+
+<?php /* Now we support skinning, which means below problem can be workarounded using skin.
 
     <p>Note that (unfortunatately) it seems not possible to export a single animation like "walk" that animates transformations of multiple Blender objects. That's a consequence of how the "actions" in Blender work ("action" is a set of animation curves, and using the same action for multiple objects forces them to share the animation curves &mdash; which may not be what you want). You can workaround it by <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">running muliple animations simultaneously from CGE</a>, but this is less comfortable than calling <code>Scene.PlayAnimation('walk')</code>.
+    */ ?>
 </ul>
 
 <p>Supported features of glTF models in our engine:
