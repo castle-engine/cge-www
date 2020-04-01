@@ -87,7 +87,7 @@ if (!HTML_VALIDATION &&
 }
 
 castle_header('Download', array(
-  'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including X3D, glTF, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
+  'meta_description' => 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including glTF, X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (shadows, mirrors) available. Using modern Object Pascal.'
 ));
 ?>
 
@@ -130,7 +130,7 @@ castle_header('Download', array(
         <div class="centered-wrapper">
             <div class="centered">
                 <ul>
-                    <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, glTF, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+                    <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
                       <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
                     <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
                     <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.

@@ -51,13 +51,13 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
   <li><p>Materials (with physically-based or unlit shading), alpha mode, double-sidedness, per-vertex colors.
   <li><p>Texturing (for base color, normal maps, emissive, material-roughness).
   <li><p>Cameras (perspective and orthogonal).
-  <li><p>Animations of transformations (position, rotation, scale), that can be played using <a href="manual_scene.php#section_play_animation">standard CGE <code>PlayAnimation</code> method</a> (or <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">other means, e.g. to play multiple animations from one model simultaneously</a>).
+  <li><p>Animating transformations (position, rotation, scale) and using skin ("armature" in Blender). They can be played using <a href="manual_scene.php#section_play_animation">standard CGE <code>PlayAnimation</code> method</a> (or <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">other means, e.g. to play multiple animations from one model simultaneously</a>).
   <li><p>Both <code>.glb</code> and <code>.gltf</code> extensions are supported. Textures can be provided in separate files or embedded inside the GLTF stream.
   <li><p>It is integrated in our engine as X3D nodes graph. This means that you can include a glTF model inside larger X3D file using the <code>Inline</code> node, you can modify the glTF scene graph at runtime (e.g. modify material color, show/hide something etc.) and you can serialize the scene graph to an X3D file.
   <li><p>We use <a href="https://github.com/BeRo1985/pasgltf/">PasGLTF</a>, a great open-source library for reading glTF by <a href="https://www.patreon.com/bero">Benjamin "Bero" Rosseaux</a>.
 </ul>
 
-<p>Main missing features are morph targets and skinned animation.
+<p>TODO: Main missing feature is morph targets.
 
 <?php echo $toc->html_section(); ?>
 
