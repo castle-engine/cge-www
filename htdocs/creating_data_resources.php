@@ -198,10 +198,10 @@ modeler / exporter you use to design your models:
 <ol>
   <li><p>The best way (low memory usage and short loading time)
     is to use a single model with many animations inside.
-    All the important 3D model formats support it:
-    <?php echo a_href_page('X3D', 'vrml_x3d'); ?>,
+    Our major supported file formats support it:
+    glTF, <?php echo a_href_page('X3D', 'vrml_x3d'); ?>,
     <?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine JSON</a>, etc.).
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine JSON</a>.
 
     <p>You declare it in resource.xml file like this:
 
@@ -211,13 +211,13 @@ modeler / exporter you use to design your models:
   <walk  animation_name="TimeSensorWalk"/>
 </model>'); ?>
 
-    <p>What exactly is an <i>"animation"</i> depends on the initial format,
-    but internally an animation is always a single named
-    X3D <code>TimeSensor</code> node. Our method
+    <p>The <i>"animation_name"</i> recognizes animations defined in various
+    formats (and expressed in X3D using <code>TimeSensor</code>),
+    just like the engine
     <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
-    recognizes the same animations. And you can see these animations in the
+    method. You can see these animations in the
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    menu <i>Animation -&gt; Named Animations</i>.
+    by turning on <i>Animations</i> panel.
 
     <!--p>This is nice if your authoring software can store multiple
     animations inside a single file, and each animation is controlled
