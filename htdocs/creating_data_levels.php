@@ -80,7 +80,7 @@ These are 3D shapes with special names that will be recognized by the engine:
 
     <ul>
       <li>To place a creature on the level, name your placeholder
-        <code>CasRes&lt;resource-name&gt;[&lt;optional-initial-life&gt;][_&lt;ignored&gt;]</code>.
+        <code>CasRes&lt;resource-name&gt;[&lt;optional-initial-life&gt;][_&lt;ignored&gt;][.&lt;ignored&gt;]</code>.
         By default (if not explicitly specified),
         the initial creature life is taken from <code>default_max_life</code>
         given in <code>resource.xml</code>.
@@ -97,11 +97,14 @@ These are 3D shapes with special names that will be recognized by the engine:
         item quantity is 1.
     </ul>
 
-    <p>Anything after underscore is ignored. You can use this to make
-    placeholder name unique, e.g. all objects in Blender must be unique.
-    Note that Blender exporter changes the "dot" inside object names
+    <p>Anything after underscore or dot is ignored.
+    So e.g. <code>CasRedMedKit.123</code> is understood to include resource named <code>MedKit</code>.
+    <!--
+    Note that Blender -> X3D exporter changes the "dot" inside object names
     to an underscore when exporting, so everything in Blender object name
     after dot is ignored too.
+    The glTF exporter writes names with dot.
+    -->
 
   <li><p><b>Water</b> volume by placeholder "CasWater"
     (see <?php api_link('TLevel.Water', 'CastleLevels.TLevel.html#Water'); ?>).
@@ -175,9 +178,10 @@ These are 3D shapes with special names that will be recognized by the engine:
     VRML 2.0/X3D Shape node name (set using "DEF" in VRML/X3D).
 
   <li><code>"blender"</code> means that the placeholder name is detected following
-    standard Blender VRML/X3D exporters behavior.
-    This allows you to set the placeholder name easily in Blender,
-    just set the Blender object name.
+    standard Blender -&gt; glTF and Blender -&gt; X3D exporters behavior.
+    This allows you to set the placeholder name easily in Blender.
+    In case of exporting to glTF, just set the Blender mesh name.
+    In case of exporting to X3D, just set the Blender object name.
 
   <li>and possibly more, see <?php api_link('PlaceholderNames', 'CastleShapes.html#PlaceholderNames'); ?>
     list and
