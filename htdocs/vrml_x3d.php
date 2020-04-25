@@ -133,7 +133,12 @@ You can create and edit instances of
 <p>This section of the Castle Game Engine documentation describes all X3D nodes
 (often by referring you to the X3D specification for details),
 and it shows various examples how to create and edit X3D graph using Pascal.
-See for example <a href="x3d_implementation_geometry3d.php">Pascal example of creating a 3D mesh (TIndexedFaceSetNode)</a>,
-or <a href="x3d_implementation_geometry2d.php">Pascal example of seting up 2D rectangle and lines</a>.
+See for example:
+<ul>
+  <li><a href="x3d_implementation_geometry3d.php">Pascal example of creating a 3D mesh (TIndexedFaceSetNode)</a>,
+  <li><a href="x3d_implementation_geometry2d.php">Pascal example of seting up 2D rectangle and lines</a>.
+</ul>
+
+<p>You can also <a href="https://forum.castle-engine.io/t/creating-objects-on-the-fly/140/">pre-process the loaded scene (e.g. change the texture), by changing the X3D nodes graph (see this forum post for details)</a>.
 
 <?php vrmlx3d_footer(); ?>
