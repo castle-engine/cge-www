@@ -37,16 +37,25 @@ echo castle_thumbs(array(
 
 <p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D or VRML.</p>
 
+<!-- Since last stable view3dscene is so old, emphasize snapshot version more -->
+<div class="download jumbotron">
+  <div class="download_title">Download Latest (Snapshot) Version 3.19:</div>
+    <div class="download_platforms_list">
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://michalis.ii.uni.wroc.pl/view3dscene-snapshots/view3dscene-3.19.0-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt=" Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://michalis.ii.uni.wroc.pl/view3dscene-snapshots/view3dscene-3.19.0-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt=" Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
+  </div>
+  <a class="btn btn-success btn-lg btn-patreon" href="https://patreon.com/castleengine"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
+</div>
+
 <?php
 echo_standard_program_download(
-  'view3dscene', 'view3dscene', VERSION_VIEW3DSCENE, true,
+  'Older (Stable) Version 3.18', 'view3dscene', VERSION_VIEW3DSCENE, true,
   array(
     'win-i386' => 'https://github.com/castle-engine/view3dscene/files/1756759/view3dscene-3.18.0-win-i386.zip',
     'linux-i386' => 'https://github.com/castle-engine/view3dscene/files/1756756/view3dscene-3.18.0-linux-i386.tar.gz',
     'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/files/1756757/view3dscene-3.18.0-linux-x86_64.tar.gz',
     'macosx-i386' => 'https://github.com/castle-engine/view3dscene/files/1756873/view3dscene-3.18.0-macosx.dmg.zip',
-  ),
-  '<p style="text-align: center"><a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/" class="btn btn-primary btn-lg">Alternative: Download Latest Snapshot Version (More Features!)</a></p>'
+  )
 );
 ?>
 
