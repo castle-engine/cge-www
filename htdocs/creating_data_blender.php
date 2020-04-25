@@ -33,14 +33,24 @@ free open-source 3D modelling software.
 
 <?php echo $toc->html_section(); ?>
 
+<p><b>Using glTF 2.0 is the advised way to transfer models from Blender to Castle Game Engine.</b>
+
 <p><i>Castle Game Engine</i> supports the <i>glTF 2.0</i> format,
-and new <a href="https://www.blender.org/">Blender</a> has an exporter to glTF 2.0.
+and <a href="https://www.blender.org/">Blender</a> has an exporter to glTF 2.0.
 Just export using the <i>File -&gt; Export -&gt; glTF 2.0</i> menu item
 and open the resulting file (in <code>.glb</code> or <code>.gltf</code> formats)
 using any engine tool (like <a href="view3dscene.php">view3dscene</a>).
 
-<p><a href="creating_data_model_formats.php#section_gltf">Read here for the details about our glTF support</a>.
+<p><a href="creating_data_model_formats.php#section_gltf">See here for the details about our glTF support</a>.
 In short: we support most features, including physical materials and skinned animation.
+
+<p>Advised glTF export settings:
+
+<ul>
+  <li>You usually want to check <i>"Geometry -&gt; Apply Modifiers"</i> in the export dialog.
+  <li><i>"Remember Export Settings"</i> is also usually useful.
+  <li>For typical games (where you distribute the game data with your application) we recommend exporting to <i>"glTF Separate (.gltf + .bin + textures)"</i> variant. This allows to share textures between various models and keeps importing fast. You can edit the <i>"Textures"</i> directory in the export dialog, to make the glTF file just point to your existing texture directory.
+</ul>
 
 <p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender documentation of the glTF exporter</a> is useful. The exporter is <a href="https://github.com/KhronosGroup/glTF-Blender-IO">developed by Khronos on GitHub</a>.
 
@@ -48,8 +58,8 @@ In short: we support most features, including physical materials and skinned ani
 
 <p><a href="https://www.blender.org/">Blender</a> includes exporter for X3D out-of-the-box.
 
-<p>It doesn't support animations.
-Since Blender 2.8 it is unfortunately even more limited,
+<p>Unfortunately, it doesn't support animations.
+And since Blender 2.8 it is even more limited,
 it doesn't support any textures either.
 
 <p>There are also bugs.

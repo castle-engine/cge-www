@@ -36,10 +36,9 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 <p>An efficient, modern format, developed by Khronos. Resources:
 
 <ul>
-  <li><p><a href="https://www.khronos.org/gltf">glTF overview</a>,
-  <li><p><a href="https://github.com/KhronosGroup/glTF">glTF specification and extensions</a>,
-  <li><p><a href="https://github.com/KhronosGroup/glTF-Sample-Models">glTF sample models</a> (open them with <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene from snapshots right now</a>),
-  <li><p><a href="https://www.blender.org/">Blender</a> includes a full-featured glTF exporter (see <a href="https://docs.blender.org/manual/en/dev/addons/io_gltf2.html">manual about using Blender glTF exporter</a>).
+  <li><p>glTF 2.0 <a href="https://www.khronos.org/gltf">overview</a>, <a href="https://github.com/KhronosGroup/glTF">specification and extensions</a>,
+  <li><p>glTF 2.0 sample models <a href="https://github.com/KhronosGroup/glTF-Sample-Models">from Khronos</a>, <a href="https://sketchfab.com/features/gltf">Sketchfab</a> (open them easily with our <a href="view3dscene.php">view3dscene</a>),
+  <li><p><a href="https://www.blender.org/">Blender</a> includes a full-featured glTF exporter. See <a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender manual about glTF exporter</a> and <a href="creating_data_blender.php">our manual about exporting to Blender</a>.
 
 <?php /* Now we support skinning, which means below problem can be workarounded using skin.
 
