@@ -69,14 +69,41 @@ Although toggling Switch node is also ultra-fast.
 
 <ul>
   <li><p><code>DEFAULT</code>: use the default shading.
-    In <?php echo a_href_page("view3dscene", "view3dscene") ?>
+
+    <p>The default is to use <i>Gouraud shading</i>, for now,
+    for shapes using <code>Material</code> node.
+
+    <p>In <?php echo a_href_page("view3dscene", "view3dscene") ?>
     you control this using the <i>"View -&gt; Phong Shading on Everything"</i> checkbox.
     In your own games you control this using the
     <code>Scene.Attributes.PhongShading</code> property in Pascal code.
+
+    <p>Note that Phong shading is also automatically used, on a particular shape,
+    if this shape uses a graphic effect that requires such shading for internal reasons.
+    For example,
+
+    <ul>
+      <li><p>using two-sided lighting (<code>solid="FALSE"</code>),
+
+      <li><p>or using <a href="x3d_extensions_shadow_maps.php">shadow maps</a>
+
+      <li><p>or using <i>bump mapping</i> (<code>Material.normalTexture</code>).
+
+      <li><p>Using <i>PBR (Physically-Based Rendering)</i> through <code>PhysicalMaterial</code>
+        also automatically forces Phong shading.
+
+        <p>This also means that glTF models (as they use <code>PhysicalMaterial</code>
+        by default) by default use Phong shading. You can
+        change this by using
+        <a href="https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials">GltfForcePhongMaterials</a> which forces <i>Phong lighting model</i>
+        for glTF meshes, which means that by default they have <i>Gouraud shading</i>.
+        (Do not confuse <i>Phong lighting model</i> with
+        <i>Phong shading</i>. They are unrelated, that is: choosing <i>shading</i>
+        is somewhat independent from choosing <i>lighting model</i>.)
+    </ul>
   </li>
 
   <li><p><code>GOURAUD</code>: fast per-vertex lighting calculation.
-    It is the default shading for now.
 
     <p>Explicitly specifying the <code>"GOURAUD"</code> indicates that this shape wants to use Gouraud shading, even if the default scene shading is Phong. Note that some features (like bump mapping and shadow maps) will override this and require Phong shading anyway, since it's impossible to realize them with Gouraud shading.
 
@@ -84,7 +111,9 @@ Although toggling Switch node is also ultra-fast.
 
   <li><p><code>PHONG</code>: pretty per-pixel lighting calculation.
     This also means always using shader pipeline to render this shape.
-    This also performs two-sided lighting.
+
+    <p>This also works nicely with two-sided lighting, if both sides
+    of the mesh are visible, by using <code>solid="FALSE"</code>.
   </li>
 
   <li><p><code>WIREFFRAME</code>: render as a wireframe.
