@@ -57,8 +57,8 @@ URLs (like http or https) you only need to set
 </ul>
 
 <p>If you want to read or write text files from an URL, use
-<?php api_link('TTextReader', 'CastleClassUtils.TTextReader.html'); ?> and
-<?php api_link('TTextWriter', 'CastleClassUtils.TTextWriter.html'); ?>.
+<?php api_link('TTextReader', 'CastleDownload.TTextReader.html'); ?> and
+<?php api_link('TTextWriter', 'CastleDownload.TTextWriter.html'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
