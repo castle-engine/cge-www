@@ -71,7 +71,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
   <dd><p>Important descendants:
     <ul>
-      <li><?php api_link('TCastleRectangle', 'CastleControls.TCastleRectangle.html'); ?>
+      <li><?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>
       <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>
       <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
       <li><?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
@@ -383,7 +383,7 @@ More about them later, some of them should be instantiated in a special way:
   <dt><?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?></dt>
   <dd>
     <p>Has a list
-    <?php api_link('Inventory', 'CastleItems.T3DAliveWithInventory.html#Inventory'); ?>
+    <?php api_link('Inventory', 'CastleItems.TAliveWithInventory.html#Inventory'); ?>
     of instances of <?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>
 
     <p><i>How to use</i>: just create an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>,

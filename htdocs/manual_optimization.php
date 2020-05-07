@@ -148,14 +148,9 @@ number of frames per second that we managed to display.</b>
       <li>Or use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
         <i>"Preferences -&gt; Frames Per Second"</i> menu item to set them to zero.
       <li>Or change
-        <?php api_link('LimitFPS global variable', 'CastleControl.html#LimitFPS'); ?>
-        (if you use
-        <?php api_link('CastleControl', 'CastleControl.html'); ?>
-        unit with Lazarus) or change
-        <?php api_link('Application.LimitFPS', 'CastleWindow.TGLApplication.html#LimitFPS'); ?>
-        (if you use <?php api_link('CastleWindow', 'CastleWindow.html'); ?> unit)
+        <?php api_link('ApplicationProperties.LimitFPS', 'CastleApplicationProperties.TCastleApplicationProperties.html#LimitFPS'); ?>
         to zero.
-        Changing them to zero disables the "limit fps" feature.
+        Changing it to zero disables the "limit fps" feature.
     </ul>
 
     <p>You will also need to turn off "<i>vertical synchronization</i>"

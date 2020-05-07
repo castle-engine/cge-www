@@ -247,7 +247,7 @@ For example, you can iterate over the inventory list and show the items like thi
  <?php api_link('Player.FadeOutColor', 'CastlePlayer.TPlayer.html#FadeOutColor'); ?>,
  <?php api_link('Player.FadeOutIntensity', 'CastlePlayer.TPlayer.html#FadeOutIntensity'); ?>
  representing when player is in pain (and the pain color).
- <?php api_link('Player.Dead', 'Castle3D.TAlive.html#Dead'); ?>
+ <?php api_link('Player.Dead', 'CastleTransformExtra.TCastleAlive.html#Dead'); ?>
  says when player is dead (this is simply when <code>Life &lt;= 0</code>).
 
  <p>For example you can visualize pain and dead states like this:

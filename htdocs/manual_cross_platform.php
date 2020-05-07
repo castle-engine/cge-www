@@ -202,16 +202,19 @@ multi-touch doesn't work on desktops with a single mouse and so on.
 <p>To account for this, you can adjust your input handling depending on the
 <code>Application.TouchDevice</code> value.
 
+<?php /*
+
 <p>For example, to make 3D navigation working using touch controls on mobile
 or "mouse look" on desktops, you can
 
 <ol>
   <li><p>Create an instance of
-    <?php api_link('TCastleWindowTouch', 'CastleWindowTouch.TCastleWindowTouch.html'); ?>
+    <code>TCastleWindowTouch</code>
     (instead of the simpler
     <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>).
 
-    <p>TODO: TCastleWindowTouch is deprecated now.
+    <p>TODO: TCastleWindowTouch is deprecated now. These instructions
+    will be updated when we implement a replacement.
 
   <li><p>Create <code>Player</code> instance
     (see the <?php echo a_href_page('manual chapter about the Player', 'manual_player'); ?>)
@@ -224,6 +227,8 @@ or "mouse look" on desktops, you can
 Player.Camera.MouseLook := not Application.TouchDevice;'); ?>
 
 </ol>
+
+*/ ?>
 
 <?php echo $toc->html_section(); ?>
 

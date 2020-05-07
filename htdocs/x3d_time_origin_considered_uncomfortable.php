@@ -13,9 +13,7 @@ although you can change it
 by using <?php echo a_href_page_hashlink(
   'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',
   'x3d_extensions',
-  'section_ext_time_origin_at_load'); ?>. Also the (deprecated now)
-  <?php api_link('TCastlePrecalculatedAnimation', 'CastlePrecalculatedAnimation.TCastlePrecalculatedAnimation.html'); ?>
-  animations will always start playing from their begin-time, usually 0.0.</p>
+  'section_ext_time_origin_at_load'); ?>.</p>
 
 <p><b>What's the problem?</b>
 VRML/X3D have an idea that time stored in <code>SFTime</code>

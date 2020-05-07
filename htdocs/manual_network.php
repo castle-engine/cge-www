@@ -284,8 +284,8 @@ we advise to use our dialog components:
 <?php api_link('TCastleOpenDialog', 'CastleDialogs.TCastleOpenDialog.html'); ?>,
 <?php api_link('TCastleSaveDialog', 'CastleDialogs.TCastleSaveDialog.html'); ?>,
 <?php api_link('TCastleOpen3DDialog', 'CastleDialogs.TCastleOpen3DDialog.html'); ?>,
-<?php api_link('TCastleOpenPictureDialog', 'CastleDialogs.TCastleOpenPictureDialog.html'); ?>,
-<?php api_link('TCastleSavePictureDialog', 'CastleDialogs.TCastleSavePictureDialog.html'); ?>.
+<?php api_link('TCastleOpenImageDialog', 'CastleDialogs.TCastleOpenImageDialog.html'); ?>,
+<?php api_link('TCastleSaveImageDialog', 'CastleDialogs.TCastleSaveImageDialog.html'); ?>.
 You can also continue using standard Lazarus dialog components.
 Our routines (almost) always handle a filename instead of an URL,
 or you can explicitly convert between filenames and URLs using functions

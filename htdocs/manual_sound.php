@@ -148,19 +148,19 @@ and <code>sample.wav</code> in the same directory, and you're fine.</p>
 It's either <code>nil</code> (if no resources were available to
 play this sound, and it's priority doesn't allow overriding other
 sounds) or it's a
-<?php api_link('TSound', 'CastleSoundAllocator.TSound.html'); ?>
+<?php api_link('TSound', 'CastleSoundEngine.TSound.html'); ?>
  instance. If you have
- <?php api_link('TSound', 'CastleSoundAllocator.TSound.html'); ?>
+ <?php api_link('TSound', 'CastleSoundEngine.TSound.html'); ?>
  instance, you can save it to a variable and use for various purposes.
  For example you can update sound parameters during the game,
  e.g. changing
- <?php api_link('TSound.Position', 'CastleSoundAllocator.TSound.html#Position'); ?>,
- <?php api_link('TSound.Gain', 'CastleSoundAllocator.TSound.html#Gain'); ?>
+ <?php api_link('TSound.Position', 'CastleSoundEngine.TSound.html#Position'); ?>,
+ <?php api_link('TSound.Gain', 'CastleSoundEngine.TSound.html#Gain'); ?>
  and such.
- You can use it's <?php api_link('TSound.OnRelease', 'CastleSoundAllocator.TSound.html#OnRelease'); ?>
+ You can use it's <?php api_link('TSound.OnRelease', 'CastleSoundEngine.TSound.html#OnRelease'); ?>
  event to be notified when source stops
 playing. You can stop playing the sound
-by <?php api_link('TSound.Release', 'CastleSoundAllocator.TSound.html#Release'); ?>.</p>
+by <?php api_link('TSound.Release', 'CastleSoundEngine.TSound.html#Release'); ?>.</p>
 
 <?php /*
 

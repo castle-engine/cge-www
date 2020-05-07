@@ -19,15 +19,15 @@ with links to documentation for every attribute.
 '<?xml version="1.0"?>
 
 <player
-  [[Castle3D.TAlive.html#KnockBackSpeed|knockback_speed]]="20.0"
-  [[CastleCameras.TWalkCamera.html#HeadBobbingTime|head_bobbing_time]]="0.5"
+  [[CastleTransformExtra.TCastleAlive.html#KnockBackSpeed|knockback_speed]]="20.0"
+  [[CastleCameras.TCastleNavigation.html#HeadBobbingTime|head_bobbing_time]]="0.5"
   [[CastlePlayer.TPlayer.html#HeadBobbing|head_bobbing]]="0.02"
   [[CastlePlayer.TPlayer.html#SickProjectionSpeed|sick_projection_speed]]="2.0">
 
   <jump
-    [[CastleCameras.TWalkCamera.html#JumpMaxHeight|max_height]]="1.0"
-    [[CastleCameras.TWalkCamera.html#JumpHorizontalSpeedMultiply|horizontal_speed_multiply]]="2.0"
-    [[CastleCameras.TWalkCamera.html#JumpTime|time]]="0.125" />
+    [[CastleCameras.TCastleWalkNavigation.html#JumpMaxHeight|max_height]]="1.0"
+    [[CastleCameras.TCastleWalkNavigation.html#JumpHorizontalSpeedMultiply|horizontal_speed_multiply]]="2.0"
+    [[CastleCameras.TCastleWalkNavigation.html#JumpTime|time]]="0.125" />
 
   <fall>
     <sound

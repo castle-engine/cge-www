@@ -129,7 +129,7 @@ or define a <code>default_font</code> inside the
 This way CGE editor will also use the new font.)
 
 <p>Instead of loading the font data from a file, you can also provide
-a <?php api_link('TTextureFontData', 'CastleFonts.TTextureFontData.html'); ?>
+a <?php api_link('TTextureFontData', 'CastleTextureFontData.TTextureFontData.html'); ?>
  instance to the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
  constructor. This allows to create the font data at runtime
  or <b>to use the font data embedded in a Pascal source code</b>.
@@ -315,15 +315,34 @@ You can translate strings explicitly at any moment, using
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use our own localization class from the <?php api_link('CastleLocalization', 'CastleLocalization.html'); ?> unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
+<p>You can use our own localization approach from the
+<a href="https://github.com/castle-engine/castle-engine/blob/master/src/deprecated_units/castlelocalization.pas">CastleLocalization</a>
+<?php /* api_link('CastleLocalization', 'CastleLocalization.html'); */ ?>
+ unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
 
-<p>For advanced users, the system allows to aid in localizing your custom classes too (see <?php api_link('OnUpdateLocalization', 'CastleLocalization.TCastleLocalization.html#OnUpdateLocalization'); ?>) and to add your own translation formats (see <?php api_link('FileLoader', 'CastleLocalization.TCastleLocalization.html#FileLoader'); ?>).
+<p>For advanced users, the system allows to aid in localizing your custom classes too (see
+<?php /* api_link('OnUpdateLocalization', 'CastleLocalization.TCastleLocalization.html#OnUpdateLocalization'); */ ?>
+<code>OnUpdateLocalization</code>)
+and to add your own translation formats (see
+<?php /* api_link('FileLoader', 'CastleLocalization.TCastleLocalization.html#FileLoader'); */ ?>
+<code>FileLoader</code>).
 
-<p>As with GetText approach, you can use a cross-platform <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the <?php api_link('Localization.Items[\'my_id\']', 'CastleLocalization.TCastleLocalization.html#Items'); ?> in CastleLocalization.
+<p>As with GetText approach, you can use a cross-platform <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the
+<?php /* api_link('Localization.Items[\'my_id\']', 'CastleLocalization.TCastleLocalization.html#Items'); */ ?>
+ <code>Localization.Items['my_id']</code>
+ in CastleLocalization.
 
 <p><i>Thousand thanks go to Benedikt Magnus for developing this approach!</i>
 
-<p>It is deprecated, as it has (for now) less features than the GetText approach (see the <?php api_link('CastleLocalization', 'CastleLocalization.html'); ?> documentation for details).
+<p>It is deprecated, as it has (for now) less features than the GetText approach.
+<?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?> offers these additional features:
+
+<ul>
+  <li>Translating <code>resourcestrings</code> (so the constant strings in code are "magically" translated),
+  <li><?php api_link('GenerateGetTextPo', 'CastleLocalizationGetText.html#GenerateGetTextPo'); ?> (generating translation template),
+  <li><?php api_link('TranslateAllDesigns', 'CastleLocalizationGetText.html#TranslateAllDesigns'); ?> (automatic translation of all deserialized components),
+  <li>uses <?php api_link('TCastleComponent.TranslateProperties', 'CastleClassUtils.TCastleComponent.html#TranslateProperties'); ?> (mutiple translatable properties on a component are possible).
+</ul>
 
 <?php
 manual_footer();

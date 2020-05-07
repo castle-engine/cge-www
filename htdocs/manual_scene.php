@@ -122,18 +122,18 @@ You can access the underlying node using the <?php api_link('AnimationTimeSensor
 
 <?php echo $toc->html_section(); ?>
 
-<p>Any object descending from <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>, including
+<p>Any object descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, including
 <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> and
 <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, has properties
-<?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?>,
-<?php api_link('Visible', 'CastleTransform.T3D.html#Visible'); ?>,
-<?php api_link('Collides', 'CastleTransform.T3D.html#Collides'); ?> and
-<?php api_link('Pickable', 'CastleTransform.T3D.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
+<?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?>,
+<?php api_link('Visible', 'CastleTransform.TCastleTransform.html#Visible'); ?>,
+<?php api_link('Collides', 'CastleTransform.TCastleTransform.html#Collides'); ?> and
+<?php api_link('Pickable', 'CastleTransform.TCastleTransform.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
 
 <p>For example, you can toggle the visibility of the car when user presses the <code>'c'</code> key, like this:
 
 <ol>
-  <li><p>Add unit <?php api_link('CastleKeysMouse', 'CastleKeysMouse'); ?> to your uses clause.</p></li>
+  <li><p>Add unit <?php api_link('CastleKeysMouse', 'CastleKeysMouse.html'); ?> to your uses clause.</p></li>
 
   <li><p>Before opening the window, assign:</p>
 
@@ -154,7 +154,7 @@ end;'); ?>
 <p><b>Advanced hints:</b></p>
 
 <ul>
-  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'CastleTransform.T3D.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'CastleTransform.T3D.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
+  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'CastleTransform.TCastleTransform.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
 
   <li><p>Note that simply changing the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
 
@@ -371,10 +371,10 @@ end;'); ?>
 These descendants can override methods e.g. to collide or perform AI
 (move itself in the world).
 
-<p>Every object (a descendant of <?php api_link('T3D', 'CastleTransform.T3D.html'); ?>,
+<p>Every object (a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
 like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) "knows"
- it's <?php api_link('World', 'CastleTransform.T3D.html#World'); ?>
+ it's <?php api_link('World', 'CastleTransform.TCastleTransform.html#World'); ?>
  so it knows how to move and collide
  within the 3D world. This opens various ways how you can implement <i>"artificial intelligence"</i>
  of a creature, for example:
@@ -383,11 +383,11 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
   <li>Derive your creature class from a <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
     or <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
   </li>
-  <li>Override it's <?php api_link('Update', 'CastleTransform.T3D.html#Update'); ?> method to move the creature.
-    Use <?php api_link('T3D.Move', 'CastleTransform.T3D.html#Move'); ?>,
-    <?php api_link('T3D.MoveAllowed', 'CastleTransform.T3D.html#MoveAllowed'); ?>,
-    <?php api_link('T3D.Height', 'CastleTransform.T3D.html#Height'); ?> and
-    <?php api_link('T3D.LineOfSight', 'CastleTransform.T3D.html#LineOfSight'); ?> methods to query the world around you.
+  <li>Override it's <?php api_link('Update', 'CastleTransform.TCastleTransform.html#Update'); ?> method to move the creature.
+    Use <?php api_link('TCastleTransform.Move', 'CastleTransform.TCastleTransform.html#Move'); ?>,
+    <?php api_link('TCastleTransform.MoveAllowed', 'CastleTransform.TCastleTransform.html#MoveAllowed'); ?>,
+    <?php api_link('TCastleTransform.Height', 'CastleTransform.TCastleTransform.html#Height'); ?> and
+    <?php api_link('TCastleTransform.LineOfSight', 'CastleTransform.TCastleTransform.html#LineOfSight'); ?> methods to query the world around you.
   </li>
   <li>As a child of your creature instance, add a
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>

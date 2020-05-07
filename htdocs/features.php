@@ -128,7 +128,7 @@ $toc = new TableOfContents(
     See:
     <ul>
       <li><?php echo a_href_page('manual about standard 2D controls', 'manual_2d_user_interface'); ?>,
-      <li><?php echo a_href_page('manual about drawing custom 2D stuff', 'manual_player_2d_controls'); ?>,
+      <li><?php echo a_href_page('manual about drawing custom 2D stuff', 'manual_2d_ui_custom_drawn'); ?>,
       <li><?php api_link('CastleImages', 'CastleImages.html'); ?> (reading, writing, processing images on CPU),
       <li><?php api_link('CastleGLImages', 'CastleGLImages.html'); ?> (rendering and other processing of images on GPU).
     </ul>
