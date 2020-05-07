@@ -14,6 +14,6 @@ do_linkchecker ()
   linkchecker --config=`pwd`/linkchecker.conf "$@"
 }
 
-do_linkchecker http://127.0.0.1/~michalis/castle-engine/
+do_linkchecker https://castle-engine.io/
 
 # do_linkchecker *.html
