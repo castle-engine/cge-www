@@ -44,7 +44,7 @@ URLs (like http or https) you only need to set
     by the URL.
 
     <p>An example
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/tools/castle_download.lpr">examples/tools/castle_download.lpr</a>
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/simple_command_line_utilities/castle_download.lpr">examples/simple_command_line_utilities/castle_download.lpr</a>
     uses this to implement a simple command-line downloading tool
     (like <code>wget</code>) using the engine.
 
