@@ -9,6 +9,8 @@ creating_data_header('Exporting from Dragon Bones', array(
 
 <p>Some example models are available in the <a href="https://github.com/DragonBones/Demos">DragonBones Demos</a> repository. You can export them to <i>Spine JSON</i> and test now!
 
+<p>Note that <i>Castle Game Engine</i> uses our own, open-source implementation ("runtime") of the Spine JSON format. So you can use this with <i>Dragon Bones</i> for free.
+
 <?php
 echo castle_thumbs(array(
   array('filename' => 'export-dragon-bones-1.png', 'titlealt' => 'Dragon Bones'),
