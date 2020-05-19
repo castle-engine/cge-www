@@ -154,12 +154,10 @@ view3dscene --debug-enable-fixed-function
 # ----------------------------------------------------------------------------
 # Test fpmake compilation system.
 # Remember to define FPCDIR first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/3.0.2/
-# (OPTIONAL, AS JENKINS DOES THIS NOW)
 
-fpc fpmake.pp
-./fpmake build -v
-./fpmake clean -v
-./fpmake build --nofpccfg --verbose
+make test-fpmake
+./fpmake --globalunitdir="${FPCDIR}" install
+cd examples/fps_game/ && fpc fps_game.lpr # The CGE installed units should now be known to FPC
 
 # ----------------------------------------------------------------------------
 # Test ../cge-scripts/check_units_dependencies
