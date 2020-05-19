@@ -157,7 +157,8 @@ view3dscene --debug-enable-fixed-function
 
 make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
-cd examples/fps_game/ && fpc fps_game.lpr # The CGE installed units should now be known to FPC
+# The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
+fpc -Mobjfpc examples/fps_game/fps_game.lpr
 
 # ----------------------------------------------------------------------------
 # Test ../cge-scripts/check_units_dependencies
