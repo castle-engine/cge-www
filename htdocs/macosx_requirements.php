@@ -5,15 +5,17 @@ castle_header("macOS notes and requirements");
 $toc = new TableOfContents(
   array(
     new TocItem('Compiling on macOS', 'compiling'),
-    new TocItem('GUI libraries: Carbon/Cocoa? X11? X11 + GTK?', 'options'),
-    new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl'),
+    new TocItem('GUI libraries: Carbon? Cocoa? X11? X11 + GTK?', 'options'),
+      new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl', 1),
+      new TocItem('TODO: CastleWindow backend using Cocoa', 'castle_window_cocoa', 1),
     new TocItem('Other libraries that may be required', 'other_libs'),
     new TocItem('Notes specific to particular macOS package managers', 'package_managers'),
-      new TocItem('Consider installing FPC and Lazarus through them too', 'fpc_and_laz', 1),
+      new TocItem('Installing FPC and Lazarus through macOS package managers', 'fpc_and_laz', 1),
       new TocItem('MacPorts', 'macports', 1),
       new TocItem('Homebrew', 'homebrew', 1),
       new TocItem('Fink', 'fink', 1),
     new TocItem('Creating macOS applications', 'creating_apps'),
+      new TocItem('Packaging data with macOS applications', 'data', 1),
   )
 );
 ?>
@@ -192,6 +194,13 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 <p>On macOS, the default LCL widgetset is
 <a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.
 
+<p>Although the default will change to <i>Cocoa</i> most probably at some point,
+as only <i>Cocoa</i> supports 64-bit applications
+and latest <i>macOS Catalina</i> requires all applications to be 64-bit.
+So you just have to use <i>Cocoa</i> on new macOS.
+
+<p>Advantages and disadvantages of using LCL (as opposed to X11 / GTK solutions):
+
 <ul>
   <li><p><i>Good:</i> native look, application has a normal menu bar,
     shows native dialog boxes (to open/save file, choose color and such)
@@ -203,6 +212,8 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
   <li><p><i>Good:</i> no extra dependencies, Carbon and Cocoa are already part of every
     macOS installation. (No dependencies on X11, GTK.)
 
+<?php /* Cocoa is necessary now in new macOS, so should be more stable now:
+
   <li><p><i>Bad:</i> Carbon is deprecated by Apple.
     It is available only for 32-bit applications.
 
@@ -211,40 +222,8 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     As of Lazarus 1.8, CastleWindow + LCL backend + Cocoa widgetset
     doesn't work reliably. So, in practice, you are stuck with 32-bit applications
     if you want native look on macOS.
-
-    <p>In time, this will be resolved in LCL when
-    <a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a>
-    widgetset will be more complete.
-    Right now, <a href="http://wiki.freepascal.org/Roadmap#Status_of_features_on_each_widgetset">Carbon
-    implementation is just more complete than Cocoa in LCL</a>,
-    see also <a href="http://wiki.freepascal.org/OS_X_Programming_Tips#Choice_of_Lazarus_LCL_widgetsets">Choice of Lazarus LCL widgetsets
-    (for macOS)</a>.
-
-    <p>It may also be resolved on our side if we ever make direct
-    <code>CastleWindow</code> backend based on Cocoa (without using Lazarus LCL):
-
-    <ul>
-      <li><p>It's a matter of creating and implementing a file
-        <code>castle_game_engine/src/window/castlewindow_cocoa.inc</code>,
-        based on
-        <code>castle_game_engine/src/window/castlewindow_backend_template.inc</code>.
-        See <?php echo a_href_page('engine sources', 'index'); ?>.
-        See at other "backends" (like GTK, WinAPI, Xlib, LCL)
-        for examples how to implement such thing, everything is inside
-        <code>src/window/</code> dir.
-
-      <li><p>Alternatively, send Michalis a simple and clear example of FPC program
-	using Cocoa that 1. creates and shows a window
-	2. with menu bar 3. and with OpenGL context area covering the window.
-	I should be able to port such example to my "CastleWindow" then.
-
-      <li><p>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
-        for pointers.
-	If you're a developer familiar with macOS
-	native toolkit and
-	<a href="http://www.freepascal.org/">Free Pascal Compiler</a>, your help
-	will be much appreciated.
-    </ul>
+*/
+?>
 
   <li><p><i>Bad:</i> There are issues with LCL event loop. Some of them
     (not being able to get Update events continuously) are in bare LCL,
@@ -254,28 +233,37 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
     dragging with mouse) is somewhat workarounded on our side now
     (to not "stutter" when using mouse look), but the problem is still
     noticeable (mouse look under other TCastleWindowBase backends is much smoother).
+</ul>
 
-    <p>For the above reasons:
-    <ul>
-      <li><b>If you make normal game (that doesn't need
-        any menu or dialog boxes)</b> consider using
-        the (default) CASTLE_WINDOW_XLIB backend on macOS.
-        Using X11 (Xlib) is not a problem on macOS.
-        And this way you get a perfect speed and smoothly working event loop
-        (with smooth mouse look).
+<?php echo $toc->html_section(); ?>
 
-        <p>Although full-screen is ugly on Xlib,
-        there's no way to hide dock over fullscreen application in this situation...
-        Easiest solution in this case is to keep your game windowed on macOS.
+<p>It would be good to implement
+<code>CastleWindow</code> backend based on Cocoa (without using Lazarus LCL).
+This would provide all above advantages, without disadvantages.
 
-      <li>Only <b>if you make tool-like program (that needs menu and dialog
-        boxes)</b> then CASTLE_WINDOW_LCL is a good choice.
-        It will look perfectly native. Although at the cost of not perfect mouse look.
-        Alternatively, you can use CASTLE_WINDOW_GTK_2 on macOS,
-        that has both nice menu/dialogs and a smooth mouse look,
-        but it requires installation of some special libraries
-        (GTK etc. from fink).
-    </ul>
+<p>Can you help us with this?
+
+<ul>
+  <li><p>It's a matter of creating and implementing a file
+    <code>castle_game_engine/src/window/castlewindow_cocoa.inc</code>,
+    based on
+    <code>castle_game_engine/src/window/castlewindow_backend_template.inc</code>.
+    See <?php echo a_href_page('engine sources', 'index'); ?>.
+    See at other "backends" (like GTK, WinAPI, Xlib, LCL)
+    for examples how to implement such thing, everything is inside
+    <code>src/window/</code> dir.
+
+  <li><p>Alternatively, send Michalis a simple and clear example of FPC program
+using Cocoa that 1. creates and shows a window
+2. with menu bar 3. and with OpenGL context area covering the window.
+I should be able to port such example to my "CastleWindow" then.
+
+  <li><p>See e.g. <a href="http://wiki.freepascal.org/OS_X_Programming_Tips">FPC "OS_X Programming Tips"</a>
+    for pointers.
+    If you're a developer familiar with macOS
+    native toolkit and
+    <a href="http://www.freepascal.org/">Free Pascal Compiler</a>, your help
+    will be much appreciated.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -443,17 +431,46 @@ and  that you package however you like.</p>
     for general instructions how to include library inside a bundle.</p>
     </li>
 
-  <li><p>Pack into a nice .dmg file.
+  <li><p>Pack the bundle into a <code>.dmg</code> file.
     See <a href="http://el-tramo.be/guides/fancy-dmg/">Building Fancy DMG Images on macOS</a>
     for nice description how to make the directories inside dmg look pretty,
     so you can visually suggest user to drag your application in the <i>Applications</i>
     folder.
+
+    <p>Alternatively, you can pack the bundle into a <i>regular zip file</i>.
+    <a href="https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed">There are convincing arguments that using ZIP is actually more user-friendly than DMG</a>
+    (users can just double-click to unpack, and they have the application;
+    they don't need to understand how "disk image" works).
+    See also <a href="https://stackoverflow.com/questions/3954506/dmg-or-zip-file-for-distribution-to-macs">here</a> for discussion.
+    And making zip is definitely simpler.
 
     <p>Alternative method of distribution macOS applications is the
     <a href="http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X">package manager (.pkg)</a>.
     For normal applications (like games) the simpler .dmg is a better choice.
     </li>
 </ol>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Behaviour of the <a href="manual_data_directory.php">data directory</a> (<code>castle-data:</code> protocol) on macOS:
+
+<ul>
+  <li><p>On macOS, if you run the application through the "application bundle", then we expect the data to be found inside <code>MyApplication.app/Contents/Resources/data</code> subdirectory. This way user can move around <code>MyApplication.app</code> to move, install and uninstall the application.
+
+  <li><p>If the <code>MyApplication.app/Contents/Resources/data</code> subdirectory is not found, we will use the <code>data</code> subdirectory that is sibling to <code>MyApplication.app</code>. This feature is intended to be used only <b>during development</b>. This way things works "out of the box" if you run through Lazarus, with checkbox <i>“Use Application Bundle for running and debugging”</i>.
+
+  <li><p><b>When distributing the application to the end users</b>, you should manually copy the “data” subdirectory inside the bunde (to <code>MyApplication.App/Contents/Resources/data</code>).
+    <ul>
+      <li><p>In case of compiling and packaging using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> we could do it automatically at some point (although it’s not implemented for now)
+      <li><p>In case of using Lazarus to create the bundle &mdash; you will have to do it manually always.
+      <li><p>I recommend writing a simple shell script to create the bundle. Copy the data like this:
+
+<pre>
+rm -Rf MyApplication.app/Contents/Resources/data
+cp -R data/ MyApplication.app/Contents/Resources
+</pre>
+     </ul>
+</ul>
 
 </div> <!-- class="fixed-width-content" -->
 
