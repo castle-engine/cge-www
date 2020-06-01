@@ -45,6 +45,14 @@ of the <i>3D first-person shooter games</i>, described below.
     <?php api_link('CastleDebugTransform', 'CastleDebugTransform.html'); ?>,
 </ul>
 
+<p>TODO: In the future these units will be deprecated,
+as <a href="planned_features.php">described in our future plans</a>.
+Reason: Most of these features can be achieved easily
+(and with more flexibility) by using <a href="manual_scene.php">TCastleScene directly</a>.
+The most prominent reason to keep using these units now is that <code>CastleCreatures</code>
+gives you <i>"ready creatures AI (artificial intelligence)"</i>.
+Otherwise, consider using <code>TCastleScene</code> directly.
+
 <?php
 manual_footer();
 ?>
