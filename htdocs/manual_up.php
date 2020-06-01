@@ -8,6 +8,7 @@ $toc = new TableOfContents(
     new TocItem('How to rotate your models from +Z to +Y', 'rotate'),
     new TocItem('How to use Blender with either up = +Y or +Z conventions', 'blender'),
     new TocItem('Detailed discussion', 'details'),
+    new TocItem('If +Y means "up", then what should the "forward" be? +Z or -Z?', 'z'),
   )
 );
 ?>
@@ -23,9 +24,9 @@ creature/player is facing.
 
 <p>By default, our engine follows the convention that "up" is in +Y axis.
 
-<p>This is consistent with X3D. And exporters from 3D authoring
-software are ready for this &mdash; e.g. Blender X3D exporter by default
-rotates models to change +Z axis (traditional "up" vector in Blender) to
+<p>This is consistent with glTF, X3D and other 3D formats. Exporters from 3D authoring
+software are ready for this &mdash; e.g. Blender glTF, X3D exporters by default
+rotate models to change +Z axis (traditional "up" vector in Blender) to
 the +Y axis. So things <i>just work</i>.
 
 <?php echo $toc->html_section(); ?>
@@ -64,12 +65,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
     <ol>
       <li><p>When exporting from Blender (levels, creatures etc.), let it
         rotate the model, i.e. change +Z to +Y.
-        This is the default behavior of the X3D exporter.
-        You can verify that it happens by checking in the exporter settings that:
-        <ul>
-          <li><i>Forward</i> = Z Forward</li>
-          <li><i>Up</i> = Y Up</li>
-        </ul>
+        This is the default behavior of the glTF and X3D exporters.
 
       <li><p>Make sure the <code>Viewpoint</code> node in X3D (default camera)
         indicates +Y as the up vector.
@@ -83,8 +79,10 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
         Paste the generated <code>Viewpoint</code> code into your X3D file
         (or into an X3D "wrapper" file, that includes another X3D using the <code>Inline</code> node).
 
-      <li><p>Leave <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> at the default value:
-        <code>otUpYDirectionMinusZ</code>.
+      <li><p>Leave <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> at the default value: <code>otUpYDirectionZ</code>
+        (best for glTF export).
+        Also <code>otUpYDirectionMinusZ</code> (best for X3D export) indicates +Y up.
+        The point is: a value like <code>otUpYDirection*</code>.
     </ol>
   </li>
 
@@ -93,7 +91,12 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
     <ol>
       <li><p>When exporting from Blender (levels, creatures etc.), always
         select to <i>not</i> rotate the model, i.e. keep Blender's original
-        coordinate system. To do this, set in the exporter settings:
+        coordinate system.
+
+        <p>If you use Blender glTF exporter, just <i>uncheck</i> the <i>"+Y Up"</i> checkbox
+        when exporting.
+
+        <p>If you use Blender X3D exporter, set in the exporter settings:
         <ul>
           <li><i>Forward</i> = Y Forward</li>
           <li><i>Up</i> = Z Up</li>
@@ -115,7 +118,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>There are two common conventions:</p>
+<p>There are two common conventions for the "up" vector:</p>
 
 <ol>
   <li><p>Most 3D modeling software, like <a href="http://www.blender.org/">Blender</a>,
@@ -124,7 +127,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
     <p>This is natural if you think about a level map spread on the XY plane.
     The Z coordinate is representing the height above the ground.
 
-  <li><p>X3D, default OpenGL camera,
+  <li><p>glTF, X3D, default OpenGL camera,
     and various game engines (Castle Game Engine, Unity3d, Unreal Engine)
     by default prefer the "up" vector to be +Y.
 
@@ -222,6 +225,36 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 <p>Usually, you want to just set
 <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?>, and then
 it will be used for all your models.
+
+<?php echo $toc->html_section(); ?>
+
+<p>I'm glad you asked. Of course, things are not easy and there are 2 competing choices
+for this (they you may actually encounter).
+
+<p>Default Blender X3D exporter uses one convention:
+<ul>
+  <li>Blender up (+Z) turns into +Y,
+  <li>Blender forward turns into <b>-Z (negative Z)</b>.
+</ul>
+
+<p>Default Blender glTF, and Wavefront OBJ and other exporters use a different convention:
+<ul>
+  <li>Blender up (+Z) turns into +Y,
+  <li>Blender forward turns into <b>+Z (positive Z)</b>.
+</ul>
+
+<p>So they both rotate to make up be "+Y", but they rotate in different ways,
+producing different results for what happens with model "front" (assuming you used
+Blender's default suggested orientation for "front").
+
+<p>To account for this, and keep <?php api_link('TCastleTransform.Direction', 'CastleTransform.TCastleTransform.html#Direction'); ?> working
+in an intuitive way, you can adjust <?php api_link('TCastleTransform.Orientation', 'CastleTransform.TCastleTransform.html#Orientation'); ?> or even
+<?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?>.
+
+<p>By default they match Blender's glTF exporter, in CGE 6.5 and newer.
+In the earlier engine versions they matched the Blender's X3D exporter.
+See our
+<a href="https://github.com/castle-engine/castle-engine/wiki/Upgrading-to-Castle-Game-Engine-7.0">Upgrading to Castle Game Engine 7.0</a> notes.
 
 <?php
 manual_footer();
