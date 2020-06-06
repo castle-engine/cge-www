@@ -39,6 +39,9 @@ light to shine (contribute to a color) on a given shape:
   <li><p>The shape must be within the light <code>radius</code>
     (in case of <code>PointLight</code>, <code>SpotLight</code>).
 
+    <p>As a CGE extension,  we treat <code>radius</code> values &lt; 0 as "infinity".
+    So just set <code>radius</code> to -1 to disable this limit.
+
   <li><p>If the light has <code>global</code> field set to <code>FALSE</code>,
     then it only affects the shapes nodes that are sibling to it or below.
     By default, <code>DirectionalLight</code> has <code>global=FALSE</code>
