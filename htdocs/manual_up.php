@@ -228,8 +228,8 @@ it will be used for all your models.
 
 <?php echo $toc->html_section(); ?>
 
-<p>I'm glad you asked. Of course, things are not easy and there are 2 competing choices
-for this (they you may actually encounter).
+<p>I'm glad you asked. Of course, things are never easy and there are 2 competing choices
+for this (that you may indeed encounter).
 
 <p>Default Blender X3D exporter uses one convention:
 <ul>
