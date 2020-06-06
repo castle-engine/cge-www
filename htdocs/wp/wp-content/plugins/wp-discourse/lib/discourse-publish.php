@@ -372,7 +372,8 @@ class DiscoursePublish {
 			}
 
 			if ( $topic_slug && $topic_id ) {
-				update_post_meta( $post_id, 'discourse_permalink', esc_url_raw( $options['url'] . '/t/' . $topic_slug . '/' . $topic_id ) );
+				$discourse_topic_url = esc_url_raw( $options['url'] . '/t/' . $topic_slug . '/' . $topic_id );
+				update_post_meta( $post_id, 'discourse_permalink', $discourse_topic_url );
 				update_post_meta( $post_id, 'discourse_topic_id', $topic_id );
 				update_post_meta( $post_id, 'wpdc_publishing_response', 'success' );
 
@@ -384,13 +385,35 @@ class DiscoursePublish {
 					}
 				}
 
+				// Update the topic's featured_link property.
+				if ( ! empty( $options['add-featured-link'] ) ) {
+					$data         = array(
+						'featured_link' => $permalink,
+					);
+					$post_options = array(
+						'timeout' => 30,
+						'method'  => 'PUT',
+						'headers' => array(
+							'Api-Key'      => sanitize_key( $options['api-key'] ),
+							'Api-Username' => sanitize_text_field( $username ),
+						),
+						'body'    => http_build_query( $data ),
+					);
+
+					$result = wp_remote_post( esc_url_raw( $discourse_topic_url ), $post_options );
+					if ( ! $this->validate( $result ) ) {
+
+						return new \WP_Error( 'discourse_publishing_response_error', 'An error was returned when attempting to update the Discourse featured link.' );
+					}
+				}
+
 				// The topic has been updated, and its associated post's metadata has been updated.
 				return null;
 			} else {
 				$this->create_bad_response_notifications( $current_post, $post_id );
 
 				return new \WP_Error( 'discourse_publishing_response_error', 'An invalid response was returned from Discourse after attempting to publish a post.' );
-			}
+			}// End if().
 		}// End if().
 
 		// Neither the 'id' or the 'post' property existed on the response body.
