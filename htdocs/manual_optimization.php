@@ -14,6 +14,7 @@ $toc = new TableOfContents(
       new TocItem('Backface culling', 'culling', 1),
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
+      new TocItem('Shading and Lighting', 'shading', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
         new TocItem('Try dynamic batching', 'dynamic_batching', 2),
       new TocItem('Share TCastleScenes instances if possible', 'scenes', 1),
@@ -377,6 +378,24 @@ but in some special cases may be avoided:
 
   <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <a href="manual_log.php">manual chapter "Logging"</a>) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Using <i>Physical-Based Rendering</i> (through X3D <code>PhysicalMaterial</code> node;
+default when loading glTF) has a cost.
+If you can, use instead
+
+<ul>
+  <li><p>Phong lighting model (through X3D <code>Material</code> node;
+    for glTF, set <a href="https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials">GltfForcePhongMaterials</a>).
+
+  <li><p>Moreover, use Gouraud shading, if you can. This is actually the default for Phong lighting,
+    unless you request bump mapping, shadow maps or other fancy stuff.
+</ul>
+
+<p>When designing lights, limit their scope or radius.
+When creating lights in new Blender, select <i>"Custom Distance"</i>
+at light. This limits the shapes where the light has to be taken into account.
 
 <?php echo $toc->html_section(); ?>
 

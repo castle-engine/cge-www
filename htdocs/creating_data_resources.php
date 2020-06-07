@@ -66,7 +66,10 @@ with links to documentation for every attribute.
   <!-- See lower on this page for explanation how to export animations
        and define <model> element. Below we only show all possible attributes,
        in practice you will not want to set them all. -->
-  <model url="main.castle-anim-frames">
+  <model url="main.castle-anim-frames"
+    [[CastleResources.T3DResource.html#Pool|pool]]="0"
+    [[CastleResources.T3DResource.html#DefaultAnimationTransition|default_animation_transition]]="0.0"
+  >
     <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         url="idle.castle-anim-frames"         animation_name="Idle" />
     <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleToWalkAnimation|idle_to_walk]] url="idle_to_walk.castle-anim-frames" animation_name="IdleToWalk" />
     <[[CastleCreatures.TWalkAttackCreatureResource.html#WalkAnimation|walk]]         url="walk.castle-anim-frames"         animation_name="Walk" />
