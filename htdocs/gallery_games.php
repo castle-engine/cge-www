@@ -37,7 +37,7 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('The Unholy Society',
-    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. <i>To be released at the beginning of 2020</i>, for Nintendo Switch and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>.',
+    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. Released on <a href="https://www.nintendo.com/games/detail/the-unholy-society-switch/">Nintendo Switch</a> and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>. Soon coming to iOS too!',
     'unholy_society_in_game.jpg',
     'https://unholy-society.com/');
   ?>
