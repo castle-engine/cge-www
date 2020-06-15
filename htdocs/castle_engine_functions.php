@@ -305,6 +305,7 @@ $castle_sitemap = array(
             )
           ),
           'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
+          'manual_gamma_correction' => array('title' => 'Gamma Correction'),
           'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
