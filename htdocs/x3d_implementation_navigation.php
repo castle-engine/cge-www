@@ -7,10 +7,10 @@
      <code>Viewpoint</code> and <code>OrthoViewpoint</code> define
      the initial camera position and rotation, and may be used to animate
      the camera. <code>LOD</code> allows to implement level-of-detail,
-     where different versions of 3D scene are displayed depending
+     where different versions of some object are displayed depending
      on the camera distance. <code>Collision</code> allows to use a simpler
      geometry for collision purposes, or even to turn the collisions off
-     (like a fake walls hiding secret rooms in games).
+     (like a fake wall hiding a secret room in games).
      <code>Billboard</code> may be used to create sprites, as it aligns
      geometry (flat or not) with respect to the camera.
      ');
@@ -39,7 +39,19 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   <li><p><?php echo x3d_node_link('Viewpoint'); ?>,<br>
     <?php echo x3d_node_link('OrthoViewpoint'); ?>.
 
-    <p>Supported.
+    <p>These nodes define the initial camera position, rotation, and field of view.
+    The <code>Viewpoint</code> makes a perspective projection (objects further away are smaller),
+    <code>OrthoViewpoint</code> makes an orthographic projection.
+
+    <p>You can even animate their transformation and properties, to animate the camera.
+
+    <p>Note: In <i>Castle Game Engine</i> you can also control the camera by Pascal code,
+    using the <code>Viewport.Camera</code> property that keeps a
+    <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>
+    instance.
+    See <a href="manual_load_3d.php#section_camera">manual about displaying scene and controlling the camera</a>.
+    Still, this X3D node is useful to set initial camera through e.g. <a href="creating_data_blender.php">Blender</a>
+    (you can export to glTF or X3D and importing them will set initial camera properly).
 
     <p><?php echo a_href_page("view3dscene", "view3dscene") ?>
     displays a nice menu allowing you to jump
@@ -47,7 +59,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     Animating viewpoint's position and orientation
     (directly or by animating it's parent transformation) also works perfectly.</p>
 
-    <p>TODO: fields not implemented yet: <code>jump</code>, <code>retainUserOffsets</code>, <code>centerOfRotation</code>.
+    <p>TODO: We support most, but not all, X3D fields.
+    Fields not implemented yet: <code>jump</code>, <code>retainUserOffsets</code>, <code>centerOfRotation</code>.
 
     <ul>
       <li><p>Support for <code>centerOfRotation</code> already exists in the engine
@@ -72,7 +85,20 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('NavigationInfo'); ?></p>
 
-    <p>Supported.
+    <p>Controls the navigation behavior (mode of movement, gravity, etc.) and the headlight.
+
+    <p>Note: In <i>Castle Game Engine</i> you can also control the navigation by Pascal code,
+    using the <code>Viewport.Navigation</code> property where you can assign an instance
+    of some <?php api_link('TCastleNavigation', 'CastleCameras.TCastleNavigation.html'); ?>
+    descendant.
+    See <a href="manual_load_3d.php#section_camera">manual about displaying scene and controlling
+    the camera and navigation</a>.
+    And you can control the headlight using the
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleRootTransform.html#UseHeadlight">Viewport.Items.UseHeadlight</a>
+    property.
+    Still, this node is useful to define defaults.
+
+    <p>Details about supported fields:
 
     <ul>
       <li><p><code>avatarSize</code> is honoured fully:
@@ -159,18 +185,38 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('LOD'); ?>
 
-    <p><i>Note:</i> We do not have any automatic LOD calculation implemented now,
-    which means that your supplied <code>range</code>, and only
-    your supplied <code>range</code>, controls which LOD is chosen.
-    This means that <code>forceTransitions</code> value is simply ignored,
+    <p>Allows to define various versions of the same object,
+    with varying level-of-detail.
+    An appropriate child is automatically displayed based on the current
+    distance to the camera.
+
+    <p><i>Note:</i> Right now, the only thing that decides
+    <i>"which level of detail should be used"</i>
+    is the distance to the camera.
+    Which means that only the supplied <code>LOD.range</code> controls which level is displayed.
+    The <code>forceTransitions</code> value is simply ignored,
     and when <code>range</code> is empty, we simply always use the first
-    (highest-detail) version. This is Ok, spec allows this.
+    (highest-detail) version.
+
+    <p>Example: The simplest example is part of our <a href="demo_models.php">demo models</a>.
+    View the X3D code here:
+    <a href="https://github.com/castle-engine/demo-models/blob/master/navigation/lod_test.x3dv">navigation/lod_test.x3dv</a>.
 
   <li><p><?php echo x3d_node_link('Billboard'); ?></p>
 
-    <p>Works fully.</p>
+    <p>The children of this node are automatically aligned with the camera.
+    Two modes are possible: where the objects are rotated only around a specified axis,
+    or where objects are rotated freely to match the camera.</p>
+
+    <p>Example: The simplest example is part of our <a href="demo_models.php">demo models</a>.
+    View the X3D code here:
+    <a href="https://github.com/castle-engine/demo-models/blob/master/navigation/billboard_simple.x3dv">navigation/billboard_simple.x3dv</a>.
 
   <li><p><?php echo x3d_node_link('Collision'); ?></p>
+
+    <p>Allows to define a simpler
+    geometry for collision purposes, or even to turn the collisions off
+    (like a fake wall hiding a secret room in games).
 
     <p>Most things work: grouping (<code>children</code> property, in particular),
     allows to control collision detection by honoring
@@ -184,11 +230,11 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('ViewpointGroup'); ?></p>
 
-    <p>You can use them to create submenus in "Viewpoints" menu in
-    <?php echo a_href_page('view3dscene','view3dscene'); ?>:
-    <code>description</code> and <code>children</code> work.
-    Also, you can use this to hide some viewpoints from the menu:
-    <code>displayed</code> field works.</p>
+    <p>You can use this to create submenus in "Viewpoints" menu in
+    <?php echo a_href_page('view3dscene','view3dscene'); ?>.
+    Fields <code>description</code> and <code>children</code> are taken into account.
+    Also, you can use this node to hide some viewpoints from the menu:
+    the <code>displayed</code> field also works.</p>
 
     <p>TODO: size/center is not honored yet. Group is displayed
     regardless of camera position. A possible workarond could be
