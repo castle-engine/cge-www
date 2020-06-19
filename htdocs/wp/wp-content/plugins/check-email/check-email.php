@@ -1,24 +1,42 @@
 <?php
 /*
-Plugin Name: Check Email
-Plugin URI: http://www.stillbreathing.co.uk/wordpress/check-email/
-Description: Check email allows you to test if your WordPress installation is sending emails correctly.
-Text Domain: check-email
-Version: 0.5.7
-Author: Chris Taylor
-Author URI: http://www.stillbreathing.co.uk
+* Plugin Name: 				Check Email
+* Description: 				Check email allows you to test if your WordPress installation is sending emails correctly.
+* Author: 					MachoThemes
+* Version: 					0.6.0
+* Author URI: 				https://www.machothemes.com/
+* License: 					GPLv3 or later
+* License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
+* Requires PHP: 	    	5.6
+* Text Domain: 				check-email
+* Domain Path: 				/languages
+*
+* Copyright 2015-2017 		Chris Taylor 		chris@stillbreathing.co.uk
+* Copyright 2017-2019 		MachoThemes 		office@machothemes.com
+*
+* Original Plugin URI: 		https://modula.greentreelabs.net/
+* Original Author URI: 		https://greentreelabs.net
+* Original Author: 			https://profiles.wordpress.org/greentreelabs/
+*
+* NOTE:
+* Chris Taylor transferred ownership rights on: 2020-06-19 07:52:03 GMT when ownership was handed over to MachoThemes
+* The MachoThemes ownership period started on: 2020-06-19 07:52:03 GMT
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License, version 3, as
+* published by the Free Software Foundation.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free software
+* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-// Plugin Register from http://wordpress.org/extend/plugins/plugin-register/
-require_once( "plugin-register.class.php" );
-$register = new Plugin_Register();
-$register->file = __FILE__;
-$register->slug = "checkemail";
-$register->name = "Check Email";
-$register->version = "0.5.7";
-$register->developer = "Chris Taylor";
-$register->homepage = "http://www.stillbreathing.co.uk";
-$register->Register();
+require_once( "class-check-email-review.php" );
 
 // add the admin menu option
 add_action( 'admin_menu', 'checkemail_add_admin' );
@@ -73,7 +91,8 @@ function checkemail_add_css() {
 // load the check email admin page
 function checkemail() {
 	global $current_user;
-
+        $from_name = '';
+        
 	$from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
 	$from_name = apply_filters( 'wp_mail_from_name', $from_name );
 
@@ -190,7 +209,8 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 // send a test email
 function checkemail_send($to, $headers = "auto") {
 	global $current_user;
-
+        $from_name = '';
+        
 	$from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
 	$from_name = apply_filters( 'wp_mail_from_name', $from_name );
 
