@@ -9,6 +9,13 @@ $toc = new TableOfContents(
     new TocItem('Tone Mapping', 'tone_mapping'),
   )
 );
+
+echo castle_thumbs(array(
+  array('filename' => 'gamma_gammatone_nogamma.png', 'titlealt' => 'Helmet: Gamma Correct / Gamma Correct + Tone Mapping / No Gamma or Tone Mapping'),
+  array('filename' => 'gamma_nogamma_helmet.png', 'titlealt' => 'Damaged Helmet: Gamma Corrected / Not Corrected'),
+  array('filename' => 'gamma_nogamma_specular.png', 'titlealt' => 'Specular Highlight: Gamma Corrected / Not Corrected'),
+  array('filename' => 'gamma_nogamma_teapot.png', 'titlealt' => 'Teapot: Gamma Corrected / Not Corrected'),
+));
 ?>
 
 <?php echo $toc->html_toc(); ?>
