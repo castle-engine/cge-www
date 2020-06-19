@@ -8,8 +8,8 @@ $toc = new TableOfContents(
       new TocItem('glTF 2.0', 'gltf', 1),
       new TocItem('Spine JSON', 'spine', 1),
       new TocItem('X3D and VRML', 'x3d', 1),
-      new TocItem('Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
     new TocItem('Other formats you can use', 'other'),
+      new TocItem('Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
       new TocItem('Animation through a series of static models', 'animation_counter', 1),
       new TocItem('Collada', 'collada', 1),
       new TocItem('OpenInventor', 'open_inventor', 1),
@@ -119,6 +119,8 @@ and many of our own extensions).
 
 <?php echo $toc->html_section(); ?>
 
+<?php echo $toc->html_section(); ?>
+
 <p><?php echo a_href_page('Castle Animation Frames
   (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
  formerly known as <code>kanim</code>.
@@ -128,8 +130,6 @@ to <a href="creating_data_blender.php">export animated models from Blender</a>.
 It supports animating of <i>everything</i> in Blender (transformations, skin,
 shape keys, materials, particles, physics...), although it is somewhat
 memory-hungry.
-
-<?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
