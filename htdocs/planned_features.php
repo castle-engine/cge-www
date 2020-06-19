@@ -30,7 +30,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <ul>
       <li><p>Add gizmos to manipulate (translate / rotate / scale) 3D and 2D objects inside a viewport / scene manager.
-      <li><p>Make the "files browser" at the bottom actually useful (display asset icons, allow to drag them onto a design etc.).
+      <li><p>Make the "files browser" at the bottom more useful (allow to drag assets onto a design).
       <li><p>Cover all use-cases mentioned in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">original post about the editor</a>:
         <ol>
           <li>I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
@@ -168,22 +168,18 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Help with this is most welcome. <i>We have a simple example code that shows how you can start a new renderer</i>: see <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/new_renderer_skeleton.lpr">new_renderer_skeleton.lpr</a>. So <a href="https://github.com/castle-engine/castle-engine/">get the engine from GitHub</a>, and start changing the <code>new_renderer_skeleton.lpr</code>. Just fill the <code>TCastleSceneVulkan.PrepareResources</code> and <code>TCastleSceneVulkan.Render</code> inside.
 
-  <li><p><b>Larger scene processing and rendering improvements:</b>
+  <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
 
-    <ol>
-      <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
+    <p>This would make the whole scene manager a single graph of X3D nodes,
+    allowing for more sharing in code.
+    The T3DTranform would be just like TTransformNode, but a little diferently
+    optimized (but it would become toggable).
 
-        <p>This would make the whole scene manager a single graph of X3D nodes,
-        allowing for more sharing in code.
-        The T3DTranform would be just like TTransformNode, but a little diferently
-        optimized (but it would become toggable).
+  <li><p><b>Distance field fonts</b>
 
-      <li><b>Distance field fonts</b>
-
-        <p>See <a href="https://github.com/libgdx/libgdx/wiki/Distance-field-fonts">about Distance field fonts</a>.
-        See code from <a href="https://github.com/neurolabusc/OpenGLCoreTutorials">Chris Rorden</a> showing
-        how to do it in Lazarus.
-    </ol>
+    <p>See <a href="https://github.com/libgdx/libgdx/wiki/Distance-field-fonts">about Distance field fonts</a>.
+    See code from <a href="https://github.com/neurolabusc/OpenGLCoreTutorials">Chris Rorden</a> showing
+    how to do it in Lazarus.
 
   <li><p><b>WebGL (HTML5) support</b>
 
@@ -196,9 +192,21 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li>
     <p><b>Particle systems</b>
-    <p>With a designer, probably.
 
-    <p>Probably following the X3D "particle system" component, so it will be saved and loaded as an X3D file.
+    <p>With a designer.
+
+    <p>Maybe following the X3D "particle system" component, so it will be saved and loaded as an X3D file.
+
+    <p>Note: My <b>highest</b> priority is to have particle system that has a great visual designer.
+    Having something conforming to X3D "particle system" component would be great,
+    but it is not highest priority.
+    Having the visual designer available in CGE editor would also be great,
+    but it is not the most critical priority.
+
+    <p>My current probable approach is to develop own particle system,
+    within CGE editor,
+    based on X3D "particle system" and extending it freely as I need.
+    But other approaches may be possible.
 
     <p>Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 
