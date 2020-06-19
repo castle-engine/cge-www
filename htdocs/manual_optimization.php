@@ -381,7 +381,7 @@ but in some special cases may be avoided:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Using <i>Physical-Based Rendering</i> (through X3D <code>PhysicalMaterial</code> node;
+<p>Using <i>Physically Based Rendering</i> (through X3D <code>PhysicalMaterial</code> node;
 default when loading glTF) has a cost.
 If you can, use instead
 

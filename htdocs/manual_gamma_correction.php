@@ -51,7 +51,7 @@ with more links, and analysis what other standards/engines do, is here.</a>
 
 <ul>
   <li><p>By default it is <code>gcPhysicalMaterial</code>
-    which means that gamma correction is performed for materials using PBR (Physical-Based Rendering) equations.
+    which means that gamma correction is performed for materials using PBR (Physically Based Rendering) equations.
     This includes standard materials defined in glTF models, and materials defined in X3D 4.0
     using explicit <code>PhysicalMaterial</code> node.
     So we assume that you prepare PBR

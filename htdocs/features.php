@@ -9,10 +9,10 @@ $toc = new TableOfContents(
   array(
     new TocItem('Summary', 'summary'),
     new TocItem('Demo reel', 'demo'),
-    new TocItem('Many 3D and 2D formats supported (X3D, glTF, Collada, Spine...)', 'data'),
+    new TocItem('Many 3D and 2D formats supported (glTF, X3D, Collada, Spine...)', 'data'),
     new TocItem('Portable (standalone, mobile, console, web browser plugin)', 'portable'),
-    new TocItem('Graphic features and effects (shadows, mirrors, bump mapping...)', 'graphic'),
-    new TocItem('Scene manager and comfortable API', 'api'),
+    new TocItem('Graphic features and effects (physically based rendering, shadows, mirrors, bump mapping...)', 'graphic'),
+    new TocItem('Viewport and comfortable API', 'api'),
     new TocItem('And much more!', 'more'),
   )
 );
@@ -34,11 +34,11 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>Use <b>any 3D or 2D software</b> to create your models in any format: X3D, glTF, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+  <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
     <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
   <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
   <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
-  <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
+  <li>Optimized rendering with a lot of graphic effects (<b>physically based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
   <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
     <!--Load and save images and X3D graph as needed.-->
     Create 3D processing, visualization tools and CAD applications.
@@ -56,11 +56,12 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>We support a wide range of formats for 3D and 2D data.
+  <li><p>We support many formats for 3D and 2D data.
 
     <ul>
-      <li><p>Our main scene format is <b><?php echo a_href_page('X3D', 'vrml_x3d'); ?></b>, which is an open standard and you can export to it from virtually any 3D modeler. X3D can express 3D data with <b>interactive features, scripting, prototypes</b> etc.
-      <li><p>While X3D is our <i>"scene graph"</i> format, the whole engine is designed as a <b>general-purpose 3D / 2D engine</b>, and many other model formats are supported as well: <a href="creating_data_model_formats.php">glTF 2.0, Spine JSON, VRML, Collada, 3DS, Wavefront OBJ, MD3, STL</a> and others.
+      <li><p>We focus on full support of <a href="creating_data_model_formats.php">glTF and X3D model formats</a>. They are both <b>open standards to define 3D models with lots of features</b>.
+      <li><p>Our scene graph is using an <b><?php echo a_href_page('extended set of X3D nodes', 'vrml_x3d'); ?></b> to define the content to be displayed. <!-- This allows to express a ton of things <b>interactive features, scripting, prototypes</b> etc.-->
+      <li><p>We are designed as a <b>general-purpose 3D / 2D engine</b>, and support lots of model formats: <a href="creating_data_model_formats.php">glTF, X3D, Spine JSON, VRML, Collada, 3DS, Wavefront OBJ, MD3, STL...</a>.
       </li>
     </ul>
 
@@ -77,23 +78,31 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li><p>You can use <b>any 3D modeler</b> to design your 3D and 2D data.
-    <a href="http://www.blender.org/">Blender</a>? 3DS Max? Anything else?
-    In part, that's because X3D (and it's predecessor, VRML) is an open and popular 3D format,
-    and decent exporters for it exist in practically every 3D authoring tool.
-    For detecting
-    <?php echo a_href_page('"placeholders" on levels', 'creating_data_levels'); ?>
-    you can configure the detection method to match your authoring tool.
+  <li><p>You can use <b>various 3D and 2D authoring software</b> to design your models.
+    <a href="creating_data_blender.php">Blender</a>, <a href="creating_data_3dsmax.php">3ds Max</a>,
+    <a href="creating_data_maya.php">Maya</a>,
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>...
+    That is thanks to our support for many model formats,
+    and focusing on open model formats.
 
-    <p>In case of Blender,
-    we have a <a href="creating_data_blender.php">description of how to create and export data</a>
-    along with some custom exporters (but to export the static 3D data from Blender,
-    you can just use the standard X3D exporter!).
+  <li><p><b>All your animation needs</b> will be satisfied.
 
-  <li><p><b>Animations</b> are supported,
+    <ul>
+      <li>Everything in X3D can be animated.
+      <li>Animations from glTF (transformations, skinning) are supported.
+      <li><a href="manual_scene.php">API to play animations is really trivial, just call <code>PlayAnimation</code>.</a>
+      <li>You can play <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">multiple animations simultaneously</a>.
+      <li>Animation blending (cross-fading) is trivially supported
+        (set <a href="https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TPlayAnimationParameters.html#TransitionDuration">TPlayAnimationParameters.TransitionDuration</a>
+        or <a href="https://castle-engine.io/wp/2020/06/19/easy-property-to-make-animation-blending/">DefaultAnimationTransition</a>).
+    </ul>
+
+    <?php /*
     <a href="vrml_engine_doc/output/xsl/html/chapter.animation.html">in two flavors</a>:
     interactive animation interpolated at runtime,
     or a "precalculated" animation (for fastest playback, but at the cost of using more memory).
+    */
+    ?>
 
     <?php
     echo castle_thumbs(array(
@@ -155,7 +164,7 @@ $toc = new TableOfContents(
     <ul>
       <li><b>Any modern desktop operating system</b> (Linux, Windows, macOS, FreeBSD, more...), with any CPU supported by FPC (like i386, x86_64, ARM, Aarch64...).
       <li><b>Mobile platforms</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
-      <li><a href="https://castle-engine.io/wp/2019/03/23/castle-game-engine-supports-nintendo-switch/"><b>Nintendo Switch</b></a>.
+      <li><a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch"><b>Nintendo Switch</b></a>.
       <li><b>Web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
     </ul>
 
@@ -168,7 +177,7 @@ $toc = new TableOfContents(
 
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_cross_platform'); ?>.
 
-  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. Creating complete, ready-to-be-released Android and iOS applications is trivial. We automatically generate an Android apk or iOS XCode project.
+  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. Creating complete, ready-to-be-released Android and iOS applications is trivial. We can automatically generate an Android APK, iOS XCode project or IPA file and more.
 
   <li><p>Trivial to use <b>integration with many services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
 
@@ -192,8 +201,8 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><b>Scene manager</b> is used for centralized 3D world handling,
-    with <b>custom viewports</b> possible.
+  <li><p><b>Viewport</b> is used for centralized world handling,
+    with <b>multiple viewports observing the same world</b> possible.
 
     <?php
     echo castle_thumbs(array(
@@ -203,7 +212,7 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>Shadows by <b>shadow maps</b>.
+  <li><p>Shadows by <b>shadow maps</b>.
     <?php echo a_href_page('Our shadow maps are very comfortable to use',
     'x3d_extensions_shadow_maps'); ?>, and shadows from multiple light
     sources are correctly rendered.
@@ -217,13 +226,13 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>Shadows by <b>shadow volumes</b> (full implementation,
+  <li><p>Shadows by <b>shadow volumes</b> (full implementation,
     with z-fail / z-pass switching, silhouette detection etc. &mdash;
     but for now limited only to a single light).
     See <?php echo a_href_page_hashlink('shadow volumes documentation', 'x3d_extensions',
     'section_ext_shadows'); ?>.
 
-  <li><b><?php echo a_href_page_hashlink('Bump mapping (normal maps), specular maps, shininess maps and more',
+  <li><p><b><?php echo a_href_page_hashlink('Bump mapping (normal maps), specular maps, shininess maps and more',
     'x3d_implementation_texturing_extensions', 'section_ext_common_surface_shader'); ?></b>
     are avaiable.
     Our <a href="creating_data_blender.php">custom Blender X3D exporter</a>
@@ -232,7 +241,7 @@ $toc = new TableOfContents(
     are implemented: from the classic bump mapping (take normal from the texture),
     up to the <i>steep parallax bump mapping with self-shadowing</i>.
 
-  <li><b>Shaders</b>:
+  <li><p><b>Shaders</b>:
     <ul>
       <li>We have classes to easily use GLSL shaders
         (see <?php api_link('CastleGLShaders', 'CastleGLShaders.html'); ?> unit).
@@ -261,10 +270,10 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li><b><?php echo a_href_page('Screen-space effects', 'x3d_extensions_screen_effects'); ?></b> in GLSL are
+  <li><p><b><?php echo a_href_page('Screen-space effects', 'x3d_extensions_screen_effects'); ?></b> in GLSL are
     very easy to define and use, in pure X3D or in Pascal code.
 
-  <li>Many texturing features:
+  <li><p>Many texturing features:
 
     <ul>
       <li><b>multi-texturing</b> (see <?php echo a_href_page('X3D texturing component docs', 'x3d_implementation_texturing'); ?>),
@@ -295,23 +304,26 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>Speeding up rendering by <b>hardware occlusion query</b>,
+  <li><p>Speeding up rendering by <b>hardware occlusion query</b>,
     a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
     more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
     See <?php api_link('UseOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseOcclusionQuery'); ?>,
     <?php api_link('UseHierarchicalOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseHierarchicalOcclusionQuery'); ?>
     properties.
 
-  <li><b>Anti-aliasing</b> (by OpenGL multi-sampling),
+  <li><p><b>Anti-aliasing</b> (by OpenGL multi-sampling),
     see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindowBase.html#AntiAliasing'); ?>
     property.
     </li>
+
+  <li><p><b><a href="manual_gamma_correction.php">Gamma Correction and Tone Mapping</a></b> are available.
+    For <i>Physically Based Rendering</i> materials, <i>gamma correction</i> is applied by default.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>We have a comfortable and extensible implementation of <b>scene manager and 3D objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games.
+  <li><p>We have a comfortable and extensible implementation of <b>viewport and objects</b>. You have a ready implementation of <b>levels, creatures (with AI), items, players</b> and other things typical to 3D games.
     <ul>
       <li>You can extend it in many ways.
       <li>You can also make your own 3D objects (if your game 3D world doesn't fit in our idea of creatures/levels etc.) by descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
@@ -350,17 +362,21 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li>Comfortable <b><?php echo a_href_page('3D sound engine', 'manual_sound'); ?></b>,
-    using <?php echo a_href_page('OpenAL', 'openal'); ?>,
+  <li>Comfortable <b><?php echo a_href_page('spatial sound engine', 'manual_sound'); ?></b>,
     with intelligent sound source management,
     supporting WAV and OggVorbis formats.
-    Includes <?php echo a_href_page('X3D integration ("Sound" component of X3D specification)', 'x3d_implementation_sound'); ?>, so content creators
-    can define sound sources themselves.</li>
 
-  <li><?php echo a_href_page('view3dscene', 'view3dscene'); ?> tool to view
+    <p>Includes <?php echo a_href_page('X3D integration ("Sound" component of X3D specification)', 'x3d_implementation_sound'); ?>, so content creators
+    can define sound sources themselves.
+
+    <p>By default it uses full-featured and open-source <?php echo a_href_page('OpenAL', 'openal'); ?>.
+    You can also use <a href="https://github.com/castle-engine/castle-engine/wiki/FMOD">FMOD backend</a>.
+  </li>
+
+  <li><p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> tool to view
     and inspect your 3D models, before loading them in your game.
 
-  <li><b>2D controls</b>
+  <li><p><b>2D controls</b>
     (buttons, panels, tooltips, on-screen menus etc.) are available.
     Customizing their look is very easy.
     Also creating your own 2D controls, using smartly stretched images and text,
@@ -369,7 +385,7 @@ $toc = new TableOfContents(
     your game theme) is important.
     See <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.</li>
 
-  <li>Although the main focus of the engine is real-time rendering,
+  <li><p>Although the main focus of the engine is real-time rendering,
     we have also implemented a <b>software ray-tracer</b>, just to show that it's
     possible! Two ray-tracing algorithms may be used:
     deterministic (classic Whitted-style ray-tracer)
@@ -381,7 +397,7 @@ $toc = new TableOfContents(
     <?php api_link('CastleRayTracer', 'CastleRayTracer.html'); ?> unit.
   </li>
 
-  <li>Playing <b>movie files</b>. This includes loading and saving
+  <li><p>Playing <b>movie files</b>. This includes loading and saving
     as image sequence or "real" movie files (<a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
     is needed to encode / decode movie files). While the implementation
     is limited to a small movies for now (as memory consumption is large),
@@ -391,17 +407,17 @@ $toc = new TableOfContents(
     <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?>
     and related classes.
 
-  <li>You can read <b>maps</b> designed using
+  <li><p>You can read <b>maps</b> designed using
     <a href="http://www.mapeditor.org/">Tiled Map Editor</a>.
     A default visualization (as a 2D control) is included in the engine,
     but you can also read the map information and display it on your own,
     in 2D or 3D. See the <code>examples/tiled/</code> in the engine code.</li>
 
-  <li>You can convert a spritesheet from Cocos2D or Starling formats into X3D.
+  <li><p>You can convert a spritesheet from Cocos2D or Starling formats into X3D.
     See the program <code>tools/sprite-sheet-to-x3d</code> distributed
     as part of the engine.</li>
 
-  <li>We have <b>many example programs</b>. Browse the engine
+  <li><p>We have <b>many example programs</b>. Browse the engine
     <code>castle_game_engine/examples/</code> subdirectory.
     For even more examples, see
     <?php echo a_href_page('some larger
@@ -417,13 +433,13 @@ $toc = new TableOfContents(
     ), 'auto', 'left');
     ?>
 
-  <li>We have ready window classes (<code>TCastleWindowBase</code>)
+  <li><p>We have ready window classes (<code>TCastleWindowBase</code>)
     and Lazarus components (<code>TCastleControlBase</code>) to make simple
     3D model browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;
     we have various <b>Lazarus components</b>.</li>
 
-  <li>Engine <b>components are independent</b> when possible.
+  <li><p>Engine <b>components are independent</b> when possible.
     For example, you can only take model loading and processing
     code, and write the rendering yourself. Or you can use our OpenGL rendering,
     but still initialize OpenGL context yourself (no requirement to do it
@@ -431,7 +447,7 @@ $toc = new TableOfContents(
     Of course, ultimately you can just use everything from our engine,
     nicely integrated &mdash; but the point is that you don't have to.</li>
 
-  <li>Engine can be used to develop <b>natively-looking tools, not just OpenGL games</b>,
+  <li><p>Engine can be used to develop <b>natively-looking tools, not just OpenGL games</b>,
     since our OpenGL controls integrate with any GUI library (Lazarus LCL, GTK,
     WinAPI, Carbon...).
     You can embed the engine in a normal GUI program.
