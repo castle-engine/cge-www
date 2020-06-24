@@ -64,6 +64,8 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <p>TODO: Main missing feature is morph targets.
 
+<a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information">Additional information about glTF support</a> is here.
+
 <?php echo $toc->html_section(); ?>
 
 <a href="http://esotericsoftware.com/">Spine</a> is a powerful program
