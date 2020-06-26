@@ -30,7 +30,7 @@ $toc = new TableOfContents(
 <!--p>The engine core is a <i>scene graph</i> using nodes defined by the X3D specification.-->
 
 <p>X3D (and it's older version, VRML) is a file format for 3D models.
-You will find that virtually any 3D modeling program can export to it,
+Various 3D modeling applications can export to it,
 for example <a href="http://www.blender.org/">Blender</a> includes
 an X3D exporter (see also <?php echo
 a_href_page('our Blender exporting notes', 'creating_data_blender'); ?>).
@@ -67,7 +67,7 @@ and open them with our
     and much more.</li>
 </ul>
 
-<p>Note that <b>our engine supports <a href="view3dscene.php">many other 3D and 2D file formats</a> too</b>,
+<p>Note that <b>our engine supports <a href="creating_data_model_formats.php">many other 3D and 2D file formats</a> too</b>,
 like glTF, Collada, Wavefront OBJ, Spine JSON...
 They are all loaded into a graph of X3D nodes.
 So X3D is our scene graph, but it's absolutely not the only file format that we support.
