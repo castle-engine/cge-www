@@ -98,8 +98,16 @@ castle_header('Download', array(
         <div class="centered-wrapper">
             <div class="centered">
                 <h1 class="main-title">Castle Game Engine</h1>
-                <p class="main-subtitle">Free open-source <!-- (<a href="#section_license">LGPL / GPL</a>) -->
-                3D and 2D game engine using <a href="modern_pascal_introduction.html">modern Object Pascal</a></p>
+                <p class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine supporting many asset formats (glTF, X3D, Spine...) and using modern Object Pascal</p>
+                <!--
+                The tagline could be linked, but some of these links could them "hijack" user's attention.
+                Links will be later.
+
+                <a href="https://github.com/castle-engine/castle-engine/blob/master/COPYING.md">Open-source</a>
+                cross-platform 3D / 2D game engine using
+                modern Object Pascal</a>
+                and open standards like glTF and X3D</a>
+                -->
             </div>
         </div>
 
@@ -130,12 +138,11 @@ castle_header('Download', array(
         <div class="centered-wrapper">
             <div class="centered">
                 <ul>
-                    <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
-                      <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
+                    <li>Use <b>any 3D or 2D software</b> to create your models in various formats: <a href="creating_data_model_formats.php">glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Spine JSON, Collada...</a>
                     <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
-                    <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
-                    <li>Optimized rendering with a lot of graphic effects (<b>shadows, mirrors, bump mapping, shader effects</b>...).
-                    <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
+                    <li><a href="https://castle-engine.io/manual_editor.php"><b>Visual editor</b></a> to design games UI and to build applications, powerful <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line <b>build tool</b></a> under the hood.
+                    <li>Optimized rendering with a lot of graphic effects (<b>physically-based rendering, shadows, mirrors, bump mapping, shader effects</b>...).
+                    <li><b>Build and edit</b> the <a href="vrml_x3d.php">scene graph (X3D)</a> <b>at runtime</b>.
                       <!--Load and save images and X3D graph as needed.-->
                       Create 3D processing, visualization tools and CAD applications.
                     <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
@@ -144,7 +151,7 @@ castle_header('Download', array(
                     <?php /* Talking with Eugene and KB, it seems important to mention
                       that it's actively developed language,
                       and that we have native speed. */ ?>
-                    <li>Code in modern Object Pascal, an efficient OOP language with <a href="https://www.freepascal.org/">cross-platform open-source compiler (FPC)</a>, compiled to a native optimized code.
+                    <li>Code in <a href="modern_pascal_introduction.html">modern Object Pascal</a>, an efficient OOP language with <a href="https://www.freepascal.org/">cross-platform open-source compiler (FPC)</a>, compiled to a native optimized code.
                 </ul>
             </div>
         </div>
