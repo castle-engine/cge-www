@@ -61,7 +61,15 @@ output events are always generated with increasing values
 
 <p><i>Details:</i>
 
-<p>When this is <code>TRUE</code>, the engine will detect the fields affected by the animation defined by this <code>TimeSensor</code> node. This "detection" looks what interpolators (<code>X3DInterpolatorNode</code> or <code>X3DSequencerNode</code>) are affected by this TimeSensor. To be precise, TimeSensor <code>fraction_changed</code> must be routed to interpolator <code>set_fraction</code>, and then the interpolator <code>value_changed</code> must be routed to the field we call "affected". The values assigned to detected fields will be recorded, for the entire lifetime of this scene.
+<p>When this is <code>TRUE</code>, the engine will detect the fields affected by the animation defined by this <code>TimeSensor</code> node. This "detection" looks what interpolators and triggers are affected by this TimeSensor. To be precise:
+
+<ul>
+  <li><p>TimeSensor <code>fraction_changed</code> may be routed to interpolator/sequencer (<code>X3DInterpolatorNode</code>, <code>X3DSequencerNode</code>) input <code>set_fraction</code>. Then the interpolator <code>value_changed</code> must be routed to the field we call "affected".
+
+  <li><p>TimeSensor <code>isActive</code> may be routed to trigger <code>ValueTrigger.trigger</code> or <code>IntegerTrigger.set_boolean</code> or <code>TimeTrigger.set_boolean</code>. Then the trigger output (<code>ValueTrigger</code> has many outputs), <code>IntegerTrigger.triggerValue</code>, <code>TimeTrigger.triggerTime</code> must be routed to the field we call "affected".
+</ul>
+
+<p>The values assigned to detected fields will be recorded, for the entire lifetime of this scene.
 
 <p>The detected "affected fields" will be used:
 
