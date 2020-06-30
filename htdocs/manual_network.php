@@ -355,6 +355,8 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <p>The future may bring to <i>Castle Game Engine</i> more networking options (at a higher-level, to replicate some game state across multiple clients).
 
+<p>Mote that you can also make <a href="https://en.wikipedia.org/wiki/Hotseat_(multiplayer_mode)">hot seat</a> and <a href="https://en.wikipedia.org/wiki/Split_screen_(video_games)">split screen</a> games, in which case multiple people just play on the same computer. We fully support multiple joysticks connected to a single desktop application, and connecting / disconnecting them at runtime, which allows to handle input from multiple people in one game.
+
 <?php
 manual_footer();
 ?>
