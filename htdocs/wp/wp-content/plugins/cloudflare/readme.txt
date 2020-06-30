@@ -1,9 +1,9 @@
 === Cloudflare ===
-Contributors: icyapril, manatarms, thillcf, deuill
+Contributors: icyapril, manatarms, thillcf, deuill, epatryk
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 3.4
 Tested up to: 5.2.2
-Stable tag: 3.4.1
+Stable tag: 3.5.0
 License: BSD-3-Clause
 
 All of Cloudflare’s performance and security benefits in a simple one-click install of recommended settings specifically developed for WordPress.
@@ -20,10 +20,13 @@ The easiest way to setup Cloudflare for your WordPress site.
 
 Available on all of Cloudflare’s paid plans, the WAF has built-in rulesets, including rules that mitigate WordPress specific threats and vulnerabilities. These security rules are always kept up-to-date, once the WAF is enabled, you can rest easy knowing your site is protected from even the latest threats.
 
-**Automatic cache purge**
+**Automatic cache purge on website updates**
 
 Occurs when you change the appearance of your website. This means that you can focus on your website, while we ensure that the latest content is always available to your visitors.
-(Note: By default, Cloudflare does not cache HTML, and a cache purge is not required on updating HTML content such as publishing a new blog entry).
+
+**Automatic individual URL cache purge on page/post/custom post type edits**
+
+Cloudflare’s plugin for WordPress automatically refreshes the Cloudflare cache of each post/page/custom post type when you update the content.
 
 = Additional features =
 
@@ -82,6 +85,21 @@ Yes, Cloudflare works with, and helps speed up your site even more, if you have 
 1. Cloudflare Plugin
 
 == Changelog ==
+
+= 3.5.0 - 2020-06-26 =
+
+*Fixed*
+
+* Disable HTTP/2 Push on wp-admin pages [#214](https://github.com/cloudflare/Cloudflare-WordPress/pull/214)
+* Fix PHP 7.4 notice [#256](https://github.com/cloudflare/Cloudflare-WordPress/pull/256)
+
+*Added*
+
+* Purge attachment URLs [#208](https://github.com/cloudflare/Cloudflare-WordPress/pull/208)
+* Purge URLs on page/post update [#206](https://github.com/cloudflare/Cloudflare-WordPress/pull/206)
+* Turn on IPv6 by default [#229](https://github.com/cloudflare/Cloudflare-WordPress/pull/229)
+* Add constants for better control HTTP/2 Server Push [#213](https://github.com/cloudflare/Cloudflare-WordPress/pull/213)
+* Allow custom actions for purge url and purge everything actions [#212](https://github.com/cloudflare/Cloudflare-WordPress/pull/212)
 
 = 3.4.1 - 2019-08-29 =
 
