@@ -13,6 +13,7 @@ $toc = new TableOfContents(
       new TocItem('(Internal) Android assets: <code>castle-android-assets</code>', 'castle_android_assets', 1),
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
+    new TocItem('Multi-player options', 'multi_player'),
   )
 );
 ?>
@@ -322,6 +323,37 @@ note that we use in our engine also
 <a href="https://en.wikipedia.org/wiki/Uniform_resource_name">URNs</a>
 (another subtype of URI). They are used by X3D external prototypes,
 see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tcp_connection">examples/tcp_connection</a> directory in CGE sources demonstrates how to create and use a "classic" client/server solution, where multiple clients talk to a server over a TCP/IP connection. The examples use <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
+
+<p>It's a good cross-platform solution when:
+
+<ul>
+  <li><p>The client/server architecture fits your design. That is: one player "hosts" a game, and everyone can reach the host over IP (which typically means that either 1. the host IP, and the relevant port, are accessible publicly on the Internet, 2. or that everyone is within the same local network).
+
+  <li><p>You want reliability (not maximum speed), since it uses TCP connection in a standard fashion.
+
+  <li><p><?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> and Indy use standard TCP connection in a standard way, which is good for simplicity and interoperability. E.g. you could develop a server in Java or C++ if needed, to communicate with Pascal clients.
+</ul>
+
+<p>There are various other networing solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
+
+<ul>
+  <li><p><a href="https://github.com/BeRo1985/rnl">RNL (Realtime Network Library)</a> by <i>Benjamin Rosseaux</i> is an open-source, reliable UDP network library, for both Delphi and FPC, cross-platform. If you want to make real-time communication (e.g. an FPS game like Quake) this may be a good start.
+
+  <li><p>Aforementioned <a href="https://www.indyproject.org/">Indy</a> is a big library providing a lot of networking options. See the <a href="http://ww2.indyproject.org/docsite/html/frames.html">online documentation</a>.
+
+  <li><p><a href="http://ararat.cz/synapse/doku.php">Synapse</a> is a cross-platform networking library. See also <a href="https://wiki.freepascal.org/Synapse">FPC wiki about Synapse</a>.
+
+  <li><p><a href="https://lnet.wordpress.com/news/">lNet</a> is a cross-platform lightweight networking library for FPC. It's much smaller (in terms of API and implementation) than Synapse and Indy, which may be an advantage, depending on what you need. See <a href="https://lnet.wordpress.com/usage/faq/">lNet FAQ</a> and <a href="https://wiki.freepascal.org/lNet">FPC wiki about lNET</a>.
+
+  <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients. Our <?php api_link('Download', 'CastleDownload.html#Download'); ?> function uses <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood as well &mdash; it's a simple and reliable HTTP(S) client.
+
+</ul>
+
+<p>The future may bring to <i>Castle Game Engine</i> more networking options (at a higher-level, to replicate some game state across multiple clients).
 
 <?php
 manual_footer();
