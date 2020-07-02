@@ -9,8 +9,10 @@ castle_header('Shadow Volumes', array(
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Features', 'features'),
-  new TocItem('Requirements: shadow casters geometry must be 2-manifold', 'requirements'),
-  new TocItem('Specify what lights cast shadows for shadow volumes (fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> for light nodes)', 'ext_shadows_light'),
+  new TocItem('Usage', 'usage'),
+    new TocItem('Make 3D models of shadow casters geometry to be 2-manifold', 'requirements', 1),
+    new TocItem('Specify what lights cast shadows for shadow volumes (fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> for light nodes)', 'ext_shadows_light', 1),
+    new TocItem('Request stencil buffer', 'stencil', 1),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
 ));
 ?>
@@ -62,6 +64,8 @@ with <i>shadow maps</i>):</p>
 
   <li><p><b>Shadow volumes do not take transparency by alpha-testing textures into account</b>. E.g. you cannot use them to make shadows from leaves on a trees (where a leaf is typically modeled as a simple quad, covered with a leaf texture).
 </ul>
+
+<?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -260,6 +264,23 @@ usable also for shadow volumes. The <code>shadowVolumes*</code> will become
 deprecated then.</i></p>
 
 */ ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>In order for shadow volumes to work, you need to set
+<?php api_link('TCastleWindowBase.StencilBits', 'CastleWindow.TCastleWindowBase.html#StencilBits'); ?>
+ or
+<?php api_link('TCastleControlBase.StencilBits', 'CastleControl.TCastleControlBase.html#StencilBits'); ?>
+ to something non-zero.
+The number of bits should be large enough to track all the possible objects that may cast a shadow at a given pixel.
+In practice, in most reasonable cases, using 8 bits (256 possible objects) is enough. Like this:
+
+<?php echo pascal_highlight(
+'Window.StencilBits := 8;'); ?>
+
+<p>You need to set this before the <code>Window.Open</code> call.
+In a <a href="manual_cross_platform.php">typical cross-platform CGE application</a>
+you would do this in your <code>gameinitialize.pas</code> <code>initialization</code> section.
 
 <?php echo $toc->html_section(); ?>
 
