@@ -5,7 +5,15 @@ creating_data_header('Exporting from 3ds Max', array(
 ));
 ?>
 
-<p>To export from <i>3ds Max</i>, it's easiest to export to the <i>VRML 97</i> format (extension <code>.wrl</code>). <i>VRML</i> is an older version of <i>X3D</i>, it's basically a subset of X3D, and we support it 100% in the engine.</p>
+<h2>New approach: glTF</h2>
+
+<p>Use the Babylon glTF exporter, see <a href="https://doc.babylonjs.com/resources/3dsmax_to_gltf">3DSMax to glTF</a> and <a href="https://doc.babylonjs.com/resources/3dsmax">Babylon 3DSMax resources</a>.
+
+<p>This should allow you to export to <a href="creating_data_model_formats.php#section_gltf">glTF 2.0</a>, a format for which we have powerful support in CGE.
+
+<h2>Old approach: VRML</h2>
+
+<p>To export from older <i>3ds Max</i>, it's easiest to export to the <i>VRML 97</i> format (extension <code>.wrl</code>). <i>VRML</i> is an older version of <i>X3D</i>, it's basically a subset of X3D, and we support it 100% in the engine.</p>
 
 <p>Choose the <i>Export</i> option from the main menu, then change the file type to <i>VRML97</i>, as seen on the screenshots on this page. A window with <i>VRML97 Exporter</i> settings will appear, at the beginning you can just accept the defaults &mdash; they are sensible.</p>
 

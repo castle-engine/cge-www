@@ -5,6 +5,14 @@ creating_data_header('Exporting from Maya', array(
 ));
 ?>
 
+<h2>New approach: glTF</h2>
+
+<p>Use the Babylon glTF exporter, see <a href="https://doc.babylonjs.com/resources/maya_to_gltf">Maya to glTF</a> and <a href="https://doc.babylonjs.com/resources/maya">Babylon Maya resources</a>.
+
+<p>This should allow you to export to <a href="creating_data_model_formats.php#section_gltf">glTF 2.0</a>, a format for which we have powerful support in CGE.
+
+<h2>Old approach: OBJ</h2>
+
 <p><i>Maya</i> doesn't support exporting to X3D now. The <a href="http://rawkee.sourceforge.net/">RawKee</a> project developed Maya plugins to add X3D export, but their plugins are only for the older Maya versions (&lt;= 2008).
 
 <p>The simplest option to export static meshes to our engine from the latest Maya version is to export as an <i>OBJ</i> format.
