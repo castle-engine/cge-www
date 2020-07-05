@@ -5,7 +5,6 @@ set -eu
 secure_dir ()
 {
   find "$1" \
-    '(' -user www-data ')' -or \
     '(' -execdir chmod u=rwX,g=rwX,o=rX '{}' ';' -and \
         -execdir chown michalis:michalis '{}' ';' \
     ')'
@@ -17,14 +16,17 @@ secure_dir /home/michalis/cge-html/
 writeable_dir ()
 {
   mkdir -p "$1"
-  # We make directory writeable by making it group-owned by www-data,
-  # and group already has write permissions (set by secure_dir).
-  # This way:
-  # - we do not open this directory for anyone on server
-  # - we do not need sudo to call this (unlike chown)
+  # We make directory writeable by making it owned by www-data
+  # and it already has write permissions (set by secure_dir).
+  #
+  # Note: we used to tweak it more, using different owner than group.
+  # Eventually, it doesn't seem that useful, Wordpress manager its files
+  # anyway (by auto-upgrades). So "tight permissions" were not strictly applied anyway.
+  #
+  # In the end, it's more important to allow easy upgrades,
+  # than to try to make Wordpress read-only by itself.
   find "$1" \
-    '(' -user www-data ')' -or \
-    '(' -execdir chgrp www-data '{}' ';' ')'
+    '(' -execdir chown www-data:www-data '{}' ';' ')'
 }
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/cache/
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/uploads/

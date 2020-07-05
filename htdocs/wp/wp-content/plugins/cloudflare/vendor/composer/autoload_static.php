@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
+class ComposerStaticInit6f7979399f910d16693a25d8ea59cb8f
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -69,11 +69,6 @@ class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
         'CF\\API\\Plugin' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/API/Plugin.php',
         'CF\\API\\PluginRoutes' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/API/PluginRoutes.php',
         'CF\\API\\Request' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/API/Request.php',
-        'CF\\API\\Test\\AbstractAPIClientTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/AbstractAPIClientTest.php',
-        'CF\\API\\Test\\AbstractPluginActionsTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/AbstractPluginActionsTest.php',
-        'CF\\API\\Test\\ClientTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/ClientTest.php',
-        'CF\\API\\Test\\DefaultHttpClientTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/DefaultHttpClientTest.php',
-        'CF\\API\\Test\\HostTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/HostTest.php',
         'CF\\DNSRecord' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/DNSRecord.php',
         'CF\\Integration\\ConfigInterface' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Integration/ConfigInterface.php',
         'CF\\Integration\\DataStoreInterface' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Integration/DataStoreInterface.php',
@@ -82,22 +77,10 @@ class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
         'CF\\Integration\\DefaultLogger' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Integration/DefaultLogger.php',
         'CF\\Integration\\IntegrationAPIInterface' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Integration/IntegrationAPIInterface.php',
         'CF\\Integration\\IntegrationInterface' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Integration/IntegrationInterface.php',
-        'CF\\Integration\\Test\\DefaultConfigTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/Integration/DefaultConfigTest.php',
-        'CF\\Integration\\Test\\DefaultLoggerTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/Integration/DefaultLoggerTest.php',
         'CF\\Router\\DefaultRestAPIRouter' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Router/DefaultRestAPIRouter.php',
         'CF\\Router\\RequestRouter' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Router/RequestRouter.php',
         'CF\\Router\\RouterInterface' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Router/RouterInterface.php',
-        'CF\\Router\\Test\\DefaultRestAPIRouterTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/Router/DefaultRestAPIRouterTest.php',
-        'CF\\Router\\Test\\RequestRouterTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/Router/RequestRouterTest.php',
         'CF\\SecurityUtil' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/SecurityUtil.php',
-        'CF\\SecurityUtilTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/SecurityUtilTest.php',
-        'CF\\Test\\API\\PluginTest' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Test/API/PluginTest.php',
-        'CF\\Test\\WordPress\\DataStoreTest' => __DIR__ . '/../..' . '/src/Test/WordPress/DataStoreTest.php',
-        'CF\\Test\\WordPress\\HooksTest' => __DIR__ . '/../..' . '/src/Test/WordPress/HooksTest.php',
-        'CF\\Test\\WordPress\\PlansTest' => __DIR__ . '/../..' . '/src/Test/WordPress/PlansTest.php',
-        'CF\\Test\\WordPress\\ProxyTest' => __DIR__ . '/../..' . '/src/Test/WordPress/ProxyTest.php',
-        'CF\\Test\\WordPress\\UtilsTest' => __DIR__ . '/../..' . '/src/Test/WordPress/UtilsTest.php',
-        'CF\\Test\\WordPress\\WordPressAPITest' => __DIR__ . '/../..' . '/src/Test/WordPress/WordPressAPITest.php',
         'CF\\Utils' => __DIR__ . '/..' . '/cloudflare/cloudflare-plugin-backend/src/Utils.php',
         'CF\\WordPress\\ClientActions' => __DIR__ . '/../..' . '/src/WordPress/ClientActions.php',
         'CF\\WordPress\\ClientRoutes' => __DIR__ . '/../..' . '/src/WordPress/ClientRoutes.php',
@@ -109,8 +92,6 @@ class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
         'CF\\WordPress\\PluginActions' => __DIR__ . '/../..' . '/src/WordPress/PluginActions.php',
         'CF\\WordPress\\PluginRoutes' => __DIR__ . '/../..' . '/src/WordPress/PluginRoutes.php',
         'CF\\WordPress\\Proxy' => __DIR__ . '/../..' . '/src/WordPress/Proxy.php',
-        'CF\\WordPress\\Test\\ClientActionsTest' => __DIR__ . '/../..' . '/src/Test/WordPress/ClientActionsTest.php',
-        'CF\\WordPress\\Test\\PluginActionsTest' => __DIR__ . '/../..' . '/src/Test/WordPress/PluginActionsTest.php',
         'CF\\WordPress\\Utils' => __DIR__ . '/../..' . '/src/WordPress/Utils.php',
         'CF\\WordPress\\WordPressAPI' => __DIR__ . '/../..' . '/src/WordPress/WordPressAPI.php',
         'CF\\WordPress\\WordPressClientAPI' => __DIR__ . '/../..' . '/src/WordPress/WordPressClientAPI.php',
@@ -125,9 +106,6 @@ class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
         'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
         'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
-        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
-        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Symfony\\Component\\Yaml\\Dumper' => __DIR__ . '/..' . '/symfony/yaml/Dumper.php',
         'Symfony\\Component\\Yaml\\Escaper' => __DIR__ . '/..' . '/symfony/yaml/Escaper.php',
         'Symfony\\Component\\Yaml\\Exception\\DumpException' => __DIR__ . '/..' . '/symfony/yaml/Exception/DumpException.php',
@@ -144,10 +122,10 @@ class ComposerStaticInit59741244b4fb16d576156183e16a8bbf
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit59741244b4fb16d576156183e16a8bbf::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit59741244b4fb16d576156183e16a8bbf::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit59741244b4fb16d576156183e16a8bbf::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit59741244b4fb16d576156183e16a8bbf::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6f7979399f910d16693a25d8ea59cb8f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6f7979399f910d16693a25d8ea59cb8f::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6f7979399f910d16693a25d8ea59cb8f::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6f7979399f910d16693a25d8ea59cb8f::$classMap;
 
         }, null, ClassLoader::class);
     }
