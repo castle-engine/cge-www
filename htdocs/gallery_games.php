@@ -10,6 +10,12 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('The Unholy Society',
+    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. Released on <a href="https://www.nintendo.com/games/detail/the-unholy-society-switch/">Nintendo Switch</a> and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>. Soon coming to iOS too!',
+    'unholy_society_in_game.jpg',
+    'https://unholy-society.com/');
+  ?>
+
   <?php gallery_link('Bumpcars-2019',
     'Race against the clock to complete the three tracks: park, city and beach. By Rafael Campos. The game is a submission for the gamejam <a href="https://itch.io/jam/50-assembly-language">&quot;I\'m using a lot of assembly language&quot;</a>, and includes a large assembler code which main objective is the subdivision of 3D triangles.',
     'bumpcars.jpg',
@@ -34,12 +40,6 @@ We love to see how you use CGE.</i>
     'Fun free game for Android. You can plan against a computer, or against a friend over the network. Shows various engine features like localization and 2D scalable UI. <a href="https://castle-engine.io/wp/2018/04/11/connect4-new-android-game-using-castle-game-engine/">By Benedikt Magnus and LanIstAn.</a>',
     'connect4.png',
     'https://play.google.com/store/apps/details?id=de.benediktmagnus.viergewinnt.app');
-  ?>
-
-  <?php gallery_link('The Unholy Society',
-    'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. Released on <a href="https://www.nintendo.com/games/detail/the-unholy-society-switch/">Nintendo Switch</a> and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>. Soon coming to iOS too!',
-    'unholy_society_in_game.jpg',
-    'https://unholy-society.com/');
   ?>
 
   <?php gallery_link('Wyrd Forest',
