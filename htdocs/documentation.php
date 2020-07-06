@@ -37,24 +37,26 @@ echo pretty_heading('Getting Started');
   <li><p>Make sure that <code>fpc</code> binary is available on the environment variable <code>$PATH</code>. If you don't know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
 -->
 
-  <li><p>Download the <a href="/">Castle Game Engine</a>, version &gt;= 6.5. Unpack the engine ZIP wherever you like.
+  <li><p>Download the <a href="/">Castle Game Engine</a> (version &gt;= 6.5, the one recommended on our <a href="index.php">main page</a>). Unpack the engine ZIP wherever you like.
 
   <li><p>Inside the unpacked <code>castle_game_engine</code>, you will find a subdirectory <code>bin</code>. Run the <code>castle-editor</code> executable inside.
 
-  <li><p>Open your project or create a new one, and <i>Compile / Run / Package</i> it using the editor <i>Run</i> menu.
+  <li><p>Configure FPC and Lazarus locations in editor <i>Preferences</i>, if needed. <!-- The editor will display a clear warning on the main form if they need configuration (which means it could not find them automatically). -->
 
-    <p>Alternatively compile / run / package from the command-line, using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line build tool</a>.
+  <li><p>Create a new project, using one of the suggested <i>New Project</i> templates. These templates have been designed to show you most important features of our engine, along with the most advised way to use them.
+
+  <li><p><i>Compile</i> and <i>Run</i> the project using the editor <i>Run</i> menu.
+
+  <li><p>That's it! The world is your oyster now :)
+
+    <p>Open and try more example projects from the engine <code>examples</code> subdirectory. Almost all engine examples have a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file and can be build using the <a href="manual_editor.php">editor</a> (or <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line build tool</a>).
 
     <p>In either case, the project configuration is defined by a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
-
-  <li><p>Try engine examples! They are in the <code>examples</code> subdirectory. Almost all engine examples have a <code>CastleEngineManifest.xml</code> and can be build using the editor (or command-line build tool).
-
-    <p>Note: Right now, only <i>some</i> engine examples have UI designed using the editor. Although we advice using the editor to design UI of all future games. Open e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a> for a demo designed using the editor.
 </ol>
 
-<p>The editor executes under the hood our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> which in turn executes under the hood FPC (and some other tools, depending on the platform).
+<!--p>The editor executes under the hood our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> which in turn executes under the hood FPC (and some other tools, depending on the platform).-->
 
-<p>The editor and build tool can be used to compile / run / package
+<p>The editor and build tool are most natural to build
 applications that do not depend on LCL (<i>Lazarus Component Library</i>).
 This means that you should initialize your game window using
 the <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class.
@@ -217,7 +219,7 @@ any Lazarus units. -->
 
 <?php echo $toc->html_section(); ?>
 
-<p>Programs developed using our engine use some extarnal libraries.
+<p>Programs developed using our engine use some external libraries.
 <!--
 The full list of libraries is at the "Requirements" section at the documentation
 of each program, and the
@@ -226,34 +228,44 @@ also lists the libraries in the introduction section.
 -->
 
 <ul>
-  <li><p><b>On Windows</b> the libraries (DLL files) are in the downloaded engine archive.
+  <li><p><b>On Windows</b> the libraries (<code>dll</code> files) are in the downloaded engine archive.
 
-    <p>If you use our <a href="manual_editor.php">editor</a> or build tool, the DLL files will be automatically copied alongside your EXE file, so you don't have to do anything.
+    <p><i>If you use our <a href="manual_editor.php">editor</a> or build tool, the <code>dll</code> files will be automatically copied alongside your <code>exe</code> file, so you don't have to do anything. Seriously, you can stop reading now :)</i>
 
-    <p>If you use some other method of compilation, you need to manually make sure that the DLL files are in the correct place.
+    <p>If you use some other method of compilation, you need to manually make sure that the <code>dll</code> files are in the correct place.
 
-    <p>The DLL files are in:
+    <p>The <code>dll</code> files are in:
+
     <ul>
       <li>(32-bit) <a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/i386-win32">castle_game_engine/tools/build-tool/data/external_libraries/i386-win32/</a> or
+
       <li>(64-bit) <a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/x86_64-win64">castle_game_engine/tools/build-tool/data/external_libraries/x86_64-win64/</a> .
     </ul>
 
-    <p>You can copy the DLL files to every directory with EXE files of your application.
+    <p>You can copy these <code>dll</code> files to every directory with <code>exe</code> files of your application.
 
-    <p>Or you can modify your $PATH environment variable to include the directory
-    where the DLL files are. If you don't know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
+    <p>Or you can modify your <code>PATH</code> environment variable to include the directory
+    where the <code>dll</code> files are. If you're not sure how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
     Remember to restart the appropriate programs, to make them use the new
-    value of $PATH.
+    value of <code>PATH</code>.
 
-    <p>Be sure to use the DLL files corresponding to your compiler. For example, if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits, and you should use DLLs for 32-bits. <i>Even if you work on a 64-bit Windows.</i>
+    <p>Be sure to use the <code>dll</code> files corresponding to your target platform. For example, if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits (by default), and you should use <code>dll</code> for 32-bits. <i>Even if you work on a 64-bit Windows.</i>
 
     <!--If in doubt, just try the other ones:)-->
 
-  <li><p><b>On Linux and FreeBSD</b> you should install the following libraries
+  <li><p><b>On Linux and FreeBSD</b> install the following libraries
     using your favorite package Manager:
-    <i>LibPng, ZLib, OpenAL, FreeType and VorbisFile</i>.
-    Remember to install <code>-dev</code> versions of these libraries too
-    (if you're under Debian or similar distribution) to be able to compile
+
+    <ul>
+      <li>LibPng
+      <li>ZLib
+      <li>OpenAL
+      <li>FreeType
+      <li>VorbisFile
+    </ul>
+
+    <p>Install the development versions of these libraries (in packages with <code>-dev</code> suffix,
+    if you're using Debian or similar distribution). This allows to build
     programs that link to these libraries.
 
   <li><p><b>On Mac OS X</b>: <?php echo a_href_page('Mac OS X requirements are listed here',
