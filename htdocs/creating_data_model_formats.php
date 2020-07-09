@@ -39,6 +39,7 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
   <li><p>glTF 2.0 <a href="https://www.khronos.org/gltf">overview</a>, <a href="https://github.com/KhronosGroup/glTF">specification and extensions</a>,
   <li><p>glTF 2.0 sample models <a href="https://github.com/KhronosGroup/glTF-Sample-Models">from Khronos</a>, <a href="https://sketchfab.com/features/gltf">Sketchfab</a> (open them easily with our <a href="view3dscene.php">view3dscene</a>),
   <li><p><a href="https://www.blender.org/">Blender</a> includes a full-featured glTF exporter. See <a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender manual about glTF exporter</a> and <a href="creating_data_blender.php">our manual about exporting to Blender</a>.
+  <li><p><a href="https://github.com/KhronosGroup/glTF-Generator-Registry/blob/master/dist/REGISTRY.md">Many authoring tools and converters to glTF are listed here</a>.
 
 <?php /* Now we support skinning, which means below problem can be workarounded using skin.
 
@@ -50,7 +51,7 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <ul>
   <li><p>Meshes (polygons, lines), transformation hierarchy.
-  <li><p>Materials (with physically-based or unlit shading), alpha mode, double-sidedness, per-vertex colors.
+  <li><p>Materials (with physically-based or unlit shading, internally implemented using <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">new X3D 4.0 material nodes explicitly designed for straightforward glTF compatibility</a>), alpha mode, double-sidedness, per-vertex colors.
   <li><p>Texturing (for base color, normal maps, emissive, material-roughness).
   <li><p>Animating transformations (position, rotation, scale) and using skin ("armature" in Blender). They can be played using <a href="manual_scene.php#section_play_animation">standard CGE <code>PlayAnimation</code> method</a> (or <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">other means, e.g. to play multiple animations from one model simultaneously</a>).
   <li><p>Cameras (perspective and orthogonal). Camera transformations can be animated too.
