@@ -428,6 +428,8 @@ without any answer so far.)
     (<i>identity matrices are assumed...</i>) should be swapped in
     the spec.
 
+    <p>Fixed and changed in X3D 4.0 :)
+
   <li><p><code>MODULATEINVCOLOR_ADDALPHA</code> refers
     to non-existing mode
     <code>MODULATECOLOR_ADDALPHA</code> (that doesn't invert the color).
