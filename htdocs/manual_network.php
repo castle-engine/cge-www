@@ -326,7 +326,7 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tcp_connection">examples/tcp_connection</a> directory in CGE sources demonstrates how to create and use a "classic" client/server solution, where multiple clients talk to a server over a TCP/IP connection. The examples use <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
+<p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection">examples/network/tcp_connection</a> directory in CGE sources demonstrates how to create and use a "classic" client/server solution, where multiple clients talk to a server over a TCP/IP connection. The examples use <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
 
 <p>It's a good cross-platform solution when:
 
