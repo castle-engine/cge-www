@@ -1582,3 +1582,5 @@ function gallery_link_noimage($title, $subtitle, $page_name)
     '</li>';
   echo $s;
 }
+
+define('META_DESCRIPTION', 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including glTF, X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (physically based rendering, shadows, mirrors, gamma correction) available. Using modern Object Pascal.');

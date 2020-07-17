@@ -87,7 +87,7 @@ function facebook_header()
     <meta property="og:type" content="game" />
     <meta property="og:image" content="https://castle-engine.io/images/castle_game_engine_icon.png" />
     <meta property="og:url" content="https://castle-engine.io/" />
-    <meta property="og:description" content="Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including glTF, X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (physically based rendering, shadows, mirrors, gamma correction) available. Using modern Object Pascal." />
+    <meta property="og:description" content="' . htmlspecialchars(META_DESCRIPTION) . '" />
   ';
 }
 
