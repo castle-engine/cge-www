@@ -27,29 +27,55 @@ not just a FileName. Although in most cases you can also pass
 a filename (absolute or relative to the current directory),
 and it will also work as expected.
 
-<p>All loading and saving routines (for 3D models, images, sounds, and all
-other resources) automatically deal with URLs. To actually load network
-URLs (like http or https) you only need to set
-<?php api_link('CastleDownload.EnableNetwork', 'CastleDownload.html#EnableNetwork'); ?>
- to <code>true</code>.
+<p>All loading and saving routines (for models, images, sounds, and all
+other resources) automatically deal with URLs.
 
 <p>To directly load or save <i>your own binary file formats</i>
 (as ObjectPascal <code>TStream</code>):
 
 <ul>
-  <li><p>To load, use a simple
+  <li><p><b>To load (easily)</b>, use a simple
     <?php api_link('Download', 'CastleDownload.html#Download'); ?> function.
-    It automatically handles all the details for you,
-    including downloading from network (if <code>EnableNetwork</code>),
-    and returns you a <code>TStream</code> that contains the resource indicated
-    by the URL.
+    It simply returns a <code>TStream</code> that contains the resource indicated by the URL.
+    It supports all the protocols mentioned below, e.g. <code>file</code>,
+    <code>castle-data</code>.
 
-    <p>An example
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/simple_command_line_utilities/castle_download.lpr">examples/simple_command_line_utilities/castle_download.lpr</a>
-    uses this to implement a simple command-line downloading tool
-    (like <code>wget</code>) using the engine.
+    <p>It can even download data using <code>http</code> or <code>https</code> protocols,
+    although you need to set <?php api_link('EnableBlockingDownloads', 'CastleDownload.html#EnableBlockingDownloads'); ?>
+    to <code>true</code> for this.
 
-  <li><p>To save, use
+  <li><p><b>To load asynchronously</b>
+    (to continue the flow of your application while the download takes place in the background),
+    use the
+    <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> class.
+    It presents a trivial API to start and watch the download progress,
+    and offers a lot of features for HTTP requests.
+    When the
+    <?php api_link('TCastleDownload.Status', 'CastleDownload.TCastleDownload.html#Status'); ?>
+    is
+    <?php api_link('dsSuccess', 'CastleDownload.html#dsSuccess'); ?>
+    you have the data
+    (as a <code>TStream</code>) inside
+    <?php api_link('TCastleDownload.Contents', 'CastleDownload.TCastleDownload.html#Contents'); ?>.
+
+    <p>It supports all our procotols.
+    It can download data using <code>http</code> or <code>https</code> protocols
+    without any issues.
+    It can be used to communicate with a REST server.
+
+    <p>Examples:
+
+    <ul>
+      <li><p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download/">examples/network/asynchronous_download/</a>
+        demonstrates multiple simultaneous downloads, along with a 3D animation,
+        running smoothly.
+
+      <li><p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/castle_download/">examples/network/castle_download/</a>
+        implements a simple command-line downloading tool
+        (like <code>wget</code> or <code>curl</code> using our engine).
+    </ul>
+
+  <li><p><b>To save</b>, use
     <?php api_link('URLSaveStream', 'CastleDownload.html#URLSaveStream'); ?>
     function. Right now, it can only save to a local file,
     so it merely translates a URL to local filename and creates a <code>TFileStream</code>
@@ -65,33 +91,52 @@ URLs (like http or https) you only need to set
 
 <?php echo $toc->html_section(); ?>
 
-<p>Our engine can automatically download data from the network.
-All you have to do is set global
-<?php api_link('EnableNetwork variable (from CastleDownload unit)', 'CastleDownload.html#EnableNetwork'); ?>
- to <code>true</code>. By default it is <code>false</code>,
-because for now the downloads are not user-friendly &mdash;
-they are blocking (we wait for them to finish, there's no way
-to cancel a download). This will be improved in the future, and eventually
-downloading from network may be enabled by default.
+<p><code>http</code> and <code>https</code> work.
+You can download data from the Internet,
+and the <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?>
+ has a support for various HTTP methods (GET, POST).
+You can use this for simple downloading, or for full-featured communication with a REST
+server.
+
+<p>Asynchronous <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?>
+ supports <code>http</code> and <code>https</code> automatically.
+It is perfect to use with unreliable / slow network.
+
+<p>Synchronous <?php api_link('Download', 'CastleDownload.html#Download'); ?>
+ supports these protocols only if you set global variable
+ <?php api_link('EnableBlockingDownloads', 'CastleDownload.html#EnableBlockingDownloads'); ?>
+ to <code>true</code>.
+We call them "blocking downloads" because the application simply waits for
+the un-interruptible download to finish.
+This is easy to use, but may cause your application to hang,
+as network may be slow / unreliable.
+We advise using <?php api_link('TCastleDownload', 'CastleDownload.html#TCastleDownload'); ?>
+ for network protocols, although it requires a bit more effort.
+
+<p>For the <code>https</code> to work:
+<ol>
+  <li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
+
+  <li><p>Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
+    of one of your units (like <code>GameInitialize</code>,
+    <a href="manual_cross_platform.php">if you follow our conventions for cross-platform games)</a>):
+
+    <pre>{$ifndef VER3_0} OpenSSLSockets, {$endif} // support HTTPS</pre>
+
+  <li><p>You need to also distribute OpenSSL library. On Linux and FreeBSD, it is almost for sure
+    installed on user's system already.
+    On Windows, use the appropriate DLL.
+
+    <p>Our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    (used also if you use <a href="manual_editor.php">our editor</a>)
+    takes care of it for you.
+    Simply add <code>&lt;dependency name="Https" /&gt;</code> in your
+    <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
+</ol>
 
 <p>Internally, we use
 <a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit</a>,
-which supports <code>http</code> and (since FPC 3.0.2) <code>https</code>.
-
-<p>In order for the <code>https</code> to work, make sure that
-OpenSSL library is available.
-On Windows, you will probably want to place the appropriate DLLs alongside
-your exe file. You can find these DLLs inside the engine
-<code>tools/build-tool/data/external_libraries/</code> subdirectory.
-These DLLs are also automatically included when packaging your application
-using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>,
-if you include <code>&lt;dependency name="Https" /&gt;</code> in your
-<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
-
-<!--
-support (using Synapse or LNet,
-also FpHttpClient may be extended in the future to enable https).
--->
+which supports <code>http</code> and <code>https</code>.
 
 <p>Note that (almost) all of the parameters and attributes
 in the engine API are URLs. So you can refer to network resources
@@ -114,12 +159,15 @@ a <code>scene</code>. Like this:
 
 <p>and the scene with all associated resources will be downloaded.
 
-<p>Inside 3D models (like X3D, VRML and others), you can use network resources,
-for example you can <code>Inline</code> them (add a 3D model from another file),
-you can make <code>Anchor</code> to them,
+<p>Inside models (like X3D, glTF and other), you can also refer to network resources,
+and it will "just work".
+For example you can use X3D <code>Inline</code> node to inline a model from given URL,
+you can use X3D <code>Anchor</code> node to switch to given model on click,
 you can refer to textures and sounds and scripts and everything else
 from the network. Relative URLs are always resolved
 with respect to the containing document.
+
+<p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.md">download_urls service</a> to support <code>http</code> and <code>https</code> protocols.
 
 <?php echo $toc->html_section(); ?>
 
@@ -172,6 +220,9 @@ for example if you use Lazarus <code>TOpenDialog.FileName</code> or
 <?php api_link('FilenameToURISafeUTF8', 'CastleLCLUtils.html#FilenameToURISafeUTF8'); ?>.
 That is because Lazarus uses UTF-8 for all strings (as opposed to FPC RTL
 that uses system encoding).
+
+<p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md">read_external_storage service</a> to be able to read storage files (e.g. from SD card)
+through the <code>file</code> protocol.
 
 <?php echo $toc->html_section(); ?>
 
