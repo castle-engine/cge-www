@@ -28,32 +28,52 @@ whatever works for you.
   <li><p>When running from <a href="manual_editor.php">CGE editor</a>, the log is displayed
     in the bottom editor panel.
 
-  <li><p><i>On Unix (Linux, macOS...), and on Windows console applications</i>,
-    logging by default goes to the <i>standard output</i>.
-    This is the standard behaviour for Unix and console apps.
+  <li><p>When running using <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">CGE
+    build tool <code>castle-engine run</code> command</a>, the log is displayed
+    as the standard output.
 
-    <p>Users can redirect it by running the application from
-    the command-line like <code>my_game &gt; log_file.log</code>.
-    The nice thing about it is that it avoids users asking questions <i>"where is the log
-    file"</i>.
+  <li><p>When running the application as a normal user:
 
-  <li><p><i>On Windows GUI applications</i>
-    we log to the file in the user config directory.
-    The file name looks like
-    <code>C:\Users\&lt;user-name&gt;\AppData\Local\&lt;application-name&gt;\&lt;application-name&gt;.log</code>.
+    <ul>
+      <li><p><i>On Unix (Linux, macOS...), and for Windows console applications</i>,
+        logging by default goes to the <i>standard output</i>.
+        This is the standard behaviour for Unix and console apps.
 
-    <p>The exact logic to determine the <i>user config directory</i> follows FPC
-    <code>GetAppConfigDir</code>, which in turn asks the Windows API function,
-    so it may be a little different from system to system.
+        <p>Users can redirect it by running the application from
+        the command-line like <code>my_game &gt; log_file.log</code>.
+        The nice thing about it is that it avoids users asking questions <i>"where is the log
+        file"</i>.
 
-    <p>You can display the <code>LogOutput</code> value to show user on screen
-    where is the log file.
+        <p>You can avoid this by setting
+        <?php api_link('LogEnableStandardOutput', 'CastleLog.html#LogEnableStandardOutput'); ?>
+        to <code>false</code>.
 
-  <li><p><i>On Android</i> the log goes to the standard device log.
-    It that can be viewed using various Android tools,
-    like <code>adb logcat</code>.
+      <li><p><i>For Windows GUI applications</i>,
+        or if you set <code>LogEnableStandardOutput := false</code>,
+        we log to the file in the user config directory.
 
-  <li><p><i>On iOS, Nintendo Switch</i> it goes to the standard log facility for these devices.
+        <ul>
+          <li><p>On Windows the file name looks like
+            <code>C:\Users\&lt;user-name&gt;\AppData\Local\&lt;application-name&gt;\&lt;application-name&gt;.log</code>.
+
+          <li><p>On Unix the file name looks like
+            <code>$HOME/.config/&lt;application-name&gt;\&lt;application-name&gt;.log</code>.
+        </ul>
+
+        <p>The exact logic to determine the <i>user config directory</i> follows FPC
+        <code>GetAppConfigDir</code>. This uses the suitable OS-specific mechanism
+        (e.g. asks the Windows API function, or follows
+        <a href="https://freedesktop.org/wiki/Software/xdg-user-dirs/">xdg-user-dirs</a> conventions).
+
+        <p>You can display the <code>LogOutput</code> value to show user on screen
+        where is the log file.
+
+      <li><p><i>On Android</i> the log goes to the standard device log.
+        It that can be viewed using various Android tools,
+        like <code>adb logcat</code>.
+
+      <li><p><i>On iOS, Nintendo Switch</i> it goes to the standard log facility for these devices.
+  </ul>
 
   <li><p>You can pass a parameter to <code>InitializeLog</code>
     to generate log to any stream.
