@@ -73,6 +73,9 @@ other resources) automatically deal with URLs.
       <li><p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/castle_download/">examples/network/castle_download/</a>
         implements a simple command-line downloading tool
         (like <code>wget</code> or <code>curl</code> using our engine).
+
+      <li><p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/">examples/network/remote_logging/</a>
+        sends asynchronous HTTP POST message.
     </ul>
 
   <li><p><b>To save</b>, use

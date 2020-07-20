@@ -183,8 +183,9 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>WebGL (HTML5) support</b>
 
-    <p>But this waits for the possibility from FPC to recompile to web (that is, JS or WebAsembly, probably through LLVM). Then our engine will jump on to the web platform. (Unlike the <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">current web plugin</a>, which is soon deprecated by all browsers, unfortunately.)
+    <p>This is already possible &mdash; since pas2js supports WebGL, and has generics and <code>Generics.Collections</code> unit, and in general should be able to consume CGE code. It remains to actually do it, i.e. give our code to pas2js and go through all necessary changes.
 
+    <p>Another future possibility is to use FPC to recompile to WebAsembly (through LLVM or direct WebAsembly backend, both are in progress in FPC).
   <li>
     <p><b>Scripting in JavaScript</b></p>
     <p>Allow to use JavaScript (ECMAScript) directly inside VRML/X3D files (in Script nodes). This will follow VRML/X3D specification. Implementation will be through <a href="http://besen.sourceforge.net/">besen</a> (preferably, if it will work well enough), SpiderMonkey, or maybe some other JS library.</p>
@@ -220,88 +221,6 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li>
     <p>Make a demo showing how to use Castle Game Engine together with <a href="https://github.com/BeRo1985/rnl">RNL - a real-time network library, in Pascal, very suitable for games, by Benjamin Rosseaux</a>.
-
-  <li>
-    <p><b>More networking support</b></p>
-    <p>Basic networking support is working already, see <a href="https://castle-engine.io/manual_network.php">the manual</a>.
-
-    <p>Missing features / ideas:
-
-    <ol>
-      <li><p>Maybe integrate with
-        <a href="http://lnet.wordpress.com/">LNet</a> or
-        <a href="http://www.ararat.cz/synapse/">Synapse</a>, see also nice
-        intro to Synapse on <a href="http://wiki.freepascal.org/Synapse">FPC wiki</a>.
-        Maybe <a href="http://www.indyproject.org/index.en.aspx">Indy</a>.
-
-        <p>Bear in mind that future engine version should work under both FPC and Delphi,
-        so choosing one library that works under both FPC and Delphi is a plus.
-
-      <li><p><b>Asynchronous downloading</b>.
-
-        <p>So that you don't need to hang waiting for download.
-
-        <p>The API design is already inside <code>castledownload.pas</code>,
-        look for the line "<i>API for asynchronous downloader is below, not implemented yet</i>".
-
-        <p>Using threading (<code>TThread</code>) to implement this is optional, as you can update the data
-        during the <code>ApplicationProperties.OnUpdate</code> in the main thread
-        (if only you use non-blocking API like LNet).
-        Note that you need to use non-blocking API anyway (as we must be able to cancel
-        the ongoing download, and you cannot instantly unconditionally terminate a running <code>TThread</code>).
-        Using threads may still be reasonable for efficiency (no need to slow down
-        the main thread), but then it should be 100% invisible to
-        the user of <code>TDownload</code> class. From the point of view
-        of engine user, the <code>TDownload</code> must be available in the main thread.
-
-        <!--p>Using separate thread(s) for download seems like a good idea,
-        the synchronization is not difficult as the thread needs only
-        to report when it finished work.
-
-        <p>The difficult part is reliably breaking the download.
-        Using something like <code>TThread.Terminate</code> will not do anything
-        good while the thread is hanging waiting for socket data
-        (<code>TThread.Terminate</code> is a graceful way to close the thread,
-        it only works as often as the thread explicitly checks
-        <code>TThread.Terminated</code>). Hacks like <code>Windows.TerminateThread</code>
-        are 1. OS-specific 2. very dirty,
-        as <code>TThread.Execute</code> has no change to release allocated memory
-        and such.
-        The bottom line: <i>merely using TThread does <b>not</b> give
-        you a reliable and clean way to break the thread execution at any time</i>.
-
-        <p>This suggests that you <i>have</i> to use non-blocking
-        API (so LNet or Sockets is the way to go,
-        FpHttpClient and Synapse are useless for this)
-        if you want to reliably break the download.
-        Using it inside a separate thread may still be a good idea,
-        to not hang the main event loop to process downloaded data.
-        So the correct answer seems <i>use LNet/Sockets (not
-        FpHttpClient/Synapse), with non-blocking API, within a TThread;
-        thanks to non-blocking API you can guarantee checking
-        <code>TThread.Terminated</code> at regular intervals</i>.
-
-        <p>I'm no expert in threads and networking, so if anyone has
-        any comments about this (including just comfirming my analysis)
-        please let me (Michalis) know :)
-        -->
-
-        <!--
-        http://wiki.freepascal.org/Example_of_multi-threaded_application:_array_of_threads
-        http://www.freepascal.org/docs-html/rtl/classes/tthread.html
-        http://stackoverflow.com/questions/4044855/how-to-kill-a-thread-in-delphi
-        http://stackoverflow.com/questions/1089482/a-proper-way-of-destroying-a-tthread-object
-        http://stackoverflow.com/questions/3788743/correct-thread-destroy
-        -->
-
-
-        <p>This will also enable <i>cancelling the ongoing download</i>.
-        Maybe add a "cancel" button to <code>CastleWindowProgress</code> to cancel
-        ongoing view3dscene downloads.
-  </ol>
-
-  <li>
-    <p><b>Easy way to use 3rd-person camera movement in your games.</b>
 
   <li>
     <p><b>Make 100% rendering features available on OpenGLES too.</b>
