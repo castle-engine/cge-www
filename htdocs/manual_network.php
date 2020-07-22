@@ -14,6 +14,8 @@ $toc = new TableOfContents(
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
     new TocItem('Multi-player options', 'multi_player'),
+      new TocItem('Using Indy', 'indy', 1),
+      new TocItem('Other options', 'other', 1),
   )
 );
 ?>
@@ -380,7 +382,9 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection">examples/network/tcp_connection</a> directory in CGE sources demonstrates how to create and use a "classic" client/server solution, where multiple clients talk to a server over a TCP/IP connection. The examples use <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
+<?php echo $toc->html_section(); ?>
+
+<p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection">examples/network/tcp_connection</a> directory in CGE sources demonstrates how to create and use a <b>classic client/server solution, where multiple clients talk to a server over a TCP/IP connection</b>.
 
 <p>It's a good cross-platform solution when:
 
@@ -392,18 +396,42 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
   <li><p><?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> and Indy use standard TCP connection in a standard way, which is good for simplicity and interoperability. E.g. you could develop a server in Java or C++ if needed, to communicate with Pascal clients.
 </ul>
 
+<p>This approach uses the <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
+
+<p>To compile it, <b>be sure to install Indy</b> using one of the options below, and then also compile in Lazarus package <code>castle_indy</code>. To install Indy:
+
+<ul>
+  <li><p>You can install Indy through the <a href="https://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. The OPM is a great way to install Lazarus packages in general, go ahead and try it :)
+
+  <li><p>You can install "indy" module using <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>. You can install your own FPC and Lazarus using fpcupdeluxe, and add an "indy" module to it.
+
+  <li><p>Alternatively, you can download Indy from <a href="http://packages.lazarus-ide.org/">packages.lazarus-ide.org (same packages that OPM uses)</a> . Search for "indy" there, download and unpack the zip, open the package <code>indylaz.lpk</code> inside Lazarus and compile it. Here's a command-line version:
+
+<pre>
+wget http://packages.lazarus-ide.org/Indy10.zip
+unzip Indy10.zip
+lazbuild Indy10/indylaz.lpk
+</pre>
+</ul>
+
+<p>In all cases, you should get an additional package <code>indylaz</code> known by Lazarus. Remember to also install <code>packages/castle_indy.lpk</code> package, and use it in your projects.
+
+<?php echo $toc->html_section(); ?>
+
 <p>There are various other networing solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
 
 <ul>
   <li><p><a href="https://github.com/BeRo1985/rnl">RNL (Realtime Network Library)</a> by <i>Benjamin Rosseaux</i> is an open-source, reliable UDP network library, for both Delphi and FPC, cross-platform. If you want to make real-time communication (e.g. an FPS game like Quake) this may be a good start.
 
-  <li><p>Aforementioned <a href="https://www.indyproject.org/">Indy</a> is a big library providing a lot of networking options. See the <a href="http://ww2.indyproject.org/docsite/html/frames.html">online documentation</a>.
+  <li><p>Aforementioned <a href="https://www.indyproject.org/">Indy</a> is a big library providing a lot of networking options. You can use it directly in many ways. See the <a href="http://ww2.indyproject.org/docsite/html/frames.html">online documentation</a>.
 
   <li><p><a href="http://ararat.cz/synapse/doku.php">Synapse</a> is a cross-platform networking library. See also <a href="https://wiki.freepascal.org/Synapse">FPC wiki about Synapse</a>.
 
   <li><p><a href="https://lnet.wordpress.com/news/">lNet</a> is a cross-platform lightweight networking library for FPC. It's much smaller (in terms of API and implementation) than Synapse and Indy, which may be an advantage, depending on what you need. See <a href="https://lnet.wordpress.com/usage/faq/">lNet FAQ</a> and <a href="https://wiki.freepascal.org/lNet">FPC wiki about lNET</a>.
 
-  <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients. Our <?php api_link('Download', 'CastleDownload.html#Download'); ?> function uses <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood as well &mdash; it's a simple and reliable HTTP(S) client.
+  <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients.
+
+  <li><p>Remember about our <?php api_link('Download', 'CastleDownload.html#Download'); ?> function and <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> class. They use <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood. You can use <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> for HTTP(S) communiction with a REST server written in any language (Pascal or not).
 
 </ul>
 
