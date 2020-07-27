@@ -119,14 +119,14 @@ class QM_Collector_Environment extends QM_Collector {
 					$info   = mysqli_get_server_info( $db->dbh );
 				} else {
 					// Please do not report this code as a PHP 7 incompatibility. Observe the surrounding logic.
-					// @codingStandardsIgnoreLine
+					// phpcs:ignore
 					if ( preg_match( '|[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}|', mysql_get_client_info(), $matches ) ) {
 						$client = $matches[0];
 					} else {
 						$client = null;
 					}
 					// Please do not report this code as a PHP 7 incompatibility. Observe the surrounding logic.
-					// @codingStandardsIgnoreLine
+					// phpcs:ignore
 					$info = mysql_get_server_info( $db->dbh );
 				}
 
@@ -260,9 +260,12 @@ class QM_Collector_Environment extends QM_Collector {
 		$php_u = null;
 
 		if ( function_exists( 'posix_getpwuid' ) ) {
-			$u     = posix_getpwuid( posix_getuid() );
-			$g     = posix_getgrgid( $u['gid'] );
-			$php_u = $u['name'] . ':' . $g['name'];
+			$u = posix_getpwuid( posix_getuid() );
+			$g = posix_getgrgid( $u['gid'] );
+
+			if ( ! empty( $u ) && ! empty( $g ) ) {
+				$php_u = $u['name'] . ':' . $g['name'];
+			}
 		}
 
 		if ( empty( $php_u ) && isset( $_ENV['APACHE_RUN_USER'] ) ) {
@@ -277,7 +280,7 @@ class QM_Collector_Environment extends QM_Collector {
 		}
 
 		if ( empty( $php_u ) && function_exists( 'exec' ) ) {
-			$php_u = exec( 'whoami' ); // @codingStandardsIgnoreLine
+			$php_u = exec( 'whoami' ); // phpcs:ignore
 		}
 
 		if ( empty( $php_u ) && function_exists( 'getenv' ) ) {

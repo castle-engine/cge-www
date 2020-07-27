@@ -2,8 +2,8 @@
 Contributors: johnbillion
 Tags: debug, debug-bar, debugging, development, developer, performance, profiler, queries, query monitor, rest-api
 Requires at least: 3.7
-Tested up to: 5.4
-Stable tag: 3.6.0
+Tested up to: 5.5
+Stable tag: 3.6.1
 License: GPLv2 or later
 Requires PHP: 5.3
 
@@ -112,6 +112,17 @@ Yes. You can enable this on the Settings panel.
 No, I do not accept donations. If you like the plugin, I'd love for you to [leave a review](https://wordpress.org/support/view/plugin-reviews/query-monitor). Tell all your friends about the plugin too!
 
 ## Changelog ##
+
+### 3.6.1 ###
+
+* Adjust the bottom margin when the QM panel is open so QM doesn't cover the bottom of the page. Works more often than not.
+* Prevent QM from triggering a fatal itself if a fatal occurs before the HTML dispatcher is loaded.
+* Add an informational message to the template output when template hooks are in use.
+* Fix errors caused by missing user or group IDs when collecting environment data.
+* Add TextMate to list of supported editors.
+* Demote some cache warnings to informational messages.
+* Support passing backtrace to `QM_Backtrace`.
+
 
 ### 3.6.0 ###
 
@@ -464,9 +475,4 @@ New features! Read about them here: https://querymonitor.com/blog/2019/02/new-fe
 - Correct the template hierarchy for templates that have a `theme-compat` version in core. Currently only affects `embed.php`.
 - Include a back-compat version of `wp_normalize_path()` for WordPress < 3.9.
 - Ensure the use of newer conditional functions such as `is_embed()` don't cause PHP warnings on older versions of WordPress.
-
-
-### 2.13.1 ###
-
-- Correct the filter names used for the template hierarchy collection. This corrects the hierarchy when `is_front_page()` is true.
 
