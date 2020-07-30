@@ -118,7 +118,7 @@ as network may be slow / unreliable.
 We advise using <?php api_link('TCastleDownload', 'CastleDownload.html#TCastleDownload'); ?>
  for network protocols, although it requires a bit more effort.
 
-<p>For the <code>https</code> to work:
+<p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
 <ol>
   <li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
 
@@ -157,9 +157,8 @@ a <code>scene</code>. Like this:
 <level
   name="pits"
   type="Level"
-  scene="https://raw.githubusercontent.com/castle-engine/castle-game/master/data/levels/fountain/fountain_final.x3dv"
+  scene="https://raw.githubusercontent.com/castle-engine/castle-engine/master/tools/castle-editor/data/project_templates/3d_fps_game/files/data/level/level-dungeon.gltf"
   title="The Pits of Azeroth"
-  placeholders="blender"
 />'); ?>
 
 <p>and the scene with all associated resources will be downloaded.
@@ -176,10 +175,29 @@ with respect to the containing document.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To load simple files from disk, just use a <code>file</code> URL.
-Of course this works regardless of the <code>EnableNetwork</code> value.
-These are just local filenames encoded as URL.
-<?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
+<p>To load normal files from disk, use a <code>file</code> URL.
+
+<p>Absolute file URLs look like this:
+<code>file:///c:/windows/clock.avi</code> (on Windows)
+or <code>file:///etc/fstab</code> (on Unix).
+You can also use normal absolute filenames with most CGE routines, like
+<code>c:\windows\clock.avi</code> (on Windows; you can use slash or backslash)
+or <code>/etc/fstab</code> (on Unix).
+
+<p>In most cases absolute filenames are not very useful
+(since they would be specific to a particular system).
+Using relative URLs makes more sense, like <code>textures/wood.png</code>.
+Relative URLs should use slashes, and work naturally when used
+in other files (relative URL is then relative to the containing file)
+or code (relative URL is then relative to <i>the current working directory</i>).
+Note that the <i>current working directory</i> depends on how the user
+runs your application.
+
+<p>To reliably load game data from code you should
+use <a href="manual_data_directory.php"><code>castle-data</code> protocol</a>,
+not <code>file</code> protocol.
+
+<p><?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
  contains routines to operate on URLs (and more general URIs),
 including converting between regular filenames and URLs with
 <code>file:</code> protocol.
@@ -191,18 +209,20 @@ including converting between regular filenames and URLs with
 <?php echo pascal_highlight(
 'URL := FilenameToURISafe(FileName);'); ?>
 
-  <li>Use this to convert something that may be a FileName or URL to an URL.
+  <li><p>Use this to convert something that may be a FileName or URL to an URL.
   This is safer than <code>FilenameToURISafe(...)</code>, in that it will
   never touch something that already is an URL.
+  <!--
   On the other hand, there are some obscure cases
   (when a relative filename starts with a component with colon inside)
   when it may think that it has URL, while in fact it has a filename that
   should be converted to <code>file:</code> URL.
+  -->
 
 <?php echo pascal_highlight(
 'URL := AbsoluteURI(FileNameOrURL);'); ?>
 
-  <li>Use this to convert URL back to a FileName.
+  <li><p>Use this to convert URL back to a FileName.
   When the URL is a <code>file:</code> protocol, it will decode back
   the simple filename. Right now, URL without protocol is also
   returned back as a simple filename. When the URL uses a different
@@ -216,22 +236,23 @@ including converting between regular filenames and URLs with
 <?php api_link('FilenameToURISafe', 'CastleURIUtils.html#FilenameToURISafe'); ?>,
 <?php api_link('AbsoluteURI', 'CastleURIUtils.html#AbsoluteURI'); ?>,
 <?php api_link('URIToFilenameSafe', 'CastleURIUtils.html#URIToFilenameSafe'); ?>.
-See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/uri_filename.txt">>doc/miscellaneous_notes/uri_filename.txt</a> for more internal comments.
+<!--
+See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/uri_filename.txt">doc/miscellaneous_notes/uri_filename.txt</a> for more internal comments.
+-->
 
 <p>If you read/write filenames from/to <a href="http://www.lazarus.freepascal.org/">Lazarus</a> classes,
 for example if you use Lazarus <code>TOpenDialog.FileName</code> or
-<code>TSaveDialog.FileName</code>, use the UTF-8 variants instead:
+<code>TSaveDialog.FileName</code>, you can use the UTF-8 variants instead:
 <?php api_link('URIToFilenameSafeUTF8', 'CastleLCLUtils.html#URIToFilenameSafeUTF8'); ?> and
 <?php api_link('FilenameToURISafeUTF8', 'CastleLCLUtils.html#FilenameToURISafeUTF8'); ?>.
-That is because Lazarus uses UTF-8 for all strings (as opposed to FPC RTL
-that uses system encoding).
+But it doesn't matter in practice.
+Both <i>Castle Game Engine</i> and <i>Lazarus</i> configure FPC RTL to use UTF-8 for all strings
+(by default FPC RTL uses system-dependent encoding).
 
 <p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md">read_external_storage service</a> to be able to read storage files (e.g. from SD card)
 through the <code>file</code> protocol.
 
 <?php echo $toc->html_section(); ?>
-
-<p>(Since <i>Castle Game Engine &gt;= 6.5</i>).
 
 <p>This protocol should be used to load
 <a href="manual_data_directory.php">data files</a> of your project.
@@ -343,10 +364,14 @@ we advise to use our dialog components:
 <?php api_link('TCastleOpen3DDialog', 'CastleDialogs.TCastleOpen3DDialog.html'); ?>,
 <?php api_link('TCastleOpenImageDialog', 'CastleDialogs.TCastleOpenImageDialog.html'); ?>,
 <?php api_link('TCastleSaveImageDialog', 'CastleDialogs.TCastleSaveImageDialog.html'); ?>.
+They expose <code>URL</code> property which works naturally with CGE.
+
+<!--
 You can also continue using standard Lazarus dialog components.
 Our routines (almost) always handle a filename instead of an URL,
 or you can explicitly convert between filenames and URLs using functions
 mentioned earlier.
+-->
 
 <?php echo $toc->html_section(); ?>
 
