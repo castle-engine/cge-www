@@ -3,7 +3,7 @@
 * Plugin Name: 				Check Email
 * Description: 				Check email allows you to test if your WordPress installation is sending emails correctly.
 * Author: 					MachoThemes
-* Version: 					0.6.0
+* Version: 					0.6.1
 * Author URI: 				https://www.machothemes.com/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -11,12 +11,8 @@
 * Text Domain: 				check-email
 * Domain Path: 				/languages
 *
-* Copyright 2015-2017 		Chris Taylor 		chris@stillbreathing.co.uk
-* Copyright 2017-2019 		MachoThemes 		office@machothemes.com
-*
-* Original Plugin URI: 		https://modula.greentreelabs.net/
-* Original Author URI: 		https://greentreelabs.net
-* Original Author: 			https://profiles.wordpress.org/greentreelabs/
+* Copyright 2015-2020 		Chris Taylor 		chris@stillbreathing.co.uk
+* Copyright 2020 		    MachoThemes 		office@machothemes.com
 *
 * NOTE:
 * Chris Taylor transferred ownership rights on: 2020-06-19 07:52:03 GMT when ownership was handed over to MachoThemes
@@ -73,16 +69,35 @@ function checkemail_add_css() {
 	if ( isset( $_GET["page"] ) && $_GET["page"] == "checkemail" ) {
 		echo '
 		<style type="text/css">
+		#checkemail {
+		background-color: #FFF;
+		border: 1px solid #DDD;
+		max-width: 50%;
+		padding: 30px;
+		float: left;
+		}
+		#CKE_banner {
+		float: right;
+		max-width: 30%;
+		padding: 25px;
+		background: #f5fbff;
+		border: 1px solid #CCC;
+		min-height: 150px;
+		margin-right: 5%;
+		text-align: center;
+		vertical-align: middle;
+		}
 		#checkemail label {
-			width: 16em;
-			float: left;
+			display: inline-block;
+			width: 150px;
 		}
 		#checkemail .text {
 			width: 30em;
 		}
-		#checkemail p, #checkemail pre {
-			clear: left;
-		}
+
+		#checkemail ul { padding-left: 30px; list-style: square;}
+		#autoheaders { background-color: #FAFAFA; border: 1px solid #CCC; padding: 10px 15px; }
+		
 		</style>
 		';
 	}
@@ -95,6 +110,13 @@ function checkemail() {
         
 	$from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
 	$from_name = apply_filters( 'wp_mail_from_name', $from_name );
+
+	echo '<div id="CKE_banner">
+	<h2>👉 '. __('Suggest a new feature!', 'check-email') . '👈 </h2>
+	<p>'. __('Help us build the next set of features for Check Email. Tell us what you think and we will make it happen!', 'check-email') . '</p>
+	<a target="_blank" rel="noreferrer noopener" href="https://bit.ly/33QzqBU" class="button button-primary button-hero"> ' . __('Click here', 'check-email') . '</a>
+	</div>
+	'; //end CKE_Banner code
 
 	echo '
 	<div id="checkemail" class="wrap">
@@ -113,14 +135,18 @@ function checkemail() {
 		
 	echo '
 	<h2>' . __( "Check Email" ) . '</h2>
+	<hr />
 	
-	<h3>' . __( "Current mail settings", "check-email" ) . '</h3>
-	<p>' . __( "SendMail path (UNIX):", "check-email" ) . ' ' . ini_get("sendmail_path") . '</p>
-	<p>' . __( "SMTP server (Windows):", "check-email" ) . ' ' . ini_get("SMTP") . '</p>
-	<p>' . __( "SMTP port (Windows):", "check-email" ) . ' ' . ini_get("smtp_port") . '</p>
-	<p>' . __( "Add X header:", "check-email" ) . ' ' . ini_get("mail.add_x_header") . '</p>
-	
+	<h3>' . __( "Current mail settings:", "check-email" ) . '</h3>
+	<ul>
+	<li>' . __( "SendMail path (UNIX):", "check-email" ) . '<strong> ' . ini_get("sendmail_path") . '</strong></li>
+	<li>' . __( "SMTP server (Windows):", "check-email" ) . '<strong> ' . ini_get("SMTP") . '</strong></li>
+	<li>' . __( "SMTP port (Windows):", "check-email" ) . '<strong> ' . ini_get("smtp_port") . '</strong></li>
+	<li>' . __( "Add X header:", "check-email" ) . '<strong> ' . ini_get("mail.add_x_header") . '</strong></li>
+	</ul>
+	<br />
 	<h3>' . __( "Send a test email", "check-email" ) . '</h3>
+	<hr />
 	<form action="tools.php?page=checkemail" method="post">
 	<p><label for="checkemail_to">' . __( "Send test email to:", "check-email" ) . '</label>
 	<input type="text" name="checkemail_to" id="checkemail_to" class="text"';
@@ -128,6 +154,7 @@ function checkemail() {
 			echo ' value="' . esc_attr( $_POST["checkemail_to"] ) . '"';
 		}
 		echo ' /></p>
+		<br />
 	<p><label for="checkemail_autoheaders">' . __( "Use standard headers", "check-email" ) . '</label>
 	<input type="radio" id="checkemail_autoheaders" name="checkemail_headers" value="auto"';
 	if ( !isset($_POST["checkemail_headers"]) || $_POST["checkemail_headers"] == "auto" ){
@@ -152,7 +179,9 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 		echo ' class="checkemail-hide"';
 	}
 	echo '>
-		<p>' . __( "Set your custom headers below", "check-email" ) . '</p>
+	<br />
+		<h3>' . __( "Set your custom headers below: ", "check-email" ) . '</h3>
+		<hr />
 		<p><label for="checkemail_mime">' . __( "MIME Version", "check-email" ) . '</label>
 		<input type="text" name="checkemail_mime" id="checkemail_mime" value="';
 		if ( isset( $_POST["checkemail_mime"] ) ) {
@@ -195,7 +224,8 @@ Content-Type: text/plain; charset="' . get_option( 'blog_charset' ) . '"</pre>
 		}
 		echo ' /> \r\n</p>
 	</div>
-	<p><label for="checkemail_go" class="checkemail-hide">' . __( "Send", "check-email" ) . '</label>
+	<p>
+	<label for="checkemail_go" class="checkemail-hide">' . __( "Send", "check-email" ) . '</label>
 	<input type="submit" name="checkemail_go" id="checkemail_go" class="button-primary" value="' . __( "Send test email", "check-email" ) . '" /></p>
 	';
 	wp_nonce_field( 'checkemail' );

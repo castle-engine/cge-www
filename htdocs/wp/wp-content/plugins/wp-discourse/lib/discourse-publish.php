@@ -212,16 +212,19 @@ class DiscoursePublish {
 		}
 
 		// Trim to keep the Discourse markdown parser from treating this as code.
-		$baked    = trim( Templates::publish_format_html( $post_id ) );
-		$baked    = str_replace( '{excerpt}', $excerpt, $baked );
-		$baked    = str_replace( '{blogurl}', $permalink, $baked );
-		$author   = get_the_author_meta( 'display_name', $author_id );
-		$baked    = str_replace( '{author}', $author, $baked );
-		$thumb    = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'thumbnail' );
-		$baked    = str_replace( '{thumbnail}', '![image](' . $thumb['0'] . ')', $baked );
+		$baked  = trim( Templates::publish_format_html( $post_id ) );
+		$baked  = str_replace( '{excerpt}', $excerpt, $baked );
+		$baked  = str_replace( '{blogurl}', $permalink, $baked );
+		$author = get_the_author_meta( 'display_name', $author_id );
+		$baked  = str_replace( '{author}', $author, $baked );
+		$thumb  = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'thumbnail' );
+		if ( ! empty( $thumb ) ) {
+			$baked = str_replace( '{thumbnail}', '![image](' . $thumb['0'] . ')', $baked );
+		}
 		$featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
-		$baked    = str_replace( '{featuredimage}', '![image](' . $featured['0'] . ')', $baked );
-
+		if ( ! empty( $featured ) ) {
+			$baked = str_replace( '{featuredimage}', '![image](' . $featured['0'] . ')', $baked );
+		}
 		$username = apply_filters( 'wpdc_discourse_username', get_the_author_meta( 'discourse_username', $current_post->post_author ), $author_id );
 		if ( ! $username || strlen( $username ) < 2 ) {
 			$username = $options['publish-username'];
@@ -233,12 +236,16 @@ class DiscoursePublish {
 		$default_category = isset( $options['publish-category'] ) ? $options['publish-category'] : '';
 		$category         = ! empty( $publish_post_category ) ? $publish_post_category : $default_category;
 		$category         = apply_filters( 'wpdc_publish_post_category', $category, $post_id );
-		$tags             = get_post_meta( $post_id, 'wpdc_topic_tags', true );
-		// For the Block Editor, tags are being set through the API. For this case, it's easier to handle the data as a string.
-		if ( ! is_array( $tags ) ) {
-			$tags = explode( ',', $tags );
+		if ( ! empty( $this->options['allow-tags'] ) ) {
+			$tags = get_post_meta( $post_id, 'wpdc_topic_tags', true );
+			// For the Block Editor, tags are being set through the API. For this case, it's easier to handle the data as a string.
+			if ( ! is_array( $tags ) ) {
+				$tags = explode( ',', $tags );
+			}
+			$tags_param = $this->tags_param( $tags );
+		} else {
+			$tags_param = '';
 		}
-		$tags_param = $this->tags_param( $tags );
 
 		// The post hasn't been published to Discourse yet.
 		if ( ! $discourse_id > 0 ) {
@@ -340,6 +347,7 @@ class DiscoursePublish {
 			add_post_meta( $post_id, 'discourse_post_id', $discourse_id, true );
 			add_post_meta( $post_id, 'discourse_topic_id', $topic_id, true );
 			add_post_meta( $post_id, 'discourse_permalink', esc_url_raw( $options['url'] . '/t/' . $topic_slug . '/' . $topic_id ), true );
+			update_post_meta( $post_id, 'publish_post_category', $category );
 
 			// Used for resetting the error notification, if one was being displayed.
 			update_post_meta( $post_id, 'wpdc_publishing_response', 'success' );
@@ -376,6 +384,8 @@ class DiscoursePublish {
 				update_post_meta( $post_id, 'discourse_permalink', $discourse_topic_url );
 				update_post_meta( $post_id, 'discourse_topic_id', $topic_id );
 				update_post_meta( $post_id, 'wpdc_publishing_response', 'success' );
+				// Allows the publish_post_category to be set by clicking the "Update Discourse Topic" button.
+				update_post_meta( $post_id, 'publish_post_category', $category );
 
 				if ( $use_multisite_configuration ) {
 					// Used when use_multisite_configuration is enabled, if an existing post is not yet associated with a topic_id/blog_id.
@@ -433,7 +443,11 @@ class DiscoursePublish {
 		$tags_string = '';
 		if ( ! empty( $tags ) ) {
 			foreach ( $tags as $tag ) {
-				$tag          = sanitize_text_field( $tag );
+				$tag = sanitize_text_field( $tag );
+				if ( empty( $tag ) ) {
+
+					break;
+				}
 				$tags_string .= '&tags' . rawurlencode( '[]' ) . "={$tag}";
 			}
 		}

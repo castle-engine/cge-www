@@ -135,21 +135,32 @@ trait PluginUtilities {
 
 			$remote = json_decode( wp_remote_retrieve_body( $remote ), true );
 			if ( array_key_exists( 'categories', $remote ) ) {
-				$categories = $remote['categories'];
-				$discourse_categories = [];
+				$categories           = $remote['categories'];
+				$discourse_categories = array();
 				foreach ( $categories as $category ) {
 					if ( ( empty( $options['display-subcategories'] ) ) && array_key_exists( 'parent_category_id', $category ) ) {
 
 						continue;
 					}
-					$current_category = [];
-					$current_category['id'] = intval( $category['id'] );
-					$current_category['name'] = sanitize_text_field( $category['name'] );
+					$current_category                     = array();
+					$current_category['id']               = intval( $category['id'] );
+					$current_category['name']             = sanitize_text_field( $category['name'] );
+					$current_category['name']             = sanitize_text_field( $category['name'] );
+					$current_category['color']            = sanitize_key( $category['color'] );
+					$current_category['text_color']       = sanitize_key( $category['text_color'] );
+					$current_category['slug']             = sanitize_text_field( $category['slug'] );
+					$current_category['topic_count']      = intval( $category['topic_count'] );
+					$current_category['post_count']       = intval( $category['post_count'] );
+					$current_category['description_text'] = sanitize_text_field( $category['description_text'] );
+					$current_category['read_restricted']  = intval( $category['read_restricted'] );
 
 					$discourse_categories[] = $current_category;
 				}
 
-				set_transient( 'wpdc_discourse_categories', $discourse_categories, 1 * MINUTE_IN_SECONDS );
+				// Note that setting the cache to 0 will disable transient expiration.
+				$category_cache_period = apply_filters( 'wpdc_category_cache_minutes', 10 );
+
+				set_transient( 'wpdc_discourse_categories', $discourse_categories, intval( $category_cache_period ) * MINUTE_IN_SECONDS );
 
 				return $discourse_categories;
 			} else {
@@ -159,6 +170,29 @@ trait PluginUtilities {
 		}// End if().
 
 		return $categories;
+	}
+
+	/**
+	 * Returns a category from the wpdc_discourse_categories array if it is available.
+	 *
+	 * @param int $category_id The id of the post's Discourse category.
+	 *
+	 * @return mixed|\WP_Error|null
+	 */
+	protected function get_discourse_category_by_id( $category_id ) {
+		$categories = $this->get_discourse_categories();
+		if ( ! is_wp_error( $categories ) ) {
+			foreach ( $categories as $category ) {
+				if ( intval( $category_id ) === $category['id'] ) {
+
+					return $category;
+				}
+			}
+
+			return null;
+		}
+
+		return new \WP_Error( 'wpdc_categories_error', 'The Discourse category list could not be returned. Check your Connection settings.' );
 	}
 
 	/**

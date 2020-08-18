@@ -2,9 +2,9 @@
 Contributors: scossar, cdck, retlehs, samsaffron, techapj
 Tags: discourse, forum, comments, sso
 Requires at least: 4.7
-Tested up to: 5.4.3
+Tested up to: 5.5
 Requires PHP: 5.4.0
-Stable tag: 2.0.6
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,7 @@ will fail.
 
 ### Contact
 
-- The plugin is being developed by [scossar](https://github.com/scossar) on behalf of the Discourse team.
+- The plugin is being developed by [Simon Cossar](https://meta.discourse.org/u/Simon_Cossar/summary) on behalf of the Discourse team.
 
 - Bug reports and other developer inquiries should be directed at our GitHub Issues:
 [https://github.com/discourse/wp-discourse/issues](https://github.com/discourse/wp-discourse/issues)
@@ -122,6 +122,26 @@ To create a coherent top menu, see our tutorial on how to make a [Custom nav hea
 8. Configuring the plugin: the SSO Client settings tab.
 
 == Changelog ==
+
+#### 2.1.1 08/14/2020
+
+- Fix Remove WordPress Comments Template option not being respected
+
+#### 2.1.0 08/10/2020
+
+- Fix issue with caused by updated Discourse tagging restrictions
+
+#### 2.0.9 08/10/2020
+
+- Fix issue that was causing Unlink Topic UI to not get updated when the Unlink Topic button was clicked on WordPress 5.5
+
+#### 2.0.8 08/09/2020
+
+- Fix issue that was preventing the WordPress comment template from being loaded for posts not published to Discourse
+
+#### 2.0.7 08/07/2020
+
+- Add option to only display comments for posts published to public Discourse categories
 
 #### 2.0.6 07/11/2020
 

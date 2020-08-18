@@ -91,7 +91,7 @@ class DiscourseSidebar {
 		wp_register_script(
 			'discourse-sidebar-js',
 			plugins_url( $block_path, __FILE__ ),
-			[ 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ],
+			array( 'wp-i18n', 'wp-blocks', 'wp-edit-post', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-api' ),
 			filemtime( plugin_dir_path( __FILE__ ) . $block_path ),
 			true
 		);
@@ -451,6 +451,9 @@ class DiscourseSidebar {
 		if ( ! empty( $this->options['auto-publish'] ) ) {
 			update_post_meta( $post_id, 'wpdc_auto_publish_overridden', 1 );
 		}
+
+		// We need to return something here so that the UI gets updated.
+		return 1;
 	}
 
 	/**
@@ -555,7 +558,7 @@ class DiscourseSidebar {
 		$topic = $this->get_discourse_topic( $topic_url );
 
 		// Check for the topic->post_stream here just to make sure it's a valid topic.
-		if ( is_wp_error( $topic ) || empty( $topic->post_stream ) ) {
+		if ( is_wp_error( $topic ) || empty( $topic->post_stream ) || 'regular' !== $topic->archetype ) {
 			update_post_meta( $post_id, 'wpdc_linking_response', 'error' );
 
 			return new \WP_Error( 'wpdc_response_error', 'Unable to link to Discourse topic.' );
