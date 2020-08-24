@@ -813,7 +813,7 @@ function echo_header_bonus ()
   title="Castle Game Engine - News Feed"
   href="<?php echo page_url('news_feed'); ?>">
 
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=4'); ?>">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=5'); ?>">
 
 <?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite(CASTLE_ENGINE_CUSTOM_CSS); ?>">
