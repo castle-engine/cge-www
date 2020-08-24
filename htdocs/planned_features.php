@@ -183,7 +183,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>WebGL (HTML5) support</b>
 
-    <p>This is already possible &mdash; since pas2js supports WebGL, and has generics and <code>Generics.Collections</code> unit, and in general should be able to consume CGE code. It remains to actually do it, i.e. give our code to pas2js and go through all necessary changes.
+    <p>This is already possible &mdash; since pas2js supports WebGL, and has generics and <code>Generics.Collections</code> unit, and in general should be able to consume CGE code. It remains to actually do it, i.e. give our code to pas2js and go through all necessary changes. <a href="https://castle-engine.io/wp/2020/07/20/pas2js-with-generics-rocks-and-makes-castle-game-engine-for-webgl-possible/">See this news post.</a>
 
     <p>Another future possibility is to use FPC to recompile to WebAsembly (through LLVM or direct WebAsembly backend, both are in progress in FPC).
   <li>
