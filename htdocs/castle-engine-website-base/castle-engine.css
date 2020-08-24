@@ -239,6 +239,11 @@ a.download_code {
     text-decoration: underline;
 }
 
+/* make documentation.php lists look good */
+ol, ul {
+  margin-bottom: 10px !important;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {

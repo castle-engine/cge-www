@@ -230,7 +230,7 @@ also lists the libraries in the introduction section.
 <ul>
   <li><p><b>On Windows</b> the libraries (<code>dll</code> files) are in the downloaded engine archive.
 
-    <p><i>If you use our <a href="manual_editor.php">editor</a> or build tool, the <code>dll</code> files will be automatically copied alongside your <code>exe</code> file, so you don't have to do anything. Seriously, you can stop reading now :)</i>
+    <p><i>If you use our <a href="manual_editor.php">editor</a> or <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line build tool</a>, the <code>dll</code> files will be automatically copied alongside your <code>exe</code> file, so you don't have to do anything. Seriously, you can stop reading now :)</i>
 
     <p>If you use some other method of compilation, you need to manually make sure that the <code>dll</code> files are in the correct place.
 
@@ -253,20 +253,30 @@ also lists the libraries in the introduction section.
 
     <!--If in doubt, just try the other ones:)-->
 
-  <li><p><b>On Linux and FreeBSD</b> install the following libraries
-    using your favorite package Manager:
+  <li><p><b>On Linux and FreeBSD</b>, we use the following libraries:
 
-    <ul>
-      <li>LibPng
-      <li>ZLib
-      <li>OpenAL
-      <li>FreeType
-      <li>VorbisFile
-    </ul>
+    <ol>
+      <li>OpenGL (<i>essential for the engine to work</i>; used to render)
+      <li>LibPng (to open png files more efficiently)
+      <li>ZLib (to unpack gzip files, also used by LibPng)
+      <li>OpenAL (to play sound)
+      <li>FreeType (to load font files)
+      <li>VorbisFile (to load OggVorbis files)
+    </ol>
 
-    <p>Install the development versions of these libraries (in packages with <code>-dev</code> suffix,
-    if you're using Debian or similar distribution). This allows to build
-    programs that link to these libraries.
+    <p>The first 3 (OpenGL, LibPng, Zlib) are definitely present on all
+    reasonable desktop installations.
+    The others are typicallly installed too, but it will not hurt to document somewhere for users
+    <i>"Please make sure you have these libraries installed: ..."</i>.
+
+    <p>On your (developer) system, you will need the development versions of
+    some of these libraries. This allows to build programs that link to these libraries.
+    On Debian systems, this command should install everything you need:
+
+    <pre>sudo apt install libgtk2.0-dev libgl1-mesa-dev</pre>
+
+    <p>Note that we link to many libraries dynamically using <i>"dlopen"</i> Unix mechanism.
+    So it is not necessary to install e.g. <code>libpng-dev</code> or <code>libfreetype6-dev</code>.
 
   <li><p><b>On Mac OS X</b>: <?php echo a_href_page('Mac OS X requirements are listed here',
     'macosx_requirements'); ?>.
