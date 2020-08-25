@@ -240,7 +240,10 @@ a.download_code {
 }
 
 /* make documentation.php lists look good */
-ol, ul {
+.content-near-sidebar ol,
+.content-near-sidebar ul,
+article.post .entry-content ol,
+article.post .entry-content ul {
   margin-bottom: 10px !important;
 }
 
