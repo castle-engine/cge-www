@@ -365,6 +365,8 @@ body.admin-color-light #wp-admin-bar-query-monitor:not(.qm-all-clear):not(:hover
 
 #query-monitor-main #qm-title .dashicons {
   transition: none !important;
+  height: 20px !important;
+  width: 20px !important;
 }
 
 #query-monitor-main #qm-title .qm-button-container-close {
@@ -372,6 +374,7 @@ body.admin-color-light #wp-admin-bar-query-monitor:not(.qm-all-clear):not(:hover
 }
 
 #query-monitor-main #qm-title .qm-button-container-close .dashicons {
+  font-size: 20px !important;
   margin: 3px 0 3px !important;
 }
 

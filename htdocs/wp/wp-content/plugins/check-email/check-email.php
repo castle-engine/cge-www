@@ -3,7 +3,7 @@
 * Plugin Name: 				Check Email
 * Description: 				Check email allows you to test if your WordPress installation is sending emails correctly.
 * Author: 					MachoThemes
-* Version: 					0.6.1
+* Version: 					0.6.2
 * Author URI: 				https://www.machothemes.com/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html

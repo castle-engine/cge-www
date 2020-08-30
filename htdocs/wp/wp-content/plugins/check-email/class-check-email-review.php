@@ -118,6 +118,10 @@ class Check_Email_Review {
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ){
 
+				$( '#check-email-epsilon-review-notice button' ).click( function(){
+					$( '#epsilon-no-rate' ).trigger( 'click' );
+				});
+				
 				$( '.epsilon-review-button' ).click( function( evt ){
 					var href = $(this).attr('href'),
 						id = $(this).attr('id');
