@@ -109,34 +109,25 @@ inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
 some special functions and uniform variables.
 
 <?php echo glsl_highlight(
-'// Size of the rendering area where this screen effect is applied, in pixels.
+'/* Size of the rendering area where this screen effect is applied, in pixels.
+   This corresponds to TCastleScreenEffect.RenderRect.Width / Height in Pascal. */
 uniform int screen_width;
 uniform int screen_height;
 
-// Position of the current pixel,
-// in range [0..screen_width - 1, 0..screen_height - 1].
-// This pixel\'s color will be set by our <code>gl_FragColor</code> value at exit.
-ivec2 screen_position();
-int screen_x(); // Same as screen_position().x
-int screen_y(); // Same as screen_position().y
+// Float-based API -----------------------------------------------------------
 
-// Previous color at this pixel.
-vec4 screen_get_color(ivec2 position);
+// Positions below are expressed as vec2 (pair of float).
+// The positions are in range [0..screen_width, 0..screen_height].
 
-// Depth buffer value at this pixel.
-// Only available needsDepth = TRUE at ScreenEffect node.
-// The version "_fast" is faster, but less precise,
-// in case full-screen multi-sampling is used.
-float screen_get_depth(ivec2 position);
-float screen_get_depth_fast(ivec2 position);
-
-// Float-based versions of the above functions.
-// They take/return float,vec2 instead of int,ivec2.
-// The screen positions are in range [0..screen_width,0..screen_height].
 vec2 screenf_position();
-float screenf_x();
-float screenf_y();
+float screenf_x(); // Same as screenf_position().x
+float screenf_y(); // Same as screenf_position().y
 vec4 screenf_get_color(vec2 position);
+
+/* Depth buffer value at the indicated position.
+   Only available when needsDepth = TRUE at ScreenEffect node.
+   The version "_fast" is faster, but less precise,
+   in case full-screen multi-sampling is used. */
 float screenf_get_depth(vec2 position);
 float screenf_get_depth_fast(vec2 position);
 
@@ -148,7 +139,26 @@ vec4 screenf_get_original_color();
 /* Get original depth at this screen position.
    Equivalent to screenf_get_depth(screenf_position()),
    but a bit faster and more precise, as it avoids doing division and then multiplication. */
-vec4 screenf_get_original_depth();'); ?>
+vec4 screenf_get_original_depth();
+
+// Integer-based API ---------------------------------------------------------
+
+// Positions are expressed as ivec2 (pair of int).
+// The positions are in range [0..screen_width - 1, 0..screen_height - 1].
+
+ivec2 screen_position();
+int screen_x(); // Same as screen_position().x
+int screen_y(); // Same as screen_position().y
+
+// Previous color at this pixel.
+vec4 screen_get_color(ivec2 position);
+
+/* Depth buffer value at the indicated position.
+   Only available when needsDepth = TRUE at ScreenEffect node.
+   The version "_fast" is faster, but less precise,
+   in case full-screen multi-sampling is used. */
+float screen_get_depth(ivec2 position);
+float screen_get_depth_fast(ivec2 position);'); ?>
 
 <p>Note: <i>do not</i> redeclare these uniform variables or functions
 in your own GLSL shader code. Instead, just use them.
@@ -170,7 +180,10 @@ to make these variables and functions available without the need to declare them
       url "data:text/plain,
       void main (void)
       {
-        gl_FragColor = screen_get_color(screen_position());
+        gl_FragColor = screenf_get_original_color();
+
+        // Equivalent:
+        // gl_FragColor = screenf_get_color(screenf_position());
       }
       "
     }
@@ -185,16 +198,18 @@ make colors two times smaller (darker) by just dividing by 2.0:</p>
 <?php echo glsl_highlight(
 'void main (void)
 {
-  gl_FragColor = screen_get_color(screen_position()) / 2.0;
+  gl_FragColor = screenf_get_original_color() / 2.0;
 }'); ?>
 
-<p>Or turn the rendered image upside-down by changing the 2nd texture coordinate:</p>
+<p>You can also query screen color from a different position than "current". Thus you can warp / reflect etc. the image.
+For example, make the rendered image upside-down:</p>
 
 <?php echo glsl_highlight(
 'void main (void)
 {
-  gl_FragColor = screen_get_color(
-    ivec2(screen_x(), screen_height - screen_y()));
+  vec2 pos = screenf_position();
+  pos.y = float(screen_height) - pos.y;
+  gl_FragColor = screenf_get_color(pos);
 }'); ?>
 
 <?php echo $toc->html_section(); ?>
@@ -211,7 +226,7 @@ shader:</p>
     this way your screen effects will work for
     all multi-sampling (anti-aliasing) configurations.</p></li>
 
-  <li><p>The texture coordinates for <code>screen_get_xxx</code>
+  <li><p>The texture coordinates for <code>screen_xxx</code>
     are integers, in range <code>[0..screen_width - 1, 0..screen_height - 1]</code>.
     This is usually comfortable when writing screen effects shaders,
     for example you know that <code>(screen_x() - 1)</code> is
@@ -224,9 +239,8 @@ shader:</p>
     color at this point, or query some other colors around this point
     (e.g. to blur the image).
 
-    <p>Since <i>Castle Game Engine</i> 6.5 you can also use float-based
-    screen coordinates with functions
-    like <code>screenf_get_xxx</code> (note the extra "f" letter in the name).
+  <li><p>The texture coordinates for <code>screenf_xxx</code> are floats
+    (note the extra "f" letter in the name).
     The float coordinates are in the range
     <code>[0..screen_width, 0..screen_height]</code>.
     <!--
@@ -237,7 +251,12 @@ shader:</p>
     with our engine. <code>screen_position()</code>
     will cooperate nicely with custom viewports.
     -->
-    </p></li>
+    </p>
+
+    <p>We advise using float-based coordinates usually. They typically result in a simpler code
+    (many typical tasks in shader language are just more natural with floats),
+    and may also enable additional features (e.g. if we enable, as an option, different filtering of the screen image one day).
+  </li>
 
 <!--
   <li><p>We also pass uniform <code>"screen_width"</code>, <code>"screen_height"</code>
@@ -248,7 +267,7 @@ shader:</p>
 
   <li><p>If you set <code>"needsDepth"</code> to <code>TRUE</code> then we also pass
     depth buffer contents to the shader.
-    You can query it using <code>screen_get_depth</code> function..</p>
+    You can query it using <code>screenf_get_depth</code>, <code>screen_get_depth</code> functions.</p>
 
     <p>You can query depth information at any pixel for various effects.
     Remember that you are not limited to querying the depth of the current
