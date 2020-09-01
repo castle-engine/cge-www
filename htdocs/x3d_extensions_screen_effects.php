@@ -130,7 +130,6 @@ vec4 screen_get_color(ivec2 position);
 float screen_get_depth(ivec2 position);
 float screen_get_depth_fast(ivec2 position);
 
-// In Castle Game Engine >= 6.5:
 // Float-based versions of the above functions.
 // They take/return float,vec2 instead of int,ivec2.
 // The screen positions are in range [0..screen_width,0..screen_height].
@@ -139,7 +138,17 @@ float screenf_x();
 float screenf_y();
 vec4 screenf_get_color(vec2 position);
 float screenf_get_depth(vec2 position);
-float screenf_get_depth_fast(vec2 position);'); ?>
+float screenf_get_depth_fast(vec2 position);
+
+/* Get original color at this screen position.
+   Equivalent to screenf_get_color(screenf_position()),
+   but a bit faster and more precise, as it avoids doing division and then multiplication. */
+vec4 screenf_get_original_color();
+
+/* Get original depth at this screen position.
+   Equivalent to screenf_get_depth(screenf_position()),
+   but a bit faster and more precise, as it avoids doing division and then multiplication. */
+vec4 screenf_get_original_depth();'); ?>
 
 <p>Note: <i>do not</i> redeclare these uniform variables or functions
 in your own GLSL shader code. Instead, just use them.
