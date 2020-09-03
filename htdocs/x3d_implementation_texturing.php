@@ -171,17 +171,18 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('TextureProperties'); ?>
 
-    <p>Adjust various texture calculation properties.
+    <p>Adjust various texture calculation properties. Right now it allows to modify the filtering options,
+    by fields <code>minificationFilter</code>, <code>magnificationFilter</code> and
+    <code>anisotropicDegree</code>.
 
-    <p><code>minificationFilter</code>, <code>magnificationFilter</code>,
-    <code>anisotropicDegree</code> fields are supported.
+    <p>See here for example Pascal code that creates <code>TextureProperties</code> nodes
+    and requests anisotropic filtering for specific textures:
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/anisotropic_filtering/anisotropic_filtering.lpr">examples/3d_rendering_processing/anisotropic_filtering/anisotropic_filtering.lpr</a>.
 
-    <p><i>TODO</i>: the rest
-    of the <code>TextureProperties</code> fields are not supported yet.
-    In particular, if you're looking for a way to use GPU compressed textures,
-    <a href="#section_dds">simply place the GPU compressed texture data in DDS files</a>
-    (it's a better idea than using the
-    <code>TextureProperties.textureCompression</code> field).
+    <p><i>Note</i>: We don't support the <code>TextureProperties.textureCompression</code> field yet.
+    If you're looking for a way to use GPU compressed textures,
+    <a href="#section_dds">simply place the GPU compressed texture data in DDS or KTX files</a>.
+    This is, and always will be, a more efficient solution anyway.
 
     <p>Note <b>a common mistake when using the <code>TextureProperties</code> node:
     texture filtering gets ugly</b>. This is a common mistake,
