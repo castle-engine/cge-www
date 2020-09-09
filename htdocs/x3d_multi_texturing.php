@@ -25,16 +25,9 @@ numerous problems related to it's multi-texturing nodes
 <code>MultiTextureCoordinate</code>,
 <code>MultiTextureTransform</code>).
 We have documented these problems below, along with the tests on various
-X3D browsers, and with the proposed solutions,
-to encourage X3D authors to fix the specification.
+X3D browsers, and with the proposed solutions.
 
-<p>This page also documents a problem related to single-texturing behavior,
-that is connected with some multi-texturing troubles:
-<a href="#section_default_texture_mode">"What happens when you have a color
-texture, and a color material?"</a> This is the <i>one and only place</i>
-where our engine deliberately does something different from X3D specification,
-because we feel that the X3D specification behavior is really not useful.
-<i>In our engine, the texture color is by default multiplied by the material color</i>.
+<p><a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">See my wiki page "Deprecate some unused and badly specified MultiTexturing specification pieces"</a> about future multi-texturing changes I would like to see in X3D.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
@@ -184,11 +177,10 @@ tests_row('material_color_mixed_with_texture_color',
    See <a href="#section_default_texture_mode">lower on this page for details
    why this is tested</a>.
 
-   <p><small>The reference of this test (and view3dscene result) follows our
-   proposition to <i>always</i> modulate by default. This contradicts
-   the specification, although we argue (see link above) that in this case
-   the specification 1. proposes a behavior that is not very useful and
-   2. is already implemented inconsistently.</small></p>
+   <p>The reference of this test (and view3dscene result) follows X3D 4.0
+   and our idea to <i>always</i> modulate by default.
+   This was different in X3D 3 specification.
+   See <a href="https://github.com/michaliskambi/x3d-tests/wiki/Make-RGB-and-grayscale-textures-treatment-consistent">Make RGB and grayscale textures treatment consistent</a>.</p>
    ',
   array(
     'freewrl' => '<p>Version: 1.22.13: Seems to never mix texture color with Material.diffuseColor (for both RGB (correct) and grayscale (incorrect) textures), and always mixes texture color with Color node (for both RGB (incorrect) and grayscale (correct) textures).<br>
@@ -422,13 +414,11 @@ without any answer so far.)
     This seems more suitable for usual cases, and follows the majority
     of implementations.
 
-  <li><p>The paragraphs for <code>MultiTextureTransform</code>
+  <li><p>(FIXED IN X3D 4.0) The paragraphs for <code>MultiTextureTransform</code>
     (<i>texture coordinates for channel 0 are replicated...</i>)
     and <code>MultiTextureCoordinate</code>
     (<i>identity matrices are assumed...</i>) should be swapped in
     the spec.
-
-    <p>Fixed and changed in X3D 4.0 :)
 
   <li><p><code>MODULATEINVCOLOR_ADDALPHA</code> refers
     to non-existing mode
@@ -553,7 +543,7 @@ without any answer so far.)
 */
 ?>
 
-  <li><p>The default mode is always modulate, for both RGB and grayscale textures.
+  <li><p>(FIXED IN X3D 4.0) The default mode is always modulate, for both RGB and grayscale textures.
     This is inconsistent with single-texturing (using normal
     <code>ImageTexture</code> instead of <code>MultiImageTexture</code>),
     when the default mode is to <i>modulate</i> for grayscale textures,
@@ -574,7 +564,7 @@ without any answer so far.)
     <i>"we always modulate by default"</i> would greatly simplify the situation.
   </li>
 
-  <li><p>It would be useful to clarify what happens with grayscale texture
+  <li><p>(FIXED IN X3D 4.0) It would be useful to clarify what happens with grayscale texture
     images and images without alpha channel. Following the GPU behaviors
     (and common sense), we propose to add such statement to X3D specification:
 
@@ -791,6 +781,16 @@ MultiTexture {
 
 <?php echo $toc->html_section(); ?>
 
+<p>This section documents a problem related to single-texturing behavior,
+that is connected with some multi-texturing troubles.
+Note that (at the time of X3D 3) this was the <i>one and only place</i>
+where our engine deliberately did something different than X3D specification,
+because we felt that the X3D specification behavior is really not useful.
+<b>In our engine, the texture color is by default multiplied by the material color.
+This issue is
+<a href="https://github.com/michaliskambi/x3d-tests/wiki/Make-RGB-and-grayscale-textures-treatment-consistent">fixed in X3D 4.0</a>,
+where I introduced prose/equations that match my recommended behaviour (and match what CGE is doing).</b>
+
 <p>VRML 2 / X3D specifications
 say that RGB textures should by default <code>REPLACE</code> the material color (as opposed
 to <code>MODULATE</code>).
@@ -813,10 +813,12 @@ result in the Color* node being ignored."</i>.
   <li>It is inconsistent with <code>MultiTexture</code> behavior,
     when the modulate mode is the default &mdash; regardless if we have
     RGB or grayscale texture.
-  <li>In case of our current implementation,
-    the texture color is mixed with the whole resulting lighting calculation.
+  <li>In case of our Gouraud shading,
+    the texture color has to be mixed with the whole lighting calculation.
     Using the "replace" mode by default would mean that shapes are unlit
     when you use RGB textures.
+    Thus the problem would be very noticeable in Gouraud shading (if only X3D browsers would actually honor
+    this part of X3D specification to the letter).
 </ol>
 
 <p>A separate problem is that browsers are already
