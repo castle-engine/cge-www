@@ -236,6 +236,7 @@ $castle_sitemap = array(
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
+      'unity' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
       'documentation_more' => array('title' => 'More...'),
     ),
     'sidebar' => true,
