@@ -14,5 +14,6 @@ htdocs/compositing_shaders_doc/html/
 htdocs/compositing_shaders_doc/*.pdf
 htdocs/compositing_shaders_doc/*.fo
 htdocs/wp/wp-content/uploads/
+htdocs/wp/jetpack-temp/
 htdocs/castle_engine_config.php
 blaise-pascal-article/
