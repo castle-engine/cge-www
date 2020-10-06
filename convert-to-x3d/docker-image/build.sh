@@ -59,7 +59,7 @@ do_build ()
 # Run tests
 do_test ()
 {
-  local DOCKER_TEST="docker run --name test-convert-to-x3d --rm -it convert-to-x3d"
+  local DOCKER_TEST="docker run --name test-convert-to-x3d --rm convert-to-x3d"
   $DOCKER_TEST tovrmlx3d --version
   $DOCKER_TEST view3dscene --version
 }
