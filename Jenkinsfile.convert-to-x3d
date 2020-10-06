@@ -4,6 +4,11 @@
 */
 
 pipeline {
+  triggers {
+    /* Update automatically when cge-www repo changes, or castle-engine changes. */
+    pollSCM('H/4 * * * *')
+    upstream(upstreamProjects: 'castle_game_engine_update_docker_image', threshold: hudson.model.Result.SUCCESS)
+  }
   agent any
   stages {
     stage('Rebuild Docker Image') {
