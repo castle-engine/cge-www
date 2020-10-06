@@ -9,7 +9,8 @@ pipeline {
     pollSCM('H/4 * * * *')
     upstream(upstreamProjects: 'castle_game_engine_update_docker_image', threshold: hudson.model.Result.SUCCESS)
   }
-  agent any
+  agent { label 'web-michalis-ii-uni-wroc-pl' }
+  // agent any // we need agent where fpc and docker are installed inside
   stages {
     stage('Rebuild Docker Image') {
       steps {
