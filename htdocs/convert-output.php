@@ -220,7 +220,7 @@ function conversion_volume_get(&$volume_path)
 
    $conversion_log (multiline string) is set.
 
-   Returns boolean, whether converting was successfull.
+   Returns boolean, whether converting was successful.
 */
 function convert_to_x3d($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)

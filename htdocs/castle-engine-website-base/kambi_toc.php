@@ -126,8 +126,7 @@ class TableOfContents {
         $this->push_last_number($current_number, $num + 1);
       } else
       {
-        exit('Incorrect toc items nesting: ' .
-          'nesting of successfull items must differ at most by 1');
+        exit('Incorrect toc items nesting: nesting of consecutive items must differ at most by 1');
       }
 
       /* This doesn't work on SourceForge (does nothing), possibly related
