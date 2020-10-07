@@ -303,9 +303,11 @@ you can embed the actual texture contents inside 3D model file.
 This is sometimes a very nice feature (it makes the file easier to distribute).
 
 <p>See <a href="https://en.wikipedia.org/wiki/Data_URI_scheme">data: URI specification</a>.
-Our engine includes a tool <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/tools/to_data_uri.lpr">examples/tools/to_data_uri.lpr</a>
-that can turn any file
+Our engine includes a tool <code>to-data-uri</code> that can turn any file
 into a data URI, and you can use such data URI everywhere where we expect URL.
+<code>to-data-uri</code> is <a href="https://castle-engine.io/">provided
+in the regular engine download in the <code>bin/</code> subdirectory</a>, also
+<a href="https://github.com/castle-engine/castle-engine/blob/master/tools/to-data-uri/to-data-uri.lpr">source code is here</a>.
 
 <p>Wherever our engine, or X3D, says that it expects a URL &mdash; you can use data URI
 to provide the contents "right there", without using any additional file.
