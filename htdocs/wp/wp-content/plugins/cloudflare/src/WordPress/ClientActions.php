@@ -40,6 +40,15 @@ class ClientActions
         // Call GET /zones
         $response = $this->api->callAPI($this->request);
 
+        // We tried to fetch a zone but it's possible we're using an API token,
+        // So try again with a zone name filterd API call
+        if (!$this->api->responseOk($response)) {
+            $zoneRequest = new Request('GET', 'zones/', array('name' => $this->wordpressAPI->getOriginalDomain()), array());
+            $zoneResponse = $this->api->callAPI($zoneRequest);
+
+            return $zoneResponse;
+        }
+
         // Cache the domain for subdomains
         $this->cacheDomainName($response);
 
@@ -81,10 +90,10 @@ class ClientActions
 
     public function cacheDomainName($response)
     {
-        // Check if domain name needs to cached
+        // Check if domain name needs to be cached
         $wpDomain = $this->wordpressAPI->getOriginalDomain();
         $cachedDomainList = $this->wordpressAPI->getDomainList();
-        $cachedDomain = $cachedDomainList[0];
+        $cachedDomain = isset($cachedDomainList[0]) ? $cachedDomainList[0] : '';
 
         if (Utils::getRegistrableDomain($wpDomain) !== $cachedDomain) {
             // If it's not a subdomain cache the current domain

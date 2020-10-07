@@ -1,1 +1,0 @@
-/home/michalis/cge-www/htdocs/wp/wp-content/plugins/query-monitor/wp-content/db.php
