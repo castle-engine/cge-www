@@ -15,7 +15,7 @@ $toc = new TableOfContents(
     new TocItem('For everyone', 'everyone'),
     new TocItem('For developers', 'developers'),
     new TocItem('For 3D artists', 'creators'),
-    new TocItem('For Blender users', 'blender'),
+    // new TocItem('For Blender users', 'blender'),
     new TocItem('For Linux package maintainers', 'distros'),
   ));
 ?>
@@ -28,8 +28,8 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>.
-    Or <a href="donate_other.php">donate in other ways</a>.
+  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>
+  <li><a href="donate_other.php">Donate through other ways</a>
   <!--li>First of all, don't hesitate to post questions and suggestions
     about anything to our <a href="<?php echo FORUM_URL; ?>">forum</a>.-->
   <!--?php echo a_href_page('Donate', 'donate'); ?-->
@@ -60,8 +60,7 @@ $toc = new TableOfContents(
 <!--p>For Object Pascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:-->
 
 <ul>
-  <li><p>Use our <?php echo a_href_page('engine', 'index'); ?>
-    to make your next fantastic game, of course! :)
+  <li><p><b>Use our engine to make your next fantastic game!</b>
 
   <li><p>Contribute code! Remove a bug, add a feature! (Not the other way around:)
 
@@ -72,16 +71,15 @@ $toc = new TableOfContents(
     then create a pull request by clicking on GitHub),
     and for me to apply.
 
+    <!--
     <p>If you prefer to do things the traditional way,
     you can also just create a patch file (versus recent GIT or SVN state)
     and <a href="https://github.com/castle-engine/castle-engine/issues">create
     a new issue with the patch file attached</a>.
+    -->
 
     <p>If you're looking for a feature to implement,
     <a href="planned_features.php">take a look at our planned features</a>.
-
-    <p>If you know your way around OpenGL,
-    see <a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">the list of renderer TODOs</a> &mdash; there's a number of easy and rewarding tasks waiting!
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.
@@ -94,7 +92,7 @@ $toc = new TableOfContents(
 
 <ul>
   <li><p>Show it on our <a href="talk.php">Discord or forum</a>
-    by sharing a screenshot.
+    by sharing a screenshot or movie recording.
     Michalis loves to see how his work is useful for others :)
 
   <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
@@ -106,19 +104,16 @@ $toc = new TableOfContents(
 
     <p><a href="<?php echo WIKI_URL; ?>">You can
     add your contributions directly to our wiki</a>.
-    (Once we'll get some user content in our wiki,
-    we'll think how to make it more visible.)<!-- &mdash; copy it to the current "static"
-    documentation pages, or maybe make link to wiki more prominent,
-    maybe even move whole current static documentation to wiki.)-->
 
   <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
     You can test them and catch eventual bugs
     before the release. This way you can also preview new features before they
     are released.
 
-    <p>Bugs can be reported on the <a href="<?php echo FORUM_URL; ?>">forum</a>
-    or in the <a href="https://github.com/castle-engine/view3dscene/issues">issues tracker</a>.
+    <p>Bugs are best reported in the <a href="https://github.com/castle-engine/view3dscene/issues">issues tracker</a>.
 </ul>
+
+<?php /*
 
 <?php echo $toc->html_section(); ?>
 
@@ -154,38 +149,35 @@ Only stuff really specific to our engine (cooperation between Blender
 and some specific features of our engine) should be left inside our
 custom exporter.--></p>
 
+*/ ?>
+
 <?php echo $toc->html_section(); ?>
 
-<p>Please package <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
- for your favourite Linux distribution :)
-It's a great and stable VRML/X3D browser (and viewer for other 3D models,
-like Collada and 3DS).
-Some facts in favor of view3dscene, important for package maintainers:
+<p>Package <?php echo a_href_page('Castle Game Engine', 'index'); ?>
+ and <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ for your favourite Linux distribution.
 
 <ul>
-  <li>Stable program, with <?php echo a_href_page('long development
-    history and regular releases', 'news'); ?>.
-  <li>Desktop integration files (SVG icon, .desktop file, MIME xml)
-    are already included in our archive.
-  <li>The <?php echo a_href_page_hashlink('dependencies of view3dscene',
-    'view3dscene', 'section_depends'); ?> are documented.
-    There's nothing weird there (<i>ffmpeg</i> and <i>ImageMagick</i> are only
-    light suggestions; <i>OpenAL</i> may also be a suggestion instead of
-    a recommendation; the rest is standard for any GTK program using OpenGL).
-  <li>Build-dependencies of view3dscene include
+  <li><p>view3dscene is a versatile and stable viewer for <a href="creating_data_model_formats.php">many model formats</a>.
+
+  <li><p>Castle Game Engine <a href="features.php">features are listed here</a>.
+
+  <li><p>Desktop integration files (SVG icons, .desktop files etc.)
+    are already included in our archives.
+
+  <li><p>The <?php echo a_href_page_hashlink('dependencies of view3dscene',
+    'view3dscene', 'section_depends'); ?> and <a href="documentation.php#section_libraries">dependencies of CGE</a>
+    are documented.
+    There's nothing weird there.
+
+  <li><p>Build-dependencies include
     <a href="http://www.freepascal.org/">Free Pascal Compiler</a>,
     but this should not be a problem &mdash; all major distros already
     have fpc packaged.
-  <li><?php echo a_href_page('Sources of view3dscene are here',
-    'all_programs_sources'); ?>, get both view3dscene and engine sources,
-    and follow instructions on that page to compile.
-  <li>The whole thing is GPL &gt;= 2 (most of the engine may also be used
-    under more permissive "LGPL with static-linking exception" &gt;= 2,
-    but this probably doesn't matter for you).
-</ul>
 
-<p>Michalis uses <a href="http://www.debian.org/">Debian</a>,
-and sometimes <a href="http://www.ubuntu.com/">Ubuntu</a>,
-and would love to see his software available in all Linux repositories :)
+  <li><?php echo a_href_page('view3dscene', 'view3dscene'); ?> is GPL &gt;= 2.
+    CGE may be used
+    <a href="license.php">under more permissive "LGPL with static-linking exception" &gt;= 2</a>.
+</ul>
 
 <?php castle_footer(); ?>
