@@ -1066,8 +1066,6 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
 function castle_footer()
 {
-  echo disqus_form();
-
   /* This should be done after jQuery JS loaded.
      But, actually it's not needed, it seems.
   ? >

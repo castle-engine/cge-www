@@ -70,8 +70,6 @@ if ($item === $news[0])
 echo '<div class="news_item">' . news_to_html($item) . '</div>';
 echo $follow_us_html;
 
-echo disqus_form();
-
 echo $older_newer_bar;
 
 castle_footer();

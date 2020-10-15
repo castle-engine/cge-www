@@ -7,10 +7,6 @@ require_once 'news_common.php';
 global $main_page;
 $main_page = true;
 
-/* disable disqus on main page, looks dirty */
-global $disqus_form_already_done;
-$disqus_form_already_done = true;
-
 if (!HTML_VALIDATION &&
   (CASTLE_ENVIRONMENT == 'production' ||
    CASTLE_ENVIRONMENT == 'development'))

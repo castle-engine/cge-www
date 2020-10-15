@@ -165,36 +165,36 @@ function youtube_subscribe()
 
 /* Disqus -------------------------------------------------------------------- */
 
-function disqus_form()
-{
-  if (_castle_disable_externals()) return '';
+// function disqus_form()
+// {
+//   if (_castle_disable_externals()) return '';
 
-  global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
+//   global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
 
-  /* only show it once. This allows to insert this earlier for news */
-  if (!empty($disqus_form_already_done)) return '';
-  $disqus_form_already_done = true;
+//   /* only show it once. This allows to insert this earlier for news */
+//   if (!empty($disqus_form_already_done)) return '';
+//   $disqus_form_already_done = true;
 
-  /* From https://castle-engine.disqus.com/admin/settings/universalcode/
+//   /* From https://castle-engine.disqus.com/admin/settings/universalcode/
 
-     For Disqus, use the final website URL, even when looking at localhost
-     or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
+//      For Disqus, use the final website URL, even when looking at localhost
+//      or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
 
-  return "
-    <div id=\"disqus_thread\"></div>
-    <script type=\"text/javascript\">
-      var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
-      var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
-      var disqus_title = '" . htmlspecialchars($page_title) . "';
-      var disqus_url = '" . CASTLE_FINAL_URL . $this_page_name . "';
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href=\"https://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>";
-}
+//   return "
+//     <div id=\"disqus_thread\"></div>
+//     <script type=\"text/javascript\">
+//       var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
+//       var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
+//       var disqus_title = '" . htmlspecialchars($page_title) . "';
+//       var disqus_url = '" . CASTLE_FINAL_URL . $this_page_name . "';
+//       (function() {
+//           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+//           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+//           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+//       })();
+//     </script>
+//     <noscript>Please enable JavaScript to view the <a href=\"https://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>";
+// }
 
 /* DuckDuckGo ---------------------------------------------------------------- */
 
