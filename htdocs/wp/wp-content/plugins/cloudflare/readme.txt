@@ -3,7 +3,7 @@ Contributors: icyapril, manatarms, thillcf, deuill, epatryk
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 3.4
 Tested up to: 5.5.1
-Stable tag: 3.8.3
+Stable tag: 3.8.4
 License: BSD-3-Clause
 
 All of Cloudflare’s performance and security benefits in a simple one-click install.
@@ -26,7 +26,7 @@ Available on all of Cloudflare’s [paid plans](https://www.cloudflare.com/plans
 
 **Automatic cache purge on website updates**
 
-If you don't take advantage of the performance benefits of Automatic Platform Optimization for WordPress, using the CLoudflare plugin still ensures that changes to the appearance of your website purge the cache. This means that you can focus on your website, while we ensure that the latest static content is always available to your visitors.
+If you don't take advantage of the performance benefits of Automatic Platform Optimization for WordPress, using the Cloudflare plugin still ensures that changes to the appearance of your website purge the cache. This means that you can focus on your website, while we ensure that the latest static content is always available to your visitors.
 
 Additionally, Cloudflare’s plugin for WordPress automatically refreshes the Cloudflare cache of static content for each post/page/custom post type when you update the content.
 
@@ -86,6 +86,14 @@ Yes, on install and activation of the plugin, first time users will be asked to 
 Yes, Cloudflare works with, and helps speed up your site even more, if you have Varnish enabled.
 
 == Screenshots ==
+
+== Changelog ==
+
+= 3.8.4 - 2020-10-13 =
+
+* Added composer's type=wordpress-plugin for Bedrock users
+* Fixed typo in readme.txt
+* Fix modify header exception thrown during wp-cron
 
 1. Cloudflare Plugin
 
