@@ -79,7 +79,7 @@ doesn't change), and no output events are generated.</p>
 <i>The sequencer node sends only one value_changed output event per key[i] interval</i>.
 
 <p>When <code>forceContinuousValue_Changed</code> is <code>TRUE</code> then
-on <b>every</b> action posibly changing the continuous key, we output <code>value_changed</code>.
+on <b>every</b> action possibly changing the continuous key, we output <code>value_changed</code>.
 In particular, this means that <b>every set_fraction will cause appropriate "value_changed"</b>,
 even if previous set_fraction already generated the same "value_changed".
 This is consistent with float interpolator nodes, and it is very useful sometimes: when multiple
