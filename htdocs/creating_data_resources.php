@@ -48,6 +48,7 @@ with links to documentation for every attribute.
   [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]=""
   [[CastleCreatures.TCreatureResource.html#ScaleMin|scale_min]]=""
   [[CastleCreatures.TCreatureResource.html#ScaleMax|scale_max]]=""
+  [[CastleCreatures.TCreatureResource.html#Orientation|orientation]]="default"
   [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="0.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="1.0"
