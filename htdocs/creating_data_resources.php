@@ -36,6 +36,7 @@ with links to documentation for every attribute.
 <resource
   [[CastleResources.T3DResource.html#Name|name]]="RequiredCreatureName"
   type="WalkAttack"
+  [[CastleResources.T3DResource.html#Orientation|orientation]]="default"
   [[CastleCreatures.TCreatureResource.html#KnockBackSpeed|knockback_speed]]="1.0"
   [[CastleCreatures.TCreatureResource.html#CollidesWhenDead|collides_when_dead]]="False"
   [[CastleCreatures.TCreatureResource.html#KnockBackDistance|knockback_distance]]="4.0"
@@ -48,7 +49,6 @@ with links to documentation for every attribute.
   [[CastleCreatures.TCreatureResource.html#SoundDie|sound_die]]=""
   [[CastleCreatures.TCreatureResource.html#ScaleMin|scale_min]]=""
   [[CastleCreatures.TCreatureResource.html#ScaleMax|scale_max]]=""
-  [[CastleCreatures.TCreatureResource.html#Orientation|orientation]]="default"
   [[CastleCreatures.TWalkAttackCreatureResource.html#MoveSpeed|move_speed]]="1.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#MinLifeLossToHurt|min_life_loss_to_hurt]]="0.0"
   [[CastleCreatures.TWalkAttackCreatureResource.html#ChanceToHurt|chance_to_hurt]]="1.0"
