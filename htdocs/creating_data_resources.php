@@ -67,7 +67,7 @@ with links to documentation for every attribute.
 
   <!-- See lower on this page for explanation how to set animations. -->
   <model url="my-creature.gltf"
-    [[CastleResources.T3DResource.html#Pool|pool]]="0"
+    [[CastleResources.T3DResource.html#Pool|pool]]="auto"
     [[CastleResources.T3DResource.html#DefaultAnimationTransition|default_animation_transition]]="0.0"
   >
     <[[CastleCreatures.TWalkAttackCreatureResource.html#IdleAnimation|idle]]         animation_name="Idle" />
