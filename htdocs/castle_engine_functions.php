@@ -60,6 +60,8 @@ function castle_detect_environment()
     return;
   }
 
+  /* Preview version is not maintained anymore.
+     Realistically, it wasn't much useful. */
   if (isset($_SERVER['SERVER_NAME']) &&
       ($_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl')) {
     define('CASTLE_ENVIRONMENT', 'preview');
