@@ -105,7 +105,7 @@ $toc = new TableOfContents(
     <p><a href="<?php echo WIKI_URL; ?>">You can
     add your contributions directly to our wiki</a>.
 
-  <li><p>Test the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
+  <li><p>Test the <a href="view3dscene.php">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
     You can test them and catch eventual bugs
     before the release. This way you can also preview new features before they
     are released.

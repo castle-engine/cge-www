@@ -19,9 +19,6 @@ find-empty-dirs
 # Basic compilation tests
 
 # Make sure Jenkins is clean, everything works.
-# In particular, Jenkins checks
-#   snapshots-scripts/build_all_programs_snapshots
-# that compiles engine, engine examples, and various tools with bare FPC and lazbuild.
 
 Test compilation methods from "getting started"
 https://castle-engine.io/documentation.php

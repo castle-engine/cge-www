@@ -107,7 +107,7 @@ you can open them all with <code>view3dscene</code>.</p>
   <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
 </ul>
 
-<!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene snapshots</a> page.-->
+<!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="<?php echo SNAPSHOTS_BASE; ?>">view3dscene snapshots</a> page.-->
 
 <?php /*
 

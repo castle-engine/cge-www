@@ -42,10 +42,7 @@ Get that repository, and open these models:
   <li><a href="https://github.com/castle-engine/demo-models/blob/master/water/simple/water_final_using_noise_from_shaders.x3dv">water/simple/water_final_using_noise_from_shaders.x3dv</a>
 </ul>
 
-<p>You can open them using
-<a href="https://castle-engine.io/view3dscene.php">view3dscene</a>.
-Note that this feature is not yet available in the stable view3dscene version (3.18.0),
-please get the <a href="http://michalis.ii.uni.wroc.pl/view3dscene-snapshots/">view3dscene version from the snapshots</a>.
+<p>You can open them using <a href="view3dscene.php">view3dscene</a>.
 
 <?php echo $toc->html_section(); ?>
 
