@@ -31,6 +31,8 @@ echo castle_thumbs(array(
   array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
 //    array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
 ));
+
+define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3dscene/');
 ?>
 
 <p><b>view3dscene</b> is a viewer for many 3D model formats: X3D, glTF, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
@@ -41,8 +43,8 @@ echo castle_thumbs(array(
 <div class="download jumbotron">
   <div class="download_title">Download Latest (Snapshot) Version 3.19:</div>
     <div class="download_platforms_list">
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://michalis.ii.uni.wroc.pl/view3dscene-snapshots/view3dscene-3.19.0-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt=" Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://michalis.ii.uni.wroc.pl/view3dscene-snapshots/view3dscene-3.19.0-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt=" Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-3.19.0-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt=" Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-3.19.0-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt=" Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
   </div>
   <a class="btn btn-success btn-lg btn-patreon" href="https://patreon.com/castleengine"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
 </div>
