@@ -119,12 +119,18 @@ uniform int screen_height;
 // Positions below are expressed as vec2 (pair of float).
 // The positions are in range [0..screen_width, 0..screen_height].
 
+/* Current position on the screen, in [0..screen_width, 0..screen_height] range. */
 vec2 screenf_position();
 float screenf_x(); // Same as screenf_position().x
 float screenf_y(); // Same as screenf_position().y
+
+/* Color at given position,
+   with position being vec2 in [0..screen_width, 0..screen_height] range. */
 vec4 screenf_get_color(vec2 position);
 
-/* Depth buffer value at the indicated position.
+/* Depth buffer value at the indicated position,
+   with position being vec2 in [0..screen_width, 0..screen_height] range. */
+
    Only available when needsDepth = TRUE at ScreenEffect node.
    The version "_fast" is faster, but less precise,
    in case full-screen multi-sampling is used. */
@@ -141,6 +147,22 @@ vec4 screenf_get_original_color();
    but a bit faster and more precise, as it avoids doing division and then multiplication. */
 vec4 screenf_get_original_depth();
 
+// Float-based API with positions in 0..1 range  ------------------------------
+
+// Positions below are expressed as vec2 (pair of float).
+// The positions are in range [0..1, 0..1].
+
+/* Current position on the screen, in 0..1 range.
+   Note: It is a varying GLSL variable, not a function, unlike screenf_position(..) function. */
+vec2 screenf_01_position;
+
+/* Color at given position, with position_01 being vec2 in [0..1, 0..1] range. */
+vec4 screenf_01_get_color(vec2 position_01);
+
+/* Depth at given position, with position_01 being vec2 in [0..1, 0..1] range.
+   Only available when needsDepth = TRUE at ScreenEffect node. */
+float screenf_01_get_depth(vec2 position_01);
+
 // Integer-based API ---------------------------------------------------------
 
 // Positions are expressed as ivec2 (pair of int).
@@ -150,7 +172,7 @@ ivec2 screen_position();
 int screen_x(); // Same as screen_position().x
 int screen_y(); // Same as screen_position().y
 
-// Previous color at this pixel.
+/* Color at this position. */
 vec4 screen_get_color(ivec2 position);
 
 /* Depth buffer value at the indicated position.
