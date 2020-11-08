@@ -16,19 +16,37 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<ul>
-  <li><p><?php echo x3d_node_link('Rectangle2D'); ?>
-  <li><p><?php echo x3d_node_link('Circle2D'); ?>
-</ul>
-
 <p>Note that 2D objects are just a special case of 3D objects.
 You can use <a href="x3d_implementation_geometry3d.php">all the 3D nodes</a>
 to render 2D graphics as well.
+The nodes described here just place everything at a Z = zero plane
+(but you can still rotate and translate them in 3D, to construct larger models in 3D).
 
-<p>Since various coordinates are in 3D,
-for 2D graphics you usually want to set the Z coordinate to a constant, like zero.
-By default, 2D shapes are placed at Z = 0 (but you can adjust it,
-to control what is visible on top of what).</p>
+<ul>
+  <li><p><?php echo x3d_node_link('Rectangle2D'); ?>
+
+    <p>Rectangle.
+
+  <li><p><?php echo x3d_node_link('Circle2D'); ?>
+
+    <p>Circle (empty).
+
+  <li><p><?php echo x3d_node_link('Disk2D'); ?>
+
+    <p>Disk (filled circle).
+
+  <li><p><?php echo x3d_node_link('Polyline2D'); ?>
+
+    <p>Line segments.
+
+  <li><p><?php echo x3d_node_link('Polypoint2D'); ?>
+
+    <p>Points.
+
+  <li><p><?php echo x3d_node_link('TriangleSet2D'); ?>
+
+    <p>Triangles.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 

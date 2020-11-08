@@ -66,7 +66,7 @@ parts (99% of usage) of given level are covered.</p>
   <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'x3d_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry2D'                      , 'x3d_implementation_geometry2d'          ); ?>  </td><td></td></tr>
+  <tr><td><?php echo a_href_page('Geometry2D'                      , 'x3d_implementation_geometry2d'          ); ?>  </td><td><b>1</b></td></tr>
   <tr><td><?php echo a_href_page('Text'                            , 'x3d_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Sound'                           , 'x3d_implementation_sound'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
   <tr><td><?php echo a_href_page('Lighting'                        , 'x3d_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b></td></tr>
