@@ -52,36 +52,32 @@ This is a concise summary of how we implement X3D and VRML specifications.
 See the page for each component for
 details about supported nodes. </p>
 
-<p>A word "practically" in table below means that the component is not absolutely
-100% supported on given level, but most important
-parts (99% of usage) of given level are covered.</p>
-
 <table class="thin_borders">
   <tr><th>Component<br/>(click for details)</th>
       <th>Supported level</th></tr>
   <tr><td><?php echo a_href_page('Core'                            , 'x3d_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Time'                            , 'x3d_implementation_time'                ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>2</b> (+ many level 3 features: full <code>Inline</code>, <code>IMPORT/EXPORT</code> support; missing is <code>LoadSensor</code>)</td></tr>
+  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>4 (all)</b> (except <code>LoadSensor</code>)</td></tr>
   <tr><td><?php echo a_href_page('Grouping'                        , 'x3d_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry3D'                      , 'x3d_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Geometry2D'                      , 'x3d_implementation_geometry2d'          ); ?>  </td><td><b>1</b></td></tr>
-  <tr><td><?php echo a_href_page('Text'                            , 'x3d_implementation_text'                ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
-  <tr><td><?php echo a_href_page('Sound'                           , 'x3d_implementation_sound'               ); ?>  </td><td><b>1 (all)</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Text'                            , 'x3d_implementation_text'                ); ?>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Sound'                           , 'x3d_implementation_sound'               ); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Lighting'                        , 'x3d_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Texturing'                       , 'x3d_implementation_texturing'           ); ?>  </td><td><b>3 (all)</b> (practically: some bits of level 2 nodes are missing)</td></tr>
-  <tr><td><?php echo a_href_page('Interpolation'                   , 'x3d_implementation_interpolation'       ); ?>  </td><td><b>3</b> (practically)</td></tr>
+  <tr><td><?php echo a_href_page('Texturing'                       , 'x3d_implementation_texturing'           ); ?>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('Interpolation'                   , 'x3d_implementation_interpolation'       ); ?>  </td><td><b>3</b></td></tr>
   <tr><td><?php echo a_href_page('Pointing device sensor'          , 'x3d_implementation_pointingdevicesensor'); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Key device sensor'               , 'x3d_implementation_keydevicesensor'     ); ?>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental sensor'            , 'x3d_implementation_environmentalsensor' ); ?>  </td><td><b>2</b></td></tr>
   <tr><td><?php echo a_href_page('Navigation'                      , 'x3d_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Environmental effects'           , 'x3d_implementation_environmentaleffects'); ?>  </td><td><b>2</b> (and level 4, but without level 3)</td></tr>
-  <tr><td>Geospatial   </td><td>(We only parse geospatial X3D nodes; geospatial VRML 97 nodes are not even parsed)</td></tr>
+  <tr><td><?php echo a_href_page('Environmental effects'           , 'x3d_implementation_environmentaleffects'); ?>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td>Geospatial   </td><td>(We only parse geospatial X3D nodes)</td></tr>
   <tr><td><?php echo a_href_page('H-Anim'                          , 'x3d_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('NURBS'                           , 'x3d_implementation_nurbs'               ); ?>  </td><td><b>1</b> (practically: curves, surfaces, interpolators)</td></tr>
+  <tr><td><?php echo a_href_page('NURBS'                           , 'x3d_implementation_nurbs'               ); ?>  </td><td><b>1</b></td></tr>
   <tr><td>DIS          </td><td></td></tr>
-  <tr><td><?php echo a_href_page('Scripting'                       , 'x3d_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (practically; although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>
+  <tr><td><?php echo a_href_page('Scripting'                       , 'x3d_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>
   <tr><td><?php echo a_href_page('Event utilities'                 , 'x3d_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Programmable shaders'            , 'x3d_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (GLSL language)</td></tr>
   <tr><td><?php echo a_href_page('CAD geometry'                    , 'x3d_implementation_cadgeometry'         ); ?>  </td><td><b>2 (all)</b></td></tr>
