@@ -34,7 +34,7 @@ class Manager {
 	 * @see Manager::CONNECTION_OWNER
 	 * @var boolean
 	 */
-	const JETPACK_MASTER_USER = true; //phpcs:ignore ..Jetpack_Sniffs_MasterUserConstant.ShouldNotBeUsed
+	const JETPACK_MASTER_USER = true; //phpcs:ignore Jetpack.Constants.MasterUserConstant.ShouldNotBeUsed
 
 	/**
 	 * For internal use only. If you need to get the connection owner, use the provided methods
@@ -384,7 +384,7 @@ class Manager {
 		if (
 			empty( $token_key )
 		||
-			empty( $version ) || strval( $jetpack_api_version ) !== $version ) {
+			empty( $version ) || (string) $jetpack_api_version !== $version ) {
 			return new \WP_Error( 'malformed_token', 'Malformed token in request', compact( 'signature_details' ) );
 		}
 
@@ -726,7 +726,7 @@ class Manager {
 			return false;
 		}
 
-		$user_id = empty( $user_id ) ? get_current_user_id() : intval( $user_id );
+		$user_id = empty( $user_id ) ? get_current_user_id() : (int) $user_id;
 
 		if ( Jetpack_Options::get_option( 'master_user' ) === $user_id && ! $can_overwrite_primary_user ) {
 			return false;
@@ -877,6 +877,7 @@ class Manager {
 				'jetpack_version'    => Constants::get_constant( 'JETPACK__VERSION' ),
 				'ABSPATH'            => Constants::get_constant( 'ABSPATH' ),
 				'current_user_email' => wp_get_current_user()->user_email,
+				'connect_plugin'     => $this->get_plugin() ? $this->get_plugin()->get_slug() : null,
 			)
 		);
 
@@ -989,7 +990,7 @@ class Manager {
 			$registration_response = false;
 		}
 
-		$code_type = intval( $code / 100 );
+		$code_type = (int) ( $code / 100 );
 		if ( 5 === $code_type ) {
 			return new \WP_Error( 'wpcom_5??', $code );
 		} elseif ( 408 === $code ) {
@@ -1558,9 +1559,8 @@ class Manager {
 			return new WP_Error( 'site_not_registered', 'Site not registered.' );
 		}
 		$url = sprintf(
-			'%s://%s/%s/v%s/%s',
-			Client::protocol(),
-			Constants::get_constant( 'JETPACK__WPCOM_JSON_API_HOST' ),
+			'%s/%s/v%s/%s',
+			Constants::get_constant( 'JETPACK__WPCOM_JSON_API_BASE' ),
 			'wpcom',
 			'2',
 			'sites/' . $blog_id . '/jetpack-token-health'
@@ -1832,7 +1832,7 @@ class Manager {
 		);
 
 		add_filter( 'http_request_timeout', array( $this, 'increase_timeout' ), PHP_INT_MAX - 1 );
-		$response = Client::_wp_remote_request( Utils::fix_url_for_bad_hosts( $this->api_url( 'token' ) ), $args );
+		$response = Client::_wp_remote_request( $this->api_url( 'token' ), $args );
 		remove_filter( 'http_request_timeout', array( $this, 'increase_timeout' ), PHP_INT_MAX - 1 );
 
 		if ( is_wp_error( $response ) ) {
@@ -2339,9 +2339,9 @@ class Manager {
 		if ( ! $valid_token ) {
 			if ( $user_id ) {
 				// translators: %d is the user ID.
-				return $suppress_errors ? false : new \WP_Error( 'no_valid_token', sprintf( __( 'Invalid token for user %d', 'jetpack' ), $user_id ) );
+				return $suppress_errors ? false : new \WP_Error( 'no_valid_user_token', sprintf( __( 'Invalid token for user %d', 'jetpack' ), $user_id ) );
 			} else {
-				return $suppress_errors ? false : new \WP_Error( 'no_valid_token', __( 'Invalid blog token', 'jetpack' ) );
+				return $suppress_errors ? false : new \WP_Error( 'no_valid_blog_token', __( 'Invalid blog token', 'jetpack' ) );
 			}
 		}
 
@@ -2590,9 +2590,8 @@ class Manager {
 		}
 
 		$url     = sprintf(
-			'%s://%s/%s/v%s/%s',
-			Client::protocol(),
-			Constants::get_constant( 'JETPACK__WPCOM_JSON_API_HOST' ),
+			'%s/%s/v%s/%s',
+			Constants::get_constant( 'JETPACK__WPCOM_JSON_API_BASE' ),
 			'wpcom',
 			'2',
 			'sites/' . $blog_id . '/jetpack-refresh-blog-token'

@@ -26,7 +26,7 @@ if ( ! class_exists( 'Jetpack_Podcast_Helper' ) ) {
  * we can disable registration if we need to.
  */
 function register_block() {
-	jetpack_register_block(
+	Blocks::jetpack_register_block(
 		BLOCK_NAME,
 		array(
 			'attributes'      => array(
@@ -38,6 +38,10 @@ function register_block() {
 					'default' => 5,
 				),
 				'showCoverArt'           => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showEpisodeTitle'       => array(
 					'type'    => 'boolean',
 					'default' => true,
 				),
