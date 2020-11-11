@@ -85,6 +85,9 @@ if (!HTML_VALIDATION &&
 castle_header('Download', array(
   'meta_description' => META_DESCRIPTION
 ));
+
+define('CGE_SNAPSHOTS_BASE', 'https://github.com/castle-engine/castle-engine/releases/download/snapshot/');
+define('CGE_SNAPSHOTS_VERSION', '6.5');
 ?>
 
 <!-- Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p -->
@@ -108,17 +111,34 @@ castle_header('Download', array(
         </div>
 
         <div class="centered-download-wrapper">
-            <div class="download jumbotron">
-                <?php echo castle_download_button('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">Version 6.5 (Snapshot)</p>',
-                  CGE_LATEST_UNSTABLE_DOWNLOAD); ?>
+            <div class="download jumbotron main-cge-download">
+                <div class="download_platforms_list">
+                    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt="Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
+                    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
+                    <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64"><br> Source Code<br>(GitHub)</a></div>
+                </div>
+
+                <?php /*
+                echo castle_download_button('<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">Version 6.5 (Snapshot)</p>',
+                  CGE_LATEST_UNSTABLE_DOWNLOAD);
+                  */ ?>
                 <?php /*
                   echo castle_download_button('<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span><br>Download<br><p class="download-button-hint">6.4 - Stable Release<br>&nbsp;</p>',
                   CGE_LATEST_STABLE_DOWNLOAD);
                   */ ?>
 
                 <div class="download-hints">
-                    <p>After downloading, read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>
-                    and <?php echo a_href_page('manual', 'manual_intro'); ?>.
+                    <p>To build applications, download also <a href="https://www.lazarus-ide.org/">Lazarus</a> for the same platform.
+                    <br>
+                    <br>
+                    The <code>bin/</code> subdirectory contains compiled executables for all our tools.
+                    <br>
+                    This includes <a href="manual_editor.php">castle-editor</a> which provides an integrated environment to design and build games.
+                    <br>
+                    <br>
+                    <p>Read the <?php echo a_href_page('"Getting Started"', 'documentation'); ?>
+                    and <?php echo a_href_page('manual', 'manual_intro'); ?> to learn the engine.
+
                     <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
                     <?php /* <a href="https://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
                     <?php /* and the <a href="documentation_more.php">rest of our documentation</a>. */ ?><br>

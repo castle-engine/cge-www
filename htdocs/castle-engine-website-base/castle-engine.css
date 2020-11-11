@@ -273,6 +273,11 @@ article.post .entry-content ul {
     margin-bottom: 0; /* .download-hints already makes margins */
 }
 
+.centered-download-wrapper .main-cge-download .btn-primary {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
 /* news on main page --------------------------------------------------------- */
 
 .news-row-wrapper {
