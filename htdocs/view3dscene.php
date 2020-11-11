@@ -42,7 +42,7 @@ define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3ds
 <!-- Since last stable view3dscene is so old, emphasize snapshot version more -->
 <div class="download jumbotron">
   <div class="download_title">Download Latest (Snapshot) Version 3.19:</div>
-    <div class="download_platforms_list">
+  <div class="download_platforms_list">
     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-3.19.0-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt=" Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-3.19.0-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt=" Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
   </div>
