@@ -51,7 +51,7 @@ So you can really insert any convoluted things inside the on-screen menu:)
 <p>There are examples of using this class in
 <ul>
   <li><code>examples/lazarus/model_3d_with_2d_controls/</code></li>
-  <li><code>examples/2d_standard_ui/</code>
+  <li><code>examples/user_interface/</code>
   <li><code>examples/terrain/</code>
   <li>Inside <a href="https://github.com/castle-engine/castle-game/">The Castle</a> game.</li>
 </ul>

@@ -41,7 +41,7 @@ Let's draw some images and handle inputs.
 
 <ul>
   <li>Lazarus version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus/quick_2d_game">Engine examples/lazarus/quick_2d_game</a>
-  <li>CastleWindow version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_standard_ui/quick_2d_game">Engine examples/2d_standard_ui/quick_2d_game</a>
+  <li>CastleWindow version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/quick_2d_game">Engine examples/user_interface/quick_2d_game</a>
 </ul>
 
 <p>For a larger demo of a game using simplest 2D image drawing,

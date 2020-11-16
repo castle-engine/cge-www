@@ -34,7 +34,7 @@ we support &mdash; desktop, mobile...
 as you often want a custom-looking UI in your games. -->
 
 <p><b>A complete program using the concepts shown here is in the engine
-examples</b>, in the <code>examples/2d_standard_ui/zombie_fighter/</code>
+examples</b>, in the <code>examples/user_interface/zombie_fighter/</code>
 directory.</p>
 
 <?php
@@ -220,7 +220,7 @@ you can just use this code to setup UI in the main program block
 or you can set it as the <code>Application.OnInitialize</code> callback following the
 <a href="manual_cross_platform.php">chapter about developing cross-platform applications</a>.
 
-<p>If in doubt, <b>take a look at the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_standard_ui/zombie_fighter">examples/2d_standard_ui/zombie_fighter/</a>
+<p>If in doubt, <b>take a look at the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter/</a>
 code that contains the final application we will make in this manual!</b>
 It uses the <code>ApplicationInitialize</code> procedure.</p>
 
@@ -681,7 +681,7 @@ click the zombie sprite in the <code>TStatePlay</code>, it then shows our
 <code>TZombieDialog</code> created above.
 
 <div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_standard_ui/zombie_fighter">Explore the "zombie_fighter" example on GitHub</a>
+    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">Explore the "zombie_fighter" example on GitHub</a>
 </div>
 
 <?php
