@@ -54,6 +54,24 @@ In short: we support most features, including physical materials and skinned ani
 
 <p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender documentation of the glTF exporter</a> is useful. The exporter is <a href="https://github.com/KhronosGroup/glTF-Blender-IO">developed by Khronos on GitHub</a>.
 
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'blender_stashing_animations.png', 'titlealt' => 'Stashing animations in Blender'),
+));
+?>
+
+Note that you usually want to <i>Stash</i> animations to have them exported, as is briefly mentioned by <a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">exporter docs</a>. That is:
+
+<ol>
+  <li>go to <i>"Animation"</i> view (or turn any Blender window into <i>"Dope Sheet"</i>)
+  <li>select <i>Armature</i> (e.g. by left-clicking in 3D view)
+  <li>change <i>"Dope Sheet"</i> mode to <i>"Action Editor"</i>
+  <li>select each animation (aka "action" in Blender) you want (repeat this for all animations you want to export)
+  <li>click <i>"Stash"</i>
+</ol>
+
+<div style="clear: both" />
+
 <?php echo $toc->html_section(); ?>
 
 <p><a href="https://www.blender.org/">Blender</a> includes exporter for X3D out-of-the-box.
