@@ -30,6 +30,11 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <ul>
   <li><p><?php echo x3d_node_link('TouchSensor'); ?>
 
+    <p>Catch click events on 3D objects. The main functionality is that it sends <code>touchTime</code>
+      event when the user "clicked" the geometry that is sibling to the sensor.
+      See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/listen_on_x3d_events.lpr">examples/3d_rendering_processing/listen_on_x3d_events.lpr</a>
+      for a minimalistic demo how to handle it in Pascal.
+
     <p>Full support, including:</p>
 
     <ul>
@@ -56,12 +61,14 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('PlaneSensor'); ?></p>
 
+    <p>Move geometry by dragging.
+
     <p><i>Note</i>: when <code>axisRotation</code> with non-zero rotation is used,
     <code>trackPoint_changed</code> is generated in local sensor coordinates
     (with transformation <i>and axisRotation</i> applied),
     just like <code>translation_changed</code>.
 
-    <p>Note that <code>axisRotation</code> is still useful, it is <i>not</i>
+    <p><i>Note</i>: that <code>axisRotation</code> is still useful, it is <i>not</i>
     a shortcut for using <code>Transform</code> with <code>rotation</code>
     around the sensor. Reason: wrapping sensor in a <code>Transform</code>
     would change it's siblings. So <code>axisRotation</code> is useful
@@ -73,10 +80,13 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('SphereSensor'); ?></p></li>
 
+    <p>Rotate geometry freely by dragging.
+
   <li><p><?php echo x3d_node_link('CylinderSensor'); ?></p>
 
-    <p>Including <code>axisRotation</code>, notes above about
-    <code>PlaneSensor.axisRotation</code> apply also here.</p></li>
+    <p>Rotate geometry around an axis by dragging.
+
+    <p><i>Note</i>: See <code>PlaneSensor</code> notes about <code>axisRotation</code>, they apply also here.</p></li>
 </ul>
 
 <?php
