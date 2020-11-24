@@ -9,9 +9,9 @@ creating_data_header('Exporting from 3ds Max', array(
 <ul>
   <li><p>from FBX format to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with the <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a> tool</p>
   </li>
-  <li><p>directly from MAX format to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin</p>
+  <li><p>directly from 3ds Max to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin</p>
   </li>
-  <li><p>directly from MAX format to VRML format</p>
+  <li><p>directly from 3ds Max to VRML format</p>
   </li>
 </ul>
 
@@ -23,7 +23,7 @@ creating_data_header('Exporting from 3ds Max', array(
 
 <code>
 FBX2glTF model.fbx
-</code>
+</code><br><br>
 
 <p>After the export, the modelname_out subfolder will appear with the exported model.</p>
 
