@@ -13,7 +13,7 @@ creating_data_header('Exporting from Maya', array(
   </li>
   <li><p>directly from Maya to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/iimachines/Maya2glTF">Maya2glTF</a> script</p>
   </li>
-  <li><p>directly from Maya to VRML format (old approach)</p>
+  <li><p>directly from Maya to OBJ format (old approach)</p>
   </li>
 </ul>
 
