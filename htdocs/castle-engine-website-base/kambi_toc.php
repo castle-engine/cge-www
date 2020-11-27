@@ -124,7 +124,12 @@ class TableOfContents {
 
       if ($now_nesting == $old_nesting + 1)
       {
-        $result .= "<ol class=\"list-no-margin\">\n" . $list_item;
+        /* Only nested lists use list-no-margin.
+           Testcase: ttps://castle-engine.io/creating_data_blender.php ,
+           should have space between ToC and 1st paragraph,
+           but no extra space inside ToC. */
+        $classes = $now_nesting == 0 ? '' : 'list-no-margin';
+        $result .= "<ol class=\"" . $classes . "\">\n" . $list_item;
         $this->push_last_number($current_number, 1);
       } else
       if ($now_nesting == $old_nesting)
