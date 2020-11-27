@@ -3,45 +3,56 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Exporting from 3ds Max', array(
   'social_share_image' => 'export-3dsmax2.png',
 ));
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Export to FBX (if necessary) and convert FBX to glTF using FBX2glTF'),
+    new TocItem('Export to glTF with Babylon'),
+      new TocItem('Plugin installation', NULL, 1),
+      new TocItem('Import sample', NULL, 1),
+      new TocItem('Export differences', NULL, 1),
+      new TocItem('Plugin updating', NULL, 1),
+      new TocItem('More info', NULL, 1),
+    new TocItem('Old approach: VRML'),
+    new TocItem('Other formats'),
+  )
+);
 ?>
 
-<p>Exporting 3ds Max models to Castle Game Engine can be done in many ways:</p>
-<ul>
-  <li><p>from FBX format to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with the <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a> tool</p>
-  </li>
-  <li><p>directly from 3ds Max to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin</p>
-  </li>
-  <li><p>directly from 3ds Max to VRML format</p>
-  </li>
-</ul>
+<p>Exporting <i>3ds Max</i> models to <i>Castle Game Engine</i> can be done in various ways.</p>
 
-<h2>Export from FBX format to glTF (FBX2glTF)</h2>
+<?php echo $toc->html_toc(); ?>
 
-<p>If you received assets from a graphic designer, and you aren't an expert in 3ds MAX, the easiest option is to use files in the FBX format and the FBX2glTF tool (most often, in addition to the .max file, you will also get a .fbx file). In this case, there is a high probability that you will get a good conversion result without any additional work (the graphic designer adjusted the model when he created FBX file).</p>
+<?php echo $toc->html_section(); ?>
+
+<p>If you received assets from a graphic designer in both the <code>.max</code> and <code>.fbx</code> formats, it is easiest to convert files from the FBX format using the <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a> tool to <a href="creating_data_model_formats.php#section_gltf">glTF</a>. In this case, there is a high probability that you will get a good conversion result without any additional work, as the graphic designer adjusted the model when (s)he created FBX file.</p>
+
+<p>You can also use built-in export from <i>3ds Max</i> to FBX, and then convert with <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a>.
 
 <p>The export itself is very simple. Just call FBX2glTF tool in the console with one parameter - FBX model file name:</p>
 
-<code>
+<pre>
 FBX2glTF model.fbx
-</code><br><br>
+</pre>
 
-<p>After the export, the modelname_out subfolder will appear with the exported model.</p>
+<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model.</p>
 
 <p>The conversion result can be easily compared using <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
 
-<h2>Export to glTF format with Babylon glTF</h2>
+<?php echo $toc->html_section(); ?>
 
-<p>If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer, a good solution is to use the <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin. In this case, the model will need to be adjusted before performing the conversion.</p>
+<p>If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer and want a direct solution (without intermediate FBX file) at the cost of some additional setup, a good solution is to use the <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin. In this case, the model will often need to be adjusted before performing the conversion.</p>
 
 <p>The most important changes are:</p>
 <ul>
-  <li>reduction of Bone Affect Limit to 4
+  <li>reduction of <i>Bone Affect Limit</i> to 4
   </li>
   <li>preparation of textures in Bitmap format
   </li>
 </ul>
 
-<h3>Plugin installation</h3>
+<?php echo $toc->html_section(); ?>
+
 <p>Babylon glTF plugin comes with a handy installer, which you can download from <a href="https://github.com/BabylonJS/Exporters/releases">Babylon Exporter Github Releases</a> page. The installation itself consists in clicking the install button.</p>
 
 <?php
@@ -51,8 +62,9 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<h3>Import sample</h3>
-<p>The steps to be followed depend largely on the imported model. Screenshots below can be used only as an overview not full tutorial.</p>
+<?php echo $toc->html_section(); ?>
+
+<p>The steps to be followed depend largely on the imported model. Screenshots below can be used as an overview.</p>
 
 <?php
 echo castle_thumbs(array(
@@ -71,7 +83,8 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<h3>Export differences</h3>
+<?php echo $toc->html_section(); ?>
+
 <p>Using different exporters gives slightly different results, it's always worth experimenting. You can also try to load the FBX file into 3ds MAX and save it with the Babylon glTF plugin.</p>
 
 <?php
@@ -83,15 +96,15 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<h3>Plugin updating</h3>
+<?php echo $toc->html_section(); ?>
 
-<p>The Babylon glTF exporter is being actively developed. It is worth checking the possibility of updating the plugin from time to time by running the installer. When new plugin version is available  the Update button will be showed.</p>
+<p>The Babylon glTF exporter is being actively developed. It is worth checking the possibility of updating the plugin from time to time by running the installer. When new plugin version is available the <i>Update</i> button will be showed.</p>
 
-<h3>More info</h3>
+<?php echo $toc->html_section(); ?>
 
 <p>See <a href="https://doc.babylonjs.com/resources/3dsmax_to_gltf">3DSMax to glTF</a> and <a href="https://doc.babylonjs.com/resources/3dsmax">Babylon 3DSMax resources</a> pages for more info.
 
-<h2>Old approach: VRML</h2>
+<?php echo $toc->html_section(); ?>
 
 <p>To export from older <i>3ds Max</i>, it's easiest to export to the <i>VRML 97</i> format (extension <code>.wrl</code>). <i>VRML</i> is an older version of <i>X3D</i>, it's basically a subset of X3D, and we support it 100% in the engine.</p>
 
@@ -121,10 +134,9 @@ echo castle_thumbs(array(
   </li>
 </ul>
 
-<h2>Other formats</h2>
-<p>Note that we also support some other file formats that you could export from 3ds Max, like <i>OBJ</i> and <i>3DS</i>. They work fine to export simple mesh with textures, but these format don't support animations, and many other advanced features. So it's better to use glTF.
+<?php echo $toc->html_section(); ?>
 
-<!-- TODO: check animations? -->
+<p>Note that we also support some other file formats that you could export from 3ds Max, like <i>OBJ</i> and <i>3DS</i>. They work fine to export simple mesh with textures, but these format don't support animations, and many other advanced features. So it's better to use glTF.
 
 <!-- TODO: add level placeholders type="3dsmax"? -->
 
