@@ -3,39 +3,47 @@ require_once 'castle_engine_functions.php';
 creating_data_header('Exporting from Maya', array(
   'social_share_image' => 'export-maya-hextraction1.png',
 ));
+
+$toc = new TableOfContents(
+  array(
+    new TocItem('Export to FBX (if necessary) and convert FBX to glTF using FBX2glTF'),
+    new TocItem('Export to glTF with Babylon'),
+      new TocItem('Plugin installation', NULL, 1),
+      new TocItem('Export overview with screenshots', NULL, 1),
+      new TocItem('Plugin updating', NULL, 1),
+      new TocItem('More info', NULL, 1),
+    new TocItem('Export to glTF with Maya2glTF'),
+    new TocItem('Old approach: OBJ'),
+ )
+);
 ?>
 
-<p>Exporting Maya models to Castle Game Engine can be done in many ways:</p>
-<ul>
-  <li><p>from FBX format to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with the <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a> tool</p>
-  </li>
-  <li><p>directly from Maya to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin</p>
-  </li>
-  <li><p>directly from Maya to <a href="creating_data_model_formats.php#section_gltf">glTF</a> with <a href="https://github.com/iimachines/Maya2glTF">Maya2glTF</a> script</p>
-  </li>
-  <li><p>directly from Maya to OBJ format (old approach)</p>
-  </li>
-</ul>
+<p>Exporting <i>Maya</i> models to <i>Castle Game Engine</i> can be done in various ways.</p>
 
-<h2>Export from FBX format to glTF (FBX2glTF)</h2>
+<?php echo $toc->html_toc(); ?>
 
-<p>If you received assets from a graphic designer, and you aren't a Maya expert, the easiest option is to use files in the FBX format and the FBX2glTF tool (most often, in addition to the .ma file, you will also get a .fbx file). In this case, it's a high probability that you will get a good conversion result without any additional work (the graphic designer adjusted the model when he created FBX file).</p>
+<?php echo $toc->html_section(); ?>
+
+<p>If you received assets from a graphic designer in both the <code>.ma</code> and <code>.fbx</code> formats, it is easiest to convert files from the FBX format using the <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a> tool to <a href="creating_data_model_formats.php#section_gltf">glTF</a>. In this case, there is a high probability that you will get a good conversion result without any additional work, as the graphic designer adjusted the model when (s)he created FBX file.</p>
+
+<p>You can also use built-in export from <i>Maya</i> to FBX, and then convert with <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a>.
 
 <p>The export itself is very simple. Just call FBX2glTF tool in the console with one parameter - FBX model file name:</p>
 
-<code>
+<pre>
 FBX2glTF model.fbx
-</code><br><br>
+</pre>
 
-<p>After the export, the modelname_out subfolder will appear with the exported model.</p>
+<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model.</p>
 
 <p>The conversion result can be easily compared using <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
 
-<h2>Export to glTF format with Babylon glTF</h2>
+<?php echo $toc->html_section(); ?>
 
-<p>If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer, a good solution is to use the <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin. In this case, the model will need to be adjusted before performing the conversion.</p>
+<p>If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer and want a direct solution (without intermediate FBX file) at the cost of some additional setup, a good solution is to use the <a href="https://github.com/BabylonJS/Exporters/">Babylon glTF</a> plugin. In this case, the model will often need to be adjusted before performing the conversion.</p>
 
-<h3>Plugin installation</h3>
+<?php echo $toc->html_section(); ?>
+
 <p>Babylon glTF plugin comes with a handy installer, which you can download from <a href="https://github.com/BabylonJS/Exporters/releases">Babylon Exporter Github Releases</a> page. The installation itself consists in clicking the install button.</p>
 
 <?php
@@ -47,8 +55,9 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<h3>Import sample</h3>
-<p>The steps to be followed depend largely on the imported model. Screenshots below can be used only as an overview not full tutorial.</p>
+<?php echo $toc->html_section(); ?>
+
+<p>The steps to be followed depend largely on the model. Screenshots below can be used as an overview.</p>
 
 <?php
 echo castle_thumbs(array(
@@ -61,23 +70,25 @@ echo castle_thumbs(array(
 ), 'auto', 'left');
 ?>
 
-<h3>Plugin updating</h3>
+<?php echo $toc->html_section(); ?>
 
 <p>The Babylon glTF exporter is being actively developed. It is worth checking the possibility of updating the plugin from time to time by running the installer. When new plugin version is available  the Update button will be showed.</p>
 
-<h3>More info</h3>
+<?php echo $toc->html_section(); ?>
 
 <p>See <a href="https://doc.babylonjs.com/resources/maya_to_gltf">Maya to glTF</a> and <a href="https://doc.babylonjs.com/resources/maya">Babylon Maya resources</a> pages for more info.</p>
 
-<h2>Export to glTF format with Maya2glTF script</h2>
+<?php echo $toc->html_section(); ?>
 
-<p>If you have problems with Babylon glTF, you can try Maya2glTF script. To install run <code>maya2gltfDeploy.bat</code>. After loading the model, just type <code>maya2glTF_UI</code> in the script window to display the export UI. <br><br> For more info see <a href="https://github.com/iimachines/Maya2glTF/">Maya2glTF Github page</a>.</p>
+<p>If you have problems with Babylon glTF, you can try <a href="https://github.com/iimachines/Maya2glTF">Maya2glTF</a> script. To install run <code>maya2gltfDeploy.bat</code>. After loading the model, just type <code>maya2glTF_UI</code> in the script window to display the export UI.
 
-<h2>Old approach: OBJ</h2>
+<p>For more info see <a href="https://github.com/iimachines/Maya2glTF/">Maya2glTF Github page</a>.</p>
 
-<p><i>Maya</i> doesn't support exporting to X3D now. The <a href="http://rawkee.sourceforge.net/">RawKee</a> project developed Maya plugins to add X3D export, but their plugins are only for the older Maya versions (&lt;= 2008).
+<?php echo $toc->html_section(); ?>
 
-<p>The simplest option to export static meshes to our engine from the latest Maya version is to export as an <i>OBJ</i> format.
+<!--p><i>Maya</i> doesn't support exporting to X3D directly. The <a href="http://rawkee.sourceforge.net/">RawKee</a> project developed Maya plugins to add X3D export, but their plugins are only for the older Maya versions (&lt;= 2008).-->
+
+<p>To export static meshes to our engine from the latest Maya version you can export as an <i>OBJ</i> format.
 
 <ul>
   <li>You may need to enable it first, by going to the <i>Windows -&gt; Settings/Preferences -&gt; Plug-in Manager</i>. Find the <code>objExport.mll</code> on the list, and check <i>Loaded</i> (check <i>Auto load</i> too, to have it active always).
