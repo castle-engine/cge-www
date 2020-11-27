@@ -9,7 +9,7 @@ $toc = new TableOfContents(
     new TocItem('Export to FBX (if necessary) and convert FBX to glTF using FBX2glTF'),
     new TocItem('Export to glTF with Babylon'),
       new TocItem('Plugin installation', NULL, 1),
-      new TocItem('Import sample', NULL, 1),
+      new TocItem('Export overview with screenshots', NULL, 1),
       new TocItem('Export differences', NULL, 1),
       new TocItem('Plugin updating', NULL, 1),
       new TocItem('More info', NULL, 1),
@@ -45,10 +45,8 @@ FBX2glTF model.fbx
 
 <p>The most important changes are:</p>
 <ul>
-  <li>reduction of <i>Bone Affect Limit</i> to 4
-  </li>
-  <li>preparation of textures in Bitmap format
-  </li>
+  <li>reduction of <i>Bone Affect Limit</i> to 4</li>
+  <li>preparation of textures in Bitmap format</li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -64,7 +62,7 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>The steps to be followed depend largely on the imported model. Screenshots below can be used as an overview.</p>
+<p>The steps to be followed depend largely on the model. Screenshots below can be used as an overview.</p>
 
 <?php
 echo castle_thumbs(array(
