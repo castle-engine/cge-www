@@ -70,7 +70,8 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
   <li>click <i>"Stash"</i>
 </ol>
 
-<div style="clear: both" />
+<!-- Beware: don't change this to self-closing <div style="clear:both" />, it will break sidebar rendering -->
+<div style="clear:both"></div>
 
 <?php echo $toc->html_section(); ?>
 
