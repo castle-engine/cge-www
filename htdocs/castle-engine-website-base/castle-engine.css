@@ -240,11 +240,18 @@ a.download_code {
 }
 
 /* make documentation.php lists look good */
-.content-near-sidebar ol,
-.content-near-sidebar ul,
+.content-near-sidebar       ol,
+.content-near-sidebar       ul,
 article.post .entry-content ol,
 article.post .entry-content ul {
   margin-bottom: 10px !important;
+}
+/* Revert above change for class="list-no-margin" */
+.content-near-sidebar       ol.list-no-margin,
+.content-near-sidebar       ul.list-no-margin,
+article.post .entry-content ol.list-no-margin,
+article.post .entry-content ul.list-no-margin {
+  margin-bottom: 0 !important;
 }
 
 /* main page stuff ----------------------------------------------------------- */
