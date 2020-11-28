@@ -282,7 +282,13 @@ $castle_sitemap = array(
               'manual_notifications' => array('title' => 'Notifications'),
             )
           ),
-          'manual_2d_games' => array('title' => 'Two approaches for rendering 2D Games (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/2D-Games'),
+          'manual_2d_games' => array('title' => '2D games',
+            'sub' => array(
+              'manual_sprite_sheets' => array('title' => 'Sprite sheets (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets'),
+              'manual_images' => array('title' => 'Images (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Images'),
+              'manual_2d_games_2_approaches' => array('title' => 'Two approaches for rendering 2D Games (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/2D-Games'),
+            )
+          ),
           'manual_high_level_3d_classes' => array('title' => 'Utilities for typical 3D games',
             'sub' => array(
               'manual_3d_utlities_overview' => array('title' => 'Overview'),
