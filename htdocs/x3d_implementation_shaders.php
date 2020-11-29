@@ -200,9 +200,14 @@ You can use VRML/X3D multiple-value fields to set
 GLSL array types.
 We support all mappings between VRML/X3D and GLSL types
 for uniform values (that are mentioned in X3D spec).
-<i>TODO: except the (rather obscure) <code>SFImage</code> and <code>MFImage</code>
-types, that cannot be mapped to GLSL now.</i>
-</p>
+
+<p><i>TODO</i>: except the (rather obscure) <code>SFImage</code> and <code>MFImage</code>
+types, that cannot be mapped to GLSL now.
+
+<p><i>Note</i>: the <code>SFColor</code> is mapped to GLSL <code>vec3</code>,
+and the <code>MFColor</code> is mapped to GLSL <code>vec3[]</code>.
+<a href="https://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/shaders_glsl.html">X3D spec says to map color to
+<code>vec4</code>, but it only causes confusion, and we assume it's just an error</a>.
 
 <?php echo $toc->html_section(); ?>
 
