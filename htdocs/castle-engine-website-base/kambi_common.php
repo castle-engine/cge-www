@@ -117,10 +117,12 @@ define('MAIN_PAGE_BASENAME', 'index');
    zmienne są zainicjowane, więc po wywołaniu common_header nie musisz się
    już o nic martwić. */
 
-/* Poniższe zmienne są inicjowane w common_header, wcześniej należy je
-   traktować jako NIE zainicjowane (czyli nie nadające się do użycia). */
+/* Initialized in common_header.
+   This is always sanitized when displaying as HTML (so you cannot use here HTML tags).
+*/
 $page_title = '';
-/* internal, used only in common_header/footer() */
+
+/* Internal, used only in common_header/footer() */
 $s_quick_links = '';
 
 /* Poniższe zmienne są zainicjowane na domyślne wartości z chwilą włączenia
@@ -129,15 +131,15 @@ $s_quick_links = '';
    innej funkcji z tego pliku (także common_header). */
 $main_page = false;
 
+/* You can set this global variable before calling common_header.
+   If set to non-empty value, it will be used to display HTML <title> . */
+// $site_title
+
 /* functions ======================================================= */
 
-/* Zwraca string = tagi htmla (block-level) ktore generuja ladny heading.
-   Na pewno zdefiniuje min jeden element w stylu h1
-   (wiec subsections na stronie powinienes tagowac jako h2).
-
-   Kiedyś był tu heading z cieniem przy użyciu CSSa (ten sam napis
-   wypisany dwa razy), ale usunąłem to -- to nie chciało wyglądać
-   dobrze we wszystkich przeglądarkach przy dowolnych ustawieniach.
+/* Return HTML heading (<h1>).
+   Given $heading_text, $version_number, $subheading_text will be sanitized for HTML display
+   (so you cannot use there HTML tags).
 
    You may supply $version_number, this is intended for pages
    that document functionality of some program.
@@ -146,12 +148,12 @@ $main_page = false;
    and with smaller font below heading text. */
 function pretty_heading($heading_text, $version_number = NULL, $subheading_text = '')
 {
-  $result = "<h1>$heading_text";
+  $result = '<h1>' . htmlspecialchars($heading_text);
   if (!is_null($version_number))
-    $result .= " <span class=\"label label-default version_number\">$version_number</span>";
-  if ($subheading_text != '')
-    $result .= '<br><small>' . $subheading_text . '</small>';
-  $result .= "</h1>";
+    $result .= ' <span class="label label-default version_number">' . htmlspecialchars($version_number) . '</span>';
+  if (!empty($subheading_text))
+    $result .= '<br><small>' . htmlspecialchars($subheading_text) . '</small>';
+  $result .= '</h1>';
 
   return $result;
 }
@@ -336,6 +338,8 @@ function kambi_bootstrap()
 /* Echo a header.
    Sets also global $page_basename, if not already set.
 
+   $a_page_title sets global $page_title.
+
    $parameters fields:
    - 'lang' (use HTML language code,
      like 'en' or 'pl'; default 'en'; can use LANG_XX constants)
@@ -428,9 +432,9 @@ if ($castle_wordpress) {
 <?php if (!$castle_wordpress) { ?>
 
   <title><?php
-  echo $page_title;
+  echo htmlspecialchars($page_title);
   if (!empty($site_title)) {
-    echo ' | ' . $site_title;
+    echo ' | ' . htmlspecialchars($site_title);
   }
   ?></title>
 
