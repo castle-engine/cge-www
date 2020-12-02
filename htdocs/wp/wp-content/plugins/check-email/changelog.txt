@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.0.1 =
+* Fixed admin menu capabilities.
+* Rezolved incompatibility with Wp Mail Logging.
 
 = 1.0.0 = 
 * Added Email Logs for all the emails sent through Wordpress.

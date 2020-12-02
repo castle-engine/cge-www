@@ -60,11 +60,9 @@ class Check_Email_Logger implements Loadie {
                     $check_email->table_manager->insert_log( $log );
 
                     do_action( 'check_email_log_inserted' );
-
-                    return $original_mail_info;
                 }
                 
-                return FALSE;
+                return $original_mail_info;
 	}
 
 	public function on_email_failed( $wp_error ) {

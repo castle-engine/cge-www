@@ -322,25 +322,27 @@ class Replicastore implements Replicastore_Interface {
 	/**
 	 * Translate a comment status to a value of the comment_approved field.
 	 *
-	 * @access private
+	 * @access protected
 	 *
 	 * @param string $status Comment status.
 	 * @return string|bool New comment_approved value, false if the status doesn't affect it.
 	 */
-	private function comment_status_to_approval_value( $status ) {
-		switch ( $status ) {
+	protected function comment_status_to_approval_value( $status ) {
+		switch ( (string) $status ) {
 			case 'approve':
+			case '1':
 				return '1';
 			case 'hold':
+			case '0':
 				return '0';
 			case 'spam':
 				return 'spam';
 			case 'trash':
 				return 'trash';
+			case 'post-trashed':
+				return 'post-trashed';
 			case 'any':
-				return false;
 			case 'all':
-				return false;
 			default:
 				return false;
 		}
@@ -733,6 +735,8 @@ class Replicastore implements Replicastore_Interface {
 	/**
 	 * Retrieve value of a constant based on the constant name.
 	 *
+	 * We explicitly return null instead of false if the constant doesn't exist.
+	 *
 	 * @access public
 	 *
 	 * @param string $constant Name of constant to retrieve.
@@ -867,9 +871,13 @@ class Replicastore implements Replicastore_Interface {
 	 * @access public
 	 *
 	 * @param string $taxonomy Taxonomy slug.
-	 * @return array Array of terms.
+	 * @return array|\WP_Error Array of terms or WP_Error object on failure.
 	 */
 	public function get_terms( $taxonomy ) {
+		$t = $this->ensure_taxonomy( $taxonomy );
+		if ( ! $t || is_wp_error( $t ) ) {
+			return $t;
+		}
 		return get_terms( $taxonomy );
 	}
 
@@ -880,10 +888,16 @@ class Replicastore implements Replicastore_Interface {
 	 *
 	 * @param string $taxonomy   Taxonomy slug.
 	 * @param int    $term_id    ID of the term.
-	 * @param bool   $is_term_id Whether this is a `term_id` or a `term_taxonomy_id`.
+	 * @param string $term_key   ID Field `term_id` or `term_taxonomy_id`.
 	 * @return \WP_Term|\WP_Error Term object on success, \WP_Error object on failure.
 	 */
-	public function get_term( $taxonomy, $term_id, $is_term_id = true ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+	public function get_term( $taxonomy, $term_id, $term_key = 'term_id' ) {
+
+		// Full Sync will pass false for the $taxonomy so a check for term_taxonomy_id is needed before ensure_taxonomy.
+		if ( 'term_taxonomy_id' === $term_key ) {
+			return get_term_by( 'term_taxonomy_id', $term_id );
+		}
+
 		$t = $this->ensure_taxonomy( $taxonomy );
 		if ( ! $t || is_wp_error( $t ) ) {
 			return $t;
@@ -951,7 +965,7 @@ class Replicastore implements Replicastore_Interface {
 			)
 		);
 		if ( ! $exists ) {
-			$term_object   = sanitize_term( clone( $term_object ), $taxonomy, 'db' );
+			$term_object   = sanitize_term( clone $term_object, $taxonomy, 'db' );
 			$term          = array(
 				'term_id'    => $term_object->term_id,
 				'name'       => $term_object->name,
@@ -985,6 +999,7 @@ class Replicastore implements Replicastore_Interface {
 	 * @return bool|int|\WP_Error True on success, false if term doesn't exist. Zero if trying with default category. \WP_Error on invalid taxonomy.
 	 */
 	public function delete_term( $term_id, $taxonomy ) {
+		$this->ensure_taxonomy( $taxonomy );
 		return wp_delete_term( $term_id, $taxonomy );
 	}
 
@@ -999,6 +1014,7 @@ class Replicastore implements Replicastore_Interface {
 	 * @param bool             $append    Optional. If false will delete difference of terms. Default false.
 	 */
 	public function update_object_terms( $object_id, $taxonomy, $terms, $append ) {
+		$this->ensure_taxonomy( $taxonomy );
 		wp_set_object_terms( $object_id, $terms, $taxonomy, $append );
 	}
 
