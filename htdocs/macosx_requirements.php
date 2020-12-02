@@ -6,7 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Compiling on macOS', 'compiling'),
     new TocItem('GUI libraries: Carbon? Cocoa? X11? X11 + GTK?', 'options'),
-      new TocItem('Advantages and disadvantages of using LCL (Carbon/Cocoa)', 'lcl', 1),
+      new TocItem('Advantages and disadvantages of using LCL (Cocoa/Carbon)', 'lcl', 1),
       new TocItem('TODO: CastleWindow backend using Cocoa', 'castle_window_cocoa', 1),
     new TocItem('Other libraries that may be required', 'other_libs'),
     new TocItem('Notes specific to particular macOS package managers', 'package_managers'),
@@ -57,7 +57,7 @@ $toc = new TableOfContents(
     <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
     component on a Lazarus form.
 
-    <p>This, in practice, means that your applications will use <i>Carbon</i> or <i>Cocoa</i>.
+    <p>This, in practice, means that your applications will use <i>Cocoa</i> (ev. deprecated <i>Carbon</i>).
     These are built-in native libraries on macOS.
     So, your programs don't require anything extra to distribute.
 
@@ -164,7 +164,8 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
       <li><p>Alternatively, <b>you can switch the backend of
         <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
         to <code>CASTLE_WINDOW_LCL</code></b>.
-        This uses Lazarus under the hood, and this way we will use <i>Carbon</i> or <i>Cocoa</i>
+        This uses Lazarus under the hood, and this way we will use <i>Cocoa</i>
+        (ev. deprecated <i>Carbon</i>)
         instead.
         This means that <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
         will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
@@ -193,9 +194,12 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 
 <p>On macOS, the default LCL widgetset is
 <a href="http://wiki.freepascal.org/Carbon_Interface">Carbon</a> right now.
+It changed to
+<a href="http://wiki.freepascal.org/Cocoa_Interface">Cocoa</a> in
+<a href="https://svn.freepascal.org/cgi-bin/viewvc.cgi/trunk/packager/packagesystem.pas?root=lazarus&r1=63551&r2=63550&pathrev=63551">Lazarus trunk on 2020-07</a>,
+but this change <a href="https://svn.freepascal.org/cgi-bin/viewvc.cgi/tags/lazarus_2_0_10/packager/packagesystem.pas?view=markup&root=lazarus">did not land in last Lazarus stable release yet, 2.0.10</a>.
 
-<p>Although the default will change to <i>Cocoa</i> most probably at some point,
-as only <i>Cocoa</i> supports 64-bit applications
+<p>Only <i>Cocoa</i> supports 64-bit applications
 and latest <i>macOS Catalina</i> requires all applications to be 64-bit.
 So you just have to use <i>Cocoa</i> on new macOS.
 
