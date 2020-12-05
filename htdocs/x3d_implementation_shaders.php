@@ -205,9 +205,10 @@ for uniform values (that are mentioned in X3D spec).
 types, that cannot be mapped to GLSL now.
 
 <p><i>Note</i>: the <code>SFColor</code> is mapped to GLSL <code>vec3</code>,
-and the <code>MFColor</code> is mapped to GLSL <code>vec3[]</code>.
-<a href="https://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/shaders_glsl.html">X3D spec says to map color to
-<code>vec4</code>, but it only causes confusion, and we assume it's just an error</a>.
+and the <code>MFColor</code> is mapped to GLSL <code>vec3[]</code>,
+as these are RGB colors (without alpha information).
+The X3D 3.x specification was saying to map it to <code>vec4</code> / <code>vec4[]</code>,
+which was simply an error corrected in X3D 4.0.
 
 <?php echo $toc->html_section(); ?>
 
