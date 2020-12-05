@@ -207,8 +207,10 @@ types, that cannot be mapped to GLSL now.
 <p><i>Note</i>: the <code>SFColor</code> is mapped to GLSL <code>vec3</code>,
 and the <code>MFColor</code> is mapped to GLSL <code>vec3[]</code>,
 as these are RGB colors (without alpha information).
-The X3D 3.x specification was saying to map it to <code>vec4</code> / <code>vec4[]</code>,
-which was simply an error corrected in X3D 4.0.
+The X3D 3.x specification was saying to map them to <code>vec4</code> / <code>vec4[]</code> in GLSL,
+but it was simply an error corrected in X3D 4.0.
+Use <code>SFColorRGBA</code> / <code>MFColorRGBA</code> to express RGBA colors,
+that map to <code>vec4</code> / <code>vec4[]</code> in GLSL.
 
 <?php echo $toc->html_section(); ?>
 
