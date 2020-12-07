@@ -115,6 +115,7 @@ define('CGE_SNAPSHOTS_VERSION', '6.5');
                 <div class="download_platforms_list">
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt="Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
+                    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64"><br> Source Code<br>(GitHub)</a></div>
                 </div>
 
