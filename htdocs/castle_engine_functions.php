@@ -384,7 +384,11 @@ $castle_sitemap = array(
           ),
           'x3d_implementation_networking'           => array('title' => 'Networking'                      ),
           'x3d_implementation_grouping'             => array('title' => 'Grouping'                        ),
-          'x3d_implementation_rendering'            => array('title' => 'Rendering'                       ),
+          'x3d_implementation_rendering'            => array('title' => 'Rendering',
+            'sub' => array(
+              'x3d_implementation_rendering_extensions' => array('title' => 'Extensions'),
+            ),
+          ),
           'x3d_implementation_shape'                => array('title' => 'Shape',
             'sub' => array(
               'x3d_implementation_shape_extensions' => array('title' => 'Extensions'),
