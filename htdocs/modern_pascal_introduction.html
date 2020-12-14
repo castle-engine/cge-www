@@ -767,14 +767,14 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> ReadIntegersUntilZero: <span class="keyword">string</span>;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> SumIntegersUntilZero: Integer;
 <span class="keyword">var</span>
   I: Integer;
 <span class="keyword">begin</span>
   Readln(I);
-  Result := IntToStr(I);
+  Result := I;
   <span class="keyword">if</span> I &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span>
-    Result := Result + <span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span> + ReadIntegersUntilZero();
+    Result := Result + SumIntegersUntilZero();
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
@@ -1260,7 +1260,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="ulist">
 <ul>
 <li>
-<p><em>Advantage</em>: Absolutely flexible. There are many <code>XxxToStr</code> overloaded versions and friends (like <code>FormatFloat</code>), covering many types.</p>
+<p><em>Advantage</em>: Absolutely flexible. There are many <code>XxxToStr</code> overloaded versions and friends (like <code>FormatFloat</code>), covering many types. Most of them are in the <code>SysUtils</code> unit.</p>
 </li>
 <li>
 <p><em>Another advantage</em>: Consistent with the reverse functions. To convert a string (for example, user input) back to an integer or float, you use <code>StrToInt</code>, <code>StrToFloat</code> and friends (like <code>StrToIntDef</code>).</p>
@@ -4968,7 +4968,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-09 02:21:38 +0200
+Last updated 2020-12-13 01:43:28 +0100
 </div>
 </div>
 <!-- Google analytics -->
