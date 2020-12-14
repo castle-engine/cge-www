@@ -9,8 +9,8 @@
       new TocItem('Toggle shape rendering (<code>Shape.render</code>)', 'ext_shape_render'),
       new TocItem('Specify shading, e.g. to force Phong shading or wireframe for a shape (<code>Shape.shading</code>)', 'ext_shading'),
       new TocItem('Specify alpha channel treatment (field <code>alphaChannel</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
-      new TocItem('Set shape bounding box (<code>Shape.bboxCenter</code>, <code>Shape.bboxSize</code>)'),
-      new TocItem('Make shape collide as a box (<code>Shape.collision</code>)'),
+      new TocItem('Set shape bounding box (<code>Shape.bboxCenter</code>, <code>Shape.bboxSize</code>)', 'ext_shape_bbox'),
+      new TocItem('Make shape collide as a box (<code>Shape.collision</code>)', 'ext_shape_collision'),
     ));
 ?>
 
