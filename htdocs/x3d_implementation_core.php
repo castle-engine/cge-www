@@ -65,6 +65,11 @@ UNIT length km 1000
     You can use these nodes in your own applications to "carry"
     some information between the software that generates your X3D files
     to your final application.
+
+    <p>Note that we have a more comfortable API to get and set X3D metadata in Pascal.
+    See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/short_api_samples/metadata/">examples/short_api_samples/metadata/</a>
+    and <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">TAbstractNode.MetadataString</a>
+    and friends.
   </li>
 
 </ul>
