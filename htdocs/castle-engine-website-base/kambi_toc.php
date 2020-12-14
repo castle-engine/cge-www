@@ -49,7 +49,7 @@ class TocItem {
     /* Replace some characters to underscore.
        Note that this is not necessary strictly for correctness (we will sanitize anchor
        with htmlspecialchars anyway), but it makes anchors look better. */
-    $replace_chars = array(' ', '\\', '/', '(', ')');
+    $replace_chars = array(' ', '\\', '/', '(', ')', '<', '>');
     return str_replace($replace_chars, '_', $caption);
   }
 }
