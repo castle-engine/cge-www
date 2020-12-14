@@ -20,7 +20,7 @@
 <?php echo $toc->html_section(); ?>
 
 <?php
-  echo node_begin('Shape') .
+  echo node_begin('X3DShapeNode') .
   node_dots() .
   node_field('SFBool', '[in,out]', 'render', 'TRUE') .
   node_end();
@@ -60,7 +60,7 @@ Although toggling Switch node is also ultra-fast.
 (more precisely, to the abstract <code>X3DShapeNode</code>):</p>
 
 <?php
-  echo node_begin("X3DShapeNode (e.g. Shape)");
+  echo node_begin("X3DShapeNode");
   echo node_dots('all normal X3DShapeNode fields') .
   node_field('SFString', '[in,out]', "shading", '"DEFAULT"', '["DEFAULT"|"GOURAUD"|"PHONG"|"WIREFRAME"]') .
   node_end();
