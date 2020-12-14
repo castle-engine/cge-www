@@ -9,6 +9,8 @@
       new TocItem('Toggle shape rendering (<code>Shape.render</code>)', 'ext_shape_render'),
       new TocItem('Specify shading, e.g. to force Phong shading or wireframe for a shape (<code>Shape.shading</code>)', 'ext_shading'),
       new TocItem('Specify alpha channel treatment (field <code>alphaChannel</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
+      new TocItem('Set shape bounding box (<code>Shape.bboxCenter</code>, <code>Shape.bboxSize</code>)'),
+      new TocItem('Make shape collide as a box (<code>Shape.collision</code>)'),
     ));
 ?>
 
@@ -57,10 +59,9 @@ Although toggling Switch node is also ultra-fast.
 <p>We add a <code>shading</code> field to the <code>Shape</code> node
 (more precisely, to the abstract <code>X3DShapeNode</code>):</p>
 
-<?php echo node_begin("X3DShapeNode (e.g. Shape)");
-
-  echo
-  node_dots('all normal X3DShapeNode fields') .
+<?php
+  echo node_begin("X3DShapeNode (e.g. Shape)");
+  echo node_dots('all normal X3DShapeNode fields') .
   node_field('SFString', '[in,out]', "shading", '"DEFAULT"', '["DEFAULT"|"GOURAUD"|"PHONG"|"WIREFRAME"]') .
   node_end();
 ?>
@@ -167,6 +168,79 @@ is not used at all. There are three possible values:
   <li><code>BLENDING</code>: Use blending, which allows to show partial
     transparency of textures and/or materials.
 </ol>
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo node_begin('X3DShapeNode') .
+  node_dots() .
+  node_field('SFVec3f', '[in,out]', 'bboxCenter', '0 0 0'   , '(-Inf,Inf)') .
+  node_field('SFVec3f', '[in,out]', 'bboxSize',   '-1 -1 -1', '[0,Inf) or -1 -1 -1') .
+  node_end();
+?>
+
+<p>X3D specification of the <code>X3DShapeNode</code> (ancestor of <code>Shape</code>)
+already includes the fields <code>bboxCenter</code>, <code>bboxSize</code>.
+In CGE we make them <code>[in,out]</code> which means you can attach X3D routes to them,
+which means you can animate them.
+
+<p>This bounding box is useful e.g. by glTF skinned animation.
+When this box is not empty, it determines the shape bounding box, which means that
+the engine doesn't have to recalculate it every frame when the shape changes.
+
+<p>Note: In Pascal, you should access this by a single property
+<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#BBox">TAbstractShapeNode.BBox</a>,
+using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleBoxes.TBox3D.html">TBox3D</a>
+type (this is used throughout CGE to express axis-aligned bounding boxes).
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo node_begin('X3DShapeNode') .
+  node_dots() .
+  node_field('SFString', '[]', 'collision', '"DEFAULT"', '["DEFAULT"|"BOX"]') .
+  node_end();
+?>
+
+<ul>
+  <li><p><code>"DEFAULT"</code> means that we construct a triangle octree for this shape, to resolve collisions with it precisely.
+
+  <li><p><code>"BOX"</code> means to use the shape bounding box. Which may be auto-calculated, or provided in shape's <code>bboxCenter/Size</code> fields.
+</ul>
+
+<p>This extension allows to make the shape collide as a box (instead of as a precise mesh,
+which means "triangle soup"). You would do this by setting <code>collision</code> to <code>"BOX"</code> in X3D.
+In Pascal, the equivalent is to set
+<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a>
+to <code>scBox</code>, like <code>MyShapeNode.Collision := scBox;</code>.
+
+<p>When is this useful? While it makes collisions worse, it is also much faster,
+especially in case the shape is dynamic
+(e.g. changes each frame by skinned animation or morphing).
+This is automatically used by glTF meshes affected by skinned animation,
+although you can <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">turn it off</a>.
+
+<p>Note that X3D has an alternative method of providing a different (usually simpler) shape for collision
+purposes: <code>Collision</code> node with a <code>proxy</code>.
+Why is this extension still useful?
+
+<ul>
+  <li>
+    <p>It automatically works together with shape <code>bboxCenter/Size</code>.
+
+    <p>When <code>bboxCenter/Size</code> are not provided (or indicate empty box), then box is auto calculated.
+
+    <p>When <code>bboxCenter/Size</code> are provided (and do not indicate empty box),
+      then they are used for both display optimization and for collisions.
+
+    <p>So it's more comfortable in both cases.
+
+  <li>
+    <p>It can be easily toggled to <code>"DEFAULT"</code> (in Pascal: <code>scDefault</code>) if needed by the author (e.g. if performance drop is acceptable and you want recalculate spatial structure during glTF skinned animation), as described <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">here</a>.
+
+  <li>
+    <p><code>"DEFAULT"</code> meaning may change in the future when activated some global like <code>NewPhysics</code>, as we move to using physics engine for all collision detection, and will not automatically construct mesh colliders for everything.
+</ul>
 
 <?php
   x3d_status_footer();
