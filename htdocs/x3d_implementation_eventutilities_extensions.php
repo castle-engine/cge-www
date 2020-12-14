@@ -7,7 +7,8 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Boolean value toggler (<code>Toggler</code> node)', 'ext_toggler'),
-      new TocItem('Force sequencer continuous output (<code>X3DSequencerNode.forceContinuousValue_Changed</code>)', 'forceContinuousValue_Changed'),
+      new TocItem('Force sequencer continuous output (<code>X3DSequencerNode.forceContinuousValue_Changed</code>)', 'ext_forceContinuousValue_Changed'),
+      new TocItem('Trigger multiple outputs of any type when some input is received (<code>ValueTrigger</code>)', 'ext_value_trigger'),
     ));
 ?>
 
@@ -87,6 +88,39 @@ This is consistent with float interpolator nodes, and it is very useful sometime
 (but only one <code>IntegerSequencer</code> is active
 at a time, i.e. only one TimeSensor actually uses some <code>IntegerSequencer</code>),
 you want to be sure to send <code>IntegerSequencer.value_changed</code> continuously.
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo node_begin('ValueTrigger : X3DTriggerNode') .
+  node_dots() .
+  node_field('SFBool', '[in,out]', 'enabled', 'TRUE') .
+  node_field('SFBool', '[in]',     'trigger', '') .
+  node_dots('additional custom fields') .
+  node_end();
+?>
+
+<p>The way to specify <i>additional custom fields</i> is the same as for standard <code>Script</code>
+or <code>ComposedShader</code> nodes.
+
+<p>When the input <code>trigger</code> receives a value <code>TRUE</code>,
+and <code>enabled</code> is <code>TRUE</code>, this node generates output using all
+custom fields.
+
+<p>An example usage (in X3D classic encoding):
+
+<?php echo vrmlx3d_highlight(
+'DEF MyValueTrigger ValueTrigger {
+  inputOutput SFVec3f myBboxCenter 1  2  3
+  inputOutput SFVec3f myBboxSize   10 20 30
+}
+
+# When a MyTimeSensor becomes active (when the animation starts)....
+ROUTE MyTimeSensor.isActive TO MyValueTrigger.trigger
+
+# ...set the MyShape bounding box to predefined values
+ROUTE MyValueTrigger.myBboxCenter TO MyShape.bboxCenter
+ROUTE MyValueTrigger.myBboxSize   TO MyShape.bboxSize'); ?>
 
 <?php
   x3d_status_footer();

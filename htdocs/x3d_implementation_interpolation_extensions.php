@@ -10,6 +10,7 @@
       new TocItem('ColorSetInterpolator', 'color_set_interpolator'),
       new TocItem('VectorInterpolator', 'vector_interpolator'),
       new TocItem('CubicBezierPositionInterpolator and CubicBezier2DOrientationInterpolator', 'cubic_bezier_interpolator'),
+      new TocItem('OrientationInterpolator2D', 'orientation_interpolator_2d'),
     ));
 ?>
 
@@ -153,6 +154,27 @@ This way <code>CubicBezier2DOrientationInterpolator</code> is very efficient for
 rotations.
 
 <p>Note that you could also use <code>NurbsPositionInterpolator</code> and <code>NurbsOrientationInterpolator</code> to interpolate using Bezier curves (<?php echo a_href_page('see NURBS nodes','x3d_implementation_nurbs'); ?>), since NURBS equations already allow to specify Bezier curves. However, this would be less efficient to calculate, as we don't know then that the NURBS "knot" represents a Bezier curve. We can calculate resuls faster knowing that it's a Bezier cubic curve, not anything more generic. Additionally, <code>CubicBezier2DOrientationInterpolator</code> makes extra optimization, knowing that rotation is in 2D.
+
+<?php echo $toc->html_section(); ?>
+
+<?php echo
+  node_begin('OrientationInterpolator2D : X3DInterpolatorNode');
+  $node_format_fd_name_pad = 15;
+  $node_format_fd_def_pad = 6;
+  echo
+  node_field('SFNode', '[in,out]', 'metadata'      , 'NULL'   , '[X3DMetadataObject]; defined by X3DNode') .
+  node_field('SFFloat', '[in]'    , 'set_fraction' , ''  , 'defined by X3DInterpolatorNode') .
+  node_field('MFFloat', '[in,out]', 'key'          , '[]', 'defined by X3DInterpolatorNode') .
+  node_field('MFFloat',    '[in,out]', 'keyValue',      '[]') .
+  node_field('SFVec3f',    '[in,out]', 'axis',          '0 0 1') .
+  node_field('SFRotation', '[out]',    'value_changed', '') .
+  node_end();
+?>
+
+<p>Like a standard <?php echo x3d_node_link('OrientationInterpolator'); ?>, but with simplified parameters
+for rotations in 2D. The axis (in <code>axis</code> field) is constant, only the amount of rotation (single float) changes
+(according to <code>keyValue</code>).
+This makes it both more efficient, and the interpolation more obvious (no need for "slerp").
 
 <?php
   x3d_status_footer();
