@@ -1,14 +1,15 @@
 <?php
-  require_once 'x3d_implementation_common.php';
-  x3d_status_header('Lighting', 'lighting',
-    'This component defines light source nodes.');
+require_once 'x3d_implementation_common.php';
+x3d_status_header('Lighting', 'lighting',
+  'This component defines light source nodes.');
 
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Supported nodes', 'support'),
-      new TocItem('Per-pixel lighting', 'per_pixel_lighting'),
-      new TocItem('Problems? Get latest GPU drivers', 'latest_gpu_drivers', 1),
-    ));
+$toc = new TableOfContents(
+  array(
+    new TocItem('Supported nodes', 'support'),
+    new TocItem('Which shapes are affected by lights', 'affected'),
+    new TocItem('Gouraud or Phong shading (calculate light per-vertex or per-pixel)', 'per_pixel_lighting'),
+    new TocItem('Problems? Get latest GPU drivers', 'latest_gpu_drivers'),
+  ));
 ?>
 
 <p>Contents:
@@ -16,15 +17,45 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>We support all light nodes:
+<p>Lights shine on shapes, making them brighter.
+
+<p>We support these light nodes:
+
 <ul>
-  <li><?php echo x3d_node_link('DirectionalLight'); ?>,
-  <li><?php echo x3d_node_link('PointLight'); ?>,
-  <li><?php echo x3d_node_link('SpotLight'); ?>.
+  <li><p><?php echo x3d_node_link('DirectionalLight'); ?>
+
+    <p>Light that has a direction.
+    This light does not have a position (at least,
+    not a position meaningful for the light calculation).
+    It's like a sun, i.e. a very very distant light source, from which all the light rays
+    can be considered parallel.
+
+  <li><p><?php echo x3d_node_link('PointLight'); ?>
+
+    <p>Light that has a position in 3D space,
+    and shines uniformly in all the directions.
+
+  <li><p><?php echo x3d_node_link('SpotLight'); ?>
+
+    <p>Light that has a position in 3D space,
+    and shines light in the specific direction with a cone of given angle.
+
+  <li><p><code>EnvironmentLight</code> node
+
+    <p>TODO: This is an upcoming light source, that is using a cubemap to describe
+    light source intensity around the target. It can use any X3D cubemap node to describe the environment.
+    Functionality should match match <a href="https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Vendor/EXT_lights_image_based">glTF lighting defined by EXT_lights_image_based</a>.
+
+    <p>It is actually already implemented, and works in some cases.
+    We have <a href="https://github.com/michaliskambi/x3d-tests/tree/master/pbr/environment_light">initial examples of it here</a>.
+    But <i>do not depend on this light source yet. The API and implementation may change. It's a work-in-progress
+    how to express it best.</i>
 </ul>
 
-<p>Lights shine on shapes, making them brighter.
-Only the "lit" shapes (with non-nil material node) are affected by lights.
+<?php echo $toc->html_section(); ?>
+
+<p>Only the "lit" shapes (with non-nil material nodes: <code>Material</code>
+or <code>PhysicalMaterial</code>) are affected by lights.
 
 <p>All these conditions must be satisfied in order for the
 light to shine (contribute to a color) on a given shape:
@@ -44,70 +75,37 @@ light to shine (contribute to a color) on a given shape:
 
   <li><p>If the light has <code>global</code> field set to <code>FALSE</code>,
     then it only affects the shapes nodes that are sibling to it or below.
-    By default, <code>DirectionalLight</code> has <code>global=FALSE</code>
+
+    <p>When importing lights from glTF, all the lights are global by default.
+
+    <p>In X3D, by default, <code>DirectionalLight</code> has <code>global=FALSE</code>
     (otherwise it would affect the whole scene),
     while <code>PointLight</code> and <code>SpotLight</code> have <code>global=TRUE</code>
     (because they are typically limited by their <code>radius</code> field).
 
-    <p>See the example below. The light <code>L1</code> shines on both sphere and box.
-    The light <code>L2</code> shines only on a sphere.
-    You can easily actually test it: save this example as <code>test.x3dv</code> file,
-    and open it with <a href="view3dscene.php">view3dscene</a>.
-
-<?php echo vrmlx3d_highlight(
-'#X3D V3.2 utf8
-PROFILE Interchange
-
-NavigationInfo {
-  # turn off headlight
-  headlight FALSE
-}
-
-DEF L1 DirectionalLight {
-  color 1 0 0 # red
-}
-
-Shape {
-  # assign Appearance and Material to make the shape lit
-  appearance Appearance {
-    material Material { }
-  }
-  geometry Box { }
-}
-
-Transform {
-  translation 2 0 0
-
-  children [
-    DEF L2 DirectionalLight {
-      color 0 1 0 # green
-    }
-
-    Shape {
-      # assign Appearance and Material to make the shape lit
-      appearance Appearance {
-        material Material { }
-      }
-      geometry Sphere { }
-    }
-  ]
-}'); ?>
-    </ul>
+    <p>See the example
+    <a href="https://github.com/castle-engine/demo-models/blob/master/lights_materials/directional_light_scope_simple.x3dv">directional_light_scope_simple.x3dv</a>
+    to see how the <code>DirectionalLight</code> light scope is limited by default
+    (when it has global=FALSE).
+</ul>
 
 <p>Note that, while your whole scene can have an unlimited number of lights,
 the number of lights that affect a particular shape is limited.
-It is limited to 8 inside the engine (for now).
-In general, having too many lights affect a single shape is costly
-(in "forward rendering mode" that we use), and it's also not necessary
-in normal circumstances.
+It is limited to 8 by default, but you can change this limit by setting
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#MaxLightsPerShape">Scene.Attributes.MaxLightsPerShape</a>.
+You can also experiment with it in <a href="view3dscene.php">view3dscene</a>,
+which has a menu item <i>"View -&gt; Max Lights Per Shape..."</i>.
+Test e.g. on this demo model:
+<a href="https://github.com/castle-engine/demo-models/tree/master/gltf/multiple_animated_lights">gltf/multiple_animated_lights</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>By default we render most shapes using Gouraud shading (per-vertex lighting
-calculation). This is fast, but not always pretty.
-<a href="x3d_implementation_shape_extensions.php">See the Shape.shading field
-for a description on other shading approaches,
-and how to activate them.</a>
+<p>We render shapes using Gouraud shading (per-vertex lighting calculation)
+unless we detect that the shape requires Phong shading.
+In particular <code>PhysicalMaterial</code> causes Phong shading,
+so imported glTF models use Phong shading by default.
+<a href="x3d_implementation_shape_extensions.php#section_ext_shading">See the Shape.shading field
+for a description of shading approaches, and how it is determined.</a>
 
 <p>Using the <i>"View -&gt; Phong Shading on Everything"</i> option in view3dscene
 forces everything to be rendered using Phong shading (per-pixel lighting).
@@ -142,17 +140,11 @@ This is sometimes a significant boost to quality.</p>
 
 <p>You can also <?php echo a_href_page_hashlink('switch to Phong shading for particular shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
 
-<p>Pascal Developers: you can switch to Phong for the whole scene by <code>Scene.Attributes.PhongShading := true</code> or only for a particular shape using <code>Shape.Shading := shPhong</code>.
+<p>Pascal Developers: you can switch to Phong for the whole scene by <code>Scene.RenderOptions.PhongShading := true</code> or only for a particular shape using <code>Shape.Shading := shPhong</code>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Using the shader pipeline (right now activated by certain features,
-like <i>Phong Shading</i> or
- <?php echo a_href_page('shadow maps', 'x3d_extensions_shadow_maps'); ?>
- or
-<?php echo a_href_page_hashlink('bump mapping', 'x3d_extensions' , 'section_ext_bump_mapping'); ?>;
- may be default in the future)
- requires a good graphic card with latest drivers.
+<p>The engine requires a good graphic card with latest drivers for proper rendering.
 <!--This means that they work much better than previously (where
 sometimes I used simplified dumb shaders, and sometimes default
 behavior was to not use shaders at all). --> Before reporting
@@ -167,14 +159,12 @@ latest drivers from</p>
   <li>laptop owners may often get more stable drivers from their laptop manufacturer.</li>
 </ul>
 
-<p>Windows often comes with quite outdated drivers, so be sure to get drivers from
+<p>Windows sometimes comes with quite outdated drivers, so be sure to get drivers from
 above sites.
-On Linux and Mac OS X, it should be enough to make sure you use the
+On Linux and macOS, it should be enough to make sure you use the
 latest version of your system, with all updates applied. On Linux,
-you <i>may</i> need to install the proprietary OpenGL drivers to squeeze best
-performance from your NVidia/Radeon GPU. (Although latest <a
-href="http://www.mesa3d.org/">Mesa</a> may also be quite capable
-of handling simpler stuff, even with shaders.)</p>
+you <i>may</i> also install the proprietary OpenGL drivers to squeeze best performance
+(although it's not necessary in many cases, even for 3D games, using CGE or not).
 
 <?php
   x3d_status_footer();
