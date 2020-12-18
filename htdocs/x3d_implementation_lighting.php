@@ -46,6 +46,8 @@ $toc = new TableOfContents(
     light source intensity around the target. It can use any X3D cubemap node to describe the environment.
     Functionality should match match <a href="https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Vendor/EXT_lights_image_based">glTF lighting defined by EXT_lights_image_based</a>.
 
+    <p>See <a href="https://github.com/michaliskambi/x3d-tests/wiki/Image-Based-Lighting-(EnvironmentLight-node)">design status here</a>.
+
     <p>It is actually already implemented, and works in some cases.
     We have <a href="https://github.com/michaliskambi/x3d-tests/tree/master/pbr/environment_light">initial examples of it here</a>.
     But <i>do not depend on this light source yet. The API and implementation may change. It's a work-in-progress
