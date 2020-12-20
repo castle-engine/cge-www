@@ -64,7 +64,10 @@ The build tool in turn calls a compiler (FPC) and some other tools
 
 <p>Let us emphasize that <i>when using the editor, you still code using the same CGE API as described throughout this manual</i>. At any point you can load an instance of <code>TCastleUserInterface</code> or <code>TCastleTransform</code> from a designed file and insert it into the running application.
 
-<p>Everything related to designing is in the editor <i>Design</i> menu (once you open any project). You can open any example project from the engine designed using the editor (e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a>) and play around with it.
+<p>Open various example projects to see the editor, with various components, in action. We recommend trying out
+various templates (create "New Project" in editor),
+<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery">examples/component_gallery</a>,
+<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a>.
 
 <?php echo $toc->html_section(); ?>
 
