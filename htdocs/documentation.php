@@ -13,6 +13,7 @@ echo '<img src="images/castle_game_engine_icon.png"
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Video Introduction', 'video'),
     new TocItem('Using Castle Game Engine Editor', 'editor'),
     new TocItem('Using Lazarus', 'lazarus'),
     //new TocItem('Alternatives', 'bare_fpc'),
@@ -26,6 +27,14 @@ echo pretty_heading('Getting Started');
 ?>
 
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you like to learn by watching, enjoy this video introduction to the engine and editor:
+
+<p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zdwN4mdQG_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <?php echo $toc->html_section(); ?>
 
