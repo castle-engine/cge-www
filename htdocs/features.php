@@ -8,7 +8,7 @@ castle_header("Features", array(
 $toc = new TableOfContents(
   array(
     new TocItem('Summary', 'summary'),
-    new TocItem('Demo reel', 'demo'),
+    new TocItem('Videos', 'demo'),
     new TocItem('Many 3D and 2D formats supported (glTF, X3D, Collada, Spine...)', 'data'),
     new TocItem('Portable (standalone, mobile, console, web browser plugin)', 'portable'),
     new TocItem('Graphic features and effects (physically based rendering, shadows, mirrors, bump mapping...)', 'graphic'),
@@ -51,7 +51,13 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<iframe class="media-responsive" width="853" height="480" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allowfullscreen></iframe>
+See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d/">YouTube channel</a>:
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/2t0VKzAoCm8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/zdwN4mdQG_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <?php echo $toc->html_section(); ?>
 
