@@ -10,9 +10,10 @@ creating_data_header('Exporting from Blender', array(
 $toc = new TableOfContents(
   array(
     new TocItem('Export to glTF 2', 'gltf'),
+      new TocItem('Custom properties', 'custom_properties', 1),
     new TocItem('Export to X3D', 'x3d'),
     new TocItem('Export to Castle Animation Frames (castle-anim-frames)', 'castle_anim_frames'),
-    new TocItem('Actions and Frames', 'actions_and_frames', 1),
+      new TocItem('Actions and Frames', 'actions_and_frames', 1),
     new TocItem('Exporting Various Animations Types to castle-anim-frames', 'castle_anim_frames_hints', 1),
     new TocItem('Rendering Skyboxes and Static Cube Environment Maps', 'render_skybox'),
     new TocItem('Obsolete: Export to X3D from Blender 2.7', 'x3d_old'),
@@ -72,6 +73,18 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 
 <!-- Beware: don't change this to self-closing <div style="clear:both" />, it will break sidebar rendering -->
 <div style="clear:both"></div>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them into <code>Metadata</code> information. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>.
+
+<p>Moreover, we recognize a special property <code>CastleCollision</code> at Blender mesh. It sets <a href="x3d_implementation_shape_extensions.php#section_ext_shape_collision">X3DShapeNode.collision</a> field in X3D (<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a> in Pascal API). It accepts the following values:
+
+<ul>
+  <li><p><code>none</code> &mdash; non-collidable mesh.
+  <li><p><code>box</code> &mdash; mesh collides as a simple box (auto-calculated as bounding box, unless <a href="x3d_implementation_shape_extensions.php#section_ext_shape_bbox">Shape.Bbox</a> is explicitly specified</p>.
+  <li><p><code>default</code> &mdash; mesh collides as a precise set of triangles.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
