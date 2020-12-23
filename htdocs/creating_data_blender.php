@@ -81,9 +81,9 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 <p>Moreover, we recognize a special property <code>CastleCollision</code> at Blender mesh. It sets <a href="x3d_implementation_shape_extensions.php#section_ext_shape_collision">X3DShapeNode.collision</a> field in X3D (<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a> in Pascal API). It accepts the following values:
 
 <ul>
-  <li><p><code>none</code> &mdash; non-collidable mesh.
-  <li><p><code>box</code> &mdash; mesh collides as a simple box (auto-calculated as bounding box, unless <a href="x3d_implementation_shape_extensions.php#section_ext_shape_bbox">Shape.Bbox</a> is explicitly specified</p>.
-  <li><p><code>default</code> &mdash; mesh collides as a precise set of triangles.
+  <li><p><code>none</code> &mdash; non-collidable mesh.</p></li>
+  <li><p><code>box</code> &mdash; mesh collides as a simple box (auto-calculated as bounding box, unless <a href="x3d_implementation_shape_extensions.php#section_ext_shape_bbox">Shape.Bbox</a> is explicitly specified</p></li>
+  <li><p><code>default</code> &mdash; mesh collides as a precise set of triangles.</p></li>
 </ul>
 
 <?php echo $toc->html_section(); ?>
