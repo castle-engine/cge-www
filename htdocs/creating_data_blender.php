@@ -82,7 +82,7 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 
 <ul>
   <li><p><code>none</code> &mdash; non-collidable mesh.</p></li>
-  <li><p><code>box</code> &mdash; mesh collides as a simple box (auto-calculated as bounding box, unless <a href="x3d_implementation_shape_extensions.php#section_ext_shape_bbox">Shape.Bbox</a> is explicitly specified</p></li>
+  <li><p><code>box</code> &mdash; mesh collides as a simple axis-aligned box (auto-calculated from bounding box of the shape, unless <a href="x3d_implementation_shape_extensions.php#section_ext_shape_bbox">Shape.Bbox</a> is explicitly specified).</p></li>
   <li><p><code>default</code> &mdash; mesh collides as a precise set of triangles.</p></li>
 </ul>
 
