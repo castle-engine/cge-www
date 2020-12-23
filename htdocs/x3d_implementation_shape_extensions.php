@@ -198,35 +198,36 @@ type (this is used throughout CGE to express axis-aligned bounding boxes).
 <?php
   echo node_begin('X3DShapeNode') .
   node_dots() .
-  node_field('SFString', '[]', 'collision', '"DEFAULT"', '["DEFAULT"|"BOX"]') .
+  node_field('SFString', '[]', 'collision', '"DEFAULT"', '["DEFAULT"|"BOX"|"NONE"]') .
   node_end();
 ?>
 
+<p>The new field <code>collision</code> specifies how the shape collides:
+
 <ul>
-  <li><p><code>"DEFAULT"</code> means that we construct a triangle octree for this shape, to resolve collisions with it precisely.
+  <li><p><code>"DEFAULT"</code> means that we construct a triangle octree for this shape, to resolve collisions with it precisely, as a "set of triangles".
 
   <li><p><code>"BOX"</code> means to use the shape bounding box. Which may be auto-calculated, or provided in shape's <code>bboxCenter/Size</code> fields.
+
+    <p>Colliding as a box is much faster,
+    especially in case the shape is dynamic
+    (e.g. changes each frame by skinned animation or morphing).
+    This is automatically used by glTF meshes affected by skinned animation,
+    although you can <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">turn it off</a>.
+
+  <li><p><code>"NONE"</code> means that shape does not collide.
 </ul>
 
-<p>This extension allows to make the shape collide as a box (instead of as a precise mesh,
-which means "triangle soup"). You would do this by setting <code>collision</code> to <code>"BOX"</code> in X3D.
-In Pascal, the equivalent is to set
-<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a>
-to <code>scBox</code>, like <code>MyShapeNode.Collision := scBox;</code>.
-
-<p>When is this useful? While it makes collisions worse, it is also much faster,
-especially in case the shape is dynamic
-(e.g. changes each frame by skinned animation or morphing).
-This is automatically used by glTF meshes affected by skinned animation,
-although you can <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">turn it off</a>.
+<p>In Pascal, the equivalent is to set
+<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a>, like <code>MyShapeNode.Collision := scBox;</code>.
 
 <p>Note that X3D has an alternative method of providing a different (usually simpler) shape for collision
-purposes: <code>Collision</code> node with a <code>proxy</code>.
+purposes: <code>Collision</code> node with <code>enabled</code> and <code>proxy</code> fields.
 Why is this extension still useful?
 
 <ul>
   <li>
-    <p>It automatically works together with shape <code>bboxCenter/Size</code>.
+    <p>The <code>collision="BOX"</code> automatically works together with shape <code>bboxCenter/Size</code>.
 
     <p>When <code>bboxCenter/Size</code> are not provided (or indicate empty box), then box is auto calculated.
 
