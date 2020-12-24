@@ -17,7 +17,7 @@ function vrmlx3d_footer()
   castle_footer();
 }
 
-function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_intro)
+function x3d_status_header($x3d_component_name, $component_name_for_url, $component_intro)
 {
   castle_header($x3d_component_name .' component', array(
     'path' => array('vrml_x3d', 'x3d_implementation_status')
@@ -25,8 +25,10 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
 
   echo pretty_heading($x3d_component_name . ' component');
 
-  global $x3d_component_url;
-  $x3d_component_url = x3d_spec_latest_url($x3d_spec_page_url);
+  global $x3d_current_component_name_for_url;
+  $x3d_current_component_name_for_url = $component_name_for_url;
+
+  $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
 
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
@@ -35,7 +37,7 @@ function x3d_status_header($x3d_component_name, $x3d_spec_page_url, $component_i
 }
 
 function x3d_extensions_header($x3d_component_name, $base_component_page,
-  $x3d_spec_page_url, $component_intro, $social_share_image = NULL)
+  $component_name_for_url, $component_intro, $social_share_image = NULL)
 {
   $base_component_page = 'x3d_implementation_' . $base_component_page;
 
@@ -50,8 +52,10 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
 
   echo pretty_heading($x3d_component_name . ' component - extensions');
 
-  global $x3d_component_url;
-  $x3d_component_url = x3d_spec_latest_url($x3d_spec_page_url);
+  global $x3d_current_component_name_for_url;
+  $x3d_current_component_name_for_url = $component_name_for_url;
+
+  $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
 
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
@@ -73,25 +77,28 @@ function x3d_node_api_link($node_name)
     '</small>';
 }
 
-/* Display name of VRML/X3D node,
-   linked to it's description in X3D specification,
-   and linked to Pascal API docs.
-   This relies that the node's component was previously
-   declared by x3d_status_header. */
-function x3d_node_link($node_name)
+/* Display X3D node, linked to X3D specification and to Pascal API docs.
+   This depends you used x3d_status_header or x3d_extensions_header
+   to set current X3D component name.
+
+   $spec_version value is like for x3d_spec_latest_url:
+   NULL (latest stable spec) or 'draft' (latest draft spec).
+*/
+function x3d_node_link($node_name, $spec_version = NULL)
 {
-  global $x3d_component_url;
-  return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
-    $node_name . '</a></code>' . x3d_node_api_link($node_name);
+  global $x3d_current_component_name_for_url;
+  return x3d_node_link2($node_name, $x3d_current_component_name_for_url, $spec_version);
 }
 
-/* Display name of VRML/X3D node,
-   linked to it's description in X3D specification.
-   This uses given $component_name_for_url. */
-function x3d_node_link2($node_name, $component_name_for_url)
+/* Display X3D node, linked to X3D specification and to Pascal API docs.
+
+   $spec_version value is like for x3d_spec_latest_url:
+   NULL (latest stable spec) or 'draft' (latest draft spec).
+*/
+function x3d_node_link2($node_name, $component_name_for_url, $spec_version = NULL)
 {
-  $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
-  return '<code><a href="' . $x3d_component_url . '#' . $node_name . '">' .
-    $node_name . '</a></code>';
+  $x3d_component_url = x3d_spec_latest_url($component_name_for_url, $node_name, $spec_version);
+  return '<code><a href="' . $x3d_component_url . '">' .
+    $node_name . '</a></code>' . x3d_node_api_link($node_name);
 }
 ?>

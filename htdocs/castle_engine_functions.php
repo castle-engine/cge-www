@@ -1544,13 +1544,22 @@ function pascal_highlight_file($file_name)
   return $geshi->parse_code();
 }
 
-function x3d_spec_latest_url($component_name, $anchor = '')
+/* URL to X3D specification specific component.
+   When non-empty $anchor, we add this #xxxx to the URL.
+   $spec_version may be NULL (latest stable spec) or 'draft' (latest draft spec).
+*/
+function x3d_spec_latest_url($component_name, $anchor = '', $spec_version = NULL)
 {
   if ($anchor != '') {
     $anchor = '#' . $anchor;
   }
-  return 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/' .
-    $component_name . '.html' . $anchor;
+  if ($spec_version == 'draft') {
+    // latest X3D 4 draft
+    $spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD3/Part01/components/';
+  } else {
+    $spec_base = 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/';
+  }
+  return $spec_base . $component_name . '.html' . $anchor;
 }
 
 function vrmlx3d_highlight($source)
