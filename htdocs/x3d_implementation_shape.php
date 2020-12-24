@@ -31,45 +31,46 @@ $toc = new TableOfContents(
 
   <li><p><?php echo x3d_node_link('Material'); ?>
 
-    <p>Describes how the shape interacts with lights.
+    <p>The classic (Phong lighting moddel) material.
+    Describes how the shape interacts with lights.
     In simple terms: what is the color of the shape.
     Place this node inside <code>Appearance.material</code> field.
 
-    <p>Note that the rendering engine has special optimizations
-    for the <i>"pure emissive"</i> materials, otherwise known as <i>"unlit materials"</i>,
-    that cannot be affected by lighting. If you want to use such optimized material,
-    be sure to set to zero all these material fields:
+  <li><p><?php echo x3d_node_link('PhysicalMaterial', 'draft'); ?>
 
-    <ul>
-      <li><code>ambientIntensity</code>
-      <li><code>diffuseColor</code>
-      <li><code>specularColor</code>
-    </ul>
+    <p>The material using physical (PBR, physically-based rendering) equations
+    for lighting.
+    Consistent with glTF and latest Blender material specifications.
+    Importing a glTF model automatically makes it use this material
+    type (unless
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials">GltfForcePhongMaterials</a>
+    has been used).
 
-    <p>Effectively, for such material, only the <code>emissiveColor</code> matters.
+    <p>Place this node inside <code>Appearance.material</code> field.
 
-    <p>Pascal programmers can also use
-    <?php api_link('ForcePureEmissive', 'X3DNodes.TMaterialNode.html#ForcePureEmissive'); ?>
-    and
-    <?php api_link('PureEmissive', 'X3DNodes.TMaterialNode.html#PureEmissive'); ?>
-    methods.
+  <li><p><?php echo x3d_node_link('UnlitMaterial', 'draft'); ?>
+
+    <p>The unlit material.
+    Lights do not affect the look of this material.
+    It has only a simple color (<code>emissiveColor</code>) multiplied by the optional
+    texture (<code>emissiveTexture</code>).
+    Using this material is very efficient.
+
+    <p>Place this node inside <code>Appearance.material</code> field.
 
   <li><p><?php echo x3d_node_link('TwoSidedMaterial'); ?>
 
-    <p>The basic <code>Material</code> is one-sided under Gourand shading.
-    This means that if you look at the object from behind,
-    it will be often pure black (lighting is not applied).
+    <p><i>Deprecated.</i> Using this material node is now equivalent
+    to using a subset of Phong <code>Material</code>.
+    Note that if you want to see the mesh from two sides,
+    just set geometry <code>solid</code> to <code>FALSE</code>,
+    it is completely independent of the material node,
+    will work with <code>Material</code>, <code>PhysicalMaterial</code>,
+    <code>UnlitMaterial</code> as well.
 
-    <p>Use the <code>TwoSidedMaterial</code> to have a two-sided material.
-
-    <p>Note that you can also
-    <a href="x3d_implementation_shape_extensions.php#section_ext_shading">use Phong shading</a>.
-    This makes even the basic <code>Material</code> two-sided in <i>Castle Game Engine</i>.
-
-    <p>TODO: We don't support yet X3D <code>separateBackColor</code>
+    <p>TODO: We don't support <code>separateBackColor</code>
     and related properties. So <code>TwoSidedMaterial</code>
-    is affected by lighting from both sides, but it always looks the same
-    from both sides.
+    always looks the same from both sides.
 
   <li><p><?php echo x3d_node_link('LineProperties'); ?>
 
@@ -117,11 +118,8 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p>Missing and planned:
-
 <ul>
-  <li><a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PBR-%28PhysicalMaterial-and-related-concepts%29-in-the-official-X3D-specification">PBR (Physical Based Rendering)</a> materials and related nodes.
-  <li>FillProperties
+  <li>FillProperties are not implemented yet.
 </ul>
 
 <?php
