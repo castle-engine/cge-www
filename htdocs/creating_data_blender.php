@@ -76,7 +76,7 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 
 <?php echo $toc->html_section(); ?>
 
-<p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them into <code>Metadata</code> information. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>. See <code>examples/short_api_samples/metadata/metadata_use.lpr</code> for an example of how to get/set metadata from Pascal.
+<p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on X3D nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>. See <code>examples/short_api_samples/metadata/metadata_use.lpr</code> for an example of how to get/set metadata from Pascal.
 
 <ul>
   <li><p>Custom properties on Blender materials are imported as metadata on X3D material nodes, like <code>TPhysicalMaterialNode</code>.
@@ -92,9 +92,9 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
     <p>For example, if you have a <code>TShapeNode</code> instance, you can look at parent group by <code>TX3DNode.ParentFieldsNode</code> property. To read metadata from the corresponding Blender mesh do this:
 
     <?php echo pascal_highlight('if MyShape.ParentFieldsCount = 1 then
-  MyString := MyShape.ParentFields[0].MetadataString['mesh_property_name']
+  MyString := MyShape.ParentFieldsNode[0].MetadataString[\'mesh_property_name\']
 else
-  WritelnWarning('Shape not created by glTF importer');'); ?>
+  WritelnWarning(\'Shape not created by glTF importer\');'); ?>
 
   <li><p>Custom properties on Blender objects are imported as metadata on the <i>immediate parent <code>Transform</code> of each X3D <code>Group</code> representing Blender mesh</i>. Note that one Blender mesh may be part of multiple Blender objects.
 </ul>
