@@ -7,9 +7,13 @@ require_once 'news_common.php';
 global $main_page;
 $main_page = true;
 
-if (!HTML_VALIDATION &&
-  (CASTLE_ENVIRONMENT == 'production' ||
-   CASTLE_ENVIRONMENT == 'development'))
+if (!HTML_VALIDATION && (
+  CASTLE_ENVIRONMENT == 'production'
+  /* Comment our the condition below,
+     to not try to use Wordpress and Wordpress database during development.
+     This makes testing easy, as most of our content are just static pages. */
+   || CASTLE_ENVIRONMENT == 'development'
+  ))
 {
     /* Load Wordpress PHP now
        (in global namespace, just like wp-blog-header.php does) */
