@@ -695,76 +695,7 @@ wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To detect memory leaks, we advice to regularly compile your code with
-FPC options <code>-gl -gh</code>. <!--This automatically uses the special units
-<code>HeapTrc</code> and <code>LineInfo</code> in your program.-->
-There are many ways to do this, for example you can
-add this to your <code>fpc.cfg</code> file (<?php echo FPC_CFG_DOCS; ?>):
-
-<pre>
-#IFDEF DEBUG
--gh
--gl
-#ENDIF
-</pre>
-
-<p>Then all the programs compiled in debug mode (with
-<code>castle-engine compile --mode=debug</code>,
-or with an explicit FPC option <code>-dDEBUG</code>)
-will automatically check for memory leaks.
-
-<p>The end result is that at the program's exit, you will get a very useful
-report about the allocated and not freed memory blocks,
-with a stack trace to the allocation call.
-This allows to easily detect and fix memory leaks.
-
-<p>If everything is OK, the output looks like this:
-
-<pre>
-Heap dump by heaptrc unit
-12161 memory blocks allocated : 2290438/2327696
-12161 memory blocks freed     : 2290438/2327696
-0 unfreed memory blocks : 0
-True heap size : 1212416
-True free heap : 1212416
-</pre>
-
-<p>But when you have a memory leak, it tells you about it,
-and tells you where the relevant memory was allocated, like this:
-
-<pre>
-Heap dump by heaptrc unit
-4150 memory blocks allocated : 1114698/1119344
-4099 memory blocks freed     : 1105240/1109808
-51 unfreed memory blocks : 9458
-True heap size : 851968
-True free heap : 834400
-Should be : 835904
-Call trace for block $00007F9B14E42980 size 44
-  $0000000000402A83 line 162 of xxx.lpr
-  ...
-</pre>
-
-<p>It is possible that in the future, we may add <code>-gl -gh</code> automatically
-to the options added by the build tool in the debug mode.
-So programs compiled with <code>castle-engine compile --mode=debug</code>
-will automatically show this output.
-We don't do it yet, because:
-
-<ul>
-  <li><p>When you exit with <code>Halt</code>,
-    you will always have some memory leaks, that's unavoidable for now.
-    You should ignore the "<i>Heap dump by heaptrc unit</i>" output in this case.
-    <!-- the OS cleans up the memory of a terminated program anyway. -->
-    Same thing if your program crashes with an unhandled exception.
-
-  <li><p>The behavior in case of memory leaks on Windows GUI application is
-    somewhat unfriendly. Memory leaks are displayed using a series of Windows
-    modal message boxes, and you have to click through them, or kill the application.
-
-    <p>It's better to switch application to CONSOLE for debugging,
-    and run it from command-line, to observe HeapTrc output.
-</ul>
+<p><a href="https://github.com/castle-engine/castle-engine/wiki/Detecting-Memory-Leaks-Using-HeapTrc">We heavily advise to detect memory leaks automatically using HeapTrc. The details how to do it are here.</a>
 
 <?php echo $toc->html_section(); ?>
 
