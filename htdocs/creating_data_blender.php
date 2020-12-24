@@ -76,7 +76,28 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 
 <?php echo $toc->html_section(); ?>
 
-<p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them into <code>Metadata</code> information. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>.
+<p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them into <code>Metadata</code> information. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>. See <code>examples/short_api_samples/metadata/metadata_use.lpr</code> for an example of how to get/set metadata from Pascal.
+
+<ul>
+  <li><p>Custom properties on Blender materials are imported as metadata on X3D material nodes, like <code>TPhysicalMaterialNode</code>.
+
+    <p>For example access them like:
+
+    <?php echo pascal_highlight('MyString := MyMaterial.MetadataString[\'material_property_name\']'); ?>
+
+  <li><p>Custom properties on Blender cameras are imported as metadata on X3D viewpoint nodes, like <code>TViewpointNode</code>.
+
+  <li><p>Custom properties on Blender meshes are imported as metadata on the <i>immediate parent <code>Group</code> of each X3D <code>Shape</code> node</i>. Note that many X3D shapes may be part of one Blender mesh.
+
+    <p>For example, if you have a <code>TShapeNode</code> instance, you can look at parent group by <code>TX3DNode.ParentFieldsNode</code> property. To read metadata from the corresponding Blender mesh do this:
+
+    <?php echo pascal_highlight('if MyShape.ParentFieldsCount = 1 then
+  MyString := MyShape.ParentFields[0].MetadataString['mesh_property_name']
+else
+  WritelnWarning('Shape not created by glTF importer');'); ?>
+
+  <li><p>Custom properties on Blender objects are imported as metadata on the <i>immediate parent <code>Transform</code> of each X3D <code>Group</code> representing Blender mesh</i>. Note that one Blender mesh may be part of multiple Blender objects.
+</ul>
 
 <p>Moreover, we recognize a special property <code>CastleCollision</code> at Blender mesh. It sets <a href="x3d_implementation_shape_extensions.php#section_ext_shape_collision">X3DShapeNode.collision</a> field in X3D (<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a> in Pascal API). It accepts the following values:
 
