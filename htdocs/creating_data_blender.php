@@ -76,6 +76,12 @@ Note that you usually want to <i>Stash</i> animations to have them exported, as 
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'blender_castle_collision_prop.png', 'titlealt' => 'Setting CastleCollision property in Blender'),
+));
+?>
+
 <p>Blender can export <i>Custom properties</i> from various objects to glTF, and our engine reads them. You can access them by <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">MetadataString</a> and similar properties on X3D nodes. See <a href="https://github.com/castle-engine/demo-models">our demo-models</a>, subdirectories <code>blender/custom_properties/</code> and <code>blender/custom_properties_2/</code>. See <code>examples/short_api_samples/metadata/metadata_use.lpr</code> for an example of how to get/set metadata from Pascal.
 
 <ul>
