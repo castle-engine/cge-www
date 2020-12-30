@@ -201,34 +201,13 @@ multi-touch doesn't work on desktops with a single mouse and so on.
 
 <p>To account for this, you can adjust your input handling depending on the
 <?php api_link('ApplicationProperties.TouchDevice', 'CastleApplicationProperties.TCastleApplicationProperties.html#TouchDevice'); ?> value.
+It is automatically initialized to <code>true</code> on touch devices without keyboard / mouse (like mobile),
+and <code>false</code> elsewhere (like on typical desktops).
 
-<?php /*
-
-<p>For example, to make 3D navigation working using touch controls on mobile
-or "mouse look" on desktops, you can
-
-<ol>
-  <li><p>Create an instance of
-    <code>TCastleWindowTouch</code>
-    (instead of the simpler
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>).
-
-    <p>TODO: TCastleWindowTouch is deprecated now. These instructions
-    will be updated when we implement a replacement.
-
-  <li><p>Create <code>Player</code> instance
-    (see the <?php echo a_href_page('manual chapter about the Player', 'manual_player'); ?>)
-
-  <li><p>At initialization (e.g. inside <code>Application.OnInitialize</code> callback)
-    do this:
-
-<?php echo pascal_highlight(
-'Window.AutomaticTouchInterface := ApplicationProperties.TouchDevice;
-Player.Camera.MouseLook := not ApplicationProperties.TouchDevice;'); ?>
-
-</ol>
-
-*/ ?>
+<p>For navigation in 3D on mobile, we have a special UI control
+<?php api_link('TCastleTouchNavigation', 'CastleViewport.TCastleTouchNavigation.html'); ?>.
+This allows to easily navigate (examine / walk / fly) in the viewport by dragging on special controls
+in the corners.
 
 <?php echo $toc->html_section(); ?>
 
