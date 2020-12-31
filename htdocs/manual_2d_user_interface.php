@@ -69,7 +69,7 @@ as you add them using the aptly-named methods
 indicating the visual "front" (<i>in front of other controls</i>) or "back".
 The <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> can be arranged
  in hierarchy: one instance of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
- can be a children of another, which makes it visually "contained" inside the parent,
+ can be a child of another, which makes it visually "contained" inside the parent,
 and moved along with parent.
 
 <p>Note that you can also render and handle inputs using the
@@ -78,13 +78,16 @@ and moved along with parent.
 like <?php api_link('Window.OnRender', 'CastleWindow.TCastleWindowBase.html#OnRender'); ?>,
 <?php api_link('Window.OnPress', 'CastleWindow.TCastleWindowBase.html#OnPress'); ?> and
 <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowBase.html#OnUpdate'); ?>.
-But this is usually only useful for simple cases.
-Most of your rendering and input handling should be done inside some
+But usually most of your rendering and input handling should be done inside some
 <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
- descendant. Note that a <i>scene manager</i> by default acts also as a <i>viewport</i>
-into the 3D world, and it's also a descendant of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
-It makes sense, if you think about it: inside a 2D screen, you create a 2D viewport, that allows
-to view the 3D world inside.
+ descendant, most importantly inside
+ <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?> descendant
+ (<code>TUIState</code> descends from <code>TCastleUserInterface</code>).
+
+<p>Note that <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
+ is also a descendant of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
+ So the organization follows what you see:
+ inside a 2D window, you create a 2D viewport, that allows to view the 3D world inside.
 So, almost everything is "inside" some <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
  in our engine.<!--, and we advice you to follow this approach when creating your own games.-->
 
@@ -473,7 +476,7 @@ The example below demonstrates this technique, inserting
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => 'two_viewports.png', 'titlealt' => 'Scene manager with custom viewport'),
+  array('filename' => 'two_viewports.png', 'titlealt' => 'Two viewports'),
 ), 'auto', 'left');
 ?>
 

@@ -11,7 +11,7 @@ They implement a <i>common logic typical to 3D games</i>.
 they are clearly separated from the rest of CGE code.
 Using these units is <i>optional</i>. You can implement a perfect 3D game
 without them (you only need to use <a href="manual_scene.php">scenes</a>,
-and the scene manager already gives you flexible camera and navigation features)
+and the viewport already gives you flexible camera and navigation features)
 and have full flexibility of a general 3D engine.
 Using these units makes sense if your game concepts fit within typical concepts
 of the <i>3D first-person shooter games</i>, described below.

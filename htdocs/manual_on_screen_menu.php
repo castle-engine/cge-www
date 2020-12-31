@@ -61,8 +61,7 @@ So you can really insert any convoluted things inside the on-screen menu:)
 <p>You can use various UI controls on top of each other.
 So you can have
 <?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
- displayed on top of a 3D world (by default, scene manager already acts as
-a viewport). You can control the existence of any UI control
+ displayed on top of a TCastleViewport. You can control the existence of any UI control
 either by removing/adding it from the <code>Controls</code> list,
 or by changing it's <?php api_link('Exists', 'CastleUIControls.TUIControl.html#Exists'); ?>
  property.</p>

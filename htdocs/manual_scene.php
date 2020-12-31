@@ -176,7 +176,7 @@ echo castle_thumbs(array(
 
 <p>It's allowed to add the same instance of the
 <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
- many times to your scene manager hierarchy.
+ many times to your viewport items hierarchy.
 This allows to reuse it's data completely, which is great for both performance
 and the memory usage.
 
@@ -323,7 +323,7 @@ end;'); ?>
     <p>This is explained in detail in the <?php echo a_href_page('chapter about the transformation hierarchy', 'manual_transformation_hierarchy'); ?>.</p>
   </li>
 
-  <li><p>Add the created scene to the scene manager, by adding this somewhere at the end of scene manager initialization:</p>
+  <li><p>Add the created scene to the viewport:</p>
 
 <?php echo pascal_highlight(
 'Viewport.Items.Add(CreateBoxesScene);'); ?>

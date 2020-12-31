@@ -29,7 +29,7 @@ echo castle_thumbs(array(
 </div>
 */ ?>
 
-<p>Before we dive into full-featured "scene managers" and 3D,
+<p>Before we dive into full-featured viewports, scenes and 3D,
 let's take a quick look at the simple things you can do with our window.
 Let's draw some images and handle inputs.
 

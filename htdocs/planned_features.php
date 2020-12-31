@@ -29,15 +29,12 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <p>Extend our <a href="manual_editor.php">editor</a>.
 
     <ul>
-      <li><p>Add gizmos to manipulate (translate / rotate / scale) 3D and 2D objects inside a viewport / scene manager.
-      <li><p>Make the "files browser" at the bottom more useful (allow to drag assets onto a design).
       <li><p>Cover all use-cases mentioned in <a href="https://castle-engine.io/wp/2017/12/23/plans-6-4-release-asap-visual-editor-soon-2018-roadmap/">original post about the editor</a>:
         <ol>
-          <li>I want to edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
-          <li>I want to have a standalone editor (like <i>Unity3d</i>; check!),
-          <li>I want to edit at runtime too.
+          <li>Edit things within Lazarus and Delphi (like <i>GLScene</i> and <i>FireMonkey 3d</i>),
+          <li>Edit/inspect the hierarchy at runtime too.
         </ol>
-      <li><p>Implement <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md">everything planned for the editor</a>, and close all <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/TODO.md">TODOs</a> :)
+      <li><p>See more <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/TODO.md">TODOs</a>.
     </ul>
 
   <li><p><b>Delphi compatibility</b> (was planned for 6.6 release, postponed to 6.8).
@@ -168,12 +165,12 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
     <p>Help with this is most welcome. <i>We have a simple example code that shows how you can start a new renderer</i>: see <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/new_renderer_skeleton.lpr">new_renderer_skeleton.lpr</a>. So <a href="https://github.com/castle-engine/castle-engine/">get the engine from GitHub</a>, and start changing the <code>new_renderer_skeleton.lpr</code>. Just fill the <code>TCastleSceneVulkan.PrepareResources</code> and <code>TCastleSceneVulkan.Render</code> inside.
 
-  <li><p><b>Make TCastleScene, T3DTranform and friends to be special X3D nodes</b>
+  <li><p><b>Make TCastleScene, TCastleTranform and friends to be special X3D nodes</b>
 
-    <p>This would make the whole scene manager a single graph of X3D nodes,
+    <p>This would make the whole TCastleViewport.Items a single graph of X3D nodes,
     allowing for more sharing in code.
-    The T3DTranform would be just like TTransformNode, but a little diferently
-    optimized (but it would become toggable).
+    The TCastleTranform would be just like TTransformNode, but a little diferently
+    optimized (but it would become toggable at runtime).
 
   <li><p><b>Distance field fonts</b>
 

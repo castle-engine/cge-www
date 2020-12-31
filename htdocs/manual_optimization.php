@@ -7,7 +7,7 @@ $toc = new TableOfContents(
     new TocItem('Watch <i>FPS (Frames Per Second)</i>', 'fps'),
       new TocItem('How to display the FPS value', 'fpc_show', 1),
       new TocItem('How to interpret the FPS value', 'fpc_meaning', 1),
-      new TocItem('Watch also scene manager statistics', 'scene_manager_stats', 1),
+      new TocItem('Watch also viewport statistics', 'viewport_stats', 1),
     new TocItem('Making your games run fast', 'models'),
       new TocItem('Basic rule: use small and static geometry, as much as possible', 'basic', 1),
       new TocItem('Compile in "release" mode for speed', 'release_mode', 1),
