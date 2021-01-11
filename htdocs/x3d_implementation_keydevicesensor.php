@@ -21,12 +21,23 @@
 <p>This components allows to read and process keys using X3D nodes.
 
 <p>Note: If you write a game using <i>Castle Game Engine</i>,
-this is probably not the most comfortable way to process keyboard.
-Instead, you probably want to react to
-<?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
-<?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?> or override
-<?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
-See <a href="manual_quick_2d_game.php">the manual describing handling events</a>.
+
+<ul>
+  <li><p>These nodes are not the most comfortable way to process keyboard.
+    Do not use them.
+
+  <li><p>Instead, override <code>TUIState.Press</code> method to listen to keys
+    (see any <i>"New Project"</i> template created by the editor for an example).
+    You can also react to
+    <?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
+    <?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?> or override
+    <?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
+    See <a href="manual_quick_2d_game.php">the manual describing handling events</a>.
+
+  <li><p>If you definitely want to use these nodes with CGE, remember to set
+    <?php api_link('TCastleSceneCore.ListenPressRelease', 'CastleSceneCore.TCastleSceneCore.html#ListenPressRelease'); ?>
+    to <code>true</code>.
+</ul>
 
 <p>For demos and tests of these nodes,
 see the <code>sensors_key</code> subdirectory inside <?php
@@ -34,13 +45,15 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Both nodes of this component are supported:
-<?php echo x3d_node_link('KeySensor'); ?> and
-<?php echo x3d_node_link('StringSensor'); ?>.
+<ul>
+  <li><p><?php echo x3d_node_link('KeySensor'); ?>
 
-<p><i>TODO</i>: for now, only 8-bit ASCII characters are passed
-(to the <code>KeySensor.keyPress/keyRelease</code> events,
-and to the <code>StringSensor.enteredText/finalText</code>)..</p>
+    <p>Listen to key press and release.
+
+  <li><p><?php echo x3d_node_link('StringSensor'); ?>
+
+    <p>Input and edit a string using keyboard.
+</ul>
 
 <p><i>Note</i>: <code>keyPress</code> and <code>actionKeyPress</code> events follow
 the "key repeat" feature of your operating system/window manager.
@@ -67,8 +80,6 @@ doesn't precisely say what should happen, with wording suggesting
 that making a sensor enabled makes it also active (which contradicts the <code>KeySensor</code>
 spec), and without saying which sensor is chosen if many are present (the first?
 the last in the graph?).</p>
-
-<p><i>History</i>: <code>KeySensor</code> is in fact the first sensor node implemented long time ago :)</p>
 
 <?php
   x3d_status_footer();
