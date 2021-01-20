@@ -35,7 +35,7 @@ echo castle_thumbs(array(
 define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3dscene/');
 ?>
 
-<p><b>view3dscene</b> is a viewer for many 3D model formats: X3D, glTF, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
+<p><b>view3dscene</b> is a viewer for many 3D model formats: glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
 
 <p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D or VRML.</p>
 
@@ -592,7 +592,7 @@ cd view3dscene/
 formats to VRML/X3D.
 
 <ul>
-  <li><p>Formats <b>Collada, Spine JSON, 3DS, MD3, Wavefront OBJ and GEO</b>
+  <li><p>Formats <b>glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ and GEO</b>
     are always converted <b>to X3D</b>.</p>
 
   <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
