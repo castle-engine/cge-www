@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad
+class ComposerStaticInit0c2a830fc5e83fd354fddd8ce525ab7d
 {
     public static $files = array (
         'bce4ecd6aabb2a2948e06d0e2c4ea9a6' => __DIR__ . '/..' . '/automattic/jetpack-connection/legacy/load-ixr.php',
@@ -41,6 +41,7 @@ class ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad
         'Automattic\\Jetpack\\Abtest' => __DIR__ . '/..' . '/automattic/jetpack-abtest/src/class-abtest.php',
         'Automattic\\Jetpack\\Assets' => __DIR__ . '/..' . '/automattic/jetpack-assets/src/class-assets.php',
         'Automattic\\Jetpack\\Assets\\Logo' => __DIR__ . '/..' . '/automattic/jetpack-logo/src/class-logo.php',
+        'Automattic\\Jetpack\\Autoloader\\AutoloadFileWriter' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadFileWriter.php',
         'Automattic\\Jetpack\\Autoloader\\AutoloadGenerator' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadGenerator.php',
         'Automattic\\Jetpack\\Autoloader\\AutoloadProcessor' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/AutoloadProcessor.php',
         'Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin' => __DIR__ . '/..' . '/automattic/jetpack-autoloader/src/CustomAutoloaderPlugin.php',
@@ -110,6 +111,7 @@ class ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad
         'Automattic\\Jetpack\\Sync\\Queue' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-queue.php',
         'Automattic\\Jetpack\\Sync\\Queue_Buffer' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-queue-buffer.php',
         'Automattic\\Jetpack\\Sync\\Replicastore' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-replicastore.php',
+        'Automattic\\Jetpack\\Sync\\Replicastore\\Table_Checksum' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/replicastore/class-table-checksum.php',
         'Automattic\\Jetpack\\Sync\\Replicastore_Interface' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/interface-replicastore.php',
         'Automattic\\Jetpack\\Sync\\Sender' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-sender.php',
         'Automattic\\Jetpack\\Sync\\Server' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-server.php',
@@ -148,10 +150,10 @@ class ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2aa52323e0b287da03f99e87bcdacaad::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0c2a830fc5e83fd354fddd8ce525ab7d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0c2a830fc5e83fd354fddd8ce525ab7d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0c2a830fc5e83fd354fddd8ce525ab7d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0c2a830fc5e83fd354fddd8ce525ab7d::$classMap;
 
         }, null, ClassLoader::class);
     }
