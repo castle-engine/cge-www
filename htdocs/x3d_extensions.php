@@ -865,20 +865,15 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     from official specification &mdash; this extension fills the gap.
 
     <p>Note that this node was removed from specifications for a good
-    reason. Our engine can invert your matrix internally (this is needed for some
-    things, like bump mapping), but still it's
-    difficult to extract particular features (like scaling factor)
-    from such matrix. Currently our engine
-    extracts scaling factors by very naive
-    method. (Although this is planned to be fixed using
-    <a href="http://tog.acm.org/GraphicsGems/gemsii/unmatrix.c">unmatrix.c algorithm</a>.)
-    The bottom line is: <i>You are well advised to try
-    to express all transformations using standard <code>Transform</code> node</i>.
+    reason. Using <code>MatrixTransform</code> node means that engine must
+    calculate matrix inverse, and sometimes even matrix decomposition
+    (to know the proper scaling factors, and see if the scaling is uniform).
+    This is inefficient, and sometimes also cannot be fully accurate
+    (in case your matrix contains something more than translation/rotation/scale).
 
-    <p>This node may be useful
-    when you really have no choice (for example, when converting from
-    Collada files that have transformation written as explicit 4x4 matrix,
-    it's natural to convert it to VRML <code>MatrixTransform</code>).
+    <p>So <i>avoid using this node, unless you have no choice &mdash; because your own
+    input is already in the form of 4x4 matrix</i>.
+    Prefer using standard <code>Transform</code> node.
 
 <?php echo $toc->html_section(); ?>
 
