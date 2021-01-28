@@ -8,7 +8,7 @@
     array(
       new TocItem('Toggle shape rendering (<code>Shape.render</code>)', 'ext_shape_render'),
       new TocItem('Specify shading, e.g. to force Phong shading or wireframe for a shape (<code>Shape.shading</code>)', 'ext_shading'),
-      new TocItem('Specify alpha channel treatment (field <code>alphaChannel</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
+      new TocItem('Specify alpha channel treatment (field <code>alphaMode</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
       new TocItem('Set shape bounding box (<code>Shape.bboxCenter</code>, <code>Shape.bboxSize</code>)', 'ext_shape_bbox'),
       new TocItem('Specify shape collision mode (<code>Shape.collision</code>)', 'ext_shape_collision'),
     ));
@@ -133,7 +133,8 @@ Although toggling Switch node is also ultra-fast.
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel override'),
+  array('filename' => "alpha_mode_correct.png", 'titlealt' => 'Demo of alphaMode'),
+  array('filename' => "alpha_channel_override_demo.png", 'titlealt' => 'Demo of alphaChannel'),
 ));
 ?>
 
@@ -142,32 +143,37 @@ alpha treatment when rendering.
 
 <?php
   echo node_begin('Appearance');
+  $node_format_fd_name_pad = 15;
+
   echo
   node_dots('all normal Appearance fields') .
-  node_field('SFString', '[]', 'alphaChannel', '"AUTO"', '"AUTO", "NONE", "TEST" or "BLENDING"') .
+  node_field('SFString', '[in,out]', 'alphaMode', '"AUTO"', '"AUTO"|"OPAQUE"|"MASK"|"BLEND"') .
+  '<br>  # deprecated way of doing the same:<br>' .
+  node_field('SFString', '[in,out]', 'alphaChannel', '"AUTO"', '"AUTO"|"NONE"|"TEST"|"BLENDING"') .
   node_end();
 ?>
 
-<p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/castle_extensions/alpha_channel.x3dv">Test file of this feature.</a>
+<p><a href="https://github.com/michaliskambi/x3d-tests/tree/master/alpha_mode">Test file of <code>alphaMode</code> feature.</a>
 
-<p>Value <code>AUTO</code> (the default) means that we auto-detect the correct alpha treatment, looking at various things.
+<p>The following values are allowed for the <code>alphaMode</code>:
+
 <ul>
-  <li><p><code>Material</code> properties (whether the material uses <code>Material.transparency</code> &gt; 0),
-  <li><p>texture properties (whether some texture defines some alpha channel, and whether it's a yes-or-no alpha channel or smooth).
-  <li><p>The interpretation of each texture may also be affected by it's <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">ImageTexture.alphaChannel</a> field.
-</ul>
+  <li><p>Value <code>AUTO</code> (the default) means that we auto-detect the correct alpha treatment, looking at various things.
+    <ul>
+      <li><p>For backward compatibility, <i>Castle Game Engine</i> first checks whether the deprecated <code>alphaChannel</code> field is set to something else than <code>AUTO</code>. If yes, then we use <code>alphaChannel</code> value.
+      <li><p><code>Material</code> properties (whether the material uses <code>Material.transparency</code> &gt; 0),
+      <li><p>texture properties (whether some texture defines some alpha channel, and whether it's a yes-or-no alpha channel or smooth).
+      <li><p>The interpretation of each texture may also be affected by it's <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">ImageTexture.alphaChannel</a> field.
+    </ul>
 
-<p>Other <code>Appearance.alphaChannel</code> values force a specific alpha channel treatment
-at rendering. Using them means that our auto-detection (discussed above)
-is not used at all. There are three possible values:
+  <li><p><code>OPAQUE</code>: Ignore any alpha channel, render as opaque.
 
-<ol>
-  <li><code>NONE</code>: Ignore any alpha channel, render as opaque.
-  <li><code>TEST</code>: Use alpha-testing, which is good for textures having
+  <li><p><code>MASK</code>: Use alpha-testing, which is good for textures having
     a sharp (yes-or-no) alpha channel contents.
-  <li><code>BLENDING</code>: Use blending, which allows to show partial
+
+  <li><p><code>BLEND</code>: Use blending, which allows to show partial
     transparency of textures and/or materials.
-</ol>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
