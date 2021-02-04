@@ -227,4 +227,17 @@ function cge_publish_format($input)
 
     return $output;
 }
-add_filter( 'discourse_publish_format_html', 'cge_publish_format' );
+add_filter('discourse_publish_format_html', 'cge_publish_format');
+
+/* Note: hook automatic_updates_is_vcs_checkout is declared with 2 params, but sometimes only 1 is passed?
+   Declaration below makes https://castle-engine.io/wp/wp-admin/update-core.php fail.
+   See https://developer.wordpress.org/reference/hooks/automatic_updates_is_vcs_checkout/
+// function cge_automatic_updates_is_vcs_checkout(bool $checkout, string $context)
+*/
+
+function cge_automatic_updates_is_vcs_checkout()
+{
+  // Our Wordpress is indeed under VCS, but we know what we're doing, and we *want* simple automatic Wordpress updates
+  return false;
+}
+add_filter('automatic_updates_is_vcs_checkout', 'cge_automatic_updates_is_vcs_checkout');
