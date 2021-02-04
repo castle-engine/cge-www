@@ -541,8 +541,8 @@ for a wide range of scenes.
   <li><code>LogAllLoading</code>
   <li><code>TextureMemoryProfiler.Enabled</code>
   <li><code>LogRenderer</code> (from <code>CastleRenderer</code> unit)
-  <li><code>TSoundEngine.LogSoundLoading</code> (since CGE 6.5)
-  <li><code>TUIState.Log</code> (since CGE 6.5)
+  <li><code>TSoundEngine.LogSoundLoading</code>
+  <li><code>TUIState.Log</code>
   <li>Also enabling <code>Profiler.Enabled</code> and doing <code>WritelnLog(Profiler.Summary)</code> is a great way to be informed about most loading.
 </ul>
 
@@ -620,7 +620,7 @@ Hints to make it faster:
 
 <p>FPImage does not require any external libraries, and thus it instantly works (and in the same way) on all platforms. However, external <i>Libpng</i> is often much (even 4x) faster. That is because <i>Libpng</i> allows to make various transformations during file reading (instead of processing the pixels later), and it doesn't force us to read using 16-bit-per-channel API (like FpImage does).
 
-<p><i>Since Castle Game Engine 6.5</i>: We will automatically use Libpng if detected (and fallback on FPImage otherwise).
+<p>We will automatically use Libpng if detected (and fallback on FPImage otherwise).
 
 <ul>
   <li>On Linux, FreeBSD, Mac OS X and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.

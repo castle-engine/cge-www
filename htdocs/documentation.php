@@ -46,7 +46,7 @@ echo pretty_heading('Getting Started');
   <li><p>Make sure that <code>fpc</code> binary is available on the environment variable <code>$PATH</code>. If you don't know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).
 -->
 
-  <li><p>Download the <a href="/">Castle Game Engine</a> (version &gt;= 6.5, the one recommended on our <a href="index.php">main page</a>). Unpack the engine ZIP wherever you like.
+  <li><p>Download the latest <a href="/">Castle Game Engine</a>. Unpack the engine ZIP wherever you like.
 
   <li><p>Inside the unpacked <code>castle_game_engine</code>, you will find a subdirectory <code>bin</code>. Run the <code>castle-editor</code> executable inside.
 
