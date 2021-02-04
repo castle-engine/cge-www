@@ -10,7 +10,6 @@ $toc = new TableOfContents(
     new TocItem('Using the 2D controls', 'usage'),
     new TocItem('Parents and anchors', 'parents_and_anchors'),
     new TocItem('User-interface scaling (Container.UIScaling)', 'scaling'),
-    new TocItem('Using CastleSettings.xml file to define UIScaling and other properties', 'settings_xml'),
     new TocItem('Query sizes', 'sizes'),
     new TocItem('Adjust theme', 'theme'),
     new TocItem('Taking control of the viewport', 'viewport'),
@@ -293,8 +292,34 @@ It is described in the separate chapter.
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can use the <?php api_link('UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?> to automatically adjust all the UI
-controls sizes. You activate it like this:
+<p>We advise using the <b>user interface scaling</b> to automatically adjust all the user interface controls, depending on the window size of the final application. Underneath it scales the UI coordinates (and then renders using the final coordinates, so all rendering remains crisp), adjusting to your "target" resolution but keeping the aspect ratio of the current window. It relies on properly set anchors to make everything look good on all aspect ratios.
+
+<p><b>If this description sounds complicated, just try it</b>. It is easy to realize what happens visually, all <a href="manual_editor.php">"New Project" templates created by editor</a> use it automatically.
+
+<p>It is advised to activate it by creating a file called <code>CastleSettings.xml</code> in the
+<a href="manual_data_directory.php"><code>data</code> subdirectory of your project</a>.
+The sample <code>CastleSettings.xml</code> contents look like this:
+
+<?php echo xml_full_highlight('<?xml version="1.0" encoding="utf-8"?>
+<castle_settings>
+  <ui_scaling
+    mode="EncloseReferenceSize"
+    reference_width="1024"
+    reference_height="768"
+  />
+</castle_settings>'); ?>
+
+<p>Then in your <code>Application.OnInitialize</code> callback just call
+<code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>.
+This will set <code>UIScaling</code>.
+Remember that <a href="manual_editor.php">"New Project" templates created by editor</a> already do it by default.
+
+<p>The advantage of using the <code>CastleSettings.xml</code> file is that
+the <a href="manual_editor.php">editor</a> reads this file too,
+and can apply the same scaling, default font and so on when you edit the UI.
+Read <a href="manual_castle_settings.php">more about the <code>CastleSettings.xml</code> file here.</a>
+
+<p>An alternative way to activate UI scaling is without the <code>CastleSettings.xml</code> file. Do this:
 
 <?php echo pascal_highlight('Window.Container.UIReferenceWidth := 1024;
 Window.Container.UIReferenceHeight := 768;
@@ -329,36 +354,6 @@ or <i>scaled</i>) control size. In particular the
 in the real device pixels (and with the anchors and parent
 transformations already applied). More about this in the
 <a href="manual_2d_ui_custom_drawn.php">chapter about custom-drawn UI controls</a>.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Since <i>Castle Game Engine</i> 6.5, you can alternatively activate UI scaling
-by creating a file called <code>CastleSettings.xml</code> in the
-<a href="manual_data_directory.php"><code>data</code> subdirectory of your project</a>.
-The sample <code>CastleSettings.xml</code> contents look like this:
-
-<?php echo xml_full_highlight('<?xml version="1.0" encoding="utf-8"?>
-<castle_settings>
-  <ui_scaling
-    mode="EncloseReferenceSize"
-    reference_width="1024"
-    reference_height="768"
-  />
-</castle_settings>'); ?>
-
-<p>Then in your <code>Application.OnInitialize</code> callback just call
-<code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>.
-This will set <code>UIScaling</code>.
-
-<p>It can also set other global (for the whole container) properties,
-like the default font.
-
-<p>The advantage of using the <code>CastleSettings.xml</code> file is that
-the <a href="manual_editor.php">editor</a> reads this file too,
-and can apply the same scaling, default font and so on when you edit the UI.
-
-<p>Read <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/EDITOR_SETTINGS.md">more about the
-<code>CastleSettings.xml</code> file.</a>
 
 <?php echo $toc->html_section(); ?>
 
