@@ -110,7 +110,11 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 
   See pack/upload_itch_io.sh
 
-- make sure to update engine version to "X.<odd> (unstable)" after release
+- bump versions afterwards for snapshots:
+
+    - engine: version to `x.<odd>.0` or `alpha.snapshot`
+
+    - view3dscene: version to `x.<odd>.0`
 
 ## Website updating
 
