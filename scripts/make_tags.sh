@@ -15,9 +15,17 @@ do_tag_custom ()
   cd "$CASTLE_ENGINE_PATH"../"$NAME"/
   echo 'Last commit inside '`pwd`
   git log --pretty=oneline HEAD^..HEAD
+
+  # optional, remove tag beforehand (use this to fix tags):
+  # ( https://git-scm.com/book/en/v2/Git-Basics-Tagging )
+  git tag -d v"$VERSION"
+  git push origin --delete v"$VERSION"
+
+  # add a tag
   echo git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
        git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
-  git push origin --tags # push all tags to remote
+  git push origin v"$VERSION" # push this one tag to remote
+
   echo
 }
 

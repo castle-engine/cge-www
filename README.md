@@ -73,6 +73,13 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
       # adjust ./cge-update-github-releases
       ./cge-update-github-releases
 
+  TODO: This process is not perfect, since we upload the builds from latest (master)
+  as the "last tagged" project version.
+  In case there were some commits since make_tags.sh, the binary builds will be a bit newer.
+  Not a big problem in practice, just manually watch it.
+  You can uncomment special lines in `scripts/make_tags.sh` to delete tags beforehand, to set new ones.
+  But it would be best if Jenkins would build tags.
+
 - Update the URLs:
   - view3dscene links in htdocs/view3dscene.php
 
