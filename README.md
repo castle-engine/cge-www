@@ -1,8 +1,6 @@
-Code and data of Castle Game Engine website
-===========================================
+# Code and data of Castle Game Engine website
 
-Layout
-------
+## Layout
 
 htodcs/ is exactly what goes into https://castle-engine.io/
 
@@ -17,8 +15,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 * Rest of scripts/ can be run on a local version,
   cloned somewhere on your local computer.
 
-Procedure to update WWW content
--------------------------------
+## Release making (for CGE engine or application, like view3dscene)
 
 - Test as described in TESTS.txt
 
@@ -61,40 +58,22 @@ Procedure to update WWW content
 
 - Make new releases from existing tags, like
   https://github.com/castle-engine/castle-view-image/releases/new
+  https://github.com/castle-engine/castle-engine/releases/new
+  https://github.com/castle-engine/view3dscene/releases/new
 
-  Upload there latest builds by Jenkins of the appropriate application/engine.
+- Upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
   The Jenkinsfile for each project has perfect commands to make a build of every application,
   using advised FPC version etc. So we just upload these builds as releases.
 
-- OBSOLETE: Release on SourceForge.
+  Do it automatically:
 
-  New FRS (http://p.sf.net/sourceforge/FRS):
-  - Move older versions to subdirs in old_versions
-    (Do it first, to avoid showing on SF project summary "last changes list"
-    these moves as "latest actions")
+  ssh jenkins.castle-engine.io
+    sudo -u jenkins-cge-uploader -i
+      cd cge-update-github-snapshot/
+      # adjust ./cge-update-github-releases
+      ./cge-update-github-releases
 
-  - Upload to
-    sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine
-    (following https://sourceforge.net/p/forge/documentation/SCP/)
-    See pack/upload_sourceforge.sh
-
-  - Only for CGE: On https://sourceforge.net/projects/castle-engine/files/
-    mark new CGE released zip as default download for all OSes.
-    This is only for default download on given OS, we suggest here
-    CGE as our "default package".
-
-  After release:
-  - Download and compare are the files the same.
-
-- Release on GitHub.
-
-  Upload a new release to
-  https://github.com/castle-engine/castle-engine/releases
-  https://github.com/castle-engine/view3dscene/releases
-  and so on
-  (a tag should already be created in the previous step, by scripts/make_tags.sh script)
-
-  Update the URLs:
+- Update the URLs:
   - view3dscene links in htdocs/view3dscene.php
 
   After:
@@ -117,7 +96,16 @@ Procedure to update WWW content
   - update FPC/Lazarus requirements:
     https://castle-engine.io/supported_compilers.php
 
-- good practice after large changes is to check
+- a release of engine or view3dscene or some other tools can also be
+  uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
+
+  See pack/upload_itch_io.sh
+
+- make sure to update engine version to "X.<odd> (unstable)" after release
+
+## Website updating
+
+- Good practice after large changes is to check
   linkchecker.sh and
   validate_html.sh
 
@@ -140,15 +128,7 @@ Procedure to update WWW content
       uploaded in previous step, thus checking that all files
       were uploaded correctly.
 
-- a release of engine or view3dscene or some other tools can also be
-  uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
-
-  See pack/upload_itch_io.sh
-
-- make sure to update engine version to "X.<odd> (unstable)" after release
-
-Announcing release
-------------------
+## Announcing release
 
 - Regular annoucements sites:
   - Our Wordpress: https://castle-engine.io/wp/
@@ -185,9 +165,6 @@ Announcing release
 
 - x3d-public mailing list
 
-- if new VRML/X3D extensions implemented:
-  remember to post to Joerg (White Dune) about them
-
 - if new VRML/X3D nodes supported:
   - remember to post to Don Brutzman about them,
     to update "node inventory spreadsheet"
@@ -199,21 +176,6 @@ Announcing release
   Examples on:
   http://forum.lazarus.freepascal.org/index.php?topic=26927.msg166141
   http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
-
-- Post new topic on our forum, to encourage some discussion.
-  Possibly resign from it? Posting on our g+ page is easier,
-  and there are also instant comments.
-
-- Post to community on g+:
-
-  FPC/Lazarus:
-  https://plus.google.com/communities/114860965042324270757
-  As Castle Game Engine:
-  https://plus.google.com/b/101185352355602218697/communities/114860965042324270757
-  Use tags #FreePascal #ObjectPascal #GameDevelopment
-
-  Delphi:
-  https://plus.google.com/b/101185352355602218697/communities/103113685381486591754
 
 - Post to community on FB:
 
