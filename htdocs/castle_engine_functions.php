@@ -513,7 +513,6 @@ $castle_sitemap = array(
               'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
             ),
           ),
-          'glinformation' => array('title' => 'glinformation'),
           'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
           'all_programs_sources' => array('title' => 'All Programs Sources'),
         ),

@@ -51,7 +51,7 @@ We love to see how you use CGE.</i>
 <ul>
   <?php gallery_link_noimage("glinformation",
     'Output information about OpenGL installed on your system.',
-    "glinformation");
+    "https://github.com/castle-engine/glinformation");
   ?>
 </ul>
 

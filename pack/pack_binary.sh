@@ -380,14 +380,6 @@ case "$1" in
     binary_set_unix_permissions
     ;;
 
-  glinformation)
-    binary_add_doc glinformation
-    binary_add_exec_and_data "$1"
-    binary_add_gpl2
-    binary_set_unix_permissions
-    binary_add_executable glinformation_glut t
-    ;;
-
   malfunction)
     binary_add_doc malfunction
     binary_add_exec_and_data malfunction \

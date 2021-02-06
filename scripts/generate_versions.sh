@@ -23,7 +23,7 @@ version_explicit ()
   PROGRAM_VERSION="$2"
   shift 2
 
-  PROGRAM_NAME=`stringoper UpperCase $PROGRAM_NAME`
+  PROGRAM_NAME=`echo -n $PROGRAM_NAME | tr a-z A-Z` # make $PROGRAM_NAME upper-case
 
   echo "  define('VERSION_$PROGRAM_NAME', '$PROGRAM_VERSION');" >> "$TMP_TARGET_FILE"
 
@@ -36,13 +36,13 @@ version_call ()
 {
   PROGRAM_BINARY="$1"
   shift 1
-  PROGRAM_NAME=`stringoper ExtractFileName $PROGRAM_BINARY`
+  PROGRAM_NAME=`basename $PROGRAM_BINARY`
 
   if which "$PROGRAM_BINARY" > /dev/null; then
     PROGRAM_VERSION=`$PROGRAM_BINARY --version`
     version_explicit "$PROGRAM_NAME" "$PROGRAM_VERSION"
   else
-    PROGRAM_NAME_UPPER=`stringoper UpperCase $PROGRAM_NAME`
+    PROGRAM_NAME_UPPER=`echo -n $PROGRAM_NAME | tr a-z A-Z` # make $PROGRAM_NAME upper-case`
     OLD_VERSION_VAR_NAME="GENERATED_VERSION_${PROGRAM_NAME_UPPER}"
     # Dynamic variable name in bash, see http://stackoverflow.com/questions/16553089/bash-dynamic-variable-names
     # OLD_VERSION=${!OLD_VERSION_VAR_NAME}
@@ -63,14 +63,10 @@ version_call malfunction
 version_call kambi_lines
 version_call view3dscene
 version_call rayhunter
-version_call castle_view_image `castle-view-image --version`
+version_explicit castle_view_image `castle-view-image --version`
 version_call glplotter
-version_call glinformation
 version_call gen_function
 version_call mountains_of_fire
-# glinformation_glut doesn't accept --version, but it should be considered
-# to have the same version as glinformation.
-version_explicit 'glinformation_glut' `glinformation --version`
 version_explicit 'castle_game_engine' `castle-engine --version | sed -e "s/^castle-engine //" `
 version_explicit demo_models 3.9.0
 

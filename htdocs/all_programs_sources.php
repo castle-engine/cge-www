@@ -176,7 +176,6 @@ notes near some programs below.
   echo_src_archive('kambi_lines', 'kambi-lines', '4.0.1');
   echo_src_archive_2('glplotter and gen_function', 'glplotter', 'glplotter', '4.0.1');
   //echo_src_archive('gen_function', '4.0.1');
-  echo_src_archive_2('glinformation and glinformation_glut', 'glinformation', 'glinformation', '4.0.1');
 ?>
 </dl>
 

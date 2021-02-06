@@ -15,12 +15,6 @@ set -eu
 # ./pack_binary.sh glplotter linux x86_64
 # ./pack_pascal_src.sh glplotter
 
-# ./pack_binary.sh glinformation macosx i386
-# ./pack_binary.sh glinformation linux i386
-# ./pack_binary.sh glinformation win i386
-# ./pack_binary.sh glinformation linux x86_64
-# ./pack_pascal_src.sh glinformation
-
 # ./pack_binary.sh castle-view-image macosx i386
 ./pack_binary.sh castle-view-image linux i386
 ./pack_binary.sh castle-view-image win i386

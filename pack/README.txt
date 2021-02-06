@@ -17,21 +17,20 @@ Procedure to release a program:
   - all ../../castle-engine/packages/*.lpk
   - ../../castle-engine/src/base/castleversion.inc
   - ../../castle-engine/tools/build-tool/CastleEngineManifest.xml
+  - ../../castle-engine/tools/castle-editor/macos/create_bundle.sh
     (and recompile castle-engine tool:
          cd ~/sources/castle-engine/castle-engine/tools/build-tool
          ./castle-engine_compile.sh
          mv -f castle-engine ~/bin/
          castle-engine -v # check
     ).
+  - doc/pasdoc/html-parts/body-end.php
+    (and run "make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
 
 - Call ../scripts/generate_versions.sh script.
   - Before, you should recompile program for the current (source) OS.
     That's because generate_versions.sh actually calls program with --version
     to determine version number.
-
-    In case of glinformation_glut, remember to recompile glinformation first, as
-    `glinformation --version` determines version number used for glinformation_glut.
-    (In general, see generate_versions.sh for other such possible exceptions).
 
   - You should run generate_versions script to update
     generated_versions.php (this makes version number on WWW page)

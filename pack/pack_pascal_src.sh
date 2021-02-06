@@ -195,12 +195,6 @@ case "$1" in
     pascal_src_archive_end glplotter
     ;;
 
-  glinformation)
-    mk_archive_begin
-    pascal_src_add_standard "$CASTLE_ENGINE_PATH"../glinformation/
-    pascal_src_archive_end glinformation
-    ;;
-
   gen_function)
     mk_archive_begin
     pascal_src_add_standard "$CASTLE_ENGINE_PATH"../gen_function/
