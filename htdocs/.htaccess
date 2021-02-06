@@ -7,6 +7,9 @@ AddType application/octet-stream .chm
 # See https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
 Redirect "/latest.zip" "/latest.zip.php"
 
+Redirect "/miscella/win32_dlls.zip" "https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries"
+Redirect "/miscella/forest.tar.gz" "https://github.com/castle-engine/demo-models/tree/master/lights_materials/vrml_1/forest-fog"
+
 # Redirect www domain to non-www
 # See https://www.digitalocean.com/community/tutorials/how-to-redirect-www-to-non-www-with-apache-on-ubuntu-14-04
 RewriteEngine On

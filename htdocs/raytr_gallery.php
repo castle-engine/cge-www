@@ -123,9 +123,7 @@ you can see some rays are transmitted completely inside underwater.
 using also <code>tree.3ds</code> from
 <a href="http://www.3dcafe.com">www.3dcafe.com</a>.
 Lights and fog added by hand.
-You can <?php echo current_www_a_href_size("download this model",
-  "miscella/forest.tar.gz"); ?>.
-
+You can <a href="https://github.com/castle-engine/demo-models/tree/master/lights_materials/vrml_1/forest-fog">download this model from our demo-models (subdirectory lights_materials/vrml_1/forest-fog)</a>.
 Main feature of this rendering is to demonstrate that
  <?php echo a_href_page("rayhunter", "rayhunter"); ?>
  handles X3D <code>Fog</code> node.

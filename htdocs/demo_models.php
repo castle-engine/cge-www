@@ -13,10 +13,7 @@ $toc = new TableOfContents(
     new TocItem('Authors', 'authors'),
   ));
 
-// set to true to download demo-models as ZIP from GitHub master, instead of using SourceForge release
-$demo_models_master = true;
-
-echo pretty_heading($page_title, $demo_models_master ? null : VERSION_DEMO_MODELS);
+echo pretty_heading($page_title);
 echo castle_thumbs(array(
   /* shader pipeline */
   array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Shinto shrine model, from http://opengameart.org/content/shrine-shinto-japan , with multiple shadow maps enabled'),
@@ -46,11 +43,7 @@ echo castle_thumbs(array(
 
       <?php
       $download_title = '<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download demo models';
-      if ($demo_models_master) {
-        echo castle_download_button($download_title, 'https://github.com/castle-engine/demo-models/archive/master.zip');
-      } else {
-        echo sf_download($download_title, 'demo_models-' . VERSION_DEMO_MODELS . '.zip');
-      }
+      echo castle_download_button($download_title, 'https://github.com/castle-engine/demo-models/archive/master.zip');
       echo download_donate_footer();
     }
     ?>

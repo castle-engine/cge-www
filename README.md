@@ -20,15 +20,51 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 Procedure to update WWW content
 -------------------------------
 
-- Making a release:
-  1. testing is described in TESTS.txt
-  2. compiling and packing releases is described in pack/README.txt
+- Test as described in TESTS.txt
+
+- Bump versions:
+
+    - For applications (like view3dscene):
+
+        - Make sure Version constant in the program's source code is incremented.
+
+        - Make sure also CastleEngineManifest.xml <version value="..."/> is updated for a program.
+
+    - For the engine, update version numbers in these files:
+
+        - make sure to update to "X.<even>" for release
+        - all ../../castle-engine/packages/*.lpk
+        - ../../castle-engine/src/base/castleversion.inc
+        - ../../castle-engine/tools/build-tool/CastleEngineManifest.xml
+        - ../../castle-engine/tools/castle-editor/macos/create_bundle.sh
+          (and recompile castle-engine tool:
+               cd ~/sources/castle-engine/castle-engine/tools/build-tool
+               ./castle-engine_compile.sh
+               mv -f castle-engine ~/bin/
+               castle-engine -v # check
+          ).
+        - doc/pasdoc/html-parts/body-end.php
+          (and run "make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
+
+- Call scripts/generate_versions.sh script.
+
+  - Before, you should recompile program for the current (source) OS.
+    That's because generate_versions.sh actually calls program with --version
+    to determine version number.
+
+  - You should run generate_versions script to update
+    generated_versions.php (this makes version number on WWW page)
+    generated_versions.sh (this makes version number for some binary archives, like on itch.io).
 
 - Tag releases using scripts/make_tags.sh script.
   Leave uncommented only the lines for newly released programs, and run it.
 
-  Make new releases from existing tags, like
+- Make new releases from existing tags, like
   https://github.com/castle-engine/castle-view-image/releases/new
+
+  Upload there latest builds by Jenkins of the appropriate application/engine.
+  The Jenkinsfile for each project has perfect commands to make a build of every application,
+  using advised FPC version etc. So we just upload these builds as releases.
 
 - OBSOLETE: Release on SourceForge.
 
@@ -108,6 +144,8 @@ Procedure to update WWW content
   uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
 
   See pack/upload_itch_io.sh
+
+- make sure to update engine version to "X.<odd> (unstable)" after release
 
 Announcing release
 ------------------
