@@ -56,7 +56,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 - Tag releases using scripts/make_tags.sh script.
   Leave uncommented only the lines for newly released programs, and run it.
 
-- Make new releases from existing tags, like
+- Make new releases (save as draft now) from existing tags, like
   https://github.com/castle-engine/castle-view-image/releases/new
   https://github.com/castle-engine/castle-engine/releases/new
   https://github.com/castle-engine/view3dscene/releases/new
@@ -80,8 +80,10 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   You can uncomment special lines in `scripts/make_tags.sh` to delete tags beforehand, to set new ones.
   But it would be best if Jenkins would build tags.
 
+- Publish releases
+
 - Update the URLs:
-  - view3dscene links in htdocs/view3dscene.php
+  - view3dscene links in htdocs/view3dscene.php (see lower about "how to update www content")
 
   After:
   - Download and compare are the files the same.

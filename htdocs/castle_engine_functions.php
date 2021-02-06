@@ -1208,6 +1208,7 @@ function echo_standard_program_download(
 
   $os_arch_caption = array(
     'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
+    'win-x86_64'   => ' Windows<br/>(64-bit)',
     'linux-i386'   => ' Linux<br/>(32 bit)',
     'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
     'macosx-i386'  => ' Mac OS X<br/>(all versions, 32 or 64-bit)',
@@ -1215,6 +1216,7 @@ function echo_standard_program_download(
 
   $os_arch_extension = array(
     'win-i386'     => '.zip',
+    'win-x86_64'   => '.zip',
     'linux-i386'   => '.tar.gz',
     'linux-x86_64' => '.tar.gz',
     'macosx-i386'  => $macosx_dmg ? '.dmg' : '.tar.gz',
@@ -1222,6 +1224,7 @@ function echo_standard_program_download(
 
   $os_arch_icon = array(
     'win-i386'     => 'win',
+    'win-x86_64'   => 'win',
     'linux-i386'   => 'linux32',
     'linux-x86_64' => 'linux64',
     'macosx-i386'  => 'macosx'
