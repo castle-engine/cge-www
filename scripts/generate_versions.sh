@@ -68,7 +68,6 @@ version_call glplotter
 version_call gen_function
 version_call mountains_of_fire
 version_explicit 'castle_game_engine' `castle-engine --version | sed -e "s/^castle-engine //" `
-version_explicit demo_models 3.9.0
 
 echo '?>' >> "$TMP_TARGET_FILE"
 

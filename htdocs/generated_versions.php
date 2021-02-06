@@ -10,5 +10,4 @@
   define('VERSION_GEN_FUNCTION', '1.0.5');
   define('VERSION_MOUNTAINS_OF_FIRE', '1.1.0');
   define('VERSION_CASTLE_GAME_ENGINE', '7.0-alpha.1');
-  define('VERSION_DEMO_MODELS', '3.9.0');
 ?>
