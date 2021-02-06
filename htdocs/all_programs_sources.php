@@ -97,15 +97,31 @@ Everything is open source,
 <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a> &gt;= 2.
 
 <?php
-function sf_download_link($title, $file_name)
+function github_source_url($github_name, $version)
 {
-  return '<a href="' . sf_download_url($file_name) . '">' . $title . '</a>';
+  return 'https://github.com/castle-engine/' .
+    $github_name .
+    '/archive/v' .
+    $version .
+    '.zip';
+  /*
+  return
+    'https://github.com/castle-engine/'
+    . $github_name .
+    '/releases/download/v' .
+    $version .
+    '/' .
+    $package_name .
+    '-' .
+    $version .
+    '-src.zip';
+  */
 }
 
 function download_engine_version($engine_version)
 {
-  echo sf_download_link('Castle Game Engine version ' . $engine_version,
-    'castle_game_engine-' . $engine_version . '-src.tar.gz');
+  return '<a href="' . github_source_url('castle-engine', $engine_version) .
+    '">Castle Game Engine version ' . $engine_version . '</a>';
 }
 ?>
 
@@ -128,27 +144,28 @@ notes near some programs below.
      $github_name is the project name on GitHub. */
   function echo_src_archive_2($title, $internal_name, $github_name, $engine_ver)
   {
-    $version_const_name = 'VERSION_' . strtoupper($internal_name);
+    $version_const_name = 'VERSION_' . str_replace('-', '_', strtoupper($internal_name));
     $version = constant($version_const_name);
 
-    echo '<dt>' . $title . ' source code:</dt><dd><p><b>Stable version</b>: ' .
-      sf_download_link('Download sources of ' . $title,
-        $internal_name . '-' . $version . '-src.tar.gz');
+    echo '<dt>' . $title . '</dt><dd>';
 
-    if ($engine_ver == VERSION_CASTLE_GAME_ENGINE) {
-      echo '. <br>The stable version is compatible with the latest ';
-      download_engine_version($engine_ver);
-      echo '.';
-    } else
-    if ($engine_ver == 'github') {
-      echo '. <br>The stable version was tested with the latest <a href="https://github.com/castle-engine/castle-engine/">(unstable) Castle Game Engine on GitHub</a>. (As soon as the next CGE will be released, this will be updated to depend on a stable engine version).';
-    } else
-    if ($engine_ver != '') {
-      echo '. <br>The stable version is compatible with the ';
-      download_engine_version($engine_ver);
-    } else
+    if ($engine_ver != 'ancient') // so old engine version that we don't want to show it, not hosted on GitHub etc.
     {
-      throw new Exception('Invalid engine_ver');
+      echo '<p><b>Stable version</b>: <a href="' . github_source_url($github_name, $version) .
+        '">Download sources of ' . $title . '</a>';
+
+      if ($engine_ver == VERSION_CASTLE_GAME_ENGINE) {
+        echo '. <br>The stable version is compatible with the latest ' .
+          download_engine_version($engine_ver);
+        echo '.';
+      } else
+      if ($engine_ver != '') {
+        echo '. <br>The stable version is compatible with the ' .
+          download_engine_version($engine_ver);
+      } else
+      {
+        throw new Exception('Invalid engine_ver');
+      }
     }
 
     ?>
@@ -167,15 +184,13 @@ notes near some programs below.
       $github_name, $engine_ver);
   }
 
-  echo_src_archive('view3dscene', 'view3dscene', '6.4');
-  echo_src_archive_2('glViewImage', 'glviewimage', 'glviewimage', '6.4');
-  echo_src_archive('castle', 'castle-game', '4.1.1');
-  echo_src_archive('rayhunter', 'rayhunter', '4.0.1');
-  //echo_src_archive('lets_take_a_walk', '3.0.0');
-  echo_src_archive('malfunction', 'malfunction', '4.0.1');
-  echo_src_archive('kambi_lines', 'kambi-lines', '4.0.1');
-  echo_src_archive_2('glplotter and gen_function', 'glplotter', 'glplotter', '4.0.1');
-  //echo_src_archive('gen_function', '4.0.1');
+  echo_src_archive('view3dscene', 'view3dscene', '7.0-alpha.1');
+  echo_src_archive('castle-view-image', 'castle-view-image', '7.0-alpha.1');
+  echo_src_archive('castle', 'castle-game', 'ancient'); // '4.1.1');
+  echo_src_archive('rayhunter', 'rayhunter', 'ancient'); // '4.0.1');
+  echo_src_archive('malfunction', 'malfunction', 'ancient'); // '4.0.1');
+  echo_src_archive('kambi_lines', 'kambi-lines', 'ancient'); // '4.0.1');
+  echo_src_archive_2('glplotter and gen_function', 'glplotter', 'glplotter', 'ancient'); // '4.0.1');
 ?>
 </dl>
 

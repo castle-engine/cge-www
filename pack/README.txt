@@ -34,8 +34,7 @@ Procedure to release a program:
 
   - You should run generate_versions script to update
     generated_versions.php (this makes version number on WWW page)
-    generated_versions.sh (this makes version number for binary and
-    source archives created by pack_binary and pack_pascal_src)
+    generated_versions.sh (this makes version number for binary archives created by pack_binary)
 
 - Make sure you have the latest program sources (git pull --rebase...).
   And make sure no local modifications remain - `git status' should return empty.
@@ -56,7 +55,7 @@ Procedure to release a program:
   - compile program with release settings: see compile.sh scripts in program dirs
   - move executable to $EXEC_PATH/os-architecture/ defined in pack_binary.sh
 
-- Call pack_binary.sh and pack_pascal_src.sh with proper options.
+- Call pack_binary.sh with proper options.
   You may use do_everything_example.sh as a starting point.
 
   Unpack and check resulting archives: unpack, and run.
@@ -68,4 +67,4 @@ Procedure to release a program:
 
 - make sure to update engine version to "X.<odd> (unstable)" after release
 
-After doing this, follow SF update procedure on ../README.md .
+After doing this, follow release procedure on ../README.md .

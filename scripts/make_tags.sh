@@ -9,7 +9,7 @@ do_tag_custom ()
   local VAR_NAME="$2"
 
   local VERSION_VARIABLE_NAME="GENERATED_VERSION_${VAR_NAME}"
-  VERSION_VARIABLE_NAME=`stringoper UpperCase "$VERSION_VARIABLE_NAME"`
+  VERSION_VARIABLE_NAME=`echo -n "$VERSION_VARIABLE_NAME" | tr a-z A-Z` # make $VERSION_VARIABLE_NAME upper-case
   # indirect reference in bash, http://tldp.org/LDP/abs/html/ivr.html
   eval VERSION=\$$VERSION_VARIABLE_NAME
   cd "$CASTLE_ENGINE_PATH"../"$NAME"/
@@ -28,12 +28,12 @@ do_tag ()
 
 # do_tag castle
 # do_tag glplotter
-do_tag castle-view-image
+#do_tag_custom castle-view-image castle_view_image
 # do_tag gen_function
 # do_tag kambi_lines
 # do_tag lets_take_a_walk
 # do_tag rayhunter
-do_tag view3dscene
+#do_tag view3dscene
 # do_tag malfunction
-do_tag_custom castle-engine castle_game_engine
-do_tag_custom demo-models demo_models
+#do_tag_custom castle-engine castle_game_engine
+# do_tag_custom demo-models demo_models

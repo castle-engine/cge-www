@@ -24,10 +24,13 @@ Procedure to update WWW content
   1. testing is described in TESTS.txt
   2. compiling and packing releases is described in pack/README.txt
 
-- When release is packed, it's nice to tag it, see scripts/make_tags.sh script.
+- Tag releases using scripts/make_tags.sh script.
   Leave uncommented only the lines for newly released programs, and run it.
 
-- Release on SourceForge.
+  Make new releases from existing tags, like
+  https://github.com/castle-engine/castle-view-image/releases/new
+
+- OBSOLETE: Release on SourceForge.
 
   New FRS (http://p.sf.net/sourceforge/FRS):
   - Move older versions to subdirs in old_versions
