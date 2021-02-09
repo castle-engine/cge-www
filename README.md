@@ -102,6 +102,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
     make clean upload
   - update $engine_ver in htdocs/all_programs_sources.php, to reflect
     with what engine ver each sources were tested.
+  - update engine version linked on htdocs/index.php
   - update FPC/Lazarus requirements:
     https://castle-engine.io/supported_compilers.php
 
@@ -147,7 +148,6 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   - Our Wordpress: https://castle-engine.io/wp/
   - Patreon: https://www.patreon.com/castleengine
   - Facebook: https://facebook.com/castleengine/
-  - (soon to be gone) Google+: https://plus.google.com/+CastleGameEngineX3d/
   - Twitter: https://twitter.com/castleengine
   - Mastodon: https://mastodon.social/@michalis_kambi
 

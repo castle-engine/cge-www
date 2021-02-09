@@ -1,39 +1,32 @@
 Name: Castle Game Engine
-Version: 6.0.2
+Version: 7.0-alpha.1
 Category: graphics
 Author: Michalis Kamburelis
 E-mail: michalis.kambi@gmail.com
-Description:An open-source cross-platform 3D and 2D game engine. Features include:
+Description:Cross-platform (desktop, mobile, console) 3D and 2D game engine supporting many asset formats (glTF, X3D, Spine...) and using modern Object Pascal.
+
+<p>Features:</p>
+
 <ul>
-  <li>Optimized <b>OpenGL</b> and <b>OpenGLES</b> rendering.</li>
-  <li><b>Many asset formats supported: X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, Spine JSON, STL...</b>. They are internally converted into the VRML/X3D nodes graph, which means that they get all the optimizations for rendering, and 3D content from all file formats can be mixed (for 3D editing tools and such).</li>
-  <li><b>Saving</b> the current state of VRML/X3D node graph to standardized XML and classic encodings. You can even use it to make your own 3D modeller on top of our engine. Various conversions between 3D model formats and limited editing capabilities are provided out-of-the-box by our tools.</li>
-  <li><b>Animations</b> are supported, in two flavors: interactive animation interpolated at runtime, or precalculated animation for fast playback.</li>
-  <li>Octrees are used for various <b>collision detection</b> tasks.</li>
-  <li><b>Scene manager</b> for centralized 3D world handling. With <b>custom viewports</b> possible.</li>
-  <li>Extensible system of 3D objects. You have ready, comfortable management of <b>creatures, items, levels and players</b>.</li>
-  <li><b>Shadows</b> by shadow volumes and shadow maps.</li>
-  <li><b>Bump mapping</b>, from the classic bump mapping (take normal from the texture), up to the steep parallax bump mapping with self-shadowing.</li>
-  <li><b>Shaders, shader effects and shader compositing</b>.</li>
-  <li><b>Screen-space effects</b> in GLSL.</li>
-  <li><b>Advanced texturing</b>: multi-texturing, cube map texturing (can be loaded from separate files, DDS files, or captured during runtime), 3D textures, GPU compressed textures, anisotropic filtering.</li>
-  <li>Speeding up rendering by <b>hardware occlusion query</b>, two approaches.</li>
-  <li><b>Reading and writing of images in various formats, processing them and using as OpenGL textures</b>. Besides many common image formats (png, jpg, ppm, bmp, just for starters), included is also support for DDS (textures with compression, mipmaps, 3d, cube maps) and RGBE format (Radiance HDR format).</li>
-  <li><b>Easy and fast rendering of text in 2D and 3D</b>, with fonts loaded from any format supported by FreeType (like ttf) or embedded in Pascal code, with international characters in UTF-8.</li>
-  <li>Comfortable <b>3D sound engine</b>, using OpenAL, with intelligent sound source management, supporting WAV and OggVorbis formats. Includes VRML/X3D integration, so content creators can define sound sources themselves.</li>
-  <li>Many <b>2D controls</b> rendered through OpenGL (buttons, images, panels, tooltips, menus etc.) are available. Good for games, where making a custom-looking GUI (that fits with your game theme) is important.</li>
-  <li>Anti-aliasing (initializing OpenGL multi-sampling) is covered.</li>
-  <li><b>Playing movie files</b>.</li>
-  <li>The engine is <b>cross-platform (Windows, Linux, FreeBSD, Mac OS X...)</b>.</li>
-  <li>Mobile (<b>Android, iOS</b>) support.</li>
-  <li>Many <b>example programs</b>.</li>
-  <li><b>Build tool</b> to easily compile and package our programs for various platforms, including creating Android apk packages.</li>
+  <li><p>Use any 3D or 2D software to create your models in various formats: glTF, X3D, VRML, Spine JSON, Collada...</p></li>
+
+  <li><p>Develop cross-platform applications, for desktop (Windows, Linux, macOS, FreeBSD...), mobile (Android, iOS), consoles (Nintendo Switch) and other devices (Raspberry Pi).</p></li>
+
+  <li><p>Visual editor to design games UI and to build applications, powerful command-line build tool under the hood.</p></li>
+
+  <li><p>Optimized rendering with a lot of graphic effects (physically-based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction...).</p></li>
+
+  <li><p>Build and edit the scene graph (X3D) at runtime. Create 3D processing, visualization tools and CAD applications.</p></li>
+
+  <li><p>Extensible system for game objects, with physics, creatures with AI and navmesh, and more.</p></li>
+
+  <li><p>Access numerous services, like in-app purchases and game services on mobile devices.</p></li>
+
+  <li><p>Create cross-platform user-interface with anchors and automatic scaling.</p></li>
+
+  <li><p>Code in modern Object Pascal, an efficient OOP language with cross-platform open-source compiler (FPC), compiled to a native optimized code.</p></li>
 </ul>
+
 Download: https://castle-engine.io/latest.zip
 Homepage: https://castle-engine.io/
-Supported OSes: Linux, Win, Android,iOS...
-(I wanted to write:
-Tested on Linux, Mac OS X, Windows, Android, iOS, others. Works probably on many other modern OSes, in particular any Unix, supported by FPC.
-.. but field on form has limit on length).
-------------------------------------------------------------------------------
-Possible short description to use: An open-source cross-platform 3D game engine. Using VRML/X3D as the main 3D model format, other formats are also supported (Collada, 3DS and so on). Rendering is done using OpenGL, many eye-candy graphic features are available like shadows, bump mapping, mirrors, shaders, screen effects. 3D sound is well integrated and trivial to use (using OpenAL under the hood). The engine has a nice object-oriented API to easily make 3D games with creatures, items, levels, players and so on, everything can also be easily extended to any 3D or 2D game types.
+Supported OSes: Linux,Win,Android,iOS...
