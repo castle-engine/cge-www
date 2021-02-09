@@ -91,7 +91,7 @@ castle_header('Download', array(
 ));
 
 define('CGE_SNAPSHOTS_BASE', 'https://github.com/castle-engine/castle-engine/releases/download/snapshot/');
-define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.1');
+define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
 ?>
 
 <!-- Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p -->

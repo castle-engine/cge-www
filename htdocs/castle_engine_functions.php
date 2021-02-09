@@ -110,8 +110,10 @@ define('WIKI_URL',            'https://github.com/castle-engine/castle-engine/wi
 define('FORUM_URL',           'https://forum.castle-engine.io/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
+// returned by ../latest.zip
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
-define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
+
+// unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
 function reference_link()
 {
