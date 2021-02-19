@@ -119,8 +119,9 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
     <include path="endings/*" recursive="True" />
   </auto_generated_textures>
 
-  <!-- These textures will be converted to DDS format (which may load
-       faster than other formats on some platforms).
+  <!-- This is an example that instructs to convert all textures within "gui/"
+       subdirectory to the DDS format (which may load faster than other
+       formats on some platforms).
        They will not be GPU-compressed, they will not be downscaled. -->
   <auto_generated_textures>
     <!--
