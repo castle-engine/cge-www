@@ -189,6 +189,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   Examples on:
   http://forum.lazarus.freepascal.org/index.php?topic=26927.msg166141
   http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
+  https://forum.lazarus.freepascal.org/index.php/topic,53399.0.html
 
 - Post to community on FB:
 
@@ -214,17 +215,15 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
     https://directory.fsf.org/wiki/Castle_Game_Engine
     https://directory.fsf.org/wiki/View3dscene # or sthg like that
 
+  https://www.indiedb.com/engines/castle-game-engine
+
 - http://www.web3d.org/news/submit/
   ... but it's pretty much ignored, giving up on this.
   As well as submitting to web3d.org list of progs.
-
-- Update http://www.devmaster.net/engines/
-  update devmaster page about view3dscene
 
 - An incredibly large release may be announced on fpc-pascal and lazarus
   mailing lists, but let's not abuse it (I did it only for 4.0.0 release
   when it was justified, as a large release and focused on devs).
   These lists aren't normally for announcements from external projects.
 
-- watch http://planet.objpas.org/ (not active anymore?) and
-  http://planetdev.freegamedev.net/ , they aggregate our news feed.
+- watch http://planetdev.freegamedev.net/ , they aggregate our news feed.
