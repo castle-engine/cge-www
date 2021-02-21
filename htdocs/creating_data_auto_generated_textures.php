@@ -219,7 +219,7 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     <ul>
       <li><p><a href="https://developer.nvidia.com/gpu-accelerated-texture-compression"><code>nvcompress</code> from NVidia Texture Tools</a>. Cross-platform (Windows, Linux...), free and open source. On Debian and derivatives (like Ubuntu) install them simply by <code>sudo apt-get install libnvtt-bin</code>.
 
-      <li><p><a href="https://community.imgtec.com/developers/powervr/tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
+      <li><p><a href="https://www.imaginationtech.com/developers/powervr-sdk-tools/pvrtextool/"><code>PVRTexToolCLI</code> from PowerVR Texture Tools</a>. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
 
       <li><p><a href="https://developer.arm.com/tools-and-software/graphics-and-gaming/graphics-development-tools/mali-texture-compression-tool"><code>astcenc</code>, part of Mali Texture Compression Tool</a>. It is called by <code>PVRTexToolCLI</code> to encode textures to ASTC. <a href="https://github.com/ARM-software/astc-encoder">See also it's source code</a>.
 
