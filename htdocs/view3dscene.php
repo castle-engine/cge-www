@@ -20,15 +20,21 @@ function section($make_hr = true)
 echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
 
 echo castle_thumbs(array(
-  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
-  array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
-  array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
+  array('filename' => 'view3dscene_outlines.png', 'titlealt' => 'Scene with outlines from glTF'),
+  array('filename' => 'view3dscene_mousey.png', 'titlealt' => 'glTF scene with Mixamo animations'),
+  array('filename' => 'view3dscene_steampunk_gltf.png', 'titlealt' => 'Steampunk glTF scene'),
+  array('filename' => 'view3dscene_spine_ffd_animation.png', 'titlealt' => 'Spine Free-Form Deformation animated'),
+  array('filename' => 'view3dscene_spine_roseanne.png', 'titlealt' => 'Animated 2D Spine creature'),
+  array('filename' => 'view3dscene_dungeon_multiple_views.png', 'titlealt' => 'Multiple views at the same 3D dungeon'),
+  // array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
+//  array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
+  // array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
 //    array('filename' => 'view3dscene_2.0.0_screen_demo.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with mountains sky'),
-  array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some fog by texture layers'),
-  array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => '&quot;view3dscene&quot; rendering Tremulous creature from MD3'),
+  // array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some fog by texture layers'),
+  // array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => '&quot;view3dscene&quot; rendering Tremulous creature from MD3'),
 //    array('filename' => 'view3dscene_screen_demo_2.png', 'titlealt' => '&quot;view3dscene&quot; in the middle of ray-tracing'),
 //    array('filename' => 'view3dscene_screen_demo_3.png', 'titlealt' => '&quot;view3dscene&quot; with ProximitySensor visualization'),
-  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
+//  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
 //    array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
 ));
 
