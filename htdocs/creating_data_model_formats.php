@@ -8,7 +8,9 @@ $toc = new TableOfContents(
       new TocItem('glTF 2.0', 'gltf', 1),
       new TocItem('Spine JSON', 'spine', 1),
       new TocItem('X3D and VRML', 'x3d', 1),
+      new TocItem('Sprite sheets', 'sprite_sheets', 1),
     new TocItem('Other formats you can use', 'other'),
+      new TocItem('Simple images', 'images', 1),
       new TocItem('Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
       new TocItem('Animation through a series of static models', 'animation_counter', 1),
       new TocItem('Collada', 'collada', 1),
@@ -122,6 +124,14 @@ and many of our own extensions).
 <!-- can export to X3D, this is the format you should probably use.</i> -->
 
 <?php echo $toc->html_section(); ?>
+
+<p>You can load animations as <i>sprite sheets</i>, defined using the Starling or Cocos2d format. See the <a href="https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets">sprite sheets documentation</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can load image as a scene too. That is, you can load a simple PNG file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size. See the <a href="https://github.com/castle-engine/castle-engine/wiki/Images">image loading documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 
