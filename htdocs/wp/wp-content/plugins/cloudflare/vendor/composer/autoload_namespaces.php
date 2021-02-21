@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'SimplyAdmire\\ComposerPlugins' => array($vendorDir . '/simplyadmire/composer-plugins'),
     'CloudFlare\\' => array($vendorDir . '/cloudflare/cf-ip-rewrite/src'),
 );
