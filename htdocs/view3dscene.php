@@ -3,8 +3,8 @@ define('CASTLE_GITHUB_NAME', 'view3dscene');
 
 require_once 'castle_engine_functions.php';
 castle_header("view3dscene", array(
-  'social_share_image' => 'castle_sunset.png',
-  'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: X3D, glTF, VRML, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, Mac OS X and Windows.'
+  'social_share_image' => 'view3dscene_outlines.png',
+  'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: glTF, X3D, VRML, sprite sheets (in Starling and Cocos2d formats), Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, Mac OS X and Windows.'
 ));
 
 function section($make_hr = true)
