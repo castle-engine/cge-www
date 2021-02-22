@@ -120,6 +120,8 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   pack/upload_sourceforge.sh
   ```
 
+  Mark on SourceForge default download for Linux/Windows as latest CGE.
+
 - bump versions afterwards for snapshots:
 
     - engine: version to `x.<odd>.0` or `alpha.snapshot`
