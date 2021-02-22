@@ -217,6 +217,10 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 
   https://www.indiedb.com/engines/castle-game-engine
 
+  https://michaliskambi.itch.io/castle-game-engine
+
+  https://michaliskambi.itch.io/view3dscene
+
 - http://www.web3d.org/news/submit/
   ... but it's pretty much ignored, giving up on this.
   As well as submitting to web3d.org list of progs.
@@ -226,4 +230,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   when it was justified, as a large release and focused on devs).
   These lists aren't normally for announcements from external projects.
 
-- watch http://planetdev.freegamedev.net/ , they aggregate our news feed.
+- Watch http://planetdev.freegamedev.net/ , they aggregate our news feed.
+
+- Submit devlog on itch.io ( https://michaliskambi.itch.io/ )
+  about Castle Game Engine and view3dscene releases.
