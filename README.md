@@ -106,10 +106,19 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   - update FPC/Lazarus requirements:
     https://castle-engine.io/supported_compilers.php
 
-- a release of engine or view3dscene or some other tools can also be
-  uploaded to http://itch.io/ , see http://michaliskambi.itch.io/
+- In case of CGE and view3dscene, upload them also to http://michaliskambi.itch.io/ :
+  Run
 
-  See pack/upload_itch_io.sh
+  ```
+  pack/upload_itch_io.sh
+  ```
+
+- In case of CGE and view3dscene, upload them also to https://sourceforge.net/projects/castle-engine/ files:
+  Run
+
+  ```
+  pack/upload_sourceforge.sh
+  ```
 
 - bump versions afterwards for snapshots:
 
