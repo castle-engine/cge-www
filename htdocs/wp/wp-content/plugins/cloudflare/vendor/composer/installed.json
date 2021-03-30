@@ -48,17 +48,17 @@
     },
     {
         "name": "cloudflare/cloudflare-plugin-backend",
-        "version": "2.4.0",
-        "version_normalized": "2.4.0.0",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/cloudflare/cloudflare-plugin-backend.git",
-            "reference": "3b1fc84ad9ebeb0611e1e6a63a03a767ad95136b"
+            "reference": "9d2668cffa2aaad8aea75dac9b2e017ebab35dd4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/cloudflare/cloudflare-plugin-backend/zipball/3b1fc84ad9ebeb0611e1e6a63a03a767ad95136b",
-            "reference": "3b1fc84ad9ebeb0611e1e6a63a03a767ad95136b",
+            "url": "https://api.github.com/repos/cloudflare/cloudflare-plugin-backend/zipball/9d2668cffa2aaad8aea75dac9b2e017ebab35dd4",
+            "reference": "9d2668cffa2aaad8aea75dac9b2e017ebab35dd4",
             "shasum": ""
         },
         "require": {
@@ -69,7 +69,7 @@
             "phpunit/phpunit": "4.8.*",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2020-10-02T03:20:01+00:00",
+        "time": "2021-03-18T22:38:57+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

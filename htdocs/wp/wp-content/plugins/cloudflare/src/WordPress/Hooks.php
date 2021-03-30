@@ -135,19 +135,13 @@ class Hooks
             }
             $wpDomain = $wpDomainList[0];
 
-            $validPostStatus = array('publish', 'trash');
-            $thisPostStatus = get_post_status($postId);
-
-            if (get_permalink($postId) != true || !in_array($thisPostStatus, $validPostStatus)) {
-                return;
-            }
-
-            if (is_int(wp_is_post_autosave($postId)) ||  is_int(wp_is_post_revision($postId))) {
+            // Do not purge for autosaves or updates to post revisions.
+            if (wp_is_post_autosave($postId) || wp_is_post_revision($postId)) {
                 return;
             }
 
             $savedPost = get_post($postId);
-            if (is_a($savedPost, 'WP_Post') == false) {
+            if (!is_a($savedPost, 'WP_Post')) {
                 return;
             }
 
@@ -239,6 +233,20 @@ class Hooks
             array_push($listofurls, $pageLink);
         }
 
+        // Refresh pagination
+        $total_posts_count = wp_count_posts()->publish;
+        $posts_per_page = get_option('posts_per_page');
+        // Limit to up to 3 pages
+        $page_number_max = min(3, ceil($total_posts_count / $posts_per_page));
+
+        $this->logger->debug("total_posts_count $total_posts_count");
+        $this->logger->debug("posts_per_page  $posts_per_page");
+        $this->logger->debug("page_number_max $page_number_max");
+
+        foreach (range(1, $page_number_max) as $page_number) {
+            array_push($listofurls, home_url(sprintf('/page/%s/', $page_number)));
+        }
+
         // Attachments
         if ('attachment' == $postType) {
             $attachmentUrls = array();
@@ -320,6 +328,13 @@ class Hooks
             header('cf-edge-cache: cache,platform=wordpress');
         } else {
             header('cf-edge-cache: no-cache');
+        }
+    }
+
+    public function purgeCacheOnPostStatusChange($new_status, $old_status, $post)
+    {
+        if ('publish' === $new_status || 'publish' === $old_status) {
+            $this->purgeCacheByRelevantURLs($post->ID);
         }
     }
 
