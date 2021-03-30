@@ -14,8 +14,9 @@ echo pretty_heading($page_title);
 $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
-      new TocItem('In case you use sparta_Docked package...', 'sparta_docked', 1),
-      new TocItem('In case you use proprietary NVidia OpenGL on Linux...', 'nvidia_linux', 1),
+      new TocItem('If you use sparta_Docked package', 'sparta_docked', 1),
+      new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
+      new TocItem('If you use FPC trunk', 'fpc_trunk', 1),
     new TocItem('Delphi (coming soon)', 'delphi'),
     new TocItem('Code Typhon', 'code_typhon'),
   )
@@ -33,10 +34,14 @@ We always support and advice the latest <a href="http://www.freepascal.org/">sta
 release of FPC</a>.
 Usually, we also support a couple of older FPC releases.
 
+<!--
 <ul>
   <li>The <b>latest stable (6.4) engine version supports FPC versions &gt;= 3.0.0</b>.
   <li>The <b>next engine version (<a href="https://github.com/castle-engine/castle-engine">you can get it right now from GitHub</a>) supports FPC versions &gt;= 3.0.2</b>.
 </ul>
+-->
+
+<p><b>The latest engine version (7.0-alpha-xxx) supports FPC versions &gt;= 3.0.2</b>.
 
 <p>You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
@@ -94,6 +99,16 @@ to hang on to FPC releases available in distros.
 <p>The crash isn't very critical from the point of view of a typical application end-user, since it happens at the very end of the application, after everything else closed. But it is quite bothersome during development, as the exception is visible, application exit status is non-zero, debugger activates etc.
 
 <p>There isn't a simple workaround for it in CGE. So if this bug affects you &mdash; simply use newer FPC version. At least revision 38400 (FPC 3.1.1), when this bug was fixed.
+
+<?php echo $toc->html_section(); ?>
+
+<p>We generally try to support using the latest version of FPC trunk to compile CGE.
+
+<p>Of course please note that FPC trunk is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC trunk revision. But we welcome testing and PRs to make CGE work with latest FPC trunk.
+
+<p>We even package FPC trunk in our <a href="https://github.com/castle-engine/castle-engine/wiki/Docker">Docker</a> as an option. Although by default you use latest stable FPC inside the Docker image, but you can activate FPC trunk using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
+
+<p>On Aaarch64 (important on mobile platforms): Note that if you use FPC 3.3.1, we assume that it is at least from SVN revision 48104. See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">Trello ticket about Aarch64 optimizations</a>. The optimizations are disabled on Aarch64 with FPC &lt; 3.3.1. With FPC &gt;= 3.3.1, we assume it is from at least SVN revision 48104, and has Aaarch64 optimizer bugs fixed.
 
 <?php echo $toc->html_section(); ?>
 
