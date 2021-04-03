@@ -7,9 +7,9 @@ $toc = new TableOfContents(
     new TocItem('Video Introduction', 'video'),
     new TocItem('Create, build, run projects', 'projects'),
     new TocItem('Design user interfaces and 3D/2D transformation hierarchies', 'design'),
-    new TocItem('Custom (project-specific) components in the visual designer', 'custom_components'),
-    new TocItem('Open and run source code with external applications', 'source_code'),
+    new TocItem('Edit source code', 'source_code'),
     new TocItem('File browser', 'file_browser'),
+    new TocItem('Custom (project-specific) components in the visual designer', 'custom_components'),
   )
 );
 ?>
@@ -71,6 +71,66 @@ various templates (create "New Project" in editor),
 
 <?php echo $toc->html_section(); ?>
 
+<p>The editor integrates with <a href="https://www.lazarus-ide.org/">Lazarus</a> to edit Pascal code.
+
+<p>To edit the Pascal unit you have various options:
+
+<ul>
+  <li><p>In CGE editor: enter the <code>code/</code> subdirectory, and double-click on a Pascal unit.
+
+  <li><p>In CGE editor: use menu item <i>"Code -> Edit Unit ..."</i>.
+
+  <li><p>In CGE editor: press F12 when some design is open. This will open the associated unit.
+
+  <li><p>In Lazarus: open the project in Lazarus, and open units from Lazarus then. All Pascal files found on the search path are automatically part of the LPI project, they are visible in <i>Project Inspector</i> in Lazarus.
+</ul>
+
+<p>We use <a href="https://www.lazarus-ide.org/">Lazarus</a> by default as it features code-completion that understands Pascal syntax perfectly, integrated debugger and more. We also automatically set up Lazarus project files, so that you can press <i>Run</i> from Lazarus, and it will build (and run, debug) your project (for the current system).
+
+<p>Note: If you're bothered by the default multiple-windows UI of Lazarus, install in Lazarus package <code>components/anchordocking/design/anchordockingdsgn.lpk</code> (you will find this in Lazarus source code). It will recompile Lazarus and give you an IDE with docked windows.
+
+<p>Note: Instead of Lazarus, you can use any text editor to edit Pascal files. <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://atom.io/">Atom</a>, <a href="https://www.gnu.org/software/emacs/download.html">Emacs</a>... A preference option to make CGE editor invoke a custom editor will be added soon.
+
+<!--
+TODO: make editor configurable
+
+TODO: use Delphi automatically, if installed
+-->
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can browse the application files. Our <i>"Files"</i> browser at the bottom just displays the files inside your project directory. It merely hides some known unimportant things, like temporary <code>castle-engine-output</code> directory.
+
+<ul>
+  <li><p>Note that the <code>data/</code> subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by <a href="https://castle-engine.io/manual_data_directory.php">castle-data:/xxx URL</a>. You will place there 3D models, 2D images, designs (<code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code> files) and everything else you load in the game.
+
+    <p>It is somewhat equivalent to Unity <code>Assets/</code> subdirectory. See <a href="https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers">Castle Game Engine for Unity developers</a> for more pointers, if you come with knowledge about Unity.
+
+  <li><p>Note that your Pascal source code should be outside the <code>data/</code> subdirectory. Your source code can be anywhere within the project, we don't have any strict requirement here, although we recommend <code>code/</code> subdirectory and the compiler is set to search it by default. Remember to list any new code subdirectory in <code>&lt;search_paths&gt;</code> in <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file (for now, just edit this file in any text editor; in the future CGE editor can allow to edit it through a GUI dialog).
+
+    <!--
+    If you really want, you can of course place source code in the `data/` subdirectory, but it usually doesn't make sense. Unless you really want to distribute to end-users your source code this way (but there are better ways to distribute source code, e.g. use _"Package Source"_).
+
+    This is in contrast to Unity (that requires putting source code also inside `Assets/` directory).
+    -->
+
+  <li><p>Double-clicking on various files runs a tool suitable to preview/edit them:
+
+    <ul>
+      <li><p>On 3D and 2D models we run <a href="view3dscene.php">view3dscene</a>.
+      <li><p>On images we run <a href="castle-view-image.php">castle-view-image</a>.
+      <li><p>On Pascal files we run Lazarus (see above).
+      <li><p>Design files are opened in the current editor.
+      <li><p>On other files, we run the default system application for them.
+    </ul>
+
+  <li><p>Scenes, images and audio files have a <i>preview</i> window once you select them in the <i>Files</i> panel. You can even quickly listen to audio files this way.
+
+  <li><p>Drag files from the <i>"Files"</i> area onto the <code>TCastleViewport</code> instance in a visual designer. This automatically creates a <code>TCastleScene</code> with the given scene loaded.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>Projects may define custom components (descendants of the <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> or <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>). It is possible to include your custom components within the <i>Castle Game Engine Editor</i>, so that they can be added and configured at design-time, just like standard CGE components. To do this:
 
 <ol>
@@ -101,54 +161,6 @@ various templates (create "New Project" in editor),
 </ol>
 
 <p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/gamecontrols.pas">GameControls</a> unit.
-
-<?php echo $toc->html_section(); ?>
-
-<p>You can open a text editor to edit source code. Right now, simply double-click on any Pascal file, to open <a href="https://www.lazarus-ide.org/">Lazarus</a>.
-
-<p>We use <a href="https://www.lazarus-ide.org/">Lazarus</a> by default as it features code-completion that understands Pascal syntax perfectly, integrated debugger and more. We also automatically set up Lazarus project files, so that you can press <i>Run</i> from Lazarus, and it will build (and run, debug) your project (for the current system).
-
-<p>Note: If you're bothered by the default multiple-windows UI of Lazarus, install in Lazarus package <code>components/anchordocking/design/anchordockingdsgn.lpk</code> (you will find this in Lazarus source code). It will recompile Lazarus and give you an IDE with docked windows.
-
-<p>Note: Instead of Lazarus, you can use any text editor to edit Pascal files. <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://atom.io/">Atom</a>, <a href="https://www.gnu.org/software/emacs/download.html">Emacs</a>...
-
-<!--
-TODO: make editor configurable
-
-TODO: use Delphi automatically, if installed
--->
-
-<?php echo $toc->html_section(); ?>
-
-<p>You can browse the application files. Our <i>"Files"</i> browser at the bottom just displays the files inside your project directory. It merely hides some known unimportant things, like temporary <code>castle-engine-output</code> directory.
-
-<ul>
-  <li><p>Note that the <code>data/</code> subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by <a href="https://castle-engine.io/manual_data_directory.php">castle-data:/xxx URL</a>. You will place there 3D models, 2D images, designs (<code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code> files) and everything else you load in the game.
-
-    <p>It is somewhat equivalent to Unity <code>Assets/</code> subdirectory. See <a href="https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers">Castle Game Engine for Unity developers</a> for more pointers, if you come with knowledge about Unity.
-
-  <li><p>Note that your Pascal source code should be outside the <code>data/</code> subdirectory. Actually, your source code can be anywhere within the project, we don't have any requirement here. You can put it in <code>code/</code> subdirectory, <code>src/</code> subdirectory, no subdirectory (top level of the project), wherever you like. Just remember to list this subdirectory in <code>&lt;search_paths&gt;</code> in <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file (for now, just edit this file in any text editor; in the future CGE editor can allow to edit it through a GUI dialog).
-
-    <!--
-    If you really want, you can of course place source code in the `data/` subdirectory, but it usually doesn't make sense. Unless you really want to distribute to end-users your source code this way (but there are better ways to distribute source code, e.g. use _"Package Source"_).
-
-    This is in contrast to Unity (that requires putting source code also inside `Assets/` directory).
-    -->
-
-  <li><p>Double-clicking on various files runs a tool suitable to preview/edit them:
-
-    <ul>
-      <li><p>On 3D and 2D models we run <a href="view3dscene.php">view3dscene</a>.
-      <li><p>On images we run <a href="castle-view-image.php">castle-view-image</a>.
-      <li><p>On Pascal files we run Lazarus (see above).
-      <li><p>Design files are opened in the current editor.
-      <li><p>On other files, we run the default system application for them.
-    </ul>
-
-  <li><p>Scenes, images and audio files have a <i>preview</i> window once you select them in the <i>Files</i> panel. You can even quickly listen to audio files this way.
-
-  <li><p>Drag files from the <i>"Files"</i> area onto the <code>TCastleViewport</code> instance in a visual designer. This automatically creates a <code>TCastleScene</code> with the given scene loaded.
-</ul>
 
 <?php
 manual_footer();
