@@ -1,7 +1,7 @@
 <?php
 require_once "castle_engine_functions.php";
 
-castle_header("The Castle &mdash; credits");
+castle_header("The Castle - credits");
 
 $toc = new TableOfContents(
   array(
