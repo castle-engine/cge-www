@@ -38,25 +38,13 @@ it seems a good moment to talk about them.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To create a game that works on all platforms, write a simple
-platform-independent main game unit.
-This unit is usually called <code>GameInitialize</code> (in file
-<code>gameinitialize.pas</code>) in our example projects,
-although you can of course use any name you like.
+<p>To create a game that works on all platforms, create a new project using
+the <a href="manual_editor.php">CGE editor</a>.
+You can choose any  <i>"New Project"</i> template (choose "Empty" to have a simplest
+starting point).
 
-<p>See the simplest initial project code in engine examples:
-<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/portable_game_skeleton">castle_game_engine/examples/portable_game_skeleton/</a> .
-In particular see <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/portable_game_skeleton/gameinitialize.pas">the GameInitialize unit inside, showing a cross-platform initialization</a>.
-You can use it as a start of your projects.
-
-<!--
-Many other engine demos use the same approach to be cross-platform
-Other examples of this approach can be found
-in most new projects/examples of our engine. For example see
-<code>castle_game_engine/examples/2d_spine_game/</code> code.
-Or <a href="darkest_before_dawn.php">Darkest Before the Dawn</a>
-source code (see <a href="https://github.com/castle-engine/darkest-before-dawn/blob/master/code/game.pas">game.pas of Darkest Before the Dawn</a>).
--->
+<p>This creates a number of files, in particular a unit <code>GameInitialize</code> (in file
+<code>code/gameinitialize.pas</code>) that performs game initialization in a cross-platform way.
 
 <p>This is a short implementation of a <b>cross-platform "Hello world!" application</b>:</p>
 
@@ -78,16 +66,14 @@ instance (it may be a descendant of this class, of course).
 
 <p>This <code>GameInitialize</code> unit can be included by the main program or library
 (the <code>.lpr</code> file for Lazarus, <code>.dpr</code> file for Delphi).
-The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
-will automatically generate a main program or library code using this unit,
-you only need to indicate it by writing <code>game_units="GameInitialize"</code> in the
+
+<p>The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+will automatically generate a main program code using this unit
+and will mention it in the
 <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
 
-<p>Usually, all other game units are (directly or indirectly) used by this
-initialization unit. Although you can also extend the <code>game_units</code> attribute
-to include more units.
-
-<p>Create a <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>. It can be as simple as this:
+You can also manually create a
+<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>. It can be as simple as this:
 
 <?php echo xml_full_highlight(
 '<?xml version="1.0" encoding="utf-8"?>
@@ -135,11 +121,11 @@ using
 
 <pre>castle-engine generate-program</pre>
 
-<p>You can customize the desktop <code>xxx_standalone.lpr</code>
-file to do some desktop-specific things.
-For example initialize window size or fullscreen or read command-line parameters. See examples how to do it:
-<a href="https://github.com/castle-engine/darkest-before-dawn/blob/master/code/darkest_before_dawn_standalone.lpr">darkest_before_dawn program file (simple)</a>
-or <a href="https://github.com/castle-engine/hotel-nuclear/blob/master/code/hotel_nuclear.lpr">hotel_nuclear (more complicated)</a>.
+<p>You should not customize the desktop <code>xxx_standalone.lpr</code>
+file! While it will work in the short run, it would prevent from regenerating this file by calling
+<code>castle-engine generate-program</code> again. It's better to leave it auto-generated,
+and place your necessary initialization (even things like commmand-like parsing)
+in your units, like <code>gameinitialize.pas</code>.
 
 <p>To make our build tool use your customized program file (instead of the auto-generated
 one), be sure to set <code>standalone_source</code> in the <code>CastleEngineManifest.xml</code>.
@@ -147,6 +133,9 @@ one), be sure to set <code>standalone_source</code> in the <code>CastleEngineMan
 <p>Note that <b>you can edit and run the desktop version using <i>Lazarus</i></b>,
 to benefit from Lazarus editor, code tools, integrated debugger...
 Using our build tool does not prevent using Lazarus at all!
+Just open the created LPI file.
+
+<!--
 <ul>
   <li>If you did not create the <code>lpi</code> file using
     <code>castle-engine generate-program</code>, you can create it manually:
@@ -160,6 +149,7 @@ Using our build tool does not prevent using Lazarus at all!
   <li>Edit the main <code>my_fantastic_game_standalone.lpr</code>
     file using the <i>Project -&gt; View Project Source</i> option in Lazarus.
 </ul>
+-->
 
 <?php echo $toc->html_section(); ?>
 
