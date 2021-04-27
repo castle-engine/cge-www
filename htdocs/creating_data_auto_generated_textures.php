@@ -6,7 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'introduction'),
     new TocItem('Example material_properties.xml file using texture compression', 'example'),
-    new TocItem('Using specific compression formats only for specific platforms', 'platforms'),
+    new TocItem('Using specific compression formats (or scales) only for specific platforms', 'platforms'),
     new TocItem('How does the automatic texture compression work', 'texture_compression'),
     new TocItem('How does the automatic downscaling work', 'texture_scale'),
   )
@@ -89,11 +89,18 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
     </compress>
 
     <!-- Automatically downscaled texture versions.
-        Value smallest="1" is the default, it means that no downscaling is done.
-        Value smallest="2" says to generate downscaled
+      - Scale value="1" means that no downscaling is done.
+      - Scale value="2" says to generate downscaled
         versions (of uncompressed, and all compressed formats)
-        of size 1/2. -->
-    <scale smallest="1" />
+        of size 1/2.
+      - Scale value="3" says to generate downscaled
+        versions (of uncompressed, and all compressed formats)
+        of size 1/4.
+    -->
+    <scales>
+      <scale value="2" />
+      <scale value="3" />
+    </scales>
 
     <!-- Rules that determine which textures are automatically
          compressed and downscaled, by including / excluding appropriate paths. -->
@@ -115,7 +122,9 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
   <!-- These textures will be downscaled (to be 2x smaller).
        You can use TextureLoadingScale in CGE to load downscaled textures. -->
   <auto_generated_textures>
-    <scale smallest="2" />
+    <scales>
+      <scale value="2" />
+    </scales>
     <include path="endings/*" recursive="True" />
   </auto_generated_textures>
 
@@ -193,6 +202,31 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 </ul>
 
 <p>Note: Not specyfing <code>&lt;platforms&gt;</code> at all means that the format should be distributed on <em>all</em> platforms (current and future). On the other hand, specifying empty <code>&lt;platforms&gt;&lt;/platforms&gt;</code> means that the format is not distributed on <em>any</em> platform (this makes commenting out a particular <code>&lt;platform&gt;xxx&lt;/platform&gt;</code> line behave naturally).</p>
+
+<p>In a similar fashion, the <code>&lt;scale&gt;</code> element can optionally limit the platforms where given texture scale will be packaged. E.g.
+
+<?php echo xml_full_highlight(
+'<?xml version="1.0"?>
+<properties>
+  <auto_generated_textures>
+    <scales>
+      <!-- No platforms specified, so this will be packaged for all platforms. -->
+      <scale value="2" />
+
+      <!-- Only for Android: generate very downscaled textures. -->
+      <scale value="3">
+        <platforms>
+          <platform>Android</platform>
+        </platforms>
+      </scale>
+    </scales>
+    <include path="*" recursive="True" />
+  </auto_generated_textures>
+</properties>'); ?>
+
+<p>The possible platforms for compression format and for scale are both taken into account.
+A texture is packaged only if <i>both</i> the compression format and the scale make it available
+for given platform.
 
 <?php echo $toc->html_section(); ?>
 
@@ -293,13 +327,13 @@ them, using a high-quality scaling algorithm.
 <p>These textures will be automatically used if you set the global
 <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable in your code.
 
-<p>The attribute <code>smallest</code> of the <code>&lt;scale&gt;</code> element
+<p>The attribute <code>value</code> of the <code>&lt;scale&gt;</code> element
 is interpreted analogous to <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable, so
 
 <ul>
-  <li><code>&lt;scale smallest="1" /&gt;</code> (default) means that no downscaling actually occurs,
-  <li><code>&lt;scale smallest="2" /&gt;</code> means that textures are scaled to 1/2 of their size,<!-- (for 2D textures, their area shrinks to 1/4),-->
-  <li><code>&lt;scale smallest="3" /&gt;</code> means that each size is scaled to 1/4 and so on.
+  <li><code>&lt;scale value="1" /&gt;</code> (default) means that no downscaling actually occurs,
+  <li><code>&lt;scale value="2" /&gt;</code> means that textures are scaled to 1/2 of their size,<!-- (for 2D textures, their area shrinks to 1/4),-->
+  <li><code>&lt;scale value="3" /&gt;</code> means that each size is scaled to 1/4 and so on.
 </ul>
 
 <p>The advantages of downscaling this way:
