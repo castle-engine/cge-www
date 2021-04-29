@@ -84,10 +84,13 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     Add them to the container, by calling <code>Window.Controls.InsertFront(...)</code>.
 
     <p>You can also <a href="manual_editor.php">design user interface using CGE editor</a>.
-    In this case you can load (instantiate) it using
-    <?php api_link('UserInterfaceLoad', 'CastleComponentSerialize.html#UserInterfaceLoad'); ?>
-    or
-    <?php api_link('TUIState.InsertUserInterface', 'CastleUIState.TUIState.html#InsertUserInterface'); ?>.
+    In this case you can load (instantiate) it by setting
+    <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?>
+    (see almost any engine example and "New Project" template)
+    or using
+    <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>
+    (see engine example <code>examples/advanced_editor</code>).
+
 
   <dt>Viewport: <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?></dt>
 

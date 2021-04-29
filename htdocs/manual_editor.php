@@ -51,7 +51,7 @@ The build tool in turn calls a compiler (FPC) and some other tools
 
     <p>Saved as <code>xxx.castle-user-interface</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>They are typically loaded in your application using the <code>InsertUserInterface</code> call when the state (<?php api_link('TUIState', 'CastleUIState.TUIState.html'); ?>) starts, but other approaches are possible too. You can load using <?php api_link('UserInterfaceLoad', 'CastleComponentSerialize.html#UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
+    <p>They are typically loaded in your application by setting the <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?> (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
 
   <li><p>A hierachy of 3D / 2D scenes and transformations. Anything descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
 

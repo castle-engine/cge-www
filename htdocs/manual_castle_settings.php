@@ -269,11 +269,10 @@ font variant (others are optional).
 <p>When loading settings (at <?php api_link('LoadSettings call', 'CastleUIControls.TUIContainer.html#LoadSettings'); ?>),
 we can load and keep in cache some resources.
 
-<p>It is most useful to cache large images (used in UI or referenced
+<p>It may be useful to cache large images (used in UI or referenced
 from TCastleScene) or audio files (referenced from TCastleScene).
 Thanks to keeping them in the cache, any loading of them later in the game
-will be instant. E.g. instantiating UI by <code>TUIState.InsertUserInterface</code>
-will use the cached images, so the new UI state starts fast.
+will be instant.
 
 <?php echo xml_full_highlight(
 '<warmup_cache>
@@ -290,6 +289,14 @@ will use the cached images, so the new UI state starts fast.
   <scene url="castle-data:/gui/space_map/map_big_1.json" />
   <scene url="castle-data:/gui/space_map/map_big_2.json" />
 </warmup_cache>'); ?>
+
+<p>Note that if you load designed UI using
+ <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?>
+ then you have a more straightforward way: set
+ <?php api_link('TUIState.DesignPreload', 'CastleUIState.TUIState.html#DesignPreload'); ?> to <code>true</code>.
+ This will effectively cache all state resources, without the need to list them among
+ <code>&lt;warmup_cache&gt;</code>.
+
 
 <?php
 manual_footer();
