@@ -33,7 +33,7 @@
   ));
 ?>
 
-<p><b><code>CommonSurfaceShader</code> extension is deprecated in our engine now. Instead, use <a href="https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD2/"><code>Material</code> node from X3D 4.0</a>, that <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">has texture parameters, normal maps, occlusion maps and more.</a></b>
+<p><b><code>CommonSurfaceShader</code> extension is deprecated in our engine now. Instead, use <a href="<?php echo x3d_spec_latest_url('shape', 'Material', 'draft'); ?>"><code>Material</code> node from X3D 4.0</a>, that <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">has texture parameters, normal maps, occlusion maps and more.</a></b>
 
 <p>The <code>CommonSurfaceShader</code> node can be used inside the <code>Appearance.shaders</code> field, to request an advanced shading for the given shape. The rendering follows the standard <a href="https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model">Blinn–Phong shading model</a>, with the additional feature that <b>all parameters can be adjusted using the textures</b>.
 
@@ -244,7 +244,7 @@ CommonSurfaceShader {
 
 <?php echo $toc->html_section(); ?>
 
-<p><b>The approach below to specify normal maps is deprecated in our engine now. Instead, use <a href="https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD2/"><code>Material</code> node from X3D 4.0</a>, that <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">has normal maps.</a> Place height map in the alpha channel of the normal map.</b>
+<p><b>The approach below to specify normal maps is deprecated in our engine now. Instead, use <a href="<?php echo x3d_spec_latest_url('shape', 'Material', 'draft'); ?>"><code>Material</code> node from X3D 4.0</a>, that <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">has normal maps.</a> Place height map in the alpha channel of the normal map.</b>
 
 <p>We add to the <code>Appearance</code> node new fields useful for bump mapping:
 

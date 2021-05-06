@@ -1559,7 +1559,8 @@ function x3d_spec_latest_url($component_name, $anchor = '', $spec_version = NULL
   }
   if ($spec_version == 'draft') {
     // latest X3D 4 draft
-    $spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD3/Part01/components/';
+    //$spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD3/Part01/components/';
+    $spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-CD/Part01/components/';
   } else {
     $spec_base = 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/';
   }
