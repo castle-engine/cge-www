@@ -9,17 +9,41 @@ pipeline {
     pollSCM('H/4 * * * *')
     upstream(upstreamProjects: 'castle_game_engine_organization/castle-engine-cloud-builds-tools/master', threshold: hudson.model.Result.SUCCESS)
   }
-  agent { label 'jenkins-conv-x3d-docker-uploader' }
-  // agent any // we need agent where fpc and docker are installed inside
+
   stages {
-    stage('Rebuild Docker Image') {
+    stage('Build Binaries with FPC') {
+      // we need agent where FPC is installed
+      agent {
+        docker {
+          image 'kambi/castle-engine-cloud-builds-tools:cge-none'
+        }
+      }
       steps {
-        withCredentials([
-          string(credentialsId: 'docker-user', variable: 'docker_user'),
-          string(credentialsId: 'docker-password', variable: 'docker_password')
-        ]) {
-          sh 'cd convert-to-x3d/docker-image/ && ./build.sh'
-	}
+        dir ("convert-to-x3d/docker-image/") {
+          sh './build_fpc.sh'
+          stash name: 'binaries-made-by-fpc' includes: 'tmp/view3dscene/view3dscene tmp/view3dscene/code/tovrmlx3d'
+        }
+      }
+    }
+    stage('Build and Upload Docker Image') {
+      // we need agent where Docker is installed
+      agent {
+        label 'jenkins-conv-x3d-docker-uploader'
+      }
+      steps {
+        sh "rm -Rf convert-to-x3d/docker-image/docker-context/"
+        sh "mkdir -p convert-to-x3d/docker-image/docker-context/bin/"
+        dir ("convert-to-x3d/docker-image/docker-context/bin/") {
+          unstash name: 'binaries-made-by-fpc'
+        }
+        dir ("convert-to-x3d/docker-image/") {
+          withCredentials([
+            string(credentialsId: 'docker-user', variable: 'docker_user'),
+            string(credentialsId: 'docker-password', variable: 'docker_password')
+          ]) {
+            sh './build_docker.sh'
+          }
+        }
       }
     }
   }
