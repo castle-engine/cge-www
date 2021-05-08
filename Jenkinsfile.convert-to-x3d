@@ -23,7 +23,7 @@ pipeline {
       steps {
         dir ("convert-to-x3d/docker-image/") {
           sh './build_fpc.sh'
-          stash name: 'binaries-made-by-fpc', includes: 'tmp/view3dscene/view3dscene tmp/view3dscene/code/tovrmlx3d'
+          stash name: 'binaries-made-by-fpc', includes: 'tmp/view3dscene/view3dscene,tmp/view3dscene/code/tovrmlx3d'
         }
       }
     }
