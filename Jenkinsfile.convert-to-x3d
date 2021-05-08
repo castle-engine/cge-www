@@ -4,7 +4,7 @@
 */
 
 pipeline {
-  agent any // actually each stage is in particular agent
+  agent none // each stage has a particular agent
 
   triggers {
     /* Update automatically when cge-www repo changes, or castle-engine (Docker image) changes. */
