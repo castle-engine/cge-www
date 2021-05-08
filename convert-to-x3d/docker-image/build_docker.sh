@@ -38,7 +38,6 @@ do_upload ()
 
 # main ---------------------------------------------------------------------------
 
-do_prerequisites
 do_build
 do_test
 do_upload
