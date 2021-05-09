@@ -6,6 +6,9 @@
 pipeline {
   agent none // each stage has a particular agent
 
+  // this builds + uploads a Docker image, do not upload 2 images in parallel
+  options { disableConcurrentBuilds()  }
+
   triggers {
     /* Update automatically when cge-www repo changes, or castle-engine (Docker image) changes. */
     pollSCM('H/4 * * * *')
