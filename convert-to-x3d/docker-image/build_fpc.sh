@@ -9,7 +9,7 @@ rm -Rf tmp/
 mkdir -p tmp/
 cd tmp/
 
-local GIT_SHALLOW_CLONE='git clone --depth 1 --single-branch --branch master'
+GIT_SHALLOW_CLONE='git clone --depth 1 --single-branch --branch master'
 
 # get CGE
 $GIT_SHALLOW_CLONE https://github.com/castle-engine/castle-engine/
