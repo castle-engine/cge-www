@@ -230,7 +230,7 @@ We support both ASCII and binary formats.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><b><a href="http://local.wasp.uwa.edu.au/~pbourke/dataformats/geo/">Videoscape GEO</a></b>
+<p><b><a href="http://paulbourke.net/dataformats/geo/">Videoscape GEO</a></b>
 (<code>.geo</code> extension).
 Very basic support for this very old 3D format.
 
