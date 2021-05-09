@@ -16,9 +16,15 @@ We love to see how you use CGE.</i>
 
 <div class="row">
   <?php gallery_link("cge-2d-particle-emitter",
-    '"71 Squared" particle system (.pex files) implementation. Great particle system for 2D games.',
+    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback).',
     'cge_2d_particles.png',
     'https://github.com/Kagamma/cge-2d-particle-emitter');
+  ?>
+
+  <?php gallery_link("cge-3d-particle-emitter",
+    '3D particle system, with an editor also implemented in CGE. Particles are calculated with GPU acceleration (transform feedback).',
+    'cge_3d_particles_edit_fire.png',
+    'https://github.com/Kagamma/cge-3d-particle-emitter');
   ?>
 
   <?php gallery_link("Database aware CGE UI",
