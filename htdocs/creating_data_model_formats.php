@@ -125,7 +125,17 @@ and many of our own extensions).
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can load animations as <i>sprite sheets</i>, defined using the Starling or Cocos2d format. See the <a href="https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets">sprite sheets documentation</a>.
+<p>You can load animations as <i>sprite sheets</i>, defined using various formats:
+
+<ol>
+  <li><p><i>Castle Game Engine</i> format (extension <code>.castle-sprite-sheet</code>), created by <a href="manual_editor.php">sprite sheet editor inside the CGE editor</a>.
+
+  <li><p><i>Starling (XML) format</i> (traditionally with <code>.xml</code> extension, in CGE we require you rename them to <code>.starling-xml</code>).
+
+  <li><p><i>Cocos2d format</i> (traditionally with <code>.plist</code> extension, in CGE we advise (but do not require yet) to use <code>.cocos2d-plist</code>).
+</ol>
+
+<p>See the <a href="https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets">sprite sheets documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 

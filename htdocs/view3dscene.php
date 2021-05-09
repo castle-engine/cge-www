@@ -4,7 +4,7 @@ define('CASTLE_GITHUB_NAME', 'view3dscene');
 require_once 'castle_engine_functions.php';
 castle_header("view3dscene", array(
   'social_share_image' => 'view3dscene_outlines.png',
-  'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: glTF, X3D, VRML, sprite sheets (in Starling and Cocos2d formats), Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, Mac OS X and Windows.'
+  'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: glTF, X3D, VRML, sprite sheets (in CGE, Starling, Cocos2d formats), Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the &quot;Examine&quot; mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, macOS and Windows.'
 ));
 
 function section($make_hr = true)
@@ -42,9 +42,9 @@ define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3ds
 define('SNAPSHOTS_VERSION', '4.1.0');
 ?>
 
-<p><b>view3dscene</b> is a viewer for many 3D model formats: glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON.</p>
+<p><b>view3dscene</b> is a viewer for many 3D model formats: glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON and sprite sheets (in CGE, Cocos2d, Starling XML formats).</p>
 
-<p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D or VRML.</p>
+<p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D.</p>
 
 <div class="download jumbotron">
   <div class="download_title">Download Unstable (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>
@@ -80,7 +80,7 @@ echo_standard_program_download(
       new TocItem('Navigation with keys &amp; mouse', 'navigation'),
       new TocItem('Command-line options', 'command_line_options'),
         new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
-        new TocItem('Converting to VRML/X3D', 'converting', 1),
+        new TocItem('Converting to X3D', 'converting', 1),
         new TocItem('Other options', 'other_options', 1),
         new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
@@ -95,7 +95,7 @@ echo_standard_program_download(
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <code>view3dscene</code> program inside.
 Included is also the <code>tovrmlx3d</code> program,
-useful for <a href="#section_converting">converting 3D models to VRML/X3D in batch (command-line) mode</a>.
+useful for <a href="#section_converting">converting 3D models to X3D in batch (command-line) mode</a>.
 The documentation (this web page) is also included inside, for offline viewing
 (open the <code>documentation/view3dscene.html</code> file).</p>
 
@@ -595,10 +595,10 @@ cd view3dscene/
 
 <p>In interactive mode, you can use view3dscene menu items
 <i>File -&gt; Save As..</i> to save (converting if needed) all 3D model
-formats to VRML/X3D.
+formats to X3D or VRML.
 
 <ul>
-  <li><p>Formats <b>glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ and GEO</b>
+  <li><p>Most formats <b>glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ, GEO, sprite sheets</b>
     are always converted <b>to X3D</b>.</p>
 
   <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
@@ -764,7 +764,7 @@ is only useful for converting). More precisely:
       --scene-change-no-solid-objects<br>
       --scene-change-no-convex-faces
   <dd><p>Using one of these options changes the scene before it
-    is displayed (or saved to VRML/X3D, if you used <code>--write</code>
+    is displayed (or saved to X3D or VRML, if you used <code>--write</code>
     option). These options are useful when you suspect that some
     of the informations in scene file are incorrect.
 
