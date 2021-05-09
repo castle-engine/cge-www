@@ -17,7 +17,7 @@
       new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
       new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
       new TocItem('Flip the texture vertically at loading (<code>ImageTexture.flipVertically</code>, <code>MovieTexture.flipVertically</code>)', 'flip_vertically'),
-      new TocItem('Multi-texture with only generated children (<code>MultiGeneratedTextureCoordinate</code>'), 'multi_generated_texture_coordinate'),
+      new TocItem('Multi-texture with only generated children (<code>MultiGeneratedTextureCoordinate</code>)', 'multi_generated_texture_coordinate'),
     ));
 ?>
 
