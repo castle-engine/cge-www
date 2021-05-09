@@ -17,6 +17,7 @@
       new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence'),
       new TocItem('Texture for GUI (<code>TextureProperties.guiTexture</code>)', 'texture_properties_gui_texture'),
       new TocItem('Flip the texture vertically at loading (<code>ImageTexture.flipVertically</code>, <code>MovieTexture.flipVertically</code>)', 'flip_vertically'),
+      new TocItem('Multi-texture with only generated children (<code>MultiGeneratedTextureCoordinate</code>'), 'multi_generated_texture_coordinate'),
     ));
 ?>
 
@@ -456,17 +457,6 @@ For a similar reason you cannot use <code>MultiTextureCoordinate</code>
   node_end();
 ?>
 
-<?php
-  echo node_begin('MultiGeneratedTextureCoordinate : X3DTextureCoordinateNode');
-  echo
-  node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
-  node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate]') .
-  node_end();
-?>
-
-<p><i>Note: <code>MultiGeneratedTextureCoordinate</code> is not available
-in older view3dscene &lt;= 3.7.0.</i>.</p>
-
 <?php echo $toc->html_section(); ?>
 
 <?php
@@ -736,6 +726,33 @@ with a similar solution for 3D texture nodes, or cube-map texture nodes.
 they may also add some fields to declare the orientation
 of texture coordinates. Until then, our current solution is directed
 at handling 2D textures in glTF 2.0 correctly, nothing more is necessary.
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo node_begin('MultiGeneratedTextureCoordinate : X3DTextureCoordinateNode');
+  echo
+  node_field('SFNode', '[in,out]', 'metadata', 'NULL', '[X3DMetadataObject]') .
+  node_field('SFNode', '[in,out]', 'texCoord' , 'NULL', '[TextureCoordinateGenerator, ProjectedTextureCoordinate]') .
+  node_end();
+?>
+
+<p>This node acts just like standard <code>MultiTextureCoordinate</code>
+but only <i>generated texture coordinates</i> (not <i>explicit texture coordinates</i>)
+are allowed.
+It it useful to allow in <code>texCoord</code> of geometry nodes
+that do not expose explicit coordinates, but that allow to use generated
+texture coords:
+
+<ul>
+  <li>Box,
+  <li>Cone,
+  <li>Cylinder,
+  <li>Sphere,
+  <li>Extrusion,
+  <li>Text,
+  <li>Teapot.
+</ul>
 
 <?php
   x3d_status_footer();
