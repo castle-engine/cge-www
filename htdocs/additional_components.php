@@ -16,13 +16,15 @@ We love to see how you use CGE.</i>
 
 <div class="row">
   <?php gallery_link("cge-2d-particle-emitter",
-    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback).',
+    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback).
+     <p>See also <a href="https://forum.castle-engine.io/t/cge-2d-particle-emitter-now-supports-gpu-based-particle/">forum thread</a>.',
     'cge_2d_particles.png',
     'https://github.com/Kagamma/cge-2d-particle-emitter');
   ?>
 
   <?php gallery_link("cge-3d-particle-emitter",
-    '3D particle system, with an editor also implemented in CGE. Particles are calculated with GPU acceleration (transform feedback).',
+    '3D particle system, with an editor also implemented in CGE. Particles are calculated with GPU acceleration (transform feedback).
+     <p>See also <a href="https://forum.castle-engine.io/t/3d-particle-system/">forum thread</a>.',
     'cge_3d_particles_edit_fire.png',
     'https://github.com/Kagamma/cge-3d-particle-emitter');
   ?>
