@@ -22,6 +22,5 @@ cd ../
 $GIT_SHALLOW_CLONE https://github.com/castle-engine/view3dscene/
 cd view3dscene/
 "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --compiler-option=-dCASTLE_WINDOW_XLIB
-cd code/
-"${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine simple-compile tovrmlx3d.lpr
-cd ../../../
+"${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --manifest-name=CastleEngineManifest.tovrmlx3d.xml
+cd ../../
