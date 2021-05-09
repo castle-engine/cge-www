@@ -42,11 +42,13 @@ pipeline {
           unstash name: 'binaries-made-by-fpc'
         }
         dir ("convert-to-x3d/docker-image/") {
+          sh './build_docker_1_build.sh'
+          sh './build_docker_2_test.sh'
           withCredentials([
             string(credentialsId: 'docker-user', variable: 'docker_user'),
             string(credentialsId: 'docker-password', variable: 'docker_password')
           ]) {
-            sh './build_docker.sh'
+            sh './build_docker_3_upload.sh'
           }
         }
       }
