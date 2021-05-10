@@ -67,7 +67,7 @@ echo_standard_program_download(
 );
 ?>
 
-<p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b>.</p>
+<p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
 
 <p>Documentation:</p>
 
@@ -95,20 +95,18 @@ echo_standard_program_download(
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <code>view3dscene</code> program inside.
 Included is also the <code>tovrmlx3d</code> program,
-useful for <a href="#section_converting">converting 3D models to X3D in batch (command-line) mode</a>.
-The documentation (this web page) is also included inside, for offline viewing
-(open the <code>documentation/view3dscene.html</code> file).</p>
+useful for <a href="#section_converting">converting 3D models to X3D in batch (command-line) mode</a>.</p>
 
 <p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <p><i>Demo scenes</i>: our
-<?php echo a_href_page("VRML/X3D demo models", "demo_models"); ?>
+<?php echo a_href_page("demo models", "demo_models"); ?>
  contains a lot of interesting models,
 you can open them all with <code>view3dscene</code>.</p>
 
 <p>Requirements:
 <ul>
-  <li><i>For Linux:</i> If you want to hear 3D sound in some VRML/X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
+  <li><i>For Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
   <li><i>For Windows:</i> All useful libraries are already included in the archive, so you don't have to do anything.
   <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
 </ul>
@@ -190,7 +188,7 @@ flawlessly :) So give it a try!
     <p>You can convert between X3D classic and XML encodings (in both directions),
     and you can convert from VRML 2 to X3D.
     You can also use view3dscene as a "pretty-printer",
-    just open and save any VRML/X3D file without any version conversion.
+    just open and save any X3D or VRML file without any version conversion.
 
     <p>Command-line options to convert in batch mode (<code>--write</code>)
     are available in view3dscene. Special minimized binary
