@@ -15,13 +15,14 @@
 ?>
 
 <?php echo pretty_heading('CastleScript language', NULL,
-'Simple scripting language for Castle Game Engine'); ?>
+'Language for expressions and (simple) scripts in Castle Game Engine'); ?>
 
 <?php
   $toc = new TableOfContents(
     array(
       new TocItem('Introduction', 'intro'),
-      new TocItem('Writing scripts inside X3D Script URLs', 'script_urls'),
+        new TocItem('Using for expressions', 'intro_expressions', 1),
+        new TocItem('Using for X3D scripts', 'intro_scripts', 1),
       new TocItem('Examples', 'examples'),
       new TocItem('Syntax', 'syntax'),
       new TocItem('Types and constants', 'types_constants', 1),
@@ -49,45 +50,30 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p><code>CastleScript</code> (previously "KambiScript")
-is a simple scripting language used in
-our <i>Castle Game Engine</i>. You can use it in VRML/X3D <code>Script</code>
-nodes. Also it's syntax of mathematical expressions is used
-throughout our engine, for example <?php echo a_href_page(
-'glplotter and gen_function',
-'glplotter_and_gen_function'); ?> (which are completely
-not related to X3D) use this syntax to define function expressions.</p>
+<p><i>CastleScript</i> is a language to calculate expressions and (simple) scripts,
+available in <i>Castle Game Engine</i>.
 
-<p>The language is deliberately very simple. It's a scripting language,
-with features inspired by many other languages, and by author's laziness.
-For example I was too lazy to add <code>if</code>, <code>while</code> and such
-constructs to the grammar,
-instead you have built-in functions like
-<?php func_ref('if', 'if(condition, then_code, else_code)'); ?>.
-<b>This language doesn't try to compete with other scripting languages</b>
-(like <i>ECMAScript</i>, commonly used in VRML/X3D scripting).
-It's not suitable for larger programs
-(for starters, you cannot define your own types).<!-- ; you also cannot
-currently call user-defined functions (you can only call built-in functions;
-user-defined functions are only automatically called when X3D Script
-receives an event); also you cannot declare your own local variables
-(but you can use X3D Script initializeOnly fields for this purpose)-->
-Also it's specific to our engine, and probably always will be.</p>
+<p>It's an integral part of our engine, without the need for any external libraries.
 
-<p>That said, the language is powerful enough for many uses.
-You can process all X3D field types with it, including strings,
-vectors, matrices and even images. Also arrays (MFXxx fields) are covered.
-There are many built-in functions and operators, heavily overloaded
-for all types where they apply (for example, you can add numbers,
-vectors, matrices or strings).
-It's an integral part of our engine, without the need for any external libraries.
-And do note that our engine doesn't support (yet) ECMAScript for X3D scripting
-at all, so this is the only way to do scripting for now (without
-writing and compiling any ObjectPascal code).</p>
+<p>The language can process various types:
 
-<p>Programmers may also be interested that language implementation is flexible,
-you can extend it easily from ObjectPascal (adding new data-types and
-built-in functions), for many uses (not necessarily related with X3D).
+<ul>
+  <li>numbers,
+  <li>booleans,
+  <li>strings,
+  <li>vectors,
+  <li>matrices,
+  <li>images.
+  <li>Also arrays of all these things are supported.
+</ul>
+
+<p>There are many built-in functions and operators, heavily overloaded
+for all types where they apply. For example, you can simply add numbers,
+vectors, matrices or strings like <code>X + Y</code>.
+
+<p>Language implementation is flexible,
+you can extend it easily (from Pascal) to add new data-types and functions.
+<!--
 The language is completely safe (that is, there's no possibility for
 malicious script author to do something harmful)
 simply because the language is a closed data-processing language
@@ -95,32 +81,105 @@ simply because the language is a closed data-processing language
 <?php func_ref('image_load', 'image_load(url)'); ?> and
 <?php func_ref('writeln', 'writeln(string)'); ?>, and they
 expose functionality that is possible anyway with
-pure non-scripted X3D).</p>
+pure non-scripted X3D).
+--></p>
 
 <?php echo $toc->html_section(); ?>
+
+<p>The language can be used to <b>evaluate mathematical expressions</b>
+in your game at runtime. This has many uses, in particular game designers can get
+greater control over specifying various parameters of your game.
+Instead of hardcoding things like this:
+
+<?php echo xml_full_highlight('<?xml version="1.0" encoding="UTF-8"?>
+<game_configuration>
+  <player_life value="100" />
+  <spawn dragons_per_minute="3" />
+</game_configuration>'); ?>
+
+<p>you can use <i>CastleScript</i> and allow to write expressions like this:
+
+<?php echo xml_full_highlight('<?xml version="1.0" encoding="UTF-8"?>
+<game_configuration>
+  <!-- calculate expression -->
+  <player_life value="10 * 10" />
+  <!-- calculate expression using "current_difficulty" variable defined by Pascal -->
+  <spawn dragons_per_minute="2 * current_difficulty" />
+</game_configuration>'); ?>
+
+<p>The Pascal API is quite simple, see the
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html">CastleScriptParser</a> unit.
+Use trivial
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseConstantFloatExpression">ParseConstantFloatExpression</a>
+as a replacement for <code>StrToFloat</code> to calculate expressions using constants and all our functions and operators.
+Use
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseFloatExpression">ParseFloatExpression</a>
+to calculate an expresion with possible CastleScript variables.
+You can calculate other types, e.g. strings by
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseStringExpression">ParseStringExpression</a>.
+To read float expression from XML you can helpers from
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptXML.html">CastleScriptXML</a> unit,
+so you can write <code>MyDomElement.GetFloatExpression('value')</code>.
+
+<p>The syntax to calculate mathematical expressions is used throughout our engine,
+for example <?php echo a_href_page('glplotter and gen_function', 'glplotter_and_gen_function'); ?>
+ use this syntax to define function expressions.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can use <i>CastleScript</i> in X3D <code>Script</code> nodes.
+
+<p>The examples are in <a href="https://github.com/castle-engine/demo-models">our demo models</a>,
+see there in <a href="https://github.com/castle-engine/demo-models/tree/master/castle_script">castle_script subdirectory</a>.
 
 <p>URLs in <code>Script</code> node starting with <code>castlescript:</code>
 are understood to contain program in CastleScript language.
 URLs to external files with extension <code>.castlescript</code> point
 to whole files in CastleScript language.
 (Deprecated: also <code>kambiscript:</code> as a protocol and
-<code>.kambiscript</code> as an extension are recognized.) Like</p>
+<code>.kambiscript</code> as an extension are recognized.) Like this:</p>
 
-<pre>
-Script {
+<?php echo vrmlx3d_highlight(
+'Script {
   inputOnly SFFloat foo
   outputOnly SFFloat foo_plus_one
 
   url "castlescript:
-function foo(value, timestamp)
-foo_plus_one := value + 1
-"
+       function foo(value, timestamp)
+         foo_plus_one := value + 1
+      "
 }
 
 Script {
   url "my_script.castlescript"
-}
-</pre>
+}'); ?>
+
+<p>Note that <i>CastleScript</i> is a very simple scripting language,
+with some features inspired by many other languages, and some decisions just
+dictated by the desire to keep implemetation simple.
+For example <code>if</code>, <code>while</code> and such have somewhat ugly syntax,
+as they are done using built-in functions like
+<?php func_ref('if', 'if(condition, then_code, else_code)'); ?>.
+<i>This language doesn't try to compete with larger scripting languages</i>
+(like <i>ECMAScript</i>, commonly used in X3D scripting).
+It's not suitable for larger programs
+(for starters, you cannot define your own types).<!-- ; you also cannot
+currently call user-defined functions (you can only call built-in functions;
+user-defined functions are only automatically called when X3D Script
+receives an event); also you cannot declare your own local variables
+(but you can use X3D Script initializeOnly fields for this purpose)-->
+Also it's specific to our engine, and probably always will be.
+
+<p>We do not plan to extend the <i>CastleScript</i> in the direction of <i>"general scripting language"</i>
+for now. We feel there are already a lot of other scripting languaes,
+available also from Pascal applications, that serve a purpose <i>"scripting language
+for larger, non-trivial applications"</i> better.
+
+<!--
+And do note that our engine doesn't support (yet) ECMAScript for X3D scripting
+at all, so this is the only way to do scripting for now (without
+writing and compiling any Pascal code).
+-->
 
 <?php echo $toc->html_section(); ?>
 
@@ -135,32 +194,31 @@ Script {
 
 <p>Some example of simple program for X3D script node:</p>
 
-<pre>
-Script {
-  # Let's assume some TouchSensor.touchTime is routed here.
+<?php echo vrmlx3d_highlight(
+'Script {
+  # Let\'s assume some TouchSensor.touchTime is routed here.
   # When user clicks on this touch sensor, you want to close the door
   # if they are open, or open them if they are closed.
   inputOnly SFTime touch_time
 
   initializeOnly SFBool open FALSE
 
-  # Let's assume this is routed to some TimeSensor.set_startTime
+  # Let\'s assume this is routed to some TimeSensor.set_startTime
   # that starts closing animation.
   outputOnly SFTime close_time
 
-  # Let's assume this is routed to some TimeSensor.set_startTime
+  # Let\'s assume this is routed to some TimeSensor.set_startTime
   # that starts opening animation.
   outputOnly SFTime open_time
 
   url "castlescript:
-function touch_time(value, timestamp)
-if (open,
-    close_time := timestamp,
-    open_time := timestamp);
-open := not(open)
-"
-}
-</pre>
+       function touch_time(value, timestamp)
+         if (open,
+             close_time := timestamp,
+             open_time := timestamp);
+         open := not(open)
+      "
+}'); ?>
 
 <p>Example script behavior above could also be done by combining
 <code>BooleanToggle</code>, <code>BooleanFilter</code>, <code>TimeTrigger</code>
@@ -168,17 +226,16 @@ X3D nodes.
 But script is already simpler and shorter, and allows you to trivially
 add other interesting things.</p>
 
-<pre>
-# Simple converter from SFString to MFString using built-in <?php func_ref('array', 'array'); ?> function.
+<?php echo vrmlx3d_highlight(
+'# Simple converter from SFString to MFString using built-in <?php func_ref(\'array\', \'array\'); ?> function.
 Script {
   inputOnly SFString input
   outputOnly MFString output
     url "castlescript:
-function input(value, timestamp)
-  output := array(value)
-"
-}
-</pre>
+         function input(value, timestamp)
+           output := array(value)
+        "
+}'); ?>
 
 <p>Some larger examples:
 <ul>
@@ -259,26 +316,25 @@ at runtime. Four core types are available:</p>
     apostrophe character). For example <code>'He said "It''s mine."'</code>.
     Apostrophe was chosen not only because, y'know, it's Pascalish :),
     but also because it makes embedding CastleScript code within
-    VRML/X3D string easier (no need to escape quotes by backslashes).
-    You can make actual newlines within the string, like in VRML/X3D.
+    X3D string easier (no need to escape quotes by backslashes).
+    You can make actual newlines within the string, like in X3D.
     For example:
-<pre>
-Script {
-  # Let's assume some TouchSensor.touchTime is routed here.
+<?php echo vrmlx3d_highlight(
+'Script {
+  # Let\'s assume some TouchSensor.touchTime is routed here.
   inputOnly SFTime touch_time
   outputOnly MFString text
 
   url "castlescript:
-function touch_time(value, timestamp)
-  text := array(
-    'First string of text clicked on ' + string(value),
-    'Second string of text.
+       function touch_time(value, timestamp)
+         text := array(
+           \'First string of text clicked on \' + string(value),
+           \'Second string of text.
 Still second string of text.
-Simply make a newline in the string literal to get a newline inside the string.'
-  )
-"
-}
-</pre>
+Simply make a newline in the string literal to get a newline inside the string.\'
+         )
+      "
+}'); ?>
 
     <p>Built-in function
     <?php func_ref('string', 'string(...)'); ?> allows
@@ -705,7 +761,7 @@ hermite_tense_spline(x, true,
 <p><!--The parameters should be self-explanatory.--> Try these functions with
 latest <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> to see
 the curves shapes when rendered.
-For the detailed documentation, see the corresponding ObjectPascal API
+For the detailed documentation, see the corresponding Pascal API
 documentation
  <?php api_link('CatmullRomSpline', 'CastleCurves.html#CatmullRomSpline'); ?>,
  <?php api_link('HermiteSpline', 'CastleCurves.html#HermiteSpline'); ?>,
@@ -757,7 +813,7 @@ account human eye sensitivity).
 <p>Rotations (X3D <code>SFRotation</code>, or an element of
 <code>MFRotation</code> array) are, in CastleScript, just 4-value single-precision
 vectors. First three scalars are rotation axis (should be always normalized,
-VRML/X3D require this), 4th item is the rotation angle (in radians).
+X3D require this), 4th item is the rotation angle (in radians).
 So you can operate on rotations from CastleScript using all normal functions
 on vectors.</p>
 
@@ -769,7 +825,7 @@ on vectors.</p>
     This is a rotation that transforms default direction (0, 0, -1)
     and default up (0, 1, 0) into your desired <code>direction</code> and <code>up</code> vectors.
     This is suitable for example for calculating
-    VRML/X3D <code>Viewpoint.orientation</code>.</p>
+    X3D <code>Viewpoint.orientation</code>.</p>
 
     <p>Given here direction and up vectors do not have to be normalized
     (they only must not be zero). They also do not have to be orthogonal
@@ -779,7 +835,7 @@ on vectors.</p>
   <li><p><?php func('rotate', 'rotate(rotation, point)'); ?>
     rotates given 3D <code>point</code>. <code>rotation</code> parameter contains
     an axis (first three components) and an angle in radians (last component),
-    so it's compatible with VRML/X3D <code>SFRotation</code>.</p>
+    so it's compatible with X3D <code>SFRotation</code>.</p>
 
   <li><p><?php func('orientation_to_direction', 'orientation_to_direction(rotation)'); ?>
     determines direction vector back from an orientation,
