@@ -49,6 +49,12 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
 <?php echo $toc->html_section(); ?>
 
 <ol>
+  <li><p><b>If you use
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
+    To load a 3D model, change your program code to this:</p>
+
+    <?php echo pascal_highlight_file('code-samples/view_3d_model_basic.lpr'); ?>
+
   <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     To load a 3D model, double click to create an event <code>OnCreate</code>
@@ -76,12 +82,6 @@ begin
   Viewport.Items.Add(Scene);
   Viewport.Items.MainScene := Scene;
 end;'); ?>
-
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    To load a 3D model, change your program code to this:</p>
-
-    <?php echo pascal_highlight_file('code-samples/view_3d_model_basic.lpr'); ?>
 </ol>
 
 <p>At the beginning we create a new instance of

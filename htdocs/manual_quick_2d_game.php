@@ -33,6 +33,32 @@ echo castle_thumbs(array(
 let's take a quick look at the simple things you can do with our window.
 Let's draw some images and handle inputs.
 
+<div class="panel panel-primary">
+  <div class="panel-heading">TODO: Outdated manual page</div>
+  <div class="panel-body">
+    <p>Admittedly this manual page is outdated.
+    It shows a way that <i>still works</i> but it is no longer what we advise
+    as a most comfortable way to do such things in the engine.
+    Have patience as we update our documentation, and in the meantime:
+
+    <p>We advise you now to:</p>
+
+    <ol>
+      <li>
+        <p>Create a <i>"New Project"</i> in <a href="manual_editor.php">CGE editor</a> and start with the <i>Empty</i> template.
+      <li>
+        <p>It has a code in <code>code/gamestatemain.pas</code> that shows how to handle keys in <code>TStateMain.Press</code>
+          and do something continuously in <code>TStateMain.Update</code>.
+      <li>
+        <p>You can render an image directly (as described in this manual page, using
+          <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>)
+          by overriding <code>TStateMain.Render</code>.
+          Alternatively, you could design (using CGE editor) an image as <code>TCastleImageControl</code>
+          and only move it.
+    </ol>
+  </div>
+</div>
+
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
@@ -52,6 +78,23 @@ take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-ov
 <p>Create an instance of <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>, and load an image there. <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> allows to load and display the image on screen.
 
 <ol>
+  <li><p><b>If you use
+    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
+    In the simplest case, just create and destroy the image like this:
+
+<?php echo pascal_highlight(
+'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
+var
+  Window: TCastleWindowBase;
+  Image: TDrawableImage;
+begin
+  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
+  try
+    Window := TCastleWindowBase.Create(Application);
+    Window.Open;
+    Application.Run;
+  finally FreeAndNil(Image) end;
+end.'); ?>
   <li><p><b>If you use Lazarus form with
     <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
     Create and destroy the image in the form's <code>OnCreate</code> and
@@ -119,23 +162,6 @@ end;
 
 end.'); ?>
 
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    In the simplest case, just create and destroy the image like this:
-
-<?php echo pascal_highlight(
-'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
-var
-  Window: TCastleWindowBase;
-  Image: TDrawableImage;
-begin
-  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
-  try
-    Window := TCastleWindowBase.Create(Application);
-    Window.Open;
-    Application.Run;
-  finally FreeAndNil(Image) end;
-end.'); ?>
 </ol>
 
 <?php echo $toc->html_section(); ?>
@@ -144,20 +170,6 @@ end.'); ?>
 <?php api_link('TDrawableImage.Draw', 'CastleGLImages.TDrawableImage.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
 
 <ol>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    Select the <code>TCastleControlBase</code> instance,
-    and double click to create code for an event <code>OnRender</code>.
-    Put there the following code:
-
-<?php echo pascal_highlight(
-'// Also: add to your form private section a declaration of: "X, Y: Single;"
-
-procedure TForm1.CastleControl1Render(Sender: TObject);
-begin
-  Image.Draw(X, Y);
-end;'); ?>
-
   <li><p><b>If you use
     <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Change your program like this:
@@ -184,6 +196,19 @@ begin
     Application.Run;
   finally FreeAndNil(Image) end;
 end.'); ?>
+  <li><p><b>If you use Lazarus form with
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
+    Select the <code>TCastleControlBase</code> instance,
+    and double click to create code for an event <code>OnRender</code>.
+    Put there the following code:
+
+<?php echo pascal_highlight(
+'// Also: add to your form private section a declaration of: "X, Y: Single;"
+
+procedure TForm1.CastleControl1Render(Sender: TObject);
+begin
+  Image.Draw(X, Y);
+end;'); ?>
 </ol>
 
 <p>As you can guess, we can now move the image by simply changing the <code>X</code>,
@@ -204,17 +229,6 @@ to any computer speed. For example, to move by 100 pixels per second,
 we will increase our position by <code>CastleControl1.Fps.SecondsPassed * 100.0</code>.
 
 <ol>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    double click to create an event <code>OnUpdate</code>
-    on <code>TCastleControlBase</code>, and put there the following code:
-
-<?php echo pascal_highlight(
-'procedure TForm1.CastleControl1Update(Sender: TObject);
-begin
-  Y := Y + CastleControl1.Fps.SecondsPassed * 100.0;
-end;'); ?>
-
   <li><p><b>If you use
     <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Assign a <code>Window.OnUpdate</code> callback (analogous to
@@ -228,6 +242,16 @@ end;
 
 // ... at initialization, right after assigninig Window.OnRender, add:
   Window.OnUpdate := @WindowUpdate;'); ?>
+  <li><p><b>If you use Lazarus form with
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
+    double click to create an event <code>OnUpdate</code>
+    on <code>TCastleControlBase</code>, and put there the following code:
+
+<?php echo pascal_highlight(
+'procedure TForm1.CastleControl1Update(Sender: TObject);
+begin
+  Y := Y + CastleControl1.Fps.SecondsPassed * 100.0;
+end;'); ?>
 </ol>
 
 <?php echo $toc->html_section(); ?>
@@ -237,35 +261,6 @@ You can also check which keys are pressed inside the <code>OnUpdate</code> event
 to update movement constantly. Examples below show both ways.
 
 <ol>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    double click to create an event <code>OnPress</code>
-    on <code>TCastleControlBase</code>. Change the <code>OnPress</code> and
-    <code>OnUpdate</code> like below.
-
-<?php echo pascal_highlight(
-'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
-begin
-  if Event.IsKey(K_Space) then
-    Y := Y - 200.0;
-end;
-
-// new extended OnUpdate handler
-procedure TForm1.CastleControl1Update(Sender: TObject);
-var
-  SecondsPassed: Single;
-begin
-  SecondsPassed := CastleControl1.Fps.SecondsPassed;
-  Y := Y + SecondsPassed * 100.0;
-  if CastleControl1.Pressed[K_Left] then
-    X := X - SecondsPassed * 200.0;
-  if CastleControl1.Pressed[K_Right] then
-    X := X + SecondsPassed * 200.0;
-end;');
-
-  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
-?>
-
   <li><p><b>If you use
     <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
     Assign a <code>Window.OnPress</code> callback (analogous to
@@ -299,6 +294,34 @@ end;
   Window.OnPress := @WindowPress;');
 
 // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
+?>
+  <li><p><b>If you use Lazarus form with
+    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
+    double click to create an event <code>OnPress</code>
+    on <code>TCastleControlBase</code>. Change the <code>OnPress</code> and
+    <code>OnUpdate</code> like below.
+
+<?php echo pascal_highlight(
+'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
+begin
+  if Event.IsKey(K_Space) then
+    Y := Y - 200.0;
+end;
+
+// new extended OnUpdate handler
+procedure TForm1.CastleControl1Update(Sender: TObject);
+var
+  SecondsPassed: Single;
+begin
+  SecondsPassed := CastleControl1.Fps.SecondsPassed;
+  Y := Y + SecondsPassed * 100.0;
+  if CastleControl1.Pressed[K_Left] then
+    X := X - SecondsPassed * 200.0;
+  if CastleControl1.Pressed[K_Right] then
+    X := X + SecondsPassed * 200.0;
+end;');
+
+  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
 ?>
 </ol>
 

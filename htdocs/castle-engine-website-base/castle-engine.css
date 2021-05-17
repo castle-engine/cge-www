@@ -874,3 +874,7 @@ div.download .download_platform {
 .convert-output p {
   text-align: center;
 }
+
+.panel-body::after {
+  clear: none !important;
+}
