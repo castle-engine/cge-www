@@ -76,7 +76,7 @@ doesn't change), and no output events are generated.</p>
   node_end();
 ?>
 
-<p>By default (when this field is <code>FALSE</code>) the behaviour of sequencer nodes follows the X3D spec:
+<p>By default (when this field is <code>FALSE</code>) the behavior of sequencer nodes follows the X3D spec:
 <i>The sequencer node sends only one value_changed output event per key[i] interval</i>.
 
 <p>When <code>forceContinuousValue_Changed</code> is <code>TRUE</code> then

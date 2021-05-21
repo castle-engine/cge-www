@@ -57,7 +57,7 @@ that specify per-vertex colors):
 <ul>
   <li><p><code>"REPLACE"</code> is the default, and is compatible with X3D 3.
 
-  <li><p><code>"MODULATE"</code> means to multiply per-vertex colors (with the same value as was replaced by `"REPLACE"`, like <code>Material.diffuseColor</code> or <code>PhysicalMaterial.baseColor</code> or <code>UnlitMaterial.emissiveColor</code>, with alpha added from <code>XxxMaterial.transparency</code>). This allows to achieve glTF-compatible behaviour.
+  <li><p><code>"MODULATE"</code> means to multiply per-vertex colors (with the same value as was replaced by `"REPLACE"`, like <code>Material.diffuseColor</code> or <code>PhysicalMaterial.baseColor</code> or <code>UnlitMaterial.emissiveColor</code>, with alpha added from <code>XxxMaterial.transparency</code>). This allows to achieve glTF-compatible behavior.
 </ul>
 
 <?php

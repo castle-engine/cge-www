@@ -789,7 +789,7 @@ because we felt that the X3D specification behavior is really not useful.
 <b>In our engine, the texture color is by default multiplied by the material color.
 This issue is
 <a href="https://github.com/michaliskambi/x3d-tests/wiki/Make-RGB-and-grayscale-textures-treatment-consistent">fixed in X3D 4.0</a>,
-where I introduced prose/equations that match my recommended behaviour (and match what CGE is doing).</b>
+where I introduced prose/equations that match my recommended behavior (and match what CGE is doing).</b>
 
 <p>VRML 2 / X3D specifications
 say that RGB textures should by default <code>REPLACE</code> the material color (as opposed

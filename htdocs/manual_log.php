@@ -37,7 +37,7 @@ whatever works for you.
     <ul>
       <li><p><i>On Unix (Linux, macOS...), and for Windows console applications</i>,
         logging by default goes to the <i>standard output</i>.
-        This is the standard behaviour for Unix and console apps.
+        This is the standard behavior for Unix and console apps.
 
         <p>Users can redirect it by running the application from
         the command-line like <code>my_game &gt; log_file.log</code>.

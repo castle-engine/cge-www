@@ -456,7 +456,7 @@ and  that you package however you like.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Behaviour of the <a href="manual_data_directory.php">data directory</a> (<code>castle-data:</code> protocol) on macOS:
+<p>Behavior of the <a href="manual_data_directory.php">data directory</a> (<code>castle-data:</code> protocol) on macOS:
 
 <ul>
   <li><p>On macOS, if you run the application through the "application bundle", then we expect the data to be found inside <code>MyApplication.app/Contents/Resources/data</code> subdirectory. This way user can move around <code>MyApplication.app</code> to move, install and uninstall the application.
