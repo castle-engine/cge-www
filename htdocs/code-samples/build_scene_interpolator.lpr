@@ -24,7 +24,6 @@ var
   Transform: TTransformNode;
   TimeSensor: TTimeSensorNode;
   PositionInterpolator: TPositionInterpolatorNode;
-  Route1, Route2: TX3DRoute;
 begin
   Result := TX3DRootNode.Create;
 
@@ -46,15 +45,8 @@ begin
   PositionInterpolator.SetKeyValue([Vector3(0, 0, 0), Vector3(10, 0, 0), Vector3(10, 10, 0)]);
   Result.AddChildren(PositionInterpolator);
 
-  Route1 := TX3DRoute.Create;
-  Route1.SetSourceDirectly(TimeSensor.EventFraction_Changed);
-  Route1.SetDestinationDirectly(PositionInterpolator.EventSet_Fraction);
-  Result.AddRoute(Route1);
-
-  Route2 := TX3DRoute.Create;
-  Route2.SetSourceDirectly(PositionInterpolator.EventValue_Changed);
-  Route2.SetDestinationDirectly(Transform.FdTranslation.EventIn);
-  Result.AddRoute(Route2);
+  Result.AddRoute(TimeSensor.EventFraction_Changed, PositionInterpolator.EventSet_Fraction);
+  Result.AddRoute(PositionInterpolator.EventValue_Changed, Transform.FdTranslation.EventIn);
 end;
 
 var
