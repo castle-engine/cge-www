@@ -609,7 +609,7 @@ a.patreon-link:focus {
 <li><a href="#_overview">6.1. Overview</a></li>
 <li><a href="#_raising">6.2. Raising</a></li>
 <li><a href="#_catching">6.3. Catching</a></li>
-<li><a href="#_finally_doing_things_regardless_if_exception_occurred">6.4. Finally (doing things regardless if exception occurred)</a></li>
+<li><a href="#_finally_doing_things_regardless_if_an_exception_occurred">6.4. Finally (doing things regardless if an exception occurred)</a></li>
 <li><a href="#_how_the_exceptions_are_displayed_by_various_libraries">6.5. How the exceptions are displayed by various libraries</a></li>
 </ul>
 </li>
@@ -2719,7 +2719,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
 <span class="keyword">function</span> ReadParameter: <span class="keyword">String</span>;
 <span class="keyword">begin</span>
   Result := Readln;
-  <span class="keyword">if</span> Pos(<span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>, Result) &lt;&gt; <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span> <span class="keyword">then</span>
+  <span class="keyword">if</span> Pos(<span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>, Result) &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span>
     <span class="keyword">raise</span> EInvalidParameter.Create(<span class="string"><span class="delimiter">'</span><span class="content">Invalid parameter, space is not allowed</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;</code></pre>
 </div>
@@ -2738,7 +2738,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
 <span class="keyword">function</span> ReadParameter: <span class="keyword">String</span>;
 <span class="keyword">begin</span>
   Result := Readln;
-  <span class="keyword">if</span> Pos(<span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>, Result) &lt;&gt; <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span> <span class="keyword">then</span>
+  <span class="keyword">if</span> Pos(<span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>, Result) &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span>
     <span class="keyword">raise</span> EInvalidParameter.CreateFmt(<span class="string"><span class="delimiter">'</span><span class="content">Invalid parameter %s, space is not allowed</span><span class="delimiter">'</span></span>, [Result]);
 <span class="keyword">end</span>;</code></pre>
 </div>
@@ -2791,18 +2791,14 @@ except
 ...
 except
   <span class="directive">on</span> E: EInvalidParameter <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message)
-  <span class="keyword">else</span>
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
   <span class="directive">on</span> E: ESomeOtherException <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">ESomeOtherException exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message)
-  <span class="keyword">else</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Unexpected exception occurred</span><span class="delimiter">'</span></span>);
-<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING BELOW ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span>
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">ESomeOtherException exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also react to any exception raised:</p>
+<p>You can also react to any exception raised, if you don&#8217;t use any <code>on</code> expression:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2811,14 +2807,15 @@ except
 except
   Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;
-<span class="comment">// WARNING: DO NOT v THIS EXAMPLE WITHOUT READING A WARNING BELOW ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
+<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING BELOW</span>
+<span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Usually you should only catch exceptions of the specific class, that are appropriate in your case (you know what to do in case of this particular problem). Be careful with catching exceptions of a general type (like catching any <code>Exception</code> or any <code>TObject</code>), as you may easily catch too much, and later cause troubles when debugging other problems.</em> As in all programming languages with exceptions, the good rule to follow is to <em>never capture an exception that you do not know how to handle</em>. In particular, do not capture an exception just as a simple workaround of the problem, without investigating first <em>why</em> the exception occurs. Is it a problem in user input (then you can report it)? Or is it a bug in your code logic (then you should fix the code, to avoid the exception)? And confirm that "catching" the exception at given place results in a correct code in all scenarios.</p>
+<p>In general <em>you should only catch exceptions of a specific class, that signal a particular problem that you know what to do with</em>. Be careful with catching exceptions of a general type (like catching any <code>Exception</code> or any <code>TObject</code>), as you may easily catch too much, and later cause troubles when debugging other problems. As in all programming languages with exceptions, the good rule to follow is to <em>never capture an exception that you do not know how to handle</em>. In particular, do not capture an exception just as a simple workaround of the problem, without investigating first <em>why</em> the exception occurs. Is it a problem in user input (then you can report it)? Or is it a bug in your code logic (then you should fix the code, to avoid the exception)?</p>
 </div>
 <div class="paragraph">
-<p>Another way to capture all exception is to use:</p>
+<p>Another way to capture all exceptions is to use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2828,7 +2825,8 @@ except
   <span class="directive">on</span> E: TObject <span class="keyword">do</span>
     Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;
-<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
+<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE</span>
+<span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2842,7 +2840,8 @@ except
   <span class="directive">on</span> E: Exception <span class="keyword">do</span>
     Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred: </span><span class="delimiter">'</span></span> + E.ClassName + <span class="string"><span class="delimiter">'</span><span class="content">, message: </span><span class="delimiter">'</span></span> + E.Message);
 <span class="keyword">end</span>;
-<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
+<span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE</span>
+<span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2856,7 +2855,7 @@ except
   <span class="directive">on</span> E: EInvalidSoundFile <span class="keyword">do</span>
   <span class="keyword">begin</span>
     <span class="keyword">if</span> E.InvalidUrl = <span class="string"><span class="delimiter">'</span><span class="content">http://example.com/blablah.wav</span><span class="delimiter">'</span></span> <span class="keyword">then</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: loading http://example.com/blablah.wav failed, this is a known problem that we can ignore now</span><span class="delimiter">'</span></span>)
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: loading http://example.com/blablah.wav failed, ignore it</span><span class="delimiter">'</span></span>)
     <span class="keyword">else</span>
       <span class="keyword">raise</span>;
   <span class="keyword">end</span>;
@@ -2868,9 +2867,9 @@ except
 </div>
 </div>
 <div class="sect2">
-<h3 id="_finally_doing_things_regardless_if_exception_occurred">6.4. Finally (doing things regardless if exception occurred)</h3>
+<h3 id="_finally_doing_things_regardless_if_an_exception_occurred">6.4. Finally (doing things regardless if an exception occurred)</h3>
 <div class="paragraph">
-<p>Often you use <code>try .. finally .. end</code> construction to free an instance of object, regardless if an exception occurred during some operation on this object. The way to write it looks like this:</p>
+<p>Often you use <code>try .. finally .. end</code> construction to free an instance of some object, regardless if an exception occurred when using this object. The way to write it looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2889,10 +2888,10 @@ except
 </div>
 </div>
 <div class="paragraph">
-<p>This works reliably always, and does not cause memory leaks, even if <code>MyInstance.DoSomething</code> or <code>MyInstance.DoSomethingElse</code> raises an exception.</p>
+<p>This works reliably always, and does not cause memory leaks, even if <code>MyInstance.DoSomething</code> or <code>MyInstance.DoSomethingElse</code> raise an exception.</p>
 </div>
 <div class="paragraph">
-<p>Note that this takes into account that local variables, like <code>MyInstance</code> above, have undefined values (may contain random "memory garbage") before the first assignment. That is, writing something like this would not be valid:</p>
+<p>Note that this takes into account that local variables, like <code>MyInstance</code> above, have undefined values (may contain random "memory garbage") before the first assignment. That is, writing something like this would <em>not</em> be valid:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2902,8 +2901,8 @@ except
   MyInstance: TMyClass;
 <span class="keyword">begin</span>
   <span class="keyword">try</span>
-    MyInstance := TMyClass.Create;
     CallSomeOtherProcedure;
+    MyInstance := TMyClass.Create;
     MyInstance.DoSomething;
     MyInstance.DoSomethingElse;
   <span class="keyword">finally</span>
@@ -2913,7 +2912,7 @@ except
 </div>
 </div>
 <div class="paragraph">
-<p>The above example is not valid: if an exception occurs within <code>TMyClass.Create</code> (a constructor may also raise an exception), or within the <code>CallSomeOtherProcedure</code>, then the <code>MyInstance</code> variable is not initialized. Calling <code>FreeAndNil(MyInstance)</code> will try to call destructor of <code>MyInstance</code>, which will most likely crash with <em>Access Violation (Segmentation Fault)</em>. In effect, one exception causes another exception, which will make the error report not useful: you will not see the message of the original exception.</p>
+<p>The above example is not valid: if an exception occurs within <code>TMyClass.Create</code> (a constructor may also raise an exception), or within the <code>CallSomeOtherProcedure</code>, then the <code>MyInstance</code> variable is not initialized. Calling <code>FreeAndNil(MyInstance)</code> will try to call destructor of <code>MyInstance</code>, which will most likely crash with <em>Access Violation (Segmentation Fault)</em>. In effect, one exception causes another exception, which will make the error report not very useful: you will not see the message of the original exception.</p>
 </div>
 <div class="paragraph">
 <p>Sometimes it is justified to fix the above code by first initializing all local variables to <code>nil</code> (on which calling <code>FreeAndNil</code> is safe, and will not do anything). This makes sense if you free a <strong>lot</strong> of class instances. So the two code examples below work equally well:</p>
@@ -2981,7 +2980,7 @@ except
 </div>
 </div>
 <div class="paragraph">
-<p>Note: you could also make a valid argument that it could be split into 3 separate procedures, one calling each other, in this simple case.</p>
+<p>Note: you could also make a valid argument that above example could be split into 3 separate procedures, one calling each other, in this simple case.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5348,7 +5347,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-23 03:12:56 +0200
+Last updated 2021-05-24 16:36:34 +0200
 </div>
 </div>
 <!-- Google analytics -->
