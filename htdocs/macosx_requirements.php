@@ -302,6 +302,13 @@ I should be able to port such example to my "CastleWindow" then.
     If we don't find libpng,
     we will fallback to reading PNG using <i>FpImage</i>,
     which works too (but is slower, which may be significant if you load a lot of PNG files).
+
+  <li><p><b>Install FreeType to read font files (ttf, otf and more)</b>.
+
+    <p>It is available in package managers like <a href="https://brew.sh/">Homebrew</a>.
+
+    <p>As a fallback we will also try to use FreeType version installed by your X11,
+    in <code>/usr/X11/lib/</code> .
 </ul>
 
 <?php echo $toc->html_section(); ?>
