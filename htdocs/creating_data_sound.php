@@ -32,7 +32,7 @@ elements. Here's an example:
     name="player_sudden_pain"
     url=""
     default_importance="default"
-    gain="1.0"
+    volume="1.0"
     min_gain="0.0"
     max_gain="1.0"
     stream="false" />
@@ -87,7 +87,7 @@ elements. Here's an example:
     all other importance names (like <code>level_event</code>), and all numbers &gt; 10,
     are more important.
 
-  <li><p><code>gain</code> (float, in range 0..infinity)
+  <li><p><code>volume</code> (deprecated name: <code>gain</code>) (float, in range 0..infinity)
 
     <p>Volume. How loud the sound is.
 
@@ -98,7 +98,7 @@ elements. Here's an example:
     <p>Note: Do <i>not</i> make the actual sound data (in wav, ogg and such files)
     louder/more silent for this purpose.
     This is usually bad for sound quality. Instead, keep your sound data
-    at max loudness (normalized), and use this <code>gain</code> property
+    at max loudness (normalized), and use this <code>volume</code> property
     to scale sound.
 
     <p>It can be anything from 0 to +infinity. The default is 1.
@@ -207,7 +207,7 @@ Both alias names, and target names, are automatically qualified by the group nam
     or a plane engine, the sound file should be equally loud.
     This allows to have best quality sound.
 
-    <p>Scale the sound by changing the <code>gain</code> property
+    <p>Scale the sound by changing the <code>volume</code> property
     in sound configuration.
 
   <li><p>If sound is supposed to be spatialized (i.e. played
