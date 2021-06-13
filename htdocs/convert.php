@@ -46,7 +46,7 @@ Button "Make a screenshot"
       <p class="encoding-title">Output X3D encoding:</p>
       <div class="encoding-radio">
         <p><input type="radio" id="encoding-xml" name="encoding" value="xml" checked><label for="encoding-xml">XML (.x3d extension)</label></p>
-        <p><input type="radio" id="encoding-classic" name="encoding" value="classic"><label for="encoding-classic">Classic VRML (x3dv extension)</label></p>
+        <p><input type="radio" id="encoding-classic" name="encoding" value="classic"><label for="encoding-classic">Classic VRML (.x3dv extension)</label></p>
       </div>
     </div><!-- /input-group -->
     <div class="convert-patreon">
