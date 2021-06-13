@@ -31,6 +31,7 @@ require_once 'castle_engine_config.php';
 require_once 'convert-database.php';
 
 define('CONVERSION_VOLUMES_COUNT', 10);
+define('CONVERSION_DEBUG', false); // enable only temporarily for some extra logging
 
 /* Show error.
 
@@ -225,6 +226,8 @@ function conversion_volume_get(&$volume_path)
 function convert_to_x3d($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
+  $conversion_log = '';
+
   try { // exceptions inside will be nicely displayed
     $time_start = microtime(true);
 
@@ -237,7 +240,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         $temp_name = $files['tmp_name'][$i];
         $dest_name = $volume_path . basename($files['name'][$i]);
         if (!move_uploaded_file($temp_name, $dest_name)) {
-          $conversion_log = 'Cannot move uploaded file';
+          $conversion_log .= "Cannot move uploaded file\n";
           return false;
         }
       }
@@ -274,7 +277,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
         if (in_array($possible_main_file_ext, $model_extensions)) {
           if ($main_file !== null) {
-            $conversion_log = 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file;
+            $conversion_log .= 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file . "\n";
             return false;
           }
           $main_file = $possible_main_file;
@@ -283,28 +286,37 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
         }
       }
       if ($main_file === null) {
-        $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true);
+        $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true) . "\n";
         return false;
       }
 
       global $cge_config;
 
-      exec(
-        'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
+      $exec_command = 'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
         escapeshellcmd($volume_id) . ' ' .
         escapeshellcmd($main_file) . ' ' .
         escapeshellcmd($encoding) . ' ' .
-        escapeshellcmd($output_file_id),
+        escapeshellcmd($output_file_id);
+      if (CONVERSION_DEBUG) {
+        $conversion_log .= "Executing: " . $exec_command . "\n";
+      }
+      exec($exec_command,
         $exec_output,
         $exec_return_val
       );
 
+      $error_log = file_get_contents($volume_path . 'error.log');
+      $conversion_log .= $error_log;
+
       if ($exec_return_val !== 0) {
-        $conversion_log = "Conversion script failed (non-zero exit status).\nOutput:\n" . implode("\n", $exec_output);
+        $conversion_log .= "Conversion script failed (non-zero exit status).\n";
+        if (!empty($exec_output) != 0) {
+          $conversion_log .=
+            "Process output:\n" .
+            implode("\n", $exec_output) . "\n";
+        }
         return false;
       }
-
-      $conversion_log = file_get_contents($volume_path . 'error.log');
 
       $output_file_size = filesize($volume_path . $output_file_id);
       $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
@@ -313,7 +325,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       if (!rename($volume_path . $output_file_id,
         '/var/convert-to-x3d/output/' . $output_file_id))
       {
-        $conversion_log = 'Failed to move output file to the output directory';
+        $conversion_log .= 'Failed to move output file to the output directory';
         return false;
       }
 
@@ -332,7 +344,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       "\nConversion slot (Docker volume): $volume_id";
   } catch (Exception $e) {
     // convert uncaught exceptions at this point to nice error messages
-    $conversion_log = $e->getMessage();
+    $conversion_log .= $e->getMessage();
     return false;
   }
 
