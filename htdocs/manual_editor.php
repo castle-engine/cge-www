@@ -57,12 +57,31 @@ The build tool in turn calls a compiler (FPC) and some other tools
 
     <p>Saved as <code>xxx.castle-transform</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>You can load it in your game using <?php api_link('TransformLoad', 'CastleComponentSerialize.html#TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransformExtra.TCastleTransformDesign.html">TCastleTransformDesign</a> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
+    <p>You can load it in your game using <?php api_link('TransformLoad', 'CastleTransform.html#TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransformExtra.TCastleTransformDesign.html">TCastleTransformDesign</a> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
+
+  <li><p>A hierachy of non-visual classes (really anything descending from <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a> although we advise to descend from our extended <?php api_link('TCastleComponent', 'CastleClassUtils.TCastleComponent.html'); ?>).
+
+    <p>Saved as <code>xxx.castle-component</code> files (somewhere in the <code>data/</code> subdirectory).
+
+    <p>You can load it in your game using <?php api_link('ComponentLoad', 'CastleComponentSerialize.html#ComponentLoad'); ?>. Do whatever you want with the resulting components. You can find the named components in your design using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleComponentSerialize.TComponentHelper.html#FindRequiredComponent">FindRequiredComponent</a> method, like this:
+
+<?php echo pascal_highlight(
+'var
+  ComponentRoot, ComponentOwner: TComponent;
+  MySound: TCastleSound;
+  MyFont: TCastleFont;
+begin
+  ComponentOwner := TComponent.Create(Application);
+  ComponentRoot := ComponentLoad(\'castle-data:/my_design.castle-component\', ComponentOwner);
+  MySound := ComponentOwner.FindRequiredComponent(\'MySound\') as TCastleSound;
+  MyFont := ComponentOwner.FindRequiredComponent(\'MyFont\') as TCastleFont;
+end;'); ?>
+
 </ol>
 
-<p>The <code>xxx.castle-user-interface</code> and <code>xxx.castle-transform</code> are simple JSON text files. You should commit them to the version control, just like your source code. You can have as many such files inside your project as you need to.
+<p>The <code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code>, <code>xxx.castle-component</code> are simple JSON text files. You should commit them to the version control, just like your source code. You can have as many such files inside your project as you need to.
 
-<p>Let us emphasize that <i>when using the editor, you still code using the same CGE API as described throughout this manual</i>. At any point you can load an instance of <code>TCastleUserInterface</code> or <code>TCastleTransform</code> from a designed file and insert it into the running application.
+<p>Let us emphasize that <i>when using the editor, you still code using the same CGE API as described throughout this manual</i>. At any point you can load an instance of a component from a designed file and use it as you wish.
 
 <p>Open various example projects to see the editor, with various components, in action. We recommend trying out
 various templates (create "New Project" in editor),
@@ -89,7 +108,13 @@ various templates (create "New Project" in editor),
 
 <p>Note: If you're bothered by the default multiple-windows UI of Lazarus, install in Lazarus package <code>components/anchordocking/design/anchordockingdsgn.lpk</code> (you will find this in Lazarus source code). It will recompile Lazarus and give you an IDE with docked windows.
 
-<p>Note: Instead of Lazarus, you can use any text editor to edit Pascal files. <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://atom.io/">Atom</a>, <a href="https://www.gnu.org/software/emacs/download.html">Emacs</a>... A preference option to make CGE editor invoke a custom editor will be added soon.
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'custom-code-editor.png', 'titlealt' => 'Code Editor Preferences'),
+));
+?>
+
+<p>Note: Instead of Lazarus, you can use any text editor to edit Pascal files. <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://atom.io/">Atom</a>, <a href="https://www.gnu.org/software/emacs/download.html">Emacs</a>... In CGE editor, go to <i>"Preferences -> Code Editor"</i> to configure your custom editor, so it is run when you e.g. double-click on Pascal files from the editor or use various other <i>"Code"</i> menu features. See <a href="https://castle-engine.io/wp/2021/05/16/use-custom-code-editor-emacs-atom-vs-code-when-opening-pascal-source-from-cge-editor/">here for details</a>.
 
 <!--
 TODO: make editor configurable
@@ -102,7 +127,7 @@ TODO: use Delphi automatically, if installed
 <p>You can browse the application files. Our <i>"Files"</i> browser at the bottom just displays the files inside your project directory. It merely hides some known unimportant things, like temporary <code>castle-engine-output</code> directory.
 
 <ul>
-  <li><p>Note that the <code>data/</code> subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by <a href="https://castle-engine.io/manual_data_directory.php">castle-data:/xxx URL</a>. You will place there 3D models, 2D images, designs (<code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code> files) and everything else you load in the game.
+  <li><p>Note that the <code>data/</code> subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by <a href="https://castle-engine.io/manual_data_directory.php">castle-data:/xxx URL</a>. You will place there 3D models, 2D images, designs (<code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code>, <code>xxx.castle-component</code> files) and everything else you load in the game.
 
     <p>It is somewhat equivalent to Unity <code>Assets/</code> subdirectory. See <a href="https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers">Castle Game Engine for Unity developers</a> for more pointers, if you come with knowledge about Unity.
 
@@ -131,7 +156,12 @@ TODO: use Delphi automatically, if installed
 
 <?php echo $toc->html_section(); ?>
 
-<p>Projects may define custom components (descendants of the <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> or <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>). It is possible to include your custom components within the <i>Castle Game Engine Editor</i>, so that they can be added and configured at design-time, just like standard CGE components. To do this:
+<p>Projects may define custom components (any descendant of <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a>; usual classes to derive your components from include
+ <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>,
+ <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
+ <?php api_link('TCastleBehavior', 'CastleTransform.TCastleBehavior.html'); ?>,
+ <?php api_link('TCastleComponent', 'CastleClassUtils.TCastleComponent.html'); ?>).
+It is possible to include your custom components within the <i>Castle Game Engine Editor</i>, so that they can be added and configured at design-time, just like standard CGE components. To do this:
 
 <ol>
   <li><p>In the <code>initialization</code> section of some unit (it is usually the same unit where you define your custom component), register it by calling something like this:
