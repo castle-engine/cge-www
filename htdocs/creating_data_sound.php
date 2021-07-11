@@ -147,9 +147,6 @@ then it's actually opened from filename <code>fight/drum_beat.wav</code>.
 
 <p>We also support <b>aliases</b>.
 Alias allows to define a sound name that refers to another <code>&lt;sound&gt;</code> or <code>&lt;alias&gt;</code>.
-Moreover, an alias may have more than one target,
-which means that actual sound will be randomly chosen from the available options
-each time you play this alias.
 
 <p>Note that <code>&lt;alias&gt;</code> may be placed within a <code>&lt;group&gt;</code> too.
 Both alias names, and target names, are automatically qualified by the group name.
@@ -174,12 +171,6 @@ Both alias names, and target names, are automatically qualified by the group nam
 
   <alias name="alternative_name_for_fight_drum_beat">
     <target name="fight/drum_beat" />
-  </alias>
-
-  <alias name="random_test_sound">
-    <target name="test_sound_1" />
-    <target name="test_sound_2" />
-    <target name="test_sound_3" />
   </alias>
 </sounds>'); ?>
 
