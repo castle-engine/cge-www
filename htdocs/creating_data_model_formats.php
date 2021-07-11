@@ -120,6 +120,15 @@ An entire section of this website,
 documents all the features we support (from the X3D and VRML standard,
 and many of our own extensions).
 
+<p>Note that X3D has a lot of features, and most exporters do not allow to configure everything possible in X3D.
+But you can use <code>Inline</code> node to include one file (X3D, glTF or any other that CGE can handle)
+within another X3D file, and you can simply write some X3D content by hand.
+That's good for adding scripts to 3D data, and generally adding
+stuff that is uncomfortable (or impossible) to design in your 3D modeller.
+See e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game/</a> game data for comments,
+especially the level file
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/example_level/example_level_final.x3dv">examples/fps_game/data/example_level/example_level_final.x3dv</a>.
+
 <!-- <p><i>If your authoring software -->
 <!-- can export to X3D, this is the format you should probably use.</i> -->
 
