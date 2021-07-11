@@ -56,7 +56,7 @@ class Check_Email_Logger implements Loadie {
 
                     $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
 
-                    $check_email = check_email();
+                    $check_email = wpchill_check_email();
                     $check_email->table_manager->insert_log( $log );
 
                     do_action( 'check_email_log_inserted' );
@@ -108,7 +108,7 @@ class Check_Email_Logger implements Loadie {
 			return;
 		}
 
-		$check_email = check_email();
+		$check_email = wpchill_check_email();
 
 		$log_item_id = $check_email->table_manager->fetch_log_id_by_data( $log );
 

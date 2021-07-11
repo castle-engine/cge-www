@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					WPChill
-* Version: 					1.0.1
+* Version: 					1.0.2
 * Author URI: 				https://wpchill.com/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -109,7 +109,7 @@ function check_email_log( $plugin_file ) {
 	add_action( 'plugins_loaded', array( $check_email, 'load' ), 101 );
 }
 
-function check_email() {
+function wpchill_check_email() {
 	global $check_email;
 	return $check_email;
 }

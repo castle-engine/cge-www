@@ -11,7 +11,7 @@
                 dbNotifications.hide();
             }
             
-            $("#checkemail_autoheaders,#checkemail_customheaders").bind("change", function(){
+            $("#checkemail_autoheaders,#checkemail_customheaders").on("change", function(){
                     if ($("#checkemail_autoheaders").is(":checked")){
                             $("#customheaders").hide();
                             $("#autoheaders").show();

@@ -1,4 +1,15 @@
 == Changelog ==
+
+= v1.0.2 - 16/06/2021 =
+- Added: Translation for roles and notices. ( https://github.com/WPChill/check-email/issues/10 )
+- Added: Headers of the emails in the view log tab. ( https://github.com/WPChill/check-email/issues/12 )
+- Fixed: Admin subpages link bug. ( https://github.com/WPChill/check-email/issues/9 )
+- Fixed: Incompatibility with DIVI Theme. We enqued our JS only on Logs Page. ( https://github.com/WPChill/check-email/issues/13 )
+- Fixed: Incompatibility with WpLogging plugin. ( https://github.com/WPChill/check-email/issues/8 )
+- Fixed: Error by adding unique prefixes for Check-Email functions. ( https://github.com/WPChill/check-email/issues/16 )
+- Fixed: Redirect error when using custom folder structure for WP Core. ( https://github.com/WPChill/check-email/issues/21 )
+- Fixed: Deprecated jQuery functions.
+
 = 1.0.1 =
 * Fixed admin menu capabilities.
 * Rezolved incompatibility with Wp Mail Logging.

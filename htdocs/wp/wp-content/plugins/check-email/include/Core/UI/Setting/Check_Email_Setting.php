@@ -63,7 +63,7 @@ abstract class Check_Email_Setting {
 			}
 		}
 
-		return $sanitized_values;
+		return apply_filters('check_email_settings_sanitize', $values, $sanitized_values);
 	}
 
 	protected function build_fields() {

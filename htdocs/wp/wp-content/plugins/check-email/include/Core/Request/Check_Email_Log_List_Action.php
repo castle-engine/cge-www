@@ -57,6 +57,10 @@ class Check_Email_Log_List_Action implements Loadie {
 					<td style="padding: 5px;"><?php _e( 'Subject', 'check-email' ); ?>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['subject'] ); ?></td>
 				</tr>
+                                <tr style="background: #eee;">
+					<td style="padding: 5px;"><?php _e( 'Headers', 'check-email' ); ?>:</td>
+					<td style="padding: 5px;"><?php echo esc_html( $log_item['headers'] ); ?></td>
+				</tr>
 
 				<?php
                                     do_action( 'check_email_view_log_after_headers', $log_item );
@@ -148,7 +152,7 @@ class Check_Email_Log_List_Action implements Loadie {
 	}
 
 	protected function get_table_manager() {
-		$check_email = check_email();
+		$check_email = wpchill_check_email();
 
 		return $check_email->table_manager;
 	}

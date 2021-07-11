@@ -7,12 +7,14 @@
 
 namespace Automattic\Jetpack\Connection;
 
+use Automattic\Jetpack\A8c_Mc_Stats as A8c_Mc_Stats;
 use Automattic\Jetpack\Constants;
 use Automattic\Jetpack\Heartbeat;
 use Automattic\Jetpack\Roles;
 use Automattic\Jetpack\Status;
 use Automattic\Jetpack\Terms_Of_Service;
 use Automattic\Jetpack\Tracking;
+use Jetpack_IXR_Client;
 use WP_Error;
 use WP_User;
 
@@ -681,7 +683,7 @@ class Manager {
 			return $cached_user_data;
 		}
 
-		$xml = new \Jetpack_IXR_Client(
+		$xml = new Jetpack_IXR_Client(
 			array(
 				'user_id' => $user_id,
 			)
@@ -820,9 +822,94 @@ class Manager {
 	 */
 	public function unlink_user_from_wpcom( $user_id ) {
 		// Attempt to disconnect the user from WordPress.com.
-		$xml = new \Jetpack_IXR_Client( compact( 'user_id' ) );
+		$xml = new Jetpack_IXR_Client( compact( 'user_id' ) );
 
 		$xml->query( 'jetpack.unlink_user', $user_id );
+		if ( $xml->isError() ) {
+			return false;
+		}
+
+		return (bool) $xml->getResponse();
+	}
+
+	/**
+	 * Update the connection owner.
+	 *
+	 * @since 9.9.0
+	 *
+	 * @param Integer $new_owner_id The ID of the user to become the connection owner.
+	 *
+	 * @return true|WP_Error True if owner successfully changed, WP_Error otherwise.
+	 */
+	public function update_connection_owner( $new_owner_id ) {
+		if ( ! user_can( $new_owner_id, 'administrator' ) ) {
+			return new WP_Error(
+				'new_owner_not_admin',
+				__( 'New owner is not admin', 'jetpack' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$old_owner_id = $this->get_connection_owner_id();
+
+		if ( $old_owner_id === $new_owner_id ) {
+			return new WP_Error(
+				'new_owner_is_existing_owner',
+				__( 'New owner is same as existing owner', 'jetpack' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		if ( ! $this->is_user_connected( $new_owner_id ) ) {
+			return new WP_Error(
+				'new_owner_not_connected',
+				__( 'New owner is not connected', 'jetpack' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		// Notify WPCOM about the connection owner change.
+		$owner_updated_wpcom = $this->update_connection_owner_wpcom( $new_owner_id );
+
+		if ( $owner_updated_wpcom ) {
+			// Update the connection owner in Jetpack only if they were successfully updated on WPCOM.
+			// This will ensure consistency with WPCOM.
+			\Jetpack_Options::update_option( 'master_user', $new_owner_id );
+
+			// Track it.
+			( new Tracking() )->record_user_event( 'set_connection_owner_success' );
+
+			return true;
+		}
+		return new WP_Error(
+			'error_setting_new_owner',
+			__( 'Could not confirm new owner.', 'jetpack' ),
+			array( 'status' => 500 )
+		);
+	}
+
+	/**
+	 * Request to WPCOM to update the connection owner.
+	 *
+	 * @since 9.9.0
+	 *
+	 * @param Integer $new_owner_id The ID of the user to become the connection owner.
+	 *
+	 * @return Boolean Whether the ownership transfer was successful.
+	 */
+	public function update_connection_owner_wpcom( $new_owner_id ) {
+		// Notify WPCOM about the connection owner change.
+		$xml = new Jetpack_IXR_Client(
+			array(
+				'user_id' => get_current_user_id(),
+			)
+		);
+		$xml->query(
+			'jetpack.switchBlogOwner',
+			array(
+				'new_blog_owner' => $new_owner_id,
+			)
+		);
 		if ( $xml->isError() ) {
 			return false;
 		}
@@ -938,8 +1025,8 @@ class Manager {
 			'jetpack_register_request_body',
 			array_merge(
 				array(
-					'siteurl'            => site_url(),
-					'home'               => home_url(),
+					'siteurl'            => Urls::site_url(),
+					'home'               => Urls::home_url(),
 					'gmt_offset'         => $gmt_offset,
 					'timezone_string'    => (string) get_option( 'timezone_string' ),
 					'site_name'          => (string) get_option( 'blogname' ),
@@ -1012,6 +1099,23 @@ class Manager {
 		);
 
 		$this->get_tokens()->update_blog_token( (string) $registration_details->jetpack_secret );
+
+		$allow_inplace_authorization = isset( $registration_details->allow_inplace_authorization ) ? $registration_details->allow_inplace_authorization : false;
+		$alternate_authorization_url = isset( $registration_details->alternate_authorization_url ) ? $registration_details->alternate_authorization_url : '';
+
+		if ( ! $allow_inplace_authorization ) {
+			// Forces register_site REST endpoint to return the Calypso authorization URL.
+			add_filter( 'jetpack_use_iframe_authorization_flow', '__return_false', 20 );
+		}
+
+		add_filter(
+			'jetpack_register_site_rest_response',
+			function ( $response ) use ( $allow_inplace_authorization, $alternate_authorization_url ) {
+				$response['allowInplaceAuthorization'] = $allow_inplace_authorization;
+				$response['alternateAuthorizeUrl']     = $alternate_authorization_url;
+				return $response;
+			}
+		);
 
 		/**
 		 * Fires when a site is registered on WordPress.com.
@@ -1478,7 +1582,7 @@ class Manager {
 			return false;
 		}
 
-		$xml = new \Jetpack_IXR_Client();
+		$xml = new Jetpack_IXR_Client();
 		$xml->query( 'jetpack.deregister', get_current_user_id() );
 
 		return true;
@@ -1701,8 +1805,8 @@ class Manager {
 				'auth_type'             => $auth_type,
 				'secret'                => $secrets['secret_1'],
 				'blogname'              => get_option( 'blogname' ),
-				'site_url'              => site_url(),
-				'home_url'              => home_url(),
+				'site_url'              => Urls::site_url(),
+				'home_url'              => Urls::home_url(),
 				'site_icon'             => get_site_icon_url(),
 				'site_lang'             => get_locale(),
 				'site_created'          => $this->get_assumed_site_creation_date(),
@@ -1819,9 +1923,42 @@ class Manager {
 	/**
 	 * Disconnects from the Jetpack servers.
 	 * Forgets all connection details and tells the Jetpack servers to do the same.
+	 *
+	 * @param boolean $disconnect_wpcom Should disconnect_site_wpcom be called.
 	 */
-	public function disconnect_site() {
+	public function disconnect_site( $disconnect_wpcom = true ) {
+		wp_clear_scheduled_hook( 'jetpack_clean_nonces' );
 
+		( new Nonce_Handler() )->clean_all();
+
+		// If the site is in an IDC because sync is not allowed,
+		// let's make sure to not disconnect the production site.
+		if ( $disconnect_wpcom ) {
+			$tracking = new Tracking();
+			$tracking->record_user_event( 'disconnect_site', array() );
+
+			$this->disconnect_site_wpcom( true );
+		}
+
+		$this->delete_all_connection_tokens( true );
+
+		$jetpack_unique_connection = \Jetpack_Options::get_option( 'unique_connection' );
+		if ( $jetpack_unique_connection ) {
+			// Check then record unique disconnection if site has never been disconnected previously.
+			if ( - 1 === $jetpack_unique_connection['disconnected'] ) {
+				$jetpack_unique_connection['disconnected'] = 1;
+			} else {
+				if ( 0 === $jetpack_unique_connection['disconnected'] ) {
+					$a8c_mc_stats_instance = new A8c_Mc_Stats();
+					$a8c_mc_stats_instance->add( 'connections', 'unique-disconnect' );
+					$a8c_mc_stats_instance->do_server_side_stats();
+				}
+				// increment number of times disconnected.
+				$jetpack_unique_connection['disconnected'] += 1;
+			}
+
+			\Jetpack_Options::update_option( 'unique_connection', $jetpack_unique_connection );
+		}
 	}
 
 	/**

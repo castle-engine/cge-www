@@ -21,7 +21,7 @@ class Check_Email_Dashboard_Widget implements Loadie {
 	 * Outputs the contents on the Dashboard Widget.
 	 */
 	public function render() {
-		$email_log  = check_email();
+		$email_log  = wpchill_check_email();
 		$logs_count = $email_log->table_manager->get_logs_count();
 		?>
 

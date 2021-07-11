@@ -19,7 +19,7 @@ class Check_Email_Override_PluginAPI implements Loadie {
 	}
 
 	public function setup_updaters_for_inactive_addons() {
-		$check_email = check_email();
+		$check_email = wpchill_check_email();
 		$licenser  = $check_email->get_licenser();
 
 		if ( is_null( $licenser ) ) {
