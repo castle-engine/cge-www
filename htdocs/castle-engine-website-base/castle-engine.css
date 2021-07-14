@@ -275,7 +275,6 @@ article.post .entry-content ul.list-no-margin {
     margin-bottom: 1em;
 }
 .download-hints p {
-    font-size: 87% !important;
     margin-top: 0; /* .download-hints already makes margins */
     margin-bottom: 0; /* .download-hints already makes margins */
 }

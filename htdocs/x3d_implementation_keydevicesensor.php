@@ -32,7 +32,7 @@
     <?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
     <?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?> or override
     <?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
-    See <a href="manual_quick_2d_game.php">the manual describing handling events</a>.
+    See <a href="manual_state_events.php">the manual describing handling events</a>.
 
   <li><p>If you definitely want to use these nodes with CGE, remember to set
     <?php api_link('TCastleSceneCore.ListenPressRelease', 'CastleSceneCore.TCastleSceneCore.html#ListenPressRelease'); ?>

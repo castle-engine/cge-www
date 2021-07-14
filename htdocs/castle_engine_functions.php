@@ -236,6 +236,8 @@ $castle_sitemap = array(
 
   'features' => array('title' => 'Features'),
 
+  'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngineX3d/'),
+
   'documentation' => array('title' => 'Documentation',
     'dropdown' => array(
       'documentation' => array('title' => 'Getting Started'),
@@ -256,11 +258,10 @@ $castle_sitemap = array(
       /*     ), */
       /*   ) */
       /* ), */
-      'documentation' => array('title' => 'Getting Started'),
       'manual_intro' => array('title' => 'Manual',
         'sub' => array(
-          'manual_window' => array('title' => 'Start: Display a window'),
-          'manual_quick_2d_game' => array('title' => 'Quick 2D game (basic window events)'),
+          'manual_install_run_first' => array('title' => 'Installation and building your first application'),
+          'manual_state_events' => array('title' => 'Basic events (key or mouse press, update)'),
           'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
           'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
@@ -324,6 +325,7 @@ $castle_sitemap = array(
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
+              'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
               'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
             )
           ),
