@@ -1,8 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
+// define('CASTLE_GITHUB_NAME', 'castle-engine'); // too ugly, we have links to GitHub from main page
 manual_header('Installation and building your first application');
-
-define('CASTLE_GITHUB_NAME', 'castle-engine');
 
 /*
 echo '<img src="images/castle_game_engine_icon.png"
