@@ -42,15 +42,36 @@ all the standard LCL GUI controls. So you can use numerous LCL GUI controls,
 with native look on all desktop systems,
 together with <i>Castle Game Engine</i>. To use this:
 
-<ul>
-  <li>Create a normal new project (using Lazarus <i>"New Project"</i> menu item).
-    Choose <i>"Application"</i>.
-  <li>Pick <code>TCastleControlBase</code> from the component palette (tab
-    <i>"Castle"</i>) and drop it on a regular Lazarus form.
-  <li>Press "Run" :)
-</ul>
+<ol>
+  <li><p>Install in Lazarus the package <code>castle_components.lpk</code>.
+    In the package dialog, the option to <i>"Install"</i> package is under the <i>"Use"</i> button.
 
-<p>See the engine examples in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus">examples/lazarus/</a> subdirectory for a demo of this approach.
+    <p>Note: Installing the <code>castle_components</code> package
+    will also automatically install the package <code>castle_base</code>,
+    as a dependency. That's good.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'lazarus-install-31.png', 'titlealt' => 'castle_components: Choose the file'),
+      array('filename' => 'lazarus-install-32.png', 'titlealt' => 'castle_components: Install'),
+      array('filename' => 'lazarus-install-33.png', 'titlealt' => 'castle_components: Confirm Lazarus rebuild'),
+    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ?>
+
+    <p>Once <code>castle_components.lpk</code> is successfully installed,
+    Lazarus restarts, and you should see the <i>"Castle"</i> tab
+    with our components.
+
+  <li><p>Create a normal new project (using Lazarus <i>"New Project"</i> menu item).
+    Choose <i>"Application"</i>.
+
+  <li><p>Pick <code>TCastleControlBase</code> from the component palette (tab
+    <i>"Castle"</i>) and drop it on a regular Lazarus form.
+
+  <li><p>Press "Run" :)
+</ol>
+
+<p>See the engine examples in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus">examples/lazarus/</a> subdirectory for various demos of this approach.
 
 <?php
 manual_footer();
