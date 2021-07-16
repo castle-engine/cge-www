@@ -10,6 +10,17 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Kryftolike',
+    'A roguelite-like hide-and seek game.
+    Hide from monsters and seek treasure in an infinite procedurally-generated map.
+    Danger awaits around every corner!
+    For Android, Windows and Linux.
+
+    <p>Full <a href="https://gitlab.com/EugeneLoza/kryftolike">source code</a> available too. By Eugene Loza.',
+    'kryftolike.png',
+    'https://decoherence.itch.io/kryftolike');
+  ?>
+
   <?php gallery_link('The Unholy Society',
     'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using Spine and Castle Game Engine. Released on <a href="https://www.nintendo.com/games/detail/the-unholy-society-switch/">Nintendo Switch</a> and <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>. Soon coming to iOS too!',
     'unholy_society_in_game.jpg',
