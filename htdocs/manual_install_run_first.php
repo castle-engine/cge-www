@@ -55,7 +55,7 @@ $toc = new TableOfContents(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_lazarus_registered_ok', 'titlealt' => 'Lazarus packages registration confirmation'),
+      array('filename' => 'cge_lazarus_registered_ok.png', 'titlealt' => 'Lazarus packages registration confirmation'),
     ), 'auto', 'left');
     ?>
 </ol>
