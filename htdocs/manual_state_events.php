@@ -402,7 +402,7 @@ TODO
   <li>and of course the actual game.
 </ul>
 
-<p>Strategy game demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game">examples/tiled/strategy_game</a> and "zombie fighter" demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a> also feature multiple states.
+<p>Strategy game demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a> and "zombie fighter" demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a> also feature multiple states.
 
 <?php
 manual_footer();
