@@ -1,354 +1,395 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Basic events (key or mouse press, update)');
+manual_header('Designing user interface and handling events (press, update) within the state', array(
+  'social_share_image' => 'basic_state_events_screen.png',
+));
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Finished version', 'finished'),
-    new TocItem('Loading image (TDrawableImage class)', 'load'),
-    new TocItem('Drawing image (OnRender event)', 'draw'),
-    new TocItem('Moving image (OnUpdate event)', 'update'),
-    new TocItem('Reacting to user input (OnPress event)', 'press'),
-    new TocItem('Further reading', 'further'),
+    new TocItem('Overview'),
+    new TocItem('Create empty project'),
+    new TocItem('Add the background image (mountains)'),
+    new TocItem('Add the player image (plane)'),
+    new TocItem('Move the player in the Update method'),
+    new TocItem('React to a key press'),
+    new TocItem('React to a mouse click or touch'),
+    new TocItem('Using multiple states'),
+    new TocItem('Examples'),
   )
 );
 
 echo castle_thumbs(array(
-  array('filename' => 'basketball_2d_game_lazarus.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it very soon!'),
-  array('filename' => 'basketball_2d_game_window.png', 'titlealt' => 'The simplest basketball game ever created'),
-  array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
-  array('filename' => 'fly_over_river_screen_26.png', 'titlealt' => 'Simple &quot;River Ride&quot; clone done in 1-hour gamejam'),
-));
+  array('filename' => 'basic_state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
+  array('filename' => 'cge_editor_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
+//   array('filename' => 'basketball_2d_game_lazarus.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it very soon!'),
+//   array('filename' => 'basketball_2d_game_window.png', 'titlealt' => 'The simplest basketball game ever created'),
+//   array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
+//   array('filename' => 'fly_over_river_screen_26.png', 'titlealt' => 'Simple &quot;River Ride&quot; clone done in 1-hour gamejam'),
+ ));
 ?>
-
-<?php /*
-<div class="jumbotron">
-<p><span class="label label-warning">Warning</span> This manual page uses features available only in the <b>unstable <a href="https://github.com/castle-engine/castle-engine">engine version on GitHub</a></b>. Do not read this if you use the <b>stable engine version</b> (downloaded as zip or tar.gz from our pages), or be prepared to make some modifications.
-
-<p>In particular, in the stable engine version, the <code>TDrawableImage</code> class is a little more difficult to use. It needs to be created / destroyed in <code>OnGLContextOpen</code> / <code>OnGLContextClose</code>. <a href="manual_player_2d_controls.php">Details are explained here</a>.
-</div>
-*/ ?>
-
-<p>Before we dive into full-featured viewports, scenes and 3D,
-let's take a quick look at the simple things you can do with our window.
-Let's draw some images and handle inputs.
-
-<div class="panel panel-primary">
-  <div class="panel-heading">TODO: Outdated manual page</div>
-  <div class="panel-body">
-    <p>Admittedly this manual page is outdated.
-    It shows a way that <i>still works</i> but it is no longer what we advise
-    as a most comfortable way to do such things in the engine.
-    Have patience as we update our documentation, and in the meantime:
-
-    <p>We advise you now to:</p>
-
-    <ol>
-      <li>
-        <p>Create a <i>"New Project"</i> in <a href="manual_editor.php">CGE editor</a> and start with the <i>Empty</i> template.
-      <li>
-        <p>It has a code in <code>code/gamestatemain.pas</code> that shows how to handle keys in <code>TStateMain.Press</code>
-          and do something continuously in <code>TStateMain.Update</code>.
-      <li>
-        <p>You can render an image directly (as described in this manual page, using
-          <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>)
-          by overriding <code>TStateMain.Render</code>.
-          Alternatively, you could design (using CGE editor) an image as <code>TCastleImageControl</code>
-          and only move it.
-    </ol>
-  </div>
-</div>
 
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can check out a finished version of the example presented in this chapter:
+<p><i>State</i> in <i>Castle Game Engine</i> is a class that descends from <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html">TUIState</a> and manages <i>what you display on the screen and how you react to basic events (user input, updates)</i>.
+
+<p>While it is not required to put everything in some <i>state</i>, we highly advise to organize your application into a number of <i>states</i>. They organize your application into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our <code>TUIState</code> is a similar concept to <code>TForm</code> from LCL and VCL.
+
+<p>In this chapter we will learn how to use the basic state features. We will create a simple toy that displays some images and allows to move them. You can follow this chapter and do it yourself, or you can look at the ready version in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/basic_state_events">examples/user_interface/basic_state_events</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Start by creating a new project using the "Empty" template.
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'cge_editor_new_project.png', 'titlealt' => 'Castle Game Engine Editor New Project'),
+), 'auto', 'left');
+?>
+
+<p>When you create a new project, we create initial states for you. The <i>"Empty"</i> template creates a single state, by default called just <i>"Main"</i>. It is
 
 <ul>
-  <li>Lazarus version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus/quick_2d_game">Engine examples/lazarus/quick_2d_game</a>
-  <li>CastleWindow version: <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/quick_2d_game">Engine examples/user_interface/quick_2d_game</a>
+  <li><p>a Pascal class called <code>TStateMain</code>,
+  <li><p>implemented in the unit <code>GameStateMain</code> (file <code>code/gamestatemain.pas</code>),
+  <li><p>it has a single instance (singleton) <code>StateMain</code>,
+  <li><p>and it displays a design (user interface you can visually create in the editor) from file <code>data/gamestatemain.castle-user-interface</code>.
 </ul>
 
-<p>For a larger demo of a game using simplest 2D image drawing,
-take a look at <a href="https://github.com/castle-engine/one-hour-gamejam-fly-over-river">our "River Ride" clone done in a 1-hour game-jam</a> ! :)
+<p>We will edit this state (code and design) in the following steps.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Create an instance of <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>, and load an image there. <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> allows to load and display the image on screen.
-
 <ol>
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    In the simplest case, just create and destroy the image like this:
+  <li>
+    <p>Download the image <a href="https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/basic_state_events/data/mountains_background.png">mountains_background.png</a> and put it inside your project's <code>data</code> subdirectory. You can right-click in the editor <i>"Files"</i> panel to easily open your file manager inside the current project. Then just copy the file into the <code>data</code> subdirectory.
 
-<?php echo pascal_highlight(
-'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
-var
-  Window: TCastleWindowBase;
-  Image: TDrawableImage;
-begin
-  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
-  try
-    Window := TCastleWindowBase.Create(Application);
-    Window.Open;
-    Application.Run;
-  finally FreeAndNil(Image) end;
-end.'); ?>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    Create and destroy the image in the form's <code>OnCreate</code> and
-    <code>OnDestroy</code> events, like this:
+    <p>After copying the file, you can see it inside the editor. If you select it, editor will show a preview in the bottom-right corner.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'mountains_background.png', 'titlealt' => 'Mountains background'),
+      array('filename' => 'cge_editor_open_containing.png', 'titlealt' => 'Open Containing Folder'),
+      array('filename' => 'cge_editor_mountains_background.png', 'titlealt' => 'Mountains background loaded in Castle Game Engine editor')
+    ), 'auto', 'left');
+    ?>
+
+    <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" demo. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/basic_state_events/data">examples/user_interface/basic_state_events/data</a> directory.
+
+  <li>
+    <p>Double-click on the <code>gamestatemain.castle-user-interface</code> file in the <code>data</code> subdirectory in the editor. It will open the user interface design, where we'll add new controls.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_empty_state.png', 'titlealt' => 'Empty user interface design'),
+    ), 'auto', 'left');
+    ?>
+
+
+  <li>
+    <p>Right-click on the <code>Group1</code> (the "root" component of your design) to select it and show a context menu. Then choose <i>Add User Interface -&gt; Image (TCastleImageControl)</i> from the context menu that appears.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_new_image.png', 'titlealt' => 'New Image (TCastleImageControl)'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>Load the image by editing the URL property. Just click on the 3 dots button on the right side of <code>URL</code> property to invoke a standard "Open File" dialog box where you should select your image.
+
+    <p>Note that once you confirm, the <code>URL</code> will change to something like <code>castle-data:/mountains_background.png</code>. The design saves the file location <a href="https://castle-engine.io/manual_data_directory.php">relative to a special "data" directory</a>. In a typical game, you will want to reference all your data files like this. The special <code>data</code> directory will be always properly packaged and available in your application.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_image_url1.png', 'titlealt' => 'Set Image URL'),
+      array('filename' => 'cge_editor_image_url2.png', 'titlealt' => 'Set Image URL'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>The image is very small at the beginning. The new project by default uses <i>UI scaling</i> that simulates window size of 1600x900, while our image has size 272 x 160. By default <code>TCastleImageControl</code> follows the image size.
+
+    <p>To fix it, set on the new <code>TCastleImageControl</code> these properties:
+
     <ul>
-      <li>Select the form in Lazarus (click on it in the <i>form
-        designer</i> or <i>object inspector</i> &mdash; be sure to <b>select the
-        form, not the TCastleControlBase instance</b>).
-      <li>Then double click
-        on appropriate events to create code for <code>OnCreate</code> and <code>OnDestroy</code>.
-        Put there the following code:
+      <li><p><code>Stretch</code> to <code>true</code> (allow to resize the <code>TCastleImageControl</code> freely)
+
+      <li><p><code>ProportionalScale</code> to <code>psEnclose</code> (the displayed image keep aspect ratio of the original)
+
+      <li><p>Then just move and resize the image (by dragging using the left mouse button) to make it larger. You can make it larger than the screen if you want.
+
+      <li><p>Instead of manually resizing the image, you could also switch to the <i>Layout</i> tab and set both <code>WidthFraction</code> and <code>HeightFraction</code> to 1.0. This would make the image fill perfectly the parent (which means "the whole game window" in this case). The <code>ProportionalScale</code> we set previously will actually force the image to keep its aspect ratio, so it will not be distorted by different window aspect ratio.
     </ul>
 
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_image_resize.png', 'titlealt' => 'Resize the image'),
+      array('filename' => 'cge_editor_image_width_height_fraction.png', 'titlealt' => 'Set the image width and height fraction'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>To make the image behave good at any window size, it is best to anchor it to the middle of the window (both horizontall and vertically). To do this,
+
+    <ul>
+      <li><p>go to the <i>Layout</i> tab and click the middle button in the 3x3 buttons grid. This sets the anchor to the middle.
+
+      <li><p>Click the <i>"Move to the anchor"</i> button to change image position <i>right now</i> to be at the center.
+    </ul>
+
+    <p>When done, resize the game window (by dragging the "splitters", i.e. bars between the game window and hierarchy (on the left) or inspector (on the right)). Notice how image always stays within the window, with the image center in the window center.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_anchor1.png', 'titlealt' => 'Adjust background anchor'),
+      array('filename' => 'cge_editor_anchor2.png', 'titlealt' => 'Adjust background anchor - Move to anchor'),
+      array('filename' => 'cge_window_resized1.png', 'titlealt' => 'Testing background anchor by resizing window'),
+      array('filename' => 'cge_window_resized2.png', 'titlealt' => 'Testing background anchor by resizing window'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>As a final touch, drag the <code>LabelFps</code> in the hierarchy on the left to be <i>below</i> the newly added <code>ImageControl1</code>. This will make the <code>LabelFps</code> displayed <i>in front</i> of the background image.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_label_front.png', 'titlealt' => 'Moved the LabelFps to the front'),
+    ), 'auto', 'left');
+    ?>
+</ol>
+
+<?php echo $toc->html_section(); ?>
+
+<ol>
+  <li>
+    <p>Download the player (plane) image from <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/user_interface/basic_state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'biplane.png', 'titlealt' => 'Plane image'),
+      array('filename' => 'cge_editor_biplane_1.png', 'titlealt' => 'Plane image loaded in Castle Game Engine editor'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>Add a new <code>TCastleImageControl</code> as another child of <code>Group1</code>. Place it behind the <code>LabelFps</code> but in front of our background image <code>ImageControl1</code>.
+
+    <p>Set it's <code>URL</code> to point to the plane image.
+
+    <p>The plane image is quite large. Set <code>Stretch</code> to <code>true</code>, <code>ProportionalScale</code> to <code>psEnclose</code>, and move and resize it manually to a nice position and size.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_biplane_2_added.png', 'titlealt' => 'Adding plane image'),
+      array('filename' => 'cge_editor_biplane_3_set_url.png', 'titlealt' => 'Setting the plane image URL'),
+      array('filename' => 'cge_editor_biplane_4_resized.png', 'titlealt' => 'Resizing the plane image'),
+    ), 'auto', 'left');
+    ?>
+
+<?php /* Do not use -- this is not perfect, and also would make gravity limit at 0 not so easy.
+
+  <li>
+    <p>To behave nicer when the game window is resized, set the anchor of the new image to be center too. Click on the middle button in the 3x3 grid. Do not click on the <i>"Move to the anchor"</i>, there's no need. When you resize the game window now, the plane will keep at the same position relative to the window middle.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_biplane_anchor.png
+
+    <p>Note that the plane doesn't "stick" to the same background place, as the background image is scaled a bit differently because it has <code>ProportionalScale</code> set to <code>psEnclose</code> (and not <code>psNone</code>). There are various solutions to this, including the fact that in larger games you would rather place your assets (whether simple images, or more complicated 2D and 3D models and sprite sheets) as <code>TCastleScene</code> inside the <code>TCastleViewport</code>, and then scaling is handled by <code>TCastleViewport</code>, uniformly for all scenes in it. For now, you can ignore this.
+    */
+?>
+
+  <li>
+    <p>As a finishing touch, assing useful <i>names</i> to your new images. Call the background image (<code>ImageControl1</code> so far) an <code>ImageBackground</code>. Call the player image <code>ImagePlayer</code>.
+
+    <p>You can adjust the component name by editing the <code>Name</code> in the inspector on the right (<code>Name</code> is on the <i>Basic</i> tab). You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
+
+    <p>The `Name` is a special property that can be later used to find this component from code.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_name1.png', 'titlealt' => 'Editing Name property'),
+      array('filename' => 'cge_editor_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>Remember to save your design! Press Ctrl + S (menu item <i>Design -&gt; Save</i>).
+</ol>
+
+<p>So far we didn't write any code, we just modified the file <code>data/gamestatemain.castle-user-interface</code>. You can run the application to see that it displays 2 images, in whatever place you put them.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The state has an <code>Update</code> method that is continuously called by the engine.
+You should use it to update the state of your game as time passes.
+In this section, we will make the plane fall down by a simple gravity, by moving the plane down
+each time the <code>Update</code> method is called.
+
+<ol>
+  <li>
+    <p>Double-click on the <code>code/gamestatemain.pas</code> unit to open it in your Pascal code editor
+    (Lazarus by default). You should also use once menu item <i>Code -&gt; Open Project in Code Editor</i>
+    to make sure that Lazarus has loaded the appropriate project.
+
+  <li>
+    <p>Find the <code>TStateMain</code> class declaration and add a field <code>ImagePlayer: TCastleImageControl;</code>
+    at the place of the comment <code>{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }</code>.
+
+    <p>So it looks like this:
+
 <?php echo pascal_highlight(
-'// Also: add to your uses clause: CastleGLImages, CastleFilesUtils
+'type
+  { Main state, where most of the application logic takes place. }
+  TStateMain = class(TUIState)
+  private
+    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
+    LabelFps: TCastleLabel;
+    ImagePlayer: TCastleImageControl;
+    ...'); ?>
 
-// Also: add to your form private section a declaration of: "Image: TDrawableImage"
+  <li>
+    <p>Find the <code>TStateMain.Start</code> method implementation and add there code to initialize the
+    <code>ImagePlayer</code> by <code>ImagePlayer := DesignedComponent('ImagePlayer') as TCastleImageControl;</code>.
+    The end result should look like this:
 
-procedure TForm1.FormCreate(Sender: TObject);
+<?php echo pascal_highlight(
+'procedure TStateMain.Start;
 begin
-  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
-end;
+  inherited;
 
-procedure TForm1.FormDestroy(Sender: TObject);
-begin
-  FreeAndNil(Image);
+  { Find components, by name, that we need to access from code }
+  LabelFps := DesignedComponent(\'LabelFps\') as TCastleLabel;
+  ImagePlayer := DesignedComponent(\'ImagePlayer\') as TCastleImageControl;
 end;'); ?>
 
-    <p>If effect, your whole unit code should look like this:
+  <li>
+    <p>Add units <code>Math</code> and <code>CastleVectors</code> to the uses clause.
+
+    <p>You can extend the <i>uses clause</i>
+    of the <code>interface</code> or the <code>implementation</code> of the <code>GameStateMain</code> unit.
+    It doesn't matter in this simple example,
+    but it is easier to extend the <code>interface</code> section (in case you will need to use some
+    type in the interface). So extend the uses clause in the interface, so it looks like this:
 
 <?php echo pascal_highlight(
-'unit laz_unit1;
-{$mode objfpc}{$H+}
+'unit GameStateMain;
+
 interface
 
-uses Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  CastleControl, CastleGLImages, CastleFilesUtils;
+uses Classes, Math,
+  CastleUIState, CastleComponentSerialize, CastleUIControls, CastleControls,
+  CastleKeysMouse, CastleVectors;'); ?>
 
-type
-  TForm1 = class(TForm)
-    CastleControl1: TCastleControlBase;
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-  private
-    Image: TDrawableImage;
-  public
-    { public declarations }
-  end;
+  <li>
+    <p>Find the <code>TStateMain.Update</code> method implementation and change it into this:
 
+<?php echo pascal_highlight(
+'procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 var
-  Form1: TForm1;
-
-implementation
-{$R *.lfm}
-
-procedure TForm1.FormCreate(Sender: TObject);
+  PlayerPosition: TVector2;
 begin
-  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
-end;
+  inherited;
+  LabelFps.Caption := \'FPS: \' + Container.Fps.ToString;
 
-procedure TForm1.FormDestroy(Sender: TObject);
-begin
-  FreeAndNil(Image);
-end;
-
-end.'); ?>
-
-</ol>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Next we want to draw this image. To do this, we want to call
-<?php api_link('TDrawableImage.Draw', 'CastleGLImages.TDrawableImage.html#Draw'); ?> method within the <code>OnRender</code> callback of our window.
-
-<ol>
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    Change your program like this:
-
-<?php echo pascal_highlight(
-'uses SysUtils, CastleWindow, CastleGLImages, CastleFilesUtils;
-var
-  Window: TCastleWindowBase;
-  Image: TDrawableImage;
-  X: Single = 0.0;
-  Y: Single = 0.0;
-
-procedure WindowRender(Container: TUIContainer);
-begin
-  Image.Draw(X, Y);
-end;
-
-begin
-  Image := TDrawableImage.Create(\'castle-data:/my_image.png\');
-  try
-    Window := TCastleWindowBase.Create(Application);
-    Window.OnRender := @WindowRender;
-    Window.Open;
-    Application.Run;
-  finally FreeAndNil(Image) end;
-end.'); ?>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    Select the <code>TCastleControlBase</code> instance,
-    and double click to create code for an event <code>OnRender</code>.
-    Put there the following code:
-
-<?php echo pascal_highlight(
-'// Also: add to your form private section a declaration of: "X, Y: Single;"
-
-procedure TForm1.CastleControl1Render(Sender: TObject);
-begin
-  Image.Draw(X, Y);
+  { update player position to fall down }
+  PlayerPosition := ImagePlayer.AnchorDelta;
+  PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
+  ImagePlayer.AnchorDelta := PlayerPosition;
 end;'); ?>
+
+    <p>We use the <code>SecondsPassed</code> parameter to know how much time has passed
+    since the last frame. You should scale all your movement by it, to adjust
+    to any computer speed. For example, to move by 100 pixels per second,
+    we would increase our position by <code>SecondsPassed * 100.0</code>.
+
+    <p>We use the <code>TVector2</code> in this code, which is a 2D vector, that is: just 2 floating-point
+    fields `X` and `Y` (of standard Pascal type `Single`).
+    We modify the `Y` to make the plane fall down, and use `Max` (from standard <code>Math</code> unit)
+    to prevent it from falling too much (below the game window).
 </ol>
 
-<p>As you can guess, we can now move the image by simply changing the <code>X</code>,
-<code>Y</code> variables. Note that we defined
-<code>X</code>, <code>Y</code> as floating-point values
-(<code>Single</code> type), not just integers, because floating-point values
-are more comfortable to animate (you can easily change them at any speed).
-When necessary for rendering, they will internally be rounded to whole pixels anyway.
+<p>Run the application now to see that the plane falls down.
+Note that this is a rather naive approach to implement gravity
+&mdash; for a realistic gravity you should rather use <a href="manual_physics.php">physics engine</a>.
+But it is enough for this demo, and it shows you how to do <i>anything</i>
+that needs to be done (or tested) <i>"all the time when the game is running"</i>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The event <code>OnUpdate</code> is continuously called by the engine.
-You should use it to update the state of your world as time passes.
+<!-- TODO test this -->
 
-<p>Use the <code>Fps.SecondsPassed</code> to know how much time has passed
-since the last frame. You should scale all your movement by it, to adjust
-to any computer speed. For example, to move by 100 pixels per second,
-we will increase our position by <code>CastleControl1.Fps.SecondsPassed * 100.0</code>.
-
-<ol>
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    Assign a <code>Window.OnUpdate</code> callback (analogous to
-    <code>Window.OnRender</code> above):
-
-<?php echo pascal_highlight(
-'procedure WindowUpdate(Container: TUIContainer);
-begin
-  Y := Y + Container.Fps.SecondsPassed * 100.0;
-end;
-
-// ... at initialization, right after assigninig Window.OnRender, add:
-  Window.OnUpdate := @WindowUpdate;'); ?>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    double click to create an event <code>OnUpdate</code>
-    on <code>TCastleControlBase</code>, and put there the following code:
-
-<?php echo pascal_highlight(
-'procedure TForm1.CastleControl1Update(Sender: TObject);
-begin
-  Y := Y + CastleControl1.Fps.SecondsPassed * 100.0;
-end;'); ?>
-</ol>
-
-<?php echo $toc->html_section(); ?>
-
-<p>The react to one-time key or mouse press, use the <code>OnPress</code> event.
-You can also check which keys are pressed inside the <code>OnUpdate</code> event,
-to update movement constantly. Examples below show both ways.
-
-<ol>
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    Assign a <code>Window.OnPress</code> callback (analogous to
-    <code>Window.OnRender</code> above). Change the <code>OnPress</code> and
-    <code>OnUpdate</code> like below.
+<p>The react to one-time key or mouse press, use the <code>TStateMain.Press</code> method.
+You can also check which keys are pressed inside the <code>TStateMain.Update</code> method,
+to update movement constantly. Examples below shows both ways.
 
 <?php echo pascal_highlight(
 '// Also add to the uses clause unit CastleKeysMouse
 
-procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
+function TStateMain.Press(const Event: TInputPressRelease): Boolean;
 begin
-  if Event.IsKey(K_Space) then
-    Y := Y - 200.0;
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keySpace) then
+    TODO
+  if Event.IsMouseButton(mbLeft) then // this also handles touch on mobile
+    TODO
 end;
 
-// new extended OnUpdate handler
-procedure WindowUpdate(Container: TUIContainer);
-var
-  SecondsPassed: Single;
+procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 begin
-  SecondsPassed := Container.Fps.SecondsPassed;
-  Y := Y + SecondsPassed * 100.0;
-  if Container.Pressed[K_Left] then
+  TODO previous code, and handle some
+
+  if Container.Pressed[keyArrowLeft] then
     X := X - SecondsPassed * 200.0;
-  if Container.Pressed[K_Right] then
+  if Container.Pressed[keyArrowRight] then
     X := X + SecondsPassed * 200.0;
-end;
+end;'); ?>
 
-// ... at initialization, right after assigninig Window.OnRender, do this:
-  Window.OnUpdate := @WindowUpdate;
-  Window.OnPress := @WindowPress;');
+<p>Be sure to also add <code>CastleKeysMouse</code> unit to the <code>uses</code> clause
+to include key constants definitions.
 
-// PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
-?>
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    double click to create an event <code>OnPress</code>
-    on <code>TCastleControlBase</code>. Change the <code>OnPress</code> and
-    <code>OnUpdate</code> like below.
-
-<?php echo pascal_highlight(
-'procedure TForm1.CastleControl1Press(Sender: TObject; const Event: TInputPressRelease);
-begin
-  if Event.IsKey(K_Space) then
-    Y := Y - 200.0;
-end;
-
-// new extended OnUpdate handler
-procedure TForm1.CastleControl1Update(Sender: TObject);
-var
-  SecondsPassed: Single;
-begin
-  SecondsPassed := CastleControl1.Fps.SecondsPassed;
-  Y := Y + SecondsPassed * 100.0;
-  if CastleControl1.Pressed[K_Left] then
-    X := X - SecondsPassed * 200.0;
-  if CastleControl1.Pressed[K_Right] then
-    X := X + SecondsPassed * 200.0;
-end;');
-
-  // PRO TIP: scale the SecondsPassed now to make the whole game go faster/slower:)
-?>
-</ol>
+<p>Run the application now to test the key handling.
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you want to go more into the direction of 2D games:
+TODO
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can add new states to your application using the menu item <i>Code -&gt; New Unit -&gt; Unit With State...</i>. It is equivalent to just creating a new Pascal unit that defines a new <code>TUIState</code> descendant and loads a new user interface design.
+
+<p>At runtime, you can change from one state into another using <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Current">TUIState.Current := StateXxx</a> or <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Push</a> / <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Pop</a> class methods.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Explore the <i>"3D FPS game"</i> and <i>"2D game"</i> templates, by creating 2 new projects from these templates. Each of these templates creates 2 states, <i>"MainMenu"</i> and <i>"Play"</i>. They follow the same pattern as above:
 
 <ul>
-  <li><p>See the <?php echo a_href_page('manual about drawing your own 2D controls', 'manual_2d_ui_custom_drawn'); ?>. It has a nice overview of 2D drawing capabilities. You can also use the <?php echo a_href_page('standard 2D controls', 'manual_2d_user_interface'); ?> with a lot of ready functionality.
+  <li>
+    <p>Class <code>TStateMainMenu</code>, unit <code>code/statemainmenu.pas</code>, instance <code>StateMainMenu</code>, design <code>data/statemainmenu.castle-user-interface</code>.
 
-    <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> (instead of simply attaching to window callbacks).
-
-  <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from <a href="creating_data_model_formats.php">any supported format (like X3D or glTF or Spine)</a>. To do this:
-
-    <ol>
-      <li>Create a <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>.
-      <li>Call <?php api_link('TCastleViewport.Setup2D', 'CastleViewport.TCastleViewport.html#Setup2D'); ?>.
-      <li>Create <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
-      <li>Call <?php api_link('TCastleScene.Setup2D', 'CastleScene.TCastleScene.html#Setup2D'); ?>.
-    </ol>
-
-    <p>The following manual chapters focus on <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> usage, and apply for both 3D and 2D games.
-
-    <p>See the example code <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code> inside the engine.
-
-  <li><p>You can also make inputs user-configurable. To do this, wrap each input in a <?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instance. This will store whether the input is a key press or a mouse click, and you can check and change it at runtime. More information is in <?php echo a_href_page('manual about key / mouse shortcuts', 'manual_key_mouse'); ?>.
+  <li>
+    <p>Class <code>TStatePlay</code>, unit <code>code/stateplay.pas</code>, instance <code>StatePlay</code>, design <code>data/stateplay.castle-user-interface</code>.
 </ul>
+
+<p>We have multiple examples showing more complicates states:
+
+<p>Platformer demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/platformer">examples/platformer/</a> has states for:
+
+<ul>
+  <li>main menu,
+  <li>options (with volume configuration),
+  <li>pause,
+  <li>credits,
+  <li>game over,
+  <li>and of course the actual game.
+</ul>
+
+<p>Strategy game demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game">examples/tiled/strategy_game</a> and "zombie fighter" demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a> also feature multiple states.
 
 <?php
 manual_footer();

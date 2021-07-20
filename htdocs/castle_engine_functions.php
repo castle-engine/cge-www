@@ -261,7 +261,7 @@ $castle_sitemap = array(
       'manual_intro' => array('title' => 'Manual',
         'sub' => array(
           'manual_install_run_first' => array('title' => 'Installation and building your first application'),
-          'manual_state_events' => array('title' => 'Basic events (key or mouse press, update)'),
+          'manual_state_events' => array('title' => 'Designing user interface and handling events (press, update) within the state'),
           'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
           'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
