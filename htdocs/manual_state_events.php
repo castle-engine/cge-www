@@ -86,13 +86,28 @@ echo castle_thumbs(array(
     ), 'auto', 'left');
     ?>
 
-
   <li>
     <p>Right-click on the <code>Group1</code> (the "root" component of your design) to select it and show a context menu. Then choose <i>Add User Interface -&gt; Image (TCastleImageControl)</i> from the context menu that appears.
 
     <?php
     echo castle_thumbs(array(
       array('filename' => 'cge_editor_new_image.png', 'titlealt' => 'New Image (TCastleImageControl)'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>Set the new image <i>name</i> to <code>ImageBackground</code>.
+
+    <p>You can adjust the component name by editing the <code>Name</code> in the inspector on the right. You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
+
+    <p>We advise to set useful <i>names</i> for all new components, to easier recognize the components when designing. The <code>Name</code> can also be later used to find this component from code (you will see an example of it later).
+
+    TODO update screens to show rename at this point
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_name1.png', 'titlealt' => 'Editing Name property'),
+      array('filename' => 'cge_editor_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
     ), 'auto', 'left');
     ?>
 
@@ -111,27 +126,33 @@ echo castle_thumbs(array(
   <li>
     <p>The image is very small at the beginning. The new project by default uses <i>UI scaling</i> that simulates window size of 1600x900, while our image has size 272 x 160. By default <code>TCastleImageControl</code> follows the image size.
 
-    <p>To fix it, set on the new <code>TCastleImageControl</code> these properties:
+    <p>Set on the new <code>TCastleImageControl</code> property <code>Stretch</code> to <code>true</code> (allow to resize the <code>TCastleImageControl</code> freely).
 
-    <ul>
-      <li><p><code>Stretch</code> to <code>true</code> (allow to resize the <code>TCastleImageControl</code> freely)
+      <!--li><p><code>ProportionalScale</code> to <code>psEnclose</code> (the displayed image keep aspect ratio of the original)-->
 
-      <li><p><code>ProportionalScale</code> to <code>psEnclose</code> (the displayed image keep aspect ratio of the original)
-
-      <li><p>Then just move and resize the image (by dragging using the left mouse button) to make it larger. You can make it larger than the screen if you want.
-
-      <li><p>Instead of manually resizing the image, you could also switch to the <i>Layout</i> tab and set both <code>WidthFraction</code> and <code>HeightFraction</code> to 1.0. This would make the image fill perfectly the parent (which means "the whole game window" in this case). The <code>ProportionalScale</code> we set previously will actually force the image to keep its aspect ratio, so it will not be distorted by different window aspect ratio.
-    </ul>
+    <p><i>Test</i> that you can move and resize the image freely now (by dragging using the left mouse button), test making the image larger. We will adjust the position and size more precisely in the next step, for now just test that you could play with it manually. Note that you could set <code>ProportionalScale</code> to <code>psEnclose</code> to always keep aspect ratio of the original image.
 
     <?php
     echo castle_thumbs(array(
       array('filename' => 'cge_editor_image_resize.png', 'titlealt' => 'Resize the image'),
-      array('filename' => 'cge_editor_image_width_height_fraction.png', 'titlealt' => 'Set the image width and height fraction'),
     ), 'auto', 'left');
     ?>
 
   <li>
-    <p>To make the image behave good at any window size, it is best to anchor it to the middle of the window (both horizontall and vertically). To do this,
+    <p>Switch to the <i>Layout</i> tab and set image <code>Width</code> to <code>1600</code> and <code>Height</code> to <code>900</code>. This will make the image fit perfectly inside the game window.
+
+    <p><i>Explanation:</i> The project uses <i>UI (user interface) scaling</i> to 1600x900 by default, so it is completely valid to just set sizes and positions to any hardcoded values. They will be adjusted to follow the actual window size correctly. You can take a look at <a href="manual_castle_settings.php">data/CastleSettings.xml</a> file &mdash; it allows to adjust how UI scaling works.
+
+    TODO screen with
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'cge_editor_mountains_resize.png', 'titlealt' => 'Set the image Width and Height'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>To make the image stay at the window center, anchor it to the middle of the window (both horizontall and vertically):
 
     <ul>
       <li><p>go to the <i>Layout</i> tab and click the middle button in the 3x3 buttons grid. This sets the anchor to the middle.
@@ -141,12 +162,25 @@ echo castle_thumbs(array(
 
     <p>When done, resize the game window (by dragging the "splitters", i.e. bars between the game window and hierarchy (on the left) or inspector (on the right)). Notice how image always stays within the window, with the image center in the window center.
 
+    TODO update screens, the image is inside now
+
     <?php
     echo castle_thumbs(array(
       array('filename' => 'cge_editor_anchor1.png', 'titlealt' => 'Adjust background anchor'),
       array('filename' => 'cge_editor_anchor2.png', 'titlealt' => 'Adjust background anchor - Move to anchor'),
       array('filename' => 'cge_window_resized1.png', 'titlealt' => 'Testing background anchor by resizing window'),
       array('filename' => 'cge_window_resized2.png', 'titlealt' => 'Testing background anchor by resizing window'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>The background image is a <i>pixel-art</i>. It has low resolution, and if you make it larger (as we did) &mdash; it is better to scale it <i>without</i> smoothing the colors, to keep the result sharp.
+
+    <p>To do this, just set <code>SmoothScaling</code> property of the image to <code>false</code>.
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'state_events_smooth_scaling.png', 'titlealt' => 'Changing image SmoothScaling'),
     ), 'auto', 'left');
     ?>
 
@@ -176,6 +210,8 @@ echo castle_thumbs(array(
   <li>
     <p>Add a new <code>TCastleImageControl</code> as another child of <code>Group1</code>. Place it behind the <code>LabelFps</code> but in front of our background image <code>ImageControl1</code>.
 
+    <p>Set the new image <code>Name</code> to <code>ImagePlayer</code>.
+
     <p>Set it's <code>URL</code> to point to the plane image.
 
     <p>The plane image is quite large. Set <code>Stretch</code> to <code>true</code>, <code>ProportionalScale</code> to <code>psEnclose</code>, and move and resize it manually to a nice position and size.
@@ -188,30 +224,12 @@ echo castle_thumbs(array(
     ), 'auto', 'left');
     ?>
 
-<?php /* Do not use -- this is not perfect, and also would make gravity limit at 0 not so easy.
-
   <li>
-    <p>To behave nicer when the game window is resized, set the anchor of the new image to be center too. Click on the middle button in the 3x3 grid. Do not click on the <i>"Move to the anchor"</i>, there's no need. When you resize the game window now, the plane will keep at the same position relative to the window middle.
+    <p>To behave nicer when the game window is resized, set the anchor of the new player image to be center too. Click on the middle button in the 3x3 grid. Do not click on the <i>"Move to the anchor"</i>, there's no need. When you resize the game window now, the plane will keep at the same position relative to the background.
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_biplane_anchor.png
-
-    <p>Note that the plane doesn't "stick" to the same background place, as the background image is scaled a bit differently because it has <code>ProportionalScale</code> set to <code>psEnclose</code> (and not <code>psNone</code>). There are various solutions to this, including the fact that in larger games you would rather place your assets (whether simple images, or more complicated 2D and 3D models and sprite sheets) as <code>TCastleScene</code> inside the <code>TCastleViewport</code>, and then scaling is handled by <code>TCastleViewport</code>, uniformly for all scenes in it. For now, you can ignore this.
-    */
-?>
-
-  <li>
-    <p>As a finishing touch, assing useful <i>names</i> to your new images. Call the background image (<code>ImageControl1</code> so far) an <code>ImageBackground</code>. Call the player image <code>ImagePlayer</code>.
-
-    <p>You can adjust the component name by editing the <code>Name</code> in the inspector on the right (<code>Name</code> is on the <i>Basic</i> tab). You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
-
-    <p>The `Name` is a special property that can be later used to find this component from code.
-
-    <?php
-    echo castle_thumbs(array(
-      array('filename' => 'cge_editor_name1.png', 'titlealt' => 'Editing Name property'),
-      array('filename' => 'cge_editor_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
+      array('filename' => 'cge_editor_biplane_anchor.png', 'titlealt' => 'Setting anchor of the plane image'),
     ), 'auto', 'left');
     ?>
 
@@ -326,9 +344,7 @@ You can also check which keys are pressed inside the <code>TStateMain.Update</co
 to update movement constantly. Examples below shows both ways.
 
 <?php echo pascal_highlight(
-'// Also add to the uses clause unit CastleKeysMouse
-
-function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+'function TStateMain.Press(const Event: TInputPressRelease): Boolean;
 begin
   Result := inherited;
   if Result then Exit; // allow the ancestor to handle keys
@@ -348,9 +364,6 @@ begin
   if Container.Pressed[keyArrowRight] then
     X := X + SecondsPassed * 200.0;
 end;'); ?>
-
-<p>Be sure to also add <code>CastleKeysMouse</code> unit to the <code>uses</code> clause
-to include key constants definitions.
 
 <p>Run the application now to test the key handling.
 
