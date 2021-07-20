@@ -143,7 +143,7 @@ echo castle_thumbs(array(
 
     <p><i>Explanation:</i> The project uses <i>UI (user interface) scaling</i> to 1600x900 by default, so it is completely valid to just set sizes and positions to any hardcoded values. They will be adjusted to follow the actual window size correctly. You can take a look at <a href="manual_castle_settings.php">data/CastleSettings.xml</a> file &mdash; it allows to adjust how UI scaling works.
 
-    TODO screen with
+    <p><i>Alternative:</i> We can get <i>exactly</i> the same behavior by setting <code>WidthFraction</code> to <code>1.0</code>, <code>HeightFraction</code> to <code>1.0</code>, and <code>ProportionalScale</code> to <code>psFit</code>. This will also make the image keep nicely within the window, and automatically follows whatever reference window size is used by the UI scaling.
 
     <?php
     echo castle_thumbs(array(
