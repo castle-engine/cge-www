@@ -114,7 +114,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 11);
+define('CASTLE_ENGINE_CSS_VERSION', 15);
 
 // unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
@@ -836,6 +836,9 @@ function echo_header_bonus ()
 <link rel="alternate" type="application/rss+xml"
   title="Castle Game Engine - News Feed"
   href="<?php echo page_url('news_feed'); ?>">
+
+<!-- Add Inter font, https://developers.google.com/fonts/docs/getting_started -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
 
 <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
 
