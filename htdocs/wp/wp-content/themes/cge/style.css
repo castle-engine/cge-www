@@ -45,6 +45,11 @@
     margin-top: 2em;
 }
 
+/* Make social icons into circles */
+.widget ul.wp-block-social-links li {
+    padding: 0;
+}
+
 /*--------------------------------------------------------------
 2.0 Accessibility
 --------------------------------------------------------------*/
