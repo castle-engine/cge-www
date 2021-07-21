@@ -61,11 +61,18 @@
         <?php endif; ?>
 
         <?php
-        if ( !is_single() ) :
-            echo '<a href="' . esc_url( get_permalink() ) . '#comments">Comment on this post';
-            comments_number('',  ' (1 comment now)', ' (% comments now)');
+        if ( !is_single() ) {
+            $comment_link =
+              /*  Wordpress link:
+                    get_permalink();
+                  Show link straight to Discourse, see how wp-discourse sets it:
+                  /home/michalis/cge-www/htdocs/wp/wp-content/plugins/wp-discourse/lib/discourse-publish.php
+              */
+              get_post_meta(get_the_ID(), 'discourse_permalink', true);
+            echo '<a href="' . esc_url($comment_link) . '#comments">Comments on the forum';
+            comments_number('',  ' (1)', ' (%)');
             echo ' ' . cge_continue_suffix() . '</a>';
-        endif;
+        }
         ?>
 
 </article><!-- #post-## -->
