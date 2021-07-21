@@ -114,7 +114,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 10);
+define('CASTLE_ENGINE_CSS_VERSION', 11);
 
 // unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 

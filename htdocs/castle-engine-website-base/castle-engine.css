@@ -282,6 +282,7 @@ article.post .entry-content ul.list-no-margin {
 .centered-download-wrapper .main-cge-download .btn-primary {
   padding-left: 1em;
   padding-right: 1em;
+  min-width: 10em; /* makes all icons equal width now */
 }
 
 div.main-cge-download {
