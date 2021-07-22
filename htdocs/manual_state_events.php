@@ -19,12 +19,8 @@ $toc = new TableOfContents(
 );
 
 echo castle_thumbs(array(
-  array('filename' => 'basic_state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
-  array('filename' => 'cge_editor_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
-//   array('filename' => 'basketball_2d_game_lazarus.png', 'titlealt' => 'Simple game where you move an image on the screen - you will learn how to do it very soon!'),
-//   array('filename' => 'basketball_2d_game_window.png', 'titlealt' => 'The simplest basketball game ever created'),
-//   array('filename' => 'castle_spine_screen_9.png', 'titlealt' => '2D game with animations done in Spine'),
-//   array('filename' => 'fly_over_river_screen_26.png', 'titlealt' => 'Simple &quot;River Ride&quot; clone done in 1-hour gamejam'),
+  array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
+  array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
  ));
 ?>
 
@@ -36,7 +32,7 @@ echo castle_thumbs(array(
 
 <p>While it is not required to put everything in some <i>state</i>, we highly advise to organize your application into a number of <i>states</i>. They organize your application into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our <code>TUIState</code> is a similar concept to <code>TForm</code> from LCL and VCL.
 
-<p>In this chapter we will learn how to use the basic state features. We will create a simple toy that displays some images and allows to move them. You can follow this chapter and do it yourself, or you can look at the ready version in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/basic_state_events">examples/user_interface/basic_state_events</a>.
+<p>In this chapter we will learn how to use the basic state features. We will create a simple toy that displays some images and allows to move them. You can follow this chapter and do it yourself, or you can look at the ready version in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events">examples/user_interface/state_events</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -63,26 +59,26 @@ echo castle_thumbs(array(
 
 <ol>
   <li>
-    <p>Download the image <a href="https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/basic_state_events/data/mountains_background.png">mountains_background.png</a> and put it inside your project's <code>data</code> subdirectory. You can right-click in the editor <i>"Files"</i> panel to easily open your file manager inside the current project. Then just copy the file into the <code>data</code> subdirectory.
+    <p>Download the image <a href="https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/state_events/data/mountains_background.png">mountains_background.png</a> and put it inside your project's <code>data</code> subdirectory. You can right-click in the editor <i>"Files"</i> panel to easily open your file manager inside the current project. Then just copy the file into the <code>data</code> subdirectory.
 
     <p>After copying the file, you can see it inside the editor. If you select it, editor will show a preview in the bottom-right corner.
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'mountains_background.png', 'titlealt' => 'Mountains background'),
-      array('filename' => 'cge_editor_open_containing.png', 'titlealt' => 'Open Containing Folder'),
-      array('filename' => 'cge_editor_mountains_background.png', 'titlealt' => 'Mountains background loaded in Castle Game Engine editor')
+      array('filename' => 'state_events_mountains_background.png', 'titlealt' => 'Mountains background'),
+      array('filename' => 'state_events_open_containing.png', 'titlealt' => 'Open Containing Folder'),
+      array('filename' => 'state_events_editor_mountains_background.png', 'titlealt' => 'Mountains background loaded in Castle Game Engine editor')
     ), 'auto', 'left');
     ?>
 
-    <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" demo. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/basic_state_events/data">examples/user_interface/basic_state_events/data</a> directory.
+    <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" demo. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events/data">examples/user_interface/state_events/data</a> directory.
 
   <li>
     <p>Double-click on the <code>gamestatemain.castle-user-interface</code> file in the <code>data</code> subdirectory in the editor. It will open the user interface design, where we'll add new controls.
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_empty_state.png', 'titlealt' => 'Empty user interface design'),
+      array('filename' => 'state_events_empty_state.png', 'titlealt' => 'Empty user interface design'),
     ), 'auto', 'left');
     ?>
 
@@ -91,7 +87,7 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_new_image.png', 'titlealt' => 'New Image (TCastleImageControl)'),
+      array('filename' => 'state_events_new_image.png', 'titlealt' => 'New Image (TCastleImageControl)'),
     ), 'auto', 'left');
     ?>
 
@@ -106,8 +102,8 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_name1.png', 'titlealt' => 'Editing Name property'),
-      array('filename' => 'cge_editor_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
+      array('filename' => 'state_events_name1.png', 'titlealt' => 'Editing Name property'),
+      array('filename' => 'state_events_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
     ), 'auto', 'left');
     ?>
 
@@ -118,8 +114,8 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_image_url1.png', 'titlealt' => 'Set Image URL'),
-      array('filename' => 'cge_editor_image_url2.png', 'titlealt' => 'Set Image URL'),
+      array('filename' => 'state_events_image_url1.png', 'titlealt' => 'Set Image URL'),
+      array('filename' => 'state_events_image_url2.png', 'titlealt' => 'Set Image URL'),
     ), 'auto', 'left');
     ?>
 
@@ -134,7 +130,7 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_image_resize.png', 'titlealt' => 'Resize the image'),
+      array('filename' => 'state_events_image_resize.png', 'titlealt' => 'Resize the image'),
     ), 'auto', 'left');
     ?>
 
@@ -147,7 +143,7 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_mountains_resize.png', 'titlealt' => 'Set the image Width and Height'),
+      array('filename' => 'state_events_mountains_resize.png', 'titlealt' => 'Set the image Width and Height'),
     ), 'auto', 'left');
     ?>
 
@@ -166,10 +162,10 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_anchor1.png', 'titlealt' => 'Adjust background anchor'),
-      array('filename' => 'cge_editor_anchor2.png', 'titlealt' => 'Adjust background anchor - Move to anchor'),
-      array('filename' => 'cge_window_resized1.png', 'titlealt' => 'Testing background anchor by resizing window'),
-      array('filename' => 'cge_window_resized2.png', 'titlealt' => 'Testing background anchor by resizing window'),
+      array('filename' => 'state_events_anchor1.png', 'titlealt' => 'Adjust background anchor'),
+      array('filename' => 'state_events_anchor2.png', 'titlealt' => 'Adjust background anchor - Move to anchor'),
+      array('filename' => 'state_events_resized1.png', 'titlealt' => 'Testing background anchor by resizing window'),
+      array('filename' => 'state_events_resized2.png', 'titlealt' => 'Testing background anchor by resizing window'),
     ), 'auto', 'left');
     ?>
 
@@ -189,7 +185,7 @@ echo castle_thumbs(array(
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_label_front.png', 'titlealt' => 'Moved the LabelFps to the front'),
+      array('filename' => 'state_events_label_front.png', 'titlealt' => 'Moved the LabelFps to the front'),
     ), 'auto', 'left');
     ?>
 </ol>
@@ -198,40 +194,59 @@ echo castle_thumbs(array(
 
 <ol>
   <li>
-    <p>Download the player (plane) image from <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/user_interface/basic_state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
+    <p>Download the player (plane) image from <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/user_interface/state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'biplane.png', 'titlealt' => 'Plane image'),
-      array('filename' => 'cge_editor_biplane_1.png', 'titlealt' => 'Plane image loaded in Castle Game Engine editor'),
+      array('filename' => 'state_events_biplane.png', 'titlealt' => 'Plane image'),
+      array('filename' => 'state_events_biplane_1.png', 'titlealt' => 'Plane image loaded in Castle Game Engine editor'),
     ), 'auto', 'left');
     ?>
 
   <li>
-    <p>Add a new <code>TCastleImageControl</code> as another child of <code>Group1</code>. Place it behind the <code>LabelFps</code> but in front of our background image <code>ImageControl1</code>.
+    <p>Add a new <code>TCastleImageControl</code> as a child of <code>ImageBackground</code>.
 
-    <p>Set the new image <code>Name</code> to <code>ImagePlayer</code>.
+    <p>If you made a mistake and placed it under some other parent (like <code>Group1</code>) then simply drag it (in the hierarchy tree) to be a child of <code>ImageBackground</code>. Just drag the new control over the right side of the <code>ImageBackground</code> in the hierarchy (it will show a right-arrow &mdash; indicating that you will drag the component to be a child of <code>ImageBackground</code>).
 
-    <p>Set it's <code>URL</code> to point to the plane image.
+    <p>This relationship means that <code>ImagePlayer</code> position is relative to parent <code>ImageBackground</code> position. So the player image will keep at the same place of the background, regardless of how do you position/resize the background.
 
-    <p>The plane image is quite large. Set <code>Stretch</code> to <code>true</code>, <code>ProportionalScale</code> to <code>psEnclose</code>, and move and resize it manually to a nice position and size.
+    TODO screen.
+
+  <li>
+    <p>Adjust new image control:
+
+    <ul>
+      <li>
+        <p>Place it behind the <code>LabelFps</code> but in front of our background image <code>ImageControl1</code>.
+
+      <li>
+        <p>Set the new image <code>Name</code> to <code>ImagePlayer</code>.
+
+      <li>
+        <p>Set it's <code>URL</code> to point to the plane image.
+
+      <li>
+        <p>The plane image is quite large. Set <code>Stretch</code> to <code>true</code>, <code>ProportionalScale</code> to <code>psEnclose</code>, and move and resize it manually to a nice position and size.
+    </ul>
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_biplane_2_added.png', 'titlealt' => 'Adding plane image'),
-      array('filename' => 'cge_editor_biplane_3_set_url.png', 'titlealt' => 'Setting the plane image URL'),
-      array('filename' => 'cge_editor_biplane_4_resized.png', 'titlealt' => 'Resizing the plane image'),
+      array('filename' => 'state_events_biplane_2_added.png', 'titlealt' => 'Adding plane image'),
+      array('filename' => 'state_events_biplane_3_set_url.png', 'titlealt' => 'Setting the plane image URL'),
+      array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Resizing the plane image'),
     ), 'auto', 'left');
     ?>
 
+<?php /* // we do not want this, we want ground to be level 0, for Update demo later
   <li>
     <p>To behave nicer when the game window is resized, set the anchor of the new player image to be center too. Click on the middle button in the 3x3 grid. Do not click on the <i>"Move to the anchor"</i>, there's no need. When you resize the game window now, the plane will keep at the same position relative to the background.
 
-    <?php
+    < ?php
     echo castle_thumbs(array(
-      array('filename' => 'cge_editor_biplane_anchor.png', 'titlealt' => 'Setting anchor of the plane image'),
+      array('filename' => 'state_events_biplane_anchor.png', 'titlealt' => 'Setting anchor of the plane image'),
     ), 'auto', 'left');
-    ?>
+    ? >
+*/ ?>
 
   <li>
     <p>Remember to save your design! Press Ctrl + S (menu item <i>Design -&gt; Save</i>).
