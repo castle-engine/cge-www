@@ -31,17 +31,19 @@ echo castle_thumbs(array(
 
 <p><i>State</i> in <i>Castle Game Engine</i> is a class that descends from <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html">TUIState</a> and manages <i>what you display on the screen and how you react to basic events (user input, updates)</i>.
 
-<p>While it is not required to put everything in some <i>state</i>, we highly advise to organize your application into a number of <i>states</i>. They organize your application into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our <code>TUIState</code> is a similar concept to <code>TForm</code> from LCL and VCL.
+<p>While it is not required to put everything in some <i>state</i>, we highly advise to organize your application into a number of states. They usually divide your application code into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our <code>TUIState</code> is a similar concept to <code>TForm</code> from LCL and VCL.
 
 <p>In this chapter we will learn how to use the basic state features. We will create a simple toy that displays some images and allows to move them. You can follow this chapter and do it yourself, or you can look at the ready version in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events">examples/user_interface/state_events</a>.
 
 <?php echo $toc->html_section(); ?>
 
+<p>We assume you have already <a href="index.php">downloaded Castle Game Engine</a> and <a href="manual_intro.php">installed it</a>.
+
 <p>Start by creating a new project using the "Empty" template.
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => 'cge_editor_new_project.png', 'titlealt' => 'Castle Game Engine Editor New Project'),
+  array('filename' => 'state_events_new_project.png', 'titlealt' => 'Castle Game Engine Editor New Project - State Events'),
 ), 'auto', 'left');
 ?>
 
@@ -72,7 +74,7 @@ echo castle_thumbs(array(
     ), 'auto', 'left');
     ?>
 
-    <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" demo. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events/data">examples/user_interface/state_events/data</a> directory.
+    <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" background ready. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events/data">examples/user_interface/state_events/data</a> directory.
 
   <li>
     <p>Double-click on the <code>gamestatemain.castle-user-interface</code> file in the <code>data</code> subdirectory in the editor. It will open the user interface design, where we'll add new controls.
@@ -93,23 +95,7 @@ echo castle_thumbs(array(
     ?>
 
   <li>
-    <p>Set the new image <i>name</i> to <code>ImageBackground</code>.
-
-    <p>You can adjust the component name by editing the <code>Name</code> in the inspector on the right. You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
-
-    <p>We advise to set useful <i>names</i> for all new components, to easier recognize the components when designing. The <code>Name</code> can also be later used to find this component from code (you will see an example of it later).
-
-    TODO update screens to show rename at this point
-
-    <?php
-    echo castle_thumbs(array(
-      array('filename' => 'state_events_name1.png', 'titlealt' => 'Editing Name property'),
-      array('filename' => 'state_events_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
-    ), 'auto', 'left');
-    ?>
-
-  <li>
-    <p>Load the image by editing the URL property. Just click on the 3 dots button on the right side of <code>URL</code> property to invoke a standard "Open File" dialog box where you should select your image.
+    <p>Load the image by editing the URL property. Click on the small button with 3 dots (<code>...</code>) on the right side of <code>URL</code> property to invoke a standard "Open File" dialog box where you should select your image.
 
     <p>Note that once you confirm, the <code>URL</code> will change to something like <code>castle-data:/mountains_background.png</code>. The design saves the file location <a href="https://castle-engine.io/manual_data_directory.php">relative to a special "data" directory</a>. In a typical game, you will want to reference all your data files like this. The special <code>data</code> directory will be always properly packaged and available in your application.
 
@@ -117,6 +103,20 @@ echo castle_thumbs(array(
     echo castle_thumbs(array(
       array('filename' => 'state_events_image_url1.png', 'titlealt' => 'Set Image URL'),
       array('filename' => 'state_events_image_url2.png', 'titlealt' => 'Set Image URL'),
+    ), 'auto', 'left');
+    ?>
+
+  <li>
+    <p>Set the new image <i>name</i> to <code>ImageBackground</code>.
+
+    <p>You can adjust the component name by editing the <code>Name</code> in the inspector on the right. You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
+
+    <p>We advise to set useful <i>names</i> for all new components, to easier recognize the components when designing. The <code>Name</code> can also be later used to find this component from code (you will see an example of it later).
+
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'state_events_name1.png', 'titlealt' => 'Editing Name property'),
+      array('filename' => 'state_events_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
     ), 'auto', 'left');
     ?>
 
@@ -159,8 +159,6 @@ echo castle_thumbs(array(
 
     <p>When done, resize the game window (by dragging the "splitters", i.e. bars between the game window and hierarchy (on the left) or inspector (on the right)). Notice how image always stays within the window, with the image center in the window center.
 
-    TODO update screens, the image is inside now
-
     <?php
     echo castle_thumbs(array(
       array('filename' => 'state_events_anchor1.png', 'titlealt' => 'Adjust background anchor'),
@@ -173,7 +171,7 @@ echo castle_thumbs(array(
   <li>
     <p>The background image is a <i>pixel-art</i>. It has low resolution, and if you make it larger (as we did) &mdash; it is better to scale it <i>without</i> smoothing the colors, to keep the result sharp.
 
-    <p>To do this, just set <code>SmoothScaling</code> property of the image to <code>false</code>.
+    <p>To do this, set <code>SmoothScaling</code> property of the image to <code>false</code>.
 
     <?php
     echo castle_thumbs(array(
@@ -183,6 +181,8 @@ echo castle_thumbs(array(
 
   <li>
     <p>As a final touch, drag the <code>LabelFps</code> in the hierarchy on the left to be <i>below</i> the newly added <code>ImageControl1</code>. This will make the <code>LabelFps</code> displayed <i>in front</i> of the background image.
+
+    <p>This matters when game window aspect ratio is close to 1600x900, the yellow text <i>"FPS: xxx"</i> should then be displayed <i>in front</i>, not hidden <i>behind</i> the background image. The code will update this label to display <i>frames per second</i> when you run the game. This is a basic metric of the performance of your game.
 
     <?php
     echo castle_thumbs(array(
@@ -195,7 +195,7 @@ echo castle_thumbs(array(
 
 <ol>
   <li>
-    <p>Download the player (plane) image from <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/user_interface/state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
+    <p>Download the player (plane) image from <a href="https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
 
     <?php
     echo castle_thumbs(array(
@@ -211,14 +211,20 @@ echo castle_thumbs(array(
 
     <p>This relationship means that <code>ImagePlayer</code> position is relative to parent <code>ImageBackground</code> position. So the player image will keep at the same place of the background, regardless of how do you position/resize the background.
 
-    TODO screen.
+    <?php
+    echo castle_thumbs(array(
+      array('filename' => 'state_events_biplane_add_child.png', 'titlealt' => 'Add TCastleImageControl as a child of ImageBackground'),
+      array('filename' => 'state_events_biplane_add_child_2.png', 'titlealt' => 'Added TCastleImageControl as a child of ImageBackground'),
+    ), 'auto', 'left');
+    ?>
 
   <li>
     <p>Adjust new image control:
 
     <ul>
-      <li>
+      <!--li>
         <p>Place it behind the <code>LabelFps</code> but in front of our background image <code>ImageControl1</code>.
+      -->
 
       <li>
         <p>Set the new image <code>Name</code> to <code>ImagePlayer</code>.
