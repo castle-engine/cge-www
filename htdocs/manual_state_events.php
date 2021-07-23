@@ -10,6 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Create empty project'),
     new TocItem('Add the background image (mountains)'),
     new TocItem('Add the player image (plane)'),
+    new TocItem('Access designed components in the code'),
     new TocItem('Move the player in the Update method'),
     new TocItem('React to a key press'),
     new TocItem('React to a mouse click or touch'),
@@ -256,10 +257,7 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>The state has an <code>Update</code> method that is continuously called by the engine.
-You should use it to update the state of your game as time passes.
-In this section, we will make the plane fall down by a simple gravity, by moving the plane down
-each time the <code>Update</code> method is called.
+<p>To access (from code) the components you have designed, you need to manually declare and initialize their fields. That is, you need to manually add and initialize field <code>ImagePlayer</code> if you want to modify its properties by Pascal code. This process will be automated in the future.
 
 <ol>
   <li>
@@ -298,6 +296,20 @@ begin
   ImagePlayer := DesignedComponent(\'ImagePlayer\') as TCastleImageControl;
 end;'); ?>
 
+</ol>
+
+<p>Pascal code within <code>TStateMain</code> can now use the field <code>ImagePlayer</code>
+the change the properties of the designed image.
+We will use it in the following sections, to change the player position and color.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The state has an <code>Update</code> method that is continuously called by the engine.
+You should use it to update the state of your game as time passes.
+In this section, we will make the plane fall down by a simple gravity, by moving the plane down
+each time the <code>Update</code> method is called.
+
+<ol>
   <li>
     <p>Add units <code>Math</code> and <code>CastleVectors</code> to the uses clause.
 
@@ -339,9 +351,15 @@ end;'); ?>
     we would increase our position by <code>SecondsPassed * 100.0</code>.
 
     <p>We use the <code>TVector2</code> in this code, which is a 2D vector, that is: just 2 floating-point
-    fields `X` and `Y` (of standard Pascal type `Single`).
-    We modify the `Y` to make the plane fall down, and use `Max` (from standard <code>Math</code> unit)
+    fields <code>X</code> and <code>Y</code> (of standard Pascal type <code>Single</code>).
+    We modify the <code>Y</code> to make the plane fall down, and use <code>Max</code> (from standard <code>Math</code> unit)
     to prevent it from falling too much (below the game window).
+
+    <p>We get and set the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#AnchorDelta">ImagePlayer.AnchorDelta</a>
+    which changes the image position. The anchors are relative to the parent
+    (<code>ImageBackground</code>) and, since the image is anchored by default to the left-bottom of the parent,
+    the anchor value (0,0) means that the left-bottom corner of <code>ImagePlayer</code> matches
+    the left-bottom corner of <code>ImageBackground</code>. This is what we want.
 </ol>
 
 <p>Run the application now to see that the plane falls down.
@@ -352,11 +370,59 @@ that needs to be done (or tested) <i>"all the time when the game is running"</i>
 
 <?php echo $toc->html_section(); ?>
 
-<!-- TODO test this -->
-
-<p>The react to one-time key or mouse press, use the <code>TStateMain.Press</code> method.
+<p>The react to one-time key press, use the <code>TStateMain.Press</code> method.
 You can also check which keys are pressed inside the <code>TStateMain.Update</code> method,
 to update movement constantly. Examples below shows both ways.
+
+<ol>
+  <li>
+    <p>Extend the <code>TStateMain.Update</code> method implementation into this:
+
+<?php echo pascal_highlight(
+'procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+const
+  MoveSpeed = 800;
+var
+  PlayerPosition: TVector2;
+begin
+  inherited;
+  LabelFps.Caption := \'FPS: \' + Container.Fps.ToString;
+
+  PlayerPosition := ImagePlayer.AnchorDelta;
+
+  if Container.Pressed[keyArrowLeft] then
+    PlayerPosition := PlayerPosition + Vector2(-MoveSpeed * SecondsPassed, 0);
+  if Ctontainer.Pressed[keyArrowRight] then
+    PlayerPosition := PlayerPosition + Vector2( MoveSpeed * SecondsPassed, 0);
+  if Container.Pressed[keyArrowDown] then
+    PlayerPosition := PlayerPosition + Vector2(0, -MoveSpeed * SecondsPassed);
+  if Container.Pressed[keyArrowUp] then
+    PlayerPosition := PlayerPosition + Vector2(0,  MoveSpeed * SecondsPassed);
+
+  { update player position to fall down }
+  PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
+  ImagePlayer.AnchorDelta := PlayerPosition;
+end;'); ?>
+
+    <p>The new code looks whether user has pressed one of the arrow keys
+    by <code>if Container.Pressed[keyArrowXxx] then</code>.
+    If yes, we modify the <code>PlayerPosition</code> variable accordingly.
+
+    <p>Note that we could also modify directly <code>ImagePlayer.AnchorDelta</code>,
+    like <code>ImagePlayer.AnchorDelta := ImagePlayer.AnchorDelta + Vector2(...);</code> .
+    This would also work perfectly. But since we already had a variable <code>PlayerPosition</code>,
+    it seemed even better to use it, as it has a self-explanatory name.
+
+    <p>Just as with gravity, we scale all the movement by <code>SecondsPassed</code>.
+    This way the movement will be equally fast, regardless of whether the game runs
+    at 60 FPS (<i>frames per second</i>) or slower or faster.
+    This also means that <code>MoveSpeed</code> is just a <i>"movement per 1 second"</i>.
+
+    <p><i>You can now move the plane by arrow keys!</i>
+
+  <li>
+    <p>To handle a <i>key press</i> find the <code>TStateMain.Press</code> method implementation
+    and change it into this:
 
 <?php echo pascal_highlight(
 'function TStateMain.Press(const Event: TInputPressRelease): Boolean;
@@ -365,26 +431,83 @@ begin
   if Result then Exit; // allow the ancestor to handle keys
 
   if Event.IsKey(keySpace) then
-    TODO
-  if Event.IsMouseButton(mbLeft) then // this also handles touch on mobile
-    TODO
-end;
-
-procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
-begin
-  TODO previous code, and handle some
-
-  if Container.Pressed[keyArrowLeft] then
-    X := X - SecondsPassed * 200.0;
-  if Container.Pressed[keyArrowRight] then
-    X := X + SecondsPassed * 200.0;
+  begin
+    ImagePlayer.Color := Vector4(Random, Random, Random, 1);
+    Exit(true); // event was handled
+  end;
 end;'); ?>
+
+    <p>The <code>Event.IsKey(keySpace)</code> checks whether this is a press of the <code>space</code>
+    key.
+
+    <p>As a demo, we modify the <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleImageControl.html#Color">ImagePlayer.Color</a>,
+    which is an RGBA value multiplied by the original image color.
+    This allows to easily "tint" the image, e.g. setting it to <code>Vector4(0.5, 0.5, 1, 1)</code>
+    means that <i>red</i> and <i>green</i> color components are darker (multiplied by 0.5)
+    and thus the image appears more <i>blueish</i>.
+    In this case we use random values for the all <i>red</i>, <i>green</i> and <i>blue</i>
+    channels (the standard <code>Random</code> returns a random float in the 0..1 range),
+    just for test. So each time you press the <i>space</i> key, the player image will look
+    a bit different.
+
+    <p>Note that we keep the 4th <code>ImagePlayer.Color</code> component (alpha) at 1.0.
+    Alpha would make image partially-transparent.
+
+    <p>Note that you can experiment with changing the <code>ImagePlayer.Color</code> effects
+    also visually, in the editor.
+</ol>
 
 <p>Run the application now to test the key handling.
 
+<p>When to use <code>Press</code> to handle a single key press,
+and when to use <code>Update</code> to watch the key state? This depends on the need.
+If the action caused by the key is a single, instant, uninterriptible action &mdash; then do it in <code>Press</code>.
+If the key causes an effect that is somehow applied more and more over time  &mdash; then watch the key and apply it in <code>Update</code>.
+
 <?php echo $toc->html_section(); ?>
 
-TODO
+<p>The mouse press is also handled in the <code>Press</code> method. In general,
+<code>Press</code> method receives key press, or a mouse press, or a mouse wheel use
+(see the documentation of <a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html">TInputPressRelease</a>).
+
+<p>Everywhere in the engine, the mouse events also work on touch devices, when they correspond to
+the movement / touches of the fingers. When you use a touch device, then we only report <i>left</i> mouse button clicks
+(<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#MouseButton">TInputPressRelease.MouseButton</a>
+will be <code>buttonLeft</code>).
+When you use use the actual mouse on desktop, then we only report touches by the 1st finger (<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#FingerIndex">TInputPressRelease.FingerIndex</a>
+will be <code>0</code>). The example code below checks for <code>if Event.IsMouseButton(buttonLeft) then</code>
+and thus it will work on both desktop (detecting mouse click) and mobile (detecting touch).
+
+<p>Extend the <code>TStateMain.Press</code> method implementation into this:
+
+<?php echo pascal_highlight(
+'function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keySpace) then
+  begin
+    ImagePlayer.Color := Vector4(Random, Random, Random, 1);
+    Exit(true); // event was handled
+  end;
+
+  // NEW CODE:
+  if Event.IsMouseButton(buttonLeft) then
+  begin
+    ImagePlayer.AnchorDelta := ImagePlayer.Parent.ContainerToLocalPosition(Event.Position);
+    Exit(true); // event was handled
+  end;
+end;'); ?>
+
+<p>The <code>Event.Position</code> contains the mouse/touch position. It is expressed in the <i>container</i>
+coordinates, which means it is not affected by UI scaling or the UI hierarchy and anchors.
+It's easiest to convert it to a position relative to some UI control using the <code>ContainerToLocalPosition</code>
+method. In this case, we use <code>ImagePlayer.Parent.ContainerToLocalPosition</code>, to use
+the resulting position to set <code>ImagePlayer.AnchorDelta</code>. The <code>ImagePlayer.Parent</code>
+is just another way to access <code>ImageBackground</code> in this case. We want to calculate new player
+position, in the coordinates of <code>ImagePlayer</code> parent, because that's what
+<code>ImagePlayer.AnchorDelta</code> expects.
 
 <?php echo $toc->html_section(); ?>
 
