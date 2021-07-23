@@ -263,17 +263,26 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>To access (from code) the components you have designed, you need to manually declare and initialize their fields. That is, you need to manually add and initialize field <code>ImagePlayer</code> if you want to modify its properties by Pascal code. This process will be automated in the future.
+<p>Now we will write some Pascal code. You can use any Pascal editor you like &mdash; by default we use Lazarus, but you can configure it in the editor <i>Preferences</i>.
+
+<p>Look at our <a href="https://castle-engine.io/modern_pascal_introduction.html">Modern Object Pascal Introduction for Programmers</a> to learn more about Pascal, the programming language we use.
+
+<p>To access (from code) the components you have designed, you need to manually declare and initialize their fields. We will manually add and initialize field <code>ImagePlayer</code>, as we want to modify its properties by Pascal code. This process will be automated in the future.
 
 <ol>
   <li>
-    <p>Double-click on the <code>code/gamestatemain.pas</code> unit to open it in your Pascal code editor
-    (Lazarus by default). You should also use once menu item <i>Code -&gt; Open Project in Code Editor</i>
+    <p>Use our editor menu item <i>Code -&gt; Open Project in Code Editor</i>
     to make sure that Lazarus has loaded the appropriate project.
+
+    <p>Or just open Lazarus yourself, and use Lazarus menu item <i>Project -&gt; Open Project</i>
+    and choose the <code>xxx_standalone.lpi</code> in the created project directory.
+
+  <li>
+    <p>Double-click on the <code>code/gamestatemain.pas</code> unit to open it in your Pascal code editor.
 
   <li>
     <p>Find the <code>TStateMain</code> class declaration and add a field <code>ImagePlayer: TCastleImageControl;</code>
-    at the place of the comment <code>{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }</code>.
+    near the comment <code>{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }</code>.
 
     <p>So it looks like this:
 
@@ -284,7 +293,7 @@ echo castle_thumbs(array(
   private
     { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
     LabelFps: TCastleLabel;
-    ImagePlayer: TCastleImageControl;
+    ImagePlayer: TCastleImageControl; // NEW LINE WE ADDED
     ...'); ?>
 
   <li>
@@ -317,7 +326,7 @@ each time the <code>Update</code> method is called.
 
 <ol>
   <li>
-    <p>Add units <code>Math</code> and <code>CastleVectors</code> to the uses clause.
+    <p>Add unit <code>Math</code> to the uses clause.
 
     <p>You can extend the <i>uses clause</i>
     of the <code>interface</code> or the <code>implementation</code> of the <code>GameStateMain</code> unit.
@@ -396,6 +405,7 @@ begin
 
   PlayerPosition := ImagePlayer.AnchorDelta;
 
+  // NEW CODE WE ADD:
   if Container.Pressed[keyArrowLeft] then
     PlayerPosition := PlayerPosition + Vector2(-MoveSpeed * SecondsPassed, 0);
   if Ctontainer.Pressed[keyArrowRight] then
@@ -422,7 +432,7 @@ end;'); ?>
     <p>Just as with gravity, we scale all the movement by <code>SecondsPassed</code>.
     This way the movement will be equally fast, regardless of whether the game runs
     at 60 FPS (<i>frames per second</i>) or slower or faster.
-    This also means that <code>MoveSpeed</code> is just a <i>"movement per 1 second"</i>.
+    This also means that <code>MoveSpeed</code> constant defines a <i>"movement per 1 second"</i>.
 
     <p><i>You can now move the plane by arrow keys!</i>
 
@@ -436,6 +446,7 @@ begin
   Result := inherited;
   if Result then Exit; // allow the ancestor to handle keys
 
+  // NEW CODE WE ADD:
   if Event.IsKey(keySpace) then
   begin
     ImagePlayer.Color := Vector4(Random, Random, Random, 1);
@@ -457,7 +468,7 @@ end;'); ?>
     a bit different.
 
     <p>Note that we keep the 4th <code>ImagePlayer.Color</code> component (alpha) at 1.0.
-    Alpha would make image partially-transparent.
+    Lower <i>alpha</i> would make image partially-transparent.
 
     <p>Note that you can experiment with changing the <code>ImagePlayer.Color</code> effects
     also visually, in the editor.
@@ -467,7 +478,7 @@ end;'); ?>
 
 <p>When to use <code>Press</code> to handle a single key press,
 and when to use <code>Update</code> to watch the key state? This depends on the need.
-If the action caused by the key is a single, instant, uninterriptible action &mdash; then do it in <code>Press</code>.
+If the action caused by the key is a single, instant, uninterruptible operation &mdash; then do it in <code>Press</code>.
 If the key causes an effect that is somehow applied more and more over time  &mdash; then watch the key and apply it in <code>Update</code>.
 
 <?php echo $toc->html_section(); ?>
@@ -480,7 +491,7 @@ If the key causes an effect that is somehow applied more and more over time  &md
 the movement / touches of the fingers. When you use a touch device, then we only report <i>left</i> mouse button clicks
 (<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#MouseButton">TInputPressRelease.MouseButton</a>
 will be <code>buttonLeft</code>).
-When you use use the actual mouse on desktop, then we only report touches by the 1st finger (<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#FingerIndex">TInputPressRelease.FingerIndex</a>
+When you use use the actual mouse on the desktop, then we only report touches by the 1st finger (<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#FingerIndex">TInputPressRelease.FingerIndex</a>
 will be <code>0</code>). The example code below checks for <code>if Event.IsMouseButton(buttonLeft) then</code>
 and thus it will work on both desktop (detecting mouse click) and mobile (detecting touch).
 
@@ -508,7 +519,7 @@ end;'); ?>
 
 <p>The <code>Event.Position</code> contains the mouse/touch position. It is expressed in the <i>container</i>
 coordinates, which means it is not affected by UI scaling or the UI hierarchy and anchors.
-It's easiest to convert it to a position relative to some UI control using the <code>ContainerToLocalPosition</code>
+It's easiest to convert it to a position relative to some UI control using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#ContainerToLocalPosition">ContainerToLocalPosition</a>
 method. In this case, we use <code>ImagePlayer.Parent.ContainerToLocalPosition</code>, to use
 the resulting position to set <code>ImagePlayer.AnchorDelta</code>. The <code>ImagePlayer.Parent</code>
 is just another way to access <code>ImageBackground</code> in this case. We want to calculate new player
@@ -519,7 +530,7 @@ position, in the coordinates of <code>ImagePlayer</code> parent, because that's 
 
 <p>You can add new states to your application using the menu item <i>Code -&gt; New Unit -&gt; Unit With State...</i>. It is equivalent to just creating a new Pascal unit that defines a new <code>TUIState</code> descendant and loads a new user interface design.
 
-<p>At runtime, you can change from one state into another using <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Current">TUIState.Current := StateXxx</a> or <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Push</a> / <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Pop</a> class methods.
+<p>At runtime, you can change from one state into another using <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Current">TUIState.Current := StateXxx</a> or <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Push</a> / <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Pop">TUIState.Pop</a> class methods.
 
 <?php echo $toc->html_section(); ?>
 
