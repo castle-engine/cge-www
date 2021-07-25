@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# This script uploads cge and view3dscene packages to https://michaliskambi.itch.io/ .
+# This script uploads cge and view3dscene packages to https://castle-engine.itch.io/ .
 # Uses itch.io command-line butler:
 # https://itch.io/docs/butler/installing.html
 # https://itch.io/docs/itch/installing/linux/ubuntu-and-debian.html
@@ -79,19 +79,19 @@ butler_push ()
 do_view3dscene ()
 {
   VER="${GENERATED_VERSION_VIEW3DSCENE}"
-  butler_push view3dscene-windows.itch.toml https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-win64-x86_64.zip    michaliskambi/view3dscene:windows --userversion "${VER}"
-  butler_push view3dscene-linux.itch.toml   https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-linux-x86_64.tar.gz michaliskambi/view3dscene:linux   --userversion "${VER}"
-  echo 'Running "butler status michaliskambi/view3dscene" to see status:'
-  butler status michaliskambi/view3dscene
+  butler_push view3dscene-windows.itch.toml https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-win64-x86_64.zip    castle-engine/view3dscene:windows --userversion "${VER}"
+  butler_push view3dscene-linux.itch.toml   https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-linux-x86_64.tar.gz castle-engine/view3dscene:linux   --userversion "${VER}"
+  echo 'Running "butler status castle-engine/view3dscene" to see status:'
+  butler status castle-engine/view3dscene
 }
 
 do_castle_game_engine ()
 {
   VER="${GENERATED_VERSION_CASTLE_GAME_ENGINE}"
-  butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-win64-x86_64.zip michaliskambi/castle-game-engine:windows --userversion "${VER}"
-  butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-linux-x86_64.zip michaliskambi/castle-game-engine:linux   --userversion "${VER}"
-  echo 'Runnig "butler status michaliskambi/castle-game-engine" to see status:'
-  butler status michaliskambi/castle-game-engine
+  butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-win64-x86_64.zip castle-engine/castle-game-engine:windows --userversion "${VER}"
+  butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-linux-x86_64.zip castle-engine/castle-game-engine:linux   --userversion "${VER}"
+  echo 'Runnig "butler status castle-engine/castle-game-engine" to see status:'
+  butler status castle-engine/castle-game-engine
 }
 
 do_view3dscene
