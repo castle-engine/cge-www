@@ -16,6 +16,7 @@ $toc = new TableOfContents(
     new TocItem('(Optional) Compile view3dscene'),
     new TocItem('(Optional) Compile castle-view-image'),
     new TocItem('Test!'),
+    new TocItem('Updating'),
   )
 );
 ?>
@@ -28,7 +29,9 @@ $toc = new TableOfContents(
 
 <p>Before compiling it yourself, make sure you really need to do this. After all, you can <a href="https://castle-engine.io/">downlad the binary release of the engine</a> that <i>also contains the complete source code</i> (it just also contains ready binaries for a particular platform). And the current binary releases (<code>7.0-alpha.snapshot</code>) contain the very latest features and fixes, quite like source code &mdash; as they are automatically rebuild after every commit.<!--, after automatic tests confirm that the engine works with various compiler versions and OSes. --> Oh, and if you're looking for win32 version, it is <a href="https://github.com/castle-engine/castle-engine/releases/tag/snapshot">available on GitHub snapshot download page</a> (we don't link it on the main CGE page because we advise win64).
 
-<p>That being said, there are of course use-cases when compiling yourself, from the source code, is a great idea! E.g. if you want to contribute, or if you want to test on desktop systems for which we don't provide ready binaries yet (like FreeBSD). So, read on :)
+<p>That being said, there are of course valid reasons to compile engine yourself. E.g. if you want to contribute (create <i>pull requests</i>). Or if you want to test on desktop systems for which we don't provide ready binaries yet (like FreeBSD). Also, updating from source code is faster, as you'll only update from GIT what has changed.
+
+<p>So, read on :)
 
 <?php echo $toc->html_section(); ?>
 
@@ -193,6 +196,18 @@ castle-engine compile
 <?php echo $toc->html_section(); ?>
 
 <p>You now have a complete working CGE installation, with the command-line build tool and GUI editor. Follow the <a href="https://castle-engine.io/manual_install_run_first.php">manual</a> to set it up and use as a normal user :)
+
+<?php echo $toc->html_section(); ?>
+
+<p>To pull the latest changes
+
+<ol>
+  <li>
+    <p>Update from GIT as usual (<code>git pull --rebase</code>).
+
+  <li>
+    <p>Follow the above steps to recompile at least the <i>build tool</i> and <i>editor</i>.
+</ol>
 
 <?php
 manual_footer();
