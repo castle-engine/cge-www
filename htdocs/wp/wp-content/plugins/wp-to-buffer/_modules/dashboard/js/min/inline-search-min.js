@@ -1,0 +1,1 @@
+jQuery(document).ready((function(t){t('input[type="search"]').on("search keyup",(function(i){if(void 0!==t(this).data("list")){var e=t(this).val().toLowerCase(),s=t(this).data("list");0!=e.length?t("li",t(s)).each((function(){t(this).text().toLowerCase().search(e)>-1?t(this).show():t(this).hide()})):t("li",t(s)).show()}}))}));

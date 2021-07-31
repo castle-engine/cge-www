@@ -1,0 +1,1 @@
+jQuery(document).ready((function(e){if("undefined"!=typeof Clipboard&&e(".clipboard-js").length>0){var a=new Clipboard(".clipboard-js");e(document).on("click",".clipboard-js",(function(e){e.preventDefault()}))}e("body").on("click","a.wpzinc-populate-field-value",(function(a){a.preventDefault(),e(e(this).data("field")).val(e(this).data("value"))}))}));
