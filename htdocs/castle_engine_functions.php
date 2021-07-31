@@ -327,6 +327,7 @@ $castle_sitemap = array(
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
               'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
+              'manual_compiling_from_source' => array('title' => 'Compiling from source'),
             )
           ),
         ),
