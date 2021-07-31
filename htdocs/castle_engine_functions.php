@@ -240,12 +240,12 @@ $castle_sitemap = array(
 
   'documentation' => array('title' => 'Documentation',
     'dropdown' => array(
-      'documentation' => array('title' => 'Getting Started'),
       'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
       'Castle Game Engine for Unity developers' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
+      'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...'),
     ),
     'sidebar' => true,
@@ -327,7 +327,6 @@ $castle_sitemap = array(
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
               'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
-              'manual_compiling_from_source' => array('title' => 'Compiling from source'),
             )
           ),
         ),
@@ -355,6 +354,8 @@ $castle_sitemap = array(
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
+      'Castle Game Engine for Unity developers' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
+      'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
           // 'android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
@@ -366,13 +367,11 @@ $castle_sitemap = array(
               'donate_other' => array('title' => 'Donate')
             ),
           ),
-          'engine_doc' => array('title' => 'Internals documentation'),
-          'movies' => array('title' => 'Movies on YouTube', 'url' => 'https://www.youtube.com/channel/UCq9jJ5ivIXC5VEWiUAfxBxw'),
+          // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
           'Cloud Builds (Jenkins)' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)'),
           'docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Docker'),
           'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),
-          'Castle Game Engine for Unity developers' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
         )
       ),
     ),

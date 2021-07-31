@@ -14,7 +14,8 @@ castle_header("Engine internals documentation", array(
 passed in September 2006. Although I was occasionally updating and adding content
 to this document later.</p>
 
-<p><b>Warning: This document isn't a good introduction to the Castle Game Engine (anymore)</b>.
+<p><b>Warning: This document isn't a good introduction to the Castle Game Engine (anymore)!</b>
+
 <ul>
   <li>It talks too much about engine internals.
   <li>It shows too little of the engine API (and features) used during normal
@@ -23,6 +24,7 @@ to this document later.</p>
   <li>It discusses many features of VRML 1.0, which is a very ancient 3D format
     nowadays. The document doesn't show (in depth) features of VRML 2.0,
     modern X3D, and many enhancements of X3D in Castle Game Engine.
+    Or glTF.
 </ul>
 
 <p>View in various formats:</p>
