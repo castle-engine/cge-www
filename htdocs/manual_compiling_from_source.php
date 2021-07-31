@@ -33,6 +33,8 @@ $toc = new TableOfContents(
 
 <p>So, read on :)
 
+<p><a href="https://www.youtube.com/watch?v=_qjLWrHDwqE">We also have a video version of this, showing the process on Linux</a>.
+
 <?php echo $toc->html_section(); ?>
 
 <ul>
