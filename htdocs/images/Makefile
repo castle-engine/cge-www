@@ -51,6 +51,7 @@ ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
   gallery_size/assets_kenney.png \
   gallery_size/assets_opengameart.png \
   gallery_size/assets_sketchfab.png \
+  gallery_size/assets_quaternius.png \
   gallery_size/platformer.png \
   gallery_size/assets_blendswap.png
 

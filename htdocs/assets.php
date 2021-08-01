@@ -34,6 +34,13 @@ echo pretty_heading($page_title);
     'assets_blendswap.png',
     'https://blendswap.com/');
   ?>
+
+  <?php gallery_link('Quaternius',
+    'Lots of good quality 3D model packs, on public domain license.', // https://www.patreon.com/quaternius
+    'assets_quaternius.png',
+    'https://quaternius.com/');
+  ?>
+
 </div>
 
 <?php castle_footer(); ?>
