@@ -1,1 +1,0 @@
-<div id="<?php echo $this->base->plugin->name; ?>-notification" class="wpzinc-notification"></div>
