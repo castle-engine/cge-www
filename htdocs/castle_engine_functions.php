@@ -490,7 +490,7 @@ $castle_sitemap = array(
       'gallery_games' => array('title' => 'Games'),
       'gallery_tools' => array('title' => 'Tools'),
       'additional_components' => array('title' => 'Additional Components'),
-      'assets' => array('title' => 'Graphic Assets'),
+      'assets' => array('title' => 'Assets (3D and 2D Graphics, Sound)'),
     ),
     'sub' => array(
       'gallery_games' => array('title' => 'Games',

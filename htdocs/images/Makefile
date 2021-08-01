@@ -47,7 +47,12 @@ ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
   gallery_size/convert-to-x3d.png \
   gallery_size/view3dscene_outlines.png \
   gallery_size/cge_3d_particles_edit_fire.png \
-  gallery_size/kryftolike.png
+  gallery_size/kryftolike.png \
+  gallery_size/assets_kenney.png \
+  gallery_size/assets_opengameart.png \
+  gallery_size/assets_sketchfab.png \
+  gallery_size/platformer.png \
+  gallery_size/assets_blendswap.png
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))

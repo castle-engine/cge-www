@@ -10,6 +10,14 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Platformer',
+    'Platformer game demo. A completely playable game, sources available in CGE as <code>examples/platformer/</code>.
+
+    <p>By Andrzej Kilijański.',
+    'platformer.png',
+    'https://castle-engine.itch.io/platformer');
+  ?>
+
   <?php gallery_link('Kryftolike',
     'A roguelite-like hide-and seek game.
     Hide from monsters and seek treasure in an infinite procedurally-generated map.
