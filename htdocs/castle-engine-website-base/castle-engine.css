@@ -902,12 +902,12 @@ div.download .download_platform {
 }
 
 .talk-button > p {
-  margin-top: 100px; /* buttons have hardcoded size, so hardcode margin is OK too */
+  margin-top: 75px; /* buttons have hardcoded size, so hardcode margin is OK too */
   line-height: 50px;
   font-weight: bold;
 }
 
 .talk-button > p > img {
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
 }

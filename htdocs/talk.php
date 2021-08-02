@@ -22,7 +22,7 @@ castle_header('Talk with us');
     </a>
     <a href="https://www.patreon.com/castleengine" class="talk-button btn btn-success btn-lg">
       <p>
-        <img src="<?php echo CURRENT_URL; ?>/images/patreon-brand/logo/original-png/Digital-Patreon-Logo_White.png" alt="Patreon"><br>
+        <img src="<?php echo CURRENT_URL; ?>/images/patreon-brand/logo/png-512/Digital-Patreon-Logo_White.png" alt="Patreon"><br>
         Support on Patreon
       </p>
     </a>
